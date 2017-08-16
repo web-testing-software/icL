@@ -1,6 +1,8 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-08-16T12:56:38
+# Project started 2016-12-03
+# Project alived 2017-07-28
+# Project created by QtCreator 2017-08-16T08:13:21
 #
 #-------------------------------------------------
 
