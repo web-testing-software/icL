@@ -38,9 +38,10 @@ public:
 	 */
 	void emulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text);
 
+public slots:
+
 	// Setters for write only properties
 
-public slots:
 	void setWebEngineX (int webEngineX);
 
 	void setWebEngineY (int webEngineY);

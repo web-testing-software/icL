@@ -1,5 +1,8 @@
 #include "webbrowser.h"
 
+#include <QCoreApplication>
+#include <QThread>
+
 WebBrowser::WebBrowser (QWidget *parent)
 	: QMainWindow (parent) {
 
@@ -22,12 +25,43 @@ WebBrowser::~WebBrowser () {
 
 }
 
-bool WebBrowser::emulate_click (int x, int y) {
+bool WebBrowser::simulate_click (int x, int y) {
+	if (x < m_webEngineX ||
+		y < m_webEngineY ||
+		x >= m_webEngineX + m_webEngineWidth ||
+		y >= m_webEngineY + m_webEngineHeight) {
+		return false;
+	}
 
+	QPoint point (x, y);
+
+//	The click event is a series of press and release of left mouse button
+
+	QMouseEvent *press = new QMouseEvent (QEvent::MouseButtonPress,
+										  point,
+										  Qt::LeftButton,
+										  Qt::MouseButton::NoButton,
+										  Qt::NoModifier);
+	QMouseEvent *release = new QMouseEvent (QEvent::MouseButtonRelease,
+											point,
+											Qt::LeftButton,
+											Qt::MouseButton::NoButton,
+											Qt::NoModifier);
+
+	QCoreApplication::postEvent (this->quick_receiver, press);
+	// TODO: Make the delay configurable
+	QThread::msleep (300);
+	QCoreApplication::postEvent (this->quick_receiver, release);
 }
 
-void WebBrowser::emulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text) {
+void WebBrowser::simulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text) {
+	QKeyEvent *press		= new QKeyEvent (key, Qt::Key_A, modifier, text);
+	QKeyEvent *release	= new QKeyEvent (key, Qt::Key_A, modifier, text);
 
+	QCoreApplication::postEvent (this->quick_receiver, press);
+	// TODO: Make the delay configurable
+	QThread::msleep (60);
+	QCoreApplication::postEvent (this->quick_receiver, release);
 }
 
 void WebBrowser::setWebEngineX (int webEngineX) {
