@@ -55,8 +55,8 @@ bool WebBrowser::simulate_click (int x, int y) {
 }
 
 void WebBrowser::simulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text) {
-	QKeyEvent *press		= new QKeyEvent (key, Qt::Key_A, modifier, text);
-	QKeyEvent *release	= new QKeyEvent (key, Qt::Key_A, modifier, text);
+	QKeyEvent *press		= new QKeyEvent (QEvent::KeyPress, key, modifier, text);
+	QKeyEvent *release	= new QKeyEvent (QEvent::KeyRelease, key, modifier, text);
 
 	QCoreApplication::postEvent (this->quick_receiver, press);
 	// TODO: Make the delay configurable
