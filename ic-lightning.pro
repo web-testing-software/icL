@@ -25,10 +25,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        webbrowser.cpp
+        webbrowser.cpp \
+		cpp_backend/functions/webelement.cpp \
+		cpp_backend/functions/server.cpp \
+    cpp_backend/functions/worker.cpp
 
 HEADERS += \
-        webbrowser.h
+        webbrowser.h \
+		cpp_backend/functions/webelement.h \
+		cpp_backend/functions/server.h \
+    cpp_backend/functions/worker.h
 
 RESOURCES += \
     qml/main.qrc
