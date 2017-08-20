@@ -7,7 +7,7 @@ MouseArea {
 	x: 2 * _ratio;
 	y: 2 * _ratio;
 	width: height * 0.75;
-	height: Math.round(40 * _ratio);
+	height: 40 * _ratio;
 	clip: true;
 
 	property bool active: false;
@@ -19,7 +19,6 @@ MouseArea {
 		sourceSize.height: root.height;
 		visible: false;
 	}
-
 
 	Item {
 		y: active ? 0 : -root.height;
@@ -54,31 +53,4 @@ MouseArea {
 			lightness: 0;
 		}
 	}
-
-//	Colorize {
-//		id: logo_black;
-//		anchors.fill: parent;
-//		source: logo;
-
-//		hue: 0.0;
-//		saturation: 0;
-//		lightness: -0.5;
-//	}
-
-//	Image {
-//		id: logo_filled;
-//		anchors.fill: parent;
-//		source: "qrc:/images/icLightning_filled.svg";
-//		visible: false;
-//	}
-
-//	Colorize {
-//		id: logo_filled_colored;
-//		anchors.fill: parent;
-//		source: logo_filled;
-
-//		hue: 0.5;
-//		saturation: 1;
-//		lightness: 0;
-//	}
 }

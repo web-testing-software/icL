@@ -33,13 +33,13 @@ Item {
 
 	Behavior on progress {
 		NumberAnimation {
-			duration: max_radius;
+			duration: max_radius * anim_time_multiplier;
 		}
 	}
 
 	onProgressChanged: {
-		canvas_mask.requestPaint();
-		if (progress == 0) deleteLater();
+		canvas_mask.requestPaint ();
+		if (progress == 0) parent.requestRemove (this);
 	}
 
 	Canvas {
@@ -52,9 +52,6 @@ Item {
 			var radius = max_radius * progress;
 
 			ctx.clearRect(0, 0, root.width, root.height);
-
-//			ctx.fillStyle = "rgba(255, 255, 255, " + progress + ")";
-//			ctx.fillRect(0, 0, root.width, root.height);
 
 			ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
 			ctx.beginPath();

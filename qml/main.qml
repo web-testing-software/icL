@@ -10,41 +10,54 @@ Rectangle {
 	color: "#ffe";
 
 	property string app_version: "1.0.0 dev";
-
 	property real _ratio: Screen.pixelDensity / 5.5;
+	property real anim_time_multiplier: 1;
+
+
 	property color focus_color: "#003bc5";
 	property real focus_hue: 0;
 
+	function paste_menu (component, properties, x, y) {
+		var menu = component.createObject(pastemenu, properties);
+		pastemenu.menus.push(menu);
+		pastemenu.visible = true;
+		menu.show (x, y);
+	}
+
 	Logo {
-		onClicked: menu_base.show(mouseX, mouseY);
+		onClicked: paste_menu(about_menu, {}, mouseX, mouseY);
 	}
 
-	MenuLightning {
-		id: menu_base;
+//	MenuLightning {
+//		id: menu_base;
+//	}
+
+	Component {
+		id: about_menu;
+
+		MenuLightning {
+			//
+		}
 	}
 
+	MouseArea {
+		id: pastemenu;
+		anchors.fill: parent;
+		visible: false;
 
-//	Window {
-//		id: menu_win;
-//		visible: false;
-//		flags: Qt.FramelessWindowHint;
-//		width: menu.width;
-//		height: menu.height;
+		property var menus: [];
 
-////		on
+		function requestRemove (menu) {
+			var index = menus.indexOf(menu);
+			menus.splice(index, 1);
+			menu.destroy();
 
-//		Menu {
-//			id: menu
-//			//
-//		}
-//	}
+			if (menus.length == 0)
+				visible = false;
+		}
 
-//	MouseArea {
-//		width: 300 * _ratio;
-//		height: 50;
-
-//		onClicked: console.log(width, height);
-//	}
+		onClicked: menus[0].progress = 0;
+	}
 
 //	WebEngineView {
 //		anchors.fill: parent;

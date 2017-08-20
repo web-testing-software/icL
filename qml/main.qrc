@@ -4,10 +4,8 @@
         <file>scripts/autorun_init.js</file>
         <file>images/icLightning.svg</file>
         <file>components/browser/Logo.qml</file>
-        <file>components/browser/Menu.qml</file>
-        <file>components/browser/MenuOption.qml</file>
         <file>components/browser/contextmenu/MenuBase.qml</file>
-		<file>components/browser/contextmenu/MenuLightning.qml</file>
+        <file>components/browser/contextmenu/MenuLightning.qml</file>
         <file>images/icLightning_black.svg</file>
     </qresource>
 </RCC>
