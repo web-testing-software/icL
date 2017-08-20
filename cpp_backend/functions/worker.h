@@ -15,6 +15,9 @@ class Worker : public QThread
 public:
 	Worker ();
 
+	/**
+	 * @brief setToErrorState - Request to stop execution
+	 */
 	void setToErrorState ();
 
 	static Worker* instance ();

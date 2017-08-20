@@ -16,6 +16,14 @@ class Server : public QObject
 	Q_OBJECT
 	static Server *m_instance;
 
+	enum class WaitFor {
+		GoTo,
+		PageLoading,
+		ExecuteJS,
+		ErrorDialog,
+		Nothing
+	};
+
 public:
 	explicit Server (QObject *parent = nullptr);
 
@@ -70,6 +78,24 @@ public:
 	 */
 	void check_success (bool success, const QString &func);
 
+	// Functions to call from qml
+
+	/**
+	 * @brief finish_waitForPageLoading - called on page load finished
+	 * @param success - the page was loaded successful
+	 */
+	Q_INVOKABLE void finish_PageLoading (bool success);
+	/**
+	 * @brief finish_executeJS - called on script execution end
+	 * @param variant - the value returned by script
+	 */
+	Q_INVOKABLE void finish_executeJS (QVariant variant);
+	/**
+	 * @brief finish_showErrorDialog - called on user decision
+	 * @param skip - true if user request to skip errors
+	 */
+	Q_INVOKABLE void finish_showErrorDialog (bool skip);
+
 signals:
 	void ready ();
 
@@ -89,9 +115,10 @@ private slots:
 private:
 	// This sync variable which is used on serveral threads
 	volatile bool working	= false;
+	WaitFor waitFor			= WaitFor::Nothing;
 
 	// Configure if need to stop executing on error
-	bool stop_on_error		= true;
+	bool stop_on_error = true;
 
 	// The stack of errors
 	QStringList errors_stack;

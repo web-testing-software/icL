@@ -24,7 +24,7 @@ public:
 	/**
 	 * @brief operator [] - get the n'th element of elements
 	 * @param index
-	 * @return
+	 * @return a new web element
 	 */
 	WebElement operator [] (int index);
 
@@ -163,7 +163,7 @@ private:
 	bool single			= false;
 	bool skip_errors	= false;
 
-	// Don't touch this functions
+	// Don't touch these functions
 
 	bool is_single (bool se) const;
 	bool is_multi (bool se) const;

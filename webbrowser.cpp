@@ -3,6 +3,8 @@
 #include <QCoreApplication>
 #include <QThread>
 
+WebBrowser *WebBrowser::m_instance = nullptr;
+
 WebBrowser::WebBrowser (QWidget *parent)
 	: QMainWindow (parent) {
 
@@ -19,10 +21,11 @@ WebBrowser::WebBrowser (QWidget *parent)
 	QUrl source_mainqml ("qrc:/main.qml");
 	quick_receiver = new QQuickWidget (source_mainqml);
 	quick_receiver->setResizeMode (QQuickWidget::SizeRootObjectToView);
+//	qApp->
 
 	setCentralWidget (quick_receiver);
 	// TODO: Make configurable: Use system window frame
-	setWindowFlags (windowFlags () | Qt::FramelessWindowHint);
+//	setWindowFlags (windowFlags () | Qt::FramelessWindowHint);
 }
 
 WebBrowser::~WebBrowser () {
@@ -82,6 +85,22 @@ void WebBrowser::simulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const
 
 WebBrowser * WebBrowser::instance () {
 	return m_instance;
+}
+
+int WebBrowser::webEngineHeight () const {
+	return m_webEngineHeight;
+}
+
+int WebBrowser::webEngineX () const {
+	return m_webEngineX;
+}
+
+int WebBrowser::webEngineY () const {
+	return m_webEngineY;
+}
+
+int WebBrowser::webEngineWidth () const {
+	return m_webEngineWidth;
 }
 
 void WebBrowser::setWebEngineX (int webEngineX) {

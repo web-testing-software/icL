@@ -17,10 +17,10 @@ class WebBrowser : public QMainWindow
 	static WebBrowser *m_instance;
 
 	// Write only properties, to get information from qml
-	Q_PROPERTY (int webEngineX WRITE setWebEngineX)
-	Q_PROPERTY (int webEngineY WRITE setWebEngineY)
-	Q_PROPERTY (int webEngineWidth WRITE setWebEngineWidth)
-	Q_PROPERTY (int webEngineHeight WRITE setWebEngineHeight)
+	Q_PROPERTY (int webEngineX READ webEngineX WRITE setWebEngineX)
+	Q_PROPERTY (int webEngineY READ webEngineY WRITE setWebEngineY)
+	Q_PROPERTY (int webEngineWidth READ webEngineWidth WRITE setWebEngineWidth)
+	Q_PROPERTY (int webEngineHeight READ webEngineHeight WRITE setWebEngineHeight)
 
 public:
 	WebBrowser (QWidget *parent = 0);
@@ -67,9 +67,19 @@ public:
 
 	static WebBrowser* instance ();
 
+	// Getters for properties
+
+	int webEngineHeight () const;
+
+	int webEngineX () const;
+
+	int webEngineY () const;
+
+	int webEngineWidth () const;
+
 public slots:
 
-	// Setters for write only properties
+	// Setters for properties
 
 	void setWebEngineX (int webEngineX);
 

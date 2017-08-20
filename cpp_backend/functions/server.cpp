@@ -18,6 +18,11 @@ Server::Server (QObject *parent) : QObject (parent) {
 }
 
 bool Server::goTo (const QString &url) {
+	if (waitFor != WaitFor::Nothing)  {
+		return false;
+	}
+
+	waitFor = WaitFor::GoTo;
 	working		= true;
 	this->url	= url;
 
@@ -29,6 +34,11 @@ bool Server::goTo (const QString &url) {
 }
 
 bool Server::waitForPageLoading () {
+	if (waitFor != WaitFor::Nothing)  {
+		return false;
+	}
+
+	waitFor = WaitFor::PageLoading;
 	working = true;
 
 	emit invoke_waitForPageLoading ();
@@ -39,6 +49,11 @@ bool Server::waitForPageLoading () {
 }
 
 QVariant Server::executeJS (const QString &code) {
+	if (waitFor != WaitFor::Nothing)  {
+		return false;
+	}
+
+	waitFor = WaitFor::ExecuteJS;
 	working		= true;
 	this->code	= code;
 
@@ -50,6 +65,11 @@ QVariant Server::executeJS (const QString &code) {
 }
 
 bool Server::showErrorDialog () {
+	if (waitFor != WaitFor::Nothing)  {
+		return false;
+	}
+
+	waitFor = WaitFor::ErrorDialog;
 	working = true;
 
 	emit invoke_showErrorDialog ();
@@ -85,27 +105,42 @@ void Server::check_success (bool success, const QString &func) {
 	}
 }
 
+void Server::finish_PageLoading(bool success)
+{
+	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
+		boolean = success;
+		waitFor = WaitFor::Nothing;
+		working = false;
+	}
+}
 
+void Server::finish_executeJS(QVariant variant)
+{
+	if (waitFor == WaitFor::ExecuteJS) {
+		this->variant = variant;
+		this->waitFor = WaitFor::Nothing;
+		this->working = false;
+	}
+}
 
+void Server::finish_showErrorDialog(bool skip)
+{
+	if (waitFor == WaitFor::ErrorDialog) {
+		boolean = skip;
+		waitFor = WaitFor::Nothing;
+		working = false;
+	}
+}
 
 void Server::release_goTo () {
-	browser->get (url, [this] (bool success) {
-		this->boolean = success;
-		this->working = false;
-	});
+	browser->get (url);
 }
 
 void Server::release_waitForPageLoading () {
-	browser->waitForPageLoading ( [this] (bool success) {
-		this->boolean = success;
-		this->working = false;
-	});
+	browser->waitForPageLoading ();
 }
 void Server::release_executeJS () {
-	browser->runJS (code, [this] (const QVariant &variant) {
-		this->variant = variant;
-		this->working = false;
-	});
+	browser->runJS (code);
 }
 
 void Server::release_showErrorDialog () {

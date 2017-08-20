@@ -2,6 +2,8 @@
 #include "webelement.h"
 #include "worker.h"
 
+Worker *Worker::m_instance = nullptr;
+
 Worker::Worker () : QThread () {
 	if (m_instance == nullptr) {
 		m_instance = this;
@@ -24,5 +26,7 @@ bool Worker::check_errors () {
 	if (error_state) {
 		return server->showErrorDialog ();
 	}
-	return true;
+	else {
+		return true;
+	}
 }
