@@ -20,37 +20,13 @@ MouseArea {
 		visible: false;
 	}
 
-	Item {
-		y: active ? 0 : -root.height;
-		height: root.height * 2;
+	Colorize {
+		id: logo_colored;
+		source: logo;
+		anchors.fill: logo;
 
-		Behavior on y {
-			NumberAnimation {
-				duration: 150;
-			}
-		}
-
-		Colorize {
-			id: logo_colored_2;
-			source: logo_colored;
-			width: logo.width;
-			height: logo.height;
-
-			hue: logo_colored.hue >= 0.5 ? logo_colored.hue - 0.5 : logo_colored.hue + 0.5;
-			saturation: 1;
-			lightness: 0;
-		}
-
-		Colorize {
-			id: logo_colored;
-			anchors.top: logo_colored_2.bottom;
-			source: logo;
-			width: logo.width;
-			height: logo.height;
-
-			hue: 0.6156;
-			saturation: 1;
-			lightness: 0;
-		}
+		hue: focus_hue;
+		saturation: 1;
+		lightness: 0;
 	}
 }

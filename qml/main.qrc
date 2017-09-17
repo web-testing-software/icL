@@ -7,5 +7,8 @@
         <file>components/browser/contextmenu/MenuBase.qml</file>
         <file>components/browser/contextmenu/MenuLightning.qml</file>
         <file>images/icLightning_black.svg</file>
+        <file>components/browser/Tab.qml</file>
+        <file>images/new_tab.svg</file>
+        <file>images/blank_favicon.svg</file>
     </qresource>
 </RCC>

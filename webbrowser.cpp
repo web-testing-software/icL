@@ -1,6 +1,8 @@
 #include "webbrowser.h"
+#include "cpp_backend/functions/server.h"
 
 #include <QCoreApplication>
+#include <QQmlContext>
 #include <QThread>
 
 WebBrowser *WebBrowser::m_instance = nullptr;
@@ -22,6 +24,12 @@ WebBrowser::WebBrowser (QWidget *parent)
 	quick_receiver = new QQuickWidget (source_mainqml);
 	quick_receiver->setResizeMode (QQuickWidget::SizeRootObjectToView);
 //	qApp->
+
+	// Export the singletons to QML
+	QQmlContext *context = quick_receiver->rootContext ();
+
+	context->setContextProperty ("server", server);
+	context->setContextProperty ("browser", browser);
 
 	setCentralWidget (quick_receiver);
 	// TODO: Make configurable: Use system window frame
