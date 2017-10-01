@@ -1,7 +1,7 @@
 #include "parser.h"
 
-void VM::parse(int &command)
-{
+void VM::parse (int &command) {
+	using namespace VM;
 
 }
 
@@ -9,27 +9,27 @@ void VM::Language::parse (int &command) {
 	using namespace VM::Language;
 
 	switch (command) {
-	case static_cast<int>(Command::Control):
+	case static_cast <int> ( Command::Control ) :
 		Control::parse (command);
 		break;
 
-	case static_cast<int>(Command::LocalMemory):
+	case static_cast <int> ( Command::LocalMemory ) :
 		LocalMemory::parse (command);
 		break;
 
-	case static_cast<int>(Command::StateStorange):
+	case static_cast <int> ( Command::StateStorange ) :
 		StateStorange::parse (command);
 		break;
 
-	case static_cast<int>(Command::Constant):
+	case static_cast <int> ( Command::Constant ) :
 		Constant::parse (command);
 		break;
 
-	case static_cast<int>(Command::BoolOperator):
+	case static_cast <int> ( Command::BoolOperator ) :
 		BoolOperator::parse (command);
 		break;
 
-	default:
+	default :
 		error = Errors::CommandNotFound;
 	}
 }
