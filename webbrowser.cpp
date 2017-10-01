@@ -1,5 +1,5 @@
 #include "webbrowser.h"
-#include "cpp_backend/functions/server.h"
+#include "backend/functions/server.h"
 
 #include <QCoreApplication>
 #include <QQmlContext>

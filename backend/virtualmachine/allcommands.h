@@ -5,10 +5,10 @@
 
 namespace VM {
 	enum class Filter {
-		Level1	= 0xFF000000,
-		Level2	= 0xFFFF0000,
-		Level3	= 0xFFFFFF00,
-		Level4	= 0xFFFFFFFF
+		Level1	= 0x7F000000,
+		Level2	= 0x7FFF0000,
+		Level3	= 0x7FFFFF00,
+		Level4	= 0x7FFFFFFF
 	};
 
 	enum class Command {
@@ -56,7 +56,7 @@ namespace VM {
 			}
 
 		namespace LocalMemory {
-			enum class Commands {
+			enum class Command {
 				Read	= 0x01020100,
 				Write	= 0x01020200
 			};
@@ -85,7 +85,7 @@ namespace VM {
 			}
 
 		namespace StateStorange {
-			enum class Commands {
+			enum class Command {
 				Read	= 0x01030100,
 				Write	= 0x01030200
 			};
@@ -316,7 +316,7 @@ namespace VM {
 			}
 
 		namespace Keyboard {
-			enum Command {
+			enum class Command {
 				BaseEvent		= 0x05020100,
 				ComplexEvent	= 0x05010100
 			};

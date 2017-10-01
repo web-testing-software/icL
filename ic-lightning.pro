@@ -54,7 +54,8 @@ SOURCES += \
     backend/virtualmachine/input/keyboard/complexeventk.cpp \
     backend/virtualmachine/database/basic/output.cpp \
     backend/virtualmachine/database/basic/editing.cpp \
-    backend/virtualmachine/debugger/basic/focus.cpp
+    backend/virtualmachine/debugger/basic/focus.cpp \
+    backend/virtualmachine/parser.cpp
 
 HEADERS += \
         webbrowser.h \
@@ -87,7 +88,11 @@ HEADERS += \
     backend/virtualmachine/input/keyboard/complexeventk.h \
     backend/virtualmachine/database/basic/output.h \
     backend/virtualmachine/database/basic/editing.h \
-    backend/virtualmachine/debugger/basic/focus.h
+    backend/virtualmachine/debugger/basic/focus.h \
+    backend/virtualmachine/parser.h
 
 RESOURCES += \
     qml/main.qrc
+
+
+CONFIG += c++11
