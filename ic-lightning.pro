@@ -34,7 +34,8 @@ HEADERS += \
         webbrowser.h \
 		cpp_backend/functions/webelement.h \
 		cpp_backend/functions/server.h \
-    cpp_backend/functions/worker.h
+    cpp_backend/functions/worker.h \
+    cpp_backend/virtual_machine/commands_enums.h
 
 RESOURCES += \
     qml/main.qrc

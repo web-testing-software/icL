@@ -16,7 +16,7 @@ Rectangle {
 
 
 	property color focus_color: "#003bc5";
-	property real focus_hue: 0;
+	property real focus_hue: 0.62;
 
 	property color border_color: "#e1e1e2";
 
@@ -100,13 +100,17 @@ Rectangle {
 				anchors.bottom: parent.bottom;
 
 				property int max_tab_width: 300 * _ratio;
-				property int tab_number: 2;
+				property int tab_number: 3;
 				property int tab_width: tab_number * max_tab_width + new_tab_button.width <= parent.width
 										? max_tab_width
 										: (parent.width - new_tab_button.width) / tab_number;
 
 				Tab {
 					id: test_tab;
+					active: true;
+				}
+				Tab {
+//					id: test_tab;
 				}
 				Tab {
 //					id: test_tab;
@@ -218,19 +222,19 @@ Rectangle {
 		onClicked: menus[0].progress = 0;
 	}
 
-//		WebEngineView {
-//			anchors.fill: parent;
-//			anchors.topMargin: 50;
+	//		WebEngineView {
+	//			anchors.fill: parent;
+	//			anchors.topMargin: 50;
 
-//			url: "http://disk.yandex.ru";
+	//			url: "http://disk.yandex.ru";
 
-//			settings.autoLoadImages: false;
-//			settings.javascriptCanOpenWindows: false;
-//			profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
+	//			settings.autoLoadImages: false;
+	//			settings.javascriptCanOpenWindows: false;
+	//			profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
 
-//			onTitleChanged: console.log("Title changed:" + title);
+	//			onTitleChanged: console.log("Title changed:" + title);
 
-//			onIconChanged: console.log(icon);
-//			Component.onCompleted: console.log(icon);
-//		}
+	//			onIconChanged: console.log(icon);
+	//			Component.onCompleted: console.log(icon);
+	//		}
 }
