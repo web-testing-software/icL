@@ -26,16 +26,68 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         webbrowser.cpp \
-		cpp_backend/functions/webelement.cpp \
-		cpp_backend/functions/server.cpp \
-    cpp_backend/functions/worker.cpp
+		backend/functions/webelement.cpp \
+		backend/functions/server.cpp \
+	backend/functions/worker.cpp \
+    backend/virtualmachine/language/control/singleshot.cpp \
+    backend/virtualmachine/language/control/multishot.cpp \
+    backend/virtualmachine/language/control/comment.cpp \
+    backend/virtualmachine/language/localmemory/readl.cpp \
+    backend/virtualmachine/language/localmemory/writel.cpp \
+    backend/virtualmachine/language/statestorange/reads.cpp \
+    backend/virtualmachine/language/statestorange/writes.cpp \
+    backend/virtualmachine/language/constant/readc.cpp \
+    backend/virtualmachine/language/booloperator/logical.cpp \
+    backend/virtualmachine/language/booloperator/equal.cpp \
+    backend/virtualmachine/language/booloperator/notequal.cpp \
+    backend/virtualmachine/language/booloperator/stringlist.cpp \
+    backend/virtualmachine/driver/navigation/navigation.cpp \
+    backend/virtualmachine/driver/navigation/wainting.cpp \
+    backend/virtualmachine/driver/managecontent/frames.cpp \
+    backend/virtualmachine/javascript/basejs/runjs.cpp \
+    backend/virtualmachine/javascript/basejs/get.cpp \
+    backend/virtualmachine/javascript/basejs/set.cpp \
+    backend/virtualmachine/javascript/dom/findelements.cpp \
+    backend/virtualmachine/javascript/dom/filterelements.cpp \
+    backend/virtualmachine/javascript/dom/elementstest.cpp \
+    backend/virtualmachine/input/mouse/complexeventm.cpp \
+    backend/virtualmachine/input/keyboard/complexeventk.cpp \
+    backend/virtualmachine/database/basic/output.cpp \
+    backend/virtualmachine/database/basic/editing.cpp \
+    backend/virtualmachine/debugger/basic/focus.cpp
 
 HEADERS += \
         webbrowser.h \
-		cpp_backend/functions/webelement.h \
-		cpp_backend/functions/server.h \
-    cpp_backend/functions/worker.h \
-    cpp_backend/virtual_machine/commands_enums.h
+		backend/functions/webelement.h \
+		backend/functions/server.h \
+	backend/functions/worker.h \
+	backend/virtualmachine/allcommands.h \
+    backend/virtualmachine/language/control/singleshot.h \
+    backend/virtualmachine/language/control/multishot.h \
+    backend/virtualmachine/language/control/comment.h \
+    backend/virtualmachine/language/localmemory/readl.h \
+    backend/virtualmachine/language/localmemory/writel.h \
+    backend/virtualmachine/language/statestorange/reads.h \
+    backend/virtualmachine/language/statestorange/writes.h \
+    backend/virtualmachine/language/constant/readc.h \
+    backend/virtualmachine/language/booloperator/logical.h \
+    backend/virtualmachine/language/booloperator/equal.h \
+    backend/virtualmachine/language/booloperator/notequal.h \
+    backend/virtualmachine/language/booloperator/stringlist.h \
+    backend/virtualmachine/driver/navigation/navigation.h \
+    backend/virtualmachine/driver/navigation/wainting.h \
+    backend/virtualmachine/driver/managecontent/frames.h \
+    backend/virtualmachine/javascript/basejs/runjs.h \
+    backend/virtualmachine/javascript/basejs/get.h \
+    backend/virtualmachine/javascript/basejs/set.h \
+    backend/virtualmachine/javascript/dom/findelements.h \
+    backend/virtualmachine/javascript/dom/filterelements.h \
+    backend/virtualmachine/javascript/dom/elementstest.h \
+    backend/virtualmachine/input/mouse/complexeventm.h \
+    backend/virtualmachine/input/keyboard/complexeventk.h \
+    backend/virtualmachine/database/basic/output.h \
+    backend/virtualmachine/database/basic/editing.h \
+    backend/virtualmachine/debugger/basic/focus.h
 
 RESOURCES += \
     qml/main.qrc
