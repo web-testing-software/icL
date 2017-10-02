@@ -7,7 +7,7 @@
 
 namespace VM { namespace Driver { namespace ManageContent { namespace Frames {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

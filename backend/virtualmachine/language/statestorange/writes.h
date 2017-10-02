@@ -7,7 +7,7 @@
 
 namespace VM { namespace Language { namespace StateStorange { namespace Write {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

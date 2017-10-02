@@ -7,7 +7,7 @@
 
 namespace VM { namespace Driver { namespace Navigation { namespace Wainting {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

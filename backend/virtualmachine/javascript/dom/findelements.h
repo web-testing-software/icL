@@ -7,7 +7,7 @@
 
 namespace VM { namespace JavaScript { namespace DOM { namespace FindElements {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

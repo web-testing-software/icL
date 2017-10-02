@@ -7,7 +7,7 @@
 
 namespace VM { namespace Debugger { namespace Basic { namespace Focus {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

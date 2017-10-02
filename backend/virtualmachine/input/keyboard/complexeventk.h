@@ -5,9 +5,9 @@
 
 
 
-namespace VM { namespace Input { namespace KeyBoard { namespace ComplexEvent {
+namespace VM { namespace Input { namespace Keyboard { namespace ComplexEvent {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

@@ -7,7 +7,7 @@
 
 namespace VM { namespace DataBase { namespace Basic { namespace Output {
 
-void parse (int &command);
+void parse (const int &command);
 
 } } } }
 

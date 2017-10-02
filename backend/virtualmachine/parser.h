@@ -5,6 +5,8 @@
 
 // All functions in this file are called `parse`
 // The 3rd level parse functions are placed in specials files, not here
+// All parse functions are released using `switch`es
+// to keep the readability and extensibility of code
 
 namespace VM {
 
@@ -21,87 +23,87 @@ namespace VM {
 
 	Errors error = Errors::NoError;
 
-	void parse (int &command);
+	void parse (const int &command);
 
 	namespace Language {
-		void parse (int &command);
+		void parse (const int &command);
 
 		namespace Control {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 
 		namespace LocalMemory {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 
 		namespace StateStorange {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 
 		namespace Constant {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 
 		namespace BoolOperator {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 		}
 
-//	namespace Browser {
-//		//
-//		}
+	//	namespace Browser {
+	//		//
+	//		}
 
 	namespace Driver {
-		void parse (int &command);
+		void parse (const int &command);
 
-		namespace Naigation {
-			void parse (int &command);
+		namespace Navigation {
+			void parse (const int &command);
 			}
 
 		namespace ManageContent {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 		}
 
 	namespace JavaScript {
-		void parse (int &command);
+		void parse (const int &command);
 
 		namespace BaseJS {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 
 		namespace DOM {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 		}
 
 	namespace Input {
-		void parse (int &command);
+		void parse (const int &command);
 
 		namespace Mouse {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 
 		namespace Keyboard {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 		}
 
 	namespace DataBase {
-		void parse (int &command);
+		void parse (const int &command);
 
 		namespace Basic {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 		}
 
-	namespace Debbuger {
-		void parse (int &command);
+	namespace Debugger {
+		void parse (const int &command);
 
 		namespace Basic {
-			void parse (int &command);
+			void parse (const int &command);
 			}
 		}
-}
+	}
 
 #endif // PARSER_H

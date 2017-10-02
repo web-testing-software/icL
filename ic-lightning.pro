@@ -89,7 +89,8 @@ HEADERS += \
     backend/virtualmachine/database/basic/output.h \
     backend/virtualmachine/database/basic/editing.h \
     backend/virtualmachine/debugger/basic/focus.h \
-    backend/virtualmachine/parser.h
+    backend/virtualmachine/parser.h \
+    backend/virtualmachine/allheaders.h
 
 RESOURCES += \
     qml/main.qrc
