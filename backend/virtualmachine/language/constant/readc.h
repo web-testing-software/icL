@@ -7,7 +7,19 @@
 
 namespace VM { namespace Language { namespace Constant { namespace Read {
 
-void parse (int &command);
+void parse (const int &command);
+
+// This class is needed for compability with QML
+class Singleton : public QObject {
+	Q_OBJECT
+
+public:
+	void runBoolean ();
+	void runInt ();
+	void runDouble ();
+	void runString ();
+	void runStringList ();
+};
 
 } } } }
 

@@ -7,7 +7,15 @@
 
 namespace VM { namespace Input { namespace Mouse { namespace ComplexEvent {
 
-void parse (int &command);
+void parse (const int &command);
+
+// This class is needed for compability with QML
+class Singleton : public QObject {
+	Q_OBJECT
+
+public:
+	void runClick ();
+};
 
 } } } }
 

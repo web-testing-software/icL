@@ -7,7 +7,16 @@
 
 namespace VM { namespace JavaScript { namespace BaseJS { namespace RunJS {
 
-void parse (int &command);
+void parse (const int &command);
+
+// This class is needed for compability with QML
+class Singleton : public QObject {
+	Q_OBJECT
+
+public:
+	void runRunString ();
+	void runRunFile ();
+};
 
 } } } }
 

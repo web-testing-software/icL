@@ -28,4 +28,32 @@
 #include "database/basic/editing.h"
 #include "debugger/basic/focus.h"
 
+struct Level3Container {
+	VM::Language::Control::SingleShot::Singleton single_shot;
+	VM::Language::Control::Comment::Singleton comment;
+	VM::Language::LocalMemory::Read::Singleton readl;
+	VM::Language::LocalMemory::Write::Singleton writel;
+	VM::Language::StateStorange::Read::Singleton reads;
+	VM::Language::StateStorange::Write::Singleton writes;
+	VM::Language::Constant::Read::Singleton readc;
+	VM::Language::BoolOperator::Logical::Singleton logical;
+	VM::Language::BoolOperator::Equal::Singleton equal;
+	VM::Language::BoolOperator::NotEqual::Singleton notequal;
+	VM::Language::BoolOperator::StringList::Singleton stringlist;
+	VM::Driver::Navigation::Navigation::Singleton navigation;
+	VM::Driver::Navigation::Wainting::Singleton wainting;
+	VM::Driver::ManageContent::Frames::Singleton frames;
+	VM::JavaScript::BaseJS::RunJS::Singleton runjs;
+	VM::JavaScript::BaseJS::Get::Singleton get;
+	VM::JavaScript::BaseJS::Set::Singleton set;
+	VM::JavaScript::DOM::FindElements::Singleton find_elements;
+	VM::JavaScript::DOM::FilterElements::Singleton filter_elements;
+	VM::JavaScript::DOM::ElementsTest::Singleton elements_test;
+	VM::Input::Mouse::ComplexEvent::Singleton mouse_complex;
+	VM::Input::Keyboard::ComplexEvent::Singleton keyboard_complex;
+	VM::DataBase::Basic::Output::Singleton output;
+	VM::DataBase::Basic::Editing::Singleton edititng;
+	VM::Debugger::Basic::Focus::Singleton focus;
+};
+
 #endif // ALLHEADERS_H

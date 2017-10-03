@@ -1,9 +1,13 @@
 #ifndef COMMANDS_ENUMS_H
 #define COMMANDS_ENUMS_H
 
+#include <QObject>
+#include <QVariant>
+
 // current version 1.0.0
 
 namespace VM {
+
 	enum class Filter {
 		Level1	= 0x7F000000,
 		Level2	= 0x7FFF0000,
@@ -378,5 +382,6 @@ namespace VM {
 			}
 		}
 	}
+
 
 #endif // COMMANDS_ENUMS_H

@@ -2,6 +2,11 @@
 
 
 
-namespace VM::DataBase::Basic::Editing {
+
+void VM::DataBase::Basic::Editing::parse (const int &command) {
+
+}
+
+void VM::DataBase::Basic::Editing::Singleton::runInsert () {
 
 }

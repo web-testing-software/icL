@@ -7,7 +7,17 @@
 
 namespace VM { namespace JavaScript { namespace DOM { namespace ElementsTest {
 
-void parse (int &command);
+void parse (const int &command);
+
+// This class is needed for compability with QML
+class Singleton : public QObject {
+	Q_OBJECT
+
+public:
+	void runIsVisible ();
+	void runGetX ();
+	void runGetY ();
+};
 
 } } } }
 
