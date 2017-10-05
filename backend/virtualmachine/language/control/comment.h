@@ -1,7 +1,7 @@
 #ifndef COMMENT_H
 #define COMMENT_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,9 +14,9 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runDelimiter ();
-	void runLine ();
-	void runMultiline ();
+	static void runDelimiter ();
+	static void runLine ();
+	static void runMultiline ();
 };
 
 } } } }

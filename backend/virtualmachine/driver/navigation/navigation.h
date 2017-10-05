@@ -1,7 +1,7 @@
 #ifndef NAVIGATION_H
 #define NAVIGATION_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,7 +14,7 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runGoToURL ();
+	static void runGoToURL ();
 };
 
 } } } }

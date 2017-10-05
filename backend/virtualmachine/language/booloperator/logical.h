@@ -1,7 +1,7 @@
 #ifndef LOGICAL_H
 #define LOGICAL_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,10 +14,10 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runNot ();
-	void runAnd ();
-	void runOr ();
-	void runXOr ();
+	static void runNot ();
+	static void runAnd ();
+	static void runOr ();
+	static void runXOr ();
 };
 
 } } } }

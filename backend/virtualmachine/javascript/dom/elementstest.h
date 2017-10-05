@@ -1,7 +1,7 @@
 #ifndef ELEMENTSTEST_H
 #define ELEMENTSTEST_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,9 +14,9 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runIsVisible ();
-	void runGetX ();
-	void runGetY ();
+	static void runIsVisible ();
+	static void runGetX ();
+	static void runGetY ();
 };
 
 } } } }

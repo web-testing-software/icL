@@ -1,7 +1,7 @@
 #ifndef COMPLEXEVENTK_H
 #define COMPLEXEVENTK_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,7 +14,7 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runSendKey ();
+	static void runSendKey ();
 };
 
 } } } }

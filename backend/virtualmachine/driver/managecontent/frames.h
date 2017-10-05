@@ -1,7 +1,7 @@
 #ifndef FRAMES_H
 #define FRAMES_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,8 +14,8 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runSwitchToFrame ();
-	void runSwitchToDefault ();
+	static void runSwitchToFrame ();
+	static void runSwitchToDefault ();
 };
 
 } } } }

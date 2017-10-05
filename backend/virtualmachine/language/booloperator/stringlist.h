@@ -1,7 +1,7 @@
 #ifndef STRINGLIST_H
 #define STRINGLIST_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,8 +14,8 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runContains ();
-	void runContainsFragment ();
+	static void runContains ();
+	static void runContainsFragment ();
 };
 
 } } } }

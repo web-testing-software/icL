@@ -1,7 +1,7 @@
 #ifndef SINGLESHOT_H
 #define SINGLESHOT_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,10 +14,10 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runIf ();
-	void runBeginIf ();
-	void runElse ();
-	void runEndIf ();
+	static void runIf ();
+	static void runBeginIf ();
+	static void runElse ();
+	static void runEndIf ();
 
 	//	Q_INVOKABLE bool addIf(QVariant v);
 	//	Q_INVOKABLE bool addBeginIf(QVariant v);

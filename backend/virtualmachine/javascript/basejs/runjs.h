@@ -1,7 +1,7 @@
 #ifndef RUNJS_H
 #define RUNJS_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,8 +14,8 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runRunString ();
-	void runRunFile ();
+	static void runRunString ();
+	static void runRunFile ();
 };
 
 } } } }

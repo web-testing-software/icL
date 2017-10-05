@@ -1,7 +1,7 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,7 +14,7 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runSelect ();
+	static void runSelect ();
 };
 
 } } } }

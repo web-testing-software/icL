@@ -220,7 +220,7 @@ namespace VM {
 			};
 
 			namespace Frames {
-				enum class Frames {
+				enum class Command {
 					SwitchToFrame	= 0x03020101,
 					SwitchToDefault = 0x03020102
 				};

@@ -1,7 +1,7 @@
 #ifndef FILTERELEMENTS_H
 #define FILTERELEMENTS_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,8 +14,8 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runByCSSSelector ();
-	void runByContent ();
+	static void runByCSSSelector ();
+	static void runByContent ();
 };
 
 } } } }

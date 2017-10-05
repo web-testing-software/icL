@@ -1,7 +1,7 @@
 #ifndef READL_H
 #define READL_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,12 +14,12 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runBoolean ();
-	void runInt ();
-	void runDouble ();
-	void runString ();
-	void runStringList ();
-	void runWebElement ();
+	static void runBoolean ();
+	static void runInt ();
+	static void runDouble ();
+	static void runString ();
+	static void runStringList ();
+	static void runWebElement ();
 };
 
 } } } }

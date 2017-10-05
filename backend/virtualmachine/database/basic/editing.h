@@ -1,7 +1,7 @@
 #ifndef EDITING_H
 #define EDITING_H
 
-#include "../../allcommands.h"
+#include "../../parser.h"
 
 
 
@@ -14,7 +14,7 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	void runInsert ();
+	static void runInsert ();
 };
 
 } } } }
