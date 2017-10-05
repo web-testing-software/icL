@@ -3,53 +3,53 @@
 
 
 
-void VM::JavaScript::BaseJS::Get::parse (const int &command) {
-	using namespace VM::JavaScript::BaseJS::Get;
+void vm::javascript::basejs::get::parse (const int &command) {
+	using namespace vm::javascript::basejs::get;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::BaseJS::Get::Singleton::runBoolean () {
+void vm::javascript::basejs::get::Singleton::runBoolean () {
 
 }
 
-void VM::JavaScript::BaseJS::Get::Singleton::runInt () {
+void vm::javascript::basejs::get::Singleton::runInt () {
 
 }
 
-void VM::JavaScript::BaseJS::Get::Singleton::runDouble () {
+void vm::javascript::basejs::get::Singleton::runDouble () {
 
 }
 
-void VM::JavaScript::BaseJS::Get::Singleton::runString () {
+void vm::javascript::basejs::get::Singleton::runString () {
 
 }
 
-void VM::JavaScript::BaseJS::Get::Singleton::runStringList () {
+void vm::javascript::basejs::get::Singleton::runStringList () {
 
 }

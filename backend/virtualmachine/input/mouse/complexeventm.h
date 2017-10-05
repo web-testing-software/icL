@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Input { namespace Mouse { namespace ComplexEvent {
+namespace vm { namespace input { namespace mouse { namespace complexevent {
 
 void parse (const int &command);
 

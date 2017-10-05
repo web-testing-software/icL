@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Driver { namespace Navigation { namespace Navigation {
+namespace vm { namespace driver { namespace navigation { namespace navigation {
 
 void parse (const int &command);
 

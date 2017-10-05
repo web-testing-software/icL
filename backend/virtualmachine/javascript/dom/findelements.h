@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace JavaScript { namespace DOM { namespace FindElements {
+namespace vm { namespace javascript { namespace dom { namespace findelements {
 
 void parse (const int &command);
 

@@ -1,394 +1,394 @@
 #include "parser.h"
 #include "allheaders.h"
 
-void VM::parse (const int &command) {
-	using namespace VM;
+void vm::parse (const int &command) {
+	using namespace vm;
 
-	int sw = command | static_cast <int> ( Filter::Level1 );
+	int sw = command | static_cast <int> ( Filter::LEVEL1 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Language ) :
-		Language::parse (command);
+	case static_cast <int> ( Command::LANGUAGE ) :
+		language::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Driver ) :
-		Driver::parse (command);
+	case static_cast <int> ( Command::DRIVER ) :
+		driver::parse (command);
 		break;
 
-	case static_cast <int> ( Command::JavaScript ) :
-		JavaScript::parse (command);
+	case static_cast <int> ( Command::JAVASCRIPT ) :
+		javascript::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Input ) :
-		Input::parse (command);
+	case static_cast <int> ( Command::INPUT ) :
+		input::parse (command);
 		break;
 
-	case static_cast <int> ( Command::DataBase ) :
-		DataBase::parse (command);
+	case static_cast <int> ( Command::DATABASE ) :
+		database::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Debugger ) :
-		Debugger::parse (command);
+	case static_cast <int> ( Command::DEBUGGER ) :
+		debugger::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::parse (const int &command) {
-	using namespace VM::Language;
+void vm::language::parse (const int &command) {
+	using namespace vm::language;
 
-	int sw = command | static_cast <int> ( Filter::Level2 );
+	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Control ) :
-		Control::parse (command);
+	case static_cast <int> ( Command::CONTROL ) :
+		control::parse (command);
 		break;
 
-	case static_cast <int> ( Command::LocalMemory ) :
-		LocalMemory::parse (command);
+	case static_cast <int> ( Command::LOCAL_MEMORY ) :
+		localmemory::parse (command);
 		break;
 
-	case static_cast <int> ( Command::StateStorange ) :
-		StateStorange::parse (command);
+	case static_cast <int> ( Command::STATE_STORANGE ) :
+		statestorange::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Constant ) :
-		Constant::parse (command);
+	case static_cast <int> ( Command::CONSTANT ) :
+		constant::parse (command);
 		break;
 
-	case static_cast <int> ( Command::BoolOperator ) :
-		BoolOperator::parse (command);
+	case static_cast <int> ( Command::BOOL_OPERATOR ) :
+		booloperator::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::Control::parse (const int &command) {
-	using namespace VM::Language::Control;
+void vm::language::control::parse (const int &command) {
+	using namespace vm::language::control;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::SingleShot ) :
-		SingleShot::parse (command);
+	case static_cast <int> ( Command::SINGLE_SHOT ) :
+		singleshot::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Comment ) :
-		Comment::parse (command);
+	case static_cast <int> ( Command::COMMENT ) :
+		comment::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::LocalMemory::parse (const int &command) {
-	using namespace VM::Language::LocalMemory;
+void vm::language::localmemory::parse (const int &command) {
+	using namespace vm::language::localmemory;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Read ) :
-		Read::parse (command);
+	case static_cast <int> ( Command::READ ) :
+		read::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Write ) :
-		Write::parse (command);
+	case static_cast <int> ( Command::WRITE ) :
+		write::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::StateStorange::parse (const int &command) {
-	using namespace VM::Language::StateStorange;
+void vm::language::statestorange::parse (const int &command) {
+	using namespace vm::language::statestorange;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Read ) :
-		Read::parse (command);
+	case static_cast <int> ( Command::READ ) :
+		read::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Write ) :
-		Write::parse (command);
+	case static_cast <int> ( Command::WRITE ) :
+		write::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::Constant::parse (const int &command) {
-	using namespace VM::Language::Constant;
+void vm::language::constant::parse (const int &command) {
+	using namespace vm::language::constant;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Read ) :
-		Read::parse (command);
+	case static_cast <int> ( Command::READ ) :
+		read::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::BoolOperator::parse (const int &command) {
-	using namespace VM::Language::BoolOperator;
+void vm::language::booloperator::parse (const int &command) {
+	using namespace vm::language::booloperator;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Logical ) :
-		Logical::parse (command);
+	case static_cast <int> ( Command::LOGICAL ) :
+		logical::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Equal ) :
-		Equal::parse (command);
+	case static_cast <int> ( Command::EQUAL ) :
+		equal::parse (command);
 		break;
 
-	case static_cast <int> ( Command::NotEqual ) :
-		NotEqual::parse (command);
+	case static_cast <int> ( Command::NOT_EQUAL ) :
+		notequal::parse (command);
 		break;
 
-	case static_cast <int> ( Command::StringList ) :
-		StringList::parse (command);
+	case static_cast <int> ( Command::STRING_LIST ) :
+		stringlist::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Driver::parse (const int &command) {
-	using namespace VM::Driver;
+void vm::driver::parse (const int &command) {
+	using namespace vm::driver;
 
-	int sw = command | static_cast <int> ( Filter::Level2 );
+	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Navigation ) :
-		Navigation::parse (command);
+	case static_cast <int> ( Command::NAVIGATION ) :
+		navigation::parse (command);
 		break;
 
-	case static_cast <int> ( Command::ManageContent ) :
-		ManageContent::parse (command);
+	case static_cast <int> ( Command::MANAGE_CONTENT ) :
+		managecontent::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Driver::Navigation::parse (const int &command) {
-	using namespace VM::Driver::Navigation;
+void vm::driver::navigation::parse (const int &command) {
+	using namespace vm::driver::navigation;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
-
-	switch (sw) {
-	case static_cast <int> ( Command::Navigation ) :
-		Navigation::parse (command);
-		break;
-
-	case static_cast <int> ( Command::Wainting ) :
-		Wainting::parse (command);
-		break;
-
-	default :
-		error = Errors::CommandNotFound;
-	}
-}
-
-void VM::Driver::ManageContent::parse (const int &command) {
-	using namespace VM::Driver::ManageContent;
-
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Frames ) :
-		Frames::parse (command);
+	case static_cast <int> ( Command::NAVIGATION ) :
+		navigation::parse (command);
+		break;
+
+	case static_cast <int> ( Command::WAINTING ) :
+		wainting::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::parse (const int &command) {
-	using namespace VM::JavaScript;
+void vm::driver::managecontent::parse (const int &command) {
+	using namespace vm::driver::managecontent;
 
-	int sw = command | static_cast <int> ( Filter::Level2 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::BaseJS ) :
-		BaseJS::parse (command);
+	case static_cast <int> ( Command::FRAMES ) :
+		frames::parse (command);
+		break;
+
+	default :
+		error = Error::COMMAND_NOT_FOUND;
+	}
+}
+
+void vm::javascript::parse (const int &command) {
+	using namespace vm::javascript;
+
+	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+
+	switch (sw) {
+	case static_cast <int> ( Command::BASE_JS ) :
+		basejs::parse (command);
 		break;
 
 	case static_cast <int> ( Command::DOM ) :
-		DOM::parse (command);
+		dom::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::BaseJS::parse (const int &command) {
-	using namespace VM::JavaScript::BaseJS;
+void vm::javascript::basejs::parse (const int &command) {
+	using namespace vm::javascript::basejs;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::RunJS ) :
-		RunJS::parse (command);
+	case static_cast <int> ( Command::RUN_JS ) :
+		runjs::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Get ) :
-		Get::parse (command);
+	case static_cast <int> ( Command::GET ) :
+		get::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Set ) :
-		Set::parse (command);
+	case static_cast <int> ( Command::SET ) :
+		set::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::DOM::parse (const int &command) {
-	using namespace VM::JavaScript::DOM;
+void vm::javascript::dom::parse (const int &command) {
+	using namespace vm::javascript::dom;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::FindElements ) :
-		FindElements::parse (command);
+	case static_cast <int> ( Command::FIND_ELEMENTS ) :
+		findelements::parse (command);
 		break;
 
-	case static_cast <int> ( Command::FilterElements ) :
-		FilterElements::parse (command);
+	case static_cast <int> ( Command::FILTER_ELEMENTS ) :
+		filterelements::parse (command);
 		break;
 
-	case static_cast <int> ( Command::ElementsTest ) :
-		ElementsTest::parse (command);
+	case static_cast <int> ( Command::ELEMENTS_TEST ) :
+		elementstest::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Input::parse (const int &command) {
-	using namespace VM::Input;
+void vm::input::parse (const int &command) {
+	using namespace vm::input;
 
-	int sw = command | static_cast <int> ( Filter::Level2 );
+	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Mouse ) :
-		Mouse::parse (command);
+	case static_cast <int> ( Command::MOUSE ) :
+		mouse::parse (command);
 		break;
 
-	case static_cast <int> ( Command::Keyboard ) :
-		Keyboard::parse (command);
+	case static_cast <int> ( Command::KEYBOARD ) :
+		keyboard::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Input::Mouse::parse (const int &command) {
-	using namespace VM::Input::Mouse;
+void vm::input::mouse::parse (const int &command) {
+	using namespace vm::input::mouse;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::ComplexEvent ) :
-		ComplexEvent::parse (command);
+	case static_cast <int> ( Command::COMPLEX_EVENT ) :
+		complexevent::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Input::Keyboard::parse (const int &command) {
-	using namespace VM::Input::Keyboard;
+void vm::input::keyboard::parse (const int &command) {
+	using namespace vm::input::keyboard;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::ComplexEvent ) :
-		ComplexEvent::parse (command);
+	case static_cast <int> ( Command::COMPLEX_EVENT ) :
+		complexevent::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::DataBase::parse (const int &command) {
-	using namespace VM::DataBase;
+void vm::database::parse (const int &command) {
+	using namespace vm::database;
 
-	int sw = command | static_cast <int> ( Filter::Level2 );
+	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Basic ) :
-		Basic::parse (command);
+	case static_cast <int> ( Command::BASIC ) :
+		basic::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::DataBase::Basic::parse (const int &command) {
-	using namespace VM::DataBase::Basic;
+void vm::database::basic::parse (const int &command) {
+	using namespace vm::database::basic;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Output ) :
-		Output::parse (command);
+	case static_cast <int> ( Command::OUTPUT ) :
+		output::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Debugger::parse (const int &command) {
-	using namespace VM::Debugger;
+void vm::debugger::parse (const int &command) {
+	using namespace vm::debugger;
 
-	int sw = command | static_cast <int> ( Filter::Level2 );
+	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Basic ) :
-		Basic::parse (command);
+	case static_cast <int> ( Command::BASIC ) :
+		basic::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Debugger::Basic::parse (const int &command) {
-	using namespace VM::Debugger::Basic;
+void vm::debugger::basic::parse (const int &command) {
+	using namespace vm::debugger::basic;
 
-	int sw = command | static_cast <int> ( Filter::Level3 );
+	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::Focus ) :
-		Focus::parse (command);
+	case static_cast <int> ( Command::FOCUS ) :
+		focus::parse (command);
 		break;
 
 	default :
-		error = Errors::CommandNotFound;
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }

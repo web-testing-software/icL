@@ -3,22 +3,22 @@
 
 
 
-void VM::Driver::Navigation::Navigation::parse (const int &command) {
-	using namespace VM::Driver::Navigation::Navigation;
+void vm::driver::navigation::navigation::parse (const int &command) {
+	using namespace vm::driver::navigation::navigation;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::GoToURL):
+	case static_cast <int> ( Command::GO_TO_URL ) :
 		Singleton::runGoToURL ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 
 }
 
-void VM::Driver::Navigation::Navigation::Singleton::runGoToURL () {
+void vm::driver::navigation::navigation::Singleton::runGoToURL () {
 
 }

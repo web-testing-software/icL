@@ -3,29 +3,29 @@
 
 
 
-void VM::Driver::Navigation::Wainting::parse (const int &command) {
-	using namespace VM::Driver::Navigation::Wainting;
+void vm::driver::navigation::wainting::parse (const int &command) {
+	using namespace vm::driver::navigation::wainting;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::PrepareWaitForPageLoad):
+	case static_cast <int> ( Command::PREPARE_WAIT_FOR_PAGE_LOAD ) :
 		Singleton::runPrepareWaitForPageLoad ();
 		break;
 
-	case static_cast<int>(Command::WaitForPageLoad):
+	case static_cast <int> ( Command::WAIT_FOR_PAGE_LOAD ) :
 		Singleton::runWaitForPageLoad ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Driver::Navigation::Wainting::Singleton::runPrepareWaitForPageLoad () {
+void vm::driver::navigation::wainting::Singleton::runPrepareWaitForPageLoad () {
 
 }
 
-void VM::Driver::Navigation::Wainting::Singleton::runWaitForPageLoad () {
+void vm::driver::navigation::wainting::Singleton::runWaitForPageLoad () {
 
 }

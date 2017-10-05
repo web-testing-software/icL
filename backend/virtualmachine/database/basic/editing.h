@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace DataBase { namespace Basic { namespace Editing {
+namespace vm { namespace database { namespace basic { namespace editing {
 
 void parse (const int &command);
 

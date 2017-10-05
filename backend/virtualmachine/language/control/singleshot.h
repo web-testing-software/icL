@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace Control { namespace SingleShot {
+namespace vm { namespace language { namespace control { namespace singleshot {
 
 void parse (const int &command);
 

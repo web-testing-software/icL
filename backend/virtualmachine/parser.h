@@ -8,43 +8,43 @@
 // All parse functions are released using `switch`es
 // to keep the readability and extensibility of code
 
-namespace VM {
+namespace vm {
 
 	// Stop file parsing on error
 
-	enum class Errors {
-		CommandNotFound,
-		CommandExecutionError,
-		InvalidArgs,
-		UnexpectedEOF,
-		DataConversionError,
-		NoError
+	enum class Error {
+		COMMAND_NOT_FOUND,
+		COMMAND_EXECUTION_ERROR,
+		INVALID_ARGUMENTS,
+		UNEXPECTED_EOF,
+		DATA_CONVERSION_ERROR,
+		NO_ERROR
 	};
 
-	Errors error = Errors::NoError;
+	Error error = Error::NO_ERROR;
 
 	void parse (const int &command);
 
-	namespace Language {
+	namespace language {
 		void parse (const int &command);
 
-		namespace Control {
+		namespace control {
 			void parse (const int &command);
 			}
 
-		namespace LocalMemory {
+		namespace localmemory {
 			void parse (const int &command);
 			}
 
-		namespace StateStorange {
+		namespace statestorange {
 			void parse (const int &command);
 			}
 
-		namespace Constant {
+		namespace constant {
 			void parse (const int &command);
 			}
 
-		namespace BoolOperator {
+		namespace booloperator {
 			void parse (const int &command);
 			}
 		}
@@ -53,54 +53,54 @@ namespace VM {
 	//		//
 	//		}
 
-	namespace Driver {
+	namespace driver {
 		void parse (const int &command);
 
-		namespace Navigation {
+		namespace navigation {
 			void parse (const int &command);
 			}
 
-		namespace ManageContent {
+		namespace managecontent {
 			void parse (const int &command);
 			}
 		}
 
-	namespace JavaScript {
+	namespace javascript {
 		void parse (const int &command);
 
-		namespace BaseJS {
+		namespace basejs {
 			void parse (const int &command);
 			}
 
-		namespace DOM {
+		namespace dom {
 			void parse (const int &command);
 			}
 		}
 
-	namespace Input {
+	namespace input {
 		void parse (const int &command);
 
-		namespace Mouse {
+		namespace mouse {
 			void parse (const int &command);
 			}
 
-		namespace Keyboard {
-			void parse (const int &command);
-			}
-		}
-
-	namespace DataBase {
-		void parse (const int &command);
-
-		namespace Basic {
+		namespace keyboard {
 			void parse (const int &command);
 			}
 		}
 
-	namespace Debugger {
+	namespace database {
 		void parse (const int &command);
 
-		namespace Basic {
+		namespace basic {
+			void parse (const int &command);
+			}
+		}
+
+	namespace debugger {
+		void parse (const int &command);
+
+		namespace basic {
 			void parse (const int &command);
 			}
 		}

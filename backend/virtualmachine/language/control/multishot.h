@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace Control { namespace MultiShot {
+namespace vm { namespace language { namespace control { namespace MultiShot {
 
 // This class is needed for compability with QML
 class Singleton : public QObject {

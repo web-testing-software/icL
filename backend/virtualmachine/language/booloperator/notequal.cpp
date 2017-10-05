@@ -3,53 +3,53 @@
 
 
 
-void VM::Language::BoolOperator::NotEqual::parse (const int &command) {
-	using namespace VM::Language::BoolOperator::NotEqual;
+void vm::language::booloperator::notequal::parse (const int &command) {
+	using namespace vm::language::booloperator::notequal;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::BoolOperator::NotEqual::Singleton::runBoolean () {
+void vm::language::booloperator::notequal::Singleton::runBoolean () {
 
 }
 
-void VM::Language::BoolOperator::NotEqual::Singleton::runInt () {
+void vm::language::booloperator::notequal::Singleton::runInt () {
 
 }
 
-void VM::Language::BoolOperator::NotEqual::Singleton::runDouble () {
+void vm::language::booloperator::notequal::Singleton::runDouble () {
 
 }
 
-void VM::Language::BoolOperator::NotEqual::Singleton::runString () {
+void vm::language::booloperator::notequal::Singleton::runString () {
 
 }
 
-void VM::Language::BoolOperator::NotEqual::Singleton::runStringList () {
+void vm::language::booloperator::notequal::Singleton::runStringList () {
 
 }

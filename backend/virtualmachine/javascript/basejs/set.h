@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace JavaScript { namespace BaseJS { namespace Set {
+namespace vm { namespace javascript { namespace basejs { namespace set {
 
 void parse (const int &command);
 

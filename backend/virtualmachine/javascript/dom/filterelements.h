@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace JavaScript { namespace DOM { namespace FilterElements {
+namespace vm { namespace javascript { namespace dom { namespace filterelements {
 
 void parse (const int &command);
 

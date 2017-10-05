@@ -3,61 +3,61 @@
 
 
 
-void VM::Language::LocalMemory::Write::parse (const int &command) {
-	using namespace VM::Language::LocalMemory::Write;
+void vm::language::localmemory::write::parse (const int &command) {
+	using namespace vm::language::localmemory::write;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	case static_cast<int>(Command::WebElement):
+	case static_cast <int> ( Command::WEB_ELEMENT ) :
 		Singleton::runWebElement ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::LocalMemory::Write::Singleton::runBoolean () {
+void vm::language::localmemory::write::Singleton::runBoolean () {
 
 }
 
-void VM::Language::LocalMemory::Write::Singleton::runInt () {
+void vm::language::localmemory::write::Singleton::runInt () {
 
 }
 
-void VM::Language::LocalMemory::Write::Singleton::runDouble () {
+void vm::language::localmemory::write::Singleton::runDouble () {
 
 }
 
-void VM::Language::LocalMemory::Write::Singleton::runString () {
+void vm::language::localmemory::write::Singleton::runString () {
 
 }
 
-void VM::Language::LocalMemory::Write::Singleton::runStringList () {
+void vm::language::localmemory::write::Singleton::runStringList () {
 
 }
 
-void VM::Language::LocalMemory::Write::Singleton::runWebElement () {
+void vm::language::localmemory::write::Singleton::runWebElement () {
 
 }

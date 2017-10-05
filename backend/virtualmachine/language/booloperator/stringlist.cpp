@@ -3,29 +3,29 @@
 
 
 
-void VM::Language::BoolOperator::StringList::parse (const int &command) {
-	using namespace VM::Language::BoolOperator::StringList;
+void vm::language::booloperator::stringlist::parse (const int &command) {
+	using namespace vm::language::booloperator::stringlist;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Contains):
+	case static_cast <int> ( Command::CONTAINS ) :
 		Singleton::runContains ();
 		break;
 
-	case static_cast<int>(Command::ContainsFragment):
+	case static_cast <int> ( Command::CONSTAINS_FRAGMENT ) :
 		Singleton::runContainsFragment ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::BoolOperator::StringList::Singleton::runContains () {
+void vm::language::booloperator::stringlist::Singleton::runContains () {
 
 }
 
-void VM::Language::BoolOperator::StringList::Singleton::runContainsFragment () {
+void vm::language::booloperator::stringlist::Singleton::runContainsFragment () {
 
 }

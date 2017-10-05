@@ -16,7 +16,7 @@ int main (int argc, char *argv []) {
 	w.show ();
 
 	int comm = 0x23;
-	VM::Language::Control::SingleShot::parse(comm);
+	vm::language::control::singleshot::parse(comm);
 
 	return a.exec ();
 }

@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace DataBase { namespace Basic { namespace Output {
+namespace vm { namespace database { namespace basic { namespace output {
 
 void parse (const int &command);
 

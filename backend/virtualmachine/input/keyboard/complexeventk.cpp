@@ -3,21 +3,21 @@
 
 
 
-void VM::Input::Keyboard::ComplexEvent::parse (const int &command) {
-	using namespace VM::Input::Keyboard::ComplexEvent;
+void vm::input::keyboard::complexevent::parse (const int &command) {
+	using namespace vm::input::keyboard::complexevent;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::SendKey):
+	case static_cast <int> ( Command::SEND_KEY ) :
 		Singleton::runSendKey ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Input::Keyboard::ComplexEvent::Singleton::runSendKey () {
+void vm::input::keyboard::complexevent::Singleton::runSendKey () {
 
 }

@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace BoolOperator { namespace StringList {
+namespace vm { namespace language { namespace booloperator { namespace stringlist {
 
 void parse (const int &command);
 

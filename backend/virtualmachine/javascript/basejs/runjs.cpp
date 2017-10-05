@@ -3,29 +3,29 @@
 
 
 
-void VM::JavaScript::BaseJS::RunJS::parse (const int &command) {
-	using namespace VM::JavaScript::BaseJS::RunJS;
+void vm::javascript::basejs::runjs::parse (const int &command) {
+	using namespace vm::javascript::basejs::runjs;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::RunString):
+	case static_cast <int> ( Command::RUN_STRING ) :
 		Singleton::runRunString ();
 		break;
 
-	case static_cast<int>(Command::RunFile):
+	case static_cast <int> ( Command::RUN_FILE ) :
 		Singleton::runRunFile ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::BaseJS::RunJS::Singleton::runRunString () {
+void vm::javascript::basejs::runjs::Singleton::runRunString () {
 
 }
 
-void VM::JavaScript::BaseJS::RunJS::Singleton::runRunFile () {
+void vm::javascript::basejs::runjs::Singleton::runRunFile () {
 
 }

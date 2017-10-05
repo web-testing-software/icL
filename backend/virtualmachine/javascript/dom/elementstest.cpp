@@ -3,37 +3,37 @@
 
 
 
-void VM::JavaScript::DOM::ElementsTest::parse (const int &command) {
-	using namespace VM::JavaScript::DOM::ElementsTest;
+void vm::javascript::dom::elementstest::parse (const int &command) {
+	using namespace vm::javascript::dom::elementstest;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::IsVisible):
+	case static_cast <int> ( Command::IS_VISIBLE ) :
 		Singleton::runIsVisible ();
 		break;
 
-	case static_cast<int>(Command::GetX):
+	case static_cast <int> ( Command::GET_X ) :
 		Singleton::runGetX ();
 		break;
 
-	case static_cast<int>(Command::GetY):
+	case static_cast <int> ( Command::GET_Y ) :
 		Singleton::runGetY ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::DOM::ElementsTest::Singleton::runIsVisible () {
+void vm::javascript::dom::elementstest::Singleton::runIsVisible () {
 
 }
 
-void VM::JavaScript::DOM::ElementsTest::Singleton::runGetX () {
+void vm::javascript::dom::elementstest::Singleton::runGetX () {
 
 }
 
-void VM::JavaScript::DOM::ElementsTest::Singleton::runGetY () {
+void vm::javascript::dom::elementstest::Singleton::runGetY () {
 
 }

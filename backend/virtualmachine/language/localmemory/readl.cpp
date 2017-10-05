@@ -3,61 +3,61 @@
 
 
 
-void VM::Language::LocalMemory::Read::parse (const int &command) {
-	using namespace VM::Language::LocalMemory::Read;
+void vm::language::localmemory::read::parse (const int &command) {
+	using namespace vm::language::localmemory::read;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	case static_cast<int>(Command::WebElement):
+	case static_cast <int> ( Command::WEB_ELEMENT ) :
 		Singleton::runWebElement ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::LocalMemory::Read::Singleton::runBoolean () {
+void vm::language::localmemory::read::Singleton::runBoolean () {
 
 }
 
-void VM::Language::LocalMemory::Read::Singleton::runInt () {
+void vm::language::localmemory::read::Singleton::runInt () {
 
 }
 
-void VM::Language::LocalMemory::Read::Singleton::runDouble () {
+void vm::language::localmemory::read::Singleton::runDouble () {
 
 }
 
-void VM::Language::LocalMemory::Read::Singleton::runString () {
+void vm::language::localmemory::read::Singleton::runString () {
 
 }
 
-void VM::Language::LocalMemory::Read::Singleton::runStringList () {
+void vm::language::localmemory::read::Singleton::runStringList () {
 
 }
 
-void VM::Language::LocalMemory::Read::Singleton::runWebElement () {
+void vm::language::localmemory::read::Singleton::runWebElement () {
 
 }

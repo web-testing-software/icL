@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace Control { namespace Comment {
+namespace vm { namespace language { namespace control { namespace comment {
 
 void parse (const int &command);
 

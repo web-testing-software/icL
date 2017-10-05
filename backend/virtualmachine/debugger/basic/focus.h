@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Debugger { namespace Basic { namespace Focus {
+namespace vm { namespace debugger { namespace basic { namespace focus {
 
 void parse (const int &command);
 

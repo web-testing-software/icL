@@ -3,29 +3,29 @@
 
 
 
-void VM::JavaScript::DOM::FilterElements::parse (const int &command) {
-	using namespace VM::JavaScript::DOM::FilterElements;
+void vm::javascript::dom::filterelements::parse (const int &command) {
+	using namespace vm::javascript::dom::filterelements;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::ByCSSSelector):
+	case static_cast <int> ( Command::BY_CSS_SELECTOR ) :
 		Singleton::runByCSSSelector ();
 		break;
 
-	case static_cast<int>(Command::ByContent):
+	case static_cast <int> ( Command::BY_CONTENT ) :
 		Singleton::runByContent ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::DOM::FilterElements::Singleton::runByCSSSelector () {
+void vm::javascript::dom::filterelements::Singleton::runByCSSSelector () {
 
 }
 
-void VM::JavaScript::DOM::FilterElements::Singleton::runByContent () {
+void vm::javascript::dom::filterelements::Singleton::runByContent () {
 
 }

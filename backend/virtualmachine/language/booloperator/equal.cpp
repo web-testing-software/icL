@@ -3,53 +3,53 @@
 
 
 
-void VM::Language::BoolOperator::Equal::parse (const int &command) {
-	using namespace VM::Language::BoolOperator::Equal;
+void vm::language::booloperator::equal::parse (const int &command) {
+	using namespace vm::language::booloperator::equal;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::BoolOperator::Equal::Singleton::runBoolean () {
+void vm::language::booloperator::equal::Singleton::runBoolean () {
 
 }
 
-void VM::Language::BoolOperator::Equal::Singleton::runInt () {
+void vm::language::booloperator::equal::Singleton::runInt () {
 
 }
 
-void VM::Language::BoolOperator::Equal::Singleton::runDouble () {
+void vm::language::booloperator::equal::Singleton::runDouble () {
 
 }
 
-void VM::Language::BoolOperator::Equal::Singleton::runString () {
+void vm::language::booloperator::equal::Singleton::runString () {
 
 }
 
-void VM::Language::BoolOperator::Equal::Singleton::runStringList () {
+void vm::language::booloperator::equal::Singleton::runStringList () {
 
 }

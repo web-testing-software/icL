@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace StateStorange { namespace Read {
+namespace vm { namespace language { namespace statestorange { namespace read {
 
 void parse (const int &command);
 

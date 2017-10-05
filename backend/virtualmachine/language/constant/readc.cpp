@@ -3,53 +3,53 @@
 
 
 
-void VM::Language::Constant::Read::parse (const int &command) {
-	using namespace VM::Language::Constant::Read;
+void vm::language::constant::read::parse (const int &command) {
+	using namespace vm::language::constant::read;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::Constant::Read::Singleton::runBoolean () {
+void vm::language::constant::read::Singleton::runBoolean () {
 
 }
 
-void VM::Language::Constant::Read::Singleton::runInt () {
+void vm::language::constant::read::Singleton::runInt () {
 
 }
 
-void VM::Language::Constant::Read::Singleton::runDouble () {
+void vm::language::constant::read::Singleton::runDouble () {
 
 }
 
-void VM::Language::Constant::Read::Singleton::runString () {
+void vm::language::constant::read::Singleton::runString () {
 
 }
 
-void VM::Language::Constant::Read::Singleton::runStringList () {
+void vm::language::constant::read::Singleton::runStringList () {
 
 }

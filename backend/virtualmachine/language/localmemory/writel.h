@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace LocalMemory { namespace Write {
+namespace vm { namespace language { namespace localmemory { namespace write {
 
 void parse (const int &command);
 

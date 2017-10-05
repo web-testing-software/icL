@@ -3,45 +3,45 @@
 
 
 
-void VM::Language::BoolOperator::Logical::parse (const int &command) {
-	using namespace VM::Language::BoolOperator::Equal;
+void vm::language::booloperator::logical::parse (const int &command) {
+	using namespace vm::language::booloperator::equal;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Not):
+	case static_cast <int> ( Command::NOT ) :
 		Singleton::runNot ();
 		break;
 
-	case static_cast<int>(Command::And):
+	case static_cast <int> ( Command::AND ) :
 		Singleton::runAnd ();
 		break;
 
-	case static_cast<int>(Command::Or):
+	case static_cast <int> ( Command::OR ) :
 		Singleton::runOr ();
 		break;
 
-	case static_cast<int>(Command::XOr):
+	case static_cast <int> ( Command::XOR ) :
 		Singleton::runXOr ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::BoolOperator::Logical::Singleton::runNot () {
+void vm::language::booloperator::logical::Singleton::runNot () {
 
 }
 
-void VM::Language::BoolOperator::Logical::Singleton::runAnd () {
+void vm::language::booloperator::logical::Singleton::runAnd () {
 
 }
 
-void VM::Language::BoolOperator::Logical::Singleton::runOr () {
+void vm::language::booloperator::logical::Singleton::runOr () {
 
 }
 
-void VM::Language::BoolOperator::Logical::Singleton::runXOr () {
+void vm::language::booloperator::logical::Singleton::runXOr () {
 
 }

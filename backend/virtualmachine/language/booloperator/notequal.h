@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace BoolOperator { namespace NotEqual {
+namespace vm { namespace language { namespace booloperator { namespace notequal {
 
 void parse (const int &command);
 

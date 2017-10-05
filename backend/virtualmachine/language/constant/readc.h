@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Language { namespace Constant { namespace Read {
+namespace vm { namespace language { namespace constant { namespace read {
 
 void parse (const int &command);
 

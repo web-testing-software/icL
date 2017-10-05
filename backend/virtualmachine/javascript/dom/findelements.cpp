@@ -3,29 +3,29 @@
 
 
 
-void VM::JavaScript::DOM::FindElements::parse (const int &command) {
-	using namespace VM::JavaScript::DOM::FindElements;
+void vm::javascript::dom::findelements::parse (const int &command) {
+	using namespace vm::javascript::dom::findelements;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Query):
+	case static_cast <int> ( Command::QUERY ) :
 		Singleton::runQuery ();
 		break;
 
-	case static_cast<int>(Command::QueryAll):
+	case static_cast <int> ( Command::QUERY_ALL ) :
 		Singleton::runQueryAll ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::JavaScript::DOM::FindElements::Singleton::runQuery () {
+void vm::javascript::dom::findelements::Singleton::runQuery () {
 
 }
 
-void VM::JavaScript::DOM::FindElements::Singleton::runQueryAll () {
+void vm::javascript::dom::findelements::Singleton::runQueryAll () {
 
 }

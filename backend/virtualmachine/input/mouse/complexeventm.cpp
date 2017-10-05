@@ -3,21 +3,21 @@
 
 
 
-void VM::Input::Mouse::ComplexEvent::parse (const int &command) {
-	using namespace VM::Input::Mouse::ComplexEvent;
+void vm::input::mouse::complexevent::parse (const int &command) {
+	using namespace vm::input::mouse::complexevent;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Click):
+	case static_cast <int> ( Command::CLICK ) :
 		Singleton::runClick ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Input::Mouse::ComplexEvent::Singleton::runClick () {
+void vm::input::mouse::complexevent::Singleton::runClick () {
 
 }

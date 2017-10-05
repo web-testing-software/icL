@@ -3,21 +3,21 @@
 
 
 
-void VM::Debugger::Basic::Focus::parse (const int &command) {
-	using namespace VM::Debugger::Basic::Focus;
+void vm::debugger::basic::focus::parse (const int &command) {
+	using namespace vm::debugger::basic::focus;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Command):
+	case static_cast <int> ( Command::COMMAND ) :
 		Singleton::runCommand ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Debugger::Basic::Focus::Singleton::runCommand () {
+void vm::debugger::basic::focus::Singleton::runCommand () {
 
 }

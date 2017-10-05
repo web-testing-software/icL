@@ -3,53 +3,53 @@
 
 
 
-void VM::Language::StateStorange::Write::parse (const int &command) {
-	using namespace VM::Language::StateStorange::Write;
+void vm::language::statestorange::write::parse (const int &command) {
+	using namespace vm::language::statestorange::write;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Boolean):
+	case static_cast <int> ( Command::BOOLEAN ) :
 		Singleton::runBoolean ();
 		break;
 
-	case static_cast<int>(Command::Int):
+	case static_cast <int> ( Command::INT ) :
 		Singleton::runInt ();
 		break;
 
-	case static_cast<int>(Command::Double):
+	case static_cast <int> ( Command::DOUBLE ) :
 		Singleton::runDouble ();
 		break;
 
-	case static_cast<int>(Command::String):
+	case static_cast <int> ( Command::STRING ) :
 		Singleton::runString ();
 		break;
 
-	case static_cast<int>(Command::StringList):
+	case static_cast <int> ( Command::STRING_LIST ) :
 		Singleton::runStringList ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::StateStorange::Write::Singleton::runBoolean () {
+void vm::language::statestorange::write::Singleton::runBoolean () {
 
 }
 
-void VM::Language::StateStorange::Write::Singleton::runInt () {
+void vm::language::statestorange::write::Singleton::runInt () {
 
 }
 
-void VM::Language::StateStorange::Write::Singleton::runDouble () {
+void vm::language::statestorange::write::Singleton::runDouble () {
 
 }
 
-void VM::Language::StateStorange::Write::Singleton::runString () {
+void vm::language::statestorange::write::Singleton::runString () {
 
 }
 
-void VM::Language::StateStorange::Write::Singleton::runStringList () {
+void vm::language::statestorange::write::Singleton::runStringList () {
 
 }

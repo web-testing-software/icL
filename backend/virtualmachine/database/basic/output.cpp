@@ -3,21 +3,21 @@
 
 
 
-void VM::DataBase::Basic::Output::parse (const int &command) {
-	using namespace VM::DataBase::Basic::Output;
+void vm::database::basic::output::parse (const int &command) {
+	using namespace vm::database::basic::output;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Select):
+	case static_cast <int> ( Command::SELECT ) :
 		Singleton::runSelect ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::DataBase::Basic::Output::Singleton::runSelect () {
+void vm::database::basic::output::Singleton::runSelect () {
 
 }

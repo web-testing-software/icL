@@ -5,7 +5,7 @@
 
 
 
-namespace VM { namespace Driver { namespace ManageContent { namespace Frames {
+namespace vm { namespace driver { namespace managecontent { namespace frames {
 
 void parse (const int &command);
 

@@ -29,31 +29,31 @@
 #include "debugger/basic/focus.h"
 
 struct Level3Container {
-	VM::Language::Control::SingleShot::Singleton single_shot;
-	VM::Language::Control::Comment::Singleton comment;
-	VM::Language::LocalMemory::Read::Singleton readl;
-	VM::Language::LocalMemory::Write::Singleton writel;
-	VM::Language::StateStorange::Read::Singleton reads;
-	VM::Language::StateStorange::Write::Singleton writes;
-	VM::Language::Constant::Read::Singleton readc;
-	VM::Language::BoolOperator::Logical::Singleton logical;
-	VM::Language::BoolOperator::Equal::Singleton equal;
-	VM::Language::BoolOperator::NotEqual::Singleton notequal;
-	VM::Language::BoolOperator::StringList::Singleton stringlist;
-	VM::Driver::Navigation::Navigation::Singleton navigation;
-	VM::Driver::Navigation::Wainting::Singleton wainting;
-	VM::Driver::ManageContent::Frames::Singleton frames;
-	VM::JavaScript::BaseJS::RunJS::Singleton runjs;
-	VM::JavaScript::BaseJS::Get::Singleton get;
-	VM::JavaScript::BaseJS::Set::Singleton set;
-	VM::JavaScript::DOM::FindElements::Singleton find_elements;
-	VM::JavaScript::DOM::FilterElements::Singleton filter_elements;
-	VM::JavaScript::DOM::ElementsTest::Singleton elements_test;
-	VM::Input::Mouse::ComplexEvent::Singleton mouse_complex;
-	VM::Input::Keyboard::ComplexEvent::Singleton keyboard_complex;
-	VM::DataBase::Basic::Output::Singleton output;
-	VM::DataBase::Basic::Editing::Singleton edititng;
-	VM::Debugger::Basic::Focus::Singleton focus;
+	vm::language::control::singleshot::Singleton single_shot;
+	vm::language::control::comment::Singleton comment;
+	vm::language::localmemory::read::Singleton readl;
+	vm::language::localmemory::write::Singleton writel;
+	vm::language::statestorange::read::Singleton reads;
+	vm::language::statestorange::write::Singleton writes;
+	vm::language::constant::read::Singleton readc;
+	vm::language::booloperator::logical::Singleton logical;
+	vm::language::booloperator::equal::Singleton equal;
+	vm::language::booloperator::notequal::Singleton notequal;
+	vm::language::booloperator::stringlist::Singleton stringlist;
+	vm::driver::navigation::navigation::Singleton navigation;
+	vm::driver::navigation::wainting::Singleton wainting;
+	vm::driver::managecontent::frames::Singleton frames;
+	vm::javascript::basejs::runjs::Singleton runjs;
+	vm::javascript::basejs::get::Singleton get;
+	vm::javascript::basejs::set::Singleton set;
+	vm::javascript::dom::findelements::Singleton find_elements;
+	vm::javascript::dom::filterelements::Singleton filter_elements;
+	vm::javascript::dom::elementstest::Singleton elements_test;
+	vm::input::mouse::complexevent::Singleton mouse_complex;
+	vm::input::keyboard::complexevent::Singleton keyboard_complex;
+	vm::database::basic::output::Singleton output;
+	vm::database::basic::editing::Singleton edititng;
+	vm::debugger::basic::focus::Singleton focus;
 };
 
 #endif // ALLHEADERS_H

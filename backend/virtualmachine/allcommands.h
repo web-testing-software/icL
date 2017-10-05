@@ -6,377 +6,377 @@
 
 // current version 1.0.0
 
-namespace VM {
+namespace vm {
 
 	enum class Filter {
-		Level1	= 0x7F000000,
-		Level2	= 0x7FFF0000,
-		Level3	= 0x7FFFFF00,
-		Level4	= 0x7FFFFFFF
+		LEVEL1	= 0x7F000000,
+		LEVEL2	= 0x7FFF0000,
+		LEVEL3	= 0x7FFFFF00,
+		LEVEL4	= 0x7FFFFFFF
 	};
 
 	enum class Command {
-		Language	= 0x01000000,
-		Browser		= 0x02000000,
-		Driver		= 0x03000000,
-		JavaScript	= 0x04000000,
-		Input		= 0x05000000,
-		DataBase	= 0x06000000,
-		Debugger	= 0x07000000
+		LANGUAGE	= 0x01000000,
+		BROWSER		= 0x02000000,
+		DRIVER		= 0x03000000,
+		JAVASCRIPT	= 0x04000000,
+		INPUT		= 0x05000000,
+		DATABASE	= 0x06000000,
+		DEBUGGER	= 0x07000000
 	};
 
-	namespace Language {
+	namespace language {
 		enum class Command {
-			Control			= 0x01010000,
-			LocalMemory		= 0x01020000,
-			StateStorange	= 0x01030000,
-			Constant		= 0x01040000,
-			BoolOperator	= 0x01050000
+			CONTROL			= 0x01010000,
+			LOCAL_MEMORY	= 0x01020000,
+			STATE_STORANGE	= 0x01030000,
+			CONSTANT		= 0x01040000,
+			BOOL_OPERATOR	= 0x01050000
 		};
 
-		namespace Control {
+		namespace control {
 			enum class Command {
-				SingleShot	= 0x01010100,
-				MultiShot	= 0x01010200,
-				Comment		= 0x01010300
+				SINGLE_SHOT	= 0x01010100,
+				MULTI_SHOT	= 0x01010200,
+				COMMENT		= 0x01010300
 			};
 
-			namespace SingleShot {
+			namespace singleshot {
 				enum class Command  {
-					If		= 0x01010101,
-					BeginIf = 0x01010102,
-					Else	= 0x01010103,
-					EndIf	= 0x01010104
+					IF			= 0x01010101,
+					BEGIN_IF	= 0x01010102,
+					ELSE		= 0x01010103,
+					END_IF		= 0x01010104
 				};
 				}
 
-			namespace Comment {
+			namespace comment {
 				enum class Command {
-					Delimiter	= 0x01010301,
-					Line		= 0x01010302,
-					MultiLine	= 0x01010303
-				};
-				}
-			}
-
-		namespace LocalMemory {
-			enum class Command {
-				Read	= 0x01020100,
-				Write	= 0x01020200
-			};
-
-			namespace Read {
-				enum class Command {
-					Boolean		= 0x01020101,
-					Int			= 0x01020102,
-					Double		= 0x01020103,
-					String		= 0x01020104,
-					StringList	= 0x01020105,
-					WebElement	= 0x01020106
-				};
-				}
-
-			namespace Write {
-				enum class Command {
-					Boolean		= 0x01020201,
-					Int			= 0x01020202,
-					Double		= 0x01020203,
-					String		= 0x01020204,
-					StringList	= 0x01020205,
-					WebElement	= 0x01020206
+					DELIMITER	= 0x01010301,
+					LINE		= 0x01010302,
+					MULTILINE	= 0x01010303
 				};
 				}
 			}
 
-		namespace StateStorange {
+		namespace localmemory {
 			enum class Command {
-				Read	= 0x01030100,
-				Write	= 0x01030200
+				READ	= 0x01020100,
+				WRITE	= 0x01020200
 			};
 
-			namespace Read {
+			namespace read {
 				enum class Command {
-					Boolean		= 0x01030101,
-					Int			= 0x01030102,
-					Double		= 0x01030103,
-					String		= 0x01030104,
-					StringList	= 0x01030105
+					BOOLEAN		= 0x01020101,
+					INT			= 0x01020102,
+					DOUBLE		= 0x01020103,
+					STRING		= 0x01020104,
+					STRING_LIST	= 0x01020105,
+					WEB_ELEMENT	= 0x01020106
 				};
 				}
 
-			namespace Write {
+			namespace write {
 				enum class Command {
-					Boolean		= 0x01030201,
-					Int			= 0x01030202,
-					Double		= 0x01030203,
-					String		= 0x01030204,
-					StringList	= 0x01030205
+					BOOLEAN		= 0x01020201,
+					INT			= 0x01020202,
+					DOUBLE		= 0x01020203,
+					STRING		= 0x01020204,
+					STRING_LIST	= 0x01020205,
+					WEB_ELEMENT	= 0x01020206
 				};
 				}
 			}
 
-		namespace Constant {
+		namespace statestorange {
 			enum class Command {
-				Read = 0x01040100
+				READ	= 0x01030100,
+				WRITE	= 0x01030200
 			};
 
-			namespace Read {
+			namespace read {
 				enum class Command {
-					Boolean		= 0x01040101,
-					Int			= 0x01040102,
-					Double		= 0x01040103,
-					String		= 0x01040104,
-					StringList	= 0x01040105
+					BOOLEAN		= 0x01030101,
+					INT			= 0x01030102,
+					DOUBLE		= 0x01030103,
+					STRING		= 0x01030104,
+					STRING_LIST	= 0x01030105
+				};
+				}
+
+			namespace write {
+				enum class Command {
+					BOOLEAN		= 0x01030201,
+					INT			= 0x01030202,
+					DOUBLE		= 0x01030203,
+					STRING		= 0x01030204,
+					STRING_LIST	= 0x01030205
 				};
 				}
 			}
 
-		namespace BoolOperator {
+		namespace constant {
 			enum class Command {
-				Logical		= 0x01050100,
-				Equal		= 0x01050200,
-				NotEqual	= 0x01050300,
-				StringList	= 0x01050400
+				READ = 0x01040100
 			};
 
-			namespace Logical {
+			namespace read {
 				enum class Command {
-					Not = 0x01050101,
-					And = 0x01050102,
-					Or	= 0x01050103,
-					XOr = 0x01050104
+					BOOLEAN		= 0x01040101,
+					INT			= 0x01040102,
+					DOUBLE		= 0x01040103,
+					STRING		= 0x01040104,
+					STRING_LIST	= 0x01040105
+				};
+				}
+			}
+
+		namespace booloperator {
+			enum class Command {
+				LOGICAL		= 0x01050100,
+				EQUAL		= 0x01050200,
+				NOT_EQUAL	= 0x01050300,
+				STRING_LIST	= 0x01050400
+			};
+
+			namespace logical {
+				enum class Command {
+					NOT = 0x01050101,
+					AND = 0x01050102,
+					OR	= 0x01050103,
+					XOR = 0x01050104
 				};
 				}
 
-			namespace Equal {
+			namespace equal {
 				enum class Command {
-					Boolean		= 0x01050201,
-					Int			= 0x01050202,
-					Double		= 0x01050203,
-					String		= 0x01050204,
-					StringList	= 0x01050205
+					BOOLEAN		= 0x01050201,
+					INT			= 0x01050202,
+					DOUBLE		= 0x01050203,
+					STRING		= 0x01050204,
+					STRING_LIST	= 0x01050205
 				};
 				}
 
-			namespace NotEqual {
+			namespace notequal {
 				enum class Command {
-					Boolean		= 0x01050301,
-					Int			= 0x01050302,
-					Double		= 0x01050303,
-					String		= 0x01050304,
-					StringList	= 0x01050305
+					BOOLEAN		= 0x01050301,
+					INT			= 0x01050302,
+					DOUBLE		= 0x01050303,
+					STRING		= 0x01050304,
+					STRING_LIST	= 0x01050305
 				};
 				}
 
-			namespace StringList {
+			namespace stringlist {
 				enum class Command {
-					Contains			= 0x01050401,
-					ContainsFragment	= 0x01050402
+					CONTAINS			= 0x01050401,
+					CONSTAINS_FRAGMENT	= 0x01050402
 				};
 				}
 			}
 		}
 
-	namespace Browser {
+	namespace browser {
 		// To be completed in next version
 		}
 
-	namespace Driver {
+	namespace driver {
 		enum class Command {
-			Navigation		= 0x03010000,
-			ManageContent	= 0x03020000
+			NAVIGATION		= 0x03010000,
+			MANAGE_CONTENT	= 0x03020000
 		};
 
-		namespace Navigation {
+		namespace navigation {
 			enum class Command {
-				Navigation	= 0x03010100,
-				Wainting	= 0x03010200
+				NAVIGATION	= 0x03010100,
+				WAINTING	= 0x03010200
 			};
 
-			namespace Navigation {
+			namespace navigation {
 				enum class Command {
-					GoToURL					= 0x03010101,
-					OpenLink				= 0x03010102,
-					OpenLinkInCurrentTab	= 0x03010103,
-					OpenLinkInNewTab		= 0x03010104
+					GO_TO_URL					= 0x03010101,
+					OPEN_LINK					= 0x03010102,
+					OPEN_LINK_IN_CURRENT_TAB	= 0x03010103,
+					OPEN_LINK_IN_NEW_TAB		= 0x03010104
 				};
 				}
 
-			namespace Wainting {
+			namespace wainting {
 				enum class Command {
-					PrepareWaitForPageLoad		= 0x03010201,
-					WaitForPageLoad				= 0x03010202,
-					WaitForElement				= 0x03010203,
-					PrepareWaitForTitleChange	= 0x03010204,
-					WaitForTitleChange			= 0x03010205,
-					WaitForAjaxEnd				= 0x03010206
+					PREPARE_WAIT_FOR_PAGE_LOAD		= 0x03010201,
+					WAIT_FOR_PAGE_LOAD				= 0x03010202,
+					WAIT_FOR_ELEMENT				= 0x03010203,
+					PREPARE_WAIT_FOR_TITLE_CHANGE	= 0x03010204,
+					WAIT_FOR_TITLE_CHANGE			= 0x03010205,
+					WAIT_FOR_AJAX_END				= 0x03010206
 				};
 				}
 			}
 
-		namespace ManageContent {
+		namespace managecontent {
 			enum class Command {
-				Frames = 0x03020100
+				FRAMES = 0x03020100
 			};
 
-			namespace Frames {
+			namespace frames {
 				enum class Command {
-					SwitchToFrame	= 0x03020101,
-					SwitchToDefault = 0x03020102
+					SWITCH_TO_FRAME	  = 0x03020101,
+					SWITCH_TO_DEFAULT = 0x03020102
 				};
 				}
 			}
 		}
 
-	namespace JavaScript {
+	namespace javascript {
 		enum class Command {
-			BaseJS	= 0x010000,
+			BASE_JS	= 0x010000,
 			DOM		= 0x020000
 		};
 
-		namespace BaseJS {
+		namespace basejs {
 			enum class Command {
-				RunJS	= 0x04010100,
-				Get		= 0x04010200,
-				Set		= 0x04010300
+				RUN_JS	= 0x04010100,
+				GET		= 0x04010200,
+				SET		= 0x04010300
 			};
 
-			namespace RunJS {
+			namespace runjs {
 				enum class Command {
-					RunString	= 0x04010101,
-					RunFile		= 0x04010102
+					RUN_STRING		= 0x04010101,
+					RUN_FILE		= 0x04010102
 				};
 				}
 
-			namespace Get {
+			namespace get {
 				enum class Command {
-					Boolean		= 0x04010201,
-					Int			= 0x04010202,
-					Double		= 0x04010203,
-					String		= 0x04010204,
-					StringList	= 0x04010205
+					BOOLEAN		= 0x04010201,
+					INT			= 0x04010202,
+					DOUBLE		= 0x04010203,
+					STRING		= 0x04010204,
+					STRING_LIST	= 0x04010205
 				};
 				}
 
-			namespace Set {
+			namespace set {
 				enum class Command {
-					Boolean		= 0x04010301,
-					Int			= 0x04010302,
-					Double		= 0x04010303,
-					String		= 0x04010304,
-					StringList	= 0x04010305
+					BOOLEAN		= 0x04010301,
+					INT			= 0x04010302,
+					DOUBLE		= 0x04010303,
+					STRING		= 0x04010304,
+					STRING_LIST	= 0x04010305
 				};
 				}
 			}
 
-		namespace DOM {
+		namespace dom {
 			enum class Command {
-				FindElements	= 0x04020100,
-				FilterElements	= 0x04020200,
-				ElementsTest	= 0x04020300
+				FIND_ELEMENTS	= 0x04020100,
+				FILTER_ELEMENTS	= 0x04020200,
+				ELEMENTS_TEST	= 0x04020300
 			};
 
-			namespace FindElements {
+			namespace findelements {
 				enum class Command {
-					Query		= 0x04020101,
-					QueryAll	= 0x04020102
+					QUERY		= 0x04020101,
+					QUERY_ALL	= 0x04020102
 				};
 				}
 
-			namespace FilterElements {
+			namespace filterelements {
 				enum class Command {
-					ByCSSSelector	= 0x04020201,
-					ByContent		= 0x04020202
+					BY_CSS_SELECTOR	= 0x04020201,
+					BY_CONTENT		= 0x04020202
 				};
 				}
 
-			namespace ElementsTest {
+			namespace elementstest {
 				enum class Command {
-					IsVisible	= 0x04020301,
-					GetX		= 0x04020302,
-					GetY		= 0x04020303
+					IS_VISIBLE	= 0x04020301,
+					GET_X		= 0x04020302,
+					GET_Y		= 0x04020303
 				};
 				}
 			}
 		}
 
-	namespace Input {
+	namespace input {
 		enum class Command {
-			Mouse		= 0x05010000,
-			Keyboard	= 0x05020000
+			MOUSE		= 0x05010000,
+			KEYBOARD	= 0x05020000
 		};
 
-		namespace Mouse {
+		namespace mouse {
 			enum class Command {
-				BaseEvent		= 0x05010100,
-				ComplexEvent	= 0x05010200
+				BASE_EVENT		= 0x05010100,
+				COMPLEX_EVENT	= 0x05010200
 			};
 
-			namespace ComplexEvent {
+			namespace complexevent {
 				enum Command {
-					Click = 0x05010201
+					CLICK = 0x05010201
 				};
 				}
 			}
 
-		namespace Keyboard {
+		namespace keyboard {
 			enum class Command {
-				BaseEvent		= 0x05020100,
-				ComplexEvent	= 0x05010100
+				BASE_EVENT		= 0x05020100,
+				COMPLEX_EVENT	= 0x05010100
 			};
 
-			namespace ComplexEvent {
+			namespace complexevent {
 				enum class Command {
-					SendKey = 0x05020201
-				};
-				}
-			}
-		}
-
-	namespace DataBase {
-		enum class Command {
-			Basic = 0x06010000
-		};
-
-		namespace Basic {
-			enum class Command {
-				Output	= 0x06010100,
-				Editing = 0x06010200
-			};
-
-			namespace Output {
-				enum class Command {
-					Select		= 0x06010101,
-					SelectAll	= 0x06010102
-				};
-				}
-
-			namespace Editing {
-				enum class Command {
-					Update	= 0x06010201,
-					Insert	= 0x06010202,
-					Delete	= 0x06010203
+					SEND_KEY = 0x05020201
 				};
 				}
 			}
 		}
 
-	namespace Debugger {
+	namespace database {
 		enum class Command {
-			Basic = 0x07010000
+			BASIC = 0x06010000
 		};
 
-		namespace Basic {
+		namespace basic {
 			enum class Command {
-				Focus = 0x07010100
+				OUTPUT	= 0x06010100,
+				EDITING = 0x06010200
 			};
 
-			namespace Focus {
+			namespace output {
 				enum class Command {
-					Command			= 0x07010101,
-					LoopInit		= 0x07010102,
-					LoopCondition	= 0x07010103,
-					LoopStep		= 0x07010104
+					SELECT		= 0x06010101,
+					SELECT_ALL	= 0x06010102
+				};
+				}
+
+			namespace editing {
+				enum class Command {
+					UPDATE	= 0x06010201,
+					INSERT	= 0x06010202,
+					DELETE	= 0x06010203
+				};
+				}
+			}
+		}
+
+	namespace debugger {
+		enum class Command {
+			BASIC = 0x07010000
+		};
+
+		namespace basic {
+			enum class Command {
+				FOCUS = 0x07010100
+			};
+
+			namespace focus {
+				enum class Command {
+					COMMAND			= 0x07010101,
+					LOOP_INIT		= 0x07010102,
+					LOOP_CONDITION	= 0x07010103,
+					LOOP_STEP		= 0x07010104
 				};
 				}
 			}

@@ -3,37 +3,37 @@
 
 
 
-void VM::Language::Control::Comment::parse (const int &command) {
-	using namespace VM::Language::Control::Comment;
+void vm::language::control::comment::parse (const int &command) {
+	using namespace vm::language::control::comment;
 
-	int sw = command | static_cast<int>(VM::Filter::Level4);
+	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast<int>(Command::Delimiter):
+	case static_cast <int> ( Command::DELIMITER ) :
 		Singleton::runDelimiter ();
 		break;
 
-	case static_cast<int>(Command::Line):
+	case static_cast <int> ( Command::LINE ) :
 		Singleton::runLine ();
 		break;
 
-	case static_cast<int>(Command::MultiLine):
+	case static_cast <int> ( Command::MULTILINE ) :
 		Singleton::runMultiline ();
 		break;
 
-	default:
-		error = Errors::CommandNotFound;
+	default :
+		error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
-void VM::Language::Control::Comment::Singleton::runDelimiter () {
+void vm::language::control::comment::Singleton::runDelimiter () {
 
 }
 
-void VM::Language::Control::Comment::Singleton::runLine () {
+void vm::language::control::comment::Singleton::runLine () {
 
 }
 
-void VM::Language::Control::Comment::Singleton::runMultiline () {
+void vm::language::control::comment::Singleton::runMultiline () {
 
 }
