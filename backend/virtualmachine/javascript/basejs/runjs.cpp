@@ -18,7 +18,7 @@ void vm::javascript::basejs::runjs::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 

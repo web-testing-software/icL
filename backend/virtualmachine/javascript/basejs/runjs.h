@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace javascript { namespace basejs { namespace runjs {
+namespace vm {
+namespace javascript {
+namespace basejs {
+namespace runjs {
 
 void parse (const int &command);
 
@@ -18,6 +21,9 @@ public:
 	static void runRunFile ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // RUNJS_H

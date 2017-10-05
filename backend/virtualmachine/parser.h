@@ -21,7 +21,7 @@ namespace vm {
 		NO_ERROR
 	};
 
-	Error error = Error::NO_ERROR;
+//	extern Error error;
 
 	void parse (const int &command);
 

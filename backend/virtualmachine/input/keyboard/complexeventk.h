@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace input { namespace keyboard { namespace complexevent {
+namespace vm {
+namespace input {
+namespace keyboard {
+namespace complexevent {
 
 void parse (const int &command);
 
@@ -17,6 +20,9 @@ public:
 	static void runSendKey ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // COMPLEXEVENTK_H

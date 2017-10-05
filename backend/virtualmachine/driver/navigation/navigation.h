@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace driver { namespace navigation { namespace navigation {
+namespace vm {
+namespace driver {
+namespace navigation {
+namespace navigation {
 
 void parse (const int &command);
 
@@ -17,6 +20,9 @@ public:
 	static void runGoToURL ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // NAVIGATION_H

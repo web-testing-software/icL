@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace booloperator { namespace equal {
+namespace vm {
+namespace language {
+namespace booloperator {
+namespace equal {
 
 void parse (const int &command);
 
@@ -21,6 +24,9 @@ public:
 	static void runStringList ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // EQUAL_H

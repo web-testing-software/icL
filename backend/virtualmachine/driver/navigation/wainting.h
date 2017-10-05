@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace driver { namespace navigation { namespace wainting {
+namespace vm {
+namespace driver {
+namespace navigation {
+namespace wainting {
 
 void parse (const int &command);
 
@@ -18,6 +21,9 @@ public:
 	static void runWaitForPageLoad ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // WAINTING_H

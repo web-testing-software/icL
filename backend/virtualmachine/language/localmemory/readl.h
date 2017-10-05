@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace localmemory { namespace read {
+namespace vm {
+namespace language {
+namespace localmemory {
+namespace read {
 
 void parse (const int &command);
 
@@ -22,6 +25,9 @@ public:
 	static void runWebElement ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // READL_H

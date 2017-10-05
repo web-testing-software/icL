@@ -55,7 +55,25 @@ SOURCES += \
     backend/virtualmachine/database/basic/output.cpp \
     backend/virtualmachine/database/basic/editing.cpp \
     backend/virtualmachine/debugger/basic/focus.cpp \
-    backend/virtualmachine/parser.cpp
+    backend/virtualmachine/parser.cpp \
+    backend/virtualmachine/system/virtualmachine.cpp \
+    backend/virtualmachine/system/stackstate.cpp \
+    backend/virtualmachine/system/memorystate.cpp \
+    backend/virtualmachine/system/datastate.cpp \
+    backend/virtualmachine/system/logic/logicblock.cpp \
+    backend/virtualmachine/system/logic/crossblock.cpp \
+    backend/virtualmachine/system/logic/trueblock.cpp \
+    backend/virtualmachine/system/logic/falseblock.cpp \
+    backend/virtualmachine/system/logic/richblock.cpp \
+    backend/virtualmachine/system/logic/cross/notblock.cpp \
+    backend/virtualmachine/system/logic/cross/andblock.cpp \
+    backend/virtualmachine/system/logic/cross/orblock.cpp \
+    backend/virtualmachine/system/logic/cross/xorblock.cpp \
+    backend/virtualmachine/system/logic/rich/booleanblock.cpp \
+    backend/virtualmachine/system/logic/rich/intblock.cpp \
+    backend/virtualmachine/system/logic/rich/doubleblock.cpp \
+    backend/virtualmachine/system/logic/rich/stringblock.cpp \
+    backend/virtualmachine/system/logic/rich/stringlistblock.cpp
 
 HEADERS += \
         webbrowser.h \
@@ -90,7 +108,25 @@ HEADERS += \
     backend/virtualmachine/database/basic/editing.h \
     backend/virtualmachine/debugger/basic/focus.h \
     backend/virtualmachine/parser.h \
-    backend/virtualmachine/allheaders.h
+    backend/virtualmachine/allheaders.h \
+    backend/virtualmachine/system/virtualmachine.h \
+    backend/virtualmachine/system/stackstate.h \
+    backend/virtualmachine/system/memorystate.h \
+    backend/virtualmachine/system/datastate.h \
+    backend/virtualmachine/system/logic/logicblock.h \
+    backend/virtualmachine/system/logic/crossblock.h \
+    backend/virtualmachine/system/logic/trueblock.h \
+    backend/virtualmachine/system/logic/falseblock.h \
+    backend/virtualmachine/system/logic/richblock.h \
+    backend/virtualmachine/system/logic/cross/notblock.h \
+    backend/virtualmachine/system/logic/cross/andblock.h \
+    backend/virtualmachine/system/logic/cross/orblock.h \
+    backend/virtualmachine/system/logic/cross/xorblock.h \
+    backend/virtualmachine/system/logic/rich/booleanblock.h \
+    backend/virtualmachine/system/logic/rich/intblock.h \
+    backend/virtualmachine/system/logic/rich/doubleblock.h \
+    backend/virtualmachine/system/logic/rich/stringblock.h \
+    backend/virtualmachine/system/logic/rich/stringlistblock.h
 
 RESOURCES += \
     qml/main.qrc

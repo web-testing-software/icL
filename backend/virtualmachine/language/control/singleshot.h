@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace control { namespace singleshot {
+namespace vm {
+namespace language {
+namespace control {
+namespace singleshot {
 
 void parse (const int &command);
 
@@ -25,6 +28,9 @@ public:
 	//	Q_INVOKABLE bool addEndIf(QVariant v);
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // SINGLESHOT_H

@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace constant { namespace read {
+namespace vm {
+namespace language {
+namespace constant {
+namespace read {
 
 void parse (const int &command);
 
@@ -21,6 +24,9 @@ public:
 	static void runStringList ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // READC_H

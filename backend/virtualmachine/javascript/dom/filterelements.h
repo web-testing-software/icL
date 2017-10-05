@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace javascript { namespace dom { namespace filterelements {
+namespace vm {
+namespace javascript {
+namespace dom {
+namespace filterelements {
 
 void parse (const int &command);
 
@@ -18,6 +21,9 @@ public:
 	static void runByContent ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // FILTERELEMENTS_H

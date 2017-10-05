@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace booloperator { namespace logical {
+namespace vm {
+namespace language {
+namespace booloperator {
+namespace logical {
 
 void parse (const int &command);
 
@@ -20,6 +23,9 @@ public:
 	static void runXOr ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // LOGICAL_H

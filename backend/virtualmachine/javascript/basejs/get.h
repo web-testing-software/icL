@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace javascript { namespace basejs { namespace get {
+namespace vm {
+namespace javascript {
+namespace basejs {
+namespace get {
 
 void parse (const int &command);
 
@@ -21,6 +24,9 @@ public:
 	static void runStringList ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // GET_H

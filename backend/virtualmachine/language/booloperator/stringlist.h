@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace booloperator { namespace stringlist {
+namespace vm {
+namespace language {
+namespace booloperator {
+namespace stringlist {
 
 void parse (const int &command);
 
@@ -18,6 +21,9 @@ public:
 	static void runContainsFragment ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // STRINGLIST_H

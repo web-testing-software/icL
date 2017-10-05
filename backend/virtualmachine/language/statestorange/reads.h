@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace statestorange { namespace read {
+namespace vm {
+namespace language {
+namespace statestorange {
+namespace read {
 
 void parse (const int &command);
 
@@ -21,6 +24,9 @@ public:
 	static void runStringList ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // READS_H

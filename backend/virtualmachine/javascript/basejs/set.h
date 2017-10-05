@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace javascript { namespace basejs { namespace set {
+namespace vm {
+namespace javascript {
+namespace basejs {
+namespace set {
 
 void parse (const int &command);
 
@@ -21,6 +24,9 @@ public:
 	static void runStringList ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // SET_H

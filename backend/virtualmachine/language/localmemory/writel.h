@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace localmemory { namespace write {
+namespace vm {
+namespace language {
+namespace localmemory {
+namespace write {
 
 void parse (const int &command);
 
@@ -22,7 +25,10 @@ public:
 	static void runWebElement ();
 };
 
-} } } }
+}
+}
+}
+}
 
 
 #endif // WRITEL_H

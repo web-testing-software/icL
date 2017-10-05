@@ -304,7 +304,7 @@ void WebElement::click (bool se) const {
 				  // Get the y pos of object
 				  int	_y = element.getY ();
 
-				  browser->simulate_click (_x, _y);
+				  webBrowser->simulate_click (_x, _y);
 			  };
 
 		const QString	&variable	=  this->variable;
@@ -362,7 +362,7 @@ void WebElement::paste (const QString &str, bool se) const {
 void WebElement::sendKey (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text) const {
 
 	click (true);
-	browser->simulate_key (key, modifier, text);
+	webBrowser->simulate_key (key, modifier, text);
 }
 
 void WebElement::enter () const {

@@ -29,7 +29,7 @@ WebBrowser::WebBrowser (QWidget *parent)
 	QQmlContext *context = quick_receiver->rootContext ();
 
 	context->setContextProperty ("server", server);
-	context->setContextProperty ("browser", browser);
+	context->setContextProperty ("web_browser", webBrowser);
 
 	setCentralWidget (quick_receiver);
 	// TODO: Make configurable: Use system window frame
@@ -79,6 +79,8 @@ bool WebBrowser::simulate_click (int x, int y) {
 	// TODO: Make the delay configurable
 	QThread::msleep (300);
 	QCoreApplication::postEvent (this->quick_receiver, release);
+
+	return true;
 }
 
 void WebBrowser::simulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text) {
@@ -91,7 +93,7 @@ void WebBrowser::simulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const
 	QCoreApplication::postEvent (this->quick_receiver, release);
 }
 
-WebBrowser * WebBrowser::instance () {
+WebBrowser* WebBrowser::instance () {
 	return m_instance;
 }
 

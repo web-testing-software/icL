@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace driver { namespace managecontent { namespace frames {
+namespace vm {
+namespace driver {
+namespace managecontent {
+namespace frames {
 
 void parse (const int &command);
 
@@ -18,6 +21,9 @@ public:
 	static void runSwitchToDefault ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // FRAMES_H

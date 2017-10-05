@@ -133,14 +133,14 @@ void Server::finish_showErrorDialog(bool skip)
 }
 
 void Server::release_goTo () {
-	browser->get (url);
+	webBrowser->get (url);
 }
 
 void Server::release_waitForPageLoading () {
-	browser->waitForPageLoading ();
+	webBrowser->waitForPageLoading ();
 }
 void Server::release_executeJS () {
-	browser->runJS (code);
+	webBrowser->runJS (code);
 }
 
 void Server::release_showErrorDialog () {

@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace javascript { namespace dom { namespace elementstest {
+namespace vm {
+namespace javascript {
+namespace dom {
+namespace elementstest {
 
 void parse (const int &command);
 
@@ -19,6 +22,9 @@ public:
 	static void runGetY ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // ELEMENTSTEST_H

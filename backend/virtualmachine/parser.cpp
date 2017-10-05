@@ -32,7 +32,7 @@ void vm::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -63,7 +63,7 @@ void vm::language::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -82,7 +82,7 @@ void vm::language::control::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -101,7 +101,7 @@ void vm::language::localmemory::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -120,7 +120,7 @@ void vm::language::statestorange::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -135,7 +135,7 @@ void vm::language::constant::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -162,7 +162,7 @@ void vm::language::booloperator::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -181,7 +181,7 @@ void vm::driver::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -200,7 +200,7 @@ void vm::driver::navigation::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -215,7 +215,7 @@ void vm::driver::managecontent::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -234,7 +234,7 @@ void vm::javascript::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -257,7 +257,7 @@ void vm::javascript::basejs::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -280,7 +280,7 @@ void vm::javascript::dom::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -299,7 +299,7 @@ void vm::input::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -314,7 +314,7 @@ void vm::input::mouse::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -329,7 +329,7 @@ void vm::input::keyboard::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -344,7 +344,7 @@ void vm::database::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -359,7 +359,7 @@ void vm::database::basic::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -374,7 +374,7 @@ void vm::debugger::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }
 
@@ -389,6 +389,6 @@ void vm::debugger::basic::parse (const int &command) {
 		break;
 
 	default :
-		error = Error::COMMAND_NOT_FOUND;
+		return;//error = Error::COMMAND_NOT_FOUND;
 	}
 }

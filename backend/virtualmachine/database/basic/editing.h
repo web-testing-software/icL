@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace database { namespace basic { namespace editing {
+namespace vm {
+namespace database {
+namespace basic {
+namespace editing {
 
 void parse (const int &command);
 
@@ -17,6 +20,9 @@ public:
 	static void runInsert ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // EDITING_H

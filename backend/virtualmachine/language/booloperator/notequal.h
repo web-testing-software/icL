@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace booloperator { namespace notequal {
+namespace vm {
+namespace language {
+namespace booloperator {
+namespace notequal {
 
 void parse (const int &command);
 
@@ -21,6 +24,9 @@ public:
 	static void runStringList ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // NOTEQUAL_H

@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace language { namespace control { namespace comment {
+namespace vm {
+namespace language {
+namespace control {
+namespace comment {
 
 void parse (const int &command);
 
@@ -19,6 +22,9 @@ public:
 	static void runMultiline ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // COMMENT_H

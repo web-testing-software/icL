@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace javascript { namespace dom { namespace findelements {
+namespace vm {
+namespace javascript {
+namespace dom {
+namespace findelements {
 
 void parse (const int &command);
 
@@ -18,6 +21,9 @@ public:
 	static void runQueryAll ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // FINDELEMENTS_H

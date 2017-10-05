@@ -5,7 +5,7 @@
 #include <QQuickWidget>
 #include <QWidget>
 
-#define browser WebBrowser::instance ()
+#define webBrowser WebBrowser::instance ()
 
 /**
  * @brief The WebBrowser class - main window

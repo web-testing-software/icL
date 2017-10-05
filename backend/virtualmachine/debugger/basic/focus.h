@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace debugger { namespace basic { namespace focus {
+namespace vm {
+namespace debugger {
+namespace basic {
+namespace focus {
 
 void parse (const int &command);
 
@@ -17,6 +20,9 @@ public:
 	static void runCommand ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // FOCUS_H

@@ -5,7 +5,10 @@
 
 
 
-namespace vm { namespace input { namespace mouse { namespace complexevent {
+namespace vm {
+namespace input {
+namespace mouse {
+namespace complexevent {
 
 void parse (const int &command);
 
@@ -17,6 +20,9 @@ public:
 	static void runClick ();
 };
 
-} } } }
+}
+}
+}
+}
 
 #endif // COMPLEXEVENTM_H
