@@ -1,15 +1,5 @@
 #include "xorblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace cross {
-
-XOrBlock::XOrBlock () {
+vm::system::logic::cross::XOrBlock::XOrBlock () {
 
 }
-
-}   // namespace cross
-}   // namespace logic
-}   // namespace system
-}   // namespace vm

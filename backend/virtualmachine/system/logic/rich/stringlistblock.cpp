@@ -1,15 +1,10 @@
 #include "stringlistblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace rich {
-
-StringListBlock::StringListBlock () {
+vm::system::logic::rich::StringListBlock::StringListBlock (OperationType otype) :
+	vm::system::logic::RichBlock (otype) {
 
 }
 
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+
+bool vm::system::logic::rich::StringListBlock::getResult () {
+}

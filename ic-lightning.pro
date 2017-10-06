@@ -56,15 +56,15 @@ SOURCES += \
     backend/virtualmachine/database/basic/editing.cpp \
     backend/virtualmachine/debugger/basic/focus.cpp \
     backend/virtualmachine/parser.cpp \
-    backend/virtualmachine/system/virtualmachine.cpp \
-    backend/virtualmachine/system/stackstate.cpp \
-    backend/virtualmachine/system/memorystate.cpp \
-    backend/virtualmachine/system/datastate.cpp \
-    backend/virtualmachine/system/logic/logicblock.cpp \
-    backend/virtualmachine/system/logic/crossblock.cpp \
-    backend/virtualmachine/system/logic/trueblock.cpp \
-    backend/virtualmachine/system/logic/falseblock.cpp \
-    backend/virtualmachine/system/logic/richblock.cpp \
+	backend/virtualmachine/system/main/virtualmachine.cpp \
+	backend/virtualmachine/system/main/stackstate.cpp \
+	backend/virtualmachine/system/main/memorystate.cpp \
+	backend/virtualmachine/system/main/datastate.cpp \
+	backend/virtualmachine/system/logic/main/logicblock.cpp \
+	backend/virtualmachine/system/logic/main/crossblock.cpp \
+	backend/virtualmachine/system/logic/main/trueblock.cpp \
+	backend/virtualmachine/system/logic/main/falseblock.cpp \
+	backend/virtualmachine/system/logic/main/richblock.cpp \
     backend/virtualmachine/system/logic/cross/notblock.cpp \
     backend/virtualmachine/system/logic/cross/andblock.cpp \
     backend/virtualmachine/system/logic/cross/orblock.cpp \
@@ -109,15 +109,15 @@ HEADERS += \
     backend/virtualmachine/debugger/basic/focus.h \
     backend/virtualmachine/parser.h \
     backend/virtualmachine/allheaders.h \
-    backend/virtualmachine/system/virtualmachine.h \
-    backend/virtualmachine/system/stackstate.h \
-    backend/virtualmachine/system/memorystate.h \
-    backend/virtualmachine/system/datastate.h \
-    backend/virtualmachine/system/logic/logicblock.h \
-    backend/virtualmachine/system/logic/crossblock.h \
-    backend/virtualmachine/system/logic/trueblock.h \
-    backend/virtualmachine/system/logic/falseblock.h \
-    backend/virtualmachine/system/logic/richblock.h \
+	backend/virtualmachine/system/main/virtualmachine.h \
+	backend/virtualmachine/system/main/stackstate.h \
+	backend/virtualmachine/system/main/memorystate.h \
+	backend/virtualmachine/system/main/datastate.h \
+	backend/virtualmachine/system/logic/main/logicblock.h \
+	backend/virtualmachine/system/logic/main/crossblock.h \
+	backend/virtualmachine/system/logic/main/trueblock.h \
+	backend/virtualmachine/system/logic/main/falseblock.h \
+	backend/virtualmachine/system/logic/main/richblock.h \
     backend/virtualmachine/system/logic/cross/notblock.h \
     backend/virtualmachine/system/logic/cross/andblock.h \
     backend/virtualmachine/system/logic/cross/orblock.h \
@@ -133,3 +133,6 @@ RESOURCES += \
 
 
 CONFIG += c++11
+
+DISTFILES += \
+    models/logic.qmodel

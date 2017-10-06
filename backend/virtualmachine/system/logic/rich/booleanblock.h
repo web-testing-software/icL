@@ -1,6 +1,9 @@
 #ifndef BOOLEANBLOCK_H
 #define BOOLEANBLOCK_H
 
+#include "../main/richblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -10,7 +13,10 @@ namespace rich {
 class BooleanBlock : public RichBlock
 {
 public:
-	BooleanBlock ();
+	BooleanBlock (OperationType otype);
+
+	// LogicBlock interface
+	bool getResult() override;
 };
 
 }   // namespace rich

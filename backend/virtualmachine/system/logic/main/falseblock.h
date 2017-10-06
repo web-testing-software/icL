@@ -13,6 +13,11 @@ class FalseBlock : public LogicBlock
 {
 public:
 	FalseBlock ();
+
+	// LogicBlock interface
+public:
+	bool getResult() override;
+	bool isCross() override;
 };
 
 }   // namespace logic

@@ -1,6 +1,9 @@
 #ifndef INTBLOCK_H
 #define INTBLOCK_H
 
+#include "../main/richblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -10,7 +13,10 @@ namespace rich {
 class IntBlock : public RichBlock
 {
 public:
-	IntBlock ();
+	IntBlock (OperationType otype);
+
+	// LogicBlock interface
+	bool getResult() override;
 };
 
 }   // namespace rich

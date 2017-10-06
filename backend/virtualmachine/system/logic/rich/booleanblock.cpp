@@ -1,15 +1,6 @@
 #include "booleanblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace rich {
-
-BooleanBlock::BooleanBlock () {
+vm::system::logic::rich::BooleanBlock::BooleanBlock (OperationType otype) :
+	vm::system::logic::RichBlock (otype) {
 
 }
-
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm

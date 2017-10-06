@@ -1,15 +1,14 @@
 #include "notblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace cross {
 
-NotBlock::NotBlock () {
+vm::system::logic::cross::NotBlock::NotBlock () {
 
 }
 
-}   // namespace cross
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+
+bool vm::system::logic::cross::NotBlock::getResult () {
+}
+
+bool vm::system::logic::cross::NotBlock::checkIntegrity () {
+	return block2 != nullptr;
+}

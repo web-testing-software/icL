@@ -1,15 +1,7 @@
 #include "doubleblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace rich {
 
-DoubleBlock::DoubleBlock () {
+vm::system::logic::rich::DoubleBlock::DoubleBlock (OperationType otype) :
+	vm::system::logic::RichBlock (otype) {
 
 }
-
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm

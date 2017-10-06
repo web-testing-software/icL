@@ -1,8 +1,8 @@
 #ifndef STACKSTATE_H
 #define STACKSTATE_H
 
-#include "../../functions/webelement.h"
-#include "logic/logicblock.h"
+#include "../../../functions/webelement.h"
+#include "../logic/main/logicblock.h"
 #include "datastate.h"
 
 
@@ -25,7 +25,7 @@ public:
 	bool isLast ();
 	QVariant getStackValue ();
 	int getSearchedCommand ();
-	LogicBlock* getLogicBlock ();
+	logic::LogicBlock* getLogicBlock ();
 	int getStackLevel ();
 
 	// This function was designed for stats
@@ -48,6 +48,7 @@ public:
 	void closeStack ();
 
 	// Mass effect functions, with automatic iterations
+	bool contains (const QString &name);
 	bool checkType (const QString &name, StackState::Type &type);
 	bool isWebElement (const QString &name);
 	WebElement getWebElement (const QString &name);

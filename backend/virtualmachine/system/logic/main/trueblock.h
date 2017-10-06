@@ -13,6 +13,11 @@ class TrueBlock : public LogicBlock
 {
 public:
 	TrueBlock ();
+
+	// LogicBlock interface
+public:
+	bool getResult () override;
+	bool isCross () override;
 };
 
 }   // namespace logic

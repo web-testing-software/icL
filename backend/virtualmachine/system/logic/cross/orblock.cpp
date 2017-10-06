@@ -1,15 +1,6 @@
 #include "orblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace cross {
 
-OrBlock::OrBlock () {
+vm::system::logic::cross::OrBlock::OrBlock () {
 
 }
-
-}   // namespace cross
-}   // namespace logic
-}   // namespace system
-}   // namespace vm

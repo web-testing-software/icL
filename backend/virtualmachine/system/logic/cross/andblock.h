@@ -1,6 +1,9 @@
 #ifndef ANDBLOCK_H
 #define ANDBLOCK_H
 
+#include "../main/crossblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -11,6 +14,9 @@ class AndBlock : public CrossBlock
 {
 public:
 	AndBlock ();
+
+	// LogicBlock interface
+	bool getResult() override;
 };
 
 }   // namespace cross

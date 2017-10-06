@@ -1,6 +1,9 @@
 #ifndef ORBLOCK_H
 #define ORBLOCK_H
 
+#include "../main/crossblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -11,6 +14,9 @@ class OrBlock : public CrossBlock
 {
 public:
 	OrBlock ();
+
+	// LogicBlock interface
+	bool getResult() override;
 };
 
 }   // namespace cross

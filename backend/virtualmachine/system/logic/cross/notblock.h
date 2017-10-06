@@ -1,6 +1,9 @@
 #ifndef NOTBLOCK_H
 #define NOTBLOCK_H
 
+#include "../main/crossblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -11,6 +14,10 @@ class NotBlock : public CrossBlock
 {
 public:
 	NotBlock ();
+
+	// LogicBlock interface
+	bool getResult() override;
+	bool checkIntegrity() override;
 };
 
 }   // namespace cross

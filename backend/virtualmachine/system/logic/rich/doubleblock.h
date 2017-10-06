@@ -1,6 +1,9 @@
 #ifndef DOUBLEBLOCK_H
 #define DOUBLEBLOCK_H
 
+#include "../main/richblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -10,7 +13,10 @@ namespace rich {
 class DoubleBlock : public RichBlock
 {
 public:
-	DoubleBlock ();
+	DoubleBlock (OperationType otype);
+
+	// LogicBlock interface
+	bool getResult() override;
 };
 
 }   // namespace rich

@@ -1,15 +1,6 @@
 #include "intblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace rich {
-
-IntBlock::IntBlock () {
+vm::system::logic::rich::IntBlock::IntBlock (OperationType otype) :
+	vm::system::logic::RichBlock (otype) {
 
 }
-
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm

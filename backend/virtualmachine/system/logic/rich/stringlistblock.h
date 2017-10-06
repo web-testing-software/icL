@@ -1,6 +1,9 @@
 #ifndef STRINGLISTBLOCK_H
 #define STRINGLISTBLOCK_H
 
+#include "../main/richblock.h"
+
+
 
 namespace vm {
 namespace system {
@@ -10,7 +13,10 @@ namespace rich {
 class StringListBlock : public RichBlock
 {
 public:
-	StringListBlock ();
+	StringListBlock (OperationType otype);
+
+	// LogicBlock interface
+	bool getResult() override;
 };
 
 }   // namespace rich

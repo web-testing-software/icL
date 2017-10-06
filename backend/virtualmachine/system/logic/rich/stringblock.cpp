@@ -1,15 +1,7 @@
 #include "stringblock.h"
 
-namespace vm {
-namespace system {
-namespace logic {
-namespace rich {
 
-StringBlock::StringBlock () {
+vm::system::logic::rich::StringBlock::StringBlock (OperationType otype) :
+	vm::system::logic::RichBlock (otype) {
 
 }
-
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm

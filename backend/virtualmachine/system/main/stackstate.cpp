@@ -33,7 +33,7 @@ int vm::system::StackState::getSearchedCommand () {
 
 }
 
-LogicBlock * vm::system::StackState::getLogicBlock () {
+vm::system::logic::LogicBlock * vm::system::StackState::getLogicBlock () {
 
 }
 
@@ -58,6 +58,10 @@ void vm::system::StackStateIterator::openNewStack () {
 }
 
 void vm::system::StackStateIterator::closeStack () {
+
+}
+
+bool vm::system::StackStateIterator::contains (const QString &name) {
 
 }
 
