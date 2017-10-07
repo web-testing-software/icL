@@ -131,6 +131,9 @@ HEADERS += \
 RESOURCES += \
     qml/main.qrc
 
+OBJECTS_DIR = objs
+MOC_DIR = moc
+RCC_DIR = rcc
 
 CONFIG += c++11
 

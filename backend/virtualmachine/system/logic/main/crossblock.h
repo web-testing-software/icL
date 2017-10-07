@@ -14,12 +14,12 @@ class CrossBlock : public LogicBlock
 public:
 	CrossBlock ();
 
-	bool canAcceptBlock();
-	virtual void giveBlock(LogicBlock *block);
+	bool canAcceptBlock ();
+	virtual void giveBlock (LogicBlock *block);
 
 	// LogicBlock interface
-	bool isCross() override;
-	bool checkIntegrity() override;
+	bool isCross () override;
+	bool checkIntegrity () override;
 
 protected:
 	LogicBlock *block1;

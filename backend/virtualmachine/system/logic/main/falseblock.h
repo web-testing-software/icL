@@ -16,8 +16,8 @@ public:
 
 	// LogicBlock interface
 public:
-	bool getResult() override;
-	bool isCross() override;
+	bool getResult () override;
+	bool isCross () override;
 };
 
 }   // namespace logic

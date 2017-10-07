@@ -187,4 +187,6 @@ WebElement queryOne (const QString &selector, const QString &name = "", bool se 
  */
 WebElement queryAll (const QString &selector, const QString &name = "", bool se = true);
 
+Q_DECLARE_METATYPE(WebElement);
+
 #endif // WEBELEMENT_H

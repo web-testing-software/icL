@@ -16,7 +16,7 @@ public:
 	StringBlock (OperationType otype);
 
 	// LogicBlock interface
-	bool getResult() override;
+	bool getResult () override;
 };
 
 }   // namespace rich

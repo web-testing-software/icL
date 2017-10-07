@@ -18,8 +18,7 @@ bool vm::system::logic::RichBlock::isCross () {
 }
 
 
-bool vm::system::logic::RichBlock::checkIntegrity()
-{
+bool vm::system::logic::RichBlock::checkIntegrity () {
 	if (var1name.isEmpty () || var2name.isEmpty ()) {
 		return false;
 	}

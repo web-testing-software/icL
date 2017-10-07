@@ -22,8 +22,7 @@ bool vm::system::logic::CrossBlock::isCross () {
 }
 
 
-bool vm::system::logic::CrossBlock::checkIntegrity()
-{
+bool vm::system::logic::CrossBlock::checkIntegrity () {
 	if (block1 == nullptr || block2 == nullptr) {
 		return false;
 	}

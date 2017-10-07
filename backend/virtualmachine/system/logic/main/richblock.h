@@ -23,12 +23,12 @@ public:
 
 	RichBlock (OperationType otype);
 
-	bool canAcceptVar();
-	void giveVar(QString &varname);
+	bool canAcceptVar ();
+	void giveVar (QString &varname);
 
 	// LogicBlock interface
-	bool isCross() override;
-	bool checkIntegrity() override;
+	bool isCross () override;
+	bool checkIntegrity () override;
 
 protected:
 	QString var1name;

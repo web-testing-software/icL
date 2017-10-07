@@ -10,8 +10,6 @@
 
 namespace vm {
 
-	// Stop file parsing on error
-
 	enum class Error {
 		COMMAND_NOT_FOUND,
 		COMMAND_EXECUTION_ERROR,
@@ -21,7 +19,12 @@ namespace vm {
 		NO_ERROR
 	};
 
-//	extern Error error;
+	enum class LoopMode {
+		NO_STATE,
+		ONCE,
+		LOOP_CURRENT,
+		LOOP_TO_END
+	};
 
 	void parse (const int &command);
 

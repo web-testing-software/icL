@@ -16,8 +16,8 @@ public:
 	NotBlock ();
 
 	// LogicBlock interface
-	bool getResult() override;
-	bool checkIntegrity() override;
+	bool getResult () override;
+	bool checkIntegrity () override;
 };
 
 }   // namespace cross

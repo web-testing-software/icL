@@ -10,31 +10,41 @@
 namespace vm {
 namespace system {
 
+struct CommandsToSearch {           // By default it search:
+	int command1	= 0x00000000;   //  0 - EOF
+	int command2	= 0x80000000;   // -1 - Stack out
+};
+
 class StackState : public DataState
 {
 public:
-	StackState (int stackLevel);
-
-	// Additional functions to work with web elements
-	void setWebElement (const QString &name, WebElement webElement);
-	WebElement getWebElement (const QString &name);
-	bool isWebElement (const QString &name);
+	StackState (StackState *prev, int stackLevel);
+	virtual ~StackState();
 
 	// Stack functions
 	StackState* getPrev ();
 	bool isLast ();
 	QVariant getStackValue ();
-	int getSearchedCommand ();
-	logic::LogicBlock* getLogicBlock ();
+	CommandsToSearch getSearchedCommands ();
+	void search (const CommandsToSearch &commands);
 	int getStackLevel ();
 
 	// This function was designed for stats
 	static int getMaxStackLevel ();
 
+	// DataState interface
+	Type getType (const QString &name) override;
+	bool checkType (const QString &name, Type &type) override;
+	bool contains (const QString &name) override;
+	QVariant getValue (const QString &name) override;
+
 private:
 	QMap <QString, WebElement> webElementMap;
 	StackState *prev_ss = nullptr;
-	int searchedCommand = 0;
+	CommandsToSearch searchedCommands;
+	int stackLevel;
+
+	static int maxStackLevel;
 };
 
 class StackStateIterator
@@ -50,9 +60,6 @@ public:
 	// Mass effect functions, with automatic iterations
 	bool contains (const QString &name);
 	bool checkType (const QString &name, StackState::Type &type);
-	bool isWebElement (const QString &name);
-	WebElement getWebElement (const QString &name);
-	QVariant getValue (const QString &name);
 
 private:
 	StackState *m_stack;

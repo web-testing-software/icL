@@ -16,7 +16,7 @@ public:
 	AndBlock ();
 
 	// LogicBlock interface
-	bool getResult() override;
+	bool getResult () override;
 };
 
 }   // namespace cross

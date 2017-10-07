@@ -14,6 +14,7 @@ class WebBrowser : public QMainWindow
 {
 	Q_OBJECT
 
+private:
 	static WebBrowser *m_instance;
 
 	// Write only properties, to get information from qml

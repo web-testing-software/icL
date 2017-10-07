@@ -33,10 +33,10 @@ public:
 	void addToStringList (const QString &name, QString &value);
 
 	// Functions to access data and metadata from containers
-	bool contains (const QString &name);
+	virtual bool contains (const QString &name);
 	virtual Type getType (const QString &name);
 	virtual bool checkType (const QString &name, Type &type);
-	QVariant getValue (const QString &name);
+	virtual QVariant getValue (const QString &name);
 
 private:
 	// Containers
