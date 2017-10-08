@@ -1,3 +1,5 @@
+#include "../virtualmachine/system/main/virtualmachine.h"
+#include "../virtualmachine/parser.h"
 #include "server.h"
 
 #include <QMessageBox>
@@ -18,11 +20,11 @@ Server::Server (QObject *parent) : QObject (parent) {
 }
 
 bool Server::goTo (const QString &url) {
-	if (waitFor != WaitFor::Nothing)  {
+	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
 
-	waitFor = WaitFor::GoTo;
+	waitFor		= WaitFor::GoTo;
 	working		= true;
 	this->url	= url;
 
@@ -34,7 +36,7 @@ bool Server::goTo (const QString &url) {
 }
 
 bool Server::waitForPageLoading () {
-	if (waitFor != WaitFor::Nothing)  {
+	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
 
@@ -49,11 +51,11 @@ bool Server::waitForPageLoading () {
 }
 
 QVariant Server::executeJS (const QString &code) {
-	if (waitFor != WaitFor::Nothing)  {
+	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
 
-	waitFor = WaitFor::ExecuteJS;
+	waitFor		= WaitFor::ExecuteJS;
 	working		= true;
 	this->code	= code;
 
@@ -65,7 +67,7 @@ QVariant Server::executeJS (const QString &code) {
 }
 
 bool Server::showErrorDialog () {
-	if (waitFor != WaitFor::Nothing)  {
+	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
 
@@ -100,13 +102,17 @@ void Server::check_success (bool success, const QString &func) {
 	}
 
 	if (stop_on_error) {
-		worker->setToErrorState ();
+		if (virtualMachine != nullptr) {
+			virtualMachine->setError (vm::Error::SERVER_ERROR);
+		}
+		else {
+			worker->setToErrorState ();
+		}
 		addToErrorsStack ("error detected in " + func);
 	}
 }
 
-void Server::finish_PageLoading(bool success)
-{
+void Server::finish_PageLoading (bool success) {
 	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
 		boolean = success;
 		waitFor = WaitFor::Nothing;
@@ -114,17 +120,15 @@ void Server::finish_PageLoading(bool success)
 	}
 }
 
-void Server::finish_executeJS(QVariant variant)
-{
+void Server::finish_executeJS (QVariant variant) {
 	if (waitFor == WaitFor::ExecuteJS) {
-		this->variant = variant;
-		this->waitFor = WaitFor::Nothing;
-		this->working = false;
+		this->variant	= variant;
+		this->waitFor	= WaitFor::Nothing;
+		this->working	= false;
 	}
 }
 
-void Server::finish_showErrorDialog(bool skip)
-{
+void Server::finish_showErrorDialog (bool skip) {
 	if (waitFor == WaitFor::ErrorDialog) {
 		boolean = skip;
 		waitFor = WaitFor::Nothing;

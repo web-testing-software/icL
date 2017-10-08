@@ -43,14 +43,18 @@ vm::system::MemoryState * vm::system::MemoryStateIterator::state () const {
 }
 
 void vm::system::MemoryStateIterator::iterateToFirst () {
-	while (m_state->getPrev () != nullptr) {
-		m_state = m_state->getPrev ();
+	if (m_state != nullptr) {
+		while (m_state->getPrev () != nullptr) {
+			m_state = m_state->getPrev ();
+		}
 	}
 }
 
 void vm::system::MemoryStateIterator::iterateToLast () {
-	while (m_state->getNext () != nullptr) {
-		m_state = m_state->getNext ();
+	if (m_state != nullptr) {
+		while (m_state->getNext () != nullptr) {
+			m_state = m_state->getNext ();
+		}
 	}
 }
 
@@ -88,8 +92,8 @@ void vm::system::MemoryStateIterator::removeState () {
 		m_state = nullptr;
 	}
 	else {
-		MemoryState* prev = m_state->getPrev ();
-		MemoryState* next = m_state->getNext ();
+		MemoryState *prev	= m_state->getPrev ();
+		MemoryState *next	= m_state->getNext ();
 
 		if (prev != nullptr) {
 			prev->setNext (next);
@@ -100,5 +104,17 @@ void vm::system::MemoryStateIterator::removeState () {
 
 		delete m_state;
 		m_state = next;
+	}
+}
+
+void vm::system::MemoryStateIterator::clear () {
+	iterateToFirst ();
+
+	MemoryState *tmp;
+
+	while (m_state != nullptr) {
+		tmp = m_state->getNext ();
+		delete m_state;
+		m_state = tmp;
 	}
 }

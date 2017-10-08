@@ -1,13 +1,23 @@
+#include "ifstackstate.h"
 #include "stackstate.h"
+#include "virtualmachine.h"
 
 
 vm::system::StackState::StackState (StackState *prev, int stackLevel) {
 	prev_ss				= prev;
 	this->stackLevel	= stackLevel;
+
+	if (stackLevel > maxStackLevel) {
+		maxStackLevel = stackLevel;
+	}
 }
 
 vm::system::StackState::~StackState () {
 
+}
+
+void vm::system::StackState::setWebElement (const QString &name, WebElement &webElement) {
+	webElementMap [name] = webElement;
 }
 
 vm::system::StackState * vm::system::StackState::getPrev () {
@@ -22,16 +32,19 @@ QVariant vm::system::StackState::getStackValue () {
 	return getValue ("stack");
 }
 
-vm::system::CommandsToSearch vm::system::StackState::getSearchedCommands () {
-	return searchedCommands;
-}
-
-void vm::system::StackState::search (const vm::system::CommandsToSearch &commands) {
-	searchedCommands = commands;
-}
-
 int vm::system::StackState::getStackLevel () {
 	return stackLevel;
+}
+
+bool vm::system::StackState::tryToDestroy () {
+	// A loop stack cannot by destryed immediately, it is reused
+	// But a commmom stack not
+	return true;
+}
+
+void vm::system::StackState::releaseCondition () {
+	// A commom stack cannot get conditions
+	virtualMachine->setError (vm::Error::WRONG_STACK_STATE);
 }
 
 int vm::system::StackState::getMaxStackLevel () {
@@ -88,10 +101,19 @@ vm::system::StackState * vm::system::StackStateIterator::stack () {
 	return m_stack;
 }
 
-void vm::system::StackStateIterator::openNewStack () {
+void vm::system::StackStateIterator::openNewStack (StackState::StackType stackType) {
 	int new_stack_level = m_stack->getStackLevel () + 1;
 
-	m_stack = new StackState (m_stack, new_stack_level);
+	switch (stackType) {
+	case StackState::StackType::COMMOM_STACK :
+		m_stack = new StackState (m_stack, new_stack_level);
+		break;
+
+	case StackState::StackType::IF_STACK :
+		m_stack = new IfStackState (m_stack, new_stack_level);
+		break;
+	}
+
 }
 
 void vm::system::StackStateIterator::closeStack () {
@@ -123,4 +145,14 @@ bool vm::system::StackStateIterator::checkType (const QString &name, vm::system:
 	}
 
 	return ret;
+}
+
+void vm::system::StackStateIterator::clear () {
+	StackState *tmp;
+
+	while (m_stack != nullptr) {
+		tmp = m_stack->getPrev ();
+		delete m_stack;
+		m_stack = tmp;
+	}
 }

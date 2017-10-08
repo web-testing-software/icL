@@ -2,7 +2,6 @@
 
 
 
-
 void vm::language::control::singleshot::parse (const int &command) {
 	using namespace vm::language::control::singleshot;
 
@@ -26,7 +25,7 @@ void vm::language::control::singleshot::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

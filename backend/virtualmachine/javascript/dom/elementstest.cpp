@@ -22,7 +22,7 @@ void vm::javascript::dom::elementstest::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

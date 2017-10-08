@@ -11,7 +11,7 @@ class MemoryState : public DataState
 {
 public:
 	MemoryState ();
-	virtual ~MemoryState();
+	virtual ~MemoryState ();
 
 	bool hasPrev () const;
 	bool hasNext () const;
@@ -40,6 +40,8 @@ public:
 	void appendNewAfter ();
 	void appendNewAtEnd ();
 	void removeState ();
+
+	void clear ();
 
 private:
 	MemoryState *m_state = nullptr;

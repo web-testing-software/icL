@@ -34,7 +34,7 @@ void vm::language::localmemory::write::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

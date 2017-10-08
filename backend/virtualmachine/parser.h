@@ -1,7 +1,12 @@
+#include "system/main/virtualmachine.h"
+
 #ifndef PARSER_H
 #define PARSER_H
 
 #include "allcommands.h"
+
+#include <QDataStream>
+#include <QFile>
 
 // All functions in this file are called `parse`
 // The 3rd level parse functions are placed in specials files, not here
@@ -16,6 +21,10 @@ namespace vm {
 		INVALID_ARGUMENTS,
 		UNEXPECTED_EOF,
 		DATA_CONVERSION_ERROR,
+		WRONG_STACK_STATE,
+		SERVER_ERROR,
+		FILE_NOT_OPENED,
+		WRONG_FILE_FORMAT,
 		NO_ERROR
 	};
 

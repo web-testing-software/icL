@@ -1,8 +1,10 @@
-#include "parser.h"
+#include "system/main/virtualmachine.h"
 #include "allheaders.h"
+#include "parser.h"
+
+
 
 void vm::parse (const int &command) {
-	using namespace vm;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL1 );
 
@@ -32,12 +34,11 @@ void vm::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::language::parse (const int &command) {
-	using namespace vm::language;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
@@ -63,12 +64,11 @@ void vm::language::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::language::control::parse (const int &command) {
-	using namespace vm::language::control;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -82,12 +82,11 @@ void vm::language::control::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::language::localmemory::parse (const int &command) {
-	using namespace vm::language::localmemory;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -101,12 +100,11 @@ void vm::language::localmemory::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::language::statestorange::parse (const int &command) {
-	using namespace vm::language::statestorange;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -120,12 +118,11 @@ void vm::language::statestorange::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::language::constant::parse (const int &command) {
-	using namespace vm::language::constant;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -135,12 +132,11 @@ void vm::language::constant::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::language::booloperator::parse (const int &command) {
-	using namespace vm::language::booloperator;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -162,12 +158,11 @@ void vm::language::booloperator::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::driver::parse (const int &command) {
-	using namespace vm::driver;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
@@ -181,12 +176,11 @@ void vm::driver::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::driver::navigation::parse (const int &command) {
-	using namespace vm::driver::navigation;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -200,12 +194,11 @@ void vm::driver::navigation::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::driver::managecontent::parse (const int &command) {
-	using namespace vm::driver::managecontent;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -215,12 +208,11 @@ void vm::driver::managecontent::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::javascript::parse (const int &command) {
-	using namespace vm::javascript;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
@@ -234,12 +226,11 @@ void vm::javascript::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::javascript::basejs::parse (const int &command) {
-	using namespace vm::javascript::basejs;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -257,12 +248,11 @@ void vm::javascript::basejs::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::javascript::dom::parse (const int &command) {
-	using namespace vm::javascript::dom;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -280,12 +270,11 @@ void vm::javascript::dom::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::input::parse (const int &command) {
-	using namespace vm::input;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
@@ -299,12 +288,11 @@ void vm::input::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::input::mouse::parse (const int &command) {
-	using namespace vm::input::mouse;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -314,12 +302,11 @@ void vm::input::mouse::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::input::keyboard::parse (const int &command) {
-	using namespace vm::input::keyboard;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -329,12 +316,11 @@ void vm::input::keyboard::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::database::parse (const int &command) {
-	using namespace vm::database;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
@@ -344,12 +330,11 @@ void vm::database::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::database::basic::parse (const int &command) {
-	using namespace vm::database::basic;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -359,12 +344,11 @@ void vm::database::basic::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::debugger::parse (const int &command) {
-	using namespace vm::debugger;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL2 );
 
@@ -374,12 +358,11 @@ void vm::debugger::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
 void vm::debugger::basic::parse (const int &command) {
-	using namespace vm::debugger::basic;
 
 	int sw = command | static_cast <int> ( Filter::LEVEL3 );
 
@@ -389,6 +372,6 @@ void vm::debugger::basic::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }

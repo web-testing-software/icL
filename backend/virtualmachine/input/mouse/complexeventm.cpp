@@ -14,7 +14,7 @@ void vm::input::mouse::complexevent::parse (const int &command) {
 		break;
 
 	default :
-		return;//error = Error::COMMAND_NOT_FOUND;
+		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
