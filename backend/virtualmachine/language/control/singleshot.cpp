@@ -30,11 +30,13 @@ void vm::language::control::singleshot::parse (const int &command) {
 }
 
 void vm::language::control::singleshot::Singleton::runIf () {
-
+	stackStateIterator->openNewStack (system::StackState::StackType::IF_STACK);
 }
 
 void vm::language::control::singleshot::Singleton::runBeginIf () {
-
+	system::CommandsToSearch commads = virtualMachine->
+	
+	if ()
 }
 
 void vm::language::control::singleshot::Singleton::runElse () {

@@ -10,5 +10,30 @@
         <file>components/browser/Tab.qml</file>
         <file>images/new_tab.svg</file>
         <file>images/blank_favicon.svg</file>
+        <file>components/editor/language/IfElse.qml</file>
+        <file>components/editor/language/Delimiter.qml</file>
+        <file>components/editor/language/Line.qml</file>
+        <file>components/editor/language/Multiline.qml</file>
+        <file>components/editor/language/Get.qml</file>
+        <file>components/editor/language/Set.qml</file>
+        <file>components/editor/language/New.qml</file>
+        <file>components/editor/driver/GoTo.qml</file>
+        <file>components/editor/driver/Wait.qml</file>
+        <file>components/editor/driver/SwitchToFrame.qml</file>
+        <file>components/editor/javascript/RunString.qml</file>
+        <file>components/editor/javascript/RunFile.qml</file>
+        <file>components/editor/javascript/Get.qml</file>
+        <file>components/editor/javascript/Set.qml</file>
+        <file>components/editor/javascript/Query.qml</file>
+        <file>components/editor/javascript/QueryAll.qml</file>
+        <file>components/editor/javascript/Filter.qml</file>
+        <file>components/editor/javascript/IsVisible.qml</file>
+        <file>components/editor/javascript/GetInt.qml</file>
+        <file>components/editor/input/Click.qml</file>
+        <file>components/editor/input/SendKeys.qml</file>
+        <file>components/editor/database/Select.qml</file>
+        <file>components/editor/database/Input.qml</file>
+        <file>components/editor/main/EditItem.qml</file>
+        <file>components/editor/main/EditItemWithChilds.qml</file>
     </qresource>
 </RCC>

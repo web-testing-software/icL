@@ -31,7 +31,8 @@ class VirtualMachine : public QThread
 public:
 	enum class WorkMode {
 		EXECUTING,
-		SHOWING_ON_SCREEN
+		SHOWING_ON_SCREEN,
+		WRITING
 	};
 
 	VirtualMachine ();
