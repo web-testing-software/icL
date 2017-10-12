@@ -22,6 +22,7 @@ private:
 	Q_PROPERTY (int webEngineY READ webEngineY WRITE setWebEngineY)
 	Q_PROPERTY (int webEngineWidth READ webEngineWidth WRITE setWebEngineWidth)
 	Q_PROPERTY (int webEngineHeight READ webEngineHeight WRITE setWebEngineHeight)
+	Q_PROPERTY(bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
 
 public:
 	WebBrowser (QWidget *parent = 0);
@@ -78,6 +79,12 @@ public:
 
 	int webEngineWidth () const;
 
+	bool isFocused() const;
+
+	// QObject interface
+public:
+	bool event(QEvent *event) override;
+
 public slots:
 
 	// Setters for properties
@@ -90,6 +97,11 @@ public slots:
 
 	void setWebEngineHeight (int webEngineHeight);
 
+	void setIsFocused(bool isFocused);
+
+signals:
+	void isFocusedChanged(bool isFocused);
+
 private:
 	QQuickWidget *quick_receiver;
 
@@ -97,6 +109,7 @@ private:
 	int m_webEngineY;
 	int m_webEngineWidth;
 	int m_webEngineHeight;
+	bool m_isFocused;
 };
 
 #endif // WEBBROWSER_H

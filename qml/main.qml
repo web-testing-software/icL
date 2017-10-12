@@ -20,6 +20,8 @@ Rectangle {
 
 	property color border_color: "#e1e1e2";
 
+	property var current_webview: wview;
+
 	function paste_menu (component, properties, x, y) {
 		var menu = component.createObject(pastemenu, properties);
 		pastemenu.menus.push(menu);
@@ -33,13 +35,13 @@ Rectangle {
 		anchors.left: parent.left;
 		anchors.right: parent.right;
 		height: Math.round(44 * _ratio);
-		color: "#f5f5f5";
+		color: web_browser.isFocused ? "#f5f5f5" : border_color;
 
 		Rectangle {
 			anchors.left: parent.left;
 			anchors.right: parent.right;
 			anchors.bottom: parent.bottom;
-			height: 2 * _ratio;
+			height: Math.round(2 * _ratio);
 			color: border_color;
 		}
 
@@ -61,7 +63,7 @@ Rectangle {
 
 			Rectangle {
 				anchors.bottom: parent.bottom;
-				height: 36 * _ratio;
+				height: Math.round(36 * _ratio);
 				x: top_tab_bar.current_tab.x;
 				width: top_tab_bar.current_tab.width;
 
@@ -71,7 +73,7 @@ Rectangle {
 					anchors.left: parent.left;
 					anchors.right: parent.right;
 					color: border_color;
-					height: 2 * _ratio;
+					height: Math.round(2 * _ratio);
 				}
 
 				Rectangle {
@@ -80,7 +82,7 @@ Rectangle {
 					anchors.left: parent.left;
 					anchors.bottom: parent.bottom;
 					color: border_color;
-					width: 2 * _ratio;
+					width: Math.round(2 * _ratio);
 				}
 
 				Rectangle {
@@ -89,17 +91,17 @@ Rectangle {
 					anchors.right: parent.right;
 					anchors.bottom: parent.bottom;
 					color: border_color;
-					width: 2 * _ratio;
+					width: Math.round(2 * _ratio);
 				}
 			}
 
 			Row {
 				id: tab_container;
-				height: 34 * _ratio;
+				height: Math.round(34 * _ratio);
 				anchors.left: parent.left;
 				anchors.bottom: parent.bottom;
 
-				property int max_tab_width: 300 * _ratio;
+				property int max_tab_width: Math.round(300 * _ratio);
 				property int tab_number: 3;
 				property int tab_width: tab_number * max_tab_width + new_tab_button.width <= parent.width
 										? max_tab_width
@@ -119,8 +121,8 @@ Rectangle {
 
 			Item {
 				id: new_tab_button;
-				width: 34 * _ratio;
-				height: 34 * _ratio;
+				width: Math.round(34 * _ratio);
+				height: Math.round(34 * _ratio);
 
 				anchors.left: tab_container.right;
 				anchors.bottom: parent.bottom;
@@ -128,7 +130,7 @@ Rectangle {
 				Image {
 					id: new_tab;
 					source: "qrc:/images/new_tab.svg";
-					sourceSize: Qt.size(14 * _ratio, 14 * _ratio);
+					sourceSize: Qt.size(Math.round(14 * _ratio), Math.round(14 * _ratio));
 					anchors.centerIn: parent;
 				}
 
@@ -176,25 +178,53 @@ Rectangle {
 		id: border_top;
 		anchors.left: border_left.right;
 		anchors.right: border_right.left;
-		anchors.top: navigation_bar.bottom;
+		anchors.top: navigation_bar_container.bottom;
 		height: Math.round(2 * _ratio);
 		color: border_color;
 	}
 
 	Item {
-		id: navigation_bar;
+		id: navigation_bar_container;
 		anchors.left: border_left.right;
 		anchors.right: border_right.left;
 		anchors.top: top_side.bottom;
 		height: Math.round(36 * _ratio);
+
+		NavigationBar {
+			id: navigation_bar;
+		}
 	}
 
 	Item {
 		id: bottom_side;
 		anchors.left: border_left.right;
-		anchors.top: navigation_bar.bottom;
+		anchors.top: navigation_bar_container.bottom;
 		anchors.right: border_right.left;
 		anchors.bottom: border_bottom.top;
+	}
+
+	Item {
+		anchors.left: border_left.right;
+		anchors.right: border_right.left;
+		anchors.top: border_top.bottom;
+		anchors.bottom: border_bottom.top;
+
+		WebEngineView {
+			id: wview;
+			anchors.fill: parent;
+//			anchors.topMargin: 50;
+
+			url: "https://gitlab.com/lixcode/ic-lightning";
+
+			settings.autoLoadImages: false;
+			settings.javascriptCanOpenWindows: false;
+			profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
+
+			onTitleChanged: console.log("Title changed:" + title);
+
+			onIconChanged: console.log(icon);
+			Component.onCompleted: console.log(icon);
+		}
 	}
 
 	Component {
@@ -207,6 +237,7 @@ Rectangle {
 		id: pastemenu;
 		anchors.fill: parent;
 		visible: false;
+		hoverEnabled: true;
 
 		property var menus: [];
 
@@ -221,20 +252,4 @@ Rectangle {
 
 		onClicked: menus[0].progress = 0;
 	}
-
-	//		WebEngineView {
-	//			anchors.fill: parent;
-	//			anchors.topMargin: 50;
-
-	//			url: "http://disk.yandex.ru";
-
-	//			settings.autoLoadImages: false;
-	//			settings.javascriptCanOpenWindows: false;
-	//			profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
-
-	//			onTitleChanged: console.log("Title changed:" + title);
-
-	//			onIconChanged: console.log(icon);
-	//			Component.onCompleted: console.log(icon);
-	//		}
 }

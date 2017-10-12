@@ -4,6 +4,7 @@ Item {
 	id: root;
 	height: parent.height;
 	width: tab_container.tab_width;
+	clip: true;
 
 	property var webview: null;
 	property string default_name: "script_name.icl";
@@ -11,10 +12,10 @@ Item {
 
 	Image {
 		id: favicon;
-		sourceSize: Qt.size(22 * _ratio, 22 * _ratio);
+		sourceSize: Qt.size(Math.round(22 * _ratio), Math.round(22 * _ratio));
 		anchors.verticalCenter: parent.verticalCenter;
 		anchors.left: parent.left;
-		anchors.margins: 6 * _ratio;
+		anchors.margins: root.width > Math.round(30 * _ratio) ? Math.round(6 * _ratio) : 0;
 		source: webview && webview.icon
 				? webview.icon : "qrc:/images/blank_favicon.svg";
 	}
@@ -25,13 +26,13 @@ Item {
 		anchors.bottom: parent.bottom;
 		anchors.left: favicon.right;
 		anchors.right: parent.right;
-		anchors.leftMargin: 6 * _ratio;
+		anchors.leftMargin: Math.round(6 * _ratio);
 		elide: Text.ElideRight;
 		text: webview && webview.title !== webview.url
 			  ? webview.title : default_name;
-		font.family: "Ubuntu";
 		verticalAlignment: Text.AlignVCenter;
-		font.pointSize: 10 * _ratio;
+		font.pixelSize: Math.round(13.5 * _ratio);
+		font.family: "Ubuntu";
 		color: active ? focus_color : "#595959";
 	}
 }

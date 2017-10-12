@@ -3,10 +3,10 @@ import QtQuick 2.0
 MenuBase {
 	id: root;
 	content: lightning;
-	width: 200 * _ratio;
-	height: 230 * _ratio;
+	width: Math.round(200 * _ratio);
+	height: Math.round(230 * _ratio);
 
-	property real border_weight: 2 * _ratio;
+	property real border_weight: Math.round(2 * _ratio);
 	property color border_color: "#e1e1e1";
 	property color bg_color: "white";
 
@@ -112,17 +112,18 @@ MenuBase {
 			anchors.top: border_tt.bottom;
 			anchors.left: border_l.right;
 			source: "qrc:/images/icLightning_black.svg";
-			sourceSize: Qt.size(30 * _ratio, 40 * _ratio);
+			sourceSize: Qt.size(Math.round(30 * _ratio), Math.round(40 * _ratio));
 		}
 
 		Text {
 			id: icLightning;
 			anchors.top: bg_b.top;
-			anchors.topMargin: 10 * _ratio;
+			anchors.topMargin: Math.round(10 * _ratio);
 			anchors.horizontalCenter: bg_b.horizontalCenter;
 			text: "intracloudLightning";
 			color: focus_color;
-			font.pointSize: 13 * _ratio;
+			font.pixelSize: Math.round(17.5 * _ratio);
+			font.family: "Ubuntu";
 
 			MouseArea {
 				anchors.fill: parent;
@@ -134,11 +135,12 @@ MenuBase {
 		Text {
 			id: version;
 			anchors.top: icLightning.bottom;
-			anchors.bottomMargin: 5 * _ratio;
+			anchors.bottomMargin: Math.round(5 * _ratio);
 			anchors.horizontalCenter: icLightning.horizontalCenter;
 			text: qsTr("version") + " " + app_version;
 			color: "#7e7e7e";
-			font.pointSize: 8 * _ratio;
+			font.pixelSize: Math.round(11 * _ratio);
+			font.family: "Ubuntu";
 		}
 
 		Text {
@@ -149,30 +151,33 @@ MenuBase {
 			horizontalAlignment: Text.AlignHCenter;
 			color: "black";
 			text: qsTr("A web driver for everyone");
-			font.pointSize: 14 * _ratio;
+			font.pixelSize: Math.round(19 * _ratio);
+			font.family: "Ubuntu";
 		}
 
 		Text {
 			id: designed_by;
 			anchors.bottom: author.top;
-			anchors.margins: 1 * _ratio;
+			anchors.margins: Math.round(1 * _ratio);
 			anchors.left: bg_b.left;
 			anchors.right: bg_b.right;
 			text: qsTr("Designed and programmed by");
 			wrapMode: Text.WrapAtWordBoundaryOrAnywhere;
 			horizontalAlignment: Text.AlignHCenter;
 			color: "#7e7e7e";
-			font.pointSize: 8 * _ratio;
+			font.pixelSize: Math.round(11 * _ratio);
+			font.family: "Ubuntu";
 		}
 
 		Text {
 			id: author;
 			anchors.bottom: bg_b.bottom;
-			anchors.bottomMargin: 10 * _ratio;
+			anchors.bottomMargin: Math.round(10 * _ratio);
 			anchors.horizontalCenter: bg_b.horizontalCenter;
 			text: "Lelițac Vasile";
 			color: focus_color;
-			font.pointSize: 13 * _ratio;
+			font.pixelSize: Math.round(17.5 * _ratio);
+			font.family: "Ubuntu";
 
 			MouseArea {
 				anchors.fill: parent;

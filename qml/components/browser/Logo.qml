@@ -4,10 +4,10 @@ import QtGraphicalEffects 1.0
 MouseArea {
 	id: root;
 
-	x: 2 * _ratio;
-	y: 2 * _ratio;
+	x: Math.round(2 * _ratio);
+	y: Math.round(2 * _ratio);
 	width: height * 0.75;
-	height: 40 * _ratio;
+	height: Math.round(40 * _ratio);
 	clip: true;
 
 	property bool active: false;

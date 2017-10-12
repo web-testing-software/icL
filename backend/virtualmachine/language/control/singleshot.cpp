@@ -34,9 +34,9 @@ void vm::language::control::singleshot::Singleton::runIf () {
 }
 
 void vm::language::control::singleshot::Singleton::runBeginIf () {
-	system::CommandsToSearch commads = virtualMachine->
+//	system::CommandsToSearch commads = virtualMachine->
 	
-	if ()
+//	if ()
 }
 
 void vm::language::control::singleshot::Singleton::runElse () {

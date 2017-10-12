@@ -21,7 +21,7 @@ WebBrowser::WebBrowser (QWidget *parent)
 	// I don't use a qt quick window because it can't be move be mouse by default
 	// This is necessary for frameless window
 	QUrl source_mainqml ("qrc:/main.qml");
-	quick_receiver = new QQuickWidget (source_mainqml);
+	quick_receiver = new QQuickWidget ();
 	quick_receiver->setResizeMode (QQuickWidget::SizeRootObjectToView);
 //	qApp->
 
@@ -31,9 +31,10 @@ WebBrowser::WebBrowser (QWidget *parent)
 	context->setContextProperty ("server", server);
 	context->setContextProperty ("web_browser", webBrowser);
 
+	quick_receiver->setSource (source_mainqml);
 	setCentralWidget (quick_receiver);
 	// TODO: Make configurable: Use system window frame
-//	setWindowFlags (windowFlags () | Qt::FramelessWindowHint);
+	setWindowFlags (windowFlags () | Qt::FramelessWindowHint);
 }
 
 WebBrowser::~WebBrowser () {
@@ -93,7 +94,7 @@ void WebBrowser::simulate_key (Qt::Key key, Qt::KeyboardModifier modifier, const
 	QCoreApplication::postEvent (this->quick_receiver, release);
 }
 
-WebBrowser* WebBrowser::instance () {
+WebBrowser * WebBrowser::instance () {
 	return m_instance;
 }
 
@@ -113,6 +114,24 @@ int WebBrowser::webEngineWidth () const {
 	return m_webEngineWidth;
 }
 
+bool WebBrowser::isFocused () const {
+	return m_isFocused;
+}
+
+bool WebBrowser::event (QEvent *event) {
+	switch (event->type ()) {
+	case QEvent::WindowActivate :
+		setIsFocused (true);
+		break;
+
+	case QEvent::WindowDeactivate :
+		setIsFocused (false);
+		break;
+	}
+
+	return QMainWindow::event (event);
+}
+
 void WebBrowser::setWebEngineX (int webEngineX) {
 	m_webEngineX = webEngineX;
 }
@@ -128,3 +147,13 @@ void WebBrowser::setWebEngineWidth (int webEngineWidth) {
 void WebBrowser::setWebEngineHeight (int webEngineHeight) {
 	m_webEngineHeight = webEngineHeight;
 }
+
+void WebBrowser::setIsFocused (bool isFocused) {
+	if (m_isFocused == isFocused) {
+		return;
+	}
+
+	m_isFocused = isFocused;
+	emit isFocusedChanged (m_isFocused);
+}
+

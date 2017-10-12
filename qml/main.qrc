@@ -35,5 +35,12 @@
         <file>components/editor/database/Input.qml</file>
         <file>components/editor/main/EditItem.qml</file>
         <file>components/editor/main/EditItemWithChilds.qml</file>
+        <file>components/browser/NavigationBar.qml</file>
+        <file>images/back.svg</file>
+        <file>images/forward.svg</file>
+        <file>images/refresh.svg</file>
+        <file>images/stop.svg</file>
+        <file>components/browser/BarButton.qml</file>
+        <file>images/adress_bar_icon.svg</file>
     </qresource>
 </RCC>
