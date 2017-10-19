@@ -2,8 +2,12 @@
 #include "backend/functions/server.h"
 
 #include <QCoreApplication>
+#include <QScreen>
 #include <QQmlContext>
+#include <QQuickItem>
+#include <QQuickWindow>
 #include <QThread>
+#include <QDateTime>
 
 WebBrowser *WebBrowser::m_instance = nullptr;
 
@@ -16,6 +20,7 @@ WebBrowser::WebBrowser (QWidget *parent)
 
 	// TODO: Load last size
 	resize (800, 600);
+	setMinimumSize (QSize (400, 400));
 
 
 	// I don't use a qt quick window because it can't be move be mouse by default
@@ -23,18 +28,21 @@ WebBrowser::WebBrowser (QWidget *parent)
 	QUrl source_mainqml ("qrc:/main.qml");
 	quick_receiver = new QQuickWidget ();
 	quick_receiver->setResizeMode (QQuickWidget::SizeRootObjectToView);
-//	qApp->
+	quick_receiver->setClearColor (QColor (0, 0, 0, 0));
 
 	// Export the singletons to QML
 	QQmlContext *context = quick_receiver->rootContext ();
 
 	context->setContextProperty ("server", server);
 	context->setContextProperty ("web_browser", webBrowser);
+//	context->setContextProperty ("qml_window", quick_receiver->quickWindow ());
 
 	quick_receiver->setSource (source_mainqml);
 	setCentralWidget (quick_receiver);
 	// TODO: Make configurable: Use system window frame
 	setWindowFlags (windowFlags () | Qt::FramelessWindowHint);
+	setAttribute (Qt::WA_NoSystemBackground, true);
+	setAttribute (Qt::WA_TranslucentBackground, true);
 }
 
 WebBrowser::~WebBrowser () {
@@ -118,18 +126,91 @@ bool WebBrowser::isFocused () const {
 	return m_isFocused;
 }
 
-bool WebBrowser::event (QEvent *event) {
-	switch (event->type ()) {
-	case QEvent::WindowActivate :
-		setIsFocused (true);
-		break;
+bool WebBrowser::isMaximized () const {
+	return m_isMaximized;
+}
 
-	case QEvent::WindowDeactivate :
+void WebBrowser::beginWindowMove (int x, int y, int flag) {
+	if (flag != 0x0) {
+		_winBeginX		= this->x ();
+		_winBeginY		= this->y ();
+		_winBeginWidth	= this->width ();
+		_winBeginHeight = this->height ();
+		_mouseBeginX	= x;
+		_mouseBeginY	= y;
+		_moveFlag		= flag;
+		focus_proxy		= focusProxy ();
+
+		grabMouse ();
+	}
+}
+
+bool WebBrowser::event (QEvent *event) {
+	if (event->type () == QEvent::WindowActivate) {
+		setIsFocused (true);
+	}
+	else if (event->type () == QEvent::WindowDeactivate) {
 		setIsFocused (false);
-		break;
 	}
 
 	return QMainWindow::event (event);
+}
+
+void WebBrowser::mouseMoveEvent (QMouseEvent *event) {
+	if (_moveFlag == 0x0) {
+		return;
+	}
+
+	QPointF screenPos	= event->screenPos ();
+	int		dx			=  screenPos.x () - _mouseBeginX;
+	int		dy			=  screenPos.y () - _mouseBeginY;
+	int		newX		= _winBeginX;
+	int		newY		= _winBeginY;
+	int		newWidth	= _winBeginWidth;
+	int		newHeight	= _winBeginHeight;
+
+	if (_moveFlag & static_cast <int> ( MoveFlag::H_MOVE )) {
+		newX += dx;
+	}
+	if (_moveFlag & static_cast <int> ( MoveFlag::V_MOVE )) {
+		newY += dy;
+	}
+	if (_moveFlag & static_cast <int> ( MoveFlag::H_RESIZE )) {
+		newWidth += _moveFlag & static_cast <int> ( MoveFlag::H_MOVE ) ? -dx : dx;
+	}
+	if (_moveFlag & static_cast <int> ( MoveFlag::V_RESIZE )) {
+		newHeight += _moveFlag & static_cast <int> ( MoveFlag::V_MOVE ) ? -dy : dy;
+	}
+
+	move (newX, newY);
+	resize (newWidth, newHeight);
+}
+
+void WebBrowser::mouseReleaseEvent (QMouseEvent *) {
+	if (_moveFlag != 0x0) {
+		_moveFlag = 0x0;
+		releaseMouse ();
+
+		// QML loss focus, return focus
+		QPoint		point (0, 0);
+		QMouseEvent *press = new QMouseEvent (QEvent::MouseButtonPress,
+											  point,
+											  Qt::LeftButton,
+											  Qt::MouseButton::NoButton,
+											  Qt::NoModifier);
+		QMouseEvent *release = new QMouseEvent (QEvent::MouseButtonRelease,
+												point,
+												Qt::LeftButton,
+												Qt::MouseButton::NoButton,
+												Qt::NoModifier);
+
+		QCoreApplication::postEvent (this->quick_receiver, press);
+		QCoreApplication::postEvent (this->quick_receiver, release);
+	}
+}
+
+void WebBrowser::resizeEvent (QResizeEvent *) {
+	setIsMaximized (QWidget::isMaximized ());
 }
 
 void WebBrowser::setWebEngineX (int webEngineX) {
@@ -155,5 +236,14 @@ void WebBrowser::setIsFocused (bool isFocused) {
 
 	m_isFocused = isFocused;
 	emit isFocusedChanged (m_isFocused);
+}
+
+void WebBrowser::setIsMaximized (bool isMaximized) {
+	if (m_isMaximized == isMaximized) {
+		return;
+	}
+
+	m_isMaximized = isMaximized;
+	emit isMaximizedChanged (m_isMaximized);
 }
 

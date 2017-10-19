@@ -42,5 +42,12 @@
         <file>images/stop.svg</file>
         <file>components/browser/BarButton.qml</file>
         <file>images/adress_bar_icon.svg</file>
+        <file>scripts/move_flags.js</file>
+        <file>components/browser/ResizeMoveMouseArea.qml</file>
+        <file>components/browser/TitleBarButton.qml</file>
+        <file>images/maximize_button.svg</file>
+        <file>images/minimize_button.svg</file>
+        <file>images/restore_button.svg</file>
+        <file>images/close_button.svg</file>
     </qresource>
 </RCC>

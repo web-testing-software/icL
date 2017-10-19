@@ -22,7 +22,9 @@ private:
 	Q_PROPERTY (int webEngineY READ webEngineY WRITE setWebEngineY)
 	Q_PROPERTY (int webEngineWidth READ webEngineWidth WRITE setWebEngineWidth)
 	Q_PROPERTY (int webEngineHeight READ webEngineHeight WRITE setWebEngineHeight)
-	Q_PROPERTY(bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
+
+	Q_PROPERTY (bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
+	Q_PROPERTY (bool isMaximized READ isMaximized WRITE setIsMaximized NOTIFY isMaximizedChanged)
 
 public:
 	WebBrowser (QWidget *parent = 0);
@@ -79,11 +81,22 @@ public:
 
 	int webEngineWidth () const;
 
-	bool isFocused() const;
+	bool isFocused () const;
+
+	bool isMaximized () const;
+
+	// Window functions for qml
+	Q_INVOKABLE void beginWindowMove (int x, int y, int flag);
 
 	// QObject interface
 public:
-	bool event(QEvent *event) override;
+	bool event (QEvent *event) override;
+
+	// QWidget interface
+protected:
+	void mouseMoveEvent (QMouseEvent *event) override;
+	void mouseReleaseEvent (QMouseEvent *) override;
+	void resizeEvent (QResizeEvent *) override;
 
 public slots:
 
@@ -97,10 +110,14 @@ public slots:
 
 	void setWebEngineHeight (int webEngineHeight);
 
-	void setIsFocused(bool isFocused);
+	void setIsFocused (bool isFocused);
+
+	void setIsMaximized (bool isMaximized);
 
 signals:
-	void isFocusedChanged(bool isFocused);
+	void isFocusedChanged (bool isFocused);
+
+	void isMaximizedChanged (bool isMaximized);
 
 private:
 	QQuickWidget *quick_receiver;
@@ -110,6 +127,23 @@ private:
 	int m_webEngineWidth;
 	int m_webEngineHeight;
 	bool m_isFocused;
+	bool m_isMaximized;
+
+	// Move and resize finctions
+
+	bool _isInMoveMode = false;
+	int _winBeginX, _winBeginY,
+		_winBeginWidth, _winBeginHeight,
+		_mouseBeginX, _mouseBeginY,
+		_moveFlag;
+	QWidget *focus_proxy;
+
+	enum class MoveFlag {
+		H_MOVE		= 1,
+		V_MOVE		= 2,
+		H_RESIZE	= 4,
+		V_RESIZE	= 8
+	};
 };
 
 #endif // WEBBROWSER_H
