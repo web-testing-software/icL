@@ -15,8 +15,8 @@ bool vm::system::logic::rich::StringBlock::check (const QString &value) {
 
 bool vm::system::logic::rich::StringBlock::calcResult () {
 	bool	result	= false;
-	QString	var1	= varNameToValue (var1name);
-	QString	var2	= varNameToValue (var2name);
+	QString var1	= varNameToValue (this, var1name);
+	QString var2	= varNameToValue (this, var2name);
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -28,6 +28,7 @@ bool vm::system::logic::rich::StringBlock::calcResult () {
 		break;
 
 	default :
+		resultValue = ResultValue::FAILED_CALCULATE;
 		virtualMachine->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands string:%1 and string:%2.")
 								  .arg (var1name)
@@ -37,7 +38,7 @@ bool vm::system::logic::rich::StringBlock::calcResult () {
 	return result;
 }
 
-QString vm::system::logic::rich::StringBlock::varNameToValue (const QString &varname) {
+QString vm::system::logic::rich::StringBlock::varNameToValue (LogicBlock *block, const QString &varname) {
 	DataState::Type type = DataState::Type::STRING;
 	QString			ret;
 
@@ -45,6 +46,7 @@ QString vm::system::logic::rich::StringBlock::varNameToValue (const QString &var
 		ret = varname.mid (1, -2);
 	}
 	else if (!virtualMachine->checkType (varname, type)) {
+		block->invalidate ();
 		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a string variable or constant.")
 								  .arg (varname));

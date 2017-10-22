@@ -14,8 +14,8 @@ bool vm::system::logic::rich::IntBlock::check (const QString &value) {
 
 bool vm::system::logic::rich::IntBlock::calcResult () {
 	bool	result	= false;
-	int	var1	= varNameToValue (var1name);
-	int	var2	= varNameToValue (var2name);
+	int		var1	= varNameToValue (this, var1name);
+	int		var2	= varNameToValue (this, var2name);
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -27,6 +27,7 @@ bool vm::system::logic::rich::IntBlock::calcResult () {
 		break;
 
 	default :
+		resultValue = ResultValue::FAILED_CALCULATE;
 		virtualMachine->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands int:%1 and int:%2.")
 								  .arg (var1name)
@@ -36,7 +37,7 @@ bool vm::system::logic::rich::IntBlock::calcResult () {
 	return result;
 }
 
-int vm::system::logic::rich::IntBlock::varNameToValue (const QString &varname) {
+int vm::system::logic::rich::IntBlock::varNameToValue (LogicBlock *block, const QString &varname) {
 	DataState::Type type	= DataState::Type::INT;
 	int				ret		= 0; // = 0 -> exclude compiler warning
 
@@ -44,6 +45,7 @@ int vm::system::logic::rich::IntBlock::varNameToValue (const QString &varname) {
 		ret = varname.toInt ();
 	}
 	else if (!virtualMachine->checkType (varname, type)) {
+		block->invalidate ();
 		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a boolean variable or constant.")
 								  .arg (varname));

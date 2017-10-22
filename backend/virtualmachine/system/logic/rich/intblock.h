@@ -21,7 +21,7 @@ public:
 	bool calcResult () override;
 
 private:
-	static int varNameToValue (const QString &varname);
+	static int varNameToValue (LogicBlock *block, const QString &varname);
 
 	static QRegExp exp;
 };

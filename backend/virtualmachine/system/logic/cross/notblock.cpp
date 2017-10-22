@@ -20,7 +20,6 @@ bool vm::system::logic::cross::NotBlock::checkIntegrity () {
 	return integrity;
 }
 
-void vm::system::logic::cross::NotBlock::resetResultValue()
-{
+void vm::system::logic::cross::NotBlock::resetResultValue () {
 	block2->resetResultValue ();
 }

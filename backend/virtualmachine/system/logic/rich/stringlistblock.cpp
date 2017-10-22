@@ -7,8 +7,8 @@ vm::system::logic::rich::StringListBlock::StringListBlock (OperationType otype) 
 
 }
 
-QRegExp vm::system::logic::rich::StringListBlock::exp = QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
-QRegularExpression vm::system::logic::rich::StringListBlock::strExp = QRegularExpression("\".*\"");
+QRegExp				vm::system::logic::rich::StringListBlock::exp		= QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
+QRegularExpression	vm::system::logic::rich::StringListBlock::strExp	= QRegularExpression ("\".*\"");
 
 bool vm::system::logic::rich::StringListBlock::check (const QString &value) {
 	return exp.exactMatch (value);

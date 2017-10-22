@@ -21,7 +21,7 @@ public:
 	bool calcResult () override;
 
 private:
-	static bool varNameToValue (const QString &varname);
+	static bool varNameToValue (LogicBlock *block, const QString &varname);
 };
 
 }   // namespace rich

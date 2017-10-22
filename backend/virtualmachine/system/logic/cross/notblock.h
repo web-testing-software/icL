@@ -18,7 +18,7 @@ public:
 	// LogicBlock interface
 	bool calcResult () override;
 	bool checkIntegrity () override;
-	void resetResultValue() override;
+	void resetResultValue () override;
 };
 
 }   // namespace cross

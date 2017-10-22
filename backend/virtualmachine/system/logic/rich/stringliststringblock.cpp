@@ -8,11 +8,10 @@ vm::system::logic::rich::StringListStringBlock::StringListStringBlock (Operation
 
 }
 
-bool vm::system::logic::rich::StringListStringBlock::calcResult()
-{
+bool vm::system::logic::rich::StringListStringBlock::calcResult () {
 	bool		result	= false;
 	QStringList var1	= StringListBlock::varNameToValue (this, var1name);
-	QString var2	= StringBlock::varNameToValue (this, var2name);
+	QString		var2	= StringBlock::varNameToValue (this, var2name);
 
 	switch (operationType) {
 	case OperationType::CONTAINS :
@@ -34,8 +33,7 @@ bool vm::system::logic::rich::StringListStringBlock::calcResult()
 	return result;
 }
 
-bool vm::system::logic::rich::StringListStringBlock::containsFragment(const QStringList &strList, const QString &str)
-{
+bool vm::system::logic::rich::StringListStringBlock::containsFragment (const QStringList &strList, const QString &str) {
 	bool ret = false;
 
 	for (const QString &strFromList : strList) {

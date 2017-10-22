@@ -8,7 +8,7 @@ namespace system {
 namespace logic {
 
 class LogicBlock
-{	
+{
 public:
 	// Specially for debug mode
 	enum class ResultValue {
@@ -25,14 +25,14 @@ public:
 	bool getResult ();
 	virtual bool isCross ()			= 0;
 	virtual bool checkIntegrity ()	= 0;
-	virtual void resetResultValue();
-	void setToErrorState ();
+	virtual void resetResultValue ();
+	void invalidate ();
 
 	LogicBlock* getParent ();
 	void setParent (LogicBlock *parent);
 
 protected:
-	virtual bool calcResult ()		= 0;
+	virtual bool calcResult () = 0;
 
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 
