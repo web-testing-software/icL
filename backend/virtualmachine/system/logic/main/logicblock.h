@@ -8,16 +8,31 @@ namespace system {
 namespace logic {
 
 class LogicBlock
-{
+{	
 public:
+	// Specially for debug mode
+	enum class ResultValue {
+		NOT_CALCULATED,
+		INTEGRITY_CHECK_FAILED,
+		TRUE,
+		FALSE,
+		FAILED_CALCULATE
+	};
+
 	LogicBlock ();
 
-	virtual bool getResult ()		= 0;
+	bool getResult ();
 	virtual bool isCross ()			= 0;
 	virtual bool checkIntegrity ()	= 0;
+	virtual void resetResultValue();
 
 	LogicBlock* getParent ();
 	void setParent (LogicBlock *parent);
+
+protected:
+	virtual bool calcResult ()		= 0;
+
+	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 
 private:
 	LogicBlock *m_parent = nullptr;

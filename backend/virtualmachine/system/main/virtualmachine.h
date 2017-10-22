@@ -13,8 +13,8 @@
 #define stackState stackStateIterator->stack ()
 #define memoryStateIterator virtualMachine->memoryStateIt ()
 #define memoryState memoryStateIterator->state ()
-#define inStream (*vm::system::VirtualMachine::getInStream ())
-#define outStream (*vm::system::VirtualMachine::getOutStream ())
+#define inStream ( *vm::system::VirtualMachine::getInStream () )
+#define outStream ( *vm::system::VirtualMachine::getOutStream () )
 
 namespace vm {
 namespace system {
@@ -47,11 +47,14 @@ public:
 	// Base functions
 	void openFile (const QString &path);
 	bool containsVar (const QString &name);
+	bool checkType (const QString &name, DataState::Type &type);
+	QVariant getVar (const QString &name);
+
 	void search (const CommandsToSearch &commands);
 	bool runIsPermited ();
 
 	// Debug functions
-	void setError (Error m_error);
+	void setError (Error m_error, const QString &description = "");
 	void setStepNumber (int step);
 	void setCommandNumber (int command);
 
@@ -71,10 +74,12 @@ private:
 	StackStateIterator m_stackStateIt;
 	MemoryState *m_memoryStateToStop;
 
-	bool m_runIsPermited = true;
 	Error m_error;
-	int m_stepNumber	= 0;
-	int m_commandNumber = 0;
+	QString last_error;
+
+	bool m_runIsPermited	= true;
+	int m_stepNumber		= 0;
+	int m_commandNumber		= 0;
 	CommandsToSearch m_searchedCommands;
 
 	// Files and streams

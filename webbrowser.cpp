@@ -6,6 +6,7 @@
 #include <QQmlContext>
 #include <QQuickItem>
 #include <QQuickWindow>
+#include <QTimer>
 #include <QThread>
 #include <QDateTime>
 
@@ -35,7 +36,6 @@ WebBrowser::WebBrowser (QWidget *parent)
 
 	context->setContextProperty ("server", server);
 	context->setContextProperty ("web_browser", webBrowser);
-//	context->setContextProperty ("qml_window", quick_receiver->quickWindow ());
 
 	quick_receiver->setSource (source_mainqml);
 	setCentralWidget (quick_receiver);
@@ -130,7 +130,7 @@ bool WebBrowser::isMaximized () const {
 	return m_isMaximized;
 }
 
-void WebBrowser::beginWindowMove (int x, int y, int flag) {
+void WebBrowser::beginWindowMove (int x, int y, int flag, bool was_maximised) {
 	if (flag != 0x0) {
 		_winBeginX		= this->x ();
 		_winBeginY		= this->y ();
@@ -139,7 +139,15 @@ void WebBrowser::beginWindowMove (int x, int y, int flag) {
 		_mouseBeginX	= x;
 		_mouseBeginY	= y;
 		_moveFlag		= flag;
-		focus_proxy		= focusProxy ();
+
+		if (was_maximised) {
+			_winBeginX	= x - _winBeginWidth / 2;
+			_winBeginY	= 0;
+
+			QTimer::singleShot (10, this, [this] () {
+				this->move (_winBeginX, _winBeginY);
+			});
+		}
 
 		grabMouse ();
 	}
@@ -168,22 +176,33 @@ void WebBrowser::mouseMoveEvent (QMouseEvent *event) {
 	int		newY		= _winBeginY;
 	int		newWidth	= _winBeginWidth;
 	int		newHeight	= _winBeginHeight;
+	int		minWidth	= minimumWidth ();
+	int		minHeight	= minimumHeight ();
+	bool	hResize		= ( _moveFlag & static_cast <int> ( MoveFlag::H_RESIZE ) ) != 0;
+	bool	vResize		= ( _moveFlag & static_cast <int> ( MoveFlag::V_RESIZE ) ) != 0;
+	bool	hMove		= ( _moveFlag & static_cast <int> ( MoveFlag::H_MOVE ) ) != 0;
+	bool	vMove		= ( _moveFlag & static_cast <int> ( MoveFlag::V_MOVE ) ) != 0;
 
-	if (_moveFlag & static_cast <int> ( MoveFlag::H_MOVE )) {
-		newX += dx;
+	if (hResize) {
+		newWidth += hMove ? -dx : dx;
+		if (newWidth < minWidth) {
+			newWidth = minWidth;
+		}
 	}
-	if (_moveFlag & static_cast <int> ( MoveFlag::V_MOVE )) {
-		newY += dy;
+	if (vResize) {
+		newHeight += vMove ? -dy : dy;
+		if (newHeight < minHeight) {
+			newHeight = minHeight;
+		}
 	}
-	if (_moveFlag & static_cast <int> ( MoveFlag::H_RESIZE )) {
-		newWidth += _moveFlag & static_cast <int> ( MoveFlag::H_MOVE ) ? -dx : dx;
+	if (hMove) {
+		newX += hResize ? _winBeginWidth - newWidth : dx;
 	}
-	if (_moveFlag & static_cast <int> ( MoveFlag::V_RESIZE )) {
-		newHeight += _moveFlag & static_cast <int> ( MoveFlag::V_MOVE ) ? -dy : dy;
+	if (vMove) {
+		newY += vResize ? _winBeginHeight - newHeight : dy;
 	}
 
-	move (newX, newY);
-	resize (newWidth, newHeight);
+	setGeometry (newX, newY, newWidth, newHeight);
 }
 
 void WebBrowser::mouseReleaseEvent (QMouseEvent *) {

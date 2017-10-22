@@ -15,8 +15,15 @@ class StringBlock : public RichBlock
 public:
 	StringBlock (OperationType otype);
 
+	static bool check (const QString &value);
+
 	// LogicBlock interface
-	bool getResult () override;
+	bool calcResult () override;
+
+private:
+	static QString varNameToValue (const QString &varname);
+
+	static QRegExp exp;
 };
 
 }   // namespace rich

@@ -23,8 +23,25 @@ bool vm::system::logic::CrossBlock::isCross () {
 
 
 bool vm::system::logic::CrossBlock::checkIntegrity () {
+	bool integrity;
+
 	if (block1 == nullptr || block2 == nullptr) {
-		return false;
+		integrity = false;
 	}
-	return block1->checkIntegrity () && block2->checkIntegrity ();
+	else {
+		integrity = block1->checkIntegrity () && block2->checkIntegrity ();
+	}
+
+	if (!integrity) {
+		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
+	}
+
+	return integrity;
 }
+
+void vm::system::logic::CrossBlock::resetResultValue () {
+	block1->resetResultValue ();
+	block2->resetResultValue ();
+}
+
+

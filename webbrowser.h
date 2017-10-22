@@ -86,7 +86,7 @@ public:
 	bool isMaximized () const;
 
 	// Window functions for qml
-	Q_INVOKABLE void beginWindowMove (int x, int y, int flag);
+	Q_INVOKABLE void beginWindowMove (int x, int y, int flag, bool was_maximised);
 
 	// QObject interface
 public:
@@ -136,7 +136,6 @@ private:
 		_winBeginWidth, _winBeginHeight,
 		_mouseBeginX, _mouseBeginY,
 		_moveFlag;
-	QWidget *focus_proxy;
 
 	enum class MoveFlag {
 		H_MOVE		= 1,

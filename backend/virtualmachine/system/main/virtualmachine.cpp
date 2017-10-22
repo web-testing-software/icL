@@ -39,6 +39,19 @@ bool vm::system::VirtualMachine::containsVar (const QString &name) {
 	return memoryState->contains (name) || m_stackStateIt.contains (name);
 }
 
+bool vm::system::VirtualMachine::checkType (const QString &name, vm::system::DataState::Type &type) {
+	return memoryState->checkType (name, type) || m_stackStateIt.checkType (name, type);
+}
+
+QVariant vm::system::VirtualMachine::getVar (const QString &name) {
+	if (memoryState->contains (name)) {
+		return memoryState->getValue (name);
+	}
+	else {
+		return m_stackStateIt.getValue (name);
+	}
+}
+
 void vm::system::VirtualMachine::search (const vm::system::CommandsToSearch &commands) {
 	m_searchedCommands	= commands;
 	m_runIsPermited		= false;
@@ -49,8 +62,9 @@ bool vm::system::VirtualMachine::runIsPermited () {
 }
 
 
-void vm::system::VirtualMachine::setError (vm::Error error) {
-	this->m_error = error;
+void vm::system::VirtualMachine::setError (vm::Error error, const QString &description) {
+	this->m_error		= error;
+	this->last_error	= description;
 }
 
 void vm::system::VirtualMachine::setStepNumber (int step) {
@@ -98,7 +112,7 @@ void vm::system::VirtualMachine::run () {
 
 	int command;
 
-	while (!m_inStream.atEnd () && m_error == Error::NO_ERROR) {
+	while (!m_inStream.atEnd () && m_error == Error::NO_VM_ERROR) {
 		m_inStream >> command;
 
 		if (command == -1) {
@@ -113,14 +127,14 @@ void vm::system::VirtualMachine::run () {
 
 			if (!m_runIsPermited) {
 				if (command == m_searchedCommands.command1 || command == m_searchedCommands.command2) {
-					m_searchedCommands = CommandsToSearch();
-					m_runIsPermited = true;
+					m_searchedCommands	= CommandsToSearch ();
+					m_runIsPermited		= true;
 				}
 			}
 		}
 	}
 
-	if (command != -1 && m_error == Error::NO_ERROR) {
+	if (command != -1 && m_error == Error::NO_VM_ERROR) {
 		m_error = Error::UNEXPECTED_EOF;
 	}
 }

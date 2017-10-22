@@ -15,8 +15,15 @@ class DoubleBlock : public RichBlock
 public:
 	DoubleBlock (OperationType otype);
 
+	static bool check (const QString &value);
+
 	// LogicBlock interface
-	bool getResult () override;
+	bool calcResult () override;
+
+private:
+	static double varNameToValue (const QString &varname);
+
+	static QRegExp exp;
 };
 
 }   // namespace rich

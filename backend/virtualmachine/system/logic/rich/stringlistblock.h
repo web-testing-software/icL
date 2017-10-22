@@ -15,8 +15,17 @@ class StringListBlock : public RichBlock
 public:
 	StringListBlock (OperationType otype);
 
+	static bool check (const QString &value);
+
 	// LogicBlock interface
-	bool getResult () override;
+	bool calcResult () override;
+
+private:
+	static QStringList varNameToValue (const QString &varname);
+	static bool operatorEqual (const QStringList &list1, const QStringList &list2);
+
+	static QRegExp exp;
+	static QRegularExpression strExp;
 };
 
 }   // namespace rich

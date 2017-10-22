@@ -4,6 +4,21 @@ vm::system::logic::LogicBlock::LogicBlock () {
 
 }
 
+bool vm::system::logic::LogicBlock::getResult()
+{
+	bool result = this->calcResult ();
+
+	if (resultValue == ResultValue::NOT_CALCULATED) {
+		resultValue = result ? ResultValue::TRUE : ResultValue::FALSE;
+	}
+
+	return result;
+}
+
+void vm::system::logic::LogicBlock::resetResultValue() {
+	resultValue = ResultValue::NOT_CALCULATED;
+}
+
 vm::system::logic::LogicBlock * vm::system::logic::LogicBlock::getParent () {
 	return m_parent;
 }
@@ -11,3 +26,5 @@ vm::system::logic::LogicBlock * vm::system::logic::LogicBlock::getParent () {
 void vm::system::logic::LogicBlock::setParent (vm::system::logic::LogicBlock *parent) {
 	m_parent = parent;
 }
+
+

@@ -15,8 +15,13 @@ class BooleanBlock : public RichBlock
 public:
 	BooleanBlock (OperationType otype);
 
+	static bool check (const QString &value);
+
 	// LogicBlock interface
-	bool getResult () override;
+	bool calcResult () override;
+
+private:
+	static bool varNameToValue (const QString &varname);
 };
 
 }   // namespace rich

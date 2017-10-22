@@ -16,7 +16,7 @@ public:
 
 	// LogicBlock interface
 public:
-	bool getResult () override;
+	bool calcResult () override;
 	bool isCross () override;
 };
 

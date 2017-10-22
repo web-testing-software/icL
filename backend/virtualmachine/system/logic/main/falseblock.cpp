@@ -5,7 +5,7 @@ vm::system::logic::FalseBlock::FalseBlock () {
 }
 
 
-bool vm::system::logic::FalseBlock::getResult () {
+bool vm::system::logic::FalseBlock::calcResult () {
 	return false;
 }
 

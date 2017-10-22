@@ -25,7 +25,7 @@ namespace vm {
 		SERVER_ERROR,
 		FILE_NOT_OPENED,
 		WRONG_FILE_FORMAT,
-		NO_ERROR
+		NO_VM_ERROR
 	};
 
 	enum class LoopMode {

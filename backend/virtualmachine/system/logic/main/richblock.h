@@ -1,9 +1,12 @@
 #ifndef RICHBLOCK_H
 #define RICHBLOCK_H
 
+#include "../../main/virtualmachine.h"
 #include "logicblock.h"
 
+#include <QRegExp>
 #include <QString>
+#include <QVariant>
 
 
 

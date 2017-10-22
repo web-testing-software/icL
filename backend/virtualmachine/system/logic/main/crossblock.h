@@ -20,6 +20,7 @@ public:
 	// LogicBlock interface
 	bool isCross () override;
 	bool checkIntegrity () override;
+	void resetResultValue() override;
 
 protected:
 	LogicBlock *block1;

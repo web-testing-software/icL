@@ -16,7 +16,7 @@ public:
 	OrBlock ();
 
 	// LogicBlock interface
-	bool getResult () override;
+	bool calcResult () override;
 };
 
 }   // namespace cross

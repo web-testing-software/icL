@@ -353,9 +353,9 @@ namespace vm {
 
 			namespace editing {
 				enum class Command {
-					UPDATE	= 0x06010201,
-					INSERT	= 0x06010202,
-					DELETE	= 0x06010203
+					UPDATE		= 0x06010201,
+					INSERT		= 0x06010202,
+					DELETE_ONCE	= 0x06010203
 				};
 				}
 			}

@@ -61,7 +61,8 @@ public:
 
 	// Mass effect functions, with automatic iterations
 	bool contains (const QString &name);
-	bool checkType (const QString &name, StackState::Type &type);
+	bool checkType (const QString &name, DataState::Type &type);
+	QVariant getValue (const QString &name);
 
 	void clear ();
 

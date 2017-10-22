@@ -147,6 +147,20 @@ bool vm::system::StackStateIterator::checkType (const QString &name, vm::system:
 	return ret;
 }
 
+QVariant vm::system::StackStateIterator::getValue (const QString &name) {
+	QVariant	ret;
+	StackState	*it = m_stack;
+
+	while (ret.isNull () && it != nullptr) {
+		if (it->contains (name)) {
+			ret = it->getValue (name);
+		}
+		it = it->getPrev ();
+	}
+
+	return ret;
+}
+
 void vm::system::StackStateIterator::clear () {
 	StackState *tmp;
 

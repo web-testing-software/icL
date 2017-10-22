@@ -6,7 +6,7 @@ vm::system::logic::TrueBlock::TrueBlock () {
 }
 
 
-bool vm::system::logic::TrueBlock::getResult () {
+bool vm::system::logic::TrueBlock::calcResult () {
 	return true;
 }
 
