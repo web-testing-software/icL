@@ -20,8 +20,10 @@ public:
 	// LogicBlock interface
 	bool calcResult () override;
 
+	friend class StringListStringBlock;
+
 private:
-	static QString varNameToValue (const QString &varname);
+	static QString varNameToValue (LogicBlock *block, const QString &varname);
 
 	static QRegExp exp;
 };

@@ -17,8 +17,8 @@ bool vm::system::logic::rich::StringListBlock::check (const QString &value) {
 
 bool vm::system::logic::rich::StringListBlock::calcResult () {
 	bool		result	= false;
-	QStringList var1	= varNameToValue (var1name);
-	QStringList var2	= varNameToValue (var2name);
+	QStringList var1	= varNameToValue (this, var1name);
+	QStringList var2	= varNameToValue (this, var2name);
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -30,6 +30,7 @@ bool vm::system::logic::rich::StringListBlock::calcResult () {
 		break;
 
 	default :
+		resultValue = ResultValue::FAILED_CALCULATE;
 		virtualMachine->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands <string>list:%1 and <string>list:%2.")
 								  .arg (var1name)
@@ -39,7 +40,7 @@ bool vm::system::logic::rich::StringListBlock::calcResult () {
 	return result;
 }
 
-QStringList vm::system::logic::rich::StringListBlock::varNameToValue (const QString &varname) {
+QStringList vm::system::logic::rich::StringListBlock::varNameToValue (LogicBlock *block, const QString &varname) {
 	DataState::Type type = DataState::Type::STRING_LIST;
 	QStringList		ret;
 
@@ -54,6 +55,7 @@ QStringList vm::system::logic::rich::StringListBlock::varNameToValue (const QStr
 		}
 	}
 	else if (!virtualMachine->checkType (varname, type)) {
+		block->invalidate ();
 		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a string list variable or constant.")
 								  .arg (varname));

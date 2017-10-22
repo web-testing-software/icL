@@ -4,8 +4,7 @@ vm::system::logic::LogicBlock::LogicBlock () {
 
 }
 
-bool vm::system::logic::LogicBlock::getResult()
-{
+bool vm::system::logic::LogicBlock::getResult () {
 	bool result = this->calcResult ();
 
 	if (resultValue == ResultValue::NOT_CALCULATED) {
@@ -15,8 +14,12 @@ bool vm::system::logic::LogicBlock::getResult()
 	return result;
 }
 
-void vm::system::logic::LogicBlock::resetResultValue() {
+void vm::system::logic::LogicBlock::resetResultValue () {
 	resultValue = ResultValue::NOT_CALCULATED;
+}
+
+void vm::system::logic::LogicBlock::invalidate () {
+	resultValue = ResultValue::WRONG_INPUT_DATA;
 }
 
 vm::system::logic::LogicBlock * vm::system::logic::LogicBlock::getParent () {

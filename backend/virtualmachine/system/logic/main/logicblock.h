@@ -14,6 +14,7 @@ public:
 	enum class ResultValue {
 		NOT_CALCULATED,
 		INTEGRITY_CHECK_FAILED,
+		WRONG_INPUT_DATA,
 		TRUE,
 		FALSE,
 		FAILED_CALCULATE
@@ -25,6 +26,7 @@ public:
 	virtual bool isCross ()			= 0;
 	virtual bool checkIntegrity ()	= 0;
 	virtual void resetResultValue();
+	void setToErrorState ();
 
 	LogicBlock* getParent ();
 	void setParent (LogicBlock *parent);
