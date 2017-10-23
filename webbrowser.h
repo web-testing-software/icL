@@ -86,7 +86,7 @@ public:
 	bool isMaximized () const;
 
 	// Window functions for qml
-	Q_INVOKABLE void beginWindowMove (int x, int y, int flag, bool was_maximised);
+	Q_INVOKABLE void beginWindowMove (int x, int y, int flag, bool was_maximised, double alpha);
 
 	// QObject interface
 public:

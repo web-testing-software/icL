@@ -130,7 +130,7 @@ bool WebBrowser::isMaximized () const {
 	return m_isMaximized;
 }
 
-void WebBrowser::beginWindowMove (int x, int y, int flag, bool was_maximised) {
+void WebBrowser::beginWindowMove (int x, int y, int flag, bool was_maximised, double alpha) {
 	if (flag != 0x0) {
 		_winBeginX		= this->x ();
 		_winBeginY		= this->y ();
@@ -141,7 +141,7 @@ void WebBrowser::beginWindowMove (int x, int y, int flag, bool was_maximised) {
 		_moveFlag		= flag;
 
 		if (was_maximised) {
-			_winBeginX	= x - _winBeginWidth / 2;
+			_winBeginX	= x - _winBeginWidth * alpha;
 			_winBeginY	= 0;
 
 			QTimer::singleShot (10, this, [this] () {
