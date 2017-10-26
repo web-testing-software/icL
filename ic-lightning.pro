@@ -75,7 +75,8 @@ SOURCES += \
     backend/virtualmachine/system/logic/rich/stringblock.cpp \
     backend/virtualmachine/system/logic/rich/stringlistblock.cpp \
     backend/virtualmachine/system/main/ifstackstate.cpp \
-    backend/virtualmachine/system/logic/rich/stringliststringblock.cpp
+    backend/virtualmachine/system/logic/rich/stringliststringblock.cpp \
+    backend/helper.cpp
 
 HEADERS += \
         webbrowser.h \
@@ -130,7 +131,8 @@ HEADERS += \
     backend/virtualmachine/system/logic/rich/stringblock.h \
     backend/virtualmachine/system/logic/rich/stringlistblock.h \
     backend/virtualmachine/system/main/ifstackstate.h \
-    backend/virtualmachine/system/logic/rich/stringliststringblock.h
+    backend/virtualmachine/system/logic/rich/stringliststringblock.h \
+    backend/helper.h
 
 RESOURCES += \
     qml/main.qrc

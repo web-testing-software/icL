@@ -49,5 +49,13 @@
         <file>images/minimize_button.svg</file>
         <file>images/restore_button.svg</file>
         <file>images/close_button.svg</file>
+        <file>components/browser/ui/AnimatedIconIterface.qml</file>
+        <file>components/browser/ui/tool_icons/BackToolIcon.qml</file>
+        <file>components/browser/ui/tool_icons/ToolIcon.qml</file>
+        <file>components/browser/ui/tool_icons/ForwardToolIcon.qml</file>
+        <file>components/browser/ui/tool_icons/constants.js</file>
+        <file>components/browser/ui/tool_icons/RefreshStopToolIcon.qml</file>
+        <file>components/browser/ui/controls/Switch.qml</file>
+        <file>components/browser/ui/controls/constants_controls.js</file>
     </qresource>
 </RCC>

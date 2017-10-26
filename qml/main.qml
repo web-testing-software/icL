@@ -37,6 +37,12 @@ Item {
 		anchors.fill: parent;
 		anchors.margins: web_browser.isMaximized ? 0 : Math.round(4 * _ratio);
 
+		Behavior on color {
+			ColorAnimation {
+				duration: 200 * anim_time_multiplier;
+			}
+		}
+
 		ResizeMoveMouseArea {
 			id: top_side;
 			anchors.top: parent.top;

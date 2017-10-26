@@ -5,6 +5,8 @@
 #include <QQuickWidget>
 #include <QWidget>
 
+#include <backend/helper.h>
+
 #define webBrowser WebBrowser::instance ()
 
 /**
@@ -120,6 +122,8 @@ signals:
 	void isMaximizedChanged (bool isMaximized);
 
 private:
+	Helper m_helper;
+
 	QQuickWidget *quick_receiver;
 
 	int m_webEngineX;

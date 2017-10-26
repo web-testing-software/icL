@@ -35,7 +35,8 @@ WebBrowser::WebBrowser (QWidget *parent)
 	QQmlContext *context = quick_receiver->rootContext ();
 
 	context->setContextProperty ("server", server);
-	context->setContextProperty ("web_browser", webBrowser);
+	context->setContextProperty ("web_browser", this);
+	context->setContextProperty ("helper", &m_helper);
 
 	quick_receiver->setSource (source_mainqml);
 	setCentralWidget (quick_receiver);

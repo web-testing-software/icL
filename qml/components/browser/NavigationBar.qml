@@ -1,28 +1,30 @@
 import QtQuick 2.0
 
+import "ui/tool_icons";
+import "ui/controls";
+
 Item {
 	property string current_webview_url: !!current_webview
 										 ? current_webview.url
 										 : "https://gitlab.com/lixcode/ic-lightning"; // For testing
 
-	BarButton {
+	Switch {
+//		BackToolIcon {
 		id: back;
-		source: "qrc:/images/back.svg";
 		anchors.top: parent.top;
 		anchors.left: parent.left;
 		anchors.leftMargin: Math.round(6 * _ratio);
+		anchors.topMargin: Math.round(8 * _ratio);
 	}
 
-	BarButton {
+	RefreshStopToolIcon {
 		id: stop_refresh;
-		source: "qrc:/images/refresh.svg";
 		anchors.top: parent.top;
 		anchors.left: back.right;
 	}
 
-	BarButton {
+	ForwardToolIcon {
 		id: forward;
-		source: "qrc:/images/forward.svg";
 		anchors.top: parent.top;
 		anchors.left: stop_refresh.right;
 	}
