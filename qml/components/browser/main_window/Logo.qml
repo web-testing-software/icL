@@ -5,7 +5,7 @@ MouseArea {
 	id: root;
 
 	x: Math.round(2 * _ratio);
-	y: Math.round(2 * _ratio);
+	y: Math.round(web_browser.isMaximized ? -4 : 2 * _ratio);
 	width: height * 0.75;
 	height: Math.round(40 * _ratio);
 	clip: true;

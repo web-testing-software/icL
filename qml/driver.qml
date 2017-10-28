@@ -1,9 +1,8 @@
 import QtQuick 2.7
-import QtWebEngine 1.5
 import QtQuick.Window 2.3
 import QtGraphicalEffects 1.0
 
-import "components/browser";
+import "components/browser/main_window";
 import "components/browser/contextmenu";
 
 import "scripts/move_flags.js" as MOVE_FLAGS;
@@ -48,7 +47,7 @@ Item {
 			anchors.top: parent.top;
 			anchors.left: parent.left;
 			anchors.right: parent.right;
-			height: Math.round(44 * _ratio);
+			height: Math.round(web_browser.isMaximized ? 40 : 44 * _ratio);
 
 			cursorShape: Qt.SizeAllCursor;
 			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
@@ -63,7 +62,7 @@ Item {
 
 			Logo {
 				id: logo;
-				onClicked: paste_menu(about_menu, {}, mouseX, mouseY);
+				onClicked: paste_menu(about_menu, {y: y - Math.round(2 * _ratio)}, mouseX, mouseY);
 			}
 
 			Item {
@@ -263,26 +262,21 @@ Item {
 		}
 
 		Item {
+			id: content;
 			anchors.left: border_left.right;
 			anchors.right: border_right.left;
 			anchors.top: border_top.bottom;
 			anchors.bottom: border_bottom.top;
 
-			WebEngineView {
-				id: wview;
+//			Component
+
+			Item {
+				id: paste_tabview;
+
 				anchors.fill: parent;
-				//			anchors.topMargin: 50;
 
-				url: "https://gitlab.com/lixcode/ic-lightning";
-
-				settings.autoLoadImages: false;
-				settings.javascriptCanOpenWindows: false;
-				profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
-
-				onTitleChanged: console.log("Title changed:" + title);
-
-				onIconChanged: console.log(icon);
-				Component.onCompleted: console.log(icon);
+				EditorTabContent {
+				}
 			}
 		}
 

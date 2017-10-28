@@ -1,20 +1,18 @@
 import QtQuick 2.0
 
-import "ui/tool_icons";
-import "ui/controls";
+import "../ui/tool_icons";
+import "../ui/controls";
 
 Item {
 	property string current_webview_url: !!current_webview
 										 ? current_webview.url
 										 : "https://gitlab.com/lixcode/ic-lightning"; // For testing
 
-	Switch {
-//		BackToolIcon {
+	BackToolIcon {
 		id: back;
 		anchors.top: parent.top;
 		anchors.left: parent.left;
 		anchors.leftMargin: Math.round(6 * _ratio);
-		anchors.topMargin: Math.round(8 * _ratio);
 	}
 
 	RefreshStopToolIcon {

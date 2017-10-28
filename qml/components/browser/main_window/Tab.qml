@@ -1,10 +1,13 @@
 import QtQuick 2.0
 
-Item {
+import "../ui/highlighters";
+
+TabHighlight {
 	id: root;
 	height: parent.height;
 	width: tab_container.tab_width;
 	clip: true;
+	drawColor: border_color;
 
 	property var webview: null;
 	property string default_name: "script_name.icl";
