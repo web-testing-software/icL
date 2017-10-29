@@ -89,6 +89,7 @@ public:
 
 	// Window functions for qml
 	Q_INVOKABLE void beginWindowMove (int x, int y, int flag, bool was_maximised, double alpha);
+	Q_INVOKABLE void emulate_test_click (QQuickItem* item);
 
 	// QObject interface
 public:

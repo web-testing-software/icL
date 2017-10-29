@@ -154,6 +154,26 @@ void WebBrowser::beginWindowMove (int x, int y, int flag, bool was_maximised, do
 	}
 }
 
+void WebBrowser::emulate_test_click(QQuickItem *item)
+{
+	QPoint point (10, 10);
+	QMouseEvent *press = new QMouseEvent (QEvent::MouseButtonPress,
+										  point,
+										  Qt::LeftButton,
+										  Qt::MouseButton::NoButton,
+										  Qt::NoModifier);
+	QMouseEvent *release = new QMouseEvent (QEvent::MouseButtonRelease,
+											point,
+											Qt::LeftButton,
+											Qt::MouseButton::NoButton,
+											Qt::NoModifier);
+
+	QCoreApplication::postEvent (item, press);
+	// TODO: Make the delay configurable
+	QThread::msleep (300);
+	QCoreApplication::postEvent (item, release);
+}
+
 bool WebBrowser::event (QEvent *event) {
 	if (event->type () == QEvent::WindowActivate) {
 		setIsFocused (true);

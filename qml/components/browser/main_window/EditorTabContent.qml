@@ -11,7 +11,8 @@ Item {
 		anchors.fill: parent;
 		//			anchors.topMargin: 50;
 
-		url: "about:blank";
+//		url: "about:blank";
+		url: "https://gitlab.com/";
 
 		settings.autoLoadImages: false;
 		settings.javascriptCanOpenWindows: false;

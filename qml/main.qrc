@@ -56,5 +56,14 @@
         <file>components/browser/main_window/EditorTabContent.qml</file>
         <file>components/browser/ui/highlighters/TabHighlight.qml</file>
         <file>components/browser/main_window/NewTabContent.qml</file>
+        <file>components/browser/main_window/WindowContent.qml</file>
+        <file>images/bg_icon.svg</file>
+        <file>images/qt_logo.svg</file>
+        <file>images/avatar_mask.svg</file>
+        <file>images/default_avatar.svg</file>
+        <file>components/browser/main_window/SelectScreen.qml</file>
+        <file>components/browser/main_window/ProfileSelectScreen.qml</file>
+        <file>components/browser/main_window/Toast.qml</file>
+        <file>components/browser/ui/controls/Button.qml</file>
     </qresource>
 </RCC>
