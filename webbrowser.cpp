@@ -174,15 +174,15 @@ void WebBrowser::emulate_test_click(QQuickItem *item)
 	QCoreApplication::postEvent (item, release);
 }
 
-bool WebBrowser::event (QEvent *event) {
-	if (event->type () == QEvent::WindowActivate) {
+bool WebBrowser::event (QEvent *_event) {
+	if (_event->type () == QEvent::WindowActivate) {
 		setIsFocused (true);
 	}
-	else if (event->type () == QEvent::WindowDeactivate) {
+	else if (_event->type () == QEvent::WindowDeactivate) {
 		setIsFocused (false);
 	}
 
-	return QMainWindow::event (event);
+	return QMainWindow::event (_event);
 }
 
 void WebBrowser::mouseMoveEvent (QMouseEvent *event) {

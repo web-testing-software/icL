@@ -8,7 +8,7 @@ bool vm::system::logic::LogicBlock::getResult () {
 	bool result = this->calcResult ();
 
 	if (resultValue == ResultValue::NOT_CALCULATED) {
-		resultValue = result ? ResultValue::TRUE : ResultValue::FALSE;
+		resultValue = result ? ResultValue::TRUE_VALUE : ResultValue::FALSE_VALUE;
 	}
 
 	return result;

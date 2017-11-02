@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "../ui/highlighters";
+import "../../ui/highlighters";
 
 TabHighlight {
 	id: root;

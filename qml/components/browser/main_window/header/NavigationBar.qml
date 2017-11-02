@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
-import "../ui/tool_icons";
-import "../ui/controls";
+import "../../ui/tool_icons";
+import "../../ui/controls";
 
 Item {
 	property string current_webview_url: !!current_webview

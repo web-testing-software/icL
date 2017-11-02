@@ -1,20 +1,26 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
-Item {
-	id: root;
-	width: win_rectangle.width;
-	height: win_rectangle.height;
+import "../content";
+import "../header";
 
-	Item {
+SessionBase {
+	id: root;
+
+	Rectangle {
 		id: top_side;
 		anchors.top: parent.top;
 		anchors.left: parent.left;
 		anchors.right: parent.right;
-		height: Math.round(web_browser.isMaximized ? 40 : 44 * _ratio);
+		height: Math.round(web_browser.isMaximized ? 40 : 44 * _ratio);		
 
-//		cursorShape: Qt.SizeAllCursor;
-//		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
+		color: web_browser.isFocused && sessions_list.current_item == root ? "#f5f5f5" : "#e1e1e2";
+
+		Behavior on color {
+			ColorAnimation {
+				duration: 200 * anim_time_multiplier;
+			}
+		}
 
 		Rectangle {
 			anchors.left: parent.left;
@@ -191,8 +197,6 @@ Item {
 		anchors.right: border_right.left;
 		anchors.top: border_top.bottom;
 		anchors.bottom: border_bottom.top;
-
-//			Component
 
 		Item {
 			id: paste_tabview;

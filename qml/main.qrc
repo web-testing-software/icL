@@ -2,12 +2,11 @@
     <qresource prefix="/">
         <file>driver.qml</file>
         <file>scripts/autorun_init.js</file>
+        <file>scripts/my_enums.js</file>
         <file>images/icLightning.svg</file>
-        <file>components/browser/main_window/Logo.qml</file>
         <file>components/browser/contextmenu/MenuBase.qml</file>
         <file>components/browser/contextmenu/MenuLightning.qml</file>
         <file>images/icLightning_black.svg</file>
-        <file>components/browser/main_window/Tab.qml</file>
         <file>images/new_tab.svg</file>
         <file>images/blank_favicon.svg</file>
         <file>components/editor/language/IfElse.qml</file>
@@ -35,12 +34,9 @@
         <file>components/editor/database/Input.qml</file>
         <file>components/editor/main/EditItem.qml</file>
         <file>components/editor/main/EditItemWithChilds.qml</file>
-        <file>components/browser/main_window/NavigationBar.qml</file>
-        <file>components/browser/main_window/BarButton.qml</file>
         <file>images/adress_bar_icon.svg</file>
         <file>scripts/move_flags.js</file>
         <file>components/browser/main_window/ResizeMoveMouseArea.qml</file>
-        <file>components/browser/main_window/TitleBarButton.qml</file>
         <file>images/maximize_button.svg</file>
         <file>images/minimize_button.svg</file>
         <file>images/restore_button.svg</file>
@@ -53,17 +49,25 @@
         <file>components/browser/ui/tool_icons/RefreshStopToolIcon.qml</file>
         <file>components/browser/ui/controls/Switch.qml</file>
         <file>components/browser/ui/controls/constants_controls.js</file>
-        <file>components/browser/main_window/EditorTabContent.qml</file>
         <file>components/browser/ui/highlighters/TabHighlight.qml</file>
-        <file>components/browser/main_window/NewTabContent.qml</file>
-        <file>components/browser/main_window/WindowContent.qml</file>
         <file>images/bg_icon.svg</file>
         <file>images/qt_logo.svg</file>
         <file>images/avatar_mask.svg</file>
         <file>images/default_avatar.svg</file>
-        <file>components/browser/main_window/SelectScreen.qml</file>
-        <file>components/browser/main_window/ProfileSelectScreen.qml</file>
-        <file>components/browser/main_window/Toast.qml</file>
         <file>components/browser/ui/controls/Button.qml</file>
+        <file>components/browser/main_window/MouseField.qml</file>
+        <file>components/browser/main_window/content/EditorTabContent.qml</file>
+        <file>components/browser/main_window/content/NewTabContent.qml</file>
+        <file>components/browser/main_window/header/BarButton.qml</file>
+        <file>components/browser/main_window/header/Logo.qml</file>
+        <file>components/browser/main_window/header/NavigationBar.qml</file>
+        <file>components/browser/main_window/header/Tab.qml</file>
+        <file>components/browser/main_window/header/TitleBarButton.qml</file>
+        <file>components/browser/main_window/sessions/ProfileSelectScreen.qml</file>
+        <file>components/browser/main_window/sessions/SelectScreen.qml</file>
+        <file>components/browser/main_window/sessions/SessionBase.qml</file>
+        <file>components/browser/main_window/sessions/Toast.qml</file>
+        <file>components/browser/main_window/sessions/WebSession.qml</file>
+        <file>components/browser/main_window/sessions/SessionsList.qml</file>
     </qresource>
 </RCC>

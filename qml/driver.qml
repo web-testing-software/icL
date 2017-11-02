@@ -1,11 +1,15 @@
-import QtQuick 2.7
-import QtQuick.Window 2.3
+import QtQuick 2.5
+import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
 
 import "components/browser/main_window";
+import "components/browser/main_window/content";
+import "components/browser/main_window/header";
+import "components/browser/main_window/sessions";
 import "components/browser/contextmenu";
 import "components/browser/ui/controls";
 
+import "scripts/my_enums.js" as ME;
 import "scripts/move_flags.js" as MOVE_FLAGS;
 
 Item {
@@ -19,7 +23,7 @@ Item {
 	property color focus_color: "#003bc5";
 	property real focus_hue: 0.62;
 
-	property color border_color: "#20232323";
+    property color border_color: "#cecece";
 
 	property var current_webview: null;
 
@@ -30,48 +34,62 @@ Item {
 		menu.show (x, y);
 	}
 
-	Rectangle {
+	Item {
 		id: win_rectangle;
-		color: web_browser.isFocused ? "#f5f5f5" : "#e1e1e2";
 		layer.enabled: true;
 
 		anchors.fill: parent;
 		anchors.margins: web_browser.isMaximized ? 0 : Math.round(4 * _ratio);
 
-		Behavior on color {
-			ColorAnimation {
-				duration: 200 * anim_time_multiplier;
-			}
-		}
-
 		ResizeMoveMouseArea {
-			id: move_area;
+			id: active_area;
 
 			clip: true;
 			anchors.fill: parent;
 			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
 
 			property bool sessions_manage_mode: false;
+			property bool cancel_session: false;
+
+			Keys.onTabPressed: {
+				if (event.modifiers & Qt.ControlModifier && !sessions_manage_mode) {
+					cancel_session = false;
+
+					if (!sessions_list.current_item.next
+							&& !!sessions_list.current_item.prev) {
+						sessions_list.to_prev();
+					}
+
+					var next = sessions_list.current_item.next;
+					if (!!next) {
+						next.visible = true;
+
+						if (!!next.next) {
+							next.next.visible = true;
+						}
+					}
+
+					sessions_manage_mode = true;
+					sessions_manager.forceActiveFocus();
+				}
+			}
+
+			Keys.onEscapePressed: {
+				if (sessions_manage_mode == true) {
+					cancel_session = true;
+					sessions_manage_mode = false;
+				}
+			}
+
+//			Keys.onPressed: console.log("catched");
 
 			Rectangle {
 				id: sessions_manager;
-				visible: opacity != 0.0;
+				visible: sessions_list.scale != 1.0;
 				opacity: 1.0;
 
 				anchors.fill: parent;
 				color: "#ffffff";
-
-				state: move_area.sessions_manage_mode ? "" : "hidden";
-
-				states: [
-					State {
-						name: "hidden";
-						PropertyChanges {
-							target: sessions_manager;
-							opacity: 0.0;
-						}
-					}
-				]
 
 				transitions: [
 					Transition {
@@ -81,8 +99,19 @@ Item {
 							property: "opacity";
 							duration: 250 * anim_time_multiplier;
 						}
-					}
+                    },
+                    Transition {
+                        from: "shown";
+                        to: "hidden";
+                        NumberAnimation {
+                            property: "opacity";
+                            duration: 250 * anim_time_multiplier;
+                        }
+                    }
 				]
+
+				Keys.onUpPressed: sessions_list.to_prev();
+				Keys.onDownPressed: sessions_list.to_next();
 
 				property real button_space: Math.round(50 * _ratio);
 
@@ -90,7 +119,7 @@ Item {
 					anchors.top: parent.top;
 					anchors.right: parent.right;
 					anchors.left: parent.left;
-					height: window_list.vertical_white_space;
+					height: sessions_list.vertical_white_space;
 
 					Button {
 						pixelSize: Math.round(20 * _ratio);
@@ -106,7 +135,7 @@ Item {
 					anchors.top: parent.top;
 					anchors.right: parent.right;
 					anchors.bottom: parent.bottom;
-					width: window_list.horizontal_white_space;
+					width: sessions_list.horizontal_white_space;
 
 					Button {
 						pixelSize: Math.round(20 * _ratio);
@@ -123,7 +152,7 @@ Item {
 					anchors.right: parent.right;
 					anchors.bottom: parent.bottom;
 					anchors.left: parent.left;
-					height: window_list.vertical_white_space;
+					height: sessions_list.vertical_white_space;
 
 					Button {
 						pixelSize: Math.round(20 * _ratio);
@@ -139,7 +168,7 @@ Item {
 					anchors.top: parent.top;
 					anchors.bottom: parent.bottom;
 					anchors.left: parent.left;
-					width: window_list.horizontal_white_space;
+					width: sessions_list.horizontal_white_space;
 
 					Button {
 						pixelSize: Math.round(20 * _ratio);
@@ -153,47 +182,16 @@ Item {
 				}
 			}
 
-			WindowContent {
-				id: window_list;
-				scale: 1.0;
-
-				state: move_area.sessions_manage_mode ? "micro" : "";
-
-				states: [
-					State {
-						name: "micro"
-						PropertyChanges {
-							target: window_list
-							scale: preffered_scale;
-						}
-					}
-				]
-
-				transitions: Transition {
-					from: "*"
-					to: "micro"
-					NumberAnimation {
-						property: "scale";
-						duration: 250 * anim_time_multiplier;
-					}
-				}
-
-				property real preffered_scale: Math.min((width - 100 * _ratio) / width, (height - 100 * _ratio) / height);
-				property real horizontal_white_space: 0.5 * width * (1 - preffered_scale);
-				property real vertical_white_space: 0.5 * height * (1 - preffered_scale);
-			}
-
-			Timer {
-				interval: 2000;
-				running: true;
-				repeat: true;
-				onTriggered: move_area.sessions_manage_mode = !move_area.sessions_manage_mode;
+			SessionsList {
+				id: sessions_list;
 			}
 
 			SelectScreen {
 				id: select_screen;
-				state: "hide";
+				state: "show";
 				visible: opacity != 0.0 && scale != 0.0;
+
+				Component.onCompleted: show("show", ME.SELECT_SCREEN_TYPE_PROFILE);
 			}
 
 			Toast {
@@ -282,14 +280,15 @@ Item {
 
 	DropShadow {
 		visible: !web_browser.isMaximized;
-		anchors.fill: parent;
-		anchors.margins: win_rectangle.anchors.margins;
-		radius: anchors.margins;
+		anchors.fill: win_rectangle;
+		radius: win_rectangle.anchors.margins;
 		color: "#80000000";
 		source: win_rectangle;
 		horizontalOffset: 0;
 		verticalOffset: 0;
+		cached: true;
 	}
+
 
 	property int resize_border_weight: Math.round(6 * _ratio);
 	property int resize_angle_weight: Math.round(12 * _ratio);
@@ -424,5 +423,29 @@ Item {
 		width: resize_border_weight;
 		cursorShape: Qt.SizeHorCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE;
+	}
+
+	// This timer fix bug for maximised window
+	Timer {
+		id: resize_move_timer;
+		interval: 10;
+
+		property bool was_maximised: false;
+		property real last_location: 0;
+		property real last_width: 0;
+		property point global_pos;
+		property int flag;
+
+		onTriggered: {
+			var alpha = 0.0;
+			if (was_maximised) {
+				alpha = last_location > last_width - width / 2
+						? 1 - (last_width - last_location) / width
+						: last_location < width / 2
+						  ? last_location / width
+						  : 0.5;
+			}
+			web_browser.beginWindowMove(global_pos.x, global_pos.y, flag, was_maximised, alpha);
+		}
 	}
 }

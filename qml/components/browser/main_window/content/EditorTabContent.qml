@@ -1,7 +1,7 @@
 import QtQuick 2.0
-import QtWebEngine 1.5
+import QtWebEngine 1.2
 
-Item {
+Rectangle {
 	id: root;
 
 	anchors.fill: parent;
@@ -9,7 +9,6 @@ Item {
 	WebEngineView {
 		id: wview;
 		anchors.fill: parent;
-		//			anchors.topMargin: 50;
 
 //		url: "about:blank";
 		url: "https://gitlab.com/";

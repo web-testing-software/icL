@@ -1,8 +1,12 @@
 import QtQuick 2.0
 
+import "../"
+
+import "../../../../scripts/my_enums.js" as ME;
+import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
+
 Rectangle {
 	id: root;
-	//	anchors.topMargin: logo.height + logo.y + Math.round(2 * _ratio);
 	width: parent.width;
 	height: parent.height;
 	color: "#e5e5e5";
@@ -11,11 +15,19 @@ Rectangle {
 	transformOrigin: Item.Top;
 	layer.enabled: true;
 
-	function show (_state) {
+	property bool add_after_current: true;
 
-		if (state == "show") {
-			hide();
-			return;
+	ResizeMoveMouseArea {
+		anchors.fill: parent;
+		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
+	}
+
+	function show (_state, what) {
+
+		switch (what) {
+		case ME.SELECT_SCREEN_TYPE_PROFILE:
+			profile_ss.forceActiveFocus();
+			break;
 		}
 
 		switch (_state) {
@@ -145,7 +157,7 @@ Rectangle {
 				properties: "y,scale,opacity";
 				duration: 250 * anim_time_multiplier;
 			}
-		},
+		}/*,
 		Transition {
 			from: "show"
 			to: "hide"
@@ -153,6 +165,6 @@ Rectangle {
 				properties: "scale,opacity";
 				duration: 250 * anim_time_multiplier;
 			}
-		}
+		}*/
 	]
 }

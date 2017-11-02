@@ -1,13 +1,15 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
+import "../../ui/controls";
+
 Item {
 	id: root;
 	anchors.fill: parent;
 
 	Item {
 		id: avatar;
-		width: Math.round(300 * _ratio);
+		width: Math.round(200 * _ratio);
 		height: width;
 		anchors.centerIn: parent;
 
@@ -31,14 +33,6 @@ Item {
 			source: avatar_image;
 			maskSource: avatar_mask;
 		}
-
-		DropShadow {
-			anchors.fill: parent;
-			source: final_avatar;
-			radius: Math.round(4 * _ratio);
-			color: "#80000000";
-			verticalOffset: Math.round(2 * _ratio);
-		}
 	}
 
 	Text {
@@ -46,17 +40,23 @@ Item {
 		text: qsTr("Default");
 		anchors.horizontalCenter: avatar.horizontalCenter;
 		anchors.top: avatar.bottom;
+		anchors.topMargin: Math.round(10 * _ratio);
 		color: "#3a3a3a";
 
 		font.family: "Ubuntu";
-		font.pixelSize: Math.round(50 * _ratio);
+		font.pixelSize: Math.round(35 * _ratio);
 	}
 
-	DropShadow {
-		anchors.fill: username;
-		source: username;
-		radius: Math.round(2 * _ratio)
-		color: "#d0000000";
-		verticalOffset: Math.round(2 * _ratio);
+	Button {
+		text: qsTr("Create session");
+		color: focus_color;
+		pixelSize: Math.round(20 * _ratio);
+		anchors.top: username.bottom;
+		anchors.topMargin: Math.round(10 * _ratio);
+		anchors.horizontalCenter: username.horizontalCenter;
+
+		onClicked: sessions_list.add_new_session();
 	}
+
+	Keys.onReturnPressed: sessions_list.add_new_session();
 }
