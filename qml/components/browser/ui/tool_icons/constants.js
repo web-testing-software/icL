@@ -1,5 +1,10 @@
 .pragma library
 
+var PI_025 = Math.PI * 0.25;
+var PI_O5  = Math.PI * 0.5;
+var PI_125 = Math.PI * 1.25;
+
+
 var PI_08  = Math.PI * 0.8;		// Max angle for refresh icon
 var PI_175 = Math.PI * 1.75;	// PI * 1 / 4
 var PI_B   = PI_175 - PI_08;	// Begin of 1st wing

@@ -1,8 +1,11 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
+import "../"
 import "../content";
 import "../header";
+
+import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
 
 SessionBase {
 	id: root;
@@ -12,9 +15,9 @@ SessionBase {
 		anchors.top: parent.top;
 		anchors.left: parent.left;
 		anchors.right: parent.right;
-		height: Math.round(web_browser.isMaximized ? 40 : 44 * _ratio);		
+		height: Math.round(web_browser.isMaximized ? 40 : 44 * _ratio);
 
-		color: web_browser.isFocused && sessions_list.current_item == root ? "#f5f5f5" : "#e1e1e2";
+		color: web_browser.isFocused || sessions_list.current_item != root ? "#f5f5f5" : "#e1e1e2";
 
 		Behavior on color {
 			ColorAnimation {
@@ -205,6 +208,36 @@ SessionBase {
 
 			EditorTabContent {
 			}
+		}
+	}
+
+	MouseField {
+		anchors.fill: parent;
+		visible: active_area.sessions_manage_mode;
+
+		onWheel: {
+			if (wheel.angleDelta.y < 0) {
+				sessions_list.to_next();
+			}
+			else {
+				sessions_list.to_prev();
+			}
+		}
+
+		ResizeMoveMouseArea {
+			id: move_area;
+			anchors.left: parent.left;
+			anchors.right: parent.right;
+			anchors.top: parent.top;
+			height: logo.height;
+
+			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
+
+			enabled: sessions_list.current_item == root;
+		}
+
+		Item {
+			anchors.fill: move_area;
 		}
 	}
 }

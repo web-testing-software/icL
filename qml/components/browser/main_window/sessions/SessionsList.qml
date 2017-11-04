@@ -13,7 +13,7 @@ Item {
 	property real vertical_white_space: 0.5 * height * (1 - preffered_scale);
 
 	property int current_index: 0;
-	property SessionBase current_item: null;
+	property SessionBase current_item: select_screen;
 
 	Component {
 		id: session_delegate;
@@ -21,6 +21,10 @@ Item {
 		WebSession {
 			//
 		}
+	}
+
+	SelectScreen {
+		id: select_screen;
 	}
 
 	states: [
@@ -59,6 +63,10 @@ Item {
 
 	function to_next () {
 		if (!!current_item.next) {
+			if (active_area.sessions_manage_mode && !current_item.next.next) {
+				return;
+			}
+
 			current_item.next.visible = true;
 			current_item = current_item.next;
 			current_item.shown = true;

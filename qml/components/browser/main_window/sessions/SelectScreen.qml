@@ -5,17 +5,20 @@ import "../"
 import "../../../../scripts/my_enums.js" as ME;
 import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
 
-Rectangle {
+SessionBase {
 	id: root;
-	width: parent.width;
-	height: parent.height;
-	color: "#e5e5e5";
 
-	state: "hide";
 	transformOrigin: Item.Top;
 	layer.enabled: true;
 
 	property bool add_after_current: true;
+
+	Component.onCompleted: show("show", ME.SELECT_SCREEN_TYPE_PROFILE);
+
+	Rectangle {
+		anchors.fill: parent;
+		color: "#e5e5e5";
+	}
 
 	ResizeMoveMouseArea {
 		anchors.fill: parent;

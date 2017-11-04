@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-ToolIcon {
+Base {
 	id: root;
 
 	alpha: reversed ? (containsMouse ? 2.0 : 1.0) : 0.0;

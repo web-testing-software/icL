@@ -2,12 +2,13 @@ import QtQuick 2.5
 import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
 
-import "components/browser/main_window";
-import "components/browser/main_window/content";
-import "components/browser/main_window/header";
-import "components/browser/main_window/sessions";
-import "components/browser/contextmenu";
-import "components/browser/ui/controls";
+import "components/browser/main_window" as MainWindow;
+import "components/browser/main_window/content" as Content;
+import "components/browser/main_window/header" as Header;
+import "components/browser/main_window/header/title_bar_buttons" as TitleBarButtons;
+import "components/browser/main_window/sessions" as Sessions;
+import "components/browser/contextmenu" as ContextMenu;
+import "components/browser/ui/controls" as Controls;
 
 import "scripts/my_enums.js" as ME;
 import "scripts/move_flags.js" as MOVE_FLAGS;
@@ -41,7 +42,7 @@ Item {
 		anchors.fill: parent;
 		anchors.margins: web_browser.isMaximized ? 0 : Math.round(4 * _ratio);
 
-		ResizeMoveMouseArea {
+		MainWindow.ResizeMoveMouseArea {
 			id: active_area;
 
 			clip: true;
@@ -55,153 +56,64 @@ Item {
 				if (event.modifiers & Qt.ControlModifier && !sessions_manage_mode) {
 					cancel_session = false;
 
-					if (!sessions_list.current_item.next
-							&& !!sessions_list.current_item.prev) {
-						sessions_list.to_prev();
-					}
-
-					var next = sessions_list.current_item.next;
-					if (!!next) {
-						next.visible = true;
-
-						if (!!next.next) {
-							next.next.visible = true;
-						}
-					}
-
+					sessions_list.to_prev();
 					sessions_manage_mode = true;
-					sessions_manager.forceActiveFocus();
+					sessions_list.forceActiveFocus();
 				}
 			}
 
 			Keys.onEscapePressed: {
 				if (sessions_manage_mode == true) {
+
 					cancel_session = true;
 					sessions_manage_mode = false;
+
+					sessions_list.to_next();
 				}
 			}
 
-//			Keys.onPressed: console.log("catched");
-
-			Rectangle {
-				id: sessions_manager;
-				visible: sessions_list.scale != 1.0;
-				opacity: 1.0;
-
-				anchors.fill: parent;
-				color: "#ffffff";
-
-				transitions: [
-					Transition {
-						from: "hidden";
-						to: "*";
-						NumberAnimation {
-							property: "opacity";
-							duration: 250 * anim_time_multiplier;
-						}
-                    },
-                    Transition {
-                        from: "shown";
-                        to: "hidden";
-                        NumberAnimation {
-                            property: "opacity";
-                            duration: 250 * anim_time_multiplier;
-                        }
-                    }
-				]
-
-				Keys.onUpPressed: sessions_list.to_prev();
-				Keys.onDownPressed: sessions_list.to_next();
-
-				property real button_space: Math.round(50 * _ratio);
-
-				Item {
-					anchors.top: parent.top;
-					anchors.right: parent.right;
-					anchors.left: parent.left;
-					height: sessions_list.vertical_white_space;
-
-					Button {
-						pixelSize: Math.round(20 * _ratio);
-						anchors.centerIn: parent;
-
-						text: qsTr("Add new session before the current");
-
-						onClicked: select_screen.show("top");
-					}
-				}
-
-				Item {
-					anchors.top: parent.top;
-					anchors.right: parent.right;
-					anchors.bottom: parent.bottom;
-					width: sessions_list.horizontal_white_space;
-
-					Button {
-						pixelSize: Math.round(20 * _ratio);
-						anchors.centerIn: parent;
-
-						text: qsTr("Remove session");
-						rotation: 270;
-
-						onClicked: select_screen.show("add_after");
-					}
-				}
-
-				Item {
-					anchors.right: parent.right;
-					anchors.bottom: parent.bottom;
-					anchors.left: parent.left;
-					height: sessions_list.vertical_white_space;
-
-					Button {
-						pixelSize: Math.round(20 * _ratio);
-						anchors.centerIn: parent;
-
-						text: qsTr("Add new session after the current");
-
-						onClicked: select_screen.show("bottom");
-					}
-				}
-
-				Item {
-					anchors.top: parent.top;
-					anchors.bottom: parent.bottom;
-					anchors.left: parent.left;
-					width: sessions_list.horizontal_white_space;
-
-					Button {
-						pixelSize: Math.round(20 * _ratio);
-						anchors.centerIn: parent;
-
-						text: qsTr("Clear session");
-						rotation: 90;
-
-						onClicked: select_screen.show("add_before");
-					}
+			Keys.onUpPressed: {
+				if (sessions_manage_mode == true
+						|| (event.modifiers == (Qt.ControlModifier | Qt.ShiftModifier))) {
+					sessions_list.to_prev();
 				}
 			}
 
-			SessionsList {
+			Keys.onDownPressed: {
+				if (sessions_manage_mode == true
+						|| (event.modifiers == (Qt.ControlModifier | Qt.ShiftModifier))) {
+					sessions_list.to_next();
+
+					event.accepted = true;
+				}
+				else {
+					console.log(Qt.ControlModifier | Qt.ShiftModifier, event.modifiers);
+				}
+			}
+
+			Sessions.SessionsList {
 				id: sessions_list;
 			}
 
-			SelectScreen {
-				id: select_screen;
-				state: "show";
-				visible: opacity != 0.0 && scale != 0.0;
+			// In the session manage mode the bottom border is not always visible
+			Rectangle {
+				visible: active_area.sessions_manage_mode;
+				anchors.left: parent.left;
+				anchors.right: parent.right;
+				anchors.bottom: parent.bottom;
 
-				Component.onCompleted: show("show", ME.SELECT_SCREEN_TYPE_PROFILE);
+				height: Math.round(2 * _ratio);
+				color: border_color;
 			}
 
-			Toast {
+			Sessions.Toast {
 				id: top_toast;
 				is_bottom: false;
 				beginY: -Math.round(50 * _ratio);
 				endY: 0;
 			}
 
-			Toast {
+			Sessions.Toast {
 				id: bottom_toast;
 				is_bottom: true;
 				beginY: parent.height;
@@ -210,7 +122,7 @@ Item {
 
 		}
 
-		Logo {
+		Header.Logo {
 			id: logo;
 			onClicked: paste_menu(about_menu, {y: y - Math.round(2 * _ratio)}, mouseX, mouseY);
 		}
@@ -219,42 +131,25 @@ Item {
 			id: title_bar_buttons;
 			anchors.right: parent.right;
 			anchors.top: parent.top;
-			anchors.margins: Math.round(2 * _ratio);
+			anchors.margins: Math.round(6 * _ratio);
+			spacing: Math.round(4 * _ratio);
 
-			TitleBarButton {
-				icon: "qrc:/images/minimize_button.svg";
-
-				function click () {
-					web_browser.showMinimized();
-				}
+			TitleBarButtons.Minimize {
+				//
 			}
 
-			TitleBarButton {
-				icon: "qrc:/images/maximize_button.svg";
-
-				function click () {
-					if (web_browser.isMaximized) {
-						web_browser.showNormal();
-					}
-					else {
-						web_browser.showMaximized();
-					}
-				}
+			TitleBarButtons.Maximize {
+				//
 			}
 
-			TitleBarButton {
-				icon: "qrc:/images/close_button.svg";
-
-				function click () {
-					web_browser.close();
-				}
+			TitleBarButtons.Close {
+				//
 			}
-		}
 
 		Component {
 			id: about_menu;
 
-			MenuLightning { }
+			ContextMenu.MenuLightning { }
 		}
 
 		MouseArea {
@@ -293,7 +188,7 @@ Item {
 	property int resize_border_weight: Math.round(6 * _ratio);
 	property int resize_angle_weight: Math.round(12 * _ratio);
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_tll;
 		visible: !web_browser.isMaximized;
 		anchors.left: parent.left;
@@ -304,7 +199,7 @@ Item {
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_tlt;
 		visible: !web_browser.isMaximized;
 		anchors.left: rsz_tll.right;
@@ -315,7 +210,7 @@ Item {
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_t;
 		visible: !web_browser.isMaximized;
 		anchors.left: rsz_tlt.right;
@@ -326,7 +221,7 @@ Item {
 		flag: MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_trt;
 		visible: !web_browser.isMaximized;
 		anchors.top: parent.top;
@@ -337,7 +232,7 @@ Item {
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_trr;
 		visible: !web_browser.isMaximized;
 		anchors.top: parent.top;
@@ -348,7 +243,7 @@ Item {
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_r;
 		visible: !web_browser.isMaximized;
 		anchors.top: rsz_trr.bottom;
@@ -359,7 +254,7 @@ Item {
 		flag: MOVE_FLAGS.H_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_brr;
 		visible: !web_browser.isMaximized;
 		anchors.right: parent.right;
@@ -370,7 +265,7 @@ Item {
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_brb;
 		visible: !web_browser.isMaximized;
 		anchors.right: rsz_brr.left;
@@ -381,7 +276,7 @@ Item {
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_b;
 		visible: !web_browser.isMaximized;
 		anchors.left: rsz_blb.right;
@@ -392,7 +287,7 @@ Item {
 		flag: MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_blb;
 		visible: !web_browser.isMaximized;
 		anchors.left: rsz_bll.right;
@@ -403,7 +298,7 @@ Item {
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_bll;
 		visible: !web_browser.isMaximized;
 		anchors.left: parent.left;
@@ -414,7 +309,7 @@ Item {
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
 
-	ResizeMoveMouseArea {
+	MainWindow.ResizeMoveMouseArea {
 		id: rsz_l;
 		visible: !web_browser.isMaximized;
 		anchors.top: rsz_tll.bottom;

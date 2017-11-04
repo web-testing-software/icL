@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 import "constants.js" as CONST
 
-ToolIcon {
+Base {
 	id: root;
 
 	alpha: reversed ? 1.0 : (containsMouse ? -0.01 : 0.0);

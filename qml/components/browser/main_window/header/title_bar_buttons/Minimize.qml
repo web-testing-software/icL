@@ -1,9 +1,7 @@
 import QtQuick 2.0
 
-ToolIcon {
+Base {
 	id: root;
-
-	alpha: reversed ? (containsMouse ? 2.0 : 1.0) : 0.0;
 
 	onAlphaChanged: canvas.requestPaint();
 	onWidthChanged: canvas.requestPaint();
@@ -20,23 +18,17 @@ ToolIcon {
 
 			ctx.scale(_ratio, _ratio);
 			ctx.strokeStyle = drawColor; //root.drawColor;
-			ctx.lineCap = "butt"; // butt round square
-			ctx.lineJoin = "bevel"; // milter bevel round
+			ctx.lineCap = "square"; // butt round square
+			ctx.lineJoin = "milter"; // milter bevel round
 			ctx.lineWidth = 2;
 
 			ctx.beginPath();
-			ctx.moveTo(4, 2);
-			ctx.lineTo(18, 10);
-			ctx.lineTo(4, 18);
 
-			if (alpha > 0) {
-				if (alpha >= 1) {
-					ctx.lineTo(4, 6);
-				}
-				else {
-					ctx.lineTo(4, 18 - 12 * alpha);
-				}
-			}
+			var key_y = 8 + alpha * 4;
+
+			ctx.moveTo(6, key_y);
+			ctx.lineTo(10, 12);
+			ctx.lineTo(14, key_y);
 
 			ctx.stroke();
 			ctx.restore();

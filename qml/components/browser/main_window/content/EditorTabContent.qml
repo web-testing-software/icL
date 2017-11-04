@@ -11,9 +11,9 @@ Rectangle {
 		anchors.fill: parent;
 
 //		url: "about:blank";
-		url: "https://gitlab.com/";
+		url: "https://yandex.ru/";
 
-		settings.autoLoadImages: false;
+//		settings.autoLoadImages: false;
 		settings.javascriptCanOpenWindows: false;
 		profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
 
@@ -22,4 +22,6 @@ Rectangle {
 //		onIconChanged: console.log(icon);
 //		Component.onCompleted: console.log(icon);
 	}
+
+	Keys.forwardTo: [active_area];
 }

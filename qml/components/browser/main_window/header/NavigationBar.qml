@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "../../ui/tool_icons";
+import "../../ui/tool_icons" as ToolIcons;
 import "../../ui/controls";
 
 Item {
@@ -8,20 +8,20 @@ Item {
 										 ? current_webview.url
 										 : "https://gitlab.com/lixcode/ic-lightning"; // For testing
 
-	BackToolIcon {
+	ToolIcons.Clear {
 		id: back;
 		anchors.top: parent.top;
 		anchors.left: parent.left;
 		anchors.leftMargin: Math.round(6 * _ratio);
 	}
 
-	RefreshStopToolIcon {
+	ToolIcons.RefreshStop {
 		id: stop_refresh;
 		anchors.top: parent.top;
 		anchors.left: back.right;
 	}
 
-	ForwardToolIcon {
+	ToolIcons.Forward {
 		id: forward;
 		anchors.top: parent.top;
 		anchors.left: stop_refresh.right;

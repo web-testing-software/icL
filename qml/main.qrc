@@ -37,16 +37,12 @@
         <file>images/adress_bar_icon.svg</file>
         <file>scripts/move_flags.js</file>
         <file>components/browser/main_window/ResizeMoveMouseArea.qml</file>
-        <file>images/maximize_button.svg</file>
-        <file>images/minimize_button.svg</file>
-        <file>images/restore_button.svg</file>
-        <file>images/close_button.svg</file>
         <file>components/browser/ui/AnimatedIconIterface.qml</file>
-        <file>components/browser/ui/tool_icons/BackToolIcon.qml</file>
-        <file>components/browser/ui/tool_icons/ToolIcon.qml</file>
-        <file>components/browser/ui/tool_icons/ForwardToolIcon.qml</file>
+        <file>components/browser/ui/tool_icons/Back.qml</file>
+        <file>components/browser/ui/tool_icons/Base.qml</file>
+        <file>components/browser/ui/tool_icons/Forward.qml</file>
         <file>components/browser/ui/tool_icons/constants.js</file>
-        <file>components/browser/ui/tool_icons/RefreshStopToolIcon.qml</file>
+        <file>components/browser/ui/tool_icons/RefreshStop.qml</file>
         <file>components/browser/ui/controls/Switch.qml</file>
         <file>components/browser/ui/controls/constants_controls.js</file>
         <file>components/browser/ui/highlighters/TabHighlight.qml</file>
@@ -69,5 +65,13 @@
         <file>components/browser/main_window/sessions/Toast.qml</file>
         <file>components/browser/main_window/sessions/WebSession.qml</file>
         <file>components/browser/main_window/sessions/SessionsList.qml</file>
+        <file>components/browser/ui/tool_icons/Add.qml</file>
+        <file>components/browser/ui/tool_icons/Clear.qml</file>
+        <file>components/browser/ui/tool_icons/Hover.qml</file>
+        <file>components/browser/main_window/header/title_bar_buttons/Minimize.qml</file>
+        <file>components/browser/main_window/header/title_bar_buttons/Base.qml</file>
+        <file>components/browser/main_window/header/title_bar_buttons/Maximize.qml</file>
+        <file>components/browser/ui/tool_icons/Close.qml</file>
+        <file>components/browser/main_window/header/title_bar_buttons/Close.qml</file>
     </qresource>
 </RCC>
