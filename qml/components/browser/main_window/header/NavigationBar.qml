@@ -8,7 +8,7 @@ Item {
 										 ? current_webview.url
 										 : "https://gitlab.com/lixcode/ic-lightning"; // For testing
 
-	ToolIcons.Clear {
+	ToolIcons.Back {
 		id: back;
 		anchors.top: parent.top;
 		anchors.left: parent.left;

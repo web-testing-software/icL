@@ -13,7 +13,6 @@ MouseArea {
 							   : helper.mix(primaryColor, secondaryColor, alpha);
 
 	hoverEnabled: true;
-	onClicked: reversed = !reversed;
 
 	Behavior on alpha {
 		NumberAnimation {

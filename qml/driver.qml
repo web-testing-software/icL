@@ -24,7 +24,7 @@ Item {
 	property color focus_color: "#003bc5";
 	property real focus_hue: 0.62;
 
-    property color border_color: "#cecece";
+	property color border_color: "#cecece";
 
 	property var current_webview: null;
 
@@ -122,9 +122,11 @@ Item {
 
 		}
 
-		Header.Logo {
+		TitleBarButtons.BackLightningMenu {
 			id: logo;
 			onClicked: paste_menu(about_menu, {y: y - Math.round(2 * _ratio)}, mouseX, mouseY);
+
+			need_back: active_area.sessions_manage_mode;
 		}
 
 		Row {
@@ -145,6 +147,7 @@ Item {
 			TitleBarButtons.Close {
 				//
 			}
+		}
 
 		Component {
 			id: about_menu;
@@ -193,8 +196,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.left: parent.left;
 		anchors.top: parent.top;
-		width: resize_border_weight;
-		height: resize_angle_weight;
+		width: parent.resize_border_weight;
+		height: parent.resize_angle_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -204,8 +207,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.left: rsz_tll.right;
 		anchors.top: parent.top;
-		width: resize_angle_weight;
-		height: resize_border_weight;
+		width: parent.resize_angle_weight;
+		height: parent.resize_border_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -216,7 +219,7 @@ Item {
 		anchors.left: rsz_tlt.right;
 		anchors.right: rsz_trt.left;
 		anchors.top: parent.top;
-		height: resize_border_weight;
+		height: parent.resize_border_weight;
 		cursorShape: Qt.SizeVerCursor;
 		flag: MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -226,8 +229,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.top: parent.top;
 		anchors.right: rsz_trr.left;
-		width: resize_angle_weight;
-		height: resize_border_weight;
+		width: parent.resize_angle_weight;
+		height: parent.resize_border_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -237,8 +240,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.top: parent.top;
 		anchors.right: parent.right;
-		width: resize_border_weight;
-		height: resize_angle_weight;
+		width: parent.resize_border_weight;
+		height: parent.resize_angle_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -249,7 +252,7 @@ Item {
 		anchors.top: rsz_trr.bottom;
 		anchors.bottom: rsz_brr.top;
 		anchors.right: parent.right;
-		width: resize_border_weight;
+		width: parent.resize_border_weight;
 		cursorShape: Qt.SizeHorCursor;
 		flag: MOVE_FLAGS.H_RESIZE;
 	}
@@ -259,8 +262,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.right: parent.right;
 		anchors.bottom: parent.bottom;
-		width: resize_border_weight;
-		height: resize_angle_weight;
+		width: parent.resize_border_weight;
+		height: parent.resize_angle_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -270,8 +273,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.right: rsz_brr.left;
 		anchors.bottom: parent.bottom;
-		width: resize_angle_weight;
-		height: resize_border_weight;
+		width: parent.resize_angle_weight;
+		height: parent.resize_border_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -282,7 +285,7 @@ Item {
 		anchors.left: rsz_blb.right;
 		anchors.right: rsz_brb.left;
 		anchors.bottom: parent.bottom;
-		height: resize_angle_weight;
+		height: parent.resize_angle_weight;
 		cursorShape: Qt.SizeVerCursor;
 		flag: MOVE_FLAGS.V_RESIZE;
 	}
@@ -292,8 +295,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.left: rsz_bll.right;
 		anchors.bottom: parent.bottom;
-		width: resize_angle_weight;
-		height: resize_border_weight;
+		width: parent.resize_angle_weight;
+		height: parent.resize_border_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -303,8 +306,8 @@ Item {
 		visible: !web_browser.isMaximized;
 		anchors.left: parent.left;
 		anchors.bottom: parent.bottom;
-		width: resize_border_weight;
-		height: resize_angle_weight;
+		width: parent.resize_border_weight;
+		height: parent.resize_angle_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -315,7 +318,7 @@ Item {
 		anchors.top: rsz_tll.bottom;
 		anchors.bottom: rsz_bll.top;
 		anchors.left: parent.left;
-		width: resize_border_weight;
+		width: parent.resize_border_weight;
 		cursorShape: Qt.SizeHorCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE;
 	}

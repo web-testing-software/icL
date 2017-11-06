@@ -3,10 +3,8 @@
         <file>driver.qml</file>
         <file>scripts/autorun_init.js</file>
         <file>scripts/my_enums.js</file>
-        <file>images/icLightning.svg</file>
         <file>components/browser/contextmenu/MenuBase.qml</file>
         <file>components/browser/contextmenu/MenuLightning.qml</file>
-        <file>images/icLightning_black.svg</file>
         <file>images/new_tab.svg</file>
         <file>images/blank_favicon.svg</file>
         <file>components/editor/language/IfElse.qml</file>
@@ -73,5 +71,6 @@
         <file>components/browser/main_window/header/title_bar_buttons/Maximize.qml</file>
         <file>components/browser/ui/tool_icons/Close.qml</file>
         <file>components/browser/main_window/header/title_bar_buttons/Close.qml</file>
+        <file>components/browser/main_window/header/title_bar_buttons/BackLightningMenu.qml</file>
     </qresource>
 </RCC>

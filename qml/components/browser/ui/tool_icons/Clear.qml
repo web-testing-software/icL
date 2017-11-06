@@ -2,6 +2,9 @@ import QtQuick 2.0
 
 Hover {
 	id: root;
+	primaryColor: "#bbbbbb";
+	secondaryColor: "#5b5b5b";
+	drawColor: clean ? helper.mix(primaryColor, secondaryColor, alpha) : secondaryColor;
 
 	onAlphaChanged: canvas.requestPaint();
 	onWidthChanged: canvas.requestPaint();

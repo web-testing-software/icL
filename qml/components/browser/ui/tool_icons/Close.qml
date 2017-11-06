@@ -4,6 +4,9 @@ import "constants.js" as CONST;
 
 Base {
 	id: root;
+	primaryColor: "#5b5b5b";
+	secondaryColor: "#b60000";
+	hoverColor: "#5b5b5b";
 
 	alpha: reversed ? 2.0 : (containsMouse ? 1.0 : 0.0);
 

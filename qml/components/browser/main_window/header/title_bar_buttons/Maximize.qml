@@ -32,7 +32,7 @@ Base {
 
 			ctx.scale(_ratio, _ratio);
 			ctx.strokeStyle = drawColor; //root.drawColor;
-			ctx.lineCap = "butt"; // butt round square
+			ctx.lineCap = "square"; // butt round square
 			ctx.lineJoin = "milter"; // milter bevel round
 			ctx.lineWidth = 2;
 

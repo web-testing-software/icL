@@ -6,6 +6,8 @@ Base {
 	onAlphaChanged: canvas.requestPaint();
 	onWidthChanged: canvas.requestPaint();
 
+	onClicked: web_browser.showMinimized();
+
 	Canvas {
 		id: canvas;
 		anchors.fill: parent;

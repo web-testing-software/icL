@@ -1,9 +1,10 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
-import "../"
-import "../content";
-import "../header";
+import "../" as MainWindow
+import "../content" as Content;
+import "../header" as Header;
+import "../../ui/tool_icons" as ToolIcons;
 
 import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
 
@@ -96,15 +97,13 @@ SessionBase {
 										? max_tab_width
 										: (parent.width - new_tab_button.width) / tab_number;
 
-				Tab {
+				Header.Tab {
 					id: test_tab;
 					active: true;
 				}
-				Tab {
-					//					id: test_tab;
+				Header.Tab {
 				}
-				Tab {
-					//					id: test_tab;
+				Header.Tab {
 				}
 			}
 
@@ -181,7 +180,7 @@ SessionBase {
 		height: Math.round(36 * _ratio);
 		color: "white";
 
-		NavigationBar {
+		Header.NavigationBar {
 			id: navigation_bar;
 		}
 	}
@@ -206,12 +205,12 @@ SessionBase {
 
 			anchors.fill: parent;
 
-			EditorTabContent {
+			Content.EditorTabContent {
 			}
 		}
 	}
 
-	MouseField {
+	MainWindow.MouseField {
 		anchors.fill: parent;
 		visible: active_area.sessions_manage_mode;
 
@@ -224,7 +223,7 @@ SessionBase {
 			}
 		}
 
-		ResizeMoveMouseArea {
+		MainWindow.ResizeMoveMouseArea {
 			id: move_area;
 			anchors.left: parent.left;
 			anchors.right: parent.right;
@@ -238,6 +237,33 @@ SessionBase {
 
 		Item {
 			anchors.fill: move_area;
+			opacity: sessions_list.current_item.next == root ? 1.0 : 0.0;
+			visible: opacity != 0;
+
+			Behavior on opacity {
+				NumberAnimation {
+					duration: 250 * anim_time_multiplier;
+				}
+			}
+
+			ToolIcons.Add {
+				id: add_icon;
+				anchors.leftMargin: Math.round(8 * _ratio);
+				anchors.left: parent.left;
+				anchors.verticalCenter: parent.verticalCenter;
+			}
+
+			ToolIcons.Close {
+				id: close_icon;
+				anchors.right: parent.right;
+				anchors.verticalCenter: parent.verticalCenter;
+			}
+
+			ToolIcons.Clear {
+				id: clear_icon;
+				anchors.right: close_icon.left;
+				anchors.verticalCenter: parent.verticalCenter;
+			}
 		}
 	}
 }

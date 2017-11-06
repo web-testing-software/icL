@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import "../main_window/header/title_bar_buttons" as TitleBarButtons
+
 MenuBase {
 	id: root;
 	content: lightning;
@@ -107,12 +109,12 @@ MenuBase {
 
 		// Content
 
-		Image {
+		TitleBarButtons.BackLightningMenu {
 			id: logo;
 			anchors.top: border_tt.bottom;
 			anchors.left: border_l.right;
-			source: "qrc:/images/icLightning_black.svg";
-			sourceSize: Qt.size(Math.round(30 * _ratio), Math.round(40 * _ratio));
+			alpha: 1.0;
+			drawColor: "#000000";
 		}
 
 		Text {
