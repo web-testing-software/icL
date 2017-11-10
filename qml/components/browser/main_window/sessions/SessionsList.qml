@@ -4,16 +4,10 @@ Item {
 	id: root;
 	anchors.fill: parent;
 
-//	clip: true;
-//	scale: 1.0;
-//	state: active_area.sessions_manage_mode ? "micro" : active_area.cancel_session ? "canceled" : "";
-
-	property real preffered_scale: Math.min((width - 100 * _ratio) / width, (height - 100 * _ratio) / height);
-	property real horizontal_white_space: 0.5 * width * (1 - preffered_scale);
-	property real vertical_white_space: 0.5 * height * (1 - preffered_scale);
-
-	property int current_index: 0;
+	property int ith: 0;
 	property SessionBase current_item: select_screen;
+
+	property bool manage_mode: false;
 
 	Component {
 		id: session_delegate;
@@ -25,37 +19,33 @@ Item {
 
 	SelectScreen {
 		id: select_screen;
+		z: 1;
 	}
 
-	states: [
-		State {
-			name: "micro";
-			PropertyChanges {
-				target: sessions_list;
-				scale: preffered_scale;
-			}
-		},
-		State {
-			name: "canceled";
-			PropertyChanges {
-				target: sessions_list;
-				scale: 1;
-			}
+	function updateStateForItems () {
+		current_item.updateState();
+		if (!!current_item.prev) {
+			current_item.prev.updateState();
+//			if (!!current_item.prev.prev) {
+//				current_item.prev.prev.updateState();
+//			}
 		}
-	]
-
-	transitions: Transition {
-		from: "*";
-		to: "micro,canceled";
-		NumberAnimation {
-			property: "scale";
-			duration: 250 * anim_time_multiplier;
+		if (!!current_item.next) {
+			current_item.next.updateState();
+			if (!!current_item.next.next) {
+				current_item.next.next.updateState();
+				if (!!current_item.next.next.next) {
+					current_item.next.next.next.updateState();
+				}
+			}
 		}
 	}
+
+	onCurrent_itemChanged: updateStateForItems();
+	onManage_modeChanged: updateStateForItems();
 
 	function to_prev () {
 		if (!!current_item.prev) {
-			current_item.prev.visible = true;
 			current_item.shown = false;
 			current_item = current_item.prev;
 		}
@@ -63,31 +53,23 @@ Item {
 
 	function to_next () {
 		if (!!current_item.next) {
-			if (active_area.sessions_manage_mode && !current_item.next.next) {
+			if (manage_mode && !current_item.next.next) {
 				return;
 			}
 
-			current_item.next.visible = true;
 			current_item = current_item.next;
 			current_item.shown = true;
-
-			if (active_area.sessions_manage_mode
-					&& !!current_item.next
-					&& !!current_item.next.next) {
-				current_item.next.next.visible = true;
-			}
 		}
 	}
 
 	function fix_z_index () {
-		var it = current_item.prev;
+		var it = current_item;
 
-		if (current_item.prev) {
-			it = current_item.prev
+		if (!!current_item.prev) {
+			it.z = current_item.prev.z >= 999 ? 2 : current_item.prev.z + 1;
 		}
 		else {
-			current_item.z = 0;
-			it = current_item;
+			current_item.z = 1;
 		}
 
 		while (!!it.next) {
@@ -99,48 +81,52 @@ Item {
 	function add_new_session () {
 		var obj = session_delegate.createObject(root, {});
 
-		if (current_item == null) {
-			current_item = obj;
-			current_index = 0;
-			current_item.z = 1;
+		var after = select_screen.add_after;
+
+		if (!!after.next) {
+			after.next.prev = obj;
 		}
-		else if (select_screen.add_after_current) {
-			if (!!current_item.next) {
-				current_item.next.prev = obj;
-			}
-			obj.prev = current_item;
-			obj.next = current_item.next;
-			current_item.next = obj;
-			current_item = obj;
+		obj.prev = after;
+		obj.next = after.next;
+		after.next = obj;
+		obj.ith = ++ith;
+		after.shown = true;
+		if (!!after.prev) after.prev.shown = true;
+		current_item = obj;
 
-			fix_z_index();
+		fix_z_index();
+
+		manage_mode = false;
+		if (select_screen.z > 0) {
+			select_screen.hide();
 		}
-		else {
-			current_index.shown = false;
-
-			if (!!current_item.prev) {
-				current_item.prev.next = obj;
-			}
-			obj.next = current_item;
-			obj.prev = current_item.prev;
-			current_item.prev = obj;
-			current_item = obj;
-
-			fix_z_index();
-		}
-
-		active_area.cancel_session = false;
-		active_area.sessions_manage_mode = false;
-
-		select_screen.hide();
 
 		active_area.forceActiveFocus();
 	}
 
-	Component.onCompleted: {
-		add_new_session();
-		add_new_session();
-		add_new_session();
-		add_new_session();
+	function enter_manage_mode () {
+		to_prev();
+
+		if (select_screen.z > 1) {
+			select_screen.hide();
+		}
+
+		manage_mode = true;
+		forceActiveFocus();
 	}
+
+	function exit_manage_mode (steps) {
+		manage_mode = false;
+
+		for (var i = 0; i < steps; i++) {
+			to_next();
+		}
+	}
+
+//	Component.onCompleted: {
+//		add_new_session();
+//		add_new_session();
+//		add_new_session();
+//		add_new_session();
+//	}
 }

@@ -23,7 +23,6 @@ WebBrowser::WebBrowser (QWidget *parent)
 	resize (800, 600);
 	setMinimumSize (QSize (400, 400));
 
-
 	// I don't use a qt quick window because it can't be move be mouse by default
 	// This is necessary for frameless window
 	QUrl source_mainqml ("qrc:/driver.qml");
@@ -44,6 +43,8 @@ WebBrowser::WebBrowser (QWidget *parent)
 	setWindowFlags (windowFlags () | Qt::FramelessWindowHint);
 	setAttribute (Qt::WA_NoSystemBackground, true);
 	setAttribute (Qt::WA_TranslucentBackground, true);
+
+//	showFullScreen ();
 }
 
 WebBrowser::~WebBrowser () {

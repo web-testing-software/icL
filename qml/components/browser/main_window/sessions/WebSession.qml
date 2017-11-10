@@ -6,10 +6,13 @@ import "../content" as Content;
 import "../header" as Header;
 import "../../ui/tool_icons" as ToolIcons;
 
+import "../../../../scripts/my_enums.js" as ME;
 import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
 
 SessionBase {
 	id: root;
+
+	property int ith: 0;
 
 	Rectangle {
 		id: top_side;
@@ -100,6 +103,7 @@ SessionBase {
 				Header.Tab {
 					id: test_tab;
 					active: true;
+					default_name: "session " + ith;
 				}
 				Header.Tab {
 				}
@@ -117,6 +121,7 @@ SessionBase {
 
 				Image {
 					id: new_tab;
+					smooth: false;
 					source: "qrc:/images/new_tab.svg";
 					sourceSize: Qt.size(Math.round(14 * _ratio), Math.round(14 * _ratio));
 					anchors.centerIn: parent;
@@ -210,18 +215,7 @@ SessionBase {
 		}
 	}
 
-	MainWindow.MouseField {
-		anchors.fill: parent;
-		visible: active_area.sessions_manage_mode;
-
-		onWheel: {
-			if (wheel.angleDelta.y < 0) {
-				sessions_list.to_next();
-			}
-			else {
-				sessions_list.to_prev();
-			}
-		}
+	SessionManageLayer {
 
 		MainWindow.ResizeMoveMouseArea {
 			id: move_area;
@@ -242,7 +236,7 @@ SessionBase {
 
 			Behavior on opacity {
 				NumberAnimation {
-					duration: 250 * anim_time_multiplier;
+					duration: 240 * anim_time_multiplier;
 				}
 			}
 
@@ -251,12 +245,20 @@ SessionBase {
 				anchors.leftMargin: Math.round(8 * _ratio);
 				anchors.left: parent.left;
 				anchors.verticalCenter: parent.verticalCenter;
+
+				onClicked: {
+					select_screen.show(current_item.next, "hidden1", ME.SELECT_SCREEN_TYPE_PROFILE);
+				}
 			}
 
 			ToolIcons.Close {
 				id: close_icon;
 				anchors.right: parent.right;
 				anchors.verticalCenter: parent.verticalCenter;
+
+				onClicked: {
+					root.state = "closed";
+				}
 			}
 
 			ToolIcons.Clear {

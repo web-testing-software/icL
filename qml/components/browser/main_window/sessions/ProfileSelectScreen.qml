@@ -7,6 +7,12 @@ Item {
 	id: root;
 	anchors.fill: parent;
 
+	function add_new_session () {
+//		select_screen.state = "shown2";
+		select_screen.z = 999;
+		sessions_list.add_new_session();
+	}
+
 	Item {
 		id: avatar;
 		width: Math.round(200 * _ratio);
@@ -15,6 +21,7 @@ Item {
 
 		Image {
 			id: avatar_mask;
+			smooth: false;
 			sourceSize: Qt.size(avatar.width, avatar.height);
 			source: "qrc:/images/avatar_mask.svg";
 			visible: false;
@@ -22,6 +29,7 @@ Item {
 
 		Image {
 			id: avatar_image;
+			smooth: false;
 			sourceSize: avatar_mask.sourceSize;
 			source: "qrc:/images/default_avatar.svg";
 			visible: false;
@@ -55,8 +63,8 @@ Item {
 		anchors.topMargin: Math.round(10 * _ratio);
 		anchors.horizontalCenter: username.horizontalCenter;
 
-		onClicked: sessions_list.add_new_session();
+		onClicked: add_new_session();
 	}
 
-	Keys.onReturnPressed: sessions_list.add_new_session();
+	Keys.onReturnPressed: add_new_session();
 }

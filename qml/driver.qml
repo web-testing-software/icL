@@ -49,38 +49,27 @@ Item {
 			anchors.fill: parent;
 			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
 
-			property bool sessions_manage_mode: false;
-			property bool cancel_session: false;
-
 			Keys.onTabPressed: {
-				if (event.modifiers & Qt.ControlModifier && !sessions_manage_mode) {
-					cancel_session = false;
-
-					sessions_list.to_prev();
-					sessions_manage_mode = true;
-					sessions_list.forceActiveFocus();
+				if (event.modifiers & Qt.ControlModifier && !sessions_list.manage_mode) {
+					sessions_list.enter_manage_mode();
 				}
 			}
 
 			Keys.onEscapePressed: {
-				if (sessions_manage_mode == true) {
-
-					cancel_session = true;
-					sessions_manage_mode = false;
-
-					sessions_list.to_next();
+				if (sessions_list.manage_mode == true) {
+					sessions_list.exit_manage_mode(1);
 				}
 			}
 
 			Keys.onUpPressed: {
-				if (sessions_manage_mode == true
+				if (sessions_list.manage_mode == true
 						|| (event.modifiers == (Qt.ControlModifier | Qt.ShiftModifier))) {
 					sessions_list.to_prev();
 				}
 			}
 
 			Keys.onDownPressed: {
-				if (sessions_manage_mode == true
+				if (sessions_list.manage_mode == true
 						|| (event.modifiers == (Qt.ControlModifier | Qt.ShiftModifier))) {
 					sessions_list.to_next();
 
@@ -97,7 +86,7 @@ Item {
 
 			// In the session manage mode the bottom border is not always visible
 			Rectangle {
-				visible: active_area.sessions_manage_mode;
+				visible: sessions_list.manage_mode;
 				anchors.left: parent.left;
 				anchors.right: parent.right;
 				anchors.bottom: parent.bottom;
@@ -126,7 +115,7 @@ Item {
 			id: logo;
 			onClicked: paste_menu(about_menu, {y: y - Math.round(2 * _ratio)}, mouseX, mouseY);
 
-			need_back: active_area.sessions_manage_mode;
+			need_back: sessions_list.manage_mode;
 		}
 
 		Row {

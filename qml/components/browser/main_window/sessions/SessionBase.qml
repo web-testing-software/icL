@@ -14,7 +14,7 @@ ResizeMoveMouseArea {
 	layer.effect: DropShadow {
 		horizontalOffset: 0;
 		verticalOffset: 0;
-		radius: Math.round(5 * _ratio);
+		radius: root.visible ? Math.round(5 * _ratio) : 0;
 		color: "#80000000";
 	}
 
@@ -24,6 +24,9 @@ ResizeMoveMouseArea {
 	property Item next: null;
 	property bool deleted: false;
 	property bool shown: true;
+
+	property bool self_visible: true;
+	property bool next_visible: true;
 
 	states: [
 		State {
@@ -56,17 +59,41 @@ ResizeMoveMouseArea {
 		}
 	]
 
-	state: shown
-		   ? "shown"
-		   : (active_area.sessions_manage_mode
-			  ? (prev == current_item
-				 ? "second"
-				 : !!prev && prev.prev == current_item
-				   ? "third"
-				   : "hidden")
-			  : "hidden");
+	state: "shown";
 
-	visible: (!next || next.y != 0) && y != height;
+	function updateState () {
+		if (shown) {
+			state = "shown";
+		}
+		else {
+			if (manage_mode) {
+				if (prev == current_item) {
+					state = "second";
+				}
+				else if (!!prev && prev.prev == current_item) {
+					state = "third";
+				}
+				else {
+					state = "hidden";
+				}
+			}
+			else {
+				state = "hidden";
+			}
+		}
+	}
+
+	onShownChanged: updateState();
+
+	visible: self_visible && next_visible;
+
+	onYChanged: {
+		self_visible = y < height;
+
+		if (!!prev){
+			prev.next_visible = y != prev.y;
+		}
+	}
 
 	transitions: [
 		Transition {
@@ -75,7 +102,7 @@ ResizeMoveMouseArea {
 			NumberAnimation {
 				target: root;
 				property: "y";
-				duration: 250 * anim_time_multiplier;
+				duration: 240 * anim_time_multiplier;
 			}
 		}
 	]

@@ -37,7 +37,7 @@ Rectangle {
 			to: "shown,hidden"
 			NumberAnimation {
 				property: "y";
-				duration: 250 * anim_time_multiplier;
+				duration: 240 * anim_time_multiplier;
 			}
 		}
 	]

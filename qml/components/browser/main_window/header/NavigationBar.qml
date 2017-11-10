@@ -29,6 +29,7 @@ Item {
 
 	Image {
 		id: adress_bar_icon;
+		smooth: false;
 		anchors.left: forward.right;
 		anchors.leftMargin: Math.round(12 * _ratio);
 		anchors.verticalCenter: forward.verticalCenter;

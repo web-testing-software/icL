@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 
 import "../"
 
@@ -11,21 +12,26 @@ SessionBase {
 	transformOrigin: Item.Top;
 	layer.enabled: true;
 
-	property bool add_after_current: true;
+	visible: ((!next || next.y > 0) && z == 0) || z > 0;
+	layer.effect: null;
 
-	Component.onCompleted: show("show", ME.SELECT_SCREEN_TYPE_PROFILE);
+	property point center: Qt.point(width / 2, height / 2);
+	property real max_radius: Math.max(width, height);
+	property real progress: 1.0;
 
-	Rectangle {
-		anchors.fill: parent;
-		color: "#e5e5e5";
+	property var add_after: root;
+
+	state: "shown";
+
+//	Component.onCompleted: show("shown", ME.SELECT_SCREEN_TYPE_PROFILE);
+	function updateState () {
+		state = "shown2";
 	}
 
-	ResizeMoveMouseArea {
-		anchors.fill: parent;
-		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
-	}
+	function show (after, _state, what) {
 
-	function show (_state, what) {
+		manage_mode = false;
+		add_after = after;
 
 		switch (what) {
 		case ME.SELECT_SCREEN_TYPE_PROFILE:
@@ -33,141 +39,168 @@ SessionBase {
 			break;
 		}
 
-		switch (_state) {
-		case "top":
-		case "add_after":
-			transformOrigin = Item.Top;
-			break;
-
-		case "bottom":
-		case "add_before":
-			transformOrigin = Item.Bottom;
-			break;
-
-		case "key_trigger":
-			transformOrigin = Item.Center;
-			break;
-		}
-
 		state = _state;
-		state = "show";
+		z = 999;
+		state = "shown2";
 	}
 
 	function hide () {
-		transformOrigin = Item.Center;
-		state = "hide";
+		state = "hidden0";
 	}
 
-	Image {
-		id: bg_icon;
-
-		anchors.centerIn: parent;
-		source: "qrc:/images/bg_icon.svg";
-		sourceSize: Qt.size(Math.round(400 * _ratio), Math.round(400 * _ratio));
-	}
-
-	ProfileSelectScreen {
-		id: profile_ss;
-	}
-
-	Image {
-		id: qt_logo;
-		source: "qrc:/images/qt_logo.svg";
-		sourceSize: Qt.size(Math.round(54.5 * _ratio), Math.round(40 * _ratio));
-		anchors.right: parent.right;
-		anchors.bottom: parent.bottom;
-		anchors.margins: Math.round(10 * _ratio);
-	}
-
-	Text {
-		id: powered_by;
-		anchors.right: qt_logo.left;
-		anchors.rightMargin: Math.round(10 * _ratio);
-		anchors.verticalCenter: qt_logo.verticalCenter;
-
-		text: qsTr("Powered by");
-		font.pixelSize: Math.round(18 * _ratio);
-		font.family: "Ubuntu";
+	onProgressChanged: {
+		if (progress == 0.0 && state == "hidden0") {
+			z = 1;
+			state = "shown2";
+		}
+		canvas_mask.requestPaint();
 	}
 
 	states: [
 		State {
-			name: "show";
+			name: "hidden0";
 			PropertyChanges {
 				target: root;
-				y: 0;
-				scale: 1.0;
-				opacity: 1;
+				progress: 0.0;
 			}
 		},
 		State {
-			name: "hide";
-			PropertyChanges {
-				target: root
-				scale: 1.2;
-				opacity: 0;
-			}
-		},
-		State {
-			name: "top";
+			name: "hidden1";
 			PropertyChanges {
 				target: root;
-				y: 25 * _ratio;
-				scale: 0.0;
+				progress: 0.0;
 			}
 		},
 		State {
-			name: "bottom";
+			name: "shown2";
 			PropertyChanges {
 				target: root;
-				y: -25 * _ratio;
-				scale: 0.0;
-			}
-		},
-		State {
-			name: "add_after";
-			PropertyChanges {
-				target: root;
-				opacity: 0;
-				y: 0;
-				scale: (root.height - 50 * _ratio) / root.height;
-			}
-		},
-		State {
-			name: "add_before";
-			PropertyChanges {
-				target: root;
-				opacity: 0;
-				y: 50 * _ratio;
-				scale: (root.height - 50 * _ratio) / root.height;
-			}
-		},
-		State {
-			name: "key_trigger";
-			PropertyChanges {
-				target: root
-				opacity: 0;
-				scale: 0.8;
+				progress: 1.0;
 			}
 		}
 	]
 
 	transitions: [
 		Transition {
-			from: "top,bottom,add_after,add_before";
-			to: "show";
+			from: "shown2,hidden1"
+			to: "hidden0,shown2"
+
 			NumberAnimation {
-				properties: "y,scale,opacity";
-				duration: 250 * anim_time_multiplier;
+				target: root;
+				property: "progress"
+				duration: 240 * anim_time_multiplier;
 			}
 		}/*,
 		Transition {
-			from: "show"
-			to: "hide"
+			from: ""
+			to: ""
+
 			NumberAnimation {
-				properties: "scale,opacity";
-				duration: 250 * anim_time_multiplier;
+				target: root;
+				property: "progress"
+				duration: 240 * anim_time_multiplier;
 			}
 		}*/
 	]
+
+	Item {
+		id: content;
+		anchors.fill: parent;
+		visible: !opacity_mask.visible;
+
+		Rectangle {
+			anchors.fill: parent;
+			color: "#e5e5e5";
+		}
+
+		ResizeMoveMouseArea {
+			anchors.fill: parent;
+			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
+		}
+
+		Image {
+			id: bg_icon;
+
+			smooth: false;
+			anchors.centerIn: parent;
+			source: "qrc:/images/bg_icon.svg";
+			sourceSize: Qt.size(Math.round(400 * _ratio), Math.round(400 * _ratio));
+		}
+
+		ProfileSelectScreen {
+			id: profile_ss;
+		}
+
+		Image {
+			id: qt_logo;
+			smooth: false;
+			source: "qrc:/images/qt_logo.svg";
+			sourceSize: Qt.size(Math.round(54.5 * _ratio), Math.round(40 * _ratio));
+			anchors.right: parent.right;
+			anchors.bottom: parent.bottom;
+			anchors.margins: Math.round(10 * _ratio);
+		}
+
+		Text {
+			id: powered_by;
+			anchors.right: qt_logo.left;
+			anchors.rightMargin: Math.round(10 * _ratio);
+			anchors.verticalCenter: qt_logo.verticalCenter;
+
+			text: qsTr("Powered by");
+			font.pixelSize: Math.round(18 * _ratio);
+			font.family: "Ubuntu";
+		}
+	}
+
+	Canvas {
+		id: canvas_mask;
+		anchors.fill: parent;
+		layer.enabled: true;
+
+		onPaint: {
+			var ctx = getContext("2d");
+			var radius = max_radius * progress;
+			var radius2 = radius * progress;
+
+			ctx.clearRect(0, 0, root.width, root.height);
+
+			if (current_item == root && !!next) {
+				ctx.fillRect(0, 0, width, next.y);
+			}
+
+			ctx.beginPath();
+			ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+			ctx.moveTo(center.x, center.y - radius);
+			ctx.lineTo(center.x + radius, center.y);
+			ctx.lineTo(center.x, center.y + radius);
+			ctx.lineTo(center.x - radius, center.y);
+			ctx.fill();
+
+
+			ctx.beginPath();
+			ctx.fillStyle = "rgba(255, 255, 255, 1)";
+			ctx.moveTo(center.x, center.y - radius2);
+			ctx.lineTo(center.x + radius2, center.y);
+			ctx.lineTo(center.x, center.y + radius2);
+			ctx.lineTo(center.x - radius2, center.y);
+			ctx.fill();
+		}
+
+		visible: false;
+	}
+
+	OpacityMask {
+		id: opacity_mask;
+		anchors.fill: parent;
+		source: content;
+		maskSource: canvas_mask;
+		visible: progress != 1.0;
+//		visible: false;
+	}
+
+	SessionManageLayer {
+		onClicked: add_after = root;
+	}
+
 }

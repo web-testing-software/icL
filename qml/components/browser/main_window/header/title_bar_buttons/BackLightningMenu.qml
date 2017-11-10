@@ -38,17 +38,7 @@ Ui.AnimatedIconIterface {
 
 			ctx.beginPath();
 
-			if (alpha == 0) {
-				ctx.moveTo(14, 2);
-				ctx.lineTo(22, 2);
-				ctx.lineTo(12, 20);
-				ctx.lineTo(26, 20);
-				ctx.lineTo(8, 38);
-				ctx.lineTo(14, 25);
-				ctx.lineTo(4, 25);
-				ctx.lineTo(11.556, 8);
-			}
-			else if (alpha > 0) {
+			if (alpha > 0) {
 
 				// Top line
 				if (alpha < 0.360097) {

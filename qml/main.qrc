@@ -52,11 +52,8 @@
         <file>components/browser/main_window/MouseField.qml</file>
         <file>components/browser/main_window/content/EditorTabContent.qml</file>
         <file>components/browser/main_window/content/NewTabContent.qml</file>
-        <file>components/browser/main_window/header/BarButton.qml</file>
-        <file>components/browser/main_window/header/Logo.qml</file>
         <file>components/browser/main_window/header/NavigationBar.qml</file>
         <file>components/browser/main_window/header/Tab.qml</file>
-        <file>components/browser/main_window/header/TitleBarButton.qml</file>
         <file>components/browser/main_window/sessions/ProfileSelectScreen.qml</file>
         <file>components/browser/main_window/sessions/SelectScreen.qml</file>
         <file>components/browser/main_window/sessions/SessionBase.qml</file>
@@ -72,5 +69,6 @@
         <file>components/browser/ui/tool_icons/Close.qml</file>
         <file>components/browser/main_window/header/title_bar_buttons/Close.qml</file>
         <file>components/browser/main_window/header/title_bar_buttons/BackLightningMenu.qml</file>
+        <file>components/browser/main_window/sessions/SessionManageLayer.qml</file>
     </qresource>
 </RCC>
