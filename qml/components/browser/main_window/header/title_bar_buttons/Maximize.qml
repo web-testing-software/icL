@@ -5,18 +5,18 @@ import "../../../ui/controls/constants_controls.js" as CONST;
 Base {
 	id: root;
 
-	property bool is_maximized: web_browser.isMaximized;
+	property bool is_maximized: win.isMaximized;
 
 	onAlphaChanged: canvas.requestPaint();
 	onWidthChanged: canvas.requestPaint();
 	onIs_maximizedChanged: canvas.requestPaint();
 
 	onClicked: {
-		if (web_browser.isMaximized) {
-			web_browser.showNormal();
+		if (is_maximized) {
+			win.showNormal();
 		}
 		else {
-			web_browser.showMaximized();
+			win.showMaximized();
 		}
 	}
 

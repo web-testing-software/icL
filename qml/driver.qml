@@ -13,8 +13,13 @@ import "components/browser/ui/controls" as Controls;
 import "scripts/my_enums.js" as ME;
 import "scripts/move_flags.js" as MOVE_FLAGS;
 
-Item {
+Window {
 	id: win;
+
+	width: 800;
+	height: 600;
+	visible: true;
+	flags: Qt.SubWindow | Qt.Tool | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint;
 
 	property string app_version: "1.0.0 dev";
 	property real _ratio: Math.max(Screen.pixelDensity, 5.5) / 5.5;
@@ -26,6 +31,9 @@ Item {
 
 	property color border_color: "#cecece";
 
+	color: "transparent";
+
+	property bool isMaximized: visibility == Window.Maximized;
 	property var current_webview: null;
 
 	function paste_menu (component, properties, x, y) {
@@ -40,7 +48,7 @@ Item {
 		layer.enabled: true;
 
 		anchors.fill: parent;
-		anchors.margins: web_browser.isMaximized ? 0 : Math.round(4 * _ratio);
+		anchors.margins: win.isMaximized ? 0 : Math.round(4 * _ratio);
 
 		MainWindow.ResizeMoveMouseArea {
 			id: active_area;
@@ -166,7 +174,7 @@ Item {
 	}
 
 	DropShadow {
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.fill: win_rectangle;
 		radius: win_rectangle.anchors.margins;
 		color: "#80000000";
@@ -182,7 +190,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_tll;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.left: parent.left;
 		anchors.top: parent.top;
 		width: parent.resize_border_weight;
@@ -193,7 +201,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_tlt;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.left: rsz_tll.right;
 		anchors.top: parent.top;
 		width: parent.resize_angle_weight;
@@ -204,7 +212,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_t;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.left: rsz_tlt.right;
 		anchors.right: rsz_trt.left;
 		anchors.top: parent.top;
@@ -215,7 +223,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_trt;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.top: parent.top;
 		anchors.right: rsz_trr.left;
 		width: parent.resize_angle_weight;
@@ -226,7 +234,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_trr;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.top: parent.top;
 		anchors.right: parent.right;
 		width: parent.resize_border_weight;
@@ -237,7 +245,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_r;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.top: rsz_trr.bottom;
 		anchors.bottom: rsz_brr.top;
 		anchors.right: parent.right;
@@ -248,7 +256,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_brr;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.right: parent.right;
 		anchors.bottom: parent.bottom;
 		width: parent.resize_border_weight;
@@ -259,7 +267,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_brb;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.right: rsz_brr.left;
 		anchors.bottom: parent.bottom;
 		width: parent.resize_angle_weight;
@@ -270,7 +278,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_b;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.left: rsz_blb.right;
 		anchors.right: rsz_brb.left;
 		anchors.bottom: parent.bottom;
@@ -281,7 +289,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_blb;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.left: rsz_bll.right;
 		anchors.bottom: parent.bottom;
 		width: parent.resize_angle_weight;
@@ -292,7 +300,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_bll;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.left: parent.left;
 		anchors.bottom: parent.bottom;
 		width: parent.resize_border_weight;
@@ -303,7 +311,7 @@ Item {
 
 	MainWindow.ResizeMoveMouseArea {
 		id: rsz_l;
-		visible: !web_browser.isMaximized;
+		visible: !win.isMaximized;
 		anchors.top: rsz_tll.bottom;
 		anchors.bottom: rsz_bll.top;
 		anchors.left: parent.left;
@@ -317,22 +325,8 @@ Item {
 		id: resize_move_timer;
 		interval: 10;
 
-		property bool was_maximised: false;
-		property real last_location: 0;
-		property real last_width: 0;
-		property point global_pos;
-		property int flag;
+		property var resize_move_area;
 
-		onTriggered: {
-			var alpha = 0.0;
-			if (was_maximised) {
-				alpha = last_location > last_width - width / 2
-						? 1 - (last_width - last_location) / width
-						: last_location < width / 2
-						  ? last_location / width
-						  : 0.5;
-			}
-			web_browser.beginWindowMove(global_pos.x, global_pos.y, flag, was_maximised, alpha);
-		}
+		onTriggered: resize_move_area.pressedDelayFunction();
 	}
 }

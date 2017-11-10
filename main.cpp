@@ -1,22 +1,25 @@
 #include "webbrowser.h"
+#include "backend/helper.h"
+
 #include <QApplication>
+#include <QQmlEngine>
 #include <QtWebEngine>
 
-#include "backend/virtualmachine/language/control/singleshot.h"
+//#include "backend/virtualmachine/language/control/singleshot.h"
 
 int main (int argc, char *argv []) {
-	QApplication::setAttribute (Qt::AA_EnableHighDpiScaling);
+//	QApplication::setAttribute (Qt::AA_EnableHighDpiScaling);s
 
-	QApplication a (argc, argv);
+	QGuiApplication a (argc, argv);
+	Helper helper;
 
 	QtWebEngine::initialize ();
 
-	WebBrowser w;
+	QQmlApplicationEngine engine;
 
-	w.show ();
+	QQmlContext* context = engine.rootContext ();
+	context->setContextProperty ("helper", &helper);
 
-//	int comm = 0x23;
-//	vm::language::control::singleshot::parse(comm);
-
+	engine.load ("qrc:/driver.qml");
 	return a.exec ();
 }

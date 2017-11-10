@@ -19,9 +19,9 @@ SessionBase {
 		anchors.top: parent.top;
 		anchors.left: parent.left;
 		anchors.right: parent.right;
-		height: Math.round(web_browser.isMaximized ? 40 : 44 * _ratio);
+		height: Math.round(win.isMaximized ? 40 : 44 * _ratio);
 
-		color: web_browser.isFocused || sessions_list.current_item != root ? "#f5f5f5" : "#e1e1e2";
+		color: win.active || sessions_list.current_item != root ? "#f5f5f5" : "#e1e1e2";
 
 		Behavior on color {
 			ColorAnimation {

@@ -8,5 +8,5 @@ ToolIcons.Close {
 	secondaryColor: "#b60000";
 	hoverColor: "#55505c";
 
-	onClicked: web_browser.close();
+	onClicked: win.close();
 }
