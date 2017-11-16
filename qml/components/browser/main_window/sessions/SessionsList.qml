@@ -105,13 +105,30 @@ Item {
 	}
 
 	function enter_manage_mode () {
+
+		current_item.update_copy();
+
+		var it = current_item.prev;
+
+		while (!!it) {
+			it.update_copy();
+			it = it.prev;
+		}
+
+		it = current_item.next;
+
+		while (!!it) {
+			it.update_copy();
+			it = it.next;
+		}
+
+		manage_mode = true;
 		to_prev();
 
 		if (select_screen.z > 1) {
 			select_screen.hide();
 		}
 
-		manage_mode = true;
 		forceActiveFocus();
 	}
 

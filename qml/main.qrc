@@ -70,5 +70,6 @@
         <file>components/browser/main_window/header/title_bar_buttons/Close.qml</file>
         <file>components/browser/main_window/header/title_bar_buttons/BackLightningMenu.qml</file>
         <file>components/browser/main_window/sessions/SessionManageLayer.qml</file>
+        <file>components/browser/main_window/content/browser.js</file>
     </qresource>
 </RCC>

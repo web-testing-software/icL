@@ -2,6 +2,8 @@
 #include "backend/helper.h"
 
 #include <QApplication>
+#include <QOpenGLContext>
+#include <QSurface>
 #include <QQmlEngine>
 #include <QtWebEngine>
 
@@ -10,6 +12,7 @@
 int main (int argc, char *argv []) {
 //	QApplication::setAttribute (Qt::AA_EnableHighDpiScaling);s
 
+//	QGuiApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 	QGuiApplication a (argc, argv);
 	Helper helper;
 
@@ -20,6 +23,6 @@ int main (int argc, char *argv []) {
 	QQmlContext* context = engine.rootContext ();
 	context->setContextProperty ("helper", &helper);
 
-	engine.load ("qrc:/driver.qml");
+	engine.load (QUrl("qrc:/driver.qml"));
 	return a.exec ();
 }

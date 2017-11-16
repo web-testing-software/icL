@@ -1,6 +1,6 @@
 import QtQuick 2.5
 
-import "../../../scripts/move_flags.js" as ME;
+import "../../../scripts/move_flags.js" as MF;
 
 MouseField {
 	id: root;
@@ -65,10 +65,10 @@ MouseField {
 		var	newY		= win_begin_xy.y;
 		var	newWidth	= win_begin_size.width;
 		var	newHeight	= win_begin_size.height;
-		var	hResize		= (flag & ME.H_RESIZE) != 0;
-		var	vResize		= (flag & ME.V_RESIZE) != 0;
-		var	hMove		= (flag & ME.H_MOVE) != 0;
-		var	vMove		= (flag & ME.V_MOVE) != 0;
+		var	hResize		= (flag & MF.H_RESIZE) != 0;
+		var	vResize		= (flag & MF.V_RESIZE) != 0;
+		var	hMove		= (flag & MF.H_MOVE) != 0;
+		var	vMove		= (flag & MF.V_MOVE) != 0;
 
 		if (hResize) {
 			newWidth += hMove ? -dx : dx;
@@ -76,17 +76,20 @@ MouseField {
 				newWidth = win.minimumWidth;
 			}
 		}
+
 		if (vResize) {
 			newHeight += vMove ? -dy : dy;
 			if (newHeight < win.minimumHeight) {
 				newHeight = win.minimumHeight;
 			}
 		}
+
 		if (hMove) {
-			newX += hResize ? _winBeginWidth - newWidth : dx;
+			newX += hResize ? win_begin_size.width - newWidth : dx;
 		}
+
 		if (vMove) {
-			newY += vResize ? _winBeginHeight - newHeight : dy;
+			newY += vResize ? win_begin_size.height - newHeight : dy;
 		}
 
 		win.x = newX;

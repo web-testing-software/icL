@@ -23,6 +23,10 @@ SessionBase {
 
 	state: "shown";
 
+	function update_copy () {
+		// This function is not actually for Select Screen, just for browser or driver sessions
+	}
+
 //	Component.onCompleted: show("shown", ME.SELECT_SCREEN_TYPE_PROFILE);
 	function updateState () {
 		state = "shown2";

@@ -26,3 +26,8 @@ QColor Helper::mix (QColor color1, QColor color2, qreal alpha) {
 
 	return ret;
 }
+
+void Helper::connect_f(QQuickItem *i1, QQuickItem *i2)
+{
+	QObject::connect (i1, SIGNAL(needGrab()), i2, SLOT(grab2()));
+}

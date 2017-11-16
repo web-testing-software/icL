@@ -6,7 +6,7 @@ Base {
 	onAlphaChanged: canvas.requestPaint();
 	onWidthChanged: canvas.requestPaint();
 
-	onClicked: web_browser.showMinimized();
+	onClicked: win.showMinimized();
 
 	Canvas {
 		id: canvas;

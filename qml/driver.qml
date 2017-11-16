@@ -19,10 +19,10 @@ Window {
 	width: 800;
 	height: 600;
 	visible: true;
-	flags: Qt.SubWindow | Qt.Tool | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint;
+	flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint;
 
 	property string app_version: "1.0.0 dev";
-	property real _ratio: Math.max(Screen.pixelDensity, 5.5) / 5.5;
+	property real _ratio: Math.max(Screen.pixelDensity, 4.5) / 5.5;
 	property real anim_time_multiplier: 1;
 
 
@@ -193,8 +193,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.left: parent.left;
 		anchors.top: parent.top;
-		width: parent.resize_border_weight;
-		height: parent.resize_angle_weight;
+		width: resize_border_weight;
+		height: resize_angle_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -204,8 +204,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.left: rsz_tll.right;
 		anchors.top: parent.top;
-		width: parent.resize_angle_weight;
-		height: parent.resize_border_weight;
+		width: resize_angle_weight;
+		height: resize_border_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -216,7 +216,7 @@ Window {
 		anchors.left: rsz_tlt.right;
 		anchors.right: rsz_trt.left;
 		anchors.top: parent.top;
-		height: parent.resize_border_weight;
+		height: resize_border_weight;
 		cursorShape: Qt.SizeVerCursor;
 		flag: MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -226,8 +226,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.top: parent.top;
 		anchors.right: rsz_trr.left;
-		width: parent.resize_angle_weight;
-		height: parent.resize_border_weight;
+		width: resize_angle_weight;
+		height: resize_border_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -237,8 +237,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.top: parent.top;
 		anchors.right: parent.right;
-		width: parent.resize_border_weight;
-		height: parent.resize_angle_weight;
+		width: resize_border_weight;
+		height: resize_angle_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_MOVE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -249,7 +249,7 @@ Window {
 		anchors.top: rsz_trr.bottom;
 		anchors.bottom: rsz_brr.top;
 		anchors.right: parent.right;
-		width: parent.resize_border_weight;
+		width: resize_border_weight;
 		cursorShape: Qt.SizeHorCursor;
 		flag: MOVE_FLAGS.H_RESIZE;
 	}
@@ -259,8 +259,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.right: parent.right;
 		anchors.bottom: parent.bottom;
-		width: parent.resize_border_weight;
-		height: parent.resize_angle_weight;
+		width: resize_border_weight;
+		height: resize_angle_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -270,8 +270,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.right: rsz_brr.left;
 		anchors.bottom: parent.bottom;
-		width: parent.resize_angle_weight;
-		height: parent.resize_border_weight;
+		width: resize_angle_weight;
+		height: resize_border_weight;
 		cursorShape: Qt.SizeFDiagCursor;
 		flag: MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -282,7 +282,7 @@ Window {
 		anchors.left: rsz_blb.right;
 		anchors.right: rsz_brb.left;
 		anchors.bottom: parent.bottom;
-		height: parent.resize_angle_weight;
+		height: resize_angle_weight;
 		cursorShape: Qt.SizeVerCursor;
 		flag: MOVE_FLAGS.V_RESIZE;
 	}
@@ -292,8 +292,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.left: rsz_bll.right;
 		anchors.bottom: parent.bottom;
-		width: parent.resize_angle_weight;
-		height: parent.resize_border_weight;
+		width: resize_angle_weight;
+		height: resize_border_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -303,8 +303,8 @@ Window {
 		visible: !win.isMaximized;
 		anchors.left: parent.left;
 		anchors.bottom: parent.bottom;
-		width: parent.resize_border_weight;
-		height: parent.resize_angle_weight;
+		width: resize_border_weight;
+		height: resize_angle_weight;
 		cursorShape: Qt.SizeBDiagCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE | MOVE_FLAGS.V_RESIZE;
 	}
@@ -315,7 +315,7 @@ Window {
 		anchors.top: rsz_tll.bottom;
 		anchors.bottom: rsz_bll.top;
 		anchors.left: parent.left;
-		width: parent.resize_border_weight;
+		width: resize_border_weight;
 		cursorShape: Qt.SizeHorCursor;
 		flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.H_RESIZE;
 	}

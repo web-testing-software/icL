@@ -28,6 +28,8 @@ ResizeMoveMouseArea {
 	property bool self_visible: true;
 	property bool next_visible: true;
 
+	property bool updated: false;
+
 	states: [
 		State {
 			name: "shown";
@@ -55,6 +57,14 @@ ResizeMoveMouseArea {
 			PropertyChanges {
 				target: root;
 				y: height;
+			}
+		},
+		State {
+			name: "closed"
+			PropertyChanges {
+				target: root
+				y: Math.round(0.4 * height);
+				x: width
 			}
 		}
 	]
@@ -92,6 +102,12 @@ ResizeMoveMouseArea {
 
 		if (!!prev){
 			prev.next_visible = y != prev.y;
+		}
+	}
+
+	onXChanged: {
+		if (x == width) {
+			root.destroy();
 		}
 	}
 
