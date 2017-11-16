@@ -77,10 +77,10 @@ ResizeMoveMouseArea {
 		}
 		else {
 			if (manage_mode) {
-				if (prev == current_item) {
+				if (prev == current_session) {
 					state = "second";
 				}
-				else if (!!prev && prev.prev == current_item) {
+				else if (!!prev && prev.prev == current_session) {
 					state = "third";
 				}
 				else {

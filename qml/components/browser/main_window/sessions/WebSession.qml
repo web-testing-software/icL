@@ -14,15 +14,13 @@ SessionBase {
 
 	property int ith: 0;
 
-	function update_copy () {
-		if (!updated) {
-			test_content.update_copy();
-		}
+	function set_manage_mode () {
+		test_content.unfocus_me();
 	}
 
 	onYChanged: {
-		if (sessions_list.current_item == root && y == 0 && !manage_mode) {
-			test_content.updated = false;
+		if (sessions_list.current_session == root && y == 0 && !manage_mode) {
+			test_content.focus_me();
 		}
 	}
 
@@ -31,6 +29,8 @@ SessionBase {
 		anchors.fill: parent;
 		layer.enabled: true;
 
+//		property : value
+
 		Rectangle {
 			id: top_side;
 			anchors.top: parent.top;
@@ -38,7 +38,7 @@ SessionBase {
 			anchors.right: parent.right;
 			height: Math.round(win.isMaximized ? 40 * _ratio : 44 * _ratio);
 
-			color: win.active || sessions_list.current_item != root ? "#f5f5f5" : "#e1e1e2";
+			color: win.active || sessions_list.current_session != root ? "#f5f5f5" : "#e1e1e2";
 
 			Behavior on color {
 				ColorAnimation {
@@ -227,7 +227,7 @@ SessionBase {
 
 				anchors.fill: parent;
 
-				Content.EditorTabContent {
+				Content.BrowserTab {
 					id: test_content;
 				}
 			}
@@ -245,12 +245,12 @@ SessionBase {
 
 			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
 
-			enabled: sessions_list.current_item == root;
+			enabled: sessions_list.current_session == root;
 		}
 
 		Item {
 			anchors.fill: move_area;
-			opacity: sessions_list.current_item.next == root ? 1.0 : 0.0;
+			opacity: sessions_list.current_session.next == root ? 1.0 : 0.0;
 			visible: opacity != 0;
 
 			Behavior on opacity {
@@ -266,7 +266,7 @@ SessionBase {
 				anchors.verticalCenter: parent.verticalCenter;
 
 				onClicked: {
-					select_screen.show(current_item.next, "hidden1", ME.SELECT_SCREEN_TYPE_PROFILE);
+					select_screen.show(current_session.next, "hidden1", ME.SELECT_SCREEN_TYPE_PROFILE);
 				}
 			}
 

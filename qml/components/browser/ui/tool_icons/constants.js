@@ -3,6 +3,8 @@
 var PI_025 = Math.PI * 0.25;
 var PI_O5  = Math.PI * 0.5;
 var PI_125 = Math.PI * 1.25;
+var PI_2   = Math.PI * 2;
+
 
 
 var PI_08  = Math.PI * 0.8;		// Max angle for refresh icon

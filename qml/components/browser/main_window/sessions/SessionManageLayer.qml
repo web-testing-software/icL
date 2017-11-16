@@ -16,10 +16,10 @@ MainWindow.MouseField {
 	}
 
 	onClicked: {
-		if (current_item == root) {
+		if (current_session == root) {
 			sessions_list.exit_manage_mode(0);
 		}
-		else if (current_item.next == root) {
+		else if (current_session.next == root) {
 			sessions_list.exit_manage_mode(1);
 		}
 		else {

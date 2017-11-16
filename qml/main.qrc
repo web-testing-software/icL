@@ -50,7 +50,7 @@
         <file>images/default_avatar.svg</file>
         <file>components/browser/ui/controls/Button.qml</file>
         <file>components/browser/main_window/MouseField.qml</file>
-        <file>components/browser/main_window/content/EditorTabContent.qml</file>
+        <file>components/browser/main_window/content/EditorTab.qml</file>
         <file>components/browser/main_window/content/NewTabContent.qml</file>
         <file>components/browser/main_window/header/NavigationBar.qml</file>
         <file>components/browser/main_window/header/Tab.qml</file>
@@ -71,5 +71,10 @@
         <file>components/browser/main_window/header/title_bar_buttons/BackLightningMenu.qml</file>
         <file>components/browser/main_window/sessions/SessionManageLayer.qml</file>
         <file>components/browser/main_window/content/browser.js</file>
+        <file>components/browser/main_window/content/ContentBase.qml</file>
+        <file>components/browser/main_window/content/BrowserTab.qml</file>
+        <file>components/browser/main_window/content/SpeedDial.qml</file>
+        <file>components/browser/ui/tool_icons/Open.qml</file>
+        <file>components/browser/ui/tool_icons/Search.qml</file>
     </qresource>
 </RCC>

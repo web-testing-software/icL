@@ -23,7 +23,7 @@ SessionBase {
 
 	state: "shown";
 
-	function update_copy () {
+	function set_manage_mode () {
 		// This function is not actually for Select Screen, just for browser or driver sessions
 	}
 
@@ -169,7 +169,7 @@ SessionBase {
 
 			ctx.clearRect(0, 0, root.width, root.height);
 
-			if (current_item == root && !!next) {
+			if (current_session == root && !!next) {
 				ctx.fillRect(0, 0, width, next.y);
 			}
 

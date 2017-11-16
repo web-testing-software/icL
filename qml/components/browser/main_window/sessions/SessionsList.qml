@@ -5,7 +5,7 @@ Item {
 	anchors.fill: parent;
 
 	property int ith: 0;
-	property SessionBase current_item: select_screen;
+	property SessionBase current_session: select_screen;
 
 	property bool manage_mode: false;
 
@@ -23,53 +23,53 @@ Item {
 	}
 
 	function updateStateForItems () {
-		current_item.updateState();
-		if (!!current_item.prev) {
-			current_item.prev.updateState();
+		current_session.updateState();
+		if (!!current_session.prev) {
+			current_session.prev.updateState();
 //			if (!!current_item.prev.prev) {
 //				current_item.prev.prev.updateState();
 //			}
 		}
-		if (!!current_item.next) {
-			current_item.next.updateState();
-			if (!!current_item.next.next) {
-				current_item.next.next.updateState();
-				if (!!current_item.next.next.next) {
-					current_item.next.next.next.updateState();
+		if (!!current_session.next) {
+			current_session.next.updateState();
+			if (!!current_session.next.next) {
+				current_session.next.next.updateState();
+				if (!!current_session.next.next.next) {
+					current_session.next.next.next.updateState();
 				}
 			}
 		}
 	}
 
-	onCurrent_itemChanged: updateStateForItems();
+	onCurrent_sessionChanged: updateStateForItems();
 	onManage_modeChanged: updateStateForItems();
 
 	function to_prev () {
-		if (!!current_item.prev) {
-			current_item.shown = false;
-			current_item = current_item.prev;
+		if (!!current_session.prev) {
+			current_session.shown = false;
+			current_session = current_session.prev;
 		}
 	}
 
 	function to_next () {
-		if (!!current_item.next) {
-			if (manage_mode && !current_item.next.next) {
+		if (!!current_session.next) {
+			if (manage_mode && !current_session.next.next) {
 				return;
 			}
 
-			current_item = current_item.next;
-			current_item.shown = true;
+			current_session = current_session.next;
+			current_session.shown = true;
 		}
 	}
 
 	function fix_z_index () {
-		var it = current_item;
+		var it = current_session;
 
-		if (!!current_item.prev) {
-			it.z = current_item.prev.z >= 999 ? 2 : current_item.prev.z + 1;
+		if (!!current_session.prev) {
+			it.z = current_session.prev.z >= 999 ? 2 : current_session.prev.z + 1;
 		}
 		else {
-			current_item.z = 1;
+			current_session.z = 1;
 		}
 
 		while (!!it.next) {
@@ -92,7 +92,7 @@ Item {
 		obj.ith = ++ith;
 		after.shown = true;
 		if (!!after.prev) after.prev.shown = true;
-		current_item = obj;
+		current_session = obj;
 
 		fix_z_index();
 
@@ -106,19 +106,19 @@ Item {
 
 	function enter_manage_mode () {
 
-		current_item.update_copy();
+		current_session.set_manage_mode();
 
-		var it = current_item.prev;
+		var it = current_session.prev;
 
 		while (!!it) {
-			it.update_copy();
+			it.set_manage_mode();
 			it = it.prev;
 		}
 
-		it = current_item.next;
+		it = current_session.next;
 
 		while (!!it) {
-			it.update_copy();
+			it.set_manage_mode();
 			it = it.next;
 		}
 

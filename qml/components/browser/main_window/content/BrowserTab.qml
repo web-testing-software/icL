@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtWebEngine 1.2
 import QtGraphicalEffects 1.0
 
-Rectangle {
+ContentBase {
 	id: root;
 	anchors.fill: parent;
 
@@ -21,7 +21,7 @@ Rectangle {
 			}
 		},
 		State {
-			name: "inactive"
+			name: "unfocused"
 			PropertyChanges {
 				target: wview;
 				visible: false;
@@ -37,12 +37,35 @@ Rectangle {
 		// dialog
 	]
 
+	// ContentBase interface
+
+	function focus_me () {
+		state = "active";
+		wview.forceActiveFocus();
+	}
+
+	function unfocus_me () {
+		state = "unfocused";
+	}
+
+	function activate_me () {
+		// TODO: Write this function
+	}
+
+	function deactivate_me () {
+		// TODO: Write this function
+	}
+
+	// ContentBase interface end
+
 	WebEngineView {
 		id: wview;
 		anchors.fill: parent;
 
+		backgroundColor: "white";
 //		url: "about:blank";
-		url: "https://yandex.ru/";
+//		url: "https://yandex.ru/";
+		url: "https://material.io/";
 
 //		settings.autoLoadImages: false;
 		settings.javascriptCanOpenWindows: false;
@@ -66,6 +89,7 @@ Rectangle {
 
 	ShaderEffectSource {
 		id: copy;
+		live: false;
 		mipmap: false;
 		recursive: false;
 		sourceItem: wview;

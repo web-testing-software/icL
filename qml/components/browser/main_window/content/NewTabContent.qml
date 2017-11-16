@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-Item {
+ContentBase {
 	id: root;
 
 	anchors.fill: parent;
