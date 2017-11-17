@@ -16,7 +16,7 @@ MouseArea {
 
 	Behavior on alpha {
 		NumberAnimation {
-			duration: 240 * anim_time_multiplier;
+			duration: (reversed ? 240 : 120) * anim_time_multiplier;
 		}
 	}
 }

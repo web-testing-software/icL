@@ -10,6 +10,7 @@ Ui.AnimatedIconIterface {
 	width: height * 0.75;
 	height: Math.round(40 * _ratio);
 
+	reversed: !containsMouse;
 	alpha: containsMouse ? (need_back ? -1 : 1) : 0;
 
 	onAlphaChanged: canvas.requestPaint();
