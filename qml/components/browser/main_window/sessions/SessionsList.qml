@@ -26,9 +26,6 @@ Item {
 		current_session.updateState();
 		if (!!current_session.prev) {
 			current_session.prev.updateState();
-//			if (!!current_item.prev.prev) {
-//				current_item.prev.prev.updateState();
-//			}
 		}
 		if (!!current_session.next) {
 			current_session.next.updateState();
@@ -101,7 +98,7 @@ Item {
 			select_screen.hide();
 		}
 
-		active_area.forceActiveFocus();
+		global_focus_scope.forceActiveFocus();
 	}
 
 	function enter_manage_mode () {
@@ -124,6 +121,7 @@ Item {
 
 		manage_mode = true;
 		to_prev();
+		updateStateForItems();
 
 		if (select_screen.z > 1) {
 			select_screen.hide();
@@ -140,10 +138,10 @@ Item {
 		}
 	}
 
-//	Component.onCompleted: {
+	Component.onCompleted: {
+//		add_new_session();
+		add_new_session();
 //		add_new_session();
 //		add_new_session();
-//		add_new_session();
-//		add_new_session();
-//	}
+	}
 }

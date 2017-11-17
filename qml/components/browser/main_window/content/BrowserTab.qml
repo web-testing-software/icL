@@ -71,7 +71,7 @@ ContentBase {
 		settings.javascriptCanOpenWindows: false;
 		profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
 
-		Keys.forwardTo: [active_area];
+		Keys.forwardTo: [win_rectangle];
 
 //		onJavaScriptConsoleMessage: {
 //			console.log(level, message, lineNumber, sourceID);

@@ -46,6 +46,11 @@ SessionBase {
 				}
 			}
 
+			MainWindow.ResizeMoveMouseArea {
+				anchors.fill: parent;
+				flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
+			}
+
 			Rectangle {
 				anchors.left: parent.left;
 				anchors.right: parent.right;
@@ -227,7 +232,7 @@ SessionBase {
 
 				anchors.fill: parent;
 
-				Content.BrowserTab {
+				Content.SpeedDial {
 					id: test_content;
 				}
 			}

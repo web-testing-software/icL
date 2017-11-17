@@ -3,9 +3,9 @@ import QtGraphicalEffects 1.0
 
 import "../";
 
-import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
+//import "qrc:/scripts/move_flags.js" as MOVE_FLAGS;
 
-ResizeMoveMouseArea {
+MouseField {
 	id: root;
 	width: win_rectangle.width;
 	height: win_rectangle.height;
@@ -18,7 +18,7 @@ ResizeMoveMouseArea {
 		color: "#80000000";
 	}
 
-	flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
+//	flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
 
 	property Item prev: null;
 	property Item next: null;

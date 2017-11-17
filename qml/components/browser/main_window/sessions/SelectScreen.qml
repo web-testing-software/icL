@@ -118,7 +118,10 @@ SessionBase {
 		}
 
 		ResizeMoveMouseArea {
-			anchors.fill: parent;
+			anchors.left: parent.left;
+			anchors.right: parent.right;
+			anchors.top: parent.top;
+			height: logo.height;
 			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
 		}
 

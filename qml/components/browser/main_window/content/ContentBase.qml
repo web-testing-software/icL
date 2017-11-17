@@ -2,7 +2,10 @@ import QtQuick 2.0
 
 // Content Interface
 
-Item {
+Rectangle {
+	color: "white";
+	anchors.fill: parent;
+
 	function focus_me () { }
 	function unfocus_me () { }
 	function activate_me () { }

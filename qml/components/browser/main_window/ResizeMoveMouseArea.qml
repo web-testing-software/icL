@@ -28,10 +28,10 @@ MouseField {
 			else {
 				was_maximised = false;
 			}
-		}
 
-		resize_move_timer.resize_move_area = root;
-		resize_move_timer.start();
+			resize_move_timer.resize_move_area = root;
+			resize_move_timer.start();
+		}
 	}
 
 	function pressedDelayFunction () {

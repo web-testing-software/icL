@@ -16,10 +16,13 @@ import "scripts/move_flags.js" as MOVE_FLAGS;
 Window {
 	id: win;
 
-	width: 800;
-	height: 600;
+	width: 1000;
+	height: 700;
 	visible: true;
 	flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint;
+
+	minimumWidth: Math.round(1000 * _ratio);
+	minimumHeight: Math.round(700 * _ratio);
 
 	property string app_version: "1.0.0 dev";
 	property real _ratio: Math.max(Screen.pixelDensity, 4.5) / 5.5;
@@ -43,19 +46,20 @@ Window {
 		menu.show (x, y);
 	}
 
-	Item {
+	MainWindow.MouseField {
 		id: win_rectangle;
 		layer.enabled: true;
 
 		anchors.fill: parent;
 		anchors.margins: win.isMaximized ? 0 : Math.round(4 * _ratio);
 
-		MainWindow.ResizeMoveMouseArea {
-			id: active_area;
+		clip: true;
 
-			clip: true;
+		FocusScope {
+			id: global_focus_scope;
+
+			focus: true;
 			anchors.fill: parent;
-			flag: MOVE_FLAGS.H_MOVE | MOVE_FLAGS.V_MOVE;
 
 			Keys.onTabPressed: {
 				if (event.modifiers & Qt.ControlModifier && !sessions_list.manage_mode) {
