@@ -1,8 +1,8 @@
 import QtQuick 2.5
 
-import "../../"
+import "../../" as Ui
 
-AnimatedIconIterface {
+Ui.AnimatedIconIterface {
 	id: root;
 
 	alpha: 0.0;

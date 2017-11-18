@@ -76,7 +76,7 @@
         <file>components/browser/main_window/content/SpeedDial.qml</file>
         <file>components/browser/ui/button_icons/Open.qml</file>
         <file>components/browser/ui/button_icons/Search.qml</file>
-        <file>components/browser/ui/controls/speed_dial/Base.qml</file>
+		<file>components/browser/ui/controls/speed_dial/ButtonBase.qml</file>
         <file>components/browser/ui/controls/speed_dial/TextButtonBase.qml</file>
         <file>components/browser/ui/controls/speed_dial/New.qml</file>
         <file>components/browser/ui/button_icons/New.qml</file>
@@ -85,5 +85,6 @@
         <file>components/browser/ui/controls/speed_dial/Open.qml</file>
         <file>components/browser/ui/controls/speed_dial/Search.qml</file>
         <file>components/browser/ui/controls/TextInput.qml</file>
+        <file>components/browser/ui/controls/speed_dial/DialBase.qml</file>
     </qresource>
 </RCC>

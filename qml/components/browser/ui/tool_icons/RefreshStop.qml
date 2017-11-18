@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import "constants.js" as CONST
+import "constants.js" as CONST;
 
 Base {
 	id: root;

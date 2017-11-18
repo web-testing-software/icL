@@ -140,7 +140,7 @@ Item {
 
 	Component.onCompleted: {
 //		add_new_session();
-//		add_new_session();
+		add_new_session();
 //		add_new_session();
 //		add_new_session();
 	}

@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import "constants_controls.js" as CONST
+import "constants_controls.js" as CONST;
 
 MouseArea {
 	id: root;

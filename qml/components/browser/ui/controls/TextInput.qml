@@ -16,6 +16,17 @@ TextInput {
 	selectionColor: "#f2f2f2";
 	persistentSelection: true;
 
+	property alias place_holder_color: place_holder.color;
+	property alias place_holder_text: place_holder.text;
+
+	Text {
+		id: place_holder;
+		visible: !text_input.focus && text_input.text.length == 0;
+
+		font: text_input.font;
+		x: Math.round(6 * _ratio);
+	}
+
 	cursorDelegate: Component {
 		Rectangle {
 			id: cursor;
