@@ -6,7 +6,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets quickwidgets webengine
+QT       += core gui widgets quickwidgets webengine sql
 
 TARGET = ic-lightning
 TEMPLATE = app
@@ -76,7 +76,9 @@ SOURCES += \
     backend/virtualmachine/system/logic/rich/stringlistblock.cpp \
     backend/virtualmachine/system/main/ifstackstate.cpp \
     backend/virtualmachine/system/logic/rich/stringliststringblock.cpp \
-    backend/helper.cpp
+    backend/helper.cpp \
+    data_management/database.cpp \
+    data_management/dialdescription.cpp
 
 HEADERS += \
         webbrowser.h \
@@ -132,15 +134,20 @@ HEADERS += \
     backend/virtualmachine/system/logic/rich/stringlistblock.h \
     backend/virtualmachine/system/main/ifstackstate.h \
     backend/virtualmachine/system/logic/rich/stringliststringblock.h \
-    backend/helper.h
+    backend/helper.h \
+    data_management/database.h \
+    data_management/dialdescription.h
 
 RESOURCES += \
-    qml/main.qrc
+    qml/main.qrc \
+    sql/sql.qrc
 
 debug {
     OBJECTS_DIR = debug/objs
     MOC_DIR = debug/moc
     RCC_DIR = debug/rcc
+
+	DEFINES += ICL_ADD_TEST_DB_DATA
 }
 
 release {

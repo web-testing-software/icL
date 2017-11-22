@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>init/create_v1.sql</file>
+        <file>init/create_testdata.sql</file>
+        <file>select/top9.sql</file>
+    </qresource>
+</RCC>

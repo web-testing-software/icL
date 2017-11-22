@@ -5,7 +5,7 @@ import "../tool_icons/constants.js" as CONST;
 Base {
 	id: root;
 
-	drawColor: helper.mix(primary_color, focus_color, alpha);
+	drawColor: helper.linearMix(primary_color, focus_color, alpha);
 
 	onAlphaChanged: canvas.requestPaint();
 	onWidthChanged: canvas.requestPaint();
