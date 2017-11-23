@@ -13,7 +13,7 @@ class DataBase : public QObject
 public:
 	explicit DataBase(QObject *parent = nullptr);
 
-	Q_INVOKABLE QList<DialDescription> top9 ();
+	Q_INVOKABLE QList<QObject*> top9 ();
 
 	void add_visit (QString url, QString name);
 
@@ -25,10 +25,11 @@ private:
 	QSqlError init();
 	void file_to_sql (const QString &filename);
 	void print_error (const QSqlQuery &query);
+	QSqlError transact_file (QSqlQuery& q, const QString &filename);
 
 	QSqlDatabase db;
 	QString sql;
-	bool invalid = false;
+	bool invalid;
 
 	QRegExp site_exp = QRegExp("https?://((\\w+\\.)+\\w+)/?.*");
 };

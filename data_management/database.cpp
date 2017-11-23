@@ -6,11 +6,19 @@
 #include <QTextStream>
 
 DataBase::DataBase (QObject *parent) : QObject (parent) {
+	QSqlError err = init ();
 
+	if (err.type () != QSqlError::NoError) {
+		qWarning () << err;
+		invalid = true;
+	}
+	else {
+		invalid = false;
+	}
 }
 
-QList <DialDescription> DataBase::top9 () {
-	QList <DialDescription> ret;
+QList <QObject *> DataBase::top9 () {
+	QList <QObject *> ret;
 
 	if (invalid) {
 		return ret;
@@ -33,11 +41,11 @@ QList <DialDescription> DataBase::top9 () {
 		const int	count_index = 2;
 
 		while (q.next ()) {
-			DialDescription dial_descript;
+			DialDescription *dial_descript = new DialDescription ();
 
-			dial_descript.setCount (q.value (count_index).toInt ());
-			dial_descript.setUrl (q.value (url_index).toString ());
-			dial_descript.setTitle (q.value (name_index).toString ());
+			dial_descript->setCount (q.value (count_index).toInt ());
+			dial_descript->setUrl (q.value (url_index).toString ());
+			dial_descript->setTitle (q.value (name_index).toString ());
 
 			ret << dial_descript;
 		}
@@ -47,12 +55,12 @@ QList <DialDescription> DataBase::top9 () {
 }
 
 void DataBase::add_visit (QString url, QString name) {
-	QSqlQuery q (db);
-	int site_id;
-	QString site_url;
+	QSqlQuery	q (db);
+	int			site_id;
+	QString		site_url;
 
 	if (!site_exp.exactMatch (url)) {
-		qWarning() << "The getted url is not valid" << url;
+		qWarning () << "The getted url is not valid" << url;
 		return;
 	}
 
@@ -100,24 +108,25 @@ QSqlError DataBase::init () {
 
 	QStringList tables = db.tables ();
 	QSqlQuery	q (db);
-	QString		sql;
 
 	if (!tables.contains ("versions", Qt::CaseInsensitive)) {
 
-		file_to_sql (":/init/create_v1.sql");
-		if (!q.exec (sql)) {
-			return q.lastError ();
+		QSqlError returned = transact_file (q, ":/init/create_v1.sql");
+		if (returned.type () != QSqlError::NoError) {
+			return returned;
 		}
 
 #ifdef ICL_ADD_TEST_DB_DATA
-		file_to_sql (":/init/create_testdata.sql");
-		if (!q.exec (sql)) {
-			return q.lastError ();
+		returned = transact_file (q, ":/init/create_testdata.sql");
+		if (returned.type () != QSqlError::NoError) {
+			return returned;
 		}
 #endif
 	}
 
 	// Later add db update code for backward compatibility if will be necessary
+
+	return q.lastError ();
 }
 
 void DataBase::file_to_sql (const QString &filename) {
@@ -128,7 +137,20 @@ void DataBase::file_to_sql (const QString &filename) {
 	sql = stream.readAll ();
 }
 
-void DataBase::print_error(const QSqlQuery &query)
-{
-	qWarning() << query.lastError ();
+void DataBase::print_error (const QSqlQuery &query) {
+	qWarning () << query.lastError ();
+}
+
+QSqlError DataBase::transact_file (QSqlQuery &q, const QString &filename) {
+	file_to_sql (filename);
+
+	QStringList sqls = sql.trimmed ().split (';', QString::SkipEmptyParts);
+
+	for (const QString &str : sqls) {
+		if (!q.exec (str)) {
+			return q.lastError ();
+		}
+	}
+
+	return q.lastError ();
 }

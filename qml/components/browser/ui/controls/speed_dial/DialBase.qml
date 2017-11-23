@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import ICLightning.Database 1.0
+
 import "../../" as Ui;
 
 Ui.AnimatedIconIterface {
@@ -14,9 +16,8 @@ Ui.AnimatedIconIterface {
 	secondaryColor: "#ffffff";
 	alpha: (containsMouse || root.focus) && is_initialised ? 1.0 : 0.0;
 
-	property bool is_initialised: title != "";
-	property string title: "";
-	property string image_url: "";
+	property DialDescription description: null;
+	property bool is_initialised: !!description;
 
 	Rectangle {
 		id: background;
@@ -52,7 +53,7 @@ Ui.AnimatedIconIterface {
 			id: title_item;
 			anchors.centerIn: parent;
 
-			text: is_initialised ? title : qsTr("To be filled later");
+			text: is_initialised ? description.title : qsTr("To be filled later");
 
 			font.pixelSize: Math.round(16 * _ratio);
 			font.family: "Ubuntu";

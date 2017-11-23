@@ -1,5 +1,7 @@
 import QtQuick 2.5
 
+import ICLightning.Database 1.0
+
 import "../../ui/controls/speed_dial" as SpeedDialControls;
 
 ContentBase {
@@ -45,6 +47,30 @@ ContentBase {
 			columns: 3;
 			columnSpacing: Math.round(40 * _ratio);
 			rowSpacing: Math.round(30 * _ratio);
+
+			Component.onCompleted: {
+				var descriptions = database.top9();
+
+				for (var i = 0; i < descriptions.length; i++) {
+					var dial = dials.itemAt(i);
+
+					if (!!dial.description) {
+						delete dial.description;
+					}
+
+					dial.description = descriptions[i];
+				}
+
+				for (i = descriptions.length; i < 9; i++) {
+					var dial = dials.itemAt(i);
+
+					if (!!dial.description) {
+						delete dial.description;
+					}
+
+					dial.description = null;
+				}
+			}
 
 			Repeater {
 				id: dials;
