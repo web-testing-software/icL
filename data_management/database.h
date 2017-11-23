@@ -15,15 +15,22 @@ public:
 
 	Q_INVOKABLE QList<DialDescription> top9 ();
 
+	void add_visit (QString url, QString name);
+
 signals:
 
 public slots:
 
 private:
 	QSqlError init();
+	void file_to_sql (const QString &filename);
+	void print_error (const QSqlQuery &query);
 
 	QSqlDatabase db;
+	QString sql;
 	bool invalid = false;
+
+	QRegExp site_exp = QRegExp("https?://((\\w+\\.)+\\w+)/?.*");
 };
 
 #endif // DATABASE_H

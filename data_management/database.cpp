@@ -9,29 +9,28 @@ DataBase::DataBase (QObject *parent) : QObject (parent) {
 
 }
 
-QList<DialDescription> DataBase::top9()
-{
-	QList<DialDescription> ret;
+QList <DialDescription> DataBase::top9 () {
+	QList <DialDescription> ret;
 
 	if (invalid) {
 		return ret;
 	}
 
-	QSqlQuery q(db);
-	QFile top9_file (":/select/top9.sql");
+	QSqlQuery	q (db);
+	QFile		top9_file (":/select/top9.sql");
 	QTextStream top9_stream (&top9_file);
-	QString sql;
+	QString		sql;
 
 	top9_file.open (QFile::ReadOnly);
 	sql = top9_stream.readAll ();
 	if (!q.exec (sql)) {
-		qWarning() << q.lastError ().text ();
+		print_error (q);
 	}
 	else {
 		// This indexes need to be updated on request select params changed
-		const int name_index = 0;
-		const int url_index = 1;
-		const int count_index = 2;
+		const int	name_index	= 0;
+		const int	url_index	= 1;
+		const int	count_index = 2;
 
 		while (q.next ()) {
 			DialDescription dial_descript;
@@ -47,34 +46,71 @@ QList<DialDescription> DataBase::top9()
 	return ret;
 }
 
-QSqlError DataBase::init() {
+void DataBase::add_visit (QString url, QString name) {
+	QSqlQuery q (db);
+	int site_id;
+	QString site_url;
+
+	if (!site_exp.exactMatch (url)) {
+		qWarning() << "The getted url is not valid" << url;
+		return;
+	}
+
+	file_to_sql (":/select/site_id.sql");
+	q.prepare (sql);
+	q.addBindValue (site_url);
+	if (!q.exec ()) {
+		print_error (q);
+		return;
+	}
+
+	if (q.next ()) {
+		site_id = q.value (0).toInt ();
+	}
+	else {
+		file_to_sql (":/insert/site.sql");
+		q.prepare (sql);
+		q.addBindValue (site_url);
+		q.addBindValue (name);
+		if (!q.exec ()) {
+			print_error (q);
+			return;
+		}
+
+		site_id = q.lastInsertId ().toInt ();
+	}
+
+	file_to_sql (":/insert/visit.sql");
+	q.prepare (sql);
+	q.addBindValue (site_id);
+	q.addBindValue (name);
+	if (!q.exec ()) {
+		print_error (q);
+		return;
+	}
+}
+
+QSqlError DataBase::init () {
 	db = QSqlDatabase::addDatabase ("QSQLITE");
-	db.setDatabaseName ("ic-lightning-browser.db");
+	db.setDatabaseName ("ic-lightning.db");
 
 	if (!db.open ()) {
 		return db.lastError ();
 	}
 
 	QStringList tables = db.tables ();
-	QSqlQuery	q(db);
+	QSqlQuery	q (db);
 	QString		sql;
 
 	if (!tables.contains ("versions", Qt::CaseInsensitive)) {
-		QFile		create_v1 (":/init/create_v1.sql");
-		QTextStream create_v1_stream (&create_v1);
 
-		create_v1.open (QFile::ReadOnly);
-		sql = create_v1_stream.readAll ();
+		file_to_sql (":/init/create_v1.sql");
 		if (!q.exec (sql)) {
 			return q.lastError ();
 		}
 
 #ifdef ICL_ADD_TEST_DB_DATA
-		QFile		test_data (":/init/create_testdata.sql");
-		QTextStream test_data_stream (&test_data);
-
-		test_data.open (QFile::ReadOnly);
-		sql = test_data_stream.readAll ();
+		file_to_sql (":/init/create_testdata.sql");
 		if (!q.exec (sql)) {
 			return q.lastError ();
 		}
@@ -82,4 +118,17 @@ QSqlError DataBase::init() {
 	}
 
 	// Later add db update code for backward compatibility if will be necessary
+}
+
+void DataBase::file_to_sql (const QString &filename) {
+	QFile		file (filename);
+	QTextStream stream (&file);
+
+	file.open (QFile::ReadOnly);
+	sql = stream.readAll ();
+}
+
+void DataBase::print_error(const QSqlQuery &query)
+{
+	qWarning() << query.lastError ();
 }
