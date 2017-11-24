@@ -3,13 +3,16 @@ CREATE TABLE `versions` (
 	`version_number`	INTEGER
 );
 
-INSERT INTO `versions` (`version_number`)
-VALUES (1);
+INSERT INTO `versions` (`version_number`) VALUES (1);
 
 CREATE TABLE `sites` (
 	`site_id`	INTEGER PRIMARY KEY,
 	`url`		varchar,
-	`name`	varchar
+	`name`		varchar
+);
+
+CREATE UNIQUE INDEX `url_index` ON `sites` (
+	`url`	ASC
 );
 
 CREATE TABLE `history` (
@@ -17,4 +20,8 @@ CREATE TABLE `history` (
 	`site_id`	INTEGER,
 	`date_time`	DATETIME,
 	`name`		varchar
+);
+
+CREATE INDEX `site_index` ON `history` (
+	`site_id`	ASC
 );
