@@ -144,7 +144,7 @@ SessionBase {
 					Image {
 						id: new_tab;
 						smooth: false;
-						source: "qrc:/images/new_tab.svg";
+						source: "qrc:/header/new_tab.svg";
 						sourceSize: Qt.size(Math.round(14 * _ratio), Math.round(14 * _ratio));
 						anchors.centerIn: parent;
 					}

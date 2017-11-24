@@ -140,7 +140,8 @@ HEADERS += \
 
 RESOURCES += \
     qml/main.qrc \
-    sql/sql.qrc
+    sql/sql.qrc \
+    images/images.qrc
 
 debug {
     OBJECTS_DIR = debug/objs

@@ -20,7 +20,7 @@ TabHighlight {
 		anchors.left: parent.left;
 		anchors.margins: root.width > Math.round(30 * _ratio) ? Math.round(6 * _ratio) : 0;
 		source: webview && webview.icon
-				? webview.icon : "qrc:/images/blank_favicon.svg";
+				? webview.icon : "qrc:/header/blank_favicon.svg";
 	}
 
 	Text {

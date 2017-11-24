@@ -33,7 +33,7 @@ Item {
 		anchors.left: forward.right;
 		anchors.leftMargin: Math.round(12 * _ratio);
 		anchors.verticalCenter: forward.verticalCenter;
-		source: "qrc:/images/adress_bar_icon.svg";
+		source: "qrc:/header/adress_bar_icon.svg";
 		sourceSize: Qt.size(Math.round(17 * _ratio), Math.round(17 * _ratio));
 	}
 

@@ -5,8 +5,6 @@
         <file>scripts/my_enums.js</file>
         <file>components/browser/contextmenu/MenuBase.qml</file>
         <file>components/browser/contextmenu/MenuLightning.qml</file>
-        <file>images/new_tab.svg</file>
-        <file>images/blank_favicon.svg</file>
         <file>components/editor/language/IfElse.qml</file>
         <file>components/editor/language/Delimiter.qml</file>
         <file>components/editor/language/Line.qml</file>
@@ -32,7 +30,6 @@
         <file>components/editor/database/Input.qml</file>
         <file>components/editor/main/EditItem.qml</file>
         <file>components/editor/main/EditItemWithChilds.qml</file>
-        <file>images/adress_bar_icon.svg</file>
         <file>scripts/move_flags.js</file>
         <file>components/browser/main_window/ResizeMoveMouseArea.qml</file>
         <file>components/browser/ui/AnimatedIconIterface.qml</file>
@@ -44,10 +41,6 @@
         <file>components/browser/ui/controls/Switch.qml</file>
         <file>components/browser/ui/controls/constants_controls.js</file>
         <file>components/browser/ui/highlighters/TabHighlight.qml</file>
-        <file>images/bg_icon.svg</file>
-        <file>images/qt_logo.svg</file>
-        <file>images/avatar_mask.svg</file>
-        <file>images/default_avatar.svg</file>
         <file>components/browser/ui/controls/Button.qml</file>
         <file>components/browser/main_window/MouseField.qml</file>
         <file>components/browser/main_window/content/EditorTab.qml</file>
@@ -76,7 +69,7 @@
         <file>components/browser/main_window/content/SpeedDial.qml</file>
         <file>components/browser/ui/button_icons/Open.qml</file>
         <file>components/browser/ui/button_icons/Search.qml</file>
-		<file>components/browser/ui/controls/speed_dial/ButtonBase.qml</file>
+        <file>components/browser/ui/controls/speed_dial/ButtonBase.qml</file>
         <file>components/browser/ui/controls/speed_dial/TextButtonBase.qml</file>
         <file>components/browser/ui/controls/speed_dial/New.qml</file>
         <file>components/browser/ui/button_icons/New.qml</file>

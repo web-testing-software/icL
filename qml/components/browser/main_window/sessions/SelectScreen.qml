@@ -130,7 +130,7 @@ SessionBase {
 
 			smooth: false;
 			anchors.centerIn: parent;
-			source: "qrc:/images/bg_icon.svg";
+			source: "qrc:/content/bg_icon.svg";
 			sourceSize: Qt.size(Math.round(400 * _ratio), Math.round(400 * _ratio));
 		}
 
@@ -141,7 +141,7 @@ SessionBase {
 		Image {
 			id: qt_logo;
 			smooth: false;
-			source: "qrc:/images/qt_logo.svg";
+			source: "qrc:/content/qt_logo.svg";
 			sourceSize: Qt.size(Math.round(54.5 * _ratio), Math.round(40 * _ratio));
 			anchors.right: parent.right;
 			anchors.bottom: parent.bottom;

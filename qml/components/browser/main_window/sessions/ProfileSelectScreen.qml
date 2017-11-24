@@ -23,7 +23,7 @@ Item {
 			id: avatar_mask;
 			smooth: false;
 			sourceSize: Qt.size(avatar.width, avatar.height);
-			source: "qrc:/images/avatar_mask.svg";
+			source: "qrc:/content/avatar_mask.svg";
 			visible: false;
 		}
 
@@ -31,7 +31,7 @@ Item {
 			id: avatar_image;
 			smooth: false;
 			sourceSize: avatar_mask.sourceSize;
-			source: "qrc:/images/default_avatar.svg";
+			source: "qrc:/content/default_avatar.svg";
 			visible: false;
 		}
 
