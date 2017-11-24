@@ -7,6 +7,29 @@ import "../../ui/controls/speed_dial" as SpeedDialControls;
 ContentBase {
 	id: root;
 
+	property string cache_dir: helper.cacheDir(profile_name + "/speed_dial/");
+
+	property var requests: [];
+	property int current_index: -1;
+	property var browser_obj: null;
+
+	function update_dial_icon (path, url) {
+		requests.push({path: path, url: url});
+
+		if (!browser_obj) {
+			browser_obj = browser_component.createObject(root);
+		}
+	}
+
+	function request_update_thumbnails () {
+		for (var i = 0; i < 9; i++) {
+			if (!dials.itemAt(i).is_ok) {
+				dials.itemAt(i).update_dial_thumbnail();
+				break;
+			}
+		}
+	}
+
 	Item {
 		id: dial_container;
 		width: Math.round(848 * _ratio);

@@ -30,6 +30,8 @@ MouseField {
 
 	property bool updated: false;
 
+	property string profile_name: "Default";
+
 	states: [
 		State {
 			name: "shown";

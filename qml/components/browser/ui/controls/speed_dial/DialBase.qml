@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.7
 
 import ICLightning.Database 1.0
 
@@ -13,11 +13,18 @@ Ui.AnimatedIconIterface {
 	activeFocusOnTab: true;
 
 	primaryColor: "#e1e1e2";
-	secondaryColor: "#ffffff";
+	secondaryColor: "#e6ffffff";
 	alpha: (containsMouse || root.focus) && is_initialised ? 1.0 : 0.0;
 
 	property DialDescription description: null;
 	property bool is_initialised: !!description;
+	property bool is_ok: true;
+
+	function update_dial_thumbnail () {
+		is_ok = true;
+		thumnail.source = "";
+		thumnail.source = thumnail.url_str;
+	}
 
 	Rectangle {
 		id: background;
@@ -31,10 +38,20 @@ Ui.AnimatedIconIterface {
 	Image {
 		id: thumnail;
 		anchors.centerIn: parent;
+		source: url_str;
+
+		property string url_str: is_initialised ? "file:///" + cache_dir + description.url + ".png" : "" ;
 
 		sourceSize {
 			width: Math.round(250 * _ratio);
-			height: Math.round(240.625 * _ratio);
+			height: Math.round(140.625 * _ratio);
+		}
+
+		onStatusChanged: {
+			if (status == Image.Error) {
+				is_ok = false;
+				update_dial_icon(url_str.substring(8), description.url);
+			}
 		}
 	}
 

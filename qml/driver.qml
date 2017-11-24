@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
+import QtWebEngine 1.2
 
 import "components/browser/main_window" as MainWindow;
 import "components/browser/main_window/content" as Content;
@@ -147,6 +148,51 @@ Window {
 
 			TitleBarButtons.Close {
 				//
+			}
+		}
+
+		Component {
+			id: browser_component;
+
+			WebEngineView {
+				id: browserview;
+				width: 1000;
+				height: 562;
+				z: -1;
+
+				Timer {
+					id: browserview_timer;
+					interval: 1000;
+					running: false;
+					onTriggered: {
+						browserview.grabToImage(function (result) {
+							var p = browserview.parent;
+
+							result.saveToFile(p.requests[p.current_index].path);
+							p.request_update_thumbnails();
+							p.current_index++;
+							if (p.current_index < p.requests.length) {
+								url = helper.urlFromUserInput(p.requests[p.current_index].url);
+							}
+							else {
+								p.browser_obj = null;
+								p.requests.length = 0;
+								browserview.destroy();
+							}
+						});
+					}
+				}
+
+				onLoadingChanged: {
+					if (loadProgress == 100) {
+						browserview_timer.start();
+					}
+				}
+
+				Component.onCompleted: {
+					parent.current_index = 0;
+					url = helper.urlFromUserInput(parent.requests[0].url);
+				}
 			}
 		}
 
