@@ -1,0 +1,19 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:save;
+
+:to;
+if ()
+	:local;
+else
+	:state;
+endif
+::;
+:var name;
+
+stop
+
+@enduml

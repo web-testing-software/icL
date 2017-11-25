@@ -1,0 +1,12 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:wait;
+
+:loading;
+
+stop
+
+@enduml

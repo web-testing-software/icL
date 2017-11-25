@@ -1,0 +1,27 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:query;
+
+if (all)
+
+else if (eq | lt | gt)
+	:count;
+	if ()
+		:wait;
+		if ()
+			:time in sec;
+		endif
+	endif;
+endif
+
+:selector string;
+:{;
+:<web>element[s];
+:};
+
+stop
+
+@enduml

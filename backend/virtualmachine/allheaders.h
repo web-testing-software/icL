@@ -26,7 +26,7 @@
 #include "input/keyboard/complexeventk.h"
 #include "database/basic/output.h"
 #include "database/basic/editing.h"
-#include "debugger/basic/focus.h"
+#include "debugger/basic/system.h"
 
 struct Level3Container {
 	vm::language::control::singleshot::Singleton single_shot;

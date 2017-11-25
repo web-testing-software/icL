@@ -1,0 +1,31 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:database;
+
+if ()
+	:add;
+	:name;
+	::;
+	:url;
+
+else
+	:name;
+	if (select)
+	:params list;
+	:{;
+	:row to state convert code;
+	:};
+	else if (insert)
+	:params list;
+	else
+		:error;
+	endif;
+
+endif;
+
+stop
+
+@enduml

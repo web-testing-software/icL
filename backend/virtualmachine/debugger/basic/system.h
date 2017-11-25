@@ -1,5 +1,5 @@
-#ifndef FOCUS_H
-#define FOCUS_H
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 #include "../../parser.h"
 
@@ -8,7 +8,7 @@
 namespace vm {
 namespace debugger {
 namespace basic {
-namespace focus {
+namespace system {
 
 void parse (const int &command);
 
@@ -17,7 +17,7 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	static void runCommand ();
+	static void runReport ();
 };
 
 }
@@ -25,4 +25,4 @@ public:
 }
 }
 
-#endif // FOCUS_H
+#endif // SYSTEM_H

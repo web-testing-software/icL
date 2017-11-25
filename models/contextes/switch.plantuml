@@ -1,0 +1,19 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:switch;
+
+:to;
+if (string)
+	:selector;
+else if (default)
+	:default;
+else if (variable)
+	:web\nelement\nvariable;
+endif;
+
+stop
+
+@enduml

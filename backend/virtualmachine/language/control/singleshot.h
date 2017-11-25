@@ -21,11 +21,6 @@ public:
 	static void runBeginIf ();
 	static void runElse ();
 	static void runEndIf ();
-
-	//	Q_INVOKABLE bool addIf(QVariant v);
-	//	Q_INVOKABLE bool addBeginIf(QVariant v);
-	//	Q_INVOKABLE bool addElse(QVariant v);
-	//	Q_INVOKABLE bool addEndIf(QVariant v);
 };
 
 }

@@ -1,0 +1,21 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:on;
+
+if (success)
+	if (stack == true)
+		:<void>;
+	endif
+	
+else if (failed)
+	if (stack == false)
+		:<void>;
+	endif;
+endif
+
+stop
+
+@enduml

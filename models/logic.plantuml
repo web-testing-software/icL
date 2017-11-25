@@ -1,0 +1,41 @@
+@startuml
+
+!include contextes/wb_style.iuml
+
+interface LogicBlock {
+	+ virtual bool getResult() = 0
+	+ virtual bool isCross() = 0
+}
+
+class CrossBlock {
+	# LogicBlock* block1
+	# LogicBlock* block2
+	+ bool canAcceptBlock()
+	+ void giveBlock(LogicBlock*)
+}
+
+class RichBlock {
+	# QString var1name
+	# QString var2name
+	+ bool canAcceptVar()
+	+ void giveVar(QString)
+}
+
+LogicBlock <|-up- TrueBlock
+LogicBlock <|-down- FalseBlock
+LogicBlock <|-left- RichBlock
+LogicBlock <|-right- CrossBlock
+
+RichBlock <|-- BooleanBlock
+RichBlock <|-up- IntBlock
+RichBlock <|-up- DoubleBlock
+RichBlock <|-- StringBlock
+RichBlock <|-up- StringListBlock
+RichBlock <|-- SingleBlock
+
+CrossBlock <|-- NotBlock
+CrossBlock <|-up- AndBlock
+CrossBlock <|-up- OrBlock
+CrossBlock <|-- XOrBlock
+
+@enduml

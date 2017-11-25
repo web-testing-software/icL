@@ -1,0 +1,15 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:new;
+
+:type name;
+::;
+:value;
+:<type>;
+
+stop
+
+@enduml

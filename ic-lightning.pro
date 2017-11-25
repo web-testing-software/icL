@@ -54,7 +54,6 @@ SOURCES += \
     backend/virtualmachine/input/keyboard/complexeventk.cpp \
     backend/virtualmachine/database/basic/output.cpp \
     backend/virtualmachine/database/basic/editing.cpp \
-    backend/virtualmachine/debugger/basic/focus.cpp \
     backend/virtualmachine/parser.cpp \
 	backend/virtualmachine/system/main/virtualmachine.cpp \
 	backend/virtualmachine/system/main/stackstate.cpp \
@@ -78,7 +77,8 @@ SOURCES += \
     backend/virtualmachine/system/logic/rich/stringliststringblock.cpp \
     backend/helper.cpp \
     data_management/database.cpp \
-    data_management/dialdescription.cpp
+    data_management/dialdescription.cpp \
+    backend/virtualmachine/debugger/basic/system.cpp
 
 HEADERS += \
         webbrowser.h \
@@ -111,7 +111,6 @@ HEADERS += \
     backend/virtualmachine/input/keyboard/complexeventk.h \
     backend/virtualmachine/database/basic/output.h \
     backend/virtualmachine/database/basic/editing.h \
-    backend/virtualmachine/debugger/basic/focus.h \
     backend/virtualmachine/parser.h \
     backend/virtualmachine/allheaders.h \
 	backend/virtualmachine/system/main/virtualmachine.h \
@@ -136,28 +135,44 @@ HEADERS += \
     backend/virtualmachine/system/logic/rich/stringliststringblock.h \
     backend/helper.h \
     data_management/database.h \
-    data_management/dialdescription.h
+    data_management/dialdescription.h \
+    backend/virtualmachine/debugger/basic/system.h
 
 RESOURCES += \
     qml/main.qrc \
     sql/sql.qrc \
     images/images.qrc
 
-debug {
+CONFIG(debug, debug|release) {
     OBJECTS_DIR = debug/objs
     MOC_DIR = debug/moc
     RCC_DIR = debug/rcc
 
 	DEFINES += ICL_ADD_TEST_DB_DATA
 }
-
-release {
+else {
     OBJECTS_DIR = release/objs
     MOC_DIR = release/moc
-    RCC_DIR = release/rcc
+	RCC_DIR = release/rcc
 }
 
 CONFIG += c++11
 
 DISTFILES += \
-    models/logic.qmodel
+    models/contextes/!void.plantuml \
+    models/contextes/database.plantuml \
+    models/contextes/debugger.plantuml \
+    models/contextes/if.plantuml \
+    models/contextes/js.plantuml \
+    models/contextes/new.plantuml \
+    models/contextes/on.plantuml \
+    models/contextes/query.plantuml \
+    models/contextes/read.plantuml \
+    models/contextes/switch.plantuml \
+    models/contextes/tab.plantuml \
+    models/contextes/void.plantuml \
+    models/contextes/wait.plantuml \
+    models/contextes/wb_style.iuml \
+    models/contextes/web_element.plantuml \
+    models/contextes/web_elements.plantuml \
+    models/logic.plantuml

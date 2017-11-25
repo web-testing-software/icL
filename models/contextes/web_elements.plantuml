@@ -1,0 +1,26 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:<web>elements;
+
+:filter;
+:by;
+if ()
+	:content;
+else
+	:string css selector;
+endif
+
+if ()
+	:one;
+endif
+
+:{;
+:<web>element[s];
+:};
+
+stop
+
+@enduml

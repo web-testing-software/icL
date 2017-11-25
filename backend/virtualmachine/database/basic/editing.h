@@ -17,7 +17,7 @@ class Singleton : public QObject {
 	Q_OBJECT
 
 public:
-	static void runInsert ();
+	Q_INVOKABLE static void runInsert ();
 };
 
 }

@@ -1,0 +1,19 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:if;
+
+:<condition> {;
+:<void>;
+:};
+if ()
+	:else {;
+	:<void>;
+	:};
+endif
+
+stop
+
+@enduml

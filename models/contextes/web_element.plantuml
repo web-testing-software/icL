@@ -1,0 +1,42 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:<web>element;
+
+if (visible) 
+	:{;
+	:<bool>;
+	:};
+
+else if (x)
+	:{;
+	:<int>;
+	:};
+
+else if (y)
+	:{;
+	:<int>;
+	:};
+
+else if (click)
+	if ()
+		:goto;
+	endif;
+
+else if (send)
+	:key;
+	:int key code;
+	:string modifiers;
+	:string text;
+	if ()
+		:goto;
+	endif;
+
+endif
+
+
+stop
+
+@enduml

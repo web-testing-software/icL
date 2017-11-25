@@ -1,0 +1,15 @@
+@startuml
+
+!include wb_style.iuml
+
+start
+:read;
+
+:variable name;
+:{;
+:<type>;
+:};
+
+stop
+
+@enduml
