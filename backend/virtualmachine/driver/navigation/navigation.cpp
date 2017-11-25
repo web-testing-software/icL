@@ -3,22 +3,20 @@
 
 
 
-void vm::driver::navigation::navigation::parse (const int &command) {
-	using namespace vm::driver::navigation::navigation;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::driver::navigation::navigation::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::GO_TO_URL ) :
-		Singleton::runGoToURL ();
+		Singleton::runGoToURL (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 
 }
 
-void vm::driver::navigation::navigation::Singleton::runGoToURL () {
+void vm::driver::navigation::navigation::Singleton::runGoToURL (vm::system::Driver &driver) {
 
 }

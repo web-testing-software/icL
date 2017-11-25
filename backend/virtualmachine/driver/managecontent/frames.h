@@ -10,15 +10,14 @@ namespace driver {
 namespace managecontent {
 namespace frames {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runSwitchToFrame ();
-	static void runSwitchToDefault ();
+	static void runSwitchToFrame (vm::system::Driver &driver);
+	static void runSwitchToDefault (vm::system::Driver &driver);
 };
 
 }

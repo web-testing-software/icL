@@ -53,7 +53,7 @@ struct Level3Container {
 	vm::input::keyboard::complexevent::Singleton keyboard_complex;
 	vm::database::basic::output::Singleton output;
 	vm::database::basic::editing::Singleton edititng;
-	vm::debugger::basic::focus::Singleton focus;
+	vm::debugger::basic::system::Singleton focus;
 };
 
 #endif // ALLHEADERS_H

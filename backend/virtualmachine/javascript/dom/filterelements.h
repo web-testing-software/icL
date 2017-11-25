@@ -10,15 +10,14 @@ namespace javascript {
 namespace dom {
 namespace filterelements {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runByCSSSelector ();
-	static void runByContent ();
+	static void runByCSSSelector (vm::system::Driver &driver);
+	static void runByContent (vm::system::Driver &driver);
 };
 
 }

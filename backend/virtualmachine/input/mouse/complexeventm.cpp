@@ -3,21 +3,19 @@
 
 
 
-void vm::input::mouse::complexevent::parse (const int &command) {
-	using namespace vm::input::mouse::complexevent;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::input::mouse::complexevent::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::CLICK ) :
-		Singleton::runClick ();
+		Singleton::runClick (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::input::mouse::complexevent::Singleton::runClick () {
+void vm::input::mouse::complexevent::Singleton::runClick (vm::system::Driver &driver) {
 
 }

@@ -3,45 +3,43 @@
 
 
 
-void vm::language::booloperator::logical::parse (const int &command) {
-	using namespace vm::language::booloperator::equal;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::language::booloperator::logical::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::NOT ) :
-		Singleton::runNot ();
+		Singleton::runNot (driver);
 		break;
 
 	case static_cast <int> ( Command::AND ) :
-		Singleton::runAnd ();
+		Singleton::runAnd (driver);
 		break;
 
 	case static_cast <int> ( Command::OR ) :
-		Singleton::runOr ();
+		Singleton::runOr (driver);
 		break;
 
 	case static_cast <int> ( Command::XOR ) :
-		Singleton::runXOr ();
+		Singleton::runXOr (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::booloperator::logical::Singleton::runNot () {
+void vm::language::booloperator::logical::Singleton::runNot (vm::system::Driver &driver) {
 
 }
 
-void vm::language::booloperator::logical::Singleton::runAnd () {
+void vm::language::booloperator::logical::Singleton::runAnd (vm::system::Driver &driver) {
 
 }
 
-void vm::language::booloperator::logical::Singleton::runOr () {
+void vm::language::booloperator::logical::Singleton::runOr (vm::system::Driver &driver) {
 
 }
 
-void vm::language::booloperator::logical::Singleton::runXOr () {
+void vm::language::booloperator::logical::Singleton::runXOr (vm::system::Driver &driver) {
 
 }

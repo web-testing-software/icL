@@ -123,7 +123,7 @@ void vm::system::VirtualMachine::run () {
 			}
 		}
 		else {
-			parse (command);
+//			parse (command);
 
 			if (!m_runIsPermited) {
 				if (command == m_searchedCommands.command1 || command == m_searchedCommands.command2) {

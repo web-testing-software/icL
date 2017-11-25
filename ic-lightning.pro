@@ -78,7 +78,8 @@ SOURCES += \
     backend/helper.cpp \
     data_management/database.cpp \
     data_management/dialdescription.cpp \
-    backend/virtualmachine/debugger/basic/system.cpp
+    backend/virtualmachine/debugger/basic/system.cpp \
+    backend/virtualmachine/system/main/driver.cpp
 
 HEADERS += \
         webbrowser.h \
@@ -136,7 +137,8 @@ HEADERS += \
     backend/helper.h \
     data_management/database.h \
     data_management/dialdescription.h \
-    backend/virtualmachine/debugger/basic/system.h
+    backend/virtualmachine/debugger/basic/system.h \
+    backend/virtualmachine/system/main/driver.h
 
 RESOURCES += \
     qml/main.qrc \

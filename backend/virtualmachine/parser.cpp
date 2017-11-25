@@ -2,35 +2,37 @@
 #include "allheaders.h"
 #include "parser.h"
 
+#include <backend/virtualmachine/system/main/driver.h>
 
 
-void vm::parse (const int &command) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL1 );
+void vm::parse (vm::system::Driver &driver) {
+
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL1 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::LANGUAGE ) :
-		language::parse (command);
+		language::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::DRIVER ) :
-		driver::parse (command);
+		driver::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::JAVASCRIPT ) :
-		javascript::parse (command);
+		javascript::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::INPUT ) :
-		input::parse (command);
+		input::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::DATABASE ) :
-		database::parse (command);
+		database::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::DEBUGGER ) :
-		debugger::parse (command);
+		debugger::parse (driver);
 		break;
 
 	default :
@@ -38,29 +40,29 @@ void vm::parse (const int &command) {
 	}
 }
 
-void vm::language::parse (const int &command) {
+void vm::language::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::CONTROL ) :
-		control::parse (command);
+		control::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::LOCAL_MEMORY ) :
-		localmemory::parse (command);
+		localmemory::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::STATE_STORANGE ) :
-		statestorange::parse (command);
+		statestorange::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::CONSTANT ) :
-		constant::parse (command);
+		constant::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::BOOL_OPERATOR ) :
-		booloperator::parse (command);
+		booloperator::parse (driver);
 		break;
 
 	default :
@@ -68,17 +70,17 @@ void vm::language::parse (const int &command) {
 	}
 }
 
-void vm::language::control::parse (const int &command) {
+void vm::language::control::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::SINGLE_SHOT ) :
-		singleshot::parse (command);
+		singleshot::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::COMMENT ) :
-		comment::parse (command);
+		comment::parse (driver);
 		break;
 
 	default :
@@ -86,17 +88,17 @@ void vm::language::control::parse (const int &command) {
 	}
 }
 
-void vm::language::localmemory::parse (const int &command) {
+void vm::language::localmemory::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::READ ) :
-		read::parse (command);
+		read::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::WRITE ) :
-		write::parse (command);
+		write::parse (driver);
 		break;
 
 	default :
@@ -104,17 +106,17 @@ void vm::language::localmemory::parse (const int &command) {
 	}
 }
 
-void vm::language::statestorange::parse (const int &command) {
+void vm::language::statestorange::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::READ ) :
-		read::parse (command);
+		read::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::WRITE ) :
-		write::parse (command);
+		write::parse (driver);
 		break;
 
 	default :
@@ -122,13 +124,13 @@ void vm::language::statestorange::parse (const int &command) {
 	}
 }
 
-void vm::language::constant::parse (const int &command) {
+void vm::language::constant::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::READ ) :
-		read::parse (command);
+		read::parse (driver);
 		break;
 
 	default :
@@ -136,25 +138,25 @@ void vm::language::constant::parse (const int &command) {
 	}
 }
 
-void vm::language::booloperator::parse (const int &command) {
+void vm::language::booloperator::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::LOGICAL ) :
-		logical::parse (command);
+		logical::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::EQUAL ) :
-		equal::parse (command);
+		equal::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::NOT_EQUAL ) :
-		notequal::parse (command);
+		notequal::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		stringlist::parse (command);
+		stringlist::parse (driver);
 		break;
 
 	default :
@@ -162,17 +164,17 @@ void vm::language::booloperator::parse (const int &command) {
 	}
 }
 
-void vm::driver::parse (const int &command) {
+void vm::driver::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::NAVIGATION ) :
-		navigation::parse (command);
+		navigation::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::MANAGE_CONTENT ) :
-		managecontent::parse (command);
+		managecontent::parse (driver);
 		break;
 
 	default :
@@ -180,17 +182,17 @@ void vm::driver::parse (const int &command) {
 	}
 }
 
-void vm::driver::navigation::parse (const int &command) {
+void vm::driver::navigation::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::NAVIGATION ) :
-		navigation::parse (command);
+		navigation::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::WAINTING ) :
-		wainting::parse (command);
+		wainting::parse (driver);
 		break;
 
 	default :
@@ -198,13 +200,13 @@ void vm::driver::navigation::parse (const int &command) {
 	}
 }
 
-void vm::driver::managecontent::parse (const int &command) {
+void vm::driver::managecontent::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::FRAMES ) :
-		frames::parse (command);
+		frames::parse (driver);
 		break;
 
 	default :
@@ -212,17 +214,17 @@ void vm::driver::managecontent::parse (const int &command) {
 	}
 }
 
-void vm::javascript::parse (const int &command) {
+void vm::javascript::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::BASE_JS ) :
-		basejs::parse (command);
+		basejs::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::DOM ) :
-		dom::parse (command);
+		dom::parse (driver);
 		break;
 
 	default :
@@ -230,21 +232,21 @@ void vm::javascript::parse (const int &command) {
 	}
 }
 
-void vm::javascript::basejs::parse (const int &command) {
+void vm::javascript::basejs::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::RUN_JS ) :
-		runjs::parse (command);
+		runjs::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::GET ) :
-		get::parse (command);
+		get::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::SET ) :
-		set::parse (command);
+		set::parse (driver);
 		break;
 
 	default :
@@ -252,21 +254,21 @@ void vm::javascript::basejs::parse (const int &command) {
 	}
 }
 
-void vm::javascript::dom::parse (const int &command) {
+void vm::javascript::dom::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::FIND_ELEMENTS ) :
-		findelements::parse (command);
+		findelements::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::FILTER_ELEMENTS ) :
-		filterelements::parse (command);
+		filterelements::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::ELEMENTS_TEST ) :
-		elementstest::parse (command);
+		elementstest::parse (driver);
 		break;
 
 	default :
@@ -274,17 +276,17 @@ void vm::javascript::dom::parse (const int &command) {
 	}
 }
 
-void vm::input::parse (const int &command) {
+void vm::input::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::MOUSE ) :
-		mouse::parse (command);
+		mouse::parse (driver);
 		break;
 
 	case static_cast <int> ( Command::KEYBOARD ) :
-		keyboard::parse (command);
+		keyboard::parse (driver);
 		break;
 
 	default :
@@ -292,13 +294,13 @@ void vm::input::parse (const int &command) {
 	}
 }
 
-void vm::input::mouse::parse (const int &command) {
+void vm::input::mouse::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::COMPLEX_EVENT ) :
-		complexevent::parse (command);
+		complexevent::parse (driver);
 		break;
 
 	default :
@@ -306,13 +308,13 @@ void vm::input::mouse::parse (const int &command) {
 	}
 }
 
-void vm::input::keyboard::parse (const int &command) {
+void vm::input::keyboard::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::COMPLEX_EVENT ) :
-		complexevent::parse (command);
+		complexevent::parse (driver);
 		break;
 
 	default :
@@ -320,13 +322,13 @@ void vm::input::keyboard::parse (const int &command) {
 	}
 }
 
-void vm::database::parse (const int &command) {
+void vm::database::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::BASIC ) :
-		basic::parse (command);
+		basic::parse (driver);
 		break;
 
 	default :
@@ -334,13 +336,13 @@ void vm::database::parse (const int &command) {
 	}
 }
 
-void vm::database::basic::parse (const int &command) {
+void vm::database::basic::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::OUTPUT ) :
-		output::parse (command);
+		output::parse (driver);
 		break;
 
 	default :
@@ -348,13 +350,13 @@ void vm::database::basic::parse (const int &command) {
 	}
 }
 
-void vm::debugger::parse (const int &command) {
+void vm::debugger::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL2 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::BASIC ) :
-		basic::parse (command);
+		basic::parse (driver);
 		break;
 
 	default :
@@ -362,13 +364,13 @@ void vm::debugger::parse (const int &command) {
 	}
 }
 
-void vm::debugger::basic::parse (const int &command) {
+void vm::debugger::basic::parse (vm::system::Driver &driver) {
 
-	int sw = command | static_cast <int> ( Filter::LEVEL3 );
+	int sw = driver.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::FOCUS ) :
-		focus::parse (command);
+	case static_cast <int> ( Command::SYSTEM ) :
+		system::parse (driver);
 		break;
 
 	default :

@@ -3,29 +3,27 @@
 
 
 
-void vm::driver::managecontent::frames::parse (const int &command) {
-	using namespace vm::driver::managecontent::frames;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::driver::managecontent::frames::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::SWITCH_TO_FRAME ) :
-		Singleton::runSwitchToFrame ();
+		Singleton::runSwitchToFrame (driver);
 		break;
 
 	case static_cast <int> ( Command::SWITCH_TO_DEFAULT ) :
-		Singleton::runSwitchToDefault ();
+		Singleton::runSwitchToDefault (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::driver::managecontent::frames::Singleton::runSwitchToFrame () {
+void vm::driver::managecontent::frames::Singleton::runSwitchToFrame (vm::system::Driver &driver) {
 
 }
 
-void vm::driver::managecontent::frames::Singleton::runSwitchToDefault () {
+void vm::driver::managecontent::frames::Singleton::runSwitchToDefault (vm::system::Driver &driver) {
 
 }

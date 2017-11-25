@@ -3,21 +3,19 @@
 
 
 
-void vm::debugger::basic::system::parse (const int &command) {
-	using namespace vm::debugger::basic::focus;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::debugger::basic::system::parse (vm::system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
-	case static_cast <int> ( Command::COMMAND ) :
-		Singleton::runReport ();
+	case static_cast <int> ( Command::REPORT ) :
+		Singleton::runReport (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::debugger::basic::system::Singleton::runReport () {
+void vm::debugger::basic::system::Singleton::runReport (vm::system::Driver &driver) {
 
 }

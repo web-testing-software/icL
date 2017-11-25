@@ -10,14 +10,13 @@ namespace driver {
 namespace navigation {
 namespace navigation {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runGoToURL ();
+	static void runGoToURL (vm::system::Driver &driver);
 };
 
 }

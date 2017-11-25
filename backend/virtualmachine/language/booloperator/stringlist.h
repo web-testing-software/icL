@@ -10,15 +10,14 @@ namespace language {
 namespace booloperator {
 namespace stringlist {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runContains ();
-	static void runContainsFragment ();
+	static void runContains (vm::system::Driver &driver);
+	static void runContainsFragment (vm::system::Driver &driver);
 };
 
 }

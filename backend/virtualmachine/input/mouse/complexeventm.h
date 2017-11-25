@@ -10,14 +10,13 @@ namespace input {
 namespace mouse {
 namespace complexevent {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runClick ();
+	static void runClick (vm::system::Driver &driver);
 };
 
 }

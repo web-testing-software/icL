@@ -10,14 +10,13 @@ namespace debugger {
 namespace basic {
 namespace system {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runReport ();
+	static void runReport (vm::system::Driver &driver);
 };
 
 }

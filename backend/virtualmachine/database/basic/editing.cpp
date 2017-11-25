@@ -3,21 +3,19 @@
 
 
 
-void vm::database::basic::editing::parse (const int &command) {
-	using namespace vm::database::basic::editing;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::database::basic::editing::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::INSERT ) :
-		Singleton::runInsert ();
+		Singleton::runInsert (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::database::basic::editing::Singleton::runInsert () {
+void vm::database::basic::editing::Singleton::runInsert (vm::system::Driver &driver) {
 
 }

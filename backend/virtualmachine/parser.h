@@ -1,3 +1,4 @@
+#include "system/main/driver.h"
 #include "system/main/virtualmachine.h"
 
 #ifndef PARSER_H
@@ -35,29 +36,29 @@ namespace vm {
 		LOOP_TO_END
 	};
 
-	void parse (const int &command);
+	void parse (vm::system::Driver& driver);
 
 	namespace language {
-		void parse (const int &command);
+		void parse (vm::system::Driver& driver);
 
 		namespace control {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace localmemory {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace statestorange {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace constant {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace booloperator {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 		}
 
@@ -66,54 +67,54 @@ namespace vm {
 	//		}
 
 	namespace driver {
-		void parse (const int &command);
+		void parse (vm::system::Driver& driver);
 
 		namespace navigation {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace managecontent {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 		}
 
 	namespace javascript {
-		void parse (const int &command);
+		void parse (vm::system::Driver& driver);
 
 		namespace basejs {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace dom {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 		}
 
 	namespace input {
-		void parse (const int &command);
+		void parse (vm::system::Driver& driver);
 
 		namespace mouse {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 
 		namespace keyboard {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 		}
 
 	namespace database {
-		void parse (const int &command);
+		void parse (vm::system::Driver& driver);
 
 		namespace basic {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 		}
 
 	namespace debugger {
-		void parse (const int &command);
+		void parse (vm::system::Driver& driver);
 
 		namespace basic {
-			void parse (const int &command);
+			void parse (vm::system::Driver& driver);
 			}
 		}
 	}

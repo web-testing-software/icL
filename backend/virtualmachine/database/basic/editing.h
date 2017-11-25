@@ -10,14 +10,13 @@ namespace database {
 namespace basic {
 namespace editing {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	Q_INVOKABLE static void runInsert ();
+	static void runInsert (vm::system::Driver &driver);
 };
 
 }

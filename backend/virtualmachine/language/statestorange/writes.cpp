@@ -3,53 +3,51 @@
 
 
 
-void vm::language::statestorange::write::parse (const int &command) {
-	using namespace vm::language::statestorange::write;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::language::statestorange::write::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean ();
+		Singleton::runBoolean (driver);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt ();
+		Singleton::runInt (driver);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble ();
+		Singleton::runDouble (driver);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString ();
+		Singleton::runString (driver);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList ();
+		Singleton::runStringList (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::statestorange::write::Singleton::runBoolean () {
+void vm::language::statestorange::write::Singleton::runBoolean (vm::system::Driver &driver) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runInt () {
+void vm::language::statestorange::write::Singleton::runInt (vm::system::Driver &driver) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runDouble () {
+void vm::language::statestorange::write::Singleton::runDouble (vm::system::Driver &driver) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runString () {
+void vm::language::statestorange::write::Singleton::runString (vm::system::Driver &driver) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runStringList () {
+void vm::language::statestorange::write::Singleton::runStringList (vm::system::Driver &driver) {
 
 }

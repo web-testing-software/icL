@@ -368,15 +368,12 @@ namespace vm {
 
 		namespace basic {
 			enum class Command {
-				FOCUS = 0x07010100
+				SYSTEM = 0x07010100
 			};
 
-			namespace focus {
+			namespace system {
 				enum class Command {
-					COMMAND			= 0x07010101,
-					LOOP_INIT		= 0x07010102,
-					LOOP_CONDITION	= 0x07010103,
-					LOOP_STEP		= 0x07010104
+					REPORT = 0x07010101
 				};
 				}
 			}

@@ -10,17 +10,16 @@ namespace language {
 namespace control {
 namespace singleshot {
 
-void parse (const int &command);
+void parse (vm::system::Driver &driver);
 
 // This class is needed for compability with QML
-class Singleton : public QObject {
-	Q_OBJECT
+class Singleton {
 
 public:
-	static void runIf ();
-	static void runBeginIf ();
-	static void runElse ();
-	static void runEndIf ();
+	static void runIf (vm::system::Driver &driver);
+	static void runBeginIf (vm::system::Driver &driver);
+	static void runElse (vm::system::Driver &driver);
+	static void runEndIf (vm::system::Driver &driver);
 };
 
 }

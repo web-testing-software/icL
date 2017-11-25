@@ -3,29 +3,27 @@
 
 
 
-void vm::javascript::basejs::runjs::parse (const int &command) {
-	using namespace vm::javascript::basejs::runjs;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::javascript::basejs::runjs::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::RUN_STRING ) :
-		Singleton::runRunString ();
+		Singleton::runRunString (driver);
 		break;
 
 	case static_cast <int> ( Command::RUN_FILE ) :
-		Singleton::runRunFile ();
+		Singleton::runRunFile (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::javascript::basejs::runjs::Singleton::runRunString () {
+void vm::javascript::basejs::runjs::Singleton::runRunString (vm::system::Driver &driver) {
 
 }
 
-void vm::javascript::basejs::runjs::Singleton::runRunFile () {
+void vm::javascript::basejs::runjs::Singleton::runRunFile (vm::system::Driver &driver) {
 
 }

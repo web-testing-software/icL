@@ -3,29 +3,27 @@
 
 
 
-void vm::javascript::dom::findelements::parse (const int &command) {
-	using namespace vm::javascript::dom::findelements;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::javascript::dom::findelements::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::QUERY ) :
-		Singleton::runQuery ();
+		Singleton::runQuery (driver);
 		break;
 
 	case static_cast <int> ( Command::QUERY_ALL ) :
-		Singleton::runQueryAll ();
+		Singleton::runQueryAll (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::javascript::dom::findelements::Singleton::runQuery () {
+void vm::javascript::dom::findelements::Singleton::runQuery (vm::system::Driver &driver) {
 
 }
 
-void vm::javascript::dom::findelements::Singleton::runQueryAll () {
+void vm::javascript::dom::findelements::Singleton::runQueryAll (vm::system::Driver &driver) {
 
 }

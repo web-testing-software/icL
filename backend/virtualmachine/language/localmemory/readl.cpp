@@ -3,61 +3,59 @@
 
 
 
-void vm::language::localmemory::read::parse (const int &command) {
-	using namespace vm::language::localmemory::read;
-
-	int sw = command | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::language::localmemory::read::parse (system::Driver &driver) {
+	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean ();
+		Singleton::runBoolean (driver);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt ();
+		Singleton::runInt (driver);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble ();
+		Singleton::runDouble (driver);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString ();
+		Singleton::runString (driver);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList ();
+		Singleton::runStringList (driver);
 		break;
 
 	case static_cast <int> ( Command::WEB_ELEMENT ) :
-		Singleton::runWebElement ();
+		Singleton::runWebElement (driver);
 		break;
 
 	default :
-		virtualMachine->setError (Error::COMMAND_NOT_FOUND);
+		driver.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::localmemory::read::Singleton::runBoolean () {
+void vm::language::localmemory::read::Singleton::runBoolean (vm::system::Driver &driver) {
 
 }
 
-void vm::language::localmemory::read::Singleton::runInt () {
+void vm::language::localmemory::read::Singleton::runInt (vm::system::Driver &driver) {
 
 }
 
-void vm::language::localmemory::read::Singleton::runDouble () {
+void vm::language::localmemory::read::Singleton::runDouble (vm::system::Driver &driver) {
 
 }
 
-void vm::language::localmemory::read::Singleton::runString () {
+void vm::language::localmemory::read::Singleton::runString (vm::system::Driver &driver) {
 
 }
 
-void vm::language::localmemory::read::Singleton::runStringList () {
+void vm::language::localmemory::read::Singleton::runStringList (vm::system::Driver &driver) {
 
 }
 
-void vm::language::localmemory::read::Singleton::runWebElement () {
+void vm::language::localmemory::read::Singleton::runWebElement (vm::system::Driver &driver) {
 
 }
