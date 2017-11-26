@@ -10,7 +10,6 @@ namespace language {
 namespace control {
 namespace MultiShot {
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:

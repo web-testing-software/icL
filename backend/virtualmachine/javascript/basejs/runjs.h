@@ -10,14 +10,13 @@ namespace javascript {
 namespace basejs {
 namespace runjs {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runRunString (vm::system::Driver &driver);
-	static void runRunFile (vm::system::Driver &driver);
+	static void runRunString (vm::main::Driver &drive);
+	static void runRunFile (vm::main::Driver &drive);
 };
 
 }

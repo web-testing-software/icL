@@ -8,16 +8,16 @@
 #include <QThread>
 
 // Fast access to main active objects
-#define virtualMachine vm::system::VirtualMachine::instance ()
+#define virtualMachine vm::main::VirtualMachine::instance ()
 #define stackStateIterator virtualMachine->stackStateIt ()
 #define stackState stackStateIterator->stack ()
 #define memoryStateIterator virtualMachine->memoryStateIt ()
 #define memoryState memoryStateIterator->state ()
-#define inStream ( *vm::system::VirtualMachine::getInStream () )
-#define outStream ( *vm::system::VirtualMachine::getOutStream () )
+#define inStream ( *vm::main::VirtualMachine::getInStream () )
+#define outStream ( *vm::main::VirtualMachine::getOutStream () )
 
 namespace vm {
-namespace system {
+namespace main {
 
 struct CommandsToSearch {           // By default it search:
 	int command1	= 0xFFFFFFFF;   // -1 - Stack out

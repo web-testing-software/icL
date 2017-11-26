@@ -26,7 +26,7 @@
 #include "input/keyboard/complexeventk.h"
 #include "database/basic/output.h"
 #include "database/basic/editing.h"
-#include "debugger/basic/system.h"
+#include "debugger/basic/testing.h"
 
 struct Level3Container {
 	vm::language::control::singleshot::Singleton single_shot;
@@ -53,7 +53,7 @@ struct Level3Container {
 	vm::input::keyboard::complexevent::Singleton keyboard_complex;
 	vm::database::basic::output::Singleton output;
 	vm::database::basic::editing::Singleton edititng;
-	vm::debugger::basic::system::Singleton focus;
+	vm::debugger::basic::testing::Singleton focus;
 };
 
 #endif // ALLHEADERS_H

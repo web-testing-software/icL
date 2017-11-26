@@ -2,13 +2,15 @@
 #define STRINGLISTSTRINGBLOCK_H
 
 #include "../main/richblock.h"
+#include "stringblock.h"
+#include "stringlistblock.h"
 
 namespace vm {
-namespace system {
+namespace main {
 namespace logic {
 namespace rich {
 
-class StringListStringBlock : public RichBlock
+class StringListStringBlock : public StringListBlock
 {
 public:
 	StringListStringBlock (OperationType otype);

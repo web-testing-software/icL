@@ -2,13 +2,12 @@
 #define STACKSTATE_H
 
 #include "../../../functions/webelement.h"
-#include "../logic/main/logicblock.h"
 #include "datastate.h"
 
 
 
 namespace vm {
-namespace system {
+namespace main {
 
 class StackState : public DataState
 {

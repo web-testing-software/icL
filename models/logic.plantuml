@@ -30,7 +30,8 @@ RichBlock <|-- BooleanBlock
 RichBlock <|-up- IntBlock
 RichBlock <|-up- DoubleBlock
 RichBlock <|-- StringBlock
-RichBlock <|-up- StringListBlock
+StringBlock <|-up- StringListBlock
+StringListBlock <|-up- StringListStringBlock
 RichBlock <|-- SingleBlock
 
 CrossBlock <|-- NotBlock

@@ -10,16 +10,15 @@ namespace language {
 namespace control {
 namespace singleshot {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runIf (vm::system::Driver &driver);
-	static void runBeginIf (vm::system::Driver &driver);
-	static void runElse (vm::system::Driver &driver);
-	static void runEndIf (vm::system::Driver &driver);
+	static void runIf (vm::main::Driver &drive);
+	static void runBeginIf (vm::main::Driver &drive);
+	static void runElse (vm::main::Driver &drive);
+	static void runEndIf (vm::main::Driver &drive);
 };
 
 }

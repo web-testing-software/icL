@@ -3,35 +3,35 @@
 
 
 
-void vm::language::control::comment::parse (system::Driver &driver) {
-	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::language::control::comment::parse (main::Driver &drive) {
+	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::DELIMITER ) :
-		Singleton::runDelimiter (driver);
+		Singleton::runDelimiter (drive);
 		break;
 
 	case static_cast <int> ( Command::LINE ) :
-		Singleton::runLine (driver);
+		Singleton::runLine (drive);
 		break;
 
 	case static_cast <int> ( Command::MULTILINE ) :
-		Singleton::runMultiline (driver);
+		Singleton::runMultiline (drive);
 		break;
 
 	default :
-		driver.setError (Error::COMMAND_NOT_FOUND);
+		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::control::comment::Singleton::runDelimiter (vm::system::Driver &driver) {
+void vm::language::control::comment::Singleton::runDelimiter (vm::main::Driver &drive) {
 
 }
 
-void vm::language::control::comment::Singleton::runLine (vm::system::Driver &driver) {
+void vm::language::control::comment::Singleton::runLine (vm::main::Driver &drive) {
 
 }
 
-void vm::language::control::comment::Singleton::runMultiline (vm::system::Driver &driver) {
+void vm::language::control::comment::Singleton::runMultiline (vm::main::Driver &drive) {
 
 }

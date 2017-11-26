@@ -11,7 +11,7 @@
 
 
 namespace vm {
-namespace system {
+namespace main {
 namespace logic {
 
 class RichBlock : public LogicBlock
@@ -21,7 +21,9 @@ public:
 		EQUAL,
 		NOT_EQUAL,
 		CONTAINS,
-		CONTAINS_FRAGMENT
+		CONTAINS_FRAGMENT,
+		NOT,
+		NOT_NOT
 	};
 
 	RichBlock (OperationType otype);

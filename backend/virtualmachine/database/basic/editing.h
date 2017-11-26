@@ -10,13 +10,12 @@ namespace database {
 namespace basic {
 namespace editing {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runInsert (vm::system::Driver &driver);
+	static void runInsert (vm::main::Driver &drive);
 };
 
 }

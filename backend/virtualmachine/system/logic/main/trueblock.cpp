@@ -1,15 +1,15 @@
 #include "trueblock.h"
 
 
-vm::system::logic::TrueBlock::TrueBlock () {
+vm::main::logic::TrueBlock::TrueBlock () {
 
 }
 
 
-bool vm::system::logic::TrueBlock::calcResult () {
+bool vm::main::logic::TrueBlock::calcResult () {
 	return true;
 }
 
-bool vm::system::logic::TrueBlock::isCross () {
+bool vm::main::logic::TrueBlock::isCross () {
 	return false;
 }

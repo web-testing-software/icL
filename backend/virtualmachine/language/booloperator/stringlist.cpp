@@ -3,27 +3,27 @@
 
 
 
-void vm::language::booloperator::stringlist::parse (system::Driver &driver) {
-	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::language::booloperator::stringlist::parse (main::Driver &drive) {
+	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::CONTAINS ) :
-		Singleton::runContains (driver);
+		Singleton::runContains (drive);
 		break;
 
 	case static_cast <int> ( Command::CONSTAINS_FRAGMENT ) :
-		Singleton::runContainsFragment (driver);
+		Singleton::runContainsFragment (drive);
 		break;
 
 	default :
-		driver.setError (Error::COMMAND_NOT_FOUND);
+		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::booloperator::stringlist::Singleton::runContains (vm::system::Driver &driver) {
+void vm::language::booloperator::stringlist::Singleton::runContains (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::stringlist::Singleton::runContainsFragment (vm::system::Driver &driver) {
+void vm::language::booloperator::stringlist::Singleton::runContainsFragment (vm::main::Driver &drive) {
 
 }

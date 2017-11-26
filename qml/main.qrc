@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>driver.qml</file>
+		<file>driver.qml</file>
         <file>scripts/autorun_init.js</file>
         <file>scripts/my_enums.js</file>
         <file>components/browser/contextmenu/MenuBase.qml</file>

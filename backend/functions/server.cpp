@@ -103,7 +103,7 @@ void Server::check_success (bool success, const QString &func) {
 
 	if (stop_on_error) {
 		if (virtualMachine != nullptr) {
-			virtualMachine->setError (vm::Error::SERVER_ERROR);
+//			drive.setError (vm::Error::SERVER_ERROR);
 		}
 		else {
 			worker->setToErrorState ();

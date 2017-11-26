@@ -1,36 +1,36 @@
 #include "datastate.h"
 
-vm::system::DataState::DataState () {
+vm::main::DataState::DataState () {
 
 }
 
-void vm::system::DataState::setBoolean (const QString &name, bool &value) {
+void vm::main::DataState::setBoolean (const QString &name, bool &value) {
 	boolMap [name] = value;
 }
 
-void vm::system::DataState::setInt (const QString &name, int &value) {
+void vm::main::DataState::setInt (const QString &name, int &value) {
 	intMap [name] = value;
 }
 
-void vm::system::DataState::setDouble (const QString &name, double &value) {
+void vm::main::DataState::setDouble (const QString &name, double &value) {
 	doubleMap [name] = value;
 }
 
-void vm::system::DataState::setString (const QString &name, QString &value) {
+void vm::main::DataState::setString (const QString &name, QString &value) {
 	stringMap [name] = value;
 }
 
-void vm::system::DataState::setStringList (const QString &name, QStringList &value) {
+void vm::main::DataState::setStringList (const QString &name, QStringList &value) {
 	stringListMap [name] = value;
 }
 
-void vm::system::DataState::addToStringList (const QString &name, QString &value) {
+void vm::main::DataState::addToStringList (const QString &name, QString &value) {
 	if (stringListMap.contains (name)) {
 		stringListMap [name].append (value);
 	}
 }
 
-bool vm::system::DataState::contains (const QString &name) {
+bool vm::main::DataState::contains (const QString &name) {
 	return boolMap.contains (name) ||
 		   intMap.contains (name) ||
 		   doubleMap.contains (name) ||
@@ -38,7 +38,7 @@ bool vm::system::DataState::contains (const QString &name) {
 		   stringListMap.contains (name);
 }
 
-vm::system::DataState::Type vm::system::DataState::getType (const QString &name) {
+vm::main::DataState::Type vm::main::DataState::getType (const QString &name) {
 	Type ret = Type::INVALID;
 
 	if (boolMap.contains (name)) {
@@ -60,7 +60,7 @@ vm::system::DataState::Type vm::system::DataState::getType (const QString &name)
 	return ret;
 }
 
-bool vm::system::DataState::checkType (const QString &name, vm::system::DataState::Type &type) {
+bool vm::main::DataState::checkType (const QString &name, vm::main::DataState::Type &type) {
 	bool ret;
 
 	switch (type) {
@@ -91,7 +91,7 @@ bool vm::system::DataState::checkType (const QString &name, vm::system::DataStat
 	return ret;
 }
 
-QVariant vm::system::DataState::getValue (const QString &name) {
+QVariant vm::main::DataState::getValue (const QString &name) {
 	QVariant ret;
 
 	if (boolMap.contains (name)) {

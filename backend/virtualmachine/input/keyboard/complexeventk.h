@@ -10,13 +10,12 @@ namespace input {
 namespace keyboard {
 namespace complexevent {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runSendKey (vm::system::Driver &driver);
+	static void runSendKey (vm::main::Driver &drive);
 };
 
 }

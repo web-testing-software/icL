@@ -3,27 +3,16 @@
 #include "virtualmachine.h"
 
 
-vm::system::IfStackState::IfStackState (StackState *prev, int stackLevel)
+vm::main::IfStackState::IfStackState (StackState *prev, int stackLevel)
 	: StackState (prev, stackLevel) {
 
 }
 
-bool vm::system::IfStackState::tryToDestroy () {
+bool vm::main::IfStackState::tryToDestroy () {
 	// This is not a loop, always returns true
 	return true;
 }
 
-void vm::system::IfStackState::releaseCondition () {
-	CommandsToSearch commands;
+void vm::main::IfStackState::releaseCondition () {
 
-	if (logicBlock->getResult ()) {
-		commands.command1 = static_cast <int> ( language::control::singleshot::Command::BEGIN_IF );
-		commands.command2 = static_cast <int> ( language::control::singleshot::Command::BEGIN_IF );
-	}
-	else {
-		commands.command1	= static_cast <int> ( language::control::singleshot::Command::ELSE );
-		commands.command2	= static_cast <int> ( language::control::singleshot::Command::END_IF );
-	}
-
-	virtualMachine->search (commands);
 }

@@ -10,14 +10,13 @@ namespace javascript {
 namespace dom {
 namespace filterelements {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runByCSSSelector (vm::system::Driver &driver);
-	static void runByContent (vm::system::Driver &driver);
+	static void runByCSSSelector (vm::main::Driver &drive);
+	static void runByContent (vm::main::Driver &drive);
 };
 
 }

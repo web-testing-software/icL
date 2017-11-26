@@ -3,35 +3,35 @@
 
 
 
-void vm::javascript::dom::elementstest::parse (system::Driver &driver) {
-	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::javascript::dom::elementstest::parse (main::Driver &drive) {
+	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::IS_VISIBLE ) :
-		Singleton::runIsVisible (driver);
+		Singleton::runIsVisible (drive);
 		break;
 
 	case static_cast <int> ( Command::GET_X ) :
-		Singleton::runGetX (driver);
+		Singleton::runGetX (drive);
 		break;
 
 	case static_cast <int> ( Command::GET_Y ) :
-		Singleton::runGetY (driver);
+		Singleton::runGetY (drive);
 		break;
 
 	default :
-		driver.setError (Error::COMMAND_NOT_FOUND);
+		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::javascript::dom::elementstest::Singleton::runIsVisible (vm::system::Driver &driver) {
+void vm::javascript::dom::elementstest::Singleton::runIsVisible (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::elementstest::Singleton::runGetX (vm::system::Driver &driver) {
+void vm::javascript::dom::elementstest::Singleton::runGetX (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::elementstest::Singleton::runGetY (vm::system::Driver &driver) {
+void vm::javascript::dom::elementstest::Singleton::runGetY (vm::main::Driver &drive) {
 
 }

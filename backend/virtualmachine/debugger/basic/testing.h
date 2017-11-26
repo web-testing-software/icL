@@ -8,15 +8,14 @@
 namespace vm {
 namespace debugger {
 namespace basic {
-namespace system {
+namespace testing {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runReport (vm::system::Driver &driver);
+	static void runReport (vm::main::Driver &drive);
 };
 
 }

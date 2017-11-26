@@ -5,7 +5,7 @@
 
 
 namespace vm {
-namespace system {
+namespace main {
 
 class MemoryState : public DataState
 {

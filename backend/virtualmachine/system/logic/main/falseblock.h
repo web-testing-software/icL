@@ -6,7 +6,7 @@
 
 
 namespace vm {
-namespace system {
+namespace main {
 namespace logic {
 
 class FalseBlock : public LogicBlock

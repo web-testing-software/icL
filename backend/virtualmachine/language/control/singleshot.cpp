@@ -2,45 +2,45 @@
 
 
 
-void vm::language::control::singleshot::parse (system::Driver &driver) {
-	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::language::control::singleshot::parse (main::Driver &drive) {
+	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::IF ) :
-		Singleton::runIf (driver);
+		Singleton::runIf (drive);
 		break;
 
 	case static_cast <int> ( Command::BEGIN_IF ) :
-		Singleton::runBeginIf (driver);
+		Singleton::runBeginIf (drive);
 		break;
 
 	case static_cast <int> ( Command::ELSE ) :
-		Singleton::runElse (driver);
+		Singleton::runElse (drive);
 		break;
 
 	case static_cast <int> ( Command::END_IF ) :
-		Singleton::runEndIf (driver);
+		Singleton::runEndIf (drive);
 		break;
 
 	default :
-		driver.setError (Error::COMMAND_NOT_FOUND);
+		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::control::singleshot::Singleton::runIf (vm::system::Driver &driver) {
-	stackStateIterator->openNewStack (system::StackState::StackType::IF_STACK);
+void vm::language::control::singleshot::Singleton::runIf (vm::main::Driver &drive) {
+//	stackStateIterator->openNewStack (system::StackState::StackType::IF_STACK);
 }
 
-void vm::language::control::singleshot::Singleton::runBeginIf (vm::system::Driver &driver) {
-//	system::CommandsToSearch commads = virtualMachine->
+void vm::language::control::singleshot::Singleton::runBeginIf (vm::main::Driver &drive) {
+//	system::CommandsToSearch commads = drive.
 	
 //	if ()
 }
 
-void vm::language::control::singleshot::Singleton::runElse (vm::system::Driver &driver) {
+void vm::language::control::singleshot::Singleton::runElse (vm::main::Driver &drive) {
 
 }
 
-void vm::language::control::singleshot::Singleton::runEndIf (vm::system::Driver &driver) {
+void vm::language::control::singleshot::Singleton::runEndIf (vm::main::Driver &drive) {
 
 }

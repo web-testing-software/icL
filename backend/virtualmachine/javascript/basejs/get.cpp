@@ -3,51 +3,51 @@
 
 
 
-void vm::javascript::basejs::get::parse (system::Driver &driver) {
-	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::javascript::basejs::get::parse (main::Driver &drive) {
+	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean (driver);
+		Singleton::runBoolean (drive);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt (driver);
+		Singleton::runInt (drive);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble (driver);
+		Singleton::runDouble (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString (driver);
+		Singleton::runString (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList (driver);
+		Singleton::runStringList (drive);
 		break;
 
 	default :
-		driver.setError (Error::COMMAND_NOT_FOUND);
+		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::javascript::basejs::get::Singleton::runBoolean (vm::system::Driver &driver) {
+void vm::javascript::basejs::get::Singleton::runBoolean (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runInt (vm::system::Driver &driver) {
+void vm::javascript::basejs::get::Singleton::runInt (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runDouble (vm::system::Driver &driver) {
+void vm::javascript::basejs::get::Singleton::runDouble (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runString (vm::system::Driver &driver) {
+void vm::javascript::basejs::get::Singleton::runString (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runStringList (vm::system::Driver &driver) {
+void vm::javascript::basejs::get::Singleton::runStringList (vm::main::Driver &drive) {
 
 }

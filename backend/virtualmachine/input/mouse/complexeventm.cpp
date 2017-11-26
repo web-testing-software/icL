@@ -3,19 +3,19 @@
 
 
 
-void vm::input::mouse::complexevent::parse (system::Driver &driver) {
-	int sw = driver.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
+void vm::input::mouse::complexevent::parse (main::Driver &drive) {
+	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
 	case static_cast <int> ( Command::CLICK ) :
-		Singleton::runClick (driver);
+		Singleton::runClick (drive);
 		break;
 
 	default :
-		driver.setError (Error::COMMAND_NOT_FOUND);
+		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::input::mouse::complexevent::Singleton::runClick (vm::system::Driver &driver) {
+void vm::input::mouse::complexevent::Singleton::runClick (vm::main::Driver &drive) {
 
 }

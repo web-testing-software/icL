@@ -1,17 +1,18 @@
-#include "stringblock.h"
-#include "stringlistblock.h"
 #include "stringliststringblock.h"
 
 
-vm::system::logic::rich::StringListStringBlock::StringListStringBlock (OperationType otype)
-	: vm::system::logic::RichBlock (otype) {
+vm::main::logic::rich::StringListStringBlock::StringListStringBlock (OperationType otype)
+	: vm::main::logic::rich::StringListBlock (otype) {
 
 }
 
-bool vm::system::logic::rich::StringListStringBlock::calcResult () {
+bool vm::main::logic::rich::StringListStringBlock::calcResult () {
 	bool		result	= false;
-	QStringList var1	= StringListBlock::varNameToValue (this, var1name);
-	QString		var2	= StringBlock::varNameToValue (this, var2name);
+	QStringList var1	= varNameToStringList (var1name);
+	QString		var2	= varNameToString (var2name);
+
+//	StringListBlock::varNameToStringList ("sd");
+//	static_cast<StringListBlock*>(this)
 
 	switch (operationType) {
 	case OperationType::CONTAINS :
@@ -24,7 +25,7 @@ bool vm::system::logic::rich::StringListStringBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		virtualMachine->setError (Error::COMMAND_EXECUTION_ERROR,
+		drive->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands <string>list:%1 and string:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -33,7 +34,7 @@ bool vm::system::logic::rich::StringListStringBlock::calcResult () {
 	return result;
 }
 
-bool vm::system::logic::rich::StringListStringBlock::containsFragment (const QStringList &strList, const QString &str) {
+bool vm::main::logic::rich::StringListStringBlock::containsFragment (const QStringList &strList, const QString &str) {
 	bool ret = false;
 
 	for (const QString &strFromList : strList) {

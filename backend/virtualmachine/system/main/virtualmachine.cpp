@@ -1,8 +1,8 @@
 #include "virtualmachine.h"
 
-vm::system::VirtualMachine *vm::system::VirtualMachine::m_instance = nullptr;
+vm::main::VirtualMachine *vm::main::VirtualMachine::m_instance = nullptr;
 
-vm::system::VirtualMachine::VirtualMachine () {
+vm::main::VirtualMachine::VirtualMachine () {
 	if (m_instance == nullptr) {
 		m_instance = this;
 	}
@@ -14,36 +14,36 @@ vm::system::VirtualMachine::VirtualMachine () {
 	m_outStream.setDevice (&m_outFile);
 }
 
-vm::system::MemoryStateIterator * vm::system::VirtualMachine::memoryStateIt () {
+vm::main::MemoryStateIterator * vm::main::VirtualMachine::memoryStateIt () {
 	return &m_memoryStateIt;
 }
 
-vm::system::StackStateIterator * vm::system::VirtualMachine::stackStateIt () {
+vm::main::StackStateIterator * vm::main::VirtualMachine::stackStateIt () {
 	return &m_stackStateIt;
 }
 
-void vm::system::VirtualMachine::makeCurrent (vm::system::VirtualMachine *vm) {
+void vm::main::VirtualMachine::makeCurrent (vm::main::VirtualMachine *vm) {
 	m_instance = vm;
 }
 
-vm::system::VirtualMachine * vm::system::VirtualMachine::instance () {
+vm::main::VirtualMachine * vm::main::VirtualMachine::instance () {
 	return m_instance;
 }
 
-void vm::system::VirtualMachine::openFile (const QString &path) {
+void vm::main::VirtualMachine::openFile (const QString &path) {
 	m_inFile.setFileName (path);
 	m_inFile.open (QFile::ReadOnly);
 }
 
-bool vm::system::VirtualMachine::containsVar (const QString &name) {
+bool vm::main::VirtualMachine::containsVar (const QString &name) {
 	return memoryState->contains (name) || m_stackStateIt.contains (name);
 }
 
-bool vm::system::VirtualMachine::checkType (const QString &name, vm::system::DataState::Type &type) {
+bool vm::main::VirtualMachine::checkType (const QString &name, vm::main::DataState::Type &type) {
 	return memoryState->checkType (name, type) || m_stackStateIt.checkType (name, type);
 }
 
-QVariant vm::system::VirtualMachine::getVar (const QString &name) {
+QVariant vm::main::VirtualMachine::getVar (const QString &name) {
 	if (memoryState->contains (name)) {
 		return memoryState->getValue (name);
 	}
@@ -52,46 +52,46 @@ QVariant vm::system::VirtualMachine::getVar (const QString &name) {
 	}
 }
 
-void vm::system::VirtualMachine::search (const vm::system::CommandsToSearch &commands) {
+void vm::main::VirtualMachine::search (const vm::main::CommandsToSearch &commands) {
 	m_searchedCommands	= commands;
 	m_runIsPermited		= false;
 }
 
-bool vm::system::VirtualMachine::runIsPermited () {
+bool vm::main::VirtualMachine::runIsPermited () {
 	return m_runIsPermited;
 }
 
 
-void vm::system::VirtualMachine::setError (vm::Error error, const QString &description) {
+void vm::main::VirtualMachine::setError (vm::Error error, const QString &description) {
 	this->m_error		= error;
 	this->last_error	= description;
 }
 
-void vm::system::VirtualMachine::setStepNumber (int step) {
+void vm::main::VirtualMachine::setStepNumber (int step) {
 	m_stepNumber = step;
 }
 
-void vm::system::VirtualMachine::setCommandNumber (int command) {
+void vm::main::VirtualMachine::setCommandNumber (int command) {
 	m_commandNumber = command;
 }
 
-vm::system::MemoryState * vm::system::VirtualMachine::memoryStateToStop () {
+vm::main::MemoryState * vm::main::VirtualMachine::memoryStateToStop () {
 	return m_memoryStateToStop;
 }
 
-void vm::system::VirtualMachine::setMemoryStateToStop (vm::system::MemoryState *ms) {
+void vm::main::VirtualMachine::setMemoryStateToStop (vm::main::MemoryState *ms) {
 	m_memoryStateToStop = ms;
 }
 
-QDataStream * vm::system::VirtualMachine::getInStream () {
+QDataStream * vm::main::VirtualMachine::getInStream () {
 	return &m_inStream;
 }
 
-QDataStream * vm::system::VirtualMachine::getOutStream () {
+QDataStream * vm::main::VirtualMachine::getOutStream () {
 	return &m_outStream;
 }
 
-void vm::system::VirtualMachine::run () {
+void vm::main::VirtualMachine::run () {
 	unsigned int code;
 
 	if (!m_inFile.isOpen ()) {

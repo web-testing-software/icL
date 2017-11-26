@@ -1,9 +1,9 @@
+#include "../logic/main/logicblock.h"
 #include "ifstackstate.h"
 #include "stackstate.h"
 #include "virtualmachine.h"
 
-
-vm::system::StackState::StackState (StackState *prev, int stackLevel) {
+vm::main::StackState::StackState (StackState *prev, int stackLevel) {
 	prev_ss				= prev;
 	this->stackLevel	= stackLevel;
 
@@ -12,46 +12,46 @@ vm::system::StackState::StackState (StackState *prev, int stackLevel) {
 	}
 }
 
-vm::system::StackState::~StackState () {
+vm::main::StackState::~StackState () {
 
 }
 
-void vm::system::StackState::setWebElement (const QString &name, WebElement &webElement) {
+void vm::main::StackState::setWebElement (const QString &name, WebElement &webElement) {
 	webElementMap [name] = webElement;
 }
 
-vm::system::StackState * vm::system::StackState::getPrev () {
+vm::main::StackState * vm::main::StackState::getPrev () {
 	return prev_ss;
 }
 
-bool vm::system::StackState::isLast () {
+bool vm::main::StackState::isLast () {
 	return prev_ss == nullptr;
 }
 
-QVariant vm::system::StackState::getStackValue () {
+QVariant vm::main::StackState::getStackValue () {
 	return getValue ("stack");
 }
 
-int vm::system::StackState::getStackLevel () {
+int vm::main::StackState::getStackLevel () {
 	return stackLevel;
 }
 
-bool vm::system::StackState::tryToDestroy () {
+bool vm::main::StackState::tryToDestroy () {
 	// A loop stack cannot by destryed immediately, it is reused
 	// But a commmom stack not
 	return true;
 }
 
-void vm::system::StackState::releaseCondition () {
+void vm::main::StackState::releaseCondition () {
 	// A commom stack cannot get conditions
 	virtualMachine->setError (vm::Error::WRONG_STACK_STATE);
 }
 
-int vm::system::StackState::getMaxStackLevel () {
+int vm::main::StackState::getMaxStackLevel () {
 	return maxStackLevel;
 }
 
-vm::system::DataState::Type vm::system::StackState::getType (const QString &name) {
+vm::main::DataState::Type vm::main::StackState::getType (const QString &name) {
 	if (webElementMap.contains (name)) {
 		return Type::WEB_ELEMENT;
 	}
@@ -60,7 +60,7 @@ vm::system::DataState::Type vm::system::StackState::getType (const QString &name
 	}
 }
 
-bool vm::system::StackState::checkType (const QString &name, vm::system::DataState::Type &type) {
+bool vm::main::StackState::checkType (const QString &name, vm::main::DataState::Type &type) {
 	if (type == Type::WEB_ELEMENT) {
 		return webElementMap.contains (name);
 	}
@@ -69,7 +69,7 @@ bool vm::system::StackState::checkType (const QString &name, vm::system::DataSta
 	}
 }
 
-bool vm::system::StackState::contains (const QString &name) {
+bool vm::main::StackState::contains (const QString &name) {
 	if (webElementMap.contains (name)) {
 		return true;
 	}
@@ -78,7 +78,7 @@ bool vm::system::StackState::contains (const QString &name) {
 	}
 }
 
-QVariant vm::system::StackState::getValue (const QString &name) {
+QVariant vm::main::StackState::getValue (const QString &name) {
 	QVariant res;
 
 	if (webElementMap.contains (name)) {
@@ -91,17 +91,17 @@ QVariant vm::system::StackState::getValue (const QString &name) {
 	return res;
 }
 
-int vm::system::StackState::maxStackLevel = 0;
+int vm::main::StackState::maxStackLevel = 0;
 
-vm::system::StackStateIterator::StackStateIterator () {
+vm::main::StackStateIterator::StackStateIterator () {
 
 }
 
-vm::system::StackState * vm::system::StackStateIterator::stack () {
+vm::main::StackState * vm::main::StackStateIterator::stack () {
 	return m_stack;
 }
 
-void vm::system::StackStateIterator::openNewStack (StackState::StackType stackType) {
+void vm::main::StackStateIterator::openNewStack (StackState::StackType stackType) {
 	int new_stack_level = m_stack->getStackLevel () + 1;
 
 	switch (stackType) {
@@ -116,14 +116,14 @@ void vm::system::StackStateIterator::openNewStack (StackState::StackType stackTy
 
 }
 
-void vm::system::StackStateIterator::closeStack () {
+void vm::main::StackStateIterator::closeStack () {
 	StackState *prev = m_stack->getPrev ();
 
 	delete m_stack;
 	m_stack = prev;
 }
 
-bool vm::system::StackStateIterator::contains (const QString &name) {
+bool vm::main::StackStateIterator::contains (const QString &name) {
 	bool		ret = false;
 	StackState	*it = m_stack;
 
@@ -135,7 +135,7 @@ bool vm::system::StackStateIterator::contains (const QString &name) {
 	return ret;
 }
 
-bool vm::system::StackStateIterator::checkType (const QString &name, vm::system::DataState::Type &type) {
+bool vm::main::StackStateIterator::checkType (const QString &name, vm::main::DataState::Type &type) {
 	bool		ret = false;
 	StackState	*it = m_stack;
 
@@ -147,7 +147,7 @@ bool vm::system::StackStateIterator::checkType (const QString &name, vm::system:
 	return ret;
 }
 
-QVariant vm::system::StackStateIterator::getValue (const QString &name) {
+QVariant vm::main::StackStateIterator::getValue (const QString &name) {
 	QVariant	ret;
 	StackState	*it = m_stack;
 
@@ -161,7 +161,7 @@ QVariant vm::system::StackStateIterator::getValue (const QString &name) {
 	return ret;
 }
 
-void vm::system::StackStateIterator::clear () {
+void vm::main::StackStateIterator::clear () {
 	StackState *tmp;
 
 	while (m_stack != nullptr) {

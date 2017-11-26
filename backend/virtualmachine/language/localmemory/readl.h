@@ -10,18 +10,17 @@ namespace language {
 namespace localmemory {
 namespace read {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runBoolean (vm::system::Driver &driver);
-	static void runInt (vm::system::Driver &driver);
-	static void runDouble (vm::system::Driver &driver);
-	static void runString (vm::system::Driver &driver);
-	static void runStringList (vm::system::Driver &driver);
-	static void runWebElement (vm::system::Driver &driver);
+	static void runBoolean (vm::main::Driver &drive);
+	static void runInt (vm::main::Driver &drive);
+	static void runDouble (vm::main::Driver &drive);
+	static void runString (vm::main::Driver &drive);
+	static void runStringList (vm::main::Driver &drive);
+	static void runWebElement (vm::main::Driver &drive);
 };
 
 }

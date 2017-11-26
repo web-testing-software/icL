@@ -2,23 +2,23 @@
 
 #include <QRegularExpression>
 
-vm::system::logic::rich::StringListBlock::StringListBlock (OperationType otype) :
-	vm::system::logic::RichBlock (otype) {
+vm::main::logic::rich::StringListBlock::StringListBlock (OperationType otype)
+	: vm::main::logic::rich::StringBlock (otype) {
 
 }
 
-QRegExp				vm::system::logic::rich::StringListBlock::exp		= QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
-QRegularExpression	vm::system::logic::rich::StringListBlock::strExp	= QRegularExpression ("\".*\"");
+QRegExp				vm::main::logic::rich::StringListBlock::exp		= QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
+QRegularExpression	vm::main::logic::rich::StringListBlock::strExp	= QRegularExpression ("\".*\"");
 
-bool vm::system::logic::rich::StringListBlock::check (const QString &value) {
+bool vm::main::logic::rich::StringListBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
 
-bool vm::system::logic::rich::StringListBlock::calcResult () {
+bool vm::main::logic::rich::StringListBlock::calcResult () {
 	bool		result	= false;
-	QStringList var1	= varNameToValue (this, var1name);
-	QStringList var2	= varNameToValue (this, var2name);
+	QStringList var1	= varNameToStringList (var1name);
+	QStringList var2	= varNameToStringList (var2name);
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -31,7 +31,7 @@ bool vm::system::logic::rich::StringListBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		virtualMachine->setError (Error::COMMAND_EXECUTION_ERROR,
+		drive->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands <string>list:%1 and <string>list:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -40,7 +40,7 @@ bool vm::system::logic::rich::StringListBlock::calcResult () {
 	return result;
 }
 
-QStringList vm::system::logic::rich::StringListBlock::varNameToValue (LogicBlock *block, const QString &varname) {
+QStringList vm::main::logic::rich::StringListBlock::varNameToStringList (const QString &varname) {
 	DataState::Type type = DataState::Type::STRING_LIST;
 	QStringList		ret;
 
@@ -54,20 +54,20 @@ QStringList vm::system::logic::rich::StringListBlock::varNameToValue (LogicBlock
 			ret.append (string);
 		}
 	}
-	else if (!virtualMachine->checkType (varname, type)) {
-		block->invalidate ();
-		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
+	else if (!drive->checkType (varname, type)) {
+		invalidate ();
+		drive->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a string list variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = virtualMachine->getVar (varname).toStringList ();
+		ret = drive->getVar (varname).toStringList ();
 	}
 
 	return ret;
 }
 
-bool vm::system::logic::rich::StringListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
+bool vm::main::logic::rich::StringListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
 
 	for (const QString &str : list1) {
 		if (!list2.contains (str)) {

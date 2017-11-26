@@ -6,7 +6,7 @@
 
 
 namespace vm {
-namespace system {
+namespace main {
 namespace logic {
 namespace rich {
 
@@ -20,8 +20,8 @@ public:
 	// LogicBlock interface
 	bool calcResult () override;
 
-private:
-	static bool varNameToValue (LogicBlock *block, const QString &varname);
+protected:
+	bool varNameToBoolean (const QString &varname);
 };
 
 }   // namespace rich

@@ -10,15 +10,14 @@ namespace javascript {
 namespace dom {
 namespace elementstest {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runIsVisible (vm::system::Driver &driver);
-	static void runGetX (vm::system::Driver &driver);
-	static void runGetY (vm::system::Driver &driver);
+	static void runIsVisible (vm::main::Driver &drive);
+	static void runGetX (vm::main::Driver &drive);
+	static void runGetY (vm::main::Driver &drive);
 };
 
 }

@@ -1,10 +1,8 @@
-#include "system/main/driver.h"
-#include "system/main/virtualmachine.h"
-
 #ifndef PARSER_H
 #define PARSER_H
 
 #include "allcommands.h"
+#include "system/main/driver.h"
 
 #include <QDataStream>
 #include <QFile>
@@ -14,7 +12,12 @@
 // All parse functions are released using `switch`es
 // to keep the readability and extensibility of code
 
+
 namespace vm {
+
+	namespace main {
+		class Driver;
+	}
 
 	enum class Error {
 		COMMAND_NOT_FOUND,
@@ -36,29 +39,29 @@ namespace vm {
 		LOOP_TO_END
 	};
 
-	void parse (vm::system::Driver& driver);
+	void parse (vm::main::Driver& drive);
 
 	namespace language {
-		void parse (vm::system::Driver& driver);
+		void parse (vm::main::Driver&);
 
 		namespace control {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace localmemory {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace statestorange {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace constant {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace booloperator {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 		}
 
@@ -67,54 +70,54 @@ namespace vm {
 	//		}
 
 	namespace driver {
-		void parse (vm::system::Driver& driver);
+		void parse (vm::main::Driver&);
 
 		namespace navigation {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace managecontent {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 		}
 
 	namespace javascript {
-		void parse (vm::system::Driver& driver);
+		void parse (vm::main::Driver&);
 
 		namespace basejs {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace dom {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 		}
 
 	namespace input {
-		void parse (vm::system::Driver& driver);
+		void parse (vm::main::Driver&);
 
 		namespace mouse {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 
 		namespace keyboard {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 		}
 
 	namespace database {
-		void parse (vm::system::Driver& driver);
+		void parse (vm::main::Driver&);
 
 		namespace basic {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 		}
 
 	namespace debugger {
-		void parse (vm::system::Driver& driver);
+		void parse (vm::main::Driver&);
 
 		namespace basic {
-			void parse (vm::system::Driver& driver);
+			void parse (vm::main::Driver&);
 			}
 		}
 	}

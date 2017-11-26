@@ -1,10 +1,10 @@
 #ifndef LOGICBLOCK_H
 #define LOGICBLOCK_H
 
-
+#include "../../main/driver.h"
 
 namespace vm {
-namespace system {
+namespace main {
 namespace logic {
 
 class LogicBlock
@@ -34,6 +34,7 @@ public:
 protected:
 	virtual bool calcResult () = 0;
 
+	vm::main::Driver *drive;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 
 private:

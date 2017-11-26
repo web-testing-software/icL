@@ -10,16 +10,15 @@ namespace language {
 namespace booloperator {
 namespace logical {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runNot (vm::system::Driver &driver);
-	static void runAnd (vm::system::Driver &driver);
-	static void runOr (vm::system::Driver &driver);
-	static void runXOr (vm::system::Driver &driver);
+	static void runNot (vm::main::Driver &drive);
+	static void runAnd (vm::main::Driver &drive);
+	static void runOr (vm::main::Driver &drive);
+	static void runXOr (vm::main::Driver &drive);
 };
 
 }

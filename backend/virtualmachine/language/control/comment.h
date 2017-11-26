@@ -10,15 +10,14 @@ namespace language {
 namespace control {
 namespace comment {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runDelimiter (vm::system::Driver &driver);
-	static void runLine (vm::system::Driver &driver);
-	static void runMultiline (vm::system::Driver &driver);
+	static void runDelimiter (vm::main::Driver &drive);
+	static void runLine (vm::main::Driver &drive);
+	static void runMultiline (vm::main::Driver &drive);
 };
 
 }

@@ -10,14 +10,13 @@ namespace driver {
 namespace navigation {
 namespace wainting {
 
-void parse (vm::system::Driver &driver);
+void parse (vm::main::Driver &drive);
 
-// This class is needed for compability with QML
 class Singleton {
 
 public:
-	static void runPrepareWaitForPageLoad (vm::system::Driver &driver);
-	static void runWaitForPageLoad (vm::system::Driver &driver);
+	static void runPrepareWaitForPageLoad (vm::main::Driver &drive);
+	static void runWaitForPageLoad (vm::main::Driver &drive);
 };
 
 }

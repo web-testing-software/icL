@@ -1,21 +1,21 @@
 #include "intblock.h"
 
-vm::system::logic::rich::IntBlock::IntBlock (OperationType otype) :
-	vm::system::logic::RichBlock (otype) {
+vm::main::logic::rich::IntBlock::IntBlock (OperationType otype) :
+	vm::main::logic::RichBlock (otype) {
 
 }
 
-QRegExp vm::system::logic::rich::IntBlock::exp = QRegExp ("-?\\d+");
+QRegExp vm::main::logic::rich::IntBlock::exp = QRegExp ("-?\\d+");
 
-bool vm::system::logic::rich::IntBlock::check (const QString &value) {
+bool vm::main::logic::rich::IntBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
 
-bool vm::system::logic::rich::IntBlock::calcResult () {
+bool vm::main::logic::rich::IntBlock::calcResult () {
 	bool	result	= false;
-	int		var1	= varNameToValue (this, var1name);
-	int		var2	= varNameToValue (this, var2name);
+	int		var1	= varNameToInt (var1name);
+	int		var2	= varNameToInt (var2name);
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -37,7 +37,7 @@ bool vm::system::logic::rich::IntBlock::calcResult () {
 	return result;
 }
 
-int vm::system::logic::rich::IntBlock::varNameToValue (LogicBlock *block, const QString &varname) {
+int vm::main::logic::rich::IntBlock::varNameToInt (const QString &varname) {
 	DataState::Type type	= DataState::Type::INT;
 	int				ret		= 0; // = 0 -> exclude compiler warning
 
@@ -45,13 +45,13 @@ int vm::system::logic::rich::IntBlock::varNameToValue (LogicBlock *block, const 
 		ret = varname.toInt ();
 	}
 	else if (!virtualMachine->checkType (varname, type)) {
-		block->invalidate ();
-		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
+		invalidate ();
+		drive->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a boolean variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = virtualMachine->getVar (varname).toInt ();
+		ret = drive->getVar (varname).toInt ();
 	}
 
 	return ret;

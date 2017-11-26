@@ -8,7 +8,7 @@
 
 
 namespace vm {
-namespace system {
+namespace main {
 
 class IfStackState : public StackState
 {

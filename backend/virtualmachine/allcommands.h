@@ -1,9 +1,6 @@
 #ifndef COMMANDS_ENUMS_H
 #define COMMANDS_ENUMS_H
 
-#include <QObject>
-#include <QVariant>
-
 // current version 1.0.0
 
 namespace vm {
@@ -368,10 +365,10 @@ namespace vm {
 
 		namespace basic {
 			enum class Command {
-				SYSTEM = 0x07010100
+				TESTING = 0x07010100
 			};
 
-			namespace system {
+			namespace testing {
 				enum class Command {
 					REPORT = 0x07010101
 				};

@@ -3,14 +3,16 @@
 
 #include "../main/richblock.h"
 
+#include "stringblock.h"
+
 
 
 namespace vm {
-namespace system {
+namespace main {
 namespace logic {
 namespace rich {
 
-class StringListBlock : public RichBlock
+class StringListBlock : public StringBlock
 {
 public:
 	StringListBlock (OperationType otype);
@@ -20,10 +22,10 @@ public:
 	// LogicBlock interface
 	bool calcResult () override;
 
-	friend class StringListStringBlock;
+protected:
+	QStringList varNameToStringList (const QString &varname);
 
 private:
-	static QStringList varNameToValue (LogicBlock *block, const QString &varname);
 	static bool operatorEqual (const QStringList &list1, const QStringList &list2);
 
 	static QRegExp exp;

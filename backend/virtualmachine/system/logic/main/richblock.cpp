@@ -2,15 +2,15 @@
 #include "richblock.h"
 
 
-vm::system::logic::RichBlock::RichBlock (OperationType otype) {
+vm::main::logic::RichBlock::RichBlock (OperationType otype) {
 	operationType = otype;
 }
 
-bool vm::system::logic::RichBlock::canAcceptVar () {
+bool vm::main::logic::RichBlock::canAcceptVar () {
 	return var2name.isEmpty ();
 }
 
-void vm::system::logic::RichBlock::giveVar (QString &varname) {
+void vm::main::logic::RichBlock::giveVar (QString &varname) {
 	if (var1name.isEmpty ()) {
 		var1name = varname;
 	}
@@ -19,12 +19,12 @@ void vm::system::logic::RichBlock::giveVar (QString &varname) {
 	}
 }
 
-bool vm::system::logic::RichBlock::isCross () {
+bool vm::main::logic::RichBlock::isCross () {
 	return false;
 }
 
 
-bool vm::system::logic::RichBlock::checkIntegrity () {
+bool vm::main::logic::RichBlock::checkIntegrity () {
 	if (var1name.isEmpty () || var2name.isEmpty ()) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;

@@ -1,18 +1,18 @@
 #include "booleanblock.h"
 
-vm::system::logic::rich::BooleanBlock::BooleanBlock (OperationType otype) :
-	vm::system::logic::RichBlock (otype) {
+vm::main::logic::rich::BooleanBlock::BooleanBlock (OperationType otype) :
+	vm::main::logic::RichBlock (otype) {
 
 }
 
-bool vm::system::logic::rich::BooleanBlock::check (const QString &value) {
+bool vm::main::logic::rich::BooleanBlock::check (const QString &value) {
 	return value == "true" || value == "false";
 }
 
-bool vm::system::logic::rich::BooleanBlock::calcResult () {
+bool vm::main::logic::rich::BooleanBlock::calcResult () {
 	bool	result	= false;
-	bool	var1	= varNameToValue (this, var1name);
-	bool	var2	= varNameToValue (this, var2name);
+	bool	var1	= varNameToBoolean (var1name);
+	bool	var2	= varNameToBoolean (var2name);
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -34,7 +34,7 @@ bool vm::system::logic::rich::BooleanBlock::calcResult () {
 	return result;
 }
 
-bool vm::system::logic::rich::BooleanBlock::varNameToValue (LogicBlock *block, const QString &varname) {
+bool vm::main::logic::rich::BooleanBlock::varNameToBoolean (const QString &varname) {
 	DataState::Type type	= DataState::Type::BOOLEAN;
 	bool			ret		= false; // = false -> exclude compiler warning
 
@@ -45,7 +45,7 @@ bool vm::system::logic::rich::BooleanBlock::varNameToValue (LogicBlock *block, c
 		ret = false;
 	}
 	else if (!virtualMachine->checkType (varname, type)) {
-		block->invalidate ();
+		invalidate ();
 		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a boolean variable or constant.")
 								  .arg (varname));

@@ -25,7 +25,7 @@ WebBrowser::WebBrowser (QWidget *parent)
 
 	// I don't use a qt quick window because it can't be move be mouse by default
 	// This is necessary for frameless window
-	QUrl source_mainqml ("qrc:/driver.qml");
+	QUrl source_mainqml ("qrc:/drive.qml");
 	quick_receiver = new QQuickWidget ();
 	quick_receiver->setResizeMode (QQuickWidget::SizeRootObjectToView);
 	quick_receiver->setClearColor (QColor (0, 0, 0, 0));

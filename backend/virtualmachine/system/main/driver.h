@@ -1,14 +1,16 @@
 #ifndef DRIVER_H
 #define DRIVER_H
 
-#include "../../parser.h"
 #include "memorystate.h"
 #include "stackstate.h"
 
 #include <QObject>
 
 namespace vm {
-namespace system {
+
+enum class Error;
+
+namespace main {
 
 class Driver : public QObject
 {
