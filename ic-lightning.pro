@@ -179,4 +179,5 @@ DISTFILES += \
     models/contextes/wb_style.iuml \
     models/contextes/web_element.plantuml \
     models/contextes/web_elements.plantuml \
-    models/logic.plantuml
+    models/logic.plantuml \
+    models/contextes/logic_exp.plantuml

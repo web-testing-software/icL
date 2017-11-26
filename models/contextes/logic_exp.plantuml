@@ -1,0 +1,89 @@
+@startuml
+
+!include wb_style.iuml
+
+title LogicBlock* from_expression (QString str, int begin, int end)
+
+start
+
+:i = begin;
+
+while (i < end; i++)
+
+	:operator founded = false;
+
+	if (!) then (yes)
+		:begin = i;
+		if (str[i+1] == "!")
+			:end = i+2;
+			:i++;
+		else
+			:end = i+1;
+		endif;
+		:continue;
+	
+	else if (( || [)
+		:fly to the bracket pair;
+		:find operator|
+	
+	else if (digit)
+		:fly to number end;
+		:find operator|
+	
+	else if (letter)
+		:fly to endintifier end;
+		:find operator|
+		
+	else if (")
+		:fly to string end;
+		:find operator|
+		
+	endif
+
+	if (rich operator found) 
+		:break;
+	endif
+	
+endwhile
+
+:successful = (i != str.length) || (operator found);
+
+if (successful)
+	:var1end = operator begin;
+	:var2begin = oprator end;
+	if (rich operator found)
+		:var1 = str.mid(begin, var1end);
+		:var2 = str.mid(var2begin, end);
+		:solve(var1)|
+		:solve(var2)|
+		if (solved successful)
+			:create and configure a rich operator;
+		else
+			:error;
+		endif
+	else
+		:create and configure a cross operator;
+		:block1 = from_exp(str, begin, var1end)|
+		:block2 = from_exp(str, var2begin, end)|
+	endif
+else
+	if (operator begin != -1)
+		if (operator end - begin == 2)
+			:create a rich !! block;
+		else
+			:var = str.mid(operator end, end);
+			if (var is bool variable)
+				:make a SingleBlock;
+			else
+				:make a CrossBlock;
+				:block1 = from_exp(str, op.end, end)|
+			endif
+		endif
+	else
+		:error;
+	endif
+endif
+
+stop
+
+@enduml

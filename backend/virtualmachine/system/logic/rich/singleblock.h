@@ -13,7 +13,14 @@ namespace rich {
 class SingleBlock : public RichBlock
 {
 public:
-	SingleBlock();
+	SingleBlock(OperationType otype);
+
+	// LogicBlock interface
+public:
+	bool checkIntegrity() override;
+
+protected:
+	bool calcResult() override;
 };
 
 }   // namespace rich
