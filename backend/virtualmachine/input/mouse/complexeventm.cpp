@@ -8,7 +8,7 @@ void vm::input::mouse::complexevent::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::CLICK ) :
-		Singleton::runClick (drive);
+		runClick (drive);
 		break;
 
 	default :
@@ -16,6 +16,6 @@ void vm::input::mouse::complexevent::parse (main::Driver &drive) {
 	}
 }
 
-void vm::input::mouse::complexevent::Singleton::runClick (vm::main::Driver &drive) {
+void vm::input::mouse::complexevent::runClick (vm::main::Driver &drive) {
 
 }

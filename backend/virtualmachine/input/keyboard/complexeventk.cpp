@@ -8,7 +8,7 @@ void vm::input::keyboard::complexevent::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::SEND_KEY ) :
-		Singleton::runSendKey (drive);
+		runSendKey (drive);
 		break;
 
 	default :
@@ -16,6 +16,6 @@ void vm::input::keyboard::complexevent::parse (main::Driver &drive) {
 	}
 }
 
-void vm::input::keyboard::complexevent::Singleton::runSendKey (vm::main::Driver &drive) {
+void vm::input::keyboard::complexevent::runSendKey (vm::main::Driver &drive) {
 
 }

@@ -8,7 +8,7 @@ void vm::database::basic::output::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::SELECT ) :
-		Singleton::runSelect (drive);
+		runSelect (drive);
 		break;
 
 	default :
@@ -16,6 +16,6 @@ void vm::database::basic::output::parse (main::Driver &drive) {
 	}
 }
 
-void vm::database::basic::output::Singleton::runSelect (vm::main::Driver &drive) {
+void vm::database::basic::output::runSelect (vm::main::Driver &drive) {
 
 }

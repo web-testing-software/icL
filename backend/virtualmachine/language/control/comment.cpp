@@ -8,15 +8,15 @@ void vm::language::control::comment::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::DELIMITER ) :
-		Singleton::runDelimiter (drive);
+		runDelimiter (drive);
 		break;
 
 	case static_cast <int> ( Command::LINE ) :
-		Singleton::runLine (drive);
+		runLine (drive);
 		break;
 
 	case static_cast <int> ( Command::MULTILINE ) :
-		Singleton::runMultiline (drive);
+		runMultiline (drive);
 		break;
 
 	default :
@@ -24,14 +24,14 @@ void vm::language::control::comment::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::control::comment::Singleton::runDelimiter (vm::main::Driver &drive) {
+void vm::language::control::comment::runDelimiter (vm::main::Driver &drive) {
 
 }
 
-void vm::language::control::comment::Singleton::runLine (vm::main::Driver &drive) {
+void vm::language::control::comment::runLine (vm::main::Driver &drive) {
 
 }
 
-void vm::language::control::comment::Singleton::runMultiline (vm::main::Driver &drive) {
+void vm::language::control::comment::runMultiline (vm::main::Driver &drive) {
 
 }

@@ -8,11 +8,11 @@ void vm::javascript::dom::filterelements::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::BY_CSS_SELECTOR ) :
-		Singleton::runByCSSSelector (drive);
+		runByCSSSelector (drive);
 		break;
 
 	case static_cast <int> ( Command::BY_CONTENT ) :
-		Singleton::runByContent (drive);
+		runByContent (drive);
 		break;
 
 	default :
@@ -20,10 +20,10 @@ void vm::javascript::dom::filterelements::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::filterelements::Singleton::runByCSSSelector (vm::main::Driver &drive) {
+void vm::javascript::dom::filterelements::runByCSSSelector (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::filterelements::Singleton::runByContent (vm::main::Driver &drive) {
+void vm::javascript::dom::filterelements::runByContent (vm::main::Driver &drive) {
 
 }

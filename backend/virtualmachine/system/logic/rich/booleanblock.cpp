@@ -25,7 +25,7 @@ bool vm::main::logic::rich::BooleanBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		virtualMachine->setError (Error::COMMAND_EXECUTION_ERROR,
+		drive->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands boolean:%1 and boolean:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -44,14 +44,14 @@ bool vm::main::logic::rich::BooleanBlock::varNameToBoolean (const QString &varna
 	else if (varname == "false") {
 		ret = false;
 	}
-	else if (!virtualMachine->checkType (varname, type)) {
+	else if (!drive->checkType (varname, type)) {
 		invalidate ();
-		virtualMachine->setError (Error::DATA_CONVERSION_ERROR,
+		drive->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a boolean variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = virtualMachine->getVar (varname).toBool ();
+		ret = drive->getVar (varname).toBool ();
 	}
 
 	return ret;

@@ -12,11 +12,9 @@ namespace navigation {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
 
-public:
-	static void runGoToURL (vm::main::Driver &drive);
-};
+void runGoToURL (vm::main::Driver &drive);
+
 
 }
 }

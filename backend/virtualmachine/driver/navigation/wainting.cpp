@@ -8,11 +8,11 @@ void vm::driver::navigation::wainting::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::PREPARE_WAIT_FOR_PAGE_LOAD ) :
-		Singleton::runPrepareWaitForPageLoad (drive);
+		runPrepareWaitForPageLoad (drive);
 		break;
 
 	case static_cast <int> ( Command::WAIT_FOR_PAGE_LOAD ) :
-		Singleton::runWaitForPageLoad (drive);
+		runWaitForPageLoad (drive);
 		break;
 
 	default :
@@ -20,10 +20,10 @@ void vm::driver::navigation::wainting::parse (main::Driver &drive) {
 	}
 }
 
-void vm::driver::navigation::wainting::Singleton::runPrepareWaitForPageLoad (vm::main::Driver &drive) {
+void vm::driver::navigation::wainting::runPrepareWaitForPageLoad (vm::main::Driver &drive) {
 
 }
 
-void vm::driver::navigation::wainting::Singleton::runWaitForPageLoad (vm::main::Driver &drive) {
+void vm::driver::navigation::wainting::runWaitForPageLoad (vm::main::Driver &drive) {
 
 }

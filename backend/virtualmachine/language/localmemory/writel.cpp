@@ -8,27 +8,27 @@ void vm::language::localmemory::write::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean (drive);
+		runBoolean (drive);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt (drive);
+		runInt (drive);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble (drive);
+		runDouble (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString (drive);
+		runString (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList (drive);
+		runStringList (drive);
 		break;
 
 	case static_cast <int> ( Command::WEB_ELEMENT ) :
-		Singleton::runWebElement (drive);
+		runWebElement (drive);
 		break;
 
 	default :
@@ -36,26 +36,26 @@ void vm::language::localmemory::write::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::localmemory::write::Singleton::runBoolean (vm::main::Driver &drive) {
+void vm::language::localmemory::write::runBoolean (vm::main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::write::Singleton::runInt (vm::main::Driver &drive) {
+void vm::language::localmemory::write::runInt (vm::main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::write::Singleton::runDouble (vm::main::Driver &drive) {
+void vm::language::localmemory::write::runDouble (vm::main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::write::Singleton::runString (vm::main::Driver &drive) {
+void vm::language::localmemory::write::runString (vm::main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::write::Singleton::runStringList (vm::main::Driver &drive) {
+void vm::language::localmemory::write::runStringList (vm::main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::write::Singleton::runWebElement (vm::main::Driver &drive) {
+void vm::language::localmemory::write::runWebElement (vm::main::Driver &drive) {
 
 }

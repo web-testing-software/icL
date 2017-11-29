@@ -12,14 +12,11 @@ namespace singleshot {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
 
-public:
-	static void runIf (vm::main::Driver &drive);
-	static void runBeginIf (vm::main::Driver &drive);
-	static void runElse (vm::main::Driver &drive);
-	static void runEndIf (vm::main::Driver &drive);
-};
+void runIf (vm::main::Driver &drive);
+void runBeginIf (vm::main::Driver &drive);
+void runElse (vm::main::Driver &drive);
+void runEndIf (vm::main::Driver &drive);
 
 }
 }

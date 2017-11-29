@@ -8,11 +8,11 @@ void vm::javascript::basejs::runjs::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::RUN_STRING ) :
-		Singleton::runRunString (drive);
+		runRunString (drive);
 		break;
 
 	case static_cast <int> ( Command::RUN_FILE ) :
-		Singleton::runRunFile (drive);
+		runRunFile (drive);
 		break;
 
 	default :
@@ -20,10 +20,10 @@ void vm::javascript::basejs::runjs::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::basejs::runjs::Singleton::runRunString (vm::main::Driver &drive) {
+void vm::javascript::basejs::runjs::runRunString (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::runjs::Singleton::runRunFile (vm::main::Driver &drive) {
+void vm::javascript::basejs::runjs::runRunFile (vm::main::Driver &drive) {
 
 }

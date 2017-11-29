@@ -12,14 +12,10 @@ namespace logical {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runNot (vm::main::Driver &drive);
-	static void runAnd (vm::main::Driver &drive);
-	static void runOr (vm::main::Driver &drive);
-	static void runXOr (vm::main::Driver &drive);
-};
+void runNot (vm::main::Driver &drive);
+void runAnd (vm::main::Driver &drive);
+void runOr (vm::main::Driver &drive);
+void runXOr (vm::main::Driver &drive);
 
 }
 }

@@ -10,10 +10,6 @@ namespace language {
 namespace control {
 namespace MultiShot {
 
-class Singleton {
-
-public:
-};
 
 }
 }

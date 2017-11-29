@@ -8,23 +8,23 @@ void vm::javascript::basejs::get::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean (drive);
+		runBoolean (drive);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt (drive);
+		runInt (drive);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble (drive);
+		runDouble (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString (drive);
+		runString (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList (drive);
+		runStringList (drive);
 		break;
 
 	default :
@@ -32,22 +32,22 @@ void vm::javascript::basejs::get::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::basejs::get::Singleton::runBoolean (vm::main::Driver &drive) {
+void vm::javascript::basejs::get::runBoolean (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runInt (vm::main::Driver &drive) {
+void vm::javascript::basejs::get::runInt (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runDouble (vm::main::Driver &drive) {
+void vm::javascript::basejs::get::runDouble (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runString (vm::main::Driver &drive) {
+void vm::javascript::basejs::get::runString (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::get::Singleton::runStringList (vm::main::Driver &drive) {
+void vm::javascript::basejs::get::runStringList (vm::main::Driver &drive) {
 
 }

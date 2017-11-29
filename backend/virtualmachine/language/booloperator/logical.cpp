@@ -8,19 +8,19 @@ void vm::language::booloperator::logical::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::NOT ) :
-		Singleton::runNot (drive);
+		runNot (drive);
 		break;
 
 	case static_cast <int> ( Command::AND ) :
-		Singleton::runAnd (drive);
+		runAnd (drive);
 		break;
 
 	case static_cast <int> ( Command::OR ) :
-		Singleton::runOr (drive);
+		runOr (drive);
 		break;
 
 	case static_cast <int> ( Command::XOR ) :
-		Singleton::runXOr (drive);
+		runXOr (drive);
 		break;
 
 	default :
@@ -28,18 +28,18 @@ void vm::language::booloperator::logical::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::booloperator::logical::Singleton::runNot (vm::main::Driver &drive) {
+void vm::language::booloperator::logical::runNot (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::logical::Singleton::runAnd (vm::main::Driver &drive) {
+void vm::language::booloperator::logical::runAnd (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::logical::Singleton::runOr (vm::main::Driver &drive) {
+void vm::language::booloperator::logical::runOr (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::logical::Singleton::runXOr (vm::main::Driver &drive) {
+void vm::language::booloperator::logical::runXOr (vm::main::Driver &drive) {
 
 }

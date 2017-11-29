@@ -8,7 +8,7 @@ void vm::driver::navigation::navigation::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::GO_TO_URL ) :
-		Singleton::runGoToURL (drive);
+		runGoToURL (drive);
 		break;
 
 	default :
@@ -17,6 +17,6 @@ void vm::driver::navigation::navigation::parse (main::Driver &drive) {
 
 }
 
-void vm::driver::navigation::navigation::Singleton::runGoToURL (vm::main::Driver &drive) {
+void vm::driver::navigation::navigation::runGoToURL (vm::main::Driver &drive) {
 
 }

@@ -8,11 +8,11 @@ void vm::javascript::dom::findelements::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::QUERY ) :
-		Singleton::runQuery (drive);
+		runQuery (drive);
 		break;
 
 	case static_cast <int> ( Command::QUERY_ALL ) :
-		Singleton::runQueryAll (drive);
+		runQueryAll (drive);
 		break;
 
 	default :
@@ -20,10 +20,10 @@ void vm::javascript::dom::findelements::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::findelements::Singleton::runQuery (vm::main::Driver &drive) {
+void vm::javascript::dom::findelements::runQuery (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::findelements::Singleton::runQueryAll (vm::main::Driver &drive) {
+void vm::javascript::dom::findelements::runQueryAll (vm::main::Driver &drive) {
 
 }

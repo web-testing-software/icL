@@ -12,12 +12,8 @@ namespace findelements {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runQuery (vm::main::Driver &drive);
-	static void runQueryAll (vm::main::Driver &drive);
-};
+void runQuery (vm::main::Driver &drive);
+void runQueryAll (vm::main::Driver &drive);
 
 }
 }

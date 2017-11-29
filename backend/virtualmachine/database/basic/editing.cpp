@@ -8,7 +8,7 @@ void vm::database::basic::editing::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::INSERT ) :
-		Singleton::runInsert (drive);
+		runInsert (drive);
 		break;
 
 	default :
@@ -16,6 +16,6 @@ void vm::database::basic::editing::parse (main::Driver &drive) {
 	}
 }
 
-void vm::database::basic::editing::Singleton::runInsert (vm::main::Driver &drive) {
+void vm::database::basic::editing::runInsert (vm::main::Driver &drive) {
 
 }

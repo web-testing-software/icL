@@ -12,12 +12,10 @@ namespace frames {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
 
-public:
-	static void runSwitchToFrame (vm::main::Driver &drive);
-	static void runSwitchToDefault (vm::main::Driver &drive);
-};
+void runSwitchToFrame (vm::main::Driver &drive);
+void runSwitchToDefault (vm::main::Driver &drive);
+
 
 }
 }

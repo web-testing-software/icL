@@ -12,11 +12,7 @@ namespace output {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runSelect (vm::main::Driver &drive);
-};
+void runSelect (vm::main::Driver &drive);
 
 }
 }

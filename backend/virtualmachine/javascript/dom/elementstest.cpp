@@ -8,15 +8,15 @@ void vm::javascript::dom::elementstest::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::IS_VISIBLE ) :
-		Singleton::runIsVisible (drive);
+		runIsVisible (drive);
 		break;
 
 	case static_cast <int> ( Command::GET_X ) :
-		Singleton::runGetX (drive);
+		runGetX (drive);
 		break;
 
 	case static_cast <int> ( Command::GET_Y ) :
-		Singleton::runGetY (drive);
+		runGetY (drive);
 		break;
 
 	default :
@@ -24,14 +24,14 @@ void vm::javascript::dom::elementstest::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::elementstest::Singleton::runIsVisible (vm::main::Driver &drive) {
+void vm::javascript::dom::elementstest::runIsVisible (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::elementstest::Singleton::runGetX (vm::main::Driver &drive) {
+void vm::javascript::dom::elementstest::runGetX (vm::main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::elementstest::Singleton::runGetY (vm::main::Driver &drive) {
+void vm::javascript::dom::elementstest::runGetY (vm::main::Driver &drive) {
 
 }

@@ -12,12 +12,8 @@ namespace runjs {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runRunString (vm::main::Driver &drive);
-	static void runRunFile (vm::main::Driver &drive);
-};
+void runRunString (vm::main::Driver &drive);
+void runRunFile (vm::main::Driver &drive);
 
 }
 }

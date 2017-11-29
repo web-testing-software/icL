@@ -12,11 +12,8 @@ namespace editing {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
+void runInsert (vm::main::Driver &drive);
 
-public:
-	static void runInsert (vm::main::Driver &drive);
-};
 
 }
 }

@@ -12,11 +12,8 @@ namespace complexevent {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
 
-public:
-	static void runSendKey (vm::main::Driver &drive);
-};
+void runSendKey (vm::main::Driver &drive);
 
 }
 }

@@ -8,11 +8,11 @@ void vm::language::booloperator::stringlist::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::CONTAINS ) :
-		Singleton::runContains (drive);
+		runContains (drive);
 		break;
 
 	case static_cast <int> ( Command::CONSTAINS_FRAGMENT ) :
-		Singleton::runContainsFragment (drive);
+		runContainsFragment (drive);
 		break;
 
 	default :
@@ -20,10 +20,10 @@ void vm::language::booloperator::stringlist::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::booloperator::stringlist::Singleton::runContains (vm::main::Driver &drive) {
+void vm::language::booloperator::stringlist::runContains (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::stringlist::Singleton::runContainsFragment (vm::main::Driver &drive) {
+void vm::language::booloperator::stringlist::runContainsFragment (vm::main::Driver &drive) {
 
 }

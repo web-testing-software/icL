@@ -8,7 +8,7 @@ void vm::debugger::basic::testing::parse (vm::main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::REPORT ) :
-		Singleton::runReport (drive);
+		runReport (drive);
 		break;
 
 	default :
@@ -16,6 +16,6 @@ void vm::debugger::basic::testing::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::debugger::basic::testing::Singleton::runReport (vm::main::Driver &drive) {
+void vm::debugger::basic::testing::runReport (vm::main::Driver &drive) {
 
 }

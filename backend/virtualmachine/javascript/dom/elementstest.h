@@ -12,14 +12,9 @@ namespace elementstest {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runIsVisible (vm::main::Driver &drive);
-	static void runGetX (vm::main::Driver &drive);
-	static void runGetY (vm::main::Driver &drive);
-};
-
+void runIsVisible (vm::main::Driver &drive);
+void runGetX (vm::main::Driver &drive);
+void runGetY (vm::main::Driver &drive);
 }
 }
 }

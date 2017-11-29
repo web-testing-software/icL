@@ -12,13 +12,9 @@ namespace comment {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runDelimiter (vm::main::Driver &drive);
-	static void runLine (vm::main::Driver &drive);
-	static void runMultiline (vm::main::Driver &drive);
-};
+void runDelimiter (vm::main::Driver &drive);
+void runLine (vm::main::Driver &drive);
+void runMultiline (vm::main::Driver &drive);
 
 }
 }

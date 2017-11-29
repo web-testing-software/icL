@@ -12,11 +12,7 @@ namespace testing {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runReport (vm::main::Driver &drive);
-};
+void runReport (vm::main::Driver &drive);
 
 }
 }

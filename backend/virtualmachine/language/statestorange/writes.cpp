@@ -8,23 +8,23 @@ void vm::language::statestorange::write::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean (drive);
+		runBoolean (drive);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt (drive);
+		runInt (drive);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble (drive);
+		runDouble (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString (drive);
+		runString (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList (drive);
+		runStringList (drive);
 		break;
 
 	default :
@@ -32,22 +32,22 @@ void vm::language::statestorange::write::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::statestorange::write::Singleton::runBoolean (vm::main::Driver &drive) {
+void vm::language::statestorange::write::runBoolean (vm::main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runInt (vm::main::Driver &drive) {
+void vm::language::statestorange::write::runInt (vm::main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runDouble (vm::main::Driver &drive) {
+void vm::language::statestorange::write::runDouble (vm::main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runString (vm::main::Driver &drive) {
+void vm::language::statestorange::write::runString (vm::main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::Singleton::runStringList (vm::main::Driver &drive) {
+void vm::language::statestorange::write::runStringList (vm::main::Driver &drive) {
 
 }

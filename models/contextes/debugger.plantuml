@@ -12,7 +12,7 @@ else
 	:false;
 endif
 
-:param list;
+:string list;
 
 stop
 

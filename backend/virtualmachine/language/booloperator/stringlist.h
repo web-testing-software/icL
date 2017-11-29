@@ -12,12 +12,10 @@ namespace stringlist {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
 
-public:
-	static void runContains (vm::main::Driver &drive);
-	static void runContainsFragment (vm::main::Driver &drive);
-};
+void runContains (vm::main::Driver &drive);
+void runContainsFragment (vm::main::Driver &drive);
+
 
 }
 }

@@ -7,19 +7,19 @@ void vm::language::control::singleshot::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::IF ) :
-		Singleton::runIf (drive);
+		runIf (drive);
 		break;
 
 	case static_cast <int> ( Command::BEGIN_IF ) :
-		Singleton::runBeginIf (drive);
+		runBeginIf (drive);
 		break;
 
 	case static_cast <int> ( Command::ELSE ) :
-		Singleton::runElse (drive);
+		runElse (drive);
 		break;
 
 	case static_cast <int> ( Command::END_IF ) :
-		Singleton::runEndIf (drive);
+		runEndIf (drive);
 		break;
 
 	default :
@@ -27,20 +27,20 @@ void vm::language::control::singleshot::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::control::singleshot::Singleton::runIf (vm::main::Driver &drive) {
+void vm::language::control::singleshot::runIf (vm::main::Driver &drive) {
 //	stackStateIterator->openNewStack (system::StackState::StackType::IF_STACK);
 }
 
-void vm::language::control::singleshot::Singleton::runBeginIf (vm::main::Driver &drive) {
+void vm::language::control::singleshot::runBeginIf (vm::main::Driver &drive) {
 //	system::CommandsToSearch commads = drive.
 	
 //	if ()
 }
 
-void vm::language::control::singleshot::Singleton::runElse (vm::main::Driver &drive) {
+void vm::language::control::singleshot::runElse (vm::main::Driver &drive) {
 
 }
 
-void vm::language::control::singleshot::Singleton::runEndIf (vm::main::Driver &drive) {
+void vm::language::control::singleshot::runEndIf (vm::main::Driver &drive) {
 
 }

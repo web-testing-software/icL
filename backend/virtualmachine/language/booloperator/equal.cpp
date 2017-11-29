@@ -8,23 +8,23 @@ void vm::language::booloperator::equal::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::BOOLEAN ) :
-		Singleton::runBoolean (drive);
+		runBoolean (drive);
 		break;
 
 	case static_cast <int> ( Command::INT ) :
-		Singleton::runInt (drive);
+		runInt (drive);
 		break;
 
 	case static_cast <int> ( Command::DOUBLE ) :
-		Singleton::runDouble (drive);
+		runDouble (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING ) :
-		Singleton::runString (drive);
+		runString (drive);
 		break;
 
 	case static_cast <int> ( Command::STRING_LIST ) :
-		Singleton::runStringList (drive);
+		runStringList (drive);
 		break;
 
 	default :
@@ -32,22 +32,22 @@ void vm::language::booloperator::equal::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::booloperator::equal::Singleton::runBoolean (vm::main::Driver &drive) {
+void vm::language::booloperator::equal::runBoolean (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::equal::Singleton::runInt (vm::main::Driver &drive) {
+void vm::language::booloperator::equal::runInt (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::equal::Singleton::runDouble (vm::main::Driver &drive) {
+void vm::language::booloperator::equal::runDouble (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::equal::Singleton::runString (vm::main::Driver &drive) {
+void vm::language::booloperator::equal::runString (vm::main::Driver &drive) {
 
 }
 
-void vm::language::booloperator::equal::Singleton::runStringList (vm::main::Driver &drive) {
+void vm::language::booloperator::equal::runStringList (vm::main::Driver &drive) {
 
 }

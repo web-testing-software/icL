@@ -8,11 +8,11 @@ void vm::driver::managecontent::frames::parse (main::Driver &drive) {
 
 	switch (sw) {
 	case static_cast <int> ( Command::SWITCH_TO_FRAME ) :
-		Singleton::runSwitchToFrame (drive);
+		runSwitchToFrame (drive);
 		break;
 
 	case static_cast <int> ( Command::SWITCH_TO_DEFAULT ) :
-		Singleton::runSwitchToDefault (drive);
+		runSwitchToDefault (drive);
 		break;
 
 	default :
@@ -20,10 +20,10 @@ void vm::driver::managecontent::frames::parse (main::Driver &drive) {
 	}
 }
 
-void vm::driver::managecontent::frames::Singleton::runSwitchToFrame (vm::main::Driver &drive) {
+void vm::driver::managecontent::frames::runSwitchToFrame (vm::main::Driver &drive) {
 
 }
 
-void vm::driver::managecontent::frames::Singleton::runSwitchToDefault (vm::main::Driver &drive) {
+void vm::driver::managecontent::frames::runSwitchToDefault (vm::main::Driver &drive) {
 
 }

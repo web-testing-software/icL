@@ -12,12 +12,8 @@ namespace filterelements {
 
 void parse (vm::main::Driver &drive);
 
-class Singleton {
-
-public:
-	static void runByCSSSelector (vm::main::Driver &drive);
-	static void runByContent (vm::main::Driver &drive);
-};
+void runByCSSSelector (vm::main::Driver &drive);
+void runByContent (vm::main::Driver &drive);
 
 }
 }
