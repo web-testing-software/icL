@@ -1,10 +1,13 @@
 #ifndef WEBELEMENT_H
 #define WEBELEMENT_H
 
-#include "../../webbrowser.h"
+#include <QString>
 
-#include <QApplication>
 
+//#include "../../webbrowser.h"
+
+//#include <QApplication>
+#include <QVariant>
 
 /**
  * @brief The WebElement class - DOM Manipulation class

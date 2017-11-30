@@ -1,17 +1,10 @@
-#include "../virtualmachine/system/main/virtualmachine.h"
-#include "../virtualmachine/parser.h"
+#include "../../parser.h"
+#include "../main/virtualmachine.h"
 #include "server.h"
 
-#include <QMessageBox>
-#include <QPushButton>
 #include <QStringList>
 
-Server *Server::m_instance = nullptr;
-
-Server::Server (QObject *parent) : QObject (parent) {
-	if (m_instance == nullptr) {
-		m_instance = this;
-	}
+vm::main::Server::Server (QObject *parent) : QObject (parent) {
 
 	connect (this, SIGNAL (invoke_executeJS ()), this, SLOT (release_executeJS ()));
 	connect (this, SIGNAL (invoke_goTo ()), this, SLOT (release_goTo ()));
@@ -19,7 +12,7 @@ Server::Server (QObject *parent) : QObject (parent) {
 	connect (this, SIGNAL (invoke_showErrorDialog ()), this, SLOT (release_showErrorDialog ()));
 }
 
-bool Server::goTo (const QString &url) {
+bool vm::main::Server::goTo (const QString &url) {
 	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
@@ -35,7 +28,7 @@ bool Server::goTo (const QString &url) {
 	return boolean;
 }
 
-bool Server::waitForPageLoading () {
+bool vm::main::Server::waitForPageLoading () {
 	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
@@ -50,7 +43,7 @@ bool Server::waitForPageLoading () {
 	return boolean;
 }
 
-QVariant Server::executeJS (const QString &code) {
+QVariant vm::main::Server::executeJS (const QString &code) {
 	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
@@ -66,7 +59,7 @@ QVariant Server::executeJS (const QString &code) {
 	return variant;
 }
 
-bool Server::showErrorDialog () {
+bool vm::main::Server::showErrorDialog () {
 	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
@@ -81,22 +74,18 @@ bool Server::showErrorDialog () {
 	return boolean;
 }
 
-void Server::addToErrorsStack (const QString &error) {
+void vm::main::Server::addToErrorsStack (const QString &error) {
 	errors_stack.append (error);
 }
 
-QString Server::getErrorsStr () {
+QString vm::main::Server::getErrorsStr () {
 	QString ret = errors_stack.join ('\n');
 
 	errors_stack.clear ();
 	return ret;
 }
 
-Server * Server::instance () {
-	return m_instance;
-}
-
-void Server::check_success (bool success, const QString &func) {
+void vm::main::Server::check_success (bool success, const QString &func) {
 	if (success) {
 		return;
 	}
@@ -112,7 +101,7 @@ void Server::check_success (bool success, const QString &func) {
 	}
 }
 
-void Server::finish_PageLoading (bool success) {
+void vm::main::Server::finish_PageLoading (bool success) {
 	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
 		boolean = success;
 		waitFor = WaitFor::Nothing;
@@ -120,7 +109,7 @@ void Server::finish_PageLoading (bool success) {
 	}
 }
 
-void Server::finish_executeJS (QVariant variant) {
+void vm::main::Server::finish_executeJS (QVariant variant) {
 	if (waitFor == WaitFor::ExecuteJS) {
 		this->variant	= variant;
 		this->waitFor	= WaitFor::Nothing;
@@ -128,7 +117,7 @@ void Server::finish_executeJS (QVariant variant) {
 	}
 }
 
-void Server::finish_showErrorDialog (bool skip) {
+void vm::main::Server::finish_showErrorDialog (bool skip) {
 	if (waitFor == WaitFor::ErrorDialog) {
 		boolean = skip;
 		waitFor = WaitFor::Nothing;
@@ -136,28 +125,28 @@ void Server::finish_showErrorDialog (bool skip) {
 	}
 }
 
-void Server::release_goTo () {
-	webBrowser->get (url);
+void vm::main::Server::release_goTo () {
+//	webBrowser->get (url);
 }
 
-void Server::release_waitForPageLoading () {
-	webBrowser->waitForPageLoading ();
+void vm::main::Server::release_waitForPageLoading () {
+//	webBrowser->waitForPageLoading ();
 }
-void Server::release_executeJS () {
-	webBrowser->runJS (code);
+void vm::main::Server::release_executeJS () {
+//	webBrowser->runJS (code);
 }
 
-void Server::release_showErrorDialog () {
-	QMessageBox mbox;
+void vm::main::Server::release_showErrorDialog () {
+//	QMessageBox mbox;
 
-	mbox.setWindowTitle ("Error occurer");
-	mbox.setText ("Do you want to ignore it?");
-	mbox.setInformativeText (getErrorsStr ());
-	QPushButton *yesButton = mbox.addButton (QMessageBox::Yes);
-	mbox.addButton (QMessageBox::No);
-	mbox.show ();
-	mbox.exec ();
+//	mbox.setWindowTitle ("Error occurer");
+//	mbox.setText ("Do you want to ignore it?");
+//	mbox.setInformativeText (getErrorsStr ());
+//	QPushButton *yesButton = mbox.addButton (QMessageBox::Yes);
+//	mbox.addButton (QMessageBox::No);
+//	mbox.show ();
+//	mbox.exec ();
 
-	boolean = mbox.clickedButton () == yesButton;
-	working = false;
+//	boolean = mbox.clickedButton () == yesButton;
+//	working = false;
 }

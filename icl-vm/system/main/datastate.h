@@ -25,26 +25,18 @@ public:
 	};
 
 	// Functions to add data to containers
-	void setBoolean (const QString &name, bool &value);
-	void setInt (const QString &name, int &value);
-	void setDouble (const QString &name, double &value);
-	void setString (const QString &name, QString &value);
-	void setStringList (const QString &name, QStringList &value);
+	void setValue (const QString &name, QVariant value);
 	void addToStringList (const QString &name, QString &value);
 
 	// Functions to access data and metadata from containers
-	virtual bool contains (const QString &name);
-	virtual Type getType (const QString &name);
-	virtual bool checkType (const QString &name, Type &type);
-	virtual QVariant getValue (const QString &name);
+	bool contains (const QString &name);
+	Type getType (const QString &name);
+	bool checkType (const QString &name, Type &type);
+	QVariant getValue (const QString &name);
 
 private:
-	// Containers
-	QMap <QString, bool> boolMap;
-	QMap <QString, int> intMap;
-	QMap <QString, double> doubleMap;
-	QMap <QString, QString> stringMap;
-	QMap <QString, QStringList> stringListMap;
+	// Containers]
+	QVariantMap dataMap;
 };
 
 }

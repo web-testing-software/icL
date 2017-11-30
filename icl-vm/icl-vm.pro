@@ -1,4 +1,16 @@
- 
+
+QT += core gui
+
+TARGET = icl-vm
+TEMPLATE = lib
+
+CONFIG += staticlib C++11
+
+
+unix {
+	target.path = /usr/lib
+	INSTALLS += target
+}
 
 HEADERS += \
     allcommands.h \
@@ -56,8 +68,7 @@ HEADERS += \
     system/main/stackstate.h \
     system/main/virtualmachine.h \
     allcommands.h \
-    allheaders.h \
-    parser.h
+	allheaders.h
 
 SOURCES += \
     parser.cpp \
@@ -111,8 +122,9 @@ SOURCES += \
     system/main/ifstackstate.cpp \
     system/main/memorystate.cpp \
     system/main/stackstate.cpp \
-    system/main/virtualmachine.cpp \
-    parser.cpp
+	system/main/virtualmachine.cpp
 
 DISTFILES += \
 	models/logic.plantuml
+
+DEFINES += QT_DEPRECATED_WARNINGS

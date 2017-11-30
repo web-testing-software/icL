@@ -1,5 +1,5 @@
 #include "webbrowser.h"
-#include "backend/functions/server.h"
+//#include "backend/functions/server.h"
 
 #include <QCoreApplication>
 #include <QScreen>
@@ -33,7 +33,7 @@ WebBrowser::WebBrowser (QWidget *parent)
 	// Export the singletons to QML
 	QQmlContext *context = quick_receiver->rootContext ();
 
-	context->setContextProperty ("server", server);
+//	context->setContextProperty ("server", server);
 	context->setContextProperty ("web_browser", this);
 	context->setContextProperty ("helper", &m_helper);
 

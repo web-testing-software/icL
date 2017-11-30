@@ -24,6 +24,6 @@ int main (int argc, char *argv []) {
 	context->setContextProperty ("helper", &helper);
 	context->setContextProperty ("database", &database);
 
-	engine.load (QUrl("qrc:/drive.qml"));
+	engine.load (QUrl("qrc:/driver.qml"));
 	return a.exec ();
 }

@@ -24,7 +24,7 @@ void Worker::run () {
 
 bool Worker::check_errors () {
 	if (error_state) {
-		return server->showErrorDialog ();
+//		return server->showErrorDialog ();
 	}
 	else {
 		return true;

@@ -1,3 +1,4 @@
+#include "../functions/webelement.h"
 #include "../logic/main/logicblock.h"
 #include "ifstackstate.h"
 #include "stackstate.h"
@@ -17,7 +18,8 @@ vm::main::StackState::~StackState () {
 }
 
 void vm::main::StackState::setWebElement (const QString &name, WebElement &webElement) {
-	webElementMap [name] = webElement;
+	QVariant tmp = QVariant::fromValue(webElement);
+	setValue (name, tmp);
 }
 
 vm::main::StackState * vm::main::StackState::getPrev () {
@@ -49,46 +51,6 @@ void vm::main::StackState::releaseCondition () {
 
 int vm::main::StackState::getMaxStackLevel () {
 	return maxStackLevel;
-}
-
-vm::main::DataState::Type vm::main::StackState::getType (const QString &name) {
-	if (webElementMap.contains (name)) {
-		return Type::WEB_ELEMENT;
-	}
-	else {
-		return DataState::getType (name);
-	}
-}
-
-bool vm::main::StackState::checkType (const QString &name, vm::main::DataState::Type &type) {
-	if (type == Type::WEB_ELEMENT) {
-		return webElementMap.contains (name);
-	}
-	else {
-		return DataState::checkType (name, type);
-	}
-}
-
-bool vm::main::StackState::contains (const QString &name) {
-	if (webElementMap.contains (name)) {
-		return true;
-	}
-	else {
-		return DataState::contains (name);
-	}
-}
-
-QVariant vm::main::StackState::getValue (const QString &name) {
-	QVariant res;
-
-	if (webElementMap.contains (name)) {
-		res.setValue (webElementMap [name]);
-	}
-	else {
-		res = DataState::getValue (name);
-	}
-
-	return res;
 }
 
 int vm::main::StackState::maxStackLevel = 0;

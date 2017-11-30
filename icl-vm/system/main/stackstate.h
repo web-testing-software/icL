@@ -1,8 +1,9 @@
 #ifndef STACKSTATE_H
 #define STACKSTATE_H
 
-#include "../../../functions/webelement.h"
 #include "datastate.h"
+
+#include <system/functions/webelement.h>
 
 
 
@@ -34,14 +35,7 @@ public:
 	// This function was designed for stats
 	static int getMaxStackLevel ();
 
-	// DataState interface
-	Type getType (const QString &name) override;
-	bool checkType (const QString &name, Type &type) override;
-	bool contains (const QString &name) override;
-	QVariant getValue (const QString &name) override;
-
 private:
-	QMap <QString, WebElement> webElementMap;
 	StackState *prev_ss = nullptr;
 	int stackLevel;
 

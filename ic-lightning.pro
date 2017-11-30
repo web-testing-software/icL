@@ -3,12 +3,13 @@ TEMPLATE = subdirs
 
 SUBDIRS = \
         vm \
-        inter \
+#        inter \
         app
 
 vm.subdir = icl-vm
-inter.subdir = icl-inter
+#inter.subdir = icl-inter
 app.subdir = icl-app
 
-inter.depends = vm
-app.depends = vm inter
+#inter.depends = vm
+#app.depends = vm inter
+app.depends = vm

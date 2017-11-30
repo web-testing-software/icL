@@ -5,8 +5,13 @@
 #include "worker.h"
 
 #include <QObject>
+#include <QString>
+#include <QVariant>
 
-#define server Server::instance ()
+//#define server Server::instance ()
+
+namespace vm {
+namespace main {
 
 /**
  * @brief The Server class - class to sync two treads
@@ -14,7 +19,6 @@
 class Server : public QObject
 {
 	Q_OBJECT
-	static Server *m_instance;
 
 	enum class WaitFor {
 		GoTo,
@@ -69,7 +73,7 @@ public:
 	 * @brief instance - class Server is a singleton
 	 * @return the first instance of Server
 	 */
-	static Server* instance ();
+//	static Server* instance ();
 
 	/**
 	 * @brief check_success - commom errors catching
@@ -128,5 +132,8 @@ private:
 	QVariant variant;
 	bool boolean;
 };
+
+}
+}
 
 #endif // SERVER_H

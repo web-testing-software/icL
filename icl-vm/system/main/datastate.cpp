@@ -1,60 +1,60 @@
 #include "datastate.h"
 
+#include <system/functions/webelement.h>
+
 vm::main::DataState::DataState () {
 
 }
 
-void vm::main::DataState::setBoolean (const QString &name, bool &value) {
-	boolMap [name] = value;
-}
-
-void vm::main::DataState::setInt (const QString &name, int &value) {
-	intMap [name] = value;
-}
-
-void vm::main::DataState::setDouble (const QString &name, double &value) {
-	doubleMap [name] = value;
-}
-
-void vm::main::DataState::setString (const QString &name, QString &value) {
-	stringMap [name] = value;
-}
-
-void vm::main::DataState::setStringList (const QString &name, QStringList &value) {
-	stringListMap [name] = value;
-}
-
 void vm::main::DataState::addToStringList (const QString &name, QString &value) {
-	if (stringListMap.contains (name)) {
-		stringListMap [name].append (value);
+	if (dataMap.contains (name)) {
+		QStringList tmp = dataMap [name].toStringList ();
+		tmp.append (value);
+		dataMap [name] = QVariant (tmp);
+	}
+	else {
+		// TODO: Set driver to error state
 	}
 }
 
+void vm::main::DataState::setValue (const QString &name, QVariant value) {
+	dataMap [name] = value;
+}
+
 bool vm::main::DataState::contains (const QString &name) {
-	return boolMap.contains (name) ||
-		   intMap.contains (name) ||
-		   doubleMap.contains (name) ||
-		   stringMap.contains (name) ||
-		   stringListMap.contains (name);
+	return dataMap.contains (name);
 }
 
 vm::main::DataState::Type vm::main::DataState::getType (const QString &name) {
 	Type ret = Type::INVALID;
 
-	if (boolMap.contains (name)) {
+	switch (dataMap[name].type ()) {
+	case QVariant::Bool:
 		ret = Type::BOOLEAN;
-	}
-	else if (intMap.contains (name)) {
+		break;
+
+	case QVariant::Int:
 		ret = Type::INT;
-	}
-	else if (doubleMap.contains (name)) {
+		break;
+
+	case QVariant::Double:
 		ret = Type::DOUBLE;
-	}
-	else if (stringMap.contains (name)) {
+		break;
+
+	case QVariant::String:
 		ret = Type::STRING;
-	}
-	else if (stringListMap.contains (name)) {
+		break;
+
+	case QVariant::StringList:
 		ret = Type::STRING_LIST;
+		break;
+
+	case QVariant::UserType:
+		ret = Type::WEB_ELEMENT;
+		break;
+
+	default:
+		break;
 	}
 
 	return ret;
@@ -65,23 +65,27 @@ bool vm::main::DataState::checkType (const QString &name, vm::main::DataState::T
 
 	switch (type) {
 	case Type::BOOLEAN :
-		ret = boolMap.contains (name);
+		ret = dataMap [name].type () == QVariant::Bool;
 		break;
 
 	case Type::INT :
-		ret = intMap.contains (name);
+		ret = dataMap [name].type () == QVariant::Int;
 		break;
 
 	case Type::DOUBLE :
-		ret = doubleMap.contains (name);
+		ret = dataMap [name].type () == QVariant::Double;
 		break;
 
 	case Type::STRING :
-		ret = stringMap.contains (name);
+		ret = dataMap [name].type () == QVariant::String;
 		break;
 
 	case Type::STRING_LIST :
-		ret = stringListMap.contains (name);
+		ret = dataMap [name].type () == QVariant::StringList;
+		break;
+
+	case Type::WEB_ELEMENT :
+		ret = dataMap [name].canConvert <WebElement> ();
 		break;
 
 	default :
@@ -92,23 +96,5 @@ bool vm::main::DataState::checkType (const QString &name, vm::main::DataState::T
 }
 
 QVariant vm::main::DataState::getValue (const QString &name) {
-	QVariant ret;
-
-	if (boolMap.contains (name)) {
-		ret = QVariant(boolMap[name]);
-	}
-	else if (intMap.contains (name)) {
-		ret = QVariant(intMap[name]);
-	}
-	else if (doubleMap.contains (name)) {
-		ret = QVariant(doubleMap[name]);
-	}
-	else if (stringMap.contains (name)) {
-		ret = QVariant(stringMap[name]);
-	}
-	else if (stringListMap.contains (name)) {
-		ret = QVariant(stringListMap[name]);
-	}
-
-	return ret;
+	return dataMap [name];
 }
