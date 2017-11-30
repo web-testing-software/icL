@@ -1,6 +1,6 @@
 @startuml
 
-!include wb_style.iuml
+!include uml_style.iuml
 
 title LogicBlock* from_expression (QString str, int begin, int end)
 
@@ -46,43 +46,7 @@ while (i < end; i++)
 	
 endwhile
 
-:successful = (i != str.length) || (operator found);
-
-if (successful)
-	:var1end = operator begin;
-	:var2begin = oprator end;
-	if (rich operator found)
-		:var1 = str.mid(begin, var1end);
-		:var2 = str.mid(var2begin, end);
-		:solve(var1)|
-		:solve(var2)|
-		if (solved successful)
-			:create and configure a rich operator;
-		else
-			:error;
-		endif
-	else
-		:create and configure a cross operator;
-		:block1 = from_exp(str, begin, var1end)|
-		:block2 = from_exp(str, var2begin, end)|
-	endif
-else
-	if (operator begin != -1)
-		if (operator end - begin == 2)
-			:create a rich !! block;
-		else
-			:var = str.mid(operator end, end);
-			if (var is bool variable)
-				:make a SingleBlock;
-			else
-				:make a CrossBlock;
-				:block1 = from_exp(str, op.end, end)|
-			endif
-		endif
-	else
-		:error;
-	endif
-endif
+:logic_exp_2|
 
 stop
 

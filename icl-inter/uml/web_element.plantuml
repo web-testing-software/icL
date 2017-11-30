@@ -1,6 +1,6 @@
 @startuml
 
-!include wb_style.iuml
+!include uml_style.iuml
 
 start
 :<web>element;
@@ -33,6 +33,14 @@ else if (send)
 	if ()
 		:goto;
 	endif;
+
+'else if (cast)
+'	:to;
+'	:<a>element;
+'	:switch current context type;
+
+else
+	:error;
 
 endif
 

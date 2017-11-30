@@ -1,25 +1,41 @@
 @startuml
 
-!include wb_style.iuml
+!include uml_style.iuml
 
 start
 :<web>elements;
 
-:filter;
-:by;
-if ()
-	:content;
+if (filter)
+	:by;
+	if ()
+		:content;
+	else
+		:string css selector;
+	endif
+	
+	if ()
+		:one;
+	endif
+	
+	:{;
+	:<web>element[s];
+	:};
+	
+else if (get)
+	:number;
+	:{;
+	:<web>element;
+	:};
+	
+else if (length)
+	:{;
+	:<int>;
+	:};
+	
 else
-	:string css selector;
-endif
+	:error;
 
-if ()
-	:one;
 endif
-
-:{;
-:<web>element[s];
-:};
 
 stop
 

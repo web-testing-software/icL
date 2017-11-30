@@ -1,6 +1,6 @@
 @startuml
 
-!include wb_style.iuml
+!include uml_style.iuml
 
 start
 :js;
