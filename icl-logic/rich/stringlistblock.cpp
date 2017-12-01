@@ -1,4 +1,5 @@
 #include "stringlistblock.h"
+#include "state/datastate.h"
 
 #include <QRegularExpression>
 
@@ -31,7 +32,7 @@ bool vm::main::logic::rich::StringListBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		drive->setError (Error::COMMAND_EXECUTION_ERROR,
+		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands <string>list:%1 and <string>list:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -41,7 +42,7 @@ bool vm::main::logic::rich::StringListBlock::calcResult () {
 }
 
 QStringList vm::main::logic::rich::StringListBlock::varNameToStringList (const QString &varname) {
-	DataState::Type type = DataState::Type::STRING_LIST;
+	memory::DataState::Type type = memory::DataState::Type::STRING_LIST;
 	QStringList		ret;
 
 	if (check (varname)) {
@@ -54,14 +55,14 @@ QStringList vm::main::logic::rich::StringListBlock::varNameToStringList (const Q
 			ret.append (string);
 		}
 	}
-	else if (!drive->checkType (varname, type)) {
+	else if (!dataContainer->checkType (varname, type)) {
 		invalidate ();
-		drive->setError (Error::DATA_CONVERSION_ERROR,
+		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a string list variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = drive->getVar (varname).toStringList ();
+		ret = dataContainer->getVar (varname).toStringList ();
 	}
 
 	return ret;

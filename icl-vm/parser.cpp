@@ -33,8 +33,8 @@ void vm::parse (vm::main::Driver &drive) {
 		debugger::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -63,8 +63,8 @@ void vm::language::parse (vm::main::Driver &drive) {
 		booloperator::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -81,8 +81,8 @@ void vm::language::control::parse (vm::main::Driver &drive) {
 		comment::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -99,8 +99,8 @@ void vm::language::localmemory::parse (vm::main::Driver &drive) {
 		write::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -117,8 +117,8 @@ void vm::language::statestorange::parse (vm::main::Driver &drive) {
 		write::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -131,8 +131,8 @@ void vm::language::constant::parse (vm::main::Driver &drive) {
 		read::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -157,8 +157,8 @@ void vm::language::booloperator::parse (vm::main::Driver &drive) {
 		stringlist::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -175,8 +175,8 @@ void vm::driver::parse (vm::main::Driver &drive) {
 		managecontent::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -193,8 +193,8 @@ void vm::driver::navigation::parse (vm::main::Driver &drive) {
 		wainting::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -207,8 +207,8 @@ void vm::driver::managecontent::parse (vm::main::Driver &drive) {
 		frames::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -225,8 +225,8 @@ void vm::javascript::parse (vm::main::Driver &drive) {
 		dom::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -247,8 +247,8 @@ void vm::javascript::basejs::parse (vm::main::Driver &drive) {
 		set::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -269,8 +269,8 @@ void vm::javascript::dom::parse (vm::main::Driver &drive) {
 		elementstest::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -287,8 +287,8 @@ void vm::input::parse (vm::main::Driver &drive) {
 		keyboard::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -301,8 +301,8 @@ void vm::input::mouse::parse (vm::main::Driver &drive) {
 		complexevent::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -315,8 +315,8 @@ void vm::input::keyboard::parse (vm::main::Driver &drive) {
 		complexevent::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -329,8 +329,8 @@ void vm::database::parse (vm::main::Driver &drive) {
 		basic::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -343,8 +343,8 @@ void vm::database::basic::parse (vm::main::Driver &drive) {
 		output::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -357,8 +357,8 @@ void vm::debugger::parse (vm::main::Driver &drive) {
 		basic::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
@@ -371,7 +371,7 @@ void vm::debugger::basic::parse (vm::main::Driver &drive) {
 		testing::parse (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }

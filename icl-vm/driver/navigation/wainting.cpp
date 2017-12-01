@@ -15,8 +15,8 @@ void vm::driver::navigation::wainting::parse (main::Driver &drive) {
 		runWaitForPageLoad (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

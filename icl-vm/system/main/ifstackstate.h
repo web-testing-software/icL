@@ -1,14 +1,14 @@
 #ifndef IFSTACKSTATE_H
 #define IFSTACKSTATE_H
 
-#include "../logic/main/logicblock.h"
-#include "stackstate.h"
+#include "main/logicblock.h"
+#include "state/stackstate.h"
 
 
 
 
 namespace vm {
-namespace main {
+namespace memory {
 
 class IfStackState : public StackState
 {
@@ -20,7 +20,7 @@ public:
 	void releaseCondition() override;
 
 protected:
-	logic::LogicBlock* logicBlock;
+	main::logic::LogicBlock* logicBlock;
 };
 
 } // namespace system

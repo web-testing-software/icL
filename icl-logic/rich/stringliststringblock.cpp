@@ -25,7 +25,7 @@ bool vm::main::logic::rich::StringListStringBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		drive->setError (Error::COMMAND_EXECUTION_ERROR,
+		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands <string>list:%1 and string:%2.")
 								  .arg (var1name)
 								  .arg (var2name));

@@ -11,8 +11,8 @@ void vm::database::basic::editing::parse (main::Driver &drive) {
 		runInsert (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

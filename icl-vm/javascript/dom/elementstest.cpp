@@ -19,8 +19,8 @@ void vm::javascript::dom::elementstest::parse (main::Driver &drive) {
 		runGetY (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

@@ -6,7 +6,7 @@
 
 
 namespace vm {
-namespace main {
+namespace memory {
 
 class DataState
 {
@@ -35,7 +35,7 @@ public:
 	QVariant getValue (const QString &name);
 
 private:
-	// Containers]
+	// Data container
 	QVariantMap dataMap;
 };
 

@@ -11,8 +11,8 @@ void vm::driver::navigation::navigation::parse (main::Driver &drive) {
 		runGoToURL (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 
 }

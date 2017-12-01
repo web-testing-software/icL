@@ -1,5 +1,5 @@
 #include "../../parser.h"
-#include "../main/virtualmachine.h"
+//#include "../main/virtualmachine.h"
 #include "server.h"
 
 #include <QStringList>
@@ -91,12 +91,12 @@ void vm::main::Server::check_success (bool success, const QString &func) {
 	}
 
 	if (stop_on_error) {
-		if (virtualMachine != nullptr) {
+//		if (virtualMachine != nullptr) {
 //			drive.setError (vm::Error::SERVER_ERROR);
-		}
-		else {
-			worker->setToErrorState ();
-		}
+//		}
+//		else {
+//			worker->setToErrorState ();
+//		}
 		addToErrorsStack ("error detected in " + func);
 	}
 }

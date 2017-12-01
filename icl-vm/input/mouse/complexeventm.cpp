@@ -11,8 +11,8 @@ void vm::input::mouse::complexevent::parse (main::Driver &drive) {
 		runClick (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

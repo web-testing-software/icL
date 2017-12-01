@@ -19,8 +19,8 @@ void vm::language::control::comment::parse (main::Driver &drive) {
 		runMultiline (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

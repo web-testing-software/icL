@@ -1,5 +1,5 @@
 #include "server.h"
-#include "webelement.h"
+#include "structures/webelement.h"
 #include "worker.h"
 
 Worker *Worker::m_instance = nullptr;

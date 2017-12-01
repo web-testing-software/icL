@@ -15,8 +15,8 @@ void vm::javascript::basejs::runjs::parse (main::Driver &drive) {
 		runRunFile (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

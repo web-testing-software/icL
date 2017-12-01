@@ -15,17 +15,17 @@ bool vm::main::logic::rich::SingleBlock::checkIntegrity () {
 }
 
 bool vm::main::logic::rich::SingleBlock::calcResult () {
-	DataState::Type type = DataState::Type::BOOLEAN;
+	memory::DataState::Type type = memory::DataState::Type::BOOLEAN;
 	bool			value, ret = false;
 
-	if (!drive->checkType (var1name, type)) {
+	if (!dataContainer->checkType (var1name, type)) {
 		invalidate ();
-		drive->setError (Error::DATA_CONVERSION_ERROR,
+		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
 						 QObject::tr ("%1 is not a boolean variable.")
 						 .arg (var1name));
 	}
 
-	value = drive->getVar (var1name).toBool ();
+	value = dataContainer->getVar (var1name).toBool ();
 
 	switch (operationType) {
 	case OperationType::NOT_NOT :
@@ -38,7 +38,7 @@ bool vm::main::logic::rich::SingleBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		drive->setError (Error::COMMAND_EXECUTION_ERROR,
+		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 						 QObject::tr ("Wrong operator for bool operand: %1")
 						 .arg (var1name));
 	}

@@ -29,7 +29,7 @@ bool vm::main::logic::rich::DoubleBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		drive->setError (Error::COMMAND_EXECUTION_ERROR,
+		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands double:%1 and double:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -39,20 +39,20 @@ bool vm::main::logic::rich::DoubleBlock::calcResult () {
 }
 
 double vm::main::logic::rich::DoubleBlock::varNameToDouble (const QString &varname) {
-	DataState::Type type	= DataState::Type::DOUBLE;
+	memory::DataState::Type type	= memory::DataState::Type::DOUBLE;
 	double			ret		= 0.0; // = 0.0 -> exclude compiler warning
 
 	if (check (varname)) {
 		ret = varname.toDouble ();
 	}
-	else if (!drive->checkType (varname, type)) {
+	else if (!dataContainer->checkType (varname, type)) {
 		invalidate ();
-		drive->setError (Error::DATA_CONVERSION_ERROR,
+		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a double variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = drive->getVar (varname).toDouble ();
+		ret = dataContainer->getVar (varname).toDouble ();
 	}
 
 	return ret;

@@ -11,8 +11,8 @@ void vm::debugger::basic::testing::parse (vm::main::Driver &drive) {
 		runReport (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

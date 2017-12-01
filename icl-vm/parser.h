@@ -19,19 +19,6 @@ namespace vm {
 		class Driver;
 	}
 
-	enum class Error {
-		COMMAND_NOT_FOUND,
-		COMMAND_EXECUTION_ERROR,
-		INVALID_ARGUMENTS,
-		UNEXPECTED_EOF,
-		DATA_CONVERSION_ERROR,
-		WRONG_STACK_STATE,
-		SERVER_ERROR,
-		FILE_NOT_OPENED,
-		WRONG_FILE_FORMAT,
-		NO_VM_ERROR
-	};
-
 	enum class LoopMode {
 		NO_STATE,
 		ONCE,

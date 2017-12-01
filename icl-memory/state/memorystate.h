@@ -5,7 +5,7 @@
 
 
 namespace vm {
-namespace main {
+namespace memory {
 
 class MemoryState : public DataState
 {
@@ -31,6 +31,7 @@ class MemoryStateIterator
 {
 public:
 	MemoryStateIterator ();
+	~MemoryStateIterator ();
 
 	MemoryState* state () const;
 

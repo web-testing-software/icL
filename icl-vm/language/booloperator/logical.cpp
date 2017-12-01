@@ -23,8 +23,8 @@ void vm::language::booloperator::logical::parse (main::Driver &drive) {
 		runXOr (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

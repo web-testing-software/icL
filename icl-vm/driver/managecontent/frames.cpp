@@ -15,8 +15,8 @@ void vm::driver::managecontent::frames::parse (main::Driver &drive) {
 		runSwitchToDefault (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

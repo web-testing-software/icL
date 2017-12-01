@@ -15,8 +15,8 @@ void vm::language::booloperator::stringlist::parse (main::Driver &drive) {
 		runContainsFragment (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

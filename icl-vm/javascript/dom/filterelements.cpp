@@ -15,8 +15,8 @@ void vm::javascript::dom::filterelements::parse (main::Driver &drive) {
 		runByContent (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

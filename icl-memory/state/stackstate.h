@@ -2,13 +2,10 @@
 #define STACKSTATE_H
 
 #include "datastate.h"
-
-#include <system/functions/webelement.h>
-
-
+#include "../structures/webelement.h"
 
 namespace vm {
-namespace main {
+namespace memory {
 
 class StackState : public DataState
 {
@@ -46,6 +43,7 @@ class StackStateIterator
 {
 public:
 	StackStateIterator ();
+	~StackStateIterator ();
 
 	StackState* stack ();
 

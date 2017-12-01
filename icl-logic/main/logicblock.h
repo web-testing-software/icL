@@ -1,7 +1,7 @@
 #ifndef LOGICBLOCK_H
 #define LOGICBLOCK_H
 
-#include "../../main/driver.h"
+#include "../../icl-memory/state/datacontainer.h"
 
 namespace vm {
 namespace main {
@@ -34,7 +34,7 @@ public:
 protected:
 	virtual bool calcResult () = 0;
 
-	vm::main::Driver *drive;
+	vm::memory::DataContainer *dataContainer;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 
 private:

@@ -31,8 +31,8 @@ void vm::language::localmemory::write::parse (main::Driver &drive) {
 		runWebElement (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

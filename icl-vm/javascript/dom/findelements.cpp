@@ -15,8 +15,8 @@ void vm::javascript::dom::findelements::parse (main::Driver &drive) {
 		runQueryAll (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

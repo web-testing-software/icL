@@ -22,8 +22,8 @@ void vm::language::control::singleshot::parse (main::Driver &drive) {
 		runEndIf (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

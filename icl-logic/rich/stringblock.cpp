@@ -29,7 +29,7 @@ bool vm::main::logic::rich::StringBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		drive->setError (Error::COMMAND_EXECUTION_ERROR,
+		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands string:%1 and string:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -39,20 +39,20 @@ bool vm::main::logic::rich::StringBlock::calcResult () {
 }
 
 QString vm::main::logic::rich::StringBlock::varNameToString (const QString &varname) {
-	DataState::Type type = DataState::Type::STRING;
+	memory::DataState::Type type = memory::DataState::Type::STRING;
 	QString			ret;
 
 	if (check (varname)) {
 		ret = varname.mid (1, -2);
 	}
-	else if (!drive->checkType (varname, type)) {
+	else if (!dataContainer->checkType (varname, type)) {
 		invalidate ();
-		drive->setError (Error::DATA_CONVERSION_ERROR,
+		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a string variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = drive->getVar (varname).toString ();
+		ret = dataContainer->getVar (varname).toString ();
 	}
 
 	return ret;

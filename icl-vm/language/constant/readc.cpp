@@ -27,8 +27,8 @@ void vm::language::constant::read::parse (main::Driver &drive) {
 		runStringList (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

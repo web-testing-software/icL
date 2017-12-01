@@ -11,8 +11,8 @@ void vm::database::basic::output::parse (main::Driver &drive) {
 		runSelect (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

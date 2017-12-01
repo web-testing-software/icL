@@ -1,4 +1,4 @@
-#include "../../main/virtualmachine.h"
+//#include "../../main/virtualmachine.h"
 #include "richblock.h"
 
 

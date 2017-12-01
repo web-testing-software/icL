@@ -11,8 +11,8 @@ void vm::input::keyboard::complexevent::parse (main::Driver &drive) {
 		runSendKey (drive);
 		break;
 
-	default :
-		drive.setError (Error::COMMAND_NOT_FOUND);
+//	default :
+//		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 

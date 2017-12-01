@@ -25,7 +25,7 @@ bool vm::main::logic::rich::BooleanBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		drive->setError (Error::COMMAND_EXECUTION_ERROR,
+		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 								  QObject::tr ("Wrong operator for operands boolean:%1 and boolean:%2.")
 								  .arg (var1name)
 								  .arg (var2name));
@@ -35,7 +35,7 @@ bool vm::main::logic::rich::BooleanBlock::calcResult () {
 }
 
 bool vm::main::logic::rich::BooleanBlock::varNameToBoolean (const QString &varname) {
-	DataState::Type type	= DataState::Type::BOOLEAN;
+	memory::DataState::Type type	= memory::DataState::Type::BOOLEAN;
 	bool			ret		= false; // = false -> exclude compiler warning
 
 	if (varname == "true") {
@@ -44,14 +44,14 @@ bool vm::main::logic::rich::BooleanBlock::varNameToBoolean (const QString &varna
 	else if (varname == "false") {
 		ret = false;
 	}
-	else if (!drive->checkType (varname, type)) {
+	else if (!dataContainer->checkType (varname, type)) {
 		invalidate ();
-		drive->setError (Error::DATA_CONVERSION_ERROR,
+		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
 								  QObject::tr ("%1 is not a boolean variable or constant.")
 								  .arg (varname));
 	}
 	else {
-		ret = drive->getVar (varname).toBool ();
+		ret = dataContainer->getVar (varname).toBool ();
 	}
 
 	return ret;
