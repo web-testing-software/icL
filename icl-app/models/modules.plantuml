@@ -1,0 +1,50 @@
+@startuml
+
+!include uml_style.iuml
+
+class Interpreter <<vm.inter>>
+class Driver <<vm.main>>
+class LogicBlock <<vm.main.logic>>
+class DataContainer <<vm.memory>>
+
+skinparam classBorderColor<<vm.inter>> green
+skinparam classBorderColor<<vm.main>> blue
+skinparam classBorderColor<<vm.main.logic>> teal
+skinparam classBorderColor<<vm.memory>> brown
+
+App ..> Driver
+Driver ..> DataContainer
+Driver ..> LogicBlock
+Driver ..> Interpreter
+DataContainer <.left. Interpreter
+Interpreter .right.> LogicBlock
+
+class DataContainer {
+	getMemoryStateIterator ();
+	getStackStateIterator ();
+}
+
+class Interpreter {
+	Command parseNext ();
+	bool flyToIf ();
+	bool flyToElse ();
+	bool flyToCommandStack ();
+	signal errorOcurrer (Error, String description);
+	signal commandSelectionChanged (int begin, int end)
+}
+
+class LogicBlock {
+	bool checkIntegrity ();
+	bool getResult ();
+	signal errorOcurrer (Error, String description);
+}
+
+class Driver {
+	void reset ();
+	void runOneStep ();
+	void runAll ();
+	void stop ();
+	void forceStop ();
+}
+
+@enduml

@@ -7,12 +7,19 @@ start
 
 :to;
 if ()
-	:local;
+	if (local.)
+	else if (l.)
+	else if (state.)
+	else if (s.)
+	else if (@.)
+	else if (@.@..@.)
+	else if (@3.)
+	else if (@name.)
+	endif
+	:varname;
 else
-	:state;
+	:@;
 endif
-::;
-:var name;
 
 stop
 

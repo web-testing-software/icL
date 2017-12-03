@@ -25,3 +25,7 @@ SOURCES += \
     state/virtualmachine.cpp \
     state/datacontainer.cpp \
     structures/webelement.cpp
+
+DISTFILES += \
+    models/engine.plantuml \
+    models/uml_style.iuml

@@ -56,3 +56,7 @@ else {
 
 CONFIG += c++11
 
+DISTFILES += \
+    models/modules.plantuml \
+    models/uml_style.iuml
+

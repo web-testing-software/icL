@@ -1,20 +1,20 @@
 @startuml
 
-!include contextes/wb_style.iuml
+!include uml_style.iuml
 
 interface LogicBlock {
 	+ virtual bool getResult() = 0
 	+ virtual bool isCross() = 0
 }
 
-class CrossBlock {
+interface CrossBlock {
 	# LogicBlock* block1
 	# LogicBlock* block2
 	+ bool canAcceptBlock()
 	+ void giveBlock(LogicBlock*)
 }
 
-class RichBlock {
+interface RichBlock {
 	# QString var1name
 	# QString var2name
 	+ bool canAcceptVar()

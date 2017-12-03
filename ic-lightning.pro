@@ -16,6 +16,6 @@ app.subdir = icl-app
 
 logic.depends = memory
 vm.depends = logic memory
-#inter.depends = vm logic
+#inter.depends = memory logic
 #app.depends = vm inter
 app.depends = vm

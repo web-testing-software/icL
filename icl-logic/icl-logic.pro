@@ -47,4 +47,5 @@ SOURCES += \
     main/trueblock.cpp
 
 DISTFILES += \
-	models/logic.plantuml
+	models/logic.plantuml \
+    models/uml_style.iuml
