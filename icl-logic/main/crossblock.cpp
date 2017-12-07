@@ -1,14 +1,16 @@
 #include "crossblock.h"
 
-vm::main::logic::CrossBlock::CrossBlock () {
+namespace vm::main::logic {
+
+CrossBlock::CrossBlock () {
 
 }
 
-bool vm::main::logic::CrossBlock::canAcceptBlock () {
+bool CrossBlock::canAcceptBlock () {
 	return block2 == nullptr;
 }
 
-void vm::main::logic::CrossBlock::giveBlock (vm::main::logic::LogicBlock *block) {
+void CrossBlock::giveBlock (LogicBlock *block) {
 	if (block1 == nullptr) {
 		block1 = block;
 	}
@@ -17,12 +19,12 @@ void vm::main::logic::CrossBlock::giveBlock (vm::main::logic::LogicBlock *block)
 	}
 }
 
-bool vm::main::logic::CrossBlock::isCross () {
+bool CrossBlock::isCross () {
 	return true;
 }
 
 
-bool vm::main::logic::CrossBlock::checkIntegrity () {
+bool CrossBlock::checkIntegrity () {
 	bool integrity;
 
 	if (block1 == nullptr || block2 == nullptr) {
@@ -39,9 +41,9 @@ bool vm::main::logic::CrossBlock::checkIntegrity () {
 	return integrity;
 }
 
-void vm::main::logic::CrossBlock::resetResultValue () {
+void CrossBlock::resetResultValue () {
 	block1->resetResultValue ();
 	block2->resetResultValue ();
 }
 
-
+}

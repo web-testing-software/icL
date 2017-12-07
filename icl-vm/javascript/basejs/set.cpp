@@ -1,9 +1,9 @@
 #include "set.h"
 
 
+namespace vm::javascript::basejs::set {
 
-
-void vm::javascript::basejs::set::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -32,22 +32,24 @@ void vm::javascript::basejs::set::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::basejs::set::runBoolean (vm::main::Driver &drive) {
+void runBoolean (main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::set::runInt (vm::main::Driver &drive) {
+void runInt (main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::set::runDouble (vm::main::Driver &drive) {
+void runDouble (main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::set::runString (vm::main::Driver &drive) {
+void runString (main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::set::runStringList (vm::main::Driver &drive) {
+void runStringList (main::Driver &drive) {
+
+}
 
 }

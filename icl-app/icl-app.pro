@@ -54,7 +54,7 @@ else {
 	RCC_DIR = release/rcc
 }
 
-CONFIG += c++11
+CONFIG += c++17
 
 DISTFILES += \
     models/modules.plantuml \

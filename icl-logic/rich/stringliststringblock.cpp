@@ -1,12 +1,13 @@
 #include "stringliststringblock.h"
 
+namespace vm::main::logic::rich {
 
-vm::main::logic::rich::StringListStringBlock::StringListStringBlock (OperationType otype)
-	: vm::main::logic::rich::StringListBlock (otype) {
+StringListStringBlock::StringListStringBlock (OperationType otype)
+	: StringListBlock (otype) {
 
 }
 
-bool vm::main::logic::rich::StringListStringBlock::calcResult () {
+bool StringListStringBlock::calcResult () {
 	bool		result	= false;
 	QStringList var1	= varNameToStringList (var1name);
 	QString		var2	= varNameToString (var2name);
@@ -34,7 +35,7 @@ bool vm::main::logic::rich::StringListStringBlock::calcResult () {
 	return result;
 }
 
-bool vm::main::logic::rich::StringListStringBlock::containsFragment (const QStringList &strList, const QString &str) {
+bool StringListStringBlock::containsFragment (const QStringList &strList, const QString &str) {
 	bool ret = false;
 
 	for (const QString &strFromList : strList) {
@@ -44,4 +45,6 @@ bool vm::main::logic::rich::StringListStringBlock::containsFragment (const QStri
 	}
 
 	return ret;
+}
+
 }

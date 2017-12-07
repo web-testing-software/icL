@@ -5,18 +5,12 @@
 
 
 
-namespace vm {
-namespace database {
-namespace basic {
-namespace output {
+namespace vm::database::basic::output {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runSelect (vm::main::Driver &drive);
+void runSelect (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // OUTPUT_H

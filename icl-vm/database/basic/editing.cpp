@@ -1,9 +1,9 @@
 #include "editing.h"
 
 
+namespace vm::database::basic::editing {
 
-
-void vm::database::basic::editing::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -16,6 +16,8 @@ void vm::database::basic::editing::parse (main::Driver &drive) {
 	}
 }
 
-void vm::database::basic::editing::runInsert (vm::main::Driver &drive) {
+void runInsert (main::Driver &drive) {
+
+}
 
 }

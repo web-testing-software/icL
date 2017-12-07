@@ -5,22 +5,21 @@
 
 
 
-namespace vm {
-namespace language {
-namespace control {
-namespace singleshot {
+namespace vm::language::control::singleshot {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runIf (vm::main::Driver &drive);
-void runBeginIf (vm::main::Driver &drive);
-void runElse (vm::main::Driver &drive);
-void runEndIf (vm::main::Driver &drive);
+void runIf (main::Driver &drive);
+void runBeginIf (main::Driver &drive);
+void runElse (main::Driver &drive);
+void runUnexpectedEnd (main::Driver &drive);
+void runSuccess (main::Driver &drive);
+void runFailed (main::Driver &drive);
+void runEmptyStack (main::Driver &drive);
+void runOpenStack (main::Driver &drive);
+void runDropStack (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // SINGLESHOT_H

@@ -1,9 +1,9 @@
 #include "frames.h"
 
 
+namespace vm::driver::managecontent::frames {
 
-
-void vm::driver::managecontent::frames::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -20,10 +20,12 @@ void vm::driver::managecontent::frames::parse (main::Driver &drive) {
 	}
 }
 
-void vm::driver::managecontent::frames::runSwitchToFrame (vm::main::Driver &drive) {
+void runSwitchToFrame (main::Driver &drive) {
 
 }
 
-void vm::driver::managecontent::frames::runSwitchToDefault (vm::main::Driver &drive) {
+void runSwitchToDefault (main::Driver &drive) {
+
+}
 
 }

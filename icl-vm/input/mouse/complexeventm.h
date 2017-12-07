@@ -5,19 +5,12 @@
 
 
 
-namespace vm {
-namespace input {
-namespace mouse {
-namespace complexevent {
+namespace vm::input::mouse::complexevent {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runClick (vm::main::Driver &drive);
+void runClick (main::Driver &drive);
 
-
-}
-}
-}
 }
 
 #endif // COMPLEXEVENTM_H

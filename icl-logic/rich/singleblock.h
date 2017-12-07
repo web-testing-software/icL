@@ -4,10 +4,7 @@
 #include "../main/richblock.h"
 
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace rich {
+namespace vm::main::logic::rich {
 
 
 class SingleBlock : public RichBlock
@@ -23,9 +20,5 @@ protected:
 	bool calcResult() override;
 };
 
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
-
+}
 #endif // SINGLEBLOCK_H

@@ -5,19 +5,13 @@
 
 
 
-namespace vm {
-namespace javascript {
-namespace basejs {
-namespace runjs {
+namespace vm::javascript::basejs::runjs {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runRunString (vm::main::Driver &drive);
-void runRunFile (vm::main::Driver &drive);
+void runRunString (main::Driver &drive);
+void runRunFile (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // RUNJS_H

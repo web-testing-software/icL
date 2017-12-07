@@ -1,19 +1,20 @@
 #include "doubleblock.h"
 
+namespace vm::main::logic::rich {
 
-vm::main::logic::rich::DoubleBlock::DoubleBlock (OperationType otype) :
+DoubleBlock::DoubleBlock (OperationType otype) :
 	vm::main::logic::RichBlock (otype) {
 
 }
 
-QRegExp vm::main::logic::rich::DoubleBlock::exp = QRegExp ("\\d+\\.\\d+");
+QRegExp DoubleBlock::exp = QRegExp ("\\d+\\.\\d+");
 
-bool vm::main::logic::rich::DoubleBlock::check (const QString &value) {
+bool DoubleBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
 
-bool vm::main::logic::rich::DoubleBlock::calcResult () {
+bool DoubleBlock::calcResult () {
 	bool	result	= false;
 	double	var1	= varNameToDouble (var1name);
 	double	var2	= varNameToDouble (var2name);
@@ -38,7 +39,7 @@ bool vm::main::logic::rich::DoubleBlock::calcResult () {
 	return result;
 }
 
-double vm::main::logic::rich::DoubleBlock::varNameToDouble (const QString &varname) {
+double DoubleBlock::varNameToDouble (const QString &varname) {
 	memory::DataState::Type type	= memory::DataState::Type::DOUBLE;
 	double			ret		= 0.0; // = 0.0 -> exclude compiler warning
 
@@ -56,4 +57,6 @@ double vm::main::logic::rich::DoubleBlock::varNameToDouble (const QString &varna
 	}
 
 	return ret;
+}
+
 }

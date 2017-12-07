@@ -5,18 +5,12 @@
 
 
 
-namespace vm {
-namespace debugger {
-namespace basic {
-namespace testing {
+namespace vm::debugger::basic::testing {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runReport (vm::main::Driver &drive);
+void runReport (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // SYSTEM_H

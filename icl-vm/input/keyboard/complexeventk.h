@@ -5,19 +5,13 @@
 
 
 
-namespace vm {
-namespace input {
-namespace keyboard {
-namespace complexevent {
+namespace vm::input::keyboard::complexevent {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runSendKey (vm::main::Driver &drive);
+void runSendKey (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // COMPLEXEVENTK_H

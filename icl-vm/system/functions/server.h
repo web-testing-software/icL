@@ -10,8 +10,7 @@
 
 //#define server Server::instance ()
 
-namespace vm {
-namespace main {
+namespace vm::main {
 
 /**
  * @brief The Server class - class to sync two treads
@@ -133,7 +132,6 @@ private:
 	bool boolean;
 };
 
-}
 }
 
 #endif // SERVER_H

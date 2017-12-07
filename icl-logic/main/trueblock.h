@@ -5,9 +5,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
+namespace vm::main::logic {
 
 class TrueBlock : public LogicBlock
 {
@@ -20,8 +18,6 @@ public:
 	bool isCross () override;
 };
 
-}   // namespace logic
-}   // namespace sytem
-}   // namespace vm
+}
 
 #endif // TRUEBLOCK_H

@@ -5,10 +5,7 @@
 #include "stringblock.h"
 #include "stringlistblock.h"
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace rich {
+namespace vm::main::logic::rich {
 
 class StringListStringBlock : public StringListBlock
 {
@@ -23,9 +20,6 @@ private:
 	bool containsFragment (const QStringList &strList, const QString &str);
 };
 
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // STRINGLISTSTRINGBLOCK_H

@@ -5,8 +5,7 @@
 #include <QVariant>
 
 
-namespace vm {
-namespace memory {
+namespace vm::memory {
 
 class DataState
 {
@@ -39,7 +38,6 @@ private:
 	QVariantMap dataMap;
 };
 
-}
 }
 
 #endif // DATASTATE_H

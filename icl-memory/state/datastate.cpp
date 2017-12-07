@@ -1,11 +1,13 @@
 #include "datastate.h"
 #include "../structures/webelement.h"
 
-vm::memory::DataState::DataState () {
+namespace vm::memory {
+
+DataState::DataState () {
 
 }
 
-void vm::memory::DataState::addToStringList (const QString &name, QString &value) {
+void DataState::addToStringList (const QString &name, QString &value) {
 	if (dataMap.contains (name)) {
 		QStringList tmp = dataMap [name].toStringList ();
 		tmp.append (value);
@@ -16,15 +18,15 @@ void vm::memory::DataState::addToStringList (const QString &name, QString &value
 	}
 }
 
-void vm::memory::DataState::setValue (const QString &name, QVariant value) {
+void DataState::setValue (const QString &name, QVariant value) {
 	dataMap [name] = value;
 }
 
-bool vm::memory::DataState::contains (const QString &name) {
+bool DataState::contains (const QString &name) {
 	return dataMap.contains (name);
 }
 
-vm::memory::DataState::Type vm::memory::DataState::getType (const QString &name) {
+DataState::Type DataState::getType (const QString &name) {
 	Type ret = Type::INVALID;
 
 	switch (dataMap[name].type ()) {
@@ -59,7 +61,7 @@ vm::memory::DataState::Type vm::memory::DataState::getType (const QString &name)
 	return ret;
 }
 
-bool vm::memory::DataState::checkType (const QString &name, vm::memory::DataState::Type &type) {
+bool DataState::checkType (const QString &name, DataState::Type &type) {
 	bool ret;
 
 	switch (type) {
@@ -84,7 +86,7 @@ bool vm::memory::DataState::checkType (const QString &name, vm::memory::DataStat
 		break;
 
 	case Type::WEB_ELEMENT :
-		ret = dataMap [name].canConvert <WebElement> ();
+		ret = dataMap [name].canConvert <structures::WebElement> ();
 		break;
 
 	default :
@@ -94,6 +96,8 @@ bool vm::memory::DataState::checkType (const QString &name, vm::memory::DataStat
 	return ret;
 }
 
-QVariant vm::memory::DataState::getValue (const QString &name) {
+QVariant DataState::getValue (const QString &name) {
 	return dataMap [name];
+}
+
 }

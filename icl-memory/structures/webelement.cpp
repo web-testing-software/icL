@@ -6,15 +6,15 @@
 //#include <QTimer>
 
 
-WebElement & WebElement::operator = (const WebElement &el) {
-	selector	= el.selector;
-	variable	= el.variable;
-	single		= el.single;
-	valid		= el.valid;
-	skip_errors = el.skip_errors;
+//WebElement & WebElement::operator = (const WebElement &el) {
+//	selector	= el.selector;
+//	variable	= el.variable;
+//	single		= el.single;
+//	valid		= el.valid;
+//	skip_errors = el.skip_errors;
 
-	return *this;
-}
+//	return *this;
+//}
 
 //WebElement WebElement::operator [] (int index) {
 //	WebElement	ret;

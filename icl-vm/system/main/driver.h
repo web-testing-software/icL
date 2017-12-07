@@ -3,14 +3,12 @@
 
 #include <QObject>
 
+#include "icl-memory/state/datacontainer.h"
+
 #include "system/functions/server.h"
-#include "state/datacontainer.h"
 
-namespace vm {
 
-enum class Error;
-
-namespace main {
+namespace vm::main {
 
 class Driver : public QObject
 {
@@ -51,7 +49,6 @@ private:
 	memory::DataContainer m_dataContainer;
 };
 
-}   // system
-}   // vm
+}
 
 #endif // DRIVER_H

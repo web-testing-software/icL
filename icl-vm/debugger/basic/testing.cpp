@@ -1,9 +1,9 @@
 #include "testing.h"
 
 
+namespace vm::debugger::basic::testing {
 
-
-void vm::debugger::basic::testing::parse (vm::main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -16,6 +16,8 @@ void vm::debugger::basic::testing::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::debugger::basic::testing::runReport (vm::main::Driver &drive) {
+void runReport (main::Driver &drive) {
+
+}
 
 }

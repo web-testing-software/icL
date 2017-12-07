@@ -1,18 +1,20 @@
 #include "intblock.h"
 
-vm::main::logic::rich::IntBlock::IntBlock (OperationType otype) :
+namespace vm::main::logic::rich {
+
+IntBlock::IntBlock (OperationType otype) :
 	vm::main::logic::RichBlock (otype) {
 
 }
 
-QRegExp vm::main::logic::rich::IntBlock::exp = QRegExp ("-?\\d+");
+QRegExp IntBlock::exp = QRegExp ("-?\\d+");
 
-bool vm::main::logic::rich::IntBlock::check (const QString &value) {
+bool IntBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
 
-bool vm::main::logic::rich::IntBlock::calcResult () {
+bool IntBlock::calcResult () {
 	bool	result	= false;
 	int		var1	= varNameToInt (var1name);
 	int		var2	= varNameToInt (var2name);
@@ -37,7 +39,7 @@ bool vm::main::logic::rich::IntBlock::calcResult () {
 	return result;
 }
 
-int vm::main::logic::rich::IntBlock::varNameToInt (const QString &varname) {
+int IntBlock::varNameToInt (const QString &varname) {
 	memory::DataState::Type type	= memory::DataState::Type::INT;
 	int				ret		= 0; // = 0 -> exclude compiler warning
 
@@ -55,4 +57,6 @@ int vm::main::logic::rich::IntBlock::varNameToInt (const QString &varname) {
 	}
 
 	return ret;
+}
+
 }

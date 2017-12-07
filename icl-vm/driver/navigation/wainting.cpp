@@ -1,9 +1,9 @@
 #include "wainting.h"
 
 
+namespace vm::driver::navigation::wainting {
 
-
-void vm::driver::navigation::wainting::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -20,10 +20,12 @@ void vm::driver::navigation::wainting::parse (main::Driver &drive) {
 	}
 }
 
-void vm::driver::navigation::wainting::runPrepareWaitForPageLoad (vm::main::Driver &drive) {
+void runPrepareWaitForPageLoad (main::Driver &drive) {
 
 }
 
-void vm::driver::navigation::wainting::runWaitForPageLoad (vm::main::Driver &drive) {
+void runWaitForPageLoad (main::Driver &drive) {
+
+}
 
 }

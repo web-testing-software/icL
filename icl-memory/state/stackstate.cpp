@@ -1,7 +1,9 @@
 #include "stackstate.h"
 #include "datacontainer.h"
 
-vm::memory::StackState::StackState (StackState *prev, int stackLevel) {
+namespace vm::memory {
+
+StackState::StackState (StackState *prev, int stackLevel) {
 	prev_ss				= prev;
 	this->stackLevel	= stackLevel;
 
@@ -10,62 +12,62 @@ vm::memory::StackState::StackState (StackState *prev, int stackLevel) {
 	}
 }
 
-vm::memory::StackState::~StackState () {
+StackState::~StackState () {
 
 }
 
-void vm::memory::StackState::setWebElement (const QString &name, WebElement &webElement) {
+void StackState::setWebElement (const QString &name, structures::WebElement &webElement) {
 	QVariant tmp = QVariant::fromValue (webElement);
 
 	setValue (name, tmp);
 }
 
-vm::memory::StackState * vm::memory::StackState::getPrev () {
+StackState * StackState::getPrev () {
 	return prev_ss;
 }
 
-bool vm::memory::StackState::isLast () {
+bool StackState::isLast () {
 	return prev_ss == nullptr;
 }
 
-QVariant vm::memory::StackState::getStackValue () {
+QVariant StackState::getStackValue () {
 	return getValue ("stack");
 }
 
-int vm::memory::StackState::getStackLevel () {
+int StackState::getStackLevel () {
 	return stackLevel;
 }
 
-bool vm::memory::StackState::tryToDestroy () {
+bool StackState::tryToDestroy () {
 	// A loop stack cannot by destryed immediately, it is reused
 	// But a commmom stack not
 	return true;
 }
 
-void vm::memory::StackState::releaseCondition () {
+void StackState::releaseCondition () {
 	// A commom stack cannot get conditions
 //	virtualMachine->setError (vm::Error::WRONG_STACK_STATE);
 }
 
-int vm::memory::StackState::getMaxStackLevel () {
+int StackState::getMaxStackLevel () {
 	return maxStackLevel;
 }
 
-int vm::memory::StackState::maxStackLevel = 0;
+int StackState::maxStackLevel = 0;
 
-vm::memory::StackStateIterator::StackStateIterator () {
+StackStateIterator::StackStateIterator () {
 
 }
 
-vm::memory::StackStateIterator::~StackStateIterator () {
+StackStateIterator::~StackStateIterator () {
 	clear ();
 }
 
-vm::memory::StackState * vm::memory::StackStateIterator::stack () {
+StackState * StackStateIterator::stack () {
 	return m_stack;
 }
 
-void vm::memory::StackStateIterator::openNewStack (StackState::StackType stackType) {
+void StackStateIterator::openNewStack (StackState::StackType stackType) {
 
 	//	int new_stack_level = m_stack->getStackLevel () + 1;
 
@@ -80,14 +82,14 @@ void vm::memory::StackStateIterator::openNewStack (StackState::StackType stackTy
 	//	}
 }
 
-void vm::memory::StackStateIterator::closeStack () {
+void StackStateIterator::closeStack () {
 	StackState *prev = m_stack->getPrev ();
 
 	delete m_stack;
 	m_stack = prev;
 }
 
-bool vm::memory::StackStateIterator::contains (const QString &name) {
+bool StackStateIterator::contains (const QString &name) {
 	bool		ret = false;
 	StackState	*it = m_stack;
 
@@ -99,7 +101,7 @@ bool vm::memory::StackStateIterator::contains (const QString &name) {
 	return ret;
 }
 
-bool vm::memory::StackStateIterator::checkType (const QString &name, vm::memory::DataState::Type &type) {
+bool StackStateIterator::checkType (const QString &name, DataState::Type &type) {
 	bool		ret = false;
 	StackState	*it = m_stack;
 
@@ -111,7 +113,7 @@ bool vm::memory::StackStateIterator::checkType (const QString &name, vm::memory:
 	return ret;
 }
 
-QVariant vm::memory::StackStateIterator::getValue (const QString &name) {
+QVariant StackStateIterator::getValue (const QString &name) {
 	QVariant	ret;
 	StackState	*it = m_stack;
 
@@ -125,7 +127,7 @@ QVariant vm::memory::StackStateIterator::getValue (const QString &name) {
 	return ret;
 }
 
-void vm::memory::StackStateIterator::clear () {
+void StackStateIterator::clear () {
 	StackState *tmp;
 
 	while (m_stack != nullptr) {
@@ -133,4 +135,6 @@ void vm::memory::StackStateIterator::clear () {
 		delete m_stack;
 		m_stack = tmp;
 	}
+}
+
 }

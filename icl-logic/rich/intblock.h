@@ -5,10 +5,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace rich {
+namespace vm::main::logic::rich {
 
 class IntBlock : public RichBlock
 {
@@ -27,9 +24,6 @@ private:
 	static QRegExp exp;
 };
 
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // INTBLOCK_H

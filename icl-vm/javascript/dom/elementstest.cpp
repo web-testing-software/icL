@@ -1,9 +1,9 @@
 #include "elementstest.h"
 
 
+namespace vm::javascript::dom::elementstest {
 
-
-void vm::javascript::dom::elementstest::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -24,14 +24,16 @@ void vm::javascript::dom::elementstest::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::elementstest::runIsVisible (vm::main::Driver &drive) {
+void runIsVisible (main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::elementstest::runGetX (vm::main::Driver &drive) {
+void runGetX (main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::elementstest::runGetY (vm::main::Driver &drive) {
+void runGetY (main::Driver &drive) {
+
+}
 
 }

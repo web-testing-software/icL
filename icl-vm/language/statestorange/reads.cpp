@@ -1,9 +1,9 @@
 #include "reads.h"
 
 
+namespace vm::language::statestorange::read {
 
-
-void vm::language::statestorange::read::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -32,22 +32,24 @@ void vm::language::statestorange::read::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::statestorange::read::runBoolean (vm::main::Driver &drive) {
+void runBoolean (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::read::runInt (vm::main::Driver &drive) {
+void runInt (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::read::runDouble (vm::main::Driver &drive) {
+void runDouble (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::read::runString (vm::main::Driver &drive) {
+void runString (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::read::runStringList (vm::main::Driver &drive) {
+void runStringList (main::Driver &drive) {
+
+}
 
 }

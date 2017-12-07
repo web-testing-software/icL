@@ -1,9 +1,9 @@
 #include "findelements.h"
 
 
+namespace vm::javascript::dom::findelements {
 
-
-void vm::javascript::dom::findelements::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -20,10 +20,12 @@ void vm::javascript::dom::findelements::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::findelements::runQuery (vm::main::Driver &drive) {
+void runQuery (main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::findelements::runQueryAll (vm::main::Driver &drive) {
+void runQueryAll (main::Driver &drive) {
+
+}
 
 }

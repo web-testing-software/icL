@@ -5,19 +5,12 @@
 
 
 
-namespace vm {
-namespace database {
-namespace basic {
-namespace editing {
+namespace vm::database::basic::editing {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runInsert (vm::main::Driver &drive);
+void runInsert (main::Driver &drive);
 
-
-}
-}
-}
 }
 
 #endif // EDITING_H

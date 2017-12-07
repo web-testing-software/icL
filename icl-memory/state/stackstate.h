@@ -4,8 +4,7 @@
 #include "datastate.h"
 #include "../structures/webelement.h"
 
-namespace vm {
-namespace memory {
+namespace vm::memory {
 
 class StackState : public DataState
 {
@@ -18,7 +17,7 @@ public:
 	StackState (StackState *prev, int stackLevel);
 	virtual ~StackState ();
 
-	void setWebElement (const QString &name, WebElement &webElement);
+	void setWebElement (const QString &name, structures::WebElement &webElement);
 
 	// Stack functions
 	StackState* getPrev ();
@@ -61,7 +60,6 @@ private:
 	StackState *m_stack;
 };
 
-}
 }
 
 #endif // STACKSTATE_H

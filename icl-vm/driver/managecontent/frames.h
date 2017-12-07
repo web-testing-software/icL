@@ -5,21 +5,14 @@
 
 
 
-namespace vm {
-namespace driver {
-namespace managecontent {
-namespace frames {
+namespace vm::driver::managecontent::frames {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runSwitchToFrame (vm::main::Driver &drive);
-void runSwitchToDefault (vm::main::Driver &drive);
+void runSwitchToFrame (main::Driver &drive);
+void runSwitchToDefault (main::Driver &drive);
 
-
-}
-}
-}
 }
 
 #endif // FRAMES_H

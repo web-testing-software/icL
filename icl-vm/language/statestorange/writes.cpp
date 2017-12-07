@@ -1,9 +1,9 @@
 #include "writes.h"
 
 
+namespace vm::language::statestorange::write {
 
-
-void vm::language::statestorange::write::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -32,22 +32,24 @@ void vm::language::statestorange::write::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::statestorange::write::runBoolean (vm::main::Driver &drive) {
+void runBoolean (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::runInt (vm::main::Driver &drive) {
+void runInt (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::runDouble (vm::main::Driver &drive) {
+void runDouble (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::runString (vm::main::Driver &drive) {
+void runString (main::Driver &drive) {
 
 }
 
-void vm::language::statestorange::write::runStringList (vm::main::Driver &drive) {
+void runStringList (main::Driver &drive) {
+
+}
 
 }

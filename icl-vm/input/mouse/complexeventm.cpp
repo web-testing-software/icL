@@ -1,9 +1,9 @@
 #include "complexeventm.h"
 
 
+namespace vm::input::mouse::complexevent {
 
-
-void vm::input::mouse::complexevent::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -16,6 +16,8 @@ void vm::input::mouse::complexevent::parse (main::Driver &drive) {
 	}
 }
 
-void vm::input::mouse::complexevent::runClick (vm::main::Driver &drive) {
+void runClick (main::Driver &drive) {
+
+}
 
 }

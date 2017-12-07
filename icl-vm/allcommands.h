@@ -27,8 +27,8 @@ namespace vm {
 			CONTROL			= 0x01010000,
 			LOCAL_MEMORY	= 0x01020000,
 			STATE_STORANGE	= 0x01030000,
-			CONSTANT		= 0x01040000,
-			BOOL_OPERATOR	= 0x01050000
+			CONSTANT		= 0x01040000/*,
+			BOOL_OPERATOR	= 0x01050000*/
 		};
 
 		namespace control {
@@ -40,10 +40,15 @@ namespace vm {
 
 			namespace singleshot {
 				enum class Command  {
-					IF			= 0x01010101,
-					BEGIN_IF	= 0x01010102,
-					ELSE		= 0x01010103,
-					END_IF		= 0x01010104
+					IF				= 0x01010101,
+					BEGIN_IF		= 0x01010102,
+					ELSE			= 0x01010103,
+					UNEXPECTED_END	= 0x01010104,
+					SUCCESS			= 0X01010105,
+					FAILED			= 0x01010106,
+					EMPTY_STACK		= 0x01010107,
+					OPEN_STACK		= 0x01010108,
+					DROP_STACK		= 0x01010109
 				};
 				}
 
@@ -127,7 +132,7 @@ namespace vm {
 				};
 				}
 			}
-
+/*
 		namespace booloperator {
 			enum class Command {
 				LOGICAL		= 0x01050100,
@@ -171,7 +176,7 @@ namespace vm {
 					CONSTAINS_FRAGMENT	= 0x01050402
 				};
 				}
-			}
+			}*/
 		}
 
 	namespace browser {

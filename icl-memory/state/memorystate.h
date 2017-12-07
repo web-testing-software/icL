@@ -4,8 +4,7 @@
 #include "datastate.h"
 
 
-namespace vm {
-namespace memory {
+namespace vm::memory {
 
 class MemoryState : public DataState
 {
@@ -48,7 +47,6 @@ private:
 	MemoryState *m_state = nullptr;
 };
 
-}
 }
 
 #endif // MEMORYSTATE_H

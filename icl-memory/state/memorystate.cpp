@@ -1,52 +1,52 @@
 #include "memorystate.h"
-#include "virtualmachine.h"
 
+namespace vm::memory {
 
-vm::memory::MemoryState::MemoryState () {
-
-}
-
-vm::memory::MemoryState::~MemoryState () {
+MemoryState::MemoryState () {
 
 }
 
-bool vm::memory::MemoryState::hasPrev () const {
+MemoryState::~MemoryState () {
+
+}
+
+bool MemoryState::hasPrev () const {
 	return prev_ms != nullptr;
 }
 
-bool vm::memory::MemoryState::hasNext () const {
+bool MemoryState::hasNext () const {
 	return next_ms != nullptr;
 }
 
-vm::memory::MemoryState * vm::memory::MemoryState::getPrev () const {
+MemoryState * MemoryState::getPrev () const {
 	return prev_ms;
 }
 
-vm::memory::MemoryState * vm::memory::MemoryState::getNext () const {
+MemoryState * MemoryState::getNext () const {
 	return next_ms;
 }
 
-void vm::memory::MemoryState::setPrev (vm::memory::MemoryState *state) {
+void MemoryState::setPrev (MemoryState *state) {
 	prev_ms = state;
 }
 
-void vm::memory::MemoryState::setNext (vm::memory::MemoryState *state) {
+void MemoryState::setNext (MemoryState *state) {
 	next_ms = state;
 }
 
-vm::memory::MemoryStateIterator::MemoryStateIterator () {
+MemoryStateIterator::MemoryStateIterator () {
 
 }
 
-vm::memory::MemoryStateIterator::~MemoryStateIterator () {
+MemoryStateIterator::~MemoryStateIterator () {
 	clear ();
 }
 
-vm::memory::MemoryState * vm::memory::MemoryStateIterator::state () const {
+MemoryState * MemoryStateIterator::state () const {
 	return m_state;
 }
 
-void vm::memory::MemoryStateIterator::iterateToFirst () {
+void MemoryStateIterator::iterateToFirst () {
 	if (m_state != nullptr) {
 		while (m_state->getPrev () != nullptr) {
 			m_state = m_state->getPrev ();
@@ -54,7 +54,7 @@ void vm::memory::MemoryStateIterator::iterateToFirst () {
 	}
 }
 
-void vm::memory::MemoryStateIterator::iterateToLast () {
+void MemoryStateIterator::iterateToLast () {
 	if (m_state != nullptr) {
 		while (m_state->getNext () != nullptr) {
 			m_state = m_state->getNext ();
@@ -62,7 +62,7 @@ void vm::memory::MemoryStateIterator::iterateToLast () {
 	}
 }
 
-void vm::memory::MemoryStateIterator::appendNewAfter () {
+void MemoryStateIterator::appendNewAfter () {
 	if (m_state == nullptr) {
 		m_state = new MemoryState ();
 	}
@@ -85,12 +85,12 @@ void vm::memory::MemoryStateIterator::appendNewAfter () {
 	}
 }
 
-void vm::memory::MemoryStateIterator::appendNewAtEnd () {
+void MemoryStateIterator::appendNewAtEnd () {
 	iterateToLast ();
 	appendNewAfter ();
 }
 
-void vm::memory::MemoryStateIterator::removeState () {
+void MemoryStateIterator::removeState () {
 	if (m_state->getNext () == nullptr && m_state->getPrev () == nullptr) {
 		delete m_state;
 		m_state = nullptr;
@@ -111,7 +111,7 @@ void vm::memory::MemoryStateIterator::removeState () {
 	}
 }
 
-void vm::memory::MemoryStateIterator::clear () {
+void MemoryStateIterator::clear () {
 	iterateToFirst ();
 
 	MemoryState *tmp;
@@ -121,4 +121,6 @@ void vm::memory::MemoryStateIterator::clear () {
 		delete m_state;
 		m_state = tmp;
 	}
+}
+
 }

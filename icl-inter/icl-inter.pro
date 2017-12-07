@@ -1,4 +1,17 @@
- 
+TARGET = icl-inter
+TEMPLATE = lib
+
+QT = core
+CONFIG -= app_bundle
+
+CONFIG += staticlib C++17
+
+INCLUDEPATH += ../
+
+unix {
+	target.path = /usr/lib
+	INSTALLS += target
+}
 
 DISTFILES += \
     uml/!void.plantuml \
@@ -18,3 +31,11 @@ DISTFILES += \
     uml/wb_style.iuml \
     uml/web_element.plantuml \
     uml/web_elements.plantuml
+
+HEADERS += \
+    interpreter.h \
+    flayer.h
+
+SOURCES += \
+    interpreter.cpp \
+    flayer.cpp

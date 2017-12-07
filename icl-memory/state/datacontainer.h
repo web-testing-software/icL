@@ -4,24 +4,11 @@
 #include "memorystate.h"
 #include "stackstate.h"
 
+#include "icl-vm/vm_errors.h"
+
 #include <QObject>
 
-namespace vm {
-
-enum class Error {
-	COMMAND_NOT_FOUND,
-	COMMAND_EXECUTION_ERROR,
-	INVALID_ARGUMENTS,
-	UNEXPECTED_EOF,
-	DATA_CONVERSION_ERROR,
-	WRONG_STACK_STATE,
-	SERVER_ERROR,
-	FILE_NOT_OPENED,
-	WRONG_FILE_FORMAT,
-	NO_VM_ERROR
-};
-
-namespace memory {
+namespace vm::memory {
 
 class DataContainer : public QObject
 {
@@ -45,6 +32,7 @@ public:
 	// `Loop current` mode helper functions
 	MemoryState* memoryStateToStop ();
 	void setMemoryStateToStop (MemoryState *ms);
+	void test();
 
 signals:
 
@@ -59,7 +47,6 @@ private:
 	QString last_error;
 };
 
-}   // system
-}   // vm
+}
 
 #endif // DATA_CONTAINER_H

@@ -1,16 +1,17 @@
 #include "notblock.h"
 
+namespace vm::main::logic::cross {
 
-vm::main::logic::cross::NotBlock::NotBlock () {
+NotBlock::NotBlock () {
 
 }
 
 
-bool vm::main::logic::cross::NotBlock::calcResult () {
+bool NotBlock::calcResult () {
 	return !block2->getResult ();
 }
 
-bool vm::main::logic::cross::NotBlock::checkIntegrity () {
+bool NotBlock::checkIntegrity () {
 	bool integrity = block2 != nullptr && block2->checkIntegrity ();
 
 	if (!integrity) {
@@ -20,6 +21,8 @@ bool vm::main::logic::cross::NotBlock::checkIntegrity () {
 	return integrity;
 }
 
-void vm::main::logic::cross::NotBlock::resetResultValue () {
+void NotBlock::resetResultValue () {
 	block2->resetResultValue ();
+}
+
 }

@@ -1,8 +1,8 @@
 #include "singleshot.h"
 
+namespace vm::language::control::singleshot {
 
-
-void vm::language::control::singleshot::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -18,8 +18,28 @@ void vm::language::control::singleshot::parse (main::Driver &drive) {
 		runElse (drive);
 		break;
 
-	case static_cast <int> ( Command::END_IF ) :
-		runEndIf (drive);
+	case static_cast <int> ( Command::UNEXPECTED_END ) :
+		runUnexpectedEnd (drive);
+		break;
+
+	case static_cast <int> ( Command::SUCCESS ) :
+		runSuccess (drive);
+		break;
+
+	case static_cast <int> ( Command::FAILED ) :
+		runFailed (drive);
+		break;
+
+	case static_cast <int> ( Command::EMPTY_STACK ) :
+		runEmptyStack (drive);
+		break;
+
+	case static_cast <int> ( Command::OPEN_STACK ) :
+		runOpenStack (drive);
+		break;
+
+	case static_cast <int> ( Command::DROP_STACK ) :
+		runDropStack (drive);
 		break;
 
 //	default :
@@ -27,20 +47,42 @@ void vm::language::control::singleshot::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::control::singleshot::runIf (vm::main::Driver &drive) {
+void runIf (main::Driver &drive) {
 //	stackStateIterator->openNewStack (system::StackState::StackType::IF_STACK);
 }
 
-void vm::language::control::singleshot::runBeginIf (vm::main::Driver &drive) {
+void runBeginIf (main::Driver &drive) {
 //	system::CommandsToSearch commads = drive.
-	
+
 //	if ()
 }
 
-void vm::language::control::singleshot::runElse (vm::main::Driver &drive) {
+void runElse (main::Driver &drive) {
 
 }
 
-void vm::language::control::singleshot::runEndIf (vm::main::Driver &drive) {
+void runUnexpectedEnd (main::Driver &drive) {
+
+}
+
+void runSuccess (main::Driver &drive) {
+
+}
+
+void runFailed (main::Driver &drive) {
+
+}
+
+void runEmptyStack (main::Driver &drive) {
+
+}
+
+void runOpenStack (main::Driver &drive) {
+
+}
+
+void runDropStack (main::Driver &drive) {
+
+}
 
 }

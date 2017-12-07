@@ -1,15 +1,17 @@
 #include "booleanblock.h"
 
-vm::main::logic::rich::BooleanBlock::BooleanBlock (OperationType otype) :
+namespace vm::main::logic::rich {
+
+BooleanBlock::BooleanBlock (OperationType otype) :
 	vm::main::logic::RichBlock (otype) {
 
 }
 
-bool vm::main::logic::rich::BooleanBlock::check (const QString &value) {
+bool BooleanBlock::check (const QString &value) {
 	return value == "true" || value == "false";
 }
 
-bool vm::main::logic::rich::BooleanBlock::calcResult () {
+bool BooleanBlock::calcResult () {
 	bool	result	= false;
 	bool	var1	= varNameToBoolean (var1name);
 	bool	var2	= varNameToBoolean (var2name);
@@ -34,7 +36,7 @@ bool vm::main::logic::rich::BooleanBlock::calcResult () {
 	return result;
 }
 
-bool vm::main::logic::rich::BooleanBlock::varNameToBoolean (const QString &varname) {
+bool BooleanBlock::varNameToBoolean (const QString &varname) {
 	memory::DataState::Type type	= memory::DataState::Type::BOOLEAN;
 	bool			ret		= false; // = false -> exclude compiler warning
 
@@ -55,4 +57,6 @@ bool vm::main::logic::rich::BooleanBlock::varNameToBoolean (const QString &varna
 	}
 
 	return ret;
+}
+
 }

@@ -5,20 +5,13 @@
 
 
 
-namespace vm {
-namespace driver {
-namespace navigation {
-namespace navigation {
+namespace vm::driver::navigation::navigation {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runGoToURL (vm::main::Driver &drive);
+void runGoToURL (main::Driver &drive);
 
-
-}
-}
-}
 }
 
 #endif // NAVIGATION_H

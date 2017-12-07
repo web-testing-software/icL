@@ -3,8 +3,9 @@
 #include "parser.h"
 
 
+namespace vm {
 
-void vm::parse (vm::main::Driver &drive) {
+void parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL1 );
 
@@ -38,7 +39,7 @@ void vm::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::language::parse (vm::main::Driver &drive) {
+void language::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
@@ -59,16 +60,12 @@ void vm::language::parse (vm::main::Driver &drive) {
 		constant::parse (drive);
 		break;
 
-	case static_cast <int> ( Command::BOOL_OPERATOR ) :
-		booloperator::parse (drive);
-		break;
-
 //	default :
 //		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
 }
 
-void vm::language::control::parse (vm::main::Driver &drive) {
+void language::control::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -86,7 +83,7 @@ void vm::language::control::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::language::localmemory::parse (vm::main::Driver &drive) {
+void language::localmemory::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -104,7 +101,7 @@ void vm::language::localmemory::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::language::statestorange::parse (vm::main::Driver &drive) {
+void language::statestorange::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -122,7 +119,7 @@ void vm::language::statestorange::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::language::constant::parse (vm::main::Driver &drive) {
+void language::constant::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -136,33 +133,7 @@ void vm::language::constant::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::language::booloperator::parse (vm::main::Driver &drive) {
-
-	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
-
-	switch (sw) {
-	case static_cast <int> ( Command::LOGICAL ) :
-		logical::parse (drive);
-		break;
-
-	case static_cast <int> ( Command::EQUAL ) :
-		equal::parse (drive);
-		break;
-
-	case static_cast <int> ( Command::NOT_EQUAL ) :
-		notequal::parse (drive);
-		break;
-
-	case static_cast <int> ( Command::STRING_LIST ) :
-		stringlist::parse (drive);
-		break;
-
-//	default :
-//		drive.setError (Error::COMMAND_NOT_FOUND);
-	}
-}
-
-void vm::driver::parse (vm::main::Driver &drive) {
+void driver::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
@@ -180,7 +151,7 @@ void vm::driver::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::driver::navigation::parse (vm::main::Driver &drive) {
+void driver::navigation::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -198,7 +169,7 @@ void vm::driver::navigation::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::driver::managecontent::parse (vm::main::Driver &drive) {
+void driver::managecontent::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -212,7 +183,7 @@ void vm::driver::managecontent::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::javascript::parse (vm::main::Driver &drive) {
+void javascript::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
@@ -230,7 +201,7 @@ void vm::javascript::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::javascript::basejs::parse (vm::main::Driver &drive) {
+void javascript::basejs::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -252,7 +223,7 @@ void vm::javascript::basejs::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::parse (vm::main::Driver &drive) {
+void javascript::dom::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -274,7 +245,7 @@ void vm::javascript::dom::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::input::parse (vm::main::Driver &drive) {
+void input::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
@@ -292,7 +263,7 @@ void vm::input::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::input::mouse::parse (vm::main::Driver &drive) {
+void input::mouse::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -306,7 +277,7 @@ void vm::input::mouse::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::input::keyboard::parse (vm::main::Driver &drive) {
+void input::keyboard::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -320,7 +291,7 @@ void vm::input::keyboard::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::database::parse (vm::main::Driver &drive) {
+void database::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
@@ -334,7 +305,7 @@ void vm::database::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::database::basic::parse (vm::main::Driver &drive) {
+void database::basic::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -348,7 +319,7 @@ void vm::database::basic::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::debugger::parse (vm::main::Driver &drive) {
+void debugger::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL2 );
 
@@ -362,7 +333,7 @@ void vm::debugger::parse (vm::main::Driver &drive) {
 	}
 }
 
-void vm::debugger::basic::parse (vm::main::Driver &drive) {
+void debugger::basic::parse (main::Driver &drive) {
 
 	int sw = drive.currentCommand () | static_cast <int> ( Filter::LEVEL3 );
 
@@ -374,4 +345,6 @@ void vm::debugger::basic::parse (vm::main::Driver &drive) {
 //	default :
 //		drive.setError (Error::COMMAND_NOT_FOUND);
 	}
+}
+
 }

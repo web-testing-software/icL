@@ -5,19 +5,13 @@
 
 
 
-namespace vm {
-namespace javascript {
-namespace dom {
-namespace findelements {
+namespace vm::javascript::dom::findelements {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runQuery (vm::main::Driver &drive);
-void runQueryAll (vm::main::Driver &drive);
+void runQuery (main::Driver &drive);
+void runQueryAll (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // FINDELEMENTS_H

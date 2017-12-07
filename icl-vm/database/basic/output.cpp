@@ -1,9 +1,9 @@
 #include "output.h"
 
 
+namespace vm::database::basic::output {
 
-
-void vm::database::basic::output::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -16,6 +16,8 @@ void vm::database::basic::output::parse (main::Driver &drive) {
 	}
 }
 
-void vm::database::basic::output::runSelect (vm::main::Driver &drive) {
+void runSelect (main::Driver &drive) {
+
+}
 
 }

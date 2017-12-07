@@ -1,16 +1,17 @@
 //#include "../../main/virtualmachine.h"
 #include "richblock.h"
 
+namespace vm::main::logic {
 
-vm::main::logic::RichBlock::RichBlock (OperationType otype) {
+RichBlock::RichBlock (OperationType otype) {
 	operationType = otype;
 }
 
-bool vm::main::logic::RichBlock::canAcceptVar () {
+bool RichBlock::canAcceptVar () {
 	return var2name.isEmpty ();
 }
 
-void vm::main::logic::RichBlock::giveVar (QString &varname) {
+void RichBlock::giveVar (QString &varname) {
 	if (var1name.isEmpty ()) {
 		var1name = varname;
 	}
@@ -19,15 +20,17 @@ void vm::main::logic::RichBlock::giveVar (QString &varname) {
 	}
 }
 
-bool vm::main::logic::RichBlock::isCross () {
+bool RichBlock::isCross () {
 	return false;
 }
 
 
-bool vm::main::logic::RichBlock::checkIntegrity () {
+bool RichBlock::checkIntegrity () {
 	if (var1name.isEmpty () || var2name.isEmpty ()) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
 	}
 	return true;
+}
+
 }

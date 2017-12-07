@@ -3,9 +3,7 @@
 
 #include "../../icl-memory/state/datacontainer.h"
 
-namespace vm {
-namespace main {
-namespace logic {
+namespace vm::main::logic {
 
 class LogicBlock
 {
@@ -41,8 +39,6 @@ private:
 	LogicBlock *m_parent = nullptr;
 };
 
-}
-}
 }
 
 #endif // LOGICBLOCK_H

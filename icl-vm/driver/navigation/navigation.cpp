@@ -1,9 +1,9 @@
 #include "navigation.h"
 
 
+namespace vm::driver::navigation::navigation {
 
-
-void vm::driver::navigation::navigation::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -17,6 +17,8 @@ void vm::driver::navigation::navigation::parse (main::Driver &drive) {
 
 }
 
-void vm::driver::navigation::navigation::runGoToURL (vm::main::Driver &drive) {
+void runGoToURL (main::Driver &drive) {
+
+}
 
 }

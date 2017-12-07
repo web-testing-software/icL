@@ -1,9 +1,9 @@
 #include "comment.h"
 
 
+namespace vm::language::control::comment {
 
-
-void vm::language::control::comment::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -24,14 +24,16 @@ void vm::language::control::comment::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::control::comment::runDelimiter (vm::main::Driver &drive) {
+void runDelimiter (main::Driver &drive) {
 
 }
 
-void vm::language::control::comment::runLine (vm::main::Driver &drive) {
+void runLine (main::Driver &drive) {
 
 }
 
-void vm::language::control::comment::runMultiline (vm::main::Driver &drive) {
+void runMultiline (main::Driver &drive) {
+
+}
 
 }

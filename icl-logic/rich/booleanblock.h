@@ -5,10 +5,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace rich {
+namespace vm::main::logic::rich {
 
 class BooleanBlock : public RichBlock
 {
@@ -24,9 +21,6 @@ protected:
 	bool varNameToBoolean (const QString &varname);
 };
 
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // BOOLEANBLOCK_H

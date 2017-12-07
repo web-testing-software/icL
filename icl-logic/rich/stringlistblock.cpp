@@ -1,22 +1,25 @@
 #include "stringlistblock.h"
-#include "state/datastate.h"
+
+#include "icl-memory/state/datastate.h"
 
 #include <QRegularExpression>
 
-vm::main::logic::rich::StringListBlock::StringListBlock (OperationType otype)
-	: vm::main::logic::rich::StringBlock (otype) {
+namespace vm::main::logic::rich {
+
+StringListBlock::StringListBlock (OperationType otype)
+	: StringBlock (otype) {
 
 }
 
-QRegExp				vm::main::logic::rich::StringListBlock::exp		= QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
-QRegularExpression	vm::main::logic::rich::StringListBlock::strExp	= QRegularExpression ("\".*\"");
+QRegExp				StringListBlock::exp	= QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
+QRegularExpression	StringListBlock::strExp = QRegularExpression ("\".*\"");
 
-bool vm::main::logic::rich::StringListBlock::check (const QString &value) {
+bool StringListBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
 
-bool vm::main::logic::rich::StringListBlock::calcResult () {
+bool StringListBlock::calcResult () {
 	bool		result	= false;
 	QStringList var1	= varNameToStringList (var1name);
 	QStringList var2	= varNameToStringList (var2name);
@@ -33,17 +36,17 @@ bool vm::main::logic::rich::StringListBlock::calcResult () {
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
 		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
-								  QObject::tr ("Wrong operator for operands <string>list:%1 and <string>list:%2.")
-								  .arg (var1name)
-								  .arg (var2name));
+								 QObject::tr ("Wrong operator for operands <string>list:%1 and <string>list:%2.")
+								 .arg (var1name)
+								 .arg (var2name));
 	}
 
 	return result;
 }
 
-QStringList vm::main::logic::rich::StringListBlock::varNameToStringList (const QString &varname) {
+QStringList StringListBlock::varNameToStringList (const QString &varname) {
 	memory::DataState::Type type = memory::DataState::Type::STRING_LIST;
-	QStringList		ret;
+	QStringList				ret;
 
 	if (check (varname)) {
 		auto allStringsIt = strExp.globalMatch (varname);
@@ -58,8 +61,8 @@ QStringList vm::main::logic::rich::StringListBlock::varNameToStringList (const Q
 	else if (!dataContainer->checkType (varname, type)) {
 		invalidate ();
 		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
-								  QObject::tr ("%1 is not a string list variable or constant.")
-								  .arg (varname));
+								 QObject::tr ("%1 is not a string list variable or constant.")
+								 .arg (varname));
 	}
 	else {
 		ret = dataContainer->getVar (varname).toStringList ();
@@ -68,7 +71,7 @@ QStringList vm::main::logic::rich::StringListBlock::varNameToStringList (const Q
 	return ret;
 }
 
-bool vm::main::logic::rich::StringListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
+bool StringListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
 
 	for (const QString &str : list1) {
 		if (!list2.contains (str)) {
@@ -83,4 +86,6 @@ bool vm::main::logic::rich::StringListBlock::operatorEqual (const QStringList &l
 	}
 
 	return true;
+}
+
 }

@@ -1,11 +1,14 @@
 #include "orblock.h"
 
+namespace vm::main::logic::cross {
 
-vm::main::logic::cross::OrBlock::OrBlock () {
+OrBlock::OrBlock () {
 
 }
 
 
-bool vm::main::logic::cross::OrBlock::calcResult () {
+bool OrBlock::calcResult () {
 	return block1->getResult () || block2->getResult ();
+}
+
 }

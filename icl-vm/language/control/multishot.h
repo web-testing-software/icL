@@ -5,15 +5,8 @@
 
 
 
-namespace vm {
-namespace language {
-namespace control {
-namespace MultiShot {
+namespace vm::language::control::multishot {
 
-
-}
-}
-}
 }
 
 #endif // MULTISHOT_H

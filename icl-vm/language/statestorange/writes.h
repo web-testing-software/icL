@@ -5,23 +5,17 @@
 
 
 
-namespace vm {
-namespace language {
-namespace statestorange {
-namespace write {
+namespace vm::language::statestorange::write {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runBoolean (vm::main::Driver &drive);
-void runInt (vm::main::Driver &drive);
-void runDouble (vm::main::Driver &drive);
-void runString (vm::main::Driver &drive);
-void runStringList (vm::main::Driver &drive);
+void runBoolean (main::Driver &drive);
+void runInt (main::Driver &drive);
+void runDouble (main::Driver &drive);
+void runString (main::Driver &drive);
+void runStringList (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // WRITES_H

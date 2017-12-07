@@ -5,9 +5,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
+namespace vm::main::logic {
 
 class CrossBlock : public LogicBlock
 {
@@ -27,8 +25,6 @@ protected:
 	LogicBlock *block2;
 };
 
-}
-}
 }
 
 #endif // CROSSBLOCK_H

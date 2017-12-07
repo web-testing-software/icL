@@ -7,10 +7,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace rich {
+namespace vm::main::logic::rich {
 
 class StringListBlock : public StringBlock
 {
@@ -32,9 +29,6 @@ private:
 	static QRegularExpression strExp;
 };
 
-}   // namespace rich
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // STRINGLISTBLOCK_H

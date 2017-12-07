@@ -1,9 +1,9 @@
 #include "complexeventk.h"
 
 
+namespace vm::input::keyboard::complexevent {
 
-
-void vm::input::keyboard::complexevent::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -16,6 +16,8 @@ void vm::input::keyboard::complexevent::parse (main::Driver &drive) {
 	}
 }
 
-void vm::input::keyboard::complexevent::runSendKey (vm::main::Driver &drive) {
+void runSendKey (main::Driver &drive) {
+
+}
 
 }

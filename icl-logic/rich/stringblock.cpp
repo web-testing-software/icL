@@ -1,19 +1,20 @@
 #include "stringblock.h"
 
+namespace vm::main::logic::rich {
 
-vm::main::logic::rich::StringBlock::StringBlock (OperationType otype) :
+StringBlock::StringBlock (OperationType otype) :
 	vm::main::logic::RichBlock (otype) {
 
 }
 
-QRegExp vm::main::logic::rich::StringBlock::exp = QRegExp ("\".*\"");
+QRegExp StringBlock::exp = QRegExp ("\".*\"");
 
-bool vm::main::logic::rich::StringBlock::check (const QString &value) {
+bool StringBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
 
-bool vm::main::logic::rich::StringBlock::calcResult () {
+bool StringBlock::calcResult () {
 	bool	result	= false;
 	QString var1	= varNameToString (var1name);
 	QString var2	= varNameToString (var2name);
@@ -38,7 +39,7 @@ bool vm::main::logic::rich::StringBlock::calcResult () {
 	return result;
 }
 
-QString vm::main::logic::rich::StringBlock::varNameToString (const QString &varname) {
+QString StringBlock::varNameToString (const QString &varname) {
 	memory::DataState::Type type = memory::DataState::Type::STRING;
 	QString			ret;
 
@@ -56,4 +57,6 @@ QString vm::main::logic::rich::StringBlock::varNameToString (const QString &varn
 	}
 
 	return ret;
+}
+
 }

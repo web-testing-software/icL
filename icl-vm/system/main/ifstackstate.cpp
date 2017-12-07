@@ -2,17 +2,20 @@
 #include "ifstackstate.h"
 //#include "virtualmachine.h"
 
+namespace vm::memory {
 
-vm::memory::IfStackState::IfStackState (StackState *prev, int stackLevel)
+IfStackState::IfStackState (StackState *prev, int stackLevel)
 	: StackState (prev, stackLevel) {
 
 }
 
-bool vm::memory::IfStackState::tryToDestroy () {
+bool IfStackState::tryToDestroy () {
 	// This is not a loop, always returns true
 	return true;
 }
 
-void vm::memory::IfStackState::releaseCondition () {
+void IfStackState::releaseCondition () {
+
+}
 
 }

@@ -5,19 +5,13 @@
 
 
 
-namespace vm {
-namespace javascript {
-namespace dom {
-namespace filterelements {
+namespace vm::javascript::dom::filterelements {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runByCSSSelector (vm::main::Driver &drive);
-void runByContent (vm::main::Driver &drive);
+void runByCSSSelector (main::Driver &drive);
+void runByContent (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // FILTERELEMENTS_H

@@ -26,29 +26,25 @@ namespace vm {
 		LOOP_TO_END
 	};
 
-	void parse (vm::main::Driver& drive);
+	void parse (main::Driver& drive);
 
 	namespace language {
-		void parse (vm::main::Driver&);
+		void parse (main::Driver&);
 
 		namespace control {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 
 		namespace localmemory {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 
 		namespace statestorange {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 
 		namespace constant {
-			void parse (vm::main::Driver&);
-			}
-
-		namespace booloperator {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 		}
 
@@ -57,54 +53,54 @@ namespace vm {
 	//		}
 
 	namespace driver {
-		void parse (vm::main::Driver&);
+		void parse (main::Driver&);
 
 		namespace navigation {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 
 		namespace managecontent {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 		}
 
 	namespace javascript {
-		void parse (vm::main::Driver&);
+		void parse (main::Driver&);
 
 		namespace basejs {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 
 		namespace dom {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 		}
 
 	namespace input {
-		void parse (vm::main::Driver&);
+		void parse (main::Driver&);
 
 		namespace mouse {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 
 		namespace keyboard {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 		}
 
 	namespace database {
-		void parse (vm::main::Driver&);
+		void parse (main::Driver&);
 
 		namespace basic {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 		}
 
 	namespace debugger {
-		void parse (vm::main::Driver&);
+		void parse (main::Driver&);
 
 		namespace basic {
-			void parse (vm::main::Driver&);
+			void parse (main::Driver&);
 			}
 		}
 	}

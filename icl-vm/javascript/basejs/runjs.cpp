@@ -1,9 +1,9 @@
 #include "runjs.h"
 
 
+namespace vm::javascript::basejs::runjs {
 
-
-void vm::javascript::basejs::runjs::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -20,10 +20,12 @@ void vm::javascript::basejs::runjs::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::basejs::runjs::runRunString (vm::main::Driver &drive) {
+void runRunString (main::Driver &drive) {
 
 }
 
-void vm::javascript::basejs::runjs::runRunFile (vm::main::Driver &drive) {
+void runRunFile (main::Driver &drive) {
+
+}
 
 }

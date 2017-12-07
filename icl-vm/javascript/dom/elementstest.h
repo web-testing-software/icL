@@ -5,19 +5,14 @@
 
 
 
-namespace vm {
-namespace javascript {
-namespace dom {
-namespace elementstest {
+namespace vm::javascript::dom::elementstest {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runIsVisible (vm::main::Driver &drive);
-void runGetX (vm::main::Driver &drive);
-void runGetY (vm::main::Driver &drive);
-}
-}
-}
+void runIsVisible (main::Driver &drive);
+void runGetX (main::Driver &drive);
+void runGetY (main::Driver &drive);
+
 }
 
 #endif // ELEMENTSTEST_H

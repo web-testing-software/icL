@@ -5,10 +5,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace cross {
+namespace vm::main::logic::cross {
 
 class NotBlock : public CrossBlock
 {
@@ -21,9 +18,6 @@ public:
 	void resetResultValue () override;
 };
 
-}   // namespace cross
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // NOTBLOCK_H

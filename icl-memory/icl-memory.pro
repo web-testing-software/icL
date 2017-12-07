@@ -1,8 +1,12 @@
- 
 TARGET = icl-memory
 TEMPLATE = lib
 
-CONFIG += staticlib C++11
+QT = core
+CONFIG -= app_bundle
+
+CONFIG += staticlib C++17
+
+INCLUDEPATH += ../
 
 
 unix {
@@ -14,7 +18,6 @@ HEADERS += \
 	state/datastate.h \
     state/memorystate.h \
     state/stackstate.h \
-    state/virtualmachine.h \
     state/datacontainer.h \
     structures/webelement.h
 
@@ -22,7 +25,6 @@ SOURCES += \
 	state/datastate.cpp \
     state/memorystate.cpp \
     state/stackstate.cpp \
-    state/virtualmachine.cpp \
     state/datacontainer.cpp \
     structures/webelement.cpp
 

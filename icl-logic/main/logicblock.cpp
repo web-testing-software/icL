@@ -1,10 +1,12 @@
 #include "logicblock.h"
 
-vm::main::logic::LogicBlock::LogicBlock () {
+namespace vm::main::logic {
+
+LogicBlock::LogicBlock () {
 
 }
 
-bool vm::main::logic::LogicBlock::getResult () {
+bool LogicBlock::getResult () {
 	bool result = this->calcResult ();
 
 	if (resultValue == ResultValue::NOT_CALCULATED) {
@@ -14,20 +16,20 @@ bool vm::main::logic::LogicBlock::getResult () {
 	return result;
 }
 
-void vm::main::logic::LogicBlock::resetResultValue () {
+void LogicBlock::resetResultValue () {
 	resultValue = ResultValue::NOT_CALCULATED;
 }
 
-void vm::main::logic::LogicBlock::invalidate () {
+void LogicBlock::invalidate () {
 	resultValue = ResultValue::WRONG_INPUT_DATA;
 }
 
-vm::main::logic::LogicBlock * vm::main::logic::LogicBlock::getParent () {
+LogicBlock * LogicBlock::getParent () {
 	return m_parent;
 }
 
-void vm::main::logic::LogicBlock::setParent (vm::main::logic::LogicBlock *parent) {
+void LogicBlock::setParent (LogicBlock *parent) {
 	m_parent = parent;
 }
 
-
+}

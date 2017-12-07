@@ -1,9 +1,12 @@
 TARGET = icl-logic
 TEMPLATE = lib
 
-CONFIG += staticlib C++11
+QT = core
+CONFIG -= app_bundle
 
-INCLUDEPATH += ../icl-memory
+CONFIG += staticlib C++17
+
+INCLUDEPATH += ../
 
 unix {
 	target.path = /usr/lib

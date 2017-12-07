@@ -1,12 +1,13 @@
 #include "singleblock.h"
 
+namespace vm::main::logic::rich {
 
-vm::main::logic::rich::SingleBlock::SingleBlock (OperationType otype)
+SingleBlock::SingleBlock (OperationType otype)
 	: vm::main::logic::RichBlock (otype) {
 
 }
 
-bool vm::main::logic::rich::SingleBlock::checkIntegrity () {
+bool SingleBlock::checkIntegrity () {
 	if (var1name.isEmpty ()) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
@@ -14,7 +15,7 @@ bool vm::main::logic::rich::SingleBlock::checkIntegrity () {
 	return true;
 }
 
-bool vm::main::logic::rich::SingleBlock::calcResult () {
+bool SingleBlock::calcResult () {
 	memory::DataState::Type type = memory::DataState::Type::BOOLEAN;
 	bool			value, ret = false;
 
@@ -44,4 +45,6 @@ bool vm::main::logic::rich::SingleBlock::calcResult () {
 	}
 
 	return ret;
+}
+
 }

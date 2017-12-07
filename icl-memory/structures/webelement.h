@@ -15,9 +15,9 @@ namespace structures {
 /**
  * @brief The WebElement class - DOM Manipulation class
  */
-class WebElement {
+//struct WebElement {
 
-public:
+//public:
 
 	// Operators
 
@@ -26,7 +26,7 @@ public:
 	 * @param el - web element to copy
 	 * @return the copy
 	 */
-	WebElement& operator = (const WebElement &el);
+//	WebElement& operator = (const WebElement &el);
 	/**
 	 * @brief operator [] - get the n'th element of elements
 	 * @param index
@@ -161,19 +161,28 @@ public:
 //	friend WebElement queryOne (const QString&, const QString&, bool);
 //	friend WebElement queryAll (const QString&, const QString&, bool);
 
-private:
-	QString selector = "";
-	// The name of variable in which we will stock data in javascript
-	QString variable	= "";
-	bool valid			= false;
-	bool single			= false;
-	bool skip_errors	= false;
+//private:
+//	QString selector = "";
+//	// The name of variable in which we will stock data in javascript
+//	QString variable	= "";
+//	bool valid			= false;
+//	bool single			= false;
+//	bool skip_errors	= false;
 
 	// Don't touch these functions
 
 //	bool is_single (bool se) const;
 //	bool is_multi (bool se) const;
 //	void report () const;
+//};
+
+struct WebElement {
+	QString selector = "";
+	// The name of variable in which we will stock data in javascript
+	QString variable	= "";
+	bool valid			= false;
+	bool single			= false;
+	bool skip_errors	= false;
 };
 
 /**

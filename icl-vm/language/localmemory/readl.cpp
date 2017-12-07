@@ -1,9 +1,9 @@
 #include "readl.h"
 
 
+namespace vm::language::localmemory::read {
 
-
-void vm::language::localmemory::read::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -36,26 +36,28 @@ void vm::language::localmemory::read::parse (main::Driver &drive) {
 	}
 }
 
-void vm::language::localmemory::read::runBoolean (vm::main::Driver &drive) {
+void runBoolean (main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::read::runInt (vm::main::Driver &drive) {
+void runInt (main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::read::runDouble (vm::main::Driver &drive) {
+void runDouble (main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::read::runString (vm::main::Driver &drive) {
+void runString (main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::read::runStringList (vm::main::Driver &drive) {
+void runStringList (main::Driver &drive) {
 
 }
 
-void vm::language::localmemory::read::runWebElement (vm::main::Driver &drive) {
+void runWebElement (main::Driver &drive) {
+
+}
 
 }

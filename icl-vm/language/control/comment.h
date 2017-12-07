@@ -5,20 +5,14 @@
 
 
 
-namespace vm {
-namespace language {
-namespace control {
-namespace comment {
+namespace vm::language::control::comment {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
-void runDelimiter (vm::main::Driver &drive);
-void runLine (vm::main::Driver &drive);
-void runMultiline (vm::main::Driver &drive);
+void runDelimiter (main::Driver &drive);
+void runLine (main::Driver &drive);
+void runMultiline (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // COMMENT_H

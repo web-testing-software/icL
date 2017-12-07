@@ -1,9 +1,9 @@
 #include "filterelements.h"
 
 
+namespace vm::javascript::dom::filterelements {
 
-
-void vm::javascript::dom::filterelements::parse (main::Driver &drive) {
+void parse (main::Driver &drive) {
 	int sw = drive.currentCommand () | static_cast <int> ( vm::Filter::LEVEL4 );
 
 	switch (sw) {
@@ -20,10 +20,12 @@ void vm::javascript::dom::filterelements::parse (main::Driver &drive) {
 	}
 }
 
-void vm::javascript::dom::filterelements::runByCSSSelector (vm::main::Driver &drive) {
+void runByCSSSelector (main::Driver &drive) {
 
 }
 
-void vm::javascript::dom::filterelements::runByContent (vm::main::Driver &drive) {
+void runByContent (main::Driver &drive) {
+
+}
 
 }

@@ -1,12 +1,13 @@
 
-QT += core gui
+QT = core
+CONFIG -= app_bundle
 
 TARGET = icl-vm
 TEMPLATE = lib
 
-CONFIG += staticlib C++11
+CONFIG += staticlib C++17
 
-INCLUDEPATH += ../icl-memory ../icl-logic
+INCLUDEPATH += ../
 
 unix {
 	target.path = /usr/lib
@@ -14,7 +15,7 @@ unix {
 }
 
 HEADERS += \
-    allcommands.h \
+	allcommands.h \
     allheaders.h \
     parser.h \
     database/basic/editing.h \
@@ -31,10 +32,6 @@ HEADERS += \
     javascript/dom/elementstest.h \
     javascript/dom/filterelements.h \
     javascript/dom/findelements.h \
-    language/booloperator/equal.h \
-    language/booloperator/logical.h \
-    language/booloperator/notequal.h \
-    language/booloperator/stringlist.h \
     language/constant/readc.h \
     language/control/comment.h \
     language/control/multishot.h \
@@ -48,7 +45,8 @@ HEADERS += \
 	system/functions/server.h \
 	system/functions/worker.h \
     system/main/driver.h \
-    system/main/ifstackstate.h
+    system/main/ifstackstate.h \
+    vm_errors.h
 
 SOURCES += \
     parser.cpp \
@@ -66,10 +64,6 @@ SOURCES += \
     javascript/dom/elementstest.cpp \
     javascript/dom/filterelements.cpp \
     javascript/dom/findelements.cpp \
-    language/booloperator/equal.cpp \
-    language/booloperator/logical.cpp \
-    language/booloperator/notequal.cpp \
-    language/booloperator/stringlist.cpp \
     language/constant/readc.cpp \
     language/control/comment.cpp \
     language/control/multishot.cpp \

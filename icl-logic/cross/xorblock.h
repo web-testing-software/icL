@@ -5,10 +5,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
-namespace cross {
+namespace vm::main::logic::cross {
 
 class XOrBlock : public CrossBlock
 {
@@ -19,9 +16,6 @@ public:
 	bool calcResult () override;
 };
 
-}   // namespace cross
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // XORBLOCK_H

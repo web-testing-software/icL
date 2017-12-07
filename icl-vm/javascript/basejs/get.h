@@ -5,24 +5,17 @@
 
 
 
-namespace vm {
-namespace javascript {
-namespace basejs {
-namespace get {
+namespace vm::javascript::basejs::get {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runBoolean (vm::main::Driver &drive);
-void runInt (vm::main::Driver &drive);
-void runDouble (vm::main::Driver &drive);
-void runString (vm::main::Driver &drive);
-void runStringList (vm::main::Driver &drive);
+void runBoolean (main::Driver &drive);
+void runInt (main::Driver &drive);
+void runDouble (main::Driver &drive);
+void runString (main::Driver &drive);
+void runStringList (main::Driver &drive);
 
-
-}
-}
-}
 }
 
 #endif // GET_H

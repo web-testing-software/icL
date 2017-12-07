@@ -1,14 +1,13 @@
 #ifndef IFSTACKSTATE_H
 #define IFSTACKSTATE_H
 
-#include "main/logicblock.h"
-#include "state/stackstate.h"
+#include "icl-logic/main/logicblock.h"
+#include "icl-memory/state/stackstate.h"
 
 
 
 
-namespace vm {
-namespace memory {
+namespace vm::memory {
 
 class IfStackState : public StackState
 {
@@ -23,7 +22,6 @@ protected:
 	main::logic::LogicBlock* logicBlock;
 };
 
-} // namespace system
-} // namespace vm
+}
 
 #endif // IFSTACKSTATE_H

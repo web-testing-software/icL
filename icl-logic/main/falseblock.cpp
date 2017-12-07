@@ -1,14 +1,18 @@
 #include "falseblock.h"
 
-vm::main::logic::FalseBlock::FalseBlock () {
+namespace vm::main::logic {
+
+FalseBlock::FalseBlock () {
 
 }
 
 
-bool vm::main::logic::FalseBlock::calcResult () {
+bool FalseBlock::calcResult () {
 	return false;
 }
 
-bool vm::main::logic::FalseBlock::isCross () {
+bool FalseBlock::isCross () {
 	return false;
+}
+
 }

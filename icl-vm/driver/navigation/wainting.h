@@ -5,20 +5,14 @@
 
 
 
-namespace vm {
-namespace driver {
-namespace navigation {
-namespace wainting {
+namespace vm::driver::navigation::wainting {
 
-void parse (vm::main::Driver &drive);
+void parse (main::Driver &drive);
 
 
-void runPrepareWaitForPageLoad (vm::main::Driver &drive);
-void runWaitForPageLoad (vm::main::Driver &drive);
+void runPrepareWaitForPageLoad (main::Driver &drive);
+void runWaitForPageLoad (main::Driver &drive);
 
-}
-}
-}
 }
 
 #endif // WAINTING_H

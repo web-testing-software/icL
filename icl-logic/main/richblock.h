@@ -10,9 +10,7 @@
 
 
 
-namespace vm {
-namespace main {
-namespace logic {
+namespace vm::main::logic {
 
 class RichBlock : public LogicBlock
 {
@@ -42,8 +40,6 @@ protected:
 	OperationType operationType;
 };
 
-}   // namespace logic
-}   // namespace system
-}   // namespace vm
+}
 
 #endif // RICHBLOCK_H
