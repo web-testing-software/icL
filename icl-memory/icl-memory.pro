@@ -4,7 +4,9 @@ TEMPLATE = lib
 QT = core
 CONFIG -= app_bundle
 
-CONFIG += staticlib C++17
+CONFIG += staticlib
+CONFIG += c++1z
+QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += ../
 

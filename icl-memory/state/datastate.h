@@ -24,7 +24,7 @@ public:
 	};
 
 	// Functions to add data to containers
-	void setValue (const QString &name, QVariant value);
+	void setValue (const QString &name, QVariant &value);
 	void addToStringList (const QString &name, QString &value);
 
 	// Functions to access data and metadata from containers

@@ -5,7 +5,9 @@ CONFIG -= app_bundle
 TARGET = icl-vm
 TEMPLATE = lib
 
-CONFIG += staticlib C++17
+CONFIG += staticlib
+CONFIG += c++1z
+QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += ../
 

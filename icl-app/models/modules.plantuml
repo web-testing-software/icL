@@ -12,12 +12,12 @@ skinparam classBorderColor<<vm.main>> blue
 skinparam classBorderColor<<vm.main.logic>> teal
 skinparam classBorderColor<<vm.memory>> brown
 
-App ..> Driver
+App .right.> Driver
 Driver ..> DataContainer
 Driver ..> LogicBlock
-Driver ..> Interpreter
-DataContainer <.left. Interpreter
-Interpreter .right.> LogicBlock
+Driver .right.> Interpreter
+DataContainer <.. Interpreter
+Interpreter .up.> LogicBlock
 
 class DataContainer {
 	getMemoryStateIterator ();

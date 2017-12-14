@@ -54,7 +54,8 @@ else {
 	RCC_DIR = release/rcc
 }
 
-CONFIG += c++17
+CONFIG += c++1z
+QMAKE_CXXFLAGS += -std=c++1z
 
 DISTFILES += \
     models/modules.plantuml \

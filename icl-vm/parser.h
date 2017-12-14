@@ -1,8 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "allcommands.h"
 #include "system/main/driver.h"
+#include "allcommands.h" // Don't remove this include
 
 #include <QDataStream>
 #include <QFile>
