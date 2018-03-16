@@ -12,6 +12,9 @@
 
 namespace vm::main::logic {
 
+/**
+ * @brief The RichBlock class - this class contains 2 variables or constants
+ */
 class RichBlock : public LogicBlock
 {
 public:
@@ -25,6 +28,7 @@ public:
 	};
 
 	RichBlock (OperationType otype);
+	virtual ~RichBlock () override;
 
 	bool canAcceptVar ();
 	void giveVar (QString &varname);

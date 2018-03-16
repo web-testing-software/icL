@@ -7,6 +7,10 @@ SingleBlock::SingleBlock (OperationType otype)
 
 }
 
+/**
+ * @brief SingleBlock::checkIntegrity - it need to be setted just the first varname
+ * @return the first varname is setted
+ */
 bool SingleBlock::checkIntegrity () {
 	if (var1name.isEmpty ()) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
@@ -15,6 +19,10 @@ bool SingleBlock::checkIntegrity () {
 	return true;
 }
 
+/**
+ * @brief SingleBlock::calcResult - compare the <bool> value
+ * @return the result of comparation
+ */
 bool SingleBlock::calcResult () {
 	memory::DataState::Type type = memory::DataState::Type::BOOLEAN;
 	bool			value, ret = false;
@@ -30,11 +38,11 @@ bool SingleBlock::calcResult () {
 
 	switch (operationType) {
 	case OperationType::NOT_NOT :
-		ret = value;
+		ret = value == true;
 		break;
 
 	case OperationType::NOT :
-		ret = !value;
+		ret = value == false;
 		break;
 
 	default :

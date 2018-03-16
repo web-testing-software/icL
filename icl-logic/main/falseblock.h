@@ -7,6 +7,9 @@
 
 namespace vm::main::logic {
 
+/**
+ * @brief The FalseBlock class - false constant
+ */
 class FalseBlock : public LogicBlock
 {
 public:

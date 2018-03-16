@@ -15,9 +15,9 @@
 
 namespace vm {
 
-	namespace main {
-		class Driver;
-	}
+//	namespace main {
+//		class Driver;
+//	}
 
 	enum class LoopMode {
 		NO_STATE,

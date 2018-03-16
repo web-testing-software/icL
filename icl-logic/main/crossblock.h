@@ -7,6 +7,9 @@
 
 namespace vm::main::logic {
 
+/**
+ * @brief The CrossBlock class - this is a block with 2 children (LogicBlock* type)
+ */
 class CrossBlock : public LogicBlock
 {
 public:

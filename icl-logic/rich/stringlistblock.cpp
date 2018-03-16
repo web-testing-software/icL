@@ -11,14 +11,28 @@ StringListBlock::StringListBlock (OperationType otype)
 
 }
 
-QRegExp				StringListBlock::exp	= QRegExp ("\\[(\\s*\".*\"(\\s*,\\s*\".*\")*)?\\s*\\]");
-QRegularExpression	StringListBlock::strExp = QRegularExpression ("\".*\"");
+/**
+ * @brief StringListBlock::exp - a reg exp which describe the string list syntax
+ */
+QRegExp				StringListBlock::exp	= QRegExp ("\\[(\\s*\".*[^\\\\]\"(\\s*,\\s*\".*[^\\\\]\")*)?\\s*\\]");
+/**
+ * @brief StringListBlock::strExp - s reg exp which describe a string in string list syntax
+ */
+QRegularExpression	StringListBlock::strExp = QRegularExpression ("\".*[^\\\\]\"");
 
+/**
+ * @brief StringListBlock::check - if the string is a <string>list const
+ * @param value - value to check
+ * @return valid - true, invalid - false
+ */
 bool StringListBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
-
+/**
+ * @brief StringListBlock::calcResult - compare values
+ * @return the result of comparation
+ */
 bool StringListBlock::calcResult () {
 	bool		result	= false;
 	QStringList var1	= varNameToStringList (var1name);
@@ -44,6 +58,11 @@ bool StringListBlock::calcResult () {
 	return result;
 }
 
+/**
+ * @brief StringListBlock::varNameToStringList - convert varname to <string>list value
+ * @param varname - the value to convert
+ * @return the parsed value
+ */
 QStringList StringListBlock::varNameToStringList (const QString &varname) {
 	memory::DataState::Type type = memory::DataState::Type::STRING_LIST;
 	QStringList				ret;
@@ -71,6 +90,12 @@ QStringList StringListBlock::varNameToStringList (const QString &varname) {
 	return ret;
 }
 
+/**
+ * @brief StringListBlock::operatorEqual - test if both lists contains some items
+ * @param list1 - first string list
+ * @param list2 - second string list
+ * @return both lists contains the same items
+ */
 bool StringListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
 
 	for (const QString &str : list1) {

@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::rich {
 
+/**
+ * @brief The StringListStringBlock class - search a <string> in <string>list
+ */
 class StringListStringBlock : public StringListBlock
 {
 public:

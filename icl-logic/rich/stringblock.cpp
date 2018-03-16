@@ -7,13 +7,24 @@ StringBlock::StringBlock (OperationType otype) :
 
 }
 
-QRegExp StringBlock::exp = QRegExp ("\".*\"");
+/**
+ * @brief StringBlock::exp - a reg exp which describe a <string> const
+ */
+QRegExp StringBlock::exp = QRegExp ("\".*[^\\\\]\"");
 
+/**
+ * @brief StringBlock::check - check if is a valid string const
+ * @param value - the value to check
+ * @return valid - true, invalid - false
+ */
 bool StringBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
-
+/**
+ * @brief StringBlock::calcResult - compare values
+ * @return the result of comparation
+ */
 bool StringBlock::calcResult () {
 	bool	result	= false;
 	QString var1	= varNameToString (var1name);
@@ -39,6 +50,11 @@ bool StringBlock::calcResult () {
 	return result;
 }
 
+/**
+ * @brief StringBlock::varNameToString convert var name to string value
+ * @param varname - name of variable or string const
+ * @return the parsed value or "" on fail
+ */
 QString StringBlock::varNameToString (const QString &varname) {
 	memory::DataState::Type type = memory::DataState::Type::STRING;
 	QString			ret;

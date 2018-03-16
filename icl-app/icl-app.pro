@@ -25,13 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-		webbrowser.cpp \
 	backend/helper.cpp \
     data_management/database.cpp \
 	data_management/dialdescription.cpp
 
 HEADERS += \
-		webbrowser.h \
 	backend/helper.h \
     data_management/database.h \
 	data_management/dialdescription.h

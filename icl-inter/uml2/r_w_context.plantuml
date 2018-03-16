@@ -1,0 +1,31 @@
+@startuml
+
+!include uml_style.iuml
+
+start
+
+:r/w object;
+:get next symbol;
+
+if (next == =) then (yes)
+	:parseContext|
+	:assign|
+else if (next == :) then (yes)
+	:parseType;
+	:cast;
+	:create r context|
+else if (next == .) then (yes)
+	:parseName|
+	:create r/w context|
+else if (next == {) then (yes)
+	:create a typed stack;
+	:run inner commands;
+	:destroy typed stack;
+else (no)
+	:parseName|
+	:execute context function;
+endif
+
+stop
+
+@enduml

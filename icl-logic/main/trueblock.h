@@ -7,6 +7,9 @@
 
 namespace vm::main::logic {
 
+/**
+ * @brief The TrueBlock class - true contant
+ */
 class TrueBlock : public LogicBlock
 {
 public:

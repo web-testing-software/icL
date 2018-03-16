@@ -6,6 +6,9 @@
 
 namespace vm::memory {
 
+/**
+ * @brief The MemoryState class - gloabal memory data unit
+ */
 class MemoryState : public DataState
 {
 public:
@@ -26,6 +29,9 @@ private:
 	MemoryState *next_ms	= nullptr;
 };
 
+/**
+ * @brief The MemoryStateIterator class - iterator releasing the data structore
+ */
 class MemoryStateIterator
 {
 public:

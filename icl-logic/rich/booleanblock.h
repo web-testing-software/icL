@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::rich {
 
+/**
+ * @brief The BooleanBlock class - compare two <bool> vars/consts
+ */
 class BooleanBlock : public RichBlock
 {
 public:

@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::cross {
 
+/**
+ * @brief The XOrBlock class - ^^
+ */
 class XOrBlock : public CrossBlock
 {
 public:

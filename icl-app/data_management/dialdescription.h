@@ -3,6 +3,9 @@
 
 #include <QObject>
 
+/**
+ * @brief The DialDescription class - describe a speed dial (QML compatible)
+ */
 class DialDescription : public QObject
 {
 	Q_OBJECT
@@ -11,9 +14,9 @@ class DialDescription : public QObject
 	Q_PROPERTY (QString title READ title WRITE setTitle NOTIFY titleChanged)
 	Q_PROPERTY (QString url READ url WRITE setUrl NOTIFY urlChanged)
 
-	int m_count;
 	QString m_title;
 	QString m_url;
+	int m_count;
 
 public:
 	explicit DialDescription (QObject *parent = nullptr);

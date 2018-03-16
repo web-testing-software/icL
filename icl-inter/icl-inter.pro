@@ -5,8 +5,8 @@ QT = core
 CONFIG -= app_bundle
 
 CONFIG += staticlib
-CONFIG += c++1z
-QMAKE_CXXFLAGS += -std=c++1z
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 INCLUDEPATH += ../
 
@@ -32,7 +32,12 @@ DISTFILES += \
     uml/wait.plantuml \
     uml/wb_style.iuml \
     uml/web_element.plantuml \
-    uml/web_elements.plantuml
+    uml/web_elements.plantuml \
+    uml2/uml_style.iuml \
+    uml2/comment.plantuml \
+    uml2/global.plantuml \
+    uml2/js.plantuml \
+    uml2/r_w_context.plantuml
 
 HEADERS += \
     interpreter.h \

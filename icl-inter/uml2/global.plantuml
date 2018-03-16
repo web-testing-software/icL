@@ -1,0 +1,44 @@
+@startuml
+
+!include uml_style.iuml
+
+start
+
+:parse first non whitespace symbol;
+
+if (char == @)
+	:parseName|
+	:make stack r/w context;
+	:parseReadWriteContext|
+else if (char == #)
+	:parseName|
+	:make memory r/w context;
+	:parseReadWriteContext|
+else if (char == .)
+	:parseName|
+	:make r/w context;
+	:parseReadWriteContext|
+else if (char == `)
+	:flyComment|
+else if (char == $)
+	:parseName|
+	:executeJsFunction|
+else if (char == !)
+	:find (;
+	:parseContext\nreversed=true|
+else if (char == ()
+	:parseContext\nreversed=false|
+else if (char == ~)
+	:parseValue|
+	:parseValue|
+else
+	:parseContextFunction|
+endif
+
+if (context was created?) then (yes)
+	:destroy context;
+endif
+
+stop
+
+@enduml

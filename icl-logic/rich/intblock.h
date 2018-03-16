@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::rich {
 
+/**
+ * @brief The IntBlock class - compare two <int> vars/consts
+ */
 class IntBlock : public RichBlock
 {
 public:

@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::cross {
 
+/**
+ * @brief The AndBlock class - &&
+ */
 class AndBlock : public CrossBlock
 {
 public:

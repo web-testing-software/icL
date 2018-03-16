@@ -9,6 +9,9 @@
 
 namespace vm::main::logic::rich {
 
+/**
+ * @brief The StringListBlock class - compare two <string>list vars/consts
+ */
 class StringListBlock : public StringBlock
 {
 public:

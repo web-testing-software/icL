@@ -7,13 +7,24 @@ IntBlock::IntBlock (OperationType otype) :
 
 }
 
+/**
+ * @brief IntBlock::exp - a regular expression which describe a int value
+ */
 QRegExp IntBlock::exp = QRegExp ("-?\\d+");
 
+/**
+ * @brief IntBlock::check - check if is a valid <int> value
+ * @param value - value to check
+ * @return valid - true, invalid - false
+ */
 bool IntBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
-
+/**
+ * @brief IntBlock::calcResult - compare values
+ * @return the result of comparation
+ */
 bool IntBlock::calcResult () {
 	bool	result	= false;
 	int		var1	= varNameToInt (var1name);
@@ -39,6 +50,11 @@ bool IntBlock::calcResult () {
 	return result;
 }
 
+/**
+ * @brief IntBlock::varNameToInt - convert varname to <int> value
+ * @param varname - name of variable or const value
+ * @return the parsed value
+ */
 int IntBlock::varNameToInt (const QString &varname) {
 	memory::DataState::Type type	= memory::DataState::Type::INT;
 	int				ret		= 0; // = 0 -> exclude compiler warning

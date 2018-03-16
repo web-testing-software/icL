@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::cross {
 
+/**
+ * @brief The NotBlock class - !
+ */
 class NotBlock : public CrossBlock
 {
 public:

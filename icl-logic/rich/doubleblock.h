@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::rich {
 
+/**
+ * @brief The DoubleBlock class - compare two <double> vars/consts
+ */
 class DoubleBlock : public RichBlock
 {
 public:

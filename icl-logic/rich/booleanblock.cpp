@@ -7,10 +7,19 @@ BooleanBlock::BooleanBlock (OperationType otype) :
 
 }
 
+/**
+ * @brief BooleanBlock::check - check if is a valid bool const
+ * @param value - value to check
+ * @return valid - true, invalid - false
+ */
 bool BooleanBlock::check (const QString &value) {
 	return value == "true" || value == "false";
 }
 
+/**
+ * @brief BooleanBlock::calcResult - compare values
+ * @return the result of comparation
+ */
 bool BooleanBlock::calcResult () {
 	bool	result	= false;
 	bool	var1	= varNameToBoolean (var1name);
@@ -36,6 +45,11 @@ bool BooleanBlock::calcResult () {
 	return result;
 }
 
+/**
+ * @brief BooleanBlock::varNameToBoolean - convert varname to bool value
+ * @param varname - name of variable or const value
+ * @return the parsed value
+ */
 bool BooleanBlock::varNameToBoolean (const QString &varname) {
 	memory::DataState::Type type	= memory::DataState::Type::BOOLEAN;
 	bool			ret		= false; // = false -> exclude compiler warning

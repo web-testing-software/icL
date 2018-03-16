@@ -6,6 +6,10 @@
 #include <QSqlQuery>
 #include <QTextStream>
 
+/**
+ * @brief DataBase::DataBase - initialize the database before using
+ * @param parent - QObject constrctor param
+ */
 DataBase::DataBase (QObject *parent) : QObject (parent) {
 	QSqlError err = init ();
 
@@ -18,6 +22,10 @@ DataBase::DataBase (QObject *parent) : QObject (parent) {
 	}
 }
 
+/**
+ * @brief DataBase::top9 - the must popular 9 sites
+ * @return list of DialDescription (site dial description)
+ */
 QList <QObject *> DataBase::top9 () {
 	QList <QObject *> ret;
 
@@ -55,6 +63,11 @@ QList <QObject *> DataBase::top9 () {
 	return ret;
 }
 
+/**
+ * @brief DataBase::add_visit - add new visit in database
+ * @param url - the visited url
+ * @param name - the page name
+ */
 void DataBase::add_visit (QString url, QString name) {
 	QSqlQuery	q (db);
 	int			site_id;
@@ -99,6 +112,10 @@ void DataBase::add_visit (QString url, QString name) {
 	}
 }
 
+/**
+ * @brief DataBase::init - make the initial database stucture
+ * @return - the occurrer error
+ */
 QSqlError DataBase::init () {
 	db = QSqlDatabase::addDatabase ("QSQLITE");
 	db.setDatabaseName ("ic-lightning.db");
@@ -130,6 +147,10 @@ QSqlError DataBase::init () {
 	return q.lastError ();
 }
 
+/**
+ * @brief DataBase::file_to_sql - copy the file content to sql variable
+ * @param filename - file path
+ */
 void DataBase::file_to_sql (const QString &filename) {
 	QFile		file (filename);
 	QTextStream stream (&file);
@@ -138,10 +159,20 @@ void DataBase::file_to_sql (const QString &filename) {
 	sql = stream.readAll ();
 }
 
+/**
+ * @brief DataBase::print_error - print the error to console for debug
+ * @param query - the failed query
+ */
 void DataBase::print_error (const QSqlQuery &query) {
 	qWarning () << query.lastError ();
 }
 
+/**
+ * @brief DataBase::transact_file - run a sql file, command by command
+ * @param q - sql query object
+ * @param filename - file path
+ * @return last error
+ */
 QSqlError DataBase::transact_file (QSqlQuery &q, const QString &filename) {
 	file_to_sql (filename);
 

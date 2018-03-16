@@ -5,6 +5,9 @@
 #include <QObject>
 #include <QQuickItem>
 
+/**
+ * @brief The Helper class export some C++ only Qt functionallity to QML
+ */
 class Helper : public QObject
 {
 	Q_OBJECT

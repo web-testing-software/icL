@@ -7,6 +7,9 @@
 namespace vm::main::logic::rich {
 
 
+/**
+ * @brief The SingleBlock class - compare a <bool> var/const with a predefined const
+ */
 class SingleBlock : public RichBlock
 {
 public:

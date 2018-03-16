@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::rich {
 
+/**
+ * @brief The StringBlock class - compare two <string> vars/consts
+ */
 class StringBlock : public RichBlock
 {
 public:

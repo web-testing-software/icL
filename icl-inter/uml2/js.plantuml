@@ -1,0 +1,31 @@
+@startuml
+
+!include uml_style.iuml
+
+start
+
+:switch function name;
+if (name == run)
+	:get code;
+	:exec code;
+else if (name == file) 
+	:get string;
+	:open file;
+	:exec code;
+	:close file;
+else if (name == get)
+	:get code;
+	:exec code;
+	:handle returned value;
+	:generate context;
+else if (name == set)
+	:get code;
+	:repalce macros;
+	:exec code;
+	:handle returned value;
+	:generate context;
+endif
+
+stop
+
+@enduml

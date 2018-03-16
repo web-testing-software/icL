@@ -5,8 +5,8 @@ QT = core
 CONFIG -= app_bundle
 
 CONFIG += staticlib
-CONFIG += c++1z
-QMAKE_CXXFLAGS += -std=c++1z
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 INCLUDEPATH += ../
 
@@ -31,7 +31,8 @@ HEADERS += \
     main/falseblock.h \
     main/logicblock.h \
     main/richblock.h \
-    main/trueblock.h
+    main/trueblock.h \
+    cross/eqblock.h
 
 SOURCES += \
     cross/andblock.cpp \
@@ -49,7 +50,8 @@ SOURCES += \
     main/falseblock.cpp \
     main/logicblock.cpp \
     main/richblock.cpp \
-    main/trueblock.cpp
+    main/trueblock.cpp \
+    cross/eqblock.cpp
 
 DISTFILES += \
 	models/logic.plantuml \

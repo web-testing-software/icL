@@ -5,6 +5,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 
+/**
+ * @brief The DataBase class - control the main database
+ */
 class DataBase : public QObject
 {
 	Q_OBJECT

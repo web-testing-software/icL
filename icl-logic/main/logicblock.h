@@ -5,6 +5,9 @@
 
 namespace vm::main::logic {
 
+/**
+ * @brief The LogicBlock class
+ */
 class LogicBlock
 {
 public:
@@ -19,6 +22,7 @@ public:
 	};
 
 	LogicBlock ();
+	virtual ~LogicBlock ();
 
 	bool getResult ();
 	virtual bool isCross ()			= 0;

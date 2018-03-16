@@ -7,13 +7,24 @@ DoubleBlock::DoubleBlock (OperationType otype) :
 
 }
 
+/**
+ * @brief DoubleBlock::exp - regular expression which describe a double value
+ */
 QRegExp DoubleBlock::exp = QRegExp ("\\d+\\.\\d+");
 
+/**
+ * @brief DoubleBlock::check - check if is a valid double const
+ * @param value - value to check
+ * @return valid - true, invalid - false
+ */
 bool DoubleBlock::check (const QString &value) {
 	return exp.exactMatch (value);
 }
 
-
+/**
+ * @brief DoubleBlock::calcResult - compare values
+ * @return the result of comparation
+ */
 bool DoubleBlock::calcResult () {
 	bool	result	= false;
 	double	var1	= varNameToDouble (var1name);
@@ -39,6 +50,11 @@ bool DoubleBlock::calcResult () {
 	return result;
 }
 
+/**
+ * @brief DoubleBlock::varNameToDouble - convert var name to a <double> value
+ * @param varname - name of variable or const value
+ * @return the result of comparation
+ */
 double DoubleBlock::varNameToDouble (const QString &varname) {
 	memory::DataState::Type type	= memory::DataState::Type::DOUBLE;
 	double			ret		= 0.0; // = 0.0 -> exclude compiler warning

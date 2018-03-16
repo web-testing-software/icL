@@ -1,5 +1,5 @@
 #include "../../parser.h"
-//#include "../main/virtualmachine.h"
+// #include "../main/virtualmachine.h"
 #include "server.h"
 
 #include <QStringList>
@@ -8,10 +8,10 @@ namespace vm::main {
 
 Server::Server (QObject *parent) : QObject (parent) {
 
-	connect (this, SIGNAL (invoke_executeJS ()), this, SLOT (release_executeJS ()));
-	connect (this, SIGNAL (invoke_goTo ()), this, SLOT (release_goTo ()));
-	connect (this, SIGNAL (invoke_waitForPageLoading ()), this, SLOT (release_waitForPageLoading ()));
-	connect (this, SIGNAL (invoke_showErrorDialog ()), this, SLOT (release_showErrorDialog ()));
+	connect (this, &Server::invoke_executeJS,			this, &Server::release_executeJS);
+	connect (this, &Server::invoke_goTo,				this, &Server::release_goTo);
+	connect (this, &Server::invoke_waitForPageLoading,	this, &Server::release_waitForPageLoading);
+	connect (this, &Server::invoke_showErrorDialog,		this, &Server::release_showErrorDialog);
 }
 
 bool Server::goTo (const QString &url) {

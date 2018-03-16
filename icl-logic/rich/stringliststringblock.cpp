@@ -7,6 +7,10 @@ StringListStringBlock::StringListStringBlock (OperationType otype)
 
 }
 
+/**
+ * @brief StringListStringBlock::calcResult - calc the value of logical expression
+ * @return the value of logical expression
+ */
 bool StringListStringBlock::calcResult () {
 	bool		result	= false;
 	QStringList var1	= varNameToStringList (var1name);
@@ -35,6 +39,12 @@ bool StringListStringBlock::calcResult () {
 	return result;
 }
 
+/**
+ * @brief StringListStringBlock::containsFragment - identify if the <string>list contains the substring
+ * @param strList - <string>list - search context
+ * @param str - <string> - search item
+ * @return the substring is contained by a string in list
+ */
 bool StringListStringBlock::containsFragment (const QStringList &strList, const QString &str) {
 	bool ret = false;
 

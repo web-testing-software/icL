@@ -7,6 +7,9 @@
 
 namespace vm::memory {
 
+/**
+ * @brief The DataState class - interface for stack state and memory state
+ */
 class DataState
 {
 public:

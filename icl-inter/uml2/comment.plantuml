@@ -1,0 +1,20 @@
+@startuml
+
+!include uml_style.iuml
+
+start
+
+:`;
+if (next is `) then (yes)
+	if (next is `) then (yes)
+		:fly multiline comment;
+	else (no)
+		:fly to line end;
+	endif
+else
+	:fly to `;
+endif
+
+stop
+
+@enduml

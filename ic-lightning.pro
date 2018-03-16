@@ -2,10 +2,10 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-		memory \
-		logic \
+        memory \
+        logic \
         vm \
-		inter \
+        inter \
         app
 
 memory.subdir = icl-memory

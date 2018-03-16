@@ -6,6 +6,9 @@
 
 namespace vm::memory {
 
+/**
+ * @brief The StackState class
+ */
 class StackState : public DataState
 {
 public:

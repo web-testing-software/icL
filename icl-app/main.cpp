@@ -1,4 +1,3 @@
-#include "webbrowser.h"
 #include "backend/helper.h"
 #include "data_management/database.h"
 #include "data_management/dialdescription.h"

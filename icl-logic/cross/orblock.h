@@ -7,6 +7,9 @@
 
 namespace vm::main::logic::cross {
 
+/**
+ * @brief The OrBlock class - ||
+ */
 class OrBlock : public CrossBlock
 {
 public:

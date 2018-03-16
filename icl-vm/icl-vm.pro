@@ -17,7 +17,7 @@ unix {
 }
 
 HEADERS += \
-	allcommands.h \
+    allcommands.h \
     allheaders.h \
     parser.h \
     database/basic/editing.h \
@@ -41,11 +41,10 @@ HEADERS += \
     language/localmemory/readl.h \
     language/localmemory/writel.h \
     language/statestorange/reads.h \
-	language/statestorange/writes.h \
+    language/statestorange/writes.h \
     allcommands.h \
-	allheaders.h \
-	system/functions/server.h \
-	system/functions/worker.h \
+    allheaders.h \
+    system/functions/server.h \
     system/main/driver.h \
     system/main/ifstackstate.h \
     vm_errors.h
@@ -74,8 +73,7 @@ SOURCES += \
     language/localmemory/writel.cpp \
     language/statestorange/reads.cpp \
     language/statestorange/writes.cpp \
-	system/functions/server.cpp \
-	system/functions/worker.cpp \
+    system/functions/server.cpp \
     system/main/driver.cpp \
     system/main/ifstackstate.cpp
 

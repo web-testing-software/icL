@@ -10,6 +10,9 @@
 
 namespace vm::memory {
 
+/**
+ * @brief The DataContainer class - contains ``data state` and `stack state`
+ */
 class DataContainer : public QObject
 {
 	Q_OBJECT
@@ -43,8 +46,8 @@ private:
 	StackStateIterator m_stackStateIt;
 	MemoryState *m_memoryStateToStop;
 
-	Error m_error;
 	QString last_error;
+	Error m_error;
 };
 
 }

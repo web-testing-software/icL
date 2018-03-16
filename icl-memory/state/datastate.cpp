@@ -7,6 +7,12 @@ DataState::DataState () {
 
 }
 
+
+/**
+ * @brief DataState::addToStringList - despercated
+ * @param name
+ * @param value
+ */
 void DataState::addToStringList (const QString &name, QString &value) {
 	if (dataMap.contains (name)) {
 		QStringList tmp = dataMap [name].toStringList ();
@@ -18,14 +24,29 @@ void DataState::addToStringList (const QString &name, QString &value) {
 	}
 }
 
+/**
+ * @brief DataState::setValue
+ * @param name - the name of variable
+ * @param value - the value of variable
+ */
 void DataState::setValue (const QString &name, QVariant &value) {
 	dataMap [name] = value;
 }
 
+/**
+ * @brief DataState::contains
+ * @param name - the name of variable
+ * @return if the data unit contains the needed variables
+ */
 bool DataState::contains (const QString &name) {
 	return dataMap.contains (name);
 }
 
+/**
+ * @brief DataState::getType
+ * @param name - the name of variable
+ * @return the type of variable (js types need aditional checking)
+ */
 DataState::Type DataState::getType (const QString &name) {
 	Type ret = Type::INVALID;
 
@@ -61,6 +82,12 @@ DataState::Type DataState::getType (const QString &name) {
 	return ret;
 }
 
+/**
+ * @brief DataState::checkType
+ * @param name - the name of varible
+ * @param type - the type
+ * @return the variable type check the type
+ */
 bool DataState::checkType (const QString &name, DataState::Type &type) {
 	bool ret;
 
@@ -96,6 +123,11 @@ bool DataState::checkType (const QString &name, DataState::Type &type) {
 	return ret;
 }
 
+/**
+ * @brief DataState::getValue
+ * @param name - the variable name
+ * @return the variable value
+ */
 QVariant DataState::getValue (const QString &name) {
 	return dataMap [name];
 }
