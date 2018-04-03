@@ -1,0 +1,24 @@
+@startuml
+
+!include uml_style.iuml
+title If.execute()
+start
+if (expressionExecuted == true?) then (Да)
+	-[#blue]->
+	if (codeExecuted == true?) then (Да)
+		-[#blue]->
+		:return true;
+	else (Нет)
+		-[#red]->
+		:создание прерыванию для выпольнения кода;
+		:codeExecuted = true;
+		:return false;
+	endif
+else (Нет)
+	-[#red]->
+	:создание прерыванию для выпольнения кода;
+	:expressionExecuted = true;
+	:return false;
+endif
+stop
+@enduml

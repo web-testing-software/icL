@@ -1,0 +1,8 @@
+@startuml
+
+!include uml_style.iuml
+title DataContext.isExecutable()
+start
+:return prev.role == Object;
+stop
+@enduml

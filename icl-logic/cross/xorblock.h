@@ -5,7 +5,7 @@
 
 
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 /**
  * @brief The XOrBlock class - ^^

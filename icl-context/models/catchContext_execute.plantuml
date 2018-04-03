@@ -1,0 +1,16 @@
+@startuml
+
+!include uml_style.iuml
+title CatchContext.execute()
+start
+
+if (codeExecuted == true) then (Да)
+	:return true;
+else (Нет)
+	:вызов прерывания для выпольнения кода>
+	:codeExecuted = true;
+	:return false;
+endif
+
+stop
+@enduml

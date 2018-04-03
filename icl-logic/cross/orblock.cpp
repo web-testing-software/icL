@@ -1,6 +1,6 @@
 #include "orblock.h"
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 OrBlock::OrBlock () {
 

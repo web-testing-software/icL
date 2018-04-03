@@ -5,7 +5,7 @@
 
 
 
-namespace vm::main::logic {
+namespace vm::logic {
 
 /**
  * @brief The CrossBlock class - this is a block with 2 children (LogicBlock* type)
@@ -24,8 +24,12 @@ public:
 	void resetResultValue () override;
 
 protected:
-	LogicBlock *block1;
-	LogicBlock *block2;
+	LogicBlock *block1	= nullptr;
+	LogicBlock *block2	= nullptr;
+	bool value1			= false,
+		 value2			= false,
+		 value1getted	= false,
+		 value2getted	= false;
 };
 
 }

@@ -2,23 +2,8 @@
 
 !include uml_style.iuml
 
-class Interpreter <<interpreter>>
-class "QML" <<interface>>
-
-skinparam classBorderColor<<interpreter>> green
-skinparam classBorderColor<<interface>> purple
-
 DataState <|-left- StackState
-DataState <|-right- MemoryState 
-StackState *-- StackStateIterator
-MemoryState *-- MemoryStateIterator
-StackStateIterator *-right- Driver
-MemoryStateIterator *-left- Driver
+DataState <|-right- MemoryState
 DataState -down-* WebElement
-Driver --* Server
-Driver --* Interpreter
-"QML" -down-* Driver
-
-Interpreter -right[hidden]-> Server
 
 @enduml

@@ -1,0 +1,6 @@
+!include uml_style.iuml
+title Context.execute
+start
+:return true;
+stop
+@enduml

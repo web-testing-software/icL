@@ -1,0 +1,19 @@
+@startuml
+
+!include uml_style.iuml
+title CodeBlock.execute()
+start
+if (codeExecuted == true?) then (Да)
+	-[#blue]->
+	:return true;
+	end
+else ()
+	-[#red]->
+	:создание прерывании для выпольнений кода;
+	:codeExecuted = true;
+endif
+
+:return false;
+
+stop
+@enduml

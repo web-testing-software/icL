@@ -26,12 +26,9 @@ HEADERS += \
     rich/singleblock.h \
     rich/stringblock.h \
     rich/stringlistblock.h \
-    rich/stringliststringblock.h \
     main/crossblock.h \
-    main/falseblock.h \
     main/logicblock.h \
     main/richblock.h \
-    main/trueblock.h \
     cross/eqblock.h
 
 SOURCES += \
@@ -45,12 +42,9 @@ SOURCES += \
     rich/singleblock.cpp \
     rich/stringblock.cpp \
     rich/stringlistblock.cpp \
-    rich/stringliststringblock.cpp \
     main/crossblock.cpp \
-    main/falseblock.cpp \
     main/logicblock.cpp \
     main/richblock.cpp \
-    main/trueblock.cpp \
     cross/eqblock.cpp
 
 DISTFILES += \

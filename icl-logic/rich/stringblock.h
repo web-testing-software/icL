@@ -5,7 +5,7 @@
 
 
 
-namespace vm::main::logic::rich {
+namespace vm::logic::rich {
 
 /**
  * @brief The StringBlock class - compare two <string> vars/consts
@@ -15,16 +15,16 @@ class StringBlock : public RichBlock
 public:
 	StringBlock (OperationType otype);
 
-	static bool check (const QString &value);
+//	static bool check (const QString &value);
 
 	// LogicBlock interface
 	bool calcResult () override;
 
 protected:
-	QString varNameToString (const QString &varname);
+//	QString varNameToString (const QString &varname);
 
 private:
-	static QRegExp exp;
+//	static QRegExp exp;
 };
 
 }

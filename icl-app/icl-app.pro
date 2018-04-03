@@ -9,7 +9,7 @@
 QT       += core gui widgets quickwidgets webengine sql
 
 TARGET = ic-lightning
-TEMPLATE = app
+TEMPLATE = app 
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -57,5 +57,10 @@ QMAKE_CXXFLAGS += -std=c++1z
 
 DISTFILES += \
     models/modules.plantuml \
-    models/uml_style.iuml
+    models/uml_style.iuml \
+    models/use_case.plantuml \
+    models/modules_v2.plantuml \
+    models/modules.plantuml \
+    models/uml_style.iuml \
+    models/use_case.plantuml
 

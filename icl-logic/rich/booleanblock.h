@@ -5,7 +5,7 @@
 
 
 
-namespace vm::main::logic::rich {
+namespace vm::logic::rich {
 
 /**
  * @brief The BooleanBlock class - compare two <bool> vars/consts
@@ -21,7 +21,7 @@ public:
 	bool calcResult () override;
 
 protected:
-	bool varNameToBoolean (const QString &varname);
+//	bool varNameToBoolean (const QString &varname);
 };
 
 }

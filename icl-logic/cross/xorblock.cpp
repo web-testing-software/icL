@@ -1,6 +1,6 @@
 #include "xorblock.h"
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 XOrBlock::XOrBlock () {
 

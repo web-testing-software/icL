@@ -6,16 +6,19 @@ SUBDIRS = \
         logic \
         vm \
         inter \
-        app
+        app \
+        context
 
 memory.subdir = icl-memory
 logic.subdir = icl-logic
+context.subdir = icl-context
 vm.subdir = icl-vm
 inter.subdir = icl-inter
 app.subdir = icl-app
 
 logic.depends = memory
-vm.depends = logic memory
-inter.depends = memory logic
+context.depends = memory logic
+inter.depends = logic context
+vm.depends = context memory inter
 app.depends = vm inter
 #app.depends = vm

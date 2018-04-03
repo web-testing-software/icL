@@ -1,7 +1,7 @@
 // #include "../../main/virtualmachine.h"
 #include "richblock.h"
 
-namespace vm::main::logic {
+namespace vm::logic {
 
 RichBlock::RichBlock (OperationType otype) {
 	operationType = otype;
@@ -15,20 +15,24 @@ RichBlock::~RichBlock () {
  * @brief RichBlock::canAcceptVar - if the first or the second var/const are not setted
  * @return bool
  */
-bool RichBlock::canAcceptVar () {
-	return var2name.isEmpty ();
+bool RichBlock::canAcceptCode () {
+	return code2 == nullptr;
 }
 
 /**
  * @brief RichBlock::giveVar - set up next var/const
  * @param varname - var/const
  */
-void RichBlock::giveVar (QString &varname) {
-	if (var1name.isEmpty () ) {
-		var1name = varname;
+void RichBlock::giveCode (QString *code, int begin, int end) {
+	if (code1 == nullptr ) {
+		code1 = code;
+		code1begin = begin;
+		code1end = end;
 	}
-	else if (var2name.isEmpty () ) {
-		var2name = var2name;
+	else if (code2 == nullptr) {
+		code1 = code;
+		code1begin = begin;
+		code1end = end;
 	}
 }
 
@@ -45,7 +49,7 @@ bool RichBlock::isCross () {
  * @return bool
  */
 bool RichBlock::checkIntegrity () {
-	if (var1name.isEmpty () || var2name.isEmpty () ) {
+	if (code1 == nullptr || code2 == nullptr ) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
 	}

@@ -1,6 +1,6 @@
 #include "crossblock.h"
 
-namespace vm::main::logic {
+namespace vm::logic {
 
 CrossBlock::CrossBlock () {
 

@@ -1,16 +1,16 @@
 #include "intblock.h"
 
-namespace vm::main::logic::rich {
+namespace vm::logic::rich {
 
 IntBlock::IntBlock (OperationType otype) :
-	vm::main::logic::RichBlock (otype) {
+	vm::logic::RichBlock (otype) {
 
 }
 
 /**
  * @brief IntBlock::exp - a regular expression which describe a int value
  */
-QRegExp IntBlock::exp = QRegExp ("-?\\d+");
+//QRegExp IntBlock::exp = QRegExp ("-?\\d+");
 
 /**
  * @brief IntBlock::check - check if is a valid <int> value
@@ -27,8 +27,8 @@ bool IntBlock::check (const QString &value) {
  */
 bool IntBlock::calcResult () {
 	bool	result	= false;
-	int		var1	= varNameToInt (var1name);
-	int		var2	= varNameToInt (var2name);
+	int		var1	= value1.toInt();
+	int		var2	= value2.toInt();
 
 	switch (operationType) {
 	case OperationType::EQUAL :
@@ -41,10 +41,10 @@ bool IntBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
-								  QObject::tr ("Wrong operator for operands int:%1 and int:%2.")
-								  .arg (var1name)
-								  .arg (var2name));
+//		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
+//								  QObject::tr ("Wrong operator for operands int:%1 and int:%2.")
+//								  .arg (var1name)
+//								  .arg (var2name));
 	}
 
 	return result;
@@ -55,24 +55,24 @@ bool IntBlock::calcResult () {
  * @param varname - name of variable or const value
  * @return the parsed value
  */
-int IntBlock::varNameToInt (const QString &varname) {
-	memory::DataState::Type type	= memory::DataState::Type::INT;
-	int				ret		= 0; // = 0 -> exclude compiler warning
+//int IntBlock::varNameToInt (const QString &varname) {
+//	memory::DataState::Type type	= memory::DataState::Type::INT;
+//	int				ret		= 0; // = 0 -> exclude compiler warning
 
-	if (check (varname)) {
-		ret = varname.toInt ();
-	}
-	else if (!dataContainer->checkType (varname, type)) {
-		invalidate ();
-		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
-								  QObject::tr ("%1 is not a boolean variable or constant.")
-								  .arg (varname));
-	}
-	else {
-		ret = dataContainer->getVar (varname).toInt ();
-	}
+//	if (check (varname)) {
+//		ret = varname.toInt ();
+//	}
+//	else if (!dataContainer->checkType (varname, type)) {
+//		invalidate ();
+//		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
+//								  QObject::tr ("%1 is not a boolean variable or constant.")
+//								  .arg (varname));
+//	}
+//	else {
+//		ret = dataContainer->getVar (varname).toInt ();
+//	}
 
-	return ret;
-}
+//	return ret;
+//}
 
 }

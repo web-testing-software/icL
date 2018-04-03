@@ -37,7 +37,23 @@ DISTFILES += \
     uml2/comment.plantuml \
     uml2/global.plantuml \
     uml2/js.plantuml \
-    uml2/r_w_context.plantuml
+    uml2/r_w_context.plantuml \
+    models/class_diagram.plantuml \
+    models/parse_argument.plantuml \
+    models/parse_cast.plantuml \
+    models/parse_code_block_end.plantuml \
+    models/parse_comment.plantuml \
+    models/parse_content_bounds.plantuml \
+    models/parse_exception.plantuml \
+    models/parse_keyword.plantuml \
+    models/parse_logical_exmpression.plantuml \
+    models/parse_next.plantuml \
+    models/parse_special_contructions.plantuml \
+    models/parse_stack_variable.plantuml \
+    models/parse_state_variable.plantuml \
+    models/prepare_js_crossfire.plantuml \
+    models/prepare_js_set.plantuml \
+    models/uml_style.iuml
 
 HEADERS += \
     interpreter.h \

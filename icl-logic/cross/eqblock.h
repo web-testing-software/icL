@@ -3,7 +3,7 @@
 
 #include "../main/crossblock.h"
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 /**
  * @brief The EqBlock class - ~~

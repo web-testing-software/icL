@@ -1,6 +1,6 @@
 #include "logicblock.h"
 
-namespace vm::main::logic {
+namespace vm::logic {
 
 LogicBlock::LogicBlock () {
 

@@ -1,0 +1,71 @@
+@startuml
+
+!include uml_style.iuml
+title Диаграмма классов контекстов
+
+class Context {
+	+ virtual bool containsData ()
+	+ virtual bool isExecutable ()
+	+ virtual execute ()
+	+ virtual Context* newContext ()
+	+ virtual Context* startContext ()
+	+ virtual Context* endContext ()
+	+ virtual bool isRightToLeft ()
+}
+class Object {
+	+ DataContainer* container
+	+ string name
+	+ var value
+}
+class CodeBlock {
+	+ long begin
+	+ long end
+}
+class Function {
+	+ string name
+	+ int funcID
+	+ long begin
+	+ long end
+}
+class Complex {
+	+ Context* getAttr (string)
+	+ Context* runFunc (string)
+}
+class If {
+	+ long cbegin;
+	+ long cend;
+}
+class CatchBlock {
+	+ int errorCode;
+}
+
+Context <|-- Object
+Bool -|> Object
+Object <|- Element
+Object <|-- Int
+Object <|-- Double
+Object <|-- String
+Object <|-- List
+
+DataContext --|> Context
+Function --|> Context
+FunctionCall --|> Function
+NewFunction --|> Function
+
+Complex -|> Context
+Browser --|> Complex
+Context <|- CodeBlock
+IsolatedContext --|> CodeBlock
+CodeBlock <|- ControlBlock
+If --|> ControlBlock
+Else --|> ControlBlock
+ControlBlock <|-- CatchBlock
+CatchBlock <|-- CatchContext
+CatchBlock <|-- CatchFunction
+
+Method --|> DataContext
+Property --|> DataContext
+Alternative --|> DataContext
+Assign --|> DataContext
+
+@enduml

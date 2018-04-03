@@ -15,14 +15,14 @@ interface CrossBlock {
 }
 
 interface RichBlock {
-	# QString var1name
-	# QString var2name
-	+ bool canAcceptVar()
-	+ void giveVar(QString)
+	# QString code1
+	# QString code2
+	+ bool canAcceptCode()
+	+ void giveCode(QString)
 }
 
-LogicBlock <|-up- TrueBlock
-LogicBlock <|-down- FalseBlock
+'LogicBlock <|-up- TrueBlock
+'LogicBlock <|-down- FalseBlock
 LogicBlock <|-left- RichBlock
 LogicBlock <|-right- CrossBlock
 
@@ -30,8 +30,8 @@ RichBlock <|-- BooleanBlock
 RichBlock <|-up- IntBlock
 RichBlock <|-up- DoubleBlock
 RichBlock <|-- StringBlock
-StringBlock <|-up- StringListBlock
-StringListBlock <|-up- StringListStringBlock
+ListBlock --|> RichBlock
+'RichBlock <|-up- StringListStringBlock
 RichBlock <|-- SingleBlock
 
 CrossBlock <|-- NotBlock

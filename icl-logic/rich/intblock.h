@@ -5,7 +5,7 @@
 
 
 
-namespace vm::main::logic::rich {
+namespace vm::logic::rich {
 
 /**
  * @brief The IntBlock class - compare two <int> vars/consts
@@ -21,10 +21,10 @@ public:
 	bool calcResult () override;
 
 protected:
-	int varNameToInt (const QString &varname);
+//	int varNameToInt (const QString &varname);
 
 private:
-	static QRegExp exp;
+//	static QRegExp exp;
 };
 
 }

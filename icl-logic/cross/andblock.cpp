@@ -1,6 +1,6 @@
 #include "andblock.h"
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 AndBlock::AndBlock () {
 

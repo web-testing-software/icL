@@ -1,6 +1,6 @@
 #include "eqblock.h"
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 EqBlock::EqBlock () {
 

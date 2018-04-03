@@ -1,0 +1,8 @@
+@startuml
+
+!include uml_style.iuml
+title CatchContext.isExecutable()
+start
+:return true;
+stop
+@enduml

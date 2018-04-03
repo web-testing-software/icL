@@ -1,0 +1,24 @@
+@startuml
+
+!include uml_style.iuml
+title Модули приложении intracloudLightning
+
+[Приложение] as app
+[Виртуальная Машина] as vm
+[Интерпретатор] as inter
+[Контекст] as context
+[Логика] as logic
+[Память] as memory
+
+'memory <- logic
+vm ---> memory
+inter ---> logic
+context --> memory
+context --> logic
+vm --> context
+inter --> context
+vm -> inter
+app --> vm
+app --> inter
+
+@enduml

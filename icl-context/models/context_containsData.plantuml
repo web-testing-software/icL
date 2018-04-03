@@ -1,0 +1,6 @@
+!include uml_style.iuml
+title Context.containsData
+start
+:return false;
+stop
+@enduml

@@ -1,7 +1,7 @@
 #ifndef RICHBLOCK_H
 #define RICHBLOCK_H
 
-//#include "../../main/virtualmachine.h"
+// #include "../../main/virtualmachine.h"
 #include "logicblock.h"
 
 #include <QRegExp>
@@ -10,7 +10,7 @@
 
 
 
-namespace vm::main::logic {
+namespace vm::logic {
 
 /**
  * @brief The RichBlock class - this class contains 2 variables or constants
@@ -30,16 +30,21 @@ public:
 	RichBlock (OperationType otype);
 	virtual ~RichBlock () override;
 
-	bool canAcceptVar ();
-	void giveVar (QString &varname);
+	bool canAcceptCode ();
+	void giveCode (QString *code, int begin, int end);
 
 	// LogicBlock interface
 	bool isCross () override;
 	bool checkIntegrity () override;
 
 protected:
-	QString var1name;
-	QString var2name;
+	QVariant value1, value2;
+	QString *code1	= nullptr,
+			*code2	= nullptr;
+	int code1begin	= 0,
+		code2begin	= 0;
+	int code1end	= -1,
+		code2end	= -1;
 
 	OperationType operationType;
 };

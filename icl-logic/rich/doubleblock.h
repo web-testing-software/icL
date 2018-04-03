@@ -5,7 +5,7 @@
 
 
 
-namespace vm::main::logic::rich {
+namespace vm::logic::rich {
 
 /**
  * @brief The DoubleBlock class - compare two <double> vars/consts
@@ -21,10 +21,10 @@ public:
 	bool calcResult () override;
 
 protected:
-	double varNameToDouble (const QString &varname);
+//	double varNameToDouble (const QString &varname);
 
 private:
-	static QRegExp exp;
+//	static QRegExp exp;
 };
 
 }

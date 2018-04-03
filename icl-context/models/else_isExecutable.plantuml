@@ -1,0 +1,8 @@
+@startuml
+
+!include uml_style.iuml
+title Else.isExecutable()
+start
+:return next != nullptr && next.Role == CodeBlock;
+stop
+@enduml

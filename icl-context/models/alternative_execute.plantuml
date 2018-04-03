@@ -1,0 +1,9 @@
+@startuml
+
+!include uml_style.iuml
+title Alterntive.execute()
+start
+:keepTheLeft = prev.dataType != Void и prev.value().toBool() == true;
+:return true;
+stop
+@enduml

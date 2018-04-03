@@ -1,6 +1,6 @@
 #include "notblock.h"
 
-namespace vm::main::logic::cross {
+namespace vm::logic::cross {
 
 NotBlock::NotBlock () {
 

@@ -1,0 +1,25 @@
+@startuml
+
+!include uml_style.iuml
+
+class Interpreteur {
+	void backup()
+	bool parseNext()
+	void restore()
+	reset()
+}
+class Flayer {
+	Context* parseEverything()
+}
+
+class Source {
+	QString *source;
+	int beginPos;
+	int endPos;
+}
+
+Interpreteur *-- Flayer
+Interpreteur *-- Source
+Source -o Flayer
+
+@enduml

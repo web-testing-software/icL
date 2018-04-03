@@ -1,9 +1,12 @@
 #ifndef LOGICBLOCK_H
 #define LOGICBLOCK_H
 
-#include "../../icl-memory/state/datacontainer.h"
+#include <QObject>
 
-namespace vm::main::logic {
+#include "icl-memory/state/datacontainer.h"
+
+
+namespace vm::logic {
 
 /**
  * @brief The LogicBlock class
@@ -30,14 +33,20 @@ public:
 	virtual void resetResultValue ();
 	void invalidate ();
 
+	virtual bool step () = 0;
+
 	LogicBlock* getParent ();
 	void setParent (LogicBlock *parent);
+
+signals:
+	void interrupt (QString*, int, int, std::function<void (QVariant&)>);
 
 protected:
 	virtual bool calcResult () = 0;
 
 	vm::memory::DataContainer *dataContainer;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
+	bool ready1 = false, ready2 = false;
 
 private:
 	LogicBlock *m_parent = nullptr;

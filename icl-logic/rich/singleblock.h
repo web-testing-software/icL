@@ -4,7 +4,7 @@
 #include "../main/richblock.h"
 
 
-namespace vm::main::logic::rich {
+namespace vm::logic::rich {
 
 
 /**
