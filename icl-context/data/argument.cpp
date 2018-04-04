@@ -1,8 +1,8 @@
-#include "agument.h"
+#include "argument.h"
 
 namespace vm::context::data {
 
-Agument::Agument () {
+Argument::Argument () {
 
 }
 

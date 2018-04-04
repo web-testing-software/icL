@@ -49,7 +49,7 @@ SOURCES += \
     object/list.cpp \
     object/void.cpp \
     object/element.cpp \
-    data/agument.cpp
+    data/argument.cpp
 
 HEADERS += \
         context.h \
@@ -77,7 +77,7 @@ HEADERS += \
     object/list.h \
     object/void.h \
     object/element.h \
-    data/agument.h
+    data/argument.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
