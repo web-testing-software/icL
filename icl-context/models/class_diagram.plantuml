@@ -13,7 +13,7 @@ class Context {
 	+ virtual bool isRightToLeft ()
 }
 class Object {
-	+ DataContainer* container
+	+ DataContainer* container 
 	+ string name
 	+ var value
 }
@@ -55,7 +55,7 @@ NewFunction --|> Function
 Complex -|> Context
 Browser --|> Complex
 Context <|- CodeBlock
-IsolatedContext --|> CodeBlock
+IsolatedContext -up-|> CodeBlock
 CodeBlock <|- ControlBlock
 If --|> ControlBlock
 Else --|> ControlBlock
@@ -67,5 +67,6 @@ Method --|> DataContext
 Property --|> DataContext
 Alternative --|> DataContext
 Assign --|> DataContext
+Argument -left-|> DataContext
 
 @enduml
