@@ -1,0 +1,20 @@
+@startuml
+
+!include uml_style.iuml
+title Первая анонимная функция
+
+start
+
+:this.value1 = variant;
+note right
+	variant - аргумент
+	анонимной функций,
+	предназначен для
+	получения данных
+	от выших слоёв
+end note
+
+stop
+
+
+@enduml

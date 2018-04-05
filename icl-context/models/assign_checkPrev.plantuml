@@ -1,0 +1,12 @@
+!include uml_style.iuml
+title Assign.checkPrev
+skinparam defaultTextAlignment left
+
+start
+
+:return prev != nullptr
+&& prev.role == Object
+&& !prev.isReadOnly();
+
+stop
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+
+!include uml_style.iuml
+title Третья анонимная функция
+
+start
+
+:вызов функций, чьей указатель получен от инициатора прерываний;
+:this.memory.stackIt.pop()|
+:tempVM = currentVM;
+:currentVM = currentVM.parent;
+:delete tempVM;
+
+stop
+
+@enduml

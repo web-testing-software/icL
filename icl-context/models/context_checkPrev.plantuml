@@ -1,0 +1,10 @@
+!include uml_style.iuml
+title Context.checkPrev
+skinparam defaultTextAlignment left
+
+start
+
+:return false;
+
+stop
+@enduml

@@ -17,6 +17,7 @@ public:
 
 	bool canAcceptBlock ();
 	virtual void giveBlock (LogicBlock *block);
+	virtual void canResultPreliminarily() = 0;
 
 	// LogicBlock interface
 	bool isCross () override;

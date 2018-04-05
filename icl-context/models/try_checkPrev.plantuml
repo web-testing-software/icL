@@ -1,0 +1,11 @@
+!include uml_style.iuml
+title Try.checkPrev
+skinparam defaultTextAlignment left
+
+start
+
+:return prev == nullptr
+|| prev.role == Alternative;
+
+stop
+@enduml

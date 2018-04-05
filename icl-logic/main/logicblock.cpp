@@ -25,6 +25,16 @@ bool LogicBlock::getResult () {
 	return result;
 }
 
+bool LogicBlock::getCachedResult()
+{
+	if (resultCalculed) {
+		return result;
+	}
+	else {
+		return getResult();
+	}
+}
+
 /**
  * @brief LogicBlock::resetResultValue - set the resultValue to "not calculated"
  */

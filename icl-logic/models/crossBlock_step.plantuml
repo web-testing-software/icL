@@ -1,0 +1,29 @@
+@startuml
+
+!include uml_style.iuml
+title CrossBlock.step()
+
+start
+
+if (!value1setted) then (Да)
+	if(first.step()) then (Да)
+		:value1 = first.calcResult();
+		:value1setted = true;
+	endif
+	:return false;
+	end
+else if (!value2setted && !canResultPreliminary()) then (Да)
+		if (second.step()) then (Да)
+			:value2 = second.calcResult();
+			:value2setted = true;
+		endif
+		:return false;
+		end
+else
+	:result = calcResult();
+	:resultCalculed = true;
+	:return true;
+stop
+
+
+@enduml

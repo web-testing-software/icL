@@ -10,14 +10,14 @@ skinparam classBorderColor mediumblue
 skinparam objectBorderColor black
 skinparam packageBorderColor black
 skinparam componentArrowColor black
-skinparam componentBorderColor black
+skinparam componentBorderColor mediumblue
 skinparam componentInterfaceBorderColor black
 skinparam noteBorderColor black
 skinparam stateBorderColor black
 skinparam stateArrowColor black
 skinparam sequenceArrowColor black
 skinparam sequenceLifeLineBorderColor black
-skinparam sequenceParticipantBorderColor black
+skinparam sequenceParticipantBorderColor mediumblue
 skinparam sequenceBoxLineColor black
 skinparam activityBackgroundColor white
 skinparam actorBackgroundColor white

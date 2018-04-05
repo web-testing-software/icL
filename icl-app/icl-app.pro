@@ -62,5 +62,9 @@ DISTFILES += \
     models/modules_v2.plantuml \
     models/modules.plantuml \
     models/uml_style.iuml \
+    models/use_case.plantuml \
+    models/modules_v2.plantuml \
+    models/modules.plantuml \
+    models/uml_style.iuml \
     models/use_case.plantuml
 

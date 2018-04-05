@@ -11,7 +11,7 @@ NotBlock::NotBlock () {
  * @return bool
  */
 bool NotBlock::calcResult () {
-	return !block2->getResult ();
+	return !block2->getCachedResult ();
 }
 
 /**

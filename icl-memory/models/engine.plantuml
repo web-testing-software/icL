@@ -1,9 +1,23 @@
 @startuml
 
 !include uml_style.iuml
+title Диаграмма классов
 
 DataState <|-left- StackState
 DataState <|-right- MemoryState
-DataState -down-* WebElement
+DataState -up-* WebElement
+StackStateIt *-- StackState
+MemoryStateIt *-- MemoryState
+Memory *-- StackStateIt
+Memory *-- FunctionContainer
+Memory *-- MemoryStateIt
+
+StackStateIt -right[hidden]- FunctionContainer
+
+class Memory {
+	StackStateIt stackIt
+	MemoryStateIt stateIt
+	FunctionContainer functions
+}
 
 @enduml

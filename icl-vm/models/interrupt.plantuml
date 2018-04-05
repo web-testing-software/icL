@@ -1,0 +1,37 @@
+@startuml
+
+!include uml_style.iuml
+title принцып работы прерываний
+
+participant VMStack as vms
+participant VM as vm
+participant Interpreter as inter
+participant Context as con
+participant LogicBlock as logic
+
+vms -> vm : step()
+vm -> inter : parseNext()
+inter -> con : new Context()
+con -> inter : возврат Context*
+inter -> vm : возврат Context*
+vm -> vm: contextList.push()
+vm -> vms : возврат
+vms -> vm : step()
+vm -> con : execute()
+con -> logic : step()
+logic -> con : сигнал
+con -> inter : повтор сигнала
+inter -> vm: повтор сигнала
+vm -> vms : повтор сигнала
+vms -> vms : обработка сигнала
+logic -> con : возврат
+con -> vm : возврат
+vm -> vms : возврат
+vms -> vms: создание новой ВМ
+vms -> vms: випольнения кода
+vms -> logic :  вызов анонимной функций
+logic -> vms : возврат
+vms -> vms: продолжения работы
+
+
+@enduml

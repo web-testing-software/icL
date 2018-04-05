@@ -1,0 +1,38 @@
+@startuml
+
+!include uml_style.iuml
+title принцып выпольнения кода javascript
+
+participant WebEngine as web
+participant Server as server
+participant VMStack as vms
+participant VM as vm
+participant Interpreter as inter
+participant Context as con
+
+vms -> vm : step()
+vm -> inter : parseNext()
+inter -> con : new Context()
+con -> inter : возврат Context*
+inter -> vm : возврат Context*
+vm -> vm: contextList.push()
+vm -> vms : возврат
+vms -> vm : step()
+vm -> con : execute()
+con -> inter : сигнал
+inter -> vm: повтор сигнала
+vm -> vms : повтор сигнала
+vms -> server : runJs()
+server -> web: runJs асинхронно
+web -> server: возврат
+server -> server: ожидание
+web -> server: вызов \nанонимной \nфункций
+server -> server: выход из \nрежима ожидания
+server -> web: возврат
+server -> vms: возврат
+vms -> con: вызов анонимной функций
+con -> vms: возврат
+vms -> vms: продолжение \nвыпольнений \nкода
+
+
+@enduml

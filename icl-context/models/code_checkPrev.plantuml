@@ -1,0 +1,16 @@
+!include uml_style.iuml
+title Code.checkPrev
+skinparam defaultTextAlignment left
+
+start
+
+:return prev != nullptr
+&& prev.role == Argument
+|| prev.role == New
+|| prev.role == If
+|| prev.role == Else
+|| prev.role == Handler
+|| prev.isResultative();
+
+stop
+@enduml

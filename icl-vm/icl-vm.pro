@@ -27,4 +27,11 @@ SOURCES += \
 DEFINES += QT_DEPRECATED_WARNINGS
 
 DISTFILES += \
-    models/uml_style.iuml
+    models/uml_style.iuml \
+    models/class_diagram.plantuml \
+    models/find_executable.plantuml \
+    models/interrupt.plantuml \
+    models/js_code_run.plantuml \
+    models/uml_style.iuml \
+    models/vm_step.plantuml \
+    models/vms_interrupt.plantuml

@@ -28,6 +28,7 @@ public:
 	virtual ~LogicBlock ();
 
 	bool getResult ();
+	bool getCachedResult ();
 	virtual bool isCross ()			= 0;
 	virtual bool checkIntegrity ()	= 0;
 	virtual void resetResultValue ();
@@ -47,6 +48,7 @@ protected:
 	vm::memory::DataContainer *dataContainer;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 	bool ready1 = false, ready2 = false;
+	bool resultCalculed = false, result = false;
 
 private:
 	LogicBlock *m_parent = nullptr;

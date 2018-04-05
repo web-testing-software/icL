@@ -36,4 +36,6 @@ DISTFILES += \
     models/engine.plantuml \
     models/uml_style.iuml \
     models/engine.plantuml \
+    models/uml_style.iuml \
+    models/engine.plantuml \
     models/uml_style.iuml
