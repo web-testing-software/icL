@@ -12,11 +12,6 @@ namespace vm::memory {
 class StackState : public DataState
 {
 public:
-	enum class StackType {
-		COMMOM_STACK,
-		IF_STACK
-	};
-
 	StackState (StackState *prev, int stackLevel);
 	virtual ~StackState ();
 
@@ -27,9 +22,6 @@ public:
 	bool isLast ();
 	QVariant getStackValue ();
 	int getStackLevel ();
-
-	virtual bool tryToDestroy ();
-	virtual void releaseCondition ();
 
 	// This function was designed for stats
 	static int getMaxStackLevel ();
@@ -49,13 +41,16 @@ public:
 
 	StackState* stack ();
 
-	void openNewStack (StackState::StackType stackType);
+	void openNewStack ();
 	void closeStack ();
 
+	StackState* getContainer (const QString &name);
+
+	/// Mass effect despercated, to be removed later
 	// Mass effect functions, with automatic iterations
-	bool contains (const QString &name);
-	bool checkType (const QString &name, DataState::Type &type);
-	QVariant getValue (const QString &name);
+//	bool contains (const QString &name);
+//	bool checkType (const QString &name, DataState::Type &type);
+//	QVariant getValue (const QString &name);
 
 	void clear ();
 

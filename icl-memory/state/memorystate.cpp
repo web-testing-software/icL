@@ -35,92 +35,95 @@ void MemoryState::setNext (MemoryState *state) {
 }
 
 MemoryStateIterator::MemoryStateIterator () {
-
+	m_state = new MemoryState();
 }
 
 MemoryStateIterator::~MemoryStateIterator () {
-	clear ();
+	delete m_state;
+//	clear ();
 }
 
 MemoryState * MemoryStateIterator::state () const {
 	return m_state;
 }
 
-void MemoryStateIterator::iterateToFirst () {
-	if (m_state != nullptr) {
-		while (m_state->getPrev () != nullptr) {
-			m_state = m_state->getPrev ();
-		}
-	}
-}
+/// Doesn't delete the commented code, it will be uncommented in the version 1.2
 
-void MemoryStateIterator::iterateToLast () {
-	if (m_state != nullptr) {
-		while (m_state->getNext () != nullptr) {
-			m_state = m_state->getNext ();
-		}
-	}
-}
+//void MemoryStateIterator::iterateToFirst () {
+//	if (m_state != nullptr) {
+//		while (m_state->getPrev () != nullptr) {
+//			m_state = m_state->getPrev ();
+//		}
+//	}
+//}
 
-void MemoryStateIterator::appendNewAfter () {
-	if (m_state == nullptr) {
-		m_state = new MemoryState ();
-	}
-	else {
-		MemoryState *new_state	= new MemoryState ();
-		MemoryState *next_state = m_state->getNext ();
+//void MemoryStateIterator::iterateToLast () {
+//	if (m_state != nullptr) {
+//		while (m_state->getNext () != nullptr) {
+//			m_state = m_state->getNext ();
+//		}
+//	}
+//}
 
-		if (next_state != nullptr) {
-			next_state->setPrev (new_state);
-		}
-		new_state->setNext (next_state);
-		new_state->setPrev (m_state);
-		m_state->setNext (new_state);
+//void MemoryStateIterator::appendNewAfter () {
+//	if (m_state == nullptr) {
+//		m_state = new MemoryState ();
+//	}
+//	else {
+//		MemoryState *new_state	= new MemoryState ();
+//		MemoryState *next_state = m_state->getNext ();
 
-//		if (virtualMachine->memoryStateToStop () == m_state) {
-//			virtualMachine->setMemoryStateToStop (new_state);
+//		if (next_state != nullptr) {
+//			next_state->setPrev (new_state);
+//		}
+//		new_state->setNext (next_state);
+//		new_state->setPrev (m_state);
+//		m_state->setNext (new_state);
+
+////		if (virtualMachine->memoryStateToStop () == m_state) {
+////			virtualMachine->setMemoryStateToStop (new_state);
+////		}
+
+//		m_state = new_state;
+//	}
+//}
+
+//void MemoryStateIterator::appendNewAtEnd () {
+//	iterateToLast ();
+//	appendNewAfter ();
+//}
+
+//void MemoryStateIterator::removeState () {
+//	if (m_state->getNext () == nullptr && m_state->getPrev () == nullptr) {
+//		delete m_state;
+//		m_state = nullptr;
+//	}
+//	else {
+//		MemoryState *prev	= m_state->getPrev ();
+//		MemoryState *next	= m_state->getNext ();
+
+//		if (prev != nullptr) {
+//			prev->setNext (next);
+//		}
+//		if (next != nullptr) {
+//			next->setPrev (prev);
 //		}
 
-		m_state = new_state;
-	}
-}
+//		delete m_state;
+//		m_state = next;
+//	}
+//}
 
-void MemoryStateIterator::appendNewAtEnd () {
-	iterateToLast ();
-	appendNewAfter ();
-}
+//void MemoryStateIterator::clear () {
+//	iterateToFirst ();
 
-void MemoryStateIterator::removeState () {
-	if (m_state->getNext () == nullptr && m_state->getPrev () == nullptr) {
-		delete m_state;
-		m_state = nullptr;
-	}
-	else {
-		MemoryState *prev	= m_state->getPrev ();
-		MemoryState *next	= m_state->getNext ();
+//	MemoryState *tmp;
 
-		if (prev != nullptr) {
-			prev->setNext (next);
-		}
-		if (next != nullptr) {
-			next->setPrev (prev);
-		}
-
-		delete m_state;
-		m_state = next;
-	}
-}
-
-void MemoryStateIterator::clear () {
-	iterateToFirst ();
-
-	MemoryState *tmp;
-
-	while (m_state != nullptr) {
-		tmp = m_state->getNext ();
-		delete m_state;
-		m_state = tmp;
-	}
-}
+//	while (m_state != nullptr) {
+//		tmp = m_state->getNext ();
+//		delete m_state;
+//		m_state = tmp;
+//	}
+//}
 
 }

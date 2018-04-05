@@ -4,6 +4,8 @@
 #include <QMap>
 #include <QVariant>
 
+#include "../structures/type.h"
+
 
 namespace vm::memory {
 
@@ -14,17 +16,6 @@ class DataState
 {
 public:
 	DataState ();
-
-	// Data types which can be mapped
-	enum class Type {
-		INVALID,
-		BOOLEAN,
-		INT,
-		DOUBLE,
-		STRING,
-		STRING_LIST,
-		WEB_ELEMENT
-	};
 
 	// Functions to add data to containers
 	void setValue (const QString &name, QVariant &value);

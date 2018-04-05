@@ -20,15 +20,18 @@ HEADERS += \
 	state/datastate.h \
     state/memorystate.h \
     state/stackstate.h \
-    state/datacontainer.h \
-    structures/webelement.h
+    structures/webelement.h \
+    structures/functioncontainer.h \
+    structures/type.h \
+    state/memory.h
 
 SOURCES += \
 	state/datastate.cpp \
     state/memorystate.cpp \
     state/stackstate.cpp \
-    state/datacontainer.cpp \
-    structures/webelement.cpp
+    structures/webelement.cpp \
+    structures/functioncontainer.cpp \
+    state/memory.cpp
 
 DISTFILES += \
     models/engine.plantuml \

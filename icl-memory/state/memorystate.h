@@ -40,14 +40,16 @@ public:
 
 	MemoryState* state () const;
 
-	void iterateToFirst ();
-	void iterateToLast ();
+	/// Doesn't delete the commented code, it will be uncommented in the version 1.2
 
-	void appendNewAfter ();
-	void appendNewAtEnd ();
-	void removeState ();
+//	void iterateToFirst ();
+//	void iterateToLast ();
 
-	void clear ();
+//	void appendNewAfter ();
+//	void appendNewAtEnd ();
+//	void removeState ();
+
+//	void clear ();
 
 private:
 	MemoryState *m_state = nullptr;
