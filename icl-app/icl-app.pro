@@ -66,5 +66,7 @@ DISTFILES += \
     models/modules_v2.plantuml \
     models/modules.plantuml \
     models/uml_style.iuml \
-    models/use_case.plantuml
+    models/use_case.plantuml \
+    uml2png.sh \
+    uml2svg.sh
 

@@ -44,7 +44,6 @@ DISTFILES += \
     models/parse_code_block_end.plantuml \
     models/parse_comment.plantuml \
     models/parse_content_bounds.plantuml \
-    models/parse_exception.plantuml \
     models/parse_keyword.plantuml \
     models/parse_logical_exmpression.plantuml \
     models/parse_next.plantuml \
@@ -60,7 +59,6 @@ DISTFILES += \
     models/parse_code_block_end.plantuml \
     models/parse_comment.plantuml \
     models/parse_content_bounds.plantuml \
-    models/parse_exception.plantuml \
     models/parse_keyword.plantuml \
     models/parse_logical_exmpression.plantuml \
     models/parse_next.plantuml \
