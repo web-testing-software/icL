@@ -1,0 +1,38 @@
+@startuml
+
+title Синхронизация потоков: правильный вызов функций Server.waitForLoading()
+
+participant VirtualMachineStack as vms
+participant "Server (C++)" as cpp
+participant "Server (QML)" as qml
+participant WebEngine as web
+
+' unclosed statements
+activate vms
+activate web #lightgrey
+
+vms -[#blue]> cpp: waitForLoading()
+activate cpp
+	cpp -> cpp: waitFor = loading
+	cpp -> cpp: working = true
+	cpp -[#green]-> qml: requestWaitForLoading()
+	cpp -> cpp: ожидание
+	
+	web -[#green]> web: loadStatusChanged()
+	activate web #limegreen
+		web -> web: success =\nloadStatus ==\nLoadSuccessfulStatus
+		web -[#blue]> cpp: finishLoad
+		activate cpp #limegreen
+			cpp -> cpp: result = success
+			cpp -> cpp: waitFor = Nothing
+			cpp -> cpp: waorking = false
+			cpp -[#red]> web: возврат
+		deactivate cpp
+	deactivate web
+	cpp -[#red]> vms: result.toBool()
+deactivate cpp
+
+
+!include uml_style.iuml
+
+@enduml

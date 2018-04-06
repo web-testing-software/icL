@@ -1,0 +1,17 @@
+@startuml
+
+title Server.finishLoad()
+
+start
+
+if (waitFor == GoTo || waitFor == Loading)
+	:result = success;
+	:waitFor = Nothing;
+	:working = false;
+endif
+
+stop
+
+!include uml_style.iuml
+
+@enduml

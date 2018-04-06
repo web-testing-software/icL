@@ -1,0 +1,42 @@
+@startuml
+
+title Синхронизация потоков: Server.goTo(url)
+
+participant VirtualMachineStack as vms
+participant "Server (C++)" as cpp
+participant "Server (QML)" as qml
+participant WebEngine as web
+
+' unclosed statements
+activate vms
+activate web #lightgrey
+
+vms -[#blue]> cpp: goTo(url)
+activate cpp
+	cpp -> cpp: waitFor = GoTo
+	cpp -> cpp: working = true
+	cpp -[#green]-> qml: requestGoTo(url)
+	activate qml #springgreen
+		qml -[#blue]> web: setUrl(url)
+		activate web #springgreen
+			web -[#red]> qml: возврат
+		deactivate web
+	deactivate qml
+	web -> web: загрузка страницы
+	web -[#green]-> web: loadStatusChanged
+	activate web #limegreen
+		web -> web: success = \nloadState == \nLoadSuccessfulState
+		web -[#blue]> cpp: finishLoad(success)
+		activate cpp #limegreen
+			cpp -> cpp: result = success
+			cpp -> cpp: waitFor = Nothing
+			cpp -> cpp: working = false
+			cpp -[#red]> web: возврат
+		deactivate cpp
+	deactivate web
+	cpp -[#red]> vms: result.toBool()
+deactivate cpp
+
+!include uml_style.iuml
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+
+title WebEngine.onLoadStatusChanged()
+
+start
+
+if (loadStatus != LoadStartedStatus)
+	:success = loadStatus == LoadSuccessfulStatus;
+	:server.finishLoad(success)|
+endif
+
+stop
+
+!include uml_style.iuml
+
+@enduml

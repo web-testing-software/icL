@@ -9,29 +9,47 @@ participant Interpreter as inter
 participant Context as con
 participant LogicBlock as logic
 
-vms -> vm : step()
-vm -> inter : parseNext()
-inter -> con : new Context()
-con -> inter : возврат Context*
-inter -> vm : возврат Context*
-vm -> vm: contextList.push()
-vm -> vms : возврат
-vms -> vm : step()
-vm -> con : execute()
-con -> logic : step()
-logic -> con : сигнал
-con -> inter : повтор сигнала
-inter -> vm: повтор сигнала
-vm -> vms : повтор сигнала
-vms -> vms : обработка сигнала
-logic -> con : возврат
-con -> vm : возврат
-vm -> vms : возврат
-vms -> vms: создание новой ВМ
-vms -> vms: випольнения кода
-vms -> logic :  вызов анонимной функций
-logic -> vms : возврат
-vms -> vms: продолжения работы
+' unclosed statement
+activate vms
 
+vms -[#blue]> vm : step()
+activate vm
+	vm -[#blue]> inter : parseNext()
+	activate inter
+		inter -[#blue]> con : new Context()
+		activate con
+			con -[#red]> inter : возврат Context*
+		deactivate con
+		inter -[#red]> vm : возврат Context*
+	deactivate inter
+	vm -> vm: contextList.push()
+	vm -[#red]> vms : возврат
+deactivate vm
+vms -[#blue]> vm : step()
+activate vm
+	vm -[#blue]> con : execute()
+	activate con
+		con -[#blue]> logic : step()
+		activate logic
+			logic -[#green]-> con : сигнал
+			con -[#green]-> inter : повтор сигнала
+			inter -[#green]-> vm: повтор сигнала
+			vm -[#green]-> vms : повтор сигнала
+			activate vms
+				vms -> vms : обработка сигнала
+				vms -> vms: создание новой ВМ
+				vms -> vms: випольнения кода
+				vms -[#blue]> logic :  вызов анонимной функций
+				activate logic
+					logic -[#red]> vms : возврат
+				deactivate logic
+			deactivate vms
+			logic -[#red]> con : возврат
+		deactivate logic
+		con -[#red]> vm : возврат
+	deactivate con
+	vm -[#red]> vms : возврат
+deactivate vm
+vms -[#red]> vms: продолжения работы
 
 @enduml

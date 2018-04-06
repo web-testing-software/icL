@@ -1,0 +1,15 @@
+@startuml
+
+title Server.finishJS()
+
+start
+
+if (webEngine.loadStatus != LoadStartedStatus) then (Да)
+	:server.finishLoad(true)|
+endif
+
+stop
+
+!include uml_style.iuml
+
+@enduml

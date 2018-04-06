@@ -1,0 +1,17 @@
+@startuml
+
+title Server.waitForLoading()
+
+start
+
+:webEngine.runJavaScript(code, lambda)|
+note right
+	При завершений будет
+	выпольнена функция
+	lambda
+end note
+
+!include uml_style.iuml
+stop
+
+@enduml

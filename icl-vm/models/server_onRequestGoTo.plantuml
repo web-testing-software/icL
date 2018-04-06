@@ -1,0 +1,13 @@
+@startuml
+
+title Server.onRequestGoTo()
+
+start
+
+:webEngine.url = url;
+
+stop
+
+!include uml_style.iuml
+
+@enduml

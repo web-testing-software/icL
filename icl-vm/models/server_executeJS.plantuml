@@ -1,0 +1,21 @@
+@startuml
+
+!include uml_style.iuml
+title Server.executeJS()
+
+start
+
+if (waitFor != Nothing) then (Да)
+	:waitFor = ExecuteJS;
+	:working = true;
+	:emit requestExecuteJS(code)>
+	while (working == true?)
+	endwhile
+	:return result;
+else
+	:return QVariant();
+endif
+
+stop
+
+@enduml

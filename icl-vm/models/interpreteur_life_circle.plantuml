@@ -1,0 +1,16 @@
+@startuml
+
+!include uml_style.iuml
+title Обший жизненый цыкл интерпретатора
+
+start
+
+while (current_VM != nullptr)
+:currentVM.step()|
+endwhile
+
+:onStop()|
+
+stop
+
+@enduml

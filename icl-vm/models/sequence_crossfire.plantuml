@@ -1,0 +1,58 @@
+@startuml
+
+title Механизм работы технологий crossfire.js
+
+participant script as js
+participant "crossfire.js" as cf
+participant WebEngine as web
+participant "VirtualMachineStack (QML)" as qvms
+participant "VirtualMachineStack (C++)" as cvms
+
+' unclosed statements
+activate cvms #lightgrey
+activate qvms #lightgrey
+activate web
+
+activate js 
+	js -[#blue]> cf: icL.crossfire(...)
+	activate cf
+		cf -> cf: получения \nиндентификатора
+		cf -> cf: регистрация \nфункций\nобратной связи
+		cf -[#green]-> web: console.log(...)
+		cf -[#red]> js: возврат
+	deactivate cf
+deactivate js	
+web -> web: запуск\nобработчика\nсигнала
+activate web #springgreen
+	web -[#blue]> cvms: runFunction(...)
+	activate cvms #springgreen
+		cvms -> cvms: создание\nпрерываний icL
+		cvms -[#red]> web: возврат
+	deactivate cvms
+deactivate web
+
+cvms -> cvms: выпольнения кода
+cvms -> cvms: выпольнения\nфункций onStop
+activate cvms #lightgrey
+	cvms -[#green]-> qvms: requestJsCodeExecution
+	activate qvms #limegreen
+		qvms -[#blue]> web: runJavaScript
+		activate web #limegreen
+			web -[#green]-> cf: запрос на\nвыпольнение\nфункций\nобратной\nсвязи
+			web -[#red]> qvms: возврат
+		deactivate web
+	deactivate qvms
+deactivate cvms
+
+cf -> cf: обработка запроса
+activate cf
+	cf -[#blue]> js: вызов\nфункций\nобратной\nсвязи
+	activate js
+		js -> js: выпольнение
+		js -[#red]> cf: возврат
+	deactivate js
+deactivate cf
+
+!include uml_style.iuml
+
+@enduml
