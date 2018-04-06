@@ -116,95 +116,18 @@ DISTFILES += \
     models/uml_style.iuml \
     models/context_order_table.odt \
     models/Alternative_checkPrev.plantuml \
-    models/alternative_execute.plantuml \
-    models/alternative_isRightToLeft.plantuml \
     models/argument_checkPrev.plantuml \
     models/assign_checkPrev.plantuml \
-    models/assign_execute.plantuml \
-    models/assign_isExecutable.plantuml \
     models/call_checkPrev.plantuml \
-    models/catchContext_execute.plantuml \
-    models/catchContext_isExecutable.plantuml \
-    models/catchFunction_isExecutable.plantuml \
-    models/class_diagram.plantuml \
     models/code_checkPrev.plantuml \
-    models/codeBlock_execute.plantuml \
-    models/codeBlock_isExecutable.plantuml \
     models/context_checkPrev.plantuml \
-    models/context_containsData.plantuml \
-    models/context_endContext.plantuml \
-    models/context_execute.plantuml \
-    models/context_isExecutable.plantuml \
     models/context_isResultative.plantuml \
-    models/context_isRightToLeft.plantuml \
-    models/context_newContext.plantuml \
-    models/context_startContext.plantuml \
-    models/controlBlock_isExecutable.plantuml \
-    models/controlBlock_isRightToLeft.plantuml \
-    models/dataContext_isExecutable.plantuml \
     models/else_checkPrev.plantuml \
-    models/else_isExecutable.plantuml \
-    models/function_isExecutable.plantuml \
-    models/functionCall_execute.plantuml \
     models/handler_checkPrev.plantuml \
     models/if_checkPrev.plantuml \
-    models/if_execute.plantuml \
-    models/if_isEcecutable.plantuml \
     models/isolated_checkPrev.plantuml \
     models/method_checkprev.plantuml \
-    models/method_execute.plantuml \
     models/new_checkPrev.plantuml \
-    models/newFunction_execute.plantuml \
     models/object_checkPrev.plantuml \
-    models/object_containsData.plantuml \
     models/property_checkPrev.plantuml \
-    models/property_execute.plantuml \
-    models/try_checkPrev.plantuml \
-    models/uml_style.iuml \
-    models/context_order_table.odt \
-    models/Alternative_checkPrev.plantuml \
-    models/alternative_execute.plantuml \
-    models/alternative_isRightToLeft.plantuml \
-    models/argument_checkPrev.plantuml \
-    models/assign_checkPrev.plantuml \
-    models/assign_execute.plantuml \
-    models/assign_isExecutable.plantuml \
-    models/call_checkPrev.plantuml \
-    models/catchContext_execute.plantuml \
-    models/catchContext_isExecutable.plantuml \
-    models/catchFunction_isExecutable.plantuml \
-    models/class_diagram.plantuml \
-    models/code_checkPrev.plantuml \
-    models/codeBlock_execute.plantuml \
-    models/codeBlock_isExecutable.plantuml \
-    models/context_checkPrev.plantuml \
-    models/context_containsData.plantuml \
-    models/context_endContext.plantuml \
-    models/context_execute.plantuml \
-    models/context_isExecutable.plantuml \
-    models/context_isResultative.plantuml \
-    models/context_isRightToLeft.plantuml \
-    models/context_newContext.plantuml \
-    models/context_startContext.plantuml \
-    models/controlBlock_isExecutable.plantuml \
-    models/controlBlock_isRightToLeft.plantuml \
-    models/dataContext_isExecutable.plantuml \
-    models/else_checkPrev.plantuml \
-    models/else_isExecutable.plantuml \
-    models/function_isExecutable.plantuml \
-    models/functionCall_execute.plantuml \
-    models/handler_checkPrev.plantuml \
-    models/if_checkPrev.plantuml \
-    models/if_execute.plantuml \
-    models/if_isEcecutable.plantuml \
-    models/isolated_checkPrev.plantuml \
-    models/method_checkprev.plantuml \
-    models/method_execute.plantuml \
-    models/new_checkPrev.plantuml \
-    models/newFunction_execute.plantuml \
-    models/object_checkPrev.plantuml \
-    models/object_containsData.plantuml \
-    models/property_checkPrev.plantuml \
-    models/property_execute.plantuml \
-    models/try_checkPrev.plantuml \
-    models/uml_style.iuml
+    models/try_checkPrev.plantuml

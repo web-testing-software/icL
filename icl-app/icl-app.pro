@@ -56,12 +56,6 @@ CONFIG += c++1z
 QMAKE_CXXFLAGS += -std=c++1z
 
 DISTFILES += \
-    models/uml_style.iuml \
-    models/use_case.plantuml \
-    models/uml_style.iuml \
-    models/use_case.plantuml \
-    models/uml_style.iuml \
-    models/use_case.plantuml \
     uml2png.sh \
     uml2svg.sh \
     models/uml_style.iuml \
