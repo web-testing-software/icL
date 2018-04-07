@@ -31,7 +31,7 @@ activate cpp
 				cpp -> cpp: working = false
 				cpp -[#red]> qml: возврат
 			deactivate cpp
-			qml -[#red]> web: возврат
+			qml -[#red]> web: | возврат
 		deactivate qml
 	deactivate qml
 	cpp -[#red]> vms: возврат

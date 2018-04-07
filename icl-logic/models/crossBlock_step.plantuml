@@ -9,13 +9,15 @@ if (!value1setted) then (Да)
 	-[#blue]->
 	if(first.step()) then (Да)
 		-[#blue]->
-		:value1 =\nfirst.calcResult()|
+		:value1 =
+		first.calcResult()|
 		:value1setted = true;
 	else (Нет)
 		-[#red]->
 		if (first.needCast()?) then (Да)
 			-[#blue]->
-			:newBlock =\nfirst.castNow()|
+			:newBlock =
+			first.castNow()|
 			:delete first;
 			:first = newBlock;
 		else (Нет)

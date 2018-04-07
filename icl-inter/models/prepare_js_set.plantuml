@@ -7,8 +7,12 @@ title Подготовка для $set и $''
 start
 
 :code = код javascript;
-:replace(code, "#{(\w+)}", [](QString &name, QString&){\n\treturn vm.globalValue(name).toString();\n})|
-:replace(code, "@{(\w*)}", [](QString &name, QString&){\n\treturn vm.localValue(name).toString();\n})|
+:replace(code, "#{(\w+)}", [](QString &name, QString&){
+	return vm.globalValue(name).toString()
+})|
+:replace(code, "@{(\w*)}", [](QString &name, QString&){
+	return vm.localValue(name).toString()
+})|
 
 stop
 @enduml

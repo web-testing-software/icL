@@ -42,9 +42,9 @@ activate vm
 					web -[#red]> server: возврат
 				deactivate web
 				server -> server: ожидание
-				web -[#blue]> server: вызов \nанонимной \nфункций
+				web -[#blue]> server: вызов\n анонимной\n функций
 				activate server #lightgrey
-					server -> server: выход из \nрежима ожидания
+					server -> server: выход из\n режима ожидания
 					server -[#red]> web: возврат
 				deactivate server
 				server -[#red]> vms: возврат

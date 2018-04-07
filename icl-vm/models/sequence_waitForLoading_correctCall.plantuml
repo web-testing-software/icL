@@ -20,7 +20,7 @@ activate cpp
 	
 	web -[#green]> web: loadStatusChanged()
 	activate web #limegreen
-		web -> web: success =\nloadStatus ==\nLoadSuccessfulStatus
+		web -> web: success =\n loadStatus ==\n LoadSuccessfulStatus
 		web -[#blue]> cpp: finishLoad
 		activate cpp #limegreen
 			cpp -> cpp: result = success

@@ -25,7 +25,7 @@ activate cpp
 	web -> web: загрузка страницы
 	web -[#green]-> web: loadStatusChanged
 	activate web #limegreen
-		web -> web: success = \nloadState == \nLoadSuccessfulState
+		web -> web: success =\n loadState ==\n LoadSuccessfulState
 		web -[#blue]> cpp: finishLoad(success)
 		activate cpp #limegreen
 			cpp -> cpp: result = success

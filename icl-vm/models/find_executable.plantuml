@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title VirtualMachine.step()
+title VirtualMachine.findExecutable()
 
 start
 

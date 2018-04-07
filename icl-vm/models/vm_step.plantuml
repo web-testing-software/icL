@@ -30,7 +30,7 @@ else (Нет)
 					:newc = context.newContext();
 					:begin = context.begincntext();
 					:end = context.endContext();
-					:удаление контекстов\nот begin до end;
+					:удаление контекстов\n от begin до end;
 					if (newc != nullptr) then (Да)
 						:добавления контекста в конце;
 					endif

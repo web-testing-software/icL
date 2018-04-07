@@ -1,6 +1,6 @@
 @startuml
 
-title Server.finishJS()
+title Server.onRequestWaitForLoading()
 
 start
 

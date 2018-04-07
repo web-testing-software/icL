@@ -1,12 +1,13 @@
 @startuml
 
 !include uml_style.iuml
-title Haldler.isExecutable()
+title Handler.isExecutable()
 start
 :поиск контекста CatchContext;
 if (контекст найден?) then (Да)
 	-[#blue]->
-	:return CatchFunction.errorCode == 0 или\nCatchFunction.errorCode == CatchContext.errorCode?;
+	:return CatchFunction.errorCode == 0 или
+	CatchFunction.errorCode == CatchContext.errorCode?;
 else (Нет)
 	-[#red]->
 	:ошибка семантики>

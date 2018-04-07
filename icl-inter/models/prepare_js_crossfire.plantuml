@@ -7,8 +7,12 @@ title Подготовка для crossfire.js
 start
 
 :code = код javascript;
-:replace(code, "([#@]){(\w*)}", [](QString &type, QString& name){\n\treturn "icL.crossget(\\""" " + type + name + "\\", \\""" " + icLpassword + "\\"")"\n})|
-:replace(code, "\*{(\w+)}\(([^\)]*)\)", [](QString &name, QString &args){\n\treturn "icL.crossfire(\""" " + name + "\",\""" " + icLpassword + "\",[" + args + "])";\n})|
+:replace(code, "([#@]){(\w*)}", [](QString &type, QString& name){
+	return "icL.crossget(\\""" " + type + name + "\\", \\""" " + icLpassword + "\\"")"
+})|
+:replace(code, "\*{(\w+)}\(([^\)]*)\)", [](QString &name, QString &args){
+	return "icL.crossfire(\""" " + name + "\",\""" " + icLpassword + "\",[" + args + "])"
+})|
 
 stop
 @enduml
