@@ -16,12 +16,12 @@ activate cpp
 	cpp -> cpp: working = true
 	cpp -[#green]-> qml: requestExecuteJS(code)
 	activate qml #springgreen
-		cpp -> cpp: перехов в режим ожидания
+		cpp -> cpp: переход в режим ожидания
 		qml -[#blue]> web: executeJavaScript(code, lambda)
 		activate web #springgreen
 			web -[#red]> qml: возврат
 		deactivate web
-		web -> web: выпольнения кода
+		web -> web: выполнения кода
 		web -[#blue]> qml: lambda(variant)
 		activate qml  #lightgrey
 			qml -[#blue]> cpp: finishJS(variant)
