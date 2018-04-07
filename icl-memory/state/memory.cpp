@@ -6,11 +6,11 @@ Memory::Memory () {
 
 }
 
-MemoryStateIterator Memory::stateIt () const {
+MemoryStateIt Memory::stateIt () const {
 	return m_stateIt;
 }
 
-StackStateIterator Memory::stackIt () const {
+StackStateIt Memory::stackIt () const {
 	return m_stackIt;
 }
 

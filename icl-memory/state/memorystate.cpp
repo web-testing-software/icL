@@ -10,40 +10,40 @@ MemoryState::~MemoryState () {
 
 }
 
-bool MemoryState::hasPrev () const {
-	return prev_ms != nullptr;
-}
+//bool MemoryState::hasPrev () const {
+//	return prev_ms != nullptr;
+//}
 
-bool MemoryState::hasNext () const {
-	return next_ms != nullptr;
-}
+//bool MemoryState::hasNext () const {
+//	return next_ms != nullptr;
+//}
 
-MemoryState * MemoryState::getPrev () const {
-	return prev_ms;
-}
+//MemoryState * MemoryState::getPrev () const {
+//	return prev_ms;
+//}
 
-MemoryState * MemoryState::getNext () const {
-	return next_ms;
-}
+//MemoryState * MemoryState::getNext () const {
+//	return next_ms;
+//}
 
-void MemoryState::setPrev (MemoryState *state) {
-	prev_ms = state;
-}
+//void MemoryState::setPrev (MemoryState *state) {
+//	prev_ms = state;
+//}
 
-void MemoryState::setNext (MemoryState *state) {
-	next_ms = state;
-}
+//void MemoryState::setNext (MemoryState *state) {
+//	next_ms = state;
+//}
 
-MemoryStateIterator::MemoryStateIterator () {
+MemoryStateIt::MemoryStateIt () {
 	m_state = new MemoryState();
 }
 
-MemoryStateIterator::~MemoryStateIterator () {
+MemoryStateIt::~MemoryStateIt () {
 	delete m_state;
 //	clear ();
 }
 
-MemoryState * MemoryStateIterator::state () const {
+MemoryState * MemoryStateIt::state () const {
 	return m_state;
 }
 

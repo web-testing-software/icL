@@ -13,13 +13,13 @@ class Memory
 public:
 	Memory();
 
-	MemoryStateIterator stateIt() const;
-	StackStateIterator stackIt() const;
+	MemoryStateIt stateIt() const;
+	StackStateIt stackIt() const;
 	FunctionContainer functions() const;
 
 private:
-	MemoryStateIterator m_stateIt;
-	StackStateIterator m_stackIt;
+	MemoryStateIt m_stateIt;
+	StackStateIt m_stackIt;
 	FunctionContainer m_functions;
 };
 

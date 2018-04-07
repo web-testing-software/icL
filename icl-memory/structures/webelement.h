@@ -9,8 +9,7 @@
 //#include <QApplication>
 #include <QVariant>
 
-namespace vm {
-namespace structures {
+namespace vm::memory {
 
 /**
  * @brief The WebElement class - DOM Manipulation class
@@ -203,8 +202,7 @@ struct WebElement {
 //WebElement queryAll (const QString &selector, const QString &name = "", bool se = true);
 
 }
-}
 
-Q_DECLARE_METATYPE(vm::structures::WebElement);
+Q_DECLARE_METATYPE(vm::memory::WebElement);
 
 #endif // WEBELEMENT_H

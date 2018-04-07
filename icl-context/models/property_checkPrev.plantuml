@@ -1,5 +1,5 @@
 !include uml_style.iuml
-title Property.checkPrev
+title Property.checkPrev(prev)
 skinparam defaultTextAlignment left
 
 start

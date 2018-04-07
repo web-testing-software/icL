@@ -3,20 +3,20 @@
 
 namespace vm::memory {
 
-StackState::StackState (StackState *prev, int stackLevel) {
+StackState::StackState (StackState *prev/*, int stackLevel*/) {
 	prev_ss				= prev;
-	this->stackLevel	= stackLevel;
+//	this->stackLevel	= stackLevel;
 
-	if (stackLevel > maxStackLevel) {
-		maxStackLevel = stackLevel;
-	}
+//	if (stackLevel > maxStackLevel) {
+//		maxStackLevel = stackLevel;
+//	}
 }
 
 StackState::~StackState () {
 
 }
 
-void StackState::setWebElement (const QString &name, structures::WebElement &webElement) {
+void StackState::setWebElement (const QString &name, WebElement &webElement) {
 	QVariant tmp = QVariant::fromValue (webElement);
 
 	setValue (name, tmp);
@@ -34,43 +34,43 @@ QVariant StackState::getStackValue () {
 	return getValue ("stack");
 }
 
-int StackState::getStackLevel () {
-	return stackLevel;
+//int StackState::getStackLevel () {
+//	return stackLevel;
+//}
+
+//int StackState::getMaxStackLevel () {
+//	return maxStackLevel;
+//}
+
+//int StackState::maxStackLevel = 0;
+
+StackStateIt::StackStateIt () {
+
 }
 
-int StackState::getMaxStackLevel () {
-	return maxStackLevel;
-}
-
-int StackState::maxStackLevel = 0;
-
-StackStateIterator::StackStateIterator () {
-
-}
-
-StackStateIterator::~StackStateIterator () {
+StackStateIt::~StackStateIt () {
 	clear ();
 }
 
-StackState * StackStateIterator::stack () {
+StackState * StackStateIt::stack () {
 	return m_stack;
 }
 
-void StackStateIterator::openNewStack () {
+void StackStateIt::openNewStack () {
 
-	int new_stack_level = m_stack->getStackLevel () + 1;
+//	int new_stack_level = m_stack->getStackLevel () + 1;
 
-	m_stack = new StackState (m_stack, new_stack_level);
+	m_stack = new StackState (m_stack);
 }
 
-void StackStateIterator::closeStack () {
+void StackStateIt::closeStack () {
 	StackState *prev = m_stack->getPrev ();
 
 	delete m_stack;
 	m_stack = prev;
 }
 
-StackState * StackStateIterator::getContainer (const QString &name) {
+StackState * StackStateIt::getContainer (const QString &name) {
 	StackState	*ret	= nullptr;
 	StackState	*it		= m_stack;
 
@@ -83,7 +83,7 @@ StackState * StackStateIterator::getContainer (const QString &name) {
 		}
 	}
 
-	return ret;
+	return ret == nullptr ? m_stack : ret;
 }
 
 // bool StackStateIterator::contains (const QString &name) {
@@ -124,7 +124,7 @@ StackState * StackStateIterator::getContainer (const QString &name) {
 //	return ret;
 // }
 
-void StackStateIterator::clear () {
+void StackStateIt::clear () {
 	StackState *tmp;
 
 	while (m_stack != nullptr) {

@@ -1,5 +1,5 @@
 
-QT = core
+QT = core quick
 CONFIG -= app_bundle
 
 TARGET = icl-vm
@@ -30,8 +30,6 @@ DISTFILES += \
     models/uml_style.iuml \
     models/class_diagram.plantuml \
     models/find_executable.plantuml \
-    models/interrupt.plantuml \
-    models/js_code_run.plantuml \
     models/vm_step.plantuml \
     models/vms_interrupt.plantuml \
     models/interpreteur_life_circle.plantuml \
@@ -50,3 +48,5 @@ DISTFILES += \
     models/server_onRequestWaitForLoad.plantuml \
     models/server_waitForLoading.plantuml \
     models/webEngine_onLoadStatusChanged.plantuml \
+    models/sequence_js_code_run.plantuml \
+    models/sequence_interrupt.plantuml

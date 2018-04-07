@@ -1,0 +1,55 @@
+@startuml
+
+!include uml_style.iuml
+title принцып работы прерываний
+
+participant VMStack as vms
+participant VM as vm
+participant Interpreter as inter
+participant Context as con
+participant LogicBlock as logic
+
+' unclosed statement
+activate vms
+
+vms -[#blue]> vm : step()
+activate vm
+	vm -[#blue]> inter : parseNext()
+	activate inter
+		inter -[#blue]> con : new Context()
+		activate con
+			con -[#red]> inter : возврат Context*
+		deactivate con
+		inter -[#red]> vm : возврат Context*
+	deactivate inter
+	vm -> vm: contextList.push()
+	vm -[#red]> vms : возврат
+deactivate vm
+vms -[#blue]> vm : step()
+activate vm
+	vm -[#blue]> con : execute()
+	activate con
+		con -[#blue]> logic : step()
+		activate logic
+			logic -[#green]-> con : сигнал
+			con -[#green]-> inter : повтор сигнала
+			inter -[#green]-> vm: повтор сигнала
+			vm -[#green]-> vms : повтор сигнала
+			activate vms
+				vms -> vms : обработка сигнала
+				vms -> vms: создание новой ВМ
+				vms -> vms: випольнения кода
+				vms -[#blue]> logic :  вызов анонимной функций
+				activate logic
+					logic -[#red]> vms : возврат
+				deactivate logic
+			deactivate vms
+			logic -[#red]> con : возврат
+		deactivate logic
+		con -[#red]> vm : возврат
+	deactivate con
+	vm -[#red]> vms : возврат
+deactivate vm
+vms -[#red]> vms: продолжения работы
+
+@enduml

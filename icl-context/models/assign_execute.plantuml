@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title If.execute()
+title Assign.execute()
 start
 if (prev.Role == Object и prev.readOnly == false?) then (Да)
 	-[#blue]->

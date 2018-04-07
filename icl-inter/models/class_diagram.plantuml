@@ -12,14 +12,6 @@ class Flayer {
 	Context* parseEverything()
 }
 
-class Source {
-	QString *source;
-	int beginPos;
-	int endPos;
-}
-
 Interpreteur *-- Flayer
-Interpreteur *-- Source
-Source -o Flayer
 
 @enduml

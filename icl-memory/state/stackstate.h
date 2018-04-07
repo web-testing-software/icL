@@ -12,7 +12,7 @@ namespace vm::memory {
 class StackState : public DataState
 {
 public:
-	StackState (StackState *prev, int stackLevel);
+	StackState (StackState *prev);
 	virtual ~StackState ();
 
 	void setWebElement (const QString &name, structures::WebElement &webElement);
@@ -21,23 +21,23 @@ public:
 	StackState* getPrev ();
 	bool isLast ();
 	QVariant getStackValue ();
-	int getStackLevel ();
+//	int getStackLevel ();
 
 	// This function was designed for stats
-	static int getMaxStackLevel ();
+//	static int getMaxStackLevel ();
 
 private:
 	StackState *prev_ss = nullptr;
-	int stackLevel;
+//	int stackLevel;
 
-	static int maxStackLevel;
+//	static int maxStackLevel;
 };
 
-class StackStateIterator
+class StackStateIt
 {
 public:
-	StackStateIterator ();
-	~StackStateIterator ();
+	StackStateIt ();
+	~StackStateIt ();
 
 	StackState* stack ();
 

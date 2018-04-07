@@ -47,7 +47,7 @@ bool DataState::contains (const QString &name) {
  * @param name - the name of variable
  * @return the type of variable (js types need aditional checking)
  */
-DataState::Type DataState::getType (const QString &name) {
+Type DataState::getType (const QString &name) {
 	Type ret = Type::NODATA;
 
 	switch (dataMap[name].type ()) {
@@ -88,7 +88,7 @@ DataState::Type DataState::getType (const QString &name) {
  * @param type - the type
  * @return the variable type check the type
  */
-bool DataState::checkType (const QString &name, DataState::Type &type) {
+bool DataState::checkType (const QString &name, Type &type) {
 	bool ret;
 
 	switch (type) {
@@ -113,7 +113,7 @@ bool DataState::checkType (const QString &name, DataState::Type &type) {
 		break;
 
 	case Type::ELEMENT :
-		ret = dataMap [name].canConvert <structures::WebElement> ();
+		ret = dataMap [name].canConvert <WebElement> ();
 		break;
 
 	default :

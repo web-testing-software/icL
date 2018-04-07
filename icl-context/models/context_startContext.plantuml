@@ -1,5 +1,5 @@
 !include uml_style.iuml
-title Context.startContext
+title Context.startContext()
 start
 :return this;
 stop

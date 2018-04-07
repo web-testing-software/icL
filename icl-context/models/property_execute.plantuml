@@ -3,7 +3,7 @@
 !include uml_style.iuml
 title Property.execute()
 start
-:prev.getValue(имя свойства)|
+:prev.getValue(имя свойствы)|
 :создать контекст;
 :return true;
 stop

@@ -9,7 +9,6 @@ start
 :code = код javascript;
 :replace(code, "#{(\w+)}", [](QString &name, QString&){\n\treturn vm.globalValue(name).toString();\n})|
 :replace(code, "@{(\w*)}", [](QString &name, QString&){\n\treturn vm.localValue(name).toString();\n})|
-:replace(code, "\*{(\w+)}\(([^\)]*)\)", [](QString &name, QString &args){\n\treturn "icL.crossfire(\" " + name + "\",\"" + icLpassword + "\",[" + args + "])";\n})|
 
 stop
 @enduml

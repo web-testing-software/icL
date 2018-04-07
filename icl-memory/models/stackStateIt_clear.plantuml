@@ -1,0 +1,22 @@
+@startuml
+
+title StackStateIt.clear()
+
+start
+
+:tmp = nullptr;
+while (m_sack != nullptr?)
+	-[#blue]-> Да;
+	:tmp = m_stack.getPrev();
+	:delete m_stack;
+	:m_stack = tmp;
+	-[#orange]->
+endwhile (Нет)
+
+:return;
+
+stop
+
+
+!include uml_style.iuml
+@enduml

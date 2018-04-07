@@ -34,5 +34,11 @@ SOURCES += \
     state/memory.cpp
 
 DISTFILES += \
-    models/engine.plantuml \
     models/uml_style.iuml \
+    models/dataState_checkType.plantuml \
+    models/dataState_getType.plantuml \
+    models/stackStateIt_clear.plantuml \
+    models/stackStateIt_closeStack.plantuml \
+    models/stackStateIt_getContainer.plantuml \
+    models/stackStateIt_openNewStack.plantuml \
+    models/class_diagram.plantuml

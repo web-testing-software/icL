@@ -6,21 +6,38 @@ title CrossBlock.step()
 start
 
 if (!value1setted) then (Да)
+	-[#blue]->
 	if(first.step()) then (Да)
-		:value1 = first.calcResult();
+		-[#blue]->
+		:value1 =\nfirst.calcResult()|
 		:value1setted = true;
+	else (Нет)
+		-[#red]->
+		if (first.needCast()?) then (Да)
+			-[#blue]->
+			:newBlock =\nfirst.castNow()|
+			:delete first;
+			:first = newBlock;
+		else (Нет)
+			-[#red]->
+		endif
 	endif
 	:return false;
 	end
 else if (!value2setted && !canResultPreliminary()) then (Да)
-		if (second.step()) then (Да)
-			:value2 = second.calcResult();
-			:value2setted = true;
-		endif
-		:return false;
-		end
-else
-	:result = calcResult();
+	-[#blue]->
+	if (second.step()) then (Да)
+		-[#blue]->
+		:value2 = second.calcResult()|
+		:value2setted = true;
+	else (Нет)
+		-[#red]->
+	endif
+	:return false;
+	end
+else (Нет)
+	-[#red]->
+	:result = calcResult()|
 	:resultCalculed = true;
 	:return true;
 stop

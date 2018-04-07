@@ -1,0 +1,21 @@
+@startuml
+
+!include uml_style.iuml
+
+title New.execute()
+start
+:проверка роли следующик блоков;
+note right
+  все кроме последней - ""Argument""
+  последний - ""CodeBlock""
+end note
+if (всё сходиться?) then (Да)
+	-[#blue]->
+	:Зарегистрировать функцию;
+else (Нет)
+	-[#red]->
+	:ошибка сематики>
+endif
+	:return true;
+stop
+@enduml

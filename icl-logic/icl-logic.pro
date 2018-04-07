@@ -48,10 +48,14 @@ SOURCES += \
     cross/eqblock.cpp
 
 DISTFILES += \
-    models/logic.plantuml \
     models/uml_style.iuml \
     models/crossBlock_step.plantuml \
     models/first_anonim_function.plantuml \
     models/richBlock_step.plantuml \
     models/socond_anonim_function.plantuml \
-    models/uml_style.iuml
+    models/uml_style.iuml \
+    models/logicBlock_castNow.plantuml \
+    models/logicBlock_needCast.plantuml \
+    models/richBlack_castNow.plantuml \
+    models/richBlock_needCast.plantuml \
+    models/class_diagram.plantuml

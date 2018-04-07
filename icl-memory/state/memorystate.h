@@ -15,28 +15,28 @@ public:
 	MemoryState ();
 	virtual ~MemoryState ();
 
-	bool hasPrev () const;
-	bool hasNext () const;
+//	bool hasPrev () const;
+//	bool hasNext () const;
 
-	MemoryState* getPrev () const;
-	MemoryState* getNext () const;
+//	MemoryState* getPrev () const;
+//	MemoryState* getNext () const;
 
-	void setPrev (MemoryState *state);
-	void setNext (MemoryState *state);
+//	void setPrev (MemoryState *state);
+//	void setNext (MemoryState *state);
 
 private:
-	MemoryState *prev_ms	= nullptr;
-	MemoryState *next_ms	= nullptr;
+//	MemoryState *prev_ms	= nullptr;
+//	MemoryState *next_ms	= nullptr;
 };
 
 /**
  * @brief The MemoryStateIterator class - iterator releasing the data structore
  */
-class MemoryStateIterator
+class MemoryStateIt
 {
 public:
-	MemoryStateIterator ();
-	~MemoryStateIterator ();
+	MemoryStateIt ();
+	~MemoryStateIt ();
 
 	MemoryState* state () const;
 

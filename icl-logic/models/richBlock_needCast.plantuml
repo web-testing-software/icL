@@ -1,0 +1,11 @@
+@startuml
+
+!include uml_style.iuml
+title RichBlock.needCast()
+
+start
+:return !casted;
+stop
+
+
+@enduml

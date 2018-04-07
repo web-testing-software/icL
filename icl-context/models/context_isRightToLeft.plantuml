@@ -1,5 +1,5 @@
 !include uml_style.iuml
-title Context.isRightToLeft
+title Context.isRightToLeft()
 start
 :return true;
 stop

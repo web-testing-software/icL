@@ -1,5 +1,5 @@
 !include uml_style.iuml
-title Else.checkPrev
+title Else.checkPrev(prev)
 skinparam defaultTextAlignment left
 
 start
@@ -8,10 +8,15 @@ start
 :context = prev;
 
 while (context != nullptr) 
-	if (context.role == If)
+	-[#blue]->
+	if (context.role == If?) then (Да)
+		-[#blue]->
 		:found = true;
 		:break;
+	else (Нет)
+		-[#red]->
 	endif
+	-[#orange]->
 endwhile
 
 :return found;

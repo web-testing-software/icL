@@ -4,6 +4,8 @@
 // #include "../../main/virtualmachine.h"
 #include "logicblock.h"
 
+#include "icl-memory/structures/functioncontainer.h"
+
 #include <QRegExp>
 #include <QString>
 #include <QVariant>
@@ -31,7 +33,7 @@ public:
 	virtual ~RichBlock () override;
 
 	bool canAcceptCode ();
-	void giveCode (QString *code, int begin, int end);
+	void giveCode (memory::CodeFragment frag);
 
 	// LogicBlock interface
 	bool isCross () override;
@@ -39,14 +41,10 @@ public:
 
 protected:
 	QVariant value1, value2;
-	QString *code1	= nullptr,
-			*code2	= nullptr;
-	int code1begin	= 0,
-		code2begin	= 0;
-	int code1end	= -1,
-		code2end	= -1;
+	memory::CodeFragment frag1, frag2;
 
 	OperationType operationType;
+	bool casted = false;
 };
 
 }

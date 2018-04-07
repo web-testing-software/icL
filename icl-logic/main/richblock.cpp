@@ -16,23 +16,19 @@ RichBlock::~RichBlock () {
  * @return bool
  */
 bool RichBlock::canAcceptCode () {
-	return code2 == nullptr;
+	return frag2.source == nullptr;
 }
 
 /**
  * @brief RichBlock::giveVar - set up next var/const
  * @param varname - var/const
  */
-void RichBlock::giveCode (QString *code, int begin, int end) {
-	if (code1 == nullptr ) {
-		code1 = code;
-		code1begin = begin;
-		code1end = end;
+void RichBlock::giveCode (memory::CodeFragment frag) {
+	if (frag1.source == nullptr ) {
+		frag1 = frag;
 	}
-	else if (code2 == nullptr) {
-		code1 = code;
-		code1begin = begin;
-		code1end = end;
+	else if (frag2.source == nullptr) {
+		frag2 = frag;
 	}
 }
 
@@ -49,7 +45,7 @@ bool RichBlock::isCross () {
  * @return bool
  */
 bool RichBlock::checkIntegrity () {
-	if (code1 == nullptr || code2 == nullptr ) {
+	if (frag1.source == nullptr || frag2.source == nullptr ) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
 	}

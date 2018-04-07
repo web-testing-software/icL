@@ -3,7 +3,7 @@
 !include uml_style.iuml
 skinparam defaultTextAlignment left
 
-title Подготовка для crossfire
+title Подготовка для crossfire.js
 start
 
 :code = код javascript;

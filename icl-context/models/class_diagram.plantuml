@@ -17,7 +17,7 @@ class Object {
 	+ string name
 	+ var value
 }
-class CodeBlock {
+class Code {
 	+ long begin
 	+ long end
 }
@@ -35,7 +35,7 @@ class If {
 	+ long cbegin;
 	+ long cend;
 }
-class CatchBlock {
+class Catch {
 	+ int errorCode;
 }
 
@@ -47,26 +47,28 @@ Object <|-- Double
 Object <|-- String
 Object <|-- List
 
-DataContext --|> Context
+Data --|> Context
 Function --|> Context
-FunctionCall --|> Function
-NewFunction --|> Function
+Call --|> Function
+New --|> Function
 
 Complex -|> Context
 Browser --|> Complex
-Context <|- CodeBlock
-IsolatedContext -up-|> CodeBlock
-CodeBlock <|- ControlBlock
-If --|> ControlBlock
-Else --|> ControlBlock
-ControlBlock <|-- CatchBlock
-CatchBlock <|-- CatchContext
-CatchBlock <|-- CatchFunction
+Context <|- Code
+IsolatedContext -up-|> Code
+Code <|- Control
+If --|> Control
+Else --|> Control
+Control <|-- Catch
+Catch <|-- Try
+Catch <|-- Handler
 
-Method --|> DataContext
-Property --|> DataContext
-Alternative --|> DataContext
-Assign --|> DataContext
-Argument -left-|> DataContext
+Method --|> Data
+Property --|> Data
+Alternative --|> Data
+Assign -|> Data
+Argument -left-|> Data
+
+Function -[hidden]> Assign
 
 @enduml

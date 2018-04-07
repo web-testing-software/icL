@@ -1,0 +1,74 @@
+@startuml
+
+!include uml_style.iuml
+title Диаграмма классов
+
+DataState <|-left- StackState
+DataState <|-right- MemoryState
+DataState *-down- WebElement
+StackStateIt *-- StackState
+MemoryStateIt *-- MemoryState
+Memory *-- StackStateIt
+Memory *-- FunctionContainer
+Memory *-- MemoryStateIt
+
+StackStateIt -right[hidden]- FunctionContainer
+
+class Memory {
+	- MemoryStateIt m_stateIt
+	- StackStateIt m_stackIt
+	- FunctionContainer m_functions
+	+ MemoryStateIt* stateIt()
+	+ StackStateIt* stackIt()
+	+ FunctionContainer* functions()
+}
+
+class StackStateIt {
+	+ StackState* stack()
+	+ openNewStack()
+	+ closeStack()
+	+ StackState* getContainer()
+	+ clear()
+	- StackState* m_stack
+}
+
+class FunctionContainer {
+	+ Functions& getFunction()
+	+ bool contains()
+	+ void registerFunction()
+	- FunctionMap fmap
+}
+
+class MemoryStateIt {
+	+ MemoryState* state()
+	- MemoryState* m_state
+}
+
+class StackState {
+	+ setWebElement()
+	+ StackState* getPrev()
+	+ bool isLast()
+	+ QVariant getValue()
+	+ isFinal()
+	- bool m_final
+}
+
+class WebElement {
+	+ bool valid;
+	+ bool single;
+	+ bool varName;
+	+ bool selector;
+	- static generateId()
+}
+
+class DataState {
+	+ setValue()
+	+ addToStringList()
+	+ bool contains()
+	+ Type getType()
+	+ bool checkType()
+	+ QVariant getValue()
+	- QVariantMap dataMap
+}
+
+@enduml

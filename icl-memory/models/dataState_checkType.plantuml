@@ -1,0 +1,47 @@
+@startuml
+
+title DataState.checkType(type)
+
+start
+
+:ret = false;
+:vtype = dataMap[name].type()|
+
+if (type = BOOL?) then (Да)
+	-[#blue]->
+	:ret =
+	vtype ==
+	Bool;
+else if (type = INT?) then (Да)
+	-[#blue]->
+	:ret =
+	vtype == Int;
+else if (type = DOUBLE?) then (Да)
+	-[#blue]->
+	:ret =
+	vtype ==
+	Double;
+else if (type = STRING?) then (Да)
+	-[#blue]->
+	:ret =
+	vtype ==
+	String;
+else if (type = LIST?) then (Да)
+	-[#blue]->
+	:ret =
+	vtype ==
+	StringList;
+else if (type = ELEMENT?) then (Да)
+	-[#blue]->
+	:ret =\ndataMap [name]\n.canConvert\n<WebElement> ()|
+else (Нет)
+	-[#red]->
+endif
+
+:return ret;
+
+stop
+
+
+!include uml_style.iuml
+@enduml
