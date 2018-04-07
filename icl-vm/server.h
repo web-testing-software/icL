@@ -2,6 +2,7 @@
 #define SERVER_H
 
 #include <QObject>
+#include <QQuickItem>
 #include <QString>
 #include <QVariant>
 
@@ -13,6 +14,8 @@ namespace vm::main {
 class Server : public QObject
 {
 	Q_OBJECT
+
+	Q_PROPERTY(QQuickItem* webEngine READ webEngine WRITE setWebEngine NOTIFY webEngineChanged)
 
 	enum class WaitFor {
 		GoTo,
@@ -94,6 +97,32 @@ public:
 	 */
 	Q_INVOKABLE void finish_showErrorDialog (bool skip);
 
+	/**
+	 * @brief webEngine - QML use only
+	 * @return WebEngineView*
+	 */
+	QQuickItem* webEngine() const;
+
+public slots:
+	/**
+	 * @brief setWebEngine - QML use only
+	 * @param WebEngineView*
+	 */
+	void setWebEngine(QQuickItem* webEngine);
+
+	/**
+	 * @brief simulateClick - simulate a mouse click on WebView
+	 * @param x - coordinate of x axes
+	 * @param y - coordinate of y axes
+	 */
+	void simulateClick(int x, int y);
+
+	/**
+	 * @brief simulateKeyPress - simulate of pressing and release of a key
+	 * @param ch - event.text in js
+	 */
+	void simulateKey(QChar &ch);
+
 signals:
 	void ready ();
 
@@ -103,6 +132,8 @@ signals:
 	void invoke_executeJS ();
 	void invoke_showErrorDialog ();
 
+	void webEngineChanged(QQuickItem* webEngine);
+
 private slots:
 	// Functions, which will be executed on main thread
 	void release_goTo ();
@@ -111,20 +142,21 @@ private slots:
 	void release_showErrorDialog ();
 
 private:
-	// This sync variable which is used on serveral threads
-	volatile bool working	= false;
-	WaitFor waitFor			= WaitFor::Nothing;
-
-	// Configure if need to stop executing on error
-	bool stop_on_error = true;
-
 	// The stack of errors
 	QStringList errors_stack;
 
 	// These varibles are used to transfer data between threads
 	QString url, code;
 	QVariant variant;
-	bool boolean;
+	QQuickItem* m_webEngine;
+
+	WaitFor waitFor			= WaitFor::Nothing;
+
+	// Configure if need to stop executing on error
+	bool stop_on_error = true;
+
+	// This sync variable which is used on serveral threads
+	volatile bool working	= false;
 };
 
 }

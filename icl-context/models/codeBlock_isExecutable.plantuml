@@ -1,8 +1,0 @@
-@startuml
-
-!include uml_style.iuml
-title CodeBlock.isExecutable()
-start
-:return prev != nullptr && prev.containsData();
-stop
-@enduml

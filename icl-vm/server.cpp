@@ -1,4 +1,5 @@
 #include <QStringList>
+#include <QThread>
 
 #include "server.h"
 
@@ -7,10 +8,10 @@ namespace vm::main {
 
 Server::Server (QObject *parent) : QObject (parent) {
 
-	connect (this, &Server::invoke_executeJS,			this, &Server::release_executeJS);
-	connect (this, &Server::invoke_goTo,				this, &Server::release_goTo);
-	connect (this, &Server::invoke_waitForPageLoading,	this, &Server::release_waitForPageLoading);
-	connect (this, &Server::invoke_showErrorDialog,		this, &Server::release_showErrorDialog);
+	connect (this, &Server::invoke_executeJS,           this, &Server::release_executeJS);
+	connect (this, &Server::invoke_goTo,                this, &Server::release_goTo);
+	connect (this, &Server::invoke_waitForPageLoading,  this, &Server::release_waitForPageLoading);
+	connect (this, &Server::invoke_showErrorDialog,     this, &Server::release_showErrorDialog);
 }
 
 bool Server::goTo (const QString &url) {
@@ -120,18 +121,73 @@ void Server::finish_executeJS (QVariant variant) {
 
 void Server::finish_showErrorDialog (bool skip) {
 	if (waitFor == WaitFor::ErrorDialog) {
-		boolean = skip;
 		waitFor = WaitFor::Nothing;
 		working = false;
 	}
 }
 
+QQuickItem * Server::webEngine () const {
+	return m_webEngine;
+}
+
+void Server::setWebEngine (QQuickItem *webEngine) {
+	if (m_webEngine == webEngine) {
+		return;
+	}
+
+	m_webEngine = webEngine;
+	emit webEngineChanged (m_webEngine);
+}
+
+void Server::simulateClick (int x, int y) {
+	// TODO: Add a coods check later
+//	if (x < m_webEngineX ||
+//			y < m_webEngineY ||
+//			x >= m_webEngineX + m_webEngineWidth ||
+//			y >= m_webEngineY + m_webEngineHeight) {
+//			return false;
+//		}
+
+	QPoint point (x, y);
+
+	//	The click event is a series of press and release of left mouse button
+
+	QMouseEvent *press = new QMouseEvent (QEvent::MouseButtonPress,
+										  point,
+										  Qt::LeftButton,
+										  Qt::MouseButton::NoButton,
+										  Qt::NoModifier);
+	QMouseEvent *release = new QMouseEvent (QEvent::MouseButtonRelease,
+											point,
+											Qt::LeftButton,
+											Qt::MouseButton::NoButton,
+											Qt::NoModifier);
+
+	QCoreApplication::postEvent (m_webEngine, press);
+	// TODO: Make the delay configurable
+	QThread::msleep (300);
+	QCoreApplication::postEvent (m_webEngine, release);
+
+}
+
+void Server::simulateKey (QChar &ch) {
+	QKeyEvent	*press		= new QKeyEvent (QEvent::KeyPress, Qt::Key_A, Qt::NoModifier, QString (ch) );
+	QKeyEvent	*release	= new QKeyEvent (QEvent::KeyRelease, Qt::Key_A, Qt::NoModifier, QString (ch) );
+
+
+	QCoreApplication::postEvent (m_webEngine, press);
+	// TODO: Make the delay configurable
+	QThread::msleep (60);
+	QCoreApplication::postEvent (m_webEngine, release);
+
+}
+
 void Server::release_goTo () {
-//	webBrowser->get (url);
+	//	webBrowser->get (url);
 }
 
 void Server::release_waitForPageLoading () {
-//	webBrowser->waitForPageLoading ();
+	//	webBrowser->waitForPageLoading ();
 }
 
 void Server::release_executeJS () {

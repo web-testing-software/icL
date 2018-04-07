@@ -1,8 +1,0 @@
-@startuml
-
-!include uml_style.iuml
-title ControlBlock.isExecutable()
-start
-:return prev != nullptr;
-stop
-@enduml

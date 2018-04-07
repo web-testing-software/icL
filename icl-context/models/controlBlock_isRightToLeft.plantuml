@@ -1,6 +1,0 @@
-!include uml_style.iuml
-title ControlBlock.isRightToLeft
-start
-:return false;
-stop
-@enduml
