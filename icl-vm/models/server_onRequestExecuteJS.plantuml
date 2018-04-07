@@ -6,8 +6,8 @@ start
 
 :webEngine.runJavaScript(code, lambda)|
 note right
-	При завершений будет
-	выпольнена функция
+	При завершениях будет
+	выполнена функция
 	lambda
 end note
 

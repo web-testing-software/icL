@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title Обший жизненый цыкл интерпретатора
+title Общий жизненный цикл интерпретатора
 
 start
 

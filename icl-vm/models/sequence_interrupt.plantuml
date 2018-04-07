@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title принцып работы прерываний
+title принцип работы прерываний
 
 participant VMStack as vms
 participant VM as vm
@@ -38,8 +38,8 @@ activate vm
 			activate vms
 				vms -> vms : обработка сигнала
 				vms -> vms: создание новой ВМ
-				vms -> vms: випольнения кода
-				vms -[#blue]> logic :  вызов анонимной функций
+				vms -> vms: выполнения кода
+				vms -[#blue]> logic :  вызов анонимной функции
 				activate logic
 					logic -[#red]> vms : возврат
 				deactivate logic

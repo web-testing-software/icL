@@ -7,7 +7,7 @@ start
 if (codeExecuted == true) then (Да)
 	:return true;
 else (Нет)
-	:вызов прерывания для выпольнения кода>
+	:вызов прерывания для выполнения кода>
 	:codeExecuted = true;
 	:return false;
 endif

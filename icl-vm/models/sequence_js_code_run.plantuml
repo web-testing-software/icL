@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title Принцып выпольнения кода javascript: общее предстовление
+title Принцип выполнения кода javascript: общее представление
 
 participant WebEngine as web
 participant Server as server
@@ -49,7 +49,7 @@ activate vm
 				deactivate server
 				server -[#red]> vms: возврат
 			deactivate server
-			vms -[#blue]> con: вызов анонимной функций
+			vms -[#blue]> con: вызов анонимной функции
 			activate con #springgreen
 				con -[#red]> vms: возврат
 			deactivate con
@@ -58,7 +58,7 @@ activate vm
 	deactivate con
 	vm -[#red]> vms: возврат
 deactivate vm
-vms -> vms: продолжение \nвыпольнений \nкода
+vms -> vms: продолжение\n выполнений\n кода
 
 
 @enduml

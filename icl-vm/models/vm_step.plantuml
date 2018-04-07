@@ -23,7 +23,7 @@ else (Нет)
 		if (commandParsing?) then (Да)
 			:parseNext|
 		else (Нет)
-			:поиск испольняемого контекста|
+			:поиск исполняемого контекста|
 			if (Есть такой?) then (Да)
 				:context.execute();
 				if (Успешно?) then (Да)

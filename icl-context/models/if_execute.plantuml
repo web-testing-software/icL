@@ -10,13 +10,13 @@ if (expressionExecuted == true?) then (Да)
 		:return true;
 	else (Нет)
 		-[#red]->
-		:создание прерыванию для выпольнения кода;
+		:создание прерыванию для выполнения кода;
 		:codeExecuted = true;
 		:return false;
 	endif
 else (Нет)
 	-[#red]->
-	:создание прерыванию для выпольнения кода;
+	:создание прерыванию для выполнения кода;
 	:expressionExecuted = true;
 	:return false;
 endif

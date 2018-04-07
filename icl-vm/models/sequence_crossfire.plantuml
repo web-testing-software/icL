@@ -16,7 +16,7 @@ activate web
 activate js 
 	js -[#blue]> cf: icL.crossfire(...)
 	activate cf
-		cf -> cf: получения\n индентификатора
+		cf -> cf: получения\n идентификатора
 		cf -> cf: регистрация\n функций\n обратной связи
 		cf -[#green]-> web: console.log(...)
 		cf -[#red]> js: возврат
@@ -31,14 +31,14 @@ activate web #springgreen
 	deactivate cvms
 deactivate web
 
-cvms -> cvms: выпольнения кода
-cvms -> cvms: выпольнения\n функций onStop
+cvms -> cvms: выполнения кода
+cvms -> cvms: выполнения\n функций onStop
 activate cvms #lightgrey
 	cvms -[#green]-> qvms: requestJsCodeExecution
 	activate qvms #limegreen
 		qvms -[#blue]> web: runJavaScript
 		activate web #limegreen
-			web -[#green]-> cf: запрос на\n выпольнение\n функций\n обратной\n связи
+			web -[#green]-> cf: запрос на\n выполнение\n функций\n обратной\n связи
 			web -[#red]> qvms: возврат
 		deactivate web
 	deactivate qvms
@@ -48,7 +48,7 @@ cf -> cf: обработка запроса
 activate cf
 	cf -[#blue]> js: вызов\n функций\n обратной\n связи
 	activate js
-		js -> js: выпольнение
+		js -> js: выполнение
 		js -[#red]> cf: возврат
 	deactivate js
 deactivate cf
