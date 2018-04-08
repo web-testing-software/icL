@@ -10,7 +10,7 @@ IntBlock::IntBlock (OperationType otype) :
 /**
  * @brief IntBlock::exp - a regular expression which describe a int value
  */
-//QRegExp IntBlock::exp = QRegExp ("-?\\d+");
+// QRegExp IntBlock::exp = QRegExp ("-?\\d+");
 
 /**
  * @brief IntBlock::check - check if is a valid <int> value
@@ -27,24 +27,30 @@ bool IntBlock::check (const QString &value) {
  */
 bool IntBlock::calcResult () {
 	bool	result	= false;
-	int		var1	= value1.toInt();
-	int		var2	= value2.toInt();
+	int		var1	= value1.toInt ();
 
-	switch (operationType) {
-	case OperationType::EQUAL :
-		result = ( var1 == var2 );
-		break;
+	if (value2.type () == QVariant::Int) {
+		int var2 = value2.toInt ();
 
-	case OperationType::NOT_EQUAL :
-		result = ( var1 != var2 );
-		break;
+		switch (operationType) {
+		case OperationType::EQUAL :
+			result = ( var1 == var2 );
+			break;
 
-	default :
-		resultValue = ResultValue::FAILED_CALCULATE;
+		case OperationType::NOT_EQUAL :
+			result = ( var1 != var2 );
+			break;
+
+		default :
+			resultValue = ResultValue::FAILED_CALCULATE;
 //		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 //								  QObject::tr ("Wrong operator for operands int:%1 and int:%2.")
 //								  .arg (var1name)
 //								  .arg (var2name));
+		}
+	}
+	else {
+		//
 	}
 
 	return result;
@@ -55,7 +61,7 @@ bool IntBlock::calcResult () {
  * @param varname - name of variable or const value
  * @return the parsed value
  */
-//int IntBlock::varNameToInt (const QString &varname) {
+// int IntBlock::varNameToInt (const QString &varname) {
 //	memory::DataState::Type type	= memory::DataState::Type::INT;
 //	int				ret		= 0; // = 0 -> exclude compiler warning
 
@@ -73,6 +79,6 @@ bool IntBlock::calcResult () {
 //	}
 
 //	return ret;
-//}
+// }
 
 }

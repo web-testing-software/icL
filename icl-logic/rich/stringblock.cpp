@@ -10,16 +10,16 @@ StringBlock::StringBlock (OperationType otype) :
 /**
  * @brief StringBlock::exp - a reg exp which describe a <string> const
  */
-//QRegExp StringBlock::exp = QRegExp ("\".*[^\\\\]\"");
+// QRegExp StringBlock::exp = QRegExp ("\".*[^\\\\]\"");
 
 /**
  * @brief StringBlock::check - check if is a valid string const
  * @param value - the value to check
  * @return valid - true, invalid - false
  */
-//bool StringBlock::check (const QString &value) {
+// bool StringBlock::check (const QString &value) {
 //	return exp.exactMatch (value);
-//}
+// }
 
 /**
  * @brief StringBlock::calcResult - compare values
@@ -27,24 +27,30 @@ StringBlock::StringBlock (OperationType otype) :
  */
 bool StringBlock::calcResult () {
 	bool	result	= false;
-	QString var1	= value1.toString();
-	QString var2	= value2.toString();
+	QString var1	= value1.toString ();
 
-	switch (operationType) {
-	case OperationType::EQUAL :
-		result = ( var1 == var2 );
-		break;
+	if (value2.type () == QVariant::String) {
+		QString var2 = value2.toString ();
 
-	case OperationType::NOT_EQUAL :
-		result = ( var1 != var2 );
-		break;
+		switch (operationType) {
+		case OperationType::EQUAL :
+			result = ( var1 == var2 );
+			break;
 
-	default :
-		resultValue = ResultValue::FAILED_CALCULATE;
+		case OperationType::NOT_EQUAL :
+			result = ( var1 != var2 );
+			break;
+
+		default :
+			resultValue = ResultValue::FAILED_CALCULATE;
 //		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 //								  QObject::tr ("Wrong operator for operands string:%1 and string:%2.")
 //								  .arg (var1name)
 //								  .arg (var2name));
+		}
+	}
+	else {
+		//
 	}
 
 	return result;
@@ -55,7 +61,7 @@ bool StringBlock::calcResult () {
  * @param varname - name of variable or string const
  * @return the parsed value or "" on fail
  */
-//QString StringBlock::varNameToString (const QString &varname) {
+// QString StringBlock::varNameToString (const QString &varname) {
 //	memory::DataState::Type type = memory::DataState::Type::STRING;
 //	QString			ret;
 
@@ -73,6 +79,6 @@ bool StringBlock::calcResult () {
 //	}
 
 //	return ret;
-//}
+// }
 
 }

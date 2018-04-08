@@ -15,7 +15,7 @@ class BooleanBlock : public RichBlock
 public:
 	BooleanBlock (OperationType otype);
 
-	static bool check (const QString &value);
+//	static bool check (const QString &value);
 
 	// LogicBlock interface
 	bool calcResult () override;

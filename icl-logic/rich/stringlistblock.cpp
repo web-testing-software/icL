@@ -14,20 +14,20 @@ ListBlock::ListBlock (OperationType otype)
 /**
  * @brief StringListBlock::exp - a reg exp which describe the string list syntax
  */
-//QRegExp				StringListBlock::exp	= QRegExp ("\\[(\\s*\".*[^\\\\]\"(\\s*,\\s*\".*[^\\\\]\")*)?\\s*\\]");
+// QRegExp				StringListBlock::exp	= QRegExp ("\\[(\\s*\".*[^\\\\]\"(\\s*,\\s*\".*[^\\\\]\")*)?\\s*\\]");
 /**
  * @brief StringListBlock::strExp - s reg exp which describe a string in string list syntax
  */
-//QRegularExpression	StringListBlock::strExp = QRegularExpression ("\".*[^\\\\]\"");
+// QRegularExpression	StringListBlock::strExp = QRegularExpression ("\".*[^\\\\]\"");
 
 /**
  * @brief StringListBlock::check - if the string is a <string>list const
  * @param value - value to check
  * @return valid - true, invalid - false
  */
-//bool StringListBlock::check (const QString &value) {
+// bool StringListBlock::check (const QString &value) {
 //	return exp.exactMatch (value);
-//}
+// }
 
 /**
  * @brief StringListBlock::calcResult - compare values
@@ -35,11 +35,11 @@ ListBlock::ListBlock (OperationType otype)
  */
 bool ListBlock::calcResult () {
 	bool		result	= false;
-	QStringList var1	= value1.toStringList();
+	QStringList var1	= value1.toStringList ();
 
 
-	if (value2.type() == QVariant::StringList) {
-		QStringList var2	= value2.toStringList();
+	if (value2.type () == QVariant::StringList) {
+		QStringList var2 = value2.toStringList ();
 
 		switch (operationType) {
 		case OperationType::EQUAL :
@@ -58,8 +58,8 @@ bool ListBlock::calcResult () {
 //								 .arg (var2name));
 		}
 	}
-	else {
-		QString		var2	= value2.toString();
+	else if (value2.type () == QVariant::String) {
+		QString var2 = value2.toString ();
 
 		switch (operationType) {
 		case OperationType::CONTAINS :
@@ -78,6 +78,9 @@ bool ListBlock::calcResult () {
 //								  .arg (var2name));
 		}
 	}
+	else {
+		//
+	}
 
 
 
@@ -89,7 +92,7 @@ bool ListBlock::calcResult () {
  * @param varname - the value to convert
  * @return the parsed value
  */
-//QStringList StringListBlock::varNameToStringList (const QString &varname) {
+// QStringList StringListBlock::varNameToStringList (const QString &varname) {
 //	memory::DataState::Type type = memory::DataState::Type::STRING_LIST;
 //	QStringList				ret;
 
@@ -114,7 +117,7 @@ bool ListBlock::calcResult () {
 //	}
 
 //	return ret;
-//}
+// }
 
 /**
  * @brief StringListBlock::operatorEqual - test if both lists contains some items
@@ -125,13 +128,13 @@ bool ListBlock::calcResult () {
 bool ListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
 
 	for (const QString &str : list1) {
-		if (!list2.contains (str)) {
+		if (!list2.contains (str) ) {
 			return false;
 		}
 	}
 
 	for (const QString &str : list2) {
-		if (!list1.contains (str)) {
+		if (!list1.contains (str) ) {
 			return false;
 		}
 	}

@@ -12,9 +12,9 @@ BooleanBlock::BooleanBlock (OperationType otype) :
  * @param value - value to check
  * @return valid - true, invalid - false
  */
-bool BooleanBlock::check (const QString &value) {
-	return value == "true" || value == "false";
-}
+//bool BooleanBlock::check (const QString &value) {
+//	return value == "true" || value == "false";
+//}
 
 /**
  * @brief BooleanBlock::calcResult - compare values
@@ -22,24 +22,30 @@ bool BooleanBlock::check (const QString &value) {
  */
 bool BooleanBlock::calcResult () {
 	bool	result	= false;
-	bool	var1	= value1.toBool();
-	bool	var2	= value2.toBool();
+	bool	var1	= value1.toBool ();
 
-	switch (operationType) {
-	case OperationType::EQUAL :
-		result = ( var1 == var2 );
-		break;
+	if (value2.type () == QVariant::Bool) {
+		bool var2 = value2.toBool ();
 
-	case OperationType::NOT_EQUAL :
-		result = ( var1 != var2 );
-		break;
+		switch (operationType) {
+		case OperationType::EQUAL :
+			result = ( var1 == var2 );
+			break;
 
-	default :
-		resultValue = ResultValue::FAILED_CALCULATE;
+		case OperationType::NOT_EQUAL :
+			result = ( var1 != var2 );
+			break;
+
+		default :
+			resultValue = ResultValue::FAILED_CALCULATE;
 //		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
 //								  QObject::tr ("Wrong operator for operands boolean:%1 and boolean:%2.")
 //								  .arg (var1name)
 //								  .arg (var2name));
+		}
+	}
+	else {
+		//+
 	}
 
 	return result;
@@ -50,7 +56,7 @@ bool BooleanBlock::calcResult () {
  * @param varname - name of variable or const value
  * @return the parsed value
  */
-//bool BooleanBlock::varNameToBoolean (const QString &varname) {
+// bool BooleanBlock::varNameToBoolean (const QString &varname) {
 //	memory::DataState::Type type	= memory::DataState::Type::BOOLEAN;
 //	bool			ret		= false; // = false -> exclude compiler warning
 
@@ -71,6 +77,6 @@ bool BooleanBlock::calcResult () {
 //	}
 
 //	return ret;
-//}
+// }
 
 }
