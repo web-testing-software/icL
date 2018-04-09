@@ -1,6 +1,9 @@
 #ifndef HANDLER_H
 #define HANDLER_H
 
+#include "catch.h"
+
+
 
 namespace vm::context::code::control::catch0 {
 

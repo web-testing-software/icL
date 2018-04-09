@@ -1,6 +1,9 @@
 #ifndef ASSIGN_H
 #define ASSIGN_H
 
+#include "data.h"
+
+
 
 namespace vm::context::data {
 

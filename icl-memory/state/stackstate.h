@@ -15,7 +15,7 @@ public:
 	StackState (StackState *prev);
 	virtual ~StackState ();
 
-	void setWebElement (const QString &name, structures::WebElement &webElement);
+	void setWebElement (const QString &name, WebElement &webElement);
 
 	// Stack functions
 	StackState* getPrev ();

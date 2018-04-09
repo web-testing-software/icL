@@ -27,7 +27,7 @@ bool Server::goTo (const QString &url) {
 	while (working) {
 		;
 	}
-	return boolean;
+	return variant.toBool();
 }
 
 bool Server::waitForPageLoading () {
@@ -42,7 +42,7 @@ bool Server::waitForPageLoading () {
 	while (working) {
 		;
 	}
-	return boolean;
+	return variant.toBool();
 }
 
 QVariant Server::executeJS (const QString &code) {
@@ -73,7 +73,7 @@ bool Server::showErrorDialog () {
 	while (working) {
 		;
 	}
-	return boolean;
+	return variant.toBool();
 }
 
 void Server::addToErrorsStack (const QString &error) {
@@ -105,7 +105,7 @@ void Server::check_success (bool success, const QString &func) {
 
 void Server::finish_PageLoading (bool success) {
 	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
-		boolean = success;
+		variant = success;
 		waitFor = WaitFor::Nothing;
 		working = false;
 	}

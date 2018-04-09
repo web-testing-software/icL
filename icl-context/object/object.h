@@ -1,6 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <context.h>
+
+
 
 namespace vm::context::object {
 

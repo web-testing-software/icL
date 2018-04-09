@@ -1,10 +1,13 @@
 #ifndef ARGUMENT_H
 #define ARGUMENT_H
 
+#include "data.h"
+
+
 
 namespace vm::context::data {
 
-class Argument
+class Argument : public Data
 {
 public:
 	Argument ();

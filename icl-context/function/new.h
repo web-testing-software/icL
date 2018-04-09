@@ -1,6 +1,9 @@
 #ifndef NEW_H
 #define NEW_H
 
+#include "function.h"
+
+
 
 namespace vm::context::function {
 

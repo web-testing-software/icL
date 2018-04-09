@@ -1,10 +1,13 @@
 #ifndef TRY_H
 #define TRY_H
 
+#include "catch.h"
+
+
 
 namespace vm::context::code::control::catch0 {
 
-class Try
+class Try : public Catch
 {
 public:
 	Try ();

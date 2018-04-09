@@ -27,7 +27,7 @@ protected:
 
 private:
 	static bool operatorEqual (const QStringList &list1, const QStringList &list2);
-	static bool containsFragment (const QStringList &strList, const QString &str)
+	static bool containsFragment (const QStringList &strList, const QString &str);
 
 //	static QRegExp exp;
 //	static QRegularExpression strExp;

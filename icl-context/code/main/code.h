@@ -1,6 +1,9 @@
 #ifndef CODE_H
 #define CODE_H
 
+#include <context.h>
+
+
 
 namespace vm::context::code {
 

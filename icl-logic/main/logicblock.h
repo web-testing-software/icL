@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "icl-memory/state/datacontainer.h"
+#include "icl-memory/state/memory.h"
 
 
 namespace vm::logic {
@@ -45,7 +45,7 @@ signals:
 protected:
 	virtual bool calcResult () = 0;
 
-	vm::memory::DataContainer *dataContainer;
+	vm::memory::Memory *m_memory;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 	bool ready1 = false, ready2 = false;
 	bool resultCalculed = false, result = false;

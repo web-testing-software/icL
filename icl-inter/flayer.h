@@ -8,7 +8,7 @@ namespace vm::inter {
 /**
  * @brief The Flayer class - flayer is a flying cursor.
  */
-class Flayer
+class Flayer : public QObject
 {
 	Q_OBJECT
 

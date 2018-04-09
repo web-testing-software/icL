@@ -12,7 +12,7 @@ SingleBlock::SingleBlock (OperationType otype)
  * @return the first varname is setted
  */
 bool SingleBlock::checkIntegrity () {
-	if (code1 == nullptr) {
+	if (frag1.source == nullptr) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
 	}

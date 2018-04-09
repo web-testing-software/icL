@@ -17,9 +17,9 @@ IntBlock::IntBlock (OperationType otype) :
  * @param value - value to check
  * @return valid - true, invalid - false
  */
-bool IntBlock::check (const QString &value) {
-	return exp.exactMatch (value);
-}
+//bool IntBlock::check (const QString &value) {
+//	return exp.exactMatch (value);
+//}
 
 /**
  * @brief IntBlock::calcResult - compare values

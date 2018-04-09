@@ -1,6 +1,9 @@
 #ifndef VOID_H
 #define VOID_H
 
+#include "object.h"
+
+
 
 namespace vm::context::object {
 

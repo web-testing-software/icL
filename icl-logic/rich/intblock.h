@@ -15,7 +15,7 @@ class IntBlock : public RichBlock
 public:
 	IntBlock (OperationType otype);
 
-	static bool check (const QString &value);
+//	static bool check (const QString &value);
 
 	// LogicBlock interface
 	bool calcResult () override;

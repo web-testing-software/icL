@@ -17,9 +17,9 @@ DoubleBlock::DoubleBlock (OperationType otype) :
  * @param value - value to check
  * @return valid - true, invalid - false
  */
-bool DoubleBlock::check (const QString &value) {
-	return exp.exactMatch (value);
-}
+//bool DoubleBlock::check (const QString &value) {
+//	return exp.exactMatch (value);
+//}
 
 /**
  * @brief DoubleBlock::calcResult - compare values

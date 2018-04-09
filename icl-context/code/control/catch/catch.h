@@ -1,6 +1,8 @@
 #ifndef CATCH_H
 #define CATCH_H
 
+#include "../main/control.h"
+
 
 namespace vm::context::code::control::catch0 {
 

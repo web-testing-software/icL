@@ -1,6 +1,9 @@
 #ifndef ISOLATED_H
 #define ISOLATED_H
 
+#include "code.h"
+
+
 
 namespace vm::context::code {
 
