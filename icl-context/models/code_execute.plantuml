@@ -6,7 +6,7 @@ start
 if (codeExecuted == true?) then (Да)
 	-[#blue]->
 	:return true;
-	end
+	stop
 else ()
 	-[#red]->
 	:создание прерывании для выполнений кода;

@@ -57,10 +57,8 @@ else if (это false?) then (Да)
 	false;
 else (Нет)
 	-[#red]->
-	:создать
-	контекст
-	типа
-	string;
+	:семантическая
+	ошибка;
 endif
 
 stop

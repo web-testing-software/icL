@@ -14,7 +14,7 @@ if (value1.isNull()) then (Да)
 		анонимная функция
 	end note
 	:return false;
-	end
+	stop
 else
 
 endif
@@ -28,7 +28,7 @@ if (value2.isNull()) then (Да)
 		анонимная функция
 	end note
 	:return false;
-	end
+	stop
 endif
 
 :result = calcResult();

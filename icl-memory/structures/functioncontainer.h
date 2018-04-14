@@ -21,7 +21,7 @@ typedef QLinkedList <Argument> ArgList;
 
 struct CodeFragment {
 	int begin = 0, end = -1;
-	QString *source;
+	QString *source = nullptr;
 };
 
 struct Function {

@@ -34,7 +34,7 @@ ListBlock --|> RichBlock
 'RichBlock <|-up- StringListStringBlock
 RichBlock <|-- SingleBlock
 
-CrossBlock <|-- NotBlock
+CrossBlock <|-- EqBlock
 CrossBlock <|-up- AndBlock
 CrossBlock <|-up- OrBlock
 CrossBlock <|-- XOrBlock

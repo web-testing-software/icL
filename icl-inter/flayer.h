@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-namespace vm::inter {
+namespace vm::inter::_private {
 
 /**
  * @brief The Flayer class - flayer is a flying cursor.

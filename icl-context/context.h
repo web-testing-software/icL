@@ -13,7 +13,6 @@ public:
 	Context ();
 
 signals:
-	void interrupt (QString *, int, int, std::function <void ( Context * )> );
 	void interrupt (QString *, int, int, std::function <void ( QVariant& )> );
 
 public slots:

@@ -4,7 +4,7 @@
 #include "server.h"
 
 
-namespace vm::main {
+namespace vm {
 
 Server::Server (QObject *parent) : QObject (parent) {
 

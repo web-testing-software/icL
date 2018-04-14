@@ -1,6 +1,6 @@
 #include "flayer.h"
 
-namespace vm::inter {
+namespace vm::inter::_private {
 
 Flayer::Flayer () {
 

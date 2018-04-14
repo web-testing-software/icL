@@ -6,7 +6,7 @@
 #include <QString>
 #include <QVariant>
 
-namespace vm::main {
+namespace vm {
 
 /**
  * @brief The Server class - class to sync two treads

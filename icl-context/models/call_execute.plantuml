@@ -7,7 +7,7 @@ start
 if (functionExecuted == true?) then (Да)
 	-[#blue]->
 	:return true;
-	end
+	stop
 else (Нет)
 	-[#red]->
 	:Проверка аргументов по типу|

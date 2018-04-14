@@ -11,17 +11,18 @@ if (prev.Role == Object и prev.readOnly == false?) then (Да)
 			-[#blue]->
 			:присвоить значение;
 			:return true;
+			stop
 		else (Нет)
 			-[#red]->
-			:ошибка семантики>
+			:ошибка синтаксиса>
 		endif
 	else (Нет)
 		-[#red]->
-		:ошибка семантики>
+		:ошибка синтаксиса>
 	endif
 else (Нет)
 	-[#red]->
-	:ошибка семантики>
+	:ошибка синтаксиса>
 endif
 
 :return false;
