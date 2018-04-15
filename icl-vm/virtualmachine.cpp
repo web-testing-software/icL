@@ -3,9 +3,6 @@
 
 namespace vm {
 
-VirtualMachine::VirtualMachine()
-{
-
-}
+VirtualMachine::VirtualMachine() = default;
 
 }

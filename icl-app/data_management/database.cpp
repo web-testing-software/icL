@@ -50,7 +50,7 @@ QList <QObject *> DataBase::top9 () {
 		const int	count_index = 2;
 
 		while (q.next ()) {
-			DialDescription *dial_descript = new DialDescription ();
+			auto *dial_descript = new DialDescription ();
 
 			dial_descript->setCount (q.value (count_index).toInt ());
 			dial_descript->setUrl (q.value (url_index).toString ());
@@ -68,7 +68,7 @@ QList <QObject *> DataBase::top9 () {
  * @param url - the visited url
  * @param name - the page name
  */
-void DataBase::add_visit (QString url, QString name) {
+void DataBase::add_visit (const QString& url, const QString& name) {
 	QSqlQuery	q (db);
 	int			site_id;
 	QString		site_url;

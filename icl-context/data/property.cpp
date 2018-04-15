@@ -2,8 +2,6 @@
 
 namespace vm::context::data {
 
-Property::Property () {
-
-}
+Property::Property () = default;
 
 } // namespace

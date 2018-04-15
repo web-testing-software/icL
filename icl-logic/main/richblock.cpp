@@ -7,9 +7,7 @@ RichBlock::RichBlock (OperationType otype) {
 	operationType = otype;
 }
 
-RichBlock::~RichBlock () {
-
-}
+RichBlock::~RichBlock () = default;
 
 /**
  * @brief RichBlock::canAcceptVar - if the first or the second var/const are not setted

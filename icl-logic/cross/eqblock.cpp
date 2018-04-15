@@ -2,9 +2,7 @@
 
 namespace vm::logic::cross {
 
-EqBlock::EqBlock () {
-
-}
+EqBlock::EqBlock () = default;
 
 /**
  * @brief EqBlock::calcResult - append == operation to child blocks

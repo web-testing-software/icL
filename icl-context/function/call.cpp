@@ -2,8 +2,6 @@
 
 namespace vm::context::function {
 
-Call::Call () {
-
-}
+Call::Call () = default;
 
 } // namespace

@@ -17,7 +17,7 @@ class Flayer : public QObject
 
 public:
 	Flayer ();
-	virtual ~Flayer ();
+	 ~Flayer () override;
 
 	int begin() const;
 	int end() const;

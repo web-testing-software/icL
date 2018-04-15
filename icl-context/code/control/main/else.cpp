@@ -2,8 +2,6 @@
 
 namespace vm::context::code::control {
 
-Else::Else () {
-
-}
+Else::Else () = default;
 
 } // namespace

@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-Boolean::Boolean () {
-
-}
+Boolean::Boolean () = default;
 
 } // namespace

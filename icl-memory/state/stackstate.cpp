@@ -12,9 +12,7 @@ StackState::StackState (StackState *prev/*, int stackLevel*/) {
 //	}
 }
 
-StackState::~StackState () {
-
-}
+StackState::~StackState () = default;
 
 void StackState::setWebElement (const QString &name, WebElement &webElement) {
 	QVariant tmp = QVariant::fromValue (webElement);
@@ -44,9 +42,7 @@ QVariant StackState::getStackValue () {
 
 //int StackState::maxStackLevel = 0;
 
-StackStateIt::StackStateIt () {
-
-}
+StackStateIt::StackStateIt () = default;
 
 StackStateIt::~StackStateIt () {
 	clear ();

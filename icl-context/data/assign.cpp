@@ -2,8 +2,6 @@
 
 namespace vm::context::data {
 
-Assign::Assign () {
-
-}
+Assign::Assign () = default;
 
 } // namespace

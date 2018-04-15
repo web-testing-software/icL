@@ -2,9 +2,7 @@
 
 namespace vm::memory {
 
-FunctionContainer::FunctionContainer () {
-
-}
+FunctionContainer::FunctionContainer () = default;
 
 Function& FunctionContainer::getFunction (const QString &name) {
 	return fmap [name];

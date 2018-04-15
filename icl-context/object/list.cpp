@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-List::List () {
-
-}
+List::List () = default;
 
 } // namespace

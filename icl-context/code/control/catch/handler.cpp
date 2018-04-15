@@ -2,8 +2,6 @@
 
 namespace vm::context::code::control::catch0 {
 
-Handler::Handler () {
-
-}
+Handler::Handler () = default;
 
 } // namespace

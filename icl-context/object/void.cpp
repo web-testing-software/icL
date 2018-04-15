@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-Void::Void () {
-
-}
+Void::Void () = default;
 
 } // namespace

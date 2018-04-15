@@ -16,7 +16,7 @@ public:
 
 	Q_INVOKABLE QList<QObject*> top9 ();
 
-	void add_visit (QString url, QString name);
+	void add_visit (const QString& url, const QString& name);
 
 signals:
 
@@ -32,7 +32,7 @@ private:
 	QString sql;
 	bool invalid;
 
-	QRegExp site_exp = QRegExp("https?://((\\w+\\.)+\\w+)/?.*");
+	QRegExp site_exp = QRegExp(R"(https?://((\w+\.)+\w+)/?.*)");
 };
 
 #endif // DATABASE_H

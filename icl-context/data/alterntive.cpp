@@ -2,8 +2,6 @@
 
 namespace vm::context::data {
 
-Alterntive::Alterntive () {
-
-}
+Alterntive::Alterntive () = default;
 
 } // namespace

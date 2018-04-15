@@ -58,7 +58,7 @@ else if (это false?) then (Да)
 else (Нет)
 	-[#red]->
 	:семантическая
-	ошибка;
+	ошибка>
 endif
 
 stop

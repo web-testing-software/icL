@@ -1,5 +1,6 @@
 #include <QStringList>
 #include <QThread>
+#include <utility>
 
 #include "server.h"
 
@@ -113,13 +114,13 @@ void Server::finish_PageLoading (bool success) {
 
 void Server::finish_executeJS (QVariant variant) {
 	if (waitFor == WaitFor::ExecuteJS) {
-		this->variant	= variant;
+		this->variant	= std::move(variant);
 		this->waitFor	= WaitFor::Nothing;
 		this->working	= false;
 	}
 }
 
-void Server::finish_showErrorDialog (bool skip) {
+void Server::finish_showErrorDialog (bool) {
 	if (waitFor == WaitFor::ErrorDialog) {
 		waitFor = WaitFor::Nothing;
 		working = false;

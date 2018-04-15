@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-String::String () {
-
-}
+String::String () = default;
 
 }

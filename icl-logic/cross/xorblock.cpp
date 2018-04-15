@@ -2,9 +2,7 @@
 
 namespace vm::logic::cross {
 
-XOrBlock::XOrBlock () {
-
-}
+XOrBlock::XOrBlock () = default;
 
 /**
  * @brief XOrBlock::calcResult - append != operation to child blocks

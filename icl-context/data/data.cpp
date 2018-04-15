@@ -2,8 +2,6 @@
 
 namespace vm::context::data {
 
-Data::Data () {
-
-}
+Data::Data () = default;
 
 }

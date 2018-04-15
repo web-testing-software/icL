@@ -2,13 +2,9 @@
 
 namespace vm::logic {
 
-LogicBlock::LogicBlock () {
+LogicBlock::LogicBlock () = default;
 
-}
-
-LogicBlock::~LogicBlock () {
-
-}
+LogicBlock::~LogicBlock () = default;
 
 /**
  * @brief LogicBlock::getResult - calculate the result and save it to the resultValue
@@ -30,9 +26,8 @@ bool LogicBlock::getCachedResult()
 	if (resultCalculed) {
 		return result;
 	}
-	else {
-		return getResult();
-	}
+
+	return getResult();
 }
 
 /**

@@ -2,8 +2,6 @@
 
 namespace vm::context::code::control::catch0 {
 
-Try::Try () {
-
-}
+Try::Try () = default;
 
 } // namespace

@@ -2,9 +2,7 @@
 
 namespace vm::logic::cross {
 
-OrBlock::OrBlock () {
-
-}
+OrBlock::OrBlock () = default;
 
 /**
  * @brief OrBlock::calcResult - append || operation to child blocks

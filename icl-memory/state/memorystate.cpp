@@ -2,13 +2,9 @@
 
 namespace vm::memory {
 
-MemoryState::MemoryState () {
+MemoryState::MemoryState () = default;
 
-}
-
-MemoryState::~MemoryState () {
-
-}
+MemoryState::~MemoryState () = default;
 
 //bool MemoryState::hasPrev () const {
 //	return prev_ms != nullptr;

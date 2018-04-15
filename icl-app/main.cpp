@@ -24,5 +24,5 @@ int main (int argc, char *argv []) {
 	context->setContextProperty ("database", &database);
 
 	engine.load (QUrl("qrc:/driver.qml"));
-	return a.exec ();
+	return QGuiApplication::exec ();
 }

@@ -2,13 +2,9 @@
 
 namespace vm::inter::_private {
 
-Flayer::Flayer () {
+Flayer::Flayer () = default;
 
-}
-
-Flayer::~Flayer () {
-
-}
+Flayer::~Flayer () = default;
 
 int Flayer::begin () const {
 	return m_begin;

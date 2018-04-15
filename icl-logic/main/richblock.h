@@ -30,7 +30,7 @@ public:
 	};
 
 	RichBlock (OperationType otype);
-	virtual ~RichBlock () override;
+	 ~RichBlock () override;
 
 	bool canAcceptCode ();
 	void giveCode (memory::CodeFragment frag);

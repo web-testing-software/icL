@@ -2,9 +2,7 @@
 
 namespace vm::logic::cross {
 
-NotBlock::NotBlock () {
-
-}
+NotBlock::NotBlock () = default;
 
 /**
  * @brief NotBlock::calcResult - invert the result of the secound block

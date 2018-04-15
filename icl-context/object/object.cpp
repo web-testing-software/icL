@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-Object::Object () {
-
-}
+Object::Object () = default;
 
 } // namespace

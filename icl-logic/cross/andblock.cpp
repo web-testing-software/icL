@@ -2,9 +2,7 @@
 
 namespace vm::logic::cross {
 
-AndBlock::AndBlock () {
-
-}
+AndBlock::AndBlock () = default;
 
 /**
  * @brief AndBlock::calcResult - append operation && to child blocks

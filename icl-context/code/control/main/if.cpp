@@ -2,8 +2,6 @@
 
 namespace vm::context::code::control {
 
-If::If () {
-
-}
+If::If () = default;
 
 } // namespace

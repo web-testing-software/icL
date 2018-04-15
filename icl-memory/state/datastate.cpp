@@ -3,9 +3,7 @@
 
 namespace vm::memory {
 
-DataState::DataState () {
-
-}
+DataState::DataState () = default;
 
 
 /**

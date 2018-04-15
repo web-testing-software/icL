@@ -2,8 +2,6 @@
 
 namespace vm::context::code::control::catch0 {
 
-Catch::Catch () {
-
-}
+Catch::Catch () = default;
 
 } // namespace

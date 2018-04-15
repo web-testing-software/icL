@@ -2,8 +2,6 @@
 
 namespace vm::context::function {
 
-Function::Function () {
-
-}
+Function::Function () = default;
 
 } // namespace

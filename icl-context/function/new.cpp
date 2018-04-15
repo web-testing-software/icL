@@ -2,8 +2,6 @@
 
 namespace vm::context::function {
 
-New::New () {
-
-}
+New::New () = default;
 
 } // namespace

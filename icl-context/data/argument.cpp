@@ -2,8 +2,6 @@
 
 namespace vm::context::data {
 
-Argument::Argument () {
-
-}
+Argument::Argument () = default;
 
 } // namespace

@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-Int::Int () {
-
-}
+Int::Int () = default;
 
 } // namespace

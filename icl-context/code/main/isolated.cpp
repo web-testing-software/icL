@@ -2,8 +2,6 @@
 
 namespace vm::context::code {
 
-Isolated::Isolated () {
-
-}
+Isolated::Isolated () = default;
 
 } // namespace

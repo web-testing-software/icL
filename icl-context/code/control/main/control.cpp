@@ -2,8 +2,6 @@
 
 namespace vm::context::code::control {
 
-Control::Control () {
-
-}
+Control::Control () = default;
 
 } // namespace

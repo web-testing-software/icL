@@ -2,8 +2,6 @@
 
 namespace vm::context::code {
 
-Code::Code () {
-
-}
+Code::Code () = default;
 
 } // namespace

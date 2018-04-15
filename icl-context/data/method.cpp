@@ -2,8 +2,6 @@
 
 namespace vm::context::data {
 
-Method::Method () {
-
-}
+Method::Method () = default;
 
 } // namespace

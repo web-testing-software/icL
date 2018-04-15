@@ -2,9 +2,7 @@
 
 namespace vm::logic {
 
-CrossBlock::CrossBlock () {
-
-}
+CrossBlock::CrossBlock () = default;
 
 /**
  * @brief CrossBlock::canAcceptBlock - the block can accept a child if the first or the second child is null (the second is always null when the first is null)

@@ -17,7 +17,7 @@ struct Argument {
 	Type type;
 };
 
-typedef QLinkedList <Argument> ArgList;
+using ArgList = QLinkedList<Argument>;
 
 struct CodeFragment {
 	int begin = 0, end = -1;
@@ -29,7 +29,7 @@ struct Function {
 	CodeFragment source;
 };
 
-typedef QMap <QString, Function> FunctionMap;
+using FunctionMap = QMap <QString, Function>;
 
 // Main Class
 
