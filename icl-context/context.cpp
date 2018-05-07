@@ -36,21 +36,25 @@ bool Context::hasValue () {
 }
 
 void Context::runProperty (const QString &name) {
-	emit exception(-7, "No such property: " + name);
+	emit exception (-7, "No such property: " + name);
 }
 
 void Context::runMethod (const QString &name) {
-	emit exception(-7, "No such method: " + name);
+	emit exception (-7, "No such method: " + name);
 }
 
 bool Context::isResultative () {
 	return
-		role == Role::Object ||
+		role == Role::Object   ||
 		role == Role::Property ||
-		role == Role::Method ||
+		role == Role::Method   ||
 		role == Role::Isolated ||
 		role == Role::Function ||
 		role == Role::Exists;
+}
+
+void Context::repeatException (int code, const QString &message) {
+	emit exception (code, message);
 }
 
 void Context::repeat (QString *str, int begin, int end, std::function <void ( QVariant& )> func) {

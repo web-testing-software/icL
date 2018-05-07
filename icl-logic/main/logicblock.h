@@ -8,21 +8,22 @@
 
 namespace vm::logic {
 
+// Specially for debug mode
+enum class ResultValue {
+	NOT_CALCULATED,
+	INTEGRITY_CHECK_FAILED,
+	WRONG_INPUT_DATA,
+	TRUE_VALUE,
+	FALSE_VALUE,
+	FAILED_CALCULATE
+};
+
 /**
  * @brief The LogicBlock class
  */
 class LogicBlock
 {
 public:
-	// Specially for debug mode
-	enum class ResultValue {
-		NOT_CALCULATED,
-		INTEGRITY_CHECK_FAILED,
-		WRONG_INPUT_DATA,
-		TRUE_VALUE,
-		FALSE_VALUE,
-		FAILED_CALCULATE
-	};
 
 	LogicBlock ();
 	virtual ~LogicBlock ();
@@ -40,10 +41,16 @@ public:
 	void setParent (LogicBlock *parent);
 
 signals:
+	void exception (int code, const QString &message);
 	void interrupt (QString*, int, int, std::function<void (QVariant&)>);
 
 protected:
 	virtual bool calcResult () = 0;
+
+	static QString typeToString (QVariant::Type type);
+
+
+protected:
 
 	vm::memory::Memory *m_memory;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
