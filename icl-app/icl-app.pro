@@ -52,8 +52,8 @@ else {
 	RCC_DIR = release/rcc
 }
 
-CONFIG += c++1z
-QMAKE_CXXFLAGS += -std=c++1z
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 DISTFILES += \
     uml2png.sh \
