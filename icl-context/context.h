@@ -44,7 +44,6 @@ signals:
 	void interrupt (QString *, int, int, std::function <void ( QVariant& )> );
 
 public slots:
-	void repeatException (int code, const QString &message);
 	void repeat (QString *str, int begin, int end, std::function <void ( QVariant& )> func);
 
 

@@ -24,7 +24,15 @@ bool SingleBlock::checkIntegrity () {
  * @return the result of comparation
  */
 bool SingleBlock::calcResult () {
+//	memory::DataState::Type type = memory::DataState::Type::BOOLEAN;
 	bool			value, ret = false;
+
+//	if () {
+//		invalidate ();
+//		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
+//						 QObject::tr ("%1 is not a boolean variable.")
+//						 .arg (var1name));
+//	}
 
 	value = value1.toBool();
 
@@ -39,7 +47,9 @@ bool SingleBlock::calcResult () {
 
 	default :
 		resultValue = ResultValue::FAILED_CALCULATE;
-		// Never called
+//		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
+//						 QObject::tr ("Wrong operator for bool operand: %1")
+//						 .arg (var1name));
 	}
 
 	return ret;

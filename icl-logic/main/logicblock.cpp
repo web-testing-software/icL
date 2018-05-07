@@ -21,12 +21,13 @@ bool LogicBlock::getResult () {
 	return result;
 }
 
-bool LogicBlock::getCachedResult () {
+bool LogicBlock::getCachedResult()
+{
 	if (resultCalculed) {
 		return result;
 	}
 
-	return getResult ();
+	return getResult();
 }
 
 /**
@@ -52,51 +53,11 @@ LogicBlock * LogicBlock::getParent () {
 }
 
 /**
- * @brief LogicBlock::setParent - parent node setter
+ * @brief LogicBlock::setParent - node parent setter
  * @param pointer to the parent node
  */
 void LogicBlock::setParent (LogicBlock *parent) {
 	m_parent = parent;
-}
-
-/**
- * @brief LogicBlock::typeToString - Convert types to string, special for errors messages.
- * @param type - the result of QVariant.type()
- * @return a string with icL type name
- */
-QString LogicBlock::typeToString (QVariant::Type type) {
-	QString ret;
-
-	switch (type) {
-	case QVariant::Bool :
-		ret = QStringLiteral ("Boolean");
-		break;
-
-	case QVariant::Int :
-		ret = QStringLiteral ("Int");
-		break;
-
-	case QVariant::Double :
-		ret = QStringLiteral ("Double");
-		break;
-
-	case QVariant::String :
-		ret = QStringLiteral ("String");
-		break;
-
-	case QVariant::StringList :
-		ret = QStringLiteral ("List");
-		break;
-
-	case QVariant::UserType :
-		ret = QStringLiteral ("Element");
-		break;
-
-	default :
-		ret = QStringLiteral ("Void");
-	}
-
-	return ret;
 }
 
 }

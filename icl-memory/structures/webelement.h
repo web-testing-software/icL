@@ -179,7 +179,9 @@ struct WebElement {
 	QString selector = "";
 	// The name of variable in which we will stock data in javascript
 	QString variable	= "";
-	int count = 0;
+	bool valid			= false;
+	bool single			= false;
+	bool skip_errors	= false;
 };
 
 /**
