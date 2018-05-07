@@ -9,7 +9,6 @@ class VirtualMachine
 public:
 	VirtualMachine();
 };
-
 }
 
 #endif // VIRTUALMACHINE_H

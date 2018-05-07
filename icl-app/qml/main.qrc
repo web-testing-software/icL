@@ -54,6 +54,5 @@
         <file>components/browser/ui/controls/speed_dial/Search.qml</file>
         <file>components/browser/ui/controls/TextInput.qml</file>
         <file>components/browser/ui/controls/speed_dial/DialBase.qml</file>
-        <file>scripts/web_nm.js</file>
     </qresource>
 </RCC>

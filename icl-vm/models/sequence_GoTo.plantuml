@@ -15,15 +15,15 @@ vms -[#blue]> cpp: goTo(url)
 activate cpp
 	cpp -> cpp: waitFor = GoTo
 	cpp -> cpp: working = true
-	cpp -[#green]> qml: requestGoTo(url)
+	cpp -[#green]-> qml: requestGoTo(url)
 	activate qml #springgreen
 		qml -[#blue]> web: setUrl(url)
 		activate web #springgreen
-			web -[#red]-> qml: возврат
+			web -[#red]> qml: возврат
 		deactivate web
 	deactivate qml
 	web -> web: загрузка страницы
-	web -[#green]> web: loadStatusChanged
+	web -[#green]-> web: loadStatusChanged
 	activate web #limegreen
 		web -> web: success =\n loadState ==\n LoadSuccessfulState
 		web -[#blue]> cpp: finishLoad(success)
@@ -31,10 +31,10 @@ activate cpp
 			cpp -> cpp: result = success
 			cpp -> cpp: waitFor = Nothing
 			cpp -> cpp: working = false
-			cpp -[#red]-> web: возврат
+			cpp -[#red]> web: возврат
 		deactivate cpp
 	deactivate web
-	cpp -[#red]-> vms: result.toBool()
+	cpp -[#red]> vms: result.toBool()
 deactivate cpp
 
 !include uml_style.iuml

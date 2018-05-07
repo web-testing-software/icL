@@ -15,7 +15,7 @@ vms -[#blue]> cpp: waitForLoading()
 activate cpp
 	cpp -> cpp: waitFor = loading
 	cpp -> cpp: working = true
-	cpp -[#green]> qml: requestWaitForLoading()
+	cpp -[#green]-> qml: requestWaitForLoading()
 	
 	activate qml #springgreen
 		qml -[#blue]> cpp: finishLoad(true)
@@ -23,10 +23,10 @@ activate cpp
 			cpp -> cpp: result = true
 			cpp -> cpp: waitFor = Nothing
 			cpp -> cpp: waorking = false
-			cpp -[#red]-> qml: возврат
+			cpp -[#red]> qml: возврат
 		deactivate cpp
 	deactivate qml
-	cpp -[#red]-> vms: result.toBool()
+	cpp -[#red]> vms: result.toBool()
 deactivate cpp
 
 
