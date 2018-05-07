@@ -20,43 +20,43 @@ activate vm
 	activate  inter
 		inter -[#blue]> con : new Context()
 		activate con
-			con -[#red]> inter : возврат Context*
+			con -[#red]-> inter : возврат Context*
 		deactivate con
-		inter -[#red]> vm : возврат Context*
+		inter -[#red]-> vm : возврат Context*
 	deactivate inter
 	vm -> vm: contextList.push()
-	vm -[#red]> vms : возврат
+	vm -[#red]-> vms : возврат
 deactivate vm
 vms -[#blue]> vm : step()
 activate vm
 	vm -[#blue]> con : execute()
 	activate con
-		con -[#green]-> inter : сигнал
-		inter -[#green]-> vm: повтор сигнала
-		vm -[#green]-> vms : повтор сигнала
+		con -[#green]> inter : сигнал
+		inter -[#green]> vm: повтор сигнала
+		vm -[#green]> vms : повтор сигнала
 		activate vms #springgreen
 			vms -[#blue]> server : runJs()
 			activate server #springgreen
 				server -[#blue]> web: runJavascript асинхронно
 				activate web #springgreen
-					web -[#red]> server: возврат
+					web -[#red]-> server: возврат
 				deactivate web
 				server -> server: ожидание
 				web -[#blue]> server: вызов\n анонимной\n функций
 				activate server #lightgrey
 					server -> server: выход из\n режима ожидания
-					server -[#red]> web: возврат
+					server -[#red]-> web: возврат
 				deactivate server
-				server -[#red]> vms: возврат
+				server -[#red]-> vms: возврат
 			deactivate server
 			vms -[#blue]> con: вызов анонимной функции
 			activate con #springgreen
-				con -[#red]> vms: возврат
+				con -[#red]-> vms: возврат
 			deactivate con
 		deactivate vms
-		con -[#red]> vm: возврат
+		con -[#red]-> vm: возврат
 	deactivate con
-	vm -[#red]> vms: возврат
+	vm -[#red]-> vms: возврат
 deactivate vm
 vms -> vms: продолжение\n выполнений\n кода
 

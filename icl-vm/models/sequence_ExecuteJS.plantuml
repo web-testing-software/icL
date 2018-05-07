@@ -14,12 +14,12 @@ vms -[#blue]> cpp: executeJS(code)
 activate cpp
 	cpp -> cpp: waitFor = ExecuteJS
 	cpp -> cpp: working = true
-	cpp -[#green]-> qml: requestExecuteJS(code)
+	cpp -[#green]> qml: requestExecuteJS(code)
 	activate qml #springgreen
 		cpp -> cpp: переход в режим ожидания
 		qml -[#blue]> web: executeJavaScript(code, lambda)
 		activate web #springgreen
-			web -[#red]> qml: возврат
+			web -[#red]-> qml: возврат
 		deactivate web
 		web -> web: выполнения кода
 		web -[#blue]> qml: lambda(variant)
@@ -29,12 +29,12 @@ activate cpp
 				cpp -> cpp: this.result = variant
 				cpp -> cpp: waitFor = Nothing
 				cpp -> cpp: working = false
-				cpp -[#red]> qml: возврат
+				cpp -[#red]-> qml: возврат
 			deactivate cpp
-			qml -[#red]> web: | возврат
+			qml -[#red]-> web: | возврат
 		deactivate qml
 	deactivate qml
-	cpp -[#red]> vms: возврат
+	cpp -[#red]-> vms: возврат
 deactivate cpp
 
 !include uml_style.iuml

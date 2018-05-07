@@ -15,21 +15,21 @@ vms -[#blue]> cpp: waitForLoading()
 activate cpp
 	cpp -> cpp: waitFor = loading
 	cpp -> cpp: working = true
-	cpp -[#green]-> qml: requestWaitForLoading()
+	cpp -[#green]> qml: requestWaitForLoading()
 	cpp -> cpp: ожидание
 	
 	web -[#green]> web: loadStatusChanged()
 	activate web #limegreen
-		web -> web: success =\n loadStatus ==\n LoadSuccessfulStatus
+		web -> web: success = loadStatus == LoadSuccessfulStatus
 		web -[#blue]> cpp: finishLoad
 		activate cpp #limegreen
 			cpp -> cpp: result = success
 			cpp -> cpp: waitFor = Nothing
 			cpp -> cpp: waorking = false
-			cpp -[#red]> web: возврат
+			cpp -[#red]-> web: возврат
 		deactivate cpp
 	deactivate web
-	cpp -[#red]> vms: result.toBool()
+	cpp -[#red]-> vms: result.toBool()
 deactivate cpp
 
 

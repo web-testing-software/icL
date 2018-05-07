@@ -18,8 +18,8 @@ activate js
 	activate cf
 		cf -> cf: получения\n идентификатора
 		cf -> cf: регистрация\n функций\n обратной связи
-		cf -[#green]-> web: console.log(...)
-		cf -[#red]> js: возврат
+		cf -[#green]> web: console.log(...)
+		cf -[#red]-> js: возврат
 	deactivate cf
 deactivate js	
 web -> web: запуск\n обработчика\n сигнала
@@ -27,19 +27,19 @@ activate web #springgreen
 	web -[#blue]> cvms: runFunction(...)
 	activate cvms #springgreen
 		cvms -> cvms: создание\n прерываний icL
-		cvms -[#red]> web: возврат
+		cvms -[#red]-> web: возврат
 	deactivate cvms
 deactivate web
 
 cvms -> cvms: выполнения кода
 cvms -> cvms: выполнения\n функций onStop
 activate cvms #lightgrey
-	cvms -[#green]-> qvms: requestJsCodeExecution
+	cvms -[#green]> qvms: requestJsCodeExecution
 	activate qvms #limegreen
 		qvms -[#blue]> web: runJavaScript
 		activate web #limegreen
-			web -[#green]-> cf: запрос на\n выполнение\n функций\n обратной\n связи
-			web -[#red]> qvms: возврат
+			web -[#green]> cf: запрос на\n выполнение\n функций\n обратной\n связи
+			web -[#red]-> qvms: возврат
 		deactivate web
 	deactivate qvms
 deactivate cvms
@@ -49,7 +49,7 @@ activate cf
 	cf -[#blue]> js: вызов\n функций\n обратной\n связи
 	activate js
 		js -> js: выполнение
-		js -[#red]> cf: возврат
+		js -[#red]-> cf: возврат
 	deactivate js
 deactivate cf
 
