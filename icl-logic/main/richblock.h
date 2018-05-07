@@ -30,7 +30,7 @@ public:
 	};
 
 	RichBlock (OperationType otype);
-	 ~RichBlock () override;
+	~RichBlock () override;
 
 	bool canAcceptCode ();
 	void giveCode (memory::CodeFragment frag);
@@ -38,6 +38,13 @@ public:
 	// LogicBlock interface
 	bool isCross () override;
 	bool checkIntegrity () override;
+
+protected:
+	QString oTypeToString ();
+	QString pairData ();
+	void sendSignalWrongPair ();
+	void sendSignalWrongOperator (const QString &pair);
+
 
 protected:
 	QVariant value1, value2;

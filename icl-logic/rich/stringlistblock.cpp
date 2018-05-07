@@ -52,10 +52,7 @@ bool ListBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-//		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
-//								 QObject::tr ("Wrong operator for operands <string>list:%1 and <string>list:%2.")
-//								 .arg (var1name)
-//								 .arg (var2name));
+			sendSignalWrongOperator("[List-List]");
 		}
 	}
 	else if (value2.type () == QVariant::String) {
@@ -72,52 +69,15 @@ bool ListBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-//		dataContainer->setError (Error::COMMAND_EXECUTION_ERROR,
-//								  QObject::tr ("Wrong operator for operands <string>list:%1 and string:%2.")
-//								  .arg (var1name)
-//								  .arg (var2name));
+			sendSignalWrongOperator("[List-String]");
 		}
 	}
 	else {
-		//
+		sendSignalWrongPair();
 	}
-
-
 
 	return result;
 }
-
-/**
- * @brief StringListBlock::varNameToStringList - convert varname to <string>list value
- * @param varname - the value to convert
- * @return the parsed value
- */
-// QStringList StringListBlock::varNameToStringList (const QString &varname) {
-//	memory::DataState::Type type = memory::DataState::Type::STRING_LIST;
-//	QStringList				ret;
-
-//	if (check (varname)) {
-//		auto allStringsIt = strExp.globalMatch (varname);
-
-//		while (allStringsIt.hasNext ()) {
-//			auto	stringMatch = allStringsIt.next ();
-//			QString string		= stringMatch.captured ().mid (1, -2);
-
-//			ret.append (string);
-//		}
-//	}
-//	else if (!dataContainer->checkType (varname, type)) {
-//		invalidate ();
-//		dataContainer->setError (Error::DATA_CONVERSION_ERROR,
-//								 QObject::tr ("%1 is not a string list variable or constant.")
-//								 .arg (varname));
-//	}
-//	else {
-//		ret = dataContainer->getVar (varname).toStringList ();
-//	}
-
-//	return ret;
-// }
 
 /**
  * @brief StringListBlock::operatorEqual - test if both lists contains some items
