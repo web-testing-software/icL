@@ -2,7 +2,9 @@
 
 namespace vm::context::data {
 
-Property::Property () = default;
+Property::Property () {
+	m_role = Role::Property;
+};
 
 
 

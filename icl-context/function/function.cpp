@@ -2,7 +2,9 @@
 
 namespace vm::context::function {
 
-Function::Function () = default;
+Function::Function () {
+	m_role = Role::Function;
+};
 
 
 

@@ -2,7 +2,9 @@
 
 namespace vm::context::code::control {
 
-If::If () = default;
+If::If () {
+	m_role = Role::If;
+};
 
 
 

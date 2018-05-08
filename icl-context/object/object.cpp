@@ -2,7 +2,9 @@
 
 namespace vm::context::object {
 
-Object::Object () = default;
+Object::Object () {
+	m_role = Role::Object;
+};
 
 
 

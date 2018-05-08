@@ -3,7 +3,9 @@
 
 namespace vm::context::code::control::catch0 {
 
-Slot::Slot () = default;
+Slot::Slot () {
+	m_role = Role::Slot;
+};
 
 
 

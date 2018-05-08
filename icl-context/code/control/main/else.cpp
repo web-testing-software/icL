@@ -2,7 +2,9 @@
 
 namespace vm::context::code::control {
 
-Else::Else () = default;
+Else::Else () {
+	m_role = Role::Else;
+};
 
 
 

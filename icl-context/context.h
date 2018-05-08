@@ -7,10 +7,10 @@
 namespace vm::context {
 
 enum class Role {
+	NoRole, Object,
 	If, Else,
 	Exists, Slot,
 	Code, ForAny,
-	Object,
 	DOM, Tab,
 	Property, Method,
 	Alternative, Assign,
@@ -52,7 +52,7 @@ public slots:
 
 
 protected:
-	Role m_role;
+	Role m_role = Role::NoRole;
 
 	Context *m_prev = nullptr;
 	Context *m_next = nullptr;

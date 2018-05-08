@@ -2,7 +2,9 @@
 
 namespace vm::context::data {
 
-Alternative::Alternative () = default;
+Alternative::Alternative () {
+	m_role = Role::Alternative;
+};
 
 
 

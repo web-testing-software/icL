@@ -2,7 +2,9 @@
 
 namespace vm::context::data {
 
-Assign::Assign () = default;
+Assign::Assign () {
+	m_role = Role::Assign;
+};
 
 
 

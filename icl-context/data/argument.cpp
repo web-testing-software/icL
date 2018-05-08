@@ -2,7 +2,9 @@
 
 namespace vm::context::data {
 
-Argument::Argument () = default;
+Argument::Argument () {
+	m_role = Role::Argument;
+};
 
 
 

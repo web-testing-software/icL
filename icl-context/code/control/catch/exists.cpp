@@ -2,7 +2,9 @@
 
 namespace vm::context::code::control::catch0 {
 
-Exists::Exists () = default;
+Exists::Exists () {
+	m_role = Role::Exists;
+};
 
 int Exists::signal () const {
 	return m_signal;

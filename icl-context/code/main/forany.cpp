@@ -2,7 +2,9 @@
 
 namespace vm::context::code {
 
-ForAny::ForAny () = default;
+ForAny::ForAny () {
+	m_role = Role::ForAny;
+};
 
 
 

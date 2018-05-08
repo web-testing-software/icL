@@ -2,7 +2,9 @@
 
 namespace vm::context::data {
 
-Method::Method () = default;
+Method::Method () {
+	m_role = Role::Method;
+};
 
 
 
