@@ -7,31 +7,31 @@ namespace vm::context {
 
 Context::Context () = default;
 
-Context * Context::getNewContext () {
+Context * Context::getNewContext () const {
 	return newContext;
 }
 
-Context * Context::getBeginContext () {
+Context * Context::getBeginContext () const {
 	return nullptr;
 }
 
-Context * Context::getEndContext () {
+Context * Context::getEndContext () const {
 	return nullptr;
 }
 
-bool Context::isRightToLeft () {
+bool Context::isRightToLeft () const {
 	return true;
 }
 
-bool Context::isExecuable () {
+bool Context::isExecuable () const {
 	return false;
 }
 
-bool Context::execute () {
+bool Context::execute () const {
 	return true;
 }
 
-bool Context::hasValue () {
+bool Context::hasValue () const {
 	return false;
 }
 
@@ -43,12 +43,12 @@ void Context::runMethod (const QString &name) {
 	emit exception (-7, "No such method: " + name);
 }
 
-bool Context::isResultative () {
+bool Context::isResultative () const {
 	return
 		m_role == Role::Object   ||
 		m_role == Role::Property ||
 		m_role == Role::Method   ||
-		m_role == Role::Isolated ||
+		m_role == Role::ForAny   ||
 		m_role == Role::Function ||
 		m_role == Role::Exists;
 }

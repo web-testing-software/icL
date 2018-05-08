@@ -6,7 +6,7 @@ If::If () = default;
 
 
 
-bool If::isExecuable () {
+bool If::isExecuable () const {
 	return !expressionExecuted || result;
 }
 

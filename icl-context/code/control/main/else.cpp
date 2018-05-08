@@ -6,7 +6,7 @@ Else::Else () = default;
 
 
 
-bool Else::isExecuable () {
+bool Else::isExecuable () const {
 	return m_next->role () == Role::Code;
 }
 

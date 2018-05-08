@@ -10,7 +10,7 @@ int Exists::signal () const {
 
 // Context interface
 
-bool Exists::isExecuable () {
+bool Exists::isExecuable () const {
 	return true;
 }
 

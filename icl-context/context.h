@@ -23,15 +23,16 @@ class Context : public QObject
 public:
 	Context ();
 
-	virtual Context* getNewContext ();
-	virtual Context* getBeginContext ();
-	virtual Context* getEndContext ();
+	virtual Context* getNewContext () const;
+	virtual Context* getBeginContext () const;
+	virtual Context* getEndContext () const;
 
-	virtual bool isRightToLeft ();
-	virtual bool isExecuable ();
-	virtual bool execute ();
+	virtual bool checkPrev (const Context *context) const = 0;
+	virtual bool isRightToLeft () const;
+	virtual bool isExecuable () const;
+	virtual bool execute () const;
 
-	virtual bool hasValue ();
+	virtual bool hasValue () const;
 	virtual void runProperty (const QString &name);
 	virtual void runMethod (const QString &name);
 
@@ -39,9 +40,7 @@ public:
 	Context* prev () const;
 	Context* next () const;
 
-protected:
-	bool isResultative ();
-
+	bool isResultative () const;
 
 signals:
 	void exception (int code, const QString &message);

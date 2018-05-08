@@ -14,7 +14,7 @@ public:
 
 	// Context interface
 public:
-	bool isRightToLeft () override;
+	bool isRightToLeft () const override;
 };
 
 } // namespace

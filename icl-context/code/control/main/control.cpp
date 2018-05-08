@@ -6,7 +6,7 @@ Control::Control () = default;
 
 
 
-bool Control::isRightToLeft () {
+bool Control::isRightToLeft () const {
 	return false;
 }
 

@@ -6,7 +6,7 @@ Code::Code () = default;
 
 
 
-bool Code::isExecuable () {
+bool Code::isExecuable () const {
 	return m_prev->role () == Role::Object;
 }
 

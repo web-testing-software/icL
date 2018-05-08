@@ -7,7 +7,7 @@ Slot::Slot () = default;
 
 
 
-bool Slot::isExecuable () {
+bool Slot::isExecuable () const {
 	if (signal == 0) {
 		return true;
 	}

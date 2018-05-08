@@ -6,7 +6,7 @@ ForAny::ForAny () = default;
 
 
 
-bool ForAny::isExecuable () {
+bool ForAny::isExecuable () const {
 	return true;
 }
 

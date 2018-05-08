@@ -6,7 +6,7 @@ Data::Data () = default;
 
 
 
-bool Data::isExecuable () {
+bool Data::isExecuable () const {
 	return m_prev->role () == Role::Object;
 }
 

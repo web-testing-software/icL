@@ -6,11 +6,11 @@ Alternative::Alternative () = default;
 
 
 
-bool Alternative::isRightToLeft () {
+bool Alternative::isRightToLeft () const {
 	return false;
 }
 
-bool Alternative::isExecuable () {
+bool Alternative::isExecuable () const {
 	return true;
 }
 

@@ -6,7 +6,7 @@ Assign::Assign () = default;
 
 
 
-bool Assign::isExecuable () {
+bool Assign::isExecuable () const {
 	return true;
 }
 

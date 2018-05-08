@@ -13,7 +13,7 @@ public:
 
 	// Context interface
 public:
-	bool isExecuable () override;
+	bool isExecuable () const override;
 };
 
 }
