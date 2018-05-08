@@ -31,7 +31,6 @@ SOURCES += \
     data/data.cpp \
     data/method.cpp \
     data/property.cpp \
-    data/alterntive.cpp \
     data/assign.cpp \
     code/main/code.cpp \
     code/main/isolated.cpp \
@@ -49,7 +48,8 @@ SOURCES += \
     object/list.cpp \
     object/void.cpp \
     object/element.cpp \
-    data/argument.cpp
+    data/argument.cpp \
+    data/alternative.cpp
 
 HEADERS += \
         context.h \
@@ -59,7 +59,6 @@ HEADERS += \
     data/data.h \
     data/method.h \
     data/property.h \
-    data/alterntive.h \
     data/assign.h \
     code/main/code.h \
     code/main/isolated.h \
@@ -77,7 +76,8 @@ HEADERS += \
     object/list.h \
     object/void.h \
     object/element.h \
-    data/argument.h
+    data/argument.h \
+    data/alternative.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
