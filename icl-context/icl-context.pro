@@ -26,8 +26,6 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 SOURCES += \
         context.cpp \
     function/function.cpp \
-    function/call.cpp \
-    function/new.cpp \
     data/data.cpp \
     data/method.cpp \
     data/property.cpp \
@@ -54,8 +52,6 @@ SOURCES += \
 HEADERS += \
         context.h \
     function/function.h \
-    function/call.h \
-    function/new.h \
     data/data.h \
     data/method.h \
     data/property.h \
