@@ -10,9 +10,13 @@ Object::Object () {
 
 bool Object::checkPrev (const Context *context) const {
 	return
-		context == nullptr				 ||
+		context == nullptr               ||
 		context->role () == Role::Assign ||
 		( context->role () != Role::Exists && context->isResultative () );
+}
+
+bool Object::canBeAtEnd () const {
+	return true;
 }
 
 } // namespace

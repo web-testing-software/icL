@@ -18,6 +18,7 @@ private:
 	// Context interface
 public:
 	bool checkPrev (const Context *context) const override;
+	bool canBeAtEnd () const override;
 	bool isExecuable () const override;
 	bool execute () const override;
 

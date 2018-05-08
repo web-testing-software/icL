@@ -10,10 +10,19 @@ Function::Function () {
 
 bool Function::checkPrev (const Context *context) const {
 	return
-		context == nullptr                    ||
-		context->role () == Role::Alternative ||
-		context->role () == Role::Assign      ||
-		context->isResultative ();
+		context == nullptr ||
+		(
+		!newFunction &&
+		(
+			context->role () == Role::Alternative ||
+			context->role () == Role::Assign      ||
+			context->isResultative ()
+		)
+		);
+}
+
+bool Function::canBeAtEnd () const {
+	return !newFunction;
 }
 
 bool Function::isExecuable () const {

@@ -14,7 +14,8 @@ public:
 
 	// Context interface
 public:
-	bool checkPrev(const Context *context) const override;
+	bool checkPrev (const Context *context) const override;
+	bool canBeAtEnd () const override;
 };
 
 } // namespace

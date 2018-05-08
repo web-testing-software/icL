@@ -10,16 +10,20 @@ bool Code::checkPrev (const Context *context) const {
 	return
 		context != nullptr &&
 		(
-		context->role () == Role::Else	   ||
-		context->role () == Role::Slot	   ||
+		context->role () == Role::Else     ||
+		context->role () == Role::Slot     ||
 		context->role () == Role::Argument ||
 		(
 			context->role () == Role::Assign &&
-			context->prev () != nullptr		 &&
+			context->prev () != nullptr      &&
 			context->prev ()->role () == Role::Function
-		)							       ||
+		)                                  ||
 		context->isResultative ()
 		);
+}
+
+bool Code::canBeAtEnd () const {
+	return true;
 }
 
 bool Code::isExecuable () const {

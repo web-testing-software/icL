@@ -13,6 +13,7 @@ public:
 
 	// Context interface
 public:
+	bool canBeAtEnd () const override;
 	bool isExecuable () const override;
 };
 

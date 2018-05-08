@@ -24,6 +24,7 @@ public:
 	Context ();
 
 	virtual bool checkPrev (const Context *context) const = 0;
+	virtual bool canBeAtEnd () const = 0;
 	virtual bool isRightToLeft () const;
 	virtual bool isExecuable () const;
 	virtual bool execute () const;

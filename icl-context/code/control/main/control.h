@@ -14,6 +14,7 @@ public:
 
 	// Context interface
 public:
+	bool canBeAtEnd () const override;
 	bool isRightToLeft () const override;
 };
 

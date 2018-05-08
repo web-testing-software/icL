@@ -15,6 +15,7 @@ public:
 	// Context interface
 public:
 	bool checkPrev (const Context *context) const override;
+	bool canBeAtEnd () const override;
 	bool execute () const override;
 
 	Context* getNewContext () const override;

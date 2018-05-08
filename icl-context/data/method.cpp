@@ -12,6 +12,10 @@ bool Method::checkPrev (const Context *context) const {
 	return context != nullptr && context->isResultative ();
 }
 
+bool Method::canBeAtEnd () const {
+	return true;
+}
+
 bool Method::execute () const {
 
 }
