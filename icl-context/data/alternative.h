@@ -14,8 +14,9 @@ public:
 
 	// Context interface
 public:
-	bool isRightToLeft() const override;
-	bool isExecuable() const override;
+	bool checkPrev (const Context *context) const override;
+	bool isRightToLeft () const override;
+	bool isExecuable () const override;
 };
 
 } // namespace

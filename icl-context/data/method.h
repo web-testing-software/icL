@@ -11,6 +11,10 @@ class Method : public Data
 {
 public:
 	Method ();
+
+	// Context interface
+public:
+	bool checkPrev(const Context *context) const override;
 };
 
 } // namespace

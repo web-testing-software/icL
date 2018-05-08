@@ -11,6 +11,10 @@ class Argument : public Data
 {
 public:
 	Argument ();
+
+	// Context interface
+public:
+	bool checkPrev(const Context *context) const override;
 };
 
 } // namespace

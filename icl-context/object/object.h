@@ -11,6 +11,10 @@ class Object : public Context
 {
 public:
 	Object ();
+
+	// Context interface
+public:
+	bool checkPrev(const Context *context) const override;
 };
 
 } // namespace

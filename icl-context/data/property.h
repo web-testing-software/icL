@@ -11,6 +11,10 @@ class Property : public Data
 {
 public:
 	Property ();
+
+	// Context interface
+public:
+	bool checkPrev(const Context *context) const override;
 };
 
 } // namespace

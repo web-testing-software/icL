@@ -14,6 +14,7 @@ public:
 
 	// Context interface
 public:
+	bool checkPrev(const Context *context) const override;
 	bool isExecuable() const override;
 };
 

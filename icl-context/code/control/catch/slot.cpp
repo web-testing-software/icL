@@ -7,6 +7,19 @@ Slot::Slot () = default;
 
 
 
+bool Slot::checkPrev (const Context *context) const {
+	return
+		context != nullptr &&
+		(
+		context->role () == Role::Exists ||
+		(
+			context->role () == Role::Code &&
+			context->prev () != nullptr	   &&
+			context->prev ()->role () == Role::Slot
+		)
+		);
+}
+
 bool Slot::isExecuable () const {
 	if (signal == 0) {
 		return true;

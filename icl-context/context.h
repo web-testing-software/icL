@@ -43,8 +43,8 @@ public:
 	bool isResultative () const;
 
 signals:
-	void exception (int code, const QString &message);
-	void interrupt (QString *, int, int, std::function <void ( QVariant& )> );
+	void exception (int code, const QString &message) const;
+	void interrupt (QString *, int, int, std::function <void ( QVariant& )> ) const;
 
 public slots:
 	void repeatException (int code, const QString &message);
