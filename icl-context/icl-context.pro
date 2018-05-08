@@ -33,12 +33,9 @@ SOURCES += \
     data/property.cpp \
     data/assign.cpp \
     code/main/code.cpp \
-    code/main/isolated.cpp \
     code/control/main/control.cpp \
     code/control/main/if.cpp \
     code/control/main/else.cpp \
-    code/control/catch/try.cpp \
-    code/control/catch/handler.cpp \
     code/control/catch/catch.cpp \
     object/object.cpp \
     object/boolean.cpp \
@@ -49,7 +46,10 @@ SOURCES += \
     object/void.cpp \
     object/element.cpp \
     data/argument.cpp \
-    data/alternative.cpp
+    data/alternative.cpp \
+    code/control/catch/exists.cpp \
+    code/main/forany.cpp \
+    code/control/catch/slot.cpp
 
 HEADERS += \
         context.h \
@@ -61,12 +61,9 @@ HEADERS += \
     data/property.h \
     data/assign.h \
     code/main/code.h \
-    code/main/isolated.h \
     code/control/main/control.h \
     code/control/main/if.h \
     code/control/main/else.h \
-    code/control/catch/try.h \
-    code/control/catch/handler.h \
     code/control/catch/catch.h \
     object/object.h \
     object/boolean.h \
@@ -77,7 +74,10 @@ HEADERS += \
     object/void.h \
     object/element.h \
     data/argument.h \
-    data/alternative.h
+    data/alternative.h \
+    code/control/catch/exists.h \
+    code/main/forany.h \
+    code/control/catch/slot.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

@@ -1,7 +1,0 @@
-#include "isolated.h"
-
-namespace vm::context::code {
-
-Isolated::Isolated () = default;
-
-} // namespace

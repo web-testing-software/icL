@@ -11,6 +11,10 @@ class Assign : public Data
 {
 public:
 	Assign ();
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 } // namespace

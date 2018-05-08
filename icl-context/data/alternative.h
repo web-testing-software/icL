@@ -15,6 +15,7 @@ public:
 	// Context interface
 public:
 	bool isRightToLeft() override;
+	bool isExecuable() override;
 };
 
 } // namespace

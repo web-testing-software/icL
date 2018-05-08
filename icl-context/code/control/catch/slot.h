@@ -7,10 +7,17 @@
 
 namespace vm::context::code::control::catch0 {
 
-class Handler : public Catch
+class Slot : public Catch
 {
 public:
-	Handler ();
+	Slot ();
+
+protected:
+	int signal;
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 } // namespace

@@ -9,7 +9,7 @@ namespace vm::context {
 enum class Role {
 	If, Else,
 	Exists, Slot,
-	Code, Isolated,
+	Code, ForAny,
 	Object,
 	DOM, Tab,
 	Property, Method,
@@ -35,6 +35,10 @@ public:
 	virtual void runProperty (const QString &name);
 	virtual void runMethod (const QString &name);
 
+	Role role () const;
+	Context* prev () const;
+	Context* next () const;
+
 protected:
 	bool isResultative ();
 
@@ -49,7 +53,12 @@ public slots:
 
 
 protected:
-	Role role;
+	Role m_role;
+
+	Context *m_prev = nullptr;
+	Context *m_next = nullptr;
+
+	Context *newContext = nullptr;
 };
 
 

@@ -7,10 +7,14 @@
 
 namespace vm::context::code {
 
-class Isolated : public Code
+class ForAny : public Code
 {
 public:
-	Isolated ();
+	ForAny ();
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 } // namespace

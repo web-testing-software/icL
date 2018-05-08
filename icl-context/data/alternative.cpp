@@ -2,12 +2,16 @@
 
 namespace vm::context::data {
 
-Alterntive::Alterntive () = default;
+Alternative::Alternative () = default;
 
 
 
 bool Alternative::isRightToLeft () {
 	return false;
+}
+
+bool Alternative::isExecuable () {
+	return true;
 }
 
 } // namespace

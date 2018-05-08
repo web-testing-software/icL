@@ -10,6 +10,10 @@ class Data : public Context
 {
 public:
 	Data ();
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 }

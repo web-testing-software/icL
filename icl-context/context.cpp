@@ -8,7 +8,7 @@ namespace vm::context {
 Context::Context () = default;
 
 Context * Context::getNewContext () {
-	return nullptr;
+	return newContext;
 }
 
 Context * Context::getBeginContext () {
@@ -45,12 +45,12 @@ void Context::runMethod (const QString &name) {
 
 bool Context::isResultative () {
 	return
-		role == Role::Object   ||
-		role == Role::Property ||
-		role == Role::Method   ||
-		role == Role::Isolated ||
-		role == Role::Function ||
-		role == Role::Exists;
+		m_role == Role::Object   ||
+		m_role == Role::Property ||
+		m_role == Role::Method   ||
+		m_role == Role::Isolated ||
+		m_role == Role::Function ||
+		m_role == Role::Exists;
 }
 
 void Context::repeatException (int code, const QString &message) {
@@ -59,6 +59,18 @@ void Context::repeatException (int code, const QString &message) {
 
 void Context::repeat (QString *str, int begin, int end, std::function <void ( QVariant& )> func) {
 	emit interrupt (str, begin, end, std::move (func) );
+}
+
+Context * Context::next () const {
+	return m_next;
+}
+
+Context * Context::prev () const {
+	return m_prev;
+}
+
+Role Context::role () const {
+	return m_role;
 }
 
 } // namespace

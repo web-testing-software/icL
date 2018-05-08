@@ -11,6 +11,10 @@ class Function : public Context
 {
 public:
 	Function ();
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 } // namespace

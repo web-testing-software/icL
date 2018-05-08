@@ -11,6 +11,10 @@ class Else : public Control
 {
 public:
 	Else ();
+
+	// Context interface
+public:
+	bool isExecuable() override;
 };
 
 } // namespace

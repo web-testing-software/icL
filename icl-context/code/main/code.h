@@ -11,6 +11,10 @@ class Code : public Context
 {
 public:
 	Code ();
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 } // namespace

@@ -11,6 +11,14 @@ class If : public Control
 {
 public:
 	If ();
+
+protected:
+	bool expressionExecuted = false;
+	bool result				= false;
+
+	// Context interface
+public:
+	bool isExecuable () override;
 };
 
 } // namespace
