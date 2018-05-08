@@ -24,10 +24,6 @@ bool Alternative::execute () const {
 
 }
 
-Context * Alternative::getNewContext () const {
-
-}
-
 Context * Alternative::getBeginContext () const {
 
 }

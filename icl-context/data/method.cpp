@@ -20,10 +20,6 @@ bool Method::execute () const {
 
 }
 
-Context * Method::getNewContext () const {
-
-}
-
 Context * Method::getBeginContext () const {
 
 }

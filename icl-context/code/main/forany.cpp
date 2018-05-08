@@ -23,10 +23,6 @@ bool ForAny::execute () const {
 
 }
 
-Context * ForAny::getNewContext () const {
-
-}
-
 Context * ForAny::getBeginContext () const {
 
 }

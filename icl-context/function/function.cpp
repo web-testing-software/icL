@@ -33,10 +33,6 @@ bool Function::execute () const {
 
 }
 
-Context * Function::getNewContext () const {
-
-}
-
 Context * Function::getBeginContext () const {
 
 }

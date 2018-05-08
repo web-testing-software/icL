@@ -20,10 +20,6 @@ bool If::execute () const {
 
 }
 
-Context * If::getNewContext () const {
-
-}
-
 Context * If::getBeginContext () const {
 
 }

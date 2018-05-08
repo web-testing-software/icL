@@ -29,7 +29,7 @@ public:
 	virtual bool isExecuable () const;
 	virtual bool execute () const;
 
-	virtual Context* getNewContext () const;
+	Context* getNewContext () const;
 	virtual Context* getBeginContext () const;
 	virtual Context* getEndContext () const;
 

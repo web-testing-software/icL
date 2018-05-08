@@ -46,10 +46,6 @@ bool Slot::execute () const {
 
 }
 
-Context * Slot::getNewContext () const {
-
-}
-
 Context * Slot::getBeginContext () const {
 
 }

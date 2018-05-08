@@ -20,10 +20,6 @@ bool Property::execute () const {
 
 }
 
-Context * Property::getNewContext () const {
-
-}
-
 Context * Property::getBeginContext () const {
 
 }

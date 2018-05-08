@@ -19,7 +19,6 @@ public:
 	bool isExecuable () const override;
 	bool execute () const override;
 
-	Context* getNewContext () const override;
 	Context* getBeginContext () const override;
 	Context* getEndContext () const override;
 };
