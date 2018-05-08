@@ -11,6 +11,10 @@ class Control : public Code
 {
 public:
 	Control ();
+
+	// Context interface
+public:
+	bool isRightToLeft () override;
 };
 
 } // namespace
