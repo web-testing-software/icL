@@ -10,13 +10,29 @@ ForAny::ForAny () {
 
 bool ForAny::checkPrev (const Context *context) const {
 	return
-		context == nullptr				 ||
+		context == nullptr               ||
 		context->role () == Role::Assign ||
 		context->isResultative ();
 }
 
 bool ForAny::isExecuable () const {
 	return true;
+}
+
+bool ForAny::execute () const {
+
+}
+
+Context * ForAny::getNewContext () const {
+
+}
+
+Context * ForAny::getBeginContext () const {
+
+}
+
+Context * ForAny::getEndContext () const {
+
 }
 
 } // namespace

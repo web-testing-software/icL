@@ -23,14 +23,14 @@ class Context : public QObject
 public:
 	Context ();
 
-	virtual Context* getNewContext () const;
-	virtual Context* getBeginContext () const;
-	virtual Context* getEndContext () const;
-
 	virtual bool checkPrev (const Context *context) const = 0;
 	virtual bool isRightToLeft () const;
 	virtual bool isExecuable () const;
 	virtual bool execute () const;
+
+	virtual Context* getNewContext () const;
+	virtual Context* getBeginContext () const;
+	virtual Context* getEndContext () const;
 
 	virtual bool hasValue () const;
 	virtual void runProperty (const QString &name);

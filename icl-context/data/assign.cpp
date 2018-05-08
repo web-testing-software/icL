@@ -19,4 +19,20 @@ bool Assign::isExecuable () const {
 	return true;
 }
 
+bool Assign::execute () const {
+
+}
+
+Context * Assign::getNewContext () const {
+
+}
+
+Context * Assign::getBeginContext () const {
+
+}
+
+Context * Assign::getEndContext () const {
+
+}
+
 } // namespace

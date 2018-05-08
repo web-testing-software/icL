@@ -16,7 +16,7 @@ bool Slot::checkPrev (const Context *context) const {
 		context->role () == Role::Exists ||
 		(
 			context->role () == Role::Code &&
-			context->prev () != nullptr	   &&
+			context->prev () != nullptr    &&
 			context->prev ()->role () == Role::Slot
 		)
 		);
@@ -40,6 +40,22 @@ bool Slot::isExecuable () const {
 	else {
 		return dynamic_cast <Exists *> ( it )->signal () == signal;
 	}
+}
+
+bool Slot::execute () const {
+
+}
+
+Context * Slot::getNewContext () const {
+
+}
+
+Context * Slot::getBeginContext () const {
+
+}
+
+Context * Slot::getEndContext () const {
+
 }
 
 } // namespace

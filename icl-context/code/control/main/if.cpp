@@ -16,4 +16,20 @@ bool If::isExecuable () const {
 	return !expressionExecuted || result;
 }
 
+bool If::execute () const {
+
+}
+
+Context * If::getNewContext () const {
+
+}
+
+Context * If::getBeginContext () const {
+
+}
+
+Context * If::getEndContext () const {
+
+}
+
 } // namespace

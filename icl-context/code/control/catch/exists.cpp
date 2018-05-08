@@ -19,7 +19,23 @@ bool Exists::checkPrev (const Context *context) const {
 // Context interface
 
 bool Exists::isExecuable () const {
-	return m_prev->role() != Role::Alternative;
+	return m_prev->role () != Role::Alternative;
+}
+
+bool Exists::execute () const {
+
+}
+
+Context * Exists::getNewContext () const {
+
+}
+
+Context * Exists::getBeginContext () const {
+
+}
+
+Context * Exists::getEndContext () const {
+
 }
 
 } // namespace

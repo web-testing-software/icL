@@ -20,4 +20,20 @@ bool Alternative::isExecuable () const {
 	return true;
 }
 
+bool Alternative::execute () const {
+
+}
+
+Context * Alternative::getNewContext () const {
+
+}
+
+Context * Alternative::getBeginContext () const {
+
+}
+
+Context * Alternative::getEndContext () const {
+
+}
+
 } // namespace

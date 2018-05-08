@@ -9,14 +9,30 @@ Else::Else () {
 
 
 bool Else::checkPrev (const Context *context) const {
-	return context != nullptr			  &&
+	return context != nullptr             &&
 		   context->role () == Role::Code &&
-		   context->prev () != nullptr	  &&
+		   context->prev () != nullptr    &&
 		   context->prev ()->role () == Role::If;
 }
 
 bool Else::isExecuable () const {
 	return m_next->role () == Role::Code;
+}
+
+bool Else::execute () const {
+
+}
+
+Context * Else::getNewContext () const {
+
+}
+
+Context * Else::getBeginContext () const {
+
+}
+
+Context * Else::getEndContext () const {
+
 }
 
 } // namespace
