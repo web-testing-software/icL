@@ -4,13 +4,13 @@
 namespace vm::memory {
 
 enum class Type {
-	NODATA,
-	BOOLEAN,
-	INT,
-	DOUBLE,
-	STRING,
-	LIST,
-	ELEMENT
+	Void,
+	Boolean,
+	Int,
+	Double,
+	String,
+	List,
+	Element
 };
 
 }
