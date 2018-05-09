@@ -29,7 +29,7 @@ bool Context::isExecuable () const {
 	return false;
 }
 
-bool Context::execute () const {
+bool Context::execute () {
 	return true;
 }
 

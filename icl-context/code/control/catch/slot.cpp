@@ -41,7 +41,7 @@ bool Slot::isExecuable () const {
 	return dynamic_cast <Exists *> ( it )->signal () == signal;
 }
 
-bool Slot::execute () const {
+bool Slot::execute () {
 
 }
 

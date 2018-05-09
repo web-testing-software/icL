@@ -31,7 +31,7 @@ public:
 	virtual bool canBeAtEnd () const = 0;
 	virtual bool isRightToLeft () const;
 	virtual bool isExecuable () const;
-	virtual bool execute () const;
+	virtual bool execute ();
 
 	Context* getNewContext () const;
 	virtual Context* getBeginContext ();

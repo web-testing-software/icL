@@ -22,7 +22,7 @@ bool Exists::isExecuable () const {
 	return m_prev->role () != Role::Alternative;
 }
 
-bool Exists::execute () const {
+bool Exists::execute () {
 
 }
 

@@ -16,7 +16,7 @@ bool Method::canBeAtEnd () const {
 	return true;
 }
 
-bool Method::execute () const {
+bool Method::execute () {
 
 }
 

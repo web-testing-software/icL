@@ -16,7 +16,7 @@ public:
 public:
 	bool checkPrev (const Context *context) const override;
 	bool isExecuable () const override;
-	bool execute () const override;
+	bool execute () override;
 
 	Context* getBeginContext () override;
 	Context* getEndContext () override;

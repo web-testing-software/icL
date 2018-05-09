@@ -16,7 +16,7 @@ bool Property::canBeAtEnd () const {
 	return true;
 }
 
-bool Property::execute () const {
+bool Property::execute () {
 
 }
 

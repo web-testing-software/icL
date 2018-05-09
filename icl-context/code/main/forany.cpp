@@ -19,7 +19,7 @@ bool ForAny::isExecuable () const {
 	return true;
 }
 
-bool ForAny::execute () const {
+bool ForAny::execute () {
 
 }
 

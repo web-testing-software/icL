@@ -19,7 +19,7 @@ bool Else::isExecuable () const {
 	return m_next->role () == Role::Code;
 }
 
-bool Else::execute () const {
+bool Else::execute () {
 
 }
 

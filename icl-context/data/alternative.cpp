@@ -20,7 +20,7 @@ bool Alternative::isExecuable () const {
 	return true;
 }
 
-bool Alternative::execute () const {
+bool Alternative::execute () {
 
 }
 

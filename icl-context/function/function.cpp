@@ -29,7 +29,7 @@ bool Function::isExecuable () const {
 	return true;
 }
 
-bool Function::execute () const {
+bool Function::execute () {
 
 }
 
