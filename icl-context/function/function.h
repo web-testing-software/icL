@@ -3,6 +3,8 @@
 
 #include <context.h>
 
+#include <icl-memory/state/memory.h>
+
 
 
 namespace vm::context::function {
@@ -12,7 +14,17 @@ class Function : public Context
 public:
 	Function ();
 
+protected:
+	bool exNewFunction ();
+	bool exCallFunction ();
+
+	bool checkParamsNum (memory::Function &func);
+	bool checkParamsTypes (memory::Function &func);
+	void sendWrongArgs ();
+
 private:
+	memory::Memory *mem;
+	QString name;
 	bool newFunction = false;
 
 	// Context interface

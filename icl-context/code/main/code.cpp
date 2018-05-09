@@ -5,6 +5,9 @@ namespace vm::context::code {
 Code::Code () = default;
 
 
+const memory::CodeFragment& Code::source () const {
+	return m_source;
+}
 
 bool Code::checkPrev (const Context *context) const {
 	return

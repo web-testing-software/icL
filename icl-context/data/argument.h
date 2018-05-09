@@ -12,6 +12,13 @@ class Argument : public Data
 public:
 	Argument ();
 
+	const QString& name() const;
+	memory::Type type() const;
+
+protected:
+	QString m_name;
+	memory::Type m_type;
+
 	// Context interface
 public:
 	bool checkPrev(const Context *context) const override;

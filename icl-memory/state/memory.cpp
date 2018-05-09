@@ -6,15 +6,15 @@ Memory::Memory () {
 
 }
 
-MemoryStateIt Memory::stateIt () const {
+MemoryStateIt &Memory::stateIt() {
 	return m_stateIt;
 }
 
-StackStateIt Memory::stackIt () const {
+StackStateIt &Memory::stackIt() {
 	return m_stackIt;
 }
 
-FunctionContainer Memory::functions () const {
+FunctionContainer &Memory::functions() {
 	return m_functions;
 }
 

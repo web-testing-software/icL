@@ -12,6 +12,8 @@ class Object : public Context
 public:
 	Object ();
 
+	memory::Type type();
+
 	// Context interface
 public:
 	bool checkPrev (const Context *context) const override;

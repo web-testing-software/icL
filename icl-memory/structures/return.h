@@ -1,6 +1,8 @@
 #ifndef RETURN_H
 #define RETURN_H
 
+#include "exception.h"
+
 #include <QVariant>
 
 
@@ -15,8 +17,7 @@ public:
 	QVariant returnValue;
 	QVariant consoleValue;
 
-	int error, line;
-	QString message;
+	Exception exception;
 };
 
 } // namespace

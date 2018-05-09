@@ -37,13 +37,15 @@ bool Context::hasValue () const {
 	return false;
 }
 
-Context *Context::runProperty(const QString &name) {
+Context * Context::runProperty (const QString &name) {
 	emit exception ({ -7, "No such property: " + name });
+
 	return nullptr;
 }
 
-Context *Context::runMethod(const QString &name) {
+Context * Context::runMethod (const QString &name) {
 	emit exception ({ -7, "No such method: " + name });
+
 	return nullptr;
 }
 
@@ -55,6 +57,10 @@ bool Context::isResultative () const {
 		m_role == Role::ForAny   ||
 		m_role == Role::Function ||
 		m_role == Role::Exists;
+}
+
+Context * Context::fromValue (QVariant &value) {
+	// TODO: Write this function where class object will be ready
 }
 
 Context * Context::getFirst () {
@@ -81,7 +87,7 @@ void Context::repeatException (memory::Exception exc) {
 	emit exception (std::move (exc) );
 }
 
-void Context::repeat (memory::Function run, std::function <void ( memory::Return& )> feedback) {
+void Context::repeat (memory::FunctionCall run, std::function <void ( memory::Return& )> feedback) {
 	emit interrupt (std::move (run), std::move (feedback) );
 }
 

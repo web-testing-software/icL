@@ -13,9 +13,9 @@ class Memory
 public:
 	Memory();
 
-	MemoryStateIt stateIt() const;
-	StackStateIt stackIt() const;
-	FunctionContainer functions() const;
+	MemoryStateIt& stateIt();
+	StackStateIt& stackIt();
+	FunctionContainer& functions();
 
 private:
 	MemoryStateIt m_stateIt;

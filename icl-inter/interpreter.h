@@ -15,10 +15,10 @@ public:
 	explicit Interpreter (QObject *parent = nullptr);
 
 signals:
-	void interrupt (memory::Function, std::function <void ( memory::Return& )> );
+	void interrupt (memory::FunctionCall, std::function <void ( memory::Return& )> );
 
 public slots:
-	void repeat (memory::Function run, std::function <void ( memory::Return& )> feedback);
+	void repeat (memory::FunctionCall run, std::function <void ( memory::Return& )> feedback);
 };
 
 } // namespace

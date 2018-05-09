@@ -12,7 +12,7 @@ class Exception
 public:
 	Exception (int code, const QString &message);
 
-	int code;
+	int code, line;
 	QString message;
 };
 

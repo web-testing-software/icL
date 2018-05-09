@@ -47,17 +47,19 @@ public:
 
 	bool isResultative () const;
 
+	static Context* fromValue (QVariant &value);
+
 protected:
 	Context* getFirst ();
 	Context* getLast ();
 
 signals:
 	void exception (memory::Exception exc) const;
-	void interrupt (memory::Function, std::function <void ( memory::Return& )> ) const;
+	void interrupt (memory::FunctionCall, std::function <void ( memory::Return& )> ) const;
 
 public slots:
 	void repeatException (memory::Exception exc);
-	void repeat (memory::Function run, std::function <void ( memory::Return& )> feedback);
+	void repeat (memory::FunctionCall run, std::function <void ( memory::Return& )> feedback);
 
 
 protected:

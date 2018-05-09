@@ -3,6 +3,8 @@
 
 #include <context.h>
 
+#include <icl-memory/structures/functioncontainer.h>
+
 
 
 namespace vm::context::code {
@@ -11,6 +13,11 @@ class Code : public Context
 {
 public:
 	Code ();
+
+	const memory::CodeFragment& source() const;
+
+protected:
+	memory::CodeFragment m_source;
 
 	// Context interface
 public:

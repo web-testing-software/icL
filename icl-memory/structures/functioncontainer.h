@@ -4,13 +4,19 @@
 #include <QLinkedList>
 #include <QMap>
 #include <QString>
+#include <QVector>
 
 #include "type.h"
 
+namespace vm::context {
+	class Context;
+}
 
 namespace vm::memory {
 
 // Additional Stuctures
+
+// Function header
 
 struct Argument {
 	QString name;
@@ -30,6 +36,20 @@ struct Function {
 };
 
 using FunctionMap = QMap <QString, Function>;
+
+// Function call
+
+struct Parameter {
+	QString name;
+	context::Context* object;
+};
+
+using ParamList = QVector<Parameter>;
+
+struct FunctionCall {
+	ParamList params;
+	CodeFragment source;
+};
 
 // Main Class
 

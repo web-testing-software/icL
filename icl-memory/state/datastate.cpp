@@ -46,31 +46,31 @@ bool DataState::contains (const QString &name) {
  * @return the type of variable (js types need aditional checking)
  */
 Type DataState::getType (const QString &name) {
-	Type ret = Type::NODATA;
+	Type ret = Type::Void;
 
 	switch (dataMap[name].type ()) {
 	case QVariant::Bool:
-		ret = Type::BOOLEAN;
+		ret = Type::Boolean;
 		break;
 
 	case QVariant::Int:
-		ret = Type::INT;
+		ret = Type::Int;
 		break;
 
 	case QVariant::Double:
-		ret = Type::DOUBLE;
+		ret = Type::Double;
 		break;
 
 	case QVariant::String:
-		ret = Type::STRING;
+		ret = Type::String;
 		break;
 
 	case QVariant::StringList:
-		ret = Type::LIST;
+		ret = Type::List;
 		break;
 
 	case QVariant::UserType:
-		ret = Type::ELEMENT;
+		ret = Type::Element;
 		break;
 
 	default:
@@ -90,27 +90,27 @@ bool DataState::checkType (const QString &name, Type &type) {
 	bool ret;
 
 	switch (type) {
-	case Type::BOOLEAN :
+	case Type::Boolean :
 		ret = dataMap [name].type () == QVariant::Bool;
 		break;
 
-	case Type::INT :
+	case Type::Int :
 		ret = dataMap [name].type () == QVariant::Int;
 		break;
 
-	case Type::DOUBLE :
+	case Type::Double :
 		ret = dataMap [name].type () == QVariant::Double;
 		break;
 
-	case Type::STRING :
+	case Type::String :
 		ret = dataMap [name].type () == QVariant::String;
 		break;
 
-	case Type::LIST :
+	case Type::List :
 		ret = dataMap [name].type () == QVariant::StringList;
 		break;
 
-	case Type::ELEMENT :
+	case Type::Element :
 		ret = dataMap [name].canConvert <WebElement> ();
 		break;
 
