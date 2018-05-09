@@ -39,17 +39,17 @@ Context * Function::getBeginContext () {
 
 Context * Function::getEndContext () {
 	if (newFunction) {
-		return getLast();
+		return getLast ();
 	}
 
 	Context *it = m_next;
 
-	if (it == nullptr || it->role() != Role::Object) {
+	if (it == nullptr || it->role () != Role::Object) {
 		return this;
 	}
 
-	while (it->next() != nullptr && it->role() == Role::Object) {
-		it = it->next();
+	while (it->next () != nullptr && it->role () == Role::Object) {
+		it = it->next ();
 	}
 
 	return it;
