@@ -24,11 +24,11 @@ bool Alternative::execute () const {
 
 }
 
-const Context *Alternative::getBeginContext() const {
+Context *Alternative::getBeginContext() {
 
 }
 
-const Context *Alternative::getEndContext() const {
+Context *Alternative::getEndContext() {
 
 }
 

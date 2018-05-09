@@ -26,7 +26,7 @@ bool Exists::execute () const {
 
 }
 
-const Context * Exists::getBeginContext () const {
+Context * Exists::getBeginContext () {
 	return this;
 }
 

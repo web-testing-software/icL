@@ -30,8 +30,8 @@ public:
 	virtual bool execute () const;
 
 	Context* getNewContext () const;
-	virtual const Context* getBeginContext () const;
-	virtual const Context* getEndContext () const;
+	virtual Context* getBeginContext ();
+	virtual Context* getEndContext ();
 
 	virtual bool hasValue () const;
 	virtual void runProperty (const QString &name);

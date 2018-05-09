@@ -23,11 +23,11 @@ bool Assign::execute () const {
 
 }
 
-const Context *Assign::getBeginContext() const {
+Context *Assign::getBeginContext() {
 
 }
 
-const Context *Assign::getEndContext() const {
+Context *Assign::getEndContext() {
 
 }
 
