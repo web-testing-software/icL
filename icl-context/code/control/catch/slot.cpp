@@ -46,11 +46,11 @@ bool Slot::execute () const {
 
 }
 
-Context *Slot::getBeginContext() {
+Context * Slot::getBeginContext () {
 
 }
 
-Context *Slot::getEndContext() {
+Context * Slot::getEndContext () {
 
 }
 

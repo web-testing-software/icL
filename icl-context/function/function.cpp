@@ -33,11 +33,11 @@ bool Function::execute () const {
 
 }
 
-Context *Function::getBeginContext() {
+Context * Function::getBeginContext () {
 
 }
 
-Context *Function::getEndContext() {
+Context * Function::getEndContext () {
 
 }
 

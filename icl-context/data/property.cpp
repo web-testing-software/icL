@@ -20,11 +20,11 @@ bool Property::execute () const {
 
 }
 
-Context *Property::getBeginContext() {
+Context * Property::getBeginContext () {
 
 }
 
-Context *Property::getEndContext() {
+Context * Property::getEndContext () {
 
 }
 

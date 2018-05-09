@@ -11,11 +11,11 @@ Context * Context::getNewContext () const {
 	return newContext;
 }
 
-Context *Context::getBeginContext() {
+Context * Context::getBeginContext () {
 	return nullptr;
 }
 
-Context *Context::getEndContext() {
+Context * Context::getEndContext () {
 	return nullptr;
 }
 

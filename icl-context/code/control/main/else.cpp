@@ -23,11 +23,11 @@ bool Else::execute () const {
 
 }
 
-Context *Else::getBeginContext() {
+Context * Else::getBeginContext () {
 
 }
 
-Context *Else::getEndContext() {
+Context * Else::getEndContext () {
 
 }
 

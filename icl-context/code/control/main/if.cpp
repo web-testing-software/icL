@@ -20,11 +20,11 @@ bool If::execute () const {
 
 }
 
-Context *If::getBeginContext() {
+Context * If::getBeginContext () {
 
 }
 
-Context *If::getEndContext() {
+Context * If::getEndContext () {
 
 }
 

@@ -30,7 +30,7 @@ Context * Exists::getBeginContext () {
 	return this;
 }
 
-Context * Exists::getEndContext () const {
+Context * Exists::getEndContext () {
 
 }
 

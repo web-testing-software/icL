@@ -20,11 +20,11 @@ bool Method::execute () const {
 
 }
 
-Context *Method::getBeginContext() {
+Context * Method::getBeginContext () {
 
 }
 
-Context *Method::getEndContext() {
+Context * Method::getEndContext () {
 
 }
 

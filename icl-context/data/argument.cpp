@@ -15,7 +15,7 @@ bool Argument::checkPrev (const Context *context) const {
 		context->role () == Role::Argument ||
 		(
 			context->role () == Role::Assign &&
-			context->prev () != nullptr		 &&
+			context->prev () != nullptr      &&
 			context->prev ()->role () == Role::Function
 		)
 		);
