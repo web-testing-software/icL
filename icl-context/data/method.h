@@ -18,8 +18,8 @@ public:
 	bool canBeAtEnd () const override;
 	bool execute () const override;
 
-	Context* getBeginContext () const override;
-	Context* getEndContext () const override;
+	const Context* getBeginContext () const override;
+	const Context* getEndContext () const override;
 };
 
 } // namespace

@@ -26,8 +26,8 @@ bool Exists::execute () const {
 
 }
 
-Context * Exists::getBeginContext () const {
-
+const Context * Exists::getBeginContext () const {
+	return this;
 }
 
 Context * Exists::getEndContext () const {

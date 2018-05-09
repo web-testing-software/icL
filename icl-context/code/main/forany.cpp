@@ -23,11 +23,11 @@ bool ForAny::execute () const {
 
 }
 
-Context * ForAny::getBeginContext () const {
+const Context *ForAny::getBeginContext() const {
 
 }
 
-Context * ForAny::getEndContext () const {
+const Context *ForAny::getEndContext() const {
 
 }
 
