@@ -13,7 +13,7 @@ bool FunctionContainer::contains (const QString &name) {
 }
 
 void FunctionContainer::registerFunction (const QString &name, Function &func) {
-	fmap.insert (name, func);
+	fmap[name] = func;
 }
 
 }

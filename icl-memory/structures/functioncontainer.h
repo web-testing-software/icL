@@ -20,7 +20,7 @@ struct Argument {
 using ArgList = QLinkedList<Argument>;
 
 struct CodeFragment {
-	int begin = 0, end = -1;
+	int begin = 0, end = -1, line = 0;
 	QString *source = nullptr;
 };
 
