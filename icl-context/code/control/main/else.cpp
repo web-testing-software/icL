@@ -24,11 +24,11 @@ bool Else::execute () const {
 }
 
 Context * Else::getBeginContext () {
-
+	return getFirst ();
 }
 
 Context * Else::getEndContext () {
-
+	return getLast ();
 }
 
 } // namespace

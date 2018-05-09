@@ -21,6 +21,9 @@ public:
 
 	Context* getBeginContext () override;
 	Context* getEndContext () override;
+
+private:
+	bool theLeftOperandIsOk = false;
 };
 
 } // namespace

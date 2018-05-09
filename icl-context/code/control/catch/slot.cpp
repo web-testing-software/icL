@@ -47,11 +47,11 @@ bool Slot::execute () const {
 }
 
 Context * Slot::getBeginContext () {
-
+	return getFirst ();
 }
 
 Context * Slot::getEndContext () {
-
+	return getLast ();
 }
 
 } // namespace

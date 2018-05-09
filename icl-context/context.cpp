@@ -53,6 +53,26 @@ bool Context::isResultative () const {
 		m_role == Role::Exists;
 }
 
+Context * Context::getFirst () {
+	Context *it = this;
+
+	while (it->m_prev != nullptr) {
+		it = it->m_prev;
+	}
+
+	return it;
+}
+
+Context * Context::getLast () {
+	Context *it = this;
+
+	while (it->m_next != nullptr) {
+		it = it->m_next;
+	}
+
+	return it;
+}
+
 void Context::repeatException (int code, const QString &message) {
 	emit exception (code, message);
 }

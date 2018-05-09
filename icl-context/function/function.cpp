@@ -34,11 +34,25 @@ bool Function::execute () const {
 }
 
 Context * Function::getBeginContext () {
-
+	return this;
 }
 
 Context * Function::getEndContext () {
+	if (newFunction) {
+		return getLast();
+	}
 
+	Context *it = m_next;
+
+	if (it == nullptr || it->role() != Role::Object) {
+		return this;
+	}
+
+	while (it->next() != nullptr && it->role() == Role::Object) {
+		it = it->next();
+	}
+
+	return it;
 }
 
 } // namespace

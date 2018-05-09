@@ -24,11 +24,11 @@ bool Assign::execute () const {
 }
 
 Context * Assign::getBeginContext () {
-
+	return this;
 }
 
 Context * Assign::getEndContext () {
-
+	return m_next;
 }
 
 } // namespace

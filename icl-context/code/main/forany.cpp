@@ -24,11 +24,11 @@ bool ForAny::execute () const {
 }
 
 Context * ForAny::getBeginContext () {
-
+	return this;
 }
 
 Context * ForAny::getEndContext () {
-
+	return this;
 }
 
 } // namespace

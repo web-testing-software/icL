@@ -21,11 +21,11 @@ bool Property::execute () const {
 }
 
 Context * Property::getBeginContext () {
-
+	return newContext != nullptr ? m_prev : this;
 }
 
 Context * Property::getEndContext () {
-
+	return this;
 }
 
 } // namespace

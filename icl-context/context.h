@@ -43,6 +43,10 @@ public:
 
 	bool isResultative () const;
 
+protected:
+	Context* getFirst ();
+	Context* getLast ();
+
 signals:
 	void exception (int code, const QString &message) const;
 	void interrupt (QString *, int, int, std::function <void ( QVariant& )> ) const;

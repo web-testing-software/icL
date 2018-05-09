@@ -25,11 +25,11 @@ bool Alternative::execute () const {
 }
 
 Context * Alternative::getBeginContext () {
-
+	return theLeftOperandIsOk ? this : m_prev;
 }
 
 Context * Alternative::getEndContext () {
-
+	return theLeftOperandIsOk ? m_next : this;
 }
 
 } // namespace

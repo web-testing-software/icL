@@ -21,11 +21,11 @@ bool Method::execute () const {
 }
 
 Context * Method::getBeginContext () {
-
+	return newContext != nullptr ? m_prev : this;
 }
 
 Context * Method::getEndContext () {
-
+	return this;
 }
 
 } // namespace

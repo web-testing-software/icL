@@ -30,4 +30,12 @@ bool Code::isExecuable () const {
 	return m_prev->role () == Role::Object;
 }
 
+Context * Code::getBeginContext () {
+	return this;
+}
+
+Context * Code::getEndContext () {
+	return this;
+}
+
 } // namespace

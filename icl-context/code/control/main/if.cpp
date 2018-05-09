@@ -21,11 +21,11 @@ bool If::execute () const {
 }
 
 Context * If::getBeginContext () {
-
+	return getFirst ();
 }
 
 Context * If::getEndContext () {
-
+	return getLast ();
 }
 
 } // namespace

@@ -31,7 +31,7 @@ Context * Exists::getBeginContext () {
 }
 
 Context * Exists::getEndContext () {
-
+	return this;
 }
 
 } // namespace
