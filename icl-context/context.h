@@ -38,8 +38,8 @@ public:
 	virtual Context* getEndContext ();
 
 	virtual bool hasValue () const;
-	virtual void runProperty (const QString &name);
-	virtual void runMethod (const QString &name);
+	virtual Context* runProperty (const QString &name);
+	virtual Context* runMethod (const QString &name);
 
 	Role role () const;
 	Context* prev () const;

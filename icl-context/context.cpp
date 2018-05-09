@@ -37,12 +37,14 @@ bool Context::hasValue () const {
 	return false;
 }
 
-void Context::runProperty (const QString &name) {
+Context *Context::runProperty(const QString &name) {
 	emit exception ({ -7, "No such property: " + name });
+	return nullptr;
 }
 
-void Context::runMethod (const QString &name) {
+Context *Context::runMethod(const QString &name) {
 	emit exception ({ -7, "No such method: " + name });
+	return nullptr;
 }
 
 bool Context::isResultative () const {
