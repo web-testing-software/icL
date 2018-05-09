@@ -1,5 +1,7 @@
 #include <utility>
 
+#include <utility>
+
 #include "context.h"
 
 
@@ -36,11 +38,11 @@ bool Context::hasValue () const {
 }
 
 void Context::runProperty (const QString &name) {
-	emit exception ({-7, "No such property: " + name});
+	emit exception ({ -7, "No such property: " + name });
 }
 
 void Context::runMethod (const QString &name) {
-	emit exception ({-7, "No such method: " + name});
+	emit exception ({ -7, "No such method: " + name });
 }
 
 bool Context::isResultative () const {
@@ -74,11 +76,11 @@ Context * Context::getLast () {
 }
 
 void Context::repeatException (memory::Exception exc) {
-	emit exception (exc);
+	emit exception (std::move (exc) );
 }
 
 void Context::repeat (memory::Function run, std::function <void ( memory::Return& )> feedback) {
-	emit interrupt (run, feedback);
+	emit interrupt (std::move (run), std::move (feedback) );
 }
 
 Context * Context::next () const {

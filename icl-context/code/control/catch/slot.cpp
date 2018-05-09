@@ -29,17 +29,16 @@ bool Slot::isExecuable () const {
 
 	Context *it = m_prev;
 
-	while (it && it->role () != Role::Exists) {
+	while (it != nullptr && it->role () != Role::Exists) {
 		it = it->prev ();
 	}
 
 	if (it == nullptr) {
-		emit exception ({-102, "Signal generator is missing"});
+		emit exception ({ -102, "Signal generator is missing" });
 		return false;
 	}
-	else {
-		return dynamic_cast <Exists *> ( it )->signal () == signal;
-	}
+
+	return dynamic_cast <Exists *> ( it )->signal () == signal;
 }
 
 bool Slot::execute () const {

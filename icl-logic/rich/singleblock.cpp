@@ -24,9 +24,9 @@ bool SingleBlock::checkIntegrity () {
  * @return the result of comparation
  */
 bool SingleBlock::calcResult () {
-	bool			value, ret = false;
+	bool value, ret = false;
 
-	value = value1.toBool();
+	value = value1.toBool ();
 
 	switch (operationType) {
 	case OperationType::NOT_NOT :

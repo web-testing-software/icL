@@ -29,11 +29,11 @@ bool IntBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator("[Int-Int]");
+			sendSignalWrongOperator ("[Int-Int]");
 		}
 	}
 	else {
-		sendSignalWrongPair();
+		sendSignalWrongPair ();
 	}
 
 	return result;

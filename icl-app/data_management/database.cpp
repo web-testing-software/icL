@@ -40,7 +40,7 @@ QList <QObject *> DataBase::top9 () {
 
 	top9_file.open (QFile::ReadOnly);
 	sql = top9_stream.readAll ();
-	if (!q.exec (sql)) {
+	if (!q.exec (sql) ) {
 		print_error (q);
 	}
 	else {
@@ -49,12 +49,12 @@ QList <QObject *> DataBase::top9 () {
 		const int	url_index	= 1;
 		const int	count_index = 2;
 
-		while (q.next ()) {
+		while (q.next () ) {
 			auto *dial_descript = new DialDescription ();
 
-			dial_descript->setCount (q.value (count_index).toInt ());
-			dial_descript->setUrl (q.value (url_index).toString ());
-			dial_descript->setTitle (q.value (name_index).toString ());
+			dial_descript->setCount (q.value (count_index).toInt () );
+			dial_descript->setUrl (q.value (url_index).toString () );
+			dial_descript->setTitle (q.value (name_index).toString () );
 
 			ret << dial_descript;
 		}
@@ -68,12 +68,12 @@ QList <QObject *> DataBase::top9 () {
  * @param url - the visited url
  * @param name - the page name
  */
-void DataBase::add_visit (const QString& url, const QString& name) {
+void DataBase::add_visit (const QString &url, const QString &name) {
 	QSqlQuery	q (db);
 	int			site_id;
 	QString		site_url;
 
-	if (!site_exp.exactMatch (url)) {
+	if (!site_exp.exactMatch (url) ) {
 		qWarning () << "The getted url is not valid" << url;
 		return;
 	}
@@ -81,12 +81,12 @@ void DataBase::add_visit (const QString& url, const QString& name) {
 	file_to_sql (":/select/site_id.sql");
 	q.prepare (sql);
 	q.addBindValue (site_url);
-	if (!q.exec ()) {
+	if (!q.exec () ) {
 		print_error (q);
 		return;
 	}
 
-	if (q.next ()) {
+	if (q.next () ) {
 		site_id = q.value (0).toInt ();
 	}
 	else {
@@ -94,7 +94,7 @@ void DataBase::add_visit (const QString& url, const QString& name) {
 		q.prepare (sql);
 		q.addBindValue (site_url);
 		q.addBindValue (name);
-		if (!q.exec ()) {
+		if (!q.exec () ) {
 			print_error (q);
 			return;
 		}
@@ -106,7 +106,7 @@ void DataBase::add_visit (const QString& url, const QString& name) {
 	q.prepare (sql);
 	q.addBindValue (site_id);
 	q.addBindValue (name);
-	if (!q.exec ()) {
+	if (!q.exec () ) {
 		print_error (q);
 		return;
 	}
@@ -120,14 +120,14 @@ QSqlError DataBase::init () {
 	db = QSqlDatabase::addDatabase ("QSQLITE");
 	db.setDatabaseName ("ic-lightning.db");
 
-	if (!db.open ()) {
+	if (!db.open () ) {
 		return db.lastError ();
 	}
 
 	QStringList tables = db.tables ();
 	QSqlQuery	q (db);
 
-	if (!tables.contains ("versions", Qt::CaseInsensitive)) {
+	if (!tables.contains ("versions", Qt::CaseInsensitive) ) {
 
 		QSqlError returned = transact_file (q, ":/init/create_v1.sql");
 		if (returned.type () != QSqlError::NoError) {
@@ -179,7 +179,7 @@ QSqlError DataBase::transact_file (QSqlQuery &q, const QString &filename) {
 	QStringList sqls = sql.trimmed ().split (';', QString::SkipEmptyParts);
 
 	for (const QString &str : sqls) {
-		if (!q.exec (str)) {
+		if (!q.exec (str) ) {
 			return q.lastError ();
 		}
 	}

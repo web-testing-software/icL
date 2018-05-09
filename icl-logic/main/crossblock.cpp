@@ -61,8 +61,8 @@ void CrossBlock::resetResultValue () {
 	block1->resetResultValue ();
 	block2->resetResultValue ();
 
-	value1getted = false;
-	value2getted = false;
+	value1getted	= false;
+	value2getted	= false;
 }
 
 }

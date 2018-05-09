@@ -15,8 +15,8 @@ class Helper : public QObject
 public:
 	explicit Helper (QObject *parent = nullptr);
 
-	Q_INVOKABLE QColor mix (QColor color1, QColor color2, qreal alpha);
-	Q_INVOKABLE QColor linearMix (QColor color1, QColor color2, qreal alpha);
+	Q_INVOKABLE QColor mix (const QColor& color1, const QColor& color2, qreal alpha);
+	Q_INVOKABLE QColor linearMix (const QColor& color1, const QColor& color2, qreal alpha);
 
 	Q_INVOKABLE QString cacheDir (const QString& profileName);
 	Q_INVOKABLE QString dataDir (const QString& profileName);

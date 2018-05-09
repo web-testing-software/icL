@@ -29,11 +29,11 @@ bool DoubleBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator("[Double-Double]");
+			sendSignalWrongOperator ("[Double-Double]");
 		}
 	}
 	else {
-		sendSignalWrongPair();
+		sendSignalWrongPair ();
 	}
 
 	return result;

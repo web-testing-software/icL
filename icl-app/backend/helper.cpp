@@ -17,12 +17,12 @@ Helper::Helper (QObject *parent) : QObject (parent) {
  * @param alpha - blend coefficient
  * @return blended color
  */
-QColor Helper::mix (QColor color1, QColor color2, qreal alpha) {
+QColor Helper::mix (const QColor &color1, const QColor &color2, qreal alpha) {
 	int r	= color1.red ();
 	int g	= color1.green ();
 	int b	= color1.blue ();
 
-	if (color1.lightness () > color2.lightness ()) {
+	if (color1.lightness () > color2.lightness () ) {
 		alpha = qSqrt (alpha);
 	}
 	else {
@@ -31,9 +31,9 @@ QColor Helper::mix (QColor color1, QColor color2, qreal alpha) {
 
 	QColor ret;
 
-	ret.setRgb (r + ( color2.red () - r ) * alpha,
-				g + ( color2.green () - g ) * alpha,
-				b + ( color2.blue () - b ) * alpha);
+	ret.setRgb (r + static_cast <int> ( ( color2.red () - r ) * alpha ),
+				g + static_cast <int> ( ( color2.green () - g ) * alpha ),
+				b + static_cast <int> ( ( color2.blue () - b ) * alpha ) );
 
 	return ret;
 }
@@ -45,15 +45,15 @@ QColor Helper::mix (QColor color1, QColor color2, qreal alpha) {
  * @param alpha - blend coefficient
  * @return blended color
  */
-QColor Helper::linearMix (QColor color1, QColor color2, qreal alpha) {
+QColor Helper::linearMix (const QColor &color1, const QColor &color2, qreal alpha) {
 	int		r	= color1.red ();
 	int		g	= color1.green ();
 	int		b	= color1.blue ();
 	QColor	ret;
 
-	ret.setRgb (r + ( color2.red () - r ) * alpha,
-				g + ( color2.green () - g ) * alpha,
-				b + ( color2.blue () - b ) * alpha);
+	ret.setRgb (r + static_cast <int> ( ( color2.red () - r ) * alpha ),
+				g + static_cast <int> ( ( color2.green () - g ) * alpha ),
+				b + static_cast <int> ( ( color2.blue () - b ) * alpha ) );
 
 	return ret;
 }
@@ -111,7 +111,7 @@ QUrl Helper::urlFromUserInput (const QString &input) {
 void Helper::makeDirIfNotExist (const QString &dirpath) {
 	QDir dir (dirpath);
 
-	if (!dir.exists ()) {
+	if (!dir.exists () ) {
 		dir.mkpath (".");
 	}
 }

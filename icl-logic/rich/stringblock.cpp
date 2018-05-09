@@ -29,11 +29,11 @@ bool StringBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator("[String-String]");
+			sendSignalWrongOperator ("[String-String]");
 		}
 	}
 	else {
-		sendSignalWrongPair();
+		sendSignalWrongPair ();
 	}
 
 	return result;

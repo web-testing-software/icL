@@ -29,11 +29,11 @@ bool BooleanBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator("[Bool-Bool]");
+			sendSignalWrongOperator ("[Bool-Bool]");
 		}
 	}
 	else {
-		sendSignalWrongPair();
+		sendSignalWrongPair ();
 	}
 
 	return result;

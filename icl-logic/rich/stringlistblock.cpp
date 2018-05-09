@@ -52,7 +52,7 @@ bool ListBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator("[List-List]");
+			sendSignalWrongOperator ("[List-List]");
 		}
 	}
 	else if (value2.type () == QVariant::String) {
@@ -69,11 +69,11 @@ bool ListBlock::calcResult () {
 
 		default :
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator("[List-String]");
+			sendSignalWrongOperator ("[List-String]");
 		}
 	}
 	else {
-		sendSignalWrongPair();
+		sendSignalWrongPair ();
 	}
 
 	return result;
