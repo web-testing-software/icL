@@ -4,6 +4,10 @@
 #include <QObject>
 #include <functional>
 
+#include <icl-memory/structures/exception.h>
+#include <icl-memory/structures/functioncontainer.h>
+#include <icl-memory/structures/return.h>
+
 namespace vm::context {
 
 enum class Role {
@@ -48,12 +52,12 @@ protected:
 	Context* getLast ();
 
 signals:
-	void exception (int code, const QString &message) const;
-	void interrupt (QString *, int, int, std::function <void ( QVariant& )> ) const;
+	void exception (memory::Exception exc) const;
+	void interrupt (memory::Function, std::function <void ( memory::Return& )> ) const;
 
 public slots:
-	void repeatException (int code, const QString &message);
-	void repeat (QString *str, int begin, int end, std::function <void ( QVariant& )> func);
+	void repeatException (memory::Exception exc);
+	void repeat (memory::Function run, std::function <void ( memory::Return& )> feedback);
 
 
 protected:

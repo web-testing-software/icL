@@ -36,11 +36,11 @@ bool Context::hasValue () const {
 }
 
 void Context::runProperty (const QString &name) {
-	emit exception (-7, "No such property: " + name);
+	emit exception ({-7, "No such property: " + name});
 }
 
 void Context::runMethod (const QString &name) {
-	emit exception (-7, "No such method: " + name);
+	emit exception ({-7, "No such method: " + name});
 }
 
 bool Context::isResultative () const {
@@ -73,12 +73,12 @@ Context * Context::getLast () {
 	return it;
 }
 
-void Context::repeatException (int code, const QString &message) {
-	emit exception (code, message);
+void Context::repeatException (memory::Exception exc) {
+	emit exception (exc);
 }
 
-void Context::repeat (QString *str, int begin, int end, std::function <void ( QVariant& )> func) {
-	emit interrupt (str, begin, end, std::move (func) );
+void Context::repeat (memory::Function run, std::function <void ( memory::Return& )> feedback) {
+	emit interrupt (run, feedback);
 }
 
 Context * Context::next () const {

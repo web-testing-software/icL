@@ -3,7 +3,9 @@
 
 #include <QObject>
 
-#include "icl-memory/state/memory.h"
+#include <icl-memory/state/memory.h>
+#include <icl-memory/structures/exception.h>
+#include <icl-memory/structures/return.h>
 
 
 namespace vm::logic {
@@ -41,8 +43,8 @@ public:
 	void setParent (LogicBlock *parent);
 
 signals:
-	void exception (int code, const QString &message);
-	void interrupt (QString*, int, int, std::function<void (QVariant&)>);
+	void exception (memory::Exception exc);
+	void interrupt (QString*, int, int, std::function<void (memory::Return&)>);
 
 protected:
 	virtual bool calcResult () = 0;

@@ -12,6 +12,9 @@ class Alternative : public Data
 public:
 	Alternative ();
 
+private:
+	bool theLeftOperandIsOk = false;
+
 	// Context interface
 public:
 	bool checkPrev (const Context *context) const override;
@@ -21,9 +24,6 @@ public:
 
 	Context* getBeginContext () override;
 	Context* getEndContext () override;
-
-private:
-	bool theLeftOperandIsOk = false;
 };
 
 } // namespace

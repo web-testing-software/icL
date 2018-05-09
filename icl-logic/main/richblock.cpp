@@ -91,11 +91,11 @@ QString RichBlock::pairData () {
 }
 
 void RichBlock::sendSignalWrongPair () {
-	emit exception (-201, "Wrong operarands pair: " + pairData () );
+	emit exception ({ -201, "Wrong operarands pair: " + pairData () });
 }
 
 void RichBlock::sendSignalWrongOperator (const QString &pair) {
-	emit exception (-202, "Wrong operator " + oTypeToString () + " for operands pair " + pair);
+	emit exception ({ -202, "Wrong operator " + oTypeToString () + " for operands pair " + pair });
 }
 
 }

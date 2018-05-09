@@ -26,7 +26,9 @@ HEADERS += \
     structures/webelement.h \
     structures/functioncontainer.h \
     structures/type.h \
-    state/memory.h
+    state/memory.h \
+    structures/return.h \
+    structures/exception.h
 
 SOURCES += \
 	state/datastate.cpp \
@@ -34,7 +36,9 @@ SOURCES += \
     state/stackstate.cpp \
     structures/webelement.cpp \
     structures/functioncontainer.cpp \
-    state/memory.cpp
+    state/memory.cpp \
+    structures/return.cpp \
+    structures/exception.cpp
 
 DISTFILES += \
     models/uml_style.iuml \

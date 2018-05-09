@@ -8,8 +8,8 @@ Interpreter::Interpreter (QObject *parent) : QObject (parent) {
 
 }
 
-void Interpreter::repeat (QString *str, int begin, int end, std::function <void ( QVariant& )> func) {
-	emit interrupt (str, begin, end, std::move(func));
+void Interpreter::repeat (memory::Function run, std::function <void ( memory::Return& )> feedback) {
+	emit interrupt (run, feedback);
 }
 
 } // namespace

@@ -34,7 +34,7 @@ bool Slot::isExecuable () const {
 	}
 
 	if (it == nullptr) {
-		emit exception (-102, "Signal generator is missing");
+		emit exception ({-102, "Signal generator is missing"});
 		return false;
 	}
 	else {
