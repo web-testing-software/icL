@@ -46,38 +46,7 @@ bool DataState::contains (const QString &name) {
  * @return the type of variable (js types need aditional checking)
  */
 Type DataState::getType (const QString &name) {
-	Type ret = Type::Void;
-
-	switch (dataMap[name].type ()) {
-	case QVariant::Bool:
-		ret = Type::Boolean;
-		break;
-
-	case QVariant::Int:
-		ret = Type::Int;
-		break;
-
-	case QVariant::Double:
-		ret = Type::Double;
-		break;
-
-	case QVariant::String:
-		ret = Type::String;
-		break;
-
-	case QVariant::StringList:
-		ret = Type::List;
-		break;
-
-	case QVariant::UserType:
-		ret = Type::Element;
-		break;
-
-	default:
-		break;
-	}
-
-	return ret;
+	return variantTypeToType(dataMap[name].type ());
 }
 
 /**

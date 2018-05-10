@@ -38,7 +38,8 @@ SOURCES += \
     structures/functioncontainer.cpp \
     state/memory.cpp \
     structures/return.cpp \
-    structures/exception.cpp
+    structures/exception.cpp \
+    structures/type.cpp
 
 DISTFILES += \
     models/uml_style.iuml \

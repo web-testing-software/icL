@@ -2,6 +2,7 @@
 #define TYPE_H
 
 #include <QString>
+#include <QVariant>
 
 
 namespace vm::memory {
@@ -16,41 +17,9 @@ enum class Type {
 	Element
 };
 
-QString typeToString (Type type) {
-	QString ret;
+QString typeToString (Type type);
 
-	switch (type) {
-	case Type::Void:
-		ret = "Void";
-		break;
-
-	case Type::Boolean:
-		ret = "Boolean";
-		break;
-
-	case Type::Int:
-		ret = "Int";
-		break;
-
-	case Type::Double:
-		ret = "Double";
-		break;
-
-	case Type::String:
-		ret = "String";
-		break;
-
-	case Type::List:
-		ret = "List";
-		break;
-
-	case Type::Element:
-		ret = "Element";
-		break;
-	}
-
-	return ret;
-}
+Type variantTypeToType (QVariant::Type type);
 
 }
 
