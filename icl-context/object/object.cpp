@@ -67,18 +67,22 @@ QVariant Object::getValue () const {
 		: container->getValue (varName);
 }
 
-void Object::setValue (QVariant &value) {
+void Object::setValue (const QVariant &value) {
 	if (readonly) {
 		// The Assign Block must check the readonly property
-		qWarning() << "Value changed for readonly object!!!";
+		qWarning () << "Value changed for readonly object!!!";
 	}
 
 	if (this->value == Value::R) {
 		rvalue = value;
 	}
 	else {
-		container->setValue(varName, value);
+		container->setValue (varName, value);
 	}
+}
+
+const QString& Object::getVarName () const {
+	return varName;
 };
 
 

@@ -22,7 +22,10 @@ public:
 	virtual bool isLValue () const;
 	virtual bool isLink () const;
 	virtual QVariant getValue () const;
-	virtual void setValue (QVariant &value);
+	virtual void setValue (const QVariant &value);
+
+
+	const QString& getVarName () const;
 
 protected:
 	// LValue

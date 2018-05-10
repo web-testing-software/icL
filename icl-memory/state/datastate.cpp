@@ -27,7 +27,7 @@ void DataState::addToStringList (const QString &name, QString &value) {
  * @param name - the name of variable
  * @param value - the value of variable
  */
-void DataState::setValue (const QString &name, QVariant &value) {
+void DataState::setValue (const QString &name, const QVariant &value) {
 	dataMap [name] = value;
 }
 
