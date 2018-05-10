@@ -28,11 +28,11 @@ HEADERS += \
     rich/intblock.h \
     rich/singleblock.h \
     rich/stringblock.h \
-    rich/stringlistblock.h \
     main/crossblock.h \
     main/logicblock.h \
     main/richblock.h \
-    cross/eqblock.h
+    cross/eqblock.h \
+    rich/listblock.h
 
 SOURCES += \
     cross/andblock.cpp \
@@ -44,11 +44,11 @@ SOURCES += \
     rich/intblock.cpp \
     rich/singleblock.cpp \
     rich/stringblock.cpp \
-    rich/stringlistblock.cpp \
     main/crossblock.cpp \
     main/logicblock.cpp \
     main/richblock.cpp \
-    cross/eqblock.cpp
+    cross/eqblock.cpp \
+    rich/listblock.cpp
 
 DISTFILES += \
     models/uml_style.iuml \

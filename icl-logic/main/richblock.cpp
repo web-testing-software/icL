@@ -1,10 +1,25 @@
 // #include "../../main/virtualmachine.h"
 #include "richblock.h"
 
+#include <rich/booleanblock.h>
+#include <rich/doubleblock.h>
+#include <rich/intblock.h>
+#include <rich/intblock.h>
+#include <rich/listblock.h>
+#include <rich/stringblock.h>
+
 namespace vm::logic {
 
 RichBlock::RichBlock (OperationType otype) {
 	operationType = otype;
+}
+
+RichBlock::RichBlock (RichBlock *block) {
+	operationType	= block->operationType;
+	value1			= block->value1;
+	value2			= block->value2;
+	frag1			= block->frag1;
+	frag2			= block->frag2;
 }
 
 RichBlock::~RichBlock () = default;
@@ -28,26 +43,6 @@ void RichBlock::giveCode (memory::CodeFragment frag) {
 	else if (frag2.source == nullptr) {
 		frag2 = frag;
 	}
-}
-
-/**
- * @brief RichBlock::isCross - it cann't contains blocks like child
- * @return false
- */
-bool RichBlock::isCross () {
-	return false;
-}
-
-/**
- * @brief RichBlock::checkIntegrity - if the both var/const are setted
- * @return bool
- */
-bool RichBlock::checkIntegrity () {
-	if (frag1.source == nullptr || frag2.source == nullptr) {
-		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
-		return false;
-	}
-	return true;
 }
 
 /**
@@ -96,6 +91,111 @@ void RichBlock::sendSignalWrongPair () {
 
 void RichBlock::sendSignalWrongOperator (const QString &pair) {
 	emit exception ({ -202, "Wrong operator " + oTypeToString () + " for operands pair " + pair });
+}
+
+
+
+/**
+ * @brief RichBlock::isCross - it cann't contains blocks like child
+ * @return false
+ */
+bool RichBlock::isCross () {
+	return false;
+}
+
+/**
+ * @brief RichBlock::checkIntegrity - if the both var/const are setted
+ * @return bool
+ */
+bool RichBlock::checkIntegrity () {
+	if (frag1.source == nullptr || frag2.source == nullptr) {
+		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
+		return false;
+	}
+	return true;
+}
+
+bool RichBlock::needCast () {
+	return !casted;
+}
+
+LogicBlock * RichBlock::castNow () {
+	LogicBlock *ret = nullptr;
+
+	switch (value1.type () ) {
+	case QVariant::Bool :
+		ret = new rich::BooleanBlock (this);
+		break;
+
+	case QVariant::Int :
+		ret = new rich::IntBlock (this);
+		break;
+
+	case QVariant::Double :
+		ret = new rich::DoubleBlock (this);
+		break;
+
+	case QVariant::String :
+		ret = new rich::StringBlock (this);
+		break;
+
+	case QVariant::StringList :
+		ret = new rich::ListBlock (this);
+		break;
+
+	default :
+		emit exception ({ -201,
+						  "The operands of comparing operators must be "
+						  "Boolean, Int, Double, String or List" });
+		break;
+	}
+
+	return ret;
+}
+
+bool RichBlock::step () {
+	if (!valu1getted) {
+		memory::FunctionCall fcall;
+
+		fcall.source = frag1;
+
+		emit interrupt (fcall,
+						[this] (memory::Return &ret) {
+						if (ret.exception.code != 0) {
+							emit this->exception (ret.exception);
+						}
+						else {
+							this->value1		= ret.consoleValue;
+							this->valu1getted	= true;
+						}
+				});
+
+		return false;
+	}
+	else if (!value2getted) {
+		memory::FunctionCall fcall;
+
+		fcall.source = frag2;
+
+		emit interrupt (fcall,
+						[this] (memory::Return &ret) {
+						if (ret.exception.code != 0) {
+							emit this->exception (ret.exception);
+						}
+						else {
+							this->value2		= ret.consoleValue;
+							this->value2getted	= true;
+						}
+				});
+
+		return false;
+	}
+	else {
+		result = calcResult();
+		resultCalculed = true;
+
+		return true;
+	}
 }
 
 }

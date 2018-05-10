@@ -47,7 +47,7 @@ public:
 
 signals:
 	void exception (memory::Exception exc);
-	void interrupt (QString*, int, int, std::function<void (memory::Return&)>);
+	void interrupt (memory::FunctionCall, std::function<void (memory::Return&)>);
 
 protected:
 	virtual bool calcResult () = 0;

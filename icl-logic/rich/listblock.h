@@ -1,9 +1,7 @@
-#ifndef STRINGLISTBLOCK_H
-#define STRINGLISTBLOCK_H
+#ifndef LISTBLOCK_H
+#define LISTBLOCK_H
 
 #include "../main/richblock.h"
-
-#include "stringblock.h"
 
 
 
@@ -12,10 +10,11 @@ namespace vm::logic::rich {
 /**
  * @brief The StringListBlock class - compare two <string>list vars/consts
  */
-class ListBlock : public StringBlock
+class ListBlock : public RichBlock
 {
 public:
 	ListBlock (OperationType otype);
+	ListBlock (RichBlock *block);
 
 	static bool check (const QString &value);
 
@@ -35,4 +34,4 @@ private:
 
 }
 
-#endif // STRINGLISTBLOCK_H
+#endif // LISTBLOCK_H

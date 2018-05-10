@@ -1,4 +1,4 @@
-#include "stringlistblock.h"
+#include "listblock.h"
 
 #include "icl-memory/state/datastate.h"
 
@@ -7,27 +7,14 @@
 namespace vm::logic::rich {
 
 ListBlock::ListBlock (OperationType otype)
-	: StringBlock (otype) {
-
+	: RichBlock (otype) {
+	casted = true;
 }
 
-/**
- * @brief StringListBlock::exp - a reg exp which describe the string list syntax
- */
-// QRegExp				StringListBlock::exp	= QRegExp ("\\[(\\s*\".*[^\\\\]\"(\\s*,\\s*\".*[^\\\\]\")*)?\\s*\\]");
-/**
- * @brief StringListBlock::strExp - s reg exp which describe a string in string list syntax
- */
-// QRegularExpression	StringListBlock::strExp = QRegularExpression ("\".*[^\\\\]\"");
+ListBlock::ListBlock (RichBlock *block)
+	: RichBlock (block) {
+}
 
-/**
- * @brief StringListBlock::check - if the string is a <string>list const
- * @param value - value to check
- * @return valid - true, invalid - false
- */
-// bool StringListBlock::check (const QString &value) {
-//	return exp.exactMatch (value);
-// }
 
 /**
  * @brief StringListBlock::calcResult - compare values

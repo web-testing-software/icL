@@ -4,8 +4,13 @@ namespace vm::logic::rich {
 
 DoubleBlock::DoubleBlock (OperationType otype) :
 	vm::logic::RichBlock (otype) {
-
+	casted = true;
 }
+
+DoubleBlock::DoubleBlock (RichBlock *block)
+	: RichBlock (block) {
+}
+
 
 /**
  * @brief DoubleBlock::calcResult - compare values

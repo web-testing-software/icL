@@ -14,6 +14,7 @@ class StringBlock : public RichBlock
 {
 public:
 	StringBlock (OperationType otype);
+	StringBlock (RichBlock *block);
 
 //	static bool check (const QString &value);
 

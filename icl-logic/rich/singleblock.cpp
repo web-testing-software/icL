@@ -4,7 +4,7 @@ namespace vm::logic::rich {
 
 SingleBlock::SingleBlock (OperationType otype)
 	: vm::logic::RichBlock (otype) {
-
+	casted = true;
 }
 
 /**

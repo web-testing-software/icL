@@ -4,8 +4,13 @@ namespace vm::logic::rich {
 
 StringBlock::StringBlock (OperationType otype) :
 	vm::logic::RichBlock (otype) {
-
+	casted = true;
 }
+
+StringBlock::StringBlock (RichBlock *block)
+	: RichBlock (block) {
+}
+
 
 /**
  * @brief StringBlock::calcResult - compare values

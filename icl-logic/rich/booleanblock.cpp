@@ -3,8 +3,12 @@
 namespace vm::logic::rich {
 
 BooleanBlock::BooleanBlock (OperationType otype) :
-	vm::logic::RichBlock (otype) {
+	RichBlock (otype) {
+	casted = true;
+}
 
+BooleanBlock::BooleanBlock (RichBlock *block)
+	: RichBlock (block) {
 }
 
 /**
