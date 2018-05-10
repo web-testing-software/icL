@@ -12,6 +12,10 @@ class Method : public Data
 public:
 	Method ();
 
+protected:
+	QString name;
+	Context *endContext;
+
 	// Context interface
 public:
 	bool checkPrev (const Context *context) const override;

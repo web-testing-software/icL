@@ -39,7 +39,7 @@ public:
 
 	virtual bool hasValue () const;
 	virtual Context* runProperty (const QString &name);
-	virtual Context* runMethod (const QString &name);
+	virtual Context* runMethod (const QString &name, memory::ParamList &params);
 
 	Role role () const;
 	Context* prev () const;

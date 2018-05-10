@@ -2,6 +2,8 @@
 
 #include <utility>
 
+#include <object/object.h>
+
 #include "context.h"
 
 
@@ -43,7 +45,8 @@ Context * Context::runProperty (const QString &name) {
 	return nullptr;
 }
 
-Context * Context::runMethod (const QString &name) {
+Context * Context::runMethod (const QString &name, memory::ParamList &params) {
+	Q_UNUSED(params);
 	emit exception ({ -7, "No such method: " + name });
 
 	return nullptr;
@@ -61,6 +64,9 @@ bool Context::isResultative () const {
 
 Context * Context::fromValue (QVariant &value) {
 	// TODO: Write this function where class object will be ready
+
+//	object::Object *ret;
+//	memory::Type type = memory::variantTypeToType(value.type());
 }
 
 Context * Context::getFirst () {

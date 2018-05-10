@@ -17,15 +17,42 @@ bool Method::canBeAtEnd () const {
 }
 
 bool Method::execute () {
+	memory::ParamList params;
+	int count = 0;
+	Context* it = m_next;
 
+	while (it != nullptr && it->role() == Role::Object) {
+		count++;
+		it = it->next();
+	}
+
+	endContext = it == nullptr ? getLast() : it->prev();
+
+	if (count > 0) {
+		params.reserve(count);
+		it = m_next;
+
+		while (it != nullptr && it->role() == Role::Object) {
+			memory::Parameter param;
+
+			param.object = it;
+			params.append(param);
+
+			it = it->next();
+		}
+	}
+
+	newContext = m_prev->runMethod(name, params);
+
+	return true;
 }
 
 Context * Method::getBeginContext () {
-	return newContext != nullptr ? m_prev : this;
+	return m_prev;
 }
 
 Context * Method::getEndContext () {
-	return this;
+	return endContext;
 }
 
 } // namespace
