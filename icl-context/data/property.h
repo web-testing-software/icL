@@ -12,6 +12,9 @@ class Property : public Data
 public:
 	Property ();
 
+protected:
+	QString name;
+
 	// Context interface
 public:
 	bool checkPrev (const Context *context) const override;

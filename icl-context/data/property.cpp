@@ -17,11 +17,13 @@ bool Property::canBeAtEnd () const {
 }
 
 bool Property::execute () {
+	newContext = m_prev->runProperty(name);
 
+	return true;
 }
 
 Context * Property::getBeginContext () {
-	return newContext != nullptr ? m_prev : this;
+	return m_prev;
 }
 
 Context * Property::getEndContext () {
