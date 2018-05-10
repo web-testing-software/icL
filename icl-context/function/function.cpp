@@ -36,6 +36,10 @@ bool Function::exNewFunction () {
 }
 
 bool Function::exCallFunction () {
+	if (functionExecuted) {
+		return true;
+	}
+
 	if (newFunction) {
 		emit exception ({ -404, QStringLiteral ("Function %1 not found").arg (name) });
 		return false;
@@ -73,7 +77,9 @@ bool Function::exCallFunction () {
 					}
 			});
 
-	return true;
+	functionExecuted = true;
+
+	return false;
 }
 
 bool Function::checkParamsNum (memory::Function &func) {

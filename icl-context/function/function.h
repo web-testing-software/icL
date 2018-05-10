@@ -25,7 +25,8 @@ protected:
 private:
 	memory::Memory *mem;
 	QString name;
-	bool newFunction = false;
+	bool newFunction		= false;
+	bool functionExecuted	= false;
 
 	// Context interface
 public:
