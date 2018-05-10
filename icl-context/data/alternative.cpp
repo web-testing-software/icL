@@ -21,7 +21,9 @@ bool Alternative::isExecuable () const {
 }
 
 bool Alternative::execute () {
+	theLeftOperandIsOk = m_prev->hasValue();
 
+	return true;
 }
 
 Context * Alternative::getBeginContext () {
