@@ -12,4 +12,8 @@ bool AndBlock::calcResult () {
 	return block1->getCachedResult () && block2->getCachedResult ();
 }
 
+bool AndBlock::canResultPreliminarily () {
+	return value1 == false;
+}
+
 }

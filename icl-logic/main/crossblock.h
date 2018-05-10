@@ -17,12 +17,6 @@ public:
 
 	bool canAcceptBlock ();
 	virtual void giveBlock (LogicBlock *block);
-	virtual void canResultPreliminarily() = 0;
-
-	// LogicBlock interface
-	bool isCross () override;
-	bool checkIntegrity () override;
-	void resetResultValue () override;
 
 protected:
 	LogicBlock *block1	= nullptr;
@@ -31,6 +25,17 @@ protected:
 		 value2			= false,
 		 value1getted	= false,
 		 value2getted	= false;
+
+
+	// LogicBlock interface
+public:
+	bool isCross () override;
+	bool checkIntegrity () override;
+	void resetResultValue () override;
+
+	bool needCast() override;
+	LogicBlock *castNow() override;
+	bool step() override;
 };
 
 }

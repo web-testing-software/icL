@@ -65,4 +65,45 @@ void CrossBlock::resetResultValue () {
 	value2getted	= false;
 }
 
+bool CrossBlock::needCast () {
+	return false;
+}
+
+LogicBlock * CrossBlock::castNow () {
+	return nullptr;
+}
+
+bool CrossBlock::step () {
+	if (!value1getted) {
+		if (block1->step () ) {
+			value1			= block1->getCachedResult ();
+			value1getted	= true;
+		}
+		else {
+			if (block1->needCast () ) {
+				LogicBlock *newBlock = block1->castNow ();
+
+				delete block1;
+				block1 = newBlock;
+			}
+		}
+
+		return false;
+	}
+	else if (!value2getted && !canResultPreliminarily () ) {
+		if (block2->step () ) {
+			value2			= block2->getCachedResult ();
+			value2getted	= true;
+		}
+
+		return false;
+	}
+	else {
+		result			= calcResult ();
+		resultCalculed	= true;
+
+		return true;
+	}
+}
+
 }

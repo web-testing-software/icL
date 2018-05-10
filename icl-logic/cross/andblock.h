@@ -17,6 +17,7 @@ public:
 
 	// LogicBlock interface
 	bool calcResult () override;
+	bool canResultPreliminarily() override;
 };
 
 }

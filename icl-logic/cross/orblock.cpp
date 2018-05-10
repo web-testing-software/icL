@@ -12,4 +12,8 @@ bool OrBlock::calcResult () {
 	return block1->getCachedResult () || block2->getCachedResult ();
 }
 
+bool OrBlock::canResultPreliminarily () {
+	return value1 == true;
+}
+
 }

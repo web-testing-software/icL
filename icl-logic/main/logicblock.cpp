@@ -43,6 +43,10 @@ void LogicBlock::invalidate () {
 	resultValue = ResultValue::WRONG_INPUT_DATA;
 }
 
+bool LogicBlock::canResultPreliminarily () {
+	return false;
+}
+
 /**
  * @brief LogicBlock::getParent - node parent getter
  * @return pointer to the parent node

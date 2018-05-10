@@ -37,7 +37,10 @@ public:
 	virtual void resetResultValue ();
 	void invalidate ();
 
+	virtual bool needCast () = 0;
+	virtual LogicBlock* castNow () = 0;
 	virtual bool step () = 0;
+	virtual bool canResultPreliminarily();
 
 	LogicBlock* getParent ();
 	void setParent (LogicBlock *parent);
