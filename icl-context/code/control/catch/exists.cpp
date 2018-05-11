@@ -1,6 +1,8 @@
 #include "exists.h"
 #include "slot.h"
 
+#include <icl-memory/structures/webelement.h>
+
 namespace vm::context::code::control::catch0 {
 
 Exists::Exists () {
@@ -54,6 +56,19 @@ bool Exists::execute () {
 
 						if (isOk) {
 							if (!this->isEmiter) {
+								if (ret.consoleValue.type() == QVariant::UserType) {
+									auto el = ret.consoleValue.value<memory::WebElement>();
+
+									if (el.count == 0) {
+										ret.consoleValue = QVariant{};
+									}
+								}
+								else {
+									if (ret.consoleValue.toBool() == false) {
+										ret.consoleValue = QVariant{};
+									}
+								}
+
 								this->newContext = fromValue (ret.consoleValue);
 							}
 						}
