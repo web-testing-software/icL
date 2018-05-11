@@ -2,8 +2,6 @@
 
 namespace vm::context::object {
 
-Double::Double () = default;
-
 
 
 Double::Double (memory::DataState *container, const QString &varName)
