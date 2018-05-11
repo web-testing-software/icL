@@ -10,7 +10,7 @@ namespace vm::context::data {
 class Method : public Data
 {
 public:
-	Method ();
+	Method (const QString &name);
 
 protected:
 	QString name;

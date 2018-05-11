@@ -2,7 +2,8 @@
 
 namespace vm::context::data {
 
-Method::Method () {
+Method::Method (const QString &name)
+	: name (name) {
 	m_role = Role::Method;
 };
 
@@ -17,32 +18,32 @@ bool Method::canBeAtEnd () const {
 }
 
 bool Method::execute () {
-	memory::ParamList params;
-	int count = 0;
-	Context* it = m_next;
+	memory::ParamList	params;
+	int					count	= 0;
+	Context				*it		= m_next;
 
-	while (it != nullptr && it->role() == Role::Object) {
+	while (it != nullptr && it->role () == Role::Object) {
 		count++;
-		it = it->next();
+		it = it->next ();
 	}
 
-	endContext = it == nullptr ? getLast() : it->prev();
+	endContext = it == nullptr ? getLast () : it->prev ();
 
 	if (count > 0) {
-		params.reserve(count);
+		params.reserve (count);
 		it = m_next;
 
-		while (it != nullptr && it->role() == Role::Object) {
+		while (it != nullptr && it->role () == Role::Object) {
 			memory::Parameter param;
 
 			param.object = it;
-			params.append(param);
+			params.append (param);
 
-			it = it->next();
+			it = it->next ();
 		}
 	}
 
-	newContext = m_prev->runMethod(name, params);
+	newContext = m_prev->runMethod (name, params);
 
 	return true;
 }
