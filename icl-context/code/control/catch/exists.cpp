@@ -56,17 +56,15 @@ bool Exists::execute () {
 
 						if (isOk) {
 							if (!this->isEmiter) {
-								if (ret.consoleValue.type() == QVariant::UserType) {
-									auto el = ret.consoleValue.value<memory::WebElement>();
+								if (ret.consoleValue.type () == QVariant::UserType) {
+									auto el = ret.consoleValue.value <memory::WebElement>();
 
 									if (el.count == 0) {
 										ret.consoleValue = QVariant{};
 									}
 								}
-								else {
-									if (ret.consoleValue.toBool() == false) {
-										ret.consoleValue = QVariant{};
-									}
+								else if (ret.consoleValue.toBool () == false) {
+									ret.consoleValue = QVariant{};
 								}
 
 								this->newContext = fromValue (ret.consoleValue);
