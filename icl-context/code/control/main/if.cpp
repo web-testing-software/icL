@@ -15,9 +15,16 @@
 namespace vm::context::code::control {
 
 
-If::If (const memory::CodeFragment &source)
-	: Control (source) {
+If::If (const memory::CodeFragment &source, bool expExe)
+	: Control (source)
+	, expressionExecuted (expExe) {
 	m_role = Role::If;
+}
+
+If::~If () {
+	if (exp != nullptr) {
+		delete exp;
+	}
 }
 
 void If::parseLogicExp () {

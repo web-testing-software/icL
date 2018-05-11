@@ -27,7 +27,8 @@ struct Operator {
 class If : public Control
 {
 public:
-	If (const memory::CodeFragment &source);
+	If (const memory::CodeFragment &source, bool expExe);
+	~If ();
 
 protected:
 	void parseLogicExp ();

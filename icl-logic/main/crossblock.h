@@ -14,6 +14,7 @@ class CrossBlock : public LogicBlock
 {
 public:
 	CrossBlock ();
+	~CrossBlock ();
 
 	bool canAcceptBlock ();
 	virtual void giveBlock (LogicBlock *block);

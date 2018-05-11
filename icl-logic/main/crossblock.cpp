@@ -8,6 +8,15 @@ CrossBlock::CrossBlock () = default;
  * @brief CrossBlock::canAcceptBlock - the block can accept a child if the first or the second child is null (the second is always null when the first is null)
  * @return bool
  */
+CrossBlock::~CrossBlock () {
+	if (block1 != nullptr) {
+		delete block1;
+	}
+	if (block2 != nullptr) {
+		delete block2;
+	}
+}
+
 bool CrossBlock::canAcceptBlock () {
 	return block2 == nullptr;
 }
