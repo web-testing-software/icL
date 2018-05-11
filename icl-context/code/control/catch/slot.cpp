@@ -3,7 +3,8 @@
 
 namespace vm::context::code::control::catch0 {
 
-Slot::Slot () {
+Slot::Slot ()
+	: Catch (memory::CodeFragment () ) {
 	m_role = Role::Slot;
 }
 
@@ -21,7 +22,7 @@ bool Slot::checkPrev (const Context *context) const {
 		(
 		(
 			context->role () == Role::Exists &&
-			context->prev () == nullptr		 &&
+			context->prev () == nullptr      &&
 			dynamic_cast <const Exists *> ( context )->getIsEmiter ()
 		) ||
 		(
