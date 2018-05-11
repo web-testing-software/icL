@@ -1,6 +1,13 @@
 #include <utility>
 
+#include <object/boolean.h>
+#include <object/double.h>
+#include <object/element.h>
+#include <object/int.h>
+#include <object/list.h>
 #include <object/object.h>
+#include <object/string.h>
+#include <object/void.h>
 
 #include <code/control/catch/exists.h>
 
@@ -66,10 +73,40 @@ bool Context::isResultative () const {
 }
 
 Context * Context::fromValue (QVariant &value) {
-	// TODO: Write this function where class object will be ready
+	object::Object	*ret;
+	memory::Type	type = memory::variantTypeToType (value.type () );
 
-//	object::Object *ret;
-//	memory::Type type = memory::variantTypeToType(value.type());
+	switch (type) {
+	case memory::Type::Boolean :
+		ret = new object::Boolean{ value, true };
+		break;
+
+	case memory::Type::Int :
+		ret = new object::Int{ value, true };
+		break;
+
+	case memory::Type::Double :
+		ret = new object::Double{ value, true };
+		break;
+
+	case memory::Type::String :
+		ret = new object::String{ value, true };
+		break;
+
+	case memory::Type::List :
+		ret = new object::List{ value, true };
+		break;
+
+	case memory::Type::Element :
+		ret = new object::Element{ value, true };
+		break;
+
+	case memory::Type::Void :
+		ret = new object::Void;
+		break;
+	}
+
+	return ret;
 }
 
 Context * Context::getFirst () {
