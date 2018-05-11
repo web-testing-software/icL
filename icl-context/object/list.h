@@ -10,7 +10,9 @@ namespace vm::context::object {
 class List : public Object
 {
 public:
-	List ();
+	List (memory::DataState *container, const QString &varName);
+	List (const QVariant &rvalue, bool readonly = false);
+	List (const Object *const object);
 };
 
 } // namespace

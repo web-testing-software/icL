@@ -2,7 +2,6 @@
 
 namespace vm::context::object {
 
-Int::Int () = default;
 
 
 
