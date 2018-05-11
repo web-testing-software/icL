@@ -10,7 +10,7 @@ namespace vm::context::data {
 class Argument : public Data
 {
 public:
-	Argument ();
+	Argument (const QString &name, memory::Type type);
 
 	const QString& name() const;
 	memory::Type type() const;

@@ -2,7 +2,9 @@
 
 namespace vm::context::data {
 
-Argument::Argument () {
+Argument::Argument (const QString &name, memory::Type type)
+	: m_name (name)
+	, m_type (type) {
 	m_role = Role::Argument;
 }
 
