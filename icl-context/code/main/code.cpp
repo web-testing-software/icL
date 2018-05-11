@@ -33,6 +33,26 @@ bool Code::isExecuable () const {
 	return m_prev->role () == Role::Object;
 }
 
+bool Code::execute () {
+	if (executed) {
+		return true;
+	}
+	else {
+		memory::FunctionCall fcall;
+
+		fcall.source = m_source;
+
+		emit interrupt (fcall, [this] (memory::Return &ret) {
+						if (ret.exception.code != 0) {
+							emit this->exception (ret.exception);
+						}
+				});
+
+		executed = true;
+		return false;
+	}
+}
+
 Context * Code::getBeginContext () {
 	return this;
 }
