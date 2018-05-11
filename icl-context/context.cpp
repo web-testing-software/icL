@@ -1,7 +1,5 @@
 #include <utility>
 
-#include <utility>
-
 #include <object/object.h>
 
 #include "context.h"
