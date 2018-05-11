@@ -1,5 +1,5 @@
-#ifndef TRY_H
-#define TRY_H
+#ifndef EXISTS_H
+#define EXISTS_H
 
 #include "catch.h"
 
@@ -28,4 +28,4 @@ public:
 };
 
 } // namespace
-#endif // TRY_H
+#endif // EXISTS_H

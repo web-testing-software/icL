@@ -1,5 +1,5 @@
-#ifndef ISOLATED_H
-#define ISOLATED_H
+#ifndef FORANY_H
+#define FORANY_H
 
 #include "code.h"
 
@@ -24,4 +24,4 @@ public:
 
 } // namespace
 
-#endif // ISOLATED_H
+#endif // FORANY_H

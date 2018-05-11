@@ -1,5 +1,5 @@
-#ifndef HANDLER_H
-#define HANDLER_H
+#ifndef SLOT_H
+#define SLOT_H
 
 #include "catch.h"
 
@@ -27,4 +27,4 @@ public:
 
 } // namespace
 
-#endif // HANDLER_H
+#endif // SLOT_H
