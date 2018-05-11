@@ -2,7 +2,8 @@
 
 namespace vm::context::code {
 
-ForAny::ForAny () {
+ForAny::ForAny (const memory::CodeFragment &source)
+	: Code (source) {
 	m_role = Role::ForAny;
 };
 
@@ -29,7 +30,7 @@ bool ForAny::execute () {
 						emit this->exception (ret.exception);
 					}
 					else {
-						newContext = fromValue(ret.consoleValue);
+						newContext = fromValue (ret.consoleValue);
 					}
 			});
 

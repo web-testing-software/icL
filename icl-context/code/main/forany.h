@@ -10,7 +10,7 @@ namespace vm::context::code {
 class ForAny : public Code
 {
 public:
-	ForAny ();
+	ForAny (const memory::CodeFragment &source);
 
 	// Context interface
 public:
