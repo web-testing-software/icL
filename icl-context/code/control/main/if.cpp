@@ -14,7 +14,9 @@
 
 namespace vm::context::code::control {
 
-If::If () {
+
+If::If (const memory::CodeFragment &source)
+	: Control (source) {
 	m_role = Role::If;
 }
 
