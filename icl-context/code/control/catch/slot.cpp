@@ -27,15 +27,11 @@ bool Slot::checkPrev (const Context *context) const {
 }
 
 bool Slot::isExecuable () const {
-	if (signal == 0) {
-		return true;
-	}
-
-	return gettedSignal == signal;
+	return signal == 0 || gettedSignal == signal;
 }
 
 bool Slot::execute () {
-
+	return m_next->execute();
 }
 
 Context * Slot::getBeginContext () {
