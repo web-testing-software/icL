@@ -4,10 +4,6 @@
 
 namespace vm::context::object {
 
-// Object::Object () {
-//	m_role = Role::Object;
-// }
-
 Object::Object (memory::DataState *container, const QString &varName)
 	: container (container)
 	, varName (varName)

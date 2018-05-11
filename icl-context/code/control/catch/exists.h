@@ -12,7 +12,10 @@ class Exists : public Catch
 public:
 	Exists ();
 
+	bool getIsEmiter() const;
+
 private:
+	bool isEmiter = false;
 
 	// Context interface
 public:

@@ -19,7 +19,11 @@ bool Slot::checkPrev (const Context *context) const {
 	return
 		context != nullptr &&
 		(
-		context->role () == Role::Exists ||
+		(
+			context->role () == Role::Exists &&
+			context->prev () == nullptr		 &&
+			dynamic_cast <const Exists *> ( context )->getIsEmiter ()
+		) ||
 		(
 			context->role () == Role::Code &&
 			context->prev () != nullptr    &&
@@ -33,7 +37,7 @@ bool Slot::isExecuable () const {
 }
 
 bool Slot::execute () {
-	return m_next->execute();
+	return m_next->execute ();
 }
 
 Context * Slot::getBeginContext () {

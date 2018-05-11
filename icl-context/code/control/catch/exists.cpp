@@ -5,6 +5,10 @@ namespace vm::context::code::control::catch0 {
 
 Exists::Exists () {
 	m_role = Role::Exists;
+}
+
+bool Exists::getIsEmiter () const {
+	return isEmiter;
 };
 
 bool Exists::checkPrev (const Context *context) const {
@@ -50,6 +54,9 @@ bool Exists::execute () {
 
 						if (isOk) {
 							this->newContext = fromValue (ret.consoleValue);
+						}
+						else if (this->isEmiter || ret.exception.code <= -100) {
+							emit this->exception (ret.exception);
 						}
 				});
 
