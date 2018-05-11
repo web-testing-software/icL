@@ -82,7 +82,7 @@ QString RichBlock::oTypeToString () {
  * @return a string, which contains the type of the first and second values
  */
 QString RichBlock::pairData () {
-	return "[" + typeToString (value1.type () ) + "-" + typeToString (value2.type () ) + "]";
+	return "[" % typeToString (value1.type () ) % "-" % typeToString (value2.type () ) % "]";
 }
 
 void RichBlock::sendSignalWrongPair () {
@@ -90,7 +90,7 @@ void RichBlock::sendSignalWrongPair () {
 }
 
 void RichBlock::sendSignalWrongOperator (const QString &pair) {
-	emit exception ({ -202, "Wrong operator " + oTypeToString () + " for operands pair " + pair });
+	emit exception ({ -202, "Wrong operator " % oTypeToString () % " for operands pair " % pair });
 }
 
 

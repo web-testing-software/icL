@@ -64,7 +64,7 @@ QColor Helper::linearMix (const QColor &color1, const QColor &color2, qreal alph
  * @return absolute path
  */
 QString Helper::cacheDir (const QString &profileName) {
-	QString dirpath = m_cache_dir + "/" + profileName;
+	QString dirpath = m_cache_dir % "/" % profileName;
 
 	makeDirIfNotExist (dirpath);
 	return dirpath;
@@ -77,7 +77,7 @@ QString Helper::cacheDir (const QString &profileName) {
  * @return absolute path
  */
 QString Helper::dataDir (const QString &profileName) {
-	QString dirpath = m_data_dir + "/" + profileName;
+	QString dirpath = m_data_dir % "/" % profileName;
 
 	makeDirIfNotExist (dirpath);
 	return dirpath;
@@ -89,7 +89,7 @@ QString Helper::dataDir (const QString &profileName) {
  * @return absolute path
  */
 QString Helper::profileDir (const QString &profileName) {
-	QString dirpath = m_config_dir + "/profile/" + profileName;
+	QString dirpath = m_config_dir % "/profile/" % profileName;
 
 	makeDirIfNotExist (dirpath);
 	return dirpath;
