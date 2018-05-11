@@ -118,14 +118,14 @@ logic::LogicBlock * If::parseOnce (memory::CodeFragment &fn) {
 			return returnRank1 (op, fn);
 		}
 		else if (op.rank == 2) {
-			return returnRank2(op, fn);
+			return returnRank2 (op, fn);
 		}
-		else if (op.rank == 3){
-			return returnRank3(op, fn);
+		else if (op.rank == 3) {
+			return returnRank3 (op, fn);
 		}
 		else {
 			// Never triggered
-			qDebug() << "Fatal error in If.parseOnce";
+			qDebug () << "Fatal error in If.parseOnce";
 			return nullptr;
 		}
 	}
@@ -291,8 +291,8 @@ logic::LogicBlock * If::returnRank2 (Operator &op, memory::CodeFragment &fn) {
 
 	auto *block = new logic::RichBlock{ type };
 
-	block->giveCode(newfn1);
-	block->giveCode(newfn2);
+	block->giveCode (newfn1);
+	block->giveCode (newfn2);
 
 	return block;
 }
@@ -309,29 +309,29 @@ logic::LogicBlock * If::returnRank3 (Operator &op, memory::CodeFragment &fn) {
 	logic::CrossBlock *block;
 
 	switch (op.type) {
-	case OperatorType::And:
+	case OperatorType::And :
 		block = new logic::cross::AndBlock;
 		break;
 
-	case OperatorType::Or:
+	case OperatorType::Or :
 		block = new logic::cross::OrBlock;
 		break;
 
-	case OperatorType::XOr:
+	case OperatorType::XOr :
 		block = new logic::cross::XOrBlock;
 		break;
 
-	case OperatorType::Equiv:
+	case OperatorType::Equiv :
 		block = new logic::cross::EqBlock;
 		break;
 
-	default:
+	default :
 		// Never triggered, elude clang warning
 		block = nullptr;
 	}
 
-	block->giveBlock(parseOnce(newfn1));
-	block->giveBlock(parseOnce(newfn2));
+	block->giveBlock (parseOnce (newfn1) );
+	block->giveBlock (parseOnce (newfn2) );
 
 	return block;
 };
@@ -358,9 +358,7 @@ bool If::execute () {
 	}
 	else {
 		// The next always will be a code block
-		if (m_next->execute () ) {
-			return true;
-		}
+		return m_next->execute ();
 	}
 
 	return false;
