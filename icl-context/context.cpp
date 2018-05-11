@@ -2,6 +2,8 @@
 
 #include <object/object.h>
 
+#include <code/control/catch/exists.h>
+
 #include "context.h"
 
 
@@ -44,7 +46,7 @@ Context * Context::runProperty (const QString &name) {
 }
 
 Context * Context::runMethod (const QString &name, memory::ParamList &params) {
-	Q_UNUSED(params);
+	Q_UNUSED (params);
 	emit exception ({ -7, "No such method: " + name });
 
 	return nullptr;
@@ -57,7 +59,10 @@ bool Context::isResultative () const {
 		m_role == Role::Method   ||
 		m_role == Role::ForAny   ||
 		m_role == Role::Function ||
-		m_role == Role::Exists;
+		(
+		m_role == Role::Exists &&
+		!dynamic_cast <const code::control::catch0::Exists *> ( this )->getIsEmiter ()
+		);
 }
 
 Context * Context::fromValue (QVariant &value) {
