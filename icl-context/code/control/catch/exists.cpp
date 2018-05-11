@@ -5,7 +5,10 @@
 
 namespace vm::context::code::control::catch0 {
 
-Exists::Exists () {
+
+Exists::Exists (const memory::CodeFragment &source, bool isEmiter)
+	: Catch (source)
+	, isEmiter (isEmiter) {
 	m_role = Role::Exists;
 }
 

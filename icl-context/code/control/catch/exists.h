@@ -10,7 +10,7 @@ namespace vm::context::code::control::catch0 {
 class Exists : public Catch
 {
 public:
-	Exists ();
+	Exists (const memory::CodeFragment &source, bool isEmiter);
 
 	bool getIsEmiter() const;
 
