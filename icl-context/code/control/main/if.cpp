@@ -10,6 +10,8 @@
 #include <icl-logic/cross/orblock.h>
 #include <icl-logic/cross/xorblock.h>
 
+#include <QDebug>
+
 namespace vm::context::code::control {
 
 If::If () {
@@ -116,7 +118,15 @@ logic::LogicBlock * If::parseOnce (memory::CodeFragment &fn) {
 			return returnRank1 (op, fn);
 		}
 		else if (op.rank == 2) {
-			//
+			return returnRank2(op, fn);
+		}
+		else if (op.rank == 3){
+			return returnRank3(op, fn);
+		}
+		else {
+			// Never triggered
+			qDebug() << "Fatal error in If.parseOnce";
+			return nullptr;
 		}
 	}
 }
