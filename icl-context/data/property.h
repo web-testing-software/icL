@@ -10,7 +10,7 @@ namespace vm::context::data {
 class Property : public Data
 {
 public:
-	Property ();
+	Property (const QString &name);
 
 protected:
 	QString name;

@@ -2,7 +2,8 @@
 
 namespace vm::context::data {
 
-Property::Property () {
+Property::Property (const QString &name)
+	: name (name) {
 	m_role = Role::Property;
 };
 
@@ -17,7 +18,7 @@ bool Property::canBeAtEnd () const {
 }
 
 bool Property::execute () {
-	newContext = m_prev->runProperty(name);
+	newContext = m_prev->runProperty (name);
 
 	return true;
 }
