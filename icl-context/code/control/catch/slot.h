@@ -12,7 +12,7 @@ class Slot : public Catch
 public:
 	Slot ();
 
-	void giveSignal (int code);
+	bool giveSignal(int code);
 
 protected:
 	int signal;

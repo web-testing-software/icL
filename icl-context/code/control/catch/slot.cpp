@@ -7,8 +7,10 @@ Slot::Slot () {
 	m_role = Role::Slot;
 }
 
-void Slot::giveSignal (int code) {
+bool Slot::giveSignal (int code) {
 	gettedSignal = code;
+
+	return signal == 0 || code == signal;
 };
 
 

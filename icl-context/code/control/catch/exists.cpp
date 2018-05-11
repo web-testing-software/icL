@@ -29,21 +29,28 @@ bool Exists::execute () {
 		fcall.source = m_source;
 
 		emit interrupt (fcall, [this] (memory::Return &ret) {
+						bool isOk = false;
+
 						if (ret.exception.code != 0) {
 							Context *it = this->m_next;
 
 							while (it != nullptr) {
-								if (it->role() == Role::Slot) {
-									auto *slot = dynamic_cast<Slot*>(it);
+								if (it->role () == Role::Slot) {
+									auto *slot = dynamic_cast <Slot *> ( it );
 
-									slot->giveSignal(ret.exception.code);
+									isOk |= slot->giveSignal (ret.exception.code);
 								}
 
-								it = it->next();
+								it = it->next ();
 							}
 						}
+						else {
+							isOk = true;
+						}
 
-						this->newContext = fromValue(ret.consoleValue);
+						if (isOk) {
+							this->newContext = fromValue (ret.consoleValue);
+						}
 				});
 
 		executed = true;
