@@ -2,7 +2,8 @@
 
 namespace vm::context::code::control {
 
-Else::Else () {
+Else::Else ()
+	: Control (memory::CodeFragment () ) {
 	m_role = Role::Else;
 };
 
@@ -20,7 +21,7 @@ bool Else::isExecuable () const {
 }
 
 bool Else::execute () {
-	return m_next->execute();
+	return m_next->execute ();
 }
 
 Context * Else::getBeginContext () {
