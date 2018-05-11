@@ -2,8 +2,10 @@
 
 namespace vm::context::code {
 
-Code::Code () = default;
-
+Code::Code (const memory::CodeFragment &source)
+	: m_source (source) {
+	m_role = Role::Code;
+}
 
 const memory::CodeFragment& Code::source () const {
 	return m_source;

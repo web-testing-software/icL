@@ -12,7 +12,7 @@ namespace vm::context::code {
 class Code : public Context
 {
 public:
-	Code ();
+	Code (const memory::CodeFragment &source);
 
 	const memory::CodeFragment& source () const;
 
