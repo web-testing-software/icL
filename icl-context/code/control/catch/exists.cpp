@@ -6,10 +6,6 @@ Exists::Exists () {
 	m_role = Role::Exists;
 };
 
-int Exists::signal () const {
-	return m_signal;
-}
-
 bool Exists::checkPrev (const Context *context) const {
 	return context == nullptr ||
 		   context->role () == Role::Alternative ||
@@ -23,7 +19,7 @@ bool Exists::isExecuable () const {
 }
 
 bool Exists::execute () {
-
+	if ()
 }
 
 Context * Exists::getBeginContext () {

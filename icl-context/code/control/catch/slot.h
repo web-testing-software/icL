@@ -12,8 +12,11 @@ class Slot : public Catch
 public:
 	Slot ();
 
+	void giveSignal (int code);
+
 protected:
 	int signal;
+	int gettedSignal;
 
 	// Context interface
 public:

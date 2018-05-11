@@ -5,6 +5,10 @@ namespace vm::context::code::control::catch0 {
 
 Slot::Slot () {
 	m_role = Role::Slot;
+}
+
+void Slot::giveSignal (int code) {
+	gettedSignal = code;
 };
 
 
@@ -27,8 +31,7 @@ bool Slot::isExecuable () const {
 		return true;
 	}
 
-//	return  == signal;
-	// TODO: Make it later
+	return gettedSignal == signal;
 }
 
 bool Slot::execute () {

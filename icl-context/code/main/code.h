@@ -14,9 +14,10 @@ class Code : public Context
 public:
 	Code ();
 
-	const memory::CodeFragment& source() const;
+	const memory::CodeFragment& source () const;
 
 protected:
+	bool executed;
 	memory::CodeFragment m_source;
 
 	// Context interface

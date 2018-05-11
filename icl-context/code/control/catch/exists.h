@@ -12,10 +12,7 @@ class Exists : public Catch
 public:
 	Exists ();
 
-	int signal () const;
-
 private:
-	int m_signal = 0;
 
 	// Context interface
 public:
