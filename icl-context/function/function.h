@@ -12,7 +12,7 @@ namespace vm::context::function {
 class Function : public Context
 {
 public:
-	Function ();
+	Function (memory::Memory *mem, const QString &name);
 
 protected:
 	bool exNewFunction ();

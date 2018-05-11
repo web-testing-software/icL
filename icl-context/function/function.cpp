@@ -8,8 +8,11 @@
 
 namespace vm::context::function {
 
-Function::Function () {
-	m_role = Role::Function;
+Function::Function (memory::Memory *mem, const QString &name)
+	: mem (mem)
+	, name (name) {
+	m_role		= Role::Function;
+	newFunction = mem->functions ().contains (name);
 }
 
 bool Function::exNewFunction () {
