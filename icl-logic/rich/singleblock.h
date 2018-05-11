@@ -15,12 +15,14 @@ class SingleBlock : public RichBlock
 public:
 	SingleBlock(OperationType otype);
 
+protected:
+	bool calcResult() override;
+
 	// LogicBlock interface
 public:
 	bool checkIntegrity() override;
-
-protected:
-	bool calcResult() override;
+	bool needCast() override;
+	bool canResultPreliminarily() override;
 };
 
 }

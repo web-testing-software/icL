@@ -172,7 +172,7 @@ bool RichBlock::step () {
 
 		return false;
 	}
-	else if (!value2getted) {
+	else if (!value2getted && !canResultPreliminarily()) {
 		memory::FunctionCall fcall;
 
 		fcall.source = frag2;
