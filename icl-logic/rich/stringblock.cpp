@@ -24,11 +24,11 @@ bool StringBlock::calcResult () {
 		QString var2 = value2.toString ();
 
 		switch (operationType) {
-		case OperationType::EQUAL :
+		case OperationType::Equal :
 			result = ( var1 == var2 );
 			break;
 
-		case OperationType::NOT_EQUAL :
+		case OperationType::NotEqual :
 			result = ( var1 != var2 );
 			break;
 

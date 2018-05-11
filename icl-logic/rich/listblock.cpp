@@ -29,11 +29,11 @@ bool ListBlock::calcResult () {
 		QStringList var2 = value2.toStringList ();
 
 		switch (operationType) {
-		case OperationType::EQUAL :
+		case OperationType::Equal :
 			result = operatorEqual (var1, var2);
 			break;
 
-		case OperationType::NOT_EQUAL :
+		case OperationType::NotEqual :
 			result = !operatorEqual (var1, var2);
 			break;
 
@@ -46,11 +46,11 @@ bool ListBlock::calcResult () {
 		QString var2 = value2.toString ();
 
 		switch (operationType) {
-		case OperationType::CONTAINS :
+		case OperationType::Contains :
 			result = var1.contains (var2);
 			break;
 
-		case OperationType::CONTAINS_FRAGMENT :
+		case OperationType::ContainsFragment :
 			result = containsFragment (var1, var2);
 			break;
 

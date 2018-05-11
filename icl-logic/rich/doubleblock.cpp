@@ -24,11 +24,11 @@ bool DoubleBlock::calcResult () {
 		double var2 = value2.toDouble ();
 
 		switch (operationType) {
-		case OperationType::EQUAL :
+		case OperationType::Equal :
 			result = qFuzzyCompare (var1, var2);
 			break;
 
-		case OperationType::NOT_EQUAL :
+		case OperationType::NotEqual :
 			result = !qFuzzyCompare (var1, var2);
 			break;
 

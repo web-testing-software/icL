@@ -24,11 +24,11 @@ bool IntBlock::calcResult () {
 		int var2 = value2.toInt ();
 
 		switch (operationType) {
-		case OperationType::EQUAL :
+		case OperationType::Equal :
 			result = ( var1 == var2 );
 			break;
 
-		case OperationType::NOT_EQUAL :
+		case OperationType::NotEqual :
 			result = ( var1 != var2 );
 			break;
 

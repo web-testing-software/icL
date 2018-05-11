@@ -21,12 +21,12 @@ class RichBlock : public LogicBlock
 {
 public:
 	enum class OperationType {
-		EQUAL,
-		NOT_EQUAL,
-		CONTAINS,
-		CONTAINS_FRAGMENT,
-		NOT,
-		NOT_NOT
+		Equal,
+		NotEqual,
+		Contains,
+		ContainsFragment,
+		Not,
+		NotNot
 	};
 
 	RichBlock (OperationType otype);

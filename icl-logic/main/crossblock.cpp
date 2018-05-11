@@ -106,4 +106,8 @@ bool CrossBlock::step () {
 	}
 }
 
+bool CrossBlock::calcResult () {
+	return false;
+}
+
 }

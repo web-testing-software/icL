@@ -36,6 +36,8 @@ public:
 	bool needCast() override;
 	LogicBlock *castNow() override;
 	bool step() override;
+
+	bool calcResult() override;
 };
 
 }

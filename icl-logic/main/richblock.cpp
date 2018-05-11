@@ -53,19 +53,19 @@ QString RichBlock::oTypeToString () {
 	QString ret;
 
 	switch (operationType) {
-	case OperationType::EQUAL :
+	case OperationType::Equal :
 		ret = QStringLiteral ("==");
 		break;
 
-	case OperationType::NOT_EQUAL :
+	case OperationType::NotEqual :
 		ret = QStringLiteral ("!=");
 		break;
 
-	case OperationType::CONTAINS :
+	case OperationType::Contains :
 		ret = QStringLiteral ("<<");
 		break;
 
-	case OperationType::CONTAINS_FRAGMENT :
+	case OperationType::ContainsFragment :
 		ret = QStringLiteral ("<*");
 		break;
 

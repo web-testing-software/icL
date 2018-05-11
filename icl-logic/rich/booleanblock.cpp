@@ -23,11 +23,11 @@ bool BooleanBlock::calcResult () {
 		bool var2 = value2.toBool ();
 
 		switch (operationType) {
-		case OperationType::EQUAL :
+		case OperationType::Equal :
 			result = ( var1 == var2 );
 			break;
 
-		case OperationType::NOT_EQUAL :
+		case OperationType::NotEqual :
 			result = ( var1 != var2 );
 			break;
 

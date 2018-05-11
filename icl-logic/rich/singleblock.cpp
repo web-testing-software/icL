@@ -22,11 +22,11 @@ bool SingleBlock::calcResult () {
 	}
 
 	switch (operationType) {
-	case OperationType::NOT_NOT :
+	case OperationType::NotNot :
 		ret = value;
 		break;
 
-	case OperationType::NOT :
+	case OperationType::Not :
 		ret = !value;
 		break;
 
