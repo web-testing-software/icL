@@ -9,7 +9,9 @@ namespace vm::context::object {
 class String : public Object
 {
 public:
-	String ();
+	String (memory::DataState *container, const QString &varName);
+	String (const QVariant &rvalue, bool readonly = false);
+	String (const Object *const object);
 };
 
 }
