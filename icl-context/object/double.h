@@ -10,7 +10,9 @@ namespace vm::context::object {
 class Double : public Object
 {
 public:
-	Double ();
+	Double (memory::DataState *container, const QString &varName);
+	Double (const QVariant &rvalue, bool readonly = false);
+	Double (const Object *const object);
 };
 
 } // namespace
