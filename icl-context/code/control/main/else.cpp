@@ -20,7 +20,7 @@ bool Else::isExecuable () const {
 }
 
 bool Else::execute () {
-
+	return m_next->execute();
 }
 
 Context * Else::getBeginContext () {
