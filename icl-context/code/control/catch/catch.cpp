@@ -2,6 +2,8 @@
 
 namespace vm::context::code::control::catch0 {
 
-Catch::Catch () = default;
+Catch::Catch (const memory::CodeFragment &source)
+	: Control (source) {
+};
 
 } // namespace
