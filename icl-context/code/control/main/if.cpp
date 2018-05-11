@@ -107,7 +107,7 @@ logic::LogicBlock * If::parseOnce (memory::CodeFragment &fn) {
 	}
 	else {
 		if (op.rank == 1) {
-			return returnRank1(op, fn);
+			return returnRank1 (op, fn);
 		}
 		else if (op.rank == 2) {
 			//
@@ -163,7 +163,7 @@ void If::filter (memory::CodeFragment fn) {
 
 	do {
 		while (fn.begin < fn.end) {
-			QChar ch = fn.source->at(fn.begin);
+			QChar ch = fn.source->at (fn.begin);
 
 			if (ch == ' ' || ch == '\t' || ch == '\n') {
 				fn.begin++;
@@ -174,7 +174,7 @@ void If::filter (memory::CodeFragment fn) {
 		}
 
 		while (fn.end > fn.begin) {
-			QChar ch = fn.source->at(fn.end - 1);
+			QChar ch = fn.source->at (fn.end - 1);
 
 			if (ch == ' ' || ch == '\t' || ch == '\n') {
 				fn.end--;
@@ -188,12 +188,12 @@ void If::filter (memory::CodeFragment fn) {
 			emit exception ({ -201, "Empty operand detected." });
 		}
 
-		if (fn.source->at(fn.begin) == '(' && fn.source->at(fn.end - 1) == ')') {
+		if (fn.source->at (fn.begin) == '(' && fn.source->at (fn.end - 1) == ')') {
 			for (int i = fn.begin, rank = 0; i < fn.end; i++) {
-				if (fn.source->at(i) == '(') {
+				if (fn.source->at (i) == '(') {
 					rank++;
 				}
-				else if (fn.source->at(i) == ')') {
+				else if (fn.source->at (i) == ')') {
 					rank--;
 
 					if (rank == 0 && i != fn.end - 1) {
@@ -228,17 +228,61 @@ logic::LogicBlock * If::returnRank1 (Operator &op, memory::CodeFragment &fn) {
 	}
 
 	memory::CodeFragment	newfn	= fn;
-	auto					*single = new logic::rich::SingleBlock{
+	auto					*single = new logic::rich::SingleBlock (
 		op.type == OperatorType::Not
 		? logic::RichBlock::OperationType::Not
-		: logic::RichBlock::OperationType::NotNot
-	};
+		: logic::RichBlock::OperationType::NotNot);
 
 	newfn.begin += op.type == OperatorType::Not ? 1 : 2;
 	filter (newfn);
 
 	single->giveCode (newfn);
 	return single;
+}
+
+logic::LogicBlock * If::returnRank2 (Operator &op, memory::CodeFragment &fn) {
+	memory::CodeFragment newfn1 = fn, newfn2 = fn;
+
+	newfn1.end		= op.position;
+	newfn2.begin	= op.position + 2; // All rank 2 operators consist of 2 symbols
+
+	filter (newfn1);
+	filter (newfn2);
+
+	logic::RichBlock::OperationType type;
+
+	switch (op.type) {
+	case OperatorType::Equal :
+		type = logic::RichBlock::OperationType::Equal;
+		break;
+
+	case OperatorType::NotEqual :
+		type = logic::RichBlock::OperationType::NotEqual;
+		break;
+
+	case OperatorType::Contains :
+		type = logic::RichBlock::OperationType::Contains;
+		break;
+
+	case OperatorType::ContainsFragment :
+		type = logic::RichBlock::OperationType::ContainsFragment;
+		break;
+
+	default :
+		// Never triggered, elude clang warning
+		break;
+	}
+
+	auto *block = new logic::RichBlock{ type };
+
+	block->giveCode(newfn1);
+	block->giveCode(newfn2);
+
+	return block;
+}
+
+logic::LogicBlock * If::returnRank3 (Operator &op, memory::CodeFragment &fn) {
+
 };
 
 

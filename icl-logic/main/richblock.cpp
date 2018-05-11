@@ -198,4 +198,10 @@ bool RichBlock::step () {
 	}
 }
 
+bool RichBlock::calcResult()
+{
+	// Never called, make class not abstract
+	return false;
+}
+
 }

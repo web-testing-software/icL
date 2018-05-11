@@ -40,6 +40,8 @@ protected:
 
 	void filter (memory::CodeFragment fn);
 	logic::LogicBlock* returnRank1 (Operator &op, memory::CodeFragment &fn);
+	logic::LogicBlock* returnRank2 (Operator &op, memory::CodeFragment &fn);
+	logic::LogicBlock* returnRank3 (Operator &op, memory::CodeFragment &fn);
 
 protected:
 	bool isLogicExp;
