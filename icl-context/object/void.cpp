@@ -2,6 +2,9 @@
 
 namespace vm::context::object {
 
-Void::Void () = default;
+Void::Void ()
+	: Object (QVariant (), true) {
+
+};
 
 } // namespace
