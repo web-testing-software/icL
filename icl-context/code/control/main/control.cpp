@@ -2,9 +2,10 @@
 
 namespace vm::context::code::control {
 
-Control::Control () = default;
 
-
+Control::Control (const memory::CodeFragment &source)
+	: Code (source) {
+}
 
 bool Control::canBeAtEnd () const {
 	return false;

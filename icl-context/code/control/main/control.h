@@ -10,7 +10,7 @@ namespace vm::context::code::control {
 class Control : public Code
 {
 public:
-	Control ();
+	Control (const memory::CodeFragment &source);
 
 	// Context interface
 public:
