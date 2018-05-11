@@ -53,7 +53,9 @@ bool Exists::execute () {
 						}
 
 						if (isOk) {
-							this->newContext = fromValue (ret.consoleValue);
+							if (!this->isEmiter) {
+								this->newContext = fromValue (ret.consoleValue);
+							}
 						}
 						else if (this->isEmiter || ret.exception.code <= -100) {
 							emit this->exception (ret.exception);
