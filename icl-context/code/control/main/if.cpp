@@ -1,8 +1,14 @@
 #include "if.h"
 
+#include <icl-logic/main/crossblock.h>
 #include <icl-logic/main/logicblock.h>
 
 #include <icl-logic/rich/singleblock.h>
+
+#include <icl-logic/cross/andblock.h>
+#include <icl-logic/cross/eqblock.h>
+#include <icl-logic/cross/orblock.h>
+#include <icl-logic/cross/xorblock.h>
 
 namespace vm::context::code::control {
 
@@ -282,7 +288,42 @@ logic::LogicBlock * If::returnRank2 (Operator &op, memory::CodeFragment &fn) {
 }
 
 logic::LogicBlock * If::returnRank3 (Operator &op, memory::CodeFragment &fn) {
+	memory::CodeFragment newfn1 = fn, newfn2 = fn;
 
+	newfn1.end		= op.position;
+	newfn2.begin	= op.position + 1; // All rank 2 operators consist of 1 symbol
+
+	filter (newfn1);
+	filter (newfn2);
+
+	logic::CrossBlock *block;
+
+	switch (op.type) {
+	case OperatorType::And:
+		block = new logic::cross::AndBlock;
+		break;
+
+	case OperatorType::Or:
+		block = new logic::cross::OrBlock;
+		break;
+
+	case OperatorType::XOr:
+		block = new logic::cross::XOrBlock;
+		break;
+
+	case OperatorType::Equiv:
+		block = new logic::cross::EqBlock;
+		break;
+
+	default:
+		// Never triggered, elude clang warning
+		block = nullptr;
+	}
+
+	block->giveBlock(parseOnce(newfn1));
+	block->giveBlock(parseOnce(newfn2));
+
+	return block;
 };
 
 
