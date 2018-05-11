@@ -1,4 +1,5 @@
 #include "exists.h"
+#include "slot.h"
 
 namespace vm::context::code::control::catch0 {
 
@@ -19,7 +20,35 @@ bool Exists::isExecuable () const {
 }
 
 bool Exists::execute () {
-	if ()
+	if (executed) {
+		return true;
+	}
+	else {
+		memory::FunctionCall fcall;
+
+		fcall.source = m_source;
+
+		emit interrupt (fcall, [this] (memory::Return &ret) {
+						if (ret.exception.code != 0) {
+							Context *it = this->m_next;
+
+							while (it != nullptr) {
+								if (it->role() == Role::Slot) {
+									auto *slot = dynamic_cast<Slot*>(it);
+
+									slot->giveSignal(ret.exception.code);
+								}
+
+								it = it->next();
+							}
+						}
+
+						this->newContext = fromValue(ret.consoleValue);
+				});
+
+		executed = true;
+		return false;
+	}
 }
 
 Context * Exists::getBeginContext () {
