@@ -2,20 +2,16 @@
 
 namespace vm::context::complex {
 
-Define::Define () {
+Define::Define() {}
 
-}
-
-bool Define::checkPrev (const Context *context) const {
+bool Define::checkPrev(const Context* context) const {
 	return context == nullptr;
 }
 
-bool Define::canBeAtEnd () const {
+bool Define::canBeAtEnd() const {
 	return false;
 }
 
-Context * Define::runMethod (const QString &name, memory::ParamList &params) {
+Context* Define::runMethod(const QString& name, memory::ParamList& params) {}
 
-}
-
-} // namespace
+}  // namespace vm::context::complex

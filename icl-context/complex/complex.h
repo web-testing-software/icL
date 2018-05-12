@@ -10,13 +10,13 @@ namespace vm::context::complex {
 class Complex : public Context
 {
 public:
-	Complex ();
+	Complex();
 
 	// Context interface
 public:
 	bool isComplex() const override;
 };
 
-} // namespace
+}  // namespace vm::context::complex
 
-#endif // COMPLEX_H
+#endif  // COMPLEX_H

@@ -2,9 +2,9 @@
 
 namespace vm::context::object {
 
-Void::Void ()
-	: Object (QVariant (), true) {
+Void::Void()
+	: Object(QVariant(), true){
 
-};
+	  };
 
-} // namespace
+}  // namespace vm::context::object

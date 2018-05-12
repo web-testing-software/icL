@@ -26,46 +26,45 @@ enum class ResultValue {
 class LogicBlock
 {
 public:
+	LogicBlock();
+	virtual ~LogicBlock();
 
-	LogicBlock ();
-	virtual ~LogicBlock ();
+	bool         getResult();
+	bool         getCachedResult();
+	virtual bool isCross()        = 0;
+	virtual bool checkIntegrity() = 0;
+	virtual void resetResultValue();
+	void         invalidate();
 
-	bool getResult ();
-	bool getCachedResult ();
-	virtual bool isCross ()			= 0;
-	virtual bool checkIntegrity ()	= 0;
-	virtual void resetResultValue ();
-	void invalidate ();
+	virtual bool        needCast() = 0;
+	virtual LogicBlock* castNow()  = 0;
+	virtual bool        step()     = 0;
+	virtual bool        canResultPreliminarily();
 
-	virtual bool needCast () = 0;
-	virtual LogicBlock* castNow () = 0;
-	virtual bool step () = 0;
-	virtual bool canResultPreliminarily();
-
-	LogicBlock* getParent ();
-	void setParent (LogicBlock *parent);
+	LogicBlock* getParent();
+	void        setParent(LogicBlock* parent);
 
 signals:
-	void exception (memory::Exception exc);
-	void interrupt (memory::FunctionCall, std::function<void (memory::Return&)>);
+	void exception(memory::Exception exc);
+	void interrupt(memory::FunctionCall, std::function<void(memory::Return&)>);
 
 protected:
-	virtual bool calcResult () = 0;
+	virtual bool calcResult() = 0;
 
-	static QString typeToString (QVariant::Type type);
+	static QString typeToString(QVariant::Type type);
 
 
 protected:
+	vm::memory::Memory* m_memory;
 
-	vm::memory::Memory *m_memory;
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
-	bool ready1 = false, ready2 = false;
-	bool resultCalculed = false, result = false;
+	bool        ready1 = false, ready2 = false;
+	bool        resultCalculed = false, result = false;
 
 private:
-	LogicBlock *m_parent = nullptr;
+	LogicBlock* m_parent = nullptr;
 };
 
-}
+}  // namespace vm::logic
 
-#endif // LOGICBLOCK_H
+#endif  // LOGICBLOCK_H

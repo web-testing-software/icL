@@ -10,6 +10,6 @@ public:
 	VirtualMachine();
 };
 
-}
+}  // namespace vm
 
-#endif // VIRTUALMACHINE_H
+#endif  // VIRTUALMACHINE_H

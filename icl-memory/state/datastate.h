@@ -1,10 +1,9 @@
 #ifndef DATASTATE_H
 #define DATASTATE_H
 
+#include "../structures/type.h"
 #include <QMap>
 #include <QVariant>
-
-#include "../structures/type.h"
 
 
 namespace vm::memory {
@@ -15,23 +14,23 @@ namespace vm::memory {
 class DataState
 {
 public:
-	DataState ();
+	DataState();
 
 	// Functions to add data to containers
-	void setValue (const QString &name, const QVariant &value);
-	void addToStringList (const QString &name, QString &value);
+	void setValue(const QString& name, const QVariant& value);
+	void addToStringList(const QString& name, QString& value);
 
 	// Functions to access data and metadata from containers
-	bool contains (const QString &name);
-	Type getType (const QString &name);
-	bool checkType (const QString &name, Type &type);
-	QVariant getValue (const QString &name);
+	bool     contains(const QString& name);
+	Type     getType(const QString& name);
+	bool     checkType(const QString& name, Type& type);
+	QVariant getValue(const QString& name);
 
 private:
 	// Data container
 	QVariantMap dataMap;
 };
 
-}
+}  // namespace vm::memory
 
-#endif // DATASTATE_H
+#endif  // DATASTATE_H

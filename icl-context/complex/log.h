@@ -10,16 +10,16 @@ namespace vm::context::complex {
 class Log : Complex
 {
 public:
-	Log ();
+	Log();
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool canBeAtEnd () const override;
+	bool checkPrev(const Context* context) const override;
+	bool canBeAtEnd() const override;
 
-	Context* runMethod (const QString &name, memory::ParamList &params) override;
+	Context* runMethod(const QString& name, memory::ParamList& params) override;
 };
 
-} // namespace
+}  // namespace vm::context::complex
 
-#endif // LOG_H
+#endif  // LOG_H

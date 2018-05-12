@@ -10,20 +10,20 @@ namespace vm::context::data {
 class Argument : public Data
 {
 public:
-	Argument (const QString &name, memory::Type type);
+	Argument(const QString& name, memory::Type type);
 
 	const QString& name() const;
-	memory::Type type() const;
+	memory::Type   type() const;
 
 protected:
-	QString m_name;
+	QString      m_name;
 	memory::Type m_type;
 
 	// Context interface
 public:
-	bool checkPrev(const Context *context) const override;
+	bool checkPrev(const Context* context) const override;
 };
 
-} // namespace
+}  // namespace vm::context::data
 
-#endif // ARGUMENT_H
+#endif  // ARGUMENT_H

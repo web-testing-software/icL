@@ -10,9 +10,9 @@ namespace vm::context::object {
 class Void : public Object
 {
 public:
-	Void ();
+	Void();
 };
 
-} // namespace
+}  // namespace vm::context::object
 
-#endif // VOID_H
+#endif  // VOID_H

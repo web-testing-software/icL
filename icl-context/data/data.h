@@ -9,14 +9,14 @@ namespace vm::context::data {
 class Data : public Context
 {
 public:
-	Data ();
+	Data();
 
 	// Context interface
 public:
-	bool canBeAtEnd () const override;
-	bool isExecuable () const override;
+	bool canBeAtEnd() const override;
+	bool isExecuable() const override;
 };
 
-}
+}  // namespace vm::context::data
 
-#endif // DATA_H
+#endif  // DATA_H

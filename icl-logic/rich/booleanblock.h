@@ -13,18 +13,18 @@ namespace vm::logic::rich {
 class BooleanBlock : public RichBlock
 {
 public:
-	BooleanBlock (OperationType otype);
-	BooleanBlock (RichBlock *block);
+	BooleanBlock(OperationType otype);
+	BooleanBlock(RichBlock* block);
 
-//	static bool check (const QString &value);
+	//	static bool check (const QString &value);
 
 	// LogicBlock interface
-	bool calcResult () override;
+	bool calcResult() override;
 
 protected:
-//	bool varNameToBoolean (const QString &varname);
+	//	bool varNameToBoolean (const QString &varname);
 };
 
-}
+}  // namespace vm::logic::rich
 
-#endif // BOOLEANBLOCK_H
+#endif  // BOOLEANBLOCK_H

@@ -12,25 +12,25 @@ namespace vm::context::code {
 class Code : public Context
 {
 public:
-	Code (const memory::CodeFragment &source);
+	Code(const memory::CodeFragment& source);
 
-	const memory::CodeFragment& source () const;
+	const memory::CodeFragment& source() const;
 
 protected:
-	bool executed;
+	bool                 executed;
 	memory::CodeFragment m_source;
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool canBeAtEnd () const override;
-	bool isExecuable () const override;
+	bool checkPrev(const Context* context) const override;
+	bool canBeAtEnd() const override;
+	bool isExecuable() const override;
 	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 };
 
-} // namespace
+}  // namespace vm::context::code
 
-#endif // CODE_H
+#endif  // CODE_H

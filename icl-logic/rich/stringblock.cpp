@@ -2,46 +2,45 @@
 
 namespace vm::logic::rich {
 
-StringBlock::StringBlock (OperationType otype) :
-	vm::logic::RichBlock (otype) {
+StringBlock::StringBlock(OperationType otype)
+	: vm::logic::RichBlock(otype) {
 	casted = true;
 }
 
-StringBlock::StringBlock (RichBlock *block)
-	: RichBlock (block) {
-}
+StringBlock::StringBlock(RichBlock* block)
+	: RichBlock(block) {}
 
 
 /**
  * @brief StringBlock::calcResult - compare values
  * @return the result of comparation
  */
-bool StringBlock::calcResult () {
-	bool	result	= false;
-	QString var1	= value1.toString ();
+bool StringBlock::calcResult() {
+	bool    result = false;
+	QString var1   = value1.toString();
 
-	if (value2.type () == QVariant::String) {
-		QString var2 = value2.toString ();
+	if (value2.type() == QVariant::String) {
+		QString var2 = value2.toString();
 
 		switch (operationType) {
-		case OperationType::Equal :
-			result = ( var1 == var2 );
+		case OperationType::Equal:
+			result = (var1 == var2);
 			break;
 
-		case OperationType::NotEqual :
-			result = ( var1 != var2 );
+		case OperationType::NotEqual:
+			result = (var1 != var2);
 			break;
 
-		default :
+		default:
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator ("[String-String]");
+			sendSignalWrongOperator("[String-String]");
 		}
 	}
 	else {
-		sendSignalWrongPair ();
+		sendSignalWrongPair();
 	}
 
 	return result;
 }
 
-}
+}  // namespace vm::logic::rich

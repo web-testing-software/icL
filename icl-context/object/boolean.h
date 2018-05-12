@@ -10,11 +10,11 @@ namespace vm::context::object {
 class Boolean : public Object
 {
 public:
-	Boolean (memory::DataState *container, const QString &varName);
-	Boolean (const QVariant &rvalue, bool readonly = false);
-	Boolean (const Object *const object);
+	Boolean(memory::DataState* container, const QString& varName);
+	Boolean(const QVariant& rvalue, bool readonly = false);
+	Boolean(const Object* const object);
 };
 
-} // namespace
+}  // namespace vm::context::object
 
-#endif // BOOLEAN_H
+#endif  // BOOLEAN_H

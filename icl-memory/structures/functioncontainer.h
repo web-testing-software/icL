@@ -1,15 +1,14 @@
 #ifndef FUNCTIONCONTAINER_H
 #define FUNCTIONCONTAINER_H
 
+#include "type.h"
 #include <QLinkedList>
 #include <QMap>
 #include <QString>
 #include <QVector>
 
-#include "type.h"
-
 namespace vm::context {
-	class Context;
+class Context;
 }
 
 namespace vm::memory {
@@ -18,36 +17,41 @@ namespace vm::memory {
 
 // Function header
 
-struct Argument {
+struct Argument
+{
 	QString name;
-	Type type;
+	Type    type;
 };
 
 using ArgList = QLinkedList<Argument>;
 
-struct CodeFragment {
-	int begin = 0, end = -1, line = 0;
-	QString *source = nullptr;
+struct CodeFragment
+{
+	int      begin = 0, end = -1, line = 0;
+	QString* source = nullptr;
 };
 
-struct Function {
-	ArgList argList;
+struct Function
+{
+	ArgList      argList;
 	CodeFragment source;
 };
 
-using FunctionMap = QMap <QString, Function>;
+using FunctionMap = QMap<QString, Function>;
 
 // Function call
 
-struct Parameter {
-	QString name;
+struct Parameter
+{
+	QString           name;
 	context::Context* object;
 };
 
 using ParamList = QVector<Parameter>;
 
-struct FunctionCall {
-	ParamList params;
+struct FunctionCall
+{
+	ParamList    params;
 	CodeFragment source;
 };
 
@@ -56,16 +60,16 @@ struct FunctionCall {
 class FunctionContainer
 {
 public:
-	FunctionContainer ();
+	FunctionContainer();
 
-	Function& getFunction (const QString &name);
-	bool contains (const QString &name);
-	void registerFunction (const QString &name, Function &func);
+	Function& getFunction(const QString& name);
+	bool      contains(const QString& name);
+	void      registerFunction(const QString& name, Function& func);
 
 private:
 	FunctionMap fmap;
 };
 
-}
+}  // namespace vm::memory
 
-#endif // FUNCTIONCONTAINER_H
+#endif  // FUNCTIONCONTAINER_H

@@ -13,13 +13,13 @@ namespace vm::logic::cross {
 class AndBlock : public CrossBlock
 {
 public:
-	AndBlock ();
+	AndBlock();
 
 	// LogicBlock interface
-	bool calcResult () override;
+	bool calcResult() override;
 	bool canResultPreliminarily() override;
 };
 
-}
+}  // namespace vm::logic::cross
 
-#endif // ANDBLOCK_H
+#endif  // ANDBLOCK_H

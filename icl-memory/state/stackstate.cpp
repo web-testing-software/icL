@@ -1,81 +1,82 @@
 #include "stackstate.h"
+
 #include "memory.h"
 
 namespace vm::memory {
 
-StackState::StackState (StackState *prev/*, int stackLevel*/) {
-	prev_ss				= prev;
-//	this->stackLevel	= stackLevel;
+StackState::StackState(StackState* prev /*, int stackLevel*/) {
+	prev_ss = prev;
+	//	this->stackLevel	= stackLevel;
 
-//	if (stackLevel > maxStackLevel) {
-//		maxStackLevel = stackLevel;
-//	}
+	//	if (stackLevel > maxStackLevel) {
+	//		maxStackLevel = stackLevel;
+	//	}
 }
 
-StackState::~StackState () = default;
+StackState::~StackState() = default;
 
-void StackState::setWebElement (const QString &name, WebElement &webElement) {
-	QVariant tmp = QVariant::fromValue (webElement);
+void StackState::setWebElement(const QString& name, WebElement& webElement) {
+	QVariant tmp = QVariant::fromValue(webElement);
 
-	setValue (name, tmp);
+	setValue(name, tmp);
 }
 
-StackState * StackState::getPrev () {
+StackState* StackState::getPrev() {
 	return prev_ss;
 }
 
-bool StackState::isLast () {
+bool StackState::isLast() {
 	return prev_ss == nullptr;
 }
 
-QVariant StackState::getStackValue () {
-	return getValue ("stack");
+QVariant StackState::getStackValue() {
+	return getValue("stack");
 }
 
-//int StackState::getStackLevel () {
+// int StackState::getStackLevel () {
 //	return stackLevel;
 //}
 
-//int StackState::getMaxStackLevel () {
+// int StackState::getMaxStackLevel () {
 //	return maxStackLevel;
 //}
 
-//int StackState::maxStackLevel = 0;
+// int StackState::maxStackLevel = 0;
 
-StackStateIt::StackStateIt () = default;
+StackStateIt::StackStateIt() = default;
 
-StackStateIt::~StackStateIt () {
-	clear ();
+StackStateIt::~StackStateIt() {
+	clear();
 }
 
-StackState * StackStateIt::stack () {
+StackState* StackStateIt::stack() {
 	return m_stack;
 }
 
-void StackStateIt::openNewStack () {
+void StackStateIt::openNewStack() {
 
-//	int new_stack_level = m_stack->getStackLevel () + 1;
+	//	int new_stack_level = m_stack->getStackLevel () + 1;
 
-	m_stack = new StackState (m_stack);
+	m_stack = new StackState(m_stack);
 }
 
-void StackStateIt::closeStack () {
-	StackState *prev = m_stack->getPrev ();
+void StackStateIt::closeStack() {
+	StackState* prev = m_stack->getPrev();
 
 	delete m_stack;
 	m_stack = prev;
 }
 
-StackState * StackStateIt::getContainer (const QString &name) {
-	StackState	*ret	= nullptr;
-	StackState	*it		= m_stack;
+StackState* StackStateIt::getContainer(const QString& name) {
+	StackState* ret = nullptr;
+	StackState* it  = m_stack;
 
 	while (ret == nullptr && it != nullptr) {
-		if (it->contains (name) ) {
+		if (it->contains(name)) {
 			ret = it;
 		}
 		else {
-			it = it->getPrev ();
+			it = it->getPrev();
 		}
 	}
 
@@ -94,7 +95,8 @@ StackState * StackStateIt::getContainer (const QString &name) {
 //	return ret;
 // }
 
-// bool StackStateIterator::checkType (const QString &name, DataState::Type &type) {
+// bool StackStateIterator::checkType (const QString &name, DataState::Type
+// &type) {
 //	bool		ret = false;
 //	StackState	*it = m_stack;
 
@@ -120,14 +122,14 @@ StackState * StackStateIt::getContainer (const QString &name) {
 //	return ret;
 // }
 
-void StackStateIt::clear () {
-	StackState *tmp;
+void StackStateIt::clear() {
+	StackState* tmp;
 
 	while (m_stack != nullptr) {
-		tmp = m_stack->getPrev ();
+		tmp = m_stack->getPrev();
 		delete m_stack;
 		m_stack = tmp;
 	}
 }
 
-}
+}  // namespace vm::memory

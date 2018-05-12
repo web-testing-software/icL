@@ -2,20 +2,16 @@
 
 namespace vm::context::complex {
 
-Tab::Tab () {
+Tab::Tab() {}
 
-}
-
-bool Tab::checkPrev (const Context *context) const {
+bool Tab::checkPrev(const Context* context) const {
 	return context == nullptr;
 }
 
-bool Tab::canBeAtEnd () const {
+bool Tab::canBeAtEnd() const {
 	return false;
 }
 
-Context * Tab::runMethod (const QString &name, memory::ParamList &params) {
+Context* Tab::runMethod(const QString& name, memory::ParamList& params) {}
 
-}
-
-} // namespace
+}  // namespace vm::context::complex

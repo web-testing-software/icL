@@ -12,40 +12,40 @@ namespace vm::context::object {
 class Object : public Context
 {
 public:
-	Object (memory::DataState *container, const QString &varName);
-	Object (const QVariant &rvalue, bool readonly = false);
-	Object (const Object *const object);
+	Object(memory::DataState* container, const QString& varName);
+	Object(const QVariant& rvalue, bool readonly = false);
+	Object(const Object* const object);
 
-	memory::Type type () const;
-	virtual bool isRValue () const;
-	virtual bool isReadOnly () const;
-	virtual bool isLValue () const;
-	virtual bool isLink () const;
-	virtual QVariant getValue () const;
-	virtual void setValue (const QVariant &value);
+	memory::Type     type() const;
+	virtual bool     isRValue() const;
+	virtual bool     isReadOnly() const;
+	virtual bool     isLValue() const;
+	virtual bool     isLink() const;
+	virtual QVariant getValue() const;
+	virtual void     setValue(const QVariant& value);
 
 
-	const QString& getVarName () const;
+	const QString& getVarName() const;
 
 protected:
 	// LValue
-	memory::DataState *container = nullptr;
-	QString varName;
+	memory::DataState* container = nullptr;
+	QString            varName;
 
 	// RValue
 	QVariant rvalue;
-	bool readonly = false;
+	bool     readonly = false;
 
 	enum class Value { L, R } value;
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool canBeAtEnd () const override;
+	bool checkPrev(const Context* context) const override;
+	bool canBeAtEnd() const override;
 
 	bool isResultative() const override;
 };
 
-} // namespace
+}  // namespace vm::context::object
 
-#endif // OBJECT_H
+#endif  // OBJECT_H

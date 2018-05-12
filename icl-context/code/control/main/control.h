@@ -10,14 +10,14 @@ namespace vm::context::code::control {
 class Control : public Code
 {
 public:
-	Control (const memory::CodeFragment &source);
+	Control(const memory::CodeFragment& source);
 
 	// Context interface
 public:
-	bool canBeAtEnd () const override;
-	bool isRightToLeft () const override;
+	bool canBeAtEnd() const override;
+	bool isRightToLeft() const override;
 };
 
-} // namespace
+}  // namespace vm::context::code::control
 
-#endif // CONTROL_H
+#endif  // CONTROL_H

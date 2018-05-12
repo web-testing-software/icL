@@ -2,50 +2,50 @@
 
 namespace vm::memory {
 
-MemoryState::MemoryState () = default;
+MemoryState::MemoryState() = default;
 
-MemoryState::~MemoryState () = default;
+MemoryState::~MemoryState() = default;
 
-//bool MemoryState::hasPrev () const {
+// bool MemoryState::hasPrev () const {
 //	return prev_ms != nullptr;
 //}
 
-//bool MemoryState::hasNext () const {
+// bool MemoryState::hasNext () const {
 //	return next_ms != nullptr;
 //}
 
-//MemoryState * MemoryState::getPrev () const {
+// MemoryState * MemoryState::getPrev () const {
 //	return prev_ms;
 //}
 
-//MemoryState * MemoryState::getNext () const {
+// MemoryState * MemoryState::getNext () const {
 //	return next_ms;
 //}
 
-//void MemoryState::setPrev (MemoryState *state) {
+// void MemoryState::setPrev (MemoryState *state) {
 //	prev_ms = state;
 //}
 
-//void MemoryState::setNext (MemoryState *state) {
+// void MemoryState::setNext (MemoryState *state) {
 //	next_ms = state;
 //}
 
-MemoryStateIt::MemoryStateIt () {
+MemoryStateIt::MemoryStateIt() {
 	m_state = new MemoryState();
 }
 
-MemoryStateIt::~MemoryStateIt () {
+MemoryStateIt::~MemoryStateIt() {
 	delete m_state;
-//	clear ();
+	//	clear ();
 }
 
-MemoryState * MemoryStateIt::state () const {
+MemoryState* MemoryStateIt::state() const {
 	return m_state;
 }
 
 /// Doesn't delete the commented code, it will be uncommented in the version 1.2
 
-//void MemoryStateIterator::iterateToFirst () {
+// void MemoryStateIterator::iterateToFirst () {
 //	if (m_state != nullptr) {
 //		while (m_state->getPrev () != nullptr) {
 //			m_state = m_state->getPrev ();
@@ -53,7 +53,7 @@ MemoryState * MemoryStateIt::state () const {
 //	}
 //}
 
-//void MemoryStateIterator::iterateToLast () {
+// void MemoryStateIterator::iterateToLast () {
 //	if (m_state != nullptr) {
 //		while (m_state->getNext () != nullptr) {
 //			m_state = m_state->getNext ();
@@ -61,7 +61,7 @@ MemoryState * MemoryStateIt::state () const {
 //	}
 //}
 
-//void MemoryStateIterator::appendNewAfter () {
+// void MemoryStateIterator::appendNewAfter () {
 //	if (m_state == nullptr) {
 //		m_state = new MemoryState ();
 //	}
@@ -84,12 +84,12 @@ MemoryState * MemoryStateIt::state () const {
 //	}
 //}
 
-//void MemoryStateIterator::appendNewAtEnd () {
+// void MemoryStateIterator::appendNewAtEnd () {
 //	iterateToLast ();
 //	appendNewAfter ();
 //}
 
-//void MemoryStateIterator::removeState () {
+// void MemoryStateIterator::removeState () {
 //	if (m_state->getNext () == nullptr && m_state->getPrev () == nullptr) {
 //		delete m_state;
 //		m_state = nullptr;
@@ -110,7 +110,7 @@ MemoryState * MemoryStateIt::state () const {
 //	}
 //}
 
-//void MemoryStateIterator::clear () {
+// void MemoryStateIterator::clear () {
 //	iterateToFirst ();
 
 //	MemoryState *tmp;
@@ -122,4 +122,4 @@ MemoryState * MemoryStateIt::state () const {
 //	}
 //}
 
-}
+}  // namespace vm::memory

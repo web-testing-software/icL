@@ -8,7 +8,8 @@ namespace vm::logic::rich {
 
 
 /**
- * @brief The SingleBlock class - compare a <bool> var/const with a predefined const
+ * @brief The SingleBlock class - compare a <bool> var/const with a predefined
+ * const
  */
 class SingleBlock : public RichBlock
 {
@@ -25,5 +26,5 @@ public:
 	bool canResultPreliminarily() override;
 };
 
-}
-#endif // SINGLEBLOCK_H
+}  // namespace vm::logic::rich
+#endif  // SINGLEBLOCK_H

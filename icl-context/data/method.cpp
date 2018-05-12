@@ -2,62 +2,62 @@
 
 namespace vm::context::data {
 
-Method::Method (const QString &name)
-	: name (name) {
+Method::Method(const QString& name)
+	: name(name) {
 	m_role = Role::Method;
 };
 
 
 
-bool Method::checkPrev (const Context *context) const {
-	return context != nullptr && context->isResultative ();
+bool Method::checkPrev(const Context* context) const {
+	return context != nullptr && context->isResultative();
 }
 
-bool Method::canBeAtEnd () const {
+bool Method::canBeAtEnd() const {
 	return true;
 }
 
-bool Method::execute () {
-	memory::ParamList	params;
-	int					count	= 0;
-	Context				*it		= m_next;
+bool Method::execute() {
+	memory::ParamList params;
+	int               count = 0;
+	Context*          it    = m_next;
 
-	while (it != nullptr && it->role () == Role::Object) {
+	while (it != nullptr && it->role() == Role::Object) {
 		count++;
-		it = it->next ();
+		it = it->next();
 	}
 
-	endContext = it == nullptr ? getLast () : it->prev ();
+	endContext = it == nullptr ? getLast() : it->prev();
 
 	if (count > 0) {
-		params.reserve (count);
+		params.reserve(count);
 		it = m_next;
 
-		while (it != nullptr && it->role () == Role::Object) {
+		while (it != nullptr && it->role() == Role::Object) {
 			memory::Parameter param;
 
 			param.object = it;
-			params.append (param);
+			params.append(param);
 
-			it = it->next ();
+			it = it->next();
 		}
 	}
 
-	newContext = m_prev->runMethod (name, params);
+	newContext = m_prev->runMethod(name, params);
 
 	return true;
 }
 
-Context * Method::getBeginContext () {
+Context* Method::getBeginContext() {
 	return m_prev;
 }
 
-Context * Method::getEndContext () {
+Context* Method::getEndContext() {
 	return endContext;
 }
 
-bool Method::isResultative () const {
+bool Method::isResultative() const {
 	return true;
 }
 
-} // namespace
+}  // namespace vm::context::data

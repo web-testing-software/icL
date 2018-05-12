@@ -1,14 +1,13 @@
 #include "dialdescription.h"
 
-DialDescription::DialDescription (QObject *parent) : QObject (parent) {
-
-}
+DialDescription::DialDescription(QObject* parent)
+	: QObject(parent) {}
 
 /**
  * @brief DialDescription::count - count getter
  * @return m_count
  */
-int DialDescription::count () const {
+int DialDescription::count() const {
 	return m_count;
 }
 
@@ -16,7 +15,7 @@ int DialDescription::count () const {
  * @brief DialDescription::title - title getter
  * @return m_title
  */
-QString DialDescription::title () const {
+QString DialDescription::title() const {
 	return m_title;
 }
 
@@ -24,7 +23,7 @@ QString DialDescription::title () const {
  * @brief DialDescription::url - url getter
  * @return m_url
  */
-QString DialDescription::url () const {
+QString DialDescription::url() const {
 	return m_url;
 }
 
@@ -32,37 +31,37 @@ QString DialDescription::url () const {
  * @brief DialDescription::setCount - count setter
  * @param count - value
  */
-void DialDescription::setCount (int count) {
+void DialDescription::setCount(int count) {
 	if (m_count == count) {
 		return;
 	}
 
 	m_count = count;
-	emit countChanged (m_count);
+	emit countChanged(m_count);
 }
 
 /**
  * @brief DialDescription::setTitle - title setter
  * @param title - value
  */
-void DialDescription::setTitle (const QString &title) {
+void DialDescription::setTitle(const QString& title) {
 	if (m_title == title) {
 		return;
 	}
 
 	m_title = title;
-	emit titleChanged (m_title);
+	emit titleChanged(m_title);
 }
 
 /**
  * @brief DialDescription::setUrl - url setter
  * @param - url value
  */
-void DialDescription::setUrl (const QString &url) {
+void DialDescription::setUrl(const QString& url) {
 	if (m_url == url) {
 		return;
 	}
 
 	m_url = url;
-	emit urlChanged (m_url);
+	emit urlChanged(m_url);
 }

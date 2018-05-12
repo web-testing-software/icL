@@ -13,21 +13,21 @@ namespace vm::logic::rich {
 class DoubleBlock : public RichBlock
 {
 public:
-	DoubleBlock (OperationType otype);
-	DoubleBlock (RichBlock *block);
+	DoubleBlock(OperationType otype);
+	DoubleBlock(RichBlock* block);
 
-//	static bool check (const QString &value);
+	//	static bool check (const QString &value);
 
 	// LogicBlock interface
-	bool calcResult () override;
+	bool calcResult() override;
 
 protected:
-//	double varNameToDouble (const QString &varname);
+	//	double varNameToDouble (const QString &varname);
 
 private:
-//	static QRegExp exp;
+	//	static QRegExp exp;
 };
 
-}
+}  // namespace vm::logic::rich
 
-#endif // DOUBLEBLOCK_H
+#endif  // DOUBLEBLOCK_H

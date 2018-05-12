@@ -13,14 +13,14 @@ namespace vm::logic::cross {
 class NotBlock : public CrossBlock
 {
 public:
-	NotBlock ();
+	NotBlock();
 
 	// LogicBlock interface
-	bool calcResult () override;
-	bool checkIntegrity () override;
-	void resetResultValue () override;
+	bool calcResult() override;
+	bool checkIntegrity() override;
+	void resetResultValue() override;
 };
 
-}
+}  // namespace vm::logic::cross
 
-#endif // NOTBLOCK_H
+#endif  // NOTBLOCK_H

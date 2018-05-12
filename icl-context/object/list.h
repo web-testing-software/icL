@@ -10,11 +10,11 @@ namespace vm::context::object {
 class List : public Object
 {
 public:
-	List (memory::DataState *container, const QString &varName);
-	List (const QVariant &rvalue, bool readonly = false);
-	List (const Object *const object);
+	List(memory::DataState* container, const QString& varName);
+	List(const QVariant& rvalue, bool readonly = false);
+	List(const Object* const object);
 };
 
-} // namespace
+}  // namespace vm::context::object
 
-#endif // LIST_H
+#endif  // LIST_H

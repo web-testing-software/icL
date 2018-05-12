@@ -13,12 +13,12 @@ namespace vm::logic::cross {
 class XOrBlock : public CrossBlock
 {
 public:
-	XOrBlock ();
+	XOrBlock();
 
 	// LogicBlock interface
-	bool calcResult () override;
+	bool calcResult() override;
 };
 
-}
+}  // namespace vm::logic::cross
 
-#endif // XORBLOCK_H
+#endif  // XORBLOCK_H

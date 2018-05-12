@@ -75,4 +75,4 @@ Type variantTypeToType(QVariant::Type type) {
 	return ret;
 }
 
-}
+}  // namespace vm::memory

@@ -10,15 +10,15 @@ namespace vm::context::complex {
 class Tab : Complex
 {
 public:
-	Tab ();
+	Tab();
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool canBeAtEnd () const override;
-	Context* runMethod (const QString &name, memory::ParamList &params) override;
+	bool     checkPrev(const Context* context) const override;
+	bool     canBeAtEnd() const override;
+	Context* runMethod(const QString& name, memory::ParamList& params) override;
 };
 
-} // namespace
+}  // namespace vm::context::complex
 
-#endif // TAB_H
+#endif  // TAB_H

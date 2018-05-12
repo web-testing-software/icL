@@ -8,39 +8,38 @@
 namespace vm::logic {
 
 /**
- * @brief The CrossBlock class - this is a block with 2 children (LogicBlock* type)
+ * @brief The CrossBlock class - this is a block with 2 children (LogicBlock*
+ * type)
  */
 class CrossBlock : public LogicBlock
 {
 public:
-	CrossBlock ();
-	~CrossBlock ();
+	CrossBlock();
+	~CrossBlock();
 
-	bool canAcceptBlock ();
-	virtual void giveBlock (LogicBlock *block);
+	bool         canAcceptBlock();
+	virtual void giveBlock(LogicBlock* block);
 
 protected:
-	LogicBlock *block1	= nullptr;
-	LogicBlock *block2	= nullptr;
-	bool value1			= false,
-		 value2			= false,
-		 value1getted	= false,
-		 value2getted	= false;
+	LogicBlock* block1 = nullptr;
+	LogicBlock* block2 = nullptr;
+	bool        value1 = false, value2 = false, value1getted = false,
+		 value2getted = false;
 
 
 	// LogicBlock interface
 public:
-	bool isCross () override;
-	bool checkIntegrity () override;
-	void resetResultValue () override;
+	bool isCross() override;
+	bool checkIntegrity() override;
+	void resetResultValue() override;
 
-	bool needCast() override;
-	LogicBlock *castNow() override;
-	bool step() override;
+	bool        needCast() override;
+	LogicBlock* castNow() override;
+	bool        step() override;
 
 	bool calcResult() override;
 };
 
-}
+}  // namespace vm::logic
 
-#endif // CROSSBLOCK_H
+#endif  // CROSSBLOCK_H

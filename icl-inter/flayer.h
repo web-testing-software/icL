@@ -16,8 +16,8 @@ class Flayer : public QObject
 	Q_PROPERTY(int end READ end WRITE setEnd NOTIFY endChanged)
 
 public:
-	Flayer ();
-	 ~Flayer () override;
+	Flayer();
+	~Flayer() override;
 
 	int begin() const;
 	int end() const;
@@ -35,6 +35,6 @@ private:
 	int m_end;
 };
 
-} // namespace
+}  // namespace vm::inter::_private
 
-#endif // FLAYER_H
+#endif  // FLAYER_H

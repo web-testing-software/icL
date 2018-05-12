@@ -12,21 +12,21 @@ namespace vm::memory {
 class MemoryState : public DataState
 {
 public:
-	MemoryState ();
-	virtual ~MemoryState ();
+	MemoryState();
+	virtual ~MemoryState();
 
-//	bool hasPrev () const;
-//	bool hasNext () const;
+	//	bool hasPrev () const;
+	//	bool hasNext () const;
 
-//	MemoryState* getPrev () const;
-//	MemoryState* getNext () const;
+	//	MemoryState* getPrev () const;
+	//	MemoryState* getNext () const;
 
-//	void setPrev (MemoryState *state);
-//	void setNext (MemoryState *state);
+	//	void setPrev (MemoryState *state);
+	//	void setNext (MemoryState *state);
 
 private:
-//	MemoryState *prev_ms	= nullptr;
-//	MemoryState *next_ms	= nullptr;
+	//	MemoryState *prev_ms	= nullptr;
+	//	MemoryState *next_ms	= nullptr;
 };
 
 /**
@@ -35,26 +35,27 @@ private:
 class MemoryStateIt
 {
 public:
-	MemoryStateIt ();
-	~MemoryStateIt ();
+	MemoryStateIt();
+	~MemoryStateIt();
 
-	MemoryState* state () const;
+	MemoryState* state() const;
 
-	/// Doesn't delete the commented code, it will be uncommented in the version 1.2
+	/// Doesn't delete the commented code, it will be uncommented in the
+	/// version 1.2
 
-//	void iterateToFirst ();
-//	void iterateToLast ();
+	//	void iterateToFirst ();
+	//	void iterateToLast ();
 
-//	void appendNewAfter ();
-//	void appendNewAtEnd ();
-//	void removeState ();
+	//	void appendNewAfter ();
+	//	void appendNewAtEnd ();
+	//	void removeState ();
 
-//	void clear ();
+	//	void clear ();
 
 private:
-	MemoryState *m_state = nullptr;
+	MemoryState* m_state = nullptr;
 };
 
-}
+}  // namespace vm::memory
 
-#endif // MEMORYSTATE_H
+#endif  // MEMORYSTATE_H

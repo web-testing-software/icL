@@ -4,10 +4,8 @@ namespace vm::memory {
 
 
 
-Exception::Exception (int code, const QString &message)
-	: code (code)
-	, message (message) {
+Exception::Exception(int code, const QString& message)
+	: code(code)
+	, message(message) {}
 
-}
-
-} // namespace
+}  // namespace vm::memory

@@ -10,12 +10,12 @@ namespace vm::memory {
 class Exception
 {
 public:
-	Exception (int code, const QString &message);
+	Exception(int code, const QString& message);
 
-	int code, line;
+	int     code, line;
 	QString message;
 };
 
-} // namespace
+}  // namespace vm::memory
 
-#endif // EXCEPTION_H
+#endif  // EXCEPTION_H

@@ -10,22 +10,22 @@ namespace vm::context::data {
 class Alternative : public Data
 {
 public:
-	Alternative ();
+	Alternative();
 
 private:
 	bool theLeftOperandIsOk = false;
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool isRightToLeft () const override;
-	bool isExecuable () const override;
-	bool execute () override;
+	bool checkPrev(const Context* context) const override;
+	bool isRightToLeft() const override;
+	bool isExecuable() const override;
+	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 };
 
-} // namespace
+}  // namespace vm::context::data
 
-#endif // ALTERNATIVE_H
+#endif  // ALTERNATIVE_H

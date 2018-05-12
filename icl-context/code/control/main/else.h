@@ -10,18 +10,18 @@ namespace vm::context::code::control {
 class Else : public Control
 {
 public:
-	Else ();
+	Else();
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool isExecuable () const override;
-	bool execute () override;
+	bool checkPrev(const Context* context) const override;
+	bool isExecuable() const override;
+	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 };
 
-} // namespace
+}  // namespace vm::context::code::control
 
-#endif // ELSE_H
+#endif  // ELSE_H

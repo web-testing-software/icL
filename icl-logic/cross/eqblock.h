@@ -11,13 +11,13 @@ namespace vm::logic::cross {
 class EqBlock : public CrossBlock
 {
 public:
-	EqBlock ();
+	EqBlock();
 
 	// LogicBlock interface
 protected:
-	bool calcResult () override;
+	bool calcResult() override;
 };
 
-}
+}  // namespace vm::logic::cross
 
-#endif // EQBLOCK_H
+#endif  // EQBLOCK_H

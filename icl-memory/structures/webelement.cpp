@@ -6,7 +6,7 @@
 //#include <QTimer>
 
 
-//WebElement & WebElement::operator = (const WebElement &el) {
+// WebElement & WebElement::operator = (const WebElement &el) {
 //	selector	= el.selector;
 //	variable	= el.variable;
 //	single		= el.single;
@@ -16,7 +16,7 @@
 //	return *this;
 //}
 
-//WebElement WebElement::operator [] (int index) {
+// WebElement WebElement::operator [] (int index) {
 //	WebElement	ret;
 
 //	int			len		= length (skip_errors);
@@ -51,7 +51,7 @@
 
 //// Get string attribute of element
 //// Other types aren't supprted now
-//QString WebElement::getAttribute (const QString &name, bool se) const {
+// QString WebElement::getAttribute (const QString &name, bool se) const {
 //	bool	success;
 //	QString ret;
 
@@ -73,9 +73,8 @@
 //}
 
 //// Get attribute of all elements like a list
-//QStringList WebElement::getAttributeFromAll (const QString &name, bool se) const {
-//	bool		success;
-//	QStringList ret;
+// QStringList WebElement::getAttributeFromAll (const QString &name, bool se)
+// const { 	bool		success; 	QStringList ret;
 
 //	if (is_multi (se)) {
 //		QString code = QString ("(function(){\n"
@@ -100,7 +99,7 @@
 //}
 
 //// Get the number of elements which contain this element
-//int WebElement::length (bool se) const {
+// int WebElement::length (bool se) const {
 //	bool	success;
 //	int		ret;
 
@@ -124,9 +123,8 @@
 //}
 
 //// Filter elements by text content
-//WebElement WebElement::filterByContent (const QString &name, const QString &filter, bool se) const {
-//	bool		success;
-//	WebElement	ret;
+// WebElement WebElement::filterByContent (const QString &name, const QString
+// &filter, bool se) const { 	bool		success; 	WebElement	ret;
 
 //	ret.variable	= name;
 //	ret.selector	= selector + " filtered by " + filter;
@@ -174,8 +172,8 @@
 //}
 
 //// Find elements in this element
-//WebElement WebElement::find (const QString &selector, const QString &name, bool se) const {
-//	WebElement el;
+// WebElement WebElement::find (const QString &selector, const QString &name,
+// bool se) const { 	WebElement el;
 
 //	el.selector = this->selector + " " + selector;
 //	el.single	= true;
@@ -197,14 +195,14 @@
 //	return el;
 //}
 
-//WebElement WebElement::findAll (const QString &selector, const QString &name, bool se) const {
-//	WebElement el;
+// WebElement WebElement::findAll (const QString &selector, const QString &name,
+// bool se) const { 	WebElement el;
 
 //	el.single	= false;
 //	el.variable = name;
 //	if (is_single (se)) {
-//		QString code = QString ("(%3 = %1.querySelectorAll('%2')); %3.length > 0")
-//					   .arg (variable, selector, name);
+//		QString code = QString ("(%3 = %1.querySelectorAll('%2')); %3.length >
+//0") 					   .arg (variable, selector, name);
 
 ////		QVariant v = server->executeJS (code);
 ////		el.valid = v.toBool ();
@@ -221,12 +219,13 @@
 
 //// Get the x pos on screen for click
 //// It will return the horizontal middle
-//int WebElement::getX (bool se) const {
+// int WebElement::getX (bool se) const {
 //	bool	success;
 //	int		ret;
 
 //	if (is_single (se)) {
-//		QString		code = QString ("%1.getBoundingClientRect().left + %1.offsetWidth / 2").arg (variable);
+//		QString		code = QString ("%1.getBoundingClientRect().left +
+//%1.offsetWidth / 2").arg (variable);
 ////		qDebug ("%s", qUtf8Printable (code));
 ////		QVariant	v = server->executeJS (code);
 ////		ret = v.toInt ();
@@ -243,12 +242,13 @@
 
 //// Get the y pos on screen for click
 //// It will return the vertical middle
-//int WebElement::getY (bool se) const {
+// int WebElement::getY (bool se) const {
 //	bool	success;
 //	int		ret;
 
 //	if (is_single (se)) {
-//		QString		code = QString ("%1.getBoundingClientRect().top + %1.offsetHeight / 2").arg (variable);
+//		QString		code = QString ("%1.getBoundingClientRect().top +
+//%1.offsetHeight / 2").arg (variable);
 ////		qDebug ("%s", qUtf8Printable (code));
 ////		QVariant	v = server->executeJS (code);
 ////		ret = v.toInt ();
@@ -264,14 +264,14 @@
 //}
 
 //// Test if element is visible on screen, to click on it
-//bool WebElement::getVisible (bool se) const {
+// bool WebElement::getVisible (bool se) const {
 //	bool success, ret;
 
 //	if (is_single (se)) {
 //		QString code = QString ("doc.elementsFromPoint("
 //								"%1.getBoundingClientRect().left + 1, "
-//								"%1.getBoundingClientRect().top + 1).indexOf(%1) > -1")
-//					   .arg (variable);
+//								"%1.getBoundingClientRect().top + 1).indexOf(%1) >
+//-1") 					   .arg (variable);
 ////		QVariant v = server->executeJS (code);
 
 ////		ret		= v.toBool ();
@@ -288,7 +288,7 @@
 
 //// Emulate click on low level in C++
 //// The javascript .click() dont get the waited result
-//void WebElement::click (bool se) const {
+// void WebElement::click (bool se) const {
 //	bool success;
 
 //	if (is_single (se)) {
@@ -320,7 +320,8 @@
 //				success = true;
 //			}
 //			else {
-////				server->addToErrorsStack (":: :: Element not visible :: ::");
+////				server->addToErrorsStack (":: :: Element not visible ::
+///::");
 //				success = false;
 //			}
 //		}
@@ -333,12 +334,12 @@
 ////						   "void WebElement::click () const");
 //}
 
-//void WebElement::focus (bool se) const {
+// void WebElement::focus (bool se) const {
 //	click (se);
 //}
 
 //// Append text to input value
-//void WebElement::paste (const QString &str, bool se) const {
+// void WebElement::paste (const QString &str, bool se) const {
 //	bool success;
 
 //	if (is_single (se)) {
@@ -356,36 +357,37 @@
 
 //// Emulate key press on low level
 //// Click is for focus needed element
-//void WebElement::sendKey (Qt::Key key, Qt::KeyboardModifier modifier, const QString &text) const {
+// void WebElement::sendKey (Qt::Key key, Qt::KeyboardModifier modifier, const
+// QString &text) const {
 
 //	click (true);
 ////	webBrowser->simulate_key (key, modifier, text);
 //}
 
-//void WebElement::enter () const {
+// void WebElement::enter () const {
 //	sendKey (Qt::Key_Return, Qt::NoModifier, QStringLiteral("\n"));
 //}
 
-//void WebElement::CtrlV (const QString &str) {
+// void WebElement::CtrlV (const QString &str) {
 ////	QClipboard *clipboard = QApplication::clipboard ();
 
 ////	clipboard->setText (str);
 //	sendKey (Qt::Key_V, Qt::ControlModifier, QStringLiteral("v"));
 //}
 
-//void WebElement::skipErrors () {
+// void WebElement::skipErrors () {
 //	skip_errors = true;
 //}
 
-//void WebElement::catchErrors () {
+// void WebElement::catchErrors () {
 //	skip_errors = false;
 //}
 
-//bool WebElement::isSkipingErrors () {
+// bool WebElement::isSkipingErrors () {
 //	return skip_errors;
 //}
 
-//bool WebElement::is_single (bool se) const {
+// bool WebElement::is_single (bool se) const {
 //	if (valid && single) {
 //		return true;
 //	}
@@ -397,7 +399,7 @@
 //	}
 //}
 
-//bool WebElement::is_multi (bool se) const {
+// bool WebElement::is_multi (bool se) const {
 //	if (valid && !single) {
 //		return true;
 //	}
@@ -409,13 +411,14 @@
 //	}
 //}
 
-//void WebElement::report () const {
-////	server->addToErrorsStack (( single ? "Web element " : "Web elements " ) + selector
-////							  + " | valid " + ( valid ? "yes" : "no" ) + " | variable " + variable);
+// void WebElement::report () const {
+////	server->addToErrorsStack (( single ? "Web element " : "Web elements " ) +
+///selector /							  + " | valid " + ( valid ? "yes" : "no"
+///) + " | variable " + variable);
 //}
 
 //// Select element by css selector
-//WebElement queryOne (const QString &selector, const QString &name, bool se) {
+// WebElement queryOne (const QString &selector, const QString &name, bool se) {
 //	WebElement el;
 
 //	el.single		= true;
@@ -429,19 +432,21 @@
 ////		el.valid = v.toBool ();
 //	}
 //	else {
-//		QString		code	= QString ("(%1 = doc.querySelector('%2')) != null").arg (name).arg (selector);
+//		QString		code	= QString ("(%1 = doc.querySelector('%2')) != null").arg
+//(name).arg (selector);
 ////		QVariant	v		= server->executeJS (code);
 
 ////		el.variable = name;
 ////		el.valid	= v.toBool ();
 //	}
 ////	server->check_success (el.valid || se,
-////						   "WebElement css ('" + selector + "', '" + name + "')");
+////						   "WebElement css ('" + selector + "', '" + name +
+///"')");
 //	return el;
 //}
 
 //// Select all matched elements by css selector
-//WebElement queryAll (const QString &selector, const QString &name, bool se) {
+// WebElement queryAll (const QString &selector, const QString &name, bool se) {
 //	WebElement el;
 
 //	el.single		= true;
@@ -451,13 +456,15 @@
 //		el.valid	= true;
 //	}
 //	else {
-//		QString		code	= QString ("(%1 = doc.querySelectorAll('%2')) != null").arg (name).arg (selector);
+//		QString		code	= QString ("(%1 = doc.querySelectorAll('%2')) !=
+//null").arg (name).arg (selector);
 ////		QVariant	v		= server->executeJS (code);
 
 ////		el.variable = name;
 ////		el.valid	= v.toBool ();
 //	}
 ////	server->check_success (el.valid || se,
-////						   "WebElement all ('" + selector + "', '" + name + "')");
+////						   "WebElement all ('" + selector + "', '" + name +
+///"')");
 //	return el;
 //}

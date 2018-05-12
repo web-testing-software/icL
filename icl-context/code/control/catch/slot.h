@@ -10,7 +10,7 @@ namespace vm::context::code::control::catch0 {
 class Slot : public Catch
 {
 public:
-	Slot ();
+	Slot();
 
 	bool giveSignal(int code);
 
@@ -20,14 +20,14 @@ protected:
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool isExecuable () const override;
-	bool execute () override;
+	bool checkPrev(const Context* context) const override;
+	bool isExecuable() const override;
+	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 };
 
-} // namespace
+}  // namespace vm::context::code::control::catch0
 
-#endif // SLOT_H
+#endif  // SLOT_H

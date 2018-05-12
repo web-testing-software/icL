@@ -13,25 +13,27 @@ namespace vm::logic::rich {
 class ListBlock : public RichBlock
 {
 public:
-	ListBlock (OperationType otype);
-	ListBlock (RichBlock *block);
+	ListBlock(OperationType otype);
+	ListBlock(RichBlock* block);
 
-	static bool check (const QString &value);
+	static bool check(const QString& value);
 
 	// LogicBlock interface
-	bool calcResult () override;
+	bool calcResult() override;
 
 protected:
-//	QStringList varNameToStringList (const QString &varname);
+	//	QStringList varNameToStringList (const QString &varname);
 
 private:
-	static bool operatorEqual (const QStringList &list1, const QStringList &list2);
-	static bool containsFragment (const QStringList &strList, const QString &str);
+	static bool operatorEqual(
+	  const QStringList& list1, const QStringList& list2);
+	static bool containsFragment(
+	  const QStringList& strList, const QString& str);
 
-//	static QRegExp exp;
-//	static QRegularExpression strExp;
+	//	static QRegExp exp;
+	//	static QRegularExpression strExp;
 };
 
-}
+}  // namespace vm::logic::rich
 
-#endif // LISTBLOCK_H
+#endif  // LISTBLOCK_H

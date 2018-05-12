@@ -10,9 +10,9 @@ namespace vm::context::code::control::catch0 {
 class Catch : public Control
 {
 public:
-	Catch(const memory::CodeFragment &source);
+	Catch(const memory::CodeFragment& source);
 };
 
-} // namespace
+}  // namespace vm::context::code::control::catch0
 
-#endif // CATCH_H
+#endif  // CATCH_H

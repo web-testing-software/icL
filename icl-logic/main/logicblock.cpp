@@ -2,48 +2,50 @@
 
 namespace vm::logic {
 
-LogicBlock::LogicBlock () = default;
+LogicBlock::LogicBlock() = default;
 
-LogicBlock::~LogicBlock () = default;
+LogicBlock::~LogicBlock() = default;
 
 /**
- * @brief LogicBlock::getResult - calculate the result and save it to the resultValue
+ * @brief LogicBlock::getResult - calculate the result and save it to the
+ * resultValue
  * @return calcResult()
  */
-bool LogicBlock::getResult () {
+bool LogicBlock::getResult() {
 	bool result = false;
 
 	if (resultValue == ResultValue::NOT_CALCULATED) {
-		result		= this->calcResult ();
-		resultValue = result ? ResultValue::TRUE_VALUE : ResultValue::FALSE_VALUE;
+		result = this->calcResult();
+		resultValue =
+		  result ? ResultValue::TRUE_VALUE : ResultValue::FALSE_VALUE;
 	}
 
 	return result;
 }
 
-bool LogicBlock::getCachedResult () {
+bool LogicBlock::getCachedResult() {
 	if (resultCalculed) {
 		return result;
 	}
 
-	return getResult ();
+	return getResult();
 }
 
 /**
  * @brief LogicBlock::resetResultValue - set the resultValue to "not calculated"
  */
-void LogicBlock::resetResultValue () {
+void LogicBlock::resetResultValue() {
 	resultValue = ResultValue::NOT_CALCULATED;
 }
 
 /**
  * @brief LogicBlock::invalidate - set the
  */
-void LogicBlock::invalidate () {
+void LogicBlock::invalidate() {
 	resultValue = ResultValue::WRONG_INPUT_DATA;
 }
 
-bool LogicBlock::canResultPreliminarily () {
+bool LogicBlock::canResultPreliminarily() {
 	return false;
 }
 
@@ -51,7 +53,7 @@ bool LogicBlock::canResultPreliminarily () {
  * @brief LogicBlock::getParent - node parent getter
  * @return pointer to the parent node
  */
-LogicBlock * LogicBlock::getParent () {
+LogicBlock* LogicBlock::getParent() {
 	return m_parent;
 }
 
@@ -59,48 +61,49 @@ LogicBlock * LogicBlock::getParent () {
  * @brief LogicBlock::setParent - parent node setter
  * @param pointer to the parent node
  */
-void LogicBlock::setParent (LogicBlock *parent) {
+void LogicBlock::setParent(LogicBlock* parent) {
 	m_parent = parent;
 }
 
 /**
- * @brief LogicBlock::typeToString - Convert types to string, special for errors messages.
+ * @brief LogicBlock::typeToString - Convert types to string, special for errors
+ * messages.
  * @param type - the result of QVariant.type()
  * @return a string with icL type name
  */
-QString LogicBlock::typeToString (QVariant::Type type) {
+QString LogicBlock::typeToString(QVariant::Type type) {
 	QString ret;
 
 	switch (type) {
-	case QVariant::Bool :
-		ret = QStringLiteral ("Boolean");
+	case QVariant::Bool:
+		ret = QStringLiteral("Boolean");
 		break;
 
-	case QVariant::Int :
-		ret = QStringLiteral ("Int");
+	case QVariant::Int:
+		ret = QStringLiteral("Int");
 		break;
 
-	case QVariant::Double :
-		ret = QStringLiteral ("Double");
+	case QVariant::Double:
+		ret = QStringLiteral("Double");
 		break;
 
-	case QVariant::String :
-		ret = QStringLiteral ("String");
+	case QVariant::String:
+		ret = QStringLiteral("String");
 		break;
 
-	case QVariant::StringList :
-		ret = QStringLiteral ("List");
+	case QVariant::StringList:
+		ret = QStringLiteral("List");
 		break;
 
-	case QVariant::UserType :
-		ret = QStringLiteral ("Element");
+	case QVariant::UserType:
+		ret = QStringLiteral("Element");
 		break;
 
-	default :
-		ret = QStringLiteral ("Void");
+	default:
+		ret = QStringLiteral("Void");
 	}
 
 	return ret;
 }
 
-}
+}  // namespace vm::logic

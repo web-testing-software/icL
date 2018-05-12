@@ -2,45 +2,44 @@
 
 namespace vm::logic::rich {
 
-BooleanBlock::BooleanBlock (OperationType otype) :
-	RichBlock (otype) {
+BooleanBlock::BooleanBlock(OperationType otype)
+	: RichBlock(otype) {
 	casted = true;
 }
 
-BooleanBlock::BooleanBlock (RichBlock *block)
-	: RichBlock (block) {
-}
+BooleanBlock::BooleanBlock(RichBlock* block)
+	: RichBlock(block) {}
 
 /**
  * @brief BooleanBlock::calcResult - compare values
  * @return the result of comparation
  */
-bool BooleanBlock::calcResult () {
-	bool	result	= false;
-	bool	var1	= value1.toBool ();
+bool BooleanBlock::calcResult() {
+	bool result = false;
+	bool var1   = value1.toBool();
 
-	if (value2.type () == QVariant::Bool) {
-		bool var2 = value2.toBool ();
+	if (value2.type() == QVariant::Bool) {
+		bool var2 = value2.toBool();
 
 		switch (operationType) {
-		case OperationType::Equal :
-			result = ( var1 == var2 );
+		case OperationType::Equal:
+			result = (var1 == var2);
 			break;
 
-		case OperationType::NotEqual :
-			result = ( var1 != var2 );
+		case OperationType::NotEqual:
+			result = (var1 != var2);
 			break;
 
-		default :
+		default:
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator ("[Bool-Bool]");
+			sendSignalWrongOperator("[Bool-Bool]");
 		}
 	}
 	else {
-		sendSignalWrongPair ();
+		sendSignalWrongPair();
 	}
 
 	return result;
 }
 
-}
+}  // namespace vm::logic::rich

@@ -10,18 +10,18 @@ namespace vm::context::data {
 class Assign : public Data
 {
 public:
-	Assign ();
+	Assign();
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool isExecuable () const override;
-	bool execute () override;
+	bool checkPrev(const Context* context) const override;
+	bool isExecuable() const override;
+	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 };
 
-} // namespace
+}  // namespace vm::context::data
 
-#endif // ASSIGN_H
+#endif  // ASSIGN_H

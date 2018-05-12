@@ -1,87 +1,87 @@
 #include "listblock.h"
 
 #include "icl-memory/state/datastate.h"
-
 #include <QRegularExpression>
 
 namespace vm::logic::rich {
 
-ListBlock::ListBlock (OperationType otype)
-	: RichBlock (otype) {
+ListBlock::ListBlock(OperationType otype)
+	: RichBlock(otype) {
 	casted = true;
 }
 
-ListBlock::ListBlock (RichBlock *block)
-	: RichBlock (block) {
-}
+ListBlock::ListBlock(RichBlock* block)
+	: RichBlock(block) {}
 
 
 /**
  * @brief StringListBlock::calcResult - compare values
  * @return the result of comparation
  */
-bool ListBlock::calcResult () {
-	bool		result	= false;
-	QStringList var1	= value1.toStringList ();
+bool ListBlock::calcResult() {
+	bool        result = false;
+	QStringList var1   = value1.toStringList();
 
 
-	if (value2.type () == QVariant::StringList) {
-		QStringList var2 = value2.toStringList ();
+	if (value2.type() == QVariant::StringList) {
+		QStringList var2 = value2.toStringList();
 
 		switch (operationType) {
-		case OperationType::Equal :
-			result = operatorEqual (var1, var2);
+		case OperationType::Equal:
+			result = operatorEqual(var1, var2);
 			break;
 
-		case OperationType::NotEqual :
-			result = !operatorEqual (var1, var2);
+		case OperationType::NotEqual:
+			result = !operatorEqual(var1, var2);
 			break;
 
-		default :
+		default:
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator ("[List-List]");
+			sendSignalWrongOperator("[List-List]");
 		}
 	}
-	else if (value2.type () == QVariant::String) {
-		QString var2 = value2.toString ();
+	else if (value2.type() == QVariant::String) {
+		QString var2 = value2.toString();
 
 		switch (operationType) {
-		case OperationType::Contains :
-			result = var1.contains (var2);
+		case OperationType::Contains:
+			result = var1.contains(var2);
 			break;
 
-		case OperationType::ContainsFragment :
-			result = containsFragment (var1, var2);
+		case OperationType::ContainsFragment:
+			result = containsFragment(var1, var2);
 			break;
 
-		default :
+		default:
 			resultValue = ResultValue::FAILED_CALCULATE;
-			sendSignalWrongOperator ("[List-String]");
+			sendSignalWrongOperator("[List-String]");
 		}
 	}
 	else {
-		sendSignalWrongPair ();
+		sendSignalWrongPair();
 	}
 
 	return result;
 }
 
 /**
- * @brief StringListBlock::operatorEqual - test if both lists contains some items
+ * @brief StringListBlock::operatorEqual - test if both lists contains some
+ * items
  * @param list1 - first string list
  * @param list2 - second string list
  * @return both lists contains the same items
  */
-bool ListBlock::operatorEqual (const QStringList &list1, const QStringList &list2) {
+bool ListBlock::operatorEqual(
+  const QStringList& list1, const QStringList& list2) {
 
-	for (const QString &str : list1) {
-		if (!list2.contains (str) ) {
+	for (const QString& str : list1) {
+		if (!list2.contains(str)) {
 			return false;
 		}
 	}
 
-	for (const QString &str : list2) {
-		if (!list1.contains (str) ) {
+	for (const QString& str : list2) {
+		if (!list1.contains(str)) {
 			return false;
 		}
 	}
@@ -89,11 +89,12 @@ bool ListBlock::operatorEqual (const QStringList &list1, const QStringList &list
 	return true;
 }
 
-bool ListBlock::containsFragment (const QStringList &strList, const QString &str) {
+bool ListBlock::containsFragment(
+  const QStringList& strList, const QString& str) {
 	bool ret = false;
 
-	for (const QString &strFromList : strList) {
-		if (strFromList.indexOf (str) >= 0) {
+	for (const QString& strFromList : strList) {
+		if (strFromList.indexOf(str) >= 0) {
 			ret = true;
 		}
 	}
@@ -101,4 +102,4 @@ bool ListBlock::containsFragment (const QStringList &strList, const QString &str
 	return ret;
 }
 
-}
+}  // namespace vm::logic::rich

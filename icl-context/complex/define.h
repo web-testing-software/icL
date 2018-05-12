@@ -10,16 +10,16 @@ namespace vm::context::complex {
 class Define : public Complex
 {
 public:
-	Define ();
+	Define();
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool canBeAtEnd () const override;
+	bool checkPrev(const Context* context) const override;
+	bool canBeAtEnd() const override;
 
-	Context* runMethod (const QString &name, memory::ParamList &params) override;
+	Context* runMethod(const QString& name, memory::ParamList& params) override;
 };
 
-} // namespace
+}  // namespace vm::context::complex
 
-#endif // DEFINE_H
+#endif  // DEFINE_H

@@ -7,20 +7,12 @@
 
 namespace vm::memory {
 
-enum class Type {
-	Void,
-	Boolean,
-	Int,
-	Double,
-	String,
-	List,
-	Element
-};
+enum class Type { Void, Boolean, Int, Double, String, List, Element };
 
-QString typeToString (Type type);
+QString typeToString(Type type);
 
-Type variantTypeToType (QVariant::Type type);
+Type variantTypeToType(QVariant::Type type);
 
-}
+}  // namespace vm::memory
 
-#endif // TYPE_H
+#endif  // TYPE_H

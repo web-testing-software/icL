@@ -2,12 +2,10 @@
 
 namespace vm::context::complex {
 
-Complex::Complex () {
+Complex::Complex() {}
 
-}
-
-bool Complex::isComplex () const {
+bool Complex::isComplex() const {
 	return true;
 }
 
-} // namespace
+}  // namespace vm::context::complex

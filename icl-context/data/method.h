@@ -10,24 +10,24 @@ namespace vm::context::data {
 class Method : public Data
 {
 public:
-	Method (const QString &name);
+	Method(const QString& name);
 
 protected:
-	QString name;
-	Context *endContext;
+	QString  name;
+	Context* endContext;
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool canBeAtEnd () const override;
-	bool execute () override;
+	bool checkPrev(const Context* context) const override;
+	bool canBeAtEnd() const override;
+	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 
 	bool isResultative() const override;
 };
 
-} // namespace
+}  // namespace vm::context::data
 
-#endif // METHOD_H
+#endif  // METHOD_H

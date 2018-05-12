@@ -13,21 +13,21 @@ namespace vm::logic::rich {
 class IntBlock : public RichBlock
 {
 public:
-	IntBlock (OperationType otype);
-	IntBlock (RichBlock *block);
+	IntBlock(OperationType otype);
+	IntBlock(RichBlock* block);
 
-//	static bool check (const QString &value);
+	//	static bool check (const QString &value);
 
 	// LogicBlock interface
-	bool calcResult () override;
+	bool calcResult() override;
 
 protected:
-//	int varNameToInt (const QString &varname);
+	//	int varNameToInt (const QString &varname);
 
 private:
-//	static QRegExp exp;
+	//	static QRegExp exp;
 };
 
-}
+}  // namespace vm::logic::rich
 
-#endif // INTBLOCK_H
+#endif  // INTBLOCK_H

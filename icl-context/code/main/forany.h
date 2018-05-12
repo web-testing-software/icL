@@ -10,20 +10,20 @@ namespace vm::context::code {
 class ForAny : public Code
 {
 public:
-	ForAny (const memory::CodeFragment &source);
+	ForAny(const memory::CodeFragment& source);
 
 	// Context interface
 public:
-	bool checkPrev (const Context *context) const override;
-	bool isExecuable () const override;
-	bool execute () override;
+	bool checkPrev(const Context* context) const override;
+	bool isExecuable() const override;
+	bool execute() override;
 
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+	Context* getBeginContext() override;
+	Context* getEndContext() override;
 
 	bool isResultative() const override;
 };
 
-} // namespace
+}  // namespace vm::context::code
 
-#endif // FORANY_H
+#endif  // FORANY_H
