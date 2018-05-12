@@ -1,7 +1,5 @@
 #include "if.h"
 
-#include <QDebug>
-
 #include <icl-logic/cross/andblock.h>
 #include <icl-logic/cross/eqblock.h>
 #include <icl-logic/cross/orblock.h>
@@ -9,6 +7,8 @@
 #include <icl-logic/main/crossblock.h>
 #include <icl-logic/main/logicblock.h>
 #include <icl-logic/rich/singleblock.h>
+
+#include <QDebug>
 
 namespace vm::context::code::control {
 

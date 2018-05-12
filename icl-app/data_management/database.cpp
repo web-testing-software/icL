@@ -1,6 +1,7 @@
 #include "database.h"
 
 #include "dialdescription.h"
+
 #include <QDebug>
 #include <QFile>
 #include <QSqlQuery>

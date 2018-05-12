@@ -1,6 +1,7 @@
 #include "backend/helper.h"
 #include "data_management/database.h"
 #include "data_management/dialdescription.h"
+
 #include <QApplication>
 #include <QOpenGLContext>
 #include <QQmlEngine>

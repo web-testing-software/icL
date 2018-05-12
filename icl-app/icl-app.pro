@@ -61,5 +61,6 @@ DISTFILES += \
     uml2svg.sh \
     models/uml_style.iuml \
     models/use_case.plantuml \
-    models/modules.plantuml
+    models/modules.plantuml \
+    _clang-format
 
