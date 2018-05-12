@@ -16,11 +16,7 @@ public:
 public:
 	bool checkPrev (const Context *context) const override;
 	bool canBeAtEnd () const override;
-	bool isRightToLeft () const override;
-	bool isExecuable () const override;
-	bool execute () override;
-	Context* getBeginContext () override;
-	Context* getEndContext () override;
+
 	Context* runMethod (const QString &name, memory::ParamList &params) override;
 };
 
