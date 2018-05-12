@@ -12,8 +12,7 @@ namespace vm::memory {
 class Return
 {
 public:
-	Return ();
-
+	Return () = default;
 	QVariant returnValue;
 	QVariant consoleValue;
 

@@ -4,6 +4,4 @@
 
 namespace vm::memory {
 
-Return::Return() = default;
-
 }
