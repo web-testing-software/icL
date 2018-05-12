@@ -94,4 +94,8 @@ bool Object::canBeAtEnd () const {
 	return true;
 }
 
+bool Object::isResultative () const {
+	return true;
+}
+
 } // namespace

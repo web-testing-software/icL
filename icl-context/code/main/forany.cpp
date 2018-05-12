@@ -46,4 +46,8 @@ Context * ForAny::getEndContext () {
 	return this;
 }
 
+bool ForAny::isResultative () const {
+	return true;
+}
+
 } // namespace

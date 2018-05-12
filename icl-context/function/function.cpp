@@ -196,4 +196,8 @@ Context * Function::getEndContext () {
 	return it;
 }
 
+bool Function::isResultative () const {
+	return !newFunction;
+}
+
 } // namespace

@@ -31,4 +31,8 @@ Context * Property::getEndContext () {
 	return this;
 }
 
+bool Property::isResultative () const {
+	return true;
+}
+
 } // namespace

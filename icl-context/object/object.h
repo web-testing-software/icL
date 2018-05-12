@@ -42,6 +42,8 @@ protected:
 public:
 	bool checkPrev (const Context *context) const override;
 	bool canBeAtEnd () const override;
+
+	bool isResultative() const override;
 };
 
 } // namespace

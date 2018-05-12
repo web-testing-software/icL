@@ -37,6 +37,8 @@ public:
 
 	Context* getBeginContext () override;
 	Context* getEndContext () override;
+
+	bool isResultative() const override;
 };
 
 } // namespace

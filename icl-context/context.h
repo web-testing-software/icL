@@ -45,7 +45,7 @@ public:
 	Context* prev () const;
 	Context* next () const;
 
-	bool isResultative () const;
+	virtual bool isResultative () const;
 	virtual bool isComplex () const;
 
 	static Context* fromValue (QVariant &value);

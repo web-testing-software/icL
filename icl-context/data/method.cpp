@@ -56,4 +56,8 @@ Context * Method::getEndContext () {
 	return endContext;
 }
 
+bool Method::isResultative () const {
+	return true;
+}
+
 } // namespace

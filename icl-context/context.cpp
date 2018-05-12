@@ -60,16 +60,7 @@ Context * Context::runMethod (const QString &name, memory::ParamList &params) {
 }
 
 bool Context::isResultative () const {
-	return
-		m_role == Role::Object   ||
-		m_role == Role::Property ||
-		m_role == Role::Method   ||
-		m_role == Role::ForAny   ||
-		m_role == Role::Function ||
-		(
-		m_role == Role::Exists &&
-		!dynamic_cast <const code::control::catch0::Exists *> ( this )->getIsEmiter ()
-		);
+	return false;
 }
 
 bool Context::isComplex () const {
