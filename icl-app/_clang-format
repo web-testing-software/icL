@@ -53,12 +53,16 @@ FixNamespaceComments: true
 IncludeBlocks: Regroup
 
 IncludeCategories:
-  - Regex:           '^<icl'
-    Priority:        2
   - Regex:           '^<Q'
+    Priority:        5
+  - Regex:           '^<icl'
     Priority:        3
-  - Regex:           '.*'
+  - Regex:           '^<.*\.h>$'
+    Priority:        2
+  - Regex:           '^".*\.h"$'
     Priority:        1
+  - Regex:           '.*'
+    Priority:        4
 
 IndentCaseLabels: false
 IndentWrappedFunctionNames: false
