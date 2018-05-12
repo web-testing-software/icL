@@ -295,6 +295,7 @@ logic::LogicBlock * If::returnRank2 (Operator &op, memory::CodeFragment &fn) {
 
 	default :
 		// Never triggered, elude clang warning
+		type = logic::RichBlock::OperationType::NotNot;
 		break;
 	}
 

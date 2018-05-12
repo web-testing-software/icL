@@ -50,7 +50,10 @@ SOURCES += \
     data/alternative.cpp \
     code/control/catch/exists.cpp \
     code/main/forany.cpp \
-    code/control/catch/slot.cpp
+    code/control/catch/slot.cpp \
+    complex/complex.cpp \
+    complex/tab.cpp \
+    complex/dom.cpp
 
 HEADERS += \
         context.h \
@@ -76,7 +79,10 @@ HEADERS += \
     data/alternative.h \
     code/control/catch/exists.h \
     code/main/forany.h \
-    code/control/catch/slot.h
+    code/control/catch/slot.h \
+    complex/complex.h \
+    complex/tab.h \
+    complex/dom.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
