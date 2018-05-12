@@ -1,14 +1,21 @@
 #include "log.h"
 
-namespace vm {
-namespace context {
-namespace complex {
+namespace vm::context::complex {
 
-Log::Log()
-{
+Log::Log () {
 
 }
 
-} // namespace complex
-} // namespace context
-} // namespace vm
+bool Log::checkPrev (const Context *context) const {
+	return context == nullptr;
+}
+
+bool Log::canBeAtEnd () const {
+	return false;
+}
+
+Context * Log::runMethod (const QString &name, memory::ParamList &params) {
+
+}
+
+} // namespace
