@@ -11,6 +11,10 @@ class Complex : public Context
 {
 public:
 	Complex ();
+
+	// Context interface
+public:
+	bool isComplex() const override;
 };
 
 } // namespace

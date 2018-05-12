@@ -72,6 +72,10 @@ bool Context::isResultative () const {
 		);
 }
 
+bool Context::isComplex () const {
+	return false;
+}
+
 Context * Context::fromValue (QVariant &value) {
 	object::Object	*ret;
 	memory::Type	type = memory::variantTypeToType (value.type () );
