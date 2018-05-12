@@ -53,7 +53,9 @@ SOURCES += \
     code/control/catch/slot.cpp \
     complex/complex.cpp \
     complex/tab.cpp \
-    complex/dom.cpp
+    complex/dom.cpp \
+    complex/define.cpp \
+    complex/log.cpp
 
 HEADERS += \
         context.h \
@@ -82,7 +84,9 @@ HEADERS += \
     code/control/catch/slot.h \
     complex/complex.h \
     complex/tab.h \
-    complex/dom.h
+    complex/dom.h \
+    complex/define.h \
+    complex/log.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
