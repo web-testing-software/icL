@@ -14,6 +14,11 @@ public:
 	List(const QVariant& rvalue, bool readonly = false);
 	List(const Object* const object);
 
+private:
+	QString getFirst ();
+
+	void sendCastFailed(const QString &value, const QString &type);
+
 	// Context interface
 public:
 	Context* runProperty(const QString& name) override;
