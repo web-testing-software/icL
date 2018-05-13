@@ -2,13 +2,14 @@
 #define FUNCTIONCONTAINER_H
 
 #include "type.h"
+
 #include <QLinkedList>
 #include <QMap>
 #include <QString>
 #include <QVector>
 
-namespace vm::context {
-class Context;
+namespace vm::context::object {
+class Object;
 }
 
 namespace vm::memory {
@@ -17,13 +18,13 @@ namespace vm::memory {
 
 // Function header
 
-struct Argument
+struct Parameter
 {
 	QString name;
 	Type    type;
 };
 
-using ArgList = QLinkedList<Argument>;
+using ParamList = QLinkedList<Parameter>;
 
 struct CodeFragment
 {
@@ -33,7 +34,7 @@ struct CodeFragment
 
 struct Function
 {
-	ArgList      argList;
+	ParamList    paramList;
 	CodeFragment source;
 };
 
@@ -41,17 +42,17 @@ using FunctionMap = QMap<QString, Function>;
 
 // Function call
 
-struct Parameter
+struct Argument
 {
-	QString           name;
-	context::Context* object;
+	QString                  name;
+	context::object::Object* object;
 };
 
-using ParamList = QVector<Parameter>;
+using ArgList = QVector<Argument>;
 
 struct FunctionCall
 {
-	ParamList    params;
+	ArgList      args;
 	CodeFragment source;
 };
 

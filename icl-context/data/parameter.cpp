@@ -1,24 +1,24 @@
-#include "argument.h"
+#include "parameter.h"
 
 namespace vm::context::data {
 
-Argument::Argument(const QString& name, memory::Type type)
+Parameter::Parameter(const QString& name, memory::Type type)
 	: m_name(name)
 	, m_type(type) {
 	m_role = Role::Argument;
 }
 
-memory::Type Argument::type() const {
+memory::Type Parameter::type() const {
 	return m_type;
 }
 
-const QString& Argument::name() const {
+const QString& Parameter::name() const {
 	return m_name;
 };
 
 
 
-bool Argument::checkPrev(const Context* context) const {
+bool Parameter::checkPrev(const Context* context) const {
 	return context != nullptr &&
 		   (context->role() == Role::Argument ||
 			(context->role() == Role::Assign && context->prev() != nullptr &&

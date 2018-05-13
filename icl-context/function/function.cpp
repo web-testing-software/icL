@@ -1,7 +1,7 @@
 #include "function.h"
 
 #include <code/main/code.h>
-#include <data/argument.h>
+#include <data/parameter.h>
 #include <object/object.h>
 
 namespace vm::context::function {
@@ -21,13 +21,13 @@ bool Function::exNewFunction() {
 	Context* it        = m_next->next();
 
 	while (it != nullptr && it->role() == Role::Argument) {
-		memory::Argument argument;
-		auto*            dataArgument = dynamic_cast<data::Argument*>(it);
+		memory::Parameter parameter;
+		auto*             dataParameter = dynamic_cast<data::Parameter*>(it);
 
-		argument.name = dataArgument->name();
-		argument.type = dataArgument->type();
+		parameter.name = dataParameter->name();
+		parameter.type = dataParameter->type();
 
-		func.argList.append(argument);
+		func.paramList.append(parameter);
 	}
 
 	func.source = codeBlock->source();
@@ -55,19 +55,19 @@ bool Function::exCallFunction() {
 	}
 
 	auto     fcall   = memory::FunctionCall{};
-	auto     argIt   = func.argList.begin();
+	auto     argIt   = func.paramList.begin();
 	Context* it      = m_next;
-	int      argsNum = func.argList.size();
+	int      argsNum = func.paramList.size();
 
-	fcall.params.reserve(argsNum);
+	fcall.args.reserve(argsNum);
 
 	for (int i = 0; i < argsNum; i++, argIt++, it = it->next()) {
-		memory::Parameter param;
+		memory::Argument arg;
 
-		param.name   = (*argIt).name;
-		param.object = it;
+		arg.name   = (*argIt).name;
+		arg.object = dynamic_cast<object::Object*>(it);
 
-		fcall.params.append(param);
+		fcall.args.append(arg);
 	}
 
 	emit interrupt(fcall, [this](memory::Return& ret) {
@@ -85,16 +85,16 @@ bool Function::exCallFunction() {
 }
 
 bool Function::checkParamsNum(memory::Function& func) {
-	int      argsNum = func.argList.size();
-	int      i       = 0;
-	Context* it      = m_next;
+	int      paramsNum = func.paramList.size();
+	int      i         = 0;
+	Context* it        = m_next;
 
-	while (it != nullptr && it->role() == Role::Object && i < argsNum) {
+	while (it != nullptr && it->role() == Role::Object && i < paramsNum) {
 		++i;
 		it = it->next();
 	}
 
-	if (i != argsNum || (it != nullptr && it->role() == Role::Object)) {
+	if (i != paramsNum || (it != nullptr && it->role() == Role::Object)) {
 		sendWrongArgs();
 		return false;
 	}
@@ -103,19 +103,19 @@ bool Function::checkParamsNum(memory::Function& func) {
 }
 
 bool Function::checkParamsTypes(memory::Function& func) {
-	auto     argIt   = func.argList.begin();
-	int      argsNum = func.argList.size();
-	Context* paramIt = m_next;
-	bool     ok      = true;
+	auto     paramIt  = func.paramList.begin();
+	int      paramNum = func.paramList.size();
+	Context* argIt    = m_next;
+	bool     ok       = true;
 
-	for (int i = 0; i < argsNum; i++) {
-		auto* paramObj = dynamic_cast<object::Object*>(paramIt);
-		if ((*argIt).type != paramObj->type()) {
+	for (int i = 0; i < paramNum; i++) {
+		auto* argObj = dynamic_cast<object::Object*>(argIt);
+		if ((*paramIt).type != argObj->type()) {
 			ok = false;
 		}
 
-		++argIt;
-		paramIt = paramIt->next();
+		++paramIt;
+		argIt = argIt->next();
 	}
 
 	if (!ok) {
@@ -137,7 +137,7 @@ void Function::sendWrongArgs() {
 		getted.append(memory::typeToString(obj->type()));
 	}
 
-	for (auto& arg : mem->functions().getFunction(name).argList) {
+	for (auto& arg : mem->functions().getFunction(name).paramList) {
 		expected.append(memory::typeToString(arg.type));
 	}
 

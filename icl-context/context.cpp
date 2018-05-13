@@ -9,6 +9,7 @@
 #include <object/object.h>
 #include <object/string.h>
 #include <object/void.h>
+
 #include <utility>
 
 
@@ -120,6 +121,18 @@ Context* Context::getLast() {
 	}
 
 	return it;
+}
+
+void Context::sendWrongArglist(
+  memory::ArgList& params, const QString& expected) {
+	QStringList types;
+
+	for (auto param : params) {
+		types.append(memory::typeToString(param.object->type()));
+	}
+
+	emit exception({-203, "Wrong arglist: <" % types.join(", ") %
+							">, expected " % expected});
 }
 
 void Context::repeatException(memory::Exception exc) {

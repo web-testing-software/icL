@@ -46,7 +46,6 @@ SOURCES += \
     object/list.cpp \
     object/void.cpp \
     object/element.cpp \
-    data/argument.cpp \
     data/alternative.cpp \
     code/control/catch/exists.cpp \
     code/main/forany.cpp \
@@ -55,7 +54,8 @@ SOURCES += \
     complex/tab.cpp \
     complex/dom.cpp \
     complex/define.cpp \
-    complex/log.cpp
+    complex/log.cpp \
+    data/parameter.cpp
 
 HEADERS += \
         context.h \
@@ -77,7 +77,6 @@ HEADERS += \
     object/list.h \
     object/void.h \
     object/element.h \
-    data/argument.h \
     data/alternative.h \
     code/control/catch/exists.h \
     code/main/forany.h \
@@ -86,7 +85,8 @@ HEADERS += \
     complex/tab.h \
     complex/dom.h \
     complex/define.h \
-    complex/log.h
+    complex/log.h \
+    data/parameter.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

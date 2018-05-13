@@ -1,12 +1,13 @@
 #ifndef VM_CONTEXT_CONTEXT_H
 #define VM_CONTEXT_CONTEXT_H
 
-#include <QObject>
-#include <functional>
-
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/functioncontainer.h>
 #include <icl-memory/structures/return.h>
+
+#include <functional>
+
+#include <QObject>
 
 namespace vm::context {
 
@@ -61,6 +62,8 @@ public:
 protected:
 	Context* getFirst();
 	Context* getLast();
+
+	void sendWrongArglist(memory::ArgList &params, const QString& expected);
 
 signals:
 	void exception(memory::Exception exc) const;
