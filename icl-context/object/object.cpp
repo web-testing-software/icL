@@ -203,6 +203,11 @@ void Object::sendWrongCast(const QString& to) {
 						  " can not be casted to " % to});
 }
 
+void Object::sendCastFailed(const QString& value, const QString& type) {
+	emit exception({-3, R"(The string ")" % value %
+						  R"(" cannot be casted to )" % type});
+}
+
 void Object::runCast(const QString& name, memory::ArgList& args) {
 	QStringRef type = name.midRef(2);
 

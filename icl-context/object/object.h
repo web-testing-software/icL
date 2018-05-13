@@ -43,7 +43,9 @@ private:
 	void runToString(memory::ArgList& args);
 	void runToList(memory::ArgList& args);
 
+protected:
 	void sendWrongCast(const QString& to);
+	void sendCastFailed(const QString &value, const QString &type);
 	void runCast(const QString& name, memory::ArgList& args);
 
 protected:

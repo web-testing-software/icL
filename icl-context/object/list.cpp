@@ -33,11 +33,6 @@ QString List::getFirst() {
 	return ret;
 }
 
-void List::sendCastFailed(const QString& value, const QString& type) {
-	emit exception({-3, R"(The string ")" % value %
-						  R"(" cannot be casted to )" % type});
-}
-
 
 
 bool List::toBoolean() {
