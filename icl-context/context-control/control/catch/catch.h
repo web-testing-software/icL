@@ -1,7 +1,7 @@
 #ifndef CATCH_H
 #define CATCH_H
 
-#include <code/control/main/control.h>
+#include <control/main/control.h>
 
 
 

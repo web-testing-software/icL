@@ -1,9 +1,14 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include "icl-context/context.h"
-#include <QObject>
+#include <icl-context/context-base/context.h>
+#include <icl-context/context-base/object/int.h>
+#include <icl-memory/structures/functioncontainer.h>
+#include <icl-memory/structures/return.h>
+
 #include <functional>
+
+#include <QObject>
 
 namespace vm::inter {
 
@@ -19,6 +24,9 @@ signals:
 public slots:
 	void repeat(
 	  memory::FunctionCall run, std::function<void(memory::Return&)> feedback);
+
+private:
+	context::Context* context = new context::object::Int(QVariant(0));
 };
 
 }  // namespace vm::inter

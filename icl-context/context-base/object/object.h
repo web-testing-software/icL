@@ -1,7 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include <context.h>
+#include <context-base/context.h>
 
 #include <icl-memory/state/datastate.h>
 
@@ -45,7 +45,7 @@ private:
 
 protected:
 	void sendWrongCast(const QString& to);
-	void sendCastFailed(const QString &value, const QString &type);
+	void sendCastFailed(const QString& value, const QString& type);
 	void runCast(const QString& name, memory::ArgList& args);
 
 protected:

@@ -12,7 +12,10 @@ CONFIG += staticlib
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
 
-INCLUDEPATH += ../
+INCLUDEPATH += \
+    .. \
+    ../.. \
+    ../context-base
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings

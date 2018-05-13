@@ -1,8 +1,11 @@
 #include "function.h"
 
-#include <code/main/code.h>
-#include <data/parameter.h>
-#include <object/object.h>
+#include "parameter.h"
+
+#include <context-base/object/object.h>
+#include <context-control/main/code.h>
+
+
 
 namespace vm::context::function {
 

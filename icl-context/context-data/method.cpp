@@ -1,6 +1,7 @@
 #include "method.h"
 
-#include <object/object.h>
+#include <context-base/object/object.h>
+
 
 namespace vm::context::data {
 
@@ -21,8 +22,8 @@ bool Method::canBeAtEnd() const {
 
 bool Method::execute() {
 	memory::ArgList args;
-	int               count = 0;
-	Context*          it    = m_next;
+	int             count = 0;
+	Context*        it    = m_next;
 
 	while (it != nullptr && it->role() == Role::Object) {
 		count++;
