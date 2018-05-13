@@ -13,4 +13,31 @@ Int::Int(const QVariant& rvalue, bool readonly)
 Int::Int(const Object* const object)
 	: Object(object) {}
 
+
+
+bool Int::toBoolean() {
+	newValue = getValue().toInt() != 0;
+	return newValue.toBool();
+}
+
+int Int::toInt() {
+	newValue = getValue();
+	return newValue.toInt();
+}
+
+double Int::toDouble() {
+	newValue = static_cast<double>(getValue().toInt());
+	return newValue.toDouble();
+}
+
+const QString Int::toString() {
+	newValue = QString::number(getValue().toInt());
+	return newValue.toString();
+}
+
+const QStringList Int::toList() {
+	newValue = QStringList{} << QString::number(getValue().toInt());
+	return newValue.toStringList();
+}
+
 }  // namespace vm::context::object
