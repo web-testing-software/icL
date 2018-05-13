@@ -21,7 +21,7 @@ double Void::toDouble() {
 }
 
 const QString Void::toString() {
-	newValue = QString{};
+	newValue = "";
 	return QString{};
 }
 
