@@ -1,5 +1,7 @@
 #include "method.h"
 
+#include <object/object.h>
+
 namespace vm::context::data {
 
 Method::Method(const QString& name)
@@ -18,7 +20,7 @@ bool Method::canBeAtEnd() const {
 }
 
 bool Method::execute() {
-	memory::ParamList params;
+	memory::ArgList args;
 	int               count = 0;
 	Context*          it    = m_next;
 
@@ -30,20 +32,20 @@ bool Method::execute() {
 	endContext = it == nullptr ? getLast() : it->prev();
 
 	if (count > 0) {
-		params.reserve(count);
+		args.reserve(count);
 		it = m_next;
 
 		while (it != nullptr && it->role() == Role::Object) {
-			memory::Parameter param;
+			memory::Argument arg;
 
-			param.object = it;
-			params.append(param);
+			arg.object = dynamic_cast<object::Object*>(it);
+			args.append(arg);
 
 			it = it->next();
 		}
 	}
 
-	newContext = m_prev->runMethod(name, params);
+	newContext = m_prev->runMethod(name, args);
 
 	return true;
 }

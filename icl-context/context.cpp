@@ -1,6 +1,5 @@
 #include "context.h"
 
-#include <code/control/catch/exists.h>
 #include <object/boolean.h>
 #include <object/double.h>
 #include <object/element.h>
