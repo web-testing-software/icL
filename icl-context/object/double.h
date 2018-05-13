@@ -20,11 +20,11 @@ public:
 
 	// Object interface
 public:
-	bool               toBoolean() override;
-	int                toInt() override;
-	double             toDouble() override;
-	const QString&     toString() override;
-	const QStringList& toList() override;
+	bool              toBoolean() override;
+	int               toInt() override;
+	double            toDouble() override;
+	const QString     toString() override;
+	const QStringList toList() override;
 };
 
 }  // namespace vm::context::object

@@ -30,11 +30,11 @@ public:
 
 public:
 	// Cast functions
-	virtual bool               toBoolean() = 0;
-	virtual int                toInt()     = 0;
-	virtual double             toDouble()  = 0;
-	virtual const QString&     toString()  = 0;
-	virtual const QStringList& toList()    = 0;
+	virtual bool              toBoolean() = 0;
+	virtual int               toInt()     = 0;
+	virtual double            toDouble()  = 0;
+	virtual const QString     toString()  = 0;
+	virtual const QStringList toList()    = 0;
 
 private:
 	void runToBoolean(memory::ArgList& args);
