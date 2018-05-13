@@ -76,6 +76,151 @@ void Object::setValue(const QVariant& value) {
 
 const QString& Object::getVarName() const {
 	return varName;
+}
+
+void Object::runToBoolean(memory::ArgList& args) {
+	if (args.length() == 0) {
+		toBoolean();
+
+		if (newValue.isNull()) {
+			sendWrongCast("List");
+		}
+	}
+	else if (
+	  args.length() == 1 && args[0].object->type() == memory::Type::Boolean) {
+		toBoolean();
+
+		if (newValue.isNull()) {
+			newValue = args[0].object->getValue();
+		}
+	}
+	else {
+		sendWrongArglist(args, "<> or <Boolean>");
+		return;
+	}
+
+	newContext = fromValue(newValue);
+}
+
+void Object::runToInt(memory::ArgList& args) {
+	if (args.length() == 0) {
+		toInt();
+
+		if (newValue.isNull()) {
+			sendWrongCast("List");
+		}
+	}
+	else if (
+	  args.length() == 1 && args[0].object->type() == memory::Type::Int) {
+		toInt();
+
+		if (newValue.isNull()) {
+			newValue = args[0].object->getValue();
+		}
+	}
+	else {
+		sendWrongArglist(args, "<> or <Int>");
+		return;
+	}
+
+	newContext = fromValue(newValue);
+}
+
+void Object::runToDouble(memory::ArgList& args) {
+	if (args.length() == 0) {
+		toDouble();
+
+		if (newValue.isNull()) {
+			sendWrongCast("List");
+		}
+	}
+	else if (
+	  args.length() == 1 && args[0].object->type() == memory::Type::Double) {
+		toDouble();
+
+		if (newValue.isNull()) {
+			newValue = args[0].object->getValue();
+		}
+	}
+	else {
+		sendWrongArglist(args, "<> or <Double>");
+		return;
+	}
+
+	newContext = fromValue(newValue);
+}
+
+void Object::runToString(memory::ArgList& args) {
+	if (args.length() == 0) {
+		toString();
+
+		if (newValue.isNull()) {
+			sendWrongCast("List");
+		}
+	}
+	else if (
+	  args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		toString();
+
+		if (newValue.isNull()) {
+			newValue = args[0].object->getValue();
+		}
+	}
+	else {
+		sendWrongArglist(args, "<> or <String>");
+		return;
+	}
+
+	newContext = fromValue(newValue);
+}
+
+void Object::runToList(memory::ArgList& args) {
+	if (args.length() == 0) {
+		toList();
+
+		if (newValue.isNull()) {
+			sendWrongCast("List");
+		}
+	}
+	else if (
+	  args.length() == 1 && args[0].object->type() == memory::Type::List) {
+		toList();
+
+		if (newValue.isNull()) {
+			newValue = args[0].object->getValue();
+		}
+	}
+	else {
+		sendWrongArglist(args, "<> or <List>");
+		return;
+	}
+
+	newContext = fromValue(newValue);
+}
+
+void Object::sendWrongCast(const QString& to) {
+	emit exception({-1, "Type " % memory::typeToString(type()) %
+						  " can not be casted to " % to});
+}
+
+void Object::runCast(const QString& name, memory::ArgList& args) {
+	QStringRef type = name.midRef(2);
+
+	if (type == "Boolean") {
+		runToBoolean(args);
+	}
+	else if (type == "Int") {
+		runToInt(args);
+	}
+	else if (type == "Double") {
+		runToDouble(args);
+	}
+	else if (type == "String") {
+		runToString(args);
+	}
+	else if (type == "List") {
+		runToList(args);
+	}
 };
 
 

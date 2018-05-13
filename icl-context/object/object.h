@@ -16,16 +16,35 @@ public:
 	Object(const QVariant& rvalue, bool readonly = false);
 	Object(const Object* const object);
 
-	memory::Type     type() const;
-	virtual bool     isRValue() const;
-	virtual bool     isReadOnly() const;
-	virtual bool     isLValue() const;
-	virtual bool     isLink() const;
+	memory::Type type() const;
+
+	virtual bool isRValue() const;
+	virtual bool isReadOnly() const;
+	virtual bool isLValue() const;
+	virtual bool isLink() const;
+
 	virtual QVariant getValue() const;
 	virtual void     setValue(const QVariant& value);
 
-
 	const QString& getVarName() const;
+
+public:
+	// Cast functions
+	virtual bool               toBoolean() = 0;
+	virtual int                toInt()     = 0;
+	virtual double             toDouble()  = 0;
+	virtual const QString&     toString()  = 0;
+	virtual const QStringList& toList()    = 0;
+
+private:
+	void runToBoolean(memory::ArgList& args);
+	void runToInt(memory::ArgList& args);
+	void runToDouble(memory::ArgList& args);
+	void runToString(memory::ArgList& args);
+	void runToList(memory::ArgList& args);
+
+	void sendWrongCast(const QString& to);
+	void runCast(const QString& name, memory::ArgList& args);
 
 protected:
 	// LValue
