@@ -9,7 +9,11 @@
 #include <object/string.h>
 #include <object/void.h>
 
+#include <icl-memory/structures/webelement.h>
+
 #include <utility>
+
+#include <QVariant>
 
 
 namespace vm::context {
@@ -122,8 +126,7 @@ Context* Context::getLast() {
 	return it;
 }
 
-void Context::sendWrongArglist(
-  memory::ArgList& args, const QString& expected) {
+void Context::sendWrongArglist(memory::ArgList& args, const QString& expected) {
 	QStringList types;
 
 	for (auto arg : args) {
@@ -132,6 +135,47 @@ void Context::sendWrongArglist(
 
 	emit exception({-203, "Wrong arglist: <" % types.join(", ") %
 							">, expected " % expected});
+}
+
+QString Context::varToJsString(const QVariant& var) {
+	QString            ret;
+	QStringList        list = var.toStringList();
+	memory::WebElement web  = var.value<memory::WebElement>();
+
+	switch (var.type()) {
+	case QVariant::Bool:
+		ret = var.toBool() ? "true" : "false";
+		break;
+
+	case QVariant::Int:
+		ret = QString::number(var.toInt());
+		break;
+
+	case QVariant::Double:
+		ret = QString::number(var.toDouble());
+		break;
+
+	case QVariant::String:
+		ret = var.toString();
+		break;
+
+	case QVariant::StringList:
+		for (QString& str : list) {
+			str.replace(R"(")", R"(\")");
+		}
+		ret = R"([")" % list.join(R"(",")") % R"("])";
+		break;
+
+	case QVariant::Type::UserType:
+		ret = web.variable;
+		break;
+
+	default:
+		// Elude clang error
+		break;
+	}
+
+	return ret;
 }
 
 void Context::repeatException(memory::Exception exc) {

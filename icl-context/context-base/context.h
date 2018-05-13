@@ -65,6 +65,8 @@ protected:
 
 	void sendWrongArglist(memory::ArgList& params, const QString& expected);
 
+	QString varToJsString(const QVariant& var);
+
 signals:
 	void exception(memory::Exception exc) const;
 	void interrupt(

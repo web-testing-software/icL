@@ -23,7 +23,7 @@ public:
 	virtual bool isLValue() const;
 	virtual bool isLink() const;
 
-	virtual QVariant getValue() const;
+	virtual QVariant getValue();
 	virtual void     setValue(const QVariant& value);
 
 	const QString& getVarName() const;
@@ -48,6 +48,11 @@ protected:
 	void sendCastFailed(const QString& value, const QString& type);
 	void runCast(const QString& name, memory::ArgList& args);
 
+signals:
+	void requestJsExecution(
+	  const QString&                           str,
+	  std::function<void(const QVariant& var)> feedback) const;
+
 protected:
 	// LValue
 	memory::DataState* container = nullptr;
@@ -57,7 +62,11 @@ protected:
 	QVariant rvalue;
 	bool     readonly = false;
 
-	enum class Value { L, R } value;
+	// JsValue
+	QString setter;
+	QString getter;
+
+	enum class Value { L, R, Js } value;
 
 	// Context interface
 public:

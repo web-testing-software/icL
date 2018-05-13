@@ -53,11 +53,22 @@ bool Object::isLValue() const {
 }
 
 bool Object::isLink() const {
-	return value == Value::L || type() == memory::Type::Element;
+	return value != Value::R || type() == memory::Type::Element;
 }
 
-QVariant Object::getValue() const {
-	return value == Value::R ? rvalue : container->getValue(varName);
+QVariant Object::getValue() {
+	if (value == Value::R) {
+		return rvalue;
+	}
+	else if (value == Value::L) {
+		return container->getValue(varName);
+	}
+	else /* value == Value::Js */ {
+		emit requestJsExecution(
+		  getter, [this](const QVariant& var) { this->newValue = var; });
+
+		return newValue;
+	}
 }
 
 void Object::setValue(const QVariant& value) {
@@ -69,8 +80,11 @@ void Object::setValue(const QVariant& value) {
 	if (this->value == Value::R) {
 		rvalue = value;
 	}
-	else {
+	else if (this->value == Value::L) {
 		container->setValue(varName, value);
+	}
+	else /* this.value == Value.Js */ {
+		emit requestJsExecution(setter.arg(varToJsString(value)), nullptr);
 	}
 }
 
