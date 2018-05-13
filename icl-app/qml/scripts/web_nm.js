@@ -349,4 +349,8 @@
 	}
 
 	window.nm = nm;
+	window.icL = {
+		links: [],
+		crossfire: {}
+	}
 }());

@@ -17,7 +17,7 @@ public:
 	bool checkPrev(const Context* context) const override;
 	bool canBeAtEnd() const override;
 
-	Context* runMethod(const QString& name, memory::ParamList& params) override;
+	Context* runMethod(const QString& name, memory::ArgList& args) override;
 };
 
 }  // namespace vm::context::complex

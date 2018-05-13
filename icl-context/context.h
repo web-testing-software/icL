@@ -48,7 +48,7 @@ public:
 
 	virtual bool     hasValue() const;
 	virtual Context* runProperty(const QString& name);
-	virtual Context* runMethod(const QString& name, memory::ParamList& params);
+	virtual Context* runMethod(const QString& name, memory::ArgList& args);
 
 	Role     role() const;
 	Context* prev() const;
@@ -57,7 +57,7 @@ public:
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;
 
-	static Context* fromValue(QVariant& value);
+	static Context* fromValue(const QVariant &value);
 
 protected:
 	Context* getFirst();

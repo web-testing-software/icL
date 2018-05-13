@@ -12,6 +12,6 @@ bool Tab::canBeAtEnd() const {
 	return false;
 }
 
-Context* Tab::runMethod(const QString& name, memory::ParamList& params) {}
+Context* Tab::runMethod(const QString& name, memory::ArgList &args) {}
 
 }  // namespace vm::context::complex

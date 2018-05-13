@@ -12,6 +12,6 @@ bool Log::canBeAtEnd() const {
 	return false;
 }
 
-Context* Log::runMethod(const QString& name, memory::ParamList& params) {}
+Context* Log::runMethod(const QString& name, memory::ArgList &args) {}
 
 }  // namespace vm::context::complex

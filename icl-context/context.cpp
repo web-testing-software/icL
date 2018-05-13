@@ -51,8 +51,8 @@ Context* Context::runProperty(const QString& name) {
 	return nullptr;
 }
 
-Context* Context::runMethod(const QString& name, memory::ParamList& params) {
-	Q_UNUSED(params);
+Context* Context::runMethod(const QString& name, memory::ArgList& args) {
+	Q_UNUSED(args);
 	emit exception({-7, "No such method: " + name});
 
 	return nullptr;
@@ -66,7 +66,7 @@ bool Context::isComplex() const {
 	return false;
 }
 
-Context* Context::fromValue(QVariant& value) {
+Context* Context::fromValue(const QVariant& value) {
 	object::Object* ret;
 	memory::Type    type = memory::variantTypeToType(value.type());
 
@@ -124,11 +124,11 @@ Context* Context::getLast() {
 }
 
 void Context::sendWrongArglist(
-  memory::ArgList& params, const QString& expected) {
+  memory::ArgList& args, const QString& expected) {
 	QStringList types;
 
-	for (auto param : params) {
-		types.append(memory::typeToString(param.object->type()));
+	for (auto arg : args) {
+		types.append(memory::typeToString(arg.object->type()));
 	}
 
 	emit exception({-203, "Wrong arglist: <" % types.join(", ") %
