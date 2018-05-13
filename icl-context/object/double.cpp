@@ -13,4 +13,29 @@ Double::Double(const QVariant& rvalue, bool readonly)
 Double::Double(const Object* const object)
 	: Object(object) {}
 
+bool Double::toBoolean() {
+	newValue = getValue().toDouble() != 0.0;
+	return newValue.toBool();
+}
+
+int Double::toInt() {
+	newValue = static_cast<int>(getValue().toDouble());
+	return newValue.toInt();
+}
+
+double Double::toDouble() {
+	newValue = getValue();
+	return newValue.toDouble();
+}
+
+const QString Double::toString() {
+	newValue = QString::number(getValue().toDouble());
+	return newValue.toString();
+}
+
+const QStringList Double::toList() {
+	newValue = QStringList{} << QString::number(getValue().toDouble());
+	return newValue.toStringList();
+}
+
 }  // namespace vm::context::object
