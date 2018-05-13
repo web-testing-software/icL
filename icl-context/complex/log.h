@@ -12,7 +12,7 @@ class Log : Complex
 	enum class Level {Info, Warm, Error};
 
 public:
-	Log();
+	Log() = default;
 
 	void log(Level level, const QString& message);
 

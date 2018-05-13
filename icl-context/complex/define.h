@@ -10,7 +10,7 @@ namespace vm::context::complex {
 class Define : public Complex
 {
 public:
-	Define();
+	Define() = default;
 
 	void signal(int code, const QString& name);
 

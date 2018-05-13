@@ -57,13 +57,13 @@ public:
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;
 
-	static Context* fromValue(const QVariant &value);
+	static Context* fromValue(const QVariant& value);
 
 protected:
 	Context* getFirst();
 	Context* getLast();
 
-	void sendWrongArglist(memory::ArgList &params, const QString& expected);
+	void sendWrongArglist(memory::ArgList& params, const QString& expected);
 
 signals:
 	void exception(memory::Exception exc) const;
@@ -83,6 +83,7 @@ protected:
 	Context* m_next = nullptr;
 
 	Context* newContext = nullptr;
+	QVariant newValue;
 };
 
 

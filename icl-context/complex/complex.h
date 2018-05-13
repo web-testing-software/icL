@@ -10,7 +10,7 @@ namespace vm::context::complex {
 class Complex : public Context
 {
 public:
-	Complex();
+	Complex() = default;
 
 	// Context interface
 public:

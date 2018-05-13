@@ -4,8 +4,6 @@
 
 namespace vm::context::complex {
 
-Define::Define() {}
-
 void Define::signal(int code, const QString& name) {
 	emit newSignal(code, name);
 }

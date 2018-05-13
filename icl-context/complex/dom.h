@@ -3,6 +3,8 @@
 
 #include "complex.h"
 
+#include <icl-memory/structures/webelement.h>
+
 
 
 namespace vm::context::complex {
@@ -10,10 +12,10 @@ namespace vm::context::complex {
 class Dom : Complex
 {
 public:
-	Dom();
+	Dom() = default;
 
-	void query (const QString& selector);
-	void queryAll (const QStringList& selectors);
+	memory::WebElement query (const QString& selector);
+	memory::WebElement queryAll (const QStringList& selectors);
 
 private:
 	void runQuery(memory::ArgList& args);

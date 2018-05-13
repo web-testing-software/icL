@@ -4,8 +4,6 @@
 
 namespace vm::context::complex {
 
-Log::Log() {}
-
 void Log::log(Log::Level level, const QString& message) {
 	int levelAsInt = 0;
 
