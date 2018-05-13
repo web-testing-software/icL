@@ -12,6 +12,11 @@ class Define : public Complex
 public:
 	Define();
 
+	void signal(int code, const QString& name);
+
+private:
+	void runSignal(memory::ArgList& args);
+
 signals:
 	void newSignal(int code, const QString& name);
 
