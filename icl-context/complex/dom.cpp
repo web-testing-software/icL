@@ -107,10 +107,10 @@ bool Dom::canBeAtEnd() const {
 }
 
 Context* Dom::runMethod(const QString& name, memory::ArgList& args) {
-	if (name == "query") {
+	if (name == QStringLiteral("query")) {
 		runQuery(args);
 	}
-	else if (name == "queryAll") {
+	else if (name == QStringLiteral("queryAll")) {
 		runQueryAll(args);
 	}
 	else {

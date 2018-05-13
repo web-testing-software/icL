@@ -47,13 +47,13 @@ bool Log::canBeAtEnd() const {
 }
 
 Context* Log::runMethod(const QString& name, memory::ArgList& args) {
-	if (name == "info") {
+	if (name == QStringLiteral("info")) {
 		runInfo(args);
 	}
-	else if (name == "warm") {
+	else if (name == QStringLiteral("warm")) {
 		runWarm(args);
 	}
-	else if (name == "error") {
+	else if (name == QStringLiteral("error")) {
 		runError(args);
 	}
 	else {

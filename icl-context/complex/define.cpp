@@ -31,7 +31,7 @@ bool Define::canBeAtEnd() const {
 
 Context* Define::runMethod(const QString& name, memory::ArgList& args) {
 
-	if (name == "signal") {
+	if (name == QStringLiteral("signal")) {
 		runSignal(args);
 	}
 	else {
