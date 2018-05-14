@@ -171,16 +171,16 @@
 
 		filterByContent : function (str, fragment) {
 			return !!fragment
-					? this.collect(function () {
+					? nm(this.collect(function () {
 						return this.innerText.indexOf(str) >= 0
 								? this
 								: null;
-					})
-					: this.collect(function () {
+					}, true))
+					: nm(this.collect(function () {
 						return this.innerText === str
 								? this
 								: null;
-					});
+					}, true));
 		},
 
 		next : function () {
