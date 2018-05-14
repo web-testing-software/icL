@@ -6,6 +6,8 @@
 
 #include <QVariant>
 
+#include <object/element.h>
+
 namespace vm::context::complex {
 
 memory::WebElement Dom::query(const QString& selector) {
@@ -51,7 +53,7 @@ void Dom::runQuery(memory::ArgList& args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 
 		query(args[0].object->getValue().toString());
-		newContext = fromValue(newValue);
+		newContext = new object::Element{newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -80,7 +82,7 @@ void Dom::runQueryAll(memory::ArgList& args) {
 		}
 
 		queryAll(selectors);
-		newContext = fromValue(newValue);
+		newContext = new object::Element{newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String ...>"));

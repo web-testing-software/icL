@@ -1,13 +1,13 @@
 #include "tab.h"
 
+#include <object/boolean.h>
+
 #include <context-base/object/object.h>
 
 namespace vm::context::complex {
 
 bool Tab::get(const QString& url) {
-	emit getSignal(url, [this](bool success){
-		this->newValue = success;
-	});
+	emit getSignal(url, [this](bool success) { this->newValue = success; });
 
 	return newValue.toBool();
 }
@@ -15,7 +15,7 @@ bool Tab::get(const QString& url) {
 void Tab::runGet(memory::ArgList& args) {
 	if (args.length() == 1 && args[0].object->type() != memory::Type::String) {
 		get(args[0].object->getValue().toString());
-		newContext = fromValue(newValue);
+		newContext = new object::Boolean{newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));

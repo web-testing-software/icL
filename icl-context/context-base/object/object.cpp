@@ -1,5 +1,11 @@
 #include "object.h"
 
+#include "boolean.h"
+#include "double.h"
+#include "int.h"
+#include "list.h"
+#include "string.h"
+
 #include <QDebug>
 
 namespace vm::context::object {
@@ -34,7 +40,7 @@ Object::Object(const Object* const object) {
 		rvalue   = object->rvalue;
 		readonly = object->readonly;
 	}
-	else /* object.value == Value.Js */ {
+	else { /* object.value == Value.Js */
 		getter = object->getter;
 		setter = object->setter;
 	}
@@ -70,7 +76,7 @@ QVariant Object::getValue() {
 	else if (value == Value::L) {
 		return container->getValue(varName);
 	}
-	else /* value == Value::Js */ {
+	else { /* value == Value::Js */
 		emit requestJsExecution(
 		  getter, [this](const QVariant& var) { this->newValue = var; });
 
@@ -90,7 +96,7 @@ void Object::setValue(const QVariant& value) {
 	else if (this->value == Value::L) {
 		container->setValue(varName, value);
 	}
-	else /* this.value == Value.Js */ {
+	else { /* this.value == Value.Js */
 		emit requestJsExecution(setter.arg(varToJsString(value)), nullptr);
 	}
 }
@@ -120,7 +126,7 @@ void Object::runToBoolean(memory::ArgList& args) {
 		return;
 	}
 
-	newContext = fromValue(newValue);
+	newContext = new Boolean{newValue, true};
 }
 
 void Object::runToInt(memory::ArgList& args) {
@@ -144,7 +150,7 @@ void Object::runToInt(memory::ArgList& args) {
 		return;
 	}
 
-	newContext = fromValue(newValue);
+	newContext = new Int{newValue, true};
 }
 
 void Object::runToDouble(memory::ArgList& args) {
@@ -168,7 +174,7 @@ void Object::runToDouble(memory::ArgList& args) {
 		return;
 	}
 
-	newContext = fromValue(newValue);
+	newContext = new Double{newValue, true};
 }
 
 void Object::runToString(memory::ArgList& args) {
@@ -192,7 +198,7 @@ void Object::runToString(memory::ArgList& args) {
 		return;
 	}
 
-	newContext = fromValue(newValue);
+	newContext = new String{newValue, true};
 }
 
 void Object::runToList(memory::ArgList& args) {
@@ -216,7 +222,7 @@ void Object::runToList(memory::ArgList& args) {
 		return;
 	}
 
-	newContext = fromValue(newValue);
+	newContext = new List{newValue, true};
 }
 
 void Object::sendWrongCast(const QString& to) {
