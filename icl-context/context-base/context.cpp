@@ -49,8 +49,13 @@ bool Context::hasValue() const {
 }
 
 Context* Context::runProperty(Prefix prefix, const QString& name) {
-	Q_UNUSED(prefix);
-	emit exception({-7, "No such property: " + name});
+	if (prefix != Prefix::None) {
+		emit exception(
+		  {-405, "This object does not support prefixed properties"});
+	}
+	else {
+		emit exception({-7, "No such property: " + name});
+	}
 
 	return nullptr;
 }

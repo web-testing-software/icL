@@ -30,7 +30,7 @@ public:
 
 	// Context interface
 public:
-	Context* runProperty(const QString& name) override;
+	Context* runProperty(Prefix prefix, const QString& name) override;
 	Context* runMethod(const QString& name, memory::ArgList& args) override;
 
 	// Object interface

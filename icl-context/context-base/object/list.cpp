@@ -1,5 +1,7 @@
 #include "list.h"
 
+#include "int.h"
+
 namespace vm::context::object {
 
 
@@ -15,6 +17,17 @@ List::List(const QString& getter, const QString& setter)
 
 List::List(const Object* const object)
 	: Object(object) {}
+
+
+int List::length() {
+	return getValue().toStringList().length();
+}
+
+
+void List::runGetLength() {
+	newValue   = length();
+	newContext = new Int(newValue, true);
+}
 
 
 
@@ -35,6 +48,25 @@ QString List::getFirst() {
 
 	return ret;
 }
+
+Context* List::runProperty(Prefix prefix, const QString& name) {
+	if (prefix != Prefix::None) {
+		emit exception(
+		  {-405, "List objects are not support for prefixed properties"});
+	}
+	else {
+		if (name == "Length") {
+			runGetLength();
+		}
+		else {
+			Context::runProperty(prefix, name);
+		}
+	}
+
+	return newContext;
+}
+
+Context* List::runMethod(const QString& name, memory::ArgList& args) {}
 
 memory::Type List::type() const {
 	return memory::Type::List;

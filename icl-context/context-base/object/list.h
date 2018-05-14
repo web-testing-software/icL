@@ -29,12 +29,22 @@ public:
 	List(const QString& getter, const QString& setter);
 	List(const Object* const object);
 
+	// Properties
+public:
+	int length();
+
+protected:
+	void runGetLength();
+
+	// Methods
+
+
 private:
-	QString getFirst ();
+	QString getFirst();
 
 	// Context interface
 public:
-	Context* runProperty(const QString& name) override;
+	Context* runProperty(Prefix prefix, const QString& name) override;
 	Context* runMethod(const QString& name, memory::ArgList& args) override;
 
 	// Object interface
