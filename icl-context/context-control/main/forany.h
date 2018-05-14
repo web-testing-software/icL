@@ -4,7 +4,21 @@
 #include "code.h"
 
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- @namespace code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::context::code {
 
 class ForAny : public Code

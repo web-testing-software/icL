@@ -7,7 +7,7 @@
 
 
 
-namespace vm::context::function {
+namespace vm::context::data {
 
 Function::Function(memory::Memory* mem, const QString& name)
 	: mem(mem)
@@ -199,4 +199,4 @@ bool Function::isResultative() const {
 	return !newFunction;
 }
 
-}  // namespace vm::context::function
+}  // namespace vm::context::data

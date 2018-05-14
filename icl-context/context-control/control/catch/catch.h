@@ -4,7 +4,21 @@
 #include <control/main/control.h>
 
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- @namespace catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::context::code::control::catch0 {
 
 class Catch : public Control

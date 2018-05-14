@@ -4,7 +4,21 @@
 #include "logicblock.h"
 
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- @namespace logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::logic {
 
 /**

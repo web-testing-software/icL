@@ -12,6 +12,21 @@ namespace vm::context::object {
 class Object;
 }
 
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- @namespace memory
+ */
 namespace vm::memory {
 
 // Additional Stuctures

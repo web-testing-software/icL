@@ -4,7 +4,21 @@
 #include "catch.h"
 
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- @namespace catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::context::code::control::catch0 {
 
 class Exists : public Catch

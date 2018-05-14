@@ -4,7 +4,21 @@
 #include <context-base/context.h>
 
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- @namespace complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::context::complex {
 
 class Complex : public Context

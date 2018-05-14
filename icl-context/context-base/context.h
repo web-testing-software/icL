@@ -9,6 +9,22 @@
 
 #include <QObject>
 
+
+/**
+ * vm
+ *	|- @namespace context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::context {
 
 enum class Role {

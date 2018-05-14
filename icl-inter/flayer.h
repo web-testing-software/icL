@@ -2,7 +2,21 @@
 #define FLAYER_H
 
 #include <QObject>
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- @namespace inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::inter::_private {
 
 /**

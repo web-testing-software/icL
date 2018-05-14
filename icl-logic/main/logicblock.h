@@ -7,7 +7,21 @@
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/return.h>
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- @namespace logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::logic {
 
 // Specially for debug mode

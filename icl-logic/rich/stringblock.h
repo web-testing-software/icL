@@ -4,7 +4,21 @@
 #include "../main/richblock.h"
 
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- @namespace rich
+ *  '- memory
+ */
 namespace vm::logic::rich {
 
 /**

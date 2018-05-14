@@ -3,6 +3,22 @@
 
 #include "../main/crossblock.h"
 
+
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- @namespace cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::logic::cross {
 
 /**

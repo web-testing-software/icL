@@ -5,7 +5,21 @@
 #include <QMap>
 #include <QVariant>
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- @namespace memory
+ */
 namespace vm::memory {
 
 /**

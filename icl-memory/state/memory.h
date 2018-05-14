@@ -5,7 +5,21 @@
 #include "memorystate.h"
 #include "stackstate.h"
 
-
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- @namespace memory
+ */
 namespace vm::memory {
 
 class Memory

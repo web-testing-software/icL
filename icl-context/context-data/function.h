@@ -7,8 +7,22 @@
 #include <icl-memory/state/memory.h>
 
 
-
-namespace vm::context::function {
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- @namespace data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
+namespace vm::context::data {
 
 class Function : public Context
 {
@@ -43,6 +57,6 @@ public:
 	bool isResultative() const override;
 };
 
-}  // namespace vm::context::function
+}  // namespace vm::context::data
 
 #endif  // FUNCTION_H

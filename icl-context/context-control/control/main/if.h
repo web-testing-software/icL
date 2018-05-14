@@ -7,6 +7,22 @@ namespace vm::logic {
 class LogicBlock;
 }
 
+
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- @namespace control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
 namespace vm::context::code::control {
 
 enum class OperatorType {

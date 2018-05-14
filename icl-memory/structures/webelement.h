@@ -2,13 +2,24 @@
 #define WEBELEMENT_H
 
 #include <QString>
-
-
-//#include "../../webbrowser.h"
-
-//#include <QApplication>
 #include <QVariant>
 
+
+/**
+ * vm
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- @namespace memory
+ */
 namespace vm::memory {
 
 /**
