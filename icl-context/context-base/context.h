@@ -46,6 +46,8 @@ enum class Role {
 	Argument
 };
 
+enum class Prefix { None, Attr, Data, Css };
+
 class Context : public QObject
 {
 
@@ -63,12 +65,13 @@ public:
 	virtual Context* getEndContext();
 
 	virtual bool     hasValue() const;
-	virtual Context* runProperty(const QString& name);
+	virtual Context* runProperty(Prefix prefix, const QString& name);
 	virtual Context* runMethod(const QString& name, memory::ArgList& args);
 
 	Role     role() const;
 	Context* prev() const;
 	Context* next() const;
+	void     replaceWith(Context* context);
 
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;

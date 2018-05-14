@@ -48,7 +48,8 @@ bool Context::hasValue() const {
 	return false;
 }
 
-Context* Context::runProperty(const QString& name) {
+Context* Context::runProperty(Prefix prefix, const QString& name) {
+	Q_UNUSED(prefix);
 	emit exception({-7, "No such property: " + name});
 
 	return nullptr;
@@ -189,6 +190,17 @@ void Context::repeat(
 
 Context* Context::next() const {
 	return m_next;
+}
+
+void Context::replaceWith(Context* context) {
+	context->m_prev = m_prev;
+	context->m_next = m_next;
+	if (m_prev != nullptr) {
+		m_prev->m_next = context;
+	}
+	if (m_next != nullptr) {
+		m_next->m_prev = context;
+	}
 }
 
 Context* Context::prev() const {

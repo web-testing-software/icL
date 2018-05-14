@@ -1,5 +1,12 @@
 #include "assign.h"
 
+#include <object/boolean.h>
+#include <object/double.h>
+#include <object/element.h>
+#include <object/int.h>
+#include <object/list.h>
+#include <object/string.h>
+
 #include <context-base/object/object.h>
 
 
@@ -65,6 +72,45 @@ bool Assign::execute() {
 	}
 
 	left->setValue(right->getValue());
+
+	if (left->type() == memory::Type::Void) {
+		Context* new_left = nullptr;
+
+		switch (right->type()) {
+		case memory::Type::Boolean:
+			new_left = new object::Boolean{left};
+			break;
+
+		case memory::Type::Int:
+			new_left = new object::Int{left};
+			break;
+
+		case memory::Type::Double:
+			new_left = new object::Double{left};
+			break;
+
+		case memory::Type::String:
+			new_left = new object::String{left};
+			break;
+
+		case memory::Type::List:
+			new_left = new object::List{left};
+			break;
+
+		case memory::Type::Element:
+			new_left = new object::Element{left};
+			break;
+
+		default:
+			// Elude clang warning, never triggered
+			break;
+		}
+
+		left->replaceWith(new_left);
+
+		delete left;
+	}
+
 	return true;
 }
 
