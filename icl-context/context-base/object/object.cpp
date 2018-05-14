@@ -18,14 +18,25 @@ Object::Object(const QVariant& rvalue, bool readonly)
 	m_role = Role::Object;
 }
 
+Object::Object(const QString& getter, const QString& setter)
+	: getter(getter)
+	, setter(setter)
+	, value(Value::Js) {
+	m_role = Role::Object;
+}
+
 Object::Object(const Object* const object) {
 	if (object->value == Value::L) {
 		container = object->container;
 		varName   = object->varName;
 	}
-	else {
+	else if (object->value == Value::R) {
 		rvalue   = object->rvalue;
 		readonly = object->readonly;
+	}
+	else /* object.value == Value.Js */ {
+		getter = object->getter;
+		setter = object->setter;
 	}
 
 	value  = object->value;
@@ -33,11 +44,7 @@ Object::Object(const Object* const object) {
 }
 
 memory::Type Object::type() const {
-	if (value == Value::R) {
-		return memory::variantTypeToType(rvalue.type());
-	}
-
-	return container->getType(varName);
+	return memory::Type::Void;
 }
 
 bool Object::isRValue() const {

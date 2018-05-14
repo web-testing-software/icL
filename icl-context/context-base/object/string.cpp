@@ -15,6 +15,11 @@ String::String(const Object* const object)
 
 
 
+memory::Type String::type() const {
+	return memory::Type::String;
+}
+
+
 bool String::toBoolean() {
 	QString value = getValue().toString();
 

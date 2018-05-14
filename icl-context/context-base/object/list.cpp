@@ -33,6 +33,10 @@ QString List::getFirst() {
 	return ret;
 }
 
+memory::Type List::type() const {
+	return memory::Type::List;
+}
+
 
 
 bool List::toBoolean() {

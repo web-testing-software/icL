@@ -14,9 +14,10 @@ class Object : public Context
 public:
 	Object(memory::DataState* container, const QString& varName);
 	Object(const QVariant& rvalue, bool readonly = false);
+	Object(const QString& getter, const QString& setter);
 	Object(const Object* const object);
 
-	memory::Type type() const;
+	virtual memory::Type type() const;
 
 	virtual bool isRValue() const;
 	virtual bool isReadOnly() const;

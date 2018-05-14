@@ -19,6 +19,8 @@ public:
 
 	// Object interface
 public:
+	memory::Type type() const override;
+
 	bool              toBoolean() override;
 	int               toInt() override;
 	double            toDouble() override;

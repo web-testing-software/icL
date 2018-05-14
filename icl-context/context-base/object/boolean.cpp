@@ -13,6 +13,10 @@ Boolean::Boolean(const QVariant& rvalue, bool readonly)
 Boolean::Boolean(const Object* const object)
 	: Object(object) {}
 
+memory::Type Boolean::type() const {
+	return memory::Type::Boolean;
+}
+
 bool Boolean::toBoolean() {
 	newValue = getValue();
 	return newValue.toBool();

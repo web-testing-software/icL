@@ -15,6 +15,11 @@ Int::Int(const Object* const object)
 
 
 
+memory::Type Int::type() const {
+	return memory::Type::Int;
+}
+
+
 bool Int::toBoolean() {
 	newValue = getValue().toInt() != 0;
 	return newValue.toBool();

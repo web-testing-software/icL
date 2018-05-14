@@ -4,38 +4,45 @@ namespace vm::context::object {
 
 
 
-Double::Double(memory::DataState* container, const QString& varName)
-	: Object(container, varName) {}
-
-Double::Double(const QVariant& rvalue, bool readonly)
-	: Object(rvalue, readonly) {}
-
-Double::Double(const Object* const object)
-	: Object(object) {}
-
-bool Double::toBoolean() {
-	newValue = getValue().toDouble() != 0.0;
-	return newValue.toBool();
+Double::Double (memory::DataState *container, const QString &varName)
+	: Object (container, varName) {
 }
 
-int Double::toInt() {
-	newValue = static_cast<int>(getValue().toDouble());
-	return newValue.toInt();
+Double::Double (const QVariant &rvalue, bool readonly)
+	: Object (rvalue, readonly) {
 }
 
-double Double::toDouble() {
-	newValue = getValue();
-	return newValue.toDouble();
+Double::Double (const Object *const object)
+	: Object (object) {
 }
 
-const QString Double::toString() {
-	newValue = QString::number(getValue().toDouble());
-	return newValue.toString();
+memory::Type Double::type () const {
+	return memory::Type::Double;
 }
 
-const QStringList Double::toList() {
-	newValue = QStringList{} << QString::number(getValue().toDouble());
-	return newValue.toStringList();
+bool Double::toBoolean () {
+	newValue = getValue ().toDouble () != 0.0;
+	return newValue.toBool ();
+}
+
+int Double::toInt () {
+	newValue = static_cast <int> ( getValue ().toDouble () );
+	return newValue.toInt ();
+}
+
+double Double::toDouble () {
+	newValue = getValue ();
+	return newValue.toDouble ();
+}
+
+const QString Double::toString () {
+	newValue = QString::number (getValue ().toDouble () );
+	return newValue.toString ();
+}
+
+const QStringList Double::toList () {
+	newValue = QStringList{} << QString::number (getValue ().toDouble () );
+	return newValue.toStringList ();
 }
 
 }  // namespace vm::context::object

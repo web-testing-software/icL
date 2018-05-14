@@ -15,6 +15,11 @@ Element::Element(const Object* const object)
 
 
 
+memory::Type Element::type() const {
+	return memory::Type::Element;
+}
+
+
 bool Element::toBoolean() {
 	return false;
 }
