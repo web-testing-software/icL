@@ -11,7 +11,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- @namespace context
  *  |  |- complex
  *  |  |- code
@@ -25,7 +26,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context {
+namespace icL::context {
 
 enum class Role {
 	NoRole,
@@ -108,6 +109,6 @@ protected:
 };
 
 
-}  // namespace vm::context
+}  // namespace icL::context
 
 #endif  // VM_CONTEXT_CONTEXT_H

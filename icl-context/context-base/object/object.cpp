@@ -8,7 +8,7 @@
 
 #include <QDebug>
 
-namespace vm::context::object {
+namespace icL::context::object {
 
 Object::Object(memory::DataState* container, const QString& varName)
 	: container(container)
@@ -270,4 +270,4 @@ bool Object::isResultative() const {
 	return true;
 }
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object

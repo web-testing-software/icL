@@ -4,7 +4,8 @@
 #include "datastate.h"
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -18,7 +19,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 /**
  * @brief The MemoryState class - gloabal memory data unit
@@ -70,6 +71,6 @@ private:
 	MemoryState* m_state = nullptr;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // MEMORYSTATE_H

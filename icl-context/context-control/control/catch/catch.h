@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code::control::catch0 {
+namespace icL::context::code::control::catch0 {
 
 class Catch : public Control
 {
@@ -27,6 +28,6 @@ public:
 	Catch(const memory::CodeFragment& source);
 };
 
-}  // namespace vm::context::code::control::catch0
+}  // namespace icL::context::code::control::catch0
 
 #endif  // CATCH_H

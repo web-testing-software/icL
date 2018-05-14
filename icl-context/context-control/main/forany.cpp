@@ -1,6 +1,6 @@
 #include "forany.h"
 
-namespace vm::context::code {
+namespace icL::context::code {
 
 ForAny::ForAny(const memory::CodeFragment& source)
 	: Code(source) {
@@ -48,4 +48,4 @@ bool ForAny::isResultative() const {
 	return true;
 }
 
-}  // namespace vm::context::code
+}  // namespace icL::context::code

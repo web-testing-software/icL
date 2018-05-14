@@ -1,6 +1,6 @@
 #include "notblock.h"
 
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 NotBlock::NotBlock() = default;
 
@@ -35,4 +35,4 @@ void NotBlock::resetResultValue() {
 	block2->resetResultValue();
 }
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross

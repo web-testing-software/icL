@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- @namespace rich
  *  '- memory
  */
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 /**
  * @brief The StringBlock class - compare two <string> vars/consts
@@ -42,6 +43,6 @@ private:
 	//	static QRegExp exp;
 };
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich
 
 #endif  // STRINGBLOCK_H

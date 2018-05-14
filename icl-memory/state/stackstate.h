@@ -6,7 +6,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -20,7 +21,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 /**
  * @brief The StackState class
@@ -74,6 +75,6 @@ private:
 	StackState* m_stack;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // STACKSTATE_H

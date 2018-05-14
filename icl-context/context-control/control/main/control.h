@@ -6,7 +6,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -20,7 +21,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code::control {
+namespace icL::context::code::control {
 
 class Control : public Code
 {
@@ -33,6 +34,6 @@ public:
 	bool isRightToLeft() const override;
 };
 
-}  // namespace vm::context::code::control
+}  // namespace icL::context::code::control
 
 #endif  // CONTROL_H

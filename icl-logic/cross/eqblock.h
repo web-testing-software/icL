@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 /**
  * @brief The EqBlock class - ~~
@@ -34,6 +35,6 @@ protected:
 	bool calcResult() override;
 };
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross
 
 #endif  // EQBLOCK_H

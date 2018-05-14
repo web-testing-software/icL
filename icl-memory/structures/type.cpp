@@ -1,6 +1,6 @@
 #include "type.h"
 
-namespace vm::memory {
+namespace icL::memory {
 
 QString typeToString(Type type) {
 	QString ret;
@@ -75,4 +75,4 @@ Type variantTypeToType(QVariant::Type type) {
 	return ret;
 }
 
-}  // namespace vm::memory
+}  // namespace icL::memory

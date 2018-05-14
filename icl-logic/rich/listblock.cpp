@@ -3,7 +3,7 @@
 #include "icl-memory/state/datastate.h"
 #include <QRegularExpression>
 
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 ListBlock::ListBlock(OperationType otype)
 	: RichBlock(otype) {
@@ -102,4 +102,4 @@ bool ListBlock::containsFragment(
 	return ret;
 }
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich

@@ -8,7 +8,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -22,7 +23,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::data {
+namespace icL::context::data {
 
 class Function : public Context
 {
@@ -57,6 +58,6 @@ public:
 	bool isResultative() const override;
 };
 
-}  // namespace vm::context::data
+}  // namespace icL::context::data
 
 #endif  // FUNCTION_H

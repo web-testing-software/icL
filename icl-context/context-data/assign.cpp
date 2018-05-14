@@ -10,7 +10,7 @@
 #include <context-base/object/object.h>
 
 
-namespace vm::context::data {
+namespace icL::context::data {
 
 Assign::Assign() {
 	m_role = Role::Assign;
@@ -122,4 +122,4 @@ Context* Assign::getEndContext() {
 	return m_next;
 }
 
-}  // namespace vm::context::data
+}  // namespace icL::context::data

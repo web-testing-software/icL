@@ -2,7 +2,7 @@
 
 #include <utility>
 
-namespace vm::inter {
+namespace icL::inter {
 
 Interpreter::Interpreter(QObject* parent)
 	: QObject(parent) {}
@@ -12,4 +12,4 @@ void Interpreter::repeat(
 	emit interrupt(std::move(run), std::move(feedback));
 }
 
-}  // namespace vm::inter
+}  // namespace icL::inter

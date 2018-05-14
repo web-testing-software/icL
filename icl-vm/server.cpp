@@ -6,7 +6,7 @@
 #include <QThread>
 
 
-namespace vm {
+namespace icL {
 
 Server::Server(QObject* parent)
 	: QObject(parent) {
@@ -212,4 +212,4 @@ void Server::release_showErrorDialog() {
 	//	working = false;
 }
 
-}  // namespace vm
+}  // namespace icL

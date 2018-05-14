@@ -1,6 +1,6 @@
 #include "property.h"
 
-namespace vm::context::data {
+namespace icL::context::data {
 
 Property::Property(const QString& name)
 	: name(name) {
@@ -35,4 +35,4 @@ bool Property::isResultative() const {
 	return true;
 }
 
-}  // namespace vm::context::data
+}  // namespace icL::context::data

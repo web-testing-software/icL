@@ -1,6 +1,6 @@
 #include "memorystate.h"
 
-namespace vm::memory {
+namespace icL::memory {
 
 MemoryState::MemoryState() = default;
 
@@ -122,4 +122,4 @@ MemoryState* MemoryStateIt::state() const {
 //	}
 //}
 
-}  // namespace vm::memory
+}  // namespace icL::memory

@@ -2,5 +2,5 @@
 
 
 
-namespace vm::memory {
+namespace icL::memory {
 }

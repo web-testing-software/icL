@@ -1,6 +1,6 @@
 #include "logicblock.h"
 
-namespace vm::logic {
+namespace icL::logic {
 
 LogicBlock::LogicBlock() = default;
 
@@ -106,4 +106,4 @@ QString LogicBlock::typeToString(QVariant::Type type) {
 	return ret;
 }
 
-}  // namespace vm::logic
+}  // namespace icL::logic

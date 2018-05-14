@@ -1,6 +1,6 @@
 #include "orblock.h"
 
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 OrBlock::OrBlock() = default;
 
@@ -16,4 +16,4 @@ bool OrBlock::canResultPreliminarily() {
 	return value1 == true;
 }
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross

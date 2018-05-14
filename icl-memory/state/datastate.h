@@ -6,7 +6,8 @@
 #include <QVariant>
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -20,7 +21,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 /**
  * @brief The DataState class - interface for stack state and memory state
@@ -45,6 +46,6 @@ private:
 	QVariantMap dataMap;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // DATASTATE_H

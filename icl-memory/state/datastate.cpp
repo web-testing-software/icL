@@ -3,7 +3,7 @@
 #include <structures/webelement.h>
 
 
-namespace vm::memory {
+namespace icL::memory {
 
 DataState::DataState() = default;
 
@@ -101,4 +101,4 @@ QVariant DataState::getValue(const QString& name) {
 	return dataMap[name];
 }
 
-}  // namespace vm::memory
+}  // namespace icL::memory

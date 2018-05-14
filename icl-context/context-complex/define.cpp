@@ -3,7 +3,7 @@
 #include <context-base/object/object.h>
 
 
-namespace vm::context::complex {
+namespace icL::context::complex {
 
 void Define::signal(int code, const QString& name) {
 	emit newSignal(code, name);
@@ -42,4 +42,4 @@ Context* Define::runMethod(const QString& name, memory::ArgList& args) {
 	return newContext;
 }
 
-}  // namespace vm::context::complex
+}  // namespace icL::context::complex

@@ -7,7 +7,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- @namespace complex
  *  |  |- code
@@ -21,7 +22,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::complex {
+namespace icL::context::complex {
 
 class Dom : Complex
 {
@@ -51,6 +52,6 @@ public:
 	Context* runMethod(const QString& name, memory::ArgList& args) override;
 };
 
-}  // namespace vm::context::complex
+}  // namespace icL::context::complex
 
 #endif  // DOM_H

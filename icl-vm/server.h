@@ -7,7 +7,8 @@
 #include <QVariant>
 
 /**
- *  @namespace vm
+ *  @namespace icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -21,7 +22,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm {
+namespace icL {
 
 /**
  * @brief The Server class - class to sync two treads
@@ -171,6 +172,6 @@ private:
 	volatile bool working = false;
 };
 
-}  // namespace vm
+}  // namespace icL
 
 #endif  // SERVER_H

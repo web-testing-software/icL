@@ -1,6 +1,6 @@
 #include "crossblock.h"
 
-namespace vm::logic {
+namespace icL::logic {
 
 CrossBlock::CrossBlock() = default;
 
@@ -122,4 +122,4 @@ bool CrossBlock::calcResult() {
 	return false;
 }
 
-}  // namespace vm::logic
+}  // namespace icL::logic

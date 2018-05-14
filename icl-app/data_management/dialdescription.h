@@ -3,6 +3,26 @@
 
 #include <QObject>
 
+
+
+/**
+ *  icL
+ *  |- @namespace app
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
+namespace icL::app {
+
 /**
  * @brief The DialDescription class - describe a speed dial (QML compatible)
  */
@@ -36,5 +56,7 @@ public slots:
 	void setTitle(const QString& title);
 	void setUrl(const QString& url);
 };
+
+}  // namespace icL::app
 
 #endif  // DIALDESCRIPTION_H

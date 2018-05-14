@@ -2,7 +2,7 @@
 
 #include "memory.h"
 
-namespace vm::memory {
+namespace icL::memory {
 
 StackState::StackState(StackState* prev /*, int stackLevel*/) {
 	prev_ss = prev;
@@ -132,4 +132,4 @@ void StackStateIt::clear() {
 	}
 }
 
-}  // namespace vm::memory
+}  // namespace icL::memory

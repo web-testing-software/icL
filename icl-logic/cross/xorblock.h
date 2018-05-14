@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 /**
  * @brief The XOrBlock class - ^^
@@ -33,6 +34,6 @@ public:
 	bool calcResult() override;
 };
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross
 
 #endif  // XORBLOCK_H

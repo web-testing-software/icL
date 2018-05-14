@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- @namespace rich
  *  '- memory
  */
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 /**
  * @brief The BooleanBlock class - compare two <bool> vars/consts
@@ -39,6 +40,6 @@ protected:
 	//	bool varNameToBoolean (const QString &varname);
 };
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich
 
 #endif  // BOOLEANBLOCK_H

@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code::control {
+namespace icL::context::code::control {
 
 class Else : public Control
 {
@@ -36,6 +37,6 @@ public:
 	Context* getEndContext() override;
 };
 
-}  // namespace vm::context::code::control
+}  // namespace icL::context::code::control
 
 #endif  // ELSE_H

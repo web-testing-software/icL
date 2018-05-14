@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- @namespace rich
  *  '- memory
  */
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 /**
  * @brief The StringListBlock class - compare two <string>list vars/consts
@@ -48,6 +49,6 @@ private:
 	//	static QRegularExpression strExp;
 };
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich
 
 #endif  // LISTBLOCK_H

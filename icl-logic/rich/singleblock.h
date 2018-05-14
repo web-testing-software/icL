@@ -4,7 +4,8 @@
 #include "../main/richblock.h"
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -18,7 +19,7 @@
  *  |  '- @namespace rich
  *  '- memory
  */
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 
 /**
@@ -40,5 +41,5 @@ public:
 	bool canResultPreliminarily() override;
 };
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich
 #endif  // SINGLEBLOCK_H

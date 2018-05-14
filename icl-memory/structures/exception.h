@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 class Exception
 {
@@ -30,6 +31,6 @@ public:
 	QString message;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // EXCEPTION_H

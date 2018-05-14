@@ -8,7 +8,8 @@
 #include <icl-memory/structures/return.h>
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -22,7 +23,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::logic {
+namespace icL::logic {
 
 // Specially for debug mode
 enum class ResultValue {
@@ -79,6 +80,6 @@ private:
 	LogicBlock* m_parent = nullptr;
 };
 
-}  // namespace vm::logic
+}  // namespace icL::logic
 
 #endif  // LOGICBLOCK_H

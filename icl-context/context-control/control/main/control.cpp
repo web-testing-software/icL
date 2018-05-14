@@ -1,6 +1,6 @@
 #include "control.h"
 
-namespace vm::context::code::control {
+namespace icL::context::code::control {
 
 
 Control::Control(const memory::CodeFragment& source)
@@ -14,4 +14,4 @@ bool Control::isRightToLeft() const {
 	return false;
 }
 
-}  // namespace vm::context::code::control
+}  // namespace icL::context::code::control

@@ -5,6 +5,25 @@
 #include <QObject>
 #include <QQuickItem>
 
+
+/**
+ *  icL
+ *  |- @namespace app
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
+namespace icL::app {
+
 /**
  * @brief The Helper class export some C++ only Qt functionallity to QML
  */
@@ -36,5 +55,7 @@ private:
 	QString m_config_dir;
 	QString m_data_dir;
 };
+
+}  // namespace icL::app
 
 #endif  // HELPER_H

@@ -1,6 +1,6 @@
 #include "functioncontainer.h"
 
-namespace vm::memory {
+namespace icL::memory {
 
 FunctionContainer::FunctionContainer() = default;
 
@@ -16,4 +16,4 @@ void FunctionContainer::registerFunction(const QString& name, Function& func) {
 	fmap[name] = func;
 }
 
-}  // namespace vm::memory
+}  // namespace icL::memory

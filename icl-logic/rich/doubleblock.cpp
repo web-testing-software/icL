@@ -1,6 +1,6 @@
 #include "doubleblock.h"
 
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 DoubleBlock::DoubleBlock(OperationType otype)
 	: vm::logic::RichBlock(otype) {
@@ -43,4 +43,4 @@ bool DoubleBlock::calcResult() {
 	return result;
 }
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich

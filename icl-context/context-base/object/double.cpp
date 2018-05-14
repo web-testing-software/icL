@@ -1,6 +1,6 @@
 #include "double.h"
 
-namespace vm::context::object {
+namespace icL::context::object {
 
 
 
@@ -45,4 +45,4 @@ const QStringList Double::toList() {
 	return newValue.toStringList();
 }
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object

@@ -1,6 +1,6 @@
 #include "xorblock.h"
 
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 XOrBlock::XOrBlock() = default;
 
@@ -12,4 +12,4 @@ bool XOrBlock::calcResult() {
 	return block1->getCachedResult() != block2->getCachedResult();
 }
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross

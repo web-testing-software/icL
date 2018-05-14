@@ -6,7 +6,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -20,7 +21,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 class Return
 {
@@ -32,6 +33,6 @@ public:
 	Exception exception;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // RETURN_H

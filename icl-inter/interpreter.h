@@ -12,7 +12,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -26,7 +27,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::inter {
+namespace icL::inter {
 
 class Interpreter : public QObject
 {
@@ -45,6 +46,6 @@ private:
 	context::Context* context = new context::object::Int(QVariant(0));
 };
 
-}  // namespace vm::inter
+}  // namespace icL::inter
 
 #endif  // INTERPRETER_H

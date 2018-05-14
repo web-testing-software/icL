@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- @namespace code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code {
+namespace icL::context::code {
 
 class ForAny : public Code
 {
@@ -38,6 +39,6 @@ public:
 	bool isResultative() const override;
 };
 
-}  // namespace vm::context::code
+}  // namespace icL::context::code
 
 #endif  // FORANY_H

@@ -2,7 +2,8 @@
 #define VIRTUALMACHINE_H
 
 /**
- *  @namespace vm
+ *  @namespace icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -16,7 +17,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm {
+namespace icL {
 
 class VirtualMachine
 {
@@ -24,6 +25,6 @@ public:
 	VirtualMachine();
 };
 
-}  // namespace vm
+}  // namespace icL
 
 #endif  // VIRTUALMACHINE_H

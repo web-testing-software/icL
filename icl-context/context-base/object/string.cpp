@@ -1,6 +1,6 @@
 #include "string.h"
 
-namespace vm::context::object {
+namespace icL::context::object {
 
 
 
@@ -94,4 +94,4 @@ const QStringList String::toList() {
 	return newValue.toStringList();
 }
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object

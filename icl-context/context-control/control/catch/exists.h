@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code::control::catch0 {
+namespace icL::context::code::control::catch0 {
 
 class Exists : public Catch
 {
@@ -41,5 +42,5 @@ public:
 	Context* getEndContext() override;
 };
 
-}  // namespace vm::context::code::control::catch0
+}  // namespace icL::context::code::control::catch0
 #endif  // EXISTS_H

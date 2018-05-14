@@ -1,6 +1,6 @@
 #include "alternative.h"
 
-namespace vm::context::data {
+namespace icL::context::data {
 
 Alternative::Alternative() {
 	m_role = Role::Alternative;
@@ -34,4 +34,4 @@ Context* Alternative::getEndContext() {
 	return theLeftOperandIsOk ? m_next : this;
 }
 
-}  // namespace vm::context::data
+}  // namespace icL::context::data

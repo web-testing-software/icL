@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::logic {
+namespace icL::logic {
 
 /**
  * @brief The CrossBlock class - this is a block with 2 children (LogicBlock*
@@ -54,6 +55,6 @@ public:
 	bool calcResult() override;
 };
 
-}  // namespace vm::logic
+}  // namespace icL::logic
 
 #endif  // CROSSBLOCK_H

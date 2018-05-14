@@ -4,7 +4,7 @@
 
 #include <context-base/object/object.h>
 
-namespace vm::context::complex {
+namespace icL::context::complex {
 
 bool Tab::get(const QString& url) {
 	emit getSignal(url, [this](bool success) { this->newValue = success; });
@@ -41,4 +41,4 @@ Context* Tab::runMethod(const QString& name, memory::ArgList& args) {
 	return newContext;
 }
 
-}  // namespace vm::context::complex
+}  // namespace icL::context::complex

@@ -4,7 +4,7 @@
 
 #include <icl-memory/structures/webelement.h>
 
-namespace vm::context::code::control::catch0 {
+namespace icL::context::code::control::catch0 {
 
 
 Exists::Exists(const memory::CodeFragment& source, bool isEmiter)
@@ -91,4 +91,4 @@ Context* Exists::getEndContext() {
 	return this;
 }
 
-}  // namespace vm::context::code::control::catch0
+}  // namespace icL::context::code::control::catch0

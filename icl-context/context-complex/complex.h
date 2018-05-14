@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- @namespace complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::complex {
+namespace icL::context::complex {
 
 class Complex : public Context
 {
@@ -31,6 +32,6 @@ public:
 	bool isComplex() const override;
 };
 
-}  // namespace vm::context::complex
+}  // namespace icL::context::complex
 
 #endif  // COMPLEX_H

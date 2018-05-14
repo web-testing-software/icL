@@ -6,7 +6,7 @@
 #include <rich/listblock.h>
 #include <rich/stringblock.h>
 
-namespace vm::logic {
+namespace icL::logic {
 
 RichBlock::RichBlock(OperationType otype) {
 	operationType = otype;
@@ -203,4 +203,4 @@ bool RichBlock::calcResult() {
 	return false;
 }
 
-}  // namespace vm::logic
+}  // namespace icL::logic

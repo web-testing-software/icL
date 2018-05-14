@@ -6,7 +6,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -20,7 +21,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 /**
  * @brief The WebElement class - DOM Manipulation class
@@ -218,7 +219,7 @@ struct WebElement
 // WebElement queryAll (const QString &selector, const QString &name = "", bool
 // se = true);
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 Q_DECLARE_METATYPE(vm::memory::WebElement);
 

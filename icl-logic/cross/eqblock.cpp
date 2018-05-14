@@ -1,6 +1,6 @@
 #include "eqblock.h"
 
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 EqBlock::EqBlock() = default;
 
@@ -12,4 +12,4 @@ bool EqBlock::calcResult() {
 	return block1->getCachedResult() == block2->getCachedResult();
 }
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross

@@ -1,6 +1,6 @@
 #include "void.h"
 
-namespace vm::context::object {
+namespace icL::context::object {
 
 Void::Void()
 	: Object(QVariant(), true) {}
@@ -30,4 +30,4 @@ const QStringList Void::toList() {
 	return QStringList{};
 };
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object

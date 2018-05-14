@@ -16,7 +16,7 @@
 #include <QVariant>
 
 
-namespace vm::context {
+namespace icL::context {
 
 Context::Context() = default;
 
@@ -216,4 +216,4 @@ Role Context::role() const {
 	return m_role;
 }
 
-}  // namespace vm::context
+}  // namespace icL::context

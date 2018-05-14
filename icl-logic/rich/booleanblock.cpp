@@ -1,6 +1,6 @@
 #include "booleanblock.h"
 
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 BooleanBlock::BooleanBlock(OperationType otype)
 	: RichBlock(otype) {
@@ -42,4 +42,4 @@ bool BooleanBlock::calcResult() {
 	return result;
 }
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich

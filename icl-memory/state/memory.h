@@ -6,7 +6,8 @@
 #include "stackstate.h"
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -20,7 +21,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 class Memory
 {
@@ -37,6 +38,6 @@ private:
 	FunctionContainer m_functions;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // MEMORY_H

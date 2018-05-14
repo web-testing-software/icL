@@ -1,6 +1,6 @@
 #include "flayer.h"
 
-namespace vm::inter::_private {
+namespace icL::inter::_private {
 
 Flayer::Flayer() = default;
 
@@ -32,4 +32,4 @@ void Flayer::setEnd(int end) {
 	emit endChanged(m_end);
 }
 
-}  // namespace vm::inter::_private
+}  // namespace icL::inter::_private

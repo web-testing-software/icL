@@ -5,7 +5,8 @@
 #include <QVariant>
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 enum class Type { Void, Boolean, Int, Double, String, List, Element };
 
@@ -27,6 +28,6 @@ QString typeToString(Type type);
 
 Type variantTypeToType(QVariant::Type type);
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // TYPE_H

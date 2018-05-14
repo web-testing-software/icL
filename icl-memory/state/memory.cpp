@@ -1,6 +1,6 @@
 #include "memory.h"
 
-namespace vm::memory {
+namespace icL::memory {
 
 Memory::Memory() {}
 
@@ -16,4 +16,4 @@ FunctionContainer& Memory::functions() {
 	return m_functions;
 }
 
-}  // namespace vm::memory
+}  // namespace icL::memory

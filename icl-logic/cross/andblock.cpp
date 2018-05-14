@@ -1,6 +1,6 @@
 #include "andblock.h"
 
-namespace vm::logic::cross {
+namespace icL::logic::cross {
 
 AndBlock::AndBlock() = default;
 
@@ -16,4 +16,4 @@ bool AndBlock::canResultPreliminarily() {
 	return value1 == false;
 }
 
-}  // namespace vm::logic::cross
+}  // namespace icL::logic::cross

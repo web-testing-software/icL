@@ -3,13 +3,14 @@
 
 #include "control.h"
 
-namespace vm::logic {
+namespace icL::logic {
 class LogicBlock;
 }
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -23,7 +24,7 @@ class LogicBlock;
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code::control {
+namespace icL::context::code::control {
 
 enum class OperatorType {
 	NotFound,
@@ -85,6 +86,6 @@ public:
 	Context* getEndContext() override;
 };
 
-}  // namespace vm::context::code::control
+}  // namespace icL::context::code::control
 
 #endif  // IF_H

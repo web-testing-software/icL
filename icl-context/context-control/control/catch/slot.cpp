@@ -2,7 +2,7 @@
 
 #include "exists.h"
 
-namespace vm::context::code::control::catch0 {
+namespace icL::context::code::control::catch0 {
 
 Slot::Slot()
 	: Catch(memory::CodeFragment()) {
@@ -41,4 +41,4 @@ Context* Slot::getEndContext() {
 	return getLast();
 }
 
-}  // namespace vm::context::code::control::catch0
+}  // namespace icL::context::code::control::catch0

@@ -2,7 +2,7 @@
 
 #include "int.h"
 
-namespace vm::context::object {
+namespace icL::context::object {
 
 
 
@@ -157,4 +157,4 @@ const QStringList List::toList() {
 	return newValue.toStringList();
 }
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object

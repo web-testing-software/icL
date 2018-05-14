@@ -1,6 +1,6 @@
 #include "stringblock.h"
 
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 StringBlock::StringBlock(OperationType otype)
 	: vm::logic::RichBlock(otype) {
@@ -43,4 +43,4 @@ bool StringBlock::calcResult() {
 	return result;
 }
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich

@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::object {
+namespace icL::context::object {
 
 class List : public Object
 {
@@ -108,6 +109,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object
 
 #endif  // LIST_H

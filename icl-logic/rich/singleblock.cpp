@@ -1,6 +1,6 @@
 #include "singleblock.h"
 
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 SingleBlock::SingleBlock(OperationType otype)
 	: vm::logic::RichBlock(otype) {
@@ -59,4 +59,4 @@ bool SingleBlock::canResultPreliminarily() {
 	return true;
 }
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich

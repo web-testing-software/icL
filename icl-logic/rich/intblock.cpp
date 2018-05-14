@@ -1,6 +1,6 @@
 #include "intblock.h"
 
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 IntBlock::IntBlock(OperationType otype)
 	: vm::logic::RichBlock(otype) {
@@ -43,4 +43,4 @@ bool IntBlock::calcResult() {
 	return result;
 }
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich

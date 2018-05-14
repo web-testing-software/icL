@@ -2,7 +2,7 @@
 
 #include <context-base/object/object.h>
 
-namespace vm::context::complex {
+namespace icL::context::complex {
 
 void Log::log(Log::Level level, const QString& message) {
 	int levelAsInt = 0;
@@ -63,4 +63,4 @@ Context* Log::runMethod(const QString& name, memory::ArgList& args) {
 	return newContext;
 }
 
-}  // namespace vm::context::complex
+}  // namespace icL::context::complex

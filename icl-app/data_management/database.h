@@ -5,6 +5,26 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 
+
+
+/**
+ *  icL
+ *  |- @namespace app
+ *	|- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '- memory
+ */
+namespace icL::app {
+
 /**
  * @brief The DataBase class - control the main database
  */
@@ -34,5 +54,7 @@ private:
 
 	QRegExp site_exp = QRegExp(R"(https?://((\w+\.)+\w+)/?.*)");
 };
+
+}  // namespace icL::app
 
 #endif  // DATABASE_H

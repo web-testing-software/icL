@@ -3,7 +3,7 @@
 #include <context-base/object/object.h>
 
 
-namespace vm::context::data {
+namespace icL::context::data {
 
 Method::Method(const QString& name)
 	: name(name) {
@@ -63,4 +63,4 @@ bool Method::isResultative() const {
 	return true;
 }
 
-}  // namespace vm::context::data
+}  // namespace icL::context::data

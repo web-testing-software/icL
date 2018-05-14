@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::data {
+namespace icL::context::data {
 
 class Parameter : public Data
 {
@@ -38,6 +39,6 @@ public:
 	bool checkPrev(const Context* context) const override;
 };
 
-}  // namespace vm::context::data
+}  // namespace icL::context::data
 
 #endif  // ARGUMENT_H

@@ -7,7 +7,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -21,7 +22,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::object {
+namespace icL::context::object {
 
 class Object : public Context
 {
@@ -111,6 +112,6 @@ public:
 	bool isResultative() const override;
 };
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object
 
 #endif  // OBJECT_H

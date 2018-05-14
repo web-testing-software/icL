@@ -8,7 +8,7 @@
 
 #include <object/element.h>
 
-namespace vm::context::complex {
+namespace icL::context::complex {
 
 memory::WebElement Dom::query(const QString& selector) {
 	QString newId = getNewId();
@@ -122,4 +122,4 @@ Context* Dom::runMethod(const QString& name, memory::ArgList& args) {
 	return newContext;
 }
 
-}  // namespace vm::context::complex
+}  // namespace icL::context::complex

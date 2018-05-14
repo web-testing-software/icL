@@ -8,12 +8,13 @@
 #include <QString>
 #include <QVector>
 
-namespace vm::context::object {
+namespace icL::context::object {
 class Object;
 }
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -27,7 +28,7 @@ class Object;
  *  |  '- rich
  *  '- @namespace memory
  */
-namespace vm::memory {
+namespace icL::memory {
 
 // Additional Stuctures
 
@@ -86,6 +87,6 @@ private:
 	FunctionMap fmap;
 };
 
-}  // namespace vm::memory
+}  // namespace icL::memory
 
 #endif  // FUNCTIONCONTAINER_H

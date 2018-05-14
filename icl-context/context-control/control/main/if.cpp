@@ -10,7 +10,7 @@
 
 #include <QDebug>
 
-namespace vm::context::code::control {
+namespace icL::context::code::control {
 
 
 If::If(const memory::CodeFragment& source, bool expExe)
@@ -385,4 +385,4 @@ Context* If::getEndContext() {
 	return getLast();
 }
 
-}  // namespace vm::context::code::control
+}  // namespace icL::context::code::control

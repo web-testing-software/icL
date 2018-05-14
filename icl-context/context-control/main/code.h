@@ -8,7 +8,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- @namespace code
@@ -22,7 +23,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::code {
+namespace icL::context::code {
 
 class Code : public Context
 {
@@ -46,6 +47,6 @@ public:
 	Context* getEndContext() override;
 };
 
-}  // namespace vm::context::code
+}  // namespace icL::context::code
 
 #endif  // CODE_H

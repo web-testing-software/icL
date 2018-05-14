@@ -1,7 +1,7 @@
 #include "virtualmachine.h"
 
 
-namespace vm {
+namespace icL {
 
 VirtualMachine::VirtualMachine() = default;
 }

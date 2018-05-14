@@ -3,7 +3,8 @@
 
 #include <QObject>
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -17,7 +18,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::inter::_private {
+namespace icL::inter::_private {
 
 /**
  * @brief The Flayer class - flayer is a flying cursor.
@@ -49,6 +50,6 @@ private:
 	int m_end;
 };
 
-}  // namespace vm::inter::_private
+}  // namespace icL::inter::_private
 
 #endif  // FLAYER_H

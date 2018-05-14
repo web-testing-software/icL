@@ -1,6 +1,6 @@
 #include "code.h"
 
-namespace vm::context::code {
+namespace icL::context::code {
 
 Code::Code(const memory::CodeFragment& source)
 	: m_source(source) {
@@ -56,4 +56,4 @@ Context* Code::getEndContext() {
 	return this;
 }
 
-}  // namespace vm::context::code
+}  // namespace icL::context::code

@@ -7,7 +7,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -21,7 +22,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::object {
+namespace icL::context::object {
 
 class Element : public Object
 {
@@ -33,6 +34,8 @@ public:
 	// properties
 public:
 	// R/W properties will return a r/w object
+	int length();
+
 	Object* html();
 	Object* text();
 	Object* width();
@@ -43,6 +46,8 @@ public:
 	bool clickable();
 
 private:
+	void runLength();
+
 	void runHTML();
 	void runText();
 	void runWidth();
@@ -116,6 +121,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object
 
 #endif  // ELEMENT_H

@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::context::object {
+namespace icL::context::object {
 
 class Boolean : public Object
 {
@@ -44,6 +45,6 @@ public:
 	const QStringList toList() override;\
 };
 
-}  // namespace vm::context::object
+}  // namespace icL::context::object
 
 #endif  // BOOLEAN_H

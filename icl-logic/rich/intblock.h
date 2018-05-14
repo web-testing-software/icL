@@ -5,7 +5,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -19,7 +20,7 @@
  *  |  '- @namespace rich
  *  '- memory
  */
-namespace vm::logic::rich {
+namespace icL::logic::rich {
 
 /**
  * @brief The IntBlock class - compare two <int> vars/consts
@@ -42,6 +43,6 @@ private:
 	//	static QRegExp exp;
 };
 
-}  // namespace vm::logic::rich
+}  // namespace icL::logic::rich
 
 #endif  // INTBLOCK_H

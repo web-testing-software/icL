@@ -10,7 +10,8 @@
 
 
 /**
- * vm
+ *  icL
+ *  |- app
  *	|- context
  *  |  |- complex
  *  |  |- code
@@ -24,7 +25,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace vm::logic {
+namespace icL::logic {
 
 /**
  * @brief The RichBlock class - this class contains 2 variables or constants
@@ -81,6 +82,6 @@ public:
 	bool calcResult() override;
 };
 
-}  // namespace vm::logic
+}  // namespace icL::logic
 
 #endif  // RICHBLOCK_H

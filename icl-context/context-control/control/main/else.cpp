@@ -1,6 +1,6 @@
 #include "else.h"
 
-namespace vm::context::code::control {
+namespace icL::context::code::control {
 
 Else::Else()
 	: Control(memory::CodeFragment()) {
@@ -30,4 +30,4 @@ Context* Else::getEndContext() {
 	return getLast();
 }
 
-}  // namespace vm::context::code::control
+}  // namespace icL::context::code::control
