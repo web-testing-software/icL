@@ -72,7 +72,7 @@
 				var res = func.call (this[i], i);
 
 				if (!filter || (ret.indexOf(res) == -1) && !!res) {
-					ret.push();
+					ret.push(res);
 				}
 			};
 
@@ -159,18 +159,7 @@
 
 		closest : function (selector){
 			return nm(this.collect(function (){
-				var element = this;
-
-				while (!(nm (element).matches (selector)
-						&& document !== element.parentNode)) {
-					element = element.parentNode;
-				}
-
-				if (nm (element).matches (selector)) {
-					return element;
-				}
-
-				return null;
+				this.closest(selector);
 			}), true);
 		},
 
