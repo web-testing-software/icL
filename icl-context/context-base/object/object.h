@@ -12,9 +12,29 @@ namespace vm::context::object {
 class Object : public Context
 {
 public:
+	/**
+	 * @brief Object - construct a L-Value
+	 * @param container - a DataState pointer
+	 * @param varName - the name of var in container
+	 */
 	Object(memory::DataState* container, const QString& varName);
+	/**
+	 * @brief Object - constuct a R-Value
+	 * @param rvalue - the value of object
+	 * @param readonly - true restricts assigns
+	 */
 	Object(const QVariant& rvalue, bool readonly = false);
+	/**
+	 * @brief Object - construct a JS-Value
+	 * @param getter - a getter string, eg. window.height
+	 * @param setter - a setter string, eg. window.height = %1 (QString arg)
+	 */
 	Object(const QString& getter, const QString& setter);
+	/**
+	 * @brief Object - construct a object copy, used for coping values on
+	 * function call
+	 * @param object - pointer to object, which need to be copied
+	 */
 	Object(const Object* const object);
 
 	virtual memory::Type type() const;
