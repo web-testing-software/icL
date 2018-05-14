@@ -33,10 +33,10 @@ public:
 	// properties
 public:
 	// R/W properties will return a r/w object
-	// HTML -> String
-	// Text -> String
-	// Width -> Int
-	// Height -> Int
+	Object* html();
+	Object* text();
+	Object* width();
+	Object* height();
 
 	// Read only properties
 	bool visible();
