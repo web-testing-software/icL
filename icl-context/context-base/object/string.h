@@ -11,6 +11,7 @@ class String : public Object
 public:
 	String(memory::DataState* container, const QString& varName);
 	String(const QVariant& rvalue, bool readonly = false);
+	String(const QString& getter, const QString& setter);
 	String(const Object* const object);
 
 	// Context interface

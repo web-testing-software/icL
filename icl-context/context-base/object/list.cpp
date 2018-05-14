@@ -10,6 +10,9 @@ List::List(memory::DataState* container, const QString& varName)
 List::List(const QVariant& rvalue, bool readonly)
 	: Object(rvalue, readonly) {}
 
+List::List(const QString& getter, const QString& setter)
+	: Object(getter, setter) {}
+
 List::List(const Object* const object)
 	: Object(object) {}
 

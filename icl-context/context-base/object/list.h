@@ -12,6 +12,7 @@ class List : public Object
 public:
 	List(memory::DataState* container, const QString& varName);
 	List(const QVariant& rvalue, bool readonly = false);
+	List(const QString& getter, const QString& setter);
 	List(const Object* const object);
 
 private:

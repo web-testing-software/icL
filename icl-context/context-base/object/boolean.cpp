@@ -10,6 +10,9 @@ Boolean::Boolean(memory::DataState* container, const QString& varName)
 Boolean::Boolean(const QVariant& rvalue, bool readonly)
 	: Object(rvalue, readonly) {}
 
+Boolean::Boolean(const QString& getter, const QString& setter)
+	: Object(getter, setter) {}
+
 Boolean::Boolean(const Object* const object)
 	: Object(object) {}
 

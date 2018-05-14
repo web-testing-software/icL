@@ -12,6 +12,7 @@ class Double : public Object
 public:
 	Double(memory::DataState* container, const QString& varName);
 	Double(const QVariant& rvalue, bool readonly = false);
+	Double(const QString& getter, const QString& setter);
 	Double(const Object* const object);
 
 	// Context interface

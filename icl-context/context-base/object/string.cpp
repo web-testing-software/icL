@@ -10,6 +10,9 @@ String::String(memory::DataState* container, const QString& varName)
 String::String(const QVariant& rvalue, bool readonly)
 	: Object(rvalue, readonly) {}
 
+String::String(const QString& getter, const QString& setter)
+	: Object(getter, setter) {}
+
 String::String(const Object* const object)
 	: Object(object) {}
 

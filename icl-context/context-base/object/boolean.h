@@ -12,6 +12,7 @@ class Boolean : public Object
 public:
 	Boolean(memory::DataState* container, const QString& varName);
 	Boolean(const QVariant& rvalue, bool readonly = false);
+	Boolean(const QString& getter, const QString& setter);
 	Boolean(const Object* const object);
 
 	// Context interface
