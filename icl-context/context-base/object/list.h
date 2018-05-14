@@ -37,8 +37,58 @@ protected:
 	void runGetLength();
 
 	// Methods
+public:
+	void prepend(const QString& value);
+	void append(const QString& value);
+	void insert(int index, const QString& value);
+	void merge(const QStringList& list);
+
+	void popFront();
+	void popBack();
+	void remove(int index);
+	void removeOnce(const QString& value);
+	void removeAll(const QString& value);
 
 
+	QString get(int index);
+	int indexOf(const QString& value);
+	int lastIndexOf(const QString value);
+	QString join(const QString& delimiter = "");
+
+	double sumUp();
+	double max();
+	double min();
+
+	bool logicAnd();
+	bool logicOr();
+
+private:
+	void runPrepend(memory::ArgList& args);
+	void runAppend(memory::ArgList& args);
+	void runInsert(memory::ArgList& args);
+	void runMerge(memory::ArgList& args);
+
+	void runPopFront(memory::ArgList& args);
+	void runPopBack(memory::ArgList& args);
+	void runRemove(memory::ArgList& args);
+	void runRemoveOnce(memory::ArgList& args);
+	void runRemoveAll(memory::ArgList& args);
+
+
+	void runGet(memory::ArgList& args);
+	void runIndexOf(memory::ArgList& args);
+	void runLastIndexOf(memory::ArgList& args);
+	void runJoin(memory::ArgList& args);
+
+	void runSumUp(memory::ArgList& args);
+	void runMax(memory::ArgList& args);
+	void runMin(memory::ArgList& args);
+
+	void runLogicAnd(memory::ArgList& args);
+	void runLogicOr(memory::ArgList& args);
+
+
+	// Back-end
 private:
 	QString getFirst();
 
