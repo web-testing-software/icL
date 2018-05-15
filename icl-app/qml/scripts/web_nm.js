@@ -272,7 +272,7 @@
 		},
 
 		text : function (str, setMode) {
-			if (!!str) {
+			if (!!setMode) {
 				return this.each (function () {
 					this.innerText = str;
 				});
@@ -334,6 +334,14 @@
 					return this.offsetTop;
 				});
 			}
+		},
+
+		visible: function () {
+			// TODO: write it
+		},
+
+		clickable: function () {
+			// TODO: write it
 		}
 	}
 

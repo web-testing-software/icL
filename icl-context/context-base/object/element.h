@@ -105,6 +105,9 @@ private:
 	void runRemoveClass(memory::ArgList& args);
 	void runHasClass(memory::ArgList& args);
 
+private:
+	bool isSingle(memory::WebElement &web);
+
 	// Context interface
 public:
 	Context* runProperty(Prefix prefix, const QString& name) override;

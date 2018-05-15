@@ -162,7 +162,7 @@ QString Context::varToJsString(const QVariant& var) {
 		break;
 
 	case QVariant::String:
-		ret = var.toString();
+		ret = '"' % var.toString() % '"';
 		break;
 
 	case QVariant::StringList:
