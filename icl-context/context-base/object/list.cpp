@@ -1,6 +1,9 @@
 #include "list.h"
 
+#include "boolean.h"
+#include "double.h"
 #include "int.h"
+#include "string.h"
 
 namespace icL::context::object {
 
@@ -218,10 +221,10 @@ bool List::logicAnd() {
 	for (auto& str : list) {
 		bool ok;
 
-		if (str == "false") {
+		if (str == QStringLiteral("false")) {
 			res = false;
 		}
-		else if (str != "true") {
+		else if (str != QStringLiteral("true")) {
 			emit exception(
 			  {-2, QString("Failed to parse `%1` to bool").arg(str)});
 			break;
@@ -238,10 +241,10 @@ bool List::logicOr() {
 	for (auto& str : list) {
 		bool ok;
 
-		if (str == "true") {
+		if (str == QStringLiteral("true")) {
 			res = true;
 		}
-		else if (str != "false") {
+		else if (str != QStringLiteral("false")) {
 			emit exception(
 			  {-2, QString("Failed to parse `%1` to bool").arg(str)});
 			break;
@@ -249,6 +252,187 @@ bool List::logicOr() {
 	}
 
 	return res;
+}
+
+void List::runPrepend(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		prepend(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void List::runAppend(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		append(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void List::runInsert(memory::ArgList& args) {
+	if (
+	  args.length() == 1 && args[0].object->type() == memory::Type::Int &&
+	  args[1].object->type() == memory::Type::String) {
+		insert(
+		  args[0].object->getValue().toInt(),
+		  args[1].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<Int, String>"));
+	}
+}
+
+void List::runMerge(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::List) {
+		merge(args[0].object->getValue().toStringList());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<List>"));
+	}
+}
+
+void List::runPopFront(memory::ArgList& args) {
+	if (args.length() == 0) {
+		popFront();
+	}
+	else {
+		sendWrongArglist(args, "<>");
+	}
+}
+
+void List::runPopBack(memory::ArgList& args) {
+	if (args.length() == 0) {
+		popBack();
+	}
+	else {
+		sendWrongArglist(args, "<>");
+	}
+}
+
+void List::runRemove(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
+		remove(args[0].object->getValue().toInt());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<Int>"));
+	}
+}
+
+void List::runRemoveOnce(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		removeOnce(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void List::runRemoveAll(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		removeAll(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void List::runGet(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
+		newValue   = get(args[0].object->getValue().toInt());
+		newContext = new String{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<Int>"));
+	}
+}
+
+void List::runIndexOf(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue   = indexOf(args[0].object->getValue().toString());
+		newContext = new Int{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void List::runLastIndexOf(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue   = lastIndexOf(args[0].object->getValue().toString());
+		newContext = new Int{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void List::runJoin(memory::ArgList& args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue = join(args[0].object->getValue().toString());
+	}
+	else if (args.length() == 0) {
+		newValue = join();
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String> or <>"));
+		return;
+	}
+
+	newContext = new String{newValue, true};
+}
+
+
+void List::runSumUp(memory::ArgList& args) {
+	if (args.length() == 0) {
+		newValue   = sumUp();
+		newContext = new Double{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void List::runMax(memory::ArgList& args) {
+	if (args.length() == 0) {
+		newValue   = max();
+		newContext = new Double{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void List::runMin(memory::ArgList& args) {
+	if (args.length() == 0) {
+		newValue   = min();
+		newContext = new Double{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void List::runLogicAnd(memory::ArgList& args) {
+	if (args.length() == 0) {
+		newValue   = logicAnd();
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void List::runLogicOr(memory::ArgList& args) {
+	if (args.length() == 0) {
+		newValue   = logicOr();
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
 }
 
 
