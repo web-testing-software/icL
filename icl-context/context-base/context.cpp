@@ -75,7 +75,7 @@ bool Context::isComplex() const {
 	return false;
 }
 
-Context* Context::fromValue(const QVariant& value) {
+object::Object* Context::fromValue(const QVariant& value) {
 	object::Object* ret;
 	memory::Type    type = memory::variantTypeToType(value.type());
 

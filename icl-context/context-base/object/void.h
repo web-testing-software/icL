@@ -26,10 +26,11 @@ class Void : public Object
 {
 public:
 	Void();
+	Void(const QString& getter, const QString& setter);
 
 	// Context interface
 public:
-	Context* runProperty(const QString& name) override;
+	Context* runProperty(Prefix prefix, const QString& name) override;
 	Context* runMethod(const QString& name, memory::ArgList& args) override;
 
 	// Object interface

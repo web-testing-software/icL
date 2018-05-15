@@ -129,20 +129,6 @@
 			}
 		},
 
-		css: function (field, value) {
-			if (typeof value === 'string') {
-				return this.each (function () {
-					this.style[field] = value;
-				});
-			}
-			else {
-				return this.collect(function (){
-					var style = window.getComputedStyle (this[0]);
-					return style[field];
-				});
-			}
-		},
-
 		data : function (name,value,setMode){
 			if (!!setMode) {
 				this.each (function () {
@@ -153,6 +139,20 @@
 			else {
 				return this.collect(function (){
 					return this.dataset[name];
+				});
+			}
+		},
+
+		css: function (field, value) {
+			if (typeof value === 'string') {
+				return this.each (function () {
+					this.style[field] = value;
+				});
+			}
+			else {
+				return this.collect(function (){
+					var style = window.getComputedStyle (this[0]);
+					return style[field];
 				});
 			}
 		},

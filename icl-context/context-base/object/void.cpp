@@ -5,6 +5,10 @@ namespace icL::context::object {
 Void::Void()
 	: Object(QVariant(), true) {}
 
+Void::Void(const QString & getter, const QString & setter)
+	: Object(getter, setter) {}
+
+
 bool Void::toBoolean() {
 	newValue = false;
 	return false;

@@ -28,6 +28,10 @@
  */
 namespace icL::context {
 
+namespace object {
+class Object;
+}
+
 enum class Role {
 	NoRole,
 	Object,
@@ -55,57 +59,57 @@ class Context : public QObject
 public:
 	Context();
 
-	virtual bool checkPrev(const Context* context) const = 0;
-	virtual bool canBeAtEnd() const                      = 0;
+	virtual bool checkPrev(const Context * context) const = 0;
+	virtual bool canBeAtEnd() const                       = 0;
 	virtual bool isRightToLeft() const;
 	virtual bool isExecuable() const;
 	virtual bool execute();
 
-	Context*         getNewContext() const;
-	virtual Context* getBeginContext();
-	virtual Context* getEndContext();
+	Context *         getNewContext() const;
+	virtual Context * getBeginContext();
+	virtual Context * getEndContext();
 
-	virtual bool     hasValue() const;
-	virtual Context* runProperty(Prefix prefix, const QString& name);
-	virtual Context* runMethod(const QString& name, memory::ArgList& args);
+	virtual bool      hasValue() const;
+	virtual Context * runProperty(Prefix prefix, const QString & name);
+	virtual Context * runMethod(const QString & name, memory::ArgList & args);
 
-	Role     role() const;
-	Context* prev() const;
-	Context* next() const;
-	void     replaceWith(Context* context);
+	Role      role() const;
+	Context * prev() const;
+	Context * next() const;
+	void      replaceWith(Context * context);
 
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;
 
-	static Context* fromValue(const QVariant& value);
+	static object::Object * fromValue(const QVariant & value);
 
 protected:
-	Context* getFirst();
-	Context* getLast();
+	Context * getFirst();
+	Context * getLast();
 
-	void sendWrongArglist(memory::ArgList& params, const QString& expected);
+	void sendWrongArglist(memory::ArgList & params, const QString & expected);
 
-	QString varToJsString(const QVariant& var);
+	QString varToJsString(const QVariant & var);
 
 signals:
 	void exception(memory::Exception exc) const;
 	void interrupt(
-	  memory::FunctionCall, std::function<void(memory::Return&)>) const;
+	  memory::FunctionCall, std::function<void(memory::Return &)>) const;
 
 public slots:
 	void repeatException(memory::Exception exc);
 	void repeat(
-	  memory::FunctionCall run, std::function<void(memory::Return&)> feedback);
+	  memory::FunctionCall run, std::function<void(memory::Return &)> feedback);
 
 
 protected:
 	Role m_role = Role::NoRole;
 
-	Context* m_prev = nullptr;
-	Context* m_next = nullptr;
+	Context * m_prev = nullptr;
+	Context * m_next = nullptr;
 
-	Context* newContext = nullptr;
-	QVariant newValue;
+	Context * newContext = nullptr;
+	QVariant  newValue;
 };
 
 
