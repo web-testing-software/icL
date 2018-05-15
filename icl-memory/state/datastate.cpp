@@ -2,34 +2,16 @@
 
 #include <structures/webelement.h>
 
-
 namespace icL::memory {
 
 DataState::DataState() = default;
-
-
-/**
- * @brief DataState::addToStringList - despercated
- * @param name
- * @param value
- */
-void DataState::addToStringList(const QString& name, QString& value) {
-	if (dataMap.contains(name)) {
-		QStringList tmp = dataMap[name].toStringList();
-		tmp.append(value);
-		dataMap[name] = QVariant(tmp);
-	}
-	else {
-		// TODO: Set driver to error state
-	}
-}
 
 /**
  * @brief DataState::setValue
  * @param name - the name of variable
  * @param value - the value of variable
  */
-void DataState::setValue(const QString& name, const QVariant& value) {
+void DataState::setValue(const QString & name, const QVariant & value) {
 	dataMap[name] = value;
 }
 
@@ -38,7 +20,7 @@ void DataState::setValue(const QString& name, const QVariant& value) {
  * @param name - the name of variable
  * @return if the data unit contains the needed variables
  */
-bool DataState::contains(const QString& name) {
+bool DataState::contains(const QString & name) {
 	return dataMap.contains(name);
 }
 
@@ -47,7 +29,7 @@ bool DataState::contains(const QString& name) {
  * @param name - the name of variable
  * @return the type of variable (js types need aditional checking)
  */
-Type DataState::getType(const QString& name) {
+Type DataState::getType(const QString & name) {
 	return variantTypeToType(dataMap[name].type());
 }
 
@@ -57,7 +39,7 @@ Type DataState::getType(const QString& name) {
  * @param type - the type
  * @return the variable type check the type
  */
-bool DataState::checkType(const QString& name, Type& type) {
+bool DataState::checkType(const QString & name, Type & type) {
 	bool ret;
 
 	switch (type) {
@@ -97,7 +79,7 @@ bool DataState::checkType(const QString& name, Type& type) {
  * @param name - the variable name
  * @return the variable value
  */
-QVariant DataState::getValue(const QString& name) {
+QVariant DataState::getValue(const QString & name) {
 	return dataMap[name];
 }
 

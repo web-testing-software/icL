@@ -29,7 +29,7 @@ class BooleanBlock : public RichBlock
 {
 public:
 	BooleanBlock(OperationType otype);
-	BooleanBlock(RichBlock* block);
+	BooleanBlock(RichBlock * block);
 
 	//	static bool check (const QString &value);
 

@@ -2,6 +2,7 @@
 #define RETURN_H
 
 #include "exception.h"
+
 #include <QVariant>
 
 

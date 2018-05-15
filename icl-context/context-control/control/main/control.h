@@ -26,7 +26,7 @@ namespace icL::context::code::control {
 class Control : public Code
 {
 public:
-	Control(const memory::CodeFragment& source);
+	Control(const memory::CodeFragment & source);
 
 	// Context interface
 public:

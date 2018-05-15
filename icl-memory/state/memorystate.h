@@ -53,7 +53,7 @@ public:
 	MemoryStateIt();
 	~MemoryStateIt();
 
-	MemoryState* state() const;
+	MemoryState * state() const;
 
 	/// Doesn't delete the commented code, it will be uncommented in the
 	/// version 1.2
@@ -68,7 +68,7 @@ public:
 	//	void clear ();
 
 private:
-	MemoryState* m_state = nullptr;
+	MemoryState * m_state = nullptr;
 };
 
 }  // namespace icL::memory

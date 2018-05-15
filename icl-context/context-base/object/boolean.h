@@ -25,14 +25,14 @@ namespace icL::context::object {
 class Boolean : public Object
 {
 public:
-	Boolean(memory::DataState* container, const QString& varName);
-	Boolean(const QVariant& rvalue, bool readonly = false);
-	Boolean(const QString& getter, const QString& setter);
-	Boolean(const Object* const object);
+	Boolean(memory::DataState * container, const QString & varName);
+	Boolean(const QVariant & rvalue, bool readonly = false);
+	Boolean(const QString & getter, const QString & setter);
+	Boolean(const Object * const object);
 
 	// Context interface
 public:
-	Context* runMethod(const QString& name, memory::ArgList& args) override;
+	Context * runMethod(const QString & name, memory::ArgList & args) override;
 
 	// Object interface
 public:
@@ -42,7 +42,7 @@ public:
 	int               toInt() override;
 	double            toDouble() override;
 	const QString     toString() override;
-	const QStringList toList() override;\
+	const QStringList toList() override;
 };
 
 }  // namespace icL::context::object

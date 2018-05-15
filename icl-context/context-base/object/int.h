@@ -25,14 +25,14 @@ namespace icL::context::object {
 class Int : public Object
 {
 public:
-	Int(memory::DataState* container, const QString& varName);
-	Int(const QVariant& rvalue, bool readonly = false);
-	Int(const QString& getter, const QString& setter);
-	Int(const Object* const object);
+	Int(memory::DataState * container, const QString & varName);
+	Int(const QVariant & rvalue, bool readonly = false);
+	Int(const QString & getter, const QString & setter);
+	Int(const Object * const object);
 
 	// Context interface
 public:
-	Context* runMethod(const QString& name, memory::ArgList& args) override;
+	Context * runMethod(const QString & name, memory::ArgList & args) override;
 
 	// Object interface
 public:

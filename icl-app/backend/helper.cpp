@@ -4,7 +4,7 @@
 #include <QStandardPaths>
 #include <QtMath>
 
-Helper::Helper(QObject* parent)
+Helper::Helper(QObject * parent)
 	: QObject(parent) {
 	m_cache_dir =
 	  QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
@@ -20,7 +20,7 @@ Helper::Helper(QObject* parent)
  * @param alpha - blend coefficient
  * @return blended color
  */
-QColor Helper::mix(const QColor& color1, const QColor& color2, qreal alpha) {
+QColor Helper::mix(const QColor & color1, const QColor & color2, qreal alpha) {
 	int r = color1.red();
 	int g = color1.green();
 	int b = color1.blue();
@@ -50,7 +50,7 @@ QColor Helper::mix(const QColor& color1, const QColor& color2, qreal alpha) {
  * @return blended color
  */
 QColor Helper::linearMix(
-  const QColor& color1, const QColor& color2, qreal alpha) {
+  const QColor & color1, const QColor & color2, qreal alpha) {
 	int    r = color1.red();
 	int    g = color1.green();
 	int    b = color1.blue();
@@ -69,7 +69,7 @@ QColor Helper::linearMix(
  * @param profileName - local user profile
  * @return absolute path
  */
-QString Helper::cacheDir(const QString& profileName) {
+QString Helper::cacheDir(const QString & profileName) {
 	QString dirpath = m_cache_dir % "/" % profileName;
 
 	makeDirIfNotExist(dirpath);
@@ -82,7 +82,7 @@ QString Helper::cacheDir(const QString& profileName) {
  * @param profileName - local user profile
  * @return absolute path
  */
-QString Helper::dataDir(const QString& profileName) {
+QString Helper::dataDir(const QString & profileName) {
 	QString dirpath = m_data_dir % "/" % profileName;
 
 	makeDirIfNotExist(dirpath);
@@ -94,7 +94,7 @@ QString Helper::dataDir(const QString& profileName) {
  * @param profileName - local user profile
  * @return absolute path
  */
-QString Helper::profileDir(const QString& profileName) {
+QString Helper::profileDir(const QString & profileName) {
 	QString dirpath = m_config_dir % "/profile/" % profileName;
 
 	makeDirIfNotExist(dirpath);
@@ -106,7 +106,7 @@ QString Helper::profileDir(const QString& profileName) {
  * @param input - url as string (text inserted by user)
  * @return fixed url
  */
-QUrl Helper::urlFromUserInput(const QString& input) {
+QUrl Helper::urlFromUserInput(const QString & input) {
 	return QUrl::fromUserInput(input);
 }
 
@@ -114,7 +114,7 @@ QUrl Helper::urlFromUserInput(const QString& input) {
  * @brief Helper::makeDirIfNotExist - make new directory if it not exist
  * @param dirpath - directory path
  */
-void Helper::makeDirIfNotExist(const QString& dirpath) {
+void Helper::makeDirIfNotExist(const QString & dirpath) {
 	QDir dir(dirpath);
 
 	if (!dir.exists()) {

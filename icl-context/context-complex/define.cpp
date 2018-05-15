@@ -5,11 +5,11 @@
 
 namespace icL::context::complex {
 
-void Define::signal(int code, const QString& name) {
+void Define::signal(int code, const QString & name) {
 	emit newSignal(code, name);
 }
 
-void Define::runSignal(memory::ArgList& args) {
+void Define::runSignal(memory::ArgList & args) {
 
 	if (args.length() != 2) {
 		sendWrongArglist(args, QStringLiteral("<Int, String>"));
@@ -29,7 +29,7 @@ void Define::runSignal(memory::ArgList& args) {
 	}
 }
 
-bool Define::checkPrev(const Context* context) const {
+bool Define::checkPrev(const Context * context) const {
 	return context == nullptr;
 }
 
@@ -37,7 +37,7 @@ bool Define::canBeAtEnd() const {
 	return false;
 }
 
-Context* Define::runMethod(const QString& name, memory::ArgList& args) {
+Context * Define::runMethod(const QString & name, memory::ArgList & args) {
 
 	if (name == QStringLiteral("signal")) {
 		runSignal(args);

@@ -32,24 +32,24 @@ class Helper : public QObject
 	Q_OBJECT
 
 public:
-	explicit Helper(QObject* parent = nullptr);
+	explicit Helper(QObject * parent = nullptr);
 
 	Q_INVOKABLE QColor
-				mix(const QColor& color1, const QColor& color2, qreal alpha);
+				mix(const QColor & color1, const QColor & color2, qreal alpha);
 	Q_INVOKABLE QColor
-				linearMix(const QColor& color1, const QColor& color2, qreal alpha);
+				linearMix(const QColor & color1, const QColor & color2, qreal alpha);
 
-	Q_INVOKABLE QString cacheDir(const QString& profileName);
-	Q_INVOKABLE QString dataDir(const QString& profileName);
-	Q_INVOKABLE QString profileDir(const QString& profileName);
+	Q_INVOKABLE QString cacheDir(const QString & profileName);
+	Q_INVOKABLE QString dataDir(const QString & profileName);
+	Q_INVOKABLE QString profileDir(const QString & profileName);
 
-	Q_INVOKABLE QUrl urlFromUserInput(const QString& input);
+	Q_INVOKABLE QUrl urlFromUserInput(const QString & input);
 signals:
 
 public slots:
 
 private:
-	void makeDirIfNotExist(const QString& dirpath);
+	void makeDirIfNotExist(const QString & dirpath);
 
 	QString m_cache_dir;
 	QString m_config_dir;

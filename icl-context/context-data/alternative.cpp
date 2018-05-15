@@ -8,7 +8,7 @@ Alternative::Alternative() {
 
 
 
-bool Alternative::checkPrev(const Context* context) const {
+bool Alternative::checkPrev(const Context * context) const {
 	return context != nullptr && context->role() == Role::Exists;
 }
 
@@ -26,11 +26,11 @@ bool Alternative::execute() {
 	return true;
 }
 
-Context* Alternative::getBeginContext() {
+Context * Alternative::getBeginContext() {
 	return theLeftOperandIsOk ? this : m_prev;
 }
 
-Context* Alternative::getEndContext() {
+Context * Alternative::getEndContext() {
 	return theLeftOperandIsOk ? m_next : this;
 }
 

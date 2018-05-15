@@ -61,7 +61,7 @@ namespace icL::memory {
  * @return attribute values, [] on error
  */
 //	QStringList getAttributeFromAll (const QString &name, bool se = false)
-//const;
+// const;
 /**
  * @brief length - get the number of elements, contained by object
  * @param se - skip errors
@@ -79,7 +79,7 @@ namespace icL::memory {
  * @return a new web element
  */
 //	WebElement filterByContent (const QString &name, const QString &filter, bool
-//se = false) const;
+// se = false) const;
 /**
  * @brief find - run querySelector to find element in the current element
  * @param selector - css selector
@@ -88,7 +88,7 @@ namespace icL::memory {
  * @return a new web element
  */
 //	WebElement find (const QString &selector, const QString &name, bool se =
-//false) const;
+// false) const;
 /**
  * @brief findAll - run querySelectorAll to find elements in the current element
  * @param selector - css selector
@@ -97,7 +97,7 @@ namespace icL::memory {
  * @return a new web element
  */
 //	WebElement findAll (const QString &selector, const QString &name, bool se =
-//true) const;
+// true) const;
 
 // Screen functions
 
@@ -221,6 +221,6 @@ struct WebElement
 
 }  // namespace icL::memory
 
-Q_DECLARE_METATYPE(vm::memory::WebElement);
+Q_DECLARE_METATYPE(icL::memory::WebElement);
 
 #endif  // WEBELEMENT_H

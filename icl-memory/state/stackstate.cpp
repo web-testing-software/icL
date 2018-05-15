@@ -4,7 +4,7 @@
 
 namespace icL::memory {
 
-StackState::StackState(StackState* prev /*, int stackLevel*/) {
+StackState::StackState(StackState * prev /*, int stackLevel*/) {
 	prev_ss = prev;
 	//	this->stackLevel	= stackLevel;
 
@@ -15,13 +15,13 @@ StackState::StackState(StackState* prev /*, int stackLevel*/) {
 
 StackState::~StackState() = default;
 
-void StackState::setWebElement(const QString& name, WebElement& webElement) {
+void StackState::setWebElement(const QString & name, WebElement & webElement) {
 	QVariant tmp = QVariant::fromValue(webElement);
 
 	setValue(name, tmp);
 }
 
-StackState* StackState::getPrev() {
+StackState * StackState::getPrev() {
 	return prev_ss;
 }
 
@@ -49,7 +49,7 @@ StackStateIt::~StackStateIt() {
 	clear();
 }
 
-StackState* StackStateIt::stack() {
+StackState * StackStateIt::stack() {
 	return m_stack;
 }
 
@@ -61,15 +61,15 @@ void StackStateIt::openNewStack() {
 }
 
 void StackStateIt::closeStack() {
-	StackState* prev = m_stack->getPrev();
+	StackState * prev = m_stack->getPrev();
 
 	delete m_stack;
 	m_stack = prev;
 }
 
-StackState* StackStateIt::getContainer(const QString& name) {
-	StackState* ret = nullptr;
-	StackState* it  = m_stack;
+StackState * StackStateIt::getContainer(const QString & name) {
+	StackState * ret = nullptr;
+	StackState * it  = m_stack;
 
 	while (ret == nullptr && it != nullptr) {
 		if (it->contains(name)) {
@@ -123,7 +123,7 @@ StackState* StackStateIt::getContainer(const QString& name) {
 // }
 
 void StackStateIt::clear() {
-	StackState* tmp;
+	StackState * tmp;
 
 	while (m_stack != nullptr) {
 		tmp = m_stack->getPrev();

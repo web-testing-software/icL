@@ -9,7 +9,7 @@ Else::Else()
 
 
 
-bool Else::checkPrev(const Context* context) const {
+bool Else::checkPrev(const Context * context) const {
 	return context != nullptr && context->role() == Role::Code &&
 		   context->prev() != nullptr && context->prev()->role() == Role::If;
 }
@@ -22,11 +22,11 @@ bool Else::execute() {
 	return m_next->execute();
 }
 
-Context* Else::getBeginContext() {
+Context * Else::getBeginContext() {
 	return getFirst();
 }
 
-Context* Else::getEndContext() {
+Context * Else::getEndContext() {
 	return getLast();
 }
 

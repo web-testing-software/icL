@@ -4,16 +4,16 @@ namespace icL::context::object {
 
 
 
-Int::Int(memory::DataState* container, const QString& varName)
+Int::Int(memory::DataState * container, const QString & varName)
 	: Object(container, varName) {}
 
-Int::Int(const QVariant& rvalue, bool readonly)
+Int::Int(const QVariant & rvalue, bool readonly)
 	: Object(rvalue, readonly) {}
 
-Int::Int(const QString& getter, const QString& setter)
+Int::Int(const QString & getter, const QString & setter)
 	: Object(getter, setter) {}
 
-Int::Int(const Object* const object)
+Int::Int(const Object * const object)
 	: Object(object) {}
 
 

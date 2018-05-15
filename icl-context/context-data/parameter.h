@@ -25,10 +25,10 @@ namespace icL::context::data {
 class Parameter : public Data
 {
 public:
-	Parameter(const QString& name, memory::Type type);
+	Parameter(const QString & name, memory::Type type);
 
-	const QString& name() const;
-	memory::Type   type() const;
+	const QString & name() const;
+	memory::Type    type() const;
 
 protected:
 	QString      m_name;
@@ -36,7 +36,7 @@ protected:
 
 	// Context interface
 public:
-	bool checkPrev(const Context* context) const override;
+	bool checkPrev(const Context * context) const override;
 };
 
 }  // namespace icL::context::data

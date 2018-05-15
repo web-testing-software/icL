@@ -6,13 +6,13 @@
 
 namespace icL::context::complex {
 
-bool Tab::get(const QString& url) {
+bool Tab::get(const QString & url) {
 	emit getSignal(url, [this](bool success) { this->newValue = success; });
 
 	return newValue.toBool();
 }
 
-void Tab::runGet(memory::ArgList& args) {
+void Tab::runGet(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() != memory::Type::String) {
 		get(args[0].object->getValue().toString());
 		newContext = new object::Boolean{newValue, true};
@@ -22,7 +22,7 @@ void Tab::runGet(memory::ArgList& args) {
 	}
 }
 
-bool Tab::checkPrev(const Context* context) const {
+bool Tab::checkPrev(const Context * context) const {
 	return context == nullptr;
 }
 
@@ -30,7 +30,7 @@ bool Tab::canBeAtEnd() const {
 	return false;
 }
 
-Context* Tab::runMethod(const QString& name, memory::ArgList& args) {
+Context * Tab::runMethod(const QString & name, memory::ArgList & args) {
 	if (name == QStringLiteral("get")) {
 		runGet(args);
 	}

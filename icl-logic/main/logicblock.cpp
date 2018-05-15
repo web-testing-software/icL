@@ -53,7 +53,7 @@ bool LogicBlock::canResultPreliminarily() {
  * @brief LogicBlock::getParent - node parent getter
  * @return pointer to the parent node
  */
-LogicBlock* LogicBlock::getParent() {
+LogicBlock * LogicBlock::getParent() {
 	return m_parent;
 }
 
@@ -61,7 +61,7 @@ LogicBlock* LogicBlock::getParent() {
  * @brief LogicBlock::setParent - parent node setter
  * @param pointer to the parent node
  */
-void LogicBlock::setParent(LogicBlock* parent) {
+void LogicBlock::setParent(LogicBlock * parent) {
 	m_parent = parent;
 }
 

@@ -25,7 +25,7 @@ namespace icL::context::code::control::catch0 {
 class Catch : public Control
 {
 public:
-	Catch(const memory::CodeFragment& source);
+	Catch(const memory::CodeFragment & source);
 };
 
 }  // namespace icL::context::code::control::catch0

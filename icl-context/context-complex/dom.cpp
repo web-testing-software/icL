@@ -1,22 +1,22 @@
 #include "dom.h"
 
-#include <context-base/object/object.h>
+#include <object/element.h>
 
 #include <icl-memory/structures/webelement.h>
 
-#include <QVariant>
+#include <context-base/object/object.h>
 
-#include <object/element.h>
+#include <QVariant>
 
 namespace icL::context::complex {
 
-memory::WebElement Dom::query(const QString& selector) {
+memory::WebElement Dom::query(const QString & selector) {
 	QString newId = getNewId();
 
 	emit requestJsExecution(
 	  newId % R"( = nm(")" % selector %
 		R"("); )" % newId % ".length",
-	  [this, selector, newId](const QVariant& var) {
+	  [this, selector, newId](const QVariant & var) {
 		  memory::WebElement web;
 
 		  web.count    = var.toInt();
@@ -29,14 +29,14 @@ memory::WebElement Dom::query(const QString& selector) {
 	return newValue.value<memory::WebElement>();
 }
 
-memory::WebElement Dom::queryAll(const QStringList& selectors) {
+memory::WebElement Dom::queryAll(const QStringList & selectors) {
 	QString newId     = getNewId();
 	QString selector  = selectors.join(R"(").add(")");
 	QString selector2 = selectors.join(" ∪ ");
 
 	emit requestJsExecution(
 	  newId % R"( = nm()" % selector % R"("); )" % newId % ".length",
-	  [this, newId, selector2](const QVariant& var) {
+	  [this, newId, selector2](const QVariant & var) {
 		  memory::WebElement web;
 
 		  web.count    = var.toInt();
@@ -49,7 +49,7 @@ memory::WebElement Dom::queryAll(const QStringList& selectors) {
 	return newValue.value<memory::WebElement>();
 }
 
-void Dom::runQuery(memory::ArgList& args) {
+void Dom::runQuery(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 
 		query(args[0].object->getValue().toString());
@@ -60,7 +60,7 @@ void Dom::runQuery(memory::ArgList& args) {
 	}
 }
 
-void Dom::runQueryAll(memory::ArgList& args) {
+void Dom::runQueryAll(memory::ArgList & args) {
 	bool ok = true;
 
 	if (args.length() > 0) {
@@ -99,7 +99,7 @@ QString Dom::getNewId() {
 	return "windows.icL.links[" % QString::number(idAsInt++) % "]";
 }
 
-bool Dom::checkPrev(const Context* context) const {
+bool Dom::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
 		   (context->role() != Role::Exists && context->isResultative());
 }
@@ -108,7 +108,7 @@ bool Dom::canBeAtEnd() const {
 	return false;
 }
 
-Context* Dom::runMethod(const QString& name, memory::ArgList& args) {
+Context * Dom::runMethod(const QString & name, memory::ArgList & args) {
 	if (name == QStringLiteral("query")) {
 		runQuery(args);
 	}

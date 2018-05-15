@@ -27,7 +27,7 @@ bool CrossBlock::canAcceptBlock() {
  * @brief CrossBlock::giveBlock - set the block to the first free position
  * @param block - any free block
  */
-void CrossBlock::giveBlock(LogicBlock* block) {
+void CrossBlock::giveBlock(LogicBlock * block) {
 	if (block1 == nullptr) {
 		block1 = block;
 	}
@@ -81,7 +81,7 @@ bool CrossBlock::needCast() {
 	return false;
 }
 
-LogicBlock* CrossBlock::castNow() {
+LogicBlock * CrossBlock::castNow() {
 	return nullptr;
 }
 
@@ -93,7 +93,7 @@ bool CrossBlock::step() {
 		}
 		else {
 			if (block1->needCast()) {
-				LogicBlock* newBlock = block1->castNow();
+				LogicBlock * newBlock = block1->castNow();
 
 				delete block1;
 				block1 = newBlock;

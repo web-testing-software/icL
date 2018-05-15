@@ -1,11 +1,11 @@
 #ifndef LOGICBLOCK_H
 #define LOGICBLOCK_H
 
-#include <QObject>
-
 #include <icl-memory/state/memory.h>
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/return.h>
+
+#include <QObject>
 
 /**
  *  icL
@@ -51,17 +51,17 @@ public:
 	virtual void resetResultValue();
 	void         invalidate();
 
-	virtual bool        needCast() = 0;
-	virtual LogicBlock* castNow()  = 0;
-	virtual bool        step()     = 0;
-	virtual bool        canResultPreliminarily();
+	virtual bool         needCast() = 0;
+	virtual LogicBlock * castNow()  = 0;
+	virtual bool         step()     = 0;
+	virtual bool         canResultPreliminarily();
 
-	LogicBlock* getParent();
-	void        setParent(LogicBlock* parent);
+	LogicBlock * getParent();
+	void         setParent(LogicBlock * parent);
 
 signals:
 	void exception(memory::Exception exc);
-	void interrupt(memory::FunctionCall, std::function<void(memory::Return&)>);
+	void interrupt(memory::FunctionCall, std::function<void(memory::Return &)>);
 
 protected:
 	virtual bool calcResult() = 0;
@@ -70,14 +70,14 @@ protected:
 
 
 protected:
-	vm::memory::Memory* m_memory;
+	icL::memory::Memory * m_memory;
 
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 	bool        ready1 = false, ready2 = false;
 	bool        resultCalculed = false, result = false;
 
 private:
-	LogicBlock* m_parent = nullptr;
+	LogicBlock * m_parent = nullptr;
 };
 
 }  // namespace icL::logic

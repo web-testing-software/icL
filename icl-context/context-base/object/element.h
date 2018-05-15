@@ -49,10 +49,10 @@ public:
 	bool clickable();
 
 	// Prefixed properties
-	Object* prop(const QString & name);
-	String* attr(const QString & name);
-	String* data(const QString & name);
-	String* css(const QString & name);
+	Object * prop(const QString & name);
+	String * attr(const QString & name);
+	String * data(const QString & name);
+	String * css(const QString & name);
 
 private:
 	void runLength();

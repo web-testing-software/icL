@@ -13,7 +13,7 @@
 namespace icL::context::code::control {
 
 
-If::If(const memory::CodeFragment& source, bool expExe)
+If::If(const memory::CodeFragment & source, bool expExe)
 	: Control(source)
 	, expressionExecuted(expExe) {
 	m_role = Role::If;
@@ -30,7 +30,7 @@ void If::parseLogicExp() {
 		exp = parseOnce(m_source);
 	}
 	else {
-		auto* single =
+		auto * single =
 		  new logic::rich::SingleBlock{logic::RichBlock::OperationType::NotNot};
 
 		single->giveCode(m_source);
@@ -39,10 +39,10 @@ void If::parseLogicExp() {
 }
 
 // The brackets pairs must be checked first, by interpreteur
-logic::LogicBlock* If::parseOnce(memory::CodeFragment& fn) {
-	Operator op;
-	QString* str = fn.source;
-	QString  brackets;
+logic::LogicBlock * If::parseOnce(memory::CodeFragment & fn) {
+	Operator  op;
+	QString * str = fn.source;
+	QString   brackets;
 
 	if (fn.end == fn.begin) {
 		emit exception({-201, "Empty operand detected."});
@@ -116,7 +116,7 @@ logic::LogicBlock* If::parseOnce(memory::CodeFragment& fn) {
 	}
 
 	if (op.type == OperatorType::NotFound) {
-		auto* single =
+		auto * single =
 		  new logic::rich::SingleBlock{logic::RichBlock::OperationType::NotNot};
 
 		single->giveCode(fn);
@@ -140,7 +140,7 @@ logic::LogicBlock* If::parseOnce(memory::CodeFragment& fn) {
 	}
 }
 
-void If::makeRank3(Operator& op, OperatorType type, int i) {
+void If::makeRank3(Operator & op, OperatorType type, int i) {
 	if (op.rank < 3) {
 		op.type     = type;
 		op.rank     = 3;
@@ -148,7 +148,7 @@ void If::makeRank3(Operator& op, OperatorType type, int i) {
 	}
 }
 
-void If::processNots(Operator& op, const QChar& next, int i) {
+void If::processNots(Operator & op, const QChar & next, int i) {
 	if (next == '=' && op.rank < 2) {
 		op.type     = OperatorType::NotEqual;
 		op.rank     = 2;
@@ -161,7 +161,7 @@ void If::processNots(Operator& op, const QChar& next, int i) {
 	}
 }
 
-void If::processEquals(Operator& op, const QChar& next, int i) {
+void If::processEquals(Operator & op, const QChar & next, int i) {
 	if (next == '=' && op.rank < 2) {
 		op.type     = OperatorType::Equal;
 		op.rank     = 1;
@@ -169,7 +169,7 @@ void If::processEquals(Operator& op, const QChar& next, int i) {
 	}
 }
 
-void If::processContains(Operator& op, const QChar& next, int i) {
+void If::processContains(Operator & op, const QChar & next, int i) {
 	if ((next == '<' || next == '=') && op.rank < 2) {
 		op.type =
 		  next == '<' ? OperatorType::Contains : OperatorType::ContainsFragment;
@@ -237,7 +237,7 @@ void If::filter(memory::CodeFragment fn) {
 	} while (!ready);
 }
 
-logic::LogicBlock* If::returnRank1(Operator& op, memory::CodeFragment& fn) {
+logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 	bool isOk = true;
 
 	for (int i = fn.begin; i < op.position; i++) {
@@ -256,7 +256,7 @@ logic::LogicBlock* If::returnRank1(Operator& op, memory::CodeFragment& fn) {
 	}
 
 	memory::CodeFragment newfn  = fn;
-	auto*                single = new logic::rich::SingleBlock(
+	auto *               single = new logic::rich::SingleBlock(
 	  op.type == OperatorType::Not ? logic::RichBlock::OperationType::Not
 								   : logic::RichBlock::OperationType::NotNot);
 
@@ -267,7 +267,7 @@ logic::LogicBlock* If::returnRank1(Operator& op, memory::CodeFragment& fn) {
 	return single;
 }
 
-logic::LogicBlock* If::returnRank2(Operator& op, memory::CodeFragment& fn) {
+logic::LogicBlock * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
 	memory::CodeFragment newfn1 = fn, newfn2 = fn;
 
 	newfn1.end = op.position;
@@ -302,7 +302,7 @@ logic::LogicBlock* If::returnRank2(Operator& op, memory::CodeFragment& fn) {
 		break;
 	}
 
-	auto* block = new logic::RichBlock{type};
+	auto * block = new logic::RichBlock{type};
 
 	block->giveCode(newfn1);
 	block->giveCode(newfn2);
@@ -310,7 +310,7 @@ logic::LogicBlock* If::returnRank2(Operator& op, memory::CodeFragment& fn) {
 	return block;
 }
 
-logic::LogicBlock* If::returnRank3(Operator& op, memory::CodeFragment& fn) {
+logic::LogicBlock * If::returnRank3(Operator & op, memory::CodeFragment & fn) {
 	memory::CodeFragment newfn1 = fn, newfn2 = fn;
 
 	newfn1.end   = op.position;
@@ -319,7 +319,7 @@ logic::LogicBlock* If::returnRank3(Operator& op, memory::CodeFragment& fn) {
 	filter(newfn1);
 	filter(newfn2);
 
-	logic::CrossBlock* block;
+	logic::CrossBlock * block;
 
 	switch (op.type) {
 	case OperatorType::And:
@@ -351,7 +351,7 @@ logic::LogicBlock* If::returnRank3(Operator& op, memory::CodeFragment& fn) {
 
 
 
-bool If::checkPrev(const Context* context) const {
+bool If::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Else;
 }
 
@@ -377,11 +377,11 @@ bool If::execute() {
 	return false;
 }
 
-Context* If::getBeginContext() {
+Context * If::getBeginContext() {
 	return getFirst();
 }
 
-Context* If::getEndContext() {
+Context * If::getEndContext() {
 	return getLast();
 }
 

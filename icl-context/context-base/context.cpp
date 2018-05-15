@@ -20,15 +20,15 @@ namespace icL::context {
 
 Context::Context() = default;
 
-Context* Context::getNewContext() const {
+Context * Context::getNewContext() const {
 	return newContext;
 }
 
-Context* Context::getBeginContext() {
+Context * Context::getBeginContext() {
 	return nullptr;
 }
 
-Context* Context::getEndContext() {
+Context * Context::getEndContext() {
 	return nullptr;
 }
 
@@ -48,7 +48,7 @@ bool Context::hasValue() const {
 	return false;
 }
 
-Context* Context::runProperty(Prefix prefix, const QString& name) {
+Context * Context::runProperty(Prefix prefix, const QString & name) {
 	if (prefix != Prefix::None) {
 		emit exception(
 		  {-405, "This object does not support prefixed properties"});
@@ -60,7 +60,7 @@ Context* Context::runProperty(Prefix prefix, const QString& name) {
 	return nullptr;
 }
 
-Context* Context::runMethod(const QString& name, memory::ArgList& args) {
+Context * Context::runMethod(const QString & name, memory::ArgList & args) {
 	Q_UNUSED(args);
 	emit exception({-7, "No such method: " + name});
 
@@ -75,9 +75,9 @@ bool Context::isComplex() const {
 	return false;
 }
 
-object::Object* Context::fromValue(const QVariant& value) {
-	object::Object* ret;
-	memory::Type    type = memory::variantTypeToType(value.type());
+object::Object * Context::fromValue(const QVariant & value) {
+	object::Object * ret;
+	memory::Type     type = memory::variantTypeToType(value.type());
 
 	switch (type) {
 	case memory::Type::Boolean:
@@ -112,8 +112,8 @@ object::Object* Context::fromValue(const QVariant& value) {
 	return ret;
 }
 
-Context* Context::getFirst() {
-	Context* it = this;
+Context * Context::getFirst() {
+	Context * it = this;
 
 	while (it->m_prev != nullptr) {
 		it = it->m_prev;
@@ -122,8 +122,8 @@ Context* Context::getFirst() {
 	return it;
 }
 
-Context* Context::getLast() {
-	Context* it = this;
+Context * Context::getLast() {
+	Context * it = this;
 
 	while (it->m_next != nullptr) {
 		it = it->m_next;
@@ -132,7 +132,8 @@ Context* Context::getLast() {
 	return it;
 }
 
-void Context::sendWrongArglist(memory::ArgList& args, const QString& expected) {
+void Context::sendWrongArglist(
+  memory::ArgList & args, const QString & expected) {
 	QStringList types;
 
 	for (auto arg : args) {
@@ -143,7 +144,7 @@ void Context::sendWrongArglist(memory::ArgList& args, const QString& expected) {
 							">, expected " % expected});
 }
 
-QString Context::varToJsString(const QVariant& var) {
+QString Context::varToJsString(const QVariant & var) {
 	QString            ret;
 	QStringList        list = var.toStringList();
 	memory::WebElement web  = var.value<memory::WebElement>();
@@ -166,7 +167,7 @@ QString Context::varToJsString(const QVariant& var) {
 		break;
 
 	case QVariant::StringList:
-		for (QString& str : list) {
+		for (QString & str : list) {
 			str.replace(R"(")", R"(\")");
 		}
 		ret = R"([")" % list.join(R"(",")") % R"("])";
@@ -189,15 +190,15 @@ void Context::repeatException(memory::Exception exc) {
 }
 
 void Context::repeat(
-  memory::FunctionCall run, std::function<void(memory::Return&)> feedback) {
+  memory::FunctionCall run, std::function<void(memory::Return &)> feedback) {
 	emit interrupt(std::move(run), std::move(feedback));
 }
 
-Context* Context::next() const {
+Context * Context::next() const {
 	return m_next;
 }
 
-void Context::replaceWith(Context* context) {
+void Context::replaceWith(Context * context) {
 	context->m_prev = m_prev;
 	context->m_next = m_next;
 	if (m_prev != nullptr) {
@@ -208,7 +209,7 @@ void Context::replaceWith(Context* context) {
 	}
 }
 
-Context* Context::prev() const {
+Context * Context::prev() const {
 	return m_prev;
 }
 

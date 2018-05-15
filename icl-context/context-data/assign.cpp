@@ -18,7 +18,7 @@ Assign::Assign() {
 
 
 
-bool Assign::checkPrev(const Context* context) const {
+bool Assign::checkPrev(const Context * context) const {
 	return context != nullptr &&
 		   (context->role() == Role::Object ||
 			context->role() == Role::Function) &&
@@ -37,8 +37,8 @@ bool Assign::execute() {
 		return false;
 	}
 
-	auto left  = dynamic_cast<object::Object*>(m_prev);
-	auto right = dynamic_cast<object::Object*>(m_next);
+	auto left  = dynamic_cast<object::Object *>(m_prev);
+	auto right = dynamic_cast<object::Object *>(m_next);
 
 	if (left->isReadOnly()) {
 		emit exception(
@@ -74,7 +74,7 @@ bool Assign::execute() {
 	left->setValue(right->getValue());
 
 	if (left->type() == memory::Type::Void) {
-		Context* new_left = nullptr;
+		Context * new_left = nullptr;
 
 		switch (right->type()) {
 		case memory::Type::Boolean:
@@ -114,11 +114,11 @@ bool Assign::execute() {
 	return true;
 }
 
-Context* Assign::getBeginContext() {
+Context * Assign::getBeginContext() {
 	return this;
 }
 
-Context* Assign::getEndContext() {
+Context * Assign::getEndContext() {
 	return m_next;
 }
 

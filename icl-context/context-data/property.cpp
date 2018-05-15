@@ -2,14 +2,14 @@
 
 namespace icL::context::data {
 
-Property::Property(const QString& name)
+Property::Property(const QString & name)
 	: name(name) {
 	m_role = Role::Property;
 };
 
 
 
-bool Property::checkPrev(const Context* context) const {
+bool Property::checkPrev(const Context * context) const {
 	return context != nullptr && context->isResultative();
 }
 
@@ -23,11 +23,11 @@ bool Property::execute() {
 	return true;
 }
 
-Context* Property::getBeginContext() {
+Context * Property::getBeginContext() {
 	return m_prev;
 }
 
-Context* Property::getEndContext() {
+Context * Property::getEndContext() {
 	return this;
 }
 

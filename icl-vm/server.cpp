@@ -8,7 +8,7 @@
 
 namespace icL {
 
-Server::Server(QObject* parent)
+Server::Server(QObject * parent)
 	: QObject(parent) {
 
 	connect(this, &Server::invoke_executeJS, this, &Server::release_executeJS);
@@ -21,7 +21,7 @@ Server::Server(QObject* parent)
 	  &Server::release_showErrorDialog);
 }
 
-bool Server::goTo(const QString& url) {
+bool Server::goTo(const QString & url) {
 	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
@@ -52,7 +52,7 @@ bool Server::waitForPageLoading() {
 	return variant.toBool();
 }
 
-QVariant Server::executeJS(const QString& code) {
+QVariant Server::executeJS(const QString & code) {
 	if (waitFor != WaitFor::Nothing) {
 		return false;
 	}
@@ -83,7 +83,7 @@ bool Server::showErrorDialog() {
 	return variant.toBool();
 }
 
-void Server::addToErrorsStack(const QString& error) {
+void Server::addToErrorsStack(const QString & error) {
 	errors_stack.append(error);
 }
 
@@ -94,14 +94,14 @@ QString Server::getErrorsStr() {
 	return ret;
 }
 
-void Server::check_success(bool success, const QString& func) {
+void Server::check_success(bool success, const QString & func) {
 	if (success) {
 		return;
 	}
 
 	if (stop_on_error) {
 		//		if (virtualMachine != nullptr) {
-		//			drive.setError (vm::Error::SERVER_ERROR);
+		//			drive.setError (icL::Error::SERVER_ERROR);
 		//		}
 		//		else {
 		//			worker->setToErrorState ();
@@ -133,11 +133,11 @@ void Server::finish_showErrorDialog(bool) {
 	}
 }
 
-QQuickItem* Server::webEngine() const {
+QQuickItem * Server::webEngine() const {
 	return m_webEngine;
 }
 
-void Server::setWebEngine(QQuickItem* webEngine) {
+void Server::setWebEngine(QQuickItem * webEngine) {
 	if (m_webEngine == webEngine) {
 		return;
 	}
@@ -159,10 +159,10 @@ void Server::simulateClick(int x, int y) {
 
 	//	The click event is a series of press and release of left mouse button
 
-	QMouseEvent* press = new QMouseEvent(
+	QMouseEvent * press = new QMouseEvent(
 	  QEvent::MouseButtonPress, point, Qt::LeftButton,
 	  Qt::MouseButton::NoButton, Qt::NoModifier);
-	QMouseEvent* release = new QMouseEvent(
+	QMouseEvent * release = new QMouseEvent(
 	  QEvent::MouseButtonRelease, point, Qt::LeftButton,
 	  Qt::MouseButton::NoButton, Qt::NoModifier);
 
@@ -172,10 +172,10 @@ void Server::simulateClick(int x, int y) {
 	QCoreApplication::postEvent(m_webEngine, release);
 }
 
-void Server::simulateKey(QChar& ch) {
-	QKeyEvent* press =
+void Server::simulateKey(QChar & ch) {
+	QKeyEvent * press =
 	  new QKeyEvent(QEvent::KeyPress, Qt::Key_A, Qt::NoModifier, QString(ch));
-	QKeyEvent* release =
+	QKeyEvent * release =
 	  new QKeyEvent(QEvent::KeyRelease, Qt::Key_A, Qt::NoModifier, QString(ch));
 
 

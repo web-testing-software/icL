@@ -31,20 +31,20 @@ class Server : public QObject
 {
 	Q_OBJECT
 
-	Q_PROPERTY(QQuickItem* webEngine READ webEngine WRITE setWebEngine NOTIFY
-																	   webEngineChanged)
+	Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
+																		webEngineChanged)
 
 	enum class WaitFor { GoTo, PageLoading, ExecuteJS, ErrorDialog, Nothing };
 
 public:
-	explicit Server(QObject* parent = nullptr);
+	explicit Server(QObject * parent = nullptr);
 
 	/**
 	 * @brief goTo - go to url and wait for page loading
 	 * @param url - url to go, format: user input
 	 * @return true if page was successful loaded, otherwise false
 	 */
-	bool goTo(const QString& url);
+	bool goTo(const QString & url);
 
 	/**
 	 * @brief waitForPageLoading - stop exeuting until the page is complete
@@ -58,7 +58,7 @@ public:
 	 * @param code - code to execute
 	 * @return the returned value from js world
 	 */
-	QVariant executeJS(const QString& code);
+	QVariant executeJS(const QString & code);
 
 	/**
 	 * @brief showErrorDialog - show a dialog window, which contains all occurer
@@ -71,7 +71,7 @@ public:
 	 * @brief addToErrorsStack - add new error in the errors stack
 	 * @param error
 	 */
-	void addToErrorsStack(const QString& error);
+	void addToErrorsStack(const QString & error);
 
 	/**
 	 * @brief getErrorsStr - return errros and clear the errors stack
@@ -90,7 +90,7 @@ public:
 	 * @param success - a bool to check
 	 * @param func - the function name, which we get or not a error
 	 */
-	void check_success(bool success, const QString& func);
+	void check_success(bool success, const QString & func);
 
 	// Functions to call from qml
 
@@ -114,14 +114,14 @@ public:
 	 * @brief webEngine - QML use only
 	 * @return WebEngineView*
 	 */
-	QQuickItem* webEngine() const;
+	QQuickItem * webEngine() const;
 
 public slots:
 	/**
 	 * @brief setWebEngine - QML use only
 	 * @param WebEngineView*
 	 */
-	void setWebEngine(QQuickItem* webEngine);
+	void setWebEngine(QQuickItem * webEngine);
 
 	/**
 	 * @brief simulateClick - simulate a mouse click on WebView
@@ -134,7 +134,7 @@ public slots:
 	 * @brief simulateKeyPress - simulate of pressing and release of a key
 	 * @param ch - event.text in js
 	 */
-	void simulateKey(QChar& ch);
+	void simulateKey(QChar & ch);
 
 signals:
 	void ready();
@@ -145,7 +145,7 @@ signals:
 	void invoke_executeJS();
 	void invoke_showErrorDialog();
 
-	void webEngineChanged(QQuickItem* webEngine);
+	void webEngineChanged(QQuickItem * webEngine);
 
 private slots:
 	// Functions, which will be executed on main thread
@@ -159,9 +159,9 @@ private:
 	QStringList errors_stack;
 
 	// These varibles are used to transfer data between threads
-	QString     url, code;
-	QVariant    variant;
-	QQuickItem* m_webEngine;
+	QString      url, code;
+	QVariant     variant;
+	QQuickItem * m_webEngine;
 
 	WaitFor waitFor = WaitFor::Nothing;
 

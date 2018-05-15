@@ -3,7 +3,7 @@
 namespace icL::logic::rich {
 
 SingleBlock::SingleBlock(OperationType otype)
-	: vm::logic::RichBlock(otype) {
+	: icL::logic::RichBlock(otype) {
 	casted = true;
 }
 

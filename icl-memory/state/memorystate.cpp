@@ -39,7 +39,7 @@ MemoryStateIt::~MemoryStateIt() {
 	//	clear ();
 }
 
-MemoryState* MemoryStateIt::state() const {
+MemoryState * MemoryStateIt::state() const {
 	return m_state;
 }
 

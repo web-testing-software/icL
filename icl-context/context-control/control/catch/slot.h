@@ -35,12 +35,12 @@ protected:
 
 	// Context interface
 public:
-	bool checkPrev(const Context* context) const override;
+	bool checkPrev(const Context * context) const override;
 	bool isExecuable() const override;
 	bool execute() override;
 
-	Context* getBeginContext() override;
-	Context* getEndContext() override;
+	Context * getBeginContext() override;
+	Context * getEndContext() override;
 };
 
 }  // namespace icL::context::code::control::catch0

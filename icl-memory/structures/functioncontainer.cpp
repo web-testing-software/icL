@@ -4,15 +4,16 @@ namespace icL::memory {
 
 FunctionContainer::FunctionContainer() = default;
 
-Function& FunctionContainer::getFunction(const QString& name) {
+Function & FunctionContainer::getFunction(const QString & name) {
 	return fmap[name];
 }
 
-bool FunctionContainer::contains(const QString& name) {
+bool FunctionContainer::contains(const QString & name) {
 	return fmap.contains(name);
 }
 
-void FunctionContainer::registerFunction(const QString& name, Function& func) {
+void FunctionContainer::registerFunction(
+  const QString & name, Function & func) {
 	fmap[name] = func;
 }
 

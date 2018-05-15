@@ -2,14 +2,14 @@
 
 namespace icL::context::code {
 
-ForAny::ForAny(const memory::CodeFragment& source)
+ForAny::ForAny(const memory::CodeFragment & source)
 	: Code(source) {
 	m_role = Role::ForAny;
 };
 
 
 
-bool ForAny::checkPrev(const Context* context) const {
+bool ForAny::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
 		   context->isResultative();
 }
@@ -23,7 +23,7 @@ bool ForAny::execute() {
 
 	fcall.source = m_source;
 
-	emit interrupt(fcall, [this](memory::Return& ret) {
+	emit interrupt(fcall, [this](memory::Return & ret) {
 		if (ret.exception.code != 0) {
 			emit this->exception(ret.exception);
 		}
@@ -36,11 +36,11 @@ bool ForAny::execute() {
 	return false;
 }
 
-Context* ForAny::getBeginContext() {
+Context * ForAny::getBeginContext() {
 	return this;
 }
 
-Context* ForAny::getEndContext() {
+Context * ForAny::getEndContext() {
 	return this;
 }
 

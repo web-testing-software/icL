@@ -17,10 +17,10 @@ bool Slot::giveSignal(int code) {
 
 
 
-bool Slot::checkPrev(const Context* context) const {
+bool Slot::checkPrev(const Context * context) const {
 	return context != nullptr &&
 		   ((context->role() == Role::Exists && context->prev() == nullptr &&
-			 dynamic_cast<const Exists*>(context)->getIsEmiter()) ||
+			 dynamic_cast<const Exists *>(context)->getIsEmiter()) ||
 			(context->role() == Role::Code && context->prev() != nullptr &&
 			 context->prev()->role() == Role::Slot));
 }
@@ -33,11 +33,11 @@ bool Slot::execute() {
 	return m_next->execute();
 }
 
-Context* Slot::getBeginContext() {
+Context * Slot::getBeginContext() {
 	return getFirst();
 }
 
-Context* Slot::getEndContext() {
+Context * Slot::getEndContext() {
 	return getLast();
 }
 

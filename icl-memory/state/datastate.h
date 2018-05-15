@@ -2,6 +2,7 @@
 #define DATASTATE_H
 
 #include "../structures/type.h"
+
 #include <QMap>
 #include <QVariant>
 
@@ -21,6 +22,7 @@
  *  |  '- rich
  *  '- @namespace memory
  */
+
 namespace icL::memory {
 
 /**
@@ -32,14 +34,13 @@ public:
 	DataState();
 
 	// Functions to add data to containers
-	void setValue(const QString& name, const QVariant& value);
-	void addToStringList(const QString& name, QString& value);
+	void setValue(const QString & name, const QVariant & value);
 
 	// Functions to access data and metadata from containers
-	bool     contains(const QString& name);
-	Type     getType(const QString& name);
-	bool     checkType(const QString& name, Type& type);
-	QVariant getValue(const QString& name);
+	bool     contains(const QString & name);
+	Type     getType(const QString & name);
+	bool     checkType(const QString & name, Type & type);
+	QVariant getValue(const QString & name);
 
 private:
 	// Data container

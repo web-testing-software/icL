@@ -39,7 +39,7 @@ class DialDescription : public QObject
 	int     m_count;
 
 public:
-	explicit DialDescription(QObject* parent = nullptr);
+	explicit DialDescription(QObject * parent = nullptr);
 
 	int     count() const;
 	QString title() const;
@@ -53,8 +53,8 @@ signals:
 
 public slots:
 	void setCount(int count);
-	void setTitle(const QString& title);
-	void setUrl(const QString& url);
+	void setTitle(const QString & title);
+	void setUrl(const QString & url);
 };
 
 }  // namespace icL::app

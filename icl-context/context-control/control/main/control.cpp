@@ -3,7 +3,7 @@
 namespace icL::context::code::control {
 
 
-Control::Control(const memory::CodeFragment& source)
+Control::Control(const memory::CodeFragment & source)
 	: Code(source) {}
 
 bool Control::canBeAtEnd() const {

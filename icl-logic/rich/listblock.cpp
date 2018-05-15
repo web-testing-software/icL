@@ -1,6 +1,7 @@
 #include "listblock.h"
 
 #include "icl-memory/state/datastate.h"
+
 #include <QRegularExpression>
 
 namespace icL::logic::rich {
@@ -10,7 +11,7 @@ ListBlock::ListBlock(OperationType otype)
 	casted = true;
 }
 
-ListBlock::ListBlock(RichBlock* block)
+ListBlock::ListBlock(RichBlock * block)
 	: RichBlock(block) {}
 
 
@@ -72,15 +73,15 @@ bool ListBlock::calcResult() {
  * @return both lists contains the same items
  */
 bool ListBlock::operatorEqual(
-  const QStringList& list1, const QStringList& list2) {
+  const QStringList & list1, const QStringList & list2) {
 
-	for (const QString& str : list1) {
+	for (const QString & str : list1) {
 		if (!list2.contains(str)) {
 			return false;
 		}
 	}
 
-	for (const QString& str : list2) {
+	for (const QString & str : list2) {
 		if (!list1.contains(str)) {
 			return false;
 		}
@@ -90,10 +91,10 @@ bool ListBlock::operatorEqual(
 }
 
 bool ListBlock::containsFragment(
-  const QStringList& strList, const QString& str) {
+  const QStringList & strList, const QString & str) {
 	bool ret = false;
 
-	for (const QString& strFromList : strList) {
+	for (const QString & strFromList : strList) {
 		if (strFromList.indexOf(str) >= 0) {
 			ret = true;
 		}

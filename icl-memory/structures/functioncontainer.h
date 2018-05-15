@@ -44,8 +44,8 @@ using ParamList = QLinkedList<Parameter>;
 
 struct CodeFragment
 {
-	int      begin = 0, end = -1, line = 0;
-	QString* source = nullptr;
+	int       begin = 0, end = -1, line = 0;
+	QString * source = nullptr;
 };
 
 struct Function
@@ -60,8 +60,8 @@ using FunctionMap = QMap<QString, Function>;
 
 struct Argument
 {
-	QString                  name;
-	context::object::Object* object;
+	QString                   name;
+	context::object::Object * object;
 };
 
 using ArgList = QVector<Argument>;
@@ -79,9 +79,9 @@ class FunctionContainer
 public:
 	FunctionContainer();
 
-	Function& getFunction(const QString& name);
-	bool      contains(const QString& name);
-	void      registerFunction(const QString& name, Function& func);
+	Function & getFunction(const QString & name);
+	bool       contains(const QString & name);
+	void       registerFunction(const QString & name, Function & func);
 
 private:
 	FunctionMap fmap;

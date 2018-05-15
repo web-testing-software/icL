@@ -5,14 +5,14 @@
 
 namespace icL::context::data {
 
-Method::Method(const QString& name)
+Method::Method(const QString & name)
 	: name(name) {
 	m_role = Role::Method;
 };
 
 
 
-bool Method::checkPrev(const Context* context) const {
+bool Method::checkPrev(const Context * context) const {
 	return context != nullptr && context->isResultative();
 }
 
@@ -23,7 +23,7 @@ bool Method::canBeAtEnd() const {
 bool Method::execute() {
 	memory::ArgList args;
 	int             count = 0;
-	Context*        it    = m_next;
+	Context *       it    = m_next;
 
 	while (it != nullptr && it->role() == Role::Object) {
 		count++;
@@ -39,7 +39,7 @@ bool Method::execute() {
 		while (it != nullptr && it->role() == Role::Object) {
 			memory::Argument arg;
 
-			arg.object = dynamic_cast<object::Object*>(it);
+			arg.object = dynamic_cast<object::Object *>(it);
 			args.append(arg);
 
 			it = it->next();
@@ -51,11 +51,11 @@ bool Method::execute() {
 	return true;
 }
 
-Context* Method::getBeginContext() {
+Context * Method::getBeginContext() {
 	return m_prev;
 }
 
-Context* Method::getEndContext() {
+Context * Method::getEndContext() {
 	return endContext;
 }
 

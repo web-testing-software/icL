@@ -29,7 +29,7 @@ class DoubleBlock : public RichBlock
 {
 public:
 	DoubleBlock(OperationType otype);
-	DoubleBlock(RichBlock* block);
+	DoubleBlock(RichBlock * block);
 
 	//	static bool check (const QString &value);
 

@@ -4,7 +4,7 @@
 
 namespace icL::context::complex {
 
-void Log::log(Log::Level level, const QString& message) {
+void Log::log(Log::Level level, const QString & message) {
 	int levelAsInt = 0;
 
 	if (level == Level::Warm) {
@@ -17,7 +17,7 @@ void Log::log(Log::Level level, const QString& message) {
 	emit newLog(levelAsInt, message);
 }
 
-void Log::runAnything(Log::Level level, memory::ArgList& args) {
+void Log::runAnything(Log::Level level, memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		log(level, args[0].object->getValue().toString());
 	}
@@ -26,19 +26,19 @@ void Log::runAnything(Log::Level level, memory::ArgList& args) {
 	}
 }
 
-void Log::runInfo(memory::ArgList& args) {
+void Log::runInfo(memory::ArgList & args) {
 	runAnything(Level::Info, args);
 }
 
-void Log::runWarm(memory::ArgList& args) {
+void Log::runWarm(memory::ArgList & args) {
 	runAnything(Level::Warm, args);
 }
 
-void Log::runError(memory::ArgList& args) {
+void Log::runError(memory::ArgList & args) {
 	runAnything(Level::Error, args);
 }
 
-bool Log::checkPrev(const Context* context) const {
+bool Log::checkPrev(const Context * context) const {
 	return context == nullptr;
 }
 
@@ -46,7 +46,7 @@ bool Log::canBeAtEnd() const {
 	return false;
 }
 
-Context* Log::runMethod(const QString& name, memory::ArgList& args) {
+Context * Log::runMethod(const QString & name, memory::ArgList & args) {
 	if (name == QStringLiteral("info")) {
 		runInfo(args);
 	}

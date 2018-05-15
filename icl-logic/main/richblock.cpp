@@ -12,7 +12,7 @@ RichBlock::RichBlock(OperationType otype) {
 	operationType = otype;
 }
 
-RichBlock::RichBlock(RichBlock* block) {
+RichBlock::RichBlock(RichBlock * block) {
 	operationType = block->operationType;
 	value1        = block->value1;
 	value2        = block->value2;
@@ -90,7 +90,7 @@ void RichBlock::sendSignalWrongPair() {
 	emit exception({-201, "Wrong operarands pair: " + pairData()});
 }
 
-void RichBlock::sendSignalWrongOperator(const QString& pair) {
+void RichBlock::sendSignalWrongOperator(const QString & pair) {
 	emit exception({-202, "Wrong operator " % oTypeToString() %
 							" for operands pair " % pair});
 }
@@ -121,8 +121,8 @@ bool RichBlock::needCast() {
 	return !casted;
 }
 
-LogicBlock* RichBlock::castNow() {
-	LogicBlock* ret = nullptr;
+LogicBlock * RichBlock::castNow() {
+	LogicBlock * ret = nullptr;
 
 	switch (value1.type()) {
 	case QVariant::Bool:
@@ -161,7 +161,7 @@ bool RichBlock::step() {
 
 		fcall.source = frag1;
 
-		emit interrupt(fcall, [this](memory::Return& ret) {
+		emit interrupt(fcall, [this](memory::Return & ret) {
 			if (ret.exception.code != 0) {
 				emit this->exception(ret.exception);
 			}
@@ -178,7 +178,7 @@ bool RichBlock::step() {
 
 		fcall.source = frag2;
 
-		emit interrupt(fcall, [this](memory::Return& ret) {
+		emit interrupt(fcall, [this](memory::Return & ret) {
 			if (ret.exception.code != 0) {
 				emit this->exception(ret.exception);
 			}

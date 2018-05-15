@@ -7,7 +7,7 @@ BooleanBlock::BooleanBlock(OperationType otype)
 	casted = true;
 }
 
-BooleanBlock::BooleanBlock(RichBlock* block)
+BooleanBlock::BooleanBlock(RichBlock * block)
 	: RichBlock(block) {}
 
 /**

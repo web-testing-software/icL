@@ -29,12 +29,12 @@ class Dom : Complex
 public:
 	Dom() = default;
 
-	memory::WebElement query (const QString& selector);
-	memory::WebElement queryAll (const QStringList& selectors);
+	memory::WebElement query(const QString & selector);
+	memory::WebElement queryAll(const QStringList & selectors);
 
 private:
-	void runQuery(memory::ArgList& args);
-	void runQueryAll(memory::ArgList& args);
+	void runQuery(memory::ArgList & args);
+	void runQueryAll(memory::ArgList & args);
 
 private:
 	static int     idAsInt;
@@ -42,14 +42,14 @@ private:
 
 signals:
 	void requestJsExecution(
-	  const QString& str, std::function<void(const QVariant& var)> feedback);
+	  const QString & str, std::function<void(const QVariant & var)> feedback);
 
 	// Context interface
 public:
-	bool checkPrev(const Context* context) const override;
+	bool checkPrev(const Context * context) const override;
 	bool canBeAtEnd() const override;
 
-	Context* runMethod(const QString& name, memory::ArgList& args) override;
+	Context * runMethod(const QString & name, memory::ArgList & args) override;
 };
 
 }  // namespace icL::context::complex

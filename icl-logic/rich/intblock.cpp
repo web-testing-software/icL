@@ -3,11 +3,11 @@
 namespace icL::logic::rich {
 
 IntBlock::IntBlock(OperationType otype)
-	: vm::logic::RichBlock(otype) {
+	: icL::logic::RichBlock(otype) {
 	casted = true;
 }
 
-IntBlock::IntBlock(RichBlock* block)
+IntBlock::IntBlock(RichBlock * block)
 	: RichBlock(block) {}
 
 

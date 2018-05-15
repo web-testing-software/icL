@@ -9,7 +9,7 @@
 
 namespace icL::context::data {
 
-Function::Function(memory::Memory* mem, const QString& name)
+Function::Function(memory::Memory * mem, const QString & name)
 	: mem(mem)
 	, name(name) {
 	m_role      = Role::Function;
@@ -20,12 +20,12 @@ bool Function::exNewFunction() {
 	memory::Function func;
 	// checkPrev(Context*) and canBeTheLast ensure that the last block is code
 	// one
-	auto*    codeBlock = dynamic_cast<code::Code*>(getLast());
-	Context* it        = m_next->next();
+	auto *    codeBlock = dynamic_cast<code::Code *>(getLast());
+	Context * it        = m_next->next();
 
 	while (it != nullptr && it->role() == Role::Argument) {
 		memory::Parameter parameter;
-		auto*             dataParameter = dynamic_cast<data::Parameter*>(it);
+		auto *            dataParameter = dynamic_cast<data::Parameter *>(it);
 
 		parameter.name = dataParameter->name();
 		parameter.type = dataParameter->type();
@@ -51,16 +51,16 @@ bool Function::exCallFunction() {
 		return false;
 	}
 
-	memory::Function& func = mem->functions().getFunction(name);
+	memory::Function & func = mem->functions().getFunction(name);
 
 	if (!checkParamsNum(func) || !checkParamsTypes(func)) {
 		return false;
 	}
 
-	auto     fcall   = memory::FunctionCall{};
-	auto     argIt   = func.paramList.begin();
-	Context* it      = m_next;
-	int      argsNum = func.paramList.size();
+	auto      fcall   = memory::FunctionCall{};
+	auto      argIt   = func.paramList.begin();
+	Context * it      = m_next;
+	int       argsNum = func.paramList.size();
 
 	fcall.args.reserve(argsNum);
 
@@ -68,12 +68,12 @@ bool Function::exCallFunction() {
 		memory::Argument arg;
 
 		arg.name   = (*argIt).name;
-		arg.object = dynamic_cast<object::Object*>(it);
+		arg.object = dynamic_cast<object::Object *>(it);
 
 		fcall.args.append(arg);
 	}
 
-	emit interrupt(fcall, [this](memory::Return& ret) {
+	emit interrupt(fcall, [this](memory::Return & ret) {
 		if (ret.exception.code != 0) {
 			emit exception(ret.exception);
 		}
@@ -87,10 +87,10 @@ bool Function::exCallFunction() {
 	return false;
 }
 
-bool Function::checkParamsNum(memory::Function& func) {
-	int      paramsNum = func.paramList.size();
-	int      i         = 0;
-	Context* it        = m_next;
+bool Function::checkParamsNum(memory::Function & func) {
+	int       paramsNum = func.paramList.size();
+	int       i         = 0;
+	Context * it        = m_next;
 
 	while (it != nullptr && it->role() == Role::Object && i < paramsNum) {
 		++i;
@@ -105,14 +105,14 @@ bool Function::checkParamsNum(memory::Function& func) {
 	return true;
 }
 
-bool Function::checkParamsTypes(memory::Function& func) {
-	auto     paramIt  = func.paramList.begin();
-	int      paramNum = func.paramList.size();
-	Context* argIt    = m_next;
-	bool     ok       = true;
+bool Function::checkParamsTypes(memory::Function & func) {
+	auto      paramIt  = func.paramList.begin();
+	int       paramNum = func.paramList.size();
+	Context * argIt    = m_next;
+	bool      ok       = true;
 
 	for (int i = 0; i < paramNum; i++) {
-		auto* argObj = dynamic_cast<object::Object*>(argIt);
+		auto * argObj = dynamic_cast<object::Object *>(argIt);
 		if ((*paramIt).type != argObj->type()) {
 			ok = false;
 		}
@@ -133,14 +133,14 @@ void Function::sendWrongArgs() {
 	QStringList getted;
 	QStringList expected;
 
-	Context* it = m_next;
+	Context * it = m_next;
 
 	while (it != nullptr && it->role() == Role::Object) {
-		auto* obj = dynamic_cast<object::Object*>(it);
+		auto * obj = dynamic_cast<object::Object *>(it);
 		getted.append(memory::typeToString(obj->type()));
 	}
 
-	for (auto& arg : mem->functions().getFunction(name).paramList) {
+	for (auto & arg : mem->functions().getFunction(name).paramList) {
 		expected.append(memory::typeToString(arg.type));
 	}
 
@@ -154,7 +154,7 @@ void Function::sendWrongArgs() {
 
 
 
-bool Function::checkPrev(const Context* context) const {
+bool Function::checkPrev(const Context * context) const {
 	return context == nullptr ||
 		   (!newFunction &&
 			(context->role() == Role::Alternative ||
@@ -173,16 +173,16 @@ bool Function::execute() {
 	return m_next->role() == Role::Assign ? exNewFunction() : exCallFunction();
 }
 
-Context* Function::getBeginContext() {
+Context * Function::getBeginContext() {
 	return this;
 }
 
-Context* Function::getEndContext() {
+Context * Function::getEndContext() {
 	if (newFunction) {
 		return getLast();
 	}
 
-	Context* it = m_next;
+	Context * it = m_next;
 
 	if (it == nullptr || it->role() != Role::Object) {
 		return this;

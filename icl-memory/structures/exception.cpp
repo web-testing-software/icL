@@ -4,7 +4,7 @@ namespace icL::memory {
 
 
 
-Exception::Exception(int code, const QString& message)
+Exception::Exception(int code, const QString & message)
 	: code(code)
 	, message(message) {}
 

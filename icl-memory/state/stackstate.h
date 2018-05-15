@@ -29,22 +29,22 @@ namespace icL::memory {
 class StackState : public DataState
 {
 public:
-	StackState(StackState* prev);
+	StackState(StackState * prev);
 	virtual ~StackState();
 
-	void setWebElement(const QString& name, WebElement& webElement);
+	void setWebElement(const QString & name, WebElement & webElement);
 
 	// Stack functions
-	StackState* getPrev();
-	bool        isLast();
-	QVariant    getStackValue();
+	StackState * getPrev();
+	bool         isLast();
+	QVariant     getStackValue();
 	//	int getStackLevel ();
 
 	// This function was designed for stats
 	//	static int getMaxStackLevel ();
 
 private:
-	StackState* prev_ss = nullptr;
+	StackState * prev_ss = nullptr;
 	//	int stackLevel;
 
 	//	static int maxStackLevel;
@@ -56,12 +56,12 @@ public:
 	StackStateIt();
 	~StackStateIt();
 
-	StackState* stack();
+	StackState * stack();
 
 	void openNewStack();
 	void closeStack();
 
-	StackState* getContainer(const QString& name);
+	StackState * getContainer(const QString & name);
 
 	/// Mass effect despercated, to be removed later
 	// Mass effect functions, with automatic iterations
@@ -72,7 +72,7 @@ public:
 	void clear();
 
 private:
-	StackState* m_stack;
+	StackState * m_stack;
 };
 
 }  // namespace icL::memory

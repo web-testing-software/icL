@@ -202,7 +202,7 @@
 //	el.variable = name;
 //	if (is_single (se)) {
 //		QString code = QString ("(%3 = %1.querySelectorAll('%2')); %3.length >
-//0") 					   .arg (variable, selector, name);
+// 0") 					   .arg (variable, selector, name);
 
 ////		QVariant v = server->executeJS (code);
 ////		el.valid = v.toBool ();
@@ -270,8 +270,8 @@
 //	if (is_single (se)) {
 //		QString code = QString ("doc.elementsFromPoint("
 //								"%1.getBoundingClientRect().left + 1, "
-//								"%1.getBoundingClientRect().top + 1).indexOf(%1) >
-//-1") 					   .arg (variable);
+//								"%1.getBoundingClientRect().top + 1).indexOf(%1)
+//> -1") 					   .arg (variable);
 ////		QVariant v = server->executeJS (code);
 
 ////		ret		= v.toBool ();
@@ -412,8 +412,8 @@
 //}
 
 // void WebElement::report () const {
-////	server->addToErrorsStack (( single ? "Web element " : "Web elements " ) +
-///selector /							  + " | valid " + ( valid ? "yes" : "no"
+////	server->addToErrorsStack (( single ? "Web element " : "Web elements " )
+///+ selector /							  + " | valid " + ( valid ? "yes" : "no"
 ///) + " | variable " + variable);
 //}
 
@@ -432,8 +432,8 @@
 ////		el.valid = v.toBool ();
 //	}
 //	else {
-//		QString		code	= QString ("(%1 = doc.querySelector('%2')) != null").arg
-//(name).arg (selector);
+//		QString		code	= QString ("(%1 = doc.querySelector('%2')) !=
+//null").arg (name).arg (selector);
 ////		QVariant	v		= server->executeJS (code);
 
 ////		el.variable = name;
@@ -457,7 +457,7 @@
 //	}
 //	else {
 //		QString		code	= QString ("(%1 = doc.querySelectorAll('%2')) !=
-//null").arg (name).arg (selector);
+// null").arg (name).arg (selector);
 ////		QVariant	v		= server->executeJS (code);
 
 ////		el.variable = name;

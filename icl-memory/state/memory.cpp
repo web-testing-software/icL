@@ -4,15 +4,15 @@ namespace icL::memory {
 
 Memory::Memory() {}
 
-MemoryStateIt& Memory::stateIt() {
+MemoryStateIt & Memory::stateIt() {
 	return m_stateIt;
 }
 
-StackStateIt& Memory::stackIt() {
+StackStateIt & Memory::stackIt() {
 	return m_stackIt;
 }
 
-FunctionContainer& Memory::functions() {
+FunctionContainer & Memory::functions() {
 	return m_functions;
 }
 

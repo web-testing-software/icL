@@ -4,16 +4,16 @@ namespace icL::context::object {
 
 
 
-Double::Double(memory::DataState* container, const QString& varName)
+Double::Double(memory::DataState * container, const QString & varName)
 	: Object(container, varName) {}
 
-Double::Double(const QVariant& rvalue, bool readonly)
+Double::Double(const QVariant & rvalue, bool readonly)
 	: Object(rvalue, readonly) {}
 
-Double::Double(const QString& getter, const QString& setter)
+Double::Double(const QString & getter, const QString & setter)
 	: Object(getter, setter) {}
 
-Double::Double(const Object* const object)
+Double::Double(const Object * const object)
 	: Object(object) {}
 
 memory::Type Double::type() const {

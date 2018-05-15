@@ -11,7 +11,7 @@
  * @brief DataBase::DataBase - initialize the database before using
  * @param parent - QObject constrctor param
  */
-DataBase::DataBase(QObject* parent)
+DataBase::DataBase(QObject * parent)
 	: QObject(parent) {
 	QSqlError err = init();
 
@@ -28,8 +28,8 @@ DataBase::DataBase(QObject* parent)
  * @brief DataBase::top9 - the must popular 9 sites
  * @return list of DialDescription (site dial description)
  */
-QList<QObject*> DataBase::top9() {
-	QList<QObject*> ret;
+QList<QObject *> DataBase::top9() {
+	QList<QObject *> ret;
 
 	if (invalid) {
 		return ret;
@@ -52,7 +52,7 @@ QList<QObject*> DataBase::top9() {
 		const int count_index = 2;
 
 		while (q.next()) {
-			auto* dial_descript = new DialDescription();
+			auto * dial_descript = new DialDescription();
 
 			dial_descript->setCount(q.value(count_index).toInt());
 			dial_descript->setUrl(q.value(url_index).toString());
@@ -70,7 +70,7 @@ QList<QObject*> DataBase::top9() {
  * @param url - the visited url
  * @param name - the page name
  */
-void DataBase::add_visit(const QString& url, const QString& name) {
+void DataBase::add_visit(const QString & url, const QString & name) {
 	QSqlQuery q(db);
 	int       site_id;
 	QString   site_url;
@@ -153,7 +153,7 @@ QSqlError DataBase::init() {
  * @brief DataBase::file_to_sql - copy the file content to sql variable
  * @param filename - file path
  */
-void DataBase::file_to_sql(const QString& filename) {
+void DataBase::file_to_sql(const QString & filename) {
 	QFile       file(filename);
 	QTextStream stream(&file);
 
@@ -165,7 +165,7 @@ void DataBase::file_to_sql(const QString& filename) {
  * @brief DataBase::print_error - print the error to console for debug
  * @param query - the failed query
  */
-void DataBase::print_error(const QSqlQuery& query) {
+void DataBase::print_error(const QSqlQuery & query) {
 	qWarning() << query.lastError();
 }
 
@@ -175,12 +175,12 @@ void DataBase::print_error(const QSqlQuery& query) {
  * @param filename - file path
  * @return last error
  */
-QSqlError DataBase::transact_file(QSqlQuery& q, const QString& filename) {
+QSqlError DataBase::transact_file(QSqlQuery & q, const QString & filename) {
 	file_to_sql(filename);
 
 	QStringList sqls = sql.trimmed().split(';', QString::SkipEmptyParts);
 
-	for (const QString& str : sqls) {
+	for (const QString & str : sqls) {
 		if (!q.exec(str)) {
 			return q.lastError();
 		}

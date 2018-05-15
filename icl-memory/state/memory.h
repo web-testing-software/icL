@@ -28,9 +28,9 @@ class Memory
 public:
 	Memory();
 
-	MemoryStateIt&     stateIt();
-	StackStateIt&      stackIt();
-	FunctionContainer& functions();
+	MemoryStateIt &     stateIt();
+	StackStateIt &      stackIt();
+	FunctionContainer & functions();
 
 private:
 	MemoryStateIt     m_stateIt;

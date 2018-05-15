@@ -10,28 +10,28 @@
 
 namespace icL::context::object {
 
-Object::Object(memory::DataState* container, const QString& varName)
+Object::Object(memory::DataState * container, const QString & varName)
 	: container(container)
 	, varName(varName)
 	, value(Value::L) {
 	m_role = Role::Object;
 }
 
-Object::Object(const QVariant& rvalue, bool readonly)
+Object::Object(const QVariant & rvalue, bool readonly)
 	: rvalue(rvalue)
 	, readonly(readonly)
 	, value(Value::R) {
 	m_role = Role::Object;
 }
 
-Object::Object(const QString& getter, const QString& setter)
+Object::Object(const QString & getter, const QString & setter)
 	: getter(getter)
 	, setter(setter)
 	, value(Value::Js) {
 	m_role = Role::Object;
 }
 
-Object::Object(const Object* const object) {
+Object::Object(const Object * const object) {
 	if (object->value == Value::L) {
 		container = object->container;
 		varName   = object->varName;
@@ -78,13 +78,13 @@ QVariant Object::getValue() {
 	}
 	else { /* value == Value::Js */
 		emit requestJsExecution(
-		  getter, [this](const QVariant& var) { this->newValue = var; });
+		  getter, [this](const QVariant & var) { this->newValue = var; });
 
 		return newValue;
 	}
 }
 
-void Object::setValue(const QVariant& value) {
+void Object::setValue(const QVariant & value) {
 	if (readonly) {
 		// The Assign Block must check the readonly property
 		qWarning() << "Value changed for readonly object!!!";
@@ -101,11 +101,11 @@ void Object::setValue(const QVariant& value) {
 	}
 }
 
-const QString& Object::getVarName() const {
+const QString & Object::getVarName() const {
 	return varName;
 }
 
-void Object::runToBoolean(memory::ArgList& args) {
+void Object::runToBoolean(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toBoolean();
 
@@ -129,7 +129,7 @@ void Object::runToBoolean(memory::ArgList& args) {
 	newContext = new Boolean{newValue, true};
 }
 
-void Object::runToInt(memory::ArgList& args) {
+void Object::runToInt(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toInt();
 
@@ -153,7 +153,7 @@ void Object::runToInt(memory::ArgList& args) {
 	newContext = new Int{newValue, true};
 }
 
-void Object::runToDouble(memory::ArgList& args) {
+void Object::runToDouble(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toDouble();
 
@@ -177,7 +177,7 @@ void Object::runToDouble(memory::ArgList& args) {
 	newContext = new Double{newValue, true};
 }
 
-void Object::runToString(memory::ArgList& args) {
+void Object::runToString(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toString();
 
@@ -201,7 +201,7 @@ void Object::runToString(memory::ArgList& args) {
 	newContext = new String{newValue, true};
 }
 
-void Object::runToList(memory::ArgList& args) {
+void Object::runToList(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toList();
 
@@ -225,17 +225,17 @@ void Object::runToList(memory::ArgList& args) {
 	newContext = new List{newValue, true};
 }
 
-void Object::sendWrongCast(const QString& to) {
+void Object::sendWrongCast(const QString & to) {
 	emit exception({-1, "Type " % memory::typeToString(type()) %
 						  " can not be casted to " % to});
 }
 
-void Object::sendCastFailed(const QString& value, const QString& type) {
+void Object::sendCastFailed(const QString & value, const QString & type) {
 	emit exception({-3, R"(The string ")" % value %
 						  R"(" cannot be casted to )" % type});
 }
 
-void Object::runCast(const QString& name, memory::ArgList& args) {
+void Object::runCast(const QString & name, memory::ArgList & args) {
 	QStringRef type = name.midRef(2);
 
 	if (type == "Boolean") {
@@ -257,7 +257,7 @@ void Object::runCast(const QString& name, memory::ArgList& args) {
 
 
 
-bool Object::checkPrev(const Context* context) const {
+bool Object::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
 		   (context->role() != Role::Exists && context->isResultative());
 }

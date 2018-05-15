@@ -1,6 +1,6 @@
 #include "dialdescription.h"
 
-DialDescription::DialDescription(QObject* parent)
+DialDescription::DialDescription(QObject * parent)
 	: QObject(parent) {}
 
 /**
@@ -44,7 +44,7 @@ void DialDescription::setCount(int count) {
  * @brief DialDescription::setTitle - title setter
  * @param title - value
  */
-void DialDescription::setTitle(const QString& title) {
+void DialDescription::setTitle(const QString & title) {
 	if (m_title == title) {
 		return;
 	}
@@ -57,7 +57,7 @@ void DialDescription::setTitle(const QString& title) {
  * @brief DialDescription::setUrl - url setter
  * @param - url value
  */
-void DialDescription::setUrl(const QString& url) {
+void DialDescription::setUrl(const QString & url) {
 	if (m_url == url) {
 		return;
 	}

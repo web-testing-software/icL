@@ -27,20 +27,20 @@ class Define : public Complex
 public:
 	Define() = default;
 
-	void signal(int code, const QString& name);
+	void signal(int code, const QString & name);
 
 private:
-	void runSignal(memory::ArgList& args);
+	void runSignal(memory::ArgList & args);
 
 signals:
-	void newSignal(int code, const QString& name);
+	void newSignal(int code, const QString & name);
 
 	// Context interface
 public:
-	bool checkPrev(const Context* context) const override;
+	bool checkPrev(const Context * context) const override;
 	bool canBeAtEnd() const override;
 
-	Context* runMethod(const QString& name, memory::ArgList& args) override;
+	Context * runMethod(const QString & name, memory::ArgList & args) override;
 };
 
 }  // namespace icL::context::complex

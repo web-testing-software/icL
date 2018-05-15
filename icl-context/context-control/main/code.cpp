@@ -2,16 +2,16 @@
 
 namespace icL::context::code {
 
-Code::Code(const memory::CodeFragment& source)
+Code::Code(const memory::CodeFragment & source)
 	: m_source(source) {
 	m_role = Role::Code;
 }
 
-const memory::CodeFragment& Code::source() const {
+const memory::CodeFragment & Code::source() const {
 	return m_source;
 }
 
-bool Code::checkPrev(const Context* context) const {
+bool Code::checkPrev(const Context * context) const {
 	return context != nullptr &&
 		   (context->role() == Role::Else || context->role() == Role::Slot ||
 			context->role() == Role::Argument ||
@@ -37,7 +37,7 @@ bool Code::execute() {
 
 		fcall.source = m_source;
 
-		emit interrupt(fcall, [this](memory::Return& ret) {
+		emit interrupt(fcall, [this](memory::Return & ret) {
 			if (ret.exception.code != 0) {
 				emit this->exception(ret.exception);
 			}
@@ -48,11 +48,11 @@ bool Code::execute() {
 	}
 }
 
-Context* Code::getBeginContext() {
+Context * Code::getBeginContext() {
 	return this;
 }
 
-Context* Code::getEndContext() {
+Context * Code::getEndContext() {
 	return this;
 }
 
