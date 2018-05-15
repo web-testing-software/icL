@@ -30,6 +30,228 @@ void List::runGetLength() {
 }
 
 
+void List::prepend(const QString& value) {
+	QStringList list = getValue().toStringList();
+
+	list.prepend(value);
+	setValue(list);
+}
+
+void List::append(const QString& value) {
+	QStringList list = getValue().toStringList();
+
+	list.append(value);
+	setValue(list);
+}
+
+void List::insert(int index, const QString& value) {
+	QStringList list = getValue().toStringList();
+
+	list.insert(index, value);
+	setValue(list);
+}
+
+void List::merge(const QStringList& list) {
+	QStringList list1 = getValue().toStringList();
+
+	list1.append(list);
+	setValue(list1);
+}
+
+void List::popFront() {
+	QStringList list = getValue().toStringList();
+
+	if (list.isEmpty()) {
+		emit exception({-3, "Can not remove first item of empty list"});
+	}
+	else {
+		list.removeFirst();
+		setValue(list);
+	}
+}
+
+void List::popBack() {
+	QStringList list = getValue().toStringList();
+
+	if (list.isEmpty()) {
+		emit exception({-3, "Can not remove first item of empty list"});
+	}
+	else {
+		list.removeLast();
+		setValue(list);
+	}
+}
+
+void List::remove(int index) {
+	QStringList list = getValue().toStringList();
+
+	if (index < 0 || index >= list.length()) {
+		emit exception({-8, "Index out of bounds"});
+	}
+	else {
+		list.removeAt(index);
+		setValue(list);
+	}
+}
+
+void List::removeOnce(const QString& value) {
+	QStringList list = getValue().toStringList();
+
+	list.removeOne(value);
+	setValue(list);
+}
+
+void List::removeAll(const QString& value) {
+	QStringList list = getValue().toStringList();
+
+	list.removeAll(value);
+	setValue(list);
+}
+
+QString List::get(int index) {
+	QStringList list = getValue().toStringList();
+
+	if (index < 0 || index >= list.length()) {
+		emit exception({-8, "Index out of bounds"});
+	}
+	else {
+		return list.at(index);
+	}
+
+	return QString{};
+}
+
+int List::indexOf(const QString& value) {
+	QStringList list = getValue().toStringList();
+
+	return list.indexOf(value);
+}
+
+int List::lastIndexOf(const QString value) {
+	QStringList list = getValue().toStringList();
+
+	return list.lastIndexOf(value);
+}
+
+QString List::join(const QString& delimiter) {
+	QStringList list = getValue().toStringList();
+
+	return list.join(delimiter);
+}
+
+double List::sumUp() {
+	QStringList list = getValue().toStringList();
+	double      sum  = 0;
+
+	for (auto& str : list) {
+		bool ok;
+		sum += str.toDouble(&ok);
+
+		if (!ok) {
+			emit exception(
+			  {-2, QString("Failed to parse `%1` to double").arg(str)});
+			break;
+		}
+	}
+
+	return sum;
+}
+
+double List::max() {
+	QStringList list = getValue().toStringList();
+
+	if (list.isEmpty()) {
+		emit exception({-3, "Cannot find max value in empty list"});
+		return 0.0;
+	}
+
+	double max = list.at(0).toDouble();
+
+	for (auto& str : list) {
+		bool   ok;
+		double number = str.toDouble(&ok);
+
+		if (!ok) {
+			emit exception(
+			  {-2, QString("Failed to parse `%1` to double").arg(str)});
+			break;
+		}
+		else if (number > max) {
+			max = number;
+		}
+	}
+
+	return max;
+}
+
+double List::min() {
+	QStringList list = getValue().toStringList();
+
+	if (list.isEmpty()) {
+		emit exception({-3, "Cannot find min value in empty list"});
+		return 0.0;
+	}
+
+	double min = list.at(0).toDouble();
+
+	for (auto& str : list) {
+		bool   ok;
+		double number = str.toDouble(&ok);
+
+		if (!ok) {
+			emit exception(
+			  {-2, QString("Failed to parse `%1` to double").arg(str)});
+			break;
+		}
+		else if (number < min) {
+			min = number;
+		}
+	}
+
+	return min;
+}
+
+bool List::logicAnd() {
+	QStringList list = getValue().toStringList();
+	bool        res  = true;
+
+	for (auto& str : list) {
+		bool ok;
+
+		if (str == "false") {
+			res = false;
+		}
+		else if (str != "true") {
+			emit exception(
+			  {-2, QString("Failed to parse `%1` to bool").arg(str)});
+			break;
+		}
+	}
+
+	return res;
+}
+
+bool List::logicOr() {
+	QStringList list = getValue().toStringList();
+	bool        res  = false;
+
+	for (auto& str : list) {
+		bool ok;
+
+		if (str == "true") {
+			res = true;
+		}
+		else if (str != "false") {
+			emit exception(
+			  {-2, QString("Failed to parse `%1` to bool").arg(str)});
+			break;
+		}
+	}
+
+	return res;
+}
+
+
 
 QString List::getFirst() {
 	QStringList value = getValue().toStringList();
