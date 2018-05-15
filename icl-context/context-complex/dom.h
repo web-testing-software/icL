@@ -36,10 +36,6 @@ private:
 	void runQuery(memory::ArgList & args);
 	void runQueryAll(memory::ArgList & args);
 
-private:
-	static int     idAsInt;
-	static QString getNewId();
-
 signals:
 	void requestJsExecution(
 	  const QString & str, std::function<void(const QVariant & var)> feedback);

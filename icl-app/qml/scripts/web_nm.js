@@ -342,6 +342,30 @@
 
 		clickable: function () {
 			// TODO: write it
+		},
+
+		scrollTo: function () {
+			// TODO: write it
+		},
+
+		screenPos: function () {
+			// TODO: write it
+		},
+
+		clickNow: function () {
+			if (!this.visible()) {
+				this.scrollTo();
+			}
+
+			return this.clickable()
+					? this.screenPos()
+					: {x: -1, y: -1};
+		},
+
+		moveCursorToEnd: function () {
+			return this.each(function () {
+				this.selectionStart = this.selectionEnd = this.value.length;
+			});
 		}
 	}
 

@@ -22,6 +22,18 @@ Element::Element(const Object * const object)
 
 
 
+int Element::idAsInt = 0;
+
+QString Element::getNewId() {
+	if (idAsInt >= 10000) {
+		idAsInt = 0;
+	}
+
+	return "windows.icL.links[" % QString::number(idAsInt++) % "]";
+}
+
+
+
 int Element::length() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
@@ -192,6 +204,204 @@ void Element::runCSS(const QString & name) {
 
 
 
+void Element::scrollTo() {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+
+	if (!isSingle(web)) {
+		return;
+	}
+
+	emit requestJsExecution(web.variable % ".scrollTo()", nullptr);
+}
+
+void Element::click() {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+
+	if (!isSingle(web)) {
+		return;
+	}
+
+	emit requestJsExecution(
+	  web.variable % ".clickNow()", [this](const QVariant & var) {
+		  // {x: 0, y: 0}
+		  auto map = var.toMap();
+		  int  x   = map["x"].toInt();
+		  int  y   = map["y"].toInt();
+
+		  emit this->requestClick(x, y);
+	  });
+}
+
+void Element::sendKeys(const QString & keys) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+
+	if (!isSingle(web)) {
+		return;
+	}
+
+	click();
+
+	emit requestJsExecution(web.variable % ".moveCursorToEnd()", nullptr);
+	emit requestKeys(keys);
+}
+
+void Element::CtrlV(const QString & text) {
+	memory::WebElement web     = getValue().value<memory::WebElement>();
+	QString            escaped = text;
+
+	if (!isSingle(web)) {
+		return;
+	}
+
+	escaped.replace("'", "\\'");
+
+	emit requestJsExecution(
+	  web.variable % "[0].value += '" % escaped % "'", nullptr);
+}
+
+bool Element::isValid() {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+
+	return web.count > 0;
+}
+
+void Element::add(memory::WebElement element) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+
+	emit requestJsExecution(
+	  web.variable % ".add(" % element.variable % ")", nullptr);
+}
+
+memory::WebElement Element::copy() {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
+
+	ret.variable = getNewId();
+	ret.selector = web.selector;
+	ret.count    = web.count;
+
+	emit requestJsExecution(
+	  ret.variable % " = " % web.variable % ".copy()", nullptr);
+
+	return ret;
+}
+
+memory::WebElement Element::filter(const QString & selector) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
+	QString            escaped = selector;
+
+	escaped.replace("'", "\\'");
+	ret.variable = getNewId();
+	ret.selector = web.selector;
+	ret.count    = web.count;
+
+	emit requestJsExecution(
+	  ret.variable % " = " % web.variable % ".filter('" % escaped % "')",
+	  nullptr);
+
+	return ret;
+}
+
+memory::WebElement Element::filter(const QString & context, bool asfragment) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
+	QString            escaped = context;
+
+	escaped.replace("'", "\\'");
+	ret.variable = getNewId();
+	ret.selector = web.selector;
+	ret.count    = web.count;
+
+	emit requestJsExecution(
+	  ret.variable % " = " % web.variable % ".filterByContent('" % escaped %
+		"', " % (asfragment ? "true" : "false") % ")",
+	  nullptr);
+
+	return ret;
+}
+
+memory::WebElement Element::get(int index) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
+	QString            indexStr = QString::number(index);
+
+	if (index < 0 || index >= web.count) {
+		emit exception({-8, "Index " % indexStr % " is out of bounds [0.." %
+							  QString::number(web.count) % ")"});
+		return ret;
+	}
+
+	ret.variable = getNewId();
+	ret.selector = web.selector % "[" % indexStr % "]";
+	ret.count    = 1;
+
+	emit requestJsExecution(
+	  ret.variable % " = nm(" % web.variable % "[" % indexStr % "])", nullptr);
+
+	return ret;
+}
+
+memory::WebElement Element::next() {
+	return domTrans(QStringLiteral("next"), QString());
+}
+
+memory::WebElement Element::prev() {
+	return domTrans(QStringLiteral("prev"), QString());
+}
+
+memory::WebElement Element::parent() {
+	return domTrans(QStringLiteral("parent"), QString());
+}
+
+memory::WebElement Element::child(int index) {
+	return domTrans(QStringLiteral("child"), QString::number(index));
+}
+
+memory::WebElement Element::closest(const QString & selector) {
+	return domTrans(QStringLiteral("closest"), selector);
+}
+
+void Element::addClass(const QString & className) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	QString            escaped = className;
+
+	escaped.replace("'", "\\'");
+	emit requestJsExecution(
+	  web.variable % ".add_class('" % escaped % "')",
+	  nullptr);
+}
+
+void Element::removeClass(const QString & className) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	QString            escaped = className;
+
+	escaped.replace("'", "\\'");
+	emit requestJsExecution(
+	  web.variable % ".remove_class('" % escaped % "')",
+	  nullptr);
+}
+
+bool Element::hasClass(const QString & className) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	QString            escaped = className;
+
+	if (!isSingle(web)) {
+		return false;
+	}
+
+	escaped.replace("'", "\\'");
+	emit requestJsExecution(
+	  web.variable % ".has_class('" % escaped % "')",
+				[this](const QVariant&var){
+		this->newValue = var;
+	});
+
+	return newValue.toBool();
+}
+
+
+
 bool Element::isSingle(memory::WebElement & web) {
 	if (web.count != 1) {
 		if (web.count == 0) {
@@ -209,6 +419,23 @@ bool Element::isSingle(memory::WebElement & web) {
 	}
 
 	return true;
+}
+
+memory::WebElement Element::domTrans(
+  const QString & method, const QString & arg) {
+
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
+
+	ret.variable = getNewId();
+	ret.selector = web.selector % " -> " % method % "(" % arg % ")";
+
+	emit requestJsExecution(
+	  "(" % ret.variable % " = " % web.variable % "." % method % "(" % arg %
+		")).length",
+	  [&ret](const QVariant & res) { ret.count = res.toInt(); });
+
+	return ret;
 }
 
 

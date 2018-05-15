@@ -34,6 +34,14 @@ public:
 	Element(const QVariant & rvalue, bool readonly = false);
 	Element(const Object * const object);
 
+	// Id generator
+private:
+	static int idAsInt;
+
+	// Use by _dom:query and _dom:queryAll
+public:
+	static QString getNewId();
+
 	// properties
 public:
 	// R/W properties will return a r/w object
@@ -121,6 +129,11 @@ private:
 
 private:
 	bool isSingle(memory::WebElement & web);
+	memory::WebElement domTrans (const QString &method, const QString &arg);
+
+signals:
+	void requestClick(int x, int y);
+	void requestKeys(QString keys);
 
 	// Context interface
 public:

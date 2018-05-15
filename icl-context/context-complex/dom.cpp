@@ -11,7 +11,7 @@
 namespace icL::context::complex {
 
 memory::WebElement Dom::query(const QString & selector) {
-	QString newId = getNewId();
+	QString newId = object::Element::getNewId();
 
 	emit requestJsExecution(
 	  newId % R"( = nm(")" % selector %
@@ -30,7 +30,7 @@ memory::WebElement Dom::query(const QString & selector) {
 }
 
 memory::WebElement Dom::queryAll(const QStringList & selectors) {
-	QString newId     = getNewId();
+	QString newId     = object::Element::getNewId();
 	QString selector  = selectors.join(R"(").add(")");
 	QString selector2 = selectors.join(" ∪ ");
 
@@ -87,16 +87,6 @@ void Dom::runQueryAll(memory::ArgList & args) {
 	else {
 		sendWrongArglist(args, QStringLiteral("<String ...>"));
 	}
-}
-
-int Dom::idAsInt = 0;
-
-QString Dom::getNewId() {
-	if (idAsInt >= 10000) {
-		idAsInt = 0;
-	}
-
-	return "windows.icL.links[" % QString::number(idAsInt++) % "]";
 }
 
 bool Dom::checkPrev(const Context * context) const {
