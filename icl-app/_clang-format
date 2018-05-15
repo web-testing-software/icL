@@ -49,6 +49,7 @@ ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ContinuationIndentWidth: 2
 Cpp11BracedListStyle: true
 DerivePointerAlignment: false
+PointerAlignment: Middle
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 
