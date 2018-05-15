@@ -24,6 +24,9 @@
  */
 namespace icL::context::object {
 
+class String;
+class Int;
+
 class Element : public Object
 {
 public:
@@ -36,10 +39,10 @@ public:
 	// R/W properties will return a r/w object
 	int length();
 
-	Object* html();
-	Object* text();
-	Object* width();
-	Object* height();
+	String* html();
+	String* text();
+	Int* width();
+	Int* height();
 
 	// Read only properties
 	bool visible();

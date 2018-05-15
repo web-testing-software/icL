@@ -1,5 +1,6 @@
 #include "element.h"
 
+#include "boolean.h"
 #include "int.h"
 #include "string.h"
 
@@ -24,28 +25,28 @@ int Element::length() {
 	return web.count;
 }
 
-Object * Element::html() {
+String * Element::html() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{web.variable % ".html()",
 					  web.variable % ".html(%1, true)"};
 }
 
-Object * Element::text() {
+String * Element::text() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{web.variable % ".text()",
 					  web.variable % ".text(%1, true)"};
 }
 
-Object * Element::width() {
+Int * Element::width() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new Int{web.variable % ".width()",
 				   web.variable % ".width(%1, true)"};
 }
 
-Object * Element::height() {
+Int * Element::height() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new Int{web.variable % ".height()",
@@ -59,9 +60,9 @@ bool Element::visible() {
 		return false;
 	}
 
-	emit requestJsExecution(web.variable % ".visible()", [this](const QVariant & var) {
-		this->newValue = var;
-	});
+	emit requestJsExecution(
+	  web.variable % ".visible()",
+	  [this](const QVariant & var) { this->newValue = var; });
 
 	return newValue.toBool();
 }
@@ -73,11 +74,42 @@ bool Element::clickable() {
 		return false;
 	}
 
-	emit requestJsExecution(web.variable % ".clickable()", [this](const QVariant & var) {
-		this->newValue = var;
-	});
+	emit requestJsExecution(
+	  web.variable % ".clickable()",
+	  [this](const QVariant & var) { this->newValue = var; });
 
 	return newValue.toBool();
+}
+
+
+
+void Element::runLength() {
+	newValue   = length();
+	newContext = new Int{newValue, true};
+}
+
+void Element::runHTML() {
+	newContext = html();
+}
+
+void Element::runText() {
+	newContext = text();
+}
+
+void Element::runWidth() {
+	newContext = width();
+}
+
+void Element::runHeight() {
+	newContext = height();
+}
+
+void Element::runVisible() {
+	newContext = new Boolean{newValue, true};
+}
+
+void Element::runClickable() {
+	newContext = new Boolean{newValue, true};
 }
 
 
