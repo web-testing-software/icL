@@ -9,16 +9,16 @@ namespace icL::context::object {
 
 
 
-List::List(memory::DataState* container, const QString& varName)
+List::List(memory::DataState * container, const QString & varName)
 	: Object(container, varName) {}
 
-List::List(const QVariant& rvalue, bool readonly)
+List::List(const QVariant & rvalue, bool readonly)
 	: Object(rvalue, readonly) {}
 
-List::List(const QString& getter, const QString& setter)
+List::List(const QString & getter, const QString & setter)
 	: Object(getter, setter) {}
 
-List::List(const Object* const object)
+List::List(const Object * const object)
 	: Object(object) {}
 
 
@@ -33,28 +33,28 @@ void List::runGetLength() {
 }
 
 
-void List::prepend(const QString& value) {
+void List::prepend(const QString & value) {
 	QStringList list = getValue().toStringList();
 
 	list.prepend(value);
 	setValue(list);
 }
 
-void List::append(const QString& value) {
+void List::append(const QString & value) {
 	QStringList list = getValue().toStringList();
 
 	list.append(value);
 	setValue(list);
 }
 
-void List::insert(int index, const QString& value) {
+void List::insert(int index, const QString & value) {
 	QStringList list = getValue().toStringList();
 
 	list.insert(index, value);
 	setValue(list);
 }
 
-void List::merge(const QStringList& list) {
+void List::merge(const QStringList & list) {
 	QStringList list1 = getValue().toStringList();
 
 	list1.append(list);
@@ -97,14 +97,14 @@ void List::remove(int index) {
 	}
 }
 
-void List::removeOnce(const QString& value) {
+void List::removeOnce(const QString & value) {
 	QStringList list = getValue().toStringList();
 
 	list.removeOne(value);
 	setValue(list);
 }
 
-void List::removeAll(const QString& value) {
+void List::removeAll(const QString & value) {
 	QStringList list = getValue().toStringList();
 
 	list.removeAll(value);
@@ -124,7 +124,7 @@ QString List::get(int index) {
 	return QString{};
 }
 
-int List::indexOf(const QString& value) {
+int List::indexOf(const QString & value) {
 	QStringList list = getValue().toStringList();
 
 	return list.indexOf(value);
@@ -136,7 +136,7 @@ int List::lastIndexOf(const QString value) {
 	return list.lastIndexOf(value);
 }
 
-QString List::join(const QString& delimiter) {
+QString List::join(const QString & delimiter) {
 	QStringList list = getValue().toStringList();
 
 	return list.join(delimiter);
@@ -146,7 +146,7 @@ double List::sumUp() {
 	QStringList list = getValue().toStringList();
 	double      sum  = 0;
 
-	for (auto& str : list) {
+	for (auto & str : list) {
 		bool ok;
 		sum += str.toDouble(&ok);
 
@@ -170,7 +170,7 @@ double List::max() {
 
 	double max = list.at(0).toDouble();
 
-	for (auto& str : list) {
+	for (auto & str : list) {
 		bool   ok;
 		double number = str.toDouble(&ok);
 
@@ -197,7 +197,7 @@ double List::min() {
 
 	double min = list.at(0).toDouble();
 
-	for (auto& str : list) {
+	for (auto & str : list) {
 		bool   ok;
 		double number = str.toDouble(&ok);
 
@@ -218,7 +218,7 @@ bool List::logicAnd() {
 	QStringList list = getValue().toStringList();
 	bool        res  = true;
 
-	for (auto& str : list) {
+	for (auto & str : list) {
 		bool ok;
 
 		if (str == QStringLiteral("false")) {
@@ -238,7 +238,7 @@ bool List::logicOr() {
 	QStringList list = getValue().toStringList();
 	bool        res  = false;
 
-	for (auto& str : list) {
+	for (auto & str : list) {
 		bool ok;
 
 		if (str == QStringLiteral("true")) {
@@ -254,7 +254,7 @@ bool List::logicOr() {
 	return res;
 }
 
-void List::runPrepend(memory::ArgList& args) {
+void List::runPrepend(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		prepend(args[0].object->getValue().toString());
 	}
@@ -263,7 +263,7 @@ void List::runPrepend(memory::ArgList& args) {
 	}
 }
 
-void List::runAppend(memory::ArgList& args) {
+void List::runAppend(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		append(args[0].object->getValue().toString());
 	}
@@ -272,7 +272,7 @@ void List::runAppend(memory::ArgList& args) {
 	}
 }
 
-void List::runInsert(memory::ArgList& args) {
+void List::runInsert(memory::ArgList & args) {
 	if (
 	  args.length() == 1 && args[0].object->type() == memory::Type::Int &&
 	  args[1].object->type() == memory::Type::String) {
@@ -285,7 +285,7 @@ void List::runInsert(memory::ArgList& args) {
 	}
 }
 
-void List::runMerge(memory::ArgList& args) {
+void List::runMerge(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::List) {
 		merge(args[0].object->getValue().toStringList());
 	}
@@ -294,7 +294,7 @@ void List::runMerge(memory::ArgList& args) {
 	}
 }
 
-void List::runPopFront(memory::ArgList& args) {
+void List::runPopFront(memory::ArgList & args) {
 	if (args.length() == 0) {
 		popFront();
 	}
@@ -303,7 +303,7 @@ void List::runPopFront(memory::ArgList& args) {
 	}
 }
 
-void List::runPopBack(memory::ArgList& args) {
+void List::runPopBack(memory::ArgList & args) {
 	if (args.length() == 0) {
 		popBack();
 	}
@@ -312,7 +312,7 @@ void List::runPopBack(memory::ArgList& args) {
 	}
 }
 
-void List::runRemove(memory::ArgList& args) {
+void List::runRemove(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
 		remove(args[0].object->getValue().toInt());
 	}
@@ -321,7 +321,7 @@ void List::runRemove(memory::ArgList& args) {
 	}
 }
 
-void List::runRemoveOnce(memory::ArgList& args) {
+void List::runRemoveOnce(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		removeOnce(args[0].object->getValue().toString());
 	}
@@ -330,7 +330,7 @@ void List::runRemoveOnce(memory::ArgList& args) {
 	}
 }
 
-void List::runRemoveAll(memory::ArgList& args) {
+void List::runRemoveAll(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		removeAll(args[0].object->getValue().toString());
 	}
@@ -339,7 +339,7 @@ void List::runRemoveAll(memory::ArgList& args) {
 	}
 }
 
-void List::runGet(memory::ArgList& args) {
+void List::runGet(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
 		newValue   = get(args[0].object->getValue().toInt());
 		newContext = new String{newValue, true};
@@ -349,7 +349,7 @@ void List::runGet(memory::ArgList& args) {
 	}
 }
 
-void List::runIndexOf(memory::ArgList& args) {
+void List::runIndexOf(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue   = indexOf(args[0].object->getValue().toString());
 		newContext = new Int{newValue, true};
@@ -359,7 +359,7 @@ void List::runIndexOf(memory::ArgList& args) {
 	}
 }
 
-void List::runLastIndexOf(memory::ArgList& args) {
+void List::runLastIndexOf(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue   = lastIndexOf(args[0].object->getValue().toString());
 		newContext = new Int{newValue, true};
@@ -369,7 +369,7 @@ void List::runLastIndexOf(memory::ArgList& args) {
 	}
 }
 
-void List::runJoin(memory::ArgList& args) {
+void List::runJoin(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue = join(args[0].object->getValue().toString());
 	}
@@ -385,7 +385,7 @@ void List::runJoin(memory::ArgList& args) {
 }
 
 
-void List::runSumUp(memory::ArgList& args) {
+void List::runSumUp(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = sumUp();
 		newContext = new Double{newValue, true};
@@ -395,7 +395,7 @@ void List::runSumUp(memory::ArgList& args) {
 	}
 }
 
-void List::runMax(memory::ArgList& args) {
+void List::runMax(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = max();
 		newContext = new Double{newValue, true};
@@ -405,7 +405,7 @@ void List::runMax(memory::ArgList& args) {
 	}
 }
 
-void List::runMin(memory::ArgList& args) {
+void List::runMin(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = min();
 		newContext = new Double{newValue, true};
@@ -415,7 +415,7 @@ void List::runMin(memory::ArgList& args) {
 	}
 }
 
-void List::runLogicAnd(memory::ArgList& args) {
+void List::runLogicAnd(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = logicAnd();
 		newContext = new Boolean{newValue, true};
@@ -425,7 +425,7 @@ void List::runLogicAnd(memory::ArgList& args) {
 	}
 }
 
-void List::runLogicOr(memory::ArgList& args) {
+void List::runLogicOr(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = logicOr();
 		newContext = new Boolean{newValue, true};
@@ -455,7 +455,7 @@ QString List::getFirst() {
 	return ret;
 }
 
-Context* List::runProperty(Prefix prefix, const QString& name) {
+Context * List::runProperty(Prefix prefix, const QString & name) {
 	if (prefix != Prefix::None) {
 		emit exception(
 		  {-405, "List objects are not support for prefixed properties"});
@@ -472,7 +472,38 @@ Context* List::runProperty(Prefix prefix, const QString& name) {
 	return newContext;
 }
 
-Context* List::runMethod(const QString& name, memory::ArgList& args) {}
+Context * List::runMethod(const QString & name, memory::ArgList & args) {
+
+	// clang-format off
+		 if (name == QStringLiteral("Prepend"))		{ runPrepend(args); }
+	else if (name == QStringLiteral("Append"))		{ runAppend(args); }
+	else if (name == QStringLiteral("Insert"))		{ runInsert(args); }
+	else if (name == QStringLiteral("Merge"))		{ runMerge(args); }
+
+	else if (name == QStringLiteral("PopFront"))	{ runPopFront(args); }
+	else if (name == QStringLiteral("PopBack"))		{ runPopBack(args); }
+	else if (name == QStringLiteral("Remove"))		{ runRemove(args); }
+	else if (name == QStringLiteral("RemoveOnce"))	{ runRemoveOnce(args); }
+	else if (name == QStringLiteral("RemoveAll"))	{ runRemoveAll(args); }
+
+	else if (name == QStringLiteral("Get"))			{ runGet(args); }
+	else if (name == QStringLiteral("IndexOf"))		{ runIndexOf(args); }
+	else if (name == QStringLiteral("LastIndexOf")) { runLastIndexOf(args); }
+	else if (name == QStringLiteral("Join"))		{ runJoin(args); }
+
+	else if (name == QStringLiteral("SumUp"))		{ runSumUp(args); }
+	else if (name == QStringLiteral("Max"))			{ runMax(args); }
+	else if (name == QStringLiteral("Min"))			{ runMin(args); }
+
+	else if (name == QStringLiteral("LogicAnd"))	{ runLogicAnd(args); }
+	else if (name == QStringLiteral("LogicOr"))		{ runLogicOr(args); }
+	else {
+		Object::runMethod(name, args);
+	}
+	// clang-format on
+
+	return newContext;
+}
 
 memory::Type List::type() const {
 	return memory::Type::List;
