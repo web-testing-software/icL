@@ -4,6 +4,8 @@
 #include <QStandardPaths>
 #include <QtMath>
 
+namespace icL::app {
+
 Helper::Helper(QObject * parent)
 	: QObject(parent) {
 	m_cache_dir =
@@ -121,3 +123,5 @@ void Helper::makeDirIfNotExist(const QString & dirpath) {
 		dir.mkpath(".");
 	}
 }
+
+}  // namespace icL::app

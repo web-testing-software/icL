@@ -31,8 +31,8 @@ Object::Object(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
 Object::Object(
   memory::InterLevel * il, const QString & getter, const QString & setter)
 	: Context(il)
-	, getter(getter)
 	, setter(setter)
+	, getter(getter)
 	, value(Value::Js) {
 	m_role = Role::Object;
 }

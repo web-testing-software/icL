@@ -32,10 +32,7 @@ namespace icL::inter {
 class Interpreter
 {
 public:
-	explicit Interpreter(QObject * parent = nullptr);
-
-private:
-	context::Context * context = new context::object::Int(QVariant(0));
+	explicit Interpreter();
 };
 
 }  // namespace icL::inter

@@ -256,7 +256,6 @@ bool List::logicAnd() {
 	bool        res  = true;
 
 	for (auto & str : list) {
-		bool ok;
 
 		if (str == QStringLiteral("false")) {
 			res = false;
@@ -276,7 +275,6 @@ bool List::logicOr() {
 	bool        res  = false;
 
 	for (auto & str : list) {
-		bool ok;
 
 		if (str == QStringLiteral("true")) {
 			res = true;

@@ -4,7 +4,7 @@
 
 namespace icL::inter {
 
-Interpreter::Interpreter(QObject * parent) {}
+Interpreter::Interpreter() {}
 
 
 

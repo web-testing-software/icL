@@ -10,12 +10,12 @@
 
 int main(int argc, char * argv[]) {
 	QGuiApplication a(argc, argv);
-	Helper          helper;
-	DataBase        database;
+	icL::app::Helper          helper;
+	icL::app::DataBase        database;
 
 	QtWebEngine::initialize();
 
-	qmlRegisterType<DialDescription>(
+	qmlRegisterType<icL::app::DialDescription>(
 	  "ICLightning.Database", 1, 0, "DialDescription");
 
 	QQmlApplicationEngine engine;

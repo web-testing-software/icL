@@ -9,8 +9,8 @@
 namespace icL {
 
 Server::Server(memory::InterLevel * il, QObject * parent)
-	: memory::Node(il)
-	, QObject(parent) {
+	: QObject(parent)
+	, memory::Node(il) {
 
 	connect(this, &Server::invoke_executeJS, this, &Server::release_executeJS);
 	connect(this, &Server::invoke_goTo, this, &Server::release_goTo);

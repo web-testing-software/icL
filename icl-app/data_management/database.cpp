@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QTextStream>
 
+namespace icL::app {
+
 /**
  * @brief DataBase::DataBase - initialize the database before using
  * @param parent - QObject constrctor param
@@ -188,3 +190,5 @@ QSqlError DataBase::transact_file(QSqlQuery & q, const QString & filename) {
 
 	return q.lastError();
 }
+
+}  // namespace icL::app

@@ -18,7 +18,8 @@ INCLUDEPATH += \
     ../icl-context/context-base \
     ../icl-context/context-complex \
     ../icl-context/context-control \
-    ../icl-context/context-data
+    ../icl-context/context-data \
+    ../icl-memory
 
 unix {
 	target.path = /usr/lib

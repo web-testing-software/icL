@@ -28,7 +28,7 @@ public:
 	VirtualMachine();
 
 private:
-	memory::interlevel::InterLevel il;
+	memory::InterLevel il;
 };
 
 }  // namespace icL

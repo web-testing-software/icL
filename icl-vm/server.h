@@ -34,7 +34,7 @@ class Server
 	: public QObject
 	, public memory::Node
 {
-	//	Q_OBJECT
+		Q_OBJECT
 
 	Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
 																		webEngineChanged)
