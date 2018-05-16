@@ -475,28 +475,28 @@ Context * List::runProperty(Prefix prefix, const QString & name) {
 Context * List::runMethod(const QString & name, memory::ArgList & args) {
 
 	// clang-format off
-		 if (name == QStringLiteral("Prepend"))		{ runPrepend(args); }
-	else if (name == QStringLiteral("Append"))		{ runAppend(args); }
-	else if (name == QStringLiteral("Insert"))		{ runInsert(args); }
-	else if (name == QStringLiteral("Merge"))		{ runMerge(args); }
+		 if (name == QStringLiteral("Prepend"))		runPrepend		(args);
+	else if (name == QStringLiteral("Append"))		runAppend		(args);
+	else if (name == QStringLiteral("Insert"))		runInsert		(args);
+	else if (name == QStringLiteral("Merge"))		runMerge		(args);
 
-	else if (name == QStringLiteral("PopFront"))	{ runPopFront(args); }
-	else if (name == QStringLiteral("PopBack"))		{ runPopBack(args); }
-	else if (name == QStringLiteral("Remove"))		{ runRemove(args); }
-	else if (name == QStringLiteral("RemoveOnce"))	{ runRemoveOnce(args); }
-	else if (name == QStringLiteral("RemoveAll"))	{ runRemoveAll(args); }
+	else if (name == QStringLiteral("PopFront"))	runPopFront		(args);
+	else if (name == QStringLiteral("PopBack"))		runPopBack		(args);
+	else if (name == QStringLiteral("Remove"))		runRemove		(args);
+	else if (name == QStringLiteral("RemoveOnce"))	runRemoveOnce	(args);
+	else if (name == QStringLiteral("RemoveAll"))	runRemoveAll	(args);
 
-	else if (name == QStringLiteral("Get"))			{ runGet(args); }
-	else if (name == QStringLiteral("IndexOf"))		{ runIndexOf(args); }
-	else if (name == QStringLiteral("LastIndexOf")) { runLastIndexOf(args); }
-	else if (name == QStringLiteral("Join"))		{ runJoin(args); }
+	else if (name == QStringLiteral("Get"))			runGet			(args);
+	else if (name == QStringLiteral("IndexOf"))		runIndexOf		(args);
+	else if (name == QStringLiteral("LastIndexOf")) runLastIndexOf	(args);
+	else if (name == QStringLiteral("Join"))		runJoin			(args);
 
-	else if (name == QStringLiteral("SumUp"))		{ runSumUp(args); }
-	else if (name == QStringLiteral("Max"))			{ runMax(args); }
-	else if (name == QStringLiteral("Min"))			{ runMin(args); }
+	else if (name == QStringLiteral("SumUp"))		runSumUp		(args);
+	else if (name == QStringLiteral("Max"))			runMax			(args);
+	else if (name == QStringLiteral("Min"))			runMin			(args);
 
-	else if (name == QStringLiteral("LogicAnd"))	{ runLogicAnd(args); }
-	else if (name == QStringLiteral("LogicOr"))		{ runLogicOr(args); }
+	else if (name == QStringLiteral("LogicAnd"))	runLogicAnd		(args);
+	else if (name == QStringLiteral("LogicOr"))		runLogicOr		(args);
 	else {
 		Object::runMethod(name, args);
 	}

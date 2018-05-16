@@ -517,7 +517,8 @@ void Element::runParent(memory::ArgList & args) {
 
 void Element::runChild(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
-		newValue   = QVariant::fromValue(child(args[0].object->getValue().toInt()));
+		newValue =
+		  QVariant::fromValue(child(args[0].object->getValue().toInt()));
 		newContext = new Element{newValue, true};
 	}
 	else {
@@ -527,7 +528,8 @@ void Element::runChild(memory::ArgList & args) {
 
 void Element::runClosest(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
-		newValue   = QVariant::fromValue(closest(args[0].object->getValue().toString()));
+		newValue =
+		  QVariant::fromValue(closest(args[0].object->getValue().toString()));
 		newContext = new Element{newValue, true};
 	}
 	else {
@@ -639,6 +641,36 @@ Context * Element::runProperty(Prefix prefix, const QString & name) {
 	else /* prefix == Prefix.CSS */ {
 		runCSS(name);
 	}
+
+	return newContext;
+}
+
+Context * Element::runMethod(const QString & name, memory::ArgList & args) {
+	// clang-format off
+		 if (name == QStringLiteral("ScrollTo"))	runScrollTo		(args);
+	else if (name == QStringLiteral("Click"))		runClick		(args);
+	else if (name == QStringLiteral("SendKeys"))	runSendKeys		(args);
+	else if (name == QStringLiteral("CtrlV"))		runCtrlV		(args);
+	else if (name == QStringLiteral("IsValid"))		runIsValid		(args);
+
+	else if (name == QStringLiteral("Add"))			runAdd			(args);
+	else if (name == QStringLiteral("Copy"))		runCopy			(args);
+	else if (name == QStringLiteral("Filter"))		runFilter		(args);
+	else if (name == QStringLiteral("Get"))			runGet			(args);
+
+	else if (name == QStringLiteral("Next"))		runNext			(args);
+	else if (name == QStringLiteral("Prev"))		runPrev			(args);
+	else if (name == QStringLiteral("Parent"))		runParent		(args);
+	else if (name == QStringLiteral("Child"))		runChild		(args);
+	else if (name == QStringLiteral("Closest"))		runClosest		(args);
+
+	else if (name == QStringLiteral("AddClass"))	runAddClass		(args);
+	else if (name == QStringLiteral("RemoveClass"))	runRemoveClass	(args);
+	else if (name == QStringLiteral("HasClass"))	runHasClass		(args);
+	else {
+		Object::runMethod(name, args);
+	}
+	// clang-format on
 
 	return newContext;
 }
