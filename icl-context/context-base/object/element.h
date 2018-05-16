@@ -83,7 +83,7 @@ public:
 	void scrollTo();
 	void click();
 	void sendKeys(const QString & keys);
-	void CtrlV(const QString & text);
+	void ctrlV(const QString & text);
 	bool isValid();
 
 	void add(memory::WebElement element);

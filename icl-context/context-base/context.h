@@ -87,7 +87,7 @@ protected:
 	Context * getFirst();
 	Context * getLast();
 
-	void sendWrongArglist(memory::ArgList & params, const QString & expected);
+	void sendWrongArglist(memory::ArgList & args, const QString & expected);
 
 	QString varToJsString(const QVariant & var);
 

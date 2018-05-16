@@ -245,7 +245,7 @@ void Element::sendKeys(const QString & keys) {
 	emit requestKeys(keys);
 }
 
-void Element::CtrlV(const QString & text) {
+void Element::ctrlV(const QString & text) {
 	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = text;
 
@@ -363,27 +363,25 @@ memory::WebElement Element::closest(const QString & selector) {
 }
 
 void Element::addClass(const QString & className) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
 	emit requestJsExecution(
-	  web.variable % ".add_class('" % escaped % "')",
-	  nullptr);
+	  web.variable % ".add_class('" % escaped % "')", nullptr);
 }
 
 void Element::removeClass(const QString & className) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
 	emit requestJsExecution(
-	  web.variable % ".remove_class('" % escaped % "')",
-	  nullptr);
+	  web.variable % ".remove_class('" % escaped % "')", nullptr);
 }
 
 bool Element::hasClass(const QString & className) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = className;
 
 	if (!isSingle(web)) {
@@ -393,11 +391,176 @@ bool Element::hasClass(const QString & className) {
 	escaped.replace("'", "\\'");
 	emit requestJsExecution(
 	  web.variable % ".has_class('" % escaped % "')",
-				[this](const QVariant&var){
-		this->newValue = var;
-	});
+	  [this](const QVariant & var) { this->newValue = var; });
 
 	return newValue.toBool();
+}
+
+void Element::runScrollTo(memory::ArgList & args) {
+	if (args.length() == 0) {
+		scrollTo();
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Element::runClick(memory::ArgList & args) {
+	if (args.length() == 0) {
+		click();
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Element::runSendKeys(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		sendKeys(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runCtrlV(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		ctrlV(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runIsValid(memory::ArgList & args) {
+	newValue   = isValid();
+	newContext = new Boolean{newValue, true};
+}
+
+void Element::runAdd(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Element) {
+		add(args[0].object->getValue().value<memory::WebElement>());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<Element>"));
+	}
+}
+
+void Element::runCopy(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = QVariant::fromValue(copy());
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Element::runFilter(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue =
+		  QVariant::fromValue(filter(args[0].object->getValue().toString()));
+		newContext = new Element{newValue, true};
+	}
+	if (
+	  args.length() == 2 && args[0].object->type() == memory::Type::String &&
+	  args[1].object->type() == memory::Type::Boolean) {
+		newValue   = QVariant::fromValue(filter(
+		  args[0].object->getValue().toString(),
+		  args[1].object->getValue().toInt()));
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String> or <String, Boolean>"));
+	}
+}
+
+void Element::runGet(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue = QVariant::fromValue(get(args[0].object->getValue().toInt()));
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runNext(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = QVariant::fromValue(next());
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Element::runPrev(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = QVariant::fromValue(prev());
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Element::runParent(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = QVariant::fromValue(parent());
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Element::runChild(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
+		newValue   = QVariant::fromValue(child(args[0].object->getValue().toInt()));
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<Int>"));
+	}
+}
+
+void Element::runClosest(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue   = QVariant::fromValue(closest(args[0].object->getValue().toString()));
+		newContext = new Element{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runAddClass(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		addClass(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runRemoveClass(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		addClass(args[0].object->getValue().toString());
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runHasClass(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue   = hasClass(args[0].object->getValue().toString());
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
 }
 
 
