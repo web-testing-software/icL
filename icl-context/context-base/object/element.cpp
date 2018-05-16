@@ -638,7 +638,7 @@ Context * Element::runProperty(Prefix prefix, const QString & name) {
 	else if (prefix == Prefix::Data) {
 		runData(name);
 	}
-	else /* prefix == Prefix.CSS */ {
+	else { /* prefix == Prefix.CSS */
 		runCSS(name);
 	}
 
@@ -646,32 +646,60 @@ Context * Element::runProperty(Prefix prefix, const QString & name) {
 }
 
 Context * Element::runMethod(const QString & name, memory::ArgList & args) {
-	// clang-format off
-		 if (name == QStringLiteral("ScrollTo"))	runScrollTo		(args);
-	else if (name == QStringLiteral("Click"))		runClick		(args);
-	else if (name == QStringLiteral("SendKeys"))	runSendKeys		(args);
-	else if (name == QStringLiteral("CtrlV"))		runCtrlV		(args);
-	else if (name == QStringLiteral("IsValid"))		runIsValid		(args);
-
-	else if (name == QStringLiteral("Add"))			runAdd			(args);
-	else if (name == QStringLiteral("Copy"))		runCopy			(args);
-	else if (name == QStringLiteral("Filter"))		runFilter		(args);
-	else if (name == QStringLiteral("Get"))			runGet			(args);
-
-	else if (name == QStringLiteral("Next"))		runNext			(args);
-	else if (name == QStringLiteral("Prev"))		runPrev			(args);
-	else if (name == QStringLiteral("Parent"))		runParent		(args);
-	else if (name == QStringLiteral("Child"))		runChild		(args);
-	else if (name == QStringLiteral("Closest"))		runClosest		(args);
-
-	else if (name == QStringLiteral("AddClass"))	runAddClass		(args);
-	else if (name == QStringLiteral("RemoveClass"))	runRemoveClass	(args);
-	else if (name == QStringLiteral("HasClass"))	runHasClass		(args);
+	if (name == QStringLiteral("ScrollTo")) {
+		runScrollTo(args);
+	}
+	else if (name == QStringLiteral("Click")) {
+		runClick(args);
+	}
+	else if (name == QStringLiteral("SendKeys")) {
+		runSendKeys(args);
+	}
+	else if (name == QStringLiteral("CtrlV")) {
+		runCtrlV(args);
+	}
+	else if (name == QStringLiteral("IsValid")) {
+		runIsValid(args);
+	}
+	else if (name == QStringLiteral("Add")) {
+		runAdd(args);
+	}
+	else if (name == QStringLiteral("Copy")) {
+		runCopy(args);
+	}
+	else if (name == QStringLiteral("Filter")) {
+		runFilter(args);
+	}
+	else if (name == QStringLiteral("Get")) {
+		runGet(args);
+	}
+	else if (name == QStringLiteral("Next")) {
+		runNext(args);
+	}
+	else if (name == QStringLiteral("Prev")) {
+		runPrev(args);
+	}
+	else if (name == QStringLiteral("Parent")) {
+		runParent(args);
+	}
+	else if (name == QStringLiteral("Child")) {
+		runChild(args);
+	}
+	else if (name == QStringLiteral("Closest")) {
+		runClosest(args);
+	}
+	else if (name == QStringLiteral("AddClass")) {
+		runAddClass(args);
+	}
+	else if (name == QStringLiteral("RemoveClass")) {
+		runRemoveClass(args);
+	}
+	else if (name == QStringLiteral("HasClass")) {
+		runHasClass(args);
+	}
 	else {
 		Object::runMethod(name, args);
 	}
-	// clang-format on
-
 	return newContext;
 }
 
