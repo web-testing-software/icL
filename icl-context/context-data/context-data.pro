@@ -16,7 +16,8 @@ INCLUDEPATH += \
     .. \
     ../.. \
     ../context-base \
-    ../context-control
+    ../context-control \
+    ../../icl-memory
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings

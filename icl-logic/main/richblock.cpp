@@ -89,12 +89,12 @@ QString RichBlock::pairData() {
 }
 
 void RichBlock::sendSignalWrongPair() {
-	emit exception({-201, "Wrong operarands pair: " + pairData()});
+	il->vm->exception({-201, "Wrong operarands pair: " + pairData()});
 }
 
 void RichBlock::sendSignalWrongOperator(const QString & pair) {
-	emit exception({-202, "Wrong operator " % oTypeToString() %
-							" for operands pair " % pair});
+	il->vm->exception({-202, "Wrong operator " % oTypeToString() %
+							   " for operands pair " % pair});
 }
 
 
@@ -128,29 +128,29 @@ LogicBlock * RichBlock::castNow() {
 
 	switch (value1.type()) {
 	case QVariant::Bool:
-		ret = new rich::BooleanBlock(this);
+		ret = new rich::BooleanBlock(il, this);
 		break;
 
 	case QVariant::Int:
-		ret = new rich::IntBlock(this);
+		ret = new rich::IntBlock(il, this);
 		break;
 
 	case QVariant::Double:
-		ret = new rich::DoubleBlock(this);
+		ret = new rich::DoubleBlock(il, this);
 		break;
 
 	case QVariant::String:
-		ret = new rich::StringBlock(this);
+		ret = new rich::StringBlock(il, this);
 		break;
 
 	case QVariant::StringList:
-		ret = new rich::ListBlock(this);
+		ret = new rich::ListBlock(il, this);
 		break;
 
 	default:
-		emit exception({-201,
-						"The operands of comparing operators must be "
-						"Boolean, Int, Double, String or List"});
+		il->vm->exception({-201,
+						   "The operands of comparing operators must be "
+						   "Boolean, Int, Double, String or List"});
 		break;
 	}
 
@@ -163,15 +163,14 @@ bool RichBlock::step() {
 
 		fcall.source = frag1;
 
-		emit interrupt(fcall, [this](memory::Return & ret) {
-			if (ret.exception.code != 0) {
-				emit this->exception(ret.exception);
-			}
-			else {
-				this->value1      = ret.consoleValue;
-				this->valu1getted = true;
-			}
-		});
+		memory::Return ret = il->vms->interrupt(fcall);
+		if (ret.exception.code != 0) {
+			il->vm->exception(ret.exception);
+		}
+		else {
+			this->value1      = ret.consoleValue;
+			this->valu1getted = true;
+		}
 
 		return false;
 	}
@@ -180,15 +179,14 @@ bool RichBlock::step() {
 
 		fcall.source = frag2;
 
-		emit interrupt(fcall, [this](memory::Return & ret) {
-			if (ret.exception.code != 0) {
-				emit this->exception(ret.exception);
-			}
-			else {
-				this->value2       = ret.consoleValue;
-				this->value2getted = true;
-			}
-		});
+		memory::Return ret = il->vms->interrupt(fcall);
+		if (ret.exception.code != 0) {
+			il->vm->exception(ret.exception);
+		}
+		else {
+			this->value2       = ret.consoleValue;
+			this->value2getted = true;
+		}
 
 		return false;
 	}

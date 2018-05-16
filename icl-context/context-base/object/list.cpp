@@ -66,7 +66,7 @@ int List::length() {
 
 void List::runLength() {
 	newValue   = length();
-	newContext = new Int(newValue, true);
+	newContext = new Int(il, newValue, true);
 }
 
 
@@ -102,7 +102,7 @@ void List::popFront() {
 	QStringList list = getValue().toStringList();
 
 	if (list.isEmpty()) {
-		emit exception({-3, "Can not remove first item of empty list"});
+		il->vm->exception({-3, "Can not remove first item of empty list"});
 	}
 	else {
 		list.removeFirst();
@@ -114,7 +114,7 @@ void List::popBack() {
 	QStringList list = getValue().toStringList();
 
 	if (list.isEmpty()) {
-		emit exception({-3, "Can not remove first item of empty list"});
+		il->vm->exception({-3, "Can not remove first item of empty list"});
 	}
 	else {
 		list.removeLast();
@@ -126,7 +126,7 @@ void List::remove(int index) {
 	QStringList list = getValue().toStringList();
 
 	if (index < 0 || index >= list.length()) {
-		emit exception({-8, "Index out of bounds"});
+		il->vm->exception({-8, "Index out of bounds"});
 	}
 	else {
 		list.removeAt(index);
@@ -152,7 +152,7 @@ QString List::get(int index) {
 	QStringList list = getValue().toStringList();
 
 	if (index < 0 || index >= list.length()) {
-		emit exception({-8, "Index out of bounds"});
+		il->vm->exception({-8, "Index out of bounds"});
 	}
 	else {
 		return list.at(index);
@@ -188,7 +188,7 @@ double List::sumUp() {
 		sum += str.toDouble(&ok);
 
 		if (!ok) {
-			emit exception(
+			il->vm->exception(
 			  {-2, QString("Failed to parse `%1` to double").arg(str)});
 			break;
 		}
@@ -201,7 +201,7 @@ double List::max() {
 	QStringList list = getValue().toStringList();
 
 	if (list.isEmpty()) {
-		emit exception({-3, "Cannot find max value in empty list"});
+		il->vm->exception({-3, "Cannot find max value in empty list"});
 		return 0.0;
 	}
 
@@ -212,7 +212,7 @@ double List::max() {
 		double number = str.toDouble(&ok);
 
 		if (!ok) {
-			emit exception(
+			il->vm->exception(
 			  {-2, QString("Failed to parse `%1` to double").arg(str)});
 			break;
 		}
@@ -228,7 +228,7 @@ double List::min() {
 	QStringList list = getValue().toStringList();
 
 	if (list.isEmpty()) {
-		emit exception({-3, "Cannot find min value in empty list"});
+		il->vm->exception({-3, "Cannot find min value in empty list"});
 		return 0.0;
 	}
 
@@ -239,7 +239,7 @@ double List::min() {
 		double number = str.toDouble(&ok);
 
 		if (!ok) {
-			emit exception(
+			il->vm->exception(
 			  {-2, QString("Failed to parse `%1` to double").arg(str)});
 			break;
 		}
@@ -262,7 +262,7 @@ bool List::logicAnd() {
 			res = false;
 		}
 		else if (str != QStringLiteral("true")) {
-			emit exception(
+			il->vm->exception(
 			  {-2, QString("Failed to parse `%1` to bool").arg(str)});
 			break;
 		}
@@ -282,7 +282,7 @@ bool List::logicOr() {
 			res = true;
 		}
 		else if (str != QStringLiteral("false")) {
-			emit exception(
+			il->vm->exception(
 			  {-2, QString("Failed to parse `%1` to bool").arg(str)});
 			break;
 		}
@@ -379,7 +379,7 @@ void List::runRemoveAll(memory::ArgList & args) {
 void List::runGet(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
 		newValue   = get(args[0].object->getValue().toInt());
-		newContext = new String{newValue, true};
+		newContext = new String{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<Int>"));
@@ -389,7 +389,7 @@ void List::runGet(memory::ArgList & args) {
 void List::runIndexOf(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue   = indexOf(args[0].object->getValue().toString());
-		newContext = new Int{newValue, true};
+		newContext = new Int{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -399,7 +399,7 @@ void List::runIndexOf(memory::ArgList & args) {
 void List::runLastIndexOf(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue   = lastIndexOf(args[0].object->getValue().toString());
-		newContext = new Int{newValue, true};
+		newContext = new Int{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -418,14 +418,14 @@ void List::runJoin(memory::ArgList & args) {
 		return;
 	}
 
-	newContext = new String{newValue, true};
+	newContext = new String{il, newValue, true};
 }
 
 
 void List::runSumUp(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = sumUp();
-		newContext = new Double{newValue, true};
+		newContext = new Double{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -435,7 +435,7 @@ void List::runSumUp(memory::ArgList & args) {
 void List::runMax(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = max();
-		newContext = new Double{newValue, true};
+		newContext = new Double{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -445,7 +445,7 @@ void List::runMax(memory::ArgList & args) {
 void List::runMin(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = min();
-		newContext = new Double{newValue, true};
+		newContext = new Double{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -455,7 +455,7 @@ void List::runMin(memory::ArgList & args) {
 void List::runLogicAnd(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = logicAnd();
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -465,7 +465,7 @@ void List::runLogicAnd(memory::ArgList & args) {
 void List::runLogicOr(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = logicOr();
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -479,10 +479,10 @@ QString List::getFirst() {
 	QString     ret;
 
 	if (value.isEmpty()) {
-		emit exception({-3, "Empty list cannot be casted to any types"});
+		il->vm->exception({-3, "Empty list cannot be casted to any types"});
 	}
 	else if (value.size() > 1) {
-		emit exception(
+		il->vm->exception(
 		  {-4, "List with multiple values cannot be casted to any types"});
 	}
 	else {
@@ -494,7 +494,7 @@ QString List::getFirst() {
 
 Context * List::runProperty(Prefix prefix, const QString & name) {
 	if (prefix != Prefix::None) {
-		emit exception(
+		il->vm->exception(
 		  {-405, "List objects are not support for prefixed properties"});
 	}
 	else {

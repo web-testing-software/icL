@@ -19,7 +19,7 @@ public:
 class VirtualMachine
 {
 public:
-	virtual void exception(Exception & exc) = 0;
+	virtual void exception(const Exception & exc) = 0;
 };
 
 class VirtualMachineStack
@@ -33,7 +33,7 @@ class Server
 public:
 	virtual QVariant runJS(const QString & code)                = 0;
 	virtual bool     click(int x, int y)                        = 0;
-	virtual bool     keys(const QString & keys)                 = 0;
+	virtual void     keys(const QString & keys)                 = 0;
 	virtual void     newLog(int level, const QString & message) = 0;
 	virtual bool     get(const QString & url)                   = 0;
 };

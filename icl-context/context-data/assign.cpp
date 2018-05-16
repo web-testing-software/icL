@@ -33,7 +33,7 @@ bool Assign::isExecuable() const {
 
 bool Assign::execute() {
 	if (m_next->role() != Role::Object) {
-		emit exception(
+		il->vm->exception(
 		  {-204, "The right operand of assign operation must be an `Object`"});
 		return false;
 	}
@@ -42,7 +42,7 @@ bool Assign::execute() {
 	auto right = dynamic_cast<object::Object *>(m_next);
 
 	if (left->isReadOnly()) {
-		emit exception(
+		il->vm->exception(
 		  {-205, "The left operand of assign operation must be muttable"});
 		return false;
 	}
@@ -50,17 +50,17 @@ bool Assign::execute() {
 	if (right->type() == memory::Type::Void) {
 		if (left->type() == memory::Type::Void) {
 			if (right->isLValue()) {
-				emit exception(
+				il->vm->exception(
 				  {-404,
 				   QString("Variable %1 not found").arg(right->getVarName())});
 			}
 			else {
-				emit exception(
+				il->vm->exception(
 				  {-400, "Variables of type Void cannot be created"});
 			}
 		}
 		else {
-			emit exception(
+			il->vm->exception(
 			  {-206, QString("Void cannot be assigned to variable of type %1")
 					   .arg(memory::typeToString(left->type()))});
 		}
@@ -68,7 +68,7 @@ bool Assign::execute() {
 	}
 
 	if (left->type() != memory::Type::Void && left->type() != right->type()) {
-		emit exception({-200, "Automatic casting is missing in icL"});
+		il->vm->exception({-200, "Automatic casting is missing in icL"});
 		return false;
 	}
 
@@ -79,27 +79,27 @@ bool Assign::execute() {
 
 		switch (right->type()) {
 		case memory::Type::Boolean:
-			new_left = new object::Boolean{left};
+			new_left = new object::Boolean{il, left};
 			break;
 
 		case memory::Type::Int:
-			new_left = new object::Int{left};
+			new_left = new object::Int{il, left};
 			break;
 
 		case memory::Type::Double:
-			new_left = new object::Double{left};
+			new_left = new object::Double{il, left};
 			break;
 
 		case memory::Type::String:
-			new_left = new object::String{left};
+			new_left = new object::String{il, left};
 			break;
 
 		case memory::Type::List:
-			new_left = new object::List{left};
+			new_left = new object::List{il, left};
 			break;
 
 		case memory::Type::Element:
-			new_left = new object::Element{left};
+			new_left = new object::Element{il, left};
 			break;
 
 		default:

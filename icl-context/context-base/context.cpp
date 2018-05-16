@@ -51,11 +51,11 @@ bool Context::hasValue() const {
 
 Context * Context::runProperty(Prefix prefix, const QString & name) {
 	if (prefix != Prefix::None) {
-		emit exception(
+		il->vm->exception(
 		  {-405, "This object does not support prefixed properties"});
 	}
 	else {
-		emit exception({-7, "No such property: " + name});
+		il->vm->exception({-7, "No such property: " + name});
 	}
 
 	return nullptr;
@@ -63,7 +63,7 @@ Context * Context::runProperty(Prefix prefix, const QString & name) {
 
 Context * Context::runMethod(const QString & name, memory::ArgList & args) {
 	Q_UNUSED(args);
-	emit exception({-7, "No such method: " + name});
+	il->vm->exception({-7, "No such method: " + name});
 
 	return nullptr;
 }
@@ -82,31 +82,31 @@ object::Object * Context::fromValue(const QVariant & value) {
 
 	switch (type) {
 	case memory::Type::Boolean:
-		ret = new object::Boolean{value, true};
+		ret = new object::Boolean{il, value, true};
 		break;
 
 	case memory::Type::Int:
-		ret = new object::Int{value, true};
+		ret = new object::Int{il, value, true};
 		break;
 
 	case memory::Type::Double:
-		ret = new object::Double{value, true};
+		ret = new object::Double{il, value, true};
 		break;
 
 	case memory::Type::String:
-		ret = new object::String{value, true};
+		ret = new object::String{il, value, true};
 		break;
 
 	case memory::Type::List:
-		ret = new object::List{value, true};
+		ret = new object::List{il, value, true};
 		break;
 
 	case memory::Type::Element:
-		ret = new object::Element{value, true};
+		ret = new object::Element{il, value, true};
 		break;
 
 	case memory::Type::Void:
-		ret = new object::Void;
+		ret = new object::Void{il};
 		break;
 	}
 
@@ -141,8 +141,8 @@ void Context::sendWrongArglist(
 		types.append(memory::typeToString(arg.object->type()));
 	}
 
-	emit exception({-203, "Wrong arglist: <" % types.join(", ") %
-							">, expected " % expected});
+	il->vm->exception({-203, "Wrong arglist: <" % types.join(", ") %
+							   ">, expected " % expected});
 }
 
 QString Context::varToJsString(const QVariant & var) {

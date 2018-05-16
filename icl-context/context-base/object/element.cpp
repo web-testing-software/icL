@@ -82,28 +82,28 @@ int Element::length() {
 String * Element::html() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new String{web.variable % ".html()",
+	return new String{il, web.variable % ".html()",
 					  web.variable % ".html(%1, true)"};
 }
 
 String * Element::text() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new String{web.variable % ".text()",
+	return new String{il, web.variable % ".text()",
 					  web.variable % ".text(%1, true)"};
 }
 
 Int * Element::width() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new Int{web.variable % ".width()",
+	return new Int{il, web.variable % ".width()",
 				   web.variable % ".width(%1, true)"};
 }
 
 Int * Element::height() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new Int{web.variable % ".height()",
+	return new Int{il, web.variable % ".height()",
 				   web.variable % ".height(%1, true)"};
 }
 
@@ -114,9 +114,7 @@ bool Element::visible() {
 		return false;
 	}
 
-	emit requestJsExecution(
-	  web.variable % ".visible()",
-	  [this](const QVariant & var) { this->newValue = var; });
+	newValue = il->server->runJS(web.variable % ".visible()");
 
 	return newValue.toBool();
 }
@@ -128,9 +126,7 @@ bool Element::clickable() {
 		return false;
 	}
 
-	emit requestJsExecution(
-	  web.variable % ".clickable()",
-	  [this](const QVariant & var) { this->newValue = var; });
+	newValue = il->server->runJS(web.variable % ".clickable()");
 
 	return newValue.toBool();
 }
@@ -139,34 +135,33 @@ Object * Element::prop(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	QString getter = web.variable % ".prop('" % name % "')";
-	QString setter = web.variable % ".prop('" % name % "', %1, true)";
+	QString ser    = web.variable % ".prop('" % name % "', %1, true)";
 
-	emit requestJsExecution(
-	  getter, [this](const QVariant & var) { this->newValue = var; });
+	newValue = il->server->runJS(getter);
 
 	switch (memory::variantTypeToType(newValue.type())) {
 	case memory::Type::Boolean:
-		newContext = new Boolean{getter, setter};
+		newContext = new Boolean{il, getter, setter};
 		break;
 
 	case memory::Type::Int:
-		newContext = new Int{getter, setter};
+		newContext = new Int{il, getter, setter};
 		break;
 
 	case memory::Type::Double:
-		newContext = new Double{getter, setter};
+		newContext = new Double{il, getter, setter};
 		break;
 
 	case memory::Type::String:
-		newContext = new String{getter, setter};
+		newContext = new String{il, getter, setter};
 		break;
 
 	case memory::Type::List:
-		newContext = new List{getter, setter};
+		newContext = new List{il, getter, setter};
 		break;
 
 	default:
-		newContext = new Void{getter, setter};
+		newContext = new Void{il, getter, setter};
 		break;
 	}
 
@@ -176,21 +171,21 @@ Object * Element::prop(const QString & name) {
 String * Element::attr(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new String{web.variable % ".attr('" % name % "')",
+	return new String{il, web.variable % ".attr('" % name % "')",
 					  web.variable % ".attr('" % name % "', %1, true)"};
 }
 
 String * Element::data(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new String{web.variable % ".data('" % name % "')",
+	return new String{il, web.variable % ".data('" % name % "')",
 					  web.variable % ".data('" % name % "', %1, true)"};
 }
 
 String * Element::css(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	return new String{web.variable % ".css('" % name % "')",
+	return new String{il, web.variable % ".css('" % name % "')",
 					  web.variable % ".css('" % name % "', %1, true)"};
 }
 
@@ -198,7 +193,7 @@ String * Element::css(const QString & name) {
 
 void Element::runLength() {
 	newValue   = length();
-	newContext = new Int{newValue, true};
+	newContext = new Int{il, newValue, true};
 }
 
 void Element::runHTML() {
@@ -218,11 +213,11 @@ void Element::runHeight() {
 }
 
 void Element::runVisible() {
-	newContext = new Boolean{newValue, true};
+	newContext = new Boolean{il, newValue, true};
 }
 
 void Element::runClickable() {
-	newContext = new Boolean{newValue, true};
+	newContext = new Boolean{il, newValue, true};
 }
 
 void Element::runProp(const QString & name) {
@@ -250,7 +245,7 @@ void Element::scrollTo() {
 		return;
 	}
 
-	emit requestJsExecution(web.variable % ".scrollTo()", nullptr);
+	il->server->runJS(web.variable % ".scrollTo()");
 }
 
 void Element::click() {
@@ -260,15 +255,15 @@ void Element::click() {
 		return;
 	}
 
-	emit requestJsExecution(
-	  web.variable % ".clickNow()", [this](const QVariant & var) {
-		  // {x: 0, y: 0}
-		  auto map = var.toMap();
-		  int  x   = map["x"].toInt();
-		  int  y   = map["y"].toInt();
+	auto map = il->server->runJS(web.variable % ".clickNow()").toMap();
+	int  x   = map["x"].toInt();
+	int  y   = map["y"].toInt();
 
-		  emit this->requestClick(x, y);
-	  });
+	if (!il->server->click(x, y)) {
+		il->vm->exception(
+		  {-9, "Point (" % QString::number(x) % ", " % QString::number(y) %
+				 ") is out of screen bounds"});
+	}
 }
 
 void Element::sendKeys(const QString & keys) {
@@ -280,8 +275,8 @@ void Element::sendKeys(const QString & keys) {
 
 	click();
 
-	emit requestJsExecution(web.variable % ".moveCursorToEnd()", nullptr);
-	emit requestKeys(keys);
+	il->server->runJS(web.variable % ".moveCursorToEnd()");
+	il->server->keys(keys);
 }
 
 void Element::ctrlV(const QString & text) {
@@ -294,8 +289,7 @@ void Element::ctrlV(const QString & text) {
 
 	escaped.replace("'", "\\'");
 
-	emit requestJsExecution(
-	  web.variable % "[0].value += '" % escaped % "'", nullptr);
+	il->server->runJS(web.variable % "[0].value += '" % escaped % "'");
 }
 
 bool Element::isValid() {
@@ -307,8 +301,11 @@ bool Element::isValid() {
 void Element::add(memory::WebElement element) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	emit requestJsExecution(
-	  web.variable % ".add(" % element.variable % ")", nullptr);
+	il->server->runJS(web.variable % ".add(" % element.variable % ")");
+
+	web.selector = web.selector % " (+) " % element.selector;
+
+	setValue(QVariant::fromValue(web));
 }
 
 memory::WebElement Element::copy() {
@@ -319,8 +316,7 @@ memory::WebElement Element::copy() {
 	ret.selector = web.selector;
 	ret.count    = web.count;
 
-	emit requestJsExecution(
-	  ret.variable % " = " % web.variable % ".copy()", nullptr);
+	il->server->runJS(ret.variable % " = " % web.variable % ".copy()");
 
 	return ret;
 }
@@ -332,12 +328,11 @@ memory::WebElement Element::filter(const QString & selector) {
 
 	escaped.replace("'", "\\'");
 	ret.variable = getNewId();
-	ret.selector = web.selector;
+	ret.selector = web.selector % " (filer) " % selector;
 	ret.count    = web.count;
 
-	emit requestJsExecution(
-	  ret.variable % " = " % web.variable % ".filter('" % escaped % "')",
-	  nullptr);
+	il->server->runJS(
+	  ret.variable % " = " % web.variable % ".filter('" % escaped % "')");
 
 	return ret;
 }
@@ -349,13 +344,13 @@ memory::WebElement Element::filter(const QString & context, bool asfragment) {
 
 	escaped.replace("'", "\\'");
 	ret.variable = getNewId();
-	ret.selector = web.selector;
-	ret.count    = web.count;
+	ret.selector = web.selector % " (filtered by " %
+				   (asfragment ? "fragment" : "content") % ") " % context;
+	ret.count = web.count;
 
-	emit requestJsExecution(
+	il->server->runJS(
 	  ret.variable % " = " % web.variable % ".filterByContent('" % escaped %
-		"', " % (asfragment ? "true" : "false") % ")",
-	  nullptr);
+	  "', " % (asfragment ? "true" : "false") % ")");
 
 	return ret;
 }
@@ -366,8 +361,8 @@ memory::WebElement Element::get(int index) {
 	QString            indexStr = QString::number(index);
 
 	if (index < 0 || index >= web.count) {
-		emit exception({-8, "Index " % indexStr % " is out of bounds [0.." %
-							  QString::number(web.count) % ")"});
+		il->vm->exception({-8, "Index " % indexStr % " is out of bounds [0.." %
+								 QString::number(web.count) % ")"});
 		return ret;
 	}
 
@@ -375,8 +370,8 @@ memory::WebElement Element::get(int index) {
 	ret.selector = web.selector % "[" % indexStr % "]";
 	ret.count    = 1;
 
-	emit requestJsExecution(
-	  ret.variable % " = nm(" % web.variable % "[" % indexStr % "])", nullptr);
+	il->server->runJS(
+	  ret.variable % " = nm(" % web.variable % "[" % indexStr % "])");
 
 	return ret;
 }
@@ -406,8 +401,7 @@ void Element::addClass(const QString & className) {
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
-	emit requestJsExecution(
-	  web.variable % ".add_class('" % escaped % "')", nullptr);
+	il->server->runJS(web.variable % ".add_class('" % escaped % "')");
 }
 
 void Element::removeClass(const QString & className) {
@@ -415,8 +409,7 @@ void Element::removeClass(const QString & className) {
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
-	emit requestJsExecution(
-	  web.variable % ".remove_class('" % escaped % "')", nullptr);
+	il->server->runJS(web.variable % ".remove_class('" % escaped % "')");
 }
 
 bool Element::hasClass(const QString & className) {
@@ -428,9 +421,8 @@ bool Element::hasClass(const QString & className) {
 	}
 
 	escaped.replace("'", "\\'");
-	emit requestJsExecution(
-	  web.variable % ".has_class('" % escaped % "')",
-	  [this](const QVariant & var) { this->newValue = var; });
+	newValue =
+	  il->server->runJS(web.variable % ".has_class('" % escaped % "')");
 
 	return newValue.toBool();
 }
@@ -473,7 +465,7 @@ void Element::runCtrlV(memory::ArgList & args) {
 
 void Element::runIsValid(memory::ArgList & args) {
 	newValue   = isValid();
-	newContext = new Boolean{newValue, true};
+	newContext = new Boolean{il, newValue, true};
 }
 
 void Element::runAdd(memory::ArgList & args) {
@@ -488,7 +480,7 @@ void Element::runAdd(memory::ArgList & args) {
 void Element::runCopy(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = QVariant::fromValue(copy());
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -499,7 +491,7 @@ void Element::runFilter(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue =
 		  QVariant::fromValue(filter(args[0].object->getValue().toString()));
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	if (
 	  args.length() == 2 && args[0].object->type() == memory::Type::String &&
@@ -507,7 +499,7 @@ void Element::runFilter(memory::ArgList & args) {
 		newValue   = QVariant::fromValue(filter(
 		  args[0].object->getValue().toString(),
 		  args[1].object->getValue().toInt()));
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String> or <String, Boolean>"));
@@ -517,7 +509,7 @@ void Element::runFilter(memory::ArgList & args) {
 void Element::runGet(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue = QVariant::fromValue(get(args[0].object->getValue().toInt()));
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -527,7 +519,7 @@ void Element::runGet(memory::ArgList & args) {
 void Element::runNext(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = QVariant::fromValue(next());
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -537,7 +529,7 @@ void Element::runNext(memory::ArgList & args) {
 void Element::runPrev(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = QVariant::fromValue(prev());
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -547,7 +539,7 @@ void Element::runPrev(memory::ArgList & args) {
 void Element::runParent(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = QVariant::fromValue(parent());
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -558,7 +550,7 @@ void Element::runChild(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
 		newValue =
 		  QVariant::fromValue(child(args[0].object->getValue().toInt()));
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<Int>"));
@@ -569,7 +561,7 @@ void Element::runClosest(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue =
 		  QVariant::fromValue(closest(args[0].object->getValue().toString()));
-		newContext = new Element{newValue, true};
+		newContext = new Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -597,7 +589,7 @@ void Element::runRemoveClass(memory::ArgList & args) {
 void Element::runHasClass(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue   = hasClass(args[0].object->getValue().toString());
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -609,12 +601,12 @@ void Element::runHasClass(memory::ArgList & args) {
 bool Element::isSingle(memory::WebElement & web) {
 	if (web.count != 1) {
 		if (web.count == 0) {
-			emit exception(
+			il->vm->exception(
 			  {-5, QStringLiteral("Element collection `%1` is null")
 					 .arg(web.selector)});
 		}
 		else {
-			emit exception(
+			il->vm->exception(
 			  {-4,
 			   QStringLiteral("Element collection `%1` contains several items")
 				 .arg(web.selector)});
@@ -634,10 +626,11 @@ memory::WebElement Element::domTrans(
 	ret.variable = getNewId();
 	ret.selector = web.selector % " -> " % method % "(" % arg % ")";
 
-	emit requestJsExecution(
-	  "(" % ret.variable % " = " % web.variable % "." % method % "(" % arg %
-		")).length",
-	  [&ret](const QVariant & res) { ret.count = res.toInt(); });
+	ret.count = il->server
+				  ->runJS(
+					"(" % ret.variable % " = " % web.variable % "." % method %
+					"(" % arg % ")).length")
+				  .toInt();
 
 	return ret;
 }

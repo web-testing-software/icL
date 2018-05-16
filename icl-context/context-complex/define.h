@@ -32,9 +32,6 @@ public:
 private:
 	void runSignal(memory::ArgList & args);
 
-signals:
-	void newSignal(int code, const QString & name);
-
 	// Context interface
 public:
 	bool checkPrev(const Context * context) const override;

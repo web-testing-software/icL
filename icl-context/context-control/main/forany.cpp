@@ -1,5 +1,7 @@
 #include "forany.h"
 
+#include <object/object.h>
+
 namespace icL::context::code {
 
 ForAny::ForAny(memory::InterLevel * il, const memory::CodeFragment & source)
@@ -23,14 +25,13 @@ bool ForAny::execute() {
 
 	fcall.source = m_source;
 
-	emit interrupt(fcall, [this](memory::Return & ret) {
+	memory::Return ret = il->vms->interrupt(fcall);
 		if (ret.exception.code != 0) {
-			emit this->exception(ret.exception);
+			il->vm->exception(ret.exception);
 		}
 		else {
 			newContext = fromValue(ret.consoleValue);
 		}
-	});
 
 	executed = true;
 	return false;

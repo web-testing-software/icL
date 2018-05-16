@@ -35,7 +35,7 @@ bool Function::exNewFunction() {
 
 	func.source = codeBlock->source();
 
-	mem->functions().registerFunction(name, func);
+	il->mem->functions().registerFunction(name, func);
 
 	return true;
 }
@@ -46,12 +46,12 @@ bool Function::exCallFunction() {
 	}
 
 	if (newFunction) {
-		emit exception(
+		il->vm->exception(
 		  {-404, QStringLiteral("Function %1 not found").arg(name)});
 		return false;
 	}
 
-	memory::Function & func = mem->functions().getFunction(name);
+	memory::Function & func = il->mem->functions().getFunction(name);
 
 	if (!checkParamsNum(func) || !checkParamsTypes(func)) {
 		return false;
@@ -73,14 +73,13 @@ bool Function::exCallFunction() {
 		fcall.args.append(arg);
 	}
 
-	emit interrupt(fcall, [this](memory::Return & ret) {
-		if (ret.exception.code != 0) {
-			emit exception(ret.exception);
-		}
-		else {
-			this->newContext = fromValue(ret.returnValue);
-		}
-	});
+	memory::Return ret = il->vms->interrupt(fcall);
+	if (ret.exception.code != 0) {
+		il->vm->exception(ret.exception);
+	}
+	else {
+		this->newContext = fromValue(ret.returnValue);
+	}
 
 	functionExecuted = true;
 
@@ -140,11 +139,11 @@ void Function::sendWrongArgs() {
 		getted.append(memory::typeToString(obj->type()));
 	}
 
-	for (auto & arg : mem->functions().getFunction(name).paramList) {
+	for (auto & arg : il->mem->functions().getFunction(name).paramList) {
 		expected.append(memory::typeToString(arg.type));
 	}
 
-	emit exception(
+	il->vm->exception(
 	  {-203, QStringLiteral(
 			   "Wrong arguments for function %1: getted<%2>, expected<%3>")
 			   .arg(name)

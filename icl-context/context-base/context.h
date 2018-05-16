@@ -80,7 +80,7 @@ public:
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;
 
-	static object::Object * fromValue(const QVariant & value);
+	object::Object * fromValue(const QVariant & value);
 
 protected:
 	Context * getFirst();

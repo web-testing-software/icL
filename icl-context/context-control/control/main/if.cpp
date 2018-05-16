@@ -31,8 +31,8 @@ void If::parseLogicExp() {
 		exp = parseOnce(m_source);
 	}
 	else {
-		auto * single =
-		  new logic::rich::SingleBlock{logic::RichBlock::OperationType::NotNot};
+		auto * single = new logic::rich::SingleBlock{
+		  il, logic::RichBlock::OperationType::NotNot};
 
 		single->giveCode(m_source);
 		exp = single;
@@ -46,7 +46,7 @@ logic::LogicBlock * If::parseOnce(memory::CodeFragment & fn) {
 	QString   brackets;
 
 	if (fn.end == fn.begin) {
-		emit exception({-201, "Empty operand detected."});
+		il->vm->exception({-201, "Empty operand detected."});
 		return nullptr;
 	}
 
@@ -117,8 +117,8 @@ logic::LogicBlock * If::parseOnce(memory::CodeFragment & fn) {
 	}
 
 	if (op.type == OperatorType::NotFound) {
-		auto * single =
-		  new logic::rich::SingleBlock{logic::RichBlock::OperationType::NotNot};
+		auto * single = new logic::rich::SingleBlock{
+		  il, logic::RichBlock::OperationType::NotNot};
 
 		single->giveCode(fn);
 		return single;
@@ -212,7 +212,7 @@ void If::filter(memory::CodeFragment fn) {
 		}
 
 		if (fn.end == fn.begin) {
-			emit exception({-201, "Empty operand detected."});
+			il->vm->exception({-201, "Empty operand detected."});
 		}
 
 		if (
@@ -247,7 +247,7 @@ logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 	}
 
 	if (!isOk) {
-		emit exception(
+		il->vm->exception(
 		  {-201,
 		   QString(
 			 "Rank 1 operators (! and !!) givis one operand, placed on right. "
@@ -258,8 +258,9 @@ logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 
 	memory::CodeFragment newfn  = fn;
 	auto *               single = new logic::rich::SingleBlock(
-	  op.type == OperatorType::Not ? logic::RichBlock::OperationType::Not
-								   : logic::RichBlock::OperationType::NotNot);
+	  il, op.type == OperatorType::Not
+			? logic::RichBlock::OperationType::Not
+			: logic::RichBlock::OperationType::NotNot);
 
 	newfn.begin += op.type == OperatorType::Not ? 1 : 2;
 	filter(newfn);
@@ -303,7 +304,7 @@ logic::LogicBlock * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
 		break;
 	}
 
-	auto * block = new logic::RichBlock{type};
+	auto * block = new logic::RichBlock{il, type};
 
 	block->giveCode(newfn1);
 	block->giveCode(newfn2);
@@ -324,19 +325,19 @@ logic::LogicBlock * If::returnRank3(Operator & op, memory::CodeFragment & fn) {
 
 	switch (op.type) {
 	case OperatorType::And:
-		block = new logic::cross::AndBlock;
+		block = new logic::cross::AndBlock{il};
 		break;
 
 	case OperatorType::Or:
-		block = new logic::cross::OrBlock;
+		block = new logic::cross::OrBlock{il};
 		break;
 
 	case OperatorType::XOr:
-		block = new logic::cross::XOrBlock;
+		block = new logic::cross::XOrBlock{il};
 		break;
 
 	case OperatorType::Equiv:
-		block = new logic::cross::EqBlock;
+		block = new logic::cross::EqBlock{il};
 		break;
 
 	default:

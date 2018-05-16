@@ -10,7 +10,7 @@ Tab::Tab(memory::InterLevel * il)
 	: Complex(il) {}
 
 bool Tab::get(const QString & url) {
-	emit getSignal(url, [this](bool success) { this->newValue = success; });
+	newValue = il->server->get(url);
 
 	return newValue.toBool();
 }
@@ -18,7 +18,7 @@ bool Tab::get(const QString & url) {
 void Tab::runGet(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() != memory::Type::String) {
 		get(args[0].object->getValue().toString());
-		newContext = new object::Boolean{newValue, true};
+		newContext = new object::Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));

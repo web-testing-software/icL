@@ -15,19 +15,15 @@ Dom::Dom(memory::InterLevel * il)
 
 memory::WebElement Dom::query(const QString & selector) {
 	QString newId = object::Element::getNewId();
+	memory::WebElement web;
 
-	emit requestJsExecution(
-	  newId % R"( = nm(")" % selector %
-		R"("); )" % newId % ".length",
-	  [this, selector, newId](const QVariant & var) {
-		  memory::WebElement web;
+	web.count    = il->server->runJS(
+					   newId % R"( = nm(")" % selector %
+						 R"("); )" % newId % ".length").toInt();
+	web.selector = selector;
+	web.variable = newId;
 
-		  web.count    = var.toInt();
-		  web.selector = selector;
-		  web.variable = newId;
-
-		  this->newValue = QVariant::fromValue(web);
-	  });
+	newValue = QVariant::fromValue(web);
 
 	return newValue.value<memory::WebElement>();
 }
@@ -35,19 +31,16 @@ memory::WebElement Dom::query(const QString & selector) {
 memory::WebElement Dom::queryAll(const QStringList & selectors) {
 	QString newId     = object::Element::getNewId();
 	QString selector  = selectors.join(R"(").add(")");
-	QString selector2 = selectors.join(" ∪ ");
+	QString selector2 = selectors.join(" (+) ");
 
-	emit requestJsExecution(
-	  newId % R"( = nm()" % selector % R"("); )" % newId % ".length",
-	  [this, newId, selector2](const QVariant & var) {
-		  memory::WebElement web;
+	memory::WebElement web;
 
-		  web.count    = var.toInt();
-		  web.selector = selector2;
-		  web.variable = newId;
+	web.count    = il->server->runJS(
+					   newId % R"( = nm()" % selector % R"("); )" % newId % ".length").toInt();
+	web.selector = selector2;
+	web.variable = newId;
 
-		  this->newValue = QVariant::fromValue(web);
-	  });
+	newValue = QVariant::fromValue(web);
 
 	return newValue.value<memory::WebElement>();
 }
@@ -56,7 +49,7 @@ void Dom::runQuery(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 
 		query(args[0].object->getValue().toString());
-		newContext = new object::Element{newValue, true};
+		newContext = new object::Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -85,7 +78,7 @@ void Dom::runQueryAll(memory::ArgList & args) {
 		}
 
 		queryAll(selectors);
-		newContext = new object::Element{newValue, true};
+		newContext = new object::Element{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String ...>"));

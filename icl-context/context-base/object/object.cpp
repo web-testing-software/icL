@@ -84,8 +84,7 @@ QVariant Object::getValue() {
 		return container->getValue(varName);
 	}
 	else { /* value == Value::Js */
-		emit requestJsExecution(
-		  getter, [this](const QVariant & var) { this->newValue = var; });
+		newValue = il->server->runJS(getter);
 
 		return newValue;
 	}
@@ -104,7 +103,7 @@ void Object::setValue(const QVariant & value) {
 		container->setValue(varName, value);
 	}
 	else { /* this.value == Value.Js */
-		emit requestJsExecution(setter.arg(varToJsString(value)), nullptr);
+		il->server->runJS(setter.arg(varToJsString(value)));
 	}
 }
 
@@ -135,7 +134,7 @@ Object * Object::ensureRValue() {
 void Object::runIsRValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isRValue();
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -145,7 +144,7 @@ void Object::runIsRValue(memory::ArgList & args) {
 void Object::runIsReadOnly(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isReadOnly();
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -155,7 +154,7 @@ void Object::runIsReadOnly(memory::ArgList & args) {
 void Object::runisLValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isLValue();
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -165,7 +164,7 @@ void Object::runisLValue(memory::ArgList & args) {
 void Object::runIsLink(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isLink();
-		newContext = new Boolean{newValue, true};
+		newContext = new Boolean{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -202,7 +201,7 @@ void Object::runToBoolean(memory::ArgList & args) {
 		return;
 	}
 
-	newContext = new Boolean{newValue, true};
+	newContext = new Boolean{il, newValue, true};
 }
 
 void Object::runToInt(memory::ArgList & args) {
@@ -226,7 +225,7 @@ void Object::runToInt(memory::ArgList & args) {
 		return;
 	}
 
-	newContext = new Int{newValue, true};
+	newContext = new Int{il, newValue, true};
 }
 
 void Object::runToDouble(memory::ArgList & args) {
@@ -250,7 +249,7 @@ void Object::runToDouble(memory::ArgList & args) {
 		return;
 	}
 
-	newContext = new Double{newValue, true};
+	newContext = new Double{il, newValue, true};
 }
 
 void Object::runToString(memory::ArgList & args) {
@@ -274,7 +273,7 @@ void Object::runToString(memory::ArgList & args) {
 		return;
 	}
 
-	newContext = new String{newValue, true};
+	newContext = new String{il, newValue, true};
 }
 
 void Object::runToList(memory::ArgList & args) {
@@ -298,17 +297,17 @@ void Object::runToList(memory::ArgList & args) {
 		return;
 	}
 
-	newContext = new List{newValue, true};
+	newContext = new List{il, newValue, true};
 }
 
 void Object::sendWrongCast(const QString & to) {
-	emit exception({-1, "Type " % memory::typeToString(type()) %
-						  " can not be casted to " % to});
+	il->vm->exception({-1, "Type " % memory::typeToString(type()) %
+							 " can not be casted to " % to});
 }
 
 void Object::sendCastFailed(const QString & value, const QString & type) {
-	emit exception({-3, R"(The string ")" % value %
-						  R"(" cannot be casted to )" % type});
+	il->vm->exception({-3, R"(The string ")" % value %
+							 R"(" cannot be casted to )" % type});
 }
 
 void Object::runCast(const QString & name, memory::ArgList & args) {

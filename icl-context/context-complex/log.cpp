@@ -17,7 +17,7 @@ void Log::log(Log::Level level, const QString & message) {
 		levelAsInt = 2;
 	}
 
-	emit newLog(levelAsInt, message);
+	il->server->newLog(levelAsInt, message);
 }
 
 void Log::runAnything(Log::Level level, memory::ArgList & args) {

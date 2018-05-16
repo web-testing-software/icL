@@ -52,6 +52,8 @@ public:
 	 */
 	Object(memory::InterLevel * il, const Object * const object);
 
+	virtual ~Object() = default;
+
 	// static
 
 private:

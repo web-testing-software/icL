@@ -9,7 +9,7 @@ Define::Define(memory::InterLevel * il)
 	: Complex(il) {}
 
 void Define::signal(int code, const QString & name) {
-	emit newSignal(code, name);
+	il->inter->newSignal(code, name);
 }
 
 void Define::runSignal(memory::ArgList & args) {
