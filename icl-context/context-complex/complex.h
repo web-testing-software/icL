@@ -25,7 +25,7 @@ namespace icL::context::complex {
 class Complex : public Context
 {
 public:
-	Complex() = default;
+	Complex(memory::InterLevel * il);
 
 	// Context interface
 public:

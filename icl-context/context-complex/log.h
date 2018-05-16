@@ -27,7 +27,7 @@ class Log : Complex
 	enum class Level { Info, Warm, Error };
 
 public:
-	Log() = default;
+	Log(memory::InterLevel * il);
 
 	void log(Level level, const QString & message);
 
@@ -37,9 +37,6 @@ private:
 	void runInfo(memory::ArgList & args);
 	void runWarm(memory::ArgList & args);
 	void runError(memory::ArgList & args);
-
-signals:
-	void newLog(int level, const QString & message);
 
 	// Context interface
 public:

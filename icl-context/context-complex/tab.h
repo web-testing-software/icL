@@ -25,15 +25,12 @@ namespace icL::context::complex {
 class Tab : Complex
 {
 public:
-	Tab() = default;
+	Tab(memory::InterLevel * il);
 
 	bool get(const QString & url);
 
 private:
 	void runGet(memory::ArgList & args);
-
-signals:
-	void getSignal(const QString & url, std::function<void(bool)> feedbback);
 
 	// Context interface
 public:

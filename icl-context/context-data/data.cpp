@@ -2,7 +2,8 @@
 
 namespace icL::context::data {
 
-Data::Data() = default;
+Data::Data(memory::InterLevel * il)
+	: Context(il){};
 
 
 

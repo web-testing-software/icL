@@ -2,7 +2,7 @@
 
 namespace icL::context::code::control::catch0 {
 
-Catch::Catch(const memory::CodeFragment & source)
-	: Control(source){};
+Catch::Catch(memory::InterLevel * il, const memory::CodeFragment & source)
+	: Control(il, source){};
 
 }  // namespace icL::context::code::control::catch0

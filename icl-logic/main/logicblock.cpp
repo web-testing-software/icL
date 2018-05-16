@@ -2,9 +2,9 @@
 
 namespace icL::logic {
 
-LogicBlock::LogicBlock() = default;
+LogicBlock::LogicBlock(memory::InterLevel * il)
+	: memory::Node(il){};
 
-LogicBlock::~LogicBlock() = default;
 
 /**
  * @brief LogicBlock::getResult - calculate the result and save it to the

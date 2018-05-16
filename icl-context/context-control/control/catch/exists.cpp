@@ -7,8 +7,9 @@
 namespace icL::context::code::control::catch0 {
 
 
-Exists::Exists(const memory::CodeFragment & source, bool isEmiter)
-	: Catch(source)
+Exists::Exists(
+  memory::InterLevel * il, const memory::CodeFragment & source, bool isEmiter)
+	: Catch(il, source)
 	, isEmiter(isEmiter) {
 	m_role = Role::Exists;
 }

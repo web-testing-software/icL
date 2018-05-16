@@ -2,7 +2,8 @@
 
 namespace icL::logic::cross {
 
-NotBlock::NotBlock() = default;
+NotBlock::NotBlock(memory::InterLevel * il)
+	: CrossBlock(il){};
 
 /**
  * @brief NotBlock::calcResult - invert the result of the secound block

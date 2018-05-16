@@ -2,11 +2,12 @@
 
 namespace icL::context::object {
 
-Void::Void()
-	: Object(QVariant(), true) {}
+Void::Void(memory::InterLevel * il)
+	: Object(il, QVariant(), true) {}
 
-Void::Void(const QString & getter, const QString & setter)
-	: Object(getter, setter) {}
+Void::Void(
+  memory::InterLevel * il, const QString & getter, const QString & setter)
+	: Object(il, getter, setter) {}
 
 
 bool Void::toBoolean() {

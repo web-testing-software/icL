@@ -25,7 +25,7 @@ namespace icL::context::code::control {
 class Else : public Control
 {
 public:
-	Else();
+	Else(memory::InterLevel * il);
 
 	// Context interface
 public:

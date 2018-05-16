@@ -25,7 +25,7 @@ namespace icL::context::code {
 class ForAny : public Code
 {
 public:
-	ForAny(const memory::CodeFragment & source);
+	ForAny(memory::InterLevel *il, const memory::CodeFragment & source);
 
 	// Context interface
 public:

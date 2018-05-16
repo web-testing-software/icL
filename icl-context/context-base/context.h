@@ -7,8 +7,7 @@
 
 #include <functional>
 
-#include <QObject>
-
+#include <icl-memory/interlevel/node.h>
 
 /**
  *  icL
@@ -53,11 +52,11 @@ enum class Role {
 
 enum class Prefix { None, Attr, Data, Css };
 
-class Context : public QObject
+class Context : public memory::Node
 {
 
 public:
-	Context();
+	Context(memory::InterLevel * il);
 
 	virtual bool checkPrev(const Context * context) const = 0;
 	virtual bool canBeAtEnd() const                       = 0;
@@ -90,17 +89,6 @@ protected:
 	void sendWrongArglist(memory::ArgList & args, const QString & expected);
 
 	QString varToJsString(const QVariant & var);
-
-signals:
-	void exception(memory::Exception exc) const;
-	void interrupt(
-	  memory::FunctionCall, std::function<void(memory::Return &)>) const;
-
-public slots:
-	void repeatException(memory::Exception exc);
-	void repeat(
-	  memory::FunctionCall run, std::function<void(memory::Return &)> feedback);
-
 
 protected:
 	Role m_role = Role::NoRole;

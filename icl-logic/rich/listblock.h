@@ -28,8 +28,8 @@ namespace icL::logic::rich {
 class ListBlock : public RichBlock
 {
 public:
-	ListBlock(OperationType otype);
-	ListBlock(RichBlock * block);
+	ListBlock(memory::InterLevel *il, OperationType otype);
+	ListBlock(memory::InterLevel *il, RichBlock * block);
 
 	static bool check(const QString & value);
 

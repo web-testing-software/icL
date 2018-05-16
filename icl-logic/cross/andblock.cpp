@@ -2,7 +2,8 @@
 
 namespace icL::logic::cross {
 
-AndBlock::AndBlock() = default;
+AndBlock::AndBlock(memory::InterLevel * il)
+	: CrossBlock(il){};
 
 /**
  * @brief AndBlock::calcResult - append operation && to child blocks

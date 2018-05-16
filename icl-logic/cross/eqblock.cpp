@@ -2,7 +2,8 @@
 
 namespace icL::logic::cross {
 
-EqBlock::EqBlock() = default;
+EqBlock::EqBlock(memory::InterLevel * il)
+	: CrossBlock(il){};
 
 /**
  * @brief EqBlock::calcResult - append == operation to child blocks

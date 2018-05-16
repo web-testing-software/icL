@@ -2,13 +2,13 @@
 
 namespace icL::logic::rich {
 
-DoubleBlock::DoubleBlock(OperationType otype)
-	: icL::logic::RichBlock(otype) {
+DoubleBlock::DoubleBlock(memory::InterLevel * il, OperationType otype)
+	: icL::logic::RichBlock(il, otype) {
 	casted = true;
 }
 
-DoubleBlock::DoubleBlock(RichBlock * block)
-	: RichBlock(block) {}
+DoubleBlock::DoubleBlock(memory::InterLevel * il, RichBlock * block)
+	: RichBlock(il, block) {}
 
 
 /**

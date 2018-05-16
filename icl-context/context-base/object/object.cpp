@@ -10,28 +10,35 @@
 
 namespace icL::context::object {
 
-Object::Object(memory::DataState * container, const QString & varName)
-	: container(container)
+Object::Object(
+  memory::InterLevel * il, memory::DataState * container,
+  const QString & varName)
+	: Context(il)
+	, container(container)
 	, varName(varName)
 	, value(Value::L) {
 	m_role = Role::Object;
 }
 
-Object::Object(const QVariant & rvalue, bool readonly)
-	: rvalue(rvalue)
+Object::Object(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
+	: Context(il)
+	, rvalue(rvalue)
 	, readonly(readonly)
 	, value(Value::R) {
 	m_role = Role::Object;
 }
 
-Object::Object(const QString & getter, const QString & setter)
-	: getter(getter)
+Object::Object(
+  memory::InterLevel * il, const QString & getter, const QString & setter)
+	: Context(il)
+	, getter(getter)
 	, setter(setter)
 	, value(Value::Js) {
 	m_role = Role::Object;
 }
 
-Object::Object(const Object * const object) {
+Object::Object(memory::InterLevel * il, const Object * const object)
+	: Context(il) {
 	if (object->value == Value::L) {
 		container = object->container;
 		varName   = object->varName;

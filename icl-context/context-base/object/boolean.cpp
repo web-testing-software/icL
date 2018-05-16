@@ -4,17 +4,21 @@ namespace icL::context::object {
 
 
 
-Boolean::Boolean(memory::DataState * container, const QString & varName)
-	: Object(container, varName) {}
+Boolean::Boolean(
+  memory::InterLevel * il, memory::DataState * container,
+  const QString & varName)
+	: Object(il, container, varName) {}
 
-Boolean::Boolean(const QVariant & rvalue, bool readonly)
-	: Object(rvalue, readonly) {}
+Boolean::Boolean(
+  memory::InterLevel * il, const QVariant & rvalue, bool readonly)
+	: Object(il, rvalue, readonly) {}
 
-Boolean::Boolean(const QString & getter, const QString & setter)
-	: Object(getter, setter) {}
+Boolean::Boolean(
+  memory::InterLevel * il, const QString & getter, const QString & setter)
+	: Object(il, getter, setter) {}
 
-Boolean::Boolean(const Object * const object)
-	: Object(object) {}
+Boolean::Boolean(memory::InterLevel * il, const Object * const object)
+	: Object(il, object) {}
 
 memory::Type Boolean::type() const {
 	return memory::Type::Boolean;

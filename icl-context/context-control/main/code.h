@@ -28,7 +28,7 @@ namespace icL::context::code {
 class Code : public Context
 {
 public:
-	Code(const memory::CodeFragment & source);
+	Code(memory::InterLevel *il, const memory::CodeFragment & source);
 
 	const memory::CodeFragment & source() const;
 

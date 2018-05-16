@@ -12,7 +12,8 @@
 
 namespace icL::context::data {
 
-Assign::Assign() {
+Assign::Assign(memory::InterLevel * il)
+	: Data(il) {
 	m_role = Role::Assign;
 };
 

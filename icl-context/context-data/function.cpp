@@ -9,11 +9,11 @@
 
 namespace icL::context::data {
 
-Function::Function(memory::Memory * mem, const QString & name)
-	: mem(mem)
+Function::Function(memory::InterLevel * il, const QString & name)
+	: Context(il)
 	, name(name) {
 	m_role      = Role::Function;
-	newFunction = mem->functions().contains(name);
+	newFunction = il->mem->functions().contains(name);
 }
 
 bool Function::exNewFunction() {

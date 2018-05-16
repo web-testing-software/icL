@@ -18,7 +18,8 @@
 
 namespace icL::context {
 
-Context::Context() = default;
+Context::Context(memory::InterLevel * il)
+	: memory::Node(il){};
 
 Context * Context::getNewContext() const {
 	return newContext;
@@ -145,9 +146,10 @@ void Context::sendWrongArglist(
 }
 
 QString Context::varToJsString(const QVariant & var) {
-	QString            ret;
-	QStringList        list = var.toStringList();
-	memory::WebElement web  = var.value<memory::WebElement>();
+	QString     ret;
+	QStringList list = var.toStringList();
+
+	memory::WebElement web = var.value<memory::WebElement>();
 
 	switch (var.type()) {
 	case QVariant::Bool:
@@ -183,15 +185,6 @@ QString Context::varToJsString(const QVariant & var) {
 	}
 
 	return ret;
-}
-
-void Context::repeatException(memory::Exception exc) {
-	emit exception(std::move(exc));
-}
-
-void Context::repeat(
-  memory::FunctionCall run, std::function<void(memory::Return &)> feedback) {
-	emit interrupt(std::move(run), std::move(feedback));
 }
 
 Context * Context::next() const {

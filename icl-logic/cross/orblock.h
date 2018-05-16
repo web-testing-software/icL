@@ -28,7 +28,7 @@ namespace icL::logic::cross {
 class OrBlock : public CrossBlock
 {
 public:
-	OrBlock();
+	OrBlock(memory::InterLevel * il);
 
 	// LogicBlock interface
 	bool calcResult() override;

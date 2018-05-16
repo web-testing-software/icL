@@ -30,9 +30,9 @@ class Int;
 class Element : public Object
 {
 public:
-	Element(memory::DataState * container, const QString & varName);
-	Element(const QVariant & rvalue, bool readonly = false);
-	Element(const Object * const object);
+	Element(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	Element(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Element(memory::InterLevel * il, const Object * const object);
 
 	// Id generator
 private:
@@ -140,10 +140,6 @@ private:
 private:
 	bool               isSingle(memory::WebElement & web);
 	memory::WebElement domTrans(const QString & method, const QString & arg);
-
-signals:
-	void requestClick(int x, int y);
-	void requestKeys(QString keys);
 
 	// Context interface
 public:

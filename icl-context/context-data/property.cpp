@@ -2,8 +2,10 @@
 
 namespace icL::context::data {
 
-Property::Property(const QString & name)
-	: name(name) {
+Property::Property(memory::InterLevel * il, Prefix prefix, const QString & name)
+	: Data(il)
+	, prefix(prefix)
+	, name(name) {
 	m_role = Role::Property;
 };
 
@@ -18,7 +20,7 @@ bool Property::canBeAtEnd() const {
 }
 
 bool Property::execute() {
-	newContext = m_prev->runProperty(name);
+	newContext = m_prev->runProperty(prefix, name);
 
 	return true;
 }

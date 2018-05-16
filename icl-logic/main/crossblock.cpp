@@ -2,7 +2,8 @@
 
 namespace icL::logic {
 
-CrossBlock::CrossBlock() = default;
+CrossBlock::CrossBlock(memory::InterLevel * il)
+	: LogicBlock(il){};
 
 /**
  * @brief CrossBlock::canAcceptBlock - the block can accept a child if the first

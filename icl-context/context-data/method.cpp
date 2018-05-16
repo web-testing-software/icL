@@ -5,8 +5,9 @@
 
 namespace icL::context::data {
 
-Method::Method(const QString & name)
-	: name(name) {
+Method::Method(memory::InterLevel * il, const QString & name)
+	: Data(il)
+	, name(name) {
 	m_role = Role::Method;
 };
 

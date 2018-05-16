@@ -25,7 +25,7 @@ namespace icL::context::code::control::catch0 {
 class Exists : public Catch
 {
 public:
-	Exists(const memory::CodeFragment & source, bool isEmiter);
+	Exists(memory::InterLevel * il, const memory::CodeFragment & source, bool isEmiter);
 
 	bool getIsEmiter() const;
 

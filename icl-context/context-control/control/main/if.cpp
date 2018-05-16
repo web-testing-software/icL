@@ -13,8 +13,9 @@
 namespace icL::context::code::control {
 
 
-If::If(const memory::CodeFragment & source, bool expExe)
-	: Control(source)
+If::If(
+  memory::InterLevel * il, const memory::CodeFragment & source, bool expExe)
+	: Control(il, source)
 	, expressionExecuted(expExe) {
 	m_role = Role::If;
 }

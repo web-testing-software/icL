@@ -1,6 +1,9 @@
 #ifndef VIRTUALMACHINE_H
 #define VIRTUALMACHINE_H
 
+#include <icl-memory/interlevel/interlevel.h>
+
+
 /**
  *  @namespace icL
  *  |- app
@@ -23,6 +26,9 @@ class VirtualMachine
 {
 public:
 	VirtualMachine();
+
+private:
+	memory::interlevel::InterLevel il;
 };
 
 }  // namespace icL

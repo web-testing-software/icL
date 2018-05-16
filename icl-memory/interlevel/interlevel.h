@@ -3,17 +3,21 @@
 
 #include "interfaces.h"
 
+#include <state/memory.h>
 
-namespace icL::memory::interlevel {
 
-struct InterLevel {
-	Interpreteur *inter;
-	VirtualMachine *vm;
-	VirtualMachineStack *vms;
-	Server *server;
+namespace icL::memory {
+
+struct InterLevel
+{
+	memory::Memory *      mem;
+	Interpreteur *        inter;
+	VirtualMachine *      vm;
+	VirtualMachineStack * vms;
+	Server *              server;
 };
 
-}
+}  // namespace icL::memory
 
 
-#endif // INTERLEVEL_H
+#endif  // INTERLEVEL_H

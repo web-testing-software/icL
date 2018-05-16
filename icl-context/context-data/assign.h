@@ -25,7 +25,7 @@ namespace icL::context::data {
 class Assign : public Data
 {
 public:
-	Assign();
+	Assign(memory::InterLevel * il);
 
 	// Context interface
 public:

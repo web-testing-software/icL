@@ -42,8 +42,8 @@ public:
 		NotNot
 	};
 
-	RichBlock(OperationType otype);
-	RichBlock(RichBlock * block);
+	RichBlock(memory::InterLevel * il, OperationType otype);
+	RichBlock(memory::InterLevel *il, RichBlock * block);
 	~RichBlock() override;
 
 	bool canAcceptCode();

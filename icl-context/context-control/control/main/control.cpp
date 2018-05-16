@@ -3,8 +3,8 @@
 namespace icL::context::code::control {
 
 
-Control::Control(const memory::CodeFragment & source)
-	: Code(source) {}
+Control::Control(memory::InterLevel * il, const memory::CodeFragment & source)
+	: Code(il, source) {}
 
 bool Control::canBeAtEnd() const {
 	return false;

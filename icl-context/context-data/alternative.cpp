@@ -2,7 +2,8 @@
 
 namespace icL::context::data {
 
-Alternative::Alternative() {
+Alternative::Alternative(memory::InterLevel * il)
+	: Data(il) {
 	m_role = Role::Alternative;
 };
 

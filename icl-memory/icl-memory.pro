@@ -31,7 +31,8 @@ HEADERS += \
     structures/return.h \
     structures/exception.h \
     interlevel/interlevel.h \
-    interlevel/interfaces.h
+    interlevel/interfaces.h \
+    interlevel/node.h
 
 SOURCES += \
 	state/datastate.cpp \

@@ -24,10 +24,10 @@ namespace icL::context::object {
 class String : public Object
 {
 public:
-	String(memory::DataState * container, const QString & varName);
-	String(const QVariant & rvalue, bool readonly = false);
-	String(const QString & getter, const QString & setter);
-	String(const Object * const object);
+	String(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	String(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	String(memory::InterLevel * il, const QString & getter, const QString & setter);
+	String(memory::InterLevel * il, const Object * const object);
 
 	// Context interface
 public:

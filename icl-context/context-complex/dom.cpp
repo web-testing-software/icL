@@ -10,6 +10,9 @@
 
 namespace icL::context::complex {
 
+Dom::Dom(memory::InterLevel * il)
+	: Complex(il) {}
+
 memory::WebElement Dom::query(const QString & selector) {
 	QString newId = object::Element::getNewId();
 

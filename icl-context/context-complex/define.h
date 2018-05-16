@@ -25,7 +25,7 @@ namespace icL::context::complex {
 class Define : public Complex
 {
 public:
-	Define() = default;
+	Define(memory::InterLevel * il);
 
 	void signal(int code, const QString & name);
 

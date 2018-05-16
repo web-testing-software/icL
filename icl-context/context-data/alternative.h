@@ -25,7 +25,7 @@ namespace icL::context::data {
 class Alternative : public Data
 {
 public:
-	Alternative();
+	Alternative(memory::InterLevel * il);
 
 private:
 	bool theLeftOperandIsOk = false;

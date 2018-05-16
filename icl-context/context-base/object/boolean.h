@@ -25,10 +25,10 @@ namespace icL::context::object {
 class Boolean : public Object
 {
 public:
-	Boolean(memory::DataState * container, const QString & varName);
-	Boolean(const QVariant & rvalue, bool readonly = false);
-	Boolean(const QString & getter, const QString & setter);
-	Boolean(const Object * const object);
+	Boolean(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	Boolean(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Boolean(memory::InterLevel * il, const QString & getter, const QString & setter);
+	Boolean(memory::InterLevel * il, const Object * const object);
 
 	// Context interface
 public:

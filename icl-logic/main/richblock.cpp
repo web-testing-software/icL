@@ -8,11 +8,13 @@
 
 namespace icL::logic {
 
-RichBlock::RichBlock(OperationType otype) {
+RichBlock::RichBlock(memory::InterLevel * il, OperationType otype)
+	: LogicBlock(il) {
 	operationType = otype;
 }
 
-RichBlock::RichBlock(RichBlock * block) {
+RichBlock::RichBlock(memory::InterLevel * il, RichBlock * block)
+	: LogicBlock(il) {
 	operationType = block->operationType;
 	value1        = block->value1;
 	value2        = block->value2;

@@ -27,7 +27,7 @@ namespace icL::context::complex {
 class Dom : Complex
 {
 public:
-	Dom() = default;
+	Dom(memory::InterLevel * il);
 
 	memory::WebElement query(const QString & selector);
 	memory::WebElement queryAll(const QStringList & selectors);
@@ -35,10 +35,6 @@ public:
 private:
 	void runQuery(memory::ArgList & args);
 	void runQueryAll(memory::ArgList & args);
-
-signals:
-	void requestJsExecution(
-	  const QString & str, std::function<void(const QVariant & var)> feedback);
 
 	// Context interface
 public:

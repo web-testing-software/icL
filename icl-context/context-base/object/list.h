@@ -25,10 +25,10 @@ namespace icL::context::object {
 class List : public Object
 {
 public:
-	List(memory::DataState * container, const QString & varName);
-	List(const QVariant & rvalue, bool readonly = false);
-	List(const QString & getter, const QString & setter);
-	List(const Object * const object);
+	List(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	List(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	List(memory::InterLevel * il, const QString & getter, const QString & setter);
+	List(memory::InterLevel * il, const Object * const object);
 
 	// static data
 private:

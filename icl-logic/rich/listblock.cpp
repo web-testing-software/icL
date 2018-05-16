@@ -6,13 +6,13 @@
 
 namespace icL::logic::rich {
 
-ListBlock::ListBlock(OperationType otype)
-	: RichBlock(otype) {
+ListBlock::ListBlock(memory::InterLevel * il, OperationType otype)
+	: RichBlock(il, otype) {
 	casted = true;
 }
 
-ListBlock::ListBlock(RichBlock * block)
-	: RichBlock(block) {}
+ListBlock::ListBlock(memory::InterLevel * il, RichBlock * block)
+	: RichBlock(il, block) {}
 
 
 /**

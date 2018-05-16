@@ -2,8 +2,10 @@
 
 namespace icL::context::data {
 
-Parameter::Parameter(const QString & name, memory::Type type)
-	: m_name(name)
+Parameter::Parameter(
+  memory::InterLevel * il, const QString & name, memory::Type type)
+	: Data(il)
+	, m_name(name)
 	, m_type(type) {
 	m_role = Role::Argument;
 }

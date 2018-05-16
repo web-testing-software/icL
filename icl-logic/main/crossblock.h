@@ -29,7 +29,7 @@ namespace icL::logic {
 class CrossBlock : public LogicBlock
 {
 public:
-	CrossBlock();
+	CrossBlock(memory::InterLevel * il);
 	~CrossBlock();
 
 	bool         canAcceptBlock();

@@ -2,13 +2,13 @@
 
 namespace icL::logic::rich {
 
-BooleanBlock::BooleanBlock(OperationType otype)
-	: RichBlock(otype) {
+BooleanBlock::BooleanBlock(memory::InterLevel * il, OperationType otype)
+	: RichBlock(il, otype) {
 	casted = true;
 }
 
-BooleanBlock::BooleanBlock(RichBlock * block)
-	: RichBlock(block) {}
+BooleanBlock::BooleanBlock(memory::InterLevel * il, RichBlock * block)
+	: RichBlock(il, block) {}
 
 /**
  * @brief BooleanBlock::calcResult - compare values

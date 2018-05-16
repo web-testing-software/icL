@@ -25,7 +25,7 @@ namespace icL::context::data {
 class Method : public Data
 {
 public:
-	Method(const QString & name);
+	Method(memory::InterLevel * il, const QString & name);
 
 protected:
 	QString   name;

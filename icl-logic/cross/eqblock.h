@@ -28,7 +28,7 @@ namespace icL::logic::cross {
 class EqBlock : public CrossBlock
 {
 public:
-	EqBlock();
+	EqBlock(memory::InterLevel * il);
 
 	// LogicBlock interface
 protected:

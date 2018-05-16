@@ -2,8 +2,8 @@
 
 namespace icL::context::code {
 
-ForAny::ForAny(const memory::CodeFragment & source)
-	: Code(source) {
+ForAny::ForAny(memory::InterLevel * il, const memory::CodeFragment & source)
+	: Code(il, source) {
 	m_role = Role::ForAny;
 };
 

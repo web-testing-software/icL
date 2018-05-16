@@ -25,9 +25,10 @@ namespace icL::context::data {
 class Property : public Data
 {
 public:
-	Property(const QString & name);
+	Property(memory::InterLevel * il, Prefix prefix, const QString & name);
 
 protected:
+	Prefix prefix;
 	QString name;
 
 	// Context interface

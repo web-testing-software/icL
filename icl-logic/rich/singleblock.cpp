@@ -2,8 +2,8 @@
 
 namespace icL::logic::rich {
 
-SingleBlock::SingleBlock(OperationType otype)
-	: icL::logic::RichBlock(otype) {
+SingleBlock::SingleBlock(memory::InterLevel * il, OperationType otype)
+	: RichBlock(il, otype) {
 	casted = true;
 }
 

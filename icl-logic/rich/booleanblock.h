@@ -28,8 +28,8 @@ namespace icL::logic::rich {
 class BooleanBlock : public RichBlock
 {
 public:
-	BooleanBlock(OperationType otype);
-	BooleanBlock(RichBlock * block);
+	BooleanBlock(memory::InterLevel *il, OperationType otype);
+	BooleanBlock(memory::InterLevel *il, RichBlock * block);
 
 	//	static bool check (const QString &value);
 

@@ -1,6 +1,9 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include <icl-memory/interlevel/interlevel.h>
+#include <icl-memory/interlevel/node.h>
+
 #include <QObject>
 #include <QQuickItem>
 #include <QString>
@@ -27,9 +30,11 @@ namespace icL {
 /**
  * @brief The Server class - class to sync two treads
  */
-class Server : public QObject
+class Server
+	: public QObject
+	, public memory::Node
 {
-	Q_OBJECT
+	//	Q_OBJECT
 
 	Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
 																		webEngineChanged)
@@ -37,7 +42,7 @@ class Server : public QObject
 	enum class WaitFor { GoTo, PageLoading, ExecuteJS, ErrorDialog, Nothing };
 
 public:
-	explicit Server(QObject * parent = nullptr);
+	explicit Server(memory::InterLevel * il, QObject * parent = nullptr);
 
 	/**
 	 * @brief goTo - go to url and wait for page loading
@@ -60,38 +65,6 @@ public:
 	 */
 	QVariant executeJS(const QString & code);
 
-	/**
-	 * @brief showErrorDialog - show a dialog window, which contains all occurer
-	 * errors
-	 * @return true if the user is agree to ignore errors, otherwise false
-	 */
-	bool showErrorDialog();
-
-	/**
-	 * @brief addToErrorsStack - add new error in the errors stack
-	 * @param error
-	 */
-	void addToErrorsStack(const QString & error);
-
-	/**
-	 * @brief getErrorsStr - return errros and clear the errors stack
-	 * @return all errors as string
-	 */
-	QString getErrorsStr();
-
-	/**
-	 * @brief instance - class Server is a singleton
-	 * @return the first instance of Server
-	 */
-	//	static Server* instance ();
-
-	/**
-	 * @brief check_success - commom errors catching
-	 * @param success - a bool to check
-	 * @param func - the function name, which we get or not a error
-	 */
-	void check_success(bool success, const QString & func);
-
 	// Functions to call from qml
 
 	/**
@@ -104,11 +77,6 @@ public:
 	 * @param variant - the value returned by script
 	 */
 	Q_INVOKABLE void finish_executeJS(QVariant variant);
-	/**
-	 * @brief finish_showErrorDialog - called on user decision
-	 * @param skip - true if user request to skip errors
-	 */
-	Q_INVOKABLE void finish_showErrorDialog(bool skip);
 
 	/**
 	 * @brief webEngine - QML use only

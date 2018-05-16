@@ -25,7 +25,7 @@ namespace icL::context::code::control::catch0 {
 class Slot : public Catch
 {
 public:
-	Slot();
+	Slot(memory::InterLevel * il);
 
 	bool giveSignal(int code);
 

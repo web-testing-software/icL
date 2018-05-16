@@ -2,7 +2,8 @@
 
 namespace icL::logic::cross {
 
-XOrBlock::XOrBlock() = default;
+XOrBlock::XOrBlock(memory::InterLevel * il)
+	: CrossBlock(il){};
 
 /**
  * @brief XOrBlock::calcResult - append != operation to child blocks

@@ -8,8 +8,9 @@
 
 namespace icL {
 
-Server::Server(QObject * parent)
-	: QObject(parent) {
+Server::Server(memory::InterLevel * il, QObject * parent)
+	: memory::Node(il)
+	, QObject(parent) {
 
 	connect(this, &Server::invoke_executeJS, this, &Server::release_executeJS);
 	connect(this, &Server::invoke_goTo, this, &Server::release_goTo);
@@ -49,6 +50,7 @@ bool Server::waitForPageLoading() {
 	while (working) {
 		;
 	}
+
 	return variant.toBool();
 }
 
@@ -68,47 +70,6 @@ QVariant Server::executeJS(const QString & code) {
 	return variant;
 }
 
-bool Server::showErrorDialog() {
-	if (waitFor != WaitFor::Nothing) {
-		return false;
-	}
-
-	waitFor = WaitFor::ErrorDialog;
-	working = true;
-
-	emit invoke_showErrorDialog();
-	while (working) {
-		;
-	}
-	return variant.toBool();
-}
-
-void Server::addToErrorsStack(const QString & error) {
-	errors_stack.append(error);
-}
-
-QString Server::getErrorsStr() {
-	QString ret = errors_stack.join('\n');
-
-	errors_stack.clear();
-	return ret;
-}
-
-void Server::check_success(bool success, const QString & func) {
-	if (success) {
-		return;
-	}
-
-	if (stop_on_error) {
-		//		if (virtualMachine != nullptr) {
-		//			drive.setError (icL::Error::SERVER_ERROR);
-		//		}
-		//		else {
-		//			worker->setToErrorState ();
-		//		}
-		addToErrorsStack("error detected in " + func);
-	}
-}
 
 void Server::finish_PageLoading(bool success) {
 	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
@@ -123,13 +84,6 @@ void Server::finish_executeJS(QVariant variant) {
 		this->variant = std::move(variant);
 		this->waitFor = WaitFor::Nothing;
 		this->working = false;
-	}
-}
-
-void Server::finish_showErrorDialog(bool) {
-	if (waitFor == WaitFor::ErrorDialog) {
-		waitFor = WaitFor::Nothing;
-		working = false;
 	}
 }
 
@@ -195,21 +149,6 @@ void Server::release_waitForPageLoading() {
 
 void Server::release_executeJS() {
 	//	webBrowser->runJS (code);
-}
-
-void Server::release_showErrorDialog() {
-	//	QMessageBox mbox;
-
-	//	mbox.setWindowTitle ("Error occurer");
-	//	mbox.setText ("Do you want to ignore it?");
-	//	mbox.setInformativeText (getErrorsStr ());
-	//	QPushButton *yesButton = mbox.addButton (QMessageBox::Yes);
-	//	mbox.addButton (QMessageBox::No);
-	//	mbox.show ();
-	//	mbox.exec ();
-
-	//	boolean = mbox.clickedButton () == yesButton;
-	//	working = false;
 }
 
 }  // namespace icL

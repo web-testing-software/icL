@@ -7,10 +7,8 @@
 
 
 namespace icL::memory {
-class Exception;
-}
 
-namespace icL::memory::interlevel {
+class Exception;
 
 class Interpreteur
 {

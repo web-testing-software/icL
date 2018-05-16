@@ -2,8 +2,8 @@
 
 namespace icL::context::code::control {
 
-Else::Else()
-	: Control(memory::CodeFragment()) {
+Else::Else(memory::InterLevel * il)
+	: Control(il, memory::CodeFragment()) {
 	m_role = Role::Else;
 };
 

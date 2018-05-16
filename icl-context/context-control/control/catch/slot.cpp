@@ -4,8 +4,8 @@
 
 namespace icL::context::code::control::catch0 {
 
-Slot::Slot()
-	: Catch(memory::CodeFragment()) {
+Slot::Slot(memory::InterLevel * il)
+	: Catch(il, memory::CodeFragment()) {
 	m_role = Role::Slot;
 }
 

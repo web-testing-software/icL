@@ -29,7 +29,7 @@ namespace icL::logic::rich {
 class SingleBlock : public RichBlock
 {
 public:
-	SingleBlock(OperationType otype);
+	SingleBlock(memory::InterLevel *il, OperationType otype);
 
 protected:
 	bool calcResult() override;

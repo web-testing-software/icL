@@ -6,6 +6,9 @@
 
 namespace icL::context::complex {
 
+Tab::Tab(memory::InterLevel * il)
+	: Complex(il) {}
+
 bool Tab::get(const QString & url) {
 	emit getSignal(url, [this](bool success) { this->newValue = success; });
 

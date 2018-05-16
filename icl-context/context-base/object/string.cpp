@@ -4,17 +4,20 @@ namespace icL::context::object {
 
 
 
-String::String(memory::DataState * container, const QString & varName)
-	: Object(container, varName) {}
+String::String(
+  memory::InterLevel * il, memory::DataState * container,
+  const QString & varName)
+	: Object(il, container, varName) {}
 
-String::String(const QVariant & rvalue, bool readonly)
-	: Object(rvalue, readonly) {}
+String::String(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
+	: Object(il, rvalue, readonly) {}
 
-String::String(const QString & getter, const QString & setter)
-	: Object(getter, setter) {}
+String::String(
+  memory::InterLevel * il, const QString & getter, const QString & setter)
+	: Object(il, getter, setter) {}
 
-String::String(const Object * const object)
-	: Object(object) {}
+String::String(memory::InterLevel * il, const Object * const object)
+	: Object(il, object) {}
 
 
 

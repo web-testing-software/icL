@@ -25,7 +25,7 @@ namespace icL::context::data {
 class Parameter : public Data
 {
 public:
-	Parameter(const QString & name, memory::Type type);
+	Parameter(memory::InterLevel * il, const QString & name, memory::Type type);
 
 	const QString & name() const;
 	memory::Type    type() const;

@@ -5,6 +5,9 @@
 
 namespace icL::context::complex {
 
+Define::Define(memory::InterLevel * il)
+	: Complex(il) {}
+
 void Define::signal(int code, const QString & name) {
 	emit newSignal(code, name);
 }

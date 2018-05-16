@@ -1,6 +1,7 @@
 #ifndef LOGICBLOCK_H
 #define LOGICBLOCK_H
 
+#include <icl-memory/interlevel/node.h>
 #include <icl-memory/state/memory.h>
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/return.h>
@@ -38,10 +39,10 @@ enum class ResultValue {
 /**
  * @brief The LogicBlock class
  */
-class LogicBlock
+class LogicBlock : public memory::Node
 {
 public:
-	LogicBlock();
+	LogicBlock(memory::InterLevel * il);
 	virtual ~LogicBlock();
 
 	bool         getResult();
@@ -58,10 +59,6 @@ public:
 
 	LogicBlock * getParent();
 	void         setParent(LogicBlock * parent);
-
-signals:
-	void exception(memory::Exception exc);
-	void interrupt(memory::FunctionCall, std::function<void(memory::Return &)>);
 
 protected:
 	virtual bool calcResult() = 0;

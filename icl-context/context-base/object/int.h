@@ -25,10 +25,10 @@ namespace icL::context::object {
 class Int : public Object
 {
 public:
-	Int(memory::DataState * container, const QString & varName);
-	Int(const QVariant & rvalue, bool readonly = false);
-	Int(const QString & getter, const QString & setter);
-	Int(const Object * const object);
+	Int(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	Int(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Int(memory::InterLevel * il, const QString & getter, const QString & setter);
+	Int(memory::InterLevel * il, const Object * const object);
 
 	// Context interface
 public:

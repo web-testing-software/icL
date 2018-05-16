@@ -28,7 +28,7 @@ namespace icL::context::data {
 class Function : public Context
 {
 public:
-	Function(memory::Memory * mem, const QString & name);
+	Function(memory::InterLevel * il, const QString & name);
 
 protected:
 	bool exNewFunction();
@@ -39,8 +39,6 @@ protected:
 	void sendWrongArgs();
 
 private:
-	memory::Memory * mem;
-
 	QString name;
 	bool    newFunction      = false;
 	bool    functionExecuted = false;

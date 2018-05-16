@@ -25,7 +25,7 @@ namespace icL::context::data {
 class Data : public Context
 {
 public:
-	Data();
+	Data(memory::InterLevel * il);
 
 	// Context interface
 public:

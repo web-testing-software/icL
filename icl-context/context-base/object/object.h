@@ -32,25 +32,25 @@ public:
 	 * @param container - a DataState pointer
 	 * @param varName - the name of var in container
 	 */
-	Object(memory::DataState * container, const QString & varName);
+	Object(memory::InterLevel * il, memory::DataState * container, const QString & varName);
 	/**
 	 * @brief Object - constuct a R-Value
 	 * @param rvalue - the value of object
 	 * @param readonly - true restricts assigns
 	 */
-	Object(const QVariant & rvalue, bool readonly = false);
+	Object(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 	/**
 	 * @brief Object - construct a JS-Value
 	 * @param getter - a getter string, eg. window.height
 	 * @param setter - a setter string, eg. window.height = %1 (QString arg)
 	 */
-	Object(const QString & getter, const QString & setter);
+	Object(memory::InterLevel * il, const QString & getter, const QString & setter);
 	/**
 	 * @brief Object - construct a object copy, used for coping values on
 	 * function call
 	 * @param object - pointer to object, which need to be copied
 	 */
-	Object(const Object * const object);
+	Object(memory::InterLevel * il, const Object * const object);
 
 	// static
 
@@ -104,11 +104,6 @@ protected:
 	void sendWrongCast(const QString & to);
 	void sendCastFailed(const QString & value, const QString & type);
 	void runCast(const QString & name, memory::ArgList & args);
-
-signals:
-	void requestJsExecution(
-	  const QString &                           str,
-	  std::function<void(const QVariant & var)> feedback) const;
 
 protected:
 	// LValue

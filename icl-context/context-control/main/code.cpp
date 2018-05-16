@@ -2,8 +2,9 @@
 
 namespace icL::context::code {
 
-Code::Code(const memory::CodeFragment & source)
-	: m_source(source) {
+Code::Code(memory::InterLevel * il, const memory::CodeFragment & source)
+	: Context(il)
+	, m_source(source) {
 	m_role = Role::Code;
 }
 

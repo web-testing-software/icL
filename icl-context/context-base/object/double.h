@@ -25,10 +25,10 @@ namespace icL::context::object {
 class Double : public Object
 {
 public:
-	Double(memory::DataState * container, const QString & varName);
-	Double(const QVariant & rvalue, bool readonly = false);
-	Double(const QString & getter, const QString & setter);
-	Double(const Object * const object);
+	Double(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	Double(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Double(memory::InterLevel * il, const QString & getter, const QString & setter);
+	Double(memory::InterLevel * il, const Object * const object);
 
 	// Context interface
 public:

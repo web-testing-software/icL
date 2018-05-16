@@ -4,6 +4,9 @@
 
 namespace icL::context::complex {
 
+Log::Log(memory::InterLevel * il)
+	: Complex(il) {}
+
 void Log::log(Log::Level level, const QString & message) {
 	int levelAsInt = 0;
 

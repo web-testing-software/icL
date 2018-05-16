@@ -28,7 +28,7 @@ namespace icL::logic::cross {
 class NotBlock : public CrossBlock
 {
 public:
-	NotBlock();
+	NotBlock(memory::InterLevel * il);
 
 	// LogicBlock interface
 	bool calcResult() override;

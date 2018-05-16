@@ -2,7 +2,8 @@
 
 namespace icL::logic::cross {
 
-OrBlock::OrBlock() = default;
+OrBlock::OrBlock(memory::InterLevel * il)
+	: CrossBlock(il){};
 
 /**
  * @brief OrBlock::calcResult - append || operation to child blocks
