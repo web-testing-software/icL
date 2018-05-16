@@ -20,6 +20,42 @@ Element::Element(const QVariant & rvalue, bool readonly)
 Element::Element(const Object * const object)
 	: Object(object) {}
 
+const QHash<QString, void (Element::*)()> properties =
+  Element::initProperties();
+const QHash<QString, void (Element::*)(memory::ArgList &)> methods =
+  Element::initMethods();
+
+const QHash<QString, void (Element::*)()> Element::initProperties() {
+	return {{{"Length", &Element::runLength},
+			 {"HTML", &Element::runHTML},
+			 {"Text", &Element::runText},
+			 {"Width", &Element::runWidth},
+			 {"Height", &Element::runHeight},
+			 {"Visible", &Element::runVisible},
+			 {"Clickable", &Element::runClickable}}};
+}
+
+const QHash<QString, void (Element::*)(memory::ArgList &)>
+Element::initMethods() {
+	return {{{"ScrollTo", &Element::runScrollTo},
+			 {"Click", &Element::runClick},
+			 {"SendKeys", &Element::runSendKeys},
+			 {"CtrlV", &Element::runCtrlV},
+			 {"IsValid", &Element::runIsValid},
+			 {"Add", &Element::runAdd},
+			 {"Copy", &Element::runCopy},
+			 {"Filter", &Element::runFilter},
+			 {"Get", &Element::runGet},
+			 {"Next", &Element::runNext},
+			 {"Prev", &Element::runPrev},
+			 {"Parent", &Element::runParent},
+			 {"Child", &Element::runChild},
+			 {"Closest", &Element::runClosest},
+			 {"AddClass", &Element::runAddClass},
+			 {"RemoveClass", &Element::runRemoveClass},
+			 {"HasClass", &Element::runHasClass}}};
+}
+
 
 
 int Element::idAsInt = 0;
@@ -607,26 +643,10 @@ memory::WebElement Element::domTrans(
 
 Context * Element::runProperty(Prefix prefix, const QString & name) {
 	if (prefix == Prefix::None) {
-		if (name[0].isLower()) {
-			runProp(name);
-		}
-		else if (name == "HTML") {
-			runHTML();
-		}
-		else if (name == "Text") {
-			runText();
-		}
-		else if (name == "Width") {
-			runWidth();
-		}
-		else if (name == "Height") {
-			runHeight();
-		}
-		else if (name == "Visible") {
-			runVisible();
-		}
-		else if (name == "Clickable") {
-			runClickable();
+		auto it = properties.find(name);
+
+		if (it != properties.end()) {
+			(this->*it.value())();
 		}
 		else {
 			Object::runProperty(prefix, name);
@@ -646,60 +666,16 @@ Context * Element::runProperty(Prefix prefix, const QString & name) {
 }
 
 Context * Element::runMethod(const QString & name, memory::ArgList & args) {
-	if (name == QStringLiteral("ScrollTo")) {
-		runScrollTo(args);
-	}
-	else if (name == QStringLiteral("Click")) {
-		runClick(args);
-	}
-	else if (name == QStringLiteral("SendKeys")) {
-		runSendKeys(args);
-	}
-	else if (name == QStringLiteral("CtrlV")) {
-		runCtrlV(args);
-	}
-	else if (name == QStringLiteral("IsValid")) {
-		runIsValid(args);
-	}
-	else if (name == QStringLiteral("Add")) {
-		runAdd(args);
-	}
-	else if (name == QStringLiteral("Copy")) {
-		runCopy(args);
-	}
-	else if (name == QStringLiteral("Filter")) {
-		runFilter(args);
-	}
-	else if (name == QStringLiteral("Get")) {
-		runGet(args);
-	}
-	else if (name == QStringLiteral("Next")) {
-		runNext(args);
-	}
-	else if (name == QStringLiteral("Prev")) {
-		runPrev(args);
-	}
-	else if (name == QStringLiteral("Parent")) {
-		runParent(args);
-	}
-	else if (name == QStringLiteral("Child")) {
-		runChild(args);
-	}
-	else if (name == QStringLiteral("Closest")) {
-		runClosest(args);
-	}
-	else if (name == QStringLiteral("AddClass")) {
-		runAddClass(args);
-	}
-	else if (name == QStringLiteral("RemoveClass")) {
-		runRemoveClass(args);
-	}
-	else if (name == QStringLiteral("HasClass")) {
-		runHasClass(args);
+
+	auto it = methods.find(name);
+
+	if (it != methods.end()) {
+		(this->*it.value())(args);
 	}
 	else {
 		Object::runMethod(name, args);
 	}
+
 	return newContext;
 }
 

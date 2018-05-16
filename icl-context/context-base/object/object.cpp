@@ -49,24 +49,24 @@ Object::Object(const Object * const object) {
 	m_role = Role::Object;
 }
 
+
+
+const QHash<QString, void (Object::*)(memory::ArgList &)> methods =
+  Object::initMethods();
+
+const QHash<QString, void (Object::*)(memory::ArgList &)>
+Object::initMethods() {
+	return {{{"IsRValue", &Object::runIsRValue},
+			 {"IsReadOnly", &Object::runIsReadOnly},
+			 {"IsLValue", &Object::runisLValue},
+			 {"IsLink", &Object::runIsLink},
+			 {"EnsureRValue", &Object::runEnsureRValue}}};
+}
+
+
+
 memory::Type Object::type() const {
 	return memory::Type::Void;
-}
-
-bool Object::isRValue() const {
-	return value == Value::R;
-}
-
-bool Object::isReadOnly() const {
-	return value == Value::R && readonly;
-}
-
-bool Object::isLValue() const {
-	return value == Value::L;
-}
-
-bool Object::isLink() const {
-	return value != Value::R || type() == memory::Type::Element;
 }
 
 QVariant Object::getValue() {
@@ -103,6 +103,75 @@ void Object::setValue(const QVariant & value) {
 
 const QString & Object::getVarName() const {
 	return varName;
+}
+
+bool Object::isRValue() const {
+	return value == Value::R;
+}
+
+bool Object::isReadOnly() const {
+	return value == Value::R && readonly;
+}
+
+bool Object::isLValue() const {
+	return value == Value::L;
+}
+
+bool Object::isLink() const {
+	return value != Value::R || type() == memory::Type::Element;
+}
+
+Object * Object::ensureRValue() {
+	return fromValue(getValue());
+}
+
+void Object::runIsRValue(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = isRValue();
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Object::runIsReadOnly(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = isReadOnly();
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Object::runisLValue(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = isLValue();
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Object::runIsLink(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newValue   = isLink();
+		newContext = new Boolean{newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
+}
+
+void Object::runEnsureRValue(memory::ArgList & args) {
+	if (args.length() == 0) {
+		newContext = ensureRValue();
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<>"));
+	}
 }
 
 void Object::runToBoolean(memory::ArgList & args) {
@@ -264,6 +333,20 @@ bool Object::checkPrev(const Context * context) const {
 
 bool Object::canBeAtEnd() const {
 	return true;
+}
+
+Context * Object::runMethod(const QString & name, memory::ArgList & args) {
+
+	auto it = methods.find(name);
+
+	if (it != methods.end()) {
+		(this->*it.value())(args);
+	}
+	else {
+		Context::runMethod(name, args);
+	}
+
+	return newContext;
 }
 
 bool Object::isResultative() const {

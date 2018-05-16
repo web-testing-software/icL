@@ -29,7 +29,9 @@ HEADERS += \
     structures/type.h \
     state/memory.h \
     structures/return.h \
-    structures/exception.h
+    structures/exception.h \
+    interlevel/interlevel.h \
+    interlevel/interfaces.h
 
 SOURCES += \
 	state/datastate.cpp \

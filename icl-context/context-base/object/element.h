@@ -38,6 +38,16 @@ public:
 private:
 	static int idAsInt;
 
+	// static
+private:
+	static const QHash<QString, void (Element::*)()> properties;
+	static const QHash<QString, void (Element::*)(memory::ArgList &)> methods;
+
+public:
+	static const QHash<QString, void (Element::*)()> initProperties();
+	static const QHash<QString, void (Element::*)(memory::ArgList &)>
+	initMethods();
+
 	// Use by _dom:query and _dom:queryAll
 public:
 	static QString getNewId();
@@ -128,8 +138,8 @@ private:
 	void runHasClass(memory::ArgList & args);
 
 private:
-	bool isSingle(memory::WebElement & web);
-	memory::WebElement domTrans (const QString &method, const QString &arg);
+	bool               isSingle(memory::WebElement & web);
+	memory::WebElement domTrans(const QString & method, const QString & arg);
 
 signals:
 	void requestClick(int x, int y);

@@ -52,17 +52,38 @@ public:
 	 */
 	Object(const Object * const object);
 
-	virtual memory::Type type() const;
+	// static
 
-	virtual bool isRValue() const;
-	virtual bool isReadOnly() const;
-	virtual bool isLValue() const;
-	virtual bool isLink() const;
+private:
+	static const QHash<QString, void (Object::*)(memory::ArgList &)> methods;
+
+public:
+	static const QHash<QString, void (Object::*)(memory::ArgList &)>
+	initMethods();
+
+public:
+	virtual memory::Type type() const;
 
 	virtual QVariant getValue();
 	virtual void     setValue(const QVariant & value);
 
 	const QString & getVarName() const;
+
+public:
+	virtual bool isRValue() const;
+	virtual bool isReadOnly() const;
+	virtual bool isLValue() const;
+	virtual bool isLink() const;
+
+	Object * ensureRValue();
+
+private:
+	void runIsRValue(memory::ArgList & args);
+	void runIsReadOnly(memory::ArgList & args);
+	void runisLValue(memory::ArgList & args);
+	void runIsLink(memory::ArgList & args);
+	void runEnsureRValue(memory::ArgList & args);
+
 
 public:
 	// Cast functions
@@ -109,7 +130,8 @@ public:
 	bool checkPrev(const Context * context) const override;
 	bool canBeAtEnd() const override;
 
-	bool isResultative() const override;
+	Context * runMethod(const QString & name, memory::ArgList & args) override;
+	bool      isResultative() const override;
 };
 
 }  // namespace icL::context::object

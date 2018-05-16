@@ -22,12 +22,46 @@ List::List(const Object * const object)
 	: Object(object) {}
 
 
+
+const QHash<QString, void (List::*)()> List::properties =
+  List::initProperties();
+
+const QHash<QString, void (List::*)(memory::ArgList &)> methods =
+  List::initMethods();
+
+const QHash<QString, void (List::*)()> List::initProperties() {
+	return {{"Length", &List::runLength}};
+}
+
+const QHash<QString, void (List::*)(memory::ArgList &)> List::initMethods() {
+	return {{{"Prepend", &List::runPrepend},
+			 {"Append", &List::runAppend},
+			 {"Insert", &List::runInsert},
+			 {"Merge", &List::runMerge},
+			 {"PopFront", &List::runPopFront},
+			 {"PopBack", &List::runPopBack},
+			 {"Remove", &List::runRemove},
+			 {"RemoveOnce", &List::runRemoveOnce},
+			 {"RemoveAll", &List::runRemoveAll},
+			 {"Get", &List::runGet},
+			 {"IndexOf", &List::runIndexOf},
+			 {"LastIndexOf", &List::runLastIndexOf},
+			 {"Join", &List::runJoin},
+			 {"SumUp", &List::runSumUp},
+			 {"Max", &List::runMax},
+			 {"Min", &List::runMin},
+			 {"LogicAnd", &List::runLogicAnd},
+			 {"LogicOr", &List::runLogicOr}}};
+}
+
+
+
 int List::length() {
 	return getValue().toStringList().length();
 }
 
 
-void List::runGetLength() {
+void List::runLength() {
 	newValue   = length();
 	newContext = new Int(newValue, true);
 }
@@ -461,11 +495,13 @@ Context * List::runProperty(Prefix prefix, const QString & name) {
 		  {-405, "List objects are not support for prefixed properties"});
 	}
 	else {
-		if (name == "Length") {
-			runGetLength();
+		auto it = properties.find(name);
+
+		if (it != properties.end()) {
+			(this->*it.value())();
 		}
 		else {
-			Context::runProperty(prefix, name);
+			Object::runProperty(prefix, name);
 		}
 	}
 
@@ -474,60 +510,10 @@ Context * List::runProperty(Prefix prefix, const QString & name) {
 
 Context * List::runMethod(const QString & name, memory::ArgList & args) {
 
+	auto it = methods.find(name);
 
-	if (name == QStringLiteral("Prepend")) {
-		runPrepend(args);
-	}
-	else if (name == QStringLiteral("Append")) {
-		runAppend(args);
-	}
-	else if (name == QStringLiteral("Insert")) {
-		runInsert(args);
-	}
-	else if (name == QStringLiteral("Merge")) {
-		runMerge(args);
-	}
-	else if (name == QStringLiteral("PopFront")) {
-		runPopFront(args);
-	}
-	else if (name == QStringLiteral("PopBack")) {
-		runPopBack(args);
-	}
-	else if (name == QStringLiteral("Remove")) {
-		runRemove(args);
-	}
-	else if (name == QStringLiteral("RemoveOnce")) {
-		runRemoveOnce(args);
-	}
-	else if (name == QStringLiteral("RemoveAll")) {
-		runRemoveAll(args);
-	}
-	else if (name == QStringLiteral("Get")) {
-		runGet(args);
-	}
-	else if (name == QStringLiteral("IndexOf")) {
-		runIndexOf(args);
-	}
-	else if (name == QStringLiteral("LastIndexOf")) {
-		runLastIndexOf(args);
-	}
-	else if (name == QStringLiteral("Join")) {
-		runJoin(args);
-	}
-	else if (name == QStringLiteral("SumUp")) {
-		runSumUp(args);
-	}
-	else if (name == QStringLiteral("Max")) {
-		runMax(args);
-	}
-	else if (name == QStringLiteral("Min")) {
-		runMin(args);
-	}
-	else if (name == QStringLiteral("LogicAnd")) {
-		runLogicAnd(args);
-	}
-	else if (name == QStringLiteral("LogicOr")) {
-		runLogicOr(args);
+	if (it != methods.end()) {
+		(this->*it.value())(args);
 	}
 	else {
 		Object::runMethod(name, args);

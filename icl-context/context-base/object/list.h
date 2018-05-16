@@ -30,12 +30,22 @@ public:
 	List(const QString & getter, const QString & setter);
 	List(const Object * const object);
 
+	// static data
+private:
+	static const QHash<QString, void (List::*)()>                  properties;
+	static const QHash<QString, void (List::*)(memory::ArgList &)> methods;
+
+public:
+	static const QHash<QString, void (List::*)()> initProperties();
+	static const QHash<QString, void (List::*)(memory::ArgList &)>
+	initMethods();
+
 	// Properties
 public:
 	int length();
 
-protected:
-	void runGetLength();
+private:
+	void runLength();
 
 	// Methods
 public:
@@ -74,7 +84,6 @@ private:
 	void runRemove(memory::ArgList & args);
 	void runRemoveOnce(memory::ArgList & args);
 	void runRemoveAll(memory::ArgList & args);
-
 
 	void runGet(memory::ArgList & args);
 	void runIndexOf(memory::ArgList & args);
