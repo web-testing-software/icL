@@ -7,11 +7,6 @@ SUBDIRS = \
         complex \
         data
 
-base.subdir = context-base
-control.subdir = context-control
-complex.subdir = context-complex
-data.subdir = context-data
-
 complex.depends = base
 control.depends = base
 data.depends = base control

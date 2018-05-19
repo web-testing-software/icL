@@ -1,8 +1,8 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include <icl-context/context-base/context.h>
-#include <icl-context/context-base/object/int.h>
+#include <icl-context/base/context.h>
+#include <icl-context/base/object/int.h>
 #include <icl-memory/structures/functioncontainer.h>
 #include <icl-memory/structures/return.h>
 
