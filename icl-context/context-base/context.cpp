@@ -1,13 +1,13 @@
 #include "context.h"
 
-#include <object/boolean.h>
-#include <object/double.h>
-#include <object/element.h>
-#include <object/int.h>
-#include <object/list.h>
-#include <object/object.h>
-#include <object/string.h>
-#include <object/void.h>
+#include "object/boolean.h"
+#include "object/double.h"
+#include "object/element.h"
+#include "object/int.h"
+#include "object/list.h"
+#include "object/object.h"
+#include "object/string.h"
+#include "object/void.h"
 
 #include <icl-memory/structures/webelement.h>
 
@@ -61,7 +61,8 @@ Context * Context::runProperty(Prefix prefix, const QString & name) {
 	return nullptr;
 }
 
-Context * Context::runMethod(const QString & name, [[maybe_unused]] memory::ArgList & args) {
+Context * Context::runMethod(
+  const QString & name, [[maybe_unused]] memory::ArgList & args) {
 	il->vm->exception({-7, "No such method: " + name});
 
 	return nullptr;

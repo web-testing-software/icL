@@ -1,8 +1,9 @@
 #ifndef RICHBLOCK_H
 #define RICHBLOCK_H
 
-#include "icl-memory/structures/functioncontainer.h"
 #include "logicblock.h"
+
+#include <icl-memory/structures/functioncontainer.h>
 
 #include <QRegExp>
 #include <QString>
@@ -43,7 +44,7 @@ public:
 	};
 
 	RichBlock(memory::InterLevel * il, OperationType otype);
-	RichBlock(memory::InterLevel *il, RichBlock * block);
+	RichBlock(memory::InterLevel * il, RichBlock * block);
 	~RichBlock() override;
 
 	bool canAcceptCode();

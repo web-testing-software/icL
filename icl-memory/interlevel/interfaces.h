@@ -1,8 +1,8 @@
 #ifndef INTERFACES_H
 #define INTERFACES_H
 
-#include <structures/functioncontainer.h>
-#include <structures/return.h>
+#include "../structures/functioncontainer.h"
+#include "../structures/return.h"
 
 
 
@@ -38,6 +38,6 @@ public:
 	virtual bool     get(const QString & url)                   = 0;
 };
 
-}  // namespace icL::memory::interlevel
+}  // namespace icL::memory
 
 #endif  // INTERFACES_H

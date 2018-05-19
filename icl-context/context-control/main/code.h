@@ -2,9 +2,8 @@
 #define CODE_H
 
 
+#include <icl-context/context-base/context.h>
 #include <icl-memory/structures/functioncontainer.h>
-
-#include <context-base/context.h>
 
 
 /**
@@ -28,7 +27,7 @@ namespace icL::context::code {
 class Code : public Context
 {
 public:
-	Code(memory::InterLevel *il, const memory::CodeFragment & source);
+	Code(memory::InterLevel * il, const memory::CodeFragment & source);
 
 	const memory::CodeFragment & source() const;
 

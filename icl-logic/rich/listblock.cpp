@@ -2,8 +2,6 @@
 
 #include "icl-memory/state/datastate.h"
 
-#include <QRegularExpression>
-
 namespace icL::logic::rich {
 
 ListBlock::ListBlock(memory::InterLevel * il, OperationType otype)

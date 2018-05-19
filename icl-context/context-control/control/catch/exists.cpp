@@ -2,8 +2,7 @@
 
 #include "slot.h"
 
-#include <object/object.h>
-
+#include <icl-context/context-base/object/object.h>
 #include <icl-memory/structures/webelement.h>
 
 namespace icL::context::code::control::catch0 {

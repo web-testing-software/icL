@@ -1,10 +1,8 @@
 #include "dom.h"
 
-#include <object/element.h>
-
+#include <icl-context/context-base/object/element.h>
+#include <icl-context/context-base/object/object.h>
 #include <icl-memory/structures/webelement.h>
-
-#include <context-base/object/object.h>
 
 #include <QVariant>
 
@@ -14,12 +12,14 @@ Dom::Dom(memory::InterLevel * il)
 	: Complex(il) {}
 
 memory::WebElement Dom::query(const QString & selector) {
-	QString newId = object::Element::getNewId();
+	QString            newId = object::Element::getNewId();
 	memory::WebElement web;
 
-	web.count    = il->server->runJS(
-					   newId % R"( = nm(")" % selector %
-						 R"("); )" % newId % ".length").toInt();
+	web.count = il->server
+				  ->runJS(
+					newId % R"( = nm(")" % selector %
+					R"("); )" % newId % ".length")
+				  .toInt();
 	web.selector = selector;
 	web.variable = newId;
 
@@ -35,8 +35,10 @@ memory::WebElement Dom::queryAll(const QStringList & selectors) {
 
 	memory::WebElement web;
 
-	web.count    = il->server->runJS(
-					   newId % R"( = nm()" % selector % R"("); )" % newId % ".length").toInt();
+	web.count =
+	  il->server
+		->runJS(newId % R"( = nm()" % selector % R"("); )" % newId % ".length")
+		.toInt();
 	web.selector = selector2;
 	web.variable = newId;
 

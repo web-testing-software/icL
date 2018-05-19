@@ -12,14 +12,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 DEFINES *= QT_USE_QSTRINGBUILDER
 
-INCLUDEPATH += \
-    .. \
-    ../icl-context \
-    ../icl-context/context-base \
-    ../icl-context/context-complex \
-    ../icl-context/context-control \
-    ../icl-context/context-data \
-    ../icl-memory
+INCLUDEPATH += ..
+INCLUDEPATH -= .
 
 unix {
 	target.path = /usr/lib

@@ -1,9 +1,8 @@
 #ifndef INTERLEVEL_H
 #define INTERLEVEL_H
 
+#include "../state/memory.h"
 #include "interfaces.h"
-
-#include <state/memory.h>
 
 
 namespace icL::memory {

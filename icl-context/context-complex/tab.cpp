@@ -1,8 +1,7 @@
 #include "tab.h"
 
-#include <object/boolean.h>
-
-#include <context-base/object/object.h>
+#include <icl-context/context-base/object/boolean.h>
+#include <icl-context/context-base/object/object.h>
 
 namespace icL::context::complex {
 

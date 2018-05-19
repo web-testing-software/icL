@@ -1,9 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include <icl-memory/state/datastate.h>
+#include "../context.h"
 
-#include <context-base/context.h>
+#include <icl-memory/state/datastate.h>
 
 
 /**
@@ -32,19 +32,23 @@ public:
 	 * @param container - a DataState pointer
 	 * @param varName - the name of var in container
 	 */
-	Object(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	Object(
+	  memory::InterLevel * il, memory::DataState * container,
+	  const QString & varName);
 	/**
 	 * @brief Object - constuct a R-Value
 	 * @param rvalue - the value of object
 	 * @param readonly - true restricts assigns
 	 */
-	Object(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Object(
+	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 	/**
 	 * @brief Object - construct a JS-Value
 	 * @param getter - a getter string, eg. window.height
 	 * @param setter - a setter string, eg. window.height = %1 (QString arg)
 	 */
-	Object(memory::InterLevel * il, const QString & getter, const QString & setter);
+	Object(
+	  memory::InterLevel * il, const QString & getter, const QString & setter);
 	/**
 	 * @brief Object - construct a object copy, used for coping values on
 	 * function call

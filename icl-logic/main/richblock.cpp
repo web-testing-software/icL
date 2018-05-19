@@ -1,10 +1,10 @@
 #include "richblock.h"
 
-#include <rich/booleanblock.h>
-#include <rich/doubleblock.h>
-#include <rich/intblock.h>
-#include <rich/listblock.h>
-#include <rich/stringblock.h>
+#include "rich/booleanblock.h"
+#include "rich/doubleblock.h"
+#include "rich/intblock.h"
+#include "rich/listblock.h"
+#include "rich/stringblock.h"
 
 namespace icL::logic {
 
