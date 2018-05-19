@@ -1,5 +1,5 @@
-#ifndef icL_context_code_control_Exists
-#define icL_context_code_control_Exists
+#ifndef icL_context_code_control_catch_Exists
+#define icL_context_code_control_catch_Exists
 
 #include "catch.h"
 
@@ -44,4 +44,4 @@ public:
 
 }  // namespace icL::context::code::control::catch0
 
-#endif  // icL_context_code_control_Exists
+#endif  // icL_context_code_control_catch_Exists
