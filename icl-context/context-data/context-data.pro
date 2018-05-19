@@ -37,19 +37,19 @@ unix {
 }
 
 HEADERS += \
-    alternative.h \
-    assign.h \
-    data.h \
-    function.h \
-    method.h \
-    parameter.h \
-    property.h
+    main/alternative.h \
+    main/assign.h \
+    main/data.h \
+    main/function.h \
+    main/method.h \
+    main/parameter.h \
+    main/property.h
 
 SOURCES += \
-    alternative.cpp \
-    assign.cpp \
-    data.cpp \
-    function.cpp \
-    method.cpp \
-    parameter.cpp \
-    property.cpp
+    main/alternative.cpp \
+    main/assign.cpp \
+    main/data.cpp \
+    main/function.cpp \
+    main/method.cpp \
+    main/parameter.cpp \
+    main/property.cpp

@@ -61,8 +61,7 @@ Context * Context::runProperty(Prefix prefix, const QString & name) {
 	return nullptr;
 }
 
-Context * Context::runMethod(const QString & name, memory::ArgList & args) {
-	Q_UNUSED(args);
+Context * Context::runMethod(const QString & name, [[maybe_unused]] memory::ArgList & args) {
 	il->vm->exception({-7, "No such method: " + name});
 
 	return nullptr;
