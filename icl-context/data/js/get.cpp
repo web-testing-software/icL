@@ -15,7 +15,16 @@ bool Get::execute() {
 		return false;
 	}
 
-	il->server->runJS(code);
+	QVariant ret = il->server->runJS(code);
+
+	if (ret.isNull()) {
+		newContext = new object::Void{il};
+	}
+	else {
+		newContext = fromValue(ret);
+	}
+
+	return true;
 }
 
 }  // namespace icL::context::data::js
