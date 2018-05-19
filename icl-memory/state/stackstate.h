@@ -1,5 +1,5 @@
-#ifndef STACKSTATE_H
-#define STACKSTATE_H
+#ifndef icL_memory_StackState
+#define icL_memory_StackState
 
 #include "../structures/webelement.h"
 #include "datastate.h"
@@ -77,4 +77,4 @@ private:
 
 }  // namespace icL::memory
 
-#endif  // STACKSTATE_H
+#endif  // icL_memory_StackState

@@ -1,5 +1,5 @@
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef icL_context_code_control_Control
+#define icL_context_code_control_Control
 
 #include "main/code.h"
 
@@ -36,4 +36,4 @@ public:
 
 }  // namespace icL::context::code::control
 
-#endif  // CONTROL_H
+#endif  // icL_context_code_control_Control

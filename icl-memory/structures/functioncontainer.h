@@ -1,5 +1,5 @@
-#ifndef FUNCTIONCONTAINER_H
-#define FUNCTIONCONTAINER_H
+#ifndef icL_memory_FunctionContainer
+#define icL_memory_FunctionContainer
 
 #include "type.h"
 
@@ -89,4 +89,4 @@ private:
 
 }  // namespace icL::memory
 
-#endif  // FUNCTIONCONTAINER_H
+#endif  // icL_memory_FunctionContainer

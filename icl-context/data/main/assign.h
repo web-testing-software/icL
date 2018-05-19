@@ -1,5 +1,5 @@
-#ifndef ASSIGN_H
-#define ASSIGN_H
+#ifndef icL_context_data_Assign
+#define icL_context_data_Assign
 
 #include "data.h"
 
@@ -39,4 +39,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // ASSIGN_H
+#endif  // icL_context_data_Assign

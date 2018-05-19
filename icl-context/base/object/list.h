@@ -1,5 +1,5 @@
-#ifndef LIST_H
-#define LIST_H
+#ifndef icl_context_object_List
+#define icl_context_object_List
 
 #include "object.h"
 
@@ -120,4 +120,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // LIST_H
+#endif  // icl_context_object_List

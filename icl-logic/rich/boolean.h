@@ -1,5 +1,5 @@
-#ifndef BOOLEANBLOCK_H
-#define BOOLEANBLOCK_H
+#ifndef icL_logic_rich_Boolean
+#define icL_logic_rich_Boolean
 
 #include "../main/rich.h"
 
@@ -42,4 +42,4 @@ protected:
 
 }  // namespace icL::logic::rich
 
-#endif  // BOOLEANBLOCK_H
+#endif  // icL_logic_rich_Boolean

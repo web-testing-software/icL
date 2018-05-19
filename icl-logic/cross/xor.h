@@ -1,5 +1,5 @@
-#ifndef XORBLOCK_H
-#define XORBLOCK_H
+#ifndef icL_logic_cross_XOr
+#define icL_logic_cross_XOr
 
 #include "../main/cross.h"
 
@@ -36,4 +36,4 @@ public:
 
 }  // namespace icL::logic::cross
 
-#endif  // XORBLOCK_H
+#endif  // icL_logic_cross_XOr

@@ -1,5 +1,5 @@
-#ifndef DATA_H
-#define DATA_H
+#ifndef icL_context_data_Data
+#define icL_context_data_Data
 
 #include <icl-context/base/context.h>
 
@@ -35,4 +35,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // DATA_H
+#endif  // icL_context_data_Data

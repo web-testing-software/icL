@@ -1,5 +1,5 @@
-#ifndef CROSSBLOCK_H
-#define CROSSBLOCK_H
+#ifndef icL_logic_cross_Cross
+#define icL_logic_cross_Cross
 
 #include "logic.h"
 
@@ -57,4 +57,4 @@ public:
 
 }  // namespace icL::logic::Cross
 
-#endif  // CROSSBLOCK_H
+#endif  // icL_logic_cross_Cross

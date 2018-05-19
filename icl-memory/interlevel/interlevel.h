@@ -1,5 +1,5 @@
-#ifndef INTERLEVEL_H
-#define INTERLEVEL_H
+#ifndef icL_memory_InterLevel
+#define icL_memory_InterLevel
 
 #include "../state/memory.h"
 #include "interfaces.h"
@@ -19,4 +19,4 @@ struct InterLevel
 }  // namespace icL::memory
 
 
-#endif  // INTERLEVEL_H
+#endif  // icL_memory_InterLevel

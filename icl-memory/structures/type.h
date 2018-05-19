@@ -1,5 +1,5 @@
-#ifndef TYPE_H
-#define TYPE_H
+#ifndef icL_memory_Type
+#define icL_memory_Type
 
 #include <QString>
 #include <QVariant>
@@ -30,4 +30,4 @@ Type variantTypeToType(QVariant::Type type);
 
 }  // namespace icL::memory
 
-#endif  // TYPE_H
+#endif  // icL_memory_Type

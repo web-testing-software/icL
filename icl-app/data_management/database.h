@@ -1,5 +1,5 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#ifndef icL_app_Database
+#define icL_app_Database
 
 #include <QObject>
 #include <QSqlDatabase>
@@ -57,4 +57,4 @@ private:
 
 }  // namespace icL::app
 
-#endif  // DATABASE_H
+#endif  // icL_app_Database

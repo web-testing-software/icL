@@ -1,5 +1,5 @@
-#ifndef DOM_H
-#define DOM_H
+#ifndef icL_context_complex_Dom
+#define icL_context_complex_Dom
 
 #include "complex.h"
 
@@ -46,4 +46,4 @@ public:
 
 }  // namespace icL::context::complex
 
-#endif  // DOM_H
+#endif  // icL_context_complex_Dom

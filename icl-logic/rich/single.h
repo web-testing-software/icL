@@ -1,5 +1,5 @@
-#ifndef SINGLEBLOCK_H
-#define SINGLEBLOCK_H
+#ifndef icL_logic_rich_Single
+#define icL_logic_rich_Single
 
 #include "../main/rich.h"
 
@@ -42,4 +42,5 @@ public:
 };
 
 }  // namespace icL::logic::rich
-#endif  // SINGLEBLOCK_H
+
+#endif  // icL_logic_rich_Single

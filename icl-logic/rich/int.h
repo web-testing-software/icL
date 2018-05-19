@@ -1,5 +1,5 @@
-#ifndef INTBLOCK_H
-#define INTBLOCK_H
+#ifndef icL_logic_rich_Int
+#define icL_logic_rich_Int
 
 #include "../main/rich.h"
 
@@ -45,4 +45,4 @@ private:
 
 }  // namespace icL::logic::rich
 
-#endif  // INTBLOCK_H
+#endif  // icL_logic_rich_Int

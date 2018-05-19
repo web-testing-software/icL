@@ -1,5 +1,5 @@
-#ifndef COMPLEX_H
-#define COMPLEX_H
+#ifndef icL_context_complex_Complex
+#define icL_context_complex_Complex
 
 #include <icl-context/base/context.h>
 
@@ -34,4 +34,4 @@ public:
 
 }  // namespace icL::context::complex
 
-#endif  // COMPLEX_H
+#endif  // icL_context_complex_Complex

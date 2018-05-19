@@ -1,5 +1,5 @@
-#ifndef VOID_H
-#define VOID_H
+#ifndef icl_context_object_Void
+#define icl_context_object_Void
 
 #include "object.h"
 
@@ -44,4 +44,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // VOID_H
+#endif  // icl_context_object_Void

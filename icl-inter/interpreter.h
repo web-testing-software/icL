@@ -1,5 +1,5 @@
-#ifndef INTERPRETER_H
-#define INTERPRETER_H
+#ifndef icL_inter_Interpreter
+#define icL_inter_Interpreter
 
 #include <icl-context/base/context.h>
 #include <icl-context/base/object/int.h>
@@ -37,4 +37,4 @@ public:
 
 }  // namespace icL::inter
 
-#endif  // INTERPRETER_H
+#endif  // icL_inter_Interpreter

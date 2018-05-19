@@ -1,5 +1,5 @@
-#ifndef VAR_H
-#define VAR_H
+#ifndef icL_context_data_js_Var
+#define icL_context_data_js_Var
 
 #include "value.h"
 
@@ -22,4 +22,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // VAR_H
+#endif  // icL_context_data_js_Var

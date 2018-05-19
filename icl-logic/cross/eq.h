@@ -1,5 +1,5 @@
-#ifndef EQBLOCK_H
-#define EQBLOCK_H
+#ifndef icL_logic_cross_Eq
+#define icL_logic_cross_Eq
 
 #include "../main/cross.h"
 
@@ -37,4 +37,4 @@ protected:
 
 }  // namespace icL::logic::cross
 
-#endif  // EQBLOCK_H
+#endif  // icL_logic_cross_Eq

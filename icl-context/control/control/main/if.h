@@ -1,5 +1,5 @@
-#ifndef IF_H
-#define IF_H
+#ifndef icL_context_code_control_If
+#define icL_context_code_control_If
 
 #include "control.h"
 
@@ -88,4 +88,4 @@ public:
 
 }  // namespace icL::context::code::control
 
-#endif  // IF_H
+#endif  // icL_context_code_control_If

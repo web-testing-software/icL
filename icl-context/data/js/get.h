@@ -1,5 +1,5 @@
-#ifndef GET_H
-#define GET_H
+#ifndef icL_context_data_js_Get
+#define icL_context_data_js_Get
 
 #include "value.h"
 
@@ -19,4 +19,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // GET_H
+#endif  // icL_context_data_js_Get

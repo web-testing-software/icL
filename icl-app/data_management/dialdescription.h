@@ -1,5 +1,5 @@
-#ifndef DIALDESCRIPTION_H
-#define DIALDESCRIPTION_H
+#ifndef icL_app_DialDescription
+#define icL_app_DialDescription
 
 #include <QObject>
 
@@ -59,4 +59,4 @@ public slots:
 
 }  // namespace icL::app
 
-#endif  // DIALDESCRIPTION_H
+#endif  // icL_app_DialDescription

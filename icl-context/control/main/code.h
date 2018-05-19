@@ -1,5 +1,5 @@
-#ifndef CODE_H
-#define CODE_H
+#ifndef icL_context_code_Code
+#define icL_context_code_Code
 
 
 #include <icl-context/base/context.h>
@@ -48,4 +48,4 @@ public:
 
 }  // namespace icL::context::code
 
-#endif  // CODE_H
+#endif  // icL_context_code_Code

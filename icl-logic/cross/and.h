@@ -1,5 +1,5 @@
-#ifndef ANDBLOCK_H
-#define ANDBLOCK_H
+#ifndef icL_logic_cross_And
+#define icL_logic_cross_And
 
 #include "../main/cross.h"
 
@@ -37,4 +37,4 @@ public:
 
 }  // namespace icL::logic::cross
 
-#endif  // ANDBLOCK_H
+#endif  // icL_logic_cross_And

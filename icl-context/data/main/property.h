@@ -1,5 +1,5 @@
-#ifndef PROPERTY_H
-#define PROPERTY_H
+#ifndef icL_context_data_Property
+#define icL_context_data_Property
 
 #include "data.h"
 
@@ -45,4 +45,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // PROPERTY_H
+#endif  // icL_context_data_Property

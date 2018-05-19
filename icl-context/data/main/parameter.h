@@ -1,5 +1,5 @@
-#ifndef ARGUMENT_H
-#define ARGUMENT_H
+#ifndef icL_context_data_Parameter
+#define icL_context_data_Parameter
 
 #include "data.h"
 
@@ -41,4 +41,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // ARGUMENT_H
+#endif  // icL_context_data_Parameter

@@ -1,5 +1,5 @@
-#ifndef ORBLOCK_H
-#define ORBLOCK_H
+#ifndef icL_logic_cross_Or
+#define icL_logic_cross_Or
 
 #include "../main/cross.h"
 
@@ -37,4 +37,4 @@ public:
 
 }  // namespace icL::logic::cross
 
-#endif  // ORBLOCK_H
+#endif  // icL_logic_cross_Or

@@ -1,5 +1,5 @@
-#ifndef MEMORYSTATE_H
-#define MEMORYSTATE_H
+#ifndef icL_memory_MemoryState
+#define icL_memory_MemoryState
 
 #include "datastate.h"
 
@@ -73,4 +73,4 @@ private:
 
 }  // namespace icL::memory
 
-#endif  // MEMORYSTATE_H
+#endif  // icL_memory_MemoryState

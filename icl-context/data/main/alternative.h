@@ -1,5 +1,5 @@
-#ifndef ALTERNATIVE_H
-#define ALTERNATIVE_H
+#ifndef icL_context_data_Alternative
+#define icL_context_data_Alternative
 
 #include "data.h"
 
@@ -43,4 +43,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // ALTERNATIVE_H
+#endif  // icL_context_data_Alternative

@@ -1,5 +1,5 @@
-#ifndef FORANY_H
-#define FORANY_H
+#ifndef icL_context_code_ForAny
+#define icL_context_code_ForAny
 
 #include "code.h"
 
@@ -41,4 +41,4 @@ public:
 
 }  // namespace icL::context::code
 
-#endif  // FORANY_H
+#endif  // icL_context_code_ForAny

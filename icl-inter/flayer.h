@@ -1,5 +1,5 @@
-#ifndef FLAYER_H
-#define FLAYER_H
+#ifndef icL_inter_Flayer
+#define icL_inter_Flayer
 
 #include <QObject>
 
@@ -37,4 +37,4 @@ private:
 
 }  // namespace icL::inter::_private
 
-#endif  // FLAYER_H
+#endif  // icL_inter_Flayer

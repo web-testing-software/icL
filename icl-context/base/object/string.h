@@ -1,5 +1,5 @@
-#ifndef STRING_H
-#define STRING_H
+#ifndef icl_context_object_String
+#define icl_context_object_String
 
 #include "object.h"
 
@@ -46,4 +46,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // STRING_H
+#endif  // icl_context_object_String

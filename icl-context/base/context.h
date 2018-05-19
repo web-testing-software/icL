@@ -1,5 +1,5 @@
-#ifndef VM_CONTEXT_CONTEXT_H
-#define VM_CONTEXT_CONTEXT_H
+#ifndef icL_context_Context
+#define icL_context_Context
 
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/functioncontainer.h>
@@ -105,4 +105,4 @@ protected:
 
 }  // namespace icL::context
 
-#endif  // VM_CONTEXT_CONTEXT_H
+#endif  // icL_context_Context

@@ -1,5 +1,5 @@
-#ifndef WEBELEMENT_H
-#define WEBELEMENT_H
+#ifndef icL_memory_WebElement
+#define icL_memory_WebElement
 
 #include <QString>
 #include <QVariant>
@@ -223,4 +223,4 @@ struct WebElement
 
 Q_DECLARE_METATYPE(icL::memory::WebElement);
 
-#endif  // WEBELEMENT_H
+#endif  // icL_memory_WebElement

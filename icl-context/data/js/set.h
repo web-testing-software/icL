@@ -1,5 +1,5 @@
-#ifndef SET_H
-#define SET_H
+#ifndef icL_context_data_js_Set
+#define icL_context_data_js_Set
 
 #include "value.h"
 
@@ -19,4 +19,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // SET_H
+#endif  // icL_context_data_js_Set

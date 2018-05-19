@@ -1,5 +1,5 @@
-#ifndef VIRTUALMACHINE_H
-#define VIRTUALMACHINE_H
+#ifndef icL_VirtualMachine
+#define icL_VirtualMachine
 
 #include <icl-memory/interlevel/interlevel.h>
 
@@ -33,4 +33,4 @@ private:
 
 }  // namespace icL
 
-#endif  // VIRTUALMACHINE_H
+#endif  // icL_VirtualMachine

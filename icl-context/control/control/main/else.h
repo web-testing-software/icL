@@ -1,5 +1,5 @@
-#ifndef ELSE_H
-#define ELSE_H
+#ifndef icL_context_code_control_Else
+#define icL_context_code_control_Else
 
 #include "control.h"
 
@@ -39,4 +39,4 @@ public:
 
 }  // namespace icL::context::code::control
 
-#endif  // ELSE_H
+#endif  // icL_context_code_control_Else

@@ -1,5 +1,5 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef icL_context_data_Function
+#define icL_context_data_Function
 
 
 #include <icl-memory/state/memory.h>
@@ -58,4 +58,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // FUNCTION_H
+#endif  // icL_context_data_Function

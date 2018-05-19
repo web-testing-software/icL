@@ -1,5 +1,6 @@
-#ifndef ELEMENT_H
-#define ELEMENT_H
+#ifndef icl_context_object_Element
+#define icl_context_object_Element
+
 
 #include "object.h"
 
@@ -159,4 +160,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // ELEMENT_H
+#endif  // icl_context_object_Element

@@ -1,5 +1,5 @@
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef icL_Server
+#define icL_Server
 
 #include <icl-memory/interlevel/interlevel.h>
 #include <icl-memory/interlevel/node.h>
@@ -142,4 +142,4 @@ private:
 
 }  // namespace icL
 
-#endif  // SERVER_H
+#endif  // icL_Server

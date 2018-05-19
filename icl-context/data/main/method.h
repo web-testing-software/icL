@@ -1,5 +1,5 @@
-#ifndef METHOD_H
-#define METHOD_H
+#ifndef icL_context_data_Method
+#define icL_context_data_Method
 
 #include "data.h"
 
@@ -45,4 +45,4 @@ public:
 
 }  // namespace icL::context::data
 
-#endif  // METHOD_H
+#endif  // icL_context_data_Method

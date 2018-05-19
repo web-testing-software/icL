@@ -1,5 +1,5 @@
-#ifndef FILE_H
-#define FILE_H
+#ifndef icL_context_data_js_File
+#define icL_context_data_js_File
 
 #include "js.h"
 
@@ -29,4 +29,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // FILE_H
+#endif  // icL_context_data_js_File

@@ -1,5 +1,5 @@
-#ifndef INTERFACES_H
-#define INTERFACES_H
+#ifndef icL_memory_interfaces_h
+#define icL_memory_interfaces_h
 
 #include "../structures/functioncontainer.h"
 #include "../structures/return.h"
@@ -42,4 +42,4 @@ public:
 
 }  // namespace icL::memory
 
-#endif  // INTERFACES_H
+#endif  // icL_memory_interfaces_h

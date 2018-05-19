@@ -1,5 +1,5 @@
-#ifndef DOUBLEBLOCK_H
-#define DOUBLEBLOCK_H
+#ifndef icL_logic_rich_Double
+#define icL_logic_rich_Double
 
 #include "../main/rich.h"
 
@@ -45,4 +45,4 @@ private:
 
 }  // namespace icL::logic::rich
 
-#endif  // DOUBLEBLOCK_H
+#endif  // icL_logic_rich_Double

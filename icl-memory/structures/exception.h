@@ -1,5 +1,5 @@
-#ifndef EXCEPTION_H
-#define EXCEPTION_H
+#ifndef icL_memory_Exception
+#define icL_memory_Exception
 
 #include <QString>
 
@@ -33,4 +33,4 @@ public:
 
 }  // namespace icL::memory
 
-#endif  // EXCEPTION_H
+#endif  // icL_memory_Exception

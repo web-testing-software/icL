@@ -1,5 +1,5 @@
-#ifndef DOUBLE_H
-#define DOUBLE_H
+#ifndef icl_context_object_Double
+#define icl_context_object_Double
 
 #include "object.h"
 
@@ -47,4 +47,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // DOUBLE_H
+#endif  // icl_context_object_Double

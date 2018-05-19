@@ -1,5 +1,5 @@
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef icl_context_object_Object
+#define icl_context_object_Object
 
 #include "../context.h"
 
@@ -137,4 +137,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // OBJECT_H
+#endif  // icl_context_object_Object

@@ -1,5 +1,5 @@
-#ifndef LOG_H
-#define LOG_H
+#ifndef icL_context_complex_Log
+#define icL_context_complex_Log
 
 #include "complex.h"
 
@@ -48,4 +48,4 @@ public:
 
 }  // namespace icL::context::complex
 
-#endif  // LOG_H
+#endif  // icL_context_complex_Log

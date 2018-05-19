@@ -1,5 +1,5 @@
-#ifndef NOTBLOCK_H
-#define NOTBLOCK_H
+#ifndef icL_logic_cross_Not
+#define icL_logic_cross_Not
 
 #include "../main/cross.h"
 
@@ -38,4 +38,4 @@ public:
 
 }  // namespace icL::logic::cross
 
-#endif  // NOTBLOCK_H
+#endif  // icL_logic_cross_Not

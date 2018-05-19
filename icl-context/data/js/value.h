@@ -1,5 +1,5 @@
-#ifndef VALUE_H
-#define VALUE_H
+#ifndef icL_context_data_js_Value
+#define icL_context_data_js_Value
 
 #include "js.h"
 
@@ -24,4 +24,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // VALUE_H
+#endif  // icL_context_data_js_Value

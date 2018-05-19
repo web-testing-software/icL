@@ -1,5 +1,5 @@
-#ifndef DATASTATE_H
-#define DATASTATE_H
+#ifndef icL_memory_DataState
+#define icL_memory_DataState
 
 #include "../structures/type.h"
 
@@ -49,4 +49,4 @@ private:
 
 }  // namespace icL::memory
 
-#endif  // DATASTATE_H
+#endif  // icL_memory_DataState

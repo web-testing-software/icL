@@ -1,5 +1,5 @@
-#ifndef BOOLEAN_H
-#define BOOLEAN_H
+#ifndef icl_context_object_Boolean
+#define icl_context_object_Boolean
 
 #include "object.h"
 
@@ -47,4 +47,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // BOOLEAN_H
+#endif  // icl_context_object_Boolean

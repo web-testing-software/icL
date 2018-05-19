@@ -1,5 +1,5 @@
-#ifndef LISTBLOCK_H
-#define LISTBLOCK_H
+#ifndef icL_logic_rich_List
+#define icL_logic_rich_List
 
 #include "../main/rich.h"
 
@@ -51,4 +51,4 @@ private:
 
 }  // namespace icL::logic::rich
 
-#endif  // LISTBLOCK_H
+#endif  // icL_logic_rich_List

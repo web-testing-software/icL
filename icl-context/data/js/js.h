@@ -1,5 +1,5 @@
-#ifndef JS_H
-#define JS_H
+#ifndef icL_context_data_js_Js
+#define icL_context_data_js_Js
 
 #include <icl-context/base/context.h>
 
@@ -20,4 +20,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // JS_H
+#endif  // icL_context_data_js_Js

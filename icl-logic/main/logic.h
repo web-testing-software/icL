@@ -1,5 +1,5 @@
-#ifndef LOGICBLOCK_H
-#define LOGICBLOCK_H
+#ifndef icL_logic_Logic
+#define icL_logic_Logic
 
 #include <icl-memory/interlevel/node.h>
 #include <icl-memory/state/memory.h>
@@ -79,4 +79,4 @@ private:
 
 }  // namespace icL::logic
 
-#endif  // LOGICBLOCK_H
+#endif  // icL_logic_Logic

@@ -1,5 +1,5 @@
-#ifndef RETURN_H
-#define RETURN_H
+#ifndef icL_memory_Return
+#define icL_memory_Return
 
 #include "exception.h"
 
@@ -36,4 +36,4 @@ public:
 
 }  // namespace icL::memory
 
-#endif  // RETURN_H
+#endif  // icL_memory_Return

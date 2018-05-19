@@ -1,5 +1,5 @@
-#ifndef SLOT_H
-#define SLOT_H
+#ifndef icL_context_code_control_Slot
+#define icL_context_code_control_Slot
 
 #include "catch.h"
 
@@ -45,4 +45,4 @@ public:
 
 }  // namespace icL::context::code::control::catch0
 
-#endif  // SLOT_H
+#endif  // icL_context_code_control_Slot

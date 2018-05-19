@@ -1,5 +1,5 @@
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef icL_memory_Memory
+#define icL_memory_Memory
 
 #include "../structures/functioncontainer.h"
 #include "memorystate.h"
@@ -40,4 +40,4 @@ private:
 
 }  // namespace icL::memory
 
-#endif  // MEMORY_H
+#endif  // icL_memory_Memory

@@ -1,5 +1,5 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef icL_memory_Node
+#define icL_memory_Node
 
 #include "interlevel.h"
 
@@ -18,4 +18,4 @@ protected:
 
 }  // namespace icL::memory
 
-#endif  // NODE_H
+#endif  // icL_memory_Node

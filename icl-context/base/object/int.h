@@ -1,5 +1,5 @@
-#ifndef INT_H
-#define INT_H
+#ifndef icl_context_object_Int
+#define icl_context_object_Int
 
 #include "object.h"
 
@@ -47,4 +47,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // INT_H
+#endif  // icl_context_object_Int

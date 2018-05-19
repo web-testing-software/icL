@@ -1,5 +1,5 @@
-#ifndef RICHBLOCK_H
-#define RICHBLOCK_H
+#ifndef icL_logic_rich_Rich
+#define icL_logic_rich_Rich
 
 #include "logic.h"
 
@@ -85,4 +85,4 @@ public:
 
 }  // namespace icL::logic
 
-#endif  // RICHBLOCK_H
+#endif  // icL_logic_rich_Rich

@@ -1,5 +1,5 @@
-#ifndef CATCH_H
-#define CATCH_H
+#ifndef icL_context_code_control_Catch
+#define icL_context_code_control_Catch
 
 #include "../main/control.h"
 
@@ -30,4 +30,4 @@ public:
 
 }  // namespace icL::context::code::control::catch0
 
-#endif  // CATCH_H
+#endif  // icL_context_code_control_Catch

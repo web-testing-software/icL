@@ -1,5 +1,5 @@
-#ifndef TAB_H
-#define TAB_H
+#ifndef icL_context_complex_Tab
+#define icL_context_complex_Tab
 
 #include "complex.h"
 
@@ -42,4 +42,4 @@ public:
 
 }  // namespace icL::context::complex
 
-#endif  // TAB_H
+#endif  // icL_context_complex_Tab

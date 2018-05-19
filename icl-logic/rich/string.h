@@ -1,5 +1,5 @@
-#ifndef STRINGBLOCK_H
-#define STRINGBLOCK_H
+#ifndef icL_logic_rich_String
+#define icL_logic_rich_String
 
 #include "../main/rich.h"
 
@@ -45,4 +45,4 @@ private:
 
 }  // namespace icL::logic::rich
 
-#endif  // STRINGBLOCK_H
+#endif  // icL_logic_rich_String

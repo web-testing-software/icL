@@ -1,5 +1,5 @@
-#ifndef CROSSFIRE_H
-#define CROSSFIRE_H
+#ifndef icL_context_data_js_Crossfire
+#define icL_context_data_js_Crossfire
 
 #include "file.h"
 
@@ -18,4 +18,4 @@ public:
 
 }  // namespace icL::context::data::js
 
-#endif  // CROSSFIRE_H
+#endif  // icL_context_data_js_Crossfire

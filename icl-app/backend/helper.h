@@ -1,5 +1,5 @@
-#ifndef HELPER_H
-#define HELPER_H
+#ifndef icL_app_Helper
+#define icL_app_Helper
 
 #include <QColor>
 #include <QObject>
@@ -58,4 +58,4 @@ private:
 
 }  // namespace icL::app
 
-#endif  // HELPER_H
+#endif  // icL_app_Helper
