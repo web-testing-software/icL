@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title RichBlock.needCast()
+title Rich.needCast()
 
 start
 :return !casted;

@@ -2,16 +2,16 @@
 
 namespace icL::logic::cross {
 
-CrossBlock::CrossBlock(memory::InterLevel * il)
-	: LogicBlock(il){};
+Cross::Cross(memory::InterLevel * il)
+	: Logic(il){};
 
 /**
- * @brief CrossBlock::canAcceptBlock - the block can accept a child if the first
+ * @brief Cross::canAcceptBlock - the block can accept a child if the first
  * or the second child is null (the second is always null when the first is
  * null)
  * @return bool
  */
-CrossBlock::~CrossBlock() {
+Cross::~Cross() {
 	if (block1 != nullptr) {
 		delete block1;
 	}
@@ -20,15 +20,15 @@ CrossBlock::~CrossBlock() {
 	}
 }
 
-bool CrossBlock::canAcceptBlock() {
+bool Cross::canAcceptBlock() {
 	return block2 == nullptr;
 }
 
 /**
- * @brief CrossBlock::giveBlock - set the block to the first free position
+ * @brief Cross::giveBlock - set the block to the first free position
  * @param block - any free block
  */
-void CrossBlock::giveBlock(LogicBlock * block) {
+void Cross::giveBlock(Logic * block) {
 	if (block1 == nullptr) {
 		block1 = block;
 	}
@@ -38,19 +38,19 @@ void CrossBlock::giveBlock(LogicBlock * block) {
 }
 
 /**
- * @brief CrossBlock::isCross - if the block is a cross type and accept blocks
+ * @brief Cross::isCross - if the block is a cross type and accept blocks
  * like child
  * @return bool
  */
-bool CrossBlock::isCross() {
+bool Cross::isCross() {
 	return true;
 }
 
 /**
- * @brief CrossBlock::checkIntegrity - if both block are already setted
+ * @brief Cross::checkIntegrity - if both block are already setted
  * @return bool
  */
-bool CrossBlock::checkIntegrity() {
+bool Cross::checkIntegrity() {
 	bool integrity;
 
 	if (block1 == nullptr || block2 == nullptr) {
@@ -68,9 +68,9 @@ bool CrossBlock::checkIntegrity() {
 }
 
 /**
- * @brief CrossBlock::resetResultValue - reset the resultValue value to default
+ * @brief Cross::resetResultValue - reset the resultValue value to default
  */
-void CrossBlock::resetResultValue() {
+void Cross::resetResultValue() {
 	block1->resetResultValue();
 	block2->resetResultValue();
 
@@ -78,15 +78,15 @@ void CrossBlock::resetResultValue() {
 	value2getted = false;
 }
 
-bool CrossBlock::needCast() {
+bool Cross::needCast() {
 	return false;
 }
 
-LogicBlock * CrossBlock::castNow() {
+Logic * Cross::castNow() {
 	return nullptr;
 }
 
-bool CrossBlock::step() {
+bool Cross::step() {
 	if (!value1getted) {
 		if (block1->step()) {
 			value1       = block1->getCachedResult();
@@ -94,7 +94,7 @@ bool CrossBlock::step() {
 		}
 		else {
 			if (block1->needCast()) {
-				LogicBlock * newBlock = block1->castNow();
+				Logic * newBlock = block1->castNow();
 
 				delete block1;
 				block1 = newBlock;
@@ -119,7 +119,7 @@ bool CrossBlock::step() {
 	}
 }
 
-bool CrossBlock::calcResult() {
+bool Cross::calcResult() {
 	return false;
 }
 

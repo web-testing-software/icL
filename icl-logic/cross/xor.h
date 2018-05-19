@@ -23,14 +23,14 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The XOrBlock class - ^^
+ * @brief The XOr class - ^^
  */
-class XOrBlock : public CrossBlock
+class XOr : public Cross
 {
 public:
-	XOrBlock(memory::InterLevel * il);
+	XOr(memory::InterLevel * il);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 };
 

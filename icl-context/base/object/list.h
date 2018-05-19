@@ -52,7 +52,7 @@ public:
 	void prepend(const QString & value);
 	void append(const QString & value);
 	void insert(int index, const QString & value);
-	void merge(const QStringList & list);
+	void merge(const QStringList & List);
 
 	void popFront();
 	void popBack();

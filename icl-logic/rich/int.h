@@ -1,5 +1,5 @@
-#ifndef DOUBLEBLOCK_H
-#define DOUBLEBLOCK_H
+#ifndef INTBLOCK_H
+#define INTBLOCK_H
 
 #include "../main/rich.h"
 
@@ -23,21 +23,21 @@
 namespace icL::logic::rich {
 
 /**
- * @brief The DoubleBlock class - compare two <double> vars/consts
+ * @brief The Int class - compare two <int> vars/consts
  */
-class DoubleBlock : public RichBlock
+class Int : public Rich
 {
 public:
-	DoubleBlock(memory::InterLevel *il, OperationType otype);
-	DoubleBlock(memory::InterLevel *il, RichBlock * block);
+	Int(memory::InterLevel *il, OperationType otype);
+	Int(memory::InterLevel *il, Rich * block);
 
 	//	static bool check (const QString &value);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 
 protected:
-	//	double varNameToDouble (const QString &varname);
+	//	int varNameToInt (const QString &varname);
 
 private:
 	//	static QRegExp exp;
@@ -45,4 +45,4 @@ private:
 
 }  // namespace icL::logic::rich
 
-#endif  // DOUBLEBLOCK_H
+#endif  // INTBLOCK_H

@@ -23,14 +23,14 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The EqBlock class - ~~
+ * @brief The Eq class - ~~
  */
-class EqBlock : public CrossBlock
+class Eq : public Cross
 {
 public:
-	EqBlock(memory::InterLevel * il);
+	Eq(memory::InterLevel * il);
 
-	// LogicBlock interface
+	// Logic interface
 protected:
 	bool calcResult() override;
 };

@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title LogicBlock.castNow()
+title Logic.castNow()
 
 start
 :return nullptr;

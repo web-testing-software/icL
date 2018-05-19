@@ -23,38 +23,38 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The CrossBlock class - this is a block with 2 children (LogicBlock*
+ * @brief The Cross class - this is a block with 2 children (Logic*
  * type)
  */
-class CrossBlock : public LogicBlock
+class Cross : public Logic
 {
 public:
-	CrossBlock(memory::InterLevel * il);
-	~CrossBlock();
+	Cross(memory::InterLevel * il);
+	~Cross();
 
 	bool         canAcceptBlock();
-	virtual void giveBlock(LogicBlock * block);
+	virtual void giveBlock(Logic * block);
 
 protected:
-	LogicBlock * block1 = nullptr;
-	LogicBlock * block2 = nullptr;
+	Logic * block1 = nullptr;
+	Logic * block2 = nullptr;
 	bool         value1 = false, value2 = false, value1getted = false,
 		 value2getted = false;
 
 
-	// LogicBlock interface
+	// Logic interface
 public:
 	bool isCross() override;
 	bool checkIntegrity() override;
 	void resetResultValue() override;
 
 	bool         needCast() override;
-	LogicBlock * castNow() override;
+	Logic * castNow() override;
 	bool         step() override;
 
 	bool calcResult() override;
 };
 
-}  // namespace icL::logic::crossblock
+}  // namespace icL::logic::Cross
 
 #endif  // CROSSBLOCK_H

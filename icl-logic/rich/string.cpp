@@ -1,21 +1,21 @@
-#include "stringblock.h"
+#include "string.h"
 
 namespace icL::logic::rich {
 
-StringBlock::StringBlock(memory::InterLevel * il, OperationType otype)
-	: RichBlock(il, otype) {
+String::String(memory::InterLevel * il, OperationType otype)
+	: Rich(il, otype) {
 	casted = true;
 }
 
-StringBlock::StringBlock(memory::InterLevel * il, RichBlock * block)
-	: RichBlock(il, block) {}
+String::String(memory::InterLevel * il, Rich * block)
+	: Rich(il, block) {}
 
 
 /**
- * @brief StringBlock::calcResult - compare values
+ * @brief String::calcResult - compare values
  * @return the result of comparation
  */
-bool StringBlock::calcResult() {
+bool String::calcResult() {
 	bool    result = false;
 	QString var1   = value1.toString();
 

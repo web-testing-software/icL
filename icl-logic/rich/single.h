@@ -23,18 +23,18 @@ namespace icL::logic::rich {
 
 
 /**
- * @brief The SingleBlock class - compare a <bool> var/const with a predefined
+ * @brief The Single class - compare a <bool> var/const with a predefined
  * const
  */
-class SingleBlock : public RichBlock
+class Single : public Rich
 {
 public:
-	SingleBlock(memory::InterLevel *il, OperationType otype);
+	Single(memory::InterLevel *il, OperationType otype);
 
 protected:
 	bool calcResult() override;
 
-	// LogicBlock interface
+	// Logic interface
 public:
 	bool checkIntegrity() override;
 	bool needCast() override;

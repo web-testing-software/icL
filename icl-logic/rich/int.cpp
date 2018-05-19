@@ -1,21 +1,21 @@
-#include "intblock.h"
+#include "int.h"
 
 namespace icL::logic::rich {
 
-IntBlock::IntBlock(memory::InterLevel * il, OperationType otype)
-	: RichBlock(il, otype) {
+Int::Int(memory::InterLevel * il, OperationType otype)
+	: Rich(il, otype) {
 	casted = true;
 }
 
-IntBlock::IntBlock(memory::InterLevel * il, RichBlock * block)
-	: RichBlock(il, block) {}
+Int::Int(memory::InterLevel * il, Rich * block)
+	: Rich(il, block) {}
 
 
 /**
- * @brief IntBlock::calcResult - compare values
+ * @brief Int::calcResult - compare values
  * @return the result of comparation
  */
-bool IntBlock::calcResult() {
+bool Int::calcResult() {
 	bool result = false;
 	int  var1   = value1.toInt();
 

@@ -2,23 +2,23 @@
 
 namespace icL::logic::cross {
 
-NotBlock::NotBlock(memory::InterLevel * il)
-	: CrossBlock(il){};
+Not::Not(memory::InterLevel * il)
+	: Cross(il){};
 
 /**
- * @brief NotBlock::calcResult - invert the result of the secound block
+ * @brief Not::calcResult - invert the result of the secound block
  * @return bool
  */
-bool NotBlock::calcResult() {
+bool Not::calcResult() {
 	return !block2->getCachedResult();
 }
 
 /**
- * @brief NotBlock::checkIntegrity - check the integrity of the second block,
+ * @brief Not::checkIntegrity - check the integrity of the second block,
  * the first is useless
  * @return
  */
-bool NotBlock::checkIntegrity() {
+bool Not::checkIntegrity() {
 	bool integrity = block2 != nullptr && block2->checkIntegrity();
 
 	if (!integrity) {
@@ -29,10 +29,10 @@ bool NotBlock::checkIntegrity() {
 }
 
 /**
- * @brief NotBlock::resetResultValue - reset the socund block, the first is
+ * @brief Not::resetResultValue - reset the socund block, the first is
  * useless
  */
-void NotBlock::resetResultValue() {
+void Not::resetResultValue() {
 	block2->resetResultValue();
 }
 

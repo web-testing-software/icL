@@ -1,17 +1,17 @@
-#include "singleblock.h"
+#include "single.h"
 
 namespace icL::logic::rich {
 
-SingleBlock::SingleBlock(memory::InterLevel * il, OperationType otype)
-	: RichBlock(il, otype) {
+Single::Single(memory::InterLevel * il, OperationType otype)
+	: Rich(il, otype) {
 	casted = true;
 }
 
 /**
- * @brief SingleBlock::calcResult - compare the <bool> value
+ * @brief Single::calcResult - compare the <bool> value
  * @return the result of comparation
  */
-bool SingleBlock::calcResult() {
+bool Single::calcResult() {
 	bool value, ret = false;
 
 	if (value1.canConvert<memory::WebElement>()) {
@@ -39,11 +39,11 @@ bool SingleBlock::calcResult() {
 }
 
 /**
- * @brief SingleBlock::checkIntegrity - it need to be setted just the first
+ * @brief Single::checkIntegrity - it need to be setted just the first
  * varname
  * @return the first varname is setted
  */
-bool SingleBlock::checkIntegrity() {
+bool Single::checkIntegrity() {
 	if (frag1.source == nullptr) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
@@ -51,11 +51,11 @@ bool SingleBlock::checkIntegrity() {
 	return true;
 }
 
-bool SingleBlock::needCast() {
+bool Single::needCast() {
 	return false;
 }
 
-bool SingleBlock::canResultPreliminarily() {
+bool Single::canResultPreliminarily() {
 	return true;
 }
 

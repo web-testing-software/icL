@@ -1,16 +1,16 @@
-#include "listblock.h"
+#include "List.h"
 
 #include "icl-memory/state/datastate.h"
 
 namespace icL::logic::rich {
 
 ListBlock::ListBlock(memory::InterLevel * il, OperationType otype)
-	: RichBlock(il, otype) {
+	: Rich(il, otype) {
 	casted = true;
 }
 
-ListBlock::ListBlock(memory::InterLevel * il, RichBlock * block)
-	: RichBlock(il, block) {}
+ListBlock::ListBlock(memory::InterLevel * il, Rich * block)
+	: Rich(il, block) {}
 
 
 /**
@@ -66,8 +66,8 @@ bool ListBlock::calcResult() {
 /**
  * @brief StringListBlock::operatorEqual - test if both lists contains some
  * items
- * @param list1 - first string list
- * @param list2 - second string list
+ * @param list1 - first string List
+ * @param list2 - second string List
  * @return both lists contains the same items
  */
 bool ListBlock::operatorEqual(

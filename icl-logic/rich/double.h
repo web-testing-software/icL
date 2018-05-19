@@ -1,5 +1,5 @@
-#ifndef BOOLEANBLOCK_H
-#define BOOLEANBLOCK_H
+#ifndef DOUBLEBLOCK_H
+#define DOUBLEBLOCK_H
 
 #include "../main/rich.h"
 
@@ -23,23 +23,26 @@
 namespace icL::logic::rich {
 
 /**
- * @brief The BooleanBlock class - compare two <bool> vars/consts
+ * @brief The Double class - compare two <double> vars/consts
  */
-class BooleanBlock : public RichBlock
+class Double : public Rich
 {
 public:
-	BooleanBlock(memory::InterLevel *il, OperationType otype);
-	BooleanBlock(memory::InterLevel *il, RichBlock * block);
+	Double(memory::InterLevel *il, OperationType otype);
+	Double(memory::InterLevel *il, Rich * block);
 
 	//	static bool check (const QString &value);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 
 protected:
-	//	bool varNameToBoolean (const QString &varname);
+	//	double varNameToDouble (const QString &varname);
+
+private:
+	//	static QRegExp exp;
 };
 
 }  // namespace icL::logic::rich
 
-#endif  // BOOLEANBLOCK_H
+#endif  // DOUBLEBLOCK_H

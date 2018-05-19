@@ -29,9 +29,9 @@
 namespace icL::logic::rich {
 
 /**
- * @brief The RichBlock class - this class contains 2 variables or constants
+ * @brief The Rich class - this class contains 2 variables or constants
  */
-class RichBlock : public LogicBlock
+class Rich : public Logic
 {
 public:
 	enum class OperationType {
@@ -43,9 +43,9 @@ public:
 		NotNot
 	};
 
-	RichBlock(memory::InterLevel * il, OperationType otype);
-	RichBlock(memory::InterLevel * il, RichBlock * block);
-	~RichBlock() override;
+	Rich(memory::InterLevel * il, OperationType otype);
+	Rich(memory::InterLevel * il, Rich * block);
+	~Rich() override;
 
 	bool canAcceptCode();
 	void giveCode(memory::CodeFragment frag);
@@ -72,12 +72,12 @@ protected:
 	bool          casted = false;
 
 public:
-	// LogicBlock interface
+	// Logic interface
 	bool isCross() override;
 	bool checkIntegrity() override;
 
 	bool         needCast() override;
-	LogicBlock * castNow() override;
+	Logic * castNow() override;
 	bool         step() override;
 
 	bool calcResult() override;

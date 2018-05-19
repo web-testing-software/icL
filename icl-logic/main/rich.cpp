@@ -1,22 +1,22 @@
 #include "rich.h"
 
-#include "rich/booleanblock.h"
-#include "rich/doubleblock.h"
-#include "rich/intblock.h"
-#include "rich/listblock.h"
-#include "rich/stringblock.h"
+#include "rich/boolean.h"
+#include "rich/double.h"
+#include "rich/int.h"
+#include "rich/List.h"
+#include "rich/string.h"
 
 #include <QStringBuilder>
 
 namespace icL::logic::rich {
 
-RichBlock::RichBlock(memory::InterLevel * il, OperationType otype)
-	: LogicBlock(il) {
+Rich::Rich(memory::InterLevel * il, OperationType otype)
+	: Logic(il) {
 	operationType = otype;
 }
 
-RichBlock::RichBlock(memory::InterLevel * il, RichBlock * block)
-	: LogicBlock(il) {
+Rich::Rich(memory::InterLevel * il, Rich * block)
+	: Logic(il) {
 	operationType = block->operationType;
 	value1        = block->value1;
 	value2        = block->value2;
@@ -24,22 +24,22 @@ RichBlock::RichBlock(memory::InterLevel * il, RichBlock * block)
 	frag2         = block->frag2;
 }
 
-RichBlock::~RichBlock() = default;
+Rich::~Rich() = default;
 
 /**
- * @brief RichBlock::canAcceptVar - if the first or the second var/const are not
+ * @brief Rich::canAcceptVar - if the first or the second var/const are not
  * setted
  * @return bool
  */
-bool RichBlock::canAcceptCode() {
+bool Rich::canAcceptCode() {
 	return frag2.source == nullptr;
 }
 
 /**
- * @brief RichBlock::giveVar - set up next var/const
+ * @brief Rich::giveVar - set up next var/const
  * @param varname - var/const
  */
-void RichBlock::giveCode(memory::CodeFragment frag) {
+void Rich::giveCode(memory::CodeFragment frag) {
 	if (frag1.source == nullptr) {
 		frag1 = frag;
 	}
@@ -49,11 +49,11 @@ void RichBlock::giveCode(memory::CodeFragment frag) {
 }
 
 /**
- * @brief RichBlock::oTypeToString - operation type to string, special for
+ * @brief Rich::oTypeToString - operation type to string, special for
  * errors messages
  * @return a string with operation token (==, !=, <<,  <*)
  */
-QString RichBlock::oTypeToString() {
+QString Rich::oTypeToString() {
 	QString ret;
 
 	switch (operationType) {
@@ -82,19 +82,19 @@ QString RichBlock::oTypeToString() {
 
 
 /**
- * @brief RichBlock::pairData - give data for error messages
+ * @brief Rich::pairData - give data for error messages
  * @return a string, which contains the type of the first and second values
  */
-QString RichBlock::pairData() {
+QString Rich::pairData() {
 	return "[" % typeToString(value1.type()) % "-" %
 		   typeToString(value2.type()) % "]";
 }
 
-void RichBlock::sendSignalWrongPair() {
+void Rich::sendSignalWrongPair() {
 	il->vm->exception({-201, "Wrong operarands pair: " + pairData()});
 }
 
-void RichBlock::sendSignalWrongOperator(const QString & pair) {
+void Rich::sendSignalWrongOperator(const QString & pair) {
 	il->vm->exception({-202, "Wrong operator " % oTypeToString() %
 							   " for operands pair " % pair});
 }
@@ -102,18 +102,18 @@ void RichBlock::sendSignalWrongOperator(const QString & pair) {
 
 
 /**
- * @brief RichBlock::isCross - it cann't contains blocks like child
+ * @brief Rich::isCross - it cann't contains blocks like child
  * @return false
  */
-bool RichBlock::isCross() {
+bool Rich::isCross() {
 	return false;
 }
 
 /**
- * @brief RichBlock::checkIntegrity - if the both var/const are setted
+ * @brief Rich::checkIntegrity - if the both var/const are setted
  * @return bool
  */
-bool RichBlock::checkIntegrity() {
+bool Rich::checkIntegrity() {
 	if (frag1.source == nullptr || frag2.source == nullptr) {
 		resultValue = ResultValue::INTEGRITY_CHECK_FAILED;
 		return false;
@@ -121,28 +121,28 @@ bool RichBlock::checkIntegrity() {
 	return true;
 }
 
-bool RichBlock::needCast() {
+bool Rich::needCast() {
 	return !casted;
 }
 
-LogicBlock * RichBlock::castNow() {
-	LogicBlock * ret = nullptr;
+Logic * Rich::castNow() {
+	Logic * ret = nullptr;
 
 	switch (value1.type()) {
 	case QVariant::Bool:
-		ret = new BooleanBlock(il, this);
+		ret = new Boolean(il, this);
 		break;
 
 	case QVariant::Int:
-		ret = new IntBlock(il, this);
+		ret = new Int(il, this);
 		break;
 
 	case QVariant::Double:
-		ret = new DoubleBlock(il, this);
+		ret = new Double(il, this);
 		break;
 
 	case QVariant::String:
-		ret = new StringBlock(il, this);
+		ret = new String(il, this);
 		break;
 
 	case QVariant::StringList:
@@ -159,7 +159,7 @@ LogicBlock * RichBlock::castNow() {
 	return ret;
 }
 
-bool RichBlock::step() {
+bool Rich::step() {
 	if (!valu1getted) {
 		memory::FunctionCall fcall;
 
@@ -200,7 +200,7 @@ bool RichBlock::step() {
 	}
 }
 
-bool RichBlock::calcResult() {
+bool Rich::calcResult() {
 	// Never called, make class not abstract
 	return false;
 }

@@ -23,14 +23,14 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The NotBlock class - !
+ * @brief The Not class - !
  */
-class NotBlock : public CrossBlock
+class Not : public Cross
 {
 public:
-	NotBlock(memory::InterLevel * il);
+	Not(memory::InterLevel * il);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 	bool checkIntegrity() override;
 	void resetResultValue() override;

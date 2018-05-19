@@ -2,16 +2,16 @@
 
 namespace icL::logic {
 
-LogicBlock::LogicBlock(memory::InterLevel * il)
+Logic::Logic(memory::InterLevel * il)
 	: memory::Node(il){};
 
 
 /**
- * @brief LogicBlock::getResult - calculate the result and save it to the
+ * @brief Logic::getResult - calculate the result and save it to the
  * resultValue
  * @return calcResult()
  */
-bool LogicBlock::getResult() {
+bool Logic::getResult() {
 	bool result = false;
 
 	if (resultValue == ResultValue::NOT_CALCULATED) {
@@ -23,7 +23,7 @@ bool LogicBlock::getResult() {
 	return result;
 }
 
-bool LogicBlock::getCachedResult() {
+bool Logic::getCachedResult() {
 	if (resultCalculed) {
 		return result;
 	}
@@ -32,46 +32,46 @@ bool LogicBlock::getCachedResult() {
 }
 
 /**
- * @brief LogicBlock::resetResultValue - set the resultValue to "not calculated"
+ * @brief Logic::resetResultValue - set the resultValue to "not calculated"
  */
-void LogicBlock::resetResultValue() {
+void Logic::resetResultValue() {
 	resultValue = ResultValue::NOT_CALCULATED;
 }
 
 /**
- * @brief LogicBlock::invalidate - set the
+ * @brief Logic::invalidate - set the
  */
-void LogicBlock::invalidate() {
+void Logic::invalidate() {
 	resultValue = ResultValue::WRONG_INPUT_DATA;
 }
 
-bool LogicBlock::canResultPreliminarily() {
+bool Logic::canResultPreliminarily() {
 	return false;
 }
 
 /**
- * @brief LogicBlock::getParent - node parent getter
+ * @brief Logic::getParent - node parent getter
  * @return pointer to the parent node
  */
-LogicBlock * LogicBlock::getParent() {
+Logic * Logic::getParent() {
 	return m_parent;
 }
 
 /**
- * @brief LogicBlock::setParent - parent node setter
+ * @brief Logic::setParent - parent node setter
  * @param pointer to the parent node
  */
-void LogicBlock::setParent(LogicBlock * parent) {
+void Logic::setParent(Logic * parent) {
 	m_parent = parent;
 }
 
 /**
- * @brief LogicBlock::typeToString - Convert types to string, special for errors
+ * @brief Logic::typeToString - Convert types to string, special for errors
  * messages.
  * @param type - the result of QVariant.type()
  * @return a string with icL type name
  */
-QString LogicBlock::typeToString(QVariant::Type type) {
+QString Logic::typeToString(QVariant::Type type) {
 	QString ret;
 
 	switch (type) {

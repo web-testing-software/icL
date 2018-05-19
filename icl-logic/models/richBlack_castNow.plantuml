@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title RichBlock.castNow()
+title Rich.castNow()
 
 start
 
@@ -10,16 +10,16 @@ start
 
 if (vt == Bool) then (Да)
 	-[#blue]->
-	:newContext =\nnew BooleanBlock();
+	:newContext =\nnew Boolean();
 else if (vt == Int) then (Да)
 	-[#blue]->
-	:newContext =\nnew IntBlock();
+	:newContext =\nnew Int();
 else if (vt == Double) then (Да)
 	-[#blue]->
-	:newContext =\nnew DoubleBlock();
+	:newContext =\nnew Double();
 else if (vt == String) then (Да)
 	-[#blue]->
-	:newContext =\nnew StringBlock();
+	:newContext =\nnew String();
 else if (vt == StringList) then (Да)
 	-[#blue]->
 	:newContext =\nnew ListBlock();

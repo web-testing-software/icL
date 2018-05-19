@@ -23,14 +23,14 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The AndBlock class - &&
+ * @brief The And class - &&
  */
-class AndBlock : public CrossBlock
+class And : public Cross
 {
 public:
-	AndBlock(memory::InterLevel * il);
+	And(memory::InterLevel * il);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 	bool canResultPreliminarily() override;
 };

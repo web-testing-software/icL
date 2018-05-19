@@ -6,7 +6,7 @@
 #include <icl-logic/cross/xor.h>
 #include <icl-logic/main/cross.h>
 #include <icl-logic/main/logic.h>
-#include <icl-logic/rich/singleblock.h>
+#include <icl-logic/rich/single.h>
 
 #include <QDebug>
 
@@ -31,8 +31,8 @@ void If::parseLogicExp() {
 		exp = parseOnce(m_source);
 	}
 	else {
-		auto * single = new logic::rich::SingleBlock{
-		  il, logic::rich::RichBlock::OperationType::NotNot};
+		auto * single = new logic::rich::Single{
+		  il, logic::rich::Rich::OperationType::NotNot};
 
 		single->giveCode(m_source);
 		exp = single;
@@ -40,7 +40,7 @@ void If::parseLogicExp() {
 }
 
 // The brackets pairs must be checked first, by interpreteur
-logic::LogicBlock * If::parseOnce(memory::CodeFragment & fn) {
+logic::Logic * If::parseOnce(memory::CodeFragment & fn) {
 	Operator  op;
 	QString * str = fn.source;
 	QString   brackets;
@@ -117,8 +117,8 @@ logic::LogicBlock * If::parseOnce(memory::CodeFragment & fn) {
 	}
 
 	if (op.type == OperatorType::NotFound) {
-		auto * single = new logic::rich::SingleBlock{
-		  il, logic::rich::RichBlock::OperationType::NotNot};
+		auto * single = new logic::rich::Single{
+		  il, logic::rich::Rich::OperationType::NotNot};
 
 		single->giveCode(fn);
 		return single;
@@ -238,7 +238,7 @@ void If::filter(memory::CodeFragment fn) {
 	} while (!ready);
 }
 
-logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
+logic::Logic * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 	bool isOk = true;
 
 	for (int i = fn.begin; i < op.position; i++) {
@@ -257,10 +257,10 @@ logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 	}
 
 	memory::CodeFragment newfn  = fn;
-	auto *               single = new logic::rich::SingleBlock(
+	auto *               single = new logic::rich::Single(
 	  il, op.type == OperatorType::Not
-			? logic::rich::RichBlock::OperationType::Not
-			: logic::rich::RichBlock::OperationType::NotNot);
+			? logic::rich::Rich::OperationType::Not
+			: logic::rich::Rich::OperationType::NotNot);
 
 	newfn.begin += op.type == OperatorType::Not ? 1 : 2;
 	filter(newfn);
@@ -269,7 +269,7 @@ logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 	return single;
 }
 
-logic::LogicBlock * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
+logic::Logic * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
 	memory::CodeFragment newfn1 = fn, newfn2 = fn;
 
 	newfn1.end = op.position;
@@ -279,32 +279,32 @@ logic::LogicBlock * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
 	filter(newfn1);
 	filter(newfn2);
 
-	logic::rich::RichBlock::OperationType type;
+	logic::rich::Rich::OperationType type;
 
 	switch (op.type) {
 	case OperatorType::Equal:
-		type = logic::rich::RichBlock::OperationType::Equal;
+		type = logic::rich::Rich::OperationType::Equal;
 		break;
 
 	case OperatorType::NotEqual:
-		type = logic::rich::RichBlock::OperationType::NotEqual;
+		type = logic::rich::Rich::OperationType::NotEqual;
 		break;
 
 	case OperatorType::Contains:
-		type = logic::rich::RichBlock::OperationType::Contains;
+		type = logic::rich::Rich::OperationType::Contains;
 		break;
 
 	case OperatorType::ContainsFragment:
-		type = logic::rich::RichBlock::OperationType::ContainsFragment;
+		type = logic::rich::Rich::OperationType::ContainsFragment;
 		break;
 
 	default:
 		// Never triggered, elude clang warning
-		type = logic::rich::RichBlock::OperationType::NotNot;
+		type = logic::rich::Rich::OperationType::NotNot;
 		break;
 	}
 
-	auto * block = new logic::rich::RichBlock{il, type};
+	auto * block = new logic::rich::Rich{il, type};
 
 	block->giveCode(newfn1);
 	block->giveCode(newfn2);
@@ -312,7 +312,7 @@ logic::LogicBlock * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
 	return block;
 }
 
-logic::LogicBlock * If::returnRank3(Operator & op, memory::CodeFragment & fn) {
+logic::Logic * If::returnRank3(Operator & op, memory::CodeFragment & fn) {
 	memory::CodeFragment newfn1 = fn, newfn2 = fn;
 
 	newfn1.end   = op.position;
@@ -321,23 +321,23 @@ logic::LogicBlock * If::returnRank3(Operator & op, memory::CodeFragment & fn) {
 	filter(newfn1);
 	filter(newfn2);
 
-	logic::cross::CrossBlock * block;
+	logic::cross::Cross * block;
 
 	switch (op.type) {
 	case OperatorType::And:
-		block = new logic::cross::AndBlock{il};
+		block = new logic::cross::And{il};
 		break;
 
 	case OperatorType::Or:
-		block = new logic::cross::OrBlock{il};
+		block = new logic::cross::Or{il};
 		break;
 
 	case OperatorType::XOr:
-		block = new logic::cross::XOrBlock{il};
+		block = new logic::cross::XOr{il};
 		break;
 
 	case OperatorType::Equiv:
-		block = new logic::cross::EqBlock{il};
+		block = new logic::cross::Eq{il};
 		break;
 
 	default:

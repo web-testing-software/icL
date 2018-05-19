@@ -7,7 +7,7 @@ participant VMStack as vms
 participant VM as vm
 participant Interpreter as inter
 participant Context as con
-participant LogicBlock as logic
+participant Logic as logic
 
 ' unclosed statement
 activate vms

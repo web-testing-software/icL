@@ -4,7 +4,7 @@
 #include "object/double.h"
 #include "object/element.h"
 #include "object/int.h"
-#include "object/list.h"
+#include "object/List.h"
 #include "object/object.h"
 #include "object/string.h"
 #include "object/void.h"
@@ -148,7 +148,7 @@ void Context::sendWrongArglist(
 
 QString Context::varToJsString(const QVariant & var) {
 	QString     ret;
-	QStringList list = var.toStringList();
+	QStringList List = var.toStringList();
 
 	memory::WebElement web = var.value<memory::WebElement>();
 
@@ -170,10 +170,10 @@ QString Context::varToJsString(const QVariant & var) {
 		break;
 
 	case QVariant::StringList:
-		for (QString & str : list) {
+		for (QString & str : List) {
 			str.replace(R"(")", R"(\")");
 		}
-		ret = R"([")" % list.join(R"(",")") % R"("])";
+		ret = R"([")" % List.join(R"(",")") % R"("])";
 		break;
 
 	case QVariant::Type::UserType:

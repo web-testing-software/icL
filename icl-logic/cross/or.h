@@ -23,14 +23,14 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The OrBlock class - ||
+ * @brief The Or class - ||
  */
-class OrBlock : public CrossBlock
+class Or : public Cross
 {
 public:
-	OrBlock(memory::InterLevel * il);
+	Or(memory::InterLevel * il);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 	bool canResultPreliminarily() override;
 };

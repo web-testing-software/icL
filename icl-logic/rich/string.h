@@ -23,17 +23,17 @@
 namespace icL::logic::rich {
 
 /**
- * @brief The StringBlock class - compare two <string> vars/consts
+ * @brief The String class - compare two <string> vars/consts
  */
-class StringBlock : public RichBlock
+class String : public Rich
 {
 public:
-	StringBlock(memory::InterLevel *il, OperationType otype);
-	StringBlock(memory::InterLevel *il, RichBlock * block);
+	String(memory::InterLevel *il, OperationType otype);
+	String(memory::InterLevel *il, Rich * block);
 
 	//	static bool check (const QString &value);
 
-	// LogicBlock interface
+	// Logic interface
 	bool calcResult() override;
 
 protected:

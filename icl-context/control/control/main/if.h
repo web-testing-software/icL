@@ -4,7 +4,7 @@
 #include "control.h"
 
 namespace icL::logic {
-class LogicBlock;
+class Logic;
 }
 
 
@@ -56,7 +56,7 @@ public:
 protected:
 	void parseLogicExp();
 
-	logic::LogicBlock * parseOnce(memory::CodeFragment & fn);
+	logic::Logic * parseOnce(memory::CodeFragment & fn);
 
 	void makeRank3(Operator & op, OperatorType type, int i);
 	void processNots(Operator & op, const QChar & next, int i);
@@ -65,15 +65,15 @@ protected:
 
 	void filter(memory::CodeFragment fn);
 
-	logic::LogicBlock * returnRank1(Operator & op, memory::CodeFragment & fn);
-	logic::LogicBlock * returnRank2(Operator & op, memory::CodeFragment & fn);
-	logic::LogicBlock * returnRank3(Operator & op, memory::CodeFragment & fn);
+	logic::Logic * returnRank1(Operator & op, memory::CodeFragment & fn);
+	logic::Logic * returnRank2(Operator & op, memory::CodeFragment & fn);
+	logic::Logic * returnRank3(Operator & op, memory::CodeFragment & fn);
 
 protected:
 	bool isLogicExp;
 
 	bool                expressionExecuted = false;
-	logic::LogicBlock * exp                = nullptr;
+	logic::Logic * exp                = nullptr;
 	bool                result             = false;
 
 	// Context interface

@@ -2,18 +2,18 @@
 
 namespace icL::logic::cross {
 
-OrBlock::OrBlock(memory::InterLevel * il)
-	: CrossBlock(il){};
+Or::Or(memory::InterLevel * il)
+	: Cross(il){};
 
 /**
- * @brief OrBlock::calcResult - append || operation to child blocks
+ * @brief Or::calcResult - append || operation to child blocks
  * @return bool
  */
-bool OrBlock::calcResult() {
+bool Or::calcResult() {
 	return block1->getCachedResult() || block2->getCachedResult();
 }
 
-bool OrBlock::canResultPreliminarily() {
+bool Or::canResultPreliminarily() {
 	return value1 == true;
 }
 

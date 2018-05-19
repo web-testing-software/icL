@@ -1,21 +1,21 @@
-#include "doubleblock.h"
+#include "double.h"
 
 namespace icL::logic::rich {
 
-DoubleBlock::DoubleBlock(memory::InterLevel * il, OperationType otype)
-	: icL::logic::rich::RichBlock(il, otype) {
+Double::Double(memory::InterLevel * il, OperationType otype)
+	: icL::logic::rich::Rich(il, otype) {
 	casted = true;
 }
 
-DoubleBlock::DoubleBlock(memory::InterLevel * il, RichBlock * block)
-	: RichBlock(il, block) {}
+Double::Double(memory::InterLevel * il, Rich * block)
+	: Rich(il, block) {}
 
 
 /**
- * @brief DoubleBlock::calcResult - compare values
+ * @brief Double::calcResult - compare values
  * @return the result of comparation
  */
-bool DoubleBlock::calcResult() {
+bool Double::calcResult() {
 	bool   result = false;
 	double var1   = value1.toDouble();
 

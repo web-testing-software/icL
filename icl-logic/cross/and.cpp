@@ -2,18 +2,18 @@
 
 namespace icL::logic::cross {
 
-AndBlock::AndBlock(memory::InterLevel * il)
-	: CrossBlock(il){};
+And::And(memory::InterLevel * il)
+	: Cross(il){};
 
 /**
- * @brief AndBlock::calcResult - append operation && to child blocks
+ * @brief And::calcResult - append operation && to child blocks
  * @return bool
  */
-bool AndBlock::calcResult() {
+bool And::calcResult() {
 	return block1->getCachedResult() && block2->getCachedResult();
 }
 
-bool AndBlock::canResultPreliminarily() {
+bool And::canResultPreliminarily() {
 	return value1 == false;
 }
 

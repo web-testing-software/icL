@@ -2,14 +2,14 @@
 
 namespace icL::logic::cross {
 
-XOrBlock::XOrBlock(memory::InterLevel * il)
-	: CrossBlock(il){};
+XOr::XOr(memory::InterLevel * il)
+	: Cross(il){};
 
 /**
- * @brief XOrBlock::calcResult - append != operation to child blocks
+ * @brief XOr::calcResult - append != operation to child blocks
  * @return bool
  */
-bool XOrBlock::calcResult() {
+bool XOr::calcResult() {
 	return block1->getCachedResult() != block2->getCachedResult();
 }
 

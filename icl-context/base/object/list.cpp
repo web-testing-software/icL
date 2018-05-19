@@ -1,4 +1,4 @@
-#include "list.h"
+#include "List.h"
 
 #include "boolean.h"
 #include "double.h"
@@ -71,119 +71,119 @@ void List::runLength() {
 
 
 void List::prepend(const QString & value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	list.prepend(value);
-	setValue(list);
+	List.prepend(value);
+	setValue(List);
 }
 
 void List::append(const QString & value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	list.append(value);
-	setValue(list);
+	List.append(value);
+	setValue(List);
 }
 
 void List::insert(int index, const QString & value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	list.insert(index, value);
-	setValue(list);
+	List.insert(index, value);
+	setValue(List);
 }
 
-void List::merge(const QStringList & list) {
+void List::merge(const QStringList & List) {
 	QStringList list1 = getValue().toStringList();
 
-	list1.append(list);
+	list1.append(List);
 	setValue(list1);
 }
 
 void List::popFront() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	if (list.isEmpty()) {
-		il->vm->exception({-3, "Can not remove first item of empty list"});
+	if (List.isEmpty()) {
+		il->vm->exception({-3, "Can not remove first item of empty List"});
 	}
 	else {
-		list.removeFirst();
-		setValue(list);
+		List.removeFirst();
+		setValue(List);
 	}
 }
 
 void List::popBack() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	if (list.isEmpty()) {
-		il->vm->exception({-3, "Can not remove first item of empty list"});
+	if (List.isEmpty()) {
+		il->vm->exception({-3, "Can not remove first item of empty List"});
 	}
 	else {
-		list.removeLast();
-		setValue(list);
+		List.removeLast();
+		setValue(List);
 	}
 }
 
 void List::remove(int index) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	if (index < 0 || index >= list.length()) {
+	if (index < 0 || index >= List.length()) {
 		il->vm->exception({-8, "Index out of bounds"});
 	}
 	else {
-		list.removeAt(index);
-		setValue(list);
+		List.removeAt(index);
+		setValue(List);
 	}
 }
 
 void List::removeOnce(const QString & value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	list.removeOne(value);
-	setValue(list);
+	List.removeOne(value);
+	setValue(List);
 }
 
 void List::removeAll(const QString & value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	list.removeAll(value);
-	setValue(list);
+	List.removeAll(value);
+	setValue(List);
 }
 
 QString List::get(int index) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	if (index < 0 || index >= list.length()) {
+	if (index < 0 || index >= List.length()) {
 		il->vm->exception({-8, "Index out of bounds"});
 	}
 	else {
-		return list.at(index);
+		return List.at(index);
 	}
 
 	return QString{};
 }
 
 int List::indexOf(const QString & value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	return list.indexOf(value);
+	return List.indexOf(value);
 }
 
 int List::lastIndexOf(const QString value) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	return list.lastIndexOf(value);
+	return List.lastIndexOf(value);
 }
 
 QString List::join(const QString & delimiter) {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	return list.join(delimiter);
+	return List.join(delimiter);
 }
 
 double List::sumUp() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 	double      sum  = 0;
 
-	for (auto & str : list) {
+	for (auto & str : List) {
 		bool ok;
 		sum += str.toDouble(&ok);
 
@@ -198,16 +198,16 @@ double List::sumUp() {
 }
 
 double List::max() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	if (list.isEmpty()) {
-		il->vm->exception({-3, "Cannot find max value in empty list"});
+	if (List.isEmpty()) {
+		il->vm->exception({-3, "Cannot find max value in empty List"});
 		return 0.0;
 	}
 
-	double max = list.at(0).toDouble();
+	double max = List.at(0).toDouble();
 
-	for (auto & str : list) {
+	for (auto & str : List) {
 		bool   ok;
 		double number = str.toDouble(&ok);
 
@@ -225,16 +225,16 @@ double List::max() {
 }
 
 double List::min() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 
-	if (list.isEmpty()) {
-		il->vm->exception({-3, "Cannot find min value in empty list"});
+	if (List.isEmpty()) {
+		il->vm->exception({-3, "Cannot find min value in empty List"});
 		return 0.0;
 	}
 
-	double min = list.at(0).toDouble();
+	double min = List.at(0).toDouble();
 
-	for (auto & str : list) {
+	for (auto & str : List) {
 		bool   ok;
 		double number = str.toDouble(&ok);
 
@@ -252,10 +252,10 @@ double List::min() {
 }
 
 bool List::logicAnd() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 	bool        res  = true;
 
-	for (auto & str : list) {
+	for (auto & str : List) {
 
 		if (str == QStringLiteral("false")) {
 			res = false;
@@ -271,10 +271,10 @@ bool List::logicAnd() {
 }
 
 bool List::logicOr() {
-	QStringList list = getValue().toStringList();
+	QStringList List = getValue().toStringList();
 	bool        res  = false;
 
-	for (auto & str : list) {
+	for (auto & str : List) {
 
 		if (str == QStringLiteral("true")) {
 			res = true;
@@ -477,7 +477,7 @@ QString List::getFirst() {
 	QString     ret;
 
 	if (value.isEmpty()) {
-		il->vm->exception({-3, "Empty list cannot be casted to any types"});
+		il->vm->exception({-3, "Empty List cannot be casted to any types"});
 	}
 	else if (value.size() > 1) {
 		il->vm->exception(

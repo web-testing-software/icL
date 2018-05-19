@@ -1,7 +1,7 @@
 @startuml
 
 !include uml_style.iuml
-title LogicBlock.needCast()
+title Logic.needCast()
 
 start
 :return false;

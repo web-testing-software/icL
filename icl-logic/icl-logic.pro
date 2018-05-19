@@ -20,12 +20,6 @@ unix {
 }
 
 HEADERS += \
-    rich/booleanblock.h \
-    rich/doubleblock.h \
-    rich/intblock.h \
-    rich/singleblock.h \
-    rich/stringblock.h \
-    rich/listblock.h \
     cross/and.h \
     cross/eq.h \
     cross/not.h \
@@ -33,7 +27,13 @@ HEADERS += \
     cross/xor.h \
     main/cross.h \
     main/logic.h \
-    main/rich.h
+    main/rich.h \
+    rich/boolean.h \
+    rich/double.h \
+    rich/int.h \
+    rich/List.h \
+    rich/single.h \
+    rich/string.h
 
 SOURCES += \
     cross/and.cpp \
@@ -47,7 +47,7 @@ SOURCES += \
     rich/boolean.cpp \
     rich/double.cpp \
     rich/int.cpp \
-    rich/list.cpp \
+    rich/List.cpp \
     rich/single.cpp \
     rich/string.cpp
 

@@ -37,13 +37,13 @@ enum class ResultValue {
 };
 
 /**
- * @brief The LogicBlock class
+ * @brief The Logic class
  */
-class LogicBlock : public memory::Node
+class Logic : public memory::Node
 {
 public:
-	LogicBlock(memory::InterLevel * il);
-	virtual ~LogicBlock();
+	Logic(memory::InterLevel * il);
+	virtual ~Logic();
 
 	bool         getResult();
 	bool         getCachedResult();
@@ -53,12 +53,12 @@ public:
 	void         invalidate();
 
 	virtual bool         needCast() = 0;
-	virtual LogicBlock * castNow()  = 0;
+	virtual Logic * castNow()  = 0;
 	virtual bool         step()     = 0;
 	virtual bool         canResultPreliminarily();
 
-	LogicBlock * getParent();
-	void         setParent(LogicBlock * parent);
+	Logic * getParent();
+	void         setParent(Logic * parent);
 
 protected:
 	virtual bool calcResult() = 0;
@@ -74,7 +74,7 @@ protected:
 	bool        resultCalculed = false, result = false;
 
 private:
-	LogicBlock * m_parent = nullptr;
+	Logic * m_parent = nullptr;
 };
 
 }  // namespace icL::logic
