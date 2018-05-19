@@ -1,4 +1,4 @@
-#include "richblock.h"
+#include "rich.h"
 
 #include "rich/booleanblock.h"
 #include "rich/doubleblock.h"

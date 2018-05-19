@@ -1,7 +1,7 @@
 #ifndef INTBLOCK_H
 #define INTBLOCK_H
 
-#include "../main/richblock.h"
+#include "../main/rich.h"
 
 
 /**

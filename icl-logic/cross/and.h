@@ -1,7 +1,7 @@
-#ifndef ORBLOCK_H
-#define ORBLOCK_H
+#ifndef ANDBLOCK_H
+#define ANDBLOCK_H
 
-#include "../main/crossblock.h"
+#include "../main/cross.h"
 
 
 /**
@@ -23,12 +23,12 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The OrBlock class - ||
+ * @brief The AndBlock class - &&
  */
-class OrBlock : public CrossBlock
+class AndBlock : public CrossBlock
 {
 public:
-	OrBlock(memory::InterLevel * il);
+	AndBlock(memory::InterLevel * il);
 
 	// LogicBlock interface
 	bool calcResult() override;
@@ -37,4 +37,4 @@ public:
 
 }  // namespace icL::logic::cross
 
-#endif  // ORBLOCK_H
+#endif  // ANDBLOCK_H

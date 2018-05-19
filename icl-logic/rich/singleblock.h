@@ -1,7 +1,7 @@
 #ifndef SINGLEBLOCK_H
 #define SINGLEBLOCK_H
 
-#include "../main/richblock.h"
+#include "../main/rich.h"
 
 /**
  *  icL

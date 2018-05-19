@@ -1,7 +1,7 @@
 #ifndef CROSSBLOCK_H
 #define CROSSBLOCK_H
 
-#include "logicblock.h"
+#include "logic.h"
 
 
 /**

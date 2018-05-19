@@ -1,12 +1,12 @@
 #include "assign.h"
 
-#include <icl-context/context-base/object/boolean.h>
-#include <icl-context/context-base/object/double.h>
-#include <icl-context/context-base/object/element.h>
-#include <icl-context/context-base/object/int.h>
-#include <icl-context/context-base/object/list.h>
-#include <icl-context/context-base/object/object.h>
-#include <icl-context/context-base/object/string.h>
+#include <icl-context/base/object/boolean.h>
+#include <icl-context/base/object/double.h>
+#include <icl-context/base/object/element.h>
+#include <icl-context/base/object/int.h>
+#include <icl-context/base/object/list.h>
+#include <icl-context/base/object/object.h>
+#include <icl-context/base/object/string.h>
 
 
 namespace icL::context::data {

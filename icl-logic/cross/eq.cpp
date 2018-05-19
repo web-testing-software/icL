@@ -1,4 +1,4 @@
-#include "eqblock.h"
+#include "eq.h"
 
 namespace icL::logic::cross {
 

@@ -1,7 +1,7 @@
 #ifndef DOUBLEBLOCK_H
 #define DOUBLEBLOCK_H
 
-#include "../main/richblock.h"
+#include "../main/rich.h"
 
 
 /**

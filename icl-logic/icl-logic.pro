@@ -20,36 +20,36 @@ unix {
 }
 
 HEADERS += \
-    cross/andblock.h \
-    cross/notblock.h \
-    cross/orblock.h \
-	cross/xorblock.h \
     rich/booleanblock.h \
     rich/doubleblock.h \
     rich/intblock.h \
     rich/singleblock.h \
     rich/stringblock.h \
-    main/crossblock.h \
-    main/logicblock.h \
-    main/richblock.h \
-    cross/eqblock.h \
-    rich/listblock.h
+    rich/listblock.h \
+    cross/and.h \
+    cross/eq.h \
+    cross/not.h \
+    cross/or.h \
+    cross/xor.h \
+    main/cross.h \
+    main/logic.h \
+    main/rich.h
 
 SOURCES += \
-    cross/andblock.cpp \
-    cross/notblock.cpp \
-    cross/orblock.cpp \
-	cross/xorblock.cpp \
-    rich/booleanblock.cpp \
-    rich/doubleblock.cpp \
-    rich/intblock.cpp \
-    rich/singleblock.cpp \
-    rich/stringblock.cpp \
-    main/crossblock.cpp \
-    main/logicblock.cpp \
-    main/richblock.cpp \
-    cross/eqblock.cpp \
-    rich/listblock.cpp
+    cross/and.cpp \
+    cross/eq.cpp \
+    cross/not.cpp \
+    cross/or.cpp \
+    cross/xor.cpp \
+    main/cross.cpp \
+    main/logic.cpp \
+    main/rich.cpp \
+    rich/boolean.cpp \
+    rich/double.cpp \
+    rich/int.cpp \
+    rich/list.cpp \
+    rich/single.cpp \
+    rich/string.cpp
 
 DISTFILES += \
     models/uml_style.iuml \

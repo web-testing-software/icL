@@ -1,7 +1,7 @@
-#ifndef NOTBLOCK_H
-#define NOTBLOCK_H
+#ifndef XORBLOCK_H
+#define XORBLOCK_H
 
-#include "../main/crossblock.h"
+#include "../main/cross.h"
 
 
 /**
@@ -23,19 +23,17 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The NotBlock class - !
+ * @brief The XOrBlock class - ^^
  */
-class NotBlock : public CrossBlock
+class XOrBlock : public CrossBlock
 {
 public:
-	NotBlock(memory::InterLevel * il);
+	XOrBlock(memory::InterLevel * il);
 
 	// LogicBlock interface
 	bool calcResult() override;
-	bool checkIntegrity() override;
-	void resetResultValue() override;
 };
 
 }  // namespace icL::logic::cross
 
-#endif  // NOTBLOCK_H
+#endif  // XORBLOCK_H

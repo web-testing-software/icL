@@ -1,7 +1,7 @@
 #ifndef LISTBLOCK_H
 #define LISTBLOCK_H
 
-#include "../main/richblock.h"
+#include "../main/rich.h"
 
 
 /**

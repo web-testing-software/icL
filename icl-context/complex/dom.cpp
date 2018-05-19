@@ -1,7 +1,7 @@
 #include "dom.h"
 
-#include <icl-context/context-base/object/element.h>
-#include <icl-context/context-base/object/object.h>
+#include <icl-context/base/object/element.h>
+#include <icl-context/base/object/object.h>
 #include <icl-memory/structures/webelement.h>
 
 #include <QStringBuilder>

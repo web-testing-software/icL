@@ -1,4 +1,4 @@
-#include "logicblock.h"
+#include "logic.h"
 
 namespace icL::logic {
 

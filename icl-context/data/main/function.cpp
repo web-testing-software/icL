@@ -2,8 +2,8 @@
 
 #include "parameter.h"
 
-#include <icl-context/context-base/object/object.h>
-#include <icl-context/context-control/main/code.h>
+#include <icl-context/base/object/object.h>
+#include <icl-context/control/main/code.h>
 
 
 

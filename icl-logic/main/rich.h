@@ -1,7 +1,7 @@
 #ifndef RICHBLOCK_H
 #define RICHBLOCK_H
 
-#include "logicblock.h"
+#include "logic.h"
 
 #include <icl-memory/structures/functioncontainer.h>
 

@@ -1,4 +1,4 @@
-#include "xorblock.h"
+#include "xor.h"
 
 namespace icL::logic::cross {
 

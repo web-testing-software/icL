@@ -1,7 +1,7 @@
 #ifndef STRINGBLOCK_H
 #define STRINGBLOCK_H
 
-#include "../main/richblock.h"
+#include "../main/rich.h"
 
 
 /**

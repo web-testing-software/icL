@@ -1,11 +1,11 @@
 #include "if.h"
 
-#include <icl-logic/cross/andblock.h>
-#include <icl-logic/cross/eqblock.h>
-#include <icl-logic/cross/orblock.h>
-#include <icl-logic/cross/xorblock.h>
-#include <icl-logic/main/crossblock.h>
-#include <icl-logic/main/logicblock.h>
+#include <icl-logic/cross/and.h>
+#include <icl-logic/cross/eq.h>
+#include <icl-logic/cross/or.h>
+#include <icl-logic/cross/xor.h>
+#include <icl-logic/main/cross.h>
+#include <icl-logic/main/logic.h>
 #include <icl-logic/rich/singleblock.h>
 
 #include <QDebug>
@@ -32,7 +32,7 @@ void If::parseLogicExp() {
 	}
 	else {
 		auto * single = new logic::rich::SingleBlock{
-		  il, logic::RichBlock::OperationType::NotNot};
+		  il, logic::rich::RichBlock::OperationType::NotNot};
 
 		single->giveCode(m_source);
 		exp = single;
@@ -118,7 +118,7 @@ logic::LogicBlock * If::parseOnce(memory::CodeFragment & fn) {
 
 	if (op.type == OperatorType::NotFound) {
 		auto * single = new logic::rich::SingleBlock{
-		  il, logic::RichBlock::OperationType::NotNot};
+		  il, logic::rich::RichBlock::OperationType::NotNot};
 
 		single->giveCode(fn);
 		return single;
@@ -259,8 +259,8 @@ logic::LogicBlock * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 	memory::CodeFragment newfn  = fn;
 	auto *               single = new logic::rich::SingleBlock(
 	  il, op.type == OperatorType::Not
-			? logic::RichBlock::OperationType::Not
-			: logic::RichBlock::OperationType::NotNot);
+			? logic::rich::RichBlock::OperationType::Not
+			: logic::rich::RichBlock::OperationType::NotNot);
 
 	newfn.begin += op.type == OperatorType::Not ? 1 : 2;
 	filter(newfn);
@@ -279,32 +279,32 @@ logic::LogicBlock * If::returnRank2(Operator & op, memory::CodeFragment & fn) {
 	filter(newfn1);
 	filter(newfn2);
 
-	logic::RichBlock::OperationType type;
+	logic::rich::RichBlock::OperationType type;
 
 	switch (op.type) {
 	case OperatorType::Equal:
-		type = logic::RichBlock::OperationType::Equal;
+		type = logic::rich::RichBlock::OperationType::Equal;
 		break;
 
 	case OperatorType::NotEqual:
-		type = logic::RichBlock::OperationType::NotEqual;
+		type = logic::rich::RichBlock::OperationType::NotEqual;
 		break;
 
 	case OperatorType::Contains:
-		type = logic::RichBlock::OperationType::Contains;
+		type = logic::rich::RichBlock::OperationType::Contains;
 		break;
 
 	case OperatorType::ContainsFragment:
-		type = logic::RichBlock::OperationType::ContainsFragment;
+		type = logic::rich::RichBlock::OperationType::ContainsFragment;
 		break;
 
 	default:
 		// Never triggered, elude clang warning
-		type = logic::RichBlock::OperationType::NotNot;
+		type = logic::rich::RichBlock::OperationType::NotNot;
 		break;
 	}
 
-	auto * block = new logic::RichBlock{il, type};
+	auto * block = new logic::rich::RichBlock{il, type};
 
 	block->giveCode(newfn1);
 	block->giveCode(newfn2);
@@ -321,7 +321,7 @@ logic::LogicBlock * If::returnRank3(Operator & op, memory::CodeFragment & fn) {
 	filter(newfn1);
 	filter(newfn2);
 
-	logic::CrossBlock * block;
+	logic::cross::CrossBlock * block;
 
 	switch (op.type) {
 	case OperatorType::And:

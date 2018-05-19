@@ -3,7 +3,7 @@
 namespace icL::logic::rich {
 
 DoubleBlock::DoubleBlock(memory::InterLevel * il, OperationType otype)
-	: icL::logic::RichBlock(il, otype) {
+	: icL::logic::rich::RichBlock(il, otype) {
 	casted = true;
 }
 

@@ -1,7 +1,7 @@
 #ifndef BOOLEANBLOCK_H
 #define BOOLEANBLOCK_H
 
-#include "../main/richblock.h"
+#include "../main/rich.h"
 
 
 /**

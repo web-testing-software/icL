@@ -1,7 +1,7 @@
-#ifndef ANDBLOCK_H
-#define ANDBLOCK_H
+#ifndef EQBLOCK_H
+#define EQBLOCK_H
 
-#include "../main/crossblock.h"
+#include "../main/cross.h"
 
 
 /**
@@ -23,18 +23,18 @@
 namespace icL::logic::cross {
 
 /**
- * @brief The AndBlock class - &&
+ * @brief The EqBlock class - ~~
  */
-class AndBlock : public CrossBlock
+class EqBlock : public CrossBlock
 {
 public:
-	AndBlock(memory::InterLevel * il);
+	EqBlock(memory::InterLevel * il);
 
 	// LogicBlock interface
+protected:
 	bool calcResult() override;
-	bool canResultPreliminarily() override;
 };
 
 }  // namespace icL::logic::cross
 
-#endif  // ANDBLOCK_H
+#endif  // EQBLOCK_H
