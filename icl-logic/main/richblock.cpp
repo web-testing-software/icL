@@ -6,6 +6,8 @@
 #include "rich/listblock.h"
 #include "rich/stringblock.h"
 
+#include <QStringBuilder>
+
 namespace icL::logic {
 
 RichBlock::RichBlock(memory::InterLevel * il, OperationType otype)

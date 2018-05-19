@@ -7,6 +7,7 @@
 #include "string.h"
 
 #include <QDebug>
+#include <QStringBuilder>
 
 namespace icL::context::object {
 

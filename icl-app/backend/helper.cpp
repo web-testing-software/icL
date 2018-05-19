@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QStandardPaths>
+#include <QStringBuilder>
 #include <QtMath>
 
 namespace icL::app {

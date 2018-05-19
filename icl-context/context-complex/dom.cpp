@@ -4,6 +4,7 @@
 #include <icl-context/context-base/object/object.h>
 #include <icl-memory/structures/webelement.h>
 
+#include <QStringBuilder>
 #include <QVariant>
 
 namespace icL::context::complex {

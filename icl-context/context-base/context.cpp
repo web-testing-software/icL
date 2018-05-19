@@ -13,6 +13,7 @@
 
 #include <utility>
 
+#include <QStringBuilder>
 #include <QVariant>
 
 

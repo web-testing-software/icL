@@ -7,6 +7,8 @@
 #include "string.h"
 #include "void.h"
 
+#include <QStringBuilder>
+
 namespace icL::context::object {
 
 
