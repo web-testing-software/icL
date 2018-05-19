@@ -146,9 +146,7 @@ void Function::sendWrongArgs() {
 	il->vm->exception(
 	  {-203, QStringLiteral(
 			   "Wrong arguments for function %1: getted<%2>, expected<%3>")
-			   .arg(name)
-			   .arg(getted.join(", "))
-			   .arg(expected.join(", "))});
+			   .arg(name, getted.join(", "), expected.join(", "))});
 }
 
 
