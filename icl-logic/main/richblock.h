@@ -26,7 +26,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::logic {
+namespace icL::logic::rich {
 
 /**
  * @brief The RichBlock class - this class contains 2 variables or constants

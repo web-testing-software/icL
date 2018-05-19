@@ -8,7 +8,7 @@
 
 #include <QStringBuilder>
 
-namespace icL::logic {
+namespace icL::logic::rich {
 
 RichBlock::RichBlock(memory::InterLevel * il, OperationType otype)
 	: LogicBlock(il) {
@@ -130,23 +130,23 @@ LogicBlock * RichBlock::castNow() {
 
 	switch (value1.type()) {
 	case QVariant::Bool:
-		ret = new rich::BooleanBlock(il, this);
+		ret = new BooleanBlock(il, this);
 		break;
 
 	case QVariant::Int:
-		ret = new rich::IntBlock(il, this);
+		ret = new IntBlock(il, this);
 		break;
 
 	case QVariant::Double:
-		ret = new rich::DoubleBlock(il, this);
+		ret = new DoubleBlock(il, this);
 		break;
 
 	case QVariant::String:
-		ret = new rich::StringBlock(il, this);
+		ret = new StringBlock(il, this);
 		break;
 
 	case QVariant::StringList:
-		ret = new rich::ListBlock(il, this);
+		ret = new ListBlock(il, this);
 		break;
 
 	default:

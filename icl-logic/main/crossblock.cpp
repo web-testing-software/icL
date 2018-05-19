@@ -1,6 +1,6 @@
 #include "crossblock.h"
 
-namespace icL::logic {
+namespace icL::logic::cross {
 
 CrossBlock::CrossBlock(memory::InterLevel * il)
 	: LogicBlock(il){};
