@@ -38,7 +38,14 @@ HEADERS += \
     main/function.h \
     main/method.h \
     main/parameter.h \
-    main/property.h
+    main/property.h \
+    js/js.h \
+    js/get.h \
+    js/set.h \
+    js/file.h \
+    js/crossfire.h \
+    js/var.h \
+    js/value.h
 
 SOURCES += \
     main/alternative.cpp \
@@ -47,4 +54,11 @@ SOURCES += \
     main/function.cpp \
     main/method.cpp \
     main/parameter.cpp \
-    main/property.cpp
+    main/property.cpp \
+    js/js.cpp \
+    js/get.cpp \
+    js/set.cpp \
+    js/file.cpp \
+    js/crossfire.cpp \
+    js/var.cpp \
+    js/value.cpp

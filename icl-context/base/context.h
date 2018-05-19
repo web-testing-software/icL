@@ -47,7 +47,9 @@ enum class Role {
 	Alternative,
 	Assign,
 	Function,
-	Argument
+	Argument,
+	JsValue,
+	JsFile
 };
 
 enum class Prefix { None, Attr, Data, Css };

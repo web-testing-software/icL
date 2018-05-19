@@ -25,7 +25,9 @@ public:
 class VirtualMachineStack
 {
 public:
-	virtual Return interrupt(FunctionCall fcall) = 0;
+	virtual Return          interrupt(FunctionCall fcall) = 0;
+	virtual const QString & getWorkingDir()               = 0;
+	virtual const QString & getCrossfirePass()            = 0;
 };
 
 class Server
