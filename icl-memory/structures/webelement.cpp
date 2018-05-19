@@ -72,16 +72,16 @@
 //	return ret;
 //}
 
-//// Get attribute of all elements like a List
+//// Get attribute of all elements like a list
 // QStringList WebElement::getAttributeFromAll (const QString &name, bool se)
 // const { 	bool		success; 	QStringList ret;
 
 //	if (is_multi (se)) {
 //		QString code = QString ("(function(){\n"
-//								"var List = [];\n"
+//								"var list = [];\n"
 //								"for (var i = 0; i < %1.length; i++)\n"
-//								"	List.push(%1[i].%2);\n"
-//								"return List;"
+//								"	list.push(%1[i].%2);\n"
+//								"return list;"
 //								"})()").arg (variable, name);
 ////		QVariant v = server->executeJS (code);
 

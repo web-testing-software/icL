@@ -37,7 +37,7 @@ HEADERS += \
     object/double.h \
     object/element.h \
     object/int.h \
-    object/List.h \
+    object/list.h \
     object/object.h \
     object/string.h \
     object/void.h
@@ -48,7 +48,7 @@ SOURCES += \
     object/double.cpp \
     object/element.cpp \
     object/int.cpp \
-    object/List.cpp \
+    object/list.cpp \
     object/object.cpp \
     object/string.cpp \
     object/void.cpp

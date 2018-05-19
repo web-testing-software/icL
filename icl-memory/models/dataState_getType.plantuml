@@ -21,7 +21,7 @@ else if (type = String?) then (Да)
 	:ret = STRING;
 else if (type = StringList?) then (Да)
 	-[#blue]->
-	:ret = List;
+        :ret = LIST;
 else if (type = CostumType?) then (Да)
 	-[#blue]->
 	:ret = ELEMENT;

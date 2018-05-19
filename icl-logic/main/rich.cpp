@@ -3,7 +3,7 @@
 #include "rich/boolean.h"
 #include "rich/double.h"
 #include "rich/int.h"
-#include "rich/List.h"
+#include "rich/list.h"
 #include "rich/string.h"
 
 #include <QStringBuilder>

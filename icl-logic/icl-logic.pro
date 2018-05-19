@@ -31,7 +31,7 @@ HEADERS += \
     rich/boolean.h \
     rich/double.h \
     rich/int.h \
-    rich/List.h \
+    rich/list.h \
     rich/single.h \
     rich/string.h
 
@@ -47,7 +47,7 @@ SOURCES += \
     rich/boolean.cpp \
     rich/double.cpp \
     rich/int.cpp \
-    rich/List.cpp \
+    rich/list.cpp \
     rich/single.cpp \
     rich/string.cpp
 

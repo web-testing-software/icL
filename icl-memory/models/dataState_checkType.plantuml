@@ -26,7 +26,7 @@ else if (type = STRING?) then (Да)
 	:ret =
 	vtype ==
 	String;
-else if (type = List?) then (Да)
+else if (type = LIST?) then (Да)
 	-[#blue]->
 	:ret =
 	vtype ==

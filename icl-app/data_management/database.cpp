@@ -28,7 +28,7 @@ DataBase::DataBase(QObject * parent)
 
 /**
  * @brief DataBase::top9 - the must popular 9 sites
- * @return List of DialDescription (site dial description)
+ * @return list of DialDescription (site dial description)
  */
 QList<QObject *> DataBase::top9() {
 	QList<QObject *> ret;
