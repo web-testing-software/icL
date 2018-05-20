@@ -22,7 +22,8 @@ function findPosY(obj) {
 	}
 }
 
-// This function is necessary for click function, we cannot click if the element is not visible
+// This function is necessary for click function,
+// we cannot click if the element is not visible
 function scrollTo (obj) {
 	window.scroll(
 				findPosX(obj) - window.innerWidth / 2 + obj.innerWidth / 2,

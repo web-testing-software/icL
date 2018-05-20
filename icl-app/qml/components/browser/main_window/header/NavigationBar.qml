@@ -6,7 +6,7 @@ import "../../ui/controls";
 Item {
 	property string current_webview_url: !!current_webview
 										 ? current_webview.url
-										 : "https://gitlab.com/lixcode/ic-lightning"; // For testing
+										 : "https://gitlab.com/lixcode/ic-lightning";
 
 	ToolIcons.Back {
 		id: back;

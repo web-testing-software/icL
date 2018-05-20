@@ -65,7 +65,8 @@ MouseArea {
 				if (alpha < 0.65) {
 					var begin_angle = CONST.PI_2_5 - CONST.PI_2_0 * alpha * 1.538;
 
-					ctx.moveTo(11 + CONST.R * Math.cos(begin_angle), 10 + CONST.R * Math.sin(begin_angle));
+					ctx.moveTo(11 + CONST.R * Math.cos(begin_angle), 10 +
+							   CONST.R * Math.sin(begin_angle));
 					ctx.arc(11, 10, CONST.R, begin_angle, CONST.PI_0_5, true);
 				}
 
@@ -85,7 +86,8 @@ MouseArea {
 						}
 					}
 
-					ctx.arc(29, 10, CONST.R, CONST.PI_0_5, CONST.PI_0_5 - CONST.PI_4_0 * (alpha - 0.5), true);
+					ctx.arc(29, 10, CONST.R, CONST.PI_0_5, CONST.PI_0_5 -
+							CONST.PI_4_0 * (alpha - 0.5), true);
 				}
 
 				ctx.stroke();
@@ -94,7 +96,8 @@ MouseArea {
 				if (alpha < 0.5) {
 					begin_angle = CONST.PI_2_5 - CONST.PI_2_0 * alpha;
 
-					ctx.moveTo(29 + CONST.R * Math.cos(begin_angle), 10 + CONST.R * Math.sin(begin_angle));
+					ctx.moveTo(29 + CONST.R * Math.cos(begin_angle), 10 +
+							   CONST.R * Math.sin(begin_angle));
 					ctx.arc(29, 10, CONST.R, begin_angle, CONST.PI_1_5, true);
 					ctx.lineTo(29 - 18 * alpha, 2);
 				}
@@ -107,7 +110,8 @@ MouseArea {
 				else {
 					var local_alpha = alpha - 0.75;
 					ctx.moveTo(20 - local_alpha * 36, 2);
-					ctx.arc(11, 10, CONST.R, CONST.PI_1_5, CONST.PI_1_5 - CONST.PI_4_0 * local_alpha, true);
+					ctx.arc(11, 10, CONST.R, CONST.PI_1_5, CONST.PI_1_5 -
+							CONST.PI_4_0 * local_alpha, true);
 				}
 			}
 			else {
@@ -115,7 +119,8 @@ MouseArea {
 				if (alpha < 0.65) {
 					begin_angle = CONST.PI_1_5 + CONST.PI_2_0 * alpha * 1.538;
 
-					ctx.moveTo(11 + CONST.R * Math.cos(begin_angle), 10 + CONST.R * Math.sin(begin_angle));
+					ctx.moveTo(11 + CONST.R * Math.cos(begin_angle), 10 +
+							   CONST.R * Math.sin(begin_angle));
 					ctx.arc(11, 10, CONST.R, begin_angle, CONST.PI_3_5, false);
 				}
 
@@ -135,7 +140,8 @@ MouseArea {
 						}
 					}
 
-					ctx.arc(29, 10, CONST.R, CONST.PI_3_5, CONST.PI_3_5 + CONST.PI_4_0 * (alpha - 0.5), false);
+					ctx.arc(29, 10, CONST.R, CONST.PI_3_5, CONST.PI_3_5 +
+							CONST.PI_4_0 * (alpha - 0.5), false);
 				}
 
 				ctx.stroke();
@@ -144,7 +150,8 @@ MouseArea {
 				if (alpha < 0.5) {
 					begin_angle = CONST.PI_1_5 + CONST.PI_2_0 * alpha;
 
-					ctx.moveTo(29 + CONST.R * Math.cos(begin_angle), 10 + CONST.R * Math.sin(begin_angle));
+					ctx.moveTo(29 + CONST.R * Math.cos(begin_angle), 10 +
+							   CONST.R * Math.sin(begin_angle));
 					ctx.arc(29, 10, CONST.R, begin_angle, CONST.PI_2_5, false);
 					ctx.lineTo(29 - 18 * alpha, 18);
 				}
@@ -157,7 +164,8 @@ MouseArea {
 				else {
 					local_alpha = alpha - 0.75;
 					ctx.moveTo(20 - local_alpha * 36, 18);
-					ctx.arc(11, 10, CONST.R, CONST.PI_0_5, CONST.PI_0_5 + CONST.PI_4_0 * local_alpha, false);
+					ctx.arc(11, 10, CONST.R, CONST.PI_0_5, CONST.PI_0_5 +
+							CONST.PI_4_0 * local_alpha, false);
 				}
 			}
 

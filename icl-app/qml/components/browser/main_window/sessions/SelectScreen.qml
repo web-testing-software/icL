@@ -24,7 +24,8 @@ SessionBase {
 	state: "shown";
 
 	function set_manage_mode () {
-		// This function is not actually for Select Screen, just for browser or driver sessions
+		// This function is not actually for Select Screen,
+		// just for browser or driver sessions
 	}
 
 //	Component.onCompleted: show("shown", ME.SELECT_SCREEN_TYPE_PROFILE);

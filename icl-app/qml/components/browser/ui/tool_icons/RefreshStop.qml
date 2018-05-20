@@ -38,11 +38,13 @@ Base {
 				var angle_step = CONST.PI_08 * alpha * alpha;
 				var begin_angle = CONST.PI_B + angle_step;
 
-				ctx.moveTo(10 + CONST.R * Math.cos(begin_angle), 10 + CONST.R * Math.sin(begin_angle));
+				ctx.moveTo(10 + CONST.R * Math.cos(begin_angle), 10 +
+						   CONST.R * Math.sin(begin_angle));
 				ctx.arc(10, 10, CONST.R, begin_angle, CONST.PI_175, false);
 
 				if (alpha < 0.5) {
-					var delta = (CONST.R_2 - CONST.R_2 * alpha * 2) * CONST.SIN_COS_PI2;
+					var delta = (CONST.R_2 - CONST.R_2 * alpha * 2) *
+							CONST.SIN_COS_PI2;
 					var tx_by = 10 + delta; // Top - x, bottom - y
 					var ty_bx = 10 - delta; // Top - y, bottom - x
 
@@ -50,7 +52,8 @@ Base {
 					ctx.moveTo(ty_bx, tx_by);
 				}
 
-				ctx.arc(10, 10, CONST.R, CONST.PI_075, CONST.PI_E + angle_step, true);
+				ctx.arc(10, 10, CONST.R, CONST.PI_075, CONST.PI_E +
+						angle_step, true);
 
 				if (alpha > 0.5) {
 					delta = (alpha - 0.5) * CONST.D * CONST.SIN_COS_PI2;

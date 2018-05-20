@@ -75,9 +75,11 @@ MouseArea {
 				if (alpha > step_start) {
 					step = Math.PI * (alpha - step_start) / (1 - step_start);
 
-					ctx.arc(right_normalized, y_center, radius, CONST.PI_1_5, CONST.PI_1_5 + step);
+					ctx.arc(right_normalized, y_center, radius, CONST.PI_1_5,
+							CONST.PI_1_5 + step);
 					ctx.moveTo(right_normalized, bottom_normalized);
-					ctx.arc(left_normalized, y_center, radius, CONST.PI_0_5, CONST.PI_0_5 + step);
+					ctx.arc(left_normalized, y_center, radius, CONST.PI_0_5,
+							CONST.PI_0_5 + step);
 				}
 				else {
 					step = (width_normalized - height_normalized) * alpha / step_start;
@@ -91,7 +93,8 @@ MouseArea {
 				var step_start2 = 1 - step_start;
 
 				if (alpha > step_start2) {
-					step = (alpha - step_start2) / (1 - step_start2) * (width_normalized - height_normalized);
+					step = (alpha - step_start2) / (1 - step_start2) *
+							(width_normalized - height_normalized);
 
 					ctx.moveTo(right_normalized - step, 2);
 					ctx.arc(right_normalized, y_center, radius, CONST.PI_1_5, CONST.PI_2_5);
@@ -102,9 +105,11 @@ MouseArea {
 					step = alpha / step_start2 * Math.PI;
 
 					ctx.moveTo(right_normalized, bottom_normalized);
-					ctx.arc(right_normalized, y_center, radius, CONST.PI_0_5, CONST.PI_0_5 - step, true);
+					ctx.arc(right_normalized, y_center, radius, CONST.PI_0_5,
+							CONST.PI_0_5 - step, true);
 					ctx.moveTo(left_normalized, 1);
-					ctx.arc(left_normalized, y_center, radius, CONST.PI_1_5, CONST.PI_1_5 - step, true);
+					ctx.arc(left_normalized, y_center, radius, CONST.PI_1_5,
+							CONST.PI_1_5 - step, true);
 				}
 			}
 

@@ -271,7 +271,8 @@ SessionBase {
 				anchors.verticalCenter: parent.verticalCenter;
 
 				onClicked: {
-					select_screen.show(current_session.next, "hidden1", ME.SELECT_SCREEN_TYPE_PROFILE);
+					select_screen.show(current_session.next, "hidden1",
+									   ME.SELECT_SCREEN_TYPE_PROFILE);
 				}
 			}
 

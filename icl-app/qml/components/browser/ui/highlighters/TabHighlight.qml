@@ -82,7 +82,8 @@ MouseArea {
 			else {
 				var step_start2 = 1 - step_start;
 				if (alpha > step_start2) {
-					step = (alpha - step_start2) / (1 - step_start2) * bottom_normalized + 1;
+					step = (alpha - step_start2) / (1 - step_start2) *
+							bottom_normalized + 1;
 
 					ctx.moveTo(1, step);
 					ctx.lineTo(1, 1);

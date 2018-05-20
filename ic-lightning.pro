@@ -22,3 +22,6 @@ inter.depends = logic context
 vm.depends = context memory inter
 app.depends = vm inter
 #app.depends = vm
+
+DISTFILES += \
+    ./src2pdf.sh

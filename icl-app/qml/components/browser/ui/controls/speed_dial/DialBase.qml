@@ -40,7 +40,8 @@ Ui.AnimatedIconIterface {
 		anchors.centerIn: parent;
 		source: url_str;
 
-		property string url_str: is_initialised ? "file:///" + cache_dir + description.url + ".png" : "" ;
+		property string url_str: is_initialised ? "file:///" + cache_dir +
+												  description.url + ".png" : "" ;
 
 		sourceSize {
 			width: Math.round(250 * _ratio);
