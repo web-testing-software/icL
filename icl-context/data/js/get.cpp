@@ -1,5 +1,7 @@
 #include "get.h"
 
+#include <icl-context/base/object/void.h>
+
 namespace icL::context::data::js {
 
 Get::Get(memory::InterLevel * il)

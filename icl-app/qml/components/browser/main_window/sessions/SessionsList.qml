@@ -12,9 +12,11 @@ Item {
 	Component {
 		id: session_delegate;
 
-		WebSession {
-			//
-		}
+//		WebSession {
+//			//
+//		}
+
+		ScriptSession { }
 	}
 
 	SelectScreen {

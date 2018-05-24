@@ -232,7 +232,7 @@ SessionBase {
 
 				anchors.fill: parent;
 
-				Content.SpeedDial {
+				Content.EditorTab {
 					id: test_content;
 				}
 			}

@@ -55,5 +55,10 @@
         <file>components/browser/ui/controls/TextInput.qml</file>
         <file>components/browser/ui/controls/speed_dial/DialBase.qml</file>
         <file>scripts/web_nm.js</file>
+        <file>components/browser/ui/button_icons/StepInto.qml</file>
+        <file>components/browser/ui/button_icons/StepOut.qml</file>
+        <file>components/browser/ui/button_icons/StepOver.qml</file>
+        <file>components/browser/main_window/sessions/ScriptSession.qml</file>
+        <file>components/browser/ui/button_icons/RunPauseStop.qml</file>
     </qresource>
 </RCC>

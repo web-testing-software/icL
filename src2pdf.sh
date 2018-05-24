@@ -67,7 +67,6 @@ input_doc_header () {
   \newpage
   \section{Introduction}
   $introduction
-  \section{Source code}
 EOF
 }
 
@@ -90,7 +89,7 @@ input_section () {
           ;;
         esac
         file_title=${structure[$level]}
-        echo "$level_command{\purl{/$file_title ($language)}}" >> $tex_file  ## Create a section for each file
+        echo "$level_command{\purl{/$file_title}}" >> $tex_file  ## Create a section for each file
       fi
     done
   fi
@@ -98,6 +97,7 @@ input_section () {
 }
 
 input_listings () {
+  echo "\section{Source code in language $language}" >> $tex_file;
   olddirectory="/"
   for file in "${files_to_process[@]}"; do             ## Loop through each file
 
