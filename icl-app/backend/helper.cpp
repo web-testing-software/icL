@@ -1,6 +1,7 @@
 #include "helper.h"
 
 #include <QDir>
+#include <QFontMetrics>
 #include <QStandardPaths>
 #include <QStringBuilder>
 #include <QtMath>
@@ -79,7 +80,6 @@ QString Helper::cacheDir(const QString & profileName) {
 	return dirpath;
 }
 
-
 /**
  * @brief Helper::dataDir - the dir to store database
  * @param profileName - local user profile
@@ -111,6 +111,13 @@ QString Helper::profileDir(const QString & profileName) {
  */
 QUrl Helper::urlFromUserInput(const QString & input) {
 	return QUrl::fromUserInput(input);
+}
+
+int Helper::symbolWidth() {
+	QFont        font("monospace");
+	QFontMetrics fm(font);
+
+	return fm.averageCharWidth();
 }
 
 /**

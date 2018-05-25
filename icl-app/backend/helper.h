@@ -5,7 +5,6 @@
 #include <QObject>
 #include <QQuickItem>
 
-
 /**
  *  icL
  *  |- @namespace app
@@ -44,6 +43,9 @@ public:
 	Q_INVOKABLE QString profileDir(const QString & profileName);
 
 	Q_INVOKABLE QUrl urlFromUserInput(const QString & input);
+
+	Q_INVOKABLE int symbolWidth();
+
 signals:
 
 public slots:

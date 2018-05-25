@@ -27,12 +27,26 @@ namespace icL::inter::_private {
 class Flayer
 {
 public:
-	Flayer();
-	~Flayer();
+	Flayer(const QString *source);
+
+	QChar getNextChar();
+	QString getKeyword();
+	QString getVarName();
+
+	void stepBack();
+
+	int getPosition() const;
+	void setPosition(int value);
+
+	void setEnd(int value);
+
+protected:
+	void flyComment();
 
 private:
-	int begin;
+	int position;
 	int end;
+	const QString *source;
 };
 
 }  // namespace icL::inter::_private

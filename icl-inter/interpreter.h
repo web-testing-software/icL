@@ -32,7 +32,13 @@ namespace icL::inter {
 class Interpreter
 {
 public:
-	explicit Interpreter();
+	Interpreter();
+
+	/**
+	 * @brief parseNext - parse next semantic block
+	 * @return a bock has parsed
+	 */
+	bool parseNext();
 };
 
 }  // namespace icL::inter
