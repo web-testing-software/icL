@@ -52,6 +52,25 @@ void Flayer::stepBack() {
 	--position;
 }
 
+std::pair<memory::CodeFragment, bool> Flayer::getLogicFrag() {
+	bool                 is_logic = false;
+	memory::CodeFragment out;
+	QChar                ch = getNextChar();
+
+	out.begin = position;
+
+	if (ch == 'L') {
+		is_logic = true;
+		position++;
+	}
+
+	findBracketPair();
+	out.end    = position;
+	out.source = source;
+
+	return {out, is_logic};
+}
+
 int Flayer::getPosition() const {
 	return position;
 }
@@ -124,6 +143,97 @@ bool Flayer::flyComment() {
 	}
 
 	return true;
+}
+
+void Flayer::findBracketPair() {
+	QChar   ch = source->at(position);
+	QString brackets;
+
+	brackets.reserve(128);
+
+	if (ch != '(' && ch != '[' && ch != '{') {
+		il->vm->exception(
+		  {-300, QStringLiteral("Token %1 is not a open bracket").arg(ch)});
+	}
+
+	while (position < end) {
+		ch = source->at(position);
+
+		if (brackets.endsWith('"')) {
+			if (ch == '\\') {
+				++position;
+			}
+			else if (ch == '"') {
+				brackets.chop(1);
+			}
+		}
+		else {
+			switch (ch.toLatin1()) {
+
+			case '(':
+			case '[':
+			case '{':
+			case '"':
+				brackets.append(ch);
+				break;
+
+			case ')':
+				if (brackets.endsWith('(')) {
+					brackets.chop(1);
+				}
+				else {
+					sendWrongBrackerPair(brackets, ch);
+				}
+				break;
+
+			case ']':
+				if (brackets.endsWith('[')) {
+					brackets.chop(1);
+				}
+				else {
+					sendWrongBrackerPair(brackets, ch);
+				}
+			case '}':
+				if (brackets.endsWith('{')) {
+					brackets.chop(1);
+				}
+				else {
+					sendWrongBrackerPair(brackets, ch);
+				}
+				break;
+			}
+		}
+
+		if (brackets.isEmpty()) {
+			break;
+		}
+	}
+
+	if (position == end && !brackets.isEmpty()) {
+		il->vm->exception(
+		  {-300, QStringLiteral("No pair for %1").arg(brackets.front())});
+	}
+}
+
+void Flayer::sendWrongBrackerPair(QString & brackets, const QChar & ch) {
+	QChar ch_local;
+
+	if (brackets.isEmpty()) {
+		il->vm->exception({-300, QStringLiteral("No pair for %1").arg(ch)});
+	}
+	else {
+		ch_local = brackets.back();
+
+		if (ch_local != '(' && ch_local != '[' && ch_local != '{') {
+			il->vm->exception({-300, QStringLiteral("No pair for %1").arg(ch)});
+		}
+		else {
+			il->vm->exception({-300, QStringLiteral("Wrong bracket pair %1 %2")
+									   .arg(brackets.right(1), QString(ch))});
+		}
+	}
+
+	brackets.clear();
 }
 
 }  // namespace icL::inter::_private

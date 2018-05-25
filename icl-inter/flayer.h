@@ -29,11 +29,17 @@ class Flayer : public memory::Node
 public:
 	Flayer(memory::InterLevel * il, const QString * source);
 
+	/**
+	 * @brief getNextChar
+	 * @return the next [[non_white]] symbol, ' ' on block end, '\0' on file end
+	 */
 	QChar   getNextChar();
 	QString getKeyword();
 	QString getVarName();
 
 	void stepBack();
+
+	std::pair<memory::CodeFragment, bool> getLogicFrag();
 
 	int  getPosition() const;
 	void setPosition(int value);
@@ -42,6 +48,8 @@ public:
 
 protected:
 	bool flyComment();
+	void findBracketPair();
+	void sendWrongBrackerPair(QString & brackets, const QChar & ch);
 
 private:
 	int             position;

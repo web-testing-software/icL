@@ -42,7 +42,7 @@ void If::parseLogicExp() {
 // The brackets pairs must be checked first, by interpreteur
 logic::Logic * If::parseOnce(memory::CodeFragment & fn) {
 	Operator  op;
-	QString * str = fn.source;
+	const QString * str = fn.source;
 	QString   brackets;
 
 	if (fn.end == fn.begin) {
@@ -62,7 +62,7 @@ logic::Logic * If::parseOnce(memory::CodeFragment & fn) {
 				i++;
 			}
 			else if (str->at(i) == '"') {
-				str->chop(1);
+				brackets.chop(1);
 			}
 		}
 		else {

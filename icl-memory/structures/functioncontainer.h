@@ -44,8 +44,8 @@ using ParamList = QLinkedList<Parameter>;
 
 struct CodeFragment
 {
-	int       begin = 0, end = -1, line = 0;
-	QString * source = nullptr;
+	int             begin = 0, end = -1, line = 0;
+	const QString * source = nullptr;
 };
 
 struct Function
