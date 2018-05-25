@@ -4,10 +4,10 @@
 
 namespace icL::inter {
 
-Interpreter::Interpreter() {}
+Interpreter::Interpreter(memory::InterLevel * il)
+	: memory::Node(il) {}
 
-bool Interpreter::parseNext()
-{
+bool Interpreter::parseNext() {
 	//
 }
 

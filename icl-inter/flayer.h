@@ -1,7 +1,7 @@
 #ifndef icL_inter_Flayer
 #define icL_inter_Flayer
 
-#include <QObject>
+#include <icl-memory/interlevel/node.h>
 
 /**
  *  icL
@@ -24,29 +24,29 @@ namespace icL::inter::_private {
 /**
  * @brief The Flayer class - flayer is a flying cursor.
  */
-class Flayer
+class Flayer : public memory::Node
 {
 public:
-	Flayer(const QString *source);
+	Flayer(memory::InterLevel * il, const QString * source);
 
-	QChar getNextChar();
+	QChar   getNextChar();
 	QString getKeyword();
 	QString getVarName();
 
 	void stepBack();
 
-	int getPosition() const;
+	int  getPosition() const;
 	void setPosition(int value);
 
 	void setEnd(int value);
 
 protected:
-	void flyComment();
+	bool flyComment();
 
 private:
-	int position;
-	int end;
-	const QString *source;
+	int             position;
+	int             end;
+	const QString * source;
 };
 
 }  // namespace icL::inter::_private

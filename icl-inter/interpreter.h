@@ -3,6 +3,7 @@
 
 #include <icl-context/base/context.h>
 #include <icl-context/base/object/int.h>
+#include <icl-memory/interlevel/node.h>
 #include <icl-memory/structures/functioncontainer.h>
 #include <icl-memory/structures/return.h>
 
@@ -29,10 +30,10 @@
  */
 namespace icL::inter {
 
-class Interpreter
+class Interpreter : public memory::Node
 {
 public:
-	Interpreter();
+	Interpreter(memory::InterLevel * il);
 
 	/**
 	 * @brief parseNext - parse next semantic block
