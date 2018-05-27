@@ -2,6 +2,7 @@
 
 #include <icl-context/base/object/boolean.h>
 #include <icl-context/base/object/double.h>
+#include <icl-context/base/object/int.h>
 #include <icl-context/base/object/list.h>
 #include <icl-context/base/object/string.h>
 #include <icl-context/base/object/void.h>
