@@ -1,8 +1,28 @@
 #include "interpreter.h"
 
 #include <icl-context/base/object/boolean.h>
+#include <icl-context/base/object/double.h>
+#include <icl-context/base/object/list.h>
+#include <icl-context/base/object/string.h>
+#include <icl-context/base/object/void.h>
+#include <icl-context/complex/define.h>
+#include <icl-context/complex/dom.h>
+#include <icl-context/complex/log.h>
+#include <icl-context/complex/tab.h>
+#include <icl-context/control/control/catch/exists.h>
 #include <icl-context/control/control/main/else.h>
 #include <icl-context/control/control/main/if.h>
+#include <icl-context/control/main/forany.h>
+#include <icl-context/data/js/crossfire.h>
+#include <icl-context/data/js/file.h>
+#include <icl-context/data/js/get.h>
+#include <icl-context/data/js/set.h>
+#include <icl-context/data/main/alternative.h>
+#include <icl-context/data/main/assign.h>
+#include <icl-context/data/main/function.h>
+#include <icl-context/data/main/method.h>
+#include <icl-context/data/main/parameter.h>
+#include <icl-context/data/main/property.h>
 
 #include <utility>
 
@@ -13,8 +33,9 @@ Interpreter::Interpreter(memory::InterLevel * il, const QString * source)
 	, flayer({il, source}) {}
 
 context::Context * Interpreter::parseNext() {
+	int begin_pos = flayer.getPosition(), end_pos;
 	context::Context * ret = nullptr;
-	QChar              ch  = flayer.getNextChar();
+	QChar              ch  = flayer.flyNextChar();
 
 	if (ch.isLetter() && ch.isLower()) {
 		ret = parseKeyword();
@@ -118,28 +139,34 @@ context::Context * Interpreter::parseNext() {
 		}
 	}
 
+	if (ret != nullptr) {
+		end_pos = flayer.getPosition();
+
+		ret->setCursorPositions(begin_pos, end_pos);
+	}
+
 	return ret;
 }
 
 context::Context * Interpreter::parseKeyword() {
 	context::Context * ret;
-	QString            keyword = flayer.getKeyword();
+	QString            keyword = flayer.flyKeyword();
 
 	if (keyword == "if") {
-		auto [frag, logic] = flayer.getLogicFrag();
+		auto [frag, logic] = flayer.flyLogicFrag();
 		ret                = new context::code::control::If{il, frag, logic};
 	}
 	else if (keyword == "else") {
 		ret = new context::code::control::Else{il};
 	}
 	else if (keyword == "emitor") {
-		il->vm->exception({-300, "system error"});
+		il->vm->exception({-500, "system error"});
 	}
 	else if (keyword == "slot") {
-		il->vm->exception({-300, "system error"});
+		il->vm->exception({-500, "system error"});
 	}
 	else if (keyword == "emit") {
-		il->vm->exception({-300, "system error"});
+		il->vm->exception({-500, "system error"});
 	}
 	else if (keyword == "true") {
 		ret = new context::object::Boolean{il, QVariant(true), true};
@@ -155,41 +182,219 @@ context::Context * Interpreter::parseKeyword() {
 	return ret;
 }
 
-context::Context * Interpreter::parseString() {}
+context::Context * Interpreter::parseString() {
+	QString str = flayer.flyString();
 
-context::Context * Interpreter::parseStateVar() {}
+	return new context::object::String{il, str, true};
+}
 
-context::Context * Interpreter::parseLocalVar() {}
+context::Context * Interpreter::parseStateVar() {
+	QString name = flayer.flyVarName();
 
-context::Context * Interpreter::parseJavascript() {}
+	if (name.isEmpty()) {
+		return new context::object::Void{il};
+	}
 
-context::Context * Interpreter::parseExist() {}
+	return context::Context::fromValue(il, il->mem->stateIt().state(), name);
+}
 
-context::Context * Interpreter::parseAny() {}
+context::Context * Interpreter::parseLocalVar() {
+	QString name = flayer.flyVarName();
 
-context::Context * Interpreter::parseFunction() {}
+	if (name.isEmpty()) {
+		name = "stack";
+	}
 
-context::Context * Interpreter::parseNumber() {}
+	return context::Context::fromValue(
+	  il, il->mem->stackIt().getContainer(name), name);
+}
 
-context::Context * Interpreter::parseProperty() {}
+context::Context * Interpreter::parseJavascript() {
+	QString            func = flayer.flyVarName();
+	context::Context * res;
 
-context::Context * Interpreter::parseMethod() {}
 
-context::Context * Interpreter::parseParameter() {}
+	if (func == "get") {
+		res = new context::data::js::Get{il};
+	}
+	else if (func.isEmpty() || func == "set") {
+		res = new context::data::js::Set{il};
+	}
+	else if (func == "file") {
+		res = new context::data::js::File{il};
+	}
+	else if (func == "crossfire") {
+		res = new context::data::js::Crossfire{il};
+	}
+	else {
+		res = nullptr;
 
-context::Context * Interpreter::parseAssign() {}
+		il->vm->exception(
+		  {-404, QStringLiteral("Function $%1 not found").arg(func)});
+	}
 
-context::Context * Interpreter::parseConsole() {}
+	return res;
+}
 
-context::Context * Interpreter::parseList() {}
+context::Context * Interpreter::parseExist() {
+	auto codeFrag = flayer.flyAnyExistsFrag();
 
-context::Context * Interpreter::parseSystemVar() {}
+	return new context::code::control::catch0::Exists{il, codeFrag, false};
+}
 
-context::Context * Interpreter::parseCode() {}
+context::Context * Interpreter::parseAny() {
+	auto codeFrag = flayer.flyAnyExistsFrag();
 
-context::Context * Interpreter::parseAlternative() {}
+	return new context::code::ForAny{il, codeFrag};
+}
 
-context::Context * Interpreter::parseLogic() {}
+context::Context * Interpreter::parseFunction() {
+	QString name = flayer.flyVarName();
+
+	if (name.isEmpty()) {
+		il->vm->exception({-501, "Function name is empty"});
+	}
+
+	return new context::data::Function{il, name};
+}
+
+context::Context * Interpreter::parseNumber() {
+	auto [pint, pdouble, is_int] = flayer.flyNumber();
+	context::Context * res;
+
+	if (is_int) {
+		res = new context::object::Int{il, pint, true};
+	}
+	else {
+		res = new context::object::Double{il, pdouble, true};
+	}
+
+	return res;
+}
+
+context::Context * Interpreter::parseProperty() {
+	auto [prefix, name] = flayer.flyProperty();
+
+	return new context::data::Property{il, prefix, name};
+}
+
+context::Context * Interpreter::parseMethod() {
+	QString name = flayer.flyVarName();
+
+	if (name.isEmpty()) {
+		il->vm->exception({-501, "Method name is empty"});
+	}
+
+	return new context::data::Method{il, name};
+}
+
+context::Context * Interpreter::parseParameter() {
+	QString      type = flayer.flyVarName(), name;
+	QChar        ch;
+	memory::Type mtype = memory::Type::Void;
+
+	if (type.isEmpty()) {
+		il->vm->exception({-501, "Parameter type is empty"});
+	}
+
+	ch = flayer.flyNextChar();
+	if (ch != '>') {
+		il->vm->exception(
+		  {-502, QStringLiteral("Unexpected %1, expected >").arg(ch)});
+	}
+
+	name = flayer.flyVarName();
+
+	if (name.isEmpty()) {
+		il->vm->exception({-501, "Parameter name is empty"});
+	}
+
+	if (type == "Boolean") {
+		mtype = memory::Type::Boolean;
+	}
+	else if (type == "Int") {
+		mtype = memory::Type::Int;
+	}
+	else if (type == "Double") {
+		mtype = memory::Type::Double;
+	}
+	else if (type == "String") {
+		mtype = memory::Type::String;
+	}
+	else if (type == "List") {
+		mtype = memory::Type::List;
+	}
+	else if (type == "Element") {
+		mtype = memory::Type::Element;
+	}
+	else {
+		il->vm->exception(
+		  {-502,
+		   QStringLiteral(
+			 "unexpected %1, expected Int, Double, String, List or Element")
+			 .arg(type)});
+	}
+
+	return new context::data::Parameter{il, name, mtype};
+}
+
+context::Context * Interpreter::parseAssign() {
+	return new context::data::Assign{il};
+}
+
+context::Context * Interpreter::parseConsole() {
+	il->vm->exception({-500, "system error"});
+
+	return nullptr;
+}
+
+context::Context * Interpreter::parseList() {
+	QChar ch = flayer.flyNextChar();
+
+	if (ch == ']') {
+		return new context::object::List{il, QStringList{}, true};
+	}
+
+	il->vm->exception({-500, "system error"});
+
+	return nullptr;
+}
+
+context::Context * Interpreter::parseSystemVar() {
+	QString            name = flayer.flyVarName();
+	context::Context * ret  = nullptr;
+
+	if (name == "dom") {
+		ret = new context::complex::Dom{il};
+	}
+	else if (name == "log") {
+		ret = new context::complex::Log{il};
+	}
+	else if (name == "define") {
+		ret = new context::complex::Define{il};
+	}
+	else if (name == "tab") {
+		ret = new context::complex::Tab{il};
+	}
+
+	else {
+		il->vm->exception(
+		  {-502, QStringLiteral("unexpected %1, expected dom, log, define, tab")
+				   .arg(name)});
+	}
+
+	return ret;
+}
+
+context::Context * Interpreter::parseCode() {
+	auto code = flayer.flyCode();
+
+	return new context::code::Code{il, code};
+}
+
+context::Context * Interpreter::parseAlternative() {
+	return new context::data::Alternative{il};
+}
 
 
 

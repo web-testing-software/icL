@@ -9,7 +9,7 @@ namespace icL::context::data::js {
 class Crossfire : public File
 {
 public:
-	Crossfire(memory::InterLevel * il, const QString &fileName);
+	Crossfire(memory::InterLevel * il);
 
 	// Context interface
 public:

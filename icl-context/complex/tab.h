@@ -22,7 +22,7 @@
  */
 namespace icL::context::complex {
 
-class Tab : Complex
+class Tab : public Complex
 {
 public:
 	Tab(memory::InterLevel * il);

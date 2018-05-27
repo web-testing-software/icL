@@ -3,14 +3,14 @@
 
 namespace icL::context::data::js {
 
-Crossfire::Crossfire(memory::InterLevel * il, const QString &fileName)
-	: File(il, fileName) {}
+Crossfire::Crossfire(memory::InterLevel * il)
+	: File(il) {}
 
 bool Crossfire::execute()
 {
 	if (!checkArgs()) {
 		il->vm->exception(
-		  {-203, "Wrong arglist for $file, expected <String, CommandEnd>"});
+		  {-203, "Wrong arglist for $crossfire, expected <String, CommandEnd>"});
 		return false;
 	}
 

@@ -24,7 +24,7 @@
  */
 namespace icL::context::complex {
 
-class Dom : Complex
+class Dom : public Complex
 {
 public:
 	Dom(memory::InterLevel * il);

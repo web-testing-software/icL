@@ -1,6 +1,7 @@
 #ifndef icL_inter_Flayer
 #define icL_inter_Flayer
 
+#include <icl-context/base/context.h>
 #include <icl-memory/interlevel/node.h>
 
 /**
@@ -30,16 +31,33 @@ public:
 	Flayer(memory::InterLevel * il, const QString * source);
 
 	/**
-	 * @brief getNextChar
+	 * @brief flyNextChar
 	 * @return the next [[non_white]] symbol, ' ' on block end, '\0' on file end
 	 */
-	QChar   getNextChar();
-	QString getKeyword();
-	QString getVarName();
+	QChar   flyNextChar();
+	QString flyKeyword();
+	QString flyVarName();
+
+	/**
+	 * @brief flyNumber
+	 * @return parsed int, parsed double, bool ? was int : was double
+	 */
+	std::tuple<int, double, bool> flyNumber();
+
+	/**
+	 * @brief getProperty
+	 * @return property prefix and name
+	 */
+	std::pair<context::Prefix, QString> flyProperty();
 
 	void stepBack();
 
-	std::pair<memory::CodeFragment, bool> getLogicFrag();
+	std::pair<memory::CodeFragment, bool> flyLogicFrag();
+
+	memory::CodeFragment flyAnyExistsFrag();
+	memory::CodeFragment flyCode();
+
+	QString flyString();
 
 	int  getPosition() const;
 	void setPosition(int value);

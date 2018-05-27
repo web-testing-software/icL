@@ -26,7 +26,11 @@ class Void : public Object
 {
 public:
 	Void(memory::InterLevel * il);
-	Void(memory::InterLevel * il, const QString & getter, const QString & setter);
+	Void(
+	  memory::InterLevel * il, memory::DataState * container,
+	  const QString & varName);
+	Void(
+	  memory::InterLevel * il, const QString & getter, const QString & setter);
 
 	// Context interface
 public:

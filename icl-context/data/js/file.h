@@ -10,7 +10,7 @@ namespace icL::context::data::js {
 class File : public Js
 {
 public:
-	File(memory::InterLevel * il, const QString &fileName);
+	File(memory::InterLevel * il);
 
 private:
 	QString fileName;

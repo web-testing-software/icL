@@ -3,7 +3,9 @@
 
 #include <QColor>
 #include <QObject>
-#include <QQuickItem>
+#include <QUrl>
+
+class QQuickTextDocument;
 
 /**
  *  icL
@@ -44,7 +46,9 @@ public:
 
 	Q_INVOKABLE QUrl urlFromUserInput(const QString & input);
 
-	Q_INVOKABLE int symbolWidth();
+	Q_INVOKABLE int  symbolWidth(int fontSize);
+	Q_INVOKABLE void setTabsize(
+	  int fontSize, QQuickTextDocument * quickTextDocument);
 
 signals:
 

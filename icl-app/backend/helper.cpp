@@ -2,8 +2,10 @@
 
 #include <QDir>
 #include <QFontMetrics>
+#include <QQuickTextDocument>
 #include <QStandardPaths>
 #include <QStringBuilder>
+#include <QTextOption>
 #include <QtMath>
 
 namespace icL::app {
@@ -113,11 +115,24 @@ QUrl Helper::urlFromUserInput(const QString & input) {
 	return QUrl::fromUserInput(input);
 }
 
-int Helper::symbolWidth() {
-	QFont        font("monospace");
-	QFontMetrics fm(font);
+int Helper::symbolWidth(int fontSize) {
+	QFont font("monospace");
+	font.setPixelSize(fontSize);
 
+	QFontMetrics fm(font);
 	return fm.averageCharWidth();
+}
+
+void Helper::setTabsize(int fontSize, QQuickTextDocument * quickTextDocument) {
+	QFont font("monospace");
+	font.setPixelSize(fontSize);
+
+	QFontMetrics fm(font);
+	QTextDocument *document = quickTextDocument->textDocument();
+	QTextOption textOptions = document->defaultTextOption();
+
+	textOptions.setTabStopDistance(static_cast<float>(fm.width(QString(' ').repeated(1024))) / 256.f);
+	document->setDefaultTextOption(textOptions);
 }
 
 /**

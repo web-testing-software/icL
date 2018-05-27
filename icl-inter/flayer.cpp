@@ -8,10 +8,10 @@ Flayer::Flayer(memory::InterLevel * il, const QString * source)
 	, source(source) {}
 
 
-QChar Flayer::getNextChar() {
+QChar Flayer::flyNextChar() {
 	QChar ch = source->at(position);
 
-	while (ch == ' ' || ch == '\n' || ch == '\t' || position < end) {
+	while ((ch == ' ' || ch == '\n' || ch == '\t') && position < end - 1) {
 		ch = source->at(++position);
 
 		if (ch == '`') {
@@ -31,31 +31,129 @@ QChar Flayer::getNextChar() {
 	return ch;
 }
 
-QString Flayer::getKeyword() {
+QString Flayer::flyKeyword() {
 	int   start = position;
 	QChar ch    = source->at(position);
 
-	while (ch.isLetter()) {
+	while (ch.isLetter() && position < end - 1) {
 		ch = source->at(++position);
+	}
+
+	if (!ch.isLetter()) {
+		--position;
 	}
 
 	return source->mid(start, position);
 }
 
-QString Flayer::getVarName() {
+QString Flayer::flyVarName() {
 	++position;
 
-	return getKeyword();
+	return flyKeyword();
+}
+
+std::tuple<int, double, bool> Flayer::flyNumber() {
+	int    ret_int;
+	double ret_double;
+	bool   is_int;
+	bool   point_catched = false;
+	int    start         = position;
+	QChar  ch            = source->at(position);
+
+	if (ch == '-') {
+		ch = source->at(++position);
+	}
+
+	while ((ch.isDigit() || (!point_catched && ch == '.')) &&
+		   position < end - 1) {
+		ch = source->at(++position);
+	}
+
+	if (!ch.isDigit()) {
+		--position;
+
+		if (ch == '.') {
+			point_catched = false;
+		}
+	}
+
+	QString str = source->mid(start, position - start);
+	bool    ok;
+
+	if (point_catched) {
+		ret_double = str.toDouble(&ok);
+		is_int     = false;
+	}
+	else {
+		ret_int = str.toDouble(&ok);
+		is_int  = true;
+	}
+
+	if (!ok) {
+		il->vm->exception(
+		  {-500, QStringLiteral("%1 is not a number.").arg(str)});
+	}
+
+	return {ret_int, ret_double, is_int};
+}
+
+std::pair<context::Prefix, QString> Flayer::flyProperty() {
+	int             start = ++position, pstart = start;
+	QChar           ch         = source->at(position);
+	context::Prefix ret_prefix = context::Prefix::None;
+	QString         name;
+
+	while ((ch.isLetter() || (ch == '-' && start == pstart)) &&
+		   position < end - 1) {
+		ch = source->at(++position);
+
+		if (ch == '-') {
+			QString prefix    = source->mid(start, position - start - 1);
+			bool    prefix_ok = true;
+
+			if (prefix == "attr") {
+				ret_prefix = context::Prefix::Attr;
+			}
+			else if (prefix == "data") {
+				ret_prefix = context::Prefix::Data;
+			}
+			else if (prefix == "css") {
+				ret_prefix = context::Prefix::Css;
+			}
+			else if (!prefix.isEmpty()) {
+				prefix_ok = false;
+			}
+
+			if (!prefix_ok) {
+				break;
+			}
+			else {
+				start = position + 1;
+			}
+		}
+	}
+
+	if (!ch.isLetter()) {
+		--position;
+	}
+
+	name = source->mid(start, position - start);
+
+	if (name.isEmpty()) {
+		il->vm->exception({-501, "Property name is empty"});
+	}
+
+	return {ret_prefix, name};
 }
 
 void Flayer::stepBack() {
 	--position;
 }
 
-std::pair<memory::CodeFragment, bool> Flayer::getLogicFrag() {
+std::pair<memory::CodeFragment, bool> Flayer::flyLogicFrag() {
 	bool                 is_logic = false;
 	memory::CodeFragment out;
-	QChar                ch = getNextChar();
+	QChar                ch = flyNextChar();
 
 	out.begin = position;
 
@@ -69,6 +167,48 @@ std::pair<memory::CodeFragment, bool> Flayer::getLogicFrag() {
 	out.source = source;
 
 	return {out, is_logic};
+}
+
+memory::CodeFragment Flayer::flyAnyExistsFrag() {
+	memory::CodeFragment out;
+
+	out.begin = ++position;
+	findBracketPair();
+
+	out.end    = position;
+	out.source = source;
+
+	return out;
+}
+
+memory::CodeFragment Flayer::flyCode() {
+	memory::CodeFragment out;
+
+	out.begin = position;
+	findBracketPair();
+
+	out.end    = position;
+	out.source = source;
+
+	return out;
+}
+
+QString Flayer::flyString() {
+	int   begin = ++position;
+	QChar ch    = source->at(position);
+
+	while (ch != '"' && position < end - 1) {
+		if (ch == '\\') {
+			++position;
+		}
+		ch = source->at(++position);
+	}
+
+	if (position == end - 1 && ch != '"') {
+		il->vm->exception({-300, "No closing \" found."});
+	}
+
+	return source->mid(begin, position - begin - 1);
 }
 
 int Flayer::getPosition() const {

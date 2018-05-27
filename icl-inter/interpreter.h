@@ -60,7 +60,6 @@ protected:
 	context::Context* parseSystemVar();
 	context::Context* parseCode();
 	context::Context* parseAlternative();
-	context::Context* parseLogic();
 
 private:
 	_private::Flayer flayer;

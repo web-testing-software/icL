@@ -6,6 +6,11 @@ Void::Void(memory::InterLevel * il)
 	: Object(il, QVariant(), true) {}
 
 Void::Void(
+  memory::InterLevel * il, memory::DataState * container,
+  const QString & varName)
+	: Object(il, container, varName) {}
+
+Void::Void(
   memory::InterLevel * il, const QString & getter, const QString & setter)
 	: Object(il, getter, setter) {}
 

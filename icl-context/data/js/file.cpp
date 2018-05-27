@@ -7,15 +7,16 @@
 
 namespace icL::context::data::js {
 
-File::File(memory::InterLevel * il, const QString & fileName)
-	: Js(il)
-	, fileName(fileName) {
+File::File(memory::InterLevel * il)
+	: Js(il){
 	m_role = Role::JsFile;
 }
 
 QString File::getFileContent() {
 	QFile file;
 	bool  absolutePath;
+
+	fileName = dynamic_cast<object::Object *>(m_next)->getValue().toString();
 
 #ifdef Q_OS_WIN
 	absolutePath = fileName.length() > 1 && fileName[1] == ":";

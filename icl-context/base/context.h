@@ -1,13 +1,12 @@
 #ifndef icL_context_Context
 #define icL_context_Context
 
+#include <icl-memory/interlevel/node.h>
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/functioncontainer.h>
 #include <icl-memory/structures/return.h>
 
 #include <functional>
-
-#include <icl-memory/interlevel/node.h>
 
 /**
  *  icL
@@ -82,7 +81,16 @@ public:
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;
 
-	object::Object * fromValue(const QVariant & value);
+	object::Object *        fromValue(const QVariant & value);
+	static object::Object * fromValue(
+	  memory::InterLevel * il, const QVariant & value);
+	static object::Object * fromValue(
+	  memory::InterLevel * il, memory::DataState * ds, const QString & name);
+
+	int getBeginCursorPosition();
+	int getEndCursorPosition();
+
+	void setCursorPositions(int begin, int end);
 
 protected:
 	Context * getFirst();
@@ -100,6 +108,8 @@ protected:
 
 	Context * newContext = nullptr;
 	QVariant  newValue;
+
+	int beginCursorPosition, endCursorPostion;
 };
 
 

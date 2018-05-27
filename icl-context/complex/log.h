@@ -22,7 +22,7 @@
  */
 namespace icL::context::complex {
 
-class Log : Complex
+class Log : public Complex
 {
 	enum class Level { Info, Warm, Error };
 

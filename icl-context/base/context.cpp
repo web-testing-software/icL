@@ -78,6 +78,11 @@ bool Context::isComplex() const {
 }
 
 object::Object * Context::fromValue(const QVariant & value) {
+	return fromValue(il, value);
+}
+
+object::Object * Context::fromValue(
+  memory::InterLevel * il, const QVariant & value) {
 	object::Object * ret;
 	memory::Type     type = memory::variantTypeToType(value.type());
 
@@ -112,6 +117,57 @@ object::Object * Context::fromValue(const QVariant & value) {
 	}
 
 	return ret;
+}
+
+object::Object * Context::fromValue(
+  memory::InterLevel * il, memory::DataState * ds, const QString & name) {
+	object::Object * ret;
+	memory::Type     type = ds->getType(name);
+
+	switch (type) {
+	case memory::Type::Boolean:
+		ret = new object::Boolean{il, ds, name};
+		break;
+
+	case memory::Type::Int:
+		ret = new object::Int{il, ds, name};
+		break;
+
+	case memory::Type::Double:
+		ret = new object::Double{il, ds, name};
+		break;
+
+	case memory::Type::String:
+		ret = new object::String{il, ds, name};
+		break;
+
+	case memory::Type::List:
+		ret = new object::List{il, ds, name};
+		break;
+
+	case memory::Type::Element:
+		ret = new object::Element{il, ds, name};
+		break;
+
+	case memory::Type::Void:
+		ret = new object::Void{il, ds, name};
+		break;
+	}
+
+	return ret;
+}
+
+int Context::getBeginCursorPosition() {
+	return beginCursorPosition;
+}
+
+int Context::getEndCursorPosition() {
+	return endCursorPostion;
+}
+
+void Context::setCursorPositions(int begin, int end) {
+	beginCursorPosition = begin;
+	endCursorPostion    = end;
 }
 
 Context * Context::getFirst() {

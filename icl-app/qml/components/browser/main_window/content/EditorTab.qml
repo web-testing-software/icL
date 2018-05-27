@@ -216,8 +216,12 @@ ContentBase {
 				font.pixelSize: Math.round(18 * _ratio);
 
 				Keys.onTabPressed: {
-					insert(cursorPosition, '    ');
+					insert(cursorPosition, '\t');
 					return true;
+				}
+
+				Component.onCompleted: {
+					helper.setTabsize(font.pixelSize, textDocument);
 				}
 			}
 		}
