@@ -33,9 +33,9 @@ Interpreter::Interpreter(memory::InterLevel * il, const QString * source)
 	, flayer({il, source}) {}
 
 context::Context * Interpreter::parseNext() {
-	int begin_pos = flayer.getPosition(), end_pos;
-	context::Context * ret = nullptr;
-	QChar              ch  = flayer.flyNextChar();
+	context::Context * ret       = nullptr;
+	QChar              ch        = flayer.flyNextChar();
+	int                begin_pos = flayer.getPosition() - 1, end_pos;
 
 	if (ch.isLetter() && ch.isLower()) {
 		ret = parseKeyword();
@@ -140,7 +140,7 @@ context::Context * Interpreter::parseNext() {
 	}
 
 	if (ret != nullptr) {
-		end_pos = flayer.getPosition();
+		end_pos = flayer.getPosition() + 1;
 
 		ret->setCursorPositions(begin_pos, end_pos);
 	}
