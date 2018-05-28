@@ -1,6 +1,7 @@
 #ifndef icL_VirtualMachine
 #define icL_VirtualMachine
 
+#include <icl-inter/interpreter.h>
 #include <icl-memory/interlevel/interlevel.h>
 
 
@@ -22,13 +23,19 @@
  */
 namespace icL {
 
-class VirtualMachine
+class VirtualMachineStack;
+
+class VirtualMachine : public memory::VirtualMachine
 {
 public:
-	VirtualMachine();
+	VirtualMachine(VirtualMachineStack * vms);
+
+	// memory.VirtualMachine interface
+	virtual void exception(const memory::Exception & exc);
 
 private:
 	memory::InterLevel il;
+	inter::Interpreter interpreter;
 };
 
 }  // namespace icL

@@ -28,7 +28,7 @@ namespace icL::inter::_private {
 class Flayer : public memory::Node
 {
 public:
-	Flayer(memory::InterLevel * il, const QString * source);
+	Flayer(memory::InterLevel * il);
 
 	/**
 	 * @brief flyNextChar

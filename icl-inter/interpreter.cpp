@@ -29,9 +29,9 @@
 
 namespace icL::inter {
 
-Interpreter::Interpreter(memory::InterLevel * il, const QString * source)
+Interpreter::Interpreter(memory::InterLevel * il)
 	: memory::Node(il)
-	, flayer({il, source}) {}
+	, flayer(il) {}
 
 context::Context * Interpreter::parseNext() {
 	context::Context * ret       = nullptr;
@@ -147,6 +147,10 @@ context::Context * Interpreter::parseNext() {
 	}
 
 	return ret;
+}
+
+void Interpreter::newSignal(int code, const QString & name) {
+	//
 }
 
 context::Context * Interpreter::parseKeyword() {

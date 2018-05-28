@@ -3,9 +3,11 @@
 namespace icL::inter::_private {
 
 
-Flayer::Flayer(memory::InterLevel * il, const QString * source)
-	: memory::Node(il)
-	, source(source) {}
+Flayer::Flayer(memory::InterLevel * il)
+	: memory::Node(il){
+
+	source = il->vms->source();
+}
 
 
 QChar Flayer::flyNextChar() {

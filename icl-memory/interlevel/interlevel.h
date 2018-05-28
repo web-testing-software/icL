@@ -25,7 +25,7 @@ namespace icL::memory {
 struct InterLevel
 {
 	memory::Memory *      mem;
-	Interpreteur *        inter;
+	Interpreter *        inter;
 	VirtualMachine *      vm;
 	VirtualMachineStack * vms;
 	Server *              server;

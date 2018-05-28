@@ -1,5 +1,11 @@
-#ifndef VIRTUALMACHINESTACK_H
-#define VIRTUALMACHINESTACK_H
+#ifndef icL_VirtualMachineStack
+#define icL_VirtualMachineStack
+
+#include <icl-memory/interlevel/interfaces.h>
+#include <icl-memory/state/memory.h>
+
+#include <QObject>
+
 
 /**
  * > icL
@@ -20,11 +26,23 @@
 namespace icL {
 
 class VirtualMachineStack
+	: public QObject
+	, public memory::VirtualMachineStack
 {
+	Q_OBJECT
+
 public:
 	VirtualMachineStack();
+
+	memory::Memory * memory();
+
+	// memory.VirtualMachineStack interface
+	virtual memory::Return  interrupt(memory::FunctionCall fcall) override;
+	virtual const QString & getWorkingDir() override;
+	virtual const QString & getCrossfirePass() override;
+	virtual const QString * source() override;
 };
 
-} // namespace icL
+}  // namespace icL
 
-#endif // VIRTUALMACHINESTACK_H
+#endif  // icL_VirtualMachineStack
