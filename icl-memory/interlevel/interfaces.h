@@ -25,7 +25,7 @@ namespace icL::memory {
 
 class Exception;
 
-class Interpreteur
+class Interpreter
 {
 public:
 	virtual void newSignal(int code, const QString & name) = 0;
