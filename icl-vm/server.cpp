@@ -101,14 +101,6 @@ void Server::setWebEngine(QQuickItem * webEngine) {
 }
 
 void Server::simulateClick(int x, int y) {
-	// TODO: Add a coods check later
-	//	if (x < m_webEngineX ||
-	//			y < m_webEngineY ||
-	//			x >= m_webEngineX + m_webEngineWidth ||
-	//			y >= m_webEngineY + m_webEngineHeight) {
-	//			return false;
-	//		}
-
 	QPoint point(x, y);
 
 	//	The click event is a series of press and release of left mouse button
@@ -126,7 +118,7 @@ void Server::simulateClick(int x, int y) {
 	QCoreApplication::postEvent(m_webEngine, release);
 }
 
-void Server::simulateKey(QChar & ch) {
+void Server::simulateKey(const QChar & ch) {
 	QKeyEvent * press =
 	  new QKeyEvent(QEvent::KeyPress, Qt::Key_A, Qt::NoModifier, QString(ch));
 	QKeyEvent * release =
@@ -139,16 +131,45 @@ void Server::simulateKey(QChar & ch) {
 	QCoreApplication::postEvent(m_webEngine, release);
 }
 
+QVariant Server::runJS(const QString & code) {
+	return executeJS(code);
+}
+
+bool Server::click(int x, int y) {
+	if (
+	  x < 0 || y < 0 || x >= m_webEngine->width() ||
+	  y >= m_webEngine->height()) {
+		return false;
+	}
+
+	simulateClick(x, y);
+	return true;
+}
+
+void Server::keys(const QString & keys) {
+	for (const QChar &ch : keys) {
+		simulateKey(ch);
+	}
+}
+
+void Server::newLog(int level, const QString & message) {
+	emit request_LogOut(level, message);
+}
+
+bool Server::get(const QString & url) {
+	return goTo(url);
+}
+
 void Server::release_goTo() {
-	//	webBrowser->get (url);
+	emit request_UrlLoad(url);
 }
 
 void Server::release_waitForPageLoading() {
-	//	webBrowser->waitForPageLoading ();
+	// Noting to do, just wait
 }
 
 void Server::release_executeJS() {
-	//	webBrowser->runJS (code);
+	emit request_JsRun(code);
 }
 
 }  // namespace icL

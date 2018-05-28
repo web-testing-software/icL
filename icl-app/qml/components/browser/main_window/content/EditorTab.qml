@@ -6,6 +6,8 @@ import QtQuick.Controls.Styles 1.4
 import "../../ui/controls/speed_dial" as SpeedDialControls;
 import "../../ui/button_icons" as ButtonIcons;
 
+import icL.VM 1.0
+
 ContentBase {
 	id: root;
 	anchors.fill: parent;
@@ -88,6 +90,38 @@ ContentBase {
 				worldId: WebEngineScript.MainWorld;
 			}
 		]
+
+		onLoadingChanged: {
+			if (loadRequest.status == WebEngineLoadRequest.LoadSucceededStatus) {
+				server.finish_PageLoading(true);
+			}
+			else if (loadRequest.status == WebEngineLoadRequest.LoadFailedStatus) {
+				server.finish_PageLoading(false);
+			}
+		}
+	}
+
+	Server {
+		id: server;
+
+		webEngine: wview;
+
+		onRequest_JsRun: wview.runJavaScript(code, function(result){
+			finish_executeJS(result);
+		});
+
+		onRequest_LogOut: {
+			// TODO: Write latter
+		}
+
+		onRequest_UrlLoad: {
+			if (wview.url == url) {
+				wview.reload();
+			}
+			else {
+				wview.url = helper.urlFromUserInput(url);
+			}
+		}
 	}
 
 	Item {

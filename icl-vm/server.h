@@ -1,6 +1,7 @@
 #ifndef icL_Server
 #define icL_Server
 
+#include <icl-memory/interlevel/interfaces.h>
 #include <icl-memory/interlevel/interlevel.h>
 #include <icl-memory/interlevel/node.h>
 
@@ -33,8 +34,9 @@ namespace icL {
 class Server
 	: public QObject
 	, public memory::Node
+	, public memory::Server
 {
-		Q_OBJECT
+	Q_OBJECT
 
 	Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
 																		webEngineChanged)
@@ -91,6 +93,7 @@ public slots:
 	 */
 	void setWebEngine(QQuickItem * webEngine);
 
+protected:
 	/**
 	 * @brief simulateClick - simulate a mouse click on WebView
 	 * @param x - coordinate of x axes
@@ -102,7 +105,15 @@ public slots:
 	 * @brief simulateKeyPress - simulate of pressing and release of a key
 	 * @param ch - event.text in js
 	 */
-	void simulateKey(QChar & ch);
+	void simulateKey(const QChar & ch);
+
+private:
+	// memory.Server interface
+	virtual QVariant runJS(const QString & code);
+	virtual bool     click(int x, int y);
+	virtual void     keys(const QString & keys);
+	virtual void     newLog(int level, const QString & message);
+	virtual bool     get(const QString & url);
 
 signals:
 	void ready();
@@ -114,6 +125,11 @@ signals:
 	void invoke_showErrorDialog();
 
 	void webEngineChanged(QQuickItem * webEngine);
+
+	// signals for QML
+	void request_UrlLoad(const QString & url);
+	void request_JsRun(const QString & code);
+	void request_LogOut(int level, const QString & mess);
 
 private slots:
 	// Functions, which will be executed on main thread
@@ -132,9 +148,6 @@ private:
 	QQuickItem * m_webEngine;
 
 	WaitFor waitFor = WaitFor::Nothing;
-
-	// Configure if need to stop executing on error
-	bool stop_on_error = true;
 
 	// This sync variable which is used on serveral threads
 	volatile bool working = false;
