@@ -22,11 +22,13 @@ unix {
 
 HEADERS += \
     server.h \
-    virtualmachine.h
+    virtualmachine.h \
+    virtualmachinestack.h
 
 SOURCES += \
     server.cpp \
-    virtualmachine.cpp
+    virtualmachine.cpp \
+    virtualmachinestack.cpp
 
 DEFINES += QT_DEPRECATED_WARNINGS
 

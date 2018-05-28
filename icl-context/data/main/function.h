@@ -15,7 +15,7 @@
  *  |  |- code
  *  |  |  '- control
  *  |  |     '- catch0
- *  |  |- @namespace data
+ *  |  |-> data
  *  |  '- object
  *  |- inter
  *  |- logic

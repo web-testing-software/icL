@@ -10,7 +10,7 @@
  *  icL
  *  |- app
  *  |- context
- *  |  |- @namespace complex
+ *  |  |-> complex
  *  |  |- code
  *  |  |  '- control
  *  |  |     '- catch0

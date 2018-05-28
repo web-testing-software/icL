@@ -11,7 +11,7 @@
 #include <QVariant>
 
 /**
- *  @namespace icL
+ * > icL
  *  |- app
  *  |- context
  *  |  |- complex

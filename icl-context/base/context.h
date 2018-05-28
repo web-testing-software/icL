@@ -11,7 +11,7 @@
 /**
  *  icL
  *  |- app
- *	|- @namespace context
+ *	|-> context
  *  |  |- complex
  *  |  |- code
  *  |  |  '- control

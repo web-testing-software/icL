@@ -15,7 +15,7 @@
  *  |  |  '- control
  *  |  |     '- catch0
  *  |  |- data
- *  |  '- @namespace object
+ *  |  '-> object
  *  |- inter
  *  |- logic
  *  |  |- cross

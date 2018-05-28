@@ -4,7 +4,22 @@
 #include "../state/memory.h"
 #include "interfaces.h"
 
-
+/**
+ *  icL
+ *  |- app
+ *  |- context
+ *  |  |- complex
+ *  |  |- code
+ *  |  |  '- control
+ *  |  |     '- catch0
+ *  |  |- data
+ *  |  '- object
+ *  |- inter
+ *  |- logic
+ *  |  |- cross
+ *  |  '- rich
+ *  '-> memory
+ */
 namespace icL::memory {
 
 struct InterLevel

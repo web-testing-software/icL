@@ -7,7 +7,7 @@
 
 /**
  *  icL
- *  |- @namespace app
+ *  |-> app
  *  |- context
  *  |  |- complex
  *  |  |- code

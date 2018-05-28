@@ -11,7 +11,7 @@
  *  |  |- complex
  *  |  |- code
  *  |  |  '- control
- *  |  |     '- @namespace catch0
+ *  |  |     '-> catch0
  *  |  |- data
  *  |  '- object
  *  |- inter

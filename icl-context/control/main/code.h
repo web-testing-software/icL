@@ -11,7 +11,7 @@
  *  |- app
  *  |- context
  *  |  |- complex
- *  |  |- @namespace code
+ *  |  |-> code
  *  |  |  '- control
  *  |  |     '- catch0
  *  |  |- data

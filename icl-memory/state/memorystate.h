@@ -17,7 +17,7 @@
  *  |- logic
  *  |  |- cross
  *  |  '- rich
- *  '- @namespace memory
+ *  '-> memory
  */
 namespace icL::memory {
 

@@ -15,7 +15,7 @@
  *  |  |- data
  *  |  '- object
  *  |- inter
- *  |- @namespace logic
+ *  |-> logic
  *  |  |- cross
  *  |  '- rich
  *  '- memory

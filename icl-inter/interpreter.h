@@ -19,7 +19,7 @@
  *  |  |     '- catch0
  *  |  |- data
  *  |  '- object
- *  |- @namespace inter
+ *  |-> inter
  *  |- logic
  *  |  |- cross
  *  |  '- rich

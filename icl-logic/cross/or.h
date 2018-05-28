@@ -16,7 +16,7 @@
  *  |  '- object
  *  |- inter
  *  |- logic
- *  |  |- @namespace cross
+ *  |  |-> cross
  *  |  '- rich
  *  '- memory
  */

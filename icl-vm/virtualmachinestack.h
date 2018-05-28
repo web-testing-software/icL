@@ -1,8 +1,5 @@
-#ifndef icL_VirtualMachine
-#define icL_VirtualMachine
-
-#include <icl-memory/interlevel/interlevel.h>
-
+#ifndef VIRTUALMACHINESTACK_H
+#define VIRTUALMACHINESTACK_H
 
 /**
  * > icL
@@ -22,15 +19,12 @@
  */
 namespace icL {
 
-class VirtualMachine
+class VirtualMachineStack
 {
 public:
-	VirtualMachine();
-
-private:
-	memory::InterLevel il;
+	VirtualMachineStack();
 };
 
-}  // namespace icL
+} // namespace icL
 
-#endif  // icL_VirtualMachine
+#endif // VIRTUALMACHINESTACK_H
