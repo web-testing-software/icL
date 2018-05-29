@@ -19,7 +19,7 @@ bool Property::canBeAtEnd() const {
 	return true;
 }
 
-memory::StepType Property::execute() {
+memory::StepType::Value Property::execute() {
 	newContext = m_prev->runProperty(prefix, name);
 
 	return memory::StepType::MiniStep;

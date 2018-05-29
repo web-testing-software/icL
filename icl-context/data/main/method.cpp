@@ -21,7 +21,7 @@ bool Method::canBeAtEnd() const {
 	return true;
 }
 
-memory::StepType Method::execute() {
+memory::StepType::Value Method::execute() {
 	memory::ArgList args;
 	int             count = 0;
 	Context *       it    = m_next;

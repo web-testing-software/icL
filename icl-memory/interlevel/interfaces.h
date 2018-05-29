@@ -55,7 +55,7 @@ public:
 	virtual void highlight(int pos1, int pos2) = 0;
 };
 
-class Server
+class ServerLowLevel
 {
 public:
 	virtual QVariant runJS(const QString & code)                = 0;

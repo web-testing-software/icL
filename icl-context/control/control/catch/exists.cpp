@@ -30,7 +30,7 @@ bool Exists::isExecuable() const {
 	return m_prev->role() != Role::Alternative;
 }
 
-memory::StepType Exists::execute() {
+memory::StepType::Value Exists::execute() {
 	if (executed) {
 		return memory::StepType::MiniStep;
 	}

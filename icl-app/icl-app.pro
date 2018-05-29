@@ -28,13 +28,17 @@ INCLUDEPATH += ..
 SOURCES += \
         main.cpp \
 	backend/helper.cpp \
-    data_management/database.cpp \
-	data_management/dialdescription.cpp
+        data_management/database.cpp \
+	data_management/dialdescription.cpp \
+    backend/steptypehighlevel.cpp \
+    backend/serverhighlevel.cpp
 
 HEADERS += \
 	backend/helper.h \
-    data_management/database.h \
-	data_management/dialdescription.h
+        data_management/database.h \
+	data_management/dialdescription.h \
+    backend/steptypehighlevel.h \
+    backend/serverhighlevel.h
 
 RESOURCES += \
     qml/main.qrc \

@@ -163,7 +163,7 @@ Flayer & Interpreter::getFlayer() {
 }
 
 context::Context * Interpreter::parseKeyword() {
-	context::Context * ret;
+	context::Context * ret = nullptr;
 	QString            keyword = flayer.flyKeyword();
 
 	if (keyword == "if") {

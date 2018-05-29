@@ -31,8 +31,8 @@ public:
 	Function(memory::InterLevel * il, const QString & name);
 
 protected:
-	memory::StepType exNewFunction();
-	memory::StepType exCallFunction();
+	memory::StepType::Value exNewFunction();
+	memory::StepType::Value exCallFunction();
 
 	bool checkParamsNum(memory::Function & func);
 	bool checkParamsTypes(memory::Function & func);
@@ -49,7 +49,7 @@ public:
 	bool canBeAtEnd() const override;
 	bool isExecuable() const override;
 
-	memory::StepType execute() override;
+	memory::StepType::Value execute() override;
 
 	Context * getBeginContext() override;
 	Context * getEndContext() override;

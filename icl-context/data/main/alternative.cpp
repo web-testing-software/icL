@@ -21,7 +21,7 @@ bool Alternative::isExecuable() const {
 	return true;
 }
 
-memory::StepType Alternative::execute() {
+memory::StepType::Value Alternative::execute() {
 	theLeftOperandIsOk = m_prev->hasValue();
 
 	return memory::StepType::MiniStep;

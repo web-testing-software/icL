@@ -361,7 +361,7 @@ bool If::isExecuable() const {
 	return !expressionExecuted || result;
 }
 
-memory::StepType If::execute() {
+memory::StepType::Value If::execute() {
 	if (exp == nullptr) {
 		parseLogicExp();
 	}

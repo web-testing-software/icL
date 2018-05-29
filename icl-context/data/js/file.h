@@ -23,7 +23,7 @@ protected:
 public:
 	bool checkPrev(const Context *context) const override;
 
-	memory::StepType execute() override;
+	memory::StepType::Value execute() override;
 
 	Context *getBeginContext() override;
 	Context *getEndContext() override;

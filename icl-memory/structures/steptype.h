@@ -7,7 +7,6 @@ namespace icL::memory {
 
 class StepType
 {
-	Q_GADGET
 public:
 	StepType() = default;
 
@@ -19,8 +18,9 @@ public:
 		CommandOut = 0x8,
 		Any        = 0xF
 	};
-	Q_ENUM(Value)
 };
+
+
 
 }  // namespace icL::memory
 

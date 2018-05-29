@@ -41,7 +41,7 @@ public:
 	bool canBeAtEnd() const override;
 	bool isExecuable() const override;
 
-	memory::StepType execute() override;
+	memory::StepType::Value execute() override;
 
 	Context * getBeginContext() override;
 	Context * getEndContext() override;

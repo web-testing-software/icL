@@ -1,9 +1,8 @@
 #include "backend/helper.h"
+#include "backend/serverhighlevel.h"
+#include "backend/steptypehighlevel.h"
 #include "data_management/database.h"
 #include "data_management/dialdescription.h"
-
-#include <icl-memory/structures/steptype.h>
-#include <icl-vm/server.h>
 
 #include <QApplication>
 #include <QOpenGLContext>
@@ -21,10 +20,17 @@ int main(int argc, char * argv[]) {
 	qmlRegisterType<icL::app::DialDescription>(
 	  "icL.DB", 1, 0, "DialDescription");
 
-	qmlRegisterType<icL::Server>("icL.VM", 1, 0, "Server");
-
-	qmlRegisterUncreatableType<icL::memory::StepType>(
+	//	qRegisterMetaType<icL::app::StepTypeHighLevel::Value>("StepType");
+	qmlRegisterUncreatableType<icL::app::StepTypeHighLevel>(
 	  "icL.VM", 1, 0, "StepType", "Step by step run argument");
+
+//		icL::app::ServerHighLevel server;
+	//	icL::memory::StepType step;
+
+	qmlRegisterType<icL::app::ServerHighLevel>("icL.VM", 1, 0, "Server");
+	//	qmlRegisterType<icL::VirtualMachineStack>("icL.VM", 1, 0, "VMStack");
+
+
 
 	QQmlApplicationEngine engine;
 	QQmlContext *         context = engine.rootContext();

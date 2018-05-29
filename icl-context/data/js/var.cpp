@@ -43,7 +43,7 @@ std::pair<QString, QString> Var::getArguments() {
 	return {a1, a2};
 }
 
-memory::StepType Var::execute() {
+memory::StepType::Value Var::execute() {
 	auto [getter, setter] = getArguments();
 
 	if (getter.isEmpty()) {

@@ -9,7 +9,7 @@ namespace icL::context::data::js {
 Set::Set(memory::InterLevel * il)
 	: Value(il) {}
 
-memory::StepType Set::execute() {
+memory::StepType::Value Set::execute() {
 	QString code = getCode();
 
 	if (code.isEmpty()) {

@@ -16,7 +16,7 @@ Function::Function(memory::InterLevel * il, const QString & name)
 	newFunction = il->mem->functions().contains(name);
 }
 
-memory::StepType Function::exNewFunction() {
+memory::StepType::Value Function::exNewFunction() {
 	memory::Function func;
 	// checkPrev(Context*) and canBeTheLast ensure that the last block is code
 	// one
@@ -40,7 +40,7 @@ memory::StepType Function::exNewFunction() {
 	return memory::StepType::MiniStep;
 }
 
-memory::StepType Function::exCallFunction() {
+memory::StepType::Value Function::exCallFunction() {
 	if (functionExecuted) {
 		return memory::StepType::MiniStep;
 	}
@@ -167,7 +167,7 @@ bool Function::isExecuable() const {
 	return true;
 }
 
-memory::StepType Function::execute() {
+memory::StepType::Value Function::execute() {
 	return m_next->role() == Role::Assign ? exNewFunction() : exCallFunction();
 }
 

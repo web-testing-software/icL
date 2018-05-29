@@ -30,7 +30,7 @@ bool Assign::isExecuable() const {
 	return m_prev->role() == Role::Object;
 }
 
-memory::StepType Assign::execute() {
+memory::StepType::Value Assign::execute() {
 	if (m_next->role() != Role::Object) {
 		il->vm->exception(
 		  {-204, "The right operand of assign operation must be an `Object`"});

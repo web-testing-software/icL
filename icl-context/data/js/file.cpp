@@ -50,7 +50,7 @@ bool File::checkPrev(const Context * context) const {
 	return context == nullptr;
 }
 
-memory::StepType File::execute() {
+memory::StepType::Value File::execute() {
 	if (!checkArgs()) {
 		il->vm->exception(
 		  {-203, "Wrong arglist for $file, expected <String, CommandEnd>"});

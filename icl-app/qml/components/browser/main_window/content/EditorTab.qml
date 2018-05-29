@@ -124,6 +124,16 @@ ContentBase {
 		}
 	}
 
+	VMStack {
+		id: vmstack;
+
+		server: server;
+
+		onRequestHighlight: {
+			editor.select(pos1, pos2);
+		}
+	}
+
 	Item {
 		id: side;
 
@@ -252,6 +262,11 @@ ContentBase {
 				Keys.onTabPressed: {
 					insert(cursorPosition, '\t');
 					return true;
+				}
+
+				Keys.onAsteriskPressed: {
+					vmstack.init(text, true);
+					vmstack.step(StepType.Any);
 				}
 
 				Component.onCompleted: {

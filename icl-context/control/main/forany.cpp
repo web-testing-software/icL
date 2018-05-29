@@ -20,7 +20,7 @@ bool ForAny::isExecuable() const {
 	return true;
 }
 
-memory::StepType ForAny::execute() {
+memory::StepType::Value ForAny::execute() {
 	memory::FunctionCall fcall;
 
 	if (executed) {

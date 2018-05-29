@@ -29,7 +29,7 @@ bool Code::isExecuable() const {
 	return m_prev->role() == Role::Object;
 }
 
-memory::StepType Code::execute() {
+memory::StepType::Value Code::execute() {
 	if (executed) {
 		return memory::StepType::MiniStep;
 	}

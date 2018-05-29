@@ -6,7 +6,7 @@ namespace icL::context::data::js {
 Crossfire::Crossfire(memory::InterLevel * il)
 	: File(il) {}
 
-memory::StepType Crossfire::execute()
+memory::StepType::Value Crossfire::execute()
 {
 	if (!checkArgs()) {
 		il->vm->exception(

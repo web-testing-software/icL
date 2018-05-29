@@ -29,7 +29,7 @@ bool Slot::isExecuable() const {
 	return signal == 0 || gettedSignal == signal;
 }
 
-memory::StepType Slot::execute() {
+memory::StepType::Value Slot::execute() {
 	return m_next->execute();
 }
 

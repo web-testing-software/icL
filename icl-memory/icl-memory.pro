@@ -1,7 +1,7 @@
 TARGET = icl-memory
 TEMPLATE = lib
 
-QT = core
+QT = core qml
 CONFIG -= app_bundle
 
 CONFIG += staticlib
@@ -43,7 +43,10 @@ SOURCES += \
     state/memory.cpp \
     structures/return.cpp \
     structures/exception.cpp \
-    structures/type.cpp
+    structures/type.cpp \
+    interlevel/interfaces.cpp \
+    interlevel/interlevel.cpp \
+    interlevel/node.cpp
 
 DISTFILES += \
     models/uml_style.iuml \
