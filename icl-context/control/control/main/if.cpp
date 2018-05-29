@@ -361,7 +361,7 @@ bool If::isExecuable() const {
 	return !expressionExecuted || result;
 }
 
-bool If::execute() {
+memory::StepType If::execute() {
 	if (exp == nullptr) {
 		parseLogicExp();
 	}
@@ -376,7 +376,7 @@ bool If::execute() {
 		return m_next->execute();
 	}
 
-	return false;
+	return memory::StepType::CommandIn;
 }
 
 Context * If::getBeginContext() {

@@ -18,7 +18,7 @@ bool Else::isExecuable() const {
 	return m_next->role() == Role::Code;
 }
 
-bool Else::execute() {
+memory::StepType Else::execute() {
 	return m_next->execute();
 }
 

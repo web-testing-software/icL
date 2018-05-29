@@ -19,10 +19,10 @@ bool Property::canBeAtEnd() const {
 	return true;
 }
 
-bool Property::execute() {
+memory::StepType Property::execute() {
 	newContext = m_prev->runProperty(prefix, name);
 
-	return true;
+	return memory::StepType::MiniStep;
 }
 
 Context * Property::getBeginContext() {

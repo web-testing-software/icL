@@ -4,6 +4,9 @@
 #include "../structures/functioncontainer.h"
 #include "../structures/return.h"
 
+namespace icL::inter {
+class Flayer;
+}
 
 /**
  *  icL
@@ -29,21 +32,27 @@ class Interpreter
 {
 public:
 	virtual void newSignal(int code, const QString & name) = 0;
+
+	virtual inter::Flayer & getFlayer() = 0;
 };
 
 class VirtualMachine
 {
 public:
-	virtual void exception(const Exception & exc) = 0;
+	virtual void      exception(const Exception & exc) = 0;
+	virtual QString * source()                         = 0;
 };
 
 class VirtualMachineStack
 {
 public:
-	virtual Return          interrupt(FunctionCall fcall) = 0;
-	virtual const QString & getWorkingDir()               = 0;
-	virtual const QString & getCrossfirePass()            = 0;
-	virtual const QString * source()                      = 0;
+	virtual void interrupt(
+	  FunctionCall fcall, std::function<void(Return &)> feedback) = 0;
+
+	virtual const QString & getWorkingDir()    = 0;
+	virtual const QString & getCrossfirePass() = 0;
+
+	virtual void highlight(int pos1, int pos2) = 0;
 };
 
 class Server

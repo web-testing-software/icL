@@ -1,12 +1,12 @@
 #include "flayer.h"
 
-namespace icL::inter::_private {
+namespace icL::inter {
 
 
 Flayer::Flayer(memory::InterLevel * il)
 	: memory::Node(il){
 
-	source = il->vms->source();
+	source = il->vm->source();
 }
 
 

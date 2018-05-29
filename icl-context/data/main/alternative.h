@@ -35,7 +35,8 @@ public:
 	bool checkPrev(const Context * context) const override;
 	bool isRightToLeft() const override;
 	bool isExecuable() const override;
-	bool execute() override;
+
+	memory::StepType execute() override;
 
 	Context * getBeginContext() override;
 	Context * getEndContext() override;

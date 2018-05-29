@@ -50,11 +50,11 @@ bool File::checkPrev(const Context * context) const {
 	return context == nullptr;
 }
 
-bool File::execute() {
+memory::StepType File::execute() {
 	if (!checkArgs()) {
 		il->vm->exception(
 		  {-203, "Wrong arglist for $file, expected <String, CommandEnd>"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	QString code = getFileContent();
@@ -62,12 +62,9 @@ bool File::execute() {
 	if (!code.isEmpty()) {
 		il->server->runJS(code);
 	}
-	else {
-		return true;
-	}
 
-	return true;
-}  // namespace icL::context::data::js
+	return memory::StepType::MiniStep;
+}
 
 Context * File::getBeginContext() {
 	return this;

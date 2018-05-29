@@ -1,6 +1,6 @@
 import QtQuick 2.7
 
-import ICLightning.Database 1.0
+import icL.DB 1.0
 
 import "../../" as Ui;
 

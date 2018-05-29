@@ -16,7 +16,7 @@ Function::Function(memory::InterLevel * il, const QString & name)
 	newFunction = il->mem->functions().contains(name);
 }
 
-bool Function::exNewFunction() {
+memory::StepType Function::exNewFunction() {
 	memory::Function func;
 	// checkPrev(Context*) and canBeTheLast ensure that the last block is code
 	// one
@@ -37,24 +37,24 @@ bool Function::exNewFunction() {
 
 	il->mem->functions().registerFunction(name, func);
 
-	return true;
+	return memory::StepType::MiniStep;
 }
 
-bool Function::exCallFunction() {
+memory::StepType Function::exCallFunction() {
 	if (functionExecuted) {
-		return true;
+		return memory::StepType::MiniStep;
 	}
 
 	if (newFunction) {
 		il->vm->exception(
 		  {-404, QStringLiteral("Function %1 not found").arg(name)});
-		return false;
+		return memory::StepType::None;
 	}
 
 	memory::Function & func = il->mem->functions().getFunction(name);
 
 	if (!checkParamsNum(func) || !checkParamsTypes(func)) {
-		return false;
+		return memory::StepType::None;
 	}
 
 	auto      fcall   = memory::FunctionCall{};
@@ -73,17 +73,18 @@ bool Function::exCallFunction() {
 		fcall.args.append(arg);
 	}
 
-	memory::Return ret = il->vms->interrupt(fcall);
-	if (ret.exception.code != 0) {
-		il->vm->exception(ret.exception);
-	}
-	else {
-		this->newContext = fromValue(ret.returnValue);
-	}
+	il->vms->interrupt(fcall, [this](memory::Return & ret) {
+		if (ret.exception.code != 0) {
+			il->vm->exception(ret.exception);
+		}
+		else {
+			this->newContext = fromValue(ret.returnValue);
+		}
+	});
 
 	functionExecuted = true;
 
-	return false;
+	return memory::StepType::CommandIn;
 }
 
 bool Function::checkParamsNum(memory::Function & func) {
@@ -166,7 +167,7 @@ bool Function::isExecuable() const {
 	return true;
 }
 
-bool Function::execute() {
+memory::StepType Function::execute() {
 	return m_next->role() == Role::Assign ? exNewFunction() : exCallFunction();
 }
 

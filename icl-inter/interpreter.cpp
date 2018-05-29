@@ -150,7 +150,16 @@ context::Context * Interpreter::parseNext() {
 }
 
 void Interpreter::newSignal(int code, const QString & name) {
-	//
+	if (il->mem->signal_s().contains(name)) {
+		il->vm->exception({-999, "Signal with this name alrready exists"});
+		return;
+	}
+
+	il->mem->signal_s().insert(name, code);
+}
+
+Flayer & Interpreter::getFlayer() {
+	return flayer;
 }
 
 context::Context * Interpreter::parseKeyword() {

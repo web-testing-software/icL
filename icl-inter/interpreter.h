@@ -41,8 +41,11 @@ public:
 	 */
 	context::Context * parseNext();
 
+
 	// memory.Interpreter interface
-	virtual void newSignal(int code, const QString & name);
+	virtual void newSignal(int code, const QString & name) override;
+	virtual Flayer & getFlayer() override;
+
 
 protected:
 	context::Context * parseKeyword();
@@ -65,7 +68,7 @@ protected:
 	context::Context * parseAlternative();
 
 private:
-	_private::Flayer flayer;
+	Flayer flayer;
 };
 
 }  // namespace icL::inter

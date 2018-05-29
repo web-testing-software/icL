@@ -42,8 +42,8 @@ bool Context::isExecuable() const {
 	return false;
 }
 
-bool Context::execute() {
-	return true;
+memory::StepType::Value Context::execute() {
+	return memory::StepType::None;
 }
 
 bool Context::hasValue() const {
@@ -256,6 +256,28 @@ void Context::replaceWith(Context * context) {
 	}
 	if (m_next != nullptr) {
 		m_next->m_prev = context;
+	}
+}
+
+void Context::link(Context * context) {
+	context->m_next = nullptr;
+	context->m_prev = this;
+
+	m_next = context;
+}
+
+void Context::link(Context * c0, Context * c1, Context * c2) {
+	if (c0 != nullptr) {
+		c0->m_next = c1 != nullptr ? c1 : c2;
+	}
+
+	if (c1 != nullptr) {
+		c1->m_next = c2;
+		c1->m_prev = c0;
+	}
+
+	if (c2 != nullptr) {
+		c2->m_prev = c1 != nullptr ? c1 : c0;
 	}
 }
 

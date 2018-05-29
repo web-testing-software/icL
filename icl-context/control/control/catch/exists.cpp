@@ -30,58 +30,60 @@ bool Exists::isExecuable() const {
 	return m_prev->role() != Role::Alternative;
 }
 
-bool Exists::execute() {
+memory::StepType Exists::execute() {
 	if (executed) {
-		return true;
+		return memory::StepType::MiniStep;
 	}
 	else {
 		memory::FunctionCall fcall;
 
 		fcall.source = m_source;
 
-		memory::Return ret  = il->vms->interrupt(fcall);
-		bool           isOk = false;
+		il->vms->interrupt(fcall, [this](memory::Return & ret) {
+			bool isOk = false;
 
-		if (ret.exception.code != 0) {
-			Context * it = this->m_next;
+			if (ret.exception.code != 0) {
+				Context * it = this->m_next;
 
-			while (it != nullptr) {
-				if (it->role() == Role::Slot) {
-					auto * slot = dynamic_cast<Slot *>(it);
+				while (it != nullptr) {
+					if (it->role() == Role::Slot) {
+						auto * slot = dynamic_cast<Slot *>(it);
 
-					isOk |= slot->giveSignal(ret.exception.code);
+						isOk |= slot->giveSignal(ret.exception.code);
+					}
+
+					it = it->next();
 				}
-
-				it = it->next();
 			}
-		}
-		else {
-			isOk = true;
-		}
+			else {
+				isOk = true;
+			}
 
-		if (isOk) {
-			if (!this->isEmiter) {
-				if (ret.consoleValue.type() == QVariant::UserType) {
-					auto el = ret.consoleValue.value<memory::WebElement>();
+			if (isOk) {
+				if (!this->isEmiter) {
+					if (ret.consoleValue.type() == QVariant::UserType) {
+						auto el = ret.consoleValue.value<memory::WebElement>();
 
-					if (el.count == 0) {
+						if (el.count == 0) {
+							ret.consoleValue = QVariant{};
+						}
+					}
+					else if (ret.consoleValue.toBool() == false) {
 						ret.consoleValue = QVariant{};
 					}
-				}
-				else if (ret.consoleValue.toBool() == false) {
-					ret.consoleValue = QVariant{};
-				}
 
-				this->newContext = fromValue(ret.consoleValue);
+					this->newContext = fromValue(ret.consoleValue);
+				}
 			}
-		}
-		else if (this->isEmiter || ret.exception.code <= -100) {
-			il->vm->exception(ret.exception);
-		}
+			else if (this->isEmiter || ret.exception.code <= -100) {
+				il->vm->exception(ret.exception);
+			}
 
-		executed = true;
-		return false;
+			this->executed = true;
+		});
 	}
+
+	return memory::StepType::CommandIn;
 }
 
 Context * Exists::getBeginContext() {

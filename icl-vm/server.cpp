@@ -8,9 +8,9 @@
 
 namespace icL {
 
-Server::Server(memory::InterLevel * il, QObject * parent)
+Server::Server(QObject * parent)
 	: QObject(parent)
-	, memory::Node(il) {
+	, memory::Node(nullptr) {
 
 	connect(this, &Server::invoke_executeJS, this, &Server::release_executeJS);
 	connect(this, &Server::invoke_goTo, this, &Server::release_goTo);
@@ -91,6 +91,10 @@ QQuickItem * Server::webEngine() const {
 	return m_webEngine;
 }
 
+void Server::setInterlevel(memory::InterLevel * il) {
+	this->il = il;
+}
+
 void Server::setWebEngine(QQuickItem * webEngine) {
 	if (m_webEngine == webEngine) {
 		return;
@@ -147,7 +151,7 @@ bool Server::click(int x, int y) {
 }
 
 void Server::keys(const QString & keys) {
-	for (const QChar &ch : keys) {
+	for (const QChar & ch : keys) {
 		simulateKey(ch);
 	}
 }

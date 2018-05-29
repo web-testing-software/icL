@@ -9,14 +9,14 @@ namespace icL::context::data::js {
 Set::Set(memory::InterLevel * il)
 	: Value(il) {}
 
-bool Set::execute() {
+memory::StepType Set::execute() {
 	QString code = getCode();
 
 	if (code.isEmpty()) {
 		il->vm->exception(
 		  {-203,
 		   "Wrong call of $get, the javascript code is missing or empty"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	QRegularExpression      regex{R"((?<type>[@#])\((?<name>\w+)\))"};
@@ -50,7 +50,7 @@ bool Set::execute() {
 		newContext = fromValue(ret);
 	}
 
-	return true;
+	return memory::StepType::MiniStep;
 }
 
 }  // namespace icL::context::data::js

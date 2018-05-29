@@ -2,6 +2,7 @@
 #include "data_management/database.h"
 #include "data_management/dialdescription.h"
 
+#include <icl-memory/structures/steptype.h>
 #include <icl-vm/server.h>
 
 #include <QApplication>
@@ -18,9 +19,12 @@ int main(int argc, char * argv[]) {
 	QtWebEngine::initialize();
 
 	qmlRegisterType<icL::app::DialDescription>(
-	  "ICLightning.Database", 1, 0, "DialDescription");
+	  "icL.DB", 1, 0, "DialDescription");
 
 	qmlRegisterType<icL::Server>("icL.VM", 1, 0, "Server");
+
+	qmlRegisterUncreatableType<icL::memory::StepType>(
+	  "icL.VM", 1, 0, "StepType", "Step by step run argument");
 
 	QQmlApplicationEngine engine;
 	QQmlContext *         context = engine.rootContext();

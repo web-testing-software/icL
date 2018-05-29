@@ -28,14 +28,48 @@ class VirtualMachineStack;
 class VirtualMachine : public memory::VirtualMachine
 {
 public:
-	VirtualMachine(VirtualMachineStack * vms);
+	VirtualMachine(
+	  VirtualMachineStack * vms, VirtualMachine * parent, QString * source);
+
+	[[nodiscard]] VirtualMachine * getParent() const;
+
+	[[nodiscard]] memory::StepType::Value step();
+	void setOnStop(std::function<void(memory::Return &)> feedback);
+
+	void reset();
+	void fullReset();
 
 	// memory.VirtualMachine interface
-	virtual void exception(const memory::Exception & exc);
+	virtual void      exception(const memory::Exception & exc) override;
+	virtual QString * source() override;
+
+protected:
+	void finish();
+
+	context::Context * findExecutable();
+
+	[[nodiscard]] memory::StepType::Value prepareNext(context::Context * next);
+	[[nodiscard]] memory::StepType::Value prepareExecutable(
+	  context::Context * executable);
+
+	void destroy(context::Context * executable);
 
 private:
 	memory::InterLevel il;
 	inter::Interpreter interpreter;
+
+	VirtualMachine * parent;
+	QString *        m_source;
+	bool             waiting_mode;
+
+	context::Context * last_context = nullptr;
+	memory::Exception  r_exception  = {0, ""};
+	memory::Return     r_result;
+
+	bool running        = true;
+	bool commandParsing = true;
+
+	std::function<void(memory::Return &)> onStop = nullptr;
 };
 
 }  // namespace icL

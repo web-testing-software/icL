@@ -1,6 +1,6 @@
 import QtQuick 2.5
 
-import ICLightning.Database 1.0
+import icL.DB 1.0
 
 import "../../ui/controls/speed_dial" as SpeedDialControls;
 

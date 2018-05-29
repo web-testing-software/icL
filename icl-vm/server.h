@@ -44,7 +44,7 @@ class Server
 	enum class WaitFor { GoTo, PageLoading, ExecuteJS, ErrorDialog, Nothing };
 
 public:
-	explicit Server(memory::InterLevel * il, QObject * parent = nullptr);
+	explicit Server(QObject * parent = nullptr);
 
 	/**
 	 * @brief goTo - go to url and wait for page loading
@@ -85,6 +85,8 @@ public:
 	 * @return WebEngineView*
 	 */
 	QQuickItem * webEngine() const;
+
+	void setInterlevel(memory::InterLevel * il);
 
 public slots:
 	/**

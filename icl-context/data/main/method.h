@@ -35,7 +35,8 @@ protected:
 public:
 	bool checkPrev(const Context * context) const override;
 	bool canBeAtEnd() const override;
-	bool execute() override;
+
+	memory::StepType execute() override;
 
 	Context * getBeginContext() override;
 	Context * getEndContext() override;

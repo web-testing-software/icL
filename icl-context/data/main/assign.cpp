@@ -30,11 +30,11 @@ bool Assign::isExecuable() const {
 	return m_prev->role() == Role::Object;
 }
 
-bool Assign::execute() {
+memory::StepType Assign::execute() {
 	if (m_next->role() != Role::Object) {
 		il->vm->exception(
 		  {-204, "The right operand of assign operation must be an `Object`"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	auto left  = dynamic_cast<object::Object *>(m_prev);
@@ -43,7 +43,7 @@ bool Assign::execute() {
 	if (left->isReadOnly()) {
 		il->vm->exception(
 		  {-205, "The left operand of assign operation must be muttable"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	if (right->type() == memory::Type::Void) {
@@ -63,12 +63,12 @@ bool Assign::execute() {
 			  {-206, QString("Void cannot be assigned to variable of type %1")
 					   .arg(memory::typeToString(left->type()))});
 		}
-		return false;
+		return memory::StepType::None;
 	}
 
 	if (left->type() != memory::Type::Void && left->type() != right->type()) {
 		il->vm->exception({-200, "Automatic casting is missing in icL"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	left->setValue(right->getValue());
@@ -111,7 +111,7 @@ bool Assign::execute() {
 		delete left;
 	}
 
-	return true;
+	return memory::StepType::MiniStep;
 }
 
 Context * Assign::getBeginContext() {

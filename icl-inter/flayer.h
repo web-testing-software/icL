@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::inter::_private {
+namespace icL::inter {
 
 /**
  * @brief The Flayer class - flayer is a flying cursor.

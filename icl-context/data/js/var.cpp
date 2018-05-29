@@ -43,14 +43,14 @@ std::pair<QString, QString> Var::getArguments() {
 	return {a1, a2};
 }
 
-bool Var::execute() {
+memory::StepType Var::execute() {
 	auto [getter, setter] = getArguments();
 
 	if (getter.isEmpty()) {
 		il->vm->exception(
 		  {-203,
 		   "Wrong arguments for $var, expected <String, String> or <String>"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	QVariant value = il->server->runJS(getter);
@@ -81,6 +81,8 @@ bool Var::execute() {
 	default:
 		newContext = new object::Void{il, getter, setter};
 	}
+
+	return memory::StepType::MiniStep;
 }
 
 }  // namespace icL::context::data::js

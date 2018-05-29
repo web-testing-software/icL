@@ -21,7 +21,7 @@ bool Method::canBeAtEnd() const {
 	return true;
 }
 
-bool Method::execute() {
+memory::StepType Method::execute() {
 	memory::ArgList args;
 	int             count = 0;
 	Context *       it    = m_next;
@@ -49,7 +49,7 @@ bool Method::execute() {
 
 	newContext = m_prev->runMethod(name, args);
 
-	return true;
+	return memory::StepType::MiniStep;
 }
 
 Context * Method::getBeginContext() {

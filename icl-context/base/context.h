@@ -5,6 +5,7 @@
 #include <icl-memory/structures/exception.h>
 #include <icl-memory/structures/functioncontainer.h>
 #include <icl-memory/structures/return.h>
+#include <icl-memory/structures/steptype.h>
 
 #include <functional>
 
@@ -58,12 +59,14 @@ class Context : public memory::Node
 
 public:
 	Context(memory::InterLevel * il);
+	virtual ~Context() = default;
 
 	virtual bool checkPrev(const Context * context) const = 0;
 	virtual bool canBeAtEnd() const                       = 0;
 	virtual bool isRightToLeft() const;
 	virtual bool isExecuable() const;
-	virtual bool execute();
+
+	virtual memory::StepType::Value execute();
 
 	Context *         getNewContext() const;
 	virtual Context * getBeginContext();
@@ -76,7 +79,10 @@ public:
 	Role      role() const;
 	Context * prev() const;
 	Context * next() const;
-	void      replaceWith(Context * context);
+
+	void        replaceWith(Context * context);
+	void        link(Context * context);
+	static void link(Context * c0, Context * c1, Context * c2);
 
 	virtual bool isResultative() const;
 	virtual bool isComplex() const;

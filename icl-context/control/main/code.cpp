@@ -29,22 +29,24 @@ bool Code::isExecuable() const {
 	return m_prev->role() == Role::Object;
 }
 
-bool Code::execute() {
+memory::StepType Code::execute() {
 	if (executed) {
-		return true;
+		return memory::StepType::MiniStep;
 	}
 	else {
 		memory::FunctionCall fcall;
 
 		fcall.source = m_source;
 
-		memory::Return ret = il->vms->interrupt(fcall);
-		if (ret.exception.code != 0) {
-			il->vm->exception(ret.exception);
-		}
+		il->vms->interrupt(fcall, [this](memory::Return & ret) {
+			if (ret.exception.code != 0) {
+				this->il->vm->exception(ret.exception);
+			}
 
-		executed = true;
-		return false;
+			this->executed = true;
+		});
+
+		return memory::StepType::CommandIn;
 	}
 }
 

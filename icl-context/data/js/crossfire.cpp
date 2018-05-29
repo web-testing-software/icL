@@ -6,12 +6,12 @@ namespace icL::context::data::js {
 Crossfire::Crossfire(memory::InterLevel * il)
 	: File(il) {}
 
-bool Crossfire::execute()
+memory::StepType Crossfire::execute()
 {
 	if (!checkArgs()) {
 		il->vm->exception(
 		  {-203, "Wrong arglist for $crossfire, expected <String, CommandEnd>"});
-		return false;
+		return memory::StepType::None;
 	}
 
 	QString code = getFileContent();
@@ -21,11 +21,8 @@ bool Crossfire::execute()
 
 		il->server->runJS(code);
 	}
-	else {
-		return true;
-	}
 
-	return true;
+	return memory::StepType::MiniStep;
 }
 
 }  // namespace icL::context::data::js

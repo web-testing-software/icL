@@ -13,7 +13,7 @@ public:
 
 	// Context interface
 public:
-	bool execute() override;
+	memory::StepType execute() override;
 };
 
 }  // namespace icL::context::data::js

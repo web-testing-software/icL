@@ -165,14 +165,16 @@ bool Rich::step() {
 
 		fcall.source = frag1;
 
-		memory::Return ret = il->vms->interrupt(fcall);
-		if (ret.exception.code != 0) {
-			il->vm->exception(ret.exception);
-		}
-		else {
-			this->value1      = ret.consoleValue;
-			this->valu1getted = true;
-		}
+		il->vms->interrupt(fcall, [this](memory::Return & ret) {
+			if (ret.exception.code != 0) {
+				il->vm->exception(ret.exception);
+			}
+			else {
+				this->value1      = ret.consoleValue;
+				this->valu1getted = true;
+			}
+		});
+
 
 		return false;
 	}
@@ -181,14 +183,16 @@ bool Rich::step() {
 
 		fcall.source = frag2;
 
-		memory::Return ret = il->vms->interrupt(fcall);
-		if (ret.exception.code != 0) {
-			il->vm->exception(ret.exception);
-		}
-		else {
-			this->value2       = ret.consoleValue;
-			this->value2getted = true;
-		}
+		il->vms->interrupt(fcall, [this](memory::Return & ret) {
+			if (ret.exception.code != 0) {
+				il->vm->exception(ret.exception);
+			}
+			else {
+				this->value2       = ret.consoleValue;
+				this->value2getted = true;
+			}
+		});
+
 
 		return false;
 	}
@@ -205,4 +209,4 @@ bool Rich::calcResult() {
 	return false;
 }
 
-}  // namespace icL::logic
+}  // namespace icL::logic::rich
