@@ -41,6 +41,7 @@ input_minted_header () {
   \usepackage{url}
   \urlstyle{same}                       % omit this command if you want monospaced-font look
   \newcommand\purl[1]{\protect\url{#1}} % "protected url"
+  
 EOF
 }
 
@@ -50,23 +51,26 @@ input_doc_header () {
   \usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
   \usepackage{fancyvrb}
   \fvset{tabsize=2}
+  \usepackage{polyglossia}
+  \setmainlanguage{english} 
+  \setotherlanguage{russian}
+  
+  \setmainfont{Liberation Serif}
+  \newfontfamily\cyrillicfont{Liberation Serif}
+  \setmonofont{Liberation Mono}
+  \newfontfamily\cyrillicfonttt{Liberation Serif}
+
+
+  
   \begin{document}
-  \title{$doc_title}
-  \author{$author}
+  \title{Исходник проекта icL}
+  \author{Лелицак Василе}
 
   \maketitle
 
   \newpage
-  \begin{abstract}
-  $abstract
-  \end{abstract}
-
-  \newpage
   \tableofcontents
-
   \newpage
-  \section{Introduction}
-  $introduction
 EOF
 }
 
@@ -97,7 +101,7 @@ input_section () {
 }
 
 input_listings () {
-  echo "\section{Source code in language $language}" >> $tex_file;
+  echo "\section{Исходники на языке $language}" >> $tex_file;
   olddirectory="/"
   for file in "${files_to_process[@]}"; do             ## Loop through each file
 
@@ -109,7 +113,7 @@ input_listings () {
     else
       # echo "\newpage" >> $tex_file                ## start each section on a new page
       input_section $directory $olddirectory
-      echo "\subparagraph{\purl{/$file_title}}" >> $tex_file  ## Create a section for each file
+      echo "\subparagraph{\purl{Файл:  /$file}}" >> $tex_file  ## Create a section for each file
       echo "\inputminted[linenos]{$language}{$file}" >> $tex_file
     fi
   done
@@ -132,6 +136,6 @@ for i in "${!file_types[@]}"; do
 done
 echo "\end{document}" >> $tex_file
 
-pdflatex -shell-escape $tex_file -output-directory . && pdflatex -shell-escape $tex_file -output-directory .
+lualatex -shell-escape $tex_file -output-directory . && lualatex -shell-escape $tex_file -output-directory .
 find . -name "$tex_file.*" ! -name "$tex_file.pdf" -type f -exec rm -f {} +
 ## This needs to be run twice for the TOC to be generated
