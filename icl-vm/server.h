@@ -81,7 +81,7 @@ protected:
 	void simulateKey(const QChar & ch);
 
 public:
-	// memory.Server interface
+	// memory.ServerLowLevel interface
 	virtual QVariant runJS(const QString & code) override;
 	virtual bool     click(int x, int y) override;
 	virtual void     keys(const QString & keys) override;

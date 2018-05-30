@@ -57,9 +57,7 @@ Object::Object(memory::InterLevel * il, const Object * const object)
 	m_role = Role::Object;
 }
 
-
-
-const QHash<QString, void (Object::*)(memory::ArgList &)> methods =
+const QHash<QString, void (Object::*)(memory::ArgList &)> Object::methods =
   Object::initMethods();
 
 const QHash<QString, void (Object::*)(memory::ArgList &)>
@@ -344,13 +342,18 @@ bool Object::canBeAtEnd() const {
 
 Context * Object::runMethod(const QString & name, memory::ArgList & args) {
 
-	auto it = methods.find(name);
-
-	if (it != methods.end()) {
-		(this->*it.value())(args);
+	if (name.mid(0, 2) == "to") {
+		runCast(name, args);
 	}
 	else {
-		Context::runMethod(name, args);
+		auto it = methods.find(name);
+
+		if (it != methods.end()) {
+			(this->*it.value())(args);
+		}
+		else {
+			Context::runMethod(name, args);
+		}
 	}
 
 	return newContext;

@@ -1,6 +1,7 @@
 #include "backend/helper.h"
 #include "backend/serverhighlevel.h"
 #include "backend/steptypehighlevel.h"
+#include "backend/vmstackhighlevel.h"
 #include "data_management/database.h"
 #include "data_management/dialdescription.h"
 
@@ -24,11 +25,11 @@ int main(int argc, char * argv[]) {
 	qmlRegisterUncreatableType<icL::app::StepTypeHighLevel>(
 	  "icL.VM", 1, 0, "StepType", "Step by step run argument");
 
-//		icL::app::ServerHighLevel server;
+//	icL::app::ServerHighLevel server;
 	//	icL::memory::StepType step;
 
 	qmlRegisterType<icL::app::ServerHighLevel>("icL.VM", 1, 0, "Server");
-	//	qmlRegisterType<icL::VirtualMachineStack>("icL.VM", 1, 0, "VMStack");
+	qmlRegisterType<icL::app::VMStackHighLevel>("icL.VM", 1, 0, "VMStack");
 
 
 

@@ -43,7 +43,7 @@ class Logic : public memory::Node
 {
 public:
 	Logic(memory::InterLevel * il);
-	virtual ~Logic();
+	virtual ~Logic() = default;
 
 	bool         getResult();
 	bool         getCachedResult();

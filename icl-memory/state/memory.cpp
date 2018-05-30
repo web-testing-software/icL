@@ -16,4 +16,8 @@ FunctionContainer & Memory::functions() {
 	return m_functions;
 }
 
+QMap<QString, int> & Memory::signal_s() {
+	return m_signals;
+}
+
 }  // namespace icL::memory

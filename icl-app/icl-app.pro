@@ -8,8 +8,11 @@
 
 QT       += core gui widgets quickwidgets webengine sql
 
-TARGET = ic-lightning
+TARGET = icL
 TEMPLATE = app
+
+ICL_ROOT = $$PWD/..
+DESTDIR = $$ICL_ROOT/bin
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -25,20 +28,32 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 INCLUDEPATH += ..
 
+LIBS += -L$$ICL_ROOT/bin/lib
+LIBS += -l-icl-memory
+LIBS += -l-icl-logic
+LIBS += -l-icl-context-base
+LIBS += -l-icl-context-complex
+LIBS += -l-icl-context-control
+LIBS += -l-icl-context-data
+LIBS += -l-icl-inter
+LIBS += -l-icl-vm
+
 SOURCES += \
         main.cpp \
 	backend/helper.cpp \
         data_management/database.cpp \
 	data_management/dialdescription.cpp \
     backend/steptypehighlevel.cpp \
-    backend/serverhighlevel.cpp
+    backend/serverhighlevel.cpp \
+    backend/vmstackhighlevel.cpp
 
 HEADERS += \
 	backend/helper.h \
         data_management/database.h \
 	data_management/dialdescription.h \
     backend/steptypehighlevel.h \
-    backend/serverhighlevel.h
+    backend/serverhighlevel.h \
+    backend/vmstackhighlevel.h
 
 RESOURCES += \
     qml/main.qrc \

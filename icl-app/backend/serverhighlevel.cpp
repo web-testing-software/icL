@@ -1,5 +1,7 @@
 #include "serverhighlevel.h"
 
+#include <icl-vm/server.cpp>
+
 namespace icL::app {
 
 ServerHighLevel::ServerHighLevel() : Server() {

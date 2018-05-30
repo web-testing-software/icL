@@ -1,4 +1,4 @@
- 
+
 TEMPLATE = subdirs
 
 SUBDIRS = \
@@ -20,7 +20,7 @@ logic.depends = memory
 context.depends = memory logic
 inter.depends = logic context
 vm.depends = context memory inter
-app.depends = memory vm inter
+app.depends = memory inter vm
 #app.depends = vm
 
 DISTFILES += \

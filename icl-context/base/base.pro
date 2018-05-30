@@ -6,9 +6,17 @@
 
 QT       -= gui
 
-TARGET = context-base
+TARGET = -icl-context-base
 TEMPLATE = lib
-CONFIG += staticlib
+
+ICL_ROOT = $$PWD/../..
+DESTDIR = $$ICL_ROOT/bin/lib
+
+icl-static {
+    CONFIG += staticlib
+    TARGET = $$join(TARGET,,-static,)
+}
+
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
 

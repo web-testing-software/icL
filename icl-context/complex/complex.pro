@@ -6,9 +6,12 @@
 
 QT       -= gui
 
-TARGET = context-complex
+TARGET = -icl-context-complex
 TEMPLATE = lib
-CONFIG += staticlib
+
+ICL_ROOT = $$PWD/../..
+DESTDIR = $$ICL_ROOT/bin/lib
+
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
 

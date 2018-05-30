@@ -19,6 +19,10 @@ Int::Int(
 Int::Int(memory::InterLevel * il, const Object * const object)
 	: Object(il, object) {}
 
+Context * Int::runMethod(const QString & name, memory::ArgList & args) {
+	return Object::runMethod(name, args);
+}
+
 
 
 memory::Type Int::type() const {

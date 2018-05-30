@@ -1,10 +1,12 @@
-TARGET = icl-memory
+TARGET = -icl-memory
 TEMPLATE = lib
+
+ICL_ROOT = $$PWD/..
+DESTDIR = $$ICL_ROOT/bin/lib
 
 QT = core qml
 CONFIG -= app_bundle
 
-CONFIG += staticlib
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
 

@@ -43,7 +43,7 @@ public:
 	virtual QString * source()                         = 0;
 };
 
-class VirtualMachineStack
+class VMStackLowLevel
 {
 public:
 	virtual void interrupt(

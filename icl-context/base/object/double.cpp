@@ -19,6 +19,10 @@ Double::Double(
 Double::Double(memory::InterLevel * il, const Object * const object)
 	: Object(il, object) {}
 
+Context * Double::runMethod(const QString & name, memory::ArgList & args) {
+	return Object::runMethod(name, args);
+}
+
 memory::Type Double::type() const {
 	return memory::Type::Double;
 }

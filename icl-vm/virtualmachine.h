@@ -23,13 +23,12 @@
  */
 namespace icL {
 
-class VirtualMachineStack;
+class VMStack;
 
 class VirtualMachine : public memory::VirtualMachine
 {
 public:
-	VirtualMachine(
-	  VirtualMachineStack * vms, VirtualMachine * parent, QString * source);
+	VirtualMachine(VMStack * vms, VirtualMachine * parent, QString * source);
 
 	[[nodiscard]] VirtualMachine * getParent() const;
 

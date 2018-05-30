@@ -2,10 +2,12 @@
 QT = core quick
 CONFIG -= app_bundle
 
-TARGET = icl-vm
+TARGET = -icl-vm
 TEMPLATE = lib
 
-CONFIG += staticlib
+ICL_ROOT = $$PWD/..
+DESTDIR = $$ICL_ROOT/bin/lib
+
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
 
@@ -23,12 +25,12 @@ unix {
 HEADERS += \
     server.h \
     virtualmachine.h \
-    virtualmachinestack.h
+    vmstack.h
 
 SOURCES += \
     server.cpp \
     virtualmachine.cpp \
-    virtualmachinestack.cpp
+    vmstack.cpp
 
 DEFINES += QT_DEPRECATED_WARNINGS
 

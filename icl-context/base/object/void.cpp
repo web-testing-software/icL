@@ -14,6 +14,17 @@ Void::Void(
   memory::InterLevel * il, const QString & getter, const QString & setter)
 	: Object(il, getter, setter) {}
 
+Context * Void::runProperty(
+  [[maybe_unused]] Prefix prefix, [[maybe_unused]] const QString & name) {
+	return nullptr;
+}
+
+Context * Void::runMethod(
+  [[maybe_unused]] const QString &   name,
+  [[maybe_unused]] memory::ArgList & args) {
+	return nullptr;
+}
+
 
 bool Void::toBoolean() {
 	newValue = false;

@@ -20,6 +20,10 @@ Boolean::Boolean(
 Boolean::Boolean(memory::InterLevel * il, const Object * const object)
 	: Object(il, object) {}
 
+Context * Boolean::runMethod(const QString & name, memory::ArgList & args) {
+	return Object::runMethod(name, args);
+}
+
 memory::Type Boolean::type() const {
 	return memory::Type::Boolean;
 }

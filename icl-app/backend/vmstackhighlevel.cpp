@@ -1,13 +1,11 @@
-#include "virtualmachinestack.h"
+#include "vmstackhighlevel.h"
 
-#include "virtualmachine.h"
+#include <icl-vm/virtualmachine.h>
+#include <icl-vm/vmstack.cpp>
 
-namespace icL {
+namespace icL::app {
 
-VirtualMachineStack::VirtualMachineStack() {}
-
-
-void VirtualMachineStack::init(const QString & source, bool contentChanged) {
+void VMStackHighLevel::init(const QString & source, bool contentChanged) {
 	if (vm == nullptr || contentChanged) {
 		this->source = source;
 
@@ -17,7 +15,7 @@ void VirtualMachineStack::init(const QString & source, bool contentChanged) {
 	}
 }
 
-void VirtualMachineStack::step(memory::StepType::Value stopRule) {
+void VMStackHighLevel::step(memory::StepType::Value stopRule) {
 	memory::StepType::Value returned;
 
 	do {
@@ -35,16 +33,15 @@ void VirtualMachineStack::step(memory::StepType::Value stopRule) {
 	} while ((returned & stopRule) == 0x0);
 }
 
-Server * VirtualMachineStack::server() const {
-	return m_server;
-}
-
-void VirtualMachineStack::highlight(int pos1, int pos2) {
+void VMStackHighLevel::highlight(int pos1, int pos2) {
 	emit requestHighlight(pos1, pos2);
 }
 
+Server * VMStackHighLevel::server() const {
+	return m_server;
+}
 
-void VirtualMachineStack::setServer(Server * server) {
+void VMStackHighLevel::setServer(Server * server) {
 	if (m_server == server)
 		return;
 
@@ -52,4 +49,4 @@ void VirtualMachineStack::setServer(Server * server) {
 	emit serverChanged(m_server);
 }
 
-}  // namespace icL
+}  // namespace icL::app

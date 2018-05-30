@@ -1,6 +1,6 @@
 #include "virtualmachine.h"
 
-#include "virtualmachinestack.h"
+#include "vmstack.h"
 
 #include <icl-context/base/object/object.h>
 
@@ -8,7 +8,7 @@
 namespace icL {
 
 VirtualMachine::VirtualMachine(
-  VirtualMachineStack * vms, VirtualMachine * parent, QString * source)
+  VMStack * vms, VirtualMachine * parent, QString * source)
 	: interpreter(&il)
 	, parent(parent)
 	, m_source(source)
@@ -81,6 +81,14 @@ void VirtualMachine::fullReset() {
 	reset();
 }
 
+void VirtualMachine::exception(const memory::Exception & exc) {
+	// TODO: Write it
+}
+
+QString * VirtualMachine::source() {
+	return m_source;
+}
+
 void VirtualMachine::finish() {
 	r_result.returnValue = il.mem->stackIt().stack()->getValue("stack");
 	il.mem->stackIt().closeStack();
@@ -88,6 +96,10 @@ void VirtualMachine::finish() {
 	if (onStop != nullptr) {
 		onStop(r_result);
 	}
+}
+
+context::Context * VirtualMachine::findExecutable() {
+	// TODO: write it
 }
 
 memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {

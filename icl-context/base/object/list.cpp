@@ -29,7 +29,7 @@ List::List(memory::InterLevel * il, const Object * const object)
 const QHash<QString, void (List::*)()> List::properties =
   List::initProperties();
 
-const QHash<QString, void (List::*)(memory::ArgList &)> methods =
+const QHash<QString, void (List::*)(memory::ArgList &)> List::methods =
   List::initMethods();
 
 const QHash<QString, void (List::*)()> List::initProperties() {

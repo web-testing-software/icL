@@ -19,6 +19,10 @@ String::String(
 String::String(memory::InterLevel * il, const Object * const object)
 	: Object(il, object) {}
 
+Context * String::runMethod(const QString & name, memory::ArgList & args) {
+	return Object::runMethod(name, args);
+}
+
 
 
 memory::Type String::type() const {

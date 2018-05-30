@@ -31,8 +31,11 @@ class Int;
 class Element : public Object
 {
 public:
-	Element(memory::InterLevel * il, memory::DataState * container, const QString & varName);
-	Element(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Element(
+	  memory::InterLevel * il, memory::DataState * container,
+	  const QString & varName);
+	Element(
+	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 	Element(memory::InterLevel * il, const Object * const object);
 
 	// Id generator
