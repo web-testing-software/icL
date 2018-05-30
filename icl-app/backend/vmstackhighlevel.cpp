@@ -1,52 +1,60 @@
-#include "vmstackhighlevel.h"
+//#include "vmstackhighlevel.h"
 
-#include <icl-vm/virtualmachine.h>
-#include <icl-vm/vmstack.cpp>
+//#include "serverhighlevel.h"
 
-namespace icL::app {
+//#include <icl-vm/virtualmachine.h>
+//#include <icl-vm/vmstack.cpp>
 
-void VMStackHighLevel::init(const QString & source, bool contentChanged) {
-	if (vm == nullptr || contentChanged) {
-		this->source = source;
+//namespace icL::app {
 
-		if (vm == nullptr) {
-			vm = new VirtualMachine(this, nullptr, &this->source);
-		}
-	}
-}
+//void VMStackHighLevel::init(const QString & source, bool contentChanged) {
+//	if (vm == nullptr || contentChanged) {
+//		this->source = source;
 
-void VMStackHighLevel::step(memory::StepType::Value stopRule) {
-	memory::StepType::Value returned;
+//		if (vm == nullptr) {
+//			vm = new VirtualMachine(this, nullptr, &this->source);
+//		}
+//	}
+//}
 
-	do {
-		returned = vm->step();
+//void VMStackHighLevel::step(StepTypeHighLevel::Value stopRule) {
+//	memory::StepType::Value returned;
 
-		if (returned == memory::StepType::None) {
-			VirtualMachine * nvm = vm->getParent();
+//	do {
+//		returned = vm->step();
 
-			delete vm;
-			vm = nvm;
-		}
+//		if (returned == memory::StepType::NONE) {
+//			VirtualMachine * nvm = vm->getParent();
 
-		returned = memory::StepType::CommandOut;
+//			delete vm;
+//			vm = nvm;
+//		}
 
-	} while ((returned & stopRule) == 0x0);
-}
+//		returned = memory::StepType::COMMAND_OUT;
 
-void VMStackHighLevel::highlight(int pos1, int pos2) {
-	emit requestHighlight(pos1, pos2);
-}
+//	} while ((returned & stopRule) == 0x0);
+//}
 
-Server * VMStackHighLevel::server() const {
-	return m_server;
-}
+//void VMStackHighLevel::highlight(int pos1, int pos2) {
+//	emit requestHighlight(pos1, pos2);
+//}
 
-void VMStackHighLevel::setServer(Server * server) {
-	if (m_server == server)
-		return;
+//// For QML
+//ServerHighLevel * VMStackHighLevel::server() const {
+//	return m_server;
+//}
 
-	m_server = server;
-	emit serverChanged(m_server);
-}
+//// For C++
+//Server * VMStackHighLevel::serverMiddleLevel() const {
+//	return m_server;
+//}
 
-}  // namespace icL::app
+//void VMStackHighLevel::setServer(ServerHighLevel * server) {
+//	if (m_server == server)
+//		return;
+
+//	m_server = server;
+//	emit serverChanged(server);
+//}
+
+//}  // namespace icL::app

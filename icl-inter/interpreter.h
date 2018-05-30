@@ -41,6 +41,8 @@ public:
 	 */
 	context::Context * parseNext();
 
+	void ride(int begin, int end);
+
 
 	// memory.Interpreter interface
 	virtual void newSignal(int code, const QString & name) override;

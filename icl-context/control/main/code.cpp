@@ -31,7 +31,7 @@ bool Code::isExecuable() const {
 
 memory::StepType::Value Code::execute() {
 	if (executed) {
-		return memory::StepType::MiniStep;
+		return memory::StepType::MINI_STEP;
 	}
 	else {
 		memory::FunctionCall fcall;
@@ -46,7 +46,7 @@ memory::StepType::Value Code::execute() {
 			this->executed = true;
 		});
 
-		return memory::StepType::CommandIn;
+		return memory::StepType::COMMAND_IN;
 	}
 }
 

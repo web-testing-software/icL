@@ -24,7 +24,7 @@ memory::StepType::Value ForAny::execute() {
 	memory::FunctionCall fcall;
 
 	if (executed) {
-		return memory::StepType::MiniStep;
+		return memory::StepType::MINI_STEP;
 	}
 
 	fcall.source = m_source;
@@ -39,7 +39,7 @@ memory::StepType::Value ForAny::execute() {
 	});
 
 	executed = true;
-	return memory::StepType::CommandIn;
+	return memory::StepType::COMMAND_IN;
 }
 
 Context * ForAny::getBeginContext() {

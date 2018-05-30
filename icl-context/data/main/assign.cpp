@@ -34,7 +34,7 @@ memory::StepType::Value Assign::execute() {
 	if (m_next->role() != Role::Object) {
 		il->vm->exception(
 		  {-204, "The right operand of assign operation must be an `Object`"});
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	auto left  = dynamic_cast<object::Object *>(m_prev);
@@ -43,7 +43,7 @@ memory::StepType::Value Assign::execute() {
 	if (left->isReadOnly()) {
 		il->vm->exception(
 		  {-205, "The left operand of assign operation must be muttable"});
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	if (right->type() == memory::Type::Void) {
@@ -63,12 +63,12 @@ memory::StepType::Value Assign::execute() {
 			  {-206, QString("Void cannot be assigned to variable of type %1")
 					   .arg(memory::typeToString(left->type()))});
 		}
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	if (left->type() != memory::Type::Void && left->type() != right->type()) {
 		il->vm->exception({-200, "Automatic casting is missing in icL"});
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	left->setValue(right->getValue());
@@ -111,7 +111,7 @@ memory::StepType::Value Assign::execute() {
 		delete left;
 	}
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 Context * Assign::getBeginContext() {

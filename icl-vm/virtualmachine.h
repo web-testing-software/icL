@@ -38,6 +38,8 @@ public:
 	void reset();
 	void fullReset();
 
+	void setFragLimits(int left, int right);
+
 	// memory.VirtualMachine interface
 	virtual void      exception(const memory::Exception & exc) override;
 	virtual QString * source() override;

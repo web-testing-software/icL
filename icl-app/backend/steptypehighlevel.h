@@ -1,24 +1,24 @@
-#ifndef icL_StepTypeHighLevel
-#define icL_StepTypeHighLevel
+//#ifndef icL_StepTypeHighLevel
+//#define icL_StepTypeHighLevel
 
-#include <icl-memory/structures/steptype.h>
+//#include <icl-memory/structures/steptype.h>
 
-#include <QObject>
-#include <qqml.h>
+//#include <QObject>
+//#include <qqml.h>
 
-namespace icL::app {
+//namespace icL::app {
 
-class StepTypeHighLevel : public icL::memory::StepType
-{
-	Q_GADGET
+//class StepTypeHighLevel : public icL::memory::StepType
+//{
+//	Q_GADGET
 
-public:
-	Q_ENUM(Value)
+//public:
+//	Q_ENUM(Value)
 
-public:
-	StepTypeHighLevel();
-};
+//public:
+//	StepTypeHighLevel();
+//};
 
-}  // namespace icL::app
+//}  // namespace icL::app
 
-#endif  // icL_StepTypeHighLevel
+//#endif  // icL_StepTypeHighLevel

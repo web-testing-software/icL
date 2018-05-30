@@ -72,7 +72,7 @@ public:
 	void clear();
 
 private:
-	StackState * m_stack;
+	StackState * m_stack = nullptr;
 };
 
 }  // namespace icL::memory

@@ -1,5 +1,5 @@
-#ifndef icL_VMStack
-#define icL_VMStack
+#ifndef icL_VirtualMachineStack
+#define icL_VirtualMachineStack
 
 #include "server.h"
 
@@ -7,6 +7,8 @@
 #include <icl-memory/interlevel/interfaces.h>
 #include <icl-memory/state/memory.h>
 #include <icl-memory/structures/steptype.h>
+
+#include <QObject>
 
 
 /**
@@ -29,15 +31,27 @@ namespace icL {
 
 class VirtualMachine;
 
-class VMStack : public memory::VMStackLowLevel
+class VMStack
+	: public QObject
+	, public memory::VMStackLowLevel
 {
+	Q_OBJECT
+
+	Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY serverChanged)
+
+	Server * m_server;
 
 public:
-	VMStack() = default;
+	VMStack();
 
 	memory::Memory * memory();
 
-	// memory.VMStackLowLevel interface
+	Q_INVOKABLE void init(const QString & source, bool contentChanged);
+	Q_INVOKABLE void step(int stopRule);
+
+	Server * server() const;
+
+	// memory.VirtualMachineStack interface
 	virtual void interrupt(
 	  memory::FunctionCall                  fcall,
 	  std::function<void(memory::Return &)> feedback) override;
@@ -45,18 +59,24 @@ public:
 	virtual const QString & getWorkingDir() override;
 	virtual const QString & getCrossfirePass() override;
 
-	virtual Server * server() const = 0;
+	virtual void highlight(int pos1, int pos2) override;
 
-protected:
-	Server * m_server;
+public slots:
+	void setServer(Server * server);
 
-	VirtualMachine * vm;
+signals:
+	void serverChanged(Server * server);
 
+	void requestHighlight(int pos1, int pos2);
+
+private:
 	memory::Memory mem;
+
+	VirtualMachine * vm = nullptr;
 
 	QString source;
 };
 
 }  // namespace icL
 
-#endif  // icL_VMStack
+#endif  // icL_VirtualMachineStack

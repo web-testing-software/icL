@@ -4,13 +4,17 @@ namespace icL::inter {
 
 
 Flayer::Flayer(memory::InterLevel * il)
-	: memory::Node(il){
+	: memory::Node(il) {
 
-	source = il->vm->source();
+	source = nullptr;
 }
 
 
 QChar Flayer::flyNextChar() {
+	if (source == nullptr) {
+		source = il->vm->source();
+	}
+
 	QChar ch = source->at(position);
 
 	while ((ch == ' ' || ch == '\n' || ch == '\t') && position < end - 1) {
@@ -41,10 +45,6 @@ QString Flayer::flyKeyword() {
 		ch = source->at(++position);
 	}
 
-	if (!ch.isLetter()) {
-		--position;
-	}
-
 	return source->mid(start, position);
 }
 
@@ -59,8 +59,9 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 	double ret_double;
 	bool   is_int;
 	bool   point_catched = false;
-	int    start         = position;
-	QChar  ch            = source->at(position);
+	int    point_position;
+	int    start = position;
+	QChar  ch    = source->at(position);
 
 	if (ch == '-') {
 		ch = source->at(++position);
@@ -68,13 +69,19 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 
 	while ((ch.isDigit() || (!point_catched && ch == '.')) &&
 		   position < end - 1) {
+		if (ch == '.') {
+			point_position = position;
+		}
+
 		ch = source->at(++position);
 	}
 
-	if (!ch.isDigit()) {
+	// interpret 1.prop as 1 .prop, not 1. prop -> int
+	// 1.1.prop as 1.1 .prop, not 1.1. prop -> double
+	if (source->at(position - 1) == '.') {
 		--position;
 
-		if (ch == '.') {
+		if (point_position == position - 1) {
 			point_catched = false;
 		}
 	}
@@ -378,4 +385,4 @@ void Flayer::sendWrongBrackerPair(QString & brackets, const QChar & ch) {
 	brackets.clear();
 }
 
-}  // namespace icL::inter::_private
+}  // namespace icL::inter

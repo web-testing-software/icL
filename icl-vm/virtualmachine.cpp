@@ -36,7 +36,7 @@ VirtualMachine * VirtualMachine::getParent() const {
 memory::StepType::Value VirtualMachine::step() {
 	if (!running) {
 		finish();
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	if (commandParsing) {
@@ -81,6 +81,10 @@ void VirtualMachine::fullReset() {
 	reset();
 }
 
+void VirtualMachine::setFragLimits(int left, int right) {
+	interpreter.ride(left, right);
+}
+
 void VirtualMachine::exception(const memory::Exception & exc) {
 	// TODO: Write it
 }
@@ -106,7 +110,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 	if (next == nullptr) {
 		if (last_context == nullptr) {
 			finish();
-			return memory::StepType::None;
+			return memory::StepType::NONE;
 		}
 
 		if (!last_context->canBeAtEnd()) {
@@ -114,7 +118,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 		}
 
 		commandParsing = false;
-		return memory::StepType::MiniStep;
+		return memory::StepType::MINI_STEP;
 	}
 
 	if (next->checkPrev(last_context)) {
@@ -131,7 +135,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 		exception({-100, "Wrong sematic blocks order"});
 	}
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 memory::StepType::Value VirtualMachine::prepareExecutable(
@@ -158,7 +162,7 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 		il.vms->highlight(pos, pos + 1);
 
 		commandParsing = true;
-		return memory::StepType::CommandEnd;
+		return memory::StepType::COMMAND_END;
 	}
 
 	memory::StepType::Value value = executable->execute();
@@ -167,17 +171,17 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 	  executable->getBeginContext()->getBeginCursorPosition(),
 	  executable->getEndContext()->getEndCursorPosition());
 
-	if (value == memory::StepType::MiniStep) {
+	if (value == memory::StepType::MINI_STEP) {
 		destroy(executable);
 	}
-	else if (value == memory::StepType::None) {
+	else if (value == memory::StepType::NONE) {
 		// Don't destroy vm, it can be reseted later
-		value = memory::StepType::MiniStep;
+		value = memory::StepType::MINI_STEP;
 	}
 
 	return value;
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 void VirtualMachine::destroy(context::Context * executable) {

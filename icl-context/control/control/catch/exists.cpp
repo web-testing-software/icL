@@ -32,7 +32,7 @@ bool Exists::isExecuable() const {
 
 memory::StepType::Value Exists::execute() {
 	if (executed) {
-		return memory::StepType::MiniStep;
+		return memory::StepType::MINI_STEP;
 	}
 	else {
 		memory::FunctionCall fcall;
@@ -83,7 +83,7 @@ memory::StepType::Value Exists::execute() {
 		});
 	}
 
-	return memory::StepType::CommandIn;
+	return memory::StepType::COMMAND_IN;
 }
 
 Context * Exists::getBeginContext() {

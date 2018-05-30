@@ -18,7 +18,7 @@ icl-static {
 }
 
 CONFIG += c++17
-QMAKE_CXXFLAGS += -std=c++17
+QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += ../..
 INCLUDEPATH -= .

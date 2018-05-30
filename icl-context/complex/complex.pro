@@ -13,7 +13,7 @@ ICL_ROOT = $$PWD/../..
 DESTDIR = $$ICL_ROOT/bin/lib
 
 CONFIG += c++17
-QMAKE_CXXFLAGS += -std=c++17
+QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += ../..
 INCLUDEPATH -= .

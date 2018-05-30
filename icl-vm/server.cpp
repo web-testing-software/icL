@@ -8,16 +8,97 @@
 
 namespace icL {
 
-Server::Server()
-	: memory::Node(nullptr) {
+Server::Server(QObject * parent)
+	: QObject(parent)
+	, memory::Node(nullptr) {
+
+	connect(this, &Server::invoke_executeJS, this, &Server::release_executeJS);
+	connect(this, &Server::invoke_goTo, this, &Server::release_goTo);
+	connect(
+	  this, &Server::invoke_waitForPageLoading, this,
+	  &Server::release_waitForPageLoading);
 }
 
-Server::~Server() {
-	// Nothing to free
+bool Server::goTo(const QString & url) {
+	if (waitFor != WaitFor::Nothing) {
+		return false;
+	}
+
+	waitFor   = WaitFor::GoTo;
+	working   = true;
+	this->url = url;
+
+	emit invoke_goTo();
+	while (working) {
+		;
+	}
+	return variant.toBool();
+}
+
+bool Server::waitForPageLoading() {
+	if (waitFor != WaitFor::Nothing) {
+		return false;
+	}
+
+	waitFor = WaitFor::PageLoading;
+	working = true;
+
+	emit invoke_waitForPageLoading();
+	while (working) {
+		;
+	}
+
+	return variant.toBool();
+}
+
+QVariant Server::executeJS(const QString & code) {
+	if (waitFor != WaitFor::Nothing) {
+		return false;
+	}
+
+	waitFor    = WaitFor::ExecuteJS;
+	working    = true;
+	this->code = code;
+
+	emit invoke_executeJS();
+	while (working) {
+		;
+	}
+	return variant;
+}
+
+
+void Server::finish_PageLoading(bool success) {
+	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
+		variant = success;
+		waitFor = WaitFor::Nothing;
+		working = false;
+	}
+}
+
+void Server::finish_executeJS(QVariant variant) {
+	if (waitFor == WaitFor::ExecuteJS) {
+		this->variant = std::move(variant);
+		this->waitFor = WaitFor::Nothing;
+		this->working = false;
+	}
+}
+
+QQuickItem * Server::webEngine() const {
+	return m_webEngine;
 }
 
 void Server::setInterlevel(memory::InterLevel * il) {
 	this->il = il;
+}
+
+void Server::setWebEngine(QQuickItem * webEngine) {
+	if (m_webEngine == webEngine) {
+		return;
+	}
+
+	m_webEngine = webEngine;
+	emit webEngineChanged(m_webEngine);
 }
 
 void Server::simulateClick(int x, int y) {
@@ -73,11 +154,23 @@ void Server::keys(const QString & keys) {
 }
 
 void Server::newLog(int level, const QString & message) {
-	logOut(level, message);
+	emit request_LogOut(level, message);
 }
 
 bool Server::get(const QString & url) {
 	return goTo(url);
+}
+
+void Server::release_goTo() {
+	emit request_UrlLoad(url);
+}
+
+void Server::release_waitForPageLoading() {
+	// Noting to do, just wait
+}
+
+void Server::release_executeJS() {
+	emit request_JsRun(code);
 }
 
 }  // namespace icL

@@ -11,7 +11,7 @@ memory::StepType::Value Crossfire::execute()
 	if (!checkArgs()) {
 		il->vm->exception(
 		  {-203, "Wrong arglist for $crossfire, expected <String, CommandEnd>"});
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	QString code = getFileContent();
@@ -22,7 +22,7 @@ memory::StepType::Value Crossfire::execute()
 		il->server->runJS(code);
 	}
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 }  // namespace icL::context::data::js

@@ -70,11 +70,12 @@ protected:
 	void sendWrongBrackerPair(QString & brackets, const QChar & ch);
 
 private:
-	int             position;
-	int             end;
+	int position;
+	int end;
+
 	const QString * source;
 };
 
-}  // namespace icL::inter::_private
+}  // namespace icL::inter
 
 #endif  // icL_inter_Flayer

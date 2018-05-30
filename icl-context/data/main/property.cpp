@@ -22,7 +22,7 @@ bool Property::canBeAtEnd() const {
 memory::StepType::Value Property::execute() {
 	newContext = m_prev->runProperty(prefix, name);
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 Context * Property::getBeginContext() {

@@ -43,7 +43,7 @@ bool Context::isExecuable() const {
 }
 
 memory::StepType::Value Context::execute() {
-	return memory::StepType::None;
+	return memory::StepType::NONE;
 }
 
 bool Context::hasValue() const {

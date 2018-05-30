@@ -50,7 +50,7 @@ memory::StepType::Value Var::execute() {
 		il->vm->exception(
 		  {-203,
 		   "Wrong arguments for $var, expected <String, String> or <String>"});
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	QVariant value = il->server->runJS(getter);
@@ -82,7 +82,7 @@ memory::StepType::Value Var::execute() {
 		newContext = new object::Void{il, getter, setter};
 	}
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 }  // namespace icL::context::data::js

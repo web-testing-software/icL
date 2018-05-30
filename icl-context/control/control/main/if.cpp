@@ -376,7 +376,7 @@ memory::StepType::Value If::execute() {
 		return m_next->execute();
 	}
 
-	return memory::StepType::CommandIn;
+	return memory::StepType::COMMAND_IN;
 }
 
 Context * If::getBeginContext() {

@@ -54,7 +54,7 @@ memory::StepType::Value File::execute() {
 	if (!checkArgs()) {
 		il->vm->exception(
 		  {-203, "Wrong arglist for $file, expected <String, CommandEnd>"});
-		return memory::StepType::None;
+		return memory::StepType::NONE;
 	}
 
 	QString code = getFileContent();
@@ -63,7 +63,7 @@ memory::StepType::Value File::execute() {
 		il->server->runJS(code);
 	}
 
-	return memory::StepType::MiniStep;
+	return memory::StepType::MINI_STEP;
 }
 
 Context * File::getBeginContext() {

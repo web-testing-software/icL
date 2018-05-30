@@ -149,6 +149,11 @@ context::Context * Interpreter::parseNext() {
 	return ret;
 }
 
+void Interpreter::ride(int begin, int end) {
+	flayer.setPosition(begin);
+	flayer.setEnd(end);
+}
+
 void Interpreter::newSignal(int code, const QString & name) {
 	if (il->mem->signal_s().contains(name)) {
 		il->vm->exception({-999, "Signal with this name alrready exists"});
@@ -163,7 +168,7 @@ Flayer & Interpreter::getFlayer() {
 }
 
 context::Context * Interpreter::parseKeyword() {
-	context::Context * ret = nullptr;
+	context::Context * ret     = nullptr;
 	QString            keyword = flayer.flyKeyword();
 
 	if (keyword == "if") {

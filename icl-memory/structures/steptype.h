@@ -3,26 +3,19 @@
 
 #include <QObject>
 
-namespace icL::memory {
+namespace icL::memory::StepType {
+Q_NAMESPACE
 
-class StepType
-{
-public:
-	StepType() = default;
-
-	enum Value {
-		None       = 0x0,
-		MiniStep   = 0x1,
-		CommandEnd = 0x2,
-		CommandIn  = 0x6,
-		CommandOut = 0x8,
-		Any        = 0xF
-	};
+enum Value {
+	NONE        = 0x0,
+	MINI_STEP   = 0x1,
+	COMMAND_END = 0x2,
+	COMMAND_IN  = 0x6,
+	COMMAND_OUT = 0x8,
+	ANY         = 0xF
 };
 
+Q_ENUMS(Value)
 
-
-}  // namespace icL::memory
-
-
+}      // namespace icL::memory::StepType
 #endif  // icL_memory_StepType

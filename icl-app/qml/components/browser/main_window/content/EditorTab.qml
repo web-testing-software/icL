@@ -7,6 +7,7 @@ import "../../ui/controls/speed_dial" as SpeedDialControls;
 import "../../ui/button_icons" as ButtonIcons;
 
 import icL.VM 1.0
+import icL.Enums 1.0
 
 ContentBase {
 	id: root;
@@ -126,6 +127,7 @@ ContentBase {
 
 	VMStack {
 		id: vmstack;
+
 
 		server: server;
 
@@ -266,7 +268,7 @@ ContentBase {
 
 				Keys.onAsteriskPressed: {
 					vmstack.init(text, true);
-					vmstack.step(StepType.Any);
+					vmstack.step(StepType.ANY);
 				}
 
 				Component.onCompleted: {

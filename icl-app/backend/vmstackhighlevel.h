@@ -1,42 +1,49 @@
-#ifndef VMSTACKHIGHLEVEL_H
-#define VMSTACKHIGHLEVEL_H
+//#ifndef VMSTACKHIGHLEVEL_H
+//#define VMSTACKHIGHLEVEL_H
 
-#include <icl-vm/vmstack.h>
+//#include "steptypehighlevel.h"
 
-#include <QObject>
+//#include <icl-vm/vmstack.h>
 
-namespace icL::app {
+//#include <QObject>
 
-class VMStackHighLevel
-	: public QObject
-	, public VMStack
-{
-	Q_OBJECT
+//namespace icL::app {
 
-	Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY serverChanged)
+//class ServerHighLevel;
 
-public:
-	VMStackHighLevel() = default;
+//class VMStackHighLevel
+//	: public QObject
+//	, public VMStack
+//{
+//	Q_OBJECT
 
-	Q_INVOKABLE void init(const QString & source, bool contentChanged);
-	Q_INVOKABLE void step(memory::StepType::Value stopRule);
+//	Q_PROPERTY(ServerHighLevel * server READ server WRITE setServer NOTIFY serverChanged)
 
-	// memory.VMStackLowLevel interface
-	virtual void highlight(int pos1, int pos2) override;
+//public:
+//	VMStackHighLevel() = default;
 
-	// Properties
-	Server * server() const override;
+//	Q_INVOKABLE void init(const QString & source, bool contentChanged);
+//	Q_INVOKABLE void step(StepTypeHighLevel::Value stopRule);
 
-public slots:
-	void setServer(Server * server);
+//	// memory.VMStackLowLevel interface
+//	virtual void highlight(int pos1, int pos2) override;
 
-signals:
-	void serverChanged(Server * server);
+//	// Properties
+//	ServerHighLevel * server() const;
 
-	void requestHighlight(int pos1, int pos2);
+//	virtual Server * serverMiddleLevel() const override;
 
+//public slots:
+//	void setServer(ServerHighLevel * server);
 
-};
-}  // namespace icL::app
+//signals:
+//	void serverChanged(ServerHighLevel * server);
 
-#endif  // VMSTACKHIGHLEVEL_H
+//	void requestHighlight(int pos1, int pos2);
+
+//private:
+//	ServerHighLevel * m_server;
+//};
+//}  // namespace icL::app
+
+//#endif  // VMSTACKHIGHLEVEL_H
