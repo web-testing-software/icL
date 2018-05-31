@@ -43,7 +43,9 @@ public:
 	virtual QString * source()                         = 0;
 };
 
-class VMStackLowLevel
+enum class SelectionColor {Parsing, Executing, Destroying, Error};
+
+class VMStack
 {
 public:
 	virtual void interrupt(
@@ -52,10 +54,13 @@ public:
 	virtual const QString & getWorkingDir()    = 0;
 	virtual const QString & getCrossfirePass() = 0;
 
-	virtual void highlight(int pos1, int pos2) = 0;
+	virtual void highlight(int pos1, int pos2)       = 0;
+	virtual void exit(const memory::Exception & exc) = 0;
+
+	virtual void setSColor(SelectionColor scolor) = 0;
 };
 
-class ServerLowLevel
+class Server
 {
 public:
 	virtual QVariant runJS(const QString & code)                = 0;

@@ -27,7 +27,7 @@ QChar Flayer::flyNextChar() {
 		}
 	}
 
-	if (position == source->length()) {
+	if (position >= source->length()) {
 		return '\0';
 	}
 	else if (position == end) {
@@ -38,12 +38,13 @@ QChar Flayer::flyNextChar() {
 }
 
 QString Flayer::flyKeyword() {
-	int   start = position;
-	QChar ch    = source->at(position);
+	start = position;
 
-	while (ch.isLetter() && position < end - 1) {
-		ch = source->at(++position);
-	}
+	QChar ch;
+
+	do {
+		ch = source->at(position);
+	} while ((ch.isLetter() || ch.isDigit()) && ++position < end);
 
 	return source->mid(start, position - start);
 }
@@ -60,8 +61,9 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 	bool   is_int;
 	bool   point_catched = false;
 	int    point_position;
-	int    start = position;
-	QChar  ch    = source->at(position);
+	QChar  ch = source->at(position);
+
+	start = position;
 
 	if (ch == '-') {
 		ch = source->at(++position);
@@ -71,7 +73,7 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 		   position < end - 1) {
 		if (ch == '.') {
 			point_position = position;
-			point_catched = true;
+			point_catched  = true;
 		}
 
 		ch = source->at(++position);
@@ -102,24 +104,29 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 	if (!ok) {
 		il->vm->exception(
 		  {-500, QStringLiteral("%1 is not a number.").arg(str)});
+
+		highlightError();
 	}
 
 	return {ret_int, ret_double, is_int};
 }
 
 std::pair<context::Prefix, QString> Flayer::flyProperty() {
-	int             start = ++position, pstart = start;
-	QChar           ch         = source->at(position);
-	context::Prefix ret_prefix = context::Prefix::None;
+	start = ++position;
+
+	bool            prefix_catched = false;
+	QChar           ch             = source->at(position);
+	context::Prefix ret_prefix     = context::Prefix::None;
 	QString         name;
 
-	while ((ch.isLetter() || (ch == '-' && start == pstart)) &&
+	while ((ch.isLetter() || (ch == '-' && !prefix_catched)) &&
 		   position < end - 1) {
 		ch = source->at(++position);
 
 		if (ch == '-') {
-			QString prefix    = source->mid(start, position - start - 1);
-			bool    prefix_ok = true;
+			QString prefix = source->mid(start, position - start - 1);
+
+			prefix_catched = true;
 
 			if (prefix == "attr") {
 				ret_prefix = context::Prefix::Attr;
@@ -131,10 +138,11 @@ std::pair<context::Prefix, QString> Flayer::flyProperty() {
 				ret_prefix = context::Prefix::Css;
 			}
 			else if (!prefix.isEmpty()) {
-				prefix_ok = false;
+				prefix_catched = false;
 			}
 
-			if (!prefix_ok) {
+			if (!prefix_catched) {
+				highlightError();
 				break;
 			}
 			else {
@@ -151,6 +159,8 @@ std::pair<context::Prefix, QString> Flayer::flyProperty() {
 
 	if (name.isEmpty()) {
 		il->vm->exception({-501, "Property name is empty"});
+
+		highlightError();
 	}
 
 	return {ret_prefix, name};
@@ -169,15 +179,15 @@ std::pair<memory::CodeFragment, bool> Flayer::flyLogicFrag() {
 	memory::CodeFragment out;
 	QChar                ch = flyNextChar();
 
-	out.begin = position;
-
 	if (ch == 'L') {
 		is_logic = true;
 		position++;
 	}
 
+	out.begin = position + 1;
+
 	findBracketPair();
-	out.end    = position;
+	out.end    = position - 1;
 	out.source = source;
 
 	return {out, is_logic};
@@ -186,7 +196,7 @@ std::pair<memory::CodeFragment, bool> Flayer::flyLogicFrag() {
 memory::CodeFragment Flayer::flyAnyExistsFrag() {
 	memory::CodeFragment out;
 
-	out.begin = ++position;
+	out.begin = ++position + 1;
 	findBracketPair();
 
 	out.end    = position;
@@ -198,10 +208,10 @@ memory::CodeFragment Flayer::flyAnyExistsFrag() {
 memory::CodeFragment Flayer::flyCode() {
 	memory::CodeFragment out;
 
-	out.begin = position;
+	out.begin = position + 1;
 	findBracketPair();
 
-	out.end    = position;
+	out.end    = position - 1;
 	out.source = source;
 
 	return out;
@@ -220,6 +230,8 @@ QString Flayer::flyString() {
 
 	if (position == end - 1 && ch != '"') {
 		il->vm->exception({-300, "No closing \" found."});
+
+		highlightError();
 	}
 
 	++position;
@@ -239,7 +251,15 @@ void Flayer::setEnd(int value) {
 	end = value;
 }
 
+void Flayer::highlightError() {
+	il->vms->setSColor(memory::SelectionColor::Error);
+	il->vms->highlight(start, position);
+}
+
+
 bool Flayer::flyComment() {
+	start = position;
+
 	QChar ch;
 	QChar ch_next = source->at(position < end - 2 ? position + 1 : position);
 	QChar ch_next_next =
@@ -251,6 +271,9 @@ bool Flayer::flyComment() {
 
 			if (ch == '\n') {
 				il->vm->exception({-306, "Unexpected token \n, expected `"});
+
+				highlightError();
+
 				return false;
 			}
 		}
@@ -260,6 +283,9 @@ bool Flayer::flyComment() {
 			  {-306,
 			   QStringLiteral("Unexpected token %1, expected `")
 				 .arg(position == source->length() ? "EOF" : QString(ch))});
+
+			highlightError();
+
 			return false;
 		}
 	}
@@ -270,6 +296,9 @@ bool Flayer::flyComment() {
 
 		if (position == end - 1 && ch != '\n') {
 			il->vm->exception({-306, "Unexpected token EOF, expected \n"});
+
+			highlightError();
+
 			return false;
 		}
 	}
@@ -294,6 +323,9 @@ bool Flayer::flyComment() {
 			   QStringLiteral("Unexpected token %1, expected ```")
 				 .arg(
 				   end == source->length() ? "EOF" : source->mid(end - 1, 1))});
+
+			highlightError();
+
 			return false;
 		}
 	}
@@ -306,13 +338,17 @@ void Flayer::findBracketPair() {
 	QString brackets;
 
 	brackets.reserve(128);
+	start = position - 1;
+
 
 	if (ch != '(' && ch != '[' && ch != '{') {
 		il->vm->exception(
 		  {-300, QStringLiteral("Token %1 is not a open bracket").arg(ch)});
+
+		highlightError();
 	}
 
-	while (position < end) {
+	do {
 		ch = source->at(position);
 
 		if (brackets.endsWith('"')) {
@@ -365,11 +401,17 @@ void Flayer::findBracketPair() {
 		if (brackets.isEmpty()) {
 			break;
 		}
-	}
+
+		++position;
+	} while (position < end);
+
+	++position;
 
 	if (position == end && !brackets.isEmpty()) {
 		il->vm->exception(
 		  {-300, QStringLiteral("No pair for %1").arg(brackets.front())});
+
+		highlightError();
 	}
 }
 
@@ -391,6 +433,7 @@ void Flayer::sendWrongBrackerPair(QString & brackets, const QChar & ch) {
 		}
 	}
 
+	highlightError();
 	brackets.clear();
 }
 

@@ -50,7 +50,9 @@ struct Operator
 class If : public Control
 {
 public:
-	If(memory::InterLevel * il, const memory::CodeFragment & source, bool expExe);
+	If(
+	  memory::InterLevel * il, const memory::CodeFragment & source,
+	  bool expExe);
 	~If();
 
 protected:
@@ -59,9 +61,9 @@ protected:
 	logic::Logic * parseOnce(memory::CodeFragment & fn);
 
 	void makeRank3(Operator & op, OperatorType type, int i);
-	void processNots(Operator & op, const QChar & next, int i);
-	void processEquals(Operator & op, const QChar & next, int i);
-	void processContains(Operator & op, const QChar & next, int i);
+	void processNots(Operator & op, const QChar & next, int &i);
+	void processEquals(Operator & op, const QChar & next, int &i);
+	void processContains(Operator & op, const QChar & next, int &i);
 
 	void filter(memory::CodeFragment fn);
 
@@ -72,9 +74,9 @@ protected:
 protected:
 	bool isLogicExp;
 
-	bool                expressionExecuted = false;
+	bool           expressionExecuted = false;
 	logic::Logic * exp                = nullptr;
-	bool                result             = false;
+	bool           result             = false;
 
 	// Context interface
 public:

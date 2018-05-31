@@ -46,6 +46,7 @@ context::Context * Interpreter::parseNext() {
 		switch (ch.toLatin1()) {
 		case ';':
 		case ' ':
+		case '\n':
 		case '\0':
 			ret = nullptr;
 			break;
@@ -137,6 +138,7 @@ context::Context * Interpreter::parseNext() {
 					   "Unexpected token %1, expected one of next symbols "
 					   ";\"#@$EA!-0123456789.:<=>[_{| or a keyword")
 					   .arg(QString(ch))});
+			highlightError(begin_pos, begin_pos + 1);
 		}
 	}
 
@@ -196,6 +198,7 @@ context::Context * Interpreter::parseKeyword() {
 	else {
 		il->vm->exception(
 		  {-300, QStringLiteral("Unknown keyword: %1").arg(keyword)});
+		flayer.highlightError();
 	}
 
 	return ret;
@@ -250,6 +253,7 @@ context::Context * Interpreter::parseJavascript() {
 
 		il->vm->exception(
 		  {-404, QStringLiteral("Function $%1 not found").arg(func)});
+		flayer.highlightError();
 	}
 
 	return res;
@@ -271,7 +275,10 @@ context::Context * Interpreter::parseFunction() {
 	QString name = flayer.flyVarName();
 
 	if (name.isEmpty()) {
+		int pos = flayer.getPosition();
+
 		il->vm->exception({-501, "Function name is empty"});
+		highlightError(pos - 1, pos);
 	}
 
 	return new context::data::Function{il, name};
@@ -301,7 +308,10 @@ context::Context * Interpreter::parseMethod() {
 	QString name = flayer.flyVarName();
 
 	if (name.isEmpty()) {
+		int pos = flayer.getPosition();
+
 		il->vm->exception({-501, "Method name is empty"});
+		highlightError(pos - 1, pos);
 	}
 
 	return new context::data::Method{il, name};
@@ -312,20 +322,31 @@ context::Context * Interpreter::parseParameter() {
 	QChar        ch;
 	memory::Type mtype = memory::Type::Void;
 
+	int start = flayer.getPosition();
+
 	if (type.isEmpty()) {
+		int pos = flayer.getPosition();
+
 		il->vm->exception({-501, "Parameter type is empty"});
+		highlightError(pos - 1, pos);
 	}
 
 	ch = flayer.flyNextChar();
 	if (ch != '>') {
+		int pos = flayer.getPosition();
+
 		il->vm->exception(
 		  {-502, QStringLiteral("Unexpected %1, expected >").arg(ch)});
+		highlightError(pos, pos + 1);
 	}
 
 	name = flayer.flyVarName();
 
 	if (name.isEmpty()) {
+		int pos = flayer.getPosition();
+
 		il->vm->exception({-501, "Parameter name is empty"});
+		highlightError(pos - 1, pos);
 	}
 
 	if (type == "Boolean") {
@@ -350,8 +371,9 @@ context::Context * Interpreter::parseParameter() {
 		il->vm->exception(
 		  {-502,
 		   QStringLiteral(
-			 "unexpected %1, expected Int, Double, String, List or Element")
+			 "wrong type %1, expected Int, Double, String, List or Element")
 			 .arg(type)});
+		highlightError(start, flayer.getPosition());
 	}
 
 	return new context::data::Parameter{il, name, mtype};
@@ -370,6 +392,8 @@ context::Context * Interpreter::parseConsole() {
 }
 
 context::Context * Interpreter::parseList() {
+	flayer.stepForward();
+
 	QChar ch = flayer.flyNextChar();
 
 	if (ch == ']') {
@@ -404,6 +428,7 @@ context::Context * Interpreter::parseSystemVar() {
 		il->vm->exception(
 		  {-502, QStringLiteral("unexpected %1, expected dom, log, define, tab")
 				   .arg(name)});
+		flayer.highlightError();
 	}
 
 	return ret;
@@ -419,6 +444,11 @@ context::Context * Interpreter::parseAlternative() {
 	flayer.stepForward();
 
 	return new context::data::Alternative{il};
+}
+
+void Interpreter::highlightError(int p1, int p2) {
+	il->vms->setSColor(memory::SelectionColor::Error);
+	il->vms->highlight(p1, p2);
 }
 
 

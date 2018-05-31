@@ -31,7 +31,7 @@ public:
 	QVariant returnValue;
 	QVariant consoleValue;
 
-	Exception exception = {0, ""};
+	Exception exception = {0, {}};
 };
 
 }  // namespace icL::memory

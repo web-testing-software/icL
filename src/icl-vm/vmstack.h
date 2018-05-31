@@ -34,13 +34,12 @@ class VirtualMachine;
 
 class VMStack
 	: public QThread
-	, public memory::VMStackLowLevel
+	, public memory::VMStack
 {
 	Q_OBJECT
 
 	Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY serverChanged)
-
-	Server * m_server;
+	Q_PROPERTY(QColor sColor READ sColor NOTIFY sColorChanged)
 
 public:
 	VMStack();
@@ -51,6 +50,7 @@ public:
 	Q_INVOKABLE void step(int stopRule);
 
 	Server * server() const;
+	QColor sColor() const;
 
 public slots:
 	void setServer(Server * server);
@@ -66,8 +66,14 @@ public:
 
 	virtual void highlight(int pos1, int pos2) override;
 
+	virtual void exit(const memory::Exception & exc) override;
+
+	virtual void setSColor(memory::SelectionColor scolor) override;
+
 signals:
 	void serverChanged(Server * server);
+
+	void sColorChanged(QColor sColor);
 
 	// switch thread signal
 	void invoke_highlight(int po1, int pos2);
@@ -79,18 +85,28 @@ public slots:
 	// functions executed in main thread
 	void release_hightlight(int pos1, int pos2);
 
+	// QThread interface
+protected:
+	void run() override;
+
+	int stopRule;
+
 private:
+	Server * m_server;
+	QColor m_sColor;
+	memory::SelectionColor e_sColor = memory::SelectionColor::Error;
+
+
 	memory::Memory mem;
+
+	QString dir_path = ".";
+	QString crossfirePass = "123465";
 
 	VirtualMachine * vm = nullptr;
 
 	QString source;
 
-	// QThread interface
-protected:
-	int stopRule;
-
-	void run() override;
+	bool error_state = false;
 };
 
 }  // namespace icL

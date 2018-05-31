@@ -12,7 +12,7 @@ DataState::DataState() = default;
  * @param value - the value of variable
  */
 void DataState::setValue(const QString & name, const QVariant & value) {
-	dataMap[name] = value;
+	dataMap.insert(name, value);
 }
 
 /**

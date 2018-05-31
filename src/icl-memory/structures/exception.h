@@ -25,6 +25,7 @@ namespace icL::memory {
 class Exception
 {
 public:
+	Exception() = default;
 	Exception(int code, const QString & message);
 
 	int     code, line;

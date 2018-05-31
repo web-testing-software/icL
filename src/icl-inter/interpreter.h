@@ -69,6 +69,8 @@ protected:
 	context::Context * parseCode();
 	context::Context * parseAlternative();
 
+	void highlightError(int p1, int p2);
+
 private:
 	Flayer flayer;
 };

@@ -65,12 +65,15 @@ public:
 
 	void setEnd(int value);
 
+	void highlightError();
+
 protected:
 	bool flyComment();
 	void findBracketPair();
 	void sendWrongBrackerPair(QString & brackets, const QChar & ch);
 
 private:
+	int start;
 	int position;
 	int end;
 

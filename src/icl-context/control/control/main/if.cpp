@@ -16,7 +16,7 @@ namespace icL::context::code::control {
 If::If(
   memory::InterLevel * il, const memory::CodeFragment & source, bool expExe)
 	: Control(il, source)
-	, expressionExecuted(expExe) {
+	, isLogicExp(expExe) {
 	m_role = Role::If;
 }
 
@@ -149,28 +149,28 @@ void If::makeRank3(Operator & op, OperatorType type, int i) {
 	}
 }
 
-void If::processNots(Operator & op, const QChar & next, int i) {
+void If::processNots(Operator & op, const QChar & next, int& i) {
 	if (next == '=' && op.rank < 2) {
 		op.type     = OperatorType::NotEqual;
 		op.rank     = 2;
-		op.position = i;
+		op.position = i++;
 	}
 	else if (!next.isLetter() && op.rank < 1) {
 		op.type     = next == '!' ? OperatorType::NotNot : OperatorType::Not;
 		op.rank     = 1;
-		op.position = i;
+		op.position = i++;
 	}
 }
 
-void If::processEquals(Operator & op, const QChar & next, int i) {
+void If::processEquals(Operator & op, const QChar & next, int& i) {
 	if (next == '=' && op.rank < 2) {
 		op.type     = OperatorType::Equal;
-		op.rank     = 1;
-		op.position = i;
+		op.rank     = 2;
+		op.position = i++;
 	}
 }
 
-void If::processContains(Operator & op, const QChar & next, int i) {
+void If::processContains(Operator & op, const QChar & next, int& i) {
 	if ((next == '<' || next == '=') && op.rank < 2) {
 		op.type =
 		  next == '<' ? OperatorType::Contains : OperatorType::ContainsFragment;
@@ -234,6 +234,9 @@ void If::filter(memory::CodeFragment fn) {
 				fn.begin++;
 				fn.end--;
 			}
+		}
+		else {
+			ready = true;
 		}
 	} while (!ready);
 }
@@ -364,11 +367,23 @@ bool If::isExecutable() const {
 memory::StepType::Value If::execute() {
 	if (exp == nullptr) {
 		parseLogicExp();
+
+		il->vms->setSColor(memory::SelectionColor::Parsing);
+		il->vms->highlight(m_source.begin - 1, m_source.end + 1);
 	}
 	else if (!expressionExecuted) {
-		if (exp->step()) {
+		if (exp->needCast()) {
+			logic::Logic * new_exp = exp->castNow();
+
+			delete exp;
+			exp = new_exp;
+		}
+		else if (exp->step()) {
 			expressionExecuted = true;
 			result             = exp->getCachedResult();
+
+			il->vms->setSColor(memory::SelectionColor::Executing);
+			il->vms->highlight(beginCursorPosition, endCursorPostion);
 		}
 	}
 	else {

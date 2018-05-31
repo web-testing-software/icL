@@ -14,7 +14,8 @@ const memory::CodeFragment & Code::source() const {
 
 bool Code::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   (context->role() == Role::Else || context->role() == Role::Slot ||
+		   (context->role() == Role::If || context->role() == Role::Else ||
+			context->role() == Role::Slot ||
 			context->role() == Role::Argument ||
 			(context->role() == Role::Assign && context->prev() != nullptr &&
 			 context->prev()->role() == Role::Function) ||

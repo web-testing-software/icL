@@ -27,8 +27,8 @@ struct InterLevel
 	memory::Memory *  mem;
 	Interpreter *     inter;
 	VirtualMachine *  vm;
-	VMStackLowLevel * vms;
-	ServerLowLevel *  server;
+	VMStack * vms;
+	Server *  server;
 };
 
 }  // namespace icL::memory

@@ -14,6 +14,8 @@ VirtualMachine::VirtualMachine(
 	, m_source(source)
 	, waiting_mode(parent == nullptr) {
 
+	vms->memory()->stackIt().openNewStack();
+
 	// Initialize interlevel object
 	if (parent != nullptr) {
 		il = parent->il;
@@ -21,12 +23,14 @@ VirtualMachine::VirtualMachine(
 	else {
 		il.mem    = vms->memory();
 		il.server = vms->server();
-		il.inter  = &interpreter;
-		il.vm     = this;
 		il.vms    = vms;
+
+		// waiting_mode = true;
+		il.mem->stackIt().stack()->setValue("stack", true);
 	}
 
-	il.mem->stackIt().openNewStack();
+	il.inter = &interpreter;
+	il.vm    = this;
 }
 
 VirtualMachine * VirtualMachine::getParent() const {
@@ -56,7 +60,7 @@ void VirtualMachine::setOnStop(std::function<void(memory::Return &)> feedback) {
 }
 
 void VirtualMachine::reset() {
-	r_exception = {0, ""};
+	r_result.exception = {0, {}};
 	running     = true;
 }
 
@@ -83,10 +87,17 @@ void VirtualMachine::fullReset() {
 
 void VirtualMachine::setFragLimits(int left, int right) {
 	interpreter.ride(left, right);
+	code_begin = left;
+	code_end   = right;
 }
 
 void VirtualMachine::exception(const memory::Exception & exc) {
-	// TODO: Write it
+	r_result.exception = exc;
+	running            = false;
+
+	if (parent == nullptr) {
+		il.vms->exit(exc);
+	}
 }
 
 QString * VirtualMachine::source() {
@@ -99,6 +110,9 @@ void VirtualMachine::finish() {
 
 	if (onStop != nullptr) {
 		onStop(r_result);
+	}
+	else {
+		//		il.vms->
 	}
 }
 
@@ -115,11 +129,12 @@ context::Context * VirtualMachine::findExecutable() {
 	}
 
 	if (ret == nullptr) {
-		while (it == nullptr) {
+		while (it != nullptr) {
 			if (it->isExecutable()) {
 				ret = it;
 				break;
 			}
+			it = it->next();
 		}
 	}
 
@@ -130,15 +145,27 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 	if (next == nullptr) {
 		if (last_context == nullptr) {
 			finish();
+			if (code_begin != 0) {
+				il.vms->setSColor(memory::SelectionColor::Destroying);
+				il.vms->highlight(code_begin - 1, code_end + 1);
+			}
 			return memory::StepType::NONE;
 		}
 
 		if (!last_context->canBeAtEnd()) {
+			il.vms->setSColor(memory::SelectionColor::Error);
+			il.vms->highlight(
+			  last_context->getBeginCursorPosition(),
+			  last_context->getEndCursorPosition());
+
 			exception({-101, "Command not finished, but ; expected"});
 		}
+		else {
+			int pos = interpreter.getFlayer().getPosition();
 
-		int pos = interpreter.getFlayer().getPosition();
-		il.vms->highlight(pos, pos + 1);
+			il.vms->highlight(pos, pos + 1);
+			il.vms->setSColor(memory::SelectionColor::Parsing);
+		}
 
 		commandParsing = false;
 		return memory::StepType::MINI_STEP;
@@ -153,6 +180,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 
 		il.vms->highlight(
 		  next->getBeginCursorPosition(), next->getEndCursorPosition());
+		il.vms->setSColor(memory::SelectionColor::Parsing);
 	}
 	else {
 		exception({-100, "Wrong sematic blocks order"});
@@ -182,6 +210,7 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 
 		int pos = il.inter->getFlayer().getPosition();
 
+		il.vms->setSColor(memory::SelectionColor::Executing);
 		il.vms->highlight(pos, pos + 1);
 
 		interpreter.getFlayer().stepForward();
@@ -191,14 +220,20 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 
 	memory::StepType::Value value = executable->execute();
 
-	il.vms->highlight(
-	  executable->getBeginContext()->getBeginCursorPosition(),
-	  executable->getEndContext()->getEndCursorPosition());
-
 	if (value == memory::StepType::MINI_STEP) {
+		il.vms->highlight(
+		  executable->getBeginContext()->getBeginCursorPosition(),
+		  executable->getEndContext()->getEndCursorPosition());
+		il.vms->setSColor(memory::SelectionColor::Executing);
+
 		destroy(executable);
 	}
 	else if (value == memory::StepType::NONE) {
+		il.vms->setSColor(memory::SelectionColor::Error);
+		il.vms->highlight(
+		  executable->getBeginCursorPosition(),
+		  executable->getEndCursorPosition());
+
 		// Don't destroy vm, it can be reseted later
 		value = memory::StepType::MINI_STEP;
 	}

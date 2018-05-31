@@ -342,7 +342,7 @@ bool Object::canBeAtEnd() const {
 
 Context * Object::runMethod(const QString & name, memory::ArgList & args) {
 
-	if (name.mid(0, 2) == "to") {
+	if (name.mid(0, 2) == "To") {
 		runCast(name, args);
 	}
 	else {

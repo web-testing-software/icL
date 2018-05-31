@@ -40,6 +40,8 @@ ContentBase {
 		}
 	]
 
+	property var colors: ["#b60000", "#005cb8",  "#00b850"];
+
 	// ContentBase interface
 
 	function focus_me () {
@@ -112,7 +114,8 @@ ContentBase {
 		});
 
 		onRequest_LogOut: {
-			// TODO: Write latter
+			console_model.append({mlevel: level, message: mess});
+			console_list.incrementCurrentIndex();
 		}
 
 		onRequest_UrlLoad: {
@@ -203,6 +206,7 @@ ContentBase {
 				right: parent.right;
 				bottom: console_block.top;
 			}
+			clip: true;
 
 
 			Rectangle {
@@ -226,6 +230,16 @@ ContentBase {
 					incrementControl: null
 					frame: null;
 					corner: null;
+
+					selectionColor: vmstack.sColor;
+					selectedTextColor: "black";
+
+					Behavior on selectionColor {
+						ColorAnimation {
+							duration: 250
+						}
+					}
+
 					handle: Item {
 						implicitWidth: 20 * _ratio;
 						implicitHeight: 20 * _ratio;
@@ -347,6 +361,41 @@ ContentBase {
 				}
 			}
 
+			ListModel {
+				id: console_model;
+
+				ListElement {
+					mlevel: 0;
+					message: "Wellcome to icL!";
+				}
+			}
+
+			ListView {
+				id: console_list;
+
+				model: console_model;
+				clip: true;
+
+				anchors {
+					top: console_header.bottom;
+					left: parent.left;
+					right: parent.right;
+					bottom: parent.bottom;
+				}
+
+				delegate: Text {
+					textFormat: TextEdit.PlainText;
+					font.family: "monospace";
+					font.pixelSize: Math.round(18 * _ratio);
+
+					anchors.left: parent.left;
+					anchors.right: parent.right;
+					anchors.margins: Math.round(5 * _ratio);
+
+					color: colors[mlevel];
+					text: message;
+				}
+			}
 		}
 
 	}

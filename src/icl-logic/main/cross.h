@@ -38,7 +38,7 @@ public:
 protected:
 	Logic * block1 = nullptr;
 	Logic * block2 = nullptr;
-	bool         value1 = false, value2 = false, value1getted = false,
+	bool    value1 = false, value2 = false, value1getted = false,
 		 value2getted = false;
 
 
@@ -48,13 +48,13 @@ public:
 	bool checkIntegrity() override;
 	void resetResultValue() override;
 
-	bool         needCast() override;
+	bool    needCast() override;
 	Logic * castNow() override;
-	bool         step() override;
+	bool    step() override;
 
 	bool calcResult() override;
 };
 
-}  // namespace icL::logic::Cross
+}  // namespace icL::logic::cross
 
 #endif  // icL_logic_cross_Cross

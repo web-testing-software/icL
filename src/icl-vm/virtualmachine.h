@@ -65,13 +65,14 @@ private:
 	bool             waiting_mode;
 
 	context::Context * last_context = nullptr;
-	memory::Exception  r_exception  = {0, ""};
 	memory::Return     r_result;
 
 	bool running        = true;
 	bool commandParsing = true;
 
 	std::function<void(memory::Return &)> onStop = nullptr;
+
+	int code_begin, code_end;
 };
 
 }  // namespace icL

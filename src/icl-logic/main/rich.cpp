@@ -22,6 +22,9 @@ Rich::Rich(memory::InterLevel * il, Rich * block)
 	value2        = block->value2;
 	frag1         = block->frag1;
 	frag2         = block->frag2;
+
+	casted = true;
+	valu1getted = true;
 }
 
 Rich::~Rich() = default;
@@ -122,7 +125,7 @@ bool Rich::checkIntegrity() {
 }
 
 bool Rich::needCast() {
-	return !casted;
+	return !casted && valu1getted;
 }
 
 Logic * Rich::castNow() {

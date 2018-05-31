@@ -34,7 +34,7 @@ namespace icL {
 class Server
 	: public QObject
 	, public memory::Node
-	, public memory::ServerLowLevel
+	, public memory::Server
 {
 	Q_OBJECT
 
@@ -109,7 +109,7 @@ protected:
 	 */
 	void simulateKey(const QChar & ch);
 
-private:
+public:
 	// memory.Server interface
 	virtual QVariant runJS(const QString & code);
 	virtual bool     click(int x, int y);
@@ -124,7 +124,6 @@ signals:
 	void invoke_goTo();
 	void invoke_waitForPageLoading();
 	void invoke_executeJS();
-	void invoke_showErrorDialog();
 
 	void webEngineChanged(QQuickItem * webEngine);
 
