@@ -12,7 +12,7 @@ TEMPLATE = lib
 ICL_ROOT = $$PWD/../..
 DESTDIR = $$ICL_ROOT/bin/lib
 
-CONFIG += c++17
+CONFIG += c++17 unversioned_libname
 QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += ../..

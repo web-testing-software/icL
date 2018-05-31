@@ -7,7 +7,7 @@ DESTDIR = $$ICL_ROOT/bin/lib
 QT = core qml
 CONFIG -= app_bundle
 
-CONFIG += c++17
+CONFIG += c++17 unversioned_libname
 QMAKE_CXXFLAGS += -std=c++1z
 
 DEFINES += QT_DEPRECATED_WARNINGS

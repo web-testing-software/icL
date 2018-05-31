@@ -342,6 +342,8 @@ void Flayer::findBracketPair() {
 				else {
 					sendWrongBrackerPair(brackets, ch);
 				}
+				break;
+
 			case '}':
 				if (brackets.endsWith('{')) {
 					brackets.chop(1);

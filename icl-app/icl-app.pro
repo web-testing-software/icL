@@ -38,22 +38,21 @@ LIBS += -l-icl-context-data
 LIBS += -l-icl-inter
 LIBS += -l-icl-vm
 
+unix {
+        target.path = /usr/bin
+        INSTALLS += target
+}
+
 SOURCES += \
         main.cpp \
 	backend/helper.cpp \
         data_management/database.cpp \
-	data_management/dialdescription.cpp \
-    backend/steptypehighlevel.cpp \
-    backend/serverhighlevel.cpp \
-    backend/vmstackhighlevel.cpp
+	data_management/dialdescription.cpp
 
 HEADERS += \
 	backend/helper.h \
         data_management/database.h \
-	data_management/dialdescription.h \
-    backend/steptypehighlevel.h \
-    backend/serverhighlevel.h \
-    backend/vmstackhighlevel.h
+	data_management/dialdescription.h
 
 RESOURCES += \
     qml/main.qrc \
@@ -65,12 +64,12 @@ CONFIG(debug, debug|release) {
     MOC_DIR = debug/moc
     RCC_DIR = debug/rcc
 
-	DEFINES += ICL_ADD_TEST_DB_DATA
+    DEFINES += ICL_ADD_TEST_DB_DATA
 }
 else {
     OBJECTS_DIR = release/objs
     MOC_DIR = release/moc
-	RCC_DIR = release/rcc
+    RCC_DIR = release/rcc
 }
 
 CONFIG += c++17

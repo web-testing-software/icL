@@ -12,22 +12,11 @@ TEMPLATE = lib
 ICL_ROOT = $$PWD/../..
 DESTDIR = $$ICL_ROOT/bin/lib
 
-CONFIG += c++17
+CONFIG += c++17 unversioned_libname
 QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += ../..
 INCLUDEPATH -= .
-
-icl-static {
-    LIBS += $$ICL_ROOT/bin/lib/lib-static-icl-memory.a
-    LIBS += $$ICL_ROOT/bin/lib/lib-static-icl-logic.a
-    LIBS += $$ICL_ROOT/bin/lib/lib-static-icl-context-base.a
-}
-else {
-    LIBS += $$ICL_ROOT/bin/lib/lib-icl-memory.so
-    LIBS += $$ICL_ROOT/bin/lib/lib-icl-logic.so
-    LIBS += $$ICL_ROOT/bin/lib/lib-icl-context-base.so
-}
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
