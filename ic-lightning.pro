@@ -9,19 +9,18 @@ SUBDIRS = \
         app \
         context
 
-memory.subdir = icl-memory
-logic.subdir = icl-logic
-context.subdir = icl-context
-vm.subdir = icl-vm
-inter.subdir = icl-inter
-app.subdir = icl-app
+memory.subdir   = src/icl-memory
+logic.subdir    = src/icl-logic
+context.subdir  = src/icl-context
+vm.subdir       = src/icl-vm
+inter.subdir    = src/icl-inter
+app.subdir      = src/icl-app
 
-logic.depends = memory
+logic.depends   = memory
 context.depends = memory logic
-inter.depends = logic context
-vm.depends = context memory inter
-app.depends = memory inter vm
-#app.depends = vm
+inter.depends   = logic context
+vm.depends      = context memory inter
+app.depends     = memory inter vm
 
 DISTFILES += \
     ./src2pdf.sh
