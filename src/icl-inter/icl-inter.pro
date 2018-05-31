@@ -36,6 +36,7 @@ DISTFILES += \
     models/prepare_js_crossfire.plantuml \
     models/prepare_js_set.plantuml \
     models/uml_style.iuml \
+    models/parse_next.plantuml
 
 HEADERS += \
     interpreter.h \
