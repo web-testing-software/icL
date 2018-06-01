@@ -33,7 +33,7 @@ bool Tab::canBeAtEnd() const {
 }
 
 Context * Tab::runMethod(const QString & name, memory::ArgList & args) {
-	if (name == QStringLiteral("Get")) {
+	if (name == QStringLiteral("get")) {
 		runGet(args);
 	}
 	else {

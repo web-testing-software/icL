@@ -184,7 +184,7 @@ void Object::runToBoolean(memory::ArgList & args) {
 		toBoolean();
 
 		if (newValue.isNull()) {
-			sendWrongCast("List");
+			sendWrongCast("Boolean");
 		}
 	}
 	else if (
@@ -208,7 +208,7 @@ void Object::runToInt(memory::ArgList & args) {
 		toInt();
 
 		if (newValue.isNull()) {
-			sendWrongCast("List");
+			sendWrongCast("Int");
 		}
 	}
 	else if (
@@ -232,7 +232,7 @@ void Object::runToDouble(memory::ArgList & args) {
 		toDouble();
 
 		if (newValue.isNull()) {
-			sendWrongCast("List");
+			sendWrongCast("Double");
 		}
 	}
 	else if (
@@ -256,7 +256,7 @@ void Object::runToString(memory::ArgList & args) {
 		toString();
 
 		if (newValue.isNull()) {
-			sendWrongCast("List");
+			sendWrongCast("String");
 		}
 	}
 	else if (

@@ -1,5 +1,7 @@
 #include "code.h"
 
+#include <icl-context/base/object/object.h>
+
 namespace icL::context::code {
 
 Code::Code(memory::InterLevel * il, const memory::CodeFragment & source)
@@ -22,6 +24,10 @@ bool Code::checkPrev(const Context * context) const {
 			context->isResultative());
 }
 
+bool Code::isRightToLeft() const {
+	return false;
+}
+
 bool Code::canBeAtEnd() const {
 	return true;
 }
@@ -36,8 +42,15 @@ memory::StepType::Value Code::execute() {
 	}
 	else {
 		memory::FunctionCall fcall;
+		memory::Argument     arg;
 
-		fcall.source = m_source;
+		if (m_prev->role() == context::Role::Object) {
+			arg.name   = "stack";
+			arg.object = dynamic_cast<context::object::Object *>(m_prev);
+
+			fcall.source = m_source;
+			fcall.args.append(arg);
+		}
 
 		il->vms->interrupt(fcall, [this](memory::Return & ret) {
 			if (ret.exception.code != 0) {

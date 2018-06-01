@@ -2,6 +2,8 @@
 
 #include "virtualmachine.h"
 
+#include <icl-context/base/object/object.h>
+
 #include <QStringBuilder>
 
 namespace icL {
@@ -31,6 +33,9 @@ void VMStack::init(const QString & source, bool contentChanged) {
 }
 
 void VMStack::step(int stopRule) {
+	if (isRunning()) {
+		return;
+	}
 
 	this->stopRule = stopRule;
 
@@ -58,10 +63,14 @@ void VMStack::interrupt(
   memory::FunctionCall fcall, std::function<void(memory::Return &)> feedback) {
 	vm = new VirtualMachine(this, vm, &source);
 
+	for (const memory::Argument & arg : fcall.args) {
+		mem.stackIt().stack()->setValue(arg.name, arg.object->getValue());
+	}
+
 	vm->setOnStop(feedback);
 	vm->setFragLimits(fcall.source.begin, fcall.source.end);
 
-	setSColor(memory::SelectionColor::Executing);
+	setSColor(memory::SelectionColor::NewStack);
 	highlight(fcall.source.begin - 1, fcall.source.end + 1);
 }
 
@@ -94,6 +103,10 @@ void VMStack::setSColor(memory::SelectionColor scolor) {
 
 	case memory::SelectionColor::Executing:
 		m_sColor = QColor(0xff6bdaff);
+		break;
+
+	case memory::SelectionColor::NewStack:
+		m_sColor = QColor(0xfff4cdff);
 		break;
 
 	case memory::SelectionColor::Destroying:
@@ -134,7 +147,9 @@ void VMStack::run() {
 			}
 		}
 
-	} while ((returned & stopRule) == 0x0);
+	} while ((returned & stopRule) == 0x0 && vm != nullptr);
+
+	qDebug() << "exited";
 }
 
 }  // namespace icL

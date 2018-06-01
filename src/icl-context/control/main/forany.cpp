@@ -16,6 +16,10 @@ bool ForAny::checkPrev(const Context * context) const {
 		   context->isResultative();
 }
 
+bool ForAny::isRightToLeft() const {
+	return true;
+}
+
 bool ForAny::isExecutable() const {
 	return true;
 }

@@ -5,7 +5,6 @@
 #include <QStringList>
 #include <QThread>
 
-
 namespace icL {
 
 Server::Server(QObject * parent)
@@ -17,6 +16,9 @@ Server::Server(QObject * parent)
 	connect(
 	  this, &Server::invoke_waitForPageLoading, this,
 	  &Server::release_waitForPageLoading);
+	connect(
+	  this, &Server::invoke_mouseEvent, this, &Server::release_mouseEvent);
+	connect(this, &Server::invoke_keyEvent, this, &Server::release_keyEvent);
 }
 
 bool Server::goTo(const QString & url) {
@@ -32,6 +34,8 @@ bool Server::goTo(const QString & url) {
 	while (working) {
 		;
 	}
+
+	QThread::msleep(150);
 	return variant.toBool();
 }
 
@@ -104,6 +108,8 @@ void Server::setWebEngine(QQuickItem * webEngine) {
 void Server::simulateClick(int x, int y) {
 	QPoint point(x, y);
 
+	qDebug() << x << y << point;
+
 	//	The click event is a series of press and release of left mouse button
 
 	QMouseEvent * press = new QMouseEvent(
@@ -113,10 +119,11 @@ void Server::simulateClick(int x, int y) {
 	  QEvent::MouseButtonRelease, point, Qt::LeftButton,
 	  Qt::MouseButton::NoButton, Qt::NoModifier);
 
-	QCoreApplication::postEvent(m_webEngine, press);
+	emit invoke_mouseEvent(press);
 	// TODO: Make the delay configurable
-	QThread::msleep(300);
-	QCoreApplication::postEvent(m_webEngine, release);
+	QThread::msleep(280);
+	emit invoke_mouseEvent(release);
+	QThread::msleep(20);
 }
 
 void Server::simulateKey(const QChar & ch) {
@@ -125,11 +132,11 @@ void Server::simulateKey(const QChar & ch) {
 	QKeyEvent * release =
 	  new QKeyEvent(QEvent::KeyRelease, Qt::Key_A, Qt::NoModifier, QString(ch));
 
-
-	QCoreApplication::postEvent(m_webEngine, press);
+	emit invoke_keyEvent(press);
 	// TODO: Make the delay configurable
-	QThread::msleep(60);
-	QCoreApplication::postEvent(m_webEngine, release);
+	QThread::msleep(50);
+	emit invoke_keyEvent(release);
+	QThread::msleep(10);
 }
 
 QVariant Server::runJS(const QString & code) {
@@ -171,6 +178,23 @@ void Server::release_waitForPageLoading() {
 
 void Server::release_executeJS() {
 	emit request_JsRun(code);
+}
+
+void Server::release_mouseEvent(QMouseEvent *ev) {
+	if (m_eventHandler == nullptr) {
+		m_eventHandler = m_webEngine->childAt(0, 0);
+	}
+
+	QCoreApplication::postEvent(m_eventHandler, ev);
+	QCoreApplication::processEvents();
+}
+
+void Server::release_keyEvent(QKeyEvent * ev) {
+	if (m_eventHandler == nullptr) {
+		m_eventHandler = m_webEngine->childAt(0, 0);
+	}
+
+	QCoreApplication::postEvent(m_eventHandler, ev);
 }
 
 }  // namespace icL

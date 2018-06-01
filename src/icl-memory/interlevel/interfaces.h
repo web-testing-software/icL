@@ -43,7 +43,7 @@ public:
 	virtual QString * source()                         = 0;
 };
 
-enum class SelectionColor {Parsing, Executing, Destroying, Error};
+enum class SelectionColor {Parsing, Executing, NewStack, Destroying, Error};
 
 class VMStack
 {

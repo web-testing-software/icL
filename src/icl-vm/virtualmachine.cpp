@@ -61,7 +61,7 @@ void VirtualMachine::setOnStop(std::function<void(memory::Return &)> feedback) {
 
 void VirtualMachine::reset() {
 	r_result.exception = {0, {}};
-	running     = true;
+	running            = true;
 }
 
 void VirtualMachine::fullReset() {
@@ -240,7 +240,7 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 
 	return value;
 
-	return memory::StepType::MINI_STEP;
+//	return memory::StepType::MINI_STEP;
 }
 
 void VirtualMachine::destroy(context::Context * executable) {
@@ -249,6 +249,11 @@ void VirtualMachine::destroy(context::Context * executable) {
 	auto * end        = executable->getEndContext();
 	auto * begin_prev = begin->prev();
 	auto * end_next   = end->next();
+
+	if (new_ != nullptr) {
+		new_->setCursorPositions(
+		  begin->getBeginCursorPosition(), end->getEndCursorPosition());
+	}
 
 	auto * it = begin->next();
 

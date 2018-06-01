@@ -3,9 +3,15 @@
 
 // @disable-check M127
 (function (){
+	console.error("nm test");
+
+	document.onmousedown = function (ev) {
+		console.error(ev.x + " x - y " + ev.y);
+	};
+
 	function nm (selector, all) {
 		// @disable-check M307
-		if (!(this instanceof nm)) return new nm (selector);
+		if (!(this instanceof nm)) return new nm (selector, all);
 
 		if (typeof selector === 'string') {
 			var els = !!all ? document.querySelectorAll (selector) : [document.querySelector (selector)];
@@ -124,7 +130,7 @@
 			}
 			else {
 				return this.collect(function() {
-					this.getAttribute (name);
+					return this.getAttribute (name);
 				});
 			}
 		},
@@ -159,8 +165,8 @@
 
 		closest : function (selector){
 			return nm(this.collect(function (){
-				this.closest(selector);
-			}), true);
+				return this.closest(selector);
+			}, true));
 		},
 
 		filter : function (selector){
@@ -177,7 +183,7 @@
 								: null;
 					}, true))
 					: nm(this.collect(function () {
-						return this.innerText === str
+						return this.innerText.trim() === str
 								? this
 								: null;
 					}, true));
@@ -209,13 +215,13 @@
 
 		qs : function (selectorString) {
 			return nm(this.collect(function (){
-				this.querySelector(selectorString);
+				return this.querySelector(selectorString);
 			}), true);
 		},
 
 		qsAll : function (selectorString) {
 			var arr = this.collect(function (){
-				this.querySelectorAll(selectorString);
+				return this.querySelectorAll(selectorString);
 			});
 
 			var ret = nm();
@@ -337,29 +343,97 @@
 		},
 
 		visible: function () {
-			// TODO: write it
+			var rect = this[0].getBoundingClientRect();
+			var right = window.innerWidth;
+			var bottom = window.innerHeight;
+
+			console.error(rect.top + " " + rect.right + " " + rect.top + " " + rect.left);
+
+			return !(rect.bottom < 0 || rect.top >= bottom ||
+					rect.right < 0 || rect.left >= right);
 		},
 
 		clickable: function () {
-			// TODO: write it
+			var point = this.screenPos();
+
+			if (document.elementsFromPoint(point.x, point.y).includes(this[0])) {
+
+				console.error("Element position " + point.x + " " + point.y);
+				return point;
+			}
+			else {
+				console.error("Element not clickable " + point.x + " " + point.y);
+				return {x:-1, y:-1};
+			}
 		},
 
 		scrollTo: function () {
-			// TODO: write it
+			var rect = this[0].getBoundingClientRect();
+			var right = window.innerWidth;
+			var bottom = window.innerHeight;
+
+			var point = {
+				x: (rect.left + rect.right - right) / 2,
+				y: (rect.top + rect.bottom - bottom) / 2
+			};
+
+			window.scrollTo(point.x, point.y);
 		},
 
 		screenPos: function () {
-			// TODO: write it
+			var rect = this[0].getBoundingClientRect();
+			var right = window.innerWidth;
+			var bottom = window.innerHeight;
+
+			function point_on_screen(x, y) {
+				return x >= 0 && x < right && y >= 0 && y < bottom;
+			}
+
+			var point = {
+				x: (rect.left + rect.right) / 2,
+				y: (rect.top + rect.bottom) / 2
+			};
+
+			if (point_on_screen(point.x, point.y)) {
+				return point;
+			}
+			console.error("Wrong point " + point.x + " " + point.y);
+
+			point.x = rect.left + 1;
+			point.y = rect.top + 1;
+
+			if (point_on_screen(point.x, point.y)) {
+				return point;
+			}
+			console.error("Wrong point " + point.x + " " + point.y);
+
+			point.x = rect.right - 1;
+
+			if (point_on_screen(point.x, point.y)) {
+				return point;
+			}
+			console.error("Wrong point " + point.x + " " + point.y);
+
+			point.y = rect.bottom - 1;
+
+			if (point_on_screen(point.x, point.y)) {
+				return point;
+			}
+			console.error("Wrong point " + point.x + " " + point.y);
+
+			point.x = rect.left + 1;
+
+			console.error("final point " + point.x + " " + point.y);
+			return point;
 		},
 
 		clickNow: function () {
 			if (!this.visible()) {
 				this.scrollTo();
+				console.error("Not Visible");
 			}
 
-			return this.clickable()
-					? this.screenPos()
-					: {x: -1, y: -1};
+			return this.clickable();
 		},
 
 		moveCursorToEnd: function () {
@@ -374,4 +448,10 @@
 		links: [],
 		crossfire: {}
 	}
+
+	console.error("icL reseted!");
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+		console.log("DOM_Ready");
+	  });
 }());

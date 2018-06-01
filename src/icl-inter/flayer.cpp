@@ -24,6 +24,7 @@ QChar Flayer::flyNextChar() {
 			if (!flyComment()) {
 				return '\0';
 			}
+			ch = ' ';
 		}
 	}
 
@@ -119,9 +120,8 @@ std::pair<context::Prefix, QString> Flayer::flyProperty() {
 	context::Prefix ret_prefix     = context::Prefix::None;
 	QString         name;
 
-	while ((ch.isLetter() || (ch == '-' && !prefix_catched)) &&
-		   position < end - 1) {
-		ch = source->at(++position);
+	do {
+		ch = source->at(position);
 
 		if (ch == '-') {
 			QString prefix = source->mid(start, position - start - 1);
@@ -149,11 +149,8 @@ std::pair<context::Prefix, QString> Flayer::flyProperty() {
 				start = position + 1;
 			}
 		}
-	}
-
-	if (!ch.isLetter()) {
-		--position;
-	}
+	} while ((ch.isLetter() || (ch == '-' && !prefix_catched)) &&
+			 ++position < end);
 
 	name = source->mid(start, position - start);
 
@@ -199,7 +196,7 @@ memory::CodeFragment Flayer::flyAnyExistsFrag() {
 	out.begin = ++position + 1;
 	findBracketPair();
 
-	out.end    = position;
+	out.end    = position - 1;
 	out.source = source;
 
 	return out;

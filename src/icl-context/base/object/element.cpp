@@ -7,6 +7,8 @@
 #include "string.h"
 #include "void.h"
 
+#include <QDebug>
+#include <QPoint>
 #include <QStringBuilder>
 
 namespace icL::context::object {
@@ -51,6 +53,8 @@ Element::initMethods() {
 			 {"Copy", &Element::runCopy},
 			 {"Filter", &Element::runFilter},
 			 {"Get", &Element::runGet},
+			 {"Query", &Element::runQuery},
+			 {"QueryAll", &Element::runQueryAll},
 			 {"Next", &Element::runNext},
 			 {"Prev", &Element::runPrev},
 			 {"Parent", &Element::runParent},
@@ -70,7 +74,7 @@ QString Element::getNewId() {
 		idAsInt = 0;
 	}
 
-	return "windows.icL.links[" % QString::number(idAsInt++) % "]";
+	return "window.icL.links[" % QString::number(idAsInt++) % "]";
 }
 
 
@@ -257,9 +261,24 @@ void Element::click() {
 		return;
 	}
 
-	auto map = il->server->runJS(web.variable % ".clickNow()").toMap();
-	int  x   = map["x"].toInt();
-	int  y   = map["y"].toInt();
+	QVariant    result;
+	QPoint point;
+	bool        map_is_valid;
+
+	do {
+		result       = il->server->runJS(web.variable % ".clickNow()");
+		map_is_valid = true;
+
+		if (result.isValid()) {
+			point = result.toPoint();
+		}
+		else {
+			map_is_valid = false;
+		}
+	} while (!map_is_valid);
+
+	int x = point.x();
+	int y = point.y();
 
 	if (!il->server->click(x, y)) {
 		il->vm->exception(
@@ -303,7 +322,11 @@ bool Element::isValid() {
 void Element::add(memory::WebElement element) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
-	il->server->runJS(web.variable % ".add(" % element.variable % ")");
+	web.count = il->server
+				  ->runJS(
+					web.variable % ".add(" % element.variable % "); " %
+					web.variable % ".length")
+				  .toInt();
 
 	web.selector = web.selector % " (+) " % element.selector;
 
@@ -330,11 +353,13 @@ memory::WebElement Element::filter(const QString & selector) {
 
 	escaped.replace("'", "\\'");
 	ret.variable = getNewId();
-	ret.selector = web.selector % " (filer) " % selector;
-	ret.count    = web.count;
+	ret.selector = web.selector % " (filter) " % selector;
 
-	il->server->runJS(
-	  ret.variable % " = " % web.variable % ".filter('" % escaped % "')");
+	ret.count = il->server
+				  ->runJS(
+					"(" % ret.variable % " = " % web.variable % ".filter('" %
+					escaped % "')).length")
+				  .toInt();
 
 	return ret;
 }
@@ -348,11 +373,12 @@ memory::WebElement Element::filter(const QString & context, bool asfragment) {
 	ret.variable = getNewId();
 	ret.selector = web.selector % " (filtered by " %
 				   (asfragment ? "fragment" : "content") % ") " % context;
-	ret.count = web.count;
-
-	il->server->runJS(
-	  ret.variable % " = " % web.variable % ".filterByContent('" % escaped %
-	  "', " % (asfragment ? "true" : "false") % ")");
+	ret.count =
+	  il->server
+		->runJS(
+		  "(" % ret.variable % " = " % web.variable % ".filterByContent('" %
+		  escaped % "', " % (asfragment ? "true" : "false") % ")).length")
+		.toInt();
 
 	return ret;
 }
@@ -378,6 +404,14 @@ memory::WebElement Element::get(int index) {
 	return ret;
 }
 
+memory::WebElement Element::query(const QString & selector) {
+	return queryBackEnd("qs", selector);
+}
+
+memory::WebElement Element::queryAll(const QString & selector) {
+	return queryBackEnd("qsAll", selector);
+}
+
 memory::WebElement Element::next() {
 	return domTrans(QStringLiteral("next"), QString());
 }
@@ -395,7 +429,7 @@ memory::WebElement Element::child(int index) {
 }
 
 memory::WebElement Element::closest(const QString & selector) {
-	return domTrans(QStringLiteral("closest"), selector);
+	return domTrans(QStringLiteral("closest"), '"' % selector % '"');
 }
 
 void Element::addClass(const QString & className) {
@@ -514,8 +548,30 @@ void Element::runFilter(memory::ArgList & args) {
 }
 
 void Element::runGet(memory::ArgList & args) {
-	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
 		newValue = QVariant::fromValue(get(args[0].object->getValue().toInt()));
+		newContext = new Element{il, newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runQuery(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue =
+		  QVariant::fromValue(query(args[0].object->getValue().toString()));
+		newContext = new Element{il, newValue, true};
+	}
+	else {
+		sendWrongArglist(args, QStringLiteral("<String>"));
+	}
+}
+
+void Element::runQueryAll(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		newValue =
+		  QVariant::fromValue(queryAll(args[0].object->getValue().toString()));
 		newContext = new Element{il, newValue, true};
 	}
 	else {
@@ -622,6 +678,24 @@ bool Element::isSingle(memory::WebElement & web) {
 	}
 
 	return true;
+}
+
+memory::WebElement Element::queryBackEnd(
+  const QString & qsFunc, const QString & selector) {
+
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
+
+	ret.variable = getNewId();
+	ret.selector = web.selector % " " % selector;
+
+	ret.count = il->server
+				  ->runJS(
+					"(" % ret.variable % " = " % web.variable % "." % qsFunc %
+					"(\"" % selector % "\")).length")
+				  .toInt();
+
+	return ret;
 }
 
 memory::WebElement Element::domTrans(

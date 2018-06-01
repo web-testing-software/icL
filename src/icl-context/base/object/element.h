@@ -107,6 +107,8 @@ public:
 	memory::WebElement filter(const QString & context, bool asfragment);
 	memory::WebElement get(int index);
 
+	memory::WebElement query(const QString & selector);
+	memory::WebElement queryAll(const QString & selector);
 	memory::WebElement next();
 	memory::WebElement prev();
 	memory::WebElement parent();
@@ -131,6 +133,8 @@ private:
 	void runFilter(memory::ArgList & args);
 	void runGet(memory::ArgList & args);
 
+	void runQuery(memory::ArgList & args);
+	void runQueryAll(memory::ArgList & args);
 	void runNext(memory::ArgList & args);
 	void runPrev(memory::ArgList & args);
 	void runParent(memory::ArgList & args);
@@ -143,6 +147,8 @@ private:
 
 private:
 	bool               isSingle(memory::WebElement & web);
+	memory::WebElement queryBackEnd(
+	  const QString & qsFunc, const QString & selector);
 	memory::WebElement domTrans(const QString & method, const QString & arg);
 
 	// Context interface

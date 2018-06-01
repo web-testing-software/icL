@@ -288,5 +288,4 @@ Context * Context::prev() const {
 Role Context::role() const {
 	return m_role;
 }
-
 }  // namespace icL::context

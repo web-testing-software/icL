@@ -127,11 +127,13 @@ void Helper::setTabsize(int fontSize, QQuickTextDocument * quickTextDocument) {
 	QFont font("monospace");
 	font.setPixelSize(fontSize);
 
-	QFontMetrics fm(font);
-	QTextDocument *document = quickTextDocument->textDocument();
-	QTextOption textOptions = document->defaultTextOption();
+	QFontMetrics    fm(font);
+	QTextDocument * document    = quickTextDocument->textDocument();
+	QTextOption     textOptions = document->defaultTextOption();
 
-	textOptions.setTabStopDistance(static_cast<float>(fm.width(QString(' ').repeated(1024))) / 256.f);
+	textOptions.setTabStopDistance(
+	  static_cast<float>(fm.horizontalAdvance(QString(' ').repeated(1024))) /
+	  256.f);
 	document->setDefaultTextOption(textOptions);
 }
 

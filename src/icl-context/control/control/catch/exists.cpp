@@ -27,7 +27,7 @@ bool Exists::checkPrev(const Context * context) const {
 // Context interface
 
 bool Exists::isExecutable() const {
-	return m_prev->role() != Role::Alternative;
+	return m_prev == nullptr || m_prev->role() != Role::Alternative;
 }
 
 memory::StepType::Value Exists::execute() {
@@ -92,6 +92,10 @@ Context * Exists::getBeginContext() {
 
 Context * Exists::getEndContext() {
 	return this;
+}
+
+bool Exists::isResultative() const {
+	return true;
 }
 
 }  // namespace icL::context::code::control::catch0

@@ -6,7 +6,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets quickwidgets webengine sql
+QT       += core gui widgets webengine sql
 
 TARGET = icL
 TEMPLATE = app

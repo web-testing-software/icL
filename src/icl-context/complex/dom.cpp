@@ -19,7 +19,7 @@ memory::WebElement Dom::query(const QString & selector) {
 	web.count = il->server
 				  ->runJS(
 					newId % R"( = nm(")" % selector %
-					R"("); )" % newId % ".length")
+					R"(", false); )" % newId % ".length")
 				  .toInt();
 	web.selector = selector;
 	web.variable = newId;
@@ -38,7 +38,8 @@ memory::WebElement Dom::queryAll(const QStringList & selectors) {
 
 	web.count =
 	  il->server
-		->runJS(newId % R"( = nm()" % selector % R"("); )" % newId % ".length")
+		->runJS(
+		  newId % R"( = nm(")" % selector % R"(", true); )" % newId % ".length")
 		.toInt();
 	web.selector = selector2;
 	web.variable = newId;

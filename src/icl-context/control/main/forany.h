@@ -30,6 +30,7 @@ public:
 	// Context interface
 public:
 	bool checkPrev(const Context * context) const override;
+	bool isRightToLeft() const override;
 	bool isExecutable() const override;
 
 	memory::StepType::Value execute() override;

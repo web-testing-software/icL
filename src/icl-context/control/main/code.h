@@ -38,6 +38,7 @@ protected:
 	// Context interface
 public:
 	bool checkPrev(const Context * context) const override;
+	bool isRightToLeft() const override;
 	bool canBeAtEnd() const override;
 	bool isExecutable() const override;
 

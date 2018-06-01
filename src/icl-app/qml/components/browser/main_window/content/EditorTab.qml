@@ -72,6 +72,7 @@ ContentBase {
 			bottom: parent.bottom;
 		}
 
+
 		backgroundColor: "white";
 		url: "about:blank";
 
@@ -95,12 +96,23 @@ ContentBase {
 		]
 
 		onLoadingChanged: {
-			if (loadRequest.status == WebEngineLoadRequest.LoadSucceededStatus) {
+			/*if (loadRequest.status == WebEngineLoadRequest.LoadSucceededStatus) {
 				server.finish_PageLoading(true);
 			}
-			else if (loadRequest.status == WebEngineLoadRequest.LoadFailedStatus) {
+			else */if (loadRequest.status == WebEngineLoadRequest.LoadFailedStatus) {
 				server.finish_PageLoading(false);
 			}
+		}
+
+		onJavaScriptConsoleMessage: {
+			//JavaScriptConsoleMessageLevel level, string message, int lineNumber, string sourceID
+			if (sourceID == "userscript:web_nm.js" && message == "DOM_Ready") {
+				server.finish_PageLoading(true);
+				console.log("loaded");
+			}
+//			else {
+//				console.log(sourceID + message);
+//			}
 		}
 	}
 
@@ -109,9 +121,34 @@ ContentBase {
 
 		webEngine: wview;
 
-		onRequest_JsRun: wview.runJavaScript(code, function(result){
-			finish_executeJS(result);
-		});
+		function printCodeRes(res) {
+
+			if (typeof res == "object") {
+				var ret = "{ ";
+				for (var prop in res) {
+					ret += prop + ":" + res[prop] + " ";
+				}
+				console.log(" <- " + ret + "}");
+			}
+			else {
+				console.log(" <- " + res);
+			}
+		}
+
+		onRequest_JsRun: {
+			console.log(" -> " + code);
+
+			wview.runJavaScript(code, function(result){
+				console.log("executed");
+
+				if (typeof result == "object" && typeof result.x == "number") {
+					result = Qt.point(result.x, result.y);
+				}
+
+				printCodeRes(result);
+				finish_executeJS(result);
+			});
+		}
 
 		onRequest_LogOut: {
 			console_model.append({mlevel: level, message: mess});
@@ -198,6 +235,25 @@ ContentBase {
 				text: "Untilited*";
 			}
 		}
+
+		Timer {
+			interval: 10000;
+			running: true;
+			repeat: false;
+			onTriggered: {
+				vmstack.init(editor.text, true);
+//				st.start();
+				vmstack.step(0);
+			}
+		}
+
+//		Timer {
+//			id: st;
+//			interval: 500;
+//			repeat: true;
+//			running: false;
+//			onTriggered: vmstack.step(StepType.ANY);
+//		}
 
 		Item {
 			anchors {

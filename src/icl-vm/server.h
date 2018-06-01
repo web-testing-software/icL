@@ -124,6 +124,8 @@ signals:
 	void invoke_goTo();
 	void invoke_waitForPageLoading();
 	void invoke_executeJS();
+	void invoke_mouseEvent(QMouseEvent * ev);
+	void invoke_keyEvent(QKeyEvent * ev);
 
 	void webEngineChanged(QQuickItem * webEngine);
 
@@ -132,11 +134,15 @@ signals:
 	void request_JsRun(const QString & code);
 	void request_LogOut(int level, const QString & mess);
 
+	void eventHandlerChanged(QQuickItem * eventHandler);
+
 private slots:
 	// Functions, which will be executed on main thread
 	void release_goTo();
 	void release_waitForPageLoading();
 	void release_executeJS();
+	void release_mouseEvent(QMouseEvent * ev);
+	void release_keyEvent(QKeyEvent * ev);
 
 private:
 	// The stack of errors
@@ -151,6 +157,7 @@ private:
 
 	// This sync variable which is used on serveral threads
 	volatile bool working = false;
+	QQuickItem * m_eventHandler = nullptr;
 };
 
 }  // namespace icL
