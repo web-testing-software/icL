@@ -27,15 +27,26 @@ void VMStack::init(const QString & source, bool contentChanged) {
 		if (vm == nullptr) {
 			vm = new VirtualMachine(this, nullptr, &this->source);
 
-			vm->setFragLimits(0, source.size());
+			//			vm->setFragLimits(0, source.size());
 		}
+
+		auto it = vm;
+
+		if (it->getParent() != nullptr) {
+			it = it->getParent();
+		}
+
+		it->setFragLimits(-1, source.size());
 	}
 }
 
 void VMStack::step(int stopRule) {
 	if (isRunning()) {
+		qDebug() << "dropped";
 		return;
 	}
+
+	setRunning(true);
 
 	this->stopRule = stopRule;
 
@@ -50,6 +61,10 @@ QColor VMStack::sColor() const {
 	return m_sColor;
 }
 
+bool VMStack::running() const {
+	return m_running;
+}
+
 void VMStack::setServer(Server * server) {
 	if (m_server == server)
 		return;
@@ -58,9 +73,21 @@ void VMStack::setServer(Server * server) {
 	emit serverChanged(m_server);
 }
 
+void VMStack::setRunning(bool running) {
+	if (m_running == running)
+		return;
+
+	m_running = running;
+	emit runningChanged(m_running);
+}
+
 
 void VMStack::interrupt(
   memory::FunctionCall fcall, std::function<void(memory::Return &)> feedback) {
+	qWarning() << "interrupt"
+			   << fcall.source.source->mid(
+					fcall.source.begin, fcall.source.end - fcall.source.begin);
+
 	vm = new VirtualMachine(this, vm, &source);
 
 	for (const memory::Argument & arg : fcall.args) {
@@ -89,6 +116,8 @@ void VMStack::highlight(int pos1, int pos2) {
 void VMStack::exit(const memory::Exception & exc) {
 	m_server->newLog(
 	  0, "exited with code " % QString::number(exc.code) % ": " % exc.message);
+
+	setSColor(memory::SelectionColor::Error);
 }
 
 void VMStack::setSColor(memory::SelectionColor scolor) {
@@ -113,7 +142,6 @@ void VMStack::setSColor(memory::SelectionColor scolor) {
 		m_sColor = QColor(0xfffdff7d);
 		break;
 
-
 	case memory::SelectionColor::Error:
 		m_sColor = QColor(0xffffb0bd);
 		break;
@@ -129,27 +157,29 @@ void VMStack::release_hightlight(int pos1, int pos2) {
 
 
 void VMStack::run() {
-	memory::StepType::Value returned;
+	memory::StepType::Value returned = memory::StepType::None;
 
-	do {
+	while ((returned & stopRule) == 0x0 && vm != nullptr) {
 		returned = vm->step();
 
-		if (returned == memory::StepType::NONE) {
+		if (returned == memory::StepType::None) {
 			VirtualMachine * nvm = vm->getParent();
 
 			delete vm;
 			vm = nvm;
 
-			returned = memory::StepType::COMMAND_OUT;
+			returned = memory::StepType::CommandOut;
 
 			if (vm == nullptr) {
 				m_server->newLog(0, "exited with code 0");
 			}
 		}
 
-	} while ((returned & stopRule) == 0x0 && vm != nullptr);
+		//		QThread::msleep(100);
+	}
 
-	qDebug() << "exited";
+	setRunning(false);
+	//	qDebug() << "exited";
 }
 
 }  // namespace icL

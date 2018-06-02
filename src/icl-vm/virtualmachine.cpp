@@ -40,19 +40,34 @@ VirtualMachine * VirtualMachine::getParent() const {
 memory::StepType::Value VirtualMachine::step() {
 	if (!running) {
 		finish();
-		return memory::StepType::NONE;
+		return memory::StepType::None;
 	}
+
+	memory::StepType::Value value;
 
 	if (commandParsing) {
 		context::Context * next = interpreter.parseNext();
 
-		return prepareNext(next);
+		value =  prepareNext(next);
 	}
 	else {
 		context::Context * executable = findExecutable();
 
-		return prepareExecutable(executable);
+		value = prepareExecutable(executable);
 	}
+
+	auto it = last_context;
+	QStringList l;
+
+	while (it != nullptr) {
+		l.prepend(context::roleToString(it->role()));
+		it = it->prev();
+	}
+
+	// Hightlight with orange color
+	qWarning() << l.join(" <> ");
+
+	return value;
 }
 
 void VirtualMachine::setOnStop(std::function<void(memory::Return &)> feedback) {
@@ -86,6 +101,10 @@ void VirtualMachine::fullReset() {
 }
 
 void VirtualMachine::setFragLimits(int left, int right) {
+	if (left < 0) {
+		left = interpreter.getFlayer().getPosition();
+	}
+
 	interpreter.ride(left, right);
 	code_begin = left;
 	code_end   = right;
@@ -102,6 +121,10 @@ void VirtualMachine::exception(const memory::Exception & exc) {
 
 QString * VirtualMachine::source() {
 	return m_source;
+}
+
+QVariant VirtualMachine::getConsoleValue() {
+	return r_result.consoleValue;
 }
 
 void VirtualMachine::finish() {
@@ -149,7 +172,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 				il.vms->setSColor(memory::SelectionColor::Destroying);
 				il.vms->highlight(code_begin - 1, code_end + 1);
 			}
-			return memory::StepType::NONE;
+			return memory::StepType::None;
 		}
 
 		if (!last_context->canBeAtEnd()) {
@@ -168,7 +191,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 		}
 
 		commandParsing = false;
-		return memory::StepType::MINI_STEP;
+		return memory::StepType::MiniStep;
 	}
 
 	if (next->checkPrev(last_context)) {
@@ -186,7 +209,7 @@ memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
 		exception({-100, "Wrong sematic blocks order"});
 	}
 
-	return memory::StepType::MINI_STEP;
+	return memory::StepType::MiniStep;
 }
 
 memory::StepType::Value VirtualMachine::prepareExecutable(
@@ -215,12 +238,12 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 
 		interpreter.getFlayer().stepForward();
 		commandParsing = true;
-		return memory::StepType::COMMAND_END;
+		return memory::StepType::CommandEnd;
 	}
 
 	memory::StepType::Value value = executable->execute();
 
-	if (value == memory::StepType::MINI_STEP) {
+	if (value == memory::StepType::MiniStep) {
 		il.vms->highlight(
 		  executable->getBeginContext()->getBeginCursorPosition(),
 		  executable->getEndContext()->getEndCursorPosition());
@@ -228,19 +251,19 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 
 		destroy(executable);
 	}
-	else if (value == memory::StepType::NONE) {
+	else if (value == memory::StepType::None) {
 		il.vms->setSColor(memory::SelectionColor::Error);
 		il.vms->highlight(
 		  executable->getBeginCursorPosition(),
 		  executable->getEndCursorPosition());
 
 		// Don't destroy vm, it can be reseted later
-		value = memory::StepType::MINI_STEP;
+		value = memory::StepType::MiniStep;
 	}
 
 	return value;
 
-//	return memory::StepType::MINI_STEP;
+	//	return memory::StepType::MiniStep;
 }
 
 void VirtualMachine::destroy(context::Context * executable) {

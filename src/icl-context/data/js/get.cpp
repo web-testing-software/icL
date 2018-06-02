@@ -14,7 +14,7 @@ memory::StepType::Value Get::execute() {
 		il->vm->exception(
 		  {-203,
 		   "Wrong call of $get, the javascript code is missing or empty"});
-		return memory::StepType::NONE;
+		return memory::StepType::None;
 	}
 
 	QVariant ret = il->server->runJS(code);
@@ -26,7 +26,7 @@ memory::StepType::Value Get::execute() {
 		newContext = fromValue(ret);
 	}
 
-	return memory::StepType::MINI_STEP;
+	return memory::StepType::MiniStep;
 }
 
 }  // namespace icL::context::data::js

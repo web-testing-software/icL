@@ -39,11 +39,13 @@ public:
 class VirtualMachine
 {
 public:
-	virtual void      exception(const Exception & exc) = 0;
-	virtual QString * source()                         = 0;
+	virtual void exception(const Exception & exc) = 0;
+
+	virtual QString * source()         = 0;
+	virtual QVariant getConsoleValue() = 0;
 };
 
-enum class SelectionColor {Parsing, Executing, NewStack, Destroying, Error};
+enum class SelectionColor { Parsing, Executing, NewStack, Destroying, Error };
 
 class VMStack
 {

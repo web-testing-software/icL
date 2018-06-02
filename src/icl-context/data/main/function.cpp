@@ -37,24 +37,24 @@ memory::StepType::Value Function::exNewFunction() {
 
 	il->mem->functions().registerFunction(name, func);
 
-	return memory::StepType::MINI_STEP;
+	return memory::StepType::MiniStep;
 }
 
 memory::StepType::Value Function::exCallFunction() {
 	if (functionExecuted) {
-		return memory::StepType::MINI_STEP;
+		return memory::StepType::MiniStep;
 	}
 
 	if (newFunction) {
 		il->vm->exception(
 		  {-404, QStringLiteral("Function %1 not found").arg(name)});
-		return memory::StepType::NONE;
+		return memory::StepType::None;
 	}
 
 	memory::Function & func = il->mem->functions().getFunction(name);
 
 	if (!checkParamsNum(func) || !checkParamsTypes(func)) {
-		return memory::StepType::NONE;
+		return memory::StepType::None;
 	}
 
 	auto      fcall   = memory::FunctionCall{};
@@ -84,7 +84,7 @@ memory::StepType::Value Function::exCallFunction() {
 
 	functionExecuted = true;
 
-	return memory::StepType::COMMAND_IN;
+	return memory::StepType::CommandIn;
 }
 
 bool Function::checkParamsNum(memory::Function & func) {

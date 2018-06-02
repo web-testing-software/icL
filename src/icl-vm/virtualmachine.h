@@ -42,8 +42,9 @@ public:
 	void setFragLimits(int left, int right);
 
 	// memory.VirtualMachine interface
-	virtual void      exception(const memory::Exception & exc) override;
-	virtual QString * source() override;
+	void      exception(const memory::Exception & exc) override;
+	QString * source() override;
+	QVariant getConsoleValue() override;
 
 protected:
 	void finish();

@@ -2,6 +2,8 @@
 
 #include <icl-context/base/object/object.h>
 
+#include <QDebug>
+
 namespace icL::context::code {
 
 ForAny::ForAny(memory::InterLevel * il, const memory::CodeFragment & source)
@@ -28,7 +30,7 @@ memory::StepType::Value ForAny::execute() {
 	memory::FunctionCall fcall;
 
 	if (executed) {
-		return memory::StepType::MINI_STEP;
+		return memory::StepType::MiniStep;
 	}
 
 	fcall.source = m_source;
@@ -36,14 +38,17 @@ memory::StepType::Value ForAny::execute() {
 	il->vms->interrupt(fcall, [this](memory::Return & ret) {
 		if (ret.exception.code != 0) {
 			il->vm->exception(ret.exception);
+			qCritical() << "Any exception";
 		}
 		else {
+			qCritical() << "Any OK!";
 			newContext = fromValue(ret.consoleValue);
 		}
+
+		this->executed = true;
 	});
 
-	executed = true;
-	return memory::StepType::COMMAND_IN;
+	return memory::StepType::CommandIn;
 }
 
 Context * ForAny::getBeginContext() {

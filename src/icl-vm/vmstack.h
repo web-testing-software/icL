@@ -40,6 +40,7 @@ class VMStack
 
 	Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY serverChanged)
 	Q_PROPERTY(QColor sColor READ sColor NOTIFY sColorChanged)
+	Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
 
 public:
 	VMStack();
@@ -51,9 +52,11 @@ public:
 
 	Server * server() const;
 	QColor sColor() const;
+	bool running() const;
 
 public slots:
 	void setServer(Server * server);
+	void setRunning(bool running);
 
 public:
 	// memory.VirtualMachineStack interface
@@ -61,19 +64,21 @@ public:
 	  memory::FunctionCall                  fcall,
 	  std::function<void(memory::Return &)> feedback) override;
 
-	virtual const QString & getWorkingDir() override;
-	virtual const QString & getCrossfirePass() override;
+	const QString & getWorkingDir() override;
+	const QString & getCrossfirePass() override;
 
-	virtual void highlight(int pos1, int pos2) override;
+	void highlight(int pos1, int pos2) override;
 
-	virtual void exit(const memory::Exception & exc) override;
+	void exit(const memory::Exception & exc) override;
 
-	virtual void setSColor(memory::SelectionColor scolor) override;
+	void setSColor(memory::SelectionColor scolor) override;
 
 signals:
 	void serverChanged(Server * server);
 
 	void sColorChanged(QColor sColor);
+
+	void runningChanged(bool running);
 
 	// switch thread signal
 	void invoke_highlight(int po1, int pos2);
@@ -92,7 +97,7 @@ protected:
 	int stopRule;
 
 private:
-	Server * m_server;
+	Server * m_server = nullptr;
 	QColor m_sColor;
 	memory::SelectionColor e_sColor = memory::SelectionColor::Error;
 
@@ -107,6 +112,7 @@ private:
 	QString source;
 
 	bool error_state = false;
+	bool m_running = false;
 };
 
 }  // namespace icL

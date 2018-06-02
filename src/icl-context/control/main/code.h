@@ -32,7 +32,8 @@ public:
 	const memory::CodeFragment & source() const;
 
 protected:
-	bool                 executed;
+	bool executed = false;
+
 	memory::CodeFragment m_source;
 
 	// Context interface

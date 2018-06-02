@@ -16,7 +16,7 @@ memory::StepType::Value Set::execute() {
 		il->vm->exception(
 		  {-203,
 		   "Wrong call of $get, the javascript code is missing or empty"});
-		return memory::StepType::NONE;
+		return memory::StepType::None;
 	}
 
 	QRegularExpression      regex{R"((?<type>[@#])\((?<name>\w+)\))"};
@@ -50,7 +50,7 @@ memory::StepType::Value Set::execute() {
 		newContext = fromValue(ret);
 	}
 
-	return memory::StepType::MINI_STEP;
+	return memory::StepType::MiniStep;
 }
 
 }  // namespace icL::context::data::js

@@ -123,7 +123,7 @@ void Server::simulateClick(int x, int y) {
 	// TODO: Make the delay configurable
 	QThread::msleep(280);
 	emit invoke_mouseEvent(release);
-	QThread::msleep(20);
+	QThread::msleep(200);
 }
 
 void Server::simulateKey(const QChar & ch) {

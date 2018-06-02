@@ -61,7 +61,7 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 	double ret_double;
 	bool   is_int;
 	bool   point_catched = false;
-	int    point_position;
+	int    point_position = position;
 	QChar  ch = source->at(position);
 
 	start = position;

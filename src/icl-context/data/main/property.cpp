@@ -27,7 +27,7 @@ bool Property::isExecutable() const {
 memory::StepType::Value Property::execute() {
 	newContext = m_prev->runProperty(prefix, name);
 
-	return memory::StepType::MINI_STEP;
+	return memory::StepType::MiniStep;
 }
 
 Context * Property::getBeginContext() {

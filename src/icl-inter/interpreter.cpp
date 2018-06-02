@@ -214,7 +214,7 @@ context::Context * Interpreter::parseStateVar() {
 	QString name = flayer.flyVarName();
 
 	if (name.isEmpty()) {
-		return new context::object::Void{il};
+		return context::Context::fromValue(il, il->vm->getConsoleValue());
 	}
 
 	return context::Context::fromValue(il, il->mem->stateIt().state(), name);

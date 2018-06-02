@@ -17,8 +17,8 @@ import "scripts/move_flags.js" as MOVE_FLAGS;
 Window {
 	id: win;
 
-	width: 1000;
-	height: 700;
+	width: 1000 * _ratio;
+	height: 700 * _ratio;
 	visible: true;
 	flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint;
 
@@ -26,7 +26,7 @@ Window {
 	minimumHeight: Math.round(700 * _ratio);
 
 	property string app_version: "1.0.0 dev";
-	property real _ratio: Math.max(Screen.pixelDensity, 4.5) / 5.5;
+	property real _ratio: Math.max(Screen.pixelDensity, 4.5) / 5.;
 	property real anim_time_multiplier: 1;
 
 
@@ -38,7 +38,6 @@ Window {
 	color: "transparent";
 
 	property bool isMaximized: visibility == Window.Maximized;
-	property var current_webview: null;
 
 	function paste_menu (component, properties, x, y) {
 		var menu = component.createObject(pastemenu, properties);

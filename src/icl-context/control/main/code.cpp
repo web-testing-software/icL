@@ -38,7 +38,7 @@ bool Code::isExecutable() const {
 
 memory::StepType::Value Code::execute() {
 	if (executed) {
-		return memory::StepType::MINI_STEP;
+		return memory::StepType::MiniStep;
 	}
 	else {
 		memory::FunctionCall fcall;
@@ -48,9 +48,10 @@ memory::StepType::Value Code::execute() {
 			arg.name   = "stack";
 			arg.object = dynamic_cast<context::object::Object *>(m_prev);
 
-			fcall.source = m_source;
 			fcall.args.append(arg);
 		}
+
+		fcall.source = m_source;
 
 		il->vms->interrupt(fcall, [this](memory::Return & ret) {
 			if (ret.exception.code != 0) {
@@ -60,7 +61,7 @@ memory::StepType::Value Code::execute() {
 			this->executed = true;
 		});
 
-		return memory::StepType::COMMAND_IN;
+		return memory::StepType::CommandIn;
 	}
 }
 

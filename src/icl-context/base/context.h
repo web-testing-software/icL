@@ -118,6 +118,8 @@ protected:
 	int beginCursorPosition, endCursorPostion;
 };
 
+QString roleToString(Role role);
+
 
 }  // namespace icL::context
 

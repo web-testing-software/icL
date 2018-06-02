@@ -54,7 +54,7 @@ memory::StepType::Value Method::execute() {
 
 	newContext = m_prev->runMethod(name, args);
 
-	return memory::StepType::MINI_STEP;
+	return memory::StepType::MiniStep;
 }
 
 Context * Method::getBeginContext() {

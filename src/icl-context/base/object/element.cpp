@@ -261,21 +261,14 @@ void Element::click() {
 		return;
 	}
 
-	QVariant    result;
-	QPoint point;
-	bool        map_is_valid;
+	QVariant result;
+	QPoint   point;
 
-	do {
-		result       = il->server->runJS(web.variable % ".clickNow()");
-		map_is_valid = true;
+	result       = il->server->runJS(web.variable % ".clickNow()");
 
-		if (result.isValid()) {
-			point = result.toPoint();
-		}
-		else {
-			map_is_valid = false;
-		}
-	} while (!map_is_valid);
+	if (result.isValid()) {
+		point = result.toPoint();
+	}
 
 	int x = point.x();
 	int y = point.y();

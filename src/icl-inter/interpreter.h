@@ -45,8 +45,8 @@ public:
 
 
 	// memory.Interpreter interface
-	virtual void newSignal(int code, const QString & name) override;
-	virtual Flayer & getFlayer() override;
+	void newSignal(int code, const QString & name) override;
+	Flayer & getFlayer() override;
 
 
 protected:

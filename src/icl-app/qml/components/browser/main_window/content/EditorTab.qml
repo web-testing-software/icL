@@ -1,10 +1,11 @@
 import QtQuick 2.0
-import QtWebEngine 1.2
+import QtWebEngine 1.3
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import "../../ui/controls/speed_dial" as SpeedDialControls;
 import "../../ui/button_icons" as ButtonIcons;
+import "../header";
 
 import icL.VM 1.0
 import icL.Enums 1.0
@@ -12,6 +13,9 @@ import icL.Enums 1.0
 ContentBase {
 	id: root;
 	anchors.fill: parent;
+
+	property alias wview: wview;
+	property NavigationBar navBar;
 
 	state: "active";
 
@@ -76,6 +80,9 @@ ContentBase {
 		backgroundColor: "white";
 		url: "about:blank";
 
+//		zoomFactor: 1.5;
+//		contentsSize: Qt.size(width / 1.5, height / 1.5);
+
 //		settings.autoLoadImages: false;
 		settings.javascriptCanOpenWindows: false;
 		profile.persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies;
@@ -102,6 +109,7 @@ ContentBase {
 			else */if (loadRequest.status == WebEngineLoadRequest.LoadFailedStatus) {
 				server.finish_PageLoading(false);
 			}
+			navBar.setLoading(loading)
 		}
 
 		onJavaScriptConsoleMessage: {
@@ -114,6 +122,10 @@ ContentBase {
 //				console.log(sourceID + message);
 //			}
 		}
+
+		onUrlChanged: if (!!url) navBar.setUrl(url);
+		onCanGoBackChanged: navBar.setBack(canGoBack);
+		onCanGoForwardChanged: navBar.setForward(canGoForward);
 	}
 
 	Server {
@@ -139,7 +151,7 @@ ContentBase {
 			console.log(" -> " + code);
 
 			wview.runJavaScript(code, function(result){
-				console.log("executed");
+//				console.log("executed");
 
 				if (typeof result == "object" && typeof result.x == "number") {
 					result = Qt.point(result.x, result.y);
@@ -184,7 +196,7 @@ ContentBase {
 			right: parent.right;
 			bottom: parent.bottom;
 		}
-		width: 400;
+		width: 400 * _ratio;
 
 		Rectangle {
 			id: border;
@@ -236,25 +248,6 @@ ContentBase {
 			}
 		}
 
-		Timer {
-			interval: 10000;
-			running: true;
-			repeat: false;
-			onTriggered: {
-				vmstack.init(editor.text, true);
-//				st.start();
-				vmstack.step(0);
-			}
-		}
-
-//		Timer {
-//			id: st;
-//			interval: 500;
-//			repeat: true;
-//			running: false;
-//			onTriggered: vmstack.step(StepType.ANY);
-//		}
-
 		Item {
 			anchors {
 				top: header.bottom;
@@ -280,6 +273,8 @@ ContentBase {
 				anchors.fill: parent;
 
 				wrapMode: TextEdit.NoWrap;
+
+				property bool edited: true;
 
 				style: TextAreaStyle {
 					decrementControl: null
@@ -337,8 +332,44 @@ ContentBase {
 				}
 
 				Keys.onAsteriskPressed: {
-					vmstack.init(text, true);
-					vmstack.step(StepType.ANY);
+					vmstack.init(text, edited);
+					vmstack.step(StepType.Any);
+				}
+
+				Keys.onPressed: {
+					var ret = true;
+
+					switch (event.key) {
+					case Qt.Key_F8:
+						vmstack.init(text, edited);
+						vmstack.step(StepType.Any);
+						break;
+
+					case Qt.Key_F9:
+						vmstack.init(text, edited);
+						vmstack.step(StepType.CommandInto);
+						break;
+
+					case Qt.Key_F10:
+						vmstack.init(text, edited);
+						vmstack.step(StepType.CommandEnd);
+						break;
+
+					case Qt.Key_F11:
+						vmstack.init(text, edited);
+						vmstack.step(StepType.CommandOut);
+						break;
+
+					case Qt.Key_F12:
+						vmstack.init(text, edited);
+						vmstack.step(StepType.None);
+						break;
+
+					default:
+						ret = false;
+					}
+
+					return ret;
 				}
 
 				Component.onCompleted: {
@@ -410,8 +441,14 @@ ContentBase {
 
 						ButtonIcons.RunPauseStop {
 							id: s_rsp
-							alpha: parent.alpha;
+							alpha: vmstack.running ? 1.0 : 0.0;
 							anchors.left: parent.left;
+
+							Behavior on alpha {
+								NumberAnimation {
+									duration: 200 * anim_time_multiplier;
+								}
+							}
 						}
 					}
 				}

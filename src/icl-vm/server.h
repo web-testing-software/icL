@@ -151,7 +151,7 @@ private:
 	// These varibles are used to transfer data between threads
 	QString      url, code;
 	QVariant     variant;
-	QQuickItem * m_webEngine;
+	QQuickItem * m_webEngine = nullptr;
 
 	WaitFor waitFor = WaitFor::Nothing;
 

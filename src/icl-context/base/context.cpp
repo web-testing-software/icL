@@ -13,6 +13,7 @@
 
 #include <utility>
 
+#include <QDebug>
 #include <QStringBuilder>
 #include <QVariant>
 
@@ -43,7 +44,7 @@ bool Context::isExecutable() const {
 }
 
 memory::StepType::Value Context::execute() {
-	return memory::StepType::NONE;
+	return memory::StepType::None;
 }
 
 bool Context::hasValue() const {
@@ -264,6 +265,13 @@ void Context::link(Context * context) {
 	context->m_prev = this;
 
 	m_next = context;
+
+	if (role() == context->role()) {
+		qDebug() << "stop here";
+	}
+
+	qDebug() << static_cast<int>(role()) << context
+			 << static_cast<int>(context->role());
 }
 
 void Context::link(Context * c0, Context * c1, Context * c2) {
@@ -288,4 +296,90 @@ Context * Context::prev() const {
 Role Context::role() const {
 	return m_role;
 }
+
+
+QString roleToString(Role role) {
+	/**
+	NoRole,
+	Object,
+	If,
+	Else,
+	Exists,
+	Slot,
+	Code,
+	ForAny,
+	DOM,
+	Tab,
+	Property,
+	Method,
+	Alternative,
+	Assign,
+	Function,
+	Argument,
+	JsValue,
+	JsFile
+*/
+	QString ret;
+
+	switch (role) {
+	case Role::NoRole:
+		ret = "NoRole";
+		break;
+	case Role::Object:
+		ret = "Object";
+		break;
+	case Role::If:
+		ret = "If";
+		break;
+	case Role::Else:
+		ret = "Else";
+		break;
+	case Role::Exists:
+		ret = "Exists";
+		break;
+	case Role::Slot:
+		ret = "Slot";
+		break;
+	case Role::Code:
+		ret = "Code";
+		break;
+	case Role::ForAny:
+		ret = "ForAny";
+		break;
+	case Role::DOM:
+		ret = "DOM";
+		break;
+	case Role::Tab:
+		ret = "Tab";
+		break;
+	case Role::Property:
+		ret = "Property";
+		break;
+	case Role::Method:
+		ret = "Method";
+		break;
+	case Role::Alternative:
+		ret = "Alternative";
+		break;
+	case Role::Assign:
+		ret = "Assign";
+		break;
+	case Role::Function:
+		ret = "Function";
+		break;
+	case Role::Argument:
+		ret = "Argument";
+		break;
+	case Role::JsValue:
+		ret = "JsValue";
+		break;
+
+	case Role::JsFile:
+		ret = "JsFile";
+		break;
+	}
+
+	return ret;
+}
+
 }  // namespace icL::context

@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
+import QtWebEngine 1.3
 
 import "../" as MainWindow
 import "../content" as Content;
@@ -13,14 +14,16 @@ SessionBase {
 	id: root;
 
 	property int ith: 0;
+	property WebEngineView current_webview: editor.wview;
+
 
 	function set_manage_mode () {
-		test_content.unfocus_me();
+		editor.unfocus_me();
 	}
 
 	onYChanged: {
 		if (sessions_list.current_session == root && y == 0 && !manage_mode) {
-			test_content.focus_me();
+			editor.focus_me();
 		}
 	}
 
@@ -125,7 +128,7 @@ SessionBase {
 					Header.Tab {
 						id: test_tab;
 						active: true;
-						default_name: "session " + ith;
+						default_name: editor.wview.title;
 					}
 //					Header.Tab {
 //					}
@@ -233,7 +236,9 @@ SessionBase {
 				anchors.fill: parent;
 
 				Content.EditorTab {
-					id: test_content;
+					id: editor;
+
+					navBar: navigation_bar;
 				}
 			}
 		}
