@@ -10,23 +10,11 @@ return_status_2=$(echo $?)
 #sudo apt-get -y -qq install python python-pip texlive-latex-extra
 #pip install --user Pygments
 
-tex_file=$1
-
-# EDIT THESE VARIABLES!!!!
-doc_title="intra-cloud Lightning"
-author="Lelitac Vasile"
-abstract=$(cat <<EOM
-Source code
-EOM
-)
-introduction=$(cat <<EOM
-This document contains the source code of $doc_title (https://gitlab.com/lixcode/ic-lightning)
-EOM
-)
+tex_file="ЛелицакВасилеИсходники"
 
 declare -A file_types
-file_types[0]="make|-name '*.pro'"
-file_types[1]="cpp|-name '*.h' -o -name '*.cpp'|"
+file_types[0]="make|-name '*.pro' -o -name *.pri"
+file_types[1]="cpp|-name '*.h' -o -name '*.cpp'"
 file_types[2]="qml|-name '*.qml'"
 file_types[3]="js|-name '*.js'"
 file_types[4]="sql|-name '*.sql'"
@@ -119,6 +107,7 @@ input_listings () {
   done
 }
 
+cd ..
 input_minted_header $tex_file
 input_doc_header $tex_file
 for i in "${!file_types[@]}"; do
@@ -139,3 +128,8 @@ echo "\end{document}" >> $tex_file
 lualatex -shell-escape $tex_file -output-directory . && lualatex -shell-escape $tex_file -output-directory .
 find . -name "$tex_file.*" ! -name "$tex_file.pdf" -type f -exec rm -f {} +
 ## This needs to be run twice for the TOC to be generated
+
+rm -rf _minted-$tex_file
+rm -f $tex_file
+
+mv $tex_file.pdf grandulation
