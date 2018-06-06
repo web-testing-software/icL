@@ -2,7 +2,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-        grandulation \ # Файлы для дипломного проекта
+        graduation \ # Файлы для дипломного проекта
         linux \ # non compiling project, just file continer
         memory \
         logic \
