@@ -10,7 +10,7 @@ return_status_2=$(echo $?)
 #sudo apt-get -y -qq install python python-pip texlive-latex-extra
 #pip install --user Pygments
 
-tex_file="ЛелицакВасилеИсходники"
+tex_file="Исходники"
 
 declare -A file_types
 file_types[0]="make|-name '*.pro' -o -name *.pri"
