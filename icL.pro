@@ -2,7 +2,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-        linux \ # non compiling project, just file continer
         memory \
         logic \
         vm \
@@ -10,7 +9,6 @@ SUBDIRS = \
         app \
         context
 
-linux.subdir    = bin/release/linux
 memory.subdir   = src/icl-memory
 logic.subdir    = src/icl-logic
 context.subdir  = src/icl-context
