@@ -1,14 +1,9 @@
 #!/bin/bash -e
 
-# Check everything is installed:
 PYTHON_PATH=$(which python)
 return_status_1=$(echo $? 2> /dev/null)
 PIP_PATH=$(which pip 2> /dev/null)
 return_status_2=$(echo $?)
-#TEX_PATH=$(which texlive-latex-extra 2> /dev/null)
-#return_status_3=$(echo $?)
-#sudo apt-get -y -qq install python python-pip texlive-latex-extra
-#pip install --user Pygments
 
 tex_file="Исходники"
 
