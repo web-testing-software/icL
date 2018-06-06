@@ -2,7 +2,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-        graduation \ # Файлы для дипломного проекта
         linux \ # non compiling project, just file continer
         memory \
         logic \
@@ -26,4 +25,21 @@ vm.depends      = context memory inter
 app.depends     = memory inter vm
 
 DISTFILES += \
-    ./src2pdf.sh
+    graduation/src2pdf.sh \
+    graduation/пояснительная_записка.epub \
+    graduation/руководство_пользователя.epub \
+    graduation/техническое_задание.epub \
+    graduation/Исходники.pdf \
+    graduation/пояснительная_записка.pdf \
+    graduation/презентация.pdf \
+    graduation/руководство_пользователя.pdf \
+    graduation/техническое_задание.pdf \
+    graduation/пояснительная_записка.odt \
+    graduation/руководство_пользователя.odt \
+    graduation/техническое_задание.odt \
+    graduation/презенация.pptx \
+    bin/release/linux/update.sh \
+    bin/release/linux/uninstall.sh \
+    bin/release/linux/install.sh \
+    bin/release/linux/extra/icL.desktop \
+    bin/release/linux/extra/icL.svg
