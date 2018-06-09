@@ -23,7 +23,8 @@ HEADERS += \
     object/object.h \
     object/string.h \
     object/void.h \
-    object/set.h
+    object/set.h \
+    object/setobject.h
 
 SOURCES += \
     context.cpp \
@@ -35,4 +36,5 @@ SOURCES += \
     object/object.cpp \
     object/string.cpp \
     object/void.cpp \
-    object/set.cpp
+    object/set.cpp \
+    object/setobject.cpp

@@ -3,8 +3,7 @@
 
 #include "object.h"
 
-#include <bits/shared_ptr.h>
-
+#include <icl-memory/structures/set.h>
 
 /**
  *  icL
@@ -23,15 +22,6 @@
  *  '- memory
  */
 namespace icL::context::object {
-
-using Row   = QLinkedList<QVariant>;
-using Table = QLinkedList<Row>;
-
-struct SetPtr
-{
-	std::shared_ptr<memory::ParamList *> header;
-	std::shared_ptr<Table *>             table;
-};
 
 class Set : public Object
 {
@@ -60,18 +50,18 @@ private:
 	void runLength();
 	void runEmpty();
 
-	void prepend(const Row & row);
-	void append(const Row & row);
-	void insert(const Row & row);
-	void merge(const Table & table);
+	void prepend(const memory::Row & row);
+	void append(const memory::Row & row);
+	void insert(const memory::Row & row);
+	void merge(const memory::Table & table);
 
 	void popFront();
 	void popBack();
 	void removeAt(int index);
-	void remove(const Row & row);
+	void remove(const memory::Row & row);
 
-	Row get(int index);
-	int ref(const Row & value);
+	memory::Row get(int index);
+	int         ref(const memory::Row & value);
 
 private:
 	void runPrepend(memory::ArgList & args);
@@ -104,14 +94,10 @@ public:
 
 	const QString     toString() override;
 	const QStringList toList() override;
-
-private:
-	Table * table;
 };
 
 
 }  // namespace icL::context::object
 
-Q_DECLARE_METATYPE(icL::context::object::SetPtr);
 
 #endif  // icl_context_object_Set
