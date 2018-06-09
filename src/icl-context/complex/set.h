@@ -1,5 +1,5 @@
-#ifndef SET_H
-#define SET_H
+#ifndef icL_context_complex_Set
+#define icL_context_complex_Set
 
 #include "complex.h"
 
@@ -47,4 +47,4 @@ public:
 
 }  // namespace icL::context::complex
 
-#endif  // SET_H
+#endif  // icL_context_complex_Set
