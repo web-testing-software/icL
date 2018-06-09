@@ -165,6 +165,10 @@ public:
 	double            toDouble() override;
 	const QString     toString() override;
 	const QStringList toList() override;
+
+	// Object interface backend
+private:
+	void sendException();
 };
 
 }  // namespace icL::context::object

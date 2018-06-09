@@ -264,7 +264,7 @@ void Element::click() {
 	QVariant result;
 	QPoint   point;
 
-	result       = il->server->runJS(web.variable % ".clickNow()");
+	result = il->server->runJS(web.variable % ".clickNow()");
 
 	if (result.isValid()) {
 		point = result.toPoint();
@@ -757,23 +757,32 @@ memory::Type Element::type() const {
 
 
 bool Element::toBoolean() {
+	sendException();
 	return false;
 }
 
 int Element::toInt() {
+	sendException();
 	return 0;
 }
 
 double Element::toDouble() {
+	sendException();
 	return 0.0;
 }
 
 const QString Element::toString() {
+	sendException();
 	return QString{};
 }
 
 const QStringList Element::toList() {
+	sendException();
 	return QStringList{};
+}
+
+void Element::sendException() {
+	il->vm->exception({-1, "Element object can not be casted to any type"});
 }
 
 }  // namespace icL::context::object

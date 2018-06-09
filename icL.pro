@@ -7,7 +7,8 @@ SUBDIRS = \
         vm \
         inter \
         app \
-        context
+        context \
+        dsv
 
 memory.subdir   = src/icl-memory
 logic.subdir    = src/icl-logic
@@ -15,9 +16,11 @@ context.subdir  = src/icl-context
 vm.subdir       = src/icl-vm
 inter.subdir    = src/icl-inter
 app.subdir      = src/icl-app
+dsv.subdir      = src/icl-dsv
 
 logic.depends   = memory
 context.depends = memory logic
+dsv.depends     = context
 inter.depends   = logic context
 vm.depends      = context memory inter
 app.depends     = memory inter vm

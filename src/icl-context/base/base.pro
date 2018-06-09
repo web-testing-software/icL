@@ -22,7 +22,8 @@ HEADERS += \
     object/list.h \
     object/object.h \
     object/string.h \
-    object/void.h
+    object/void.h \
+    object/set.h
 
 SOURCES += \
     context.cpp \
@@ -33,4 +34,5 @@ SOURCES += \
     object/list.cpp \
     object/object.cpp \
     object/string.cpp \
-    object/void.cpp
+    object/void.cpp \
+    object/set.cpp
