@@ -59,4 +59,6 @@ DISTFILES += \
     models/control_isRightToLeft.plantuml \
     models/data_isExecutable.plantuml \
     models/call_execute.plantuml \
-    models/new_execute.plantuml
+    models/new_execute.plantuml \
+    models/commom_isExecutable.plantuml \
+    models/commom_isRightToLeft.plantum

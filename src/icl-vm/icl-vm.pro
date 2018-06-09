@@ -44,4 +44,7 @@ DISTFILES += \
     models/server_waitForLoading.plantuml \
     models/webEngine_onLoadStatusChanged.plantuml \
     models/sequence_js_code_run.plantuml \
-    models/sequence_interrupt.plantuml
+    models/sequence_interrupt.plantuml \
+    models/fourth_anonym_function.plantuml \
+    models/third_anonym_function.plantuml \
+    models/vms_interrupt2.plantuml
