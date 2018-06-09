@@ -1,5 +1,5 @@
-#ifndef METAOBJECT_H
-#define METAOBJECT_H
+#ifndef icL_context_object_SetObject
+#define icL_context_object_SetObject
 
 
 #include "object.h"
@@ -30,4 +30,4 @@ private:
 
 }  // namespace icL::context::object
 
-#endif  // METAOBJECT_H
+#endif  // icL_context_object_SetObject
