@@ -161,6 +161,8 @@ void Server::keys(const QString & keys) {
 }
 
 void Server::newLog(int level, const QString & message) {
+	qDebug() << level << message;
+
 	emit request_LogOut(level, message);
 }
 
