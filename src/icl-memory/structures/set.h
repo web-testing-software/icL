@@ -11,8 +11,8 @@
 
 namespace icL::memory {
 
-using Row   = QLinkedList<QVariant>;
-using Table = QLinkedList<Row>;
+using Row   = QList<QVariant>;
+using Table = QHash<QString, Row>;
 
 struct SetPtr
 {
@@ -22,8 +22,8 @@ struct SetPtr
 
 struct SetObjPtr
 {
-	std::shared_ptr<ParamList *>     header;
-	std::shared_ptr<Table::iterator> table;
+	SetPtr  set;
+	QString key;
 };
 
 }  // namespace icL::memory

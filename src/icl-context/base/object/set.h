@@ -52,6 +52,7 @@ private:
 
 	void prepend(const memory::Row & row);
 	void append(const memory::Row & row);
+	void appplicate(const QList<QStringList> & list);
 	void insert(const memory::Row & row);
 	void merge(const memory::Table & table);
 
@@ -66,6 +67,7 @@ private:
 private:
 	void runPrepend(memory::ArgList & args);
 	void runAppend(memory::ArgList & args);
+	void runApplicate(memory::ArgList & args);
 	void runInsert(memory::ArgList & args);
 	void runMerge(memory::ArgList & args);
 

@@ -2,9 +2,10 @@
 #define METAOBJECT_H
 
 
-#include "set.h"
+#include "object.h"
 
 #include <icl-memory/state/datastate.h>
+#include <icl-memory/structures/set.h>
 
 namespace icL::context::object {
 
@@ -14,7 +15,6 @@ class SetObject
 {
 public:
 	SetObject();
-
 
 	// DataStateInterface interface
 	void setValue(const QString & name, const QVariant & value) override;
