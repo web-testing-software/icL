@@ -50,36 +50,25 @@ private:
 	void runLength();
 	void runEmpty();
 
-	void prepend(const memory::Row & row);
-	void append(const memory::Row & row);
 	void appplicate(const QList<QStringList> & list);
-	void insert(const memory::Row & row);
-	void merge(const memory::Table & table);
+	void insert(const QVariantList & row);
+	void merge(const memory::SetPtr &set2);
+	void remove(const QVariantList & row);
 
-	void popFront();
-	void popBack();
-	void removeAt(int index);
-	void remove(const memory::Row & row);
-
-	memory::Row get(int index);
-	int         ref(const memory::Row & value);
+	memory::SetObjPtr ref(const QVariantList & row);
 
 private:
-	void runPrepend(memory::ArgList & args);
-	void runAppend(memory::ArgList & args);
 	void runApplicate(memory::ArgList & args);
 	void runInsert(memory::ArgList & args);
 	void runMerge(memory::ArgList & args);
-
-	void runPopFront(memory::ArgList & args);
-	void runPopBack(memory::ArgList & args);
-	void runRemoveAt(memory::ArgList & args);
 	void runRemove(memory::ArgList & args);
 
-	void runGet(memory::ArgList & args);
 	void runRef(memory::ArgList & args);
 
 	// Back-end
+	bool checkRow(const memory::SetPtr & set, const QVariantList & row);
+	QString getId(const QVariantList & row);
+
 private:
 	// Context interface
 public:

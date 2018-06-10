@@ -3,7 +3,7 @@
 
 #include "functioncontainer.h"
 
-#include <bits/shared_ptr.h>
+#include <memory>
 
 #include <QLinkedList>
 #include <QVariant>
@@ -11,13 +11,11 @@
 
 namespace icL::memory {
 
-using Row   = QList<QVariant>;
-using Table = QHash<QString, Row>;
-
 struct SetPtr
 {
-	std::shared_ptr<ParamList *> header;
-	std::shared_ptr<Table *>     table;
+	std::shared_ptr<ParamList> header;
+
+	std::shared_ptr<QHash<QString, QVariantList>> table;
 };
 
 struct SetObjPtr

@@ -40,7 +40,7 @@ struct Parameter
 	Type    type;
 };
 
-using ParamList = QLinkedList<Parameter>;
+using ParamList = QList<Parameter>;
 
 struct CodeFragment
 {
