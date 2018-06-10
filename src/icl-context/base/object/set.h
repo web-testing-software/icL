@@ -51,14 +51,24 @@ private:
 	void runEmpty();
 
 	void appplicate(const QList<QStringList> & list);
+	void insertField(const QString & name, const QVariant & value);
+	void removeField(const QString & name);
+	void concatLists(const QString & name, const QString & separator);
+
 	void insert(const QVariantList & row);
 	void merge(const memory::SetPtr &set2);
 	void remove(const QVariantList & row);
+	void clear();
 
 	memory::SetObjPtr ref(const QVariantList & row);
 
 private:
 	void runApplicate(memory::ArgList & args);
+	void runInsertField(memory::ArgList & args);
+	void runRemoveField(memory::ArgList & args);
+	void runConcatFields(memory::ArgList & args);
+	void runLists(memory::ArgList & args);
+
 	void runInsert(memory::ArgList & args);
 	void runMerge(memory::ArgList & args);
 	void runRemove(memory::ArgList & args);
@@ -68,6 +78,7 @@ private:
 	// Back-end
 	bool checkRow(const memory::SetPtr & set, const QVariantList & row);
 	QString getId(const QVariantList & row);
+	int indexOf(const QString & name, const memory::SetPtr & set);
 
 private:
 	// Context interface

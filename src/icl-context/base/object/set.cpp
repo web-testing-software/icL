@@ -54,6 +54,198 @@ void Set::runEmpty() {
 	newContext = new Boolean(il, newValue, true);
 }
 
+void Set::appplicate(const QList<QStringList> & list) {
+	memory::SetPtr set = getValue().value<memory::SetPtr>();
+
+	if (set.header->size() != list.size()) {
+		il->vm->exception(
+		  {-1211,
+		   "Wrong applicate args (the number of fields are not matched)."});
+		return;
+	}
+
+	int size = list[0].size();
+
+	for (int i = 1; i < list.size(); i++) {
+		int new_size = list[i].size();
+
+		if (new_size > size) {
+			size = new_size;
+		}
+	}
+
+	int i, j;
+
+	// Stop double loop on error
+	auto stop = [&i, &j, &size, &list]() {
+		i = size;
+		j = list.size();
+	};
+
+	for (i = 0; i < size; i++) {
+		QVariantList row = {};
+
+		for (j = 0; j < list.size(); j++) {
+			QString value;
+
+			if (list[j].size() > 0) {
+				value = list[j][i % list[j].size()];
+			}
+
+			std::pair<QVariant, bool> res = {{}, false};
+
+			switch ((*set.header)[j].type) {
+			case memory::Type::Boolean:
+				res = parseToBool(value.isEmpty() ? "false" : value);
+				break;
+
+			case memory::Type::Int:
+				res = parseToInt(value.isEmpty() ? "0" : value);
+				break;
+
+			case memory::Type::Double:
+				res = parseToDouble(value.isEmpty() ? "0.0" : value);
+				break;
+
+			case memory::Type::String:
+				res = {value, true};
+				break;
+
+			case memory::Type::List:
+				res = {value.isEmpty() ? QStringList{} : QStringList{} << value,
+					   true};
+				break;
+
+			default:
+				il->vm->exception(
+				  {-1213,
+				   "SetObj can contains values of type Boolean, Int, Double, "
+				   "String, List. But given " +
+					 memory::typeToString((*set.header)[j].type)});
+			}
+
+			if (res.second) {
+				row.append(res.first);
+			}
+			else {
+				stop();
+			}
+		}
+
+		QString key = getId(row);
+
+		set.table->insert(key, row);
+	}
+}
+
+void Set::insertField(const QString & name, const QVariant & value) {
+	memory::SetPtr old_set = getValue().value<memory::SetPtr>();
+	memory::SetPtr new_set = {};
+
+	memory::Type value_type = memory::variantTypeToType(value);
+
+	for (const memory::Parameter & param : *old_set.header) {
+		if (param.name == name) {
+			il->vm->exception(
+			  {-1212, "A field with name `" % name % "` already exists."});
+			return;
+		}
+	}
+
+	if (
+	  value_type != memory::Type::Boolean && value_type != memory::Type::Int &&
+	  value_type != memory::Type::Double &&
+	  value_type != memory::Type::String && value_type != memory::Type::List) {
+		il->vm->exception({-1213,
+						   "SetObj can contains values of type Boolean, Int, "
+						   "Double, String, List. But given " +
+							 memory::typeToString(value_type)});
+	}
+
+	new_set.header =
+	  std::make_shared<memory::ParamList>(memory::ParamList{*old_set.header});
+	new_set.table = std::make_shared<memory::Table>(memory::Table{});
+
+	new_set.header->append(memory::Parameter{name, value_type});
+
+	for (QVariantList row : *old_set.table) {
+		QString key;
+
+		row.append(value);
+		key = getId(row);
+
+		new_set.table->insert(key, row);
+	}
+
+	setValue(QVariant::fromValue(new_set));
+}
+
+void Set::removeField(const QString & name) {
+	memory::SetPtr old_set = getValue().value<memory::SetPtr>();
+	memory::SetPtr new_set = {};
+
+	int index = indexOf(name, old_set);
+
+	if (index == -1) {
+		return;
+	}
+
+	if (old_set.header->size() == 1) {
+		il->vm->exception({-1215, "The last field cannot be removed."});
+		return;
+	}
+
+	new_set.header =
+	  std::make_shared<memory::ParamList>(memory::ParamList{*old_set.header});
+	new_set.table = std::make_shared<memory::Table>(memory::Table{});
+
+	new_set.header->removeAt(index);
+
+	for (QVariantList row : *old_set.table) {
+		QString key;
+
+		row.removeAt(index);
+		key = getId(row);
+
+		new_set.table->insert(key, row);
+	}
+
+	setValue(QVariant::fromValue(new_set));
+}
+
+void Set::concatLists(const QString & name, const QString & separator) {
+	memory::SetPtr old_set = getValue().value<memory::SetPtr>();
+	memory::SetPtr new_set = {};
+	int            index   = indexOf(name, old_set);
+
+	if (index == -1) {
+		return;
+	}
+
+	if ((*old_set.header)[index].type != memory::Type::List) {
+		il->vm->exception(
+		  {-1216, "The field type must be List, given " %
+					memory::typeToString((*old_set.header)[index].type) % '.'});
+		return;
+	}
+
+	new_set.header =
+	  std::make_shared<memory::ParamList>(memory::ParamList{*old_set.header});
+	new_set.table = std::make_shared<memory::Table>(memory::Table{});
+
+	(*new_set.header)[index].type = memory::Type::String;
+
+	for (QVariantList row : *old_set.table) {
+		row[index] = row.at(index).toStringList().join(separator);
+
+		QString key = getId(row);
+
+		new_set.table->insert(key, row);
+	}
+
+	setValue(QVariant::fromValue(new_set));
+}
+
 void Set::insert(const QVariantList & row) {
 	memory::SetPtr set = getValue().value<memory::SetPtr>();
 
@@ -106,8 +298,19 @@ void Set::remove(const QVariantList & row) {
 	set.table->remove(id);
 }
 
+void Set::clear() {
+	memory::SetPtr old_set = getValue().value<memory::SetPtr>();
+	memory::SetPtr new_set = {};
+
+	new_set.header =
+	  std::make_shared<memory::ParamList>(memory::ParamList{*old_set.header});
+	new_set.table = std::make_shared<memory::Table>(memory::Table{});
+
+	setValue(QVariant::fromValue(new_set));
+}
+
 memory::SetObjPtr Set::ref(const QVariantList & row) {
-	memory::SetPtr set = getValue().value<memory::SetPtr>();
+	memory::SetPtr    set = getValue().value<memory::SetPtr>();
 	memory::SetObjPtr ret;
 
 	if (!checkRow(set, row)) {
@@ -126,7 +329,19 @@ memory::SetObjPtr Set::ref(const QVariantList & row) {
 	return ret;
 }
 
-void Set::runInsert(memory::ArgList & args) {}
+void Set::runApplicate(memory::ArgList & args) {}
+
+void Set::runInsertField(memory::ArgList & args) {}
+
+void Set::runRemoveField(memory::ArgList & args) {}
+
+void Set::runConcatFields(memory::ArgList & args) {}
+
+void Set::runLists(memory::ArgList & args) {}
+
+void Set::runInsert(memory::ArgList & args) {
+	//
+}
 
 void Set::runMerge(memory::ArgList & args) {}
 
@@ -174,6 +389,22 @@ QString Set::getId(const QVariantList & row) {
 	}
 
 	return strlist.join(",");
+}
+
+int Set::indexOf(const QString & name, const memory::SetPtr & set) {
+	int index = -1;
+
+	for (int i = 0; i < set.header->size(); i++) {
+		if ((*set.header)[i].name == name) {
+			index = i;
+		}
+	}
+
+	if (index == -1) {
+		il->vm->exception({-1214, "The field `" % name % "` not found."});
+	}
+
+	return index;
 }
 
 Context * Set::runProperty(Prefix prefix, const QString & name) {}

@@ -11,11 +11,13 @@
 
 namespace icL::memory {
 
+using Table = QHash<QString, QVariantList>;
+
 struct SetPtr
 {
 	std::shared_ptr<ParamList> header;
 
-	std::shared_ptr<QHash<QString, QVariantList>> table;
+	std::shared_ptr<Table> table;
 };
 
 struct SetObjPtr
