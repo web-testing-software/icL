@@ -1,3 +1,5 @@
+#include "element.h"
+#include "set.h"
 #include "type.h"
 
 namespace icL::memory {
@@ -40,10 +42,10 @@ QString typeToString(Type type) {
 
 
 
-Type variantTypeToType(QVariant::Type type) {
+Type variantTypeToType(const QVariant &var) {
 	Type ret = Type::Void;
 
-	switch (type) {
+	switch (var.type()) {
 	case QVariant::Bool:
 		ret = Type::Boolean;
 		break;
@@ -65,7 +67,15 @@ Type variantTypeToType(QVariant::Type type) {
 		break;
 
 	case QVariant::UserType:
-		ret = Type::Element;
+		if (var.canConvert<ElementPtr>()) {
+			ret = Type::Element;
+		}
+		else if (var.canConvert<SetPtr>()) {
+			ret = Type::Set;
+		}
+		else if (var.canConvert<SetObjPtr>()) {
+			ret = Type::SetObj;
+		}
 		break;
 
 	default:
