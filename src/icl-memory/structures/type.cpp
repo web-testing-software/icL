@@ -35,6 +35,14 @@ QString typeToString(Type type) {
 	case Type::Element:
 		ret = "Element";
 		break;
+
+	case Type::Set:
+		ret = "Set";
+		break;
+
+	case Type::SetObj:
+		ret = "SetObj";
+		break;
 	}
 
 	return ret;
