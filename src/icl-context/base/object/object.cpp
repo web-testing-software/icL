@@ -329,7 +329,7 @@ void Object::runCast(const QString & name, memory::ArgList & args) {
 	}
 }
 
-bool Object::parseToBool(const QString & str) {
+std::pair<bool, bool> Object::parseToBool(const QString & str) {
 	bool ok = true;
 	bool res;
 
@@ -344,36 +344,35 @@ bool Object::parseToBool(const QString & str) {
 	}
 
 	if (ok) {
-		newValue = res;
-		return res;
+		return {res, true};
 	}
 
 	sendCastFailed(str, QStringLiteral("Boolean"));
-	return false;
+	return {false, false};
 }
 
-int Object::parseToInt(const QString & str) {
+std::pair<int, bool> Object::parseToInt(const QString & str) {
 	bool ok;
 	int  res = str.toInt(&ok);
 
 	if (ok) {
-		return res;
+		return {res, true};
 	}
 
 	sendCastFailed(str, QStringLiteral("Int"));
-	return 0;
+	return {0, false};
 }
 
-double Object::parseToDouble(const QString & str) {
+std::pair<double, bool> Object::parseToDouble(const QString & str) {
 	bool ok;
 	int  res = str.toDouble(&ok);
 
 	if (ok) {
-		return res;
+		return {res, true};
 	}
 
 	sendCastFailed(str, QStringLiteral("Double"));
-	return 0.0;
+	return {0.0, false};
 };
 
 

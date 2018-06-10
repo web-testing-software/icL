@@ -111,9 +111,9 @@ protected:
 	void sendCastFailed(const QString & value, const QString & type);
 	void runCast(const QString & name, memory::ArgList & args);
 
-	bool parseToBool(const QString & str);
-	int parseToInt(const QString & str);
-	double parseToDouble(const QString & str);
+	std::pair<bool, bool>   parseToBool(const QString & str);
+	std::pair<int, bool>    parseToInt(const QString & str);
+	std::pair<double, bool> parseToDouble(const QString & str);
 
 protected:
 	// LValue

@@ -533,9 +533,11 @@ bool List::toBoolean() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {
-		bool res = parseToBool(value);
+		auto [res, success] = parseToBool(value);
 
-		newValue = res;
+		if (success) {
+			newValue = res;
+		}
 		return res;
 	}
 
@@ -546,9 +548,11 @@ int List::toInt() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {
-		int res = parseToInt(value);
+		auto [res, success] = parseToInt(value);
 
-		newValue = res;
+		if (success) {
+			newValue = res;
+		}
 		return res;
 	}
 
@@ -559,9 +563,11 @@ double List::toDouble() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {
-		double res = parseToDouble(value);
+		auto [res, success] = parseToDouble(value);
 
-		newValue = res;
+		if (success) {
+			newValue = res;
+		}
 		return res;
 	}
 
