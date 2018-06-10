@@ -1,7 +1,7 @@
 #ifndef icL_memory_StackState
 #define icL_memory_StackState
 
-#include "../structures/webelement.h"
+#include "../structures/element.h"
 #include "datastate.h"
 
 
@@ -32,7 +32,7 @@ public:
 	StackState(StackState * prev);
 	virtual ~StackState();
 
-	void setWebElement(const QString & name, WebElement & webElement);
+	void setWebElement(const QString & name, Element & Element);
 
 	// Stack functions
 	StackState * getPrev();

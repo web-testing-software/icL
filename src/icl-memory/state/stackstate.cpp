@@ -15,8 +15,8 @@ StackState::StackState(StackState * prev /*, int stackLevel*/) {
 
 StackState::~StackState() = default;
 
-void StackState::setWebElement(const QString & name, WebElement & webElement) {
-	QVariant tmp = QVariant::fromValue(webElement);
+void StackState::setWebElement(const QString & name, Element & Element) {
+	QVariant tmp = QVariant::fromValue(Element);
 
 	setValue(name, tmp);
 }

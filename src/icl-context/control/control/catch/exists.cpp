@@ -3,7 +3,7 @@
 #include "slot.h"
 
 #include <icl-context/base/object/object.h>
-#include <icl-memory/structures/webelement.h>
+#include <icl-memory/structures/element.h>
 
 namespace icL::context::code::control::catch0 {
 
@@ -62,7 +62,7 @@ memory::StepType::Value Exists::execute() {
 			if (isOk) {
 				if (!this->isEmiter) {
 					if (ret.consoleValue.type() == QVariant::UserType) {
-						auto el = ret.consoleValue.value<memory::WebElement>();
+						auto el = ret.consoleValue.value<memory::Element>();
 
 						if (el.count == 0) {
 							ret.consoleValue = QVariant{};

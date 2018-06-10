@@ -4,7 +4,7 @@
 
 #include "object.h"
 
-#include <icl-memory/structures/webelement.h>
+#include <icl-memory/structures/element.h>
 
 
 /**
@@ -100,20 +100,20 @@ public:
 	void ctrlV(const QString & text);
 	bool isValid();
 
-	void add(memory::WebElement element);
+	void add(memory::Element element);
 
-	memory::WebElement copy();
-	memory::WebElement filter(const QString & selector);
-	memory::WebElement filter(const QString & context, bool asfragment);
-	memory::WebElement get(int index);
+	memory::Element copy();
+	memory::Element filter(const QString & selector);
+	memory::Element filter(const QString & context, bool asfragment);
+	memory::Element get(int index);
 
-	memory::WebElement query(const QString & selector);
-	memory::WebElement queryAll(const QString & selector);
-	memory::WebElement next();
-	memory::WebElement prev();
-	memory::WebElement parent();
-	memory::WebElement child(int index);
-	memory::WebElement closest(const QString & selector);
+	memory::Element query(const QString & selector);
+	memory::Element queryAll(const QString & selector);
+	memory::Element next();
+	memory::Element prev();
+	memory::Element parent();
+	memory::Element child(int index);
+	memory::Element closest(const QString & selector);
 
 	void addClass(const QString & className);
 	void removeClass(const QString & className);
@@ -146,10 +146,10 @@ private:
 	void runHasClass(memory::ArgList & args);
 
 private:
-	bool               isSingle(memory::WebElement & web);
-	memory::WebElement queryBackEnd(
+	bool               isSingle(memory::Element & web);
+	memory::Element queryBackEnd(
 	  const QString & qsFunc, const QString & selector);
-	memory::WebElement domTrans(const QString & method, const QString & arg);
+	memory::Element domTrans(const QString & method, const QString & arg);
 
 	// Context interface
 public:

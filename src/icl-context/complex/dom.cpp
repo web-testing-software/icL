@@ -2,7 +2,7 @@
 
 #include <icl-context/base/object/element.h>
 #include <icl-context/base/object/object.h>
-#include <icl-memory/structures/webelement.h>
+#include <icl-memory/structures/element.h>
 
 #include <QStringBuilder>
 #include <QVariant>
@@ -12,9 +12,9 @@ namespace icL::context::complex {
 Dom::Dom(memory::InterLevel * il)
 	: Complex(il) {}
 
-memory::WebElement Dom::query(const QString & selector) {
+memory::Element Dom::query(const QString & selector) {
 	QString            newId = object::Element::getNewId();
-	memory::WebElement web;
+	memory::Element web;
 
 	web.count = il->server
 				  ->runJS(
@@ -26,15 +26,15 @@ memory::WebElement Dom::query(const QString & selector) {
 
 	newValue = QVariant::fromValue(web);
 
-	return newValue.value<memory::WebElement>();
+	return newValue.value<memory::Element>();
 }
 
-memory::WebElement Dom::queryAll(const QStringList & selectors) {
+memory::Element Dom::queryAll(const QStringList & selectors) {
 	QString newId     = object::Element::getNewId();
 	QString selector  = selectors.join(R"(").add(")");
 	QString selector2 = selectors.join(" (+) ");
 
-	memory::WebElement web;
+	memory::Element web;
 
 	web.count =
 	  il->server
@@ -46,7 +46,7 @@ memory::WebElement Dom::queryAll(const QStringList & selectors) {
 
 	newValue = QVariant::fromValue(web);
 
-	return newValue.value<memory::WebElement>();
+	return newValue.value<memory::Element>();
 }
 
 void Dom::runQuery(memory::ArgList & args) {

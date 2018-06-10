@@ -5,7 +5,7 @@ title Диаграмма классов
 
 DataState <|-left- StackState
 DataState <|-right- MemoryState
-DataState *-down- WebElement
+DataState *-down- Element
 StackStateIt *-- StackState
 MemoryStateIt *-- MemoryState
 Memory *-- StackStateIt
@@ -53,7 +53,7 @@ class StackState {
 	- bool m_final
 }
 
-class WebElement {
+class Element {
 	+ bool valid;
 	+ bool single;
 	+ bool varName;

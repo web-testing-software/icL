@@ -9,7 +9,7 @@
 #include "object/string.h"
 #include "object/void.h"
 
-#include <icl-memory/structures/webelement.h>
+#include <icl-memory/structures/element.h>
 
 #include <utility>
 
@@ -207,7 +207,7 @@ QString Context::varToJsString(const QVariant & var) {
 	QString     ret;
 	QStringList list = var.toStringList();
 
-	memory::WebElement web = var.value<memory::WebElement>();
+	memory::Element web = var.value<memory::Element>();
 
 	switch (var.type()) {
 	case QVariant::Bool:

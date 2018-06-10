@@ -80,41 +80,41 @@ QString Element::getNewId() {
 
 
 int Element::length() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return web.count;
 }
 
 String * Element::html() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new String{il, web.variable % ".html()",
 					  web.variable % ".html(%1, true)"};
 }
 
 String * Element::text() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new String{il, web.variable % ".text()",
 					  web.variable % ".text(%1, true)"};
 }
 
 Int * Element::width() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new Int{il, web.variable % ".width()",
 				   web.variable % ".width(%1, true)"};
 }
 
 Int * Element::height() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new Int{il, web.variable % ".height()",
 				   web.variable % ".height(%1, true)"};
 }
 
 bool Element::visible() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	if (!isSingle(web)) {
 		return false;
@@ -126,7 +126,7 @@ bool Element::visible() {
 }
 
 bool Element::clickable() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	if (!isSingle(web)) {
 		return false;
@@ -138,7 +138,7 @@ bool Element::clickable() {
 }
 
 Object * Element::prop(const QString & name) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	QString getter = web.variable % ".prop('" % name % "')";
 	QString ser    = web.variable % ".prop('" % name % "', %1, true)";
@@ -175,21 +175,21 @@ Object * Element::prop(const QString & name) {
 }
 
 String * Element::attr(const QString & name) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new String{il, web.variable % ".attr('" % name % "')",
 					  web.variable % ".attr('" % name % "', %1, true)"};
 }
 
 String * Element::data(const QString & name) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new String{il, web.variable % ".data('" % name % "')",
 					  web.variable % ".data('" % name % "', %1, true)"};
 }
 
 String * Element::css(const QString & name) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return new String{il, web.variable % ".css('" % name % "')",
 					  web.variable % ".css('" % name % "', %1, true)"};
@@ -245,7 +245,7 @@ void Element::runCSS(const QString & name) {
 
 
 void Element::scrollTo() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	if (!isSingle(web)) {
 		return;
@@ -255,7 +255,7 @@ void Element::scrollTo() {
 }
 
 void Element::click() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	if (!isSingle(web)) {
 		return;
@@ -281,7 +281,7 @@ void Element::click() {
 }
 
 void Element::sendKeys(const QString & keys) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	if (!isSingle(web)) {
 		return;
@@ -294,7 +294,7 @@ void Element::sendKeys(const QString & keys) {
 }
 
 void Element::ctrlV(const QString & text) {
-	memory::WebElement web     = getValue().value<memory::WebElement>();
+	memory::Element web     = getValue().value<memory::Element>();
 	QString            escaped = text;
 
 	if (!isSingle(web)) {
@@ -307,13 +307,13 @@ void Element::ctrlV(const QString & text) {
 }
 
 bool Element::isValid() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::Element web = getValue().value<memory::Element>();
 
 	return web.count > 0;
 }
 
-void Element::add(memory::WebElement element) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
+void Element::add(memory::Element element) {
+	memory::Element web = getValue().value<memory::Element>();
 
 	web.count = il->server
 				  ->runJS(
@@ -326,9 +326,9 @@ void Element::add(memory::WebElement element) {
 	setValue(QVariant::fromValue(web));
 }
 
-memory::WebElement Element::copy() {
-	memory::WebElement web = getValue().value<memory::WebElement>();
-	memory::WebElement ret;
+memory::Element Element::copy() {
+	memory::Element web = getValue().value<memory::Element>();
+	memory::Element ret;
 
 	ret.variable = getNewId();
 	ret.selector = web.selector;
@@ -339,9 +339,9 @@ memory::WebElement Element::copy() {
 	return ret;
 }
 
-memory::WebElement Element::filter(const QString & selector) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
-	memory::WebElement ret;
+memory::Element Element::filter(const QString & selector) {
+	memory::Element web = getValue().value<memory::Element>();
+	memory::Element ret;
 	QString            escaped = selector;
 
 	escaped.replace("'", "\\'");
@@ -357,9 +357,9 @@ memory::WebElement Element::filter(const QString & selector) {
 	return ret;
 }
 
-memory::WebElement Element::filter(const QString & context, bool asfragment) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
-	memory::WebElement ret;
+memory::Element Element::filter(const QString & context, bool asfragment) {
+	memory::Element web = getValue().value<memory::Element>();
+	memory::Element ret;
 	QString            escaped = context;
 
 	escaped.replace("'", "\\'");
@@ -376,9 +376,9 @@ memory::WebElement Element::filter(const QString & context, bool asfragment) {
 	return ret;
 }
 
-memory::WebElement Element::get(int index) {
-	memory::WebElement web = getValue().value<memory::WebElement>();
-	memory::WebElement ret;
+memory::Element Element::get(int index) {
+	memory::Element web = getValue().value<memory::Element>();
+	memory::Element ret;
 	QString            indexStr = QString::number(index);
 
 	if (index < 0 || index >= web.count) {
@@ -397,36 +397,36 @@ memory::WebElement Element::get(int index) {
 	return ret;
 }
 
-memory::WebElement Element::query(const QString & selector) {
+memory::Element Element::query(const QString & selector) {
 	return queryBackEnd("qs", selector);
 }
 
-memory::WebElement Element::queryAll(const QString & selector) {
+memory::Element Element::queryAll(const QString & selector) {
 	return queryBackEnd("qsAll", selector);
 }
 
-memory::WebElement Element::next() {
+memory::Element Element::next() {
 	return domTrans(QStringLiteral("next"), QString());
 }
 
-memory::WebElement Element::prev() {
+memory::Element Element::prev() {
 	return domTrans(QStringLiteral("prev"), QString());
 }
 
-memory::WebElement Element::parent() {
+memory::Element Element::parent() {
 	return domTrans(QStringLiteral("parent"), QString());
 }
 
-memory::WebElement Element::child(int index) {
+memory::Element Element::child(int index) {
 	return domTrans(QStringLiteral("child"), QString::number(index));
 }
 
-memory::WebElement Element::closest(const QString & selector) {
+memory::Element Element::closest(const QString & selector) {
 	return domTrans(QStringLiteral("closest"), '"' % selector % '"');
 }
 
 void Element::addClass(const QString & className) {
-	memory::WebElement web     = getValue().value<memory::WebElement>();
+	memory::Element web     = getValue().value<memory::Element>();
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
@@ -434,7 +434,7 @@ void Element::addClass(const QString & className) {
 }
 
 void Element::removeClass(const QString & className) {
-	memory::WebElement web     = getValue().value<memory::WebElement>();
+	memory::Element web     = getValue().value<memory::Element>();
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
@@ -442,7 +442,7 @@ void Element::removeClass(const QString & className) {
 }
 
 bool Element::hasClass(const QString & className) {
-	memory::WebElement web     = getValue().value<memory::WebElement>();
+	memory::Element web     = getValue().value<memory::Element>();
 	QString            escaped = className;
 
 	if (!isSingle(web)) {
@@ -504,7 +504,7 @@ void Element::runIsValid(memory::ArgList & args) {
 
 void Element::runAdd(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Element) {
-		add(args[0].object->getValue().value<memory::WebElement>());
+		add(args[0].object->getValue().value<memory::Element>());
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<Element>"));
@@ -654,7 +654,7 @@ void Element::runHasClass(memory::ArgList & args) {
 
 
 
-bool Element::isSingle(memory::WebElement & web) {
+bool Element::isSingle(memory::Element & web) {
 	if (web.count != 1) {
 		if (web.count == 0) {
 			il->vm->exception(
@@ -673,11 +673,11 @@ bool Element::isSingle(memory::WebElement & web) {
 	return true;
 }
 
-memory::WebElement Element::queryBackEnd(
+memory::Element Element::queryBackEnd(
   const QString & qsFunc, const QString & selector) {
 
-	memory::WebElement web = getValue().value<memory::WebElement>();
-	memory::WebElement ret;
+	memory::Element web = getValue().value<memory::Element>();
+	memory::Element ret;
 
 	ret.variable = getNewId();
 	ret.selector = web.selector % " " % selector;
@@ -691,11 +691,11 @@ memory::WebElement Element::queryBackEnd(
 	return ret;
 }
 
-memory::WebElement Element::domTrans(
+memory::Element Element::domTrans(
   const QString & method, const QString & arg) {
 
-	memory::WebElement web = getValue().value<memory::WebElement>();
-	memory::WebElement ret;
+	memory::Element web = getValue().value<memory::Element>();
+	memory::Element ret;
 
 	ret.variable = getNewId();
 	ret.selector = web.selector % " -> " % method % "(" % arg % ")";
