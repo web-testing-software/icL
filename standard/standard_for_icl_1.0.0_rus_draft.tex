@@ -1,4 +1,4 @@
-\documentclass[a4paper, 14pt]{extarticle}
+\documentclass[a4paper, 14pt, russian]{extarticle}
 
 \usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
 \usepackage{fancyvrb}
@@ -7,11 +7,22 @@
 \setmainlanguage{russian} 
 \setotherlanguage{english}
 \usepackage{setspace}
+
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{ulem}
+\setcounter{tocdepth}{2}
   
 \setmainfont{Liberation Serif}
 \newfontfamily\cyrillicfont{Liberation Serif}
+%\setmainfont{Times New Roman}
+%\newfontfamily\cyrillicfont{Times New Roman}
 \setmonofont{Liberation Mono}
+\setsansfont{Liberation Sans}
 \newfontfamily\cyrillicfontmono{Liberation Mono}
+\newfontfamily\cyrillicfontsans{Liberation Sans}
 
 \usepackage{indentfirst}
 \setlength{\parindent}{1.25cm}
@@ -40,7 +51,18 @@
      framexbottommargin=5pt,
      framesep=0pt,
      rulesep=0pt,
- }
+}
+
+\def\capfigure{figure}
+\def\captable{table}
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \ifx\@captype\capfigure
+      \centering #1~--~#2 \par
+  \else
+      #1~--~#2 \par
+  \fi
+  \vskip\belowcaptionskip}
  
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
@@ -56,7 +78,7 @@
 
 \lstdefinelanguage{icL}{
 	keywords={if, else, for, filter, range, exists, while, 
-			  do, any,emit, emiter, slot},
+			  do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
 	keywords=[2]{boolean, int, double, string, list, element,
 				 set, item, object, function},
@@ -121,88 +143,92 @@
 
 \begin{document}
 
-	\counterwithin{lstlisting}{section}
+%\renewcommand{\rmdefault}{ftm}
+\counterwithin{lstlisting}{section}
 
-	\lstset{
-		language=icL,
-		literate=
-	  		{0}{{{\ProcessDigit{0}}}}1
-	  		{1}{{{\ProcessDigit{1}}}}1
-	  		{2}{{{\ProcessDigit{2}}}}1
-	  		{3}{{{\ProcessDigit{3}}}}1
-	  		{4}{{{\ProcessDigit{4}}}}1
-	  		{5}{{{\ProcessDigit{5}}}}1
-	  		{6}{{{\ProcessDigit{6}}}}1
-	  		{7}{{{\ProcessDigit{7}}}}1
-	  		{8}{{{\ProcessDigit{8}}}}1
-	  		{9}{{{\ProcessDigit{9}}}}1
-	  		{-}{{{\ProcessDigit{-}}}}1
-	  		{<=}{{\(\leq\)}}1,
-		extendedchars=true,
-		basicstyle=\footnotesize\ttfamily,
-		showstringspaces=false,
-		showspaces=false,
-		showtabs=false,
-		numbers=left,
-		stepnumber=1,
-		tabsize=4,
-		breaklines=true,
-		breakatwhitespace=true,
-		backgroundcolor=\color{codebg},
-		style=framed,
-		lineskip=0pt,
-		aboveskip=0pt,
-		autogobble=true
-	}
-	
-	\onehalfspacing
+\setlength\abovecaptionskip{2pt}
+\setlength\belowcaptionskip{1pt}
 
-	\title{Стандарт языка описания сценариях icL v1.0.0 черновик}
-	\author{Лелицак Василе}
+\lstset{
+	language=icL,
+	literate=
+  		{0}{{{\ProcessDigit{0}}}}1
+  		{1}{{{\ProcessDigit{1}}}}1
+  		{2}{{{\ProcessDigit{2}}}}1
+  		{3}{{{\ProcessDigit{3}}}}1
+  		{4}{{{\ProcessDigit{4}}}}1
+  		{5}{{{\ProcessDigit{5}}}}1
+  		{6}{{{\ProcessDigit{6}}}}1
+  		{7}{{{\ProcessDigit{7}}}}1
+  		{8}{{{\ProcessDigit{8}}}}1
+  		{9}{{{\ProcessDigit{9}}}}1
+  		{-}{{{\ProcessDigit{-}}}}1
+  		{<=}{{\(\leq\)}}1,
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	showtabs=false,
+	numbers=left,
+	stepnumber=1,
+	tabsize=4,
+	breaklines=true,
+	breakatwhitespace=true,
+	backgroundcolor=\color{codebg},
+	style=framed,
+	lineskip=0pt,
+	aboveskip=0pt,
+	autogobble=true
+}
+	
+\onehalfspacing
 
-	\maketitle
-	
-	\newpage
-	\tableofcontents
-	
-	\newpage
+\title{Стандарт языка описания сценариях icL v1.0.0 черновик}
+\author{Лелицак Василе}
 
-	\section{Введение}	
+\maketitle
+
+\newpage
+\renewcommand{\contentsname}{\textsf{Оглавление}}
+\tableofcontents
 	
-	\indent icL - язык описания сценариев, оптимизирован под описания сценариев тестирования веб-приложений.
+\newpage
+
+\section{Введение}	
 	
-	\subsection{Читатели}
+\indent icL - язык описания сценариев, оптимизирован под описания сценариев тестирования веб-приложений.
+	
+\subsection{Читатели}
 	
 	Этот документ предназначен для всех тех людей, которые ищут отравную точку, откуда можно начать изучать язык icL. Также данный документ используется при разработке интерпретатора, поведения интерпретатора во всех ситуациях не описанных в данном документе считается не определённой.
 	
-	\subsection{Что вы должны уметь}
+\subsection{Что вы должны уметь}
 	
-	Прежде чем выступать к изучения этого языка, вам желательно иметь базовое представление о компьютерном программировании.
+Прежде чем выступать к изучения этого языка, вам желательно иметь базовое представление о компьютерном программировании.
 	
-	\subsection{Обзор языка icL}
+\subsection{Обзор языка icL}
 	
 	icL - язык сценариев тестирования веб-приложений. Его разработка началась в 2017 году и первый выпуск планируется к 2020 году. В настоящий момент он находится в активном разработке.
 	
 	icL - язык с С-подобным синтаксисом, который использует статическую типизацию. В icL нельзя определить собственные типы данных, так как он разработан не для программистов, знания получены в школе на уроках информатики должны быть достаточными. Язык icL поддерживает только одну парадигму программирования - процедурная. При необходимости обработать данные, можно использовать экспорт/импорт в/из cvs и базы данных.
 	
-	\subsection{Пример кода}
+\subsection{Пример кода}
 
 	В icL точка входа в программе - начало файла, программа \textit{Hello world!} иллюстрирована на листинге \ref{example0}.
 	
-	\begin{lstlisting}[caption=Пример, label=example0]
+\begin{lstlisting}[caption=Пример, label=example0]
 `` comment example
 _log.info "Hello world";
-	\end{lstlisting}
+\end{lstlisting}
   
-	\subsection{Изучение icL}
+\subsection{Изучение icL}
 	
 	Самое важное при изучении icL - это сосредоточиться на идеях и не потеряться в технических деталях его реализации.
 	
-	\subsection{Области применения icL}
+\subsection{Области применения icL}
 	
-	Язык icL является частью программы icL, с его помощью
-	можно управлять браузером, а именно:
-	\begin{icItems}
+	Язык icL является частью программы icL, с его помощью можно управлять браузером, а именно:
+\begin{icItems}
 	\item открыть вкладку;
 	\item закрыть вкладку;
 	\item перейти на веб-страницу;
@@ -217,98 +243,97 @@ _log.info "Hello world";
 	\item экспортировать данные в csv файле;
 	\item импортировать данные из csv файл;
 	\item выполнить запросы на языке SQL.
-	\end{icItems}
+\end{icItems}
 	
-	\subsection{Начало работы}
+\subsection{Начало работы}
 	
 	Чтобы начать работать достаточно установить и запустить программу icL.
 	
-	\newpage
-	\section{Базовый синтаксис}
+\newpage
+\section{Базовый синтаксис}
 	
 	icL достаточно прост в освоении, вставите код с листинга \ref{first} в icL и выполняете его. Первую программу можно уже сохранить в файле с расширением icl.
 	
-	\begin{lstlisting}[caption=Первая программа,
-						   label=first]
+\begin{lstlisting}[caption=Первая программа, label=first]
 _log.info "Test!";
-	\end{lstlisting}
+\end{lstlisting}
 	
 	В консоль можем увидеть следующий вывод программы:
 	
-	\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 Test!
-	\end{lstlisting}
+\end{lstlisting}
 	
-	\subsection{Импорт в icL}
+\subsection{Импорт в icL}
 	
 	Все стандартные библиотеки встроены в языке, но можно написать импортировать свои, с помощью:
-	\begin{icItems}
+\begin{icItems}
 	\item \lstinline`_import.none "path/to/file.iclib"` - выполнить код, который содержатся в файле, ничего не импортировать.
-	\item \lstinline`_import.functions "path/to/file.iclib"` - выполнить код и импортировать функций;
+	\item \lstinline`_import.functions "path/to/file.iclib"` - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
 	\item \lstinline`_import.all "path/to/file.iclib"` -  выполнить код, импортировать функций и глобальные переменные;
 	\item \lstinline`_import.run "path/to/file.iclib"` - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
-	\end{icItems}
+\end{icItems}
 	
-	\subsection{Токены в icL}
+\subsection{Токены в icL}
 	
 	Программа на icL состоит из различных токенов (литералов, семантических конструкциях), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline`_log.info "Hello world!";`
 	
 	Отдельными токенами являются:
-	\begin{icItems}
+\begin{icItems}
 	\item \lstinline`_log` - идентификатор объекта;
 	\item \lstinline`.info` - идентификатор метода;
 	\item \lstinline`"Hello world!"` - строковый литерал;
 	\item \lstinline`;` - разделитель, конец команды.
-	\end{icItems}
+\end{icItems}
 	
-	\subsection{Комментарии}
+\subsection{Комментарии}
 	
 	Комментарии - это вспомогательный текст, который помогает понимать написанных сценариях, они полностью игнорируется командного процессора. Комментарии в линии (\textit{inline}) являются строковым литералом ограниченным специальными кавычками \texttt{`}, как показано на листинге \ref{inlinecomment}.
 	
-	\begin{lstlisting}[caption=Комментарий в линии,label=inlinecomment]
+\begin{lstlisting}[caption=Комментарий в линии,label=inlinecomment]
 No comment `comment` no comment
-	\end{lstlisting}
+\end{lstlisting}
 	
 	Одиночный комментарий записывается в использованием символов \texttt{``} в начале, смотрите листинг \ref{linecomment}.
 	
-	\begin{lstlisting}[caption=Одиночный комментарий,label=linecomment]
+\begin{lstlisting}[caption=Одиночный комментарий,label=linecomment]
 No comment `` comment
-	\end{lstlisting}
+\end{lstlisting}
 	
 	Многострочный комментарий начинается и заканчивается с \texttt{```}, пример многострочного комментария приведён на листинге \ref{multilinecomment}.
 	
-	\begin{lstlisting}[caption=Многострочный комментарий,label=multilinecomment]
+\begin{lstlisting}[caption=Многострочный комментарий,label=multilinecomment]
 No comment
 ``` comment 1
 	comment 2
 	comment 3
 ``` No comment
-	\end{lstlisting}
+\end{lstlisting}
 	
-	\subsection{Идентификторы}
+\subsection{Идентификторы}
 	
-	Идентификатор в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\lstinline`@, #, !, _, .` или \lstinline`'`), за которым следует от 2 до 32 букв(английского или национального алфавита) и цифр (от 0 до 9).
+	Идентификатор в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\lstinline`@`, \lstinline`#`, \lstinline`!`, \lstinline`_`, \lstinline`.` или \lstinline`'`), за которым следует от 2 до 32 букв(английского или национального алфавита) и цифр (от 0 до 9).
 	
 	icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
 	
-	\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 #loop		_tab		.Append		'Length	_dom	@ii 	@VAR
 @variable	!sumPoints	#global		.Merge	.Get	#01		!SIN
-	\end{lstlisting}
+\end{lstlisting}
 	
-	\subsection{Ключевые слова}
+\subsection{Ключевые слова}
 	
-	В icL ключевые слова не зарезервированные. Их всего 11: \lstinline`if, for, filter, range, exists, while, do, any, emit, emiter` и \lstinline`slot`. В данном документе они выделены синим цветом.
+	В icL ключевые слова не зарезервированные. Их всего 11: \lstinline`if`, \lstinline`for`, \lstinline`filter`, \lstinline`range`, \lstinline`exists`, \lstinline`while`, \lstinline`do`, \lstinline`any`, \lstinline`emit`, \lstinline`emiter` и \lstinline`slot`. В данном документе они выделены синим цветом.
   
-	\subsection{Пробельные символы и разделители}
+\subsection{Пробельные символы и разделители}
 	
 	Пробельный символ (\textit{whitespace}) - этот термин используется в icL для описания пробелов, символов табуляции, символов новой строкой и комментариев. Пробельные символы не обязательные, они используется для улучшения читабельности кода. На листинге \ref{unreadable} показан пример кода без пробельных символов, а на листинге \ref{readable} с пробельными символами.
 	
-	\begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
+\begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
 if(_tab.get"mai.ru"){(_dom.query"button").Click;}else{_log.error"The site mai.ru is unaviable";};
-	\end{lstlisting}
+\end{lstlisting}
 	
-	\begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
+\begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
 `` the begin of program
 
 `` try to go to mai.ru
@@ -324,86 +349,104 @@ else {
 };
 
 `` end of the program
-	\end{lstlisting}
+\end{lstlisting}
 	
 	В icL присутствует только один разделитель - разделитель команд \lstinline`;`. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline`_tab.get "URL"`, закрыть вкладку - \lstinline`_tab.close`.
 	
 	При описании последовательности действий, их надо разделить, например последовательность вышеперечисленных команд описывается так:	
-	\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 _tab.get "URL"; _tab.close
-	\end{lstlisting} 
+\end{lstlisting} 
+	
 	Таким образом из команд собираем сценарии. Перед закрывающих скобок ставить разделитель команд опционально.
 	
-	\subsubsection{Дополнительные сведение}
+\subsubsection{Дополнительные сведение}
 	
 	Если у вас нет знании в программировании перейдите пожалуйста на третью главу.
 	
 	В icL отсутствуют разделители между значениями в списке. Примеры:
-	\begin{icItems}
+\begin{icItems}
   \item Инициализация списка в С++:
-	\begin{lstlisting}[numbers=none, language=C++]
+\begin{lstlisting}[numbers=none, language=C++]
 std::list<std::string> list = {"one", "two", "three"};
-	\end{lstlisting}
+\end{lstlisting}
 	Инициализация списка в icL:
-	\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 @list = ["one" "two" "three"];
-	\end{lstlisting}
+\end{lstlisting}
   \item Функция в С++:
-	\begin{lstlisting}[numbers=none, language=C++]
+\begin{lstlisting}[numbers=none, language=C++]
 int sum (int number1, int number2) { return number1 + number2; };
-	\end{lstlisting}
+\end{lstlisting}
 	Функция в icL:
-	\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 !sum = <int>number1 <int>number2 : int { @ = number1 + number2 };
-	\end{lstlisting}
+\end{lstlisting}
   \item Вызов функций в С++:
-	\begin{lstlisting}[numbers=none, language=C++]
+\begin{lstlisting}[numbers=none, language=C++]
 int s = sum (100, 200);
-	\end{lstlisting}
+\end{lstlisting}
 	Вызов функций в icL:
-	\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 @sum = !sum 100 200;
-	\end{lstlisting}
+\end{lstlisting}
   \item Код на С++:
-	\begin{lstlisting}[numbers=none, language=C++]
+\begin{lstlisting}[numbers=none, language=C++]
 sum (100 + 50, 200);
-	\end{lstlisting}
+\end{lstlisting}
 	Эквивалент на icL:
-	  \begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none]
 !sum (100 + 50) 200;
-	\end{lstlisting}
-	\end{icItems}
-  
-	\newpage
-	{\color{red}Материал для продвинутых пользователей.}
-  	
-  	\begin{icEnum}
-  	\item + Введение
-  	\item + Базовый синтаксис
-  	\item - Переменные
-  	\item - Типы данных
-  	\item - Литералы
-  	\item - Операторы
-  	\item - Циклы
-  	\item - Условные операторы
-  	\item - Интеграция с Javascript
-  	\item - Функции
-  	\item - Строки
-  	\item - Списки
-  	\item - Многоженства
-  	\item - Объекты
-  	\item - Веб-элементы (симуляция мышки и клавиатуры)
-  	\item - Обмен данных в веб-странницей (конкретные примеры)
-  	\item - DSV / CSV / TSV
-  	\end{icEnum}
-  	
-  	{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
+\end{lstlisting}
+\end{icItems}
+
+\newpage
+\section{Переменные}  
 	
-	\begin{icEnumResume}
-  	\item - Базы данных (только SQLite в первой версии)
-  	\item - Обработка ошибок
-  	\item - Программирование errorless
-  	\item - Программирование на лету
-  	\end{icEnumResume}
+	Переменная - название области хранения, который могут манипулировать сценария. Каждая переменная в icL имеет область видимость (фрагмент кода где можно её использовать) и тип, который определяет размер и способ размещения памяти переменной; диапазон значений которые можно применить к переменной.
+	
+	Имя переменной является идентификатором, начинающийся с \lstinline`@` или {\color{blue2}\lstinline`#`}.
+	Основные типы переменных показаны в таблице 
+  
+\begin{figure}[h]
+\center
+%\includegraphics[width=11cm, height=9cm]{}
+\caption{Структура системы Naumen DMS}
+\label{schema}
+\end{figure}
+  
+\newpage
+\section{Прогресс}
+
+{\color{red}Материал для продвинутых пользователей.}
+  	
+\begin{icEnum}
+	\item + Введение
+	\item + Базовый синтаксис
+	\item - Переменные
+	\item - Типы данных
+	\item - Литералы
+	\item - Операторы
+	\item - Циклы
+	\item - Условные операторы
+	\item - Интеграция с Javascript
+	\item - Функции
+	\item - Строки
+	\item - Списки
+	\item - Многоженства
+	\item - Объекты
+	\item - Веб-элементы (симуляция мышки и клавиатуры)
+	\item - Обмен данных в веб-странницей (конкретные примеры)
+	\item - DSV / CSV / TSV
+\end{icEnum}
+  	
+	{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
+	
+\begin{icEnumResume}
+	\item - Базы данных (только SQLite в первой версии)
+	\item - Обработка ошибок
+	\item - Программирование errorless
+	\item - Программирование на лету
+\end{icEnumResume}
 	
 \end{document}
