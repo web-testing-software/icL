@@ -29,3 +29,7 @@ SOURCES += \
 
 HEADERS += \
         webbrowser.h
+
+DISTFILES += \
+    standard/standard_for_icl_1.0.0_draft.tex \
+    standard/standard_for_icl_1.0.0_rus_draft.tex

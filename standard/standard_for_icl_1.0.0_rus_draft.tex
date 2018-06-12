@@ -1,0 +1,183 @@
+\documentclass[a4paper, 14pt]{extarticle}
+
+\usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
+\usepackage{fancyvrb}
+\fvset{tabsize=2}
+\usepackage{polyglossia}
+\setmainlanguage{russian} 
+\setotherlanguage{english}
+  
+\setmainfont{Liberation Serif}
+\newfontfamily\cyrillicfont{Liberation Serif}
+\setmonofont{Liberation Mono}
+\newfontfamily\cyrillicfontmono{Liberation Mono}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{caption}
+\usepackage{listings, lstautogobble}
+\usepackage{color}
+
+\usepackage{caption}
+\DeclareCaptionFont{black}{\color{black}}
+\DeclareCaptionFormat{listing}{\colorbox{codeheaderbg}
+	{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]
+	{format=listing,labelfont=black,textfont=black}
+
+\usepackage{enumitem}
+
+\lstdefinestyle{framed}
+{
+     frame=none,         
+     belowcaptionskip=2pt,
+     xleftmargin=8pt,
+     framexleftmargin=7pt,
+     framexrightmargin=5pt,
+     framextopmargin=10pt,
+     framexbottommargin=5pt,
+     framesep=0pt,
+     rulesep=0pt,
+ }
+ 
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
+\definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
+\definecolor{orange}{rgb}{0.8, 0.4, 0.0}
+\definecolor{bluemarin}{RGB}{12, 134, 145}
+\definecolor{grey}{rgb}{0.5, 0.5, 0.5}
+\definecolor{function}{RGB}{11, 145, 89}
+\definecolor{blue2}{RGB}{15, 92, 198}
+
+\lstdefinelanguage{icL}{
+	keywords={if, for, filter, range, exists, while, do, any,
+			  emit, emiter, slot},
+	keywordstyle=\color{blue2},
+	keywords=[2]{boolean, int, double, string, list, element,
+				 set, item, object, function},
+	keywordstyle=[2]\color{bluemarin},
+	classoffset=3,
+	morekeywords={_log, _define, _tab, _dom, _define, _import},
+	keywordstyle=\color{orange},
+	classoffset=4,
+	morekeywords={info, warm, error, signal, get, query,
+				  queryAll, null, Prepend, Append, Insert,
+				  Merge, PopFront, PopBack, Remove, RemoveOnce,
+				  RemoveAll, Get, IndexOf, LastIndexOf,
+				  Join, SumUp, Max, Min, LogicAnd, LogicOr,
+				  Length, Text, HTML, Width, Height, Click,
+				  ScrollTo, SendKeys, IsValid, Copy, Add, Filter,
+				  Query, QueryAll, Visible, Clickable, Next,
+				  Prev, Parent, Child, Closest, AddClass,
+				  HasClass, RemoveClass, all, functions, none,
+				  run},
+	keywordstyle=\color{function},
+	classoffset=5,
+	morekeywords={UnrealCast, StringParse, EmptyList,
+				  MultipleValues, NullElement, NotVisible,
+				  WrongName, OutOfBounds, OutOfScreen,
+				  FileNotFound},
+	classoffset=0,
+	identifierstyle=\color{black},
+	sensitive=true,
+	comment=[l]{``},
+	morecomment=[s]{```}{```},
+	morecomment=[s]{`c}{t`},
+	commentstyle=\color{grey},
+	stringstyle=\color{purple},
+	morestring=[b]",
+	autogobble=true
+}
+
+\newcommand\digitstyle{\color{red}}
+\makeatletter
+\newcommand{\ProcessDigit}[1]
+{%
+  \ifnum\lst@mode=\lst@Pmode\relax%
+   {\digitstyle #1}%
+  \else
+    #1%
+  \fi
+}
+\makeatother
+
+  
+\begin{document}	
+
+	%\def\icl`#1`{\lstinline`#1`}
+
+	\lstset{
+		language=icL,
+		literate=
+	  		{0}{{{\ProcessDigit{0}}}}1
+	  		{1}{{{\ProcessDigit{1}}}}1
+	  		{2}{{{\ProcessDigit{2}}}}1
+	  		{3}{{{\ProcessDigit{3}}}}1
+	  		{4}{{{\ProcessDigit{4}}}}1
+	  		{5}{{{\ProcessDigit{5}}}}1
+	  		{6}{{{\ProcessDigit{6}}}}1
+	  		{7}{{{\ProcessDigit{7}}}}1
+	  		{8}{{{\ProcessDigit{8}}}}1
+	  		{9}{{{\ProcessDigit{9}}}}1
+	  		{-}{{{\ProcessDigit{-}}}}1
+	  		{<=}{{\(\leq\)}}1,
+		extendedchars=true,
+		basicstyle=\footnotesize\ttfamily,
+		showstringspaces=false,
+		showspaces=false,
+		showtabs=false,
+		numbers=left,
+		stepnumber=1,
+		showstringspaces=false,
+		tabsize=4,
+		breaklines=true,
+		breakatwhitespace=true,
+		backgroundcolor=\color{codebg},
+		style=framed
+	}
+
+	\title{Стандарт языка описания сценариях icL v1.0.0 черновик}
+	\author{Лелицак Василе}
+
+	\maketitle
+
+	\newpage
+	\tableofcontents
+
+	\newpage
+	{\color{red}Материал для продвинутых пользователей.}
+  	
+  	\begin{enumerate}
+  	\item - Введение
+  	\item - Базовый синтаксис
+  	\item - Переменные
+  	\item - Типы данных
+  	\item - Литералы
+  	\item - Операторы
+  	\item - Циклы
+  	\item - Условные операторы
+  	\item - Интеграция с Javascript
+  	\item - Функции
+  	\item - Строки
+  	\item - Списки
+  	\item - Многоженства
+  	\item - Объекты
+  	\item - Веб-элементы (симуляция мышки и клавиатуры)
+  	\item - Обмен данных в веб-странницей (конкретные примеры)
+  	\item - DSV / CSV / TSV
+  	\end{enumerate}
+  	
+  	{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
+	
+	\begin{enumerate}[resume]
+  	\item - Базы данных (только SQLite в первой версии)
+  	\item - Обработка ошибок
+  	\item - Программирование errorless
+  	\item - Программирование на лету
+  	\end{enumerate}
+	
+\end{document}
