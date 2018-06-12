@@ -82,6 +82,8 @@ void Set::appplicate(const QList<QStringList> & list) {
 		j = list.size();
 	};
 
+	set.table->reserve(set.table->count() + size * 1.1f);
+
 	for (i = 0; i < size; i++) {
 		QVariantList row = {};
 
@@ -167,6 +169,7 @@ void Set::insertField(const QString & name, const QVariant & value) {
 	new_set.table = std::make_shared<memory::Table>(memory::Table{});
 
 	new_set.header->append(memory::Parameter{name, value_type});
+	new_set.table->reserve(old_set.table->count() * 1.1f);
 
 	for (QVariantList row : *old_set.table) {
 		QString key;
@@ -200,6 +203,7 @@ void Set::removeField(const QString & name) {
 	new_set.table = std::make_shared<memory::Table>(memory::Table{});
 
 	new_set.header->removeAt(index);
+	new_set.table->reserve(old_set.table->count() * 1.1f);
 
 	for (QVariantList row : *old_set.table) {
 		QString key;
@@ -234,6 +238,7 @@ void Set::concatLists(const QString & name, const QString & separator) {
 	new_set.table = std::make_shared<memory::Table>(memory::Table{});
 
 	(*new_set.header)[index].type = memory::Type::String;
+	new_set.table->reserve(old_set.table->count() * 1.1f);
 
 	for (QVariantList row : *old_set.table) {
 		row[index] = row.at(index).toStringList().join(separator);
