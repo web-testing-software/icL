@@ -205,6 +205,86 @@ _log.info "Hello world";
 	Чтобы начать работать достаточно установить и запустить программу icL.
 	
 	\newpage
+	\section{Базовый синтаксис}
+	
+	icL достаточно прост в освоении, вставите код с листинга \ref{first} в icL и выполняете его. Первую программу можно уже сохранить в файле с расширением icl.
+	
+	\begin{lstlisting}[caption=Первая программа,
+						   label=first]
+_log.info "Test!";
+	\end{lstlisting}
+	
+	В консоль можем увидеть следующий вывод программы:
+	
+	\begin{lstlisting}[numbers=none]
+Test!
+	\end{lstlisting}
+	
+	\subsection{Импорт в icL}
+	
+	Все стандартные библиотеки встроены в языке, но можно написать импортировать свои, с помощью:
+	\begin{list}{•}{}
+	\item \lstinline`_import.none "path/to/file.iclib"` - выполнить код, который содержатся в файле, ничего не импортировать.
+	\item \lstinline`_import.functions "path/to/file.iclib"` - выполнить код и импортировать функций;
+	\item \lstinline`_import.all "path/to/file.iclib"` -  выполнить код, импортировать функций и глобальные переменные;
+	\item \lstinline`_import.run "path/to/file.iclib"` - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
+	\end{list}
+	
+	\subsection{Токены в icL}
+	
+	Программа на icL состоит из различных токенов (литералов, семантических конструкциях), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline`_log.info "Hello world!";`
+	
+	Отдельными токенами являются:
+	\begin{list}{•}{}
+	\item \lstinline`_log` - идентификатор объекта;
+	\item \lstinline`.info` - идентификатор метода;
+	\item \lstinline`"Hello world!"` - строковый литерал;
+	\item \lstinline`;` - разделитель, конец команды.
+	\end{list}
+	
+	\subsection{Комментарии}
+	
+	Комментарии - это вспомогательный текст, который помогает понимать написанных сценариях, они полностью игнорируется командного процессора. Комментарии в линии (\textit{inline}) являются строковым литералом ограниченным специальными кавычками \texttt{`}, как показано на листинге \ref{inlinecomment}.
+	
+	\begin{lstlisting}[caption=Комментарий в линии,
+						   label=inlinecomment]
+No comment `comment` no comment
+	\end{lstlisting}
+	
+	Одиночный комментарий записывается в использованием символов \texttt{``} в начале, смотрите листинг \ref{linecomment}.
+	
+	\begin{lstlisting}[caption=Одиночный комментарий,
+						   label=linecomment]
+No comment `` comment
+	\end{lstlisting}
+	
+	Многострочный комментарий начинается и заканчивается с \texttt{```}, пример многострочного комментария приведён на листинге \ref{multilinecomment}.
+	
+	\begin{lstlisting}[caption=Многострочный комментарий,
+						   label=multilinecomment]
+No comment
+``` comment 1
+	comment 2
+	comment 3
+``` No comment
+	\end{lstlisting}
+	
+	\subsection{Идентификторы}
+	
+	Идентификатор в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\lstinline`@, #, !, _, .` или \lstinline`'`), за которым следует от 2 до 32 букв(английского или национального алфавита) и цифр (от 0 до 9).
+	
+	icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
+	
+	\begin{lstlisting}[numbers=none]
+#loop		_tab		.Append		'Length	_dom	@ii 	@VAR
+@variable	!sumPoints	#global		.Merge	.Get	#01		!SIN
+	\end{lstlisting}
+	
+	\subsection{Ключевые слова}
+	
+	В icL ключевые слова не зарезервированные. Их всего 11: \lstinline`if, for, filter, range, exists, while, do, any, emit, emiter` и \lstinline`slot`. В данном документе они выделены синим цветом.
+  
+	\newpage
 	{\color{red}Материал для продвинутых пользователей.}
   	
   	\begin{enumerate}
