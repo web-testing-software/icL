@@ -8,11 +8,8 @@
 \setotherlanguage{english}
 \usepackage{setspace}
 
-\usepackage{graphicx}
-\usepackage{lscape}
-\usepackage{makecell}
-\usepackage{multirow}
-\usepackage{ulem}
+\usepackage{longtable}
+\usepackage{ragged2e}
 \setcounter{tocdepth}{2}
   
 \setmainfont{Liberation Serif}
@@ -27,9 +24,10 @@
 \usepackage{indentfirst}
 \setlength{\parindent}{1.25cm}
 
-\usepackage{caption}
+\usepackage[singlelinecheck=false]{caption}
 \usepackage{listings, lstautogobble}
 \usepackage{color}
+\usepackage[table]{xcolor}
 
 \usepackage{caption}
 \DeclareCaptionFont{black}{\color{black}}
@@ -53,17 +51,6 @@
      rulesep=0pt,
 }
 
-\def\capfigure{figure}
-\def\captable{table}
-\long\def\@makecaption#1#2{%
-  \vskip\abovecaptionskip
-  \ifx\@captype\capfigure
-      \centering #1~--~#2 \par
-  \else
-      #1~--~#2 \par
-  \fi
-  \vskip\belowcaptionskip}
- 
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
@@ -181,7 +168,194 @@
 	autogobble=true
 }
 	
+\setlength{\LTleft}{0pt}
 \onehalfspacing
+
+\newcommand{\greycell}[1]{\cellcolor{lightgray}\centering\textbf{#1}}
+
+% row1 width, row2 width, label, name,
+% row1 name, row2 name, body
+\newcommand{\tabletwo}[7]{
+	\begin{longtable}[h]{p{#1}}
+	\caption*{Таблица \thetable{} - #4} \label{#3} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{2}{l}%
+	{{Продолжение таблицы \thetable{} - #4}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#7
+	\end{longtable}
+}
+
+% row1 width, row2 width, label, name,
+% row1 name, row2 name, body
+\newcommand{\stabletwo}[7]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|}
+	\caption*{Таблица \thetable{} - #4} \label{#3} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{2}{l}%
+	{{Продолжение таблицы \thetable{} - #4}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#7
+	\end{longtable}
+}
+
+% row1 width, row2 width, row3 width, label, name,
+% row1 name, row2 name, row3 name, body
+\newcommand{\tablethree}[9]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
+	\caption*{Таблица \thetable{} - #5} \label{#4} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} &
+	\multicolumn{1}{p{#3}|}{\greycell{3}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Продолжение таблицы \thetable{} - #5}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} &
+	\multicolumn{1}{p{#3}|}{\greycell{3}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#9
+	\end{longtable}
+}
+
+% row1 width, row2 width, row3 width, label, name,
+% row1 name, row2 name, row3 name, body
+\newcommand{\stablethree}[9]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
+	\caption*{Таблица \thetable{} - #5} \label{#4} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Продолжение таблицы \thetable{} - #5}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#9
+	\end{longtable}
+}
+
+% rows, header, repeated, label, name, body
+\newcommand{\tableuni}[6]{
+	\begin{longtable}[h]{#1}
+	\caption*{Таблица \thetable{} - #5} \label{#4} \\
+
+	\hline
+	#2
+	\hline
+	#3
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Продолжение таблицы \thetable{} - #5}} \\
+	\hline
+	#3
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#6
+	\end{longtable}
+}
+
+% rows, header, repeated, label, name, body
+\newcommand{\stableuni}[6]{
+	\begin{longtable}[h]{#1}
+	\caption*{Таблица \thetable{} - #4} \label{#3} \\
+
+	\hline
+	#2
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Продолжение таблицы \thetable{} - #4}} \\
+	\hline
+	#2
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#5
+	\end{longtable}
+}
+
+% Содержимое докимента
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Стандарт языка описания сценариях icL v1.0.0 черновик}
 \author{Лелицак Василе}
@@ -407,13 +581,14 @@ sum (100 + 50, 200);
 	
 	Имя переменной является идентификатором, начинающийся с \lstinline`@` или {\color{blue2}\lstinline`#`}.
 	Основные типы переменных показаны в таблице 
-  
-\begin{figure}[h]
-\center
-%\includegraphics[width=11cm, height=9cm]{}
-\caption{Структура системы Naumen DMS}
-\label{schema}
-\end{figure}
+
+\stabletwo{2cm}{15.1cm}{variablestypes}{Типы переменных}%
+	{Тип}{Описание}%
+	{ 
+	boolean & Логическое значения, имеет в состояние: истинно или лож. \\ \hline
+	int & Целое число, позволяет хранить значения от -2147483648 до 2147483647. \\ \hline
+	double & Дробное число, позволяет хранить вещественные числа. \\
+	}
   
 \newpage
 \section{Прогресс}
