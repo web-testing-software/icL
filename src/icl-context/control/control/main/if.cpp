@@ -179,12 +179,6 @@ void If::processContains(Operator & op, const QChar & next, int& i) {
 	}
 }
 
-/**
- * @brief If::filter - remove useless symbils at end and begin of source
- * @param fn - function, it source will be filter
- * @example " #a == #b \t " -> "#a == #b"
- * @example " ((( ( ((  ( #a == #b ) )) )  )))" -> "#a == #b"
- */
 void If::filter(memory::CodeFragment fn) {
 	bool ready = false;
 

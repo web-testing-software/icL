@@ -23,6 +23,10 @@ vm.depends      = context memory inter
 app.depends     = memory inter vm
 
 DISTFILES += \
+    Doxyfile \
+    templates/doxy_style.css \
+    templates/doxy_header.html \
+    templates/doxy_footer.html \
     graduation/src2pdf.sh \
     graduation/пояснительная_записка.epub \
     graduation/руководство_пользователя.epub \
