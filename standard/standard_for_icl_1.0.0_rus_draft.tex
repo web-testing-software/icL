@@ -65,33 +65,18 @@
 \definecolor{blue2}{RGB}{15, 92, 198}
 
 \lstdefinelanguage{icL}{
-	keywords={if, else, for, filter, range, exists, while, 
-			  do, any,emit, emiter, slot, @, \#},
+	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
-	keywords=[2]{boolean, int, double, string, list, element,
-				 set, item, object, function},
+	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void},
 	keywordstyle=[2]\color{bluemarin},
 	classoffset=3,
-	morekeywords={_log, _define, _tab, _dom, _define, _import},
+	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, get, query,
-				  queryAll, null, Prepend, Append, Insert,
-				  Merge, PopFront, PopBack, Remove, RemoveOnce,
-				  RemoveAll, Get, IndexOf, LastIndexOf,
-				  Join, SumUp, Max, Min, LogicAnd, LogicOr,
-				  Length, Text, HTML, Width, Height, Click,
-				  ScrollTo, SendKeys, IsValid, Copy, Add,
-				  Filter, Query, QueryAll, Visible, Clickable,
-				  Next, Prev, Parent, Child, Closest, AddClass,
-				  HasClass, RemoveClass, all, functions, none,
-				  run, close},
+	morekeywords={info, warm, error, signal, get, query, queryAll, null, Prepend, Append, Insert, Merge, PopFront, PopBack, Remove, RemoveOnce, RemoveAll, Get, IndexOf, LastIndexOf, Join, SumUp, Max, Min, LogicAnd, LogicOr, Length, Text, HTML, Width, Height, Click, ScrollTo, SendKeys, IsValid, Copy, Add, Filter, Query, QueryAll, Visible, Clickable, Next, Prev, Parent, Child, Closest, AddClass, HasClass, RemoveClass, all, functions, none, run, close},
 	keywordstyle=\color{function},
 	classoffset=5,
-	morekeywords={UnrealCast, StringParse, EmptyList,
-				  MultipleValues, NullElement, NotVisible,
-				  WrongName, OutOfBounds, OutOfScreen,
-				  FileNotFound},
+	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound},
 	classoffset=0,
 	identifierstyle=\color{black},
 	sensitive=true,
@@ -176,6 +161,8 @@
 \onehalfspacing
 
 \newcommand{\greycell}[1]{\cellcolor{lightgray}\centering\textbf{#1}}
+
+\newcommand{\code}[1]{\lstinline`#1`}
 
 % row1 width, row2 width, label, name,
 % row1 name, row2 name, body
@@ -587,7 +574,7 @@ sum (100 + 50, 200);
 \stabletwo{2cm}{15.1cm}{variablestypes}{Типы переменных}%
 	{Тип}{Описание}%
 	{ 
-	boolean & Логическое значения, имеет в состояние: истинно или лож. \\ \hline
+	bool & Логическое значения, имеет в состояние: истинно или лож. \\ \hline
 	int & Целое число, позволяет хранить значения от -2.147.483.648 до 2.147.483.647. \\ \hline
 	double & Дробное число, позволяет хранить вещественные числа. \\
 	}
@@ -600,7 +587,7 @@ sum (100 + 50, 200);
 	
 	На листинге \ref{initexample} показаны несколько пример объявлений и инициализации переменных, обратите внимание что дробные числа пишется через точку, а не через запятую как принято в Европе и Российском Федераций.
   	
-\begin{lstlisting}[caption=Пример объявлений и инициализации символов,label=initexample]
+\begin{lstlisting}[caption=Пример объявлений и инициализации переменных,label=initexample]
 @bool = false;
 @catched = true;
 @int = 234;
@@ -692,15 +679,15 @@ if (@) {
 \stabletwo{3.5cm}{13.6cm}{datatypeclasses}{Категории типов данных}
 	{Категория}{Описание}
 	{
-	Базовые & Типы данных описанных в предыдущем главе: boolean - логический, int - целое - числа, double - дробные числа. \\ \hline
+	Базовые & Типы данных описанных в предыдущем главе: \code{bool} - логический, \code{int} - целое - числа, \code{double} - дробные числа. \\ \hline
 	Сложные & Типы данные содержащие несколько значении в контейнерах, примеры таких данных: строки, списки, множество. \\ \hline
 	Системные & Типы данных которых нельзя создать и хранить в пользовательских переменных, но доступ к ними можно получить через системные (предопределённых) переменных, примеры таких данных: браузер, вкладка, история браузера, окно. \\ \hline
-	Тип \textit{void} & Тип данных обозначающий отсутствия данных.
+	Тип \code{void} & Тип данных обозначающий отсутствия данных.
 	}
 	
 \subsection{Основные типы данных}
 
-	{\bf Основные типы данных} участвуют в логических и арифметических операциях языка icL. Логическими операциями являются конъюнкция, дизъюнкция, исключающий или, эквиваленция и инверсия. Логическими операциями являются сложения, вычитания, умножения, деления, извлечения корня и возведения в степень.
+	{\bf Основные типы данных} участвуют в логических и арифметических операциях языка icL. Логическими операциями являются конъюнкция, дизъюнкция, исключающий или, эквиваленция и инверсия. Арифметическими операциями являются сложения, вычитания, умножения, деления, извлечения корня и возведения в степень.
 	
 \subsection{Сложные типы данных}
 
@@ -712,7 +699,7 @@ if (@) {
 	
 \subsection{Тип данных void}
 
-	{\bf Тип данных {\it void}} означает отсутствия информации, он используется в самых различных целях:
+	{\bf Тип данных \code{void}} означает отсутствия информации, он используется в самых различных целях:
 \begin{icItems}
 	\item указать то что функция ничего не возвращает;
 	\item указать на то что в процессе работы функций произошла ошибка;
@@ -723,6 +710,90 @@ if (@) {
 \end{icItems}
 
 \newpage
+\section{Литералы}
+	
+	Константные значения, которые присутствуют в скрипте в виде часть исходного кода, называются {\bf литералами}.
+	Литералы могут быть любыми из следующих типов:
+\begin{icItems}
+	\item логическое значение - \code{bool};
+	\item целое число - \code{int};
+	\item дробное число - \code{double};
+	\item строка - \code{string};
+	\item список - \code{list};
+	\item объект - \code{object};
+	\item множество - \code{set};
+\end{icItems}
+
+\subsubsection{Логические значения}
+
+	Для представления {\bf логических значения} используется следующее литералы:
+\begin{icItems}
+	\item \code{true} - логическое единица, истинно;
+	\item \code{false} - логической ноль, лож.
+\end{icItems}
+
+\subsubsection{Целые числа}
+
+	Для представления {\bf целых чисел} используется последовательность цифр, перед которым может присутствовать минус. Между минусом и последовательности цифр разделители должны отсутствовать, иначе минус будет интерпретирован как оператор.
+	
+\noindent Примеры:
+\begin{lstlisting}[numbers=none]
+23; -23; - 23; +23 + 3; 12 + -34; 15 - 24; 89--56; 2-3; `` ok
+23-; 23+; -2А; 3f5; 23f; 23l; 12u; 89i; 2w1; 1q1; rt2; `` error 
+\end{lstlisting}
+	
+\subsubsection{Дробные числа}
+
+	{\bf Дробный литерал} состоит из двух частей: целая и дробная. Они разделяются точкой. Каждая составная часть является целом числом. Дробная часть не может быть отрицательной.
+	
+\noindent Примеры:
+\begin{lstlisting}[numbers=none]
+23.233452; 29229992.2391; 100.0; -23.29199; -0.23; -0.45 - 1000.5; `` ok
+23.-4; 3а.34; 23-.44; 34.+23; -25.f; -23.5f; -w.45; -2.4e10; -2.E2; `` error 
+\end{lstlisting}
+
+\subsubsection{Строки}
+
+	{\bf Строковым литералом} является последовательность символов, ограниченное с обеих сторон кавычками \lstinline`"`. Чтобы добавить \lstinline`"` используется \lstinline`\"`, символ табуляции - \lstinline`\t`, символ {\it новая строка} - \lstinline`\n`, символ {\it возврат на шаг} - \lstinline`\b`, \textbackslash \ - \lstinline`\\`.
+
+\noindent Примеры:
+\begin{lstlisting}[numbers=none]
+"Hello \"to\" you!"; "Line1\nLine2"; "Tag1\n\bTag2\n\b"; "text"; "\\ \\ \n \\ \\";
+\end{lstlisting}
+
+\subsubsection{Списки}
+
+	{\bf Литералом списка} является последовательность строк, ограниченное квадратными скобками.
+
+\noindent Примеры:
+\begin{lstlisting}[numbers=none]
+@fruits = ["Apple" "Mango" "Banana" "Lime" "Lemon" "Olive"];
+@vegetables = ["Cress" "Mustard" "Guar" "Soybean" "Leek" "Ahipa"];
+\end{lstlisting}
+
+\subsubsection{Объекты}
+
+	{\bf Объектом} является объединение нескольких переменных под общем именем, переменная объявлена внутри объекта называется {\it поле}. Литерал {\it поле} имеет следующий синтаксис \lstinline`<value>name`, где  {\it value} - значение и {\it name} - название. В icL неинициализируемые поля, как и неинициализируемые переменные, нельзя объявить. 
+	
+\noindent Примеры:
+\begin{lstlisting}[numbers=none]
+@quotation = <"author">author <"text">text;
+@child = <4>age <true>hasBrothers <true>hasParents;
+@file = <false>isEmpty <25220>size <true>readOnly;
+\end{lstlisting}
+
+\subsubsection{Множества}
+
+	Только {\bf пустое множество} можно описать литералом, литерал схож с литералом объекта, только вместо значении указывается тип значения.
+	
+\noindent Примеры:
+\begin{lstlisting}[numbers=none]
+@quotations = <string>author <string>text;
+@children = <int>age <bool>hasBrothers <bool>hasParents;
+@files = <bool>isEmpty <int>size <bool>readOnly;
+\end{lstlisting}
+
+\newpage
 \section{Прогресс}
 
 {\color{red}Материал для продвинутых пользователей.}
@@ -731,8 +802,8 @@ if (@) {
 	\item + Введение
 	\item + Базовый синтаксис
 	\item + Переменные
-	\item - Типы данных
-	\item - Литералы
+	\item + Типы данных
+	\item + Литералы
 	\item - Операторы
 	\item - Циклы
 	\item - Условные операторы
