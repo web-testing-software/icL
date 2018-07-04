@@ -1249,9 +1249,42 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 @set1 * @set2;				`` [@obj2]
 \end{lstlisting}
 
+\subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
+	Возвращает \code{true} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \code{false}.
+
+\subsubsection{\lstinline`<set>set1 == <set>set2 : bool`}
+	Возвращает \code{true} если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \code{false}.
+
+\subsubsection{\lstinline`<object>obj1 != <object>obj2 : bool`}
+	Возвращает \code{true} если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \code{false}. 
+
+\subsubsection{\lstinline`<set>set1 != <set>set2 : bool`}
+	Возвращает \code{true} если количество объектов во втором объекте отличается от количество объектов в первом или существует объект присутствующий только в одной множестве, иначе \code{false}.
+
+\subsubsection{\lstinline`<set>s << <object>obj : bool`}
+	Возвращает \code{true} если множество \code{s} содержит объект \code{obj}, иначе \code{false}.
+
+\subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
+	Возвращает \code{true} если множество \code{s} содержит под объект \code{subobj}, иначе \code{false}.
+
+\subsubsection{\lstinline`<object>obj <* <object>subobj : bool`}
+	Возвращает \code{true} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \code{false}.
+
+\subsubsection{\lstinline`<set>set1 + <set>set2 : set`}
+	Возвращает новое множество содержащая все объекты множеств \code{set1} и \code{set2}.
+
+\subsubsection{\lstinline`<set>set1 - <set>set2 : set`}
+	Возвращает новое множество содержащая все объекты множестве \code{set1}, отсутствующих в множестве \code{set2}, и все объекты множестве \code{set2}, отсутствующих в \code{set1}.
+
+\subsubsection{\lstinline`<set>set1 \\ <set>set2 : set`}
+	Возвращает новое множество содержащая все объекты множестве \code{set1}, отсутствующих в множестве \code{set2}.
+
+\subsubsection{\lstinline`<set>set1 * <set>set2 : set`}
+	Возвращает новое множество содержащая все объекты , которые приличествуют в \code{set1} и \code{set2}.
+
 \subsection{\color{bluemarin}void}
 	
-	Все \code{void} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \code{void} и не \code{void}. Второй тип в дальнейшем будет отмечен как \code{any}.
+	Все \code{void} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \code{void} и не \code{void}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \code{int}, \code{double}, \code{string}, \code{list}, \code{object}, \code{set}, \code{element}.
 	
 	Список \code{void} операторов:
 \begin{icItems}
