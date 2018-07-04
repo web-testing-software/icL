@@ -1023,28 +1023,40 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	{\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
 
 \subsubsection{\lstinline`<int>a == <int>b : bool`}
+	Возвращает \code{true} если a и b имеют одинаковое значение, иначе \code{false}.
 
 \subsubsection{\lstinline`<double>a == <double>b : bool`}
+	Возвращает \code{true} если a и b отличаются довольно мало (например на 10$^{-15}$), иначе \code{false}.
 
 \subsubsection{\lstinline`<int>a != <int>b : bool`}
+	Возвращает \code{true} если a и b не имеют одинаковое значение, иначе \code{false}.
 
 \subsubsection{\lstinline`<double>a != <double>b : bool`}
+	Возвращает \code{true} если a и b отличаются больше чем на уровень погрешности машины, иначе \code{false}.
 
 \subsubsection{\lstinline`<int>a >> <int>b : bool`}
+	Возвращает \code{true} если целое число a больше b, иначе \code{false}.
 
 \subsubsection{\lstinline`<double>a >> <double>b : bool`}
+	Возвращает \code{true} если дробное число a больше b, иначе \code{false}.
 
 \subsubsection{\lstinline`<int>a >= <int>b : bool`}
+	Возвращает \code{true} если целое число a больше или равно b, иначе \code{false}.
 
 \subsubsection{\lstinline`<double>a >= <double>b : bool`}
+	Возвращает \code{true} если дробное число a больше или равно b, иначе \code{false}.
 
 \subsubsection{\lstinline`<int>a << <int>b : bool`}
+	Возвращает \code{true} если целое число a меньше b, иначе \code{false}.
 
 \subsubsection{\lstinline`<double>a << <double>b : bool`}
+	Возвращает \code{true} если дробное число a меньше b, иначе \code{false}.
 
 \subsubsection{\lstinline`<int>a <= <int>b : bool`}
+	Возвращает \code{true} если целое число a меньше или равно b, иначе \code{false}.
 
 \subsubsection{\lstinline`<double>a <= <double>b : bool`}
+	Возвращает \code{true} если дробное число a меньше или равно b, иначе \code{false}.
 
 
 \subsubsection{\lstinline`<int>a + <int>b : int`}
