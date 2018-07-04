@@ -1,4 +1,4 @@
-\documentclass[a4paper, 14pt, russian]{extarticle}
+\documentclass[a4paper, 14pt]{extarticle}
 
 \usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
 \usepackage{fancyvrb}
@@ -14,8 +14,6 @@
   
 \setmainfont{Liberation Serif}
 \newfontfamily\cyrillicfont{Liberation Serif}
-%\setmainfont{Times New Roman}
-%\newfontfamily\cyrillicfont{Times New Roman}
 \setmonofont{Liberation Mono}
 \setsansfont{Liberation Sans}
 \newfontfamily\cyrillicfontmono{Liberation Mono}
@@ -831,7 +829,7 @@ if (@) {
 	\begin{icItems}
 		\item конъюнкция - \lstinline`bool & bool : bool`;
 		\item дизъюнкция - \lstinline`bool | bool : bool`;
-		\item эквиваленция - \lstinline`bool ~ bool : bool`;
+		\item эквивалентность - \lstinline`bool ~ bool : bool`;
 		\item исключающий или - \lstinline`bool ^ bool : bool`;
 		\item инверсия (имеет ранг 7$^+$) - \lstinline`! bool : bool`;
 	\end{icItems}
@@ -857,6 +855,89 @@ _log:out "!false = " !false;                   `` !false = true
 _log:out "true == false = " (true == false);   `` true == false = false
 _log:out "false != true = " (false != true);   `` false != true = true
 \end{lstlisting}
+
+\subsubsection{\lstinline`<bool>a & <bool>b : bool`}
+	Оператор принимает логическую операцию "конъюнкция" над переменных a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{conjtable}.
+\begin{table}[htb]
+\caption{Таблица истинности конъюнкции}
+\label{conjtable}
+\begin{tabular}{|c|c|c|}
+\hline
+\code{a} & \code{b} & \code{a \& b} \\ \hline
+\code{false} & \code{false} & \code{false} \\ \hline
+\code{false} & \code{true} & \code{false} \\	 \hline
+\code{true} & \code{false} & \code{false} \\ \hline
+\code{true} & \code{true} & \code{true} \\ \hline
+\end{tabular}
+\vspace{-2em}
+\end{table}
+
+\subsubsection{\lstinline`<bool>a | <bool>b : bool`}
+	Оператор принимает логическую операцию "дизъюнкция" над переменных a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{distable}.
+\begin{table}[htb]
+\caption{Таблица истинности дизъюнкции}
+\label{distable}
+\begin{tabular}{|c|c|c|}
+\hline
+\code{a} & \code{b} & \code{a | b} \\ \hline
+\code{false} & \code{false} & \code{false} \\ \hline
+\code{false} & \code{true} & \code{true} \\	 \hline
+\code{true} & \code{false} & \code{true} \\ \hline
+\code{true} & \code{true} & \code{true} \\ \hline
+\end{tabular}
+\vspace{-2em}
+\end{table}
+
+\subsubsection{\lstinline`<bool>a ~ <bool>b : bool`}
+	Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logeqtable}.
+\begin{table}[htb]
+\caption{Таблица истинности эквивалентности}
+\label{logeqtable}
+\begin{tabular}{|c|c|c|}
+\hline
+\code{a} & \code{b} & \code{a \~ b} \\ \hline
+\code{false} & \code{false} & \code{true} \\ \hline
+\code{false} & \code{true} & \code{false} \\	 \hline
+\code{true} & \code{false} & \code{false} \\ \hline
+\code{true} & \code{true} & \code{true} \\ \hline
+\end{tabular}
+\vspace{0em}
+\end{table}
+
+\subsubsection{\lstinline`<bool>a ^ <bool>b : bool`}
+	Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logdifftable}.
+\begin{table}[htb]
+\caption{Таблица истинности исключающего или}
+\label{logdifftable}
+\begin{tabular}{|c|c|c|}
+\hline
+\code{a} & \code{b} & \code{a \^ b} \\ \hline
+\code{false} & \code{false} & \code{false} \\ \hline
+\code{false} & \code{true} & \code{true} \\	 \hline
+\code{true} & \code{false} & \code{true} \\ \hline
+\code{true} & \code{true} & \code{false} \\ \hline
+\end{tabular}
+\vspace{-2em}
+\end{table}
+
+\subsubsection{\lstinline`! <bool>a : bool`}
+	Оператор принимает логическую операцию "инверсия" над переменной a. Зависимость результата от исходных данных иллюстрирована в таблице \ref{distable}.
+\begin{table}[htb]
+\caption{Таблица истинности инверсии}
+\label{distable}
+\begin{tabular}{|c|c|}
+\hline
+\code{a} & \code{!a} \\ \hline
+\code{false} & \code{true} \\ \hline
+\code{true} & \code{false} \\ \hline
+\end{tabular}
+\vspace{-2em}
+\end{table}
+
+\subsubsection{\lstinline`<bool>a == <bool>b : bool`}
+	Возвращает \code{true} если a равно b, иначе \code{false}.
+\subsubsection{\lstinline`<bool>a != <bool>b : bool`}
+	Возвращает \code{true} если a равно b, иначе \code{false}.
 
 \subsection{{\color{bluemarin}int} и {\color{bluemarin}double}}
 
@@ -1049,7 +1130,7 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 \subsection{\color{bluemarin}void}
-
+	
 	Все \code{void} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \code{void} и не \code{void}. Второй тип в дальнейшем будет отмечен как \code{any}.
 	
 	Список \code{void} операторов:
@@ -1089,6 +1170,7 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
 	
 \begin{icEnumResume}
+	\item - Регулярные выражения
 	\item - Механизм состояний
 	\item - Базы данных (только SQLite в первой версии)
 	\item - Обработка ошибок
