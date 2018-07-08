@@ -7,12 +7,14 @@ SUBDIRS = \
         vm \
         inter \
         app \
-        context
+        context \
+        driver
 
 memory.subdir   = src/icl-memory
 logic.subdir    = src/icl-logic
 context.subdir  = src/icl-context
 vm.subdir       = src/icl-vm
+driver.subdir   = src/icl-driver
 inter.subdir    = src/icl-inter
 app.subdir      = src/icl-app
 
