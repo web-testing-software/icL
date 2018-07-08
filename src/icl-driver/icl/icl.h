@@ -139,6 +139,20 @@ public:
 	memory::WebElement * child(memory::WebElement * el, int n) override;
 	memory::WebElement * closest(
 	  memory::WebElement * el, const QString & selector) override;
+
+	// icL tabs interface
+	void toTabByName(const QString & _template) override;
+	void toTabByName(const QRegExp & regexp) override;
+	void toTabByUrl(const QString & _template) override;
+	void toTabByUrl(const QRegExp & regexp) override;
+	void toTabByIndex(int index) override;
+	void closeAllTabs() override;
+	void closeTabsToTheRight() override;
+	void closeOtherTabs() override;
+	void closeTab() override;
+	void newTab() override;
+
+	QList<memory::Tab> allTabs() override;
 };
 
 }  // namespace icL::driver::icl

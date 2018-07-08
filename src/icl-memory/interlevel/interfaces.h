@@ -65,6 +65,14 @@ public:
 	virtual void setSColor(SelectionColor scolor) = 0;
 };
 
+struct Tab
+{
+	QString name;
+	QString url;
+	int     framesCount;
+	QString id;
+};
+
 class Server
 {
 public:
@@ -183,6 +191,19 @@ public:
 	virtual WebElement * parent(WebElement * el)                            = 0;
 	virtual WebElement * child(WebElement * el, int n)                      = 0;
 	virtual WebElement * closest(WebElement * el, const QString & selector) = 0;
+
+	// icL tabs interface
+	virtual void       toTabByName(const QString & _template) = 0;
+	virtual void       toTabByName(const QRegExp & regexp)    = 0;
+	virtual void       toTabByUrl(const QString & _template)  = 0;
+	virtual void       toTabByUrl(const QRegExp & regexp)     = 0;
+	virtual void       toTabByIndex(int index)                = 0;
+	virtual void       closeAllTabs()                         = 0;
+	virtual void       closeTabsToTheRight()                  = 0;
+	virtual void       closeOtherTabs()                       = 0;
+	virtual void       closeTab()                             = 0;
+	virtual void       newTab()                               = 0;
+	virtual QList<Tab> allTabs()                              = 0;
 };
 
 }  // namespace icL::memory
