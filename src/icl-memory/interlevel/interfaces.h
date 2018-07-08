@@ -172,6 +172,17 @@ public:
 	// Screenshots
 	virtual QImage screenshot()                = 0;
 	virtual QImage screenshot(WebElement * el) = 0;
+
+	// icL additional methods
+	virtual WebElement * at(WebElement * el, int n)                        = 0;
+	virtual WebElement * filter(WebElement * el, const QString & selector) = 0;
+	virtual WebElement * contains(
+	  WebElement * el, const QString & _template)                           = 0;
+	virtual WebElement * next(WebElement * el)                              = 0;
+	virtual WebElement * prev(WebElement * el)                              = 0;
+	virtual WebElement * parent(WebElement * el)                            = 0;
+	virtual WebElement * child(WebElement * el, int n)                      = 0;
+	virtual WebElement * closest(WebElement * el, const QString & selector) = 0;
 };
 
 }  // namespace icL::memory

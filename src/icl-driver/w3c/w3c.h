@@ -121,6 +121,19 @@ public:
 	// Screenshots
 	QImage screenshot() override;
 	QImage screenshot(memory::WebElement * el) override;
+
+	// icL additional methods
+	memory::WebElement * at(memory::WebElement * el, int n) override;
+	memory::WebElement * filter(
+	  memory::WebElement * el, const QString & selector) override;
+	memory::WebElement * contains(
+	  memory::WebElement * el, const QString & _template) override;
+	memory::WebElement * next(memory::WebElement * el) override;
+	memory::WebElement * prev(memory::WebElement * el) override;
+	memory::WebElement * parent(memory::WebElement * el) override;
+	memory::WebElement * child(memory::WebElement * el, int n) override;
+	memory::WebElement * closest(
+	  memory::WebElement * el, const QString & selector) override;
 };
 
 }  // namespace icL::driver
