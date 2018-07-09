@@ -7,7 +7,7 @@
 
 class QQuickTextDocument;
 
-/**
+/*
  *  icL
  *  |-> app
  *  |- context
@@ -22,6 +22,15 @@ class QQuickTextDocument;
  *  |  |- cross
  *  |  '- rich
  *  '- memory
+ */
+
+/**
+ * \~english
+ * The namespace app contains all class, needed for developement of application
+ * and database.
+ * \~russian
+ * Пространство имён app содержит все классы, которые нужны для разработке
+ * приложении и базы данных.
  */
 namespace icL::app {
 
