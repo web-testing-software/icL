@@ -114,7 +114,7 @@ public:
 	// cookie
 	QJsonArray  cookies() override;
 	QJsonObject cookie(const QString & name) override;
-	void        udpCookie(const QString & name, QJsonObject obj) override;
+	void        udpCookie(QJsonObject obj) override;
 	void        deleteCookie(const QString & name) override;
 	void        deleteAllCookies() override;
 
@@ -141,6 +141,7 @@ public:
 	memory::WebElement * prev(memory::WebElement * el) override;
 	memory::WebElement * parent(memory::WebElement * el) override;
 	memory::WebElement * child(memory::WebElement * el, int n) override;
+	memory::WebElement * children(memory::WebElement * el) override;
 	memory::WebElement * closest(
 	  memory::WebElement * el, const QString & selector) override;
 
