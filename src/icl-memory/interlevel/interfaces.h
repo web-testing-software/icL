@@ -3,8 +3,7 @@
 
 #include "../structures/functioncontainer.h"
 #include "../structures/return.h"
-
-#include <../structures/webelement.h>
+#include "../structures/webelement.h"
 
 
 namespace icL::inter {
@@ -73,6 +72,12 @@ struct Tab
 	QString id;
 };
 
+struct Session
+{
+	QString id;
+	int     tabsCount;
+};
+
 class Server
 {
 public:
@@ -89,12 +94,16 @@ public:
 	virtual void setPageLoadTimeOut(int ms) = 0;
 	virtual void setScriptTimeout(int ms)   = 0;
 
+	// icL sessions functions
+	virtual void           switchSessionTo(const QString & sessionId) = 0;
+	virtual QList<Session> sessions()                                 = 0;
+
 	// Navigation functions
 	virtual void    setUrl(const QString & url) = 0;
 	virtual QString url()                       = 0;
 	virtual bool    canGoBack()                 = 0;  // icL
 	virtual void    back()                      = 0;
-	virtual bool    conGoForward()              = 0;  // icL
+	virtual bool    canGoForward()              = 0;  // icL
 	virtual void    forward()                   = 0;
 	virtual void    refresh()                   = 0;
 	virtual QString title()                     = 0;
@@ -193,17 +202,22 @@ public:
 	virtual WebElement * closest(WebElement * el, const QString & selector) = 0;
 
 	// icL tabs interface
-	virtual void       toTabByName(const QString & _template) = 0;
-	virtual void       toTabByName(const QRegExp & regexp)    = 0;
-	virtual void       toTabByUrl(const QString & _template)  = 0;
-	virtual void       toTabByUrl(const QRegExp & regexp)     = 0;
-	virtual void       toTabByIndex(int index)                = 0;
-	virtual void       closeAllTabs()                         = 0;
-	virtual void       closeTabsToTheRight()                  = 0;
-	virtual void       closeOtherTabs()                       = 0;
-	virtual void       closeTab()                             = 0;
-	virtual void       newTab()                               = 0;
-	virtual QList<Tab> allTabs()                              = 0;
+	virtual void toTabByName(const QString & _template)     = 0;
+	virtual void toTabByName(const QRegExp & regexp)        = 0;
+	virtual void toTabByUrl(const QString & _template)      = 0;
+	virtual void toTabByUrl(const QRegExp & regexp)         = 0;
+	virtual void toTabByIndex(int index)                    = 0;
+	virtual void closeAllTabs()                             = 0;
+	virtual void closeTabsToTheRight()                      = 0;
+	virtual void closeOtherTabs()                           = 0;
+	virtual void closeTabsByName(const QString & _template) = 0;
+	virtual void closeTabsByName(const QRegExp & regexp)    = 0;
+	virtual void closeTabsByUrl(const QString & _template)  = 0;
+	virtual void closeTabsByUrl(const QRegExp & regexp)     = 0;
+	virtual void closeTab()                                 = 0;
+	virtual void newTab()                                   = 0;
+
+	virtual QList<Tab> allTabs() = 0;
 };
 
 }  // namespace icL::memory

@@ -1,7 +1,7 @@
 TARGET = -icl-driver
 TEMPLATE = lib
 
-QT = core network
+QT = core network gui
 CONFIG -= app_bundle
 
 ICL_ROOT = $$PWD/../..

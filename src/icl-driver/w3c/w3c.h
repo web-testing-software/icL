@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <QNetworkReply>
 #include <QObject>
+#include <QRect>
 #include <QSslError>
 
 
@@ -35,12 +36,16 @@ public:
 	void setPageLoadTimeOut(int ms) override;
 	void setScriptTimeout(int ms) override;
 
+	// icL sessions functions
+	void                   switchSessionTo(const QString & sessionId) override;
+	QList<memory::Session> sessions() override;
+
 	// Navigation functions
 	void    setUrl(const QString & url) override;
 	QString url() override;
 	bool    canGoBack() override;  // icL
 	void    back() override;
-	bool    conGoForward() override;  // icL
+	bool    canGoForward() override;  // icL
 	void    forward() override;
 	void    refresh() override;
 	QString title() override;
@@ -148,11 +153,15 @@ public:
 	void closeAllTabs() override;
 	void closeTabsToTheRight() override;
 	void closeOtherTabs() override;
+	void closeTabsByName(const QString & _template) override;
+	void closeTabsByName(const QRegExp & regexp) override;
+	void closeTabsByUrl(const QString & _template) override;
+	void closeTabsByUrl(const QRegExp & regexp) override;
 	void closeTab() override;
 	void newTab() override;
 
 protected:
-	void sendError (QJsonObject & obj);
+	void sendError(QJsonObject & obj);
 
 	QJsonObject _get(const QString & url);
 	QJsonObject _delete(const QString & url);
