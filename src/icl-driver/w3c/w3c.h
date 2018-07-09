@@ -4,13 +4,17 @@
 #include <icl-memory/interlevel/interfaces.h>
 #include <icl-memory/interlevel/node.h>
 
+#include <QJsonObject>
+#include <QNetworkReply>
 #include <QObject>
+#include <QSslError>
 
 
 namespace icL::driver {
 
 class W3c
-	: public memory::Node
+	: public QObject
+	, public memory::Node
 	, public memory::Server
 {
 public:
@@ -146,6 +150,28 @@ public:
 	void closeOtherTabs() override;
 	void closeTab() override;
 	void newTab() override;
+
+protected:
+	void sendError (QJsonObject & obj);
+
+	QJsonObject _get(const QString & url);
+	QJsonObject _delete(const QString & url);
+	QJsonObject _post(const QString & url, QJsonObject & obj);
+
+public slots:
+	void finished(QNetworkReply * reply);
+
+private:
+	QNetworkAccessManager nm;
+
+	QString base_url;
+	QString session_id;
+
+	QJsonObject _return;
+
+	volatile std::atomic_bool wait = false;
+
+	void finish(QNetworkReply * reply);
 };
 
 }  // namespace icL::driver
