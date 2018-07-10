@@ -320,34 +320,54 @@ void W3c::restore() {
 // Find elements
 
 memory::WebElement * W3c::findCssSelector(
-  memory::WebElement * element, const QString & s) {}
+  memory::WebElement * element, const QString & s) {
+	return findElement(element, "css selector", s);
+}
 
 memory::WebElement * W3c::findLinkText(
-  memory::WebElement * element, const QString & text) {}
+  memory::WebElement * element, const QString & text) {
+	return findElement(element, "link text", text);
+}
 
 memory::WebElement * W3c::findPLinkText(
-  memory::WebElement * element, const QString & text) {}
+  memory::WebElement * element, const QString & text) {
+	return findElement(element, "partial link text", text);
+}
 
 memory::WebElement * W3c::findTagName(
-  memory::WebElement * element, const QString & tag) {}
+  memory::WebElement * element, const QString & tag) {
+	return findElement(element, "tag name", tag);
+}
 
 memory::WebElement * W3c::findXpath(
-  memory::WebElement * element, const QString & xpath) {}
+  memory::WebElement * element, const QString & xpath) {
+	return findElement(element, "xpath", xpath);
+}
 
 memory::WebElement * W3c::allCssSelector(
-  memory::WebElement * element, const QString & s) {}
+  memory::WebElement * element, const QString & s) {
+	return findElements(element, "css selector", s);
+}
 
 memory::WebElement * W3c::allLinkText(
-  memory::WebElement * element, const QString & text) {}
+  memory::WebElement * element, const QString & text) {
+	return findElements(element, "link text", text);
+}
 
 memory::WebElement * W3c::allPLinkText(
-  memory::WebElement * element, const QString & text) {}
+  memory::WebElement * element, const QString & text) {
+	return findElements(element, "partial link text", text);
+}
 
 memory::WebElement * W3c::allTagName(
-  memory::WebElement * element, const QString & tag) {}
+  memory::WebElement * element, const QString & tag) {
+	return findElements(element, "tag name", tag);
+}
 
 memory::WebElement * W3c::allXpath(
-  memory::WebElement * element, const QString & xpath) {}
+  memory::WebElement * element, const QString & xpath) {
+	return findElements(element, "xpath", xpath);
+}
 
 // Elements manipulation
 
@@ -588,9 +608,73 @@ QRect W3c::valueToRect(const QJsonObject & obj) {
 
 void W3c::prepareWindow() {
 	if (win_normal_mode) {
-		last_win_rect = windowRect();
+		last_win_rect   = windowRect();
 		win_normal_mode = false;
 	}
+}
+
+memory::WebElement * W3c::findElement(
+  memory::WebElement * el, const QString & by, const QString & value) {
+	QString              url;
+	QJsonObject          request;
+	QJsonObject          response;
+	memory::W3cElement * ret = new memory::W3cElement{};
+
+	if (el == nullptr) {
+		url = "/element";
+	}
+	else {
+		url = "/element/" % el->variable() % "/element";
+	}
+
+	request["using"] = by;
+	request["value"] = value;
+
+	response = _post(url, request);
+
+	if (response["value"].isObject()) {
+		QJsonObject value = response["value"].toObject();
+
+		if (value[memory::W3cElement::indentifier].isString()) {
+			ret->variables.append(
+			  value[memory::W3cElement::indentifier].toString());
+		}
+	}
+
+	return ret;
+}
+
+memory::WebElement * W3c::findElements(
+  memory::WebElement * el, const QString & by, const QString & value) {
+	QString              url;
+	QJsonObject          request;
+	QJsonObject          response;
+	memory::W3cElement * ret = new memory::W3cElement{};
+
+	if (el == nullptr) {
+		url = "/elements";
+	}
+	else {
+		url = "/element/" % el->variable() % "/elements";
+	}
+
+	request["using"] = by;
+	request["value"] = value;
+
+	response = _post(url, request);
+
+	if (response["value"].isArray()) {
+		for (const auto & ref : response["value"].toArray()) {
+			QJsonObject value = ref.toObject();
+
+			if (value[memory::W3cElement::indentifier].isString()) {
+				ret->variables.append(
+				  value[memory::W3cElement::indentifier].toString());
+			}
+		}
+	}
+
+	return ret;
 }
 
 bool W3c::checkErrors() {

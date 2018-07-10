@@ -223,6 +223,7 @@ protected:
 	void setTimeout(const QString & name, int value);
 
 	/**
+	 * \~english
 	 * @brief valueToRect - {x:int, y:int, width:int, height:int} to QRect
 	 * @param obj - JSON object to convert
 	 * @return Parsed rect or QRect() on failed
@@ -230,9 +231,34 @@ protected:
 	QRect valueToRect(const QJsonObject & obj);
 
 	/**
-	 * @brief prepareWindow - prepare window to maximize/minimize/fullscreen
+	 * \~english @brief prepareWindow - prepare window to
+	 * maximize/minimize/fullscreen
 	 */
 	void prepareWindow();
+
+	/**
+	 * @brief findElement - find element in page {backend}
+	 * @param el - element to find in, or null to find in document
+	 * @param by - "css selector", "link text", "partial link text", "tag name"
+	 * or "xpath"
+	 * @param value - css selector, link text, partial link text, tag name or
+	 * xpath
+	 * @return pointer to new element container
+	 */
+	memory::WebElement * findElement(
+	  memory::WebElement * el, const QString & by, const QString & value);
+
+	/**
+	 * @brief findElements - find elements in page {backend}
+	 * @param el - element to find in, or null to find in document
+	 * @param by - "css selector", "link text", "partial link text", "tag name"
+	 * or "xpath"
+	 * @param value - css selector, link text, partial link text, tag name or
+	 * xpath
+	 * @return pointer to new elements container
+	 */
+	memory::WebElement * findElements(
+	  memory::WebElement * el, const QString & by, const QString & value);
 
 	/**
 	 * \~english @brief checkErrors - check if _return is {value: null}
