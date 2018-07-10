@@ -10,9 +10,14 @@
 #include <QRect>
 #include <QSslError>
 
+/**
+ * The w3c namespace contains all realisations of W3C webdriver API
+ */
+namespace icL::driver::w3c {
 
-namespace icL::driver {
-
+/**
+ * \~english @brief The W3c class - Base W3C webdriver API realisation
+ */
 class W3c
 	: public QObject
 	, public memory::Node
@@ -162,28 +167,94 @@ public:
 	void newTab() override;
 
 protected:
+	/**
+	 * \~english
+	 * @brief sendError - process w3c errors from http response
+	 * @param obj - returned JSON object by http request
+	 */
 	void sendError(QJsonObject & obj);
 
+	/**
+	 * \~english
+	 * @brief prepareToMakeSession - prepare JSON object to be to /session
+	 * @param obj - JSON object reference
+	 */
+	virtual void prepareToMakeSession(QJsonObject & obj) = 0;
+
+	/**
+	 * \~english
+	 * @brief _get - make a get request
+	 * @param url - relative URL
+	 * @return response body parsed to JSON object
+	 */
 	QJsonObject _get(const QString & url);
+
+	/**
+	 * \~english
+	 * @brief _delete - make a delete request
+	 * @param url - relative URL
+	 * @return response body parsed to JSON object
+	 */
 	QJsonObject _delete(const QString & url);
+
+	/**
+	 * \~english
+	 * @brief _post - make a post request
+	 * @param url - relative URL
+	 * @param obj - JSON object to serialize and send like request body
+	 * @return response body parsed to JSON object
+	 */
 	QJsonObject _post(const QString & url, QJsonObject & obj);
 
 public slots:
+	/**
+	 * \~english
+	 * @brief finished - triggered when a connection inited by nm finished
+	 * @param reply - network HTTP reply object
+	 */
 	void finished(QNetworkReply * reply);
 
 private:
+	/**
+	 * \~english @brief nm - automate sendind of get, post and delete http
+	 * requests
+	 */
 	QNetworkAccessManager nm;
 
+	/**
+	 * \~english @brief base_url - {server ip}:{server port}
+	 */
 	QString base_url;
+
+	/**
+	 * \~english @brief session_id - current session id
+	 */
 	QString session_id;
 
+	/**
+	 * \~english @brief _sessions - list of all active sessions id
+	 */
+	QStringList _sessions;
+
+	/**
+	 * \~english @brief _return - return object from finished slot to _get,
+	 * _post, _delete functions
+	 */
 	QJsonObject _return;
 
+	/**
+	 * \~english @brief wait - wait http request to finish, block thread
+	 */
 	volatile std::atomic_bool wait = false;
 
+	/**
+	 * \~english
+	 * @brief finish - finish network reply processing
+	 * @param reply - network reply to delete later
+	 */
 	void finish(QNetworkReply * reply);
 };
 
-}  // namespace icL::driver
+}  // namespace icL::driver::w3c
 
 #endif  // icL_driver_w3c_W3C

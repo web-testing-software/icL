@@ -6,7 +6,7 @@
 #include <QJsonDocument>
 #include <QStringBuilder>
 
-namespace icL::driver {
+namespace icL::driver::w3c {
 
 W3c::W3c() {
 	connect(&nm, &QNetworkAccessManager::finished, this, &W3c::finished);

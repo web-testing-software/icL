@@ -1,6 +1,6 @@
 #include "chrome.h"
 
-namespace icL::driver {
+namespace icL::driver::w3c {
 
 Chrome::Chrome() {}
 
