@@ -113,9 +113,33 @@ void W3c::setScriptTimeout(int ms) {
 
 // icL sessions functions
 
-void W3c::switchSessionTo(const QString & sessionId) {}
+void W3c::switchSessionTo(const QString & sessionId) {
+	if (_sessions.contains(sessionId)) {
+		session_id = sessionId;
+	}
+	else {
+		il->vm->exception({-2004, "No such session " % sessionId});
+	}
+}
 
-QList<memory::Session> W3c::sessions() {}
+QList<memory::Session> W3c::sessions() {
+	QString current_session = session_id;
+	QList<memory::Session> ret;
+
+	for (const auto & str : _sessions) {
+		memory::Session sess;
+
+		sess.id = str;
+		session_id = str;
+		sess.tabsCount = windows().length();
+
+		ret.append(sess);
+	}
+
+	session_id = current_session;
+
+	return ret;
+}
 
 // Navigation functions
 
