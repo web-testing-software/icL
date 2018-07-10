@@ -264,7 +264,7 @@ public:
 	 * @brief switchToFrame - w3c POST /session/{session id}/frame
 	 * @param id - {sended object}.id
 	 */
-	virtual void switchtoFrame(WebElement * el) = 0;
+	virtual void switchToFrame(WebElement * el) = 0;
 	/**
 	 * \~english @brief switchToParent - w3c POST /session/{session id}/frame/parent
 	 */
@@ -284,7 +284,7 @@ public:
 	 * @brief setWindowRect - w3c POST /session/{session id}/window/rect
 	 * @param rect - {sended object}
 	 */
-	virtual void setWindowRect(const QRect & rect) = 0;
+	virtual QRect setWindowRect(const QRect & rect) = 0;
 
 	/**
 	 * \~english @brief maximize - w3c POST /session/{session id}/window/maximize

@@ -56,12 +56,12 @@ public:
 	void        focusWindow(const QString & id) override;
 	QStringList windows() override;
 	void        switchToFrame(int id) override;
-	void        switchtoFrame(memory::WebElement * el) override;
+	void        switchToFrame(memory::WebElement * el) override;
 	void        switchToParent() override;
 
 	// Window move and resize
 	QRect windowRect() override;
-	void  setWindowRect(const QRect & rect) override;
+	QRect setWindowRect(const QRect & rect) override;
 	void  maximize() override;
 	void  minimize() override;
 	void  fullscreen() override;

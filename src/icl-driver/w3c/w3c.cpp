@@ -163,7 +163,7 @@ QString W3c::url() {
 }
 
 bool W3c::canGoBack() {
-	return true; // There is not a w3c implementation
+	return true;  // There is not a w3c implementation
 }
 
 void W3c::back() {
@@ -172,7 +172,7 @@ void W3c::back() {
 }
 
 bool W3c::canGoForward() {
-	return true; // There is not a w3c implementation
+	return true;  // There is not a w3c implementation
 }
 
 void W3c::forward() {
@@ -251,7 +251,7 @@ void W3c::switchtoFrame(memory::WebElement * el) {
 	QJsonObject element;
 
 	element[memory::W3cElement::indentifier] = el->variable();
-	request["id"] = element;
+	request["id"]                            = element;
 	_post("/frame", request);
 	checkErrors();
 }
@@ -263,17 +263,59 @@ void W3c::switchToParent() {
 
 // Window move and resize
 
-QRect W3c::windowRect() {}
+QRect W3c::windowRect() {
+	QJsonObject response = _get("/window/rect");
 
-void W3c::setWindowRect(const QRect & rect) {}
+	return valueToRect(response);
+}
 
-void W3c::maximize() {}
+QRect W3c::setWindowRect(const QRect & rect) {
+	QJsonObject request;
+	QJsonObject response;
 
-void W3c::minimize() {}
+	if (rect.x() >= 0) {
+		request["x"] = rect.x();
+	}
 
-void W3c::fullscreen() {}
+	if (rect.y() >= 0) {
+		request["y"] = rect.y();
+	}
 
-void W3c::restore() {}
+	if (rect.width() >= 0) {
+		request["width"] = rect.width();
+	}
+
+	if (rect.height() >= 0) {
+		request["height"] = rect.height();
+	}
+
+	response = _post("/window/rect", request);
+
+	return valueToRect(response);
+}
+
+void W3c::maximize() {
+	prepareWindow();
+	_post("/window/maximize", {});
+	checkErrors();
+}
+
+void W3c::minimize() {
+	prepareWindow();
+	_post("/window/minimize", {});
+	checkErrors();
+}
+
+void W3c::fullscreen() {
+	prepareWindow();
+	_post("/window/fullscreen", {});
+	checkErrors();
+}
+
+void W3c::restore() {
+	setWindowRect(last_win_rect);
+	win_normal_mode = true;
+}
 
 // Find elements
 
@@ -426,7 +468,7 @@ void W3c::newTab() {}
 
 // protected functions
 
-void W3c::sendError(QJsonObject & obj) {
+void W3c::sendError(const QJsonObject & obj) {
 	il->vm->exception({-7575, "Undefined error;"});
 	qDebug() << obj;
 }
@@ -468,7 +510,7 @@ QJsonObject W3c::_delete(const QString & url) {
 	return _return;
 }
 
-QJsonObject W3c::_post(const QString & url, const QJsonObject &obj) {
+QJsonObject W3c::_post(const QString & url, const QJsonObject & obj) {
 	if (session_id.isEmpty()) {
 		il->vm->exception({-2002, "No current session: GET request to `" % url %
 									"` was canceled."});
@@ -519,6 +561,35 @@ void W3c::setTimeout(const QString & name, int value) {
 
 	if (!response["value"].isNull()) {
 		sendError(response);
+	}
+}
+
+QRect W3c::valueToRect(const QJsonObject & obj) {
+	if (obj["value"].isObject()) {
+		QJsonObject value = obj["value"].toObject();
+
+		if (
+		  value["x"].isDouble() && value["y"].isDouble() &&
+		  value["width"].isDouble() && value["height"].isDouble()) {
+			QRect ret;
+
+			ret.setX(value["x"].toInt());
+			ret.setY(value["y"].toInt());
+			ret.setWidth(value["width"].toInt());
+			ret.setHeight(value["height"].toInt());
+
+			return ret;
+		}
+	}
+
+	sendError(obj);
+	return {};
+}
+
+void W3c::prepareWindow() {
+	if (win_normal_mode) {
+		last_win_rect = windowRect();
+		win_normal_mode = false;
 	}
 }
 

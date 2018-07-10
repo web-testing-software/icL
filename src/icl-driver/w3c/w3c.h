@@ -61,12 +61,12 @@ public:
 	void        focusWindow(const QString & id) override;
 	QStringList windows() override;
 	void        switchToFrame(int id) override;
-	void        switchtoFrame(memory::WebElement * el) override;
+	void        switchToFrame(memory::WebElement * el) override;
 	void        switchToParent() override;
 
 	// Window move and resize
 	QRect windowRect() override;
-	void  setWindowRect(const QRect & rect) override;
+	QRect setWindowRect(const QRect & rect) override;
 	void  maximize() override;
 	void  minimize() override;
 	void  fullscreen() override;
@@ -172,7 +172,7 @@ protected:
 	 * @brief sendError - process w3c errors from http response
 	 * @param obj - returned JSON object by http request
 	 */
-	void sendError(QJsonObject & obj);
+	void sendError(const QJsonObject & obj);
 
 	/**
 	 * \~english
@@ -221,6 +221,18 @@ protected:
 	 * @param value - value to set
 	 */
 	void setTimeout(const QString & name, int value);
+
+	/**
+	 * @brief valueToRect - {x:int, y:int, width:int, height:int} to QRect
+	 * @param obj - JSON object to convert
+	 * @return Parsed rect or QRect() on failed
+	 */
+	QRect valueToRect(const QJsonObject & obj);
+
+	/**
+	 * @brief prepareWindow - prepare window to maximize/minimize/fullscreen
+	 */
+	void prepareWindow();
 
 	/**
 	 * \~english @brief checkErrors - check if _return is {value: null}
@@ -274,6 +286,16 @@ private:
 	 * @param reply - network reply to delete later
 	 */
 	void finish(QNetworkReply * reply);
+
+	/**
+	 * @brief last_win_rect - last window geometry
+	 */
+	QRect last_win_rect;
+
+	/**
+	 * @brief win_normal_mode - window is not maximized/minimized/fullscreened
+	 */
+	bool win_normal_mode = true;
 };
 
 }  // namespace icL::driver::w3c
