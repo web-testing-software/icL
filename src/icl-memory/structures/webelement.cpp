@@ -29,7 +29,7 @@ int W3cElement::count() {
 	return variables.length();
 }
 
-QString W3cElement::webElementIdentifier =
+QString W3cElement::indentifier =
   "element-6066-11e4-a52e-4f735466cecf";
 
 }  // namespace icL::memory

@@ -198,19 +198,68 @@ QString W3c::title() {
 
 // Windows and frames
 
-QString W3c::window() {}
+QString W3c::window() {
+	QJsonObject response = _get("/window");
 
-void W3c::closeWindow() {}
+	if (response["value"].isString()) {
+		return response["value"].toString();
+	}
 
-void W3c::focusWindow(const QString & id) {}
+	sendError(response);
+	return {};
+}
 
-QStringList W3c::windows() {}
+void W3c::closeWindow() {
+	_delete("/window");
+	checkErrors();
+}
 
-void W3c::switchToFrame(int id) {}
+void W3c::focusWindow(const QString & id) {
+	QJsonObject request;
 
-void W3c::switchtoFrame(memory::WebElement * el) {}
+	request["handle"] = id;
+	_post("/window", request);
+	checkErrors();
+}
 
-void W3c::switchToParent() {}
+QStringList W3c::windows() {
+	QJsonObject response = _get("/window/handles");
+	QStringList ret;
+
+	if (response["value"].isArray()) {
+		for (const auto obj : response["value"].toArray()) {
+			ret.append(obj.toString());
+		}
+	}
+	else {
+		sendError(response);
+	}
+
+	return ret;
+}
+
+void W3c::switchToFrame(int id) {
+	QJsonObject request;
+
+	request["id"] = id;
+	_post("/frame", request);
+	checkErrors();
+}
+
+void W3c::switchtoFrame(memory::WebElement * el) {
+	QJsonObject request;
+	QJsonObject element;
+
+	element[memory::W3cElement::indentifier] = el->variable();
+	request["id"] = element;
+	_post("/frame", request);
+	checkErrors();
+}
+
+void W3c::switchToParent() {
+	_post("/frame/parent", {});
+	checkErrors();
+}
 
 // Window move and resize
 

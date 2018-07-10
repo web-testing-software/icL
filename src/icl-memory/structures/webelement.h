@@ -52,7 +52,7 @@ struct W3cElement : public WebElement {
 	QString nthVariable(int n) override;
 	int     count() override;
 
-	static QString webElementIdentifier;
+	static QString indentifier;
 };
 
 }  // namespace icL::memory
