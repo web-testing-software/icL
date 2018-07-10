@@ -1,5 +1,7 @@
 #include "w3c.h"
 
+#include <QApplication>
+#include <QClipboard>
 #include <QDataStream>
 #include <QImage>
 #include <QJsonArray>
@@ -371,31 +373,103 @@ memory::WebElement * W3c::allXpath(
 
 // Elements manipulation
 
-memory::WebElement * W3c::active() {}
+memory::WebElement * W3c::active() {
+	QJsonObject          response = _get("/element/active");
+	memory::W3cElement * ret      = new memory::W3cElement;
 
-bool W3c::selected(memory::WebElement * el) {}
+	if (response["value"].isObject()) {
+		QJsonObject value = response["value"].toObject();
 
-QVariant W3c::attribute(memory::WebElement * el, const QString & name) {}
+		if (value[memory::W3cElement::indentifier].isString()) {
+			ret->variables.append(
+			  value[memory::W3cElement::indentifier].toString());
+		}
+	}
 
-QVariant W3c::property(memory::WebElement * el, const QString & name) {}
+	return ret;
+}
 
-QVariant W3c::css(memory::WebElement * el, const QString & name) {}
+bool W3c::selected(memory::WebElement * el) {
+	return elementHttpBool(el, "/selected");
+}
 
-QVariant W3c::text(memory::WebElement * el) {}
+QVariant W3c::attribute(memory::WebElement * el, const QString & name) {
+	return elementHttpText(el, "/attribute/" % name);
+}
 
-QVariant W3c::name(memory::WebElement * el) {}
+QVariant W3c::property(memory::WebElement * el, const QString & name) {
+	QJsonObject   response = elementHttp(el, "/property/" % name);
+	QJsonValueRef value    = response["value"];
 
-QRect W3c::rect(memory::WebElement * el) {}
+	if (value.isBool() || value.isDouble() || value.isString()) {
+		return value.toVariant();
+	}
+	else if (value.isArray()) {
+		QStringList list;
 
-bool W3c::enabled(memory::WebElement * el) {}
+		for (const auto & ref : value.toArray()) {
+			if (ref.isString()) {
+				list.append(ref.toString());
+			}
+			else {
+				list.clear();
+				break;
+			}
+		}
 
-void W3c::click(memory::WebElement * el) {}
+		// If no errors ocurrer
+		if (!list.isEmpty() || value.toArray().isEmpty()) {
+			return list;
+		}
+	}
 
-void W3c::clear(memory::WebElement * el) {}
+	return {};
+}
 
-void W3c::value(memory::WebElement * el, const QString & val) {}
+QVariant W3c::css(memory::WebElement * el, const QString & name) {
+	return elementHttpText(el, "/css/" % name);
+}
 
-void W3c::paste(memory::WebElement * el, const QString & val) {}
+QVariant W3c::text(memory::WebElement * el) {
+	return elementHttpText(el, "/text");
+}
+
+QVariant W3c::name(memory::WebElement * el) {
+	return elementHttpText(el, "/name");
+}
+
+QRect W3c::rect(memory::WebElement * el) {
+	return valueToRect(elementHttp(el, "/rect"));
+}
+
+bool W3c::enabled(memory::WebElement * el) {
+	return elementHttpBool(el, "/enabled");
+}
+
+void W3c::click(memory::WebElement * el) {
+	elementHttp(el, "/click", true);
+	checkErrors();
+}
+
+void W3c::clear(memory::WebElement * el) {
+	elementHttp(el, "/clear", true);
+	checkErrors();
+}
+
+void W3c::value(memory::WebElement * el, const QString & val) {
+	QJsonObject request;
+
+	request["value"] = val;
+	_post("/element/" % el->variable() % "/value", request);
+
+	checkErrors();
+}
+
+void W3c::paste(memory::WebElement * el, const QString & val) {
+	QApplication::clipboard()->setText(val);
+
+	value(el, "\uE009V");
+}
 
 // document
 
@@ -618,7 +692,7 @@ memory::WebElement * W3c::findElement(
 	QString              url;
 	QJsonObject          request;
 	QJsonObject          response;
-	memory::W3cElement * ret = new memory::W3cElement{};
+	memory::W3cElement * ret = new memory::W3cElement;
 
 	if (el == nullptr) {
 		url = "/element";
@@ -649,7 +723,7 @@ memory::WebElement * W3c::findElements(
 	QString              url;
 	QJsonObject          request;
 	QJsonObject          response;
-	memory::W3cElement * ret = new memory::W3cElement{};
+	memory::W3cElement * ret = new memory::W3cElement;
 
 	if (el == nullptr) {
 		url = "/elements";
@@ -675,6 +749,38 @@ memory::WebElement * W3c::findElements(
 	}
 
 	return ret;
+}
+
+QJsonObject W3c::elementHttp(
+  memory::WebElement * el, const QString & url, bool post) {
+	QString url2 = "/element/" % el->variable() % url;
+
+	if (post) {
+		return _post(url2, {});
+	}
+
+	return _get(url2);
+}
+
+QString W3c::elementHttpText(memory::WebElement * el, const QString & url) {
+	QJsonObject response = elementHttp(el, url);
+
+	if (response["value"].isString()) {
+		return response["value"].toString();
+	}
+
+	return {};
+}
+
+bool W3c::elementHttpBool(memory::WebElement *el, const QString &url)
+{
+	QJsonObject response = elementHttp(el, url);
+
+	if (response["value"].isBool()) {
+		return response["value"].toBool();
+	}
+
+	return false;
 }
 
 bool W3c::checkErrors() {

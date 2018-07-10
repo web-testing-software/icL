@@ -261,6 +261,32 @@ protected:
 	  memory::WebElement * el, const QString & by, const QString & value);
 
 	/**
+	 * @brief elementHttp - simplify get/post element requests
+	 * @param el - element to extract id
+	 * @param url - relative URL to load
+	 * @param post - true - POST request, false - GET request.
+	 * @return the reply of HTTP server as JSON object
+	 */
+	QJsonObject elementHttp(
+	  memory::WebElement * el, const QString & url, bool post = false);
+
+	/**
+	 * @brief elementHttpText - request text from url for element
+	 * @param el - element to extract id
+	 * @param url - relative URL to load
+	 * @return a string value, the "value" of response object
+	 */
+	QString elementHttpText(memory::WebElement * el, const QString & url);
+
+	/**
+	 * @brief elementHttpText - request bool from url for element
+	 * @param el - element to extract id
+	 * @param url - relative URL to load
+	 * @return a bool value, the "value" of response object
+	 */
+	bool elementHttpBool(memory::WebElement * el, const QString & url);
+
+	/**
 	 * \~english @brief checkErrors - check if _return is {value: null}
 	 */
 	bool checkErrors();
