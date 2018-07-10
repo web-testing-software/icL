@@ -5,6 +5,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QStringBuilder>
+#include <QThread>
 
 namespace icL::driver::w3c {
 
@@ -16,27 +17,107 @@ void W3c::newLog(int level, const QString & message) {
 	qDebug() << "icL log:" << level << message;
 }
 
-void W3c::newSession() {}
+// Session functions
 
-void W3c::deleteSession() {}
+void W3c::newSession() {
+	QJsonDocument doc;
+	QJsonObject   body;
+	QJsonObject   capabilities;
+	QString       sessionId;
 
-int W3c::status() {}
+	if (base_url.isEmpty()) {
+		il->vm->exception(
+		  {-2001, "Failed to create session: W3C Driver not inited!"});
+		return;
+	}
 
-int W3c::implicitTimeout() {}
+	capabilities["alwaysMatch"] = QJsonObject();
+	capabilities["firstMatch"]  = QJsonArray();
+	body["capabilities"]        = capabilities;
 
-int W3c::pageLoadTimeout() {}
+	prepareToMakeSession(body);
 
-int W3c::scriptTimeout() {}
+	doc.setObject(body);
+	wait = true;
 
-void W3c::setImplicitTimeout(int ms) {}
+	nm.post(QNetworkRequest(QUrl(base_url % "/session")), doc.toJson());
 
-void W3c::setPageLoadTimeOut(int ms) {}
+	while (wait) {
+		// Wait for page to load
+		QThread::msleep(1);
+	}
 
-void W3c::setScriptTimeout(int ms) {}
+	if (_return["value"].isObject()) {
+		QJsonObject value = _return["value"].toObject();
+
+		if (value["sessionId"].isString()) {
+			sessionId = value["sessionId"].toString();
+
+			_sessions.append(sessionId);
+			session_id = sessionId;
+		}
+	}
+
+	if (sessionId.isEmpty()) {
+		sendError(_return);
+	}
+}
+
+void W3c::deleteSession() {
+	QJsonObject obj = _delete("");
+
+	if (!obj["value"].isNull()) {
+		sendError(obj);
+	}
+}
+
+int W3c::status() {
+	wait = true;
+	nm.get(QNetworkRequest(QUrl(base_url % "/status")));
+
+	while (wait) {
+		// Wait for page to load
+		QThread::msleep(1);
+	}
+
+	if (_return["status"].isDouble()) {
+		return _return["status"].toInt();
+	}
+
+	return -1;
+}
+
+int W3c::implicitTimeout() {
+	return getTimeout("implicit");
+}
+
+int W3c::pageLoadTimeout() {
+	return getTimeout("pageLoad");
+}
+
+int W3c::scriptTimeout() {
+	return getTimeout("script");
+}
+
+void W3c::setImplicitTimeout(int ms) {
+	setTimeout("implicit", ms);
+}
+
+void W3c::setPageLoadTimeOut(int ms) {
+	setTimeout("pageLoad", ms);
+}
+
+void W3c::setScriptTimeout(int ms) {
+	setTimeout("script", ms);
+}
+
+// icL sessions functions
 
 void W3c::switchSessionTo(const QString & sessionId) {}
 
 QList<memory::Session> W3c::sessions() {}
+
+// Navigation functions
 
 void W3c::setUrl(const QString & url) {}
 
@@ -54,6 +135,8 @@ void W3c::refresh() {}
 
 QString W3c::title() {}
 
+// Windows and frames
+
 QString W3c::window() {}
 
 void W3c::closeWindow() {}
@@ -68,6 +151,8 @@ void W3c::switchtoFrame(memory::WebElement * el) {}
 
 void W3c::switchToParent() {}
 
+// Window move and resize
+
 QRect W3c::windowRect() {}
 
 void W3c::setWindowRect(const QRect & rect) {}
@@ -79,6 +164,8 @@ void W3c::minimize() {}
 void W3c::fullscreen() {}
 
 void W3c::restore() {}
+
+// Find elements
 
 memory::WebElement * W3c::findCssSelector(
   memory::WebElement * element, const QString & s) {}
@@ -110,6 +197,8 @@ memory::WebElement * W3c::allTagName(
 memory::WebElement * W3c::allXpath(
   memory::WebElement * element, const QString & xpath) {}
 
+// Elements manipulation
+
 memory::WebElement * W3c::active() {}
 
 bool W3c::selected(memory::WebElement * el) {}
@@ -136,6 +225,8 @@ void W3c::value(memory::WebElement * el, const QString & val) {}
 
 void W3c::paste(memory::WebElement * el, const QString & val) {}
 
+// document
+
 QString W3c::source() {}
 
 QVariant W3c::executeSync(const QString & code, const QVariantList & args) {}
@@ -144,15 +235,19 @@ void W3c::executeAsync(const QString & code, const QVariantList & args) {}
 
 QVariant W3c::executeJs(const QString & code) {}
 
+// cookie
+
 QJsonArray W3c::cookies() {}
 
 QJsonObject W3c::cookie(const QString & name) {}
 
-void W3c::udpCookie(const QString & name, QJsonObject obj) {}
+void W3c::udpCookie(QJsonObject obj) {}
 
 void W3c::deleteCookie(const QString & name) {}
 
 void W3c::deleteAllCookies() {}
+
+// Alert
 
 void W3c::alertDimiss() {}
 
@@ -162,9 +257,13 @@ QString W3c::alertText() {}
 
 void W3c::alertSendText(const QString & text) {}
 
+// Screenshots
+
 QImage W3c::screenshot() {}
 
 QImage W3c::screenshot(memory::WebElement * el) {}
+
+// icL additional methods
 
 memory::WebElement * W3c::at(memory::WebElement * el, int n) {}
 
@@ -184,6 +283,8 @@ memory::WebElement * W3c::child(memory::WebElement * el, int n) {}
 
 memory::WebElement * W3c::closest(
   memory::WebElement * el, const QString & selector) {}
+
+// icL tabs interface
 
 void W3c::toTabByName(const QString & _template) {}
 
@@ -213,35 +314,57 @@ void W3c::closeTab() {}
 
 void W3c::newTab() {}
 
+// protected functions
+
 void W3c::sendError(QJsonObject & obj) {
 	il->vm->exception({-7575, "Undefined error;"});
 	qDebug() << obj;
 }
 
 QJsonObject W3c::_get(const QString & url) {
+	if (session_id.isEmpty()) {
+		il->vm->exception({-2002, "No current session: GET request to `" % url %
+									"` was canceled."});
+		return {};
+	}
+
 	wait = true;
 	nm.get(QNetworkRequest(QUrl(base_url % "/session/" % session_id)));
 
 	while (wait) {
 		// wainting
+		QThread::msleep(1);
 	}
 
 	return _return;
 }
 
 QJsonObject W3c::_delete(const QString & url) {
+	if (session_id.isEmpty()) {
+		il->vm->exception({-2002, "No current session: DELETE request to `" %
+									url % "` was canceled."});
+		return {};
+	}
+
 	wait = true;
 	nm.deleteResource(
 	  QNetworkRequest(QUrl(base_url % "/session/" % session_id)));
 
 	while (wait) {
 		// wainting
+		QThread::msleep(1);
 	}
 
 	return _return;
 }
 
 QJsonObject W3c::_post(const QString & url, QJsonObject & obj) {
+	if (session_id.isEmpty()) {
+		il->vm->exception({-2002, "No current session: GET request to `" % url %
+									"` was canceled."});
+		return {};
+	}
+
 	QJsonDocument doc;
 
 	doc.setObject(obj);
@@ -251,9 +374,42 @@ QJsonObject W3c::_post(const QString & url, QJsonObject & obj) {
 
 	while (wait) {
 		// wainting
+		QThread::msleep(1);
 	}
 
 	return _return;
+}
+
+int W3c::getTimeout(const QString & name) {
+
+	QJsonObject obj = _get("/timeouts");
+	int         ret = -1;
+
+	if (obj["value"].isObject()) {
+		QJsonObject value = obj["value"].toObject();
+
+		if (value[name].isDouble()) {
+			ret = value[name].toInt();
+		}
+	}
+
+	if (ret == -1) {
+		il->vm->exception({-2003, "Failed to extract timeout " % name});
+	}
+
+	return ret;
+}
+
+void W3c::setTimeout(const QString & name, int value) {
+	QJsonObject request;
+	QJsonObject response;
+
+	request["implicit"] = value;
+	response            = _post("/timeouts", request);
+
+	if (!response["value"].isNull()) {
+		sendError(response);
+	}
 }
 
 void W3c::finished(QNetworkReply * reply) {
@@ -273,7 +429,7 @@ void W3c::finished(QNetworkReply * reply) {
 	doc.fromJson(stream.readAll().toUtf8(), &parseError);
 
 	if (parseError.error != QJsonParseError::NoError) {
-		il->vm->exception({-7575, "Failed to parse reply:" % stream.readAll() %
+		il->vm->exception({-2000, "Failed to parse reply:" % stream.readAll() %
 									"\nError: " % parseError.errorString()});
 		finish(reply);
 		return;
@@ -289,4 +445,4 @@ void W3c::finish(QNetworkReply * reply) {
 	reply->deleteLater();
 }
 
-}  // namespace icL::driver
+}  // namespace icL::driver::w3c

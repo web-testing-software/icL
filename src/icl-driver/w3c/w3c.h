@@ -206,6 +206,20 @@ protected:
 	 */
 	QJsonObject _post(const QString & url, QJsonObject & obj);
 
+	/**
+	 * @brief getTimeout - GET /session/{session id}/timeout
+	 * @param name - name of timeout
+	 * @return timeout value
+	 */
+	int getTimeout(const QString & name);
+
+	/**
+	 * @brief setTimeout - POST /session/{session id}/timeout
+	 * @param name - name of timeout
+	 * @param value - value to set
+	 */
+	void setTimeout(const QString & name, int value);
+
 public slots:
 	/**
 	 * \~english
