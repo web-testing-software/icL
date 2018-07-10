@@ -66,9 +66,7 @@ void W3c::newSession() {
 void W3c::deleteSession() {
 	QJsonObject obj = _delete("");
 
-	if (!obj["value"].isNull()) {
-		sendError(obj);
-	}
+	checkErrors();
 }
 
 int W3c::status() {
@@ -123,14 +121,14 @@ void W3c::switchSessionTo(const QString & sessionId) {
 }
 
 QList<memory::Session> W3c::sessions() {
-	QString current_session = session_id;
+	QString                current_session = session_id;
 	QList<memory::Session> ret;
 
 	for (const auto & str : _sessions) {
 		memory::Session sess;
 
-		sess.id = str;
-		session_id = str;
+		sess.id        = str;
+		session_id     = str;
 		sess.tabsCount = windows().length();
 
 		ret.append(sess);
@@ -143,21 +141,60 @@ QList<memory::Session> W3c::sessions() {
 
 // Navigation functions
 
-void W3c::setUrl(const QString & url) {}
+void W3c::setUrl(const QString & url) {
+	QJsonObject request;
+	QJsonObject response;
 
-QString W3c::url() {}
+	request["url"] = url;
+	response       = _post("/url", request);
 
-bool W3c::canGoBack() {}
+	checkErrors();
+}
 
-void W3c::back() {}
+QString W3c::url() {
+	QJsonObject response = _get("/url");
 
-bool W3c::canGoForward() {}
+	if (response["value"].isString()) {
+		return response["value"].toString();
+	}
 
-void W3c::forward() {}
+	sendError(response);
+	return {};
+}
 
-void W3c::refresh() {}
+bool W3c::canGoBack() {
+	return true; // There is not a w3c implementation
+}
 
-QString W3c::title() {}
+void W3c::back() {
+	_post("/back", {});
+	checkErrors();
+}
+
+bool W3c::canGoForward() {
+	return true; // There is not a w3c implementation
+}
+
+void W3c::forward() {
+	_post("/forward", {});
+	checkErrors();
+}
+
+void W3c::refresh() {
+	_post("/refresh", {});
+	checkErrors();
+}
+
+QString W3c::title() {
+	QJsonObject response = _get("/title");
+
+	if (response["value"].isString()) {
+		return response["value"].toString();
+	}
+
+	sendError(response);
+	return {};
+}
 
 // Windows and frames
 
@@ -382,7 +419,7 @@ QJsonObject W3c::_delete(const QString & url) {
 	return _return;
 }
 
-QJsonObject W3c::_post(const QString & url, QJsonObject & obj) {
+QJsonObject W3c::_post(const QString & url, const QJsonObject &obj) {
 	if (session_id.isEmpty()) {
 		il->vm->exception({-2002, "No current session: GET request to `" % url %
 									"` was canceled."});
@@ -434,6 +471,15 @@ void W3c::setTimeout(const QString & name, int value) {
 	if (!response["value"].isNull()) {
 		sendError(response);
 	}
+}
+
+bool W3c::checkErrors() {
+	if (!_return["value"].isNull()) {
+		sendError(_return);
+		return true;
+	}
+
+	return false;
 }
 
 void W3c::finished(QNetworkReply * reply) {

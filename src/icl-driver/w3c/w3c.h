@@ -204,9 +204,10 @@ protected:
 	 * @param obj - JSON object to serialize and send like request body
 	 * @return response body parsed to JSON object
 	 */
-	QJsonObject _post(const QString & url, QJsonObject & obj);
+	QJsonObject _post(const QString & url, const QJsonObject & obj);
 
 	/**
+	 * \~english
 	 * @brief getTimeout - GET /session/{session id}/timeout
 	 * @param name - name of timeout
 	 * @return timeout value
@@ -214,11 +215,17 @@ protected:
 	int getTimeout(const QString & name);
 
 	/**
+	 * \~english
 	 * @brief setTimeout - POST /session/{session id}/timeout
 	 * @param name - name of timeout
 	 * @param value - value to set
 	 */
 	void setTimeout(const QString & name, int value);
+
+	/**
+	 * \~english @brief checkErrors - check if _return is {value: null}
+	 */
+	bool checkErrors();
 
 public slots:
 	/**
