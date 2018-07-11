@@ -11,7 +11,7 @@
 
 namespace icL::memory {
 
-using Table = QHash<QString, QVariantList>;
+using Table = QList<QVariantList>;
 
 struct SetPtr
 {

@@ -51,7 +51,7 @@ void Set::runLength() {
 
 void Set::runEmpty() {
 	newValue   = length();
-	newContext = new Boolean(il, newValue, true);
+	newContext = new Boolean(il, newValue == 0, true);
 }
 
 void Set::appplicate(const QList<QStringList> & list) {
@@ -81,8 +81,6 @@ void Set::appplicate(const QList<QStringList> & list) {
 		i = size;
 		j = list.size();
 	};
-
-	set.table->reserve(set.table->count() + size * 1.1f);
 
 	for (i = 0; i < size; i++) {
 		QVariantList row = {};
@@ -134,9 +132,9 @@ void Set::appplicate(const QList<QStringList> & list) {
 			}
 		}
 
-		QString key = getId(row);
-
-		set.table->insert(key, row);
+		if (!set.table->contains(row)) {
+			set.table->append(row);
+		}
 	}
 }
 
@@ -169,15 +167,15 @@ void Set::insertField(const QString & name, const QVariant & value) {
 	new_set.table = std::make_shared<memory::Table>(memory::Table{});
 
 	new_set.header->append(memory::Parameter{name, value_type});
-	new_set.table->reserve(old_set.table->count() * 1.1f);
 
 	for (QVariantList row : *old_set.table) {
 		QString key;
 
 		row.append(value);
-		key = getId(row);
 
-		new_set.table->insert(key, row);
+		if (!new_set.table->contains(row)) {
+			new_set.table->append(row);
+		}
 	}
 
 	setValue(QVariant::fromValue(new_set));
@@ -203,15 +201,10 @@ void Set::removeField(const QString & name) {
 	new_set.table = std::make_shared<memory::Table>(memory::Table{});
 
 	new_set.header->removeAt(index);
-	new_set.table->reserve(old_set.table->count() * 1.1f);
 
 	for (QVariantList row : *old_set.table) {
-		QString key;
-
 		row.removeAt(index);
-		key = getId(row);
-
-		new_set.table->insert(key, row);
+		new_set.table->append(row);
 	}
 
 	setValue(QVariant::fromValue(new_set));
@@ -238,14 +231,11 @@ void Set::concatLists(const QString & name, const QString & separator) {
 	new_set.table = std::make_shared<memory::Table>(memory::Table{});
 
 	(*new_set.header)[index].type = memory::Type::String;
-	new_set.table->reserve(old_set.table->count() * 1.1f);
 
 	for (QVariantList row : *old_set.table) {
 		row[index] = row.at(index).toStringList().join(separator);
 
-		QString key = getId(row);
-
-		new_set.table->insert(key, row);
+		new_set.table->append(row);
 	}
 
 	setValue(QVariant::fromValue(new_set));
@@ -377,23 +367,6 @@ bool Set::checkRow(const memory::SetPtr & set, const QVariantList & row) {
 	}
 
 	return true;
-}
-
-QString Set::getId(const QVariantList & row) {
-	QStringList strlist;
-
-	strlist.reserve(row.length());
-
-	for (const QVariant & var : row) {
-		if (var.type() == var.StringList) {
-			strlist.append(var.toStringList().join("|"));
-		}
-		else {
-			strlist.append(var.toString());
-		}
-	}
-
-	return strlist.join(",");
 }
 
 int Set::indexOf(const QString & name, const memory::SetPtr & set) {

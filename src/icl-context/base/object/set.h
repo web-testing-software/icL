@@ -77,7 +77,6 @@ private:
 
 	// Back-end
 	bool checkRow(const memory::SetPtr & set, const QVariantList & row);
-	QString getId(const QVariantList & row);
 	int indexOf(const QString & name, const memory::SetPtr & set);
 
 private:
