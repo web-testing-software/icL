@@ -401,29 +401,7 @@ QVariant W3c::property(memory::WebElement * el, const QString & name) {
 	QJsonObject   response = elementHttp(el, "/property/" % name);
 	QJsonValueRef value    = response["value"];
 
-	if (value.isBool() || value.isDouble() || value.isString()) {
-		return value.toVariant();
-	}
-	else if (value.isArray()) {
-		QStringList list;
-
-		for (const auto & ref : value.toArray()) {
-			if (ref.isString()) {
-				list.append(ref.toString());
-			}
-			else {
-				list.clear();
-				break;
-			}
-		}
-
-		// If no errors ocurrer
-		if (!list.isEmpty() || value.toArray().isEmpty()) {
-			return list;
-		}
-	}
-
-	return {};
+	return valueToVariant(value);
 }
 
 QVariant W3c::css(memory::WebElement * el, const QString & name) {
@@ -468,14 +446,24 @@ void W3c::value(memory::WebElement * el, const QString & val) {
 void W3c::paste(memory::WebElement * el, const QString & val) {
 	QApplication::clipboard()->setText(val);
 
-	value(el, "\uE009V");
+	value(el, "\uE009V");  // send Ctrl+V
 }
 
 // document
 
-QString W3c::source() {}
+QString W3c::source() {
+	QJsonObject response = _get("/source");
 
-QVariant W3c::executeSync(const QString & code, const QVariantList & args) {}
+	if (response["value"].isString()) {
+		return response["value"].toString();
+	}
+
+	return {};
+}
+
+QVariant W3c::executeSync(const QString & code, const QVariantList & args) {
+	//
+}
 
 void W3c::executeAsync(const QString & code, const QVariantList & args) {}
 
@@ -772,8 +760,7 @@ QString W3c::elementHttpText(memory::WebElement * el, const QString & url) {
 	return {};
 }
 
-bool W3c::elementHttpBool(memory::WebElement *el, const QString &url)
-{
+bool W3c::elementHttpBool(memory::WebElement * el, const QString & url) {
 	QJsonObject response = elementHttp(el, url);
 
 	if (response["value"].isBool()) {
@@ -781,6 +768,40 @@ bool W3c::elementHttpBool(memory::WebElement *el, const QString &url)
 	}
 
 	return false;
+}
+
+QVariant W3c::valueToVariant(QJsonValueRef & value) {
+	if (value.isNull()) {
+		return {};
+	}
+	else if (value.isBool() || value.isDouble() || value.isString()) {
+		return value.toVariant();
+	}
+	else if (value.isArray()) {
+		QStringList list;
+
+		for (const auto & ref : value.toArray()) {
+			if (ref.isString()) {
+				list.append(ref.toString());
+			}
+			else {
+				list.clear();
+				break;
+			}
+		}
+
+		// If no errors ocurrer
+		if (!list.isEmpty() || value.toArray().isEmpty()) {
+			return list;
+		}
+	}
+
+	return {};
+}
+
+QJsonValue W3c::variantToValue(QVariant var)
+{
+	//
 }
 
 bool W3c::checkErrors() {

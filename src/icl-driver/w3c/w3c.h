@@ -237,6 +237,7 @@ protected:
 	void prepareWindow();
 
 	/**
+	 * \~english
 	 * @brief findElement - find element in page {backend}
 	 * @param el - element to find in, or null to find in document
 	 * @param by - "css selector", "link text", "partial link text", "tag name"
@@ -249,6 +250,7 @@ protected:
 	  memory::WebElement * el, const QString & by, const QString & value);
 
 	/**
+	 * \~english
 	 * @brief findElements - find elements in page {backend}
 	 * @param el - element to find in, or null to find in document
 	 * @param by - "css selector", "link text", "partial link text", "tag name"
@@ -261,6 +263,7 @@ protected:
 	  memory::WebElement * el, const QString & by, const QString & value);
 
 	/**
+	 * \~english
 	 * @brief elementHttp - simplify get/post element requests
 	 * @param el - element to extract id
 	 * @param url - relative URL to load
@@ -271,6 +274,7 @@ protected:
 	  memory::WebElement * el, const QString & url, bool post = false);
 
 	/**
+	 * \~english
 	 * @brief elementHttpText - request text from url for element
 	 * @param el - element to extract id
 	 * @param url - relative URL to load
@@ -279,12 +283,29 @@ protected:
 	QString elementHttpText(memory::WebElement * el, const QString & url);
 
 	/**
+	 * \~english
 	 * @brief elementHttpText - request bool from url for element
 	 * @param el - element to extract id
 	 * @param url - relative URL to load
 	 * @return a bool value, the "value" of response object
 	 */
 	bool elementHttpBool(memory::WebElement * el, const QString & url);
+
+	/**
+	 * \~english
+	 * @brief valueToVariant - convert QJsonValueRef to QVariant
+	 * @param value - value to convert
+	 * @return a variant which contains value data, or QVariant{}
+	 */
+	QVariant valueToVariant(QJsonValueRef & value);
+
+	/**
+	 * \~english
+	 * @brief variantToValue - convert QVariant to QJsonValue
+	 * @param var - variant to convert
+	 * @return a value which contains variant data, or null
+	 */
+	QJsonValue variantToValue(QVariant var);
 
 	/**
 	 * \~english @brief checkErrors - check if _return is {value: null}
