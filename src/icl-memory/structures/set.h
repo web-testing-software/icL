@@ -22,13 +22,19 @@ struct SetPtr
 
 struct SetObjPtr
 {
-	SetPtr  set;
-	QString key;
+	SetPtr set;
+	int    id;
+};
+
+struct MetaObjectPtr
+{
+	std::shared_ptr<ArgList> data;
 };
 
 }  // namespace icL::memory
 
 Q_DECLARE_METATYPE(icL::memory::SetPtr);
 Q_DECLARE_METATYPE(icL::memory::SetObjPtr);
+Q_DECLARE_METATYPE(icL::memory::MetaObjectPtr);
 
 #endif  // icL_memory_Set
