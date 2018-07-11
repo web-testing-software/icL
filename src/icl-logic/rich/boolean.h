@@ -4,25 +4,10 @@
 #include "../main/rich.h"
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '-> rich
- *  '- memory
- */
 namespace icL::logic::rich {
 
 /**
+ * @deprecated
  * @brief The Boolean class - compare two <bool> vars/consts
  */
 class Boolean : public Rich

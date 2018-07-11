@@ -8,22 +8,6 @@
 
 #include <QObject>
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |-> logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::logic {
 
 // Specially for debug mode
@@ -37,6 +21,7 @@ enum class ResultValue {
 };
 
 /**
+ * @deprecated
  * @brief The Logic class
  */
 class Logic : public memory::Node

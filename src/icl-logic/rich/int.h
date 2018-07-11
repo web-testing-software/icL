@@ -4,25 +4,10 @@
 #include "../main/rich.h"
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '-> rich
- *  '- memory
- */
 namespace icL::logic::rich {
 
 /**
+ * @deprecated
  * @brief The Int class - compare two <int> vars/consts
  */
 class Int : public Rich

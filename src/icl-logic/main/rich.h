@@ -10,25 +10,10 @@
 #include <QVariant>
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |-> logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::logic::rich {
 
 /**
+ * @deprecated
  * @brief The Rich class - this class contains 2 variables or constants
  */
 class Rich : public Logic

@@ -4,25 +4,10 @@
 #include "logic.h"
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |-> logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::logic::cross {
 
 /**
+ * @deprecated
  * @brief The Cross class - this is a block with 2 children (Logic*
  * type)
  */

@@ -4,25 +4,10 @@
 #include "../main/cross.h"
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |- logic
- *  |  |-> cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::logic::cross {
 
 /**
+ * @deprecated
  * @brief The Eq class - ~~
  */
 class Eq : public Cross

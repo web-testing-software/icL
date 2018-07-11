@@ -3,26 +3,11 @@
 
 #include "../main/rich.h"
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '- object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '-> rich
- *  '- memory
- */
 namespace icL::logic::rich {
 
 
 /**
+ * @deprecated
  * @brief The Single class - compare a <bool> var/const with a predefined
  * const
  */
