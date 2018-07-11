@@ -22,7 +22,7 @@ HEADERS += \
     interlevel/node.h \
     structures/steptype.h \
     structures/set.h \
-    structures/element.h
+    structures/webelement.h
 
 SOURCES += \
 	state/datastate.cpp \
@@ -33,7 +33,7 @@ SOURCES += \
     structures/return.cpp \
     structures/exception.cpp \
     structures/type.cpp \
-    structures/element.cpp
+    structures/webelement.cpp
 
 DISTFILES += \
     models/uml_style.iuml \
