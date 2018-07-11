@@ -22,11 +22,21 @@
  */
 namespace icL::memory {
 
-enum class Type { Void, Boolean, Int, Double, String, List, Element };
+enum class Type {
+	Void,
+	Boolean,
+	Int,
+	Double,
+	String,
+	List,
+	Element,
+	Set,
+	SetObj
+};
 
 QString typeToString(Type type);
 
-Type variantTypeToType(QVariant::Type type);
+Type variantTypeToType(const QVariant & var);
 
 }  // namespace icL::memory
 

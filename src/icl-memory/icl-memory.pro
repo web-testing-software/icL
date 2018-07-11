@@ -12,7 +12,6 @@ HEADERS += \
 	state/datastate.h \
     state/memorystate.h \
     state/stackstate.h \
-    structures/webelement.h \
     structures/functioncontainer.h \
     structures/type.h \
     state/memory.h \
@@ -21,21 +20,20 @@ HEADERS += \
     interlevel/interlevel.h \
     interlevel/interfaces.h \
     interlevel/node.h \
-    structures/steptype.h
+    structures/steptype.h \
+    structures/set.h \
+    structures/element.h
 
 SOURCES += \
 	state/datastate.cpp \
     state/memorystate.cpp \
     state/stackstate.cpp \
-    structures/webelement.cpp \
     structures/functioncontainer.cpp \
     state/memory.cpp \
     structures/return.cpp \
     structures/exception.cpp \
     structures/type.cpp \
-    interlevel/interfaces.cpp \
-    interlevel/interlevel.cpp \
-    interlevel/node.cpp
+    structures/element.cpp
 
 DISTFILES += \
     models/uml_style.iuml \

@@ -2,6 +2,11 @@
 
 namespace icL::memory {
 
+
+Parameter::Parameter(const QString & name, Type type)
+	: name(name)
+	, type(type) {}
+
 FunctionContainer::FunctionContainer() = default;
 
 Function & FunctionContainer::getFunction(const QString & name) {

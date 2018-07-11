@@ -327,6 +327,52 @@ void Object::runCast(const QString & name, memory::ArgList & args) {
 	else if (type == "List") {
 		runToList(args);
 	}
+}
+
+std::pair<bool, bool> Object::parseToBool(const QString & str) {
+	bool ok = true;
+	bool res;
+
+	if (str == "true") {
+		res = true;
+	}
+	else if (str == "false") {
+		res = false;
+	}
+	else {
+		ok = false;
+	}
+
+	if (ok) {
+		return {res, true};
+	}
+
+	sendCastFailed(str, QStringLiteral("Boolean"));
+	return {false, false};
+}
+
+std::pair<int, bool> Object::parseToInt(const QString & str) {
+	bool ok;
+	int  res = str.toInt(&ok);
+
+	if (ok) {
+		return {res, true};
+	}
+
+	sendCastFailed(str, QStringLiteral("Int"));
+	return {0, false};
+}
+
+std::pair<double, bool> Object::parseToDouble(const QString & str) {
+	bool ok;
+	int  res = str.toDouble(&ok);
+
+	if (ok) {
+		return {res, true};
+	}
+
+	sendCastFailed(str, QStringLiteral("Double"));
+	return {0.0, false};
 };
 
 

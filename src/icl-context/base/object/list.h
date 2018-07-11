@@ -25,9 +25,13 @@ namespace icL::context::object {
 class List : public Object
 {
 public:
-	List(memory::InterLevel * il, memory::DataState * container, const QString & varName);
-	List(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
-	List(memory::InterLevel * il, const QString & getter, const QString & setter);
+	List(
+	  memory::InterLevel * il, memory::DataState * container,
+	  const QString & varName);
+	List(
+	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	List(
+	  memory::InterLevel * il, const QString & getter, const QString & setter);
 	List(memory::InterLevel * il, const Object * const object);
 
 	// static data
@@ -59,7 +63,6 @@ public:
 	void remove(int index);
 	void removeOnce(const QString & value);
 	void removeAll(const QString & value);
-
 
 	QString get(int index);
 	int     indexOf(const QString & value);

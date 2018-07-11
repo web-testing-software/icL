@@ -1,0 +1,147 @@
+@startuml
+
+!include uml_style.iuml
+hide circle
+hide empty methods
+
+class Context {
+	true
+}
+
+class Assign {
+	true
+}
+
+class Code {
+	true
+}
+
+class Control {
+	false
+}
+
+class Data {
+	true
+}
+
+class Else {
+	false
+}
+
+class Function {
+	true
+}
+
+class Handler {
+	false
+}
+
+class If {
+	false
+}
+
+class Try {
+	false
+}
+
+class IsolatedContext {
+	true
+}
+
+class Alternative {
+	false
+}
+
+class New {
+	true
+}
+
+class Call {
+	true
+}
+
+class Property {
+	true
+}
+
+class Method {
+	true
+}
+
+class Argument {
+	true
+}
+
+class Browser {
+	true
+}
+
+class Complex {
+	true
+}
+
+class Bool {
+	true
+}
+
+class Object {
+	true
+}
+
+class Element {
+	true
+}
+
+class String {
+	true
+}
+
+class List {
+	true
+}
+
+class Int {
+	true
+}
+
+class Double {
+	true
+}
+
+class Catch {
+	false
+}
+
+Context <|-- Object
+Bool -|> Object
+Object <|- Element
+Object <|-- Int
+Object <|-- Double
+Object <|-- String
+Object <|-- List
+
+Data --|> Context
+Function --|> Context
+Call --|> Function
+New --|> Function
+
+Complex -|> Context
+Browser --|> Complex
+Context <|- Code
+IsolatedContext -up-|> Code
+Code <|- Control
+If --|> Control
+Control <|-- Catch
+Else --|> Control
+Catch <|-- Try
+Catch <|-- Handler
+
+Method --|> Data
+Property --|> Data
+Alternative --|> Data
+Assign -|> Data
+Argument -left-|> Data
+
+Function -[hidden]> Assign
+
+@enduml

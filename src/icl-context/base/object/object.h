@@ -111,6 +111,10 @@ protected:
 	void sendCastFailed(const QString & value, const QString & type);
 	void runCast(const QString & name, memory::ArgList & args);
 
+	std::pair<bool, bool>   parseToBool(const QString & str);
+	std::pair<int, bool>    parseToInt(const QString & str);
+	std::pair<double, bool> parseToDouble(const QString & str);
+
 protected:
 	// LValue
 	memory::DataState * container = nullptr;

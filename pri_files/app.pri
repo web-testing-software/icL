@@ -23,3 +23,4 @@ LIBS += -l-icl-context-control
 LIBS += -l-icl-context-data
 LIBS += -l-icl-inter
 LIBS += -l-icl-vm
+LIBS += -l-icl-dsv
