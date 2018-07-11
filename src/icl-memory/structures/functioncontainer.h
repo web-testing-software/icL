@@ -38,9 +38,12 @@ struct Parameter
 {
 	QString name;
 	Type    type;
+
+	Parameter() = default;
+	Parameter(const QString & name, Type type);
 };
 
-using ParamList = QLinkedList<Parameter>;
+using ParamList = QList<Parameter>;
 
 struct CodeFragment
 {

@@ -18,11 +18,13 @@ HEADERS += \
     define.h \
     dom.h \
     log.h \
-    tab.h
+    tab.h \
+    set.h
 
 SOURCES += \
     complex.cpp \
     define.cpp \
     dom.cpp \
     log.cpp \
-    tab.cpp
+    tab.cpp \
+    set.cpp

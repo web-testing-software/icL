@@ -1,0 +1,151 @@
+@startuml
+
+!include uml_style.iuml
+hide circle
+hide empty methods
+
+class Context {
+	false
+}
+
+class Assign {
+	true
+}
+
+class Code {
+	prev != nullptr &&
+	prev.containsData
+}
+
+class Control {
+	prev != nullptr
+}
+
+class Data {
+	prev.role == Object
+}
+
+class Else {
+	false
+}
+
+class Function {
+	true
+}
+
+class Handler {
+	code == 0 ||
+	Try.code == code
+}
+
+class If {
+	!expressionExecuted
+	|| result == true
+}
+
+class Try {
+	true
+}
+
+class IsolatedContext {
+	true
+}
+
+class Alternative {
+	true
+}
+
+class New {
+	унаследованный
+}
+
+class Call {
+	унаследованный
+}
+
+class Property {
+	унаследованный
+}
+
+class Method {
+	унаследованный
+}
+
+class Argument {
+	унаследованный
+}
+
+class Browser {
+	унаследованный
+}
+
+class Complex {
+	унаследованный
+}
+
+class Bool {
+	унаследованный
+}
+
+class Object {
+	унаследованный
+}
+
+class Element {
+	унаследованный
+}
+
+class String {
+	унаследованный
+}
+
+class List {
+	унаследованный
+}
+
+class Int {
+	унаследованный
+}
+
+class Double {
+	унаследованный
+}
+
+class Catch {
+	унаследованный
+}
+
+Context <|-- Object
+Bool -|> Object
+Object <|- Element
+Object <|-- Int
+Object <|-- Double
+Object <|-- String
+Object <|-- List
+
+Data --|> Context
+Function --|> Context
+Call --|> Function
+New --|> Function
+
+Complex -|> Context
+Browser --|> Complex
+Context <|- Code
+IsolatedContext -up-|> Code
+Code <|- Control
+If --|> Control
+Control <|-- Catch
+Else -up-|> Control
+Catch -[hidden]> Else
+Catch <|-- Try
+Catch <|-- Handler
+
+Method --|> Data
+Property --|> Data
+Alternative --|> Data
+Assign -|> Data
+Argument -left-|> Data
+
+Function -[hidden]> Assign
+
+@enduml

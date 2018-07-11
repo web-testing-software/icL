@@ -533,26 +533,12 @@ bool List::toBoolean() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {
-		bool ok = true;
-		bool res;
+		auto [res, success] = parseToBool(value);
 
-		if (value == "true") {
-			res = true;
-		}
-		else if (value == "false") {
-			res = false;
-		}
-		else {
-			ok = false;
-		}
-
-		if (ok) {
+		if (success) {
 			newValue = res;
-			return res;
 		}
-		else {
-			sendCastFailed(value, QStringLiteral("Boolean"));
-		}
+		return res;
 	}
 
 	return false;
@@ -562,16 +548,12 @@ int List::toInt() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {
-		bool ok;
-		int  res = value.toInt(&ok);
+		auto [res, success] = parseToInt(value);
 
-		if (ok) {
+		if (success) {
 			newValue = res;
-			return res;
 		}
-		else {
-			sendCastFailed(value, QStringLiteral("Int"));
-		}
+		return res;
 	}
 
 	return 0;
@@ -581,16 +563,12 @@ double List::toDouble() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {
-		bool ok;
-		int  res = value.toDouble(&ok);
+		auto [res, success] = parseToDouble(value);
 
-		if (ok) {
+		if (success) {
 			newValue = res;
-			return res;
 		}
-		else {
-			sendCastFailed(value, QStringLiteral("Double"));
-		}
+		return res;
 	}
 
 	return 0.0;
