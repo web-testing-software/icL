@@ -297,28 +297,9 @@ Role Context::role() const {
 	return m_role;
 }
 
+#ifdef icL_debug
 
 QString roleToString(Role role) {
-	/**
-	NoRole,
-	Object,
-	If,
-	Else,
-	Exists,
-	Slot,
-	Code,
-	ForAny,
-	DOM,
-	Tab,
-	Property,
-	Method,
-	Alternative,
-	Assign,
-	Function,
-	Argument,
-	JsValue,
-	JsFile
-*/
 	QString ret;
 
 	switch (role) {
@@ -381,5 +362,7 @@ QString roleToString(Role role) {
 
 	return ret;
 }
+
+#endif
 
 }  // namespace icL::context

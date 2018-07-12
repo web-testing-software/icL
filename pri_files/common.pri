@@ -6,3 +6,7 @@ CONFIG += c++17 no_include_pwd
 QMAKE_CXXFLAGS += -std=c++1z
 
 INCLUDEPATH += $$ICL_ROOT/src
+
+CONFIG(debug, debug|release) {
+    DEFINES += icL_debug
+}
