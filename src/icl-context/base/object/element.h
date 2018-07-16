@@ -7,22 +7,6 @@
 #include <icl-memory/structures/webelement.h>
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '-> object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::context::object {
 
 class String;
@@ -31,65 +15,222 @@ class Int;
 class Element : public Object
 {
 public:
+	/**
+	 * @brief Element calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param container is a base contructor argument
+	 * @param varName is a base contructor argument
+	 */
 	Element(
 	  memory::InterLevel * il, memory::DataState * container,
 	  const QString & varName);
+
+	/**
+	 * @brief Element calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param rvalue is a base contructor argument
+	 * @param readonly is a base contructor argument
+	 */
 	Element(
 	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+
+	/**
+	 * @brief Element calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param object is a base contructor argument
+	 */
 	Element(memory::InterLevel * il, const Object * const object);
 
 	// Id generator
 private:
+	/**
+	 * @deprecated will be replaced lated with a GUID generator
+	 * @brief idAsInt - id generator for web elements
+	 */
 	static int idAsInt;
 
 	// static
 private:
+	/**
+	 * @brief non-prefixed properties list of <element>
+	 */
 	static const QHash<QString, void (Element::*)()> properties;
+
+	/**
+	 * @brief methods list of <element>
+	 */
 	static const QHash<QString, void (Element::*)(memory::ArgList &)> methods;
 
 public:
+	/**
+	 * @brief initProperties is the initial list of icL properties
+	 * @return a list of pairs (name of property, pointer to Element.*)
+	 */
 	static const QHash<QString, void (Element::*)()> initProperties();
+
+	/**
+	 * @brief initMethods is the initial list of icL methods
+	 * @return a list of pairs (name of property, pointer to Element.*)
+	 */
 	static const QHash<QString, void (Element::*)(memory::ArgList &)>
 	initMethods();
 
-	// Use by _dom:query and _dom:queryAll
 public:
+	/**
+	 * @deprecated will be replaced later with a GUID generator
+	 * @brief getNewId is used by _dom:query and _dom:queryAll
+	 * @return a new id
+	 */
 	static QString getNewId();
 
 	// properties
-public:
 	// R/W properties will return a r/w object
+public:
+
+	/**
+	 * @brief length represents the number of element in container
+	 * @return elements count
+	 */
 	int length();
 
+	/**
+	 * @brief html - nm().html()
+	 * @return a r/w object
+	 */
 	String * html();
+
+	/**
+	 * @brief text - nm().text()
+	 * @return a r/w object
+	 */
 	String * text();
+
+	/**
+	 * @brief width - nm().width()
+	 * @return a r/w object
+	 */
 	Int *    width();
+
+	/**
+	 * @brief height - nm().width()
+	 * @return a r/w object
+	 */
 	Int *    height();
 
 	// Read only properties
+
+	/**
+	 * @brief visible - nm().visible()
+	 * @return a r/o object
+	 */
 	bool visible();
+
+	/**
+	 * @brief clickable - nm().clickable()
+	 * @return a r/o object
+	 */
 	bool clickable();
 
 	// Prefixed properties
+	/**
+	 * @brief prop - nm().prop()
+	 * @param name is the name of property
+	 * @return a r/w object
+	 */
 	Object * prop(const QString & name);
+
+	/**
+	 * @brief attr - nm().attr()
+	 * @param name is the name of attribute
+	 * @return a r/w object
+	 */
 	String * attr(const QString & name);
+
+	/**
+	 * @brief data - nm().data()
+	 * @param name is name of data-attribute
+	 * @return a r/w object
+	 * @warning aviable only in automation mode
+	 */
 	String * data(const QString & name);
+
+	/**
+	 * @brief css - nm().css()
+	 * @param name is the name of css atributte
+	 * @return a r/w object
+	 */
 	String * css(const QString & name);
 
 private:
+	/**
+	 * @brief property middle level function
+	 * @see length
+	 */
 	void runLength();
 
+	/**
+	 * @brief property middle level function
+	 * @see html
+	 */
 	void runHTML();
+
+	/**
+	 * @brief property middle level function
+	 * @see text
+	 */
 	void runText();
+
+	/**
+	 * @brief property middle level function
+	 * @see width
+	 */
 	void runWidth();
+
+	/**
+	 * @brief property middle level function
+	 * @see height
+	 */
 	void runHeight();
 
+	/**
+	 * @brief property middle level function
+	 * @see visible
+	 */
 	void runVisible();
+
+	/**
+	 * @brief property middle level function
+	 * @see clickable
+	 */
 	void runClickable();
 
+
+	/**
+	 * @brief property middle level function
+	 * @param name is the name of property
+	 * @see prop
+	 */
 	void runProp(const QString & name);
+
+	/**
+	 * @brief property middle level function
+	 * @param name is the name of property
+	 * @see attr
+	 */
 	void runAttr(const QString & name);
+
+	/**
+	 * @brief property middle level function
+	 * @param name is the name of property
+	 * @see data
+	 */
 	void runData(const QString & name);
+
+	/**
+	 * @brief property middle level function
+	 * @param name is the name of property
+	 * @see css
+	 */
 	void runCSS(const QString & name);
 
 	// methods
