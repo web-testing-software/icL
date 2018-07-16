@@ -12,7 +12,8 @@ include($$ICL_ROOT/pri_files/lib.pri)
 HEADERS += \
     server.h \
     virtualmachine.h \
-    vmstack.h
+    vmstack.h \
+    errors.h
 
 SOURCES += \
     server.cpp \

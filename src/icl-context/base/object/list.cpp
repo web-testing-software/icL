@@ -491,6 +491,8 @@ QString List::getFirst() {
 }
 
 Context * List::runProperty(Prefix prefix, const QString & name) {
+	newContext = nullptr;
+
 	if (prefix != Prefix::None) {
 		il->vm->exception(
 		  {-405, "List objects are not support for prefixed properties"});
@@ -510,9 +512,9 @@ Context * List::runProperty(Prefix prefix, const QString & name) {
 }
 
 Context * List::runMethod(const QString & name, memory::ArgList & args) {
-
 	auto it = methods.find(name);
 
+	newContext = nullptr;
 	if (it != methods.end()) {
 		(this->*it.value())(args);
 	}

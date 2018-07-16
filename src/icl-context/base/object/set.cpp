@@ -2,6 +2,10 @@
 
 #include "boolean.h"
 #include "int.h"
+#include "setobject.h"
+#include "void.h"
+
+#include <icl-vm/errors.h>
 
 #include <QHash>
 #include <QStringBuilder>
@@ -22,14 +26,20 @@ const QHash<QString, void (Set::*)(memory::ArgList &)> Set::methods =
   Set::initMethods();
 
 const QHash<QString, void (Set::*)()> Set::initProperties() {
-	return {{{"Length", &Set::runLength}, {"Empty", &Set::runEmpty}}};
+	return {{{"length", &Set::runLength}, {"empty", &Set::runEmpty}}};
 }
 
 const QHash<QString, void (Set::*)(memory::ArgList &)> Set::initMethods() {
-	return {{{"Insert", &Set::runInsert},
-			 {"Merge", &Set::runMerge},
-			 {"Remove", &Set::runRemove},
-			 {"Ref", &Set::runRef}}};
+	return {{{"applicate", &Set::runApplicate},
+			 {"insertField", &Set::runInsertField},
+			 {"removeField", &Set::runRemoveField},
+			 {"concatLists", &Set::runConcatLists},
+			 {"insert", &Set::runInsert},
+			 {"merge", &Set::runMerge},
+			 {"remove", &Set::runRemove},
+			 {"removeAt", &Set::runRemoveAt},
+			 {"clear", &Set::runClear},
+			 {"at", &Set::runAt}}};
 }
 
 int Set::length() {
@@ -152,14 +162,8 @@ void Set::insertField(const QString & name, const QVariant & value) {
 		}
 	}
 
-	if (
-	  value_type != memory::Type::Boolean && value_type != memory::Type::Int &&
-	  value_type != memory::Type::Double &&
-	  value_type != memory::Type::String && value_type != memory::Type::List) {
-		il->vm->exception({-1213,
-						   "SetObj can contains values of type Boolean, Int, "
-						   "Double, String, List. But given " +
-							 memory::typeToString(value_type)});
+	if (!isSetType(value_type)) {
+		return;
 	}
 
 	new_set.header =
@@ -248,9 +252,9 @@ void Set::insert(const QVariantList & row) {
 		return;
 	}
 
-	QString id = getId(row);
-
-	set.table->insert(id, row);
+	if (!set.table->contains(row)) {
+		set.table->append(row);
+	}
 }
 
 void Set::merge(const memory::SetPtr & set2) {
@@ -273,11 +277,12 @@ void Set::merge(const memory::SetPtr & set2) {
 	if (!ok) {
 		il->vm->exception(
 		  {-1209, "Failed to merge the sets, they are icompatible."});
+		return;
 	}
 
-	for (auto it = set2.table->begin(); it != set2.table->end(); ++it) {
-		if (!set1.table->contains(it.key())) {
-			set1.table->insert(it.key(), it.value());
+	for (const auto & it : *set2.table) {
+		if (!set1.table->contains(it)) {
+			set1.table->append(it);
 		}
 	}
 }
@@ -288,9 +293,23 @@ void Set::remove(const QVariantList & row) {
 	if (!checkRow(set, row)) {
 		return;
 	}
-	QString id = getId(row);
 
-	set.table->remove(id);
+	set.table->removeOne(row);
+}
+
+void Set::removeAt(int index) {
+	memory::SetPtr set = getValue().value<memory::SetPtr>();
+
+	if (index < 0) {
+		index = set.table->length() + index;  // index < 0 here
+	}
+
+	if (index < 0 && index >= set.table->length()) {
+		il->vm->exception({errors::OutOfBounds, "Out of set bounds."});
+	}
+	else {
+		set.table->removeAt(index);
+	}
 }
 
 void Set::clear() {
@@ -304,45 +323,147 @@ void Set::clear() {
 	setValue(QVariant::fromValue(new_set));
 }
 
-memory::SetObjPtr Set::ref(const QVariantList & row) {
+memory::SetObjPtr Set::at(int index) {
 	memory::SetPtr    set = getValue().value<memory::SetPtr>();
 	memory::SetObjPtr ret;
 
-	if (!checkRow(set, row)) {
-		return ret;
-	}
-	QString id = getId(row);
-
-	if (set.table->contains(id)) {
-		il->vm->exception({-1210, "No such value in the set."});
+	if (index < 0 || index >= set.table->length()) {
+		il->vm->exception({errors::OutOfBounds, "Out of set bounds."});
 		return ret;
 	}
 
 	ret.set = set;
-	ret.key = id;
+	ret.id  = index;
 
 	return ret;
 }
 
-void Set::runApplicate(memory::ArgList & args) {}
+void Set::runApplicate(memory::ArgList & args) {
+	for (const auto & arg : args) {
+		if (arg.object->type() != memory::Type::List) {
+			sendWrongArglist(args, "<list ...>");
+			return;
+		}
+	}
 
-void Set::runInsertField(memory::ArgList & args) {}
+	QList<QStringList> list;
 
-void Set::runRemoveField(memory::ArgList & args) {}
+	for (const auto & arg : args) {
+		list.append(arg.object->getValue().toStringList());
+	}
 
-void Set::runConcatFields(memory::ArgList & args) {}
-
-void Set::runLists(memory::ArgList & args) {}
-
-void Set::runInsert(memory::ArgList & args) {
-	//
+	appplicate(list);
+	newContext = new Void{il};
 }
 
-void Set::runMerge(memory::ArgList & args) {}
+void Set::runInsertField(memory::ArgList & args) {
+	if (args.length() == 2 && args[0].object->type() == memory::Type::String) {
+		if (isSetType(args[1].object->type())) {
+			insertField(
+			  args[0].object->getValue().toString(),
+			  args[1].object->getValue());
+			newContext = new Void{il};
+		}
+	}
+	else {
+		sendWrongArglist(args, "<string, bool|int|double|string|list>");
+	}
+}
 
-void Set::runRemove(memory::ArgList & args) {}
+void Set::runRemoveField(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
+		removeField(args[0].object->getValue().toString());
+		newContext = new Void{il};
+	}
+	else {
+		sendWrongArglist(args, "<string>");
+	}
+}
 
-void Set::runRef(memory::ArgList & args) {}
+void Set::runConcatLists(memory::ArgList & args) {
+	if (
+	  args.length() == 2 && args[0].object->type() == memory::Type::String &&
+	  args[1].object->type() == memory::Type::String) {
+		concatLists(
+		  args[0].object->getValue().toString(),
+		  args[1].object->getValue().toString());
+		newContext = new Void{il};
+	}
+}
+
+void Set::runInsert(memory::ArgList & args) {
+	for (const auto & arg : args) {
+		if (!isSetType(arg.object->type())) {
+			return;
+		}
+	}
+
+	QVariantList list;
+
+	for (const auto & arg : args) {
+		list.append(arg.object->getValue());
+	}
+
+	insert(list);
+	newContext = new Void{il};
+}
+
+void Set::runMerge(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Set) {
+		merge(args[0].object->getValue().value<memory::SetPtr>());
+		newContext = new Void{il};
+	}
+	else {
+		sendWrongArglist(args, "<set>");
+	}
+}
+
+void Set::runRemove(memory::ArgList & args) {
+	for (const auto & arg : args) {
+		if (!isSetType(arg.object->type())) {
+			return;
+		}
+	}
+
+	QVariantList list;
+
+	for (const auto & arg : args) {
+		list.append(arg.object->getValue());
+	}
+
+	remove(list);
+	newContext = new Void{il};
+}
+
+void Set::runRemoveAt(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
+		removeAt(args[0].object->getValue().toInt());
+		newContext = new Void{il};
+	}
+	else {
+		sendWrongArglist(args, "<int>");
+	}
+}
+
+void Set::runClear(memory::ArgList & args) {
+	if (args.length() == 0) {
+		clear();
+		newContext = new Void{il};
+	}
+	else {
+		sendWrongArglist(args, "<>");
+	}
+}
+
+void Set::runAt(memory::ArgList & args) {
+	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
+		newValue = QVariant::fromValue(at(args[0].object->getValue().toInt()));
+		newContext = new SetObject{il, newValue, true};
+	}
+	else {
+		sendWrongArglist(args, "<int>");
+	}
+}
 
 bool Set::checkRow(const memory::SetPtr & set, const QVariantList & row) {
 	const memory::ParamList & params = *set.header;
@@ -385,20 +506,83 @@ int Set::indexOf(const QString & name, const memory::SetPtr & set) {
 	return index;
 }
 
-Context * Set::runProperty(Prefix prefix, const QString & name) {}
+bool Set::isSetType(memory::Type type) {
+	if (
+	  type != memory::Type::Boolean && type != memory::Type::Int &&
+	  type != memory::Type::Double && type != memory::Type::String &&
+	  type != memory::Type::List) {
+		return true;
+	}
 
-Context * Set::runMethod(const QString & name, memory::ArgList & args) {}
+	il->vm->exception({-1213,
+					   "<set> can contains values of type <bool>, <int>, "
+					   "<double>, <string> and <list>. But given " %
+						 memory::typeToString(type)});
+	return false;
+}
 
-memory::Type Set::type() const {}
+Context * Set::runProperty(Prefix prefix, const QString & name) {
+	newContext = nullptr;
 
-bool Set::toBoolean() {}
+	if (prefix != Prefix::None) {
+		il->vm->exception(
+		  {-405, "<set> objects are not support for prefixed properties"});
+	}
+	else {
+		auto it = properties.find(name);
 
-int Set::toInt() {}
+		if (it != properties.end()) {
+			(this->*it.value())();
+		}
+		else {
+			Object::runProperty(prefix, name);
+		}
+	}
 
-double Set::toDouble() {}
+	return newContext;
+}
 
-const QString Set::toString() {}
+Context * Set::runMethod(const QString & name, memory::ArgList & args) {
+	auto it = methods.find(name);
 
-const QStringList Set::toList() {}
+	newContext = nullptr;
+	if (it != methods.end()) {
+		(this->*it.value())(args);
+	}
+	else {
+		Object::runMethod(name, args);
+	}
+
+	return newContext;
+}
+
+memory::Type Set::type() const {
+	return memory::Type::Set;
+}
+
+bool Set::toBoolean() {
+	sendWrongCast("bool");
+	return false;
+}
+
+int Set::toInt() {
+	sendWrongCast("int");
+	return 0;
+}
+
+double Set::toDouble() {
+	sendWrongCast("double");
+	return 0;
+}
+
+const QString Set::toString() {
+	sendWrongCast("string");
+	return {};
+}
+
+const QStringList Set::toList() {
+	sendWrongCast("list");
+	return {};
+}
 
 }  // namespace icL::context::object

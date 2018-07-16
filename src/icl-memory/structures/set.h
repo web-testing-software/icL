@@ -23,7 +23,7 @@ struct SetPtr
 struct SetObjPtr
 {
 	SetPtr set;
-	int    id;
+	int    id = -1;
 };
 
 struct MetaObjectPtr
