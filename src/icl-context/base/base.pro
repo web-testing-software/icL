@@ -24,7 +24,11 @@ HEADERS += \
     value/base/void.h \
     value/complex/element.h \
     value/complex/set.h \
-    value/complex/setobject.h
+    value/complex/setobject.h \
+    value/complex/regexp.h \
+    value/complex/object.h \
+    value/complex/database.h \
+    value/complex/requestresult.h
 
 SOURCES += \
     context.cpp \
@@ -37,4 +41,8 @@ SOURCES += \
     value/base/void.cpp \
     value/complex/element.cpp \
     value/complex/set.cpp \
-    value/complex/setobject.cpp
+    value/complex/setobject.cpp \
+    value/complex/regexp.cpp \
+    value/complex/object.cpp \
+    value/complex/database.cpp \
+    value/complex/requestresult.cpp

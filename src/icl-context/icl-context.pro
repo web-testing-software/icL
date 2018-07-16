@@ -5,7 +5,8 @@ SUBDIRS = \
         base \
         control \
         complex \
-        data
+        data \
+        operators
 
 complex.depends = base
 control.depends = base
