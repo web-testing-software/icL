@@ -11,18 +11,9 @@ namespace icL::context::object {
 
 class SetObject
 	: public object::Object
-	, public memory::DataStateInterface
 {
 public:
-	SetObject();
-
-	// DataStateInterface interface
-	void setValue(const QString & name, const QVariant & value) override;
-
-	bool         contains(const QString & name) override;
-	memory::Type getType(const QString & name) override;
-	bool         checkType(const QString & name, memory::Type & type) override;
-	QVariant     getValue(const QString & name) override;
+	SetObject(memory::InterLevel * il, memory::SetObjPtr data);
 
 private:
 	memory::SetObjPtr data;

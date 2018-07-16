@@ -58,26 +58,29 @@ private:
 	void insert(const QVariantList & row);
 	void merge(const memory::SetPtr &set2);
 	void remove(const QVariantList & row);
+	void removeAt(int index);
 	void clear();
 
-	memory::SetObjPtr ref(const QVariantList & row);
+	memory::SetObjPtr at(int index);
 
 private:
 	void runApplicate(memory::ArgList & args);
 	void runInsertField(memory::ArgList & args);
 	void runRemoveField(memory::ArgList & args);
-	void runConcatFields(memory::ArgList & args);
-	void runLists(memory::ArgList & args);
+	void runConcatLists(memory::ArgList & args);
 
 	void runInsert(memory::ArgList & args);
 	void runMerge(memory::ArgList & args);
 	void runRemove(memory::ArgList & args);
+	void runRemoveAt(memory::ArgList & args);
+	void runClear(memory::ArgList & args);
 
-	void runRef(memory::ArgList & args);
+	void runAt(memory::ArgList & args);
 
 	// Back-end
 	bool checkRow(const memory::SetPtr & set, const QVariantList & row);
 	int indexOf(const QString & name, const memory::SetPtr & set);
+	bool isSetType(memory::Type type);
 
 private:
 	// Context interface
