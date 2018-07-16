@@ -259,7 +259,6 @@ protected:
 
 
 	/**
-	 * \~english
 	 * \~english @brief cast middle level function
 	 */
 	void runCast(const QString & name, memory::ArgList & args);
