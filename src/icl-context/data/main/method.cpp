@@ -45,7 +45,7 @@ memory::StepType::Value Method::execute() {
 		while (it != nullptr && it->role() == Role::Object) {
 			memory::Argument arg;
 
-			arg.object = dynamic_cast<object::Object *>(it);
+			arg.object = dynamic_cast<object::Value *>(it);
 			args.append(arg);
 
 			it = it->next();

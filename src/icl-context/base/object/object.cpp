@@ -11,40 +11,40 @@
 
 namespace icL::context::object {
 
-Object::Object(
+Value::Value(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
 	: Context(il)
 	, container(container)
 	, varName(varName)
-	, value(Value::L) {
+	, valuetype(ValueType::L) {
 	m_role = Role::Object;
 }
 
-Object::Object(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
+Value::Value(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
 	: Context(il)
 	, rvalue(rvalue)
 	, readonly(readonly)
-	, value(Value::R) {
+	, valuetype(ValueType::R) {
 	m_role = Role::Object;
 }
 
-Object::Object(
+Value::Value(
   memory::InterLevel * il, const QString & getter, const QString & setter)
 	: Context(il)
 	, setter(setter)
 	, getter(getter)
-	, value(Value::Js) {
+	, valuetype(ValueType::Js) {
 	m_role = Role::Object;
 }
 
-Object::Object(memory::InterLevel * il, const Object * const object)
+Value::Value(memory::InterLevel * il, const Value * const object)
 	: Context(il) {
-	if (object->value == Value::L) {
+	if (object->valuetype == ValueType::L) {
 		container = object->container;
 		varName   = object->varName;
 	}
-	else if (object->value == Value::R) {
+	else if (object->valuetype == ValueType::R) {
 		rvalue   = object->rvalue;
 		readonly = object->readonly;
 	}
@@ -53,84 +53,84 @@ Object::Object(memory::InterLevel * il, const Object * const object)
 		setter = object->setter;
 	}
 
-	value  = object->value;
+	valuetype  = object->valuetype;
 	m_role = Role::Object;
 }
 
-const QHash<QString, void (Object::*)(memory::ArgList &)> Object::methods =
-  Object::initMethods();
+const QHash<QString, void (Value::*)(memory::ArgList &)> Value::methods =
+  Value::initMethods();
 
-const QHash<QString, void (Object::*)(memory::ArgList &)>
-Object::initMethods() {
-	return {{{"IsRValue", &Object::runIsRValue},
-			 {"IsReadOnly", &Object::runIsReadOnly},
-			 {"IsLValue", &Object::runisLValue},
-			 {"IsLink", &Object::runIsLink},
-			 {"EnsureRValue", &Object::runEnsureRValue}}};
+const QHash<QString, void (Value::*)(memory::ArgList &)>
+Value::initMethods() {
+	return {{{"IsRValue", &Value::runIsRValue},
+			 {"IsReadOnly", &Value::runIsReadOnly},
+			 {"IsLValue", &Value::runisLValue},
+			 {"IsLink", &Value::runIsLink},
+			 {"EnsureRValue", &Value::runEnsureRValue}}};
 }
 
 
 
-memory::Type Object::type() const {
+memory::Type Value::type() const {
 	return memory::Type::Void;
 }
 
-QVariant Object::getValue() {
-	if (value == Value::R) {
+QVariant Value::getValue() {
+	if (valuetype == ValueType::R) {
 		return rvalue;
 	}
-	else if (value == Value::L) {
+	else if (valuetype == ValueType::L) {
 		return container->getValue(varName);
 	}
 	else { /* value == Value::Js */
-		newValue = il->server->runJS(getter);
+//		newValue = il->server->runJS(getter);
 
 		return newValue;
 	}
 }
 
-void Object::setValue(const QVariant & value) {
+void Value::setValue(const QVariant & value) {
 	if (readonly) {
 		// The Assign Block must check the readonly property
 		qWarning() << "Value changed for readonly object!!!";
 	}
 
-	if (this->value == Value::R) {
+	if (valuetype == ValueType::R) {
 		rvalue = value;
 	}
-	else if (this->value == Value::L) {
+	else if (valuetype == ValueType::L) {
 		container->setValue(varName, value);
 	}
 	else { /* this.value == Value.Js */
-		il->server->runJS(setter.arg(varToJsString(value)));
+//		il->server->runJS(setter.arg(varToJsString(value)));
 	}
 }
 
-const QString & Object::getVarName() const {
+const QString & Value::getVarName() const {
 	return varName;
 }
 
-bool Object::isRValue() const {
-	return value == Value::R;
+bool Value::isRValue() const {
+	return valuetype == ValueType::R;
 }
 
-bool Object::isReadOnly() const {
-	return value == Value::R && readonly;
+bool Value::isReadOnly() const {
+	return valuetype == ValueType::R && readonly;
 }
 
-bool Object::isLValue() const {
-	return value == Value::L;
+bool Value::isLValue() const {
+	return valuetype == ValueType::L;
 }
 
-bool Object::isLink() const {
-	return value != Value::R || type() == memory::Type::Element;
+bool Value::isLink() const {
+	return valuetype != ValueType::R || type() == memory::Type::Element;
 }
 
-Object * Object::ensureRValue() {
+Value * Value::ensureRValue() {
 	return fromValue(getValue());
 }
 
-void Object::runIsRValue(memory::ArgList & args) {
+void Value::runIsRValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isRValue();
 		newContext = new Bool{il, newValue, true};
@@ -140,7 +140,7 @@ void Object::runIsRValue(memory::ArgList & args) {
 	}
 }
 
-void Object::runIsReadOnly(memory::ArgList & args) {
+void Value::runIsReadOnly(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isReadOnly();
 		newContext = new Bool{il, newValue, true};
@@ -150,7 +150,7 @@ void Object::runIsReadOnly(memory::ArgList & args) {
 	}
 }
 
-void Object::runisLValue(memory::ArgList & args) {
+void Value::runisLValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isLValue();
 		newContext = new Bool{il, newValue, true};
@@ -160,7 +160,7 @@ void Object::runisLValue(memory::ArgList & args) {
 	}
 }
 
-void Object::runIsLink(memory::ArgList & args) {
+void Value::runIsLink(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isLink();
 		newContext = new Bool{il, newValue, true};
@@ -170,7 +170,7 @@ void Object::runIsLink(memory::ArgList & args) {
 	}
 }
 
-void Object::runEnsureRValue(memory::ArgList & args) {
+void Value::runEnsureRValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newContext = ensureRValue();
 	}
@@ -179,7 +179,7 @@ void Object::runEnsureRValue(memory::ArgList & args) {
 	}
 }
 
-void Object::runToBool(memory::ArgList & args) {
+void Value::runToBool(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toBool();
 
@@ -203,7 +203,7 @@ void Object::runToBool(memory::ArgList & args) {
 	newContext = new Bool{il, newValue, true};
 }
 
-void Object::runToInt(memory::ArgList & args) {
+void Value::runToInt(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toInt();
 
@@ -227,7 +227,7 @@ void Object::runToInt(memory::ArgList & args) {
 	newContext = new Int{il, newValue, true};
 }
 
-void Object::runToDouble(memory::ArgList & args) {
+void Value::runToDouble(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toDouble();
 
@@ -251,7 +251,7 @@ void Object::runToDouble(memory::ArgList & args) {
 	newContext = new Double{il, newValue, true};
 }
 
-void Object::runToString(memory::ArgList & args) {
+void Value::runToString(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toString();
 
@@ -275,7 +275,7 @@ void Object::runToString(memory::ArgList & args) {
 	newContext = new String{il, newValue, true};
 }
 
-void Object::runToList(memory::ArgList & args) {
+void Value::runToList(memory::ArgList & args) {
 	if (args.length() == 0) {
 		toList();
 
@@ -299,17 +299,17 @@ void Object::runToList(memory::ArgList & args) {
 	newContext = new List{il, newValue, true};
 }
 
-void Object::sendWrongCast(const QString & to) {
+void Value::sendWrongCast(const QString & to) {
 	il->vm->exception({-1, "Type " % memory::typeToString(type()) %
 							 " can not be casted to " % to});
 }
 
-void Object::sendCastFailed(const QString & value, const QString & type) {
+void Value::sendCastFailed(const QString & value, const QString & type) {
 	il->vm->exception({-3, R"(The string ")" % value %
 							 R"(" cannot be casted to )" % type});
 }
 
-void Object::runCast(const QString & name, memory::ArgList & args) {
+void Value::runCast(const QString & name, memory::ArgList & args) {
 	QStringRef type = name.midRef(2);
 
 	if (type == "bool") {
@@ -329,7 +329,7 @@ void Object::runCast(const QString & name, memory::ArgList & args) {
 	}
 }
 
-std::pair<bool, bool> Object::parseToBool(const QString & str) {
+std::pair<bool, bool> Value::parseToBool(const QString & str) {
 	bool ok = true;
 	bool res;
 
@@ -347,11 +347,11 @@ std::pair<bool, bool> Object::parseToBool(const QString & str) {
 		return {res, true};
 	}
 
-	sendCastFailed(str, QStringLiteral("Bool;
+	sendCastFailed(str, QStringLiteral("bool"));
 	return {false, false};
 }
 
-std::pair<int, bool> Object::parseToInt(const QString & str) {
+std::pair<int, bool> Value::parseToInt(const QString & str) {
 	bool ok;
 	int  res = str.toInt(&ok);
 
@@ -363,7 +363,7 @@ std::pair<int, bool> Object::parseToInt(const QString & str) {
 	return {0, false};
 }
 
-std::pair<double, bool> Object::parseToDouble(const QString & str) {
+std::pair<double, bool> Value::parseToDouble(const QString & str) {
 	bool ok;
 	int  res = str.toDouble(&ok);
 
@@ -377,16 +377,16 @@ std::pair<double, bool> Object::parseToDouble(const QString & str) {
 
 
 
-bool Object::checkPrev(const Context * context) const {
+bool Value::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
 		   (context->role() != Role::Exists && context->isResultative());
 }
 
-bool Object::canBeAtEnd() const {
+bool Value::canBeAtEnd() const {
 	return true;
 }
 
-Context * Object::runMethod(const QString & name, memory::ArgList & args) {
+Context * Value::runMethod(const QString & name, memory::ArgList & args) {
 
 	if (name.mid(0, 2) == "To") {
 		runCast(name, args);
@@ -405,7 +405,7 @@ Context * Object::runMethod(const QString & name, memory::ArgList & args) {
 	return newContext;
 }
 
-bool Object::isResultative() const {
+bool Value::isResultative() const {
 	return true;
 }
 

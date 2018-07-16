@@ -10,7 +10,7 @@
 namespace icL::context::object {
 
 class SetObject
-	: public object::Object
+	: public object::Value
 {
 public:
 	SetObject(memory::InterLevel * il, memory::SetObjPtr data);

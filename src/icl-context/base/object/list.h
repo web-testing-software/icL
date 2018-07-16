@@ -9,7 +9,7 @@ namespace icL::context::object {
 /**
  * \~english @brief The List class contains a list value or reference.
  */
-class List : public Object
+class List : public Value
 {
 public:
 	/**
@@ -49,7 +49,7 @@ public:
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */
-	List(memory::InterLevel * il, const Object * const object);
+	List(memory::InterLevel * il, const Value * const object);
 
 	// static data
 private:

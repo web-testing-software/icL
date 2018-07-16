@@ -9,7 +9,7 @@ namespace icL::context::object {
 /**
  * \~english @brief The Void class is an empty container or a new variable.
  */
-class Void : public Object
+class Void : public Value
 {
 public:
 	/**

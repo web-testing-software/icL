@@ -8,7 +8,7 @@ namespace icL::context::object {
 /**
  * \~english @brief The String class contains a string value of reference.
  */
-class String : public Object
+class String : public Value
 {
 public:
 	/**
@@ -44,7 +44,7 @@ public:
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */
-	String(memory::InterLevel * il, const Object * const object);
+	String(memory::InterLevel * il, const Value * const object);
 
 	// Context interface
 public:

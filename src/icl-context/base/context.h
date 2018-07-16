@@ -242,7 +242,7 @@ public:
 	 * @param value is the value to copy in context object
 	 * @return a pointer to created context object
 	 */
-	object::Object * fromValue(const QVariant & value);
+	object::Value * fromValue(const QVariant & value);
 
 	/**
 	 * \~english
@@ -251,7 +251,7 @@ public:
 	 * @param value is the value to copy in context object
 	 * @return a pointer to created context object
 	 */
-	static object::Object * fromValue(
+	static object::Value *fromValue(
 	  memory::InterLevel * il, const QVariant & value);
 
 	/**
@@ -262,7 +262,7 @@ public:
 	 * @param name is the name of variable to extract
 	 * @return a pointer to created context object
 	 */
-	static object::Object * fromValue(
+	static object::Value * fromValue(
 	  memory::InterLevel * il, memory::DataState * ds, const QString & name);
 
 	/**

@@ -12,17 +12,17 @@ namespace icL::context::object {
 List::List(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Object(il, container, varName) {}
+	: Value(il, container, varName) {}
 
 List::List(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Object(il, rvalue, readonly) {}
+	: Value(il, rvalue, readonly) {}
 
 List::List(
   memory::InterLevel * il, const QString & getter, const QString & setter)
-	: Object(il, getter, setter) {}
+	: Value(il, getter, setter) {}
 
-List::List(memory::InterLevel * il, const Object * const object)
-	: Object(il, object) {}
+List::List(memory::InterLevel * il, const Value * const object)
+	: Value(il, object) {}
 
 
 
@@ -504,7 +504,7 @@ Context * List::runProperty(Prefix prefix, const QString & name) {
 			(this->*it.value())();
 		}
 		else {
-			Object::runProperty(prefix, name);
+			Value::runProperty(prefix, name);
 		}
 	}
 
@@ -519,7 +519,7 @@ Context * List::runMethod(const QString & name, memory::ArgList & args) {
 		(this->*it.value())(args);
 	}
 	else {
-		Object::runMethod(name, args);
+		Value::runMethod(name, args);
 	}
 
 	return newContext;

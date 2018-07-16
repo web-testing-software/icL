@@ -64,7 +64,7 @@ memory::StepType::Value VirtualMachine::step() {
 			l.prepend(
 			  "Object:" +
 			  memory::typeToString(
-				dynamic_cast<context::object::Object *>(it)->type()));
+				dynamic_cast<context::object::Value *>(it)->type()));
 		}
 		else {
 			l.prepend(context::roleToString(it->role()));
@@ -228,7 +228,7 @@ memory::StepType::Value VirtualMachine::prepareExecutable(
 		  last_context->prev() == nullptr) {
 			if (last_context->role() == context::Role::Object) {
 				r_result.consoleValue =
-				  dynamic_cast<context::object::Object *>(last_context)
+				  dynamic_cast<context::object::Value *>(last_context)
 					->getValue();
 
 				delete last_context;

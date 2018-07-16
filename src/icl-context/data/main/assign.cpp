@@ -37,8 +37,8 @@ memory::StepType::Value Assign::execute() {
 		return memory::StepType::None;
 	}
 
-	auto left  = dynamic_cast<object::Object *>(m_prev);
-	auto right = dynamic_cast<object::Object *>(m_next);
+	auto left  = dynamic_cast<object::Value *>(m_prev);
+	auto right = dynamic_cast<object::Value *>(m_next);
 
 	if (left->isReadOnly()) {
 		il->vm->exception(

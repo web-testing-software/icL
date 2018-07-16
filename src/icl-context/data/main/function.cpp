@@ -68,7 +68,7 @@ memory::StepType::Value Function::exCallFunction() {
 		memory::Argument arg;
 
 		arg.name   = (*argIt).name;
-		arg.object = dynamic_cast<object::Object *>(it);
+		arg.object = dynamic_cast<object::Value *>(it);
 
 		fcall.args.append(arg);
 	}
@@ -112,7 +112,7 @@ bool Function::checkParamsTypes(memory::Function & func) {
 	bool      ok       = true;
 
 	for (int i = 0; i < paramNum; i++) {
-		auto * argObj = dynamic_cast<object::Object *>(argIt);
+		auto * argObj = dynamic_cast<object::Value *>(argIt);
 		if ((*paramIt).type != argObj->type()) {
 			ok = false;
 		}
@@ -136,7 +136,7 @@ void Function::sendWrongArgs() {
 	Context * it = m_next;
 
 	while (it != nullptr && it->role() == Role::Object) {
-		auto * obj = dynamic_cast<object::Object *>(it);
+		auto * obj = dynamic_cast<object::Value *>(it);
 		getted.append(memory::typeToString(obj->type()));
 	}
 

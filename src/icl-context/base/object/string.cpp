@@ -7,20 +7,20 @@ namespace icL::context::object {
 String::String(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Object(il, container, varName) {}
+	: Value(il, container, varName) {}
 
 String::String(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Object(il, rvalue, readonly) {}
+	: Value(il, rvalue, readonly) {}
 
 String::String(
   memory::InterLevel * il, const QString & getter, const QString & setter)
-	: Object(il, getter, setter) {}
+	: Value(il, getter, setter) {}
 
-String::String(memory::InterLevel * il, const Object * const object)
-	: Object(il, object) {}
+String::String(memory::InterLevel * il, const Value * const object)
+	: Value(il, object) {}
 
 Context * String::runMethod(const QString & name, memory::ArgList & args) {
-	return Object::runMethod(name, args);
+	return Value::runMethod(name, args);
 }
 
 

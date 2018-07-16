@@ -15,7 +15,7 @@ class Int;
 /**
  * \~english @brief The Element class contains a web element reference.
  */
-class Element : public Object
+class Element : public Value
 {
 public:
 	/**
@@ -42,7 +42,7 @@ public:
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */
-	Element(memory::InterLevel * il, const Object * const object);
+	Element(memory::InterLevel * il, const Value * const object);
 
 	// Id generator
 private:
@@ -140,7 +140,7 @@ public:
 	 * @param name is the name of property
 	 * @return a r/w object
 	 */
-	Object * prop(const QString & name);
+	Value * prop(const QString & name);
 
 	/**
 	 * @brief attr - nm().attr()

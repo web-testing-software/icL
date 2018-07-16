@@ -10,7 +10,7 @@ namespace icL::context::object {
 /**
  * \~english @brief The Int class contains a int value or reference.
  */
-class Int : public Object
+class Int : public Value
 {
 public:
 	/**
@@ -46,7 +46,7 @@ public:
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */
-	Int(memory::InterLevel * il, const Object * const object);
+	Int(memory::InterLevel * il, const Value * const object);
 
 	// Context interface
 public:

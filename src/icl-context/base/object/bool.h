@@ -9,7 +9,7 @@ namespace icL::context::object {
 /**
  * \~english @brief The Bool class contains a bool value or reference
  */
-class Bool : public Object
+class Bool : public Value
 {
 public:
 	/**
@@ -45,7 +45,7 @@ public:
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */
-	Bool(memory::InterLevel * il, const Object * const object);
+	Bool(memory::InterLevel * il, const Value * const object);
 
 	// Context interface
 public:

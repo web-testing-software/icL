@@ -15,10 +15,10 @@ namespace icL::context::object {
 Set::Set(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Object(il, container, varName) {}
+	: Value(il, container, varName) {}
 
 Set::Set(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Object(il, rvalue, readonly) {}
+	: Value(il, rvalue, readonly) {}
 
 const QHash<QString, void (Set::*)()> Set::properties = Set::initProperties();
 
@@ -535,7 +535,7 @@ Context * Set::runProperty(Prefix prefix, const QString & name) {
 			(this->*it.value())();
 		}
 		else {
-			Object::runProperty(prefix, name);
+			Value::runProperty(prefix, name);
 		}
 	}
 
@@ -550,7 +550,7 @@ Context * Set::runMethod(const QString & name, memory::ArgList & args) {
 		(this->*it.value())(args);
 	}
 	else {
-		Object::runMethod(name, args);
+		Value::runMethod(name, args);
 	}
 
 	return newContext;

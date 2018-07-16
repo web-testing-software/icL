@@ -1,5 +1,5 @@
-#ifndef icl_context_object_Base
-#define icl_context_object_Base
+#ifndef icl_context_value_Base
+#define icl_context_value_Base
 
 #include "../context.h"
 
@@ -13,49 +13,49 @@
 namespace icL::context::object {
 
 /**
- * \~english @brief The Object class is the base class for all classes in
- * context.object namespace
+ * \~english @brief The Value class is the base class for all classes in
+ * context.Value namespace
  */
-class Object : public Context
+class Value : public Context
 {
 public:
 	/**
 	 * \~english
-	 * @brief Object - construct a L-Value
+	 * @brief Value - construct a L-Value
 	 * @param container - a DataState pointer
 	 * @param varName - the name of var in container
 	 */
-	Object(
+	Value(
 	  memory::InterLevel * il, memory::DataState * container,
 	  const QString & varName);
 	/**
 	 * \~english
-	 * @brief Object - constuct a R-Value
-	 * @param rvalue - the value of object
+	 * @brief Value - constuct a R-Value
+	 * @param rvalue - the value of Value
 	 * @param readonly - true restricts assigns
 	 */
-	Object(
+	Value(
 	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 	/**
 	 * \~english
-	 * @brief Object - construct a JS-Value
+	 * @brief Value - construct a JS-Value
 	 * @param getter - a getter string, eg. window.height
 	 * @param setter - a setter string, eg. window.height = %1 (QString arg)
 	 */
-	Object(
+	Value(
 	  memory::InterLevel * il, const QString & getter, const QString & setter);
 	/**
 	 * \~english
-	 * @brief Object - construct a object copy, used for coping values on
+	 * @brief Value - construct a Value copy, used for coping values on
 	 * function call
-	 * @param object - pointer to object, which need to be copied
+	 * @param Value - pointer to Value, which need to be copied
 	 */
-	Object(memory::InterLevel * il, const Object * const object);
+	Value(memory::InterLevel * il, const Value * const Value);
 
 	/**
-	 * \~english @brief ~Object is a default virtual destructor
+	 * \~english @brief ~Value is a default virtual destructor
 	 */
-	virtual ~Object() = default;
+	virtual ~Value() = default;
 
 	// static
 
@@ -63,15 +63,15 @@ private:
 	/**
 	 * \~english @brief methods list of all variable
 	 */
-	static const QHash<QString, void (Object::*)(memory::ArgList &)> methods;
+	static const QHash<QString, void (Value::*)(memory::ArgList &)> methods;
 
 public:
 	/**
 	 * \~english
 	 * @brief initMethods is the initial list of icL methods
-	 * @return a list of pairs (name of property, pointer to Object.*)
+	 * @return a list of pairs (name of property, pointer to Value.*)
 	 */
-	static const QHash<QString, void (Object::*)(memory::ArgList &)>
+	static const QHash<QString, void (Value::*)(memory::ArgList &)>
 	initMethods();
 
 public:
@@ -108,7 +108,7 @@ public:
 	/**
 	 * \~english
 	 * @brief isRValue defines the value storange type
-	 * @return true if value is stored in object, otherwise false
+	 * @return true if value is stored in Value, otherwise false
 	 */
 	virtual bool isRValue() const;
 
@@ -129,16 +129,16 @@ public:
 	/**
 	 * \~english
 	 * @brief isLink defines the value storange type
-	 * @return true if value is not stored in object, otherwise false
+	 * @return true if value is not stored in Value, otherwise false
 	 */
 	virtual bool isLink() const;
 
 	/**
 	 * \~english
 	 * @brief ensureRValue copies the value to the container
-	 * @return the new created icL object
+	 * @return the new created icL Value
 	 */
-	Object * ensureRValue();
+	Value * ensureRValue();
 
 private:
 	/**
@@ -304,11 +304,11 @@ protected:
 	/**
 	 * \~english @brief The Value enum decribes the value type
 	 */
-	enum class Value {
-		L,    ///< \~english L-Value
-		R,    ///< \~english R-Value
-		Js    ///< \~english JS-Value
-	} value;  ///< \~english The type of contained value
+	enum class ValueType {
+		L,        ///< \~english L-Value
+		R,        ///< \~english R-Value
+		Js        ///< \~english JS-Value
+	} valuetype;  ///< \~english The type of contained value
 
 	// Context interface
 public:
@@ -321,4 +321,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // icl_context_object_Base
+#endif  // icl_context_value_Base

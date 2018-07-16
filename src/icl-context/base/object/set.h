@@ -9,7 +9,7 @@
 
 namespace icL::context::object {
 
-class Set : public Object
+class Set : public Value
 {
 public:
 	Set(

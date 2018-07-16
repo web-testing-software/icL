@@ -7,21 +7,21 @@ namespace icL::context::object {
 Bool::Bool(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Object(il, container, varName) {}
+	: Value(il, container, varName) {}
 
 Bool::Bool(
   memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Object(il, rvalue, readonly) {}
+	: Value(il, rvalue, readonly) {}
 
 Bool::Bool(
   memory::InterLevel * il, const QString & getter, const QString & setter)
-	: Object(il, getter, setter) {}
+	: Value(il, getter, setter) {}
 
-Bool::Bool(memory::InterLevel * il, const Object * const object)
-	: Object(il, object) {}
+Bool::Bool(memory::InterLevel * il, const Value * const object)
+	: Value(il, object) {}
 
 Context * Bool::runMethod(const QString & name, memory::ArgList & args) {
-	return Object::runMethod(name, args);
+	return Value::runMethod(name, args);
 }
 
 memory::Type Bool::type() const {

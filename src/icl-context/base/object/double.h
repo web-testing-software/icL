@@ -9,7 +9,7 @@ namespace icL::context::object {
 /**
  * \~english @brief The Double class contains a double value or reference.
  */
-class Double : public Object
+class Double : public Value
 {
 public:
 	/**
@@ -45,7 +45,7 @@ public:
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */
-	Double(memory::InterLevel * il, const Object * const object);
+	Double(memory::InterLevel * il, const Value * const object);
 
 	// Context interface
 public:

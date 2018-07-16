@@ -21,8 +21,8 @@ QString Value::getCode() {
 	}
 	else if (
 	  m_next->role() == Role::Object &&
-	  dynamic_cast<object::Object *>(m_next)->type() == memory::Type::String) {
-		ret = dynamic_cast<object::Object *>(m_next)->getValue().toString();
+	  dynamic_cast<object::Value *>(m_next)->type() == memory::Type::String) {
+		ret = dynamic_cast<object::Value *>(m_next)->getValue().toString();
 	}
 
 	return ret;

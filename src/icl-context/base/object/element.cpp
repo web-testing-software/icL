@@ -18,14 +18,14 @@ namespace icL::context::object {
 Element::Element(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Object(il, container, varName) {}
+	: Value(il, container, varName) {}
 
 Element::Element(
   memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Object(il, rvalue, readonly) {}
+	: Value(il, rvalue, readonly) {}
 
-Element::Element(memory::InterLevel * il, const Object * const object)
-	: Object(il, object) {}
+Element::Element(memory::InterLevel * il, const Value * const object)
+	: Value(il, object) {}
 
 const QHash<QString, void (Element::*)()> Element::properties =
   Element::initProperties();
@@ -137,7 +137,7 @@ bool Element::clickable() {
 	return newValue.toBool();
 }
 
-Object * Element::prop(const QString & name) {
+Value * Element::prop(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	QString getter = web.variable % ".prop('" % name % "')";
@@ -171,7 +171,7 @@ Object * Element::prop(const QString & name) {
 		break;
 	}
 
-	return dynamic_cast<Object *>(newContext);
+	return dynamic_cast<Value *>(newContext);
 }
 
 String * Element::attr(const QString & name) {
@@ -719,7 +719,7 @@ Context * Element::runProperty(Prefix prefix, const QString & name) {
 			(this->*it.value())();
 		}
 		else {
-			Object::runProperty(prefix, name);
+			Value::runProperty(prefix, name);
 		}
 	}
 	else if (prefix == Prefix::Attr) {
@@ -743,7 +743,7 @@ Context * Element::runMethod(const QString & name, memory::ArgList & args) {
 		(this->*it.value())(args);
 	}
 	else {
-		Object::runMethod(name, args);
+		Value::runMethod(name, args);
 	}
 
 	return newContext;
