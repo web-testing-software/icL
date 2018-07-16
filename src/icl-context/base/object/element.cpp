@@ -11,7 +11,7 @@
 #include <QPoint>
 #include <QStringBuilder>
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 
 
@@ -776,4 +776,4 @@ const QStringList Element::toList() {
 	return QStringList{};
 }
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value

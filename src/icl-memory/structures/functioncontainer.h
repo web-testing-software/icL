@@ -8,7 +8,7 @@
 #include <QString>
 #include <QVector>
 
-namespace icL::context::object {
+namespace icL::context::value {
 class Value;
 }
 
@@ -64,7 +64,7 @@ using FunctionMap = QMap<QString, Function>;
 struct Argument
 {
 	QString                   name;
-	context::object::Value * object;
+	context::value::Value * object;
 };
 
 using ArgList = QVector<Argument>;

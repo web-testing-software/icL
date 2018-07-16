@@ -186,10 +186,10 @@ context::Context * Interpreter::parseKeyword() {
 		il->vm->exception({-500, "system error"});
 	}
 	else if (keyword == "true") {
-		ret = new context::object::Bool{il, QVariant(true), true};
+		ret = new context::value::Bool{il, QVariant(true), true};
 	}
 	else if (keyword == "false") {
-		ret = new context::object::Bool{il, QVariant(false), true};
+		ret = new context::value::Bool{il, QVariant(false), true};
 	}
 	else {
 		il->vm->exception(
@@ -203,7 +203,7 @@ context::Context * Interpreter::parseKeyword() {
 context::Context * Interpreter::parseString() {
 	QString str = flayer.flyString();
 
-	return new context::object::String{il, str, true};
+	return new context::value::String{il, str, true};
 }
 
 context::Context * Interpreter::parseStateVar() {
@@ -285,10 +285,10 @@ context::Context * Interpreter::parseNumber() {
 	context::Context * res;
 
 	if (is_int) {
-		res = new context::object::Int{il, pint, true};
+		res = new context::value::Int{il, pint, true};
 	}
 	else {
-		res = new context::object::Double{il, pdouble, true};
+		res = new context::value::Double{il, pdouble, true};
 	}
 
 	return res;
@@ -395,7 +395,7 @@ context::Context * Interpreter::parseList() {
 	if (ch == ']') {
 		flayer.stepForward();
 
-		return new context::object::List{il, QStringList{}, true};
+		return new context::value::List{il, QStringList{}, true};
 	}
 
 	il->vm->exception({-500, "system error"});

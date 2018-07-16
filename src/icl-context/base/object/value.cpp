@@ -1,4 +1,4 @@
-#include "object.h"
+#include "value.h"
 
 #include "bool.h"
 #include "double.h"
@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <QStringBuilder>
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 Value::Value(
   memory::InterLevel * il, memory::DataState * container,
@@ -409,4 +409,4 @@ bool Value::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value

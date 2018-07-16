@@ -7,10 +7,10 @@
 
 
 /**
- * \~english The icL.context.object namespace contains cntainers for all data
+ * \~english The icL.context.value namespace contains cntainers for all data
  * types
  */
-namespace icL::context::object {
+namespace icL::context::value {
 
 /**
  * \~english @brief The Value class is the base class for all classes in
@@ -319,6 +319,6 @@ public:
 	bool      isResultative() const override;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
 #endif  // icl_context_value_Base

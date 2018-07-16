@@ -5,7 +5,7 @@
 #include "object/element.h"
 #include "object/int.h"
 #include "object/list.h"
-#include "object/object.h"
+#include "object/value.h"
 #include "object/string.h"
 #include "object/void.h"
 

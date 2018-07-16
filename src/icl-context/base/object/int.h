@@ -1,11 +1,11 @@
-#ifndef icl_context_object_Int
-#define icl_context_object_Int
+#ifndef icl_context_value_Int
+#define icl_context_value_Int
 
-#include "object.h"
+#include "value.h"
 
 
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 /**
  * \~english @brief The Int class contains a int value or reference.
@@ -66,6 +66,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
-#endif  // icl_context_object_Int
+#endif  // icl_context_value_Int

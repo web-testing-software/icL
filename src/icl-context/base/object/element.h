@@ -1,13 +1,13 @@
-#ifndef icl_context_object_Element
-#define icl_context_object_Element
+#ifndef icl_context_value_Element
+#define icl_context_value_Element
 
 
-#include "object.h"
+#include "value.h"
 
 #include <icl-memory/structures/webelement.h>
 
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 class String;
 class Int;
@@ -311,6 +311,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
-#endif  // icl_context_object_Element
+#endif  // icl_context_value_Element

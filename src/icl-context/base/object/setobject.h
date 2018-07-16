@@ -1,13 +1,13 @@
-#ifndef icL_context_object_SetObject
-#define icL_context_object_SetObject
+#ifndef icL_context_value_SetObject
+#define icL_context_value_SetObject
 
 
-#include "object.h"
+#include "value.h"
 
 #include <icl-memory/state/datastate.h>
 #include <icl-memory/structures/set.h>
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 class SetObject
 	: public object::Value
@@ -19,6 +19,6 @@ private:
 	memory::SetObjPtr data;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
-#endif  // icL_context_object_SetObject
+#endif  // icL_context_value_SetObject

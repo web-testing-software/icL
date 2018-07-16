@@ -1,13 +1,13 @@
-#ifndef icl_context_object_Set
-#define icl_context_object_Set
+#ifndef icl_context_value_Set
+#define icl_context_value_Set
 
-#include "object.h"
+#include "value.h"
 
 #include <icl-memory/structures/set.h>
 
 
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 class Set : public Value
 {
@@ -87,7 +87,7 @@ public:
 };
 
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
 
-#endif  // icl_context_object_Set
+#endif  // icl_context_value_Set

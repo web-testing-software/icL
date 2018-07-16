@@ -1,6 +1,6 @@
 #include "code.h"
 
-#include <icl-context/base/object/object.h>
+#include <icl-context/base/object/value.h>
 
 namespace icL::context::code {
 
@@ -46,7 +46,7 @@ memory::StepType::Value Code::execute() {
 
 		if (m_prev->role() == context::Role::Object) {
 			arg.name   = "stack";
-			arg.object = dynamic_cast<context::object::Value *>(m_prev);
+			arg.object = dynamic_cast<context::value::Value *>(m_prev);
 
 			fcall.args.append(arg);
 		}

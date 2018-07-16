@@ -5,7 +5,7 @@
 #include "int.h"
 #include "string.h"
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 
 
@@ -592,4 +592,4 @@ const QStringList List::toList() {
 	return newValue.toStringList();
 }
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value

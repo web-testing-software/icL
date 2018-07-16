@@ -1,10 +1,10 @@
-#ifndef icl_context_object_Double
-#define icl_context_object_Double
+#ifndef icl_context_value_Double
+#define icl_context_value_Double
 
-#include "object.h"
+#include "value.h"
 
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 /**
  * \~english @brief The Double class contains a double value or reference.
@@ -19,7 +19,9 @@ public:
 	 * @param container is a base contructor argument
 	 * @param varName is a base contructor argument
 	 */
-	Double(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	Double(
+	  memory::InterLevel * il, memory::DataState * container,
+	  const QString & varName);
 
 	/**
 	 * \~english
@@ -28,7 +30,8 @@ public:
 	 * @param rvalue is a base contructor argument
 	 * @param readonly is a base contructor argument
 	 */
-	Double(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	Double(
+	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 
 	/**
 	 * \~english
@@ -37,7 +40,8 @@ public:
 	 * @param getter is a base contructor argument
 	 * @param setter is a base contructor argument
 	 */
-	Double(memory::InterLevel * il, const QString & getter, const QString & setter);
+	Double(
+	  memory::InterLevel * il, const QString & getter, const QString & setter);
 
 	/**
 	 * \~english
@@ -65,6 +69,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
-#endif  // icl_context_object_Double
+#endif  // icl_context_value_Double

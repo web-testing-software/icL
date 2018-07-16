@@ -1,6 +1,6 @@
 #include "void.h"
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 Void::Void(memory::InterLevel * il)
 	: Value(il, QVariant(), true) {}
@@ -51,4 +51,4 @@ const QStringList Void::toList() {
 	return QStringList{};
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value

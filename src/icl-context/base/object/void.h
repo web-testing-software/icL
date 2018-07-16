@@ -1,10 +1,10 @@
-#ifndef icl_context_object_Void
-#define icl_context_object_Void
+#ifndef icl_context_value_Void
+#define icl_context_value_Void
 
-#include "object.h"
+#include "value.h"
 
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 /**
  * \~english @brief The Void class is an empty container or a new variable.
@@ -54,6 +54,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
-#endif  // icl_context_object_Void
+#endif  // icl_context_value_Void

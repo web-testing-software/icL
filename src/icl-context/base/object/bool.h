@@ -1,10 +1,10 @@
-#ifndef icl_context_object_Bool
-#define icl_context_object_Bool
+#ifndef icl_context_value_Bool
+#define icl_context_value_Bool
 
-#include "object.h"
+#include "value.h"
 
 
-namespace icL::context::object {
+namespace icL::context::value {
 
 /**
  * \~english @brief The Bool class contains a bool value or reference
@@ -65,6 +65,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::object
+}  // namespace icL::context::value
 
-#endif  // icl_context_object_Bool
+#endif  // icl_context_value_Bool
