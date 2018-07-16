@@ -3,33 +3,47 @@
 
 #include "object.h"
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '-> object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::context::object {
 
 /**
- * @brief The String class contains a string value of reference.
+ * \~english @brief The String class contains a string value of reference.
  */
 class String : public Object
 {
 public:
+	/**
+	 * \~english
+	 * @brief String calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param container is a base contructor argument
+	 * @param varName is a base contructor argument
+	 */
 	String(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+
+	/**
+	 * \~english
+	 * @brief String calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param rvalue is a base contructor argument
+	 * @param readonly is a base contructor argument
+	 */
 	String(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+
+	/**
+	 * \~english
+	 * @brief String calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param getter is a base contructor argument
+	 * @param setter is a base contructor argument
+	 */
 	String(memory::InterLevel * il, const QString & getter, const QString & setter);
+
+	/**
+	 * \~english
+	 * @brief String calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param object is a base contructor argument
+	 */
 	String(memory::InterLevel * il, const Object * const object);
 
 	// Context interface
@@ -38,6 +52,9 @@ public:
 
 	// Object interface
 public:
+	/**
+	 * \~english @return memory.Type.String
+	 */
 	memory::Type type() const override;
 
 	bool              toBoolean() override;
