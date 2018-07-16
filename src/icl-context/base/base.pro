@@ -15,26 +15,26 @@ include($$ICL_ROOT/pri_files/lib.pri)
 
 HEADERS += \
     context.h \
-    object/double.h \
-    object/element.h \
-    object/int.h \
-    object/list.h \
-    object/string.h \
-    object/void.h \
-    object/set.h \
-    object/setobject.h \
-    object/bool.h \
-    object/value.h
+    value/double.h \
+    value/element.h \
+    value/int.h \
+    value/list.h \
+    value/string.h \
+    value/void.h \
+    value/set.h \
+    value/setobject.h \
+    value/bool.h \
+    value/value.h
 
 SOURCES += \
     context.cpp \
-    object/double.cpp \
-    object/element.cpp \
-    object/int.cpp \
-    object/list.cpp \
-    object/string.cpp \
-    object/void.cpp \
-    object/set.cpp \
-    object/setobject.cpp \
-    object/bool.cpp \
-    object/value.cpp
+    value/double.cpp \
+    value/element.cpp \
+    value/int.cpp \
+    value/list.cpp \
+    value/string.cpp \
+    value/void.cpp \
+    value/set.cpp \
+    value/setobject.cpp \
+    value/bool.cpp \
+    value/value.cpp
