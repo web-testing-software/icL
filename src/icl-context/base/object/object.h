@@ -25,8 +25,8 @@
 namespace icL::context::object {
 
 /**
- * @brief The Object class is the base class for all classes in context.object
- * namespace
+ * \~english @brief The Object class is the base class for all classes in
+ * context.object namespace
  */
 class Object : public Context
 {
@@ -60,79 +60,239 @@ public:
 	 */
 	Object(memory::InterLevel * il, const Object * const object);
 
+	/**
+	 * @brief ~Object is a default virtual destructor
+	 */
 	virtual ~Object() = default;
 
 	// static
 
 private:
+	/**
+	 * \~english @brief methods list of all variable
+	 */
 	static const QHash<QString, void (Object::*)(memory::ArgList &)> methods;
 
 public:
+	/**
+	 * \~english
+	 * @brief initMethods is the initial list of icL methods
+	 * @return a list of pairs (name of property, pointer to Object.*)
+	 */
 	static const QHash<QString, void (Object::*)(memory::ArgList &)>
 	initMethods();
 
 public:
+	/**
+	 * @brief type returs the type of contained value
+	 * @return the default value (memory.Type.Void)
+	 */
 	virtual memory::Type type() const;
 
+	/**
+	 * @brief getValue return the contained value
+	 * @return the contained value
+	 */
 	virtual QVariant getValue();
-	virtual void     setValue(const QVariant & value);
 
+	/**
+	 * @brief setValue sets the contained value
+	 * @param value is the value o set
+	 */
+	virtual void setValue(const QVariant & value);
+
+	/**
+	 * @brief getVarName is used for deugging
+	 * @return the varName private variable value
+	 * @warning use only from context.data.Assign
+	 */
 	const QString & getVarName() const;
 
 public:
+	/**
+	 * @brief isRValue defines the value storange type
+	 * @return true if value is stored in object, otherwise false
+	 */
 	virtual bool isRValue() const;
+
+	/**
+	 * @brief isReadOnly defined the mutable ability
+	 * @return true if value is imutable, otherwise false
+	 */
 	virtual bool isReadOnly() const;
+
+	/**
+	 * @brief isLValue defines the mutable ability
+	 * @return true if value is mutable, otherwise false
+	 */
 	virtual bool isLValue() const;
+
+	/**
+	 * @brief isLink defines the value storange type
+	 * @return true if value is not stored in object, otherwise false
+	 */
 	virtual bool isLink() const;
 
+	/**
+	 * @brief ensureRValue copies the value to the container
+	 * @return the new created icL object
+	 */
 	Object * ensureRValue();
 
 private:
+	/**
+	 * \~english @brief method middle level function
+	 * \~ @see isRValue
+	 */
 	void runIsRValue(memory::ArgList & args);
+
+	/**
+	 * \~english @brief method middle level function
+	 * \~ @see isReadOnly
+	 */
 	void runIsReadOnly(memory::ArgList & args);
+
+	/**
+	 * \~english @brief method middle level function
+	 * \~ @see isLValue
+	 */
 	void runisLValue(memory::ArgList & args);
+
+	/**
+	 * \~english @brief method middle level function
+	 * \~ @see isLink
+	 */
 	void runIsLink(memory::ArgList & args);
+
+	/**
+	 * \~english @brief method middle level function
+	 * \~ @see ensureRValue
+	 */
 	void runEnsureRValue(memory::ArgList & args);
 
 
 public:
 	// Cast functions
-	virtual bool              toBoolean() = 0;
-	virtual int               toInt()     = 0;
-	virtual double            toDouble()  = 0;
-	virtual const QString     toString()  = 0;
-	virtual const QStringList toList()    = 0;
+
+	/**
+	 * @brief toBoolean casts contained value to bool
+	 * @return casted value
+	 */
+	virtual bool toBoolean() = 0;
+
+	/**
+	 * @brief toInt casts contained value to int
+	 * @return casted value
+	 */
+	virtual int toInt() = 0;
+
+	/**
+	 * @brief toDouble casts contained value to double
+	 * @return casted value
+	 */
+	virtual double toDouble() = 0;
+
+	/**
+	 * @brief toString casts contained value to string
+	 * @return casted value
+	 */
+	virtual const QString toString() = 0;
+
+	/**
+	 * @brief toList casts contained value to list
+	 * @return casted value
+	 */
+	virtual const QStringList toList() = 0;
 
 private:
+	/**
+	 * \~english @brief cast middle level function
+	 * \~ @see toBoolean
+	 */
 	void runToBoolean(memory::ArgList & args);
+
+	/**
+	 * \~english @brief cast middle level function
+	 * \~ @see toInt
+	 */
 	void runToInt(memory::ArgList & args);
+
+	/**
+	 * \~english @brief cast middle level function
+	 * \~ @see toDouble
+	 */
 	void runToDouble(memory::ArgList & args);
+
+	/**
+	 * \~english @brief cast middle level function
+	 * \~ @see toString
+	 */
 	void runToString(memory::ArgList & args);
+
+	/**
+	 * \~english @brief cast middle level function
+	 * \~ @see toList
+	 */
 	void runToList(memory::ArgList & args);
 
 protected:
+	/**
+	 * @brief sendWrongCast sends to vm an exception
+	 * @param to is the requested type
+	 */
 	void sendWrongCast(const QString & to);
+
+	/**
+	 * @brief sendCastFailed sends to vm an exception
+	 * @param value is the wrong value
+	 * @param type is the requested type
+	 */
 	void sendCastFailed(const QString & value, const QString & type);
+
+
+	/**
+	 * \~english @brief cast middle level function
+	 */
 	void runCast(const QString & name, memory::ArgList & args);
 
-	std::pair<bool, bool>   parseToBool(const QString & str);
-	std::pair<int, bool>    parseToInt(const QString & str);
+	/**
+	 * @brief parseToBool parses string to bool
+	 * @param str is the string to parse
+	 * @return (parsed value, success status)
+	 */
+	std::pair<bool, bool> parseToBool(const QString & str);
+
+	/**
+	 * @brief parseToInt parses string to int
+	 * @param str is the string to parse
+	 * @return (parsed value, success status)
+	 */
+	std::pair<int, bool> parseToInt(const QString & str);
+
+	/**
+	 * @brief parseToDouble parses string to double
+	 * @param str is the string to parse
+	 * @return (parsed value, success status)
+	 */
 	std::pair<double, bool> parseToDouble(const QString & str);
 
 protected:
 	// LValue
-	memory::DataState * container = nullptr;
-	QString             varName;
+	memory::DataState * container = nullptr;  ///< Each l value has a container
+	QString             varName;  ///< Each l value has a variable name
 
 	// RValue
-	QVariant rvalue;
-	bool     readonly = false;
+	QVariant rvalue; ///< The value of r value
+	bool     readonly = false; ///< The r/o poperty
 
 	// JsValue
-	QString setter;
-	QString getter;
+	QString setter; ///< the setter of js value
+	QString getter; ///< the getter of js value
 
-	enum class Value { L, R, Js } value;
+	/**
+	 * @brief The Value enum decribes the value type
+	 */
+	enum class Value { L, R, Js } value; ///< The type of contained value
 
 	// Context interface
 public:
