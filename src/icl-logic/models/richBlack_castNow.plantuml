@@ -10,7 +10,7 @@ start
 
 if (vt == Bool) then (Да)
 	-[#blue]->
-	:newContext =\nnew Boolean();
+	:newContext =\nnew Bool();
 else if (vt == Int) then (Да)
 	-[#blue]->
 	:newContext =\nnew Int();

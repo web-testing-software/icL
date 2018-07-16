@@ -8,13 +8,13 @@ namespace icL::logic::rich {
 
 /**
  * @deprecated
- * @brief The Boolean class - compare two <bool> vars/consts
+ * @brief The Bool class - compare two <bool> vars/consts
  */
-class Boolean : public Rich
+class Bool : public Rich
 {
 public:
-	Boolean(memory::InterLevel *il, OperationType otype);
-	Boolean(memory::InterLevel *il, Rich * block);
+	Bool(memory::InterLevel *il, OperationType otype);
+	Bool(memory::InterLevel *il, Rich * block);
 
 	//	static bool check (const QString &value);
 

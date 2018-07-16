@@ -1,54 +1,54 @@
-#include "boolean.h"
+#include "bool.h"
 
 namespace icL::context::object {
 
 
 
-Boolean::Boolean(
+Bool::Bool(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
 	: Object(il, container, varName) {}
 
-Boolean::Boolean(
+Bool::Bool(
   memory::InterLevel * il, const QVariant & rvalue, bool readonly)
 	: Object(il, rvalue, readonly) {}
 
-Boolean::Boolean(
+Bool::Bool(
   memory::InterLevel * il, const QString & getter, const QString & setter)
 	: Object(il, getter, setter) {}
 
-Boolean::Boolean(memory::InterLevel * il, const Object * const object)
+Bool::Bool(memory::InterLevel * il, const Object * const object)
 	: Object(il, object) {}
 
-Context * Boolean::runMethod(const QString & name, memory::ArgList & args) {
+Context * Bool::runMethod(const QString & name, memory::ArgList & args) {
 	return Object::runMethod(name, args);
 }
 
-memory::Type Boolean::type() const {
-	return memory::Type::Boolean;
+memory::Type Bool::type() const {
+	return memory::Type::Bool;
 }
 
-bool Boolean::toBoolean() {
+bool Bool::toBool() {
 	newValue = getValue();
 	return newValue.toBool();
 }
 
-int Boolean::toInt() {
+int Bool::toInt() {
 	newValue = getValue().toBool() ? 1 : 0;
 	return newValue.toInt();
 }
 
-double Boolean::toDouble() {
+double Bool::toDouble() {
 	newValue = getValue().toBool() ? 1.0 : 0.0;
 	return newValue.toDouble();
 }
 
-const QString Boolean::toString() {
+const QString Bool::toString() {
 	newValue = getValue().toBool() ? "true" : "false";
 	return newValue.toString();
 }
 
-const QStringList Boolean::toList() {
+const QStringList Bool::toList() {
 	newValue = QStringList{} << (getValue().toBool() ? "true" : "false");
 	return newValue.toStringList();
 }

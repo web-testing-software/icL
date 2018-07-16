@@ -26,7 +26,7 @@ Context * Void::runMethod(
 }
 
 
-bool Void::toBoolean() {
+bool Void::toBool() {
 	newValue = false;
 	return false;
 }

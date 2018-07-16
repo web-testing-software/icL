@@ -57,7 +57,7 @@ public:
 	 */
 	memory::Type type() const override;
 
-	bool              toBoolean() override;
+	bool              toBool() override;
 	int               toInt() override;
 	double            toDouble() override;
 	const QString     toString() override;

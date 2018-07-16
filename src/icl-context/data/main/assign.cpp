@@ -1,6 +1,6 @@
 #include "assign.h"
 
-#include <icl-context/base/object/boolean.h>
+#include <icl-context/base/object/bool.h>
 #include <icl-context/base/object/double.h>
 #include <icl-context/base/object/element.h>
 #include <icl-context/base/object/int.h>
@@ -77,8 +77,8 @@ memory::StepType::Value Assign::execute() {
 		Context * new_left = nullptr;
 
 		switch (right->type()) {
-		case memory::Type::Boolean:
-			new_left = new object::Boolean{il, left};
+		case memory::Type::Bool:
+			new_left = new object::Bool{il, left};
 			break;
 
 		case memory::Type::Int:

@@ -1,20 +1,20 @@
-#include "boolean.h"
+#include "Bool.h"
 
 namespace icL::logic::rich {
 
-Boolean::Boolean(memory::InterLevel * il, OperationType otype)
+Bool::Bool(memory::InterLevel * il, OperationType otype)
 	: Rich(il, otype) {
 	casted = true;
 }
 
-Boolean::Boolean(memory::InterLevel * il, Rich * block)
+Bool::Bool(memory::InterLevel * il, Rich * block)
 	: Rich(il, block) {}
 
 /**
- * @brief Boolean::calcResult - compare values
+ * @brief Bool::calcResult - compare values
  * @return the result of comparation
  */
-bool Boolean::calcResult() {
+bool Bool::calcResult() {
 	bool result = false;
 	bool var1   = value1.toBool();
 

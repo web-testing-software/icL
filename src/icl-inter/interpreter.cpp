@@ -1,6 +1,6 @@
 #include "interpreter.h"
 
-#include <icl-context/base/object/boolean.h>
+#include <icl-context/base/object/bool.h>
 #include <icl-context/base/object/double.h>
 #include <icl-context/base/object/int.h>
 #include <icl-context/base/object/list.h>
@@ -186,10 +186,10 @@ context::Context * Interpreter::parseKeyword() {
 		il->vm->exception({-500, "system error"});
 	}
 	else if (keyword == "true") {
-		ret = new context::object::Boolean{il, QVariant(true), true};
+		ret = new context::object::Bool{il, QVariant(true), true};
 	}
 	else if (keyword == "false") {
-		ret = new context::object::Boolean{il, QVariant(false), true};
+		ret = new context::object::Bool{il, QVariant(false), true};
 	}
 	else {
 		il->vm->exception(
@@ -345,8 +345,8 @@ context::Context * Interpreter::parseParameter() {
 		highlightError(pos - 1, pos);
 	}
 
-	if (type == "Boolean") {
-		mtype = memory::Type::Boolean;
+	if (type == "bool") {
+		mtype = memory::Type::Bool;
 	}
 	else if (type == "Int") {
 		mtype = memory::Type::Int;

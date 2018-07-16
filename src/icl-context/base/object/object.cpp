@@ -1,6 +1,6 @@
 #include "object.h"
 
-#include "boolean.h"
+#include "bool.h"
 #include "double.h"
 #include "int.h"
 #include "list.h"
@@ -133,7 +133,7 @@ Object * Object::ensureRValue() {
 void Object::runIsRValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isRValue();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -143,7 +143,7 @@ void Object::runIsRValue(memory::ArgList & args) {
 void Object::runIsReadOnly(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isReadOnly();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -153,7 +153,7 @@ void Object::runIsReadOnly(memory::ArgList & args) {
 void Object::runisLValue(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isLValue();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -163,7 +163,7 @@ void Object::runisLValue(memory::ArgList & args) {
 void Object::runIsLink(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isLink();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -179,28 +179,28 @@ void Object::runEnsureRValue(memory::ArgList & args) {
 	}
 }
 
-void Object::runToBoolean(memory::ArgList & args) {
+void Object::runToBool(memory::ArgList & args) {
 	if (args.length() == 0) {
-		toBoolean();
+		toBool();
 
 		if (newValue.isNull()) {
-			sendWrongCast("Boolean");
+			sendWrongCast("bool");
 		}
 	}
 	else if (
-	  args.length() == 1 && args[0].object->type() == memory::Type::Boolean) {
-		toBoolean();
+	  args.length() == 1 && args[0].object->type() == memory::Type::Bool) {
+		toBool();
 
 		if (newValue.isNull()) {
 			newValue = args[0].object->getValue();
 		}
 	}
 	else {
-		sendWrongArglist(args, "<> or <Boolean>");
+		sendWrongArglist(args, "<> or <bool>");
 		return;
 	}
 
-	newContext = new Boolean{il, newValue, true};
+	newContext = new Bool{il, newValue, true};
 }
 
 void Object::runToInt(memory::ArgList & args) {
@@ -312,8 +312,8 @@ void Object::sendCastFailed(const QString & value, const QString & type) {
 void Object::runCast(const QString & name, memory::ArgList & args) {
 	QStringRef type = name.midRef(2);
 
-	if (type == "Boolean") {
-		runToBoolean(args);
+	if (type == "bool") {
+		runToBool(args);
 	}
 	else if (type == "Int") {
 		runToInt(args);
@@ -347,7 +347,7 @@ std::pair<bool, bool> Object::parseToBool(const QString & str) {
 		return {res, true};
 	}
 
-	sendCastFailed(str, QStringLiteral("Boolean"));
+	sendCastFailed(str, QStringLiteral("Bool;
 	return {false, false};
 }
 

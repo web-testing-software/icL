@@ -1,6 +1,6 @@
 #include "set.h"
 
-#include "boolean.h"
+#include "bool.h"
 #include "int.h"
 #include "setobject.h"
 #include "void.h"
@@ -61,7 +61,7 @@ void Set::runLength() {
 
 void Set::runEmpty() {
 	newValue   = length();
-	newContext = new Boolean(il, newValue == 0, true);
+	newContext = new Bool(il, newValue == 0, true);
 }
 
 void Set::appplicate(const QList<QStringList> & list) {
@@ -105,7 +105,7 @@ void Set::appplicate(const QList<QStringList> & list) {
 			std::pair<QVariant, bool> res = {{}, false};
 
 			switch ((*set.header)[j].type) {
-			case memory::Type::Boolean:
+			case memory::Type::Bool:
 				res = parseToBool(value.isEmpty() ? "false" : value);
 				break;
 
@@ -129,7 +129,7 @@ void Set::appplicate(const QList<QStringList> & list) {
 			default:
 				il->vm->exception(
 				  {-1213,
-				   "SetObj can contains values of type Boolean, Int, Double, "
+				   "SetObj can contains values of type bool, Int, Double, "
 				   "String, List. But given " +
 					 memory::typeToString((*set.header)[j].type)});
 			}
@@ -508,7 +508,7 @@ int Set::indexOf(const QString & name, const memory::SetPtr & set) {
 
 bool Set::isSetType(memory::Type type) {
 	if (
-	  type != memory::Type::Boolean && type != memory::Type::Int &&
+	  type != memory::Type::Bool && type != memory::Type::Int &&
 	  type != memory::Type::Double && type != memory::Type::String &&
 	  type != memory::Type::List) {
 		return true;
@@ -560,7 +560,7 @@ memory::Type Set::type() const {
 	return memory::Type::Set;
 }
 
-bool Set::toBoolean() {
+bool Set::toBool() {
 	sendWrongCast("bool");
 	return false;
 }

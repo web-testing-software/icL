@@ -47,7 +47,7 @@ public:
 
 	// Object interface
 public:
-	bool              toBoolean() override;
+	bool              toBool() override;
 	int               toInt() override;
 	double            toDouble() override;
 	const QString     toString() override;

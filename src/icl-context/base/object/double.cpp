@@ -27,7 +27,7 @@ memory::Type Double::type() const {
 	return memory::Type::Double;
 }
 
-bool Double::toBoolean() {
+bool Double::toBool() {
 	newValue = getValue().toDouble() != 0.0;
 	return newValue.toBool();
 }

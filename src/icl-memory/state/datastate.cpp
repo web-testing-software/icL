@@ -43,7 +43,7 @@ bool DataState::checkType(const QString & name, Type & type) {
 	bool ret;
 
 	switch (type) {
-	case Type::Boolean:
+	case Type::Bool:
 		ret = dataMap[name].type() == QVariant::Bool;
 		break;
 

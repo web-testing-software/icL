@@ -1,6 +1,6 @@
 #include "list.h"
 
-#include "boolean.h"
+#include "bool.h"
 #include "double.h"
 #include "int.h"
 #include "string.h"
@@ -453,7 +453,7 @@ void List::runMin(memory::ArgList & args) {
 void List::runLogicAnd(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = logicAnd();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -463,7 +463,7 @@ void List::runLogicAnd(memory::ArgList & args) {
 void List::runLogicOr(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = logicOr();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<>"));
@@ -531,7 +531,7 @@ memory::Type List::type() const {
 
 
 
-bool List::toBoolean() {
+bool List::toBool() {
 	QString value = getFirst();
 
 	if (!value.isNull()) {

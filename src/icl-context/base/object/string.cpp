@@ -30,7 +30,7 @@ memory::Type String::type() const {
 }
 
 
-bool String::toBoolean() {
+bool String::toBool() {
 	QString value = getValue().toString();
 
 	bool ok = true;
@@ -51,7 +51,7 @@ bool String::toBoolean() {
 		return res;
 	}
 	else {
-		sendCastFailed(value, QStringLiteral("Boolean"));
+		sendCastFailed(value, QStringLiteral("bool"));
 	}
 
 	return false;

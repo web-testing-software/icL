@@ -26,7 +26,7 @@ interface Rich {
 Logic <|-left- Rich
 Logic <|-right- Cross
 
-Rich <|-- Boolean
+Rich <|-- Bool
 Rich <|-up- Int
 Rich <|-up- Double
 Rich <|-- String

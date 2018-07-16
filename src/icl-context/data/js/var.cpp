@@ -1,6 +1,6 @@
 #include "var.h"
 
-#include <icl-context/base/object/boolean.h>
+#include <icl-context/base/object/bool.h>
 #include <icl-context/base/object/double.h>
 #include <icl-context/base/object/int.h>
 #include <icl-context/base/object/list.h>
@@ -58,8 +58,8 @@ memory::StepType::Value Var::execute() {
 	auto type = memory::variantTypeToType(value.type());
 
 	switch (type) {
-	case memory::Type::Boolean:
-		newContext = new object::Boolean{il, getter, setter};
+	case memory::Type::Bool:
+		newContext = new object::Bool{il, getter, setter};
 		break;
 
 	case memory::Type::Int:

@@ -24,7 +24,7 @@ namespace icL::memory {
 
 enum class Type {
 	Void,
-	Boolean,
+	Bool,
 	Int,
 	Double,
 	String,

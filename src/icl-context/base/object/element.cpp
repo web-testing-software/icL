@@ -1,6 +1,6 @@
 #include "element.h"
 
-#include "boolean.h"
+#include "bool.h"
 #include "double.h"
 #include "int.h"
 #include "list.h"
@@ -146,8 +146,8 @@ Object * Element::prop(const QString & name) {
 	newValue = il->server->runJS(getter);
 
 	switch (memory::variantTypeToType(newValue.type())) {
-	case memory::Type::Boolean:
-		newContext = new Boolean{il, getter, setter};
+	case memory::Type::Bool:
+		newContext = new Bool{il, getter, setter};
 		break;
 
 	case memory::Type::Int:
@@ -219,11 +219,11 @@ void Element::runHeight() {
 }
 
 void Element::runVisible() {
-	newContext = new Boolean{il, newValue, true};
+	newContext = new Bool{il, newValue, true};
 }
 
 void Element::runClickable() {
-	newContext = new Boolean{il, newValue, true};
+	newContext = new Bool{il, newValue, true};
 }
 
 void Element::runProp(const QString & name) {
@@ -495,7 +495,7 @@ void Element::runCtrlV(memory::ArgList & args) {
 void Element::runIsValid(memory::ArgList & args) {
 	if (args.length() == 0) {
 		newValue   = isValid();
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -529,14 +529,14 @@ void Element::runFilter(memory::ArgList & args) {
 	}
 	if (
 	  args.length() == 2 && args[0].object->type() == memory::Type::String &&
-	  args[1].object->type() == memory::Type::Boolean) {
+	  args[1].object->type() == memory::Type::Bool) {
 		newValue   = QVariant::fromValue(filter(
 		  args[0].object->getValue().toString(),
 		  args[1].object->getValue().toInt()));
 		newContext = new Element{il, newValue, true};
 	}
 	else {
-		sendWrongArglist(args, QStringLiteral("<String> or <String, Boolean>"));
+		sendWrongArglist(args, QStringLiteral("<String> or <String, bool>"));
 	}
 }
 
@@ -645,7 +645,7 @@ void Element::runRemoveClass(memory::ArgList & args) {
 void Element::runHasClass(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::String) {
 		newValue   = hasClass(args[0].object->getValue().toString());
-		newContext = new Boolean{il, newValue, true};
+		newContext = new Bool{il, newValue, true};
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<String>"));
@@ -756,7 +756,7 @@ memory::Type Element::type() const {
 }
 
 
-bool Element::toBoolean() {
+bool Element::toBool() {
 	return false;
 }
 

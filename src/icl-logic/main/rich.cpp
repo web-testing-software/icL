@@ -133,7 +133,7 @@ Logic * Rich::castNow() {
 
 	switch (value1.type()) {
 	case QVariant::Bool:
-		ret = new Boolean(il, this);
+		ret = new Bool(il, this);
 		break;
 
 	case QVariant::Int:

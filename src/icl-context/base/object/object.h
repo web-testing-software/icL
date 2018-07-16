@@ -180,7 +180,7 @@ public:
 	 * @brief toBoolean casts contained value to bool
 	 * @return casted value
 	 */
-	virtual bool toBoolean() = 0;
+	virtual bool toBool() = 0;
 
 	/**
 	 * \~english
@@ -215,7 +215,7 @@ private:
 	 * \~english @brief cast middle level function
 	 * \~ @see toBoolean
 	 */
-	void runToBoolean(memory::ArgList & args);
+	void runToBool(memory::ArgList & args);
 
 	/**
 	 * \~english @brief cast middle level function

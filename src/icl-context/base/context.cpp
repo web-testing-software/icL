@@ -1,6 +1,6 @@
 #include "context.h"
 
-#include "object/boolean.h"
+#include "object/bool.h"
 #include "object/double.h"
 #include "object/element.h"
 #include "object/int.h"
@@ -88,8 +88,8 @@ object::Object * Context::fromValue(
 	memory::Type     type = memory::variantTypeToType(value.type());
 
 	switch (type) {
-	case memory::Type::Boolean:
-		ret = new object::Boolean{il, value, true};
+	case memory::Type::Bool:
+		ret = new object::Bool{il, value, true};
 		break;
 
 	case memory::Type::Int:
@@ -126,8 +126,8 @@ object::Object * Context::fromValue(
 	memory::Type     type = ds->getType(name);
 
 	switch (type) {
-	case memory::Type::Boolean:
-		ret = new object::Boolean{il, ds, name};
+	case memory::Type::Bool:
+		ret = new object::Bool{il, ds, name};
 		break;
 
 	case memory::Type::Int:

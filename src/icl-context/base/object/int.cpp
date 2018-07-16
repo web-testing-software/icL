@@ -30,7 +30,7 @@ memory::Type Int::type() const {
 }
 
 
-bool Int::toBoolean() {
+bool Int::toBool() {
 	newValue = getValue().toInt() != 0;
 	return newValue.toBool();
 }

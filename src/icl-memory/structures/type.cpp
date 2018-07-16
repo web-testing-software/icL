@@ -12,8 +12,8 @@ QString typeToString(Type type) {
 		ret = "Void";
 		break;
 
-	case Type::Boolean:
-		ret = "Boolean";
+	case Type::Bool:
+		ret = "Bool";
 		break;
 
 	case Type::Int:
@@ -55,7 +55,7 @@ Type variantTypeToType(const QVariant &var) {
 
 	switch (var.type()) {
 	case QVariant::Bool:
-		ret = Type::Boolean;
+		ret = Type::Bool;
 		break;
 
 	case QVariant::Int:

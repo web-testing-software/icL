@@ -15,7 +15,6 @@ include($$ICL_ROOT/pri_files/lib.pri)
 
 HEADERS += \
     context.h \
-    object/boolean.h \
     object/double.h \
     object/element.h \
     object/int.h \
@@ -24,11 +23,11 @@ HEADERS += \
     object/string.h \
     object/void.h \
     object/set.h \
-    object/setobject.h
+    object/setobject.h \
+    object/bool.h
 
 SOURCES += \
     context.cpp \
-    object/boolean.cpp \
     object/double.cpp \
     object/element.cpp \
     object/int.cpp \
@@ -37,4 +36,5 @@ SOURCES += \
     object/string.cpp \
     object/void.cpp \
     object/set.cpp \
-    object/setobject.cpp
+    object/setobject.cpp \
+    object/bool.cpp
