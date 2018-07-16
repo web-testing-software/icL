@@ -458,7 +458,7 @@ void Set::runClear(memory::ArgList & args) {
 void Set::runAt(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Int) {
 		newValue = QVariant::fromValue(at(args[0].object->getValue().toInt()));
-		newContext = new SetObject{il, newValue, true};
+		newContext = new SetObject{il, newValue};
 	}
 	else {
 		sendWrongArglist(args, "<int>");
