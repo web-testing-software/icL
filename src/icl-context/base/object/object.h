@@ -7,7 +7,8 @@
 
 
 /**
- * The icL.context.object namespace contains cntainers for all data types
+ * \~english The icL.context.object namespace contains cntainers for all data
+ * types
  */
 namespace icL::context::object {
 
@@ -19,6 +20,7 @@ class Object : public Context
 {
 public:
 	/**
+	 * \~english
 	 * @brief Object - construct a L-Value
 	 * @param container - a DataState pointer
 	 * @param varName - the name of var in container
@@ -27,6 +29,7 @@ public:
 	  memory::InterLevel * il, memory::DataState * container,
 	  const QString & varName);
 	/**
+	 * \~english
 	 * @brief Object - constuct a R-Value
 	 * @param rvalue - the value of object
 	 * @param readonly - true restricts assigns
@@ -34,6 +37,7 @@ public:
 	Object(
 	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 	/**
+	 * \~english
 	 * @brief Object - construct a JS-Value
 	 * @param getter - a getter string, eg. window.height
 	 * @param setter - a setter string, eg. window.height = %1 (QString arg)
@@ -41,6 +45,7 @@ public:
 	Object(
 	  memory::InterLevel * il, const QString & getter, const QString & setter);
 	/**
+	 * \~english
 	 * @brief Object - construct a object copy, used for coping values on
 	 * function call
 	 * @param object - pointer to object, which need to be copied
@@ -48,7 +53,7 @@ public:
 	Object(memory::InterLevel * il, const Object * const object);
 
 	/**
-	 * @brief ~Object is a default virtual destructor
+	 * \~english @brief ~Object is a default virtual destructor
 	 */
 	virtual ~Object() = default;
 
@@ -71,24 +76,28 @@ public:
 
 public:
 	/**
+	 * \~english
 	 * @brief type returs the type of contained value
 	 * @return the default value (memory.Type.Void)
 	 */
 	virtual memory::Type type() const;
 
 	/**
+	 * \~english
 	 * @brief getValue return the contained value
 	 * @return the contained value
 	 */
 	virtual QVariant getValue();
 
 	/**
+	 * \~english
 	 * @brief setValue sets the contained value
 	 * @param value is the value o set
 	 */
 	virtual void setValue(const QVariant & value);
 
 	/**
+	 * \~english
 	 * @brief getVarName is used for deugging
 	 * @return the varName private variable value
 	 * @warning use only from context.data.Assign
@@ -97,30 +106,35 @@ public:
 
 public:
 	/**
+	 * \~english
 	 * @brief isRValue defines the value storange type
 	 * @return true if value is stored in object, otherwise false
 	 */
 	virtual bool isRValue() const;
 
 	/**
+	 * \~english
 	 * @brief isReadOnly defined the mutable ability
 	 * @return true if value is imutable, otherwise false
 	 */
 	virtual bool isReadOnly() const;
 
 	/**
+	 * \~english
 	 * @brief isLValue defines the mutable ability
 	 * @return true if value is mutable, otherwise false
 	 */
 	virtual bool isLValue() const;
 
 	/**
+	 * \~english
 	 * @brief isLink defines the value storange type
 	 * @return true if value is not stored in object, otherwise false
 	 */
 	virtual bool isLink() const;
 
 	/**
+	 * \~english
 	 * @brief ensureRValue copies the value to the container
 	 * @return the new created icL object
 	 */
@@ -162,30 +176,35 @@ public:
 	// Cast functions
 
 	/**
+	 * \~english
 	 * @brief toBoolean casts contained value to bool
 	 * @return casted value
 	 */
 	virtual bool toBoolean() = 0;
 
 	/**
+	 * \~english
 	 * @brief toInt casts contained value to int
 	 * @return casted value
 	 */
 	virtual int toInt() = 0;
 
 	/**
+	 * \~english
 	 * @brief toDouble casts contained value to double
 	 * @return casted value
 	 */
 	virtual double toDouble() = 0;
 
 	/**
+	 * \~english
 	 * @brief toString casts contained value to string
 	 * @return casted value
 	 */
 	virtual const QString toString() = 0;
 
 	/**
+	 * \~english
 	 * @brief toList casts contained value to list
 	 * @return casted value
 	 */
@@ -224,12 +243,14 @@ private:
 
 protected:
 	/**
+	 * \~english
 	 * @brief sendWrongCast sends to vm an exception
 	 * @param to is the requested type
 	 */
 	void sendWrongCast(const QString & to);
 
 	/**
+	 * \~english
 	 * @brief sendCastFailed sends to vm an exception
 	 * @param value is the wrong value
 	 * @param type is the requested type
@@ -238,11 +259,13 @@ protected:
 
 
 	/**
+	 * \~english
 	 * \~english @brief cast middle level function
 	 */
 	void runCast(const QString & name, memory::ArgList & args);
 
 	/**
+	 * \~english
 	 * @brief parseToBool parses string to bool
 	 * @param str is the string to parse
 	 * @return (parsed value, success status)
@@ -250,6 +273,7 @@ protected:
 	std::pair<bool, bool> parseToBool(const QString & str);
 
 	/**
+	 * \~english
 	 * @brief parseToInt parses string to int
 	 * @param str is the string to parse
 	 * @return (parsed value, success status)
@@ -257,6 +281,7 @@ protected:
 	std::pair<int, bool> parseToInt(const QString & str);
 
 	/**
+	 * \~english
 	 * @brief parseToDouble parses string to double
 	 * @param str is the string to parse
 	 * @return (parsed value, success status)
