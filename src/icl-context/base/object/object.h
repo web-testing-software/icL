@@ -1,5 +1,5 @@
-#ifndef icl_context_object_Object
-#define icl_context_object_Object
+#ifndef icl_context_object_Base
+#define icl_context_object_Base
 
 #include "../context.h"
 
@@ -264,22 +264,27 @@ protected:
 	std::pair<double, bool> parseToDouble(const QString & str);
 
 protected:
-	// LValue
-	memory::DataState * container = nullptr;  ///< Each l value has a container
-	QString             varName;  ///< Each l value has a variable name
+	// L-Value
+	memory::DataState * container =
+	  nullptr;        ///< \~english Each L-Value has a container
+	QString varName;  ///< \~english Each L-Value has a variable name
 
-	// RValue
-	QVariant rvalue; ///< The value of r value
-	bool     readonly = false; ///< The r/o poperty
+	// R-Value
+	QVariant rvalue;            ///< \~english The value of R-Value
+	bool     readonly = false;  ///< \~english The r/o poperty of R-Value
 
-	// JsValue
-	QString setter; ///< the setter of js value
-	QString getter; ///< the getter of js value
+	// JS-Value
+	QString setter;  ///< \~english the setter of JS-Value
+	QString getter;  ///< \~english the getter of JS-Value
 
 	/**
-	 * @brief The Value enum decribes the value type
+	 * \~english @brief The Value enum decribes the value type
 	 */
-	enum class Value { L, R, Js } value; ///< The type of contained value
+	enum class Value {
+		L,    ///< \~english L-Value
+		R,    ///< \~english R-Value
+		Js    ///< \~english JS-Value
+	} value;  ///< \~english The type of contained value
 
 	// Context interface
 public:
@@ -292,4 +297,4 @@ public:
 
 }  // namespace icL::context::object
 
-#endif  // icl_context_object_Object
+#endif  // icl_context_object_Base
