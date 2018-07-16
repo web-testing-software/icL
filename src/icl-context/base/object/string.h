@@ -21,6 +21,9 @@
  */
 namespace icL::context::object {
 
+/**
+ * @brief The String class contains a string value of reference.
+ */
 class String : public Object
 {
 public:

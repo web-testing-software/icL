@@ -24,6 +24,10 @@
  */
 namespace icL::context::object {
 
+/**
+ * @brief The Object class is the base class for all classes in context.object
+ * namespace
+ */
 class Object : public Context
 {
 public:

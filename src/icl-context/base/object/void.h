@@ -22,6 +22,9 @@
  */
 namespace icL::context::object {
 
+/**
+ * @brief The Void class is an empty container or a new variable.
+ */
 class Void : public Object
 {
 public:

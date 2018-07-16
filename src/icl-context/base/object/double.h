@@ -6,6 +6,9 @@
 
 namespace icL::context::object {
 
+/**
+ * @brief The Double class contains a double value or reference.
+ */
 class Double : public Object
 {
 public:

@@ -4,24 +4,11 @@
 #include "object.h"
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '-> object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::context::object {
 
+/**
+ * @brief The List class contains a list value or reference.
+ */
 class List : public Object
 {
 public:
