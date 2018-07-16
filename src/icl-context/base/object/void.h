@@ -4,34 +4,39 @@
 #include "object.h"
 
 
-/**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '-> object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
- */
 namespace icL::context::object {
 
 /**
- * @brief The Void class is an empty container or a new variable.
+ * \~english @brief The Void class is an empty container or a new variable.
  */
 class Void : public Object
 {
 public:
+	/**
+	 * \~english
+	 * @brief Void calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 */
 	Void(memory::InterLevel * il);
+
+	/**
+	 * \~english
+	 * @brief Void calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param container is a base contructor argument
+	 * @param varName is a base contructor argument
+	 */
 	Void(
 	  memory::InterLevel * il, memory::DataState * container,
 	  const QString & varName);
+
+	/**
+	 * \~english
+	 * @brief Void calls the contructor of class Object
+	 * @param il is a base contructor argument
+	 * @param getter is a base contructor argument
+	 * @param setter is a base contructor argument
+	 */
 	Void(
 	  memory::InterLevel * il, const QString & getter, const QString & setter);
 

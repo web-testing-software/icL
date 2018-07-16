@@ -22,31 +22,37 @@ class Object;
  * \~english @brief The Role enum defines the role of context
  */
 enum class Role {
-	NoRole,
-	Object,
-	If,
-	Else,
-	Exists,
-	Slot,
-	Code,
-	ForAny,
-	DOM,
-	Tab,
-	Property,
-	Method,
-	Alternative,
-	Assign,
-	Function,
-	Argument,
-	JsValue,
-	JsFile
+	NoRole,       ///< \~english Default role
+	Object,       ///< \~english Variable or constant
+	If,           ///< \~english `if` token
+	Else,         ///< \~english `else` token
+	Exists,       ///< \~english `exists` and `if exists` tokens
+	Slot,         ///< \~english `slot` token
+	Code,         ///< \~english `{}` token
+	ForAny,       ///< \~english `()` and `for any()` tokens
+	DOM,          ///< \~english `_dom` system variable
+	Tab,          ///< \~english `_tab` system variable
+	Property,     ///< \~english property token
+	Method,       ///< \~english method token
+	Alternative,  ///< \~english ~deprecated~ will be removed later
+	Assign,       ///< \~english `=` token
+	Function,     ///< \~english function token
+	Argument,     ///< \~english ~deprecated~ the right name is Parameter
+	JsValue,      ///< \~english `$value` token
+	JsFile        ///< \~english `$file` token
 };
 
 /**
  * \~english @brief The Prefix enum defines the prefixes of web element
  * properties
  */
-enum class Prefix { None, Attr, Data, Css };
+enum class Prefix {
+	None,  ///< \~english no prefix
+	Attr,  ///< \~english attr- prefix
+	Data,  ///< \~english data- prefix
+	Css,   ///< \~english css- prefix
+	Js     ///< \~english js- prefix
+};
 
 /**
  * \~english @brief The Context class represents a semantic token in icL

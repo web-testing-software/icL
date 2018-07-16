@@ -8,7 +8,7 @@
 namespace icL::context::object {
 
 /**
- * @brief The Int class contains a int value or reference.
+ * \~english @brief The Int class contains a int value or reference.
  */
 class Int : public Object
 {

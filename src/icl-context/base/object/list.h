@@ -54,12 +54,12 @@ public:
 	// static data
 private:
 	/**
-	 * \~english @brief properties list of <list>
+	 * \~english @brief properties list of &lt;list&gt;
 	 */
 	static const QHash<QString, void (List::*)()> properties;
 
 	/**
-	 * \~english @brief methods list of <list>
+	 * \~english @brief methods list of &lt;list&gt;
 	 */
 	static const QHash<QString, void (List::*)(memory::ArgList &)> methods;
 

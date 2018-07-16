@@ -13,7 +13,7 @@ class String;
 class Int;
 
 /**
- * @brief The Element class contains a web element reference.
+ * \~english @brief The Element class contains a web element reference.
  */
 class Element : public Object
 {
