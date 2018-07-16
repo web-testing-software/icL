@@ -25,33 +25,22 @@
 
 namespace icL::memory {
 
-class DataStateInterface
-{
-	virtual void setValue(const QString & name, const QVariant & value) = 0;
-
-	virtual bool     contains(const QString & name)               = 0;
-	virtual Type     getType(const QString & name)                = 0;
-	virtual bool     checkType(const QString & name, Type & type) = 0;
-	virtual QVariant getValue(const QString & name)               = 0;
-};
-
 /**
- * @brief The DataState class - interface for stack state and memory state,
- * contains common functions
+ * @brief The DataState class - interface for stack state and memory state
  */
-class DataState : public DataStateInterface
+class DataState
 {
 public:
 	DataState();
 
 	// Functions to add data to containers
-	void setValue(const QString & name, const QVariant & value) override;
+	void setValue(const QString & name, const QVariant & value);
 
 	// Functions to access data and metadata from containers
-	bool     contains(const QString & name) override;
-	Type     getType(const QString & name) override;
-	bool     checkType(const QString & name, Type & type) override;
-	QVariant getValue(const QString & name) override;
+	bool     contains(const QString & name);
+	Type     getType(const QString & name);
+	bool     checkType(const QString & name, Type & type);
+	QVariant getValue(const QString & name);
 
 private:
 	// Data container

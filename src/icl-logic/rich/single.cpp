@@ -14,8 +14,8 @@ Single::Single(memory::InterLevel * il, OperationType otype)
 bool Single::calcResult() {
 	bool value, ret = false;
 
-	if (value1.canConvert<memory::Element>()) {
-		value = value1.value<memory::Element>().count > 0;
+	if (value1.canConvert<memory::WebElement>()) {
+		value = value1.value<memory::WebElement>().count > 0;
 	}
 	else {
 		value = value1.toBool();

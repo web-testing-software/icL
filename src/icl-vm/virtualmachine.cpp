@@ -48,7 +48,7 @@ memory::StepType::Value VirtualMachine::step() {
 	if (commandParsing) {
 		context::Context * next = interpreter.parseNext();
 
-		value =  prepareNext(next);
+		value = prepareNext(next);
 	}
 	else {
 		context::Context * executable = findExecutable();
@@ -56,11 +56,19 @@ memory::StepType::Value VirtualMachine::step() {
 		value = prepareExecutable(executable);
 	}
 
-	auto it = last_context;
+	auto        it = last_context;
 	QStringList l;
 
 	while (it != nullptr) {
-		l.prepend(context::roleToString(it->role()));
+		if (it->role() == context::Role::Object) {
+			l.prepend(
+			  "Object:" +
+			  memory::typeToString(
+				dynamic_cast<context::object::Object *>(it)->type()));
+		}
+		else {
+			l.prepend(context::roleToString(it->role()));
+		}
 		it = it->prev();
 	}
 

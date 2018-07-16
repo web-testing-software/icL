@@ -93,11 +93,11 @@ context::Context * Interpreter::parseNext() {
 			break;
 
 		case '.':
-			ret = parseProperty();
+			ret = parseMethod();
 			break;
 
-		case ':':
-			ret = parseMethod();
+		case '\'':
+			ret = parseProperty();
 			break;
 
 		case '<':
@@ -127,10 +127,6 @@ context::Context * Interpreter::parseNext() {
 		case '|':
 			ret = parseAlternative();
 			break;
-
-			//		case 'L':
-			//			ret = parseLogic();
-			//			break;
 
 		default:
 			il->vm->exception(

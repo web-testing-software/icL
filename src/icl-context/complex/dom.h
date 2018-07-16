@@ -3,7 +3,7 @@
 
 #include "complex.h"
 
-#include <icl-memory/structures/element.h>
+#include <icl-memory/structures/webelement.h>
 
 
 /**
@@ -29,8 +29,8 @@ class Dom : public Complex
 public:
 	Dom(memory::InterLevel * il);
 
-	memory::Element query(const QString & selector);
-	memory::Element queryAll(const QStringList & selectors);
+	memory::WebElement query(const QString & selector);
+	memory::WebElement queryAll(const QStringList & selectors);
 
 private:
 	void runQuery(memory::ArgList & args);

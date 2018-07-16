@@ -65,6 +65,14 @@ protected:
 	void processEquals(Operator & op, const QChar & next, int &i);
 	void processContains(Operator & op, const QChar & next, int &i);
 
+
+	/**
+	 * \~english
+	 * @brief If::filter - remove useless symbils at end and begin of source
+	 * @param fn - function, it source will be filter
+	 * @example " #a == #b \t " -> "#a == #b"
+	 * @example " ((( ( ((  ( #a == #b ) )) )  )))" -> "#a == #b"
+	 */
 	void filter(memory::CodeFragment fn);
 
 	logic::Logic * returnRank1(Operator & op, memory::CodeFragment & fn);

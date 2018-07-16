@@ -1,6 +1,6 @@
 #include "datastate.h"
 
-#include "../structures/element.h"
+#include "../structures/webelement.h"
 
 namespace icL::memory {
 
@@ -64,7 +64,7 @@ bool DataState::checkType(const QString & name, Type & type) {
 		break;
 
 	case Type::Element:
-		ret = dataMap[name].canConvert<Element>();
+		ret = dataMap[name].canConvert<WebElement>();
 		break;
 
 	default:

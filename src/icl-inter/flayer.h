@@ -73,9 +73,9 @@ protected:
 	void sendWrongBrackerPair(QString & brackets, const QChar & ch);
 
 private:
-	int start;
-	int position;
-	int end;
+	int start    = 0;
+	int position = 0;
+	int end      = 0;
 
 	const QString * source;
 };

@@ -80,41 +80,41 @@ QString Element::getNewId() {
 
 
 int Element::length() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return web.count;
 }
 
 String * Element::html() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".html()",
 					  web.variable % ".html(%1, true)"};
 }
 
 String * Element::text() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".text()",
 					  web.variable % ".text(%1, true)"};
 }
 
 Int * Element::width() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new Int{il, web.variable % ".width()",
 				   web.variable % ".width(%1, true)"};
 }
 
 Int * Element::height() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new Int{il, web.variable % ".height()",
 				   web.variable % ".height(%1, true)"};
 }
 
 bool Element::visible() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	if (!isSingle(web)) {
 		return false;
@@ -126,7 +126,7 @@ bool Element::visible() {
 }
 
 bool Element::clickable() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	if (!isSingle(web)) {
 		return false;
@@ -138,7 +138,7 @@ bool Element::clickable() {
 }
 
 Object * Element::prop(const QString & name) {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	QString getter = web.variable % ".prop('" % name % "')";
 	QString ser    = web.variable % ".prop('" % name % "', %1, true)";
@@ -175,21 +175,21 @@ Object * Element::prop(const QString & name) {
 }
 
 String * Element::attr(const QString & name) {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".attr('" % name % "')",
 					  web.variable % ".attr('" % name % "', %1, true)"};
 }
 
 String * Element::data(const QString & name) {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".data('" % name % "')",
 					  web.variable % ".data('" % name % "', %1, true)"};
 }
 
 String * Element::css(const QString & name) {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".css('" % name % "')",
 					  web.variable % ".css('" % name % "', %1, true)"};
@@ -245,7 +245,7 @@ void Element::runCSS(const QString & name) {
 
 
 void Element::scrollTo() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	if (!isSingle(web)) {
 		return;
@@ -255,7 +255,7 @@ void Element::scrollTo() {
 }
 
 void Element::click() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	if (!isSingle(web)) {
 		return;
@@ -264,7 +264,7 @@ void Element::click() {
 	QVariant result;
 	QPoint   point;
 
-	result = il->server->runJS(web.variable % ".clickNow()");
+	result       = il->server->runJS(web.variable % ".clickNow()");
 
 	if (result.isValid()) {
 		point = result.toPoint();
@@ -281,7 +281,7 @@ void Element::click() {
 }
 
 void Element::sendKeys(const QString & keys) {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	if (!isSingle(web)) {
 		return;
@@ -294,7 +294,7 @@ void Element::sendKeys(const QString & keys) {
 }
 
 void Element::ctrlV(const QString & text) {
-	memory::Element web     = getValue().value<memory::Element>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = text;
 
 	if (!isSingle(web)) {
@@ -307,13 +307,13 @@ void Element::ctrlV(const QString & text) {
 }
 
 bool Element::isValid() {
-	memory::Element web = getValue().value<memory::Element>();
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return web.count > 0;
 }
 
-void Element::add(memory::Element element) {
-	memory::Element web = getValue().value<memory::Element>();
+void Element::add(memory::WebElement element) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	web.count = il->server
 				  ->runJS(
@@ -326,9 +326,9 @@ void Element::add(memory::Element element) {
 	setValue(QVariant::fromValue(web));
 }
 
-memory::Element Element::copy() {
-	memory::Element web = getValue().value<memory::Element>();
-	memory::Element ret;
+memory::WebElement Element::copy() {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
 
 	ret.variable = getNewId();
 	ret.selector = web.selector;
@@ -339,9 +339,9 @@ memory::Element Element::copy() {
 	return ret;
 }
 
-memory::Element Element::filter(const QString & selector) {
-	memory::Element web = getValue().value<memory::Element>();
-	memory::Element ret;
+memory::WebElement Element::filter(const QString & selector) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
 	QString            escaped = selector;
 
 	escaped.replace("'", "\\'");
@@ -357,9 +357,9 @@ memory::Element Element::filter(const QString & selector) {
 	return ret;
 }
 
-memory::Element Element::filter(const QString & context, bool asfragment) {
-	memory::Element web = getValue().value<memory::Element>();
-	memory::Element ret;
+memory::WebElement Element::filter(const QString & context, bool asfragment) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
 	QString            escaped = context;
 
 	escaped.replace("'", "\\'");
@@ -376,9 +376,9 @@ memory::Element Element::filter(const QString & context, bool asfragment) {
 	return ret;
 }
 
-memory::Element Element::get(int index) {
-	memory::Element web = getValue().value<memory::Element>();
-	memory::Element ret;
+memory::WebElement Element::get(int index) {
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
 	QString            indexStr = QString::number(index);
 
 	if (index < 0 || index >= web.count) {
@@ -397,36 +397,36 @@ memory::Element Element::get(int index) {
 	return ret;
 }
 
-memory::Element Element::query(const QString & selector) {
+memory::WebElement Element::query(const QString & selector) {
 	return queryBackEnd("qs", selector);
 }
 
-memory::Element Element::queryAll(const QString & selector) {
+memory::WebElement Element::queryAll(const QString & selector) {
 	return queryBackEnd("qsAll", selector);
 }
 
-memory::Element Element::next() {
+memory::WebElement Element::next() {
 	return domTrans(QStringLiteral("next"), QString());
 }
 
-memory::Element Element::prev() {
+memory::WebElement Element::prev() {
 	return domTrans(QStringLiteral("prev"), QString());
 }
 
-memory::Element Element::parent() {
+memory::WebElement Element::parent() {
 	return domTrans(QStringLiteral("parent"), QString());
 }
 
-memory::Element Element::child(int index) {
+memory::WebElement Element::child(int index) {
 	return domTrans(QStringLiteral("child"), QString::number(index));
 }
 
-memory::Element Element::closest(const QString & selector) {
+memory::WebElement Element::closest(const QString & selector) {
 	return domTrans(QStringLiteral("closest"), '"' % selector % '"');
 }
 
 void Element::addClass(const QString & className) {
-	memory::Element web     = getValue().value<memory::Element>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
@@ -434,7 +434,7 @@ void Element::addClass(const QString & className) {
 }
 
 void Element::removeClass(const QString & className) {
-	memory::Element web     = getValue().value<memory::Element>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = className;
 
 	escaped.replace("'", "\\'");
@@ -442,7 +442,7 @@ void Element::removeClass(const QString & className) {
 }
 
 bool Element::hasClass(const QString & className) {
-	memory::Element web     = getValue().value<memory::Element>();
+	memory::WebElement web     = getValue().value<memory::WebElement>();
 	QString            escaped = className;
 
 	if (!isSingle(web)) {
@@ -504,7 +504,7 @@ void Element::runIsValid(memory::ArgList & args) {
 
 void Element::runAdd(memory::ArgList & args) {
 	if (args.length() == 1 && args[0].object->type() == memory::Type::Element) {
-		add(args[0].object->getValue().value<memory::Element>());
+		add(args[0].object->getValue().value<memory::WebElement>());
 	}
 	else {
 		sendWrongArglist(args, QStringLiteral("<Element>"));
@@ -654,7 +654,7 @@ void Element::runHasClass(memory::ArgList & args) {
 
 
 
-bool Element::isSingle(memory::Element & web) {
+bool Element::isSingle(memory::WebElement & web) {
 	if (web.count != 1) {
 		if (web.count == 0) {
 			il->vm->exception(
@@ -673,11 +673,11 @@ bool Element::isSingle(memory::Element & web) {
 	return true;
 }
 
-memory::Element Element::queryBackEnd(
+memory::WebElement Element::queryBackEnd(
   const QString & qsFunc, const QString & selector) {
 
-	memory::Element web = getValue().value<memory::Element>();
-	memory::Element ret;
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
 
 	ret.variable = getNewId();
 	ret.selector = web.selector % " " % selector;
@@ -691,11 +691,11 @@ memory::Element Element::queryBackEnd(
 	return ret;
 }
 
-memory::Element Element::domTrans(
+memory::WebElement Element::domTrans(
   const QString & method, const QString & arg) {
 
-	memory::Element web = getValue().value<memory::Element>();
-	memory::Element ret;
+	memory::WebElement web = getValue().value<memory::WebElement>();
+	memory::WebElement ret;
 
 	ret.variable = getNewId();
 	ret.selector = web.selector % " -> " % method % "(" % arg % ")";
@@ -757,32 +757,23 @@ memory::Type Element::type() const {
 
 
 bool Element::toBoolean() {
-	sendException();
 	return false;
 }
 
 int Element::toInt() {
-	sendException();
 	return 0;
 }
 
 double Element::toDouble() {
-	sendException();
 	return 0.0;
 }
 
 const QString Element::toString() {
-	sendException();
 	return QString{};
 }
 
 const QStringList Element::toList() {
-	sendException();
 	return QStringList{};
-}
-
-void Element::sendException() {
-	il->vm->exception({-1, "Element object can not be casted to any type"});
 }
 
 }  // namespace icL::context::object

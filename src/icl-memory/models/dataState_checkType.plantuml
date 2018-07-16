@@ -33,7 +33,7 @@ else if (type = LIST?) then (Да)
 	StringList;
 else if (type = ELEMENT?) then (Да)
 	-[#blue]->
-	:ret =\ndataMap [name]\n.canConvert\n<Element> ()|
+	:ret =\ndataMap [name]\n.canConvert\n<WebElement> ()|
 else (Нет)
 	-[#red]->
 endif
