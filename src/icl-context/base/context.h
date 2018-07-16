@@ -10,7 +10,7 @@
 #include <functional>
 
 /**
- * The @namespace context is dedicated for all semantic tokens
+ * The icL.context namespace is dedicated for all semantic tokens
  */
 namespace icL::context {
 

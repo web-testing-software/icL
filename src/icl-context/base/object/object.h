@@ -7,20 +7,7 @@
 
 
 /**
- *  icL
- *  |- app
- *  |- context
- *  |  |- complex
- *  |  |- code
- *  |  |  '- control
- *  |  |     '- catch0
- *  |  |- data
- *  |  '-> object
- *  |- inter
- *  |- logic
- *  |  |- cross
- *  |  '- rich
- *  '- memory
+ * The icL.context.object namespace contains cntainers for all data types
  */
 namespace icL::context::object {
 
