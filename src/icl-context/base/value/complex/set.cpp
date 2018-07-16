@@ -1,9 +1,9 @@
 #include "set.h"
 
-#include "bool.h"
-#include "int.h"
+#include "../base/bool.h"
+#include "../base/int.h"
+#include "../base/void.h"
 #include "setobject.h"
-#include "void.h"
 
 #include <icl-vm/errors.h>
 

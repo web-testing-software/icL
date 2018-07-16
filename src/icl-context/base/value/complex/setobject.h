@@ -2,7 +2,7 @@
 #define icL_context_value_SetObject
 
 
-#include "value.h"
+#include "../base/value.h"
 
 #include <icl-memory/state/datastate.h>
 #include <icl-memory/structures/set.h>
@@ -10,7 +10,7 @@
 namespace icL::context::value {
 
 class SetObject
-	: public object::Value
+	: public Value
 {
 public:
 	SetObject(memory::InterLevel * il, memory::SetObjPtr data);

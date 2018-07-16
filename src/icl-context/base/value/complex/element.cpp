@@ -1,11 +1,11 @@
 #include "element.h"
 
-#include "bool.h"
-#include "double.h"
-#include "int.h"
-#include "list.h"
-#include "string.h"
-#include "void.h"
+#include "../base/bool.h"
+#include "../base/double.h"
+#include "../base/int.h"
+#include "../base/list.h"
+#include "../base/string.h"
+#include "../base/void.h"
 
 #include <QDebug>
 #include <QPoint>
