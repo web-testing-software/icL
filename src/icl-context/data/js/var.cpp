@@ -19,20 +19,20 @@ std::pair<QString, QString> Var::getArguments() {
 
 	if (
 	  m_next->role() == Role::Object &&
-	  dynamic_cast<object::Value *>(m_next)->type() == memory::Type::String) {
+	  dynamic_cast<value::Value *>(m_next)->type() == memory::Type::String) {
 		Context * next2 = m_next->next();
 
-		a1 = dynamic_cast<object::Value *>(m_next)->getValue().toString();
+		a1 = dynamic_cast<value::Value *>(m_next)->getValue().toString();
 
 		if (next2 != nullptr && next2->role() == Role::Object) {
 			Context * next3 = next2->next();
 
 			if (
-			  dynamic_cast<object::Value *>(next2)->type() ==
+			  dynamic_cast<value::Value *>(next2)->type() ==
 				memory::Type::String &&
 			  (next3 == nullptr || next3->role() != Role::Object)) {
 				a2 =
-				  dynamic_cast<object::Value *>(next2)->getValue().toString();
+				  dynamic_cast<value::Value *>(next2)->getValue().toString();
 			}
 			else {
 				a1.clear();

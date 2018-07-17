@@ -15,6 +15,9 @@ class SetObject
 public:
 	SetObject(memory::InterLevel * il, memory::SetObjPtr data);
 
+	QVariant getField(const QString & name);
+	//
+
 private:
 	memory::SetObjPtr data;
 };

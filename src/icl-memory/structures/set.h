@@ -1,6 +1,7 @@
 #ifndef icL_memory_Set
 #define icL_memory_Set
 
+#include "../state/datastate.h"
 #include "functioncontainer.h"
 
 #include <memory>
@@ -26,15 +27,15 @@ struct SetObjPtr
 	int    id = -1;
 };
 
-struct MetaObjectPtr
+struct ObjectPtr
 {
-	std::shared_ptr<ArgList> data;
+	std::shared_ptr<DataState> data;
 };
 
 }  // namespace icL::memory
 
 Q_DECLARE_METATYPE(icL::memory::SetPtr);
 Q_DECLARE_METATYPE(icL::memory::SetObjPtr);
-Q_DECLARE_METATYPE(icL::memory::MetaObjectPtr);
+Q_DECLARE_METATYPE(icL::memory::ObjectPtr);
 
 #endif  // icL_memory_Set

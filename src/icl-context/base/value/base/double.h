@@ -14,7 +14,7 @@ class Double : public Value
 public:
 	/**
 	 * \~english
-	 * @brief Double calls the contructor of class Object
+	 * @brief Double calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param container is a base contructor argument
 	 * @param varName is a base contructor argument
@@ -25,7 +25,7 @@ public:
 
 	/**
 	 * \~english
-	 * @brief Double calls the contructor of class Object
+	 * @brief Double calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param rvalue is a base contructor argument
 	 * @param readonly is a base contructor argument
@@ -35,7 +35,7 @@ public:
 
 	/**
 	 * \~english
-	 * @brief Double calls the contructor of class Object
+	 * @brief Double calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param getter is a base contructor argument
 	 * @param setter is a base contructor argument
@@ -45,7 +45,7 @@ public:
 
 	/**
 	 * \~english
-	 * @brief Double calls the contructor of class Object
+	 * @brief Double calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */

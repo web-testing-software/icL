@@ -67,7 +67,7 @@ struct Argument
 	context::value::Value * object;
 };
 
-using ArgList = QVector<Argument>;
+using ArgList = QList<Argument>;
 
 struct FunctionCall
 {

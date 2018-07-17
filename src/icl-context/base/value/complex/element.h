@@ -19,7 +19,7 @@ class Element : public Value
 {
 public:
 	/**
-	 * @brief Element calls the contructor of class Object
+	 * @brief Element calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param container is a base contructor argument
 	 * @param varName is a base contructor argument
@@ -29,7 +29,7 @@ public:
 	  const QString & varName);
 
 	/**
-	 * @brief Element calls the contructor of class Object
+	 * @brief Element calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param rvalue is a base contructor argument
 	 * @param readonly is a base contructor argument
@@ -38,7 +38,7 @@ public:
 	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 
 	/**
-	 * @brief Element calls the contructor of class Object
+	 * @brief Element calls the contructor of class Value
 	 * @param il is a base contructor argument
 	 * @param object is a base contructor argument
 	 */

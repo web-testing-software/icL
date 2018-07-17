@@ -78,13 +78,13 @@ bool Context::isComplex() const {
 	return false;
 }
 
-object::Value * Context::fromValue(const QVariant & value) {
+value::Value * Context::fromValue(const QVariant & value) {
 	return fromValue(il, value);
 }
 
-object::Value * Context::fromValue(
+value::Value * Context::fromValue(
   memory::InterLevel * il, const QVariant & value) {
-	object::Value * ret;
+	value::Value * ret;
 	memory::Type     type = memory::variantTypeToType(value.type());
 
 	switch (type) {
@@ -120,9 +120,9 @@ object::Value * Context::fromValue(
 	return ret;
 }
 
-object::Value * Context::fromValue(
+value::Value * Context::fromValue(
   memory::InterLevel * il, memory::DataState * ds, const QString & name) {
-	object::Value * ret;
+	value::Value * ret;
 	memory::Type     type = ds->getType(name);
 
 	switch (type) {

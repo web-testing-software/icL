@@ -16,7 +16,7 @@ QString File::getFileContent() {
 	QFile file;
 	bool  absolutePath;
 
-	fileName = dynamic_cast<object::Value *>(m_next)->getValue().toString();
+	fileName = dynamic_cast<value::Value *>(m_next)->getValue().toString();
 
 #ifdef Q_OS_WIN
 	absolutePath = fileName.length() > 1 && fileName[1] == ":";
@@ -41,7 +41,7 @@ QString File::getFileContent() {
 
 bool File::checkArgs() {
 	return m_next->role() == Role::Object &&
-		   dynamic_cast<object::Value *>(m_next)->type() ==
+		   dynamic_cast<value::Value *>(m_next)->type() ==
 			 memory::Type::String &&
 		   m_next->next() == nullptr;
 }
