@@ -1,4 +1,4 @@
-\documentclass[a4paper, 14pt]{extarticle}
+ \documentclass[a4paper, 14pt]{extarticle}
 
 \usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
 \usepackage{fancyvrb}
@@ -65,13 +65,13 @@
 \lstdefinelanguage{icL}{
 	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
-	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void},
+	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request},
 	keywordstyle=[2]\color{bluemarin},
 	classoffset=3,
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, get, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max},
+	morekeywords={info, warm, error, signal, get, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound},
@@ -810,16 +810,16 @@ if (@) {
 	Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{boolopex}.
 	
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа bool, label=boolopex]
-_log:out "true & false = " (true & false);     `` true \& false = false
-_log:out "false | true =  " (false | true);     `` false | true = true
-_log:out "true ~ false = " (true ~ false);     `` true \textasciitilde\ false = false
-_log:out "false ^ true = " (false ^ true);     `` false \textasciicircum\ true = true`
+_log.out "true & false = " (true & false);     `` true \& false = false
+_log.out "false | true =  " (false | true);     `` false | true = true
+_log.out "true ~ false = " (true ~ false);     `` true \textasciitilde\ false = false
+_log.out "false ^ true = " (false ^ true);     `` false \textasciicircum\ true = true`
 
-_log:out "!true = " !true;                     `` !true = false
-_log:out "!false = " !false;                   `` !false = true
+_log.out "!true = " !true;                     `` !true = false
+_log.out "!false = " !false;                   `` !false = true
 
-_log:out "true == false = " (true == false);   `` true == false = false
-_log:out "false != true = " (false != true);   `` false != true = true
+_log.out "true == false = " (true == false);   `` true == false = false
+_log.out "false != true = " (false != true);   `` false != true = true
 \end{lstlisting}
 
 \subsubsection{\lstinline`<bool>a & <bool>b : bool`}
@@ -947,43 +947,43 @@ _log:out "false != true = " (false != true);   `` false != true = true
 	
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа int и double, label=numberopex]
 `` 3rd rank
-_log:out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
-_log:out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
-_log:out "1 != 2 = "		1 != 2;		`` 1 $\neq$ 2 = true
-_log:out "2.1 != 2.1 = "	2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
-_log:out "3 >> 2 = "		3 >> 2;		`` 3 > 2 = true
-_log:out "1.1 >> 2.1 = "	1.1 >> 2.1;	`` 1.1 > 2.1 = false
-_log:out "5 >= 2 = "		5 >= 2;		`` 5 $\geq$ 2 = true
-_log:out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
-_log:out "3 << 9 = "		3 << 9;		`` 3 < 9 = true
-_log:out "6.1 << 6.2 = "	6.1 << 6.2;	`` 6.1 < 6.2 = true
-_log:out "4 <= 5 = "		4 <= 5;		`` 4 $\leq$ 5 = true
-_log:out "5.6 <= 6.5 = "	5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
+_log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
+_log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
+_log.out "1 != 2 = "		1 != 2;		`` 1 $\neq$ 2 = true
+_log.out "2.1 != 2.1 = "	2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
+_log.out "3 >> 2 = "		3 >> 2;		`` 3 > 2 = true
+_log.out "1.1 >> 2.1 = "	1.1 >> 2.1;	`` 1.1 > 2.1 = false
+_log.out "5 >= 2 = "		5 >= 2;		`` 5 $\geq$ 2 = true
+_log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
+_log.out "3 << 9 = "		3 << 9;		`` 3 < 9 = true
+_log.out "6.1 << 6.2 = "	6.1 << 6.2;	`` 6.1 < 6.2 = true
+_log.out "4 <= 5 = "		4 <= 5;		`` 4 $\leq$ 5 = true
+_log.out "5.6 <= 6.5 = "	5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
 `` 4th rank
-_log:out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
-_log:out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
-_log:out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
-_log:out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
+_log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
+_log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
+_log.out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
+_log.out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
 `` 5th rank
-_log:out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
-_log:out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
-_log:out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
-_log:out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
-_log:out "45 \ 8 = "		45 \ 8;		`` 45 \textbackslash 8 = 5
+_log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
+_log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
+_log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
+_log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
+_log.out "45 \ 8 = "		45 \ 8;		`` 45 \textbackslash 8 = 5
 `` 6+th rank
-_log:out "25** = "			25**;		`` $25^2$ = 625
-_log:out "25.1** = "		25.1**;		`` $25.1^2$ = 630,01
-_log:out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
-_log:out "2.0 ** 1.5 = "	2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
-_log:out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
-_log:out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
-_log:out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
-_log:out "5.0/'125.5 = "	5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
+_log.out "25** = "			25**;		`` $25^2$ = 625
+_log.out "25.1** = "		25.1**;		`` $25.1^2$ = 630,01
+_log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
+_log.out "2.0 ** 1.5 = "	2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
+_log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
+_log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
+_log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
+_log.out "5.0/'125.5 = "	5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
 `` 7+th rank
-_log:out "- 35 = "			- 35;		`` - 35 = -35
-_log:out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
-_log:out "+ -100 = "		+ -100;		`` + -100 = 100
-_log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
+_log.out "- 35 = "			- 35;		`` - 35 = -35
+_log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
+_log.out "+ -100 = "		+ -100;		`` + -100 = 100
+_log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 	{\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
@@ -1377,9 +1377,9 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \code{int}    & \code{int}    & \code{int}                 \\ \hline
 \code{double} & \code{double} & \code{double}              \\ \hline
 \code{string} & \code{string} & \code{list - [arg1 arg2]}  \\ \hline
-\code{list}   & \code{string} & \code{list - arg1 + arg2}  \\ \hline
+\code{list}   & \code{string} & \code{list - [arg1 arg2]}  \\ \hline
 \code{object} & \code{object} & \code{set - [arg1 arg2]}   \\ \hline
-\code{set}    & \code{object} & \code{set - arg1.add arg2} \\ \hline
+\code{set}    & \code{object} & \code{set - [arg1 arg2]} \\ \hline
 \end{tabular}
 \vspace{0em}
 \end{table}
@@ -1411,6 +1411,118 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\code{[set ...]} объединяет несколько множеств в одной.
 	
 	\code{[object or set ...]} объекты и множества также можно смешать.
+
+\newpage
+\section{Условные операторы}
+
+	Условные структуры имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значении условии.
+	
+В icL приличествуют следующее условные операторы:
+\begin{icItems}
+	\item \code{if};
+	\item \code{if else};
+	\item каскадное \code{if else};
+	\item \code{exists};
+	\item \code{if exists};
+	\item \code{for any}.
+\end{icItems}
+	
+\subsubsection{\lstinline`if`}
+
+	\code{if} позволяет ставить условия выполнения блока команд. Он имеет следующую форму:
+\begin{lstlisting}[numbers=none]
+if (condition) {
+	commands
+};
+\end{lstlisting}
+где \code{condition} любое выражение возвращающее значение типа \code{bool} и \code{commands} любой набор команд.
+
+Также допускаются и следующее упрощённые формы:
+\begin{lstlisting}[numbers=none]
+if true  { commands };
+if !true { commands };
+if @var  { commands };
+if !@var { commands };
+\end{lstlisting}
+
+\subsubsection{\lstinline`if else`}
+
+	\code{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно - выполняется первый блок, иначе второй блок.
+	
+	Конструкция \code{if else} выглядит следующим образом:
+\begin{lstlisting}[numbers=none]
+if (condition) {
+	commands1
+}
+else {
+	commands2
+};
+\end{lstlisting}
+
+\subsubsection{Каскадное \lstinline`if else`}
+
+	Каскадное \code{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
+	
+	Простой и наглядный пример -
+\begin{lstlisting}[numbers=none]
+if (condition1) {
+	commands1
+} else if (condition2) {
+	commands2
+} else {
+	commands3
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline`exists`}
+
+	\code{exists} позволяет условно возвращать данные, если они подходят под определённому критерия.
+	
+	Условия по умолчанию:
+\begin{icItems}
+	\item для \code{bool} - \code{# == true};
+	\item для \code{int} - \code{# != 0};
+	\item для \code{double} - \code{# != 0.0};
+	\item для \code{string} - \code{!#'empty};
+	\item для \code{list} - \code{!#'empty};
+	\item для \code{object} - \code{!#'empty};
+	\item для \code{set} - \code{!#'empty};
+	\item для \code{request} - \code{!#'empty};
+	\item для \code{element} - \code{#.isValid};
+\end{icItems}
+	
+	Если использовать условию по умолчанию, то конструкция будет выглядеть следующим образом -
+\begin{lstlisting}[numbers=none]
+exists(expression);
+\end{lstlisting}
+а если добавить пользовательское условие -
+\begin{lstlisting}[numbers=none]
+exists(expression, condition);
+\end{lstlisting}
+
+\subsubsection{\lstinline`if exists`}
+
+	Конструкция \code{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \code{exists}. Также повторно использовать значения выражении. В случае когда условие конструкции \code{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \code{exists} под именем \code{@}.
+	
+	Простой и элементарный пример -
+\begin{lstlisting}[numbers=none]
+if exists(23 + 3, # > 20) {
+	_log.out "@ = " @; `` @ = 26 
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline`for any`}
+
+	\code{for any} позволяет повторно использовать любое значение.
+	
+	Пример -
+\begin{lstlisting}[numbers=none]
+for any(23 + 3) {
+	_log.out "@ = " @; `` @ = 26 
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline``}
 	
 \newpage
 \section{Прогресс}
@@ -1424,8 +1536,8 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\item + Типы данных
 	\item + Литералы
 	\item + Операторы
-	\item - Циклы
-	\item - Условные операторы
+	\item + Условные операторы
+	\item - Циклы for, while, do while, filter, range
 	\item - Интеграция с Javascript
 	\item - Функции
 	\item - Строки
@@ -1443,7 +1555,7 @@ _log:out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\item - Регулярные выражения
 	\item - Механизм состояний
 	\item - Базы данных (только SQLite в первой версии)
-	\item - Обработка ошибок
+	\item - Обработка ошибок emiter, emit, slot
 	\item - Программирование errorless
 	\item - Программирование на лету
 \end{icEnumResume}
