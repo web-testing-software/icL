@@ -71,7 +71,7 @@
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, get, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound},
@@ -1560,7 +1560,7 @@ for any(23 + 3) {
 Может возникнуть нужность в том, чтобы выполнить блок кода несколько раз. Для этого совсем не обязательно писать один то тоже код несколько раз, достаточно использовать цикл.
 	
 Язык icL предоставляет следующие типы циклов:
-	
+
 \begin{icItems}
 	\item \code{for} - универсальный цикл;
 	\item \code{while} - условное повторение кода;
@@ -1598,13 +1598,129 @@ for (@i = 0, i < 5, @i = @i + 1) {
 
 \subsubsection{\lstinline`while` - условное повторение кода}
 
-{\bf Условное повторение кода} будет выполнить блок команд, пока условие остаётся истиной.
+{\bf Условное повторение кода} будет выполнить блок команд, пока условие остаётся истиной. Условие проверяется перед запуском цикла и если условие изначально - лож, тела цикла не будет выполниться ни разу.
+
+Главное его преимущества - его простота. В сравнения с универсального цикла, в конструкции \code{while} отсутствуют фрагменты кода для инициализации и перехода на следующую итерацию. Он содержит только условие и тело -
+\begin{lstlisting}[numbers=none]
+while (condition) {
+	commands
+};
+\end{lstlisting}
+
+\noindent Пример (при завершении работы цикла \code{@number} будет равен 6-и) -
+\begin{lstlisting}[numbers=none]
+@number = 1;
+
+while (@number <= 5) {
+	@number = @number + 1;
+};
+\end{lstlisting}
 
 \subsubsection{\lstinline`do while` - цикл с постусловий}
+
+{\bf Цикл с постусловий} мало отличается от \code{while}, но он гарантирует что тело цикла будет выполнена минимум 1 раз. Также условие объявляется после тело цикла, указывая на то что она будет проверено после первой итерации -
+\begin{lstlisting}[numbers=none]
+do {
+	commands
+} while (condition);
+\end{lstlisting}
+
+\noindent Пример (при завершении работы цикла \code{@number} будет равен 7-и) -
+\begin{lstlisting}[numbers=none]
+@number = 6;
+
+do {
+	@number = @number + 1;
+} while (@number < 5);
+\end{lstlisting}
+
 \subsubsection{\lstinline`for` - прохождение коллекций}
+
+{Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать универсальный цикл -
+\begin{lstlisting}[numbers=none]
+@list = ["apple" "banana" "fruit"];
+
+for (@i = 0; @i < @list'length; @i = @i + 1) {
+	@list.at @i; `` get i-th value
+}
+\end{lstlisting}
+
+Или использовать {\bf прохождение коллекций} -
+\begin{lstlisting}[numbers=none]
+@list = ["apple" "banana" "fruit"];
+
+for (@list) {
+	@; `` get i-th value
+}
+\end{lstlisting}
+
 \subsubsection{\lstinline`filter` - выборочное прохождение коллекций}
+
+{\bf Конструкция \code{filter}} позволяет ставить условие, для каких элементов коллекций выполнять тело цикла, для каких нет.
+
+В условия есть специальные переменные: \lstinline|@| - значение элемента коллекций и \lstinline|#| - индекс текущей значения.
+
+В общем виде конструкция выглядит следующим образом -
+\begin{lstlisting}[numbers=none]
+filter (collection, condition) {
+	commands
+};
+\end{lstlisting}
+
+\noindent Пример "Строки, содержащие букву а" -
+\begin{lstlisting}[numbers=none]
+@list = ["apple" "banana" "fruit"];
+
+filter (@list, @ << "a") {
+	@; `` apple, banana
+}
+\end{lstlisting}
+
+\noindent Пример "Чётные элементы списка" -
+\begin{lstlisting}[numbers=none]
+@list = ["apple" "banana" "fruit"];
+
+filter (@list, # \ 2 == 0) {
+	@; `` apple, fruit
+}
+\end{lstlisting}
+
 \subsubsection{\lstinline`range` - частичное прохождение коллекций}
-	
+
+{\bf Частичное прохождение} позволяет выполнить код для интервала коллекций. Интервал определяется одной или двум условий. Первое условие используется для поиска начала интервала. Второе условие - для поиска конца, если оно отсутствует, будет использоваться первое условие. В отсутствия подходящих элементов, тела цикла не будет выполнена. Чтобы выбирать первый или последний элемент (в зависимость от предназначения условии), использует выражение \code{true}.
+
+\noindent С одним условием -
+\begin{lstlisting}[numbers=none]
+range (collection, condition) {
+	commands
+};
+\end{lstlisting}
+
+\noindent С двух условием -
+\begin{lstlisting}[numbers=none]
+range (collection, condition_for_begin, condition_for_end) {
+	commands
+};
+\end{lstlisting}
+
+\noindent Пример "От banana до kiwi" -
+\begin{lstlisting}[numbers=none]
+@list = ["apple" "banana" "fruit" "kiwi"];
+
+range (@list, @ == "banana", @ == "kiwi") {
+	@; `` banana, fruit, kiwi
+}
+\end{lstlisting}
+
+\noindent Пример "От второго до последнего" -
+\begin{lstlisting}[numbers=none]
+@list = ["apple" "banana" "fruit" "kiwi"];
+
+range (@list, # == 2, true) {
+@; `` fruit, kiwi
+}
+\end{lstlisting}
+
 \newpage
 \section{Прогресс}
 
@@ -1618,7 +1734,7 @@ for (@i = 0, i < 5, @i = @i + 1) {
 	\item + Литералы
 	\item + Операторы
 	\item + Условные операторы
-	\item - Циклы for, while, do while, filter, range
+	\item + Циклы
 	\item - Интеграция с Javascript
 	\item - Функции
 	\item - Строки
@@ -1630,7 +1746,7 @@ for (@i = 0, i < 5, @i = @i + 1) {
 	\item - DSV / CSV / TSV
 \end{icEnum}
   	
-	{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
+{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
 	
 \begin{icEnumResume}
 	\item - Регулярные выражения
