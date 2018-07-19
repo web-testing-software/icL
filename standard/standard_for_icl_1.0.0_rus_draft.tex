@@ -1778,12 +1778,83 @@ $file "file.js";
 
 \subsection{Пользовательские скрипты}
 
-\lstinline`[icL]` {\bf Пользовательские скрипты} выполняются до загрузки страницы, при переходе на страницу. Скрипт можно подкрепить как к текущей вкладке (\lstinline|$user|) так и ко всех вкладок из сессии (\lstinline|$always|).
+\lstinline|[icL]| {\bf Пользовательские скрипты} выполняются до загрузки страницы, при переходе на страницу. Скрипт можно подкрепить как к текущей вкладке (\lstinline|$user|) так и ко всех вкладок из сессии (\lstinline|$always|).
 
-\noindent \lstinline`[icL]` Пример - 
+\noindent \lstinline|[icL]| Пример - 
 \begin{lstlisting}[numbers=none]
 $user "userScript1.js";
 $always "userScript2.js";
+\end{lstlisting}
+
+\newpage
+\section{Функции}
+
+{\bf Функции} в icL позволяют повторное использовать код, и структурировать код. Все функций в icL - глобальные.
+
+\subsubsection{Определение функции}
+
+{\bf Определение функции} состоит из заголовка и тела функции.
+
+\noindent {\bf Синтаксис}
+\begin{lstlisting}[numbers=none]
+!name = parameters : return_type {
+	commands
+}
+\end{lstlisting}
+
+Описание всех частей функции:
+\begin{icItems}
+	\item \code{name} - {\bf название функции};
+	\item \code{parameters} - {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен;
+	\item \code{return_type} - {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \code{void}. Чтобы возвращать значение используется команда \code{@ = value};
+	\item \code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
+\end{icItems}
+
+\noindent Пример "Полноценная функция" -
+\begin{lstlisting}[numbers=none]
+!sum = <int>a <int>b : int {
+	@ = @a + @b;
+};
+\end{lstlisting}
+
+\noindent Пример "Функция без аргументов" -
+\begin{lstlisting}[numbers=none]
+!pi = double {
+	@ = 3.14;
+};
+\end{lstlisting}
+
+\noindent Пример "Функция без типа возвращаемой значений" -
+\begin{lstlisting}[numbers=none]
+!out = <int>a <int>b {
+	_log.out @a @b;
+};
+\end{lstlisting}
+
+\noindent Пример "Функция без аргументов и тип возвращаемой значений" -
+\begin{lstlisting}[numbers=none]
+!do = {
+	_log.out "It's work!";
+};
+\end{lstlisting}
+
+\subsubsection{Вызов функции}
+
+Вы можете вызвать функцию следующим образом -
+\begin{lstlisting}[numbers=none]
+!name arguments;
+\end{lstlisting}
+где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции).
+
+\noindent Пример вызова функций, объявленных выше -
+\begin{lstlisting}[numbers=none]
+!sum 2 3; 	`` returns 5
+!pi; 		`` returns 3.14
+!out 4 5; 	`` returns void
+!do; 		`` returns void
+
+!sum (!sum 1 2) 3;	`` returns 6
+!out 1 (!sum 4 5);	`` returns void
 \end{lstlisting}
 
 \newpage
@@ -1800,14 +1871,14 @@ $always "userScript2.js";
 	\item + Операторы
 	\item + Условные операторы
 	\item + Циклы
-	\item - Интеграция с Javascript
-	\item - Функции
+	\item + Интеграция с Javascript
+	\item + Функции
 	\item - Строки
 	\item - Списки
 	\item - Многоженства
 	\item - Объекты
 	\item - Веб-элементы (симуляция мышки и клавиатуры) webelments
-	\item - Обмен данных в веб-странницей (конкретные примеры) dataexchange
+	\item - Обмен данных в веб-страннице (конкретные примеры) dataexchange
 	\item - DSV / CSV / TSV
 \end{icEnum}
   	
