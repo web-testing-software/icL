@@ -65,13 +65,13 @@
 \lstdefinelanguage{icL}{
 	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
-	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request},
+	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char},
 	keywordstyle=[2]\color{bluemarin},
 	classoffset=3,
-	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers},
+	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -385,6 +385,10 @@ _log.info "Hello world";
 Чтобы начать работать достаточно установить и запустить программу icL.
 
 \newpage
+\part{Материал для продвинутых пользователях}
+
+Данная часть предназначено для основных принципов построения языка icL. Рассчитана она на продвинутых пользователях с минимальных знания программирования.
+
 \section{Базовый синтаксис}
 
 icL достаточно прост в освоении, вставите код с листинга \ref{first} в icL и выполняете его. Первую программу можно уже сохранить в файле с расширением icl.
@@ -690,6 +694,83 @@ if (@) {
 	\item удалить переменных состояния;
 	\item и другие.
 \end{icItems}
+
+
+\subsection{Свойства}
+
+Некоторые типы данных имеют свойства. Свойства позволяют получить характеристики хранимых данных. Вне зависимо от типа данные любой объект имеет следующие свойства (перечисленные свойства доступны только для чтения):
+\begin{icItems}
+	\item \code{'typeName : string} - при чтении получаем строку содержащая названия типа хранимых данных;
+	\item \code{'typeId : int} - при чтении получаем число содержащее идентификатор типа хранимых данных;
+	\item \code{'rValue : bool} - при чтении получаем \code{true} если значение предназначено для правой части операции присваивания, иначе \code{false};
+	\item \code{'readOnly : bool} - при чтении получаем \code{true} если объект доступен только для чтения, иначе \code{false};
+	\item \code{'lValue : bool} - при чтении получаем \code{true} если объект доступен только для чтения и записи, иначе \code{false};
+	\item \code{'link : bool} - при чтении получаем \code{true} если значение объекта хранится во внешнем контейнере и изменение значении объекта будет изменить данные во внешней среде, иначе \code{false}.
+\end{icItems}
+
+\
+
+\noindent Примеры использования свойств -
+\begin{lstlisting}
+@int = 2;
+@double = 3;
+@string = "int";
+
+@int'typeName == @string;		 `` true
+@int'typeId == @double'typeId ;	 `` false
+@string'typeId == _types'string; `` true
+
+@int'rValue; `` false
+1234'rValue; `` true
+
+@int'readOnly; `` false
+1234'readOnly; `` true
+
+@int'lValue; `` true
+1234'lValue; `` false
+
+@int'link; `` true
+1234'link; `` false
+\end{lstlisting}
+
+\subsection{Методы}
+
+Методы позволяют изменить состояние объекта. Все типы данных имеют только один общий метод \code{.ensureRValue}, который гарантирует что изменение значению объекту не будет изменить данные во вне текущего контекста.
+
+\noindent Пример -
+\begin{lstlisting}
+@int = 123;
+
+@int'rValue;   `` false
+@int'readOnly; `` false
+@int.ensureRValue;
+@int'rValue;   `` true
+@int'readOnly; `` false
+\end{lstlisting}
+
+\subsection{Преобразование типов}
+
+В icL данные по умолчанию не преобразуется. На пример сложить \code{int} с \code{double} нельзя, такой оператор не определён, в этом случае можно преобразовать \code{int} в \code{double} или \code{double} в \code{int}, в зависимости от типа нужного результата.
+
+Синтаксис преобразований максимально простой \code{data : type}, где \code{data} - любые данные (переменных или константные) а \code{type} - имя нужного типа данных.
+
+{\color{red} Важно:} не все типы данных можно запросить, а только \code{bool}, \code{int}, \code{double}, \code{string}, \code{list} и \code{object}.
+
+\noindent Примеры преобразования:
+\begin{lstlisting}
+@a = 2 + 2.3; `` error
+@a = (2 : double) + 2.3; `` 4.3
+@a = 2 + (2.3 : int); `` 4
+
+@b = 12 + " utils"; `` error
+@b = (12 : string) + " utils"; `` "12 utils"
+
+@c = "55" - 12; `` error
+@c = ("55" : int) - 12; `` 43
+
+@d = 23 + 12 : double; `` @d = 35.0
+@e = 234.0 / 5.0 : int; `` @e = 46
+\end{lstlisting}
 
 \newpage
 \section{Литералы}
@@ -1310,13 +1391,13 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \begin{icItems}
 	\item альтернативный выбор \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` и \lstinline`any | any : any`;
 
-	\item первичный выбор \lstinline`void & void : void`, \lstinline`any & void : void`, \lstinline`void & any : void` и \lstinline`any & any : any`;
+	\item первичный выбор \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| и \lstinline|any & any : any|;
 
-	\item вторичный выбор \lstinline`void ~ void : void`, \lstinline`void ~ any : void`, \lstinline`any ~ void : void` и \lstinline`any ~ any : any`;
+	\item вторичный выбор \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| и \lstinline|any ~ any : any|;
 
-	\item исключающий выбор \lstinline`void ^ void : void`, \lstinline`void ^ any : any`, \lstinline`any ^ void : any` и \lstinline`any ^ any : void`;
+	\item исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| и \lstinline|any ^ any : void|;
 
-	\item коллекционный выбор \lstinline`void % void : void`, \lstinline`void % any : any`, \lstinline`any % void : any`, \lstinline`int % int : int`, \lstinline`double % double : double`, \lstinline`string % string : list`, \lstinline`list % string : list`, \lstinline`object % object : set` и \lstinline`set % object : set`. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
+	\item коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|object % object : set| и \lstinline|set % object : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
 \end{icItems}
 
 \subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
@@ -1858,6 +1939,61 @@ $always "userScript2.js";
 \end{lstlisting}
 
 \newpage
+\section{Строки}
+
+{\bf Строки} (тип \code{string}) позволяет хранить и манипулировать фрагменты текста. 
+
+В контексте строк появляется ещё один тип данных \code{char}, он представляет символ в составе строки, и позволяет редактировать строку.
+
+Тип данных \code{char} имеет свойство \code{code : int} - код символа и его можно преобразовать в \code{string}.
+
+Строки имеют следующее дополнительные свойства:
+\begin{icItems}
+	\item \code{'empty : bool} - "пустая", строка считает пустой если количество содержащих символов равна нулю (доступно только для чтения);
+	\item \code{'length : int} - "длина", длина строки равна количеству символов в строке;
+	\item \code{'last : char} - последний символ строки.
+	\item \lstinline|'(<int> n) : char| - n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
+\end{icItems}
+
+Строки имеют следующий набор дополнительных методов:
+\begin{icItems}
+	\item \lstinline|.append <string>str : string| - вставит стоку в конце строки;
+	\item \lstinline|.append <char>ch : string| - вставит символ в конце строки;
+	\item \lstinline|.at <int>i : char| - возвращает ссылка на \code{i}-й символ;
+	\item \lstinline|.beginsWith <string>str : bool| - возвращает \code{true} если начало строки совпадает с \code{str}, иначе \code{false};
+	\item \lstinline|.beginsWith <char>ch : bool|  - возвращает \code{true} если первый символ строки равен  \code{ch}, иначе \code{false};
+	\item \lstinline|.compare <string>str <bool>caseSensitive = true : bool| - сравнивает строки, возвращает \code{true} если они равны, иначе \code{false}; аргумент \code{caseSensitive} может быть пропущен, если установить его в \code{false} то регистр букв будет проигнорирован;
+	\item \lstinline|.count <string>str : int| - считает сколько раз подстрока \code{str} встречается в строке;
+	\item \lstinline|.count <char>ch : int| - считает сколько раз символ \code{ch} встречается в строке;
+	\item \lstinline|.endsWith <string>str : bool| - возвращает \code{true} если конец строки совпадает с \code{str}, иначе \code{false};
+	\item \lstinline|.endsWith <char>ch : bool| - возвращает \code{true} если последний символ строки равен \code{ch}, иначе \code{false};
+	\item \lstinline|.indexOf <string>str <int>startPos = 0 : int| - возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1;
+	\item \lstinline|.indexOf <char>ch <int>startPos = -1 : int| - возвращает индекс первой нахождения символа \code{ch} в строке, ища вперёд с позиции \code{startPos}, если символ не найден возвращает -1;
+	\item \lstinline|.insert <string>str <int>pos : string| - вставит строку \code{str} в позиции \code{pos};
+	\item \lstinline|.insert <char>ch <int>pos : string| - вставит символ \code{ch} в позиции \code{pos};
+	\item \lstinline|.lastIndexOf <string>str <int>startPos = -1 : int| - возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1;
+	\item \lstinline|.lastIndexOf <char>ch <int>startPos = -1 : int| - возвращает индекс первой нахождения символа \code{ch} в строке, ища назад с позиции \code{startPos}, если символ не найден возвращает -1;
+	\item \lstinline|.left <int>n : string| - возвращает подстроку содержащая первый \code{n} символы;
+	\item \lstinline|.leftJustified <int>width <string>fillChar <bool>truncate = false : string| - возвращает строку длины \code{width}, содержащую эту строку, в конце ставится \code{width - .length} символов \code{fillChar}; если \code{truncate == true} и \code{width < .length} то последние \code{.length - width} символы будут удалены;
+	\item \lstinline|.mid <int>pos <int>n = -1 : string| - возвращает строку содержащую \code{n} символы строки, начиная с позиции \code{pos}; будет возвращена пустая строка если установленный интервал выходит за рамки строки; Если \code{n == -1} то будут возвращены все доступные символы начиная с позицией \code{pos};
+	\item \lstinline|.prepend <string>str : string| - вставит строку \code{str} в начале строки;
+	\item \lstinline|.prepend <char>ch : string| - вставит символ \code{ch} в начале строки;
+	\item \lstinline|.remove <int>pos <int>n : string| - удаляет \code{n} символы строки начиная с позицией \code{pos};
+	\item \lstinline|.remove <string>str <bool>caseSensitive = true : string| - удаляет каждое нахождения подстроки \code{str} в строке; аргумент \code{caseSensitive} может быть пропущен, если установить его в \code{false} то регистр букв будет проигнорирован;
+	\item \lstinline|.replace <int>pos <int>n <string>after : string| - заменяет интервал установленный позицией \code{pos} и количеством символов \code{n} строкой \code{after};
+	\item \lstinline|.replace <string>before <string>after : string| - заменяет каждое нахождение подстроки \code{before} подстрокой \code{after};
+	\item \lstinline|.replace <char>before <char>after : string| - заменяет каждый символ \code{before} на символе \code{after};
+	\item \lstinline|.right <int>n : string| - возвращает строку содержащую последние \code{n} символы строки;
+	\item \lstinline|.rightJustified <int>width <string>fillChar <bool>truncate = false : string| - возвращает строку длины \code{width}, содержащую эту строку, в начале ставится \code{width - .length} символов \code{fillChar}; если \code{truncate == true} и \code{width < .length} то первые \code{.length - width} символы будут удалены;
+	\item \lstinline|.split <string>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list| - разрывает строку на подстроки при каждой нахождения подстроки \code{separator} и собирает список из этих строк; если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки;
+	\item \lstinline|.split <char>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list| - разрывает строку на подстроки при каждой нахождения символа \code{separator} и собирает список из этих строк; если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки;
+	\item \lstinline|.substring <int>begin <int>end : string| - возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
+\end{icItems}
+
+Некоторые методы пропущены, они будут представлены в главе \ref{regex};
+
+\newpage
+\part{Материал для программистов}
 \section{Прогресс}
 
 {\color{red}Материал для продвинутых пользователей.}
@@ -1873,7 +2009,7 @@ $always "userScript2.js";
 	\item + Циклы
 	\item + Интеграция с Javascript
 	\item + Функции
-	\item - Строки
+	\item + Строки
 	\item - Списки
 	\item - Многоженства
 	\item - Объекты
@@ -1885,7 +2021,8 @@ $always "userScript2.js";
 {\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
 
 \begin{icEnumResume}
-	\item - Регулярные выражения
+	\item - Дополнительные возможности
+	\item - Регулярные выражения regex
 	\item - Механизм состояний
 	\item - Базы данных (только SQLite в первой версии)
 	\item - Обработка ошибок emiter, emit, slot
