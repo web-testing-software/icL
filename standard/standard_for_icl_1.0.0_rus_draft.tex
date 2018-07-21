@@ -65,7 +65,7 @@
 \lstdefinelanguage{icL}{
 	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
-	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char},
+	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char, regex},
 	keywordstyle=[2]\color{bluemarin},
 	classoffset=3,
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types},
@@ -84,7 +84,8 @@
 	morecomment=[s]{`c}{t`},
 	commentstyle=\color{grey},
 	stringstyle=\color{purple},
-	morestring=[b]"
+	morestring=[b]",
+	morestring=[b]//
 }
 
 \usepackage{chngcntr}
@@ -137,6 +138,23 @@
 \newcommand{\greycell}[1]{\cellcolor{lightgray}\centering\textbf{#1}}
 
 \newcommand{\code}[1]{\lstinline`#1`}
+\newcommand{\true}{\code{true}}
+\newcommand{\false}{\code{false}}
+\newcommand{\bool}{\code{bool}}
+\newcommand{\integer}{\code{int}}
+\newcommand{\double}{\code{double}}
+\newcommand{\str}{\code{string}}
+\newcommand{\listtype}{\code{list}}
+\newcommand{\element}{\code{element}}
+\newcommand{\set}{\code{set}}
+\newcommand{\setitem}{\code{item}}
+\newcommand{\object}{\code{object}}
+\newcommand{\function}{\code{function}}
+\newcommand{\void}{\code{void}}
+\newcommand{\request}{\code{request}}
+\newcommand{\chartype}{\code{char}}
+\newcommand{\regex}{\code{regex}}
+% \newcommand{}{\code{}}
 
 % row1 width, row2 width, label, name,
 % row1 name, row2 name, body
@@ -364,20 +382,34 @@ _log.info "Hello world";
 
 Язык icL является частью \textbf{программы icL}, с его помощью можно управлять браузером, а именно:
 \begin{icItems}
-	\item открыть вкладку;
-	\item закрыть вкладку;
-	\item перейти на веб-страницу;
-	\item симулировать события клавиатуры и мышке;
-	\item взаимодействовать с веб-страницей;
-	\item выполнить код на языке javascript;
-	\item управлять веб-страницей;
-	\item обменять информацию с веб-страничкой;
-	\item сделать screenshot;
-	\item сохранить страницу в формате pdf;
-	\item управлять памятью;
-	\item экспортировать данные в csv файле;
-	\item импортировать данные из csv файл;
-	\item выполнить запросы на языке SQL.
+\item
+	открыть вкладку;
+\item
+	закрыть вкладку;
+\item
+	перейти на веб-страницу;
+\item
+	симулировать события клавиатуры и мышке;
+\item
+	взаимодействовать с веб-страницей;
+\item
+	выполнить код на языке javascript;
+\item
+	управлять веб-страницей;
+\item
+	обменять информацию с веб-страничкой;
+\item
+	сделать screenshot;
+\item
+	сохранить страницу в формате pdf;
+\item
+	управлять памятью;
+\item
+	экспортировать данные в csv файле;
+\item
+	импортировать данные из csv файл;
+\item
+	выполнить запросы на языке SQL.
 \end{icItems}
 
 \subsection{Начало работы}
@@ -408,10 +440,14 @@ Test!
 Все \textbf{стандартные библиотеки} встроены в языке, но можно написать импортировать \textbf{пользовательские}, с помощью:
 
 \begin{icItems}
-	\item \lstinline`_import.none "path/to/file.iclib"` - выполнить код, который содержатся в файле, ничего не импортировать.
-	\item \lstinline`_import.functions "path/to/file.iclib"` - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
-	\item \lstinline`_import.all "path/to/file.iclib"` -  выполнить код, импортировать функций и глобальные переменные;
-	\item \lstinline`_import.run "path/to/file.iclib"` - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
+\item
+	\lstinline|_import.none "path/to/file.iclib"| - выполнить код, который содержатся в файле, ничего не импортировать.
+\item
+	\lstinline|_import.functions "path/to/file.iclib"| - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
+\item
+	\lstinline|_import.all "path/to/file.iclib"| -  выполнить код, импортировать функций и глобальные переменные;
+\item
+	\lstinline|_import.run "path/to/file.iclib"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
 \end{icItems}
 
 \subsection{Токены в icL}
@@ -421,10 +457,14 @@ Test!
 Отдельными токенами являются:
 
 \begin{icItems}
-	\item \lstinline`_log` - идентификатор объекта;
-	\item \lstinline`.info` - идентификатор метода;
-	\item \lstinline`"Hello world!"` - строковый литерал;
-	\item \lstinline`;` - разделитель, конец команды.
+\item
+	\lstinline`_log` - идентификатор объекта;
+\item
+	\lstinline`.info` - идентификатор метода;
+\item
+	\lstinline`"Hello world!"` - строковый литерал;
+\item
+	\lstinline`;` - разделитель, конец команды.
 \end{icItems}
 
 \subsection{Комментарии}
@@ -640,9 +680,12 @@ if (@) {
 В icL присутствуют 3 типа значении:
 
 \begin{icEnum}
-	\item левые значения {\it lvalue} - переменные;
-	\item правые значения {\it rvalue} - переменные и константы;
-	\item javascript значения {\it jsvalue} - их будем рассматривать позже.
+\item
+	левые значения {\it lvalue} - переменные;
+\item
+	правые значения {\it rvalue} - переменные и константы;
+\item
+	javascript значения {\it jsvalue} - их будем рассматривать позже.
 \end{icEnum}
 
 Левые значения могут находиться с обеих сторон знака {\it присваивание}, когда правые - только справа. Примеры правильно и неправильно кода иллюстрированы на листинге \ref{rlvalues};
@@ -664,10 +707,10 @@ if (@) {
 {datatypeclasses}{Категории типов данных}
 {Категория}{Описание}
 {
-	Базовые & Типы данных описанных в предыдущем главе: \code{bool} - логический, \code{int} - целое - числа, \code{double} - дробные числа. \\ \hline
+	Базовые & Типы данных описанных в предыдущем главе: \bool - логический, \integer - целое - числа, \double - дробные числа. \\ \hline
 	Сложные & Типы данные содержащие несколько значений в контейнерах, примеры таких данных: строки, списки, множество. \\ \hline
 	Системные & Типы данных которых нельзя создать и хранить в пользовательских переменных, но доступ к ними можно получить через системные (предопределённых) переменных, примеры таких данных: браузер, вкладка, история браузера, окно. \\ \hline
-	Тип \code{void} & Тип данных обозначающий отсутствия данных.
+	Тип \void & Тип данных обозначающий отсутствия данных.
 }
 
 \subsection{Основные типы данных}
@@ -684,15 +727,21 @@ if (@) {
 
 \subsection{Тип данных {\color{bluemarin} void}}
 
-{\bf Тип данных \code{void}} означает отсутствия информации, он используется в самых различных целях:
+{\bf Тип данных \void} означает отсутствия информации, он используется в самых различных целях:
 
 \begin{icItems}
-	\item указать то что функция ничего не возвращает;
-	\item указать на то что в процессе работы функций произошла ошибка;
-	\item выбрать источник данных;
-	\item фильтровать данные;
-	\item удалить переменных состояния;
-	\item и другие.
+\item
+	указать то что функция ничего не возвращает;
+\item
+	указать на то что в процессе работы функций произошла ошибка;
+\item
+	выбрать источник данных;
+\item
+	фильтровать данные;
+\item
+	удалить переменных состояния;
+\item
+	и другие.
 \end{icItems}
 
 
@@ -700,12 +749,18 @@ if (@) {
 
 Некоторые типы данных имеют свойства. Свойства позволяют получить характеристики хранимых данных. Вне зависимо от типа данные любой объект имеет следующие свойства (перечисленные свойства доступны только для чтения):
 \begin{icItems}
-	\item \code{'typeName : string} - при чтении получаем строку содержащая названия типа хранимых данных;
-	\item \code{'typeId : int} - при чтении получаем число содержащее идентификатор типа хранимых данных;
-	\item \code{'rValue : bool} - при чтении получаем \code{true} если значение предназначено для правой части операции присваивания, иначе \code{false};
-	\item \code{'readOnly : bool} - при чтении получаем \code{true} если объект доступен только для чтения, иначе \code{false};
-	\item \code{'lValue : bool} - при чтении получаем \code{true} если объект доступен только для чтения и записи, иначе \code{false};
-	\item \code{'link : bool} - при чтении получаем \code{true} если значение объекта хранится во внешнем контейнере и изменение значении объекта будет изменить данные во внешней среде, иначе \code{false}.
+\item
+	\code{any'typeName : string} - при чтении получаем строку содержащая названия типа хранимых данных;
+\item
+	\code{any'typeId : int} - при чтении получаем число содержащее идентификатор типа хранимых данных;
+\item
+	\code{any'rValue : bool} - при чтении получаем \true если значение предназначено для правой части операции присваивания, иначе \false;
+\item
+	\code{any'readOnly : bool} - при чтении получаем \true если объект доступен только для чтения, иначе \false;
+\item
+	\code{any'lValue : bool} - при чтении получаем \true если объект доступен только для чтения и записи, иначе \false;
+\item
+	\code{any'link : bool} - при чтении получаем \true если значение объекта хранится во внешнем контейнере и изменение значении объекта будет изменить данные во внешней среде, иначе \false.
 \end{icItems}
 
 \
@@ -735,7 +790,7 @@ if (@) {
 
 \subsection{Методы}
 
-Методы позволяют изменить состояние объекта. Все типы данных имеют только один общий метод \code{.ensureRValue}, который гарантирует что изменение значению объекту не будет изменить данные во вне текущего контекста.
+Методы позволяют изменить состояние объекта. Все типы данных имеют только один общий метод \code{any.ensureRValue}, который гарантирует что изменение значению объекту не будет изменить данные во вне текущего контекста.
 
 \noindent Пример -
 \begin{lstlisting}
@@ -750,11 +805,11 @@ if (@) {
 
 \subsection{Преобразование типов}
 
-В icL данные по умолчанию не преобразуется. На пример сложить \code{int} с \code{double} нельзя, такой оператор не определён, в этом случае можно преобразовать \code{int} в \code{double} или \code{double} в \code{int}, в зависимости от типа нужного результата.
+В icL данные по умолчанию не преобразуется. На пример сложить \integer с \double нельзя, такой оператор не определён, в этом случае можно преобразовать \integer в \double или \double в \integer, в зависимости от типа нужного результата.
 
 Синтаксис преобразований максимально простой \code{data : type}, где \code{data} - любые данные (переменных или константные) а \code{type} - имя нужного типа данных.
 
-{\color{red} Важно:} не все типы данных можно запросить, а только \code{bool}, \code{int}, \code{double}, \code{string}, \code{list} и \code{object}.
+{\color{red} Важно:} не все типы данных можно запросить, а только \bool, \integer, \double, \str, \listtype и \object.
 
 \noindent Примеры преобразования:
 \begin{lstlisting}
@@ -780,21 +835,28 @@ if (@) {
 Литералы могут быть любыми из следующих типов:
 
 \begin{icItems}
-	\item логическое значение - \code{bool};
-	\item целое число - \code{int};
-	\item дробное число - \code{double};
-	\item строка - \code{string};
-	\item список - \code{list};
-	\item объект - \code{object};
-	\item множество - \code{set}.
+	\item
+		логическое значение - \bool;
+	\item
+		целое число - \integer;
+	\item
+		дробное число - \double;
+	\item
+		строка - \str;
+	\item
+		список - \listtype;
+	\item
+		объект - \object;
+	\item
+		множество - \set.
 \end{icItems}
 
 \subsubsection{Логические значения}
 
 Для представления {\bf логических значения} используется следующее литералы:
 \begin{icItems}
-	\item \code{true} - логическое единица, истинно;
-	\item \code{false} - логической ноль, лож.
+	\item \true - логическое единица, истинно;
+	\item \false - логической ноль, лож.
 \end{icItems}
 
 \subsubsection{Целые числа}
@@ -864,14 +926,14 @@ if (@) {
 {\bf Оператор} - это токен, который предписывает выполнение определённой манипуляции данных. Встроенных операторов в icL очень много, по этому будет их разбирать по типу данных, в следующем порядке:
 
 \begin{icEnum}
-	\item \code{bool};
-	\item \code{int};
-	\item \code{double};
-	\item \code{string};
-	\item \code{list};
-	\item \code{object};
-	\item \code{set};
-	\item \code{void}.
+	\item \bool;
+	\item \integer;
+	\item \double;
+	\item \str;
+	\item \listtype;
+	\item \object;
+	\item \set;
+	\item \void.
 \end{icEnum}
 
 Операторы имеют ранг, операторы имеющие наивысший ранг выполняются первыми, а имеющие наименьший ранг - последними. Операторы имеющие правая ассоциативность выполняются раньше чем операторы имеющие левое ассоциативность, они отмечены плюсом справа от ранга, например 7$^+$.
@@ -882,22 +944,31 @@ if (@) {
 
 Если у вас отсутствуют знания по алгебры логике, пожалуйста прочтите любую книгу по основы данной науке.
 
-Для типа данных \code{bool}, доступны:
+Для типа данных \bool, доступны:
 
 \begin{icItems}
-	\item операции алгебры логике (имеющие ранг 2):
+	\item
+		операции алгебры логике (имеющие ранг 2):
 	\begin{icItems}
-		\item конъюнкция - \lstinline`bool & bool : bool`;
-		\item дизъюнкция - \lstinline`bool | bool : bool`;
-		\item эквивалентность - \lstinline`bool ~ bool : bool`;
-		\item исключающий или - \lstinline`bool ^ bool : bool`;
-		\item инверсия (имеет ранг 7$^+$) - \lstinline`! bool : bool`;
+		\item
+			конъюнкция - \lstinline`bool & bool : bool`;
+		\item
+			дизъюнкция - \lstinline`bool | bool : bool`;
+		\item
+			эквивалентность - \lstinline`bool ~ bool : bool`;
+		\item
+			исключающий или - \lstinline`bool ^ bool : bool`;
+		\item
+			инверсия (имеет ранг 7$^+$) - \lstinline`! bool : bool`;
 	\end{icItems}
 
-	\item операций сравнения (имеющие ранг 3):
+	\item
+		операций сравнения (имеющие ранг 3):
 	\begin{icItems}
-		\item равно - \lstinline`bool == bool : bool`;
-		\item не равно - \lstinline`bool != bool : bool`;
+		\item
+			равно - \lstinline`bool == bool : bool`;
+		\item
+			не равно - \lstinline`bool != bool : bool`;
 	\end{icItems}
 \end{icItems}
 
@@ -924,11 +995,11 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\label{conjtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a}     & \code{b}     & \code{a \& b} \\ \hline
-		\code{false} & \code{false} & \code{false}  \\ \hline
-		\code{false} & \code{true}  & \code{false}  \\ \hline
-		\code{true}  & \code{false} & \code{false}  \\ \hline
-		\code{true}  & \code{true}  & \code{true}   \\ \hline
+		\code{a} & \code{b} & \code{a \& b} \\ \hline
+		\false 	 & \false   & \false  		\\ \hline
+		\false   & \true    & \false  		\\ \hline
+		\true    & \false   & \false  		\\ \hline
+		\true    & \true    & \true   		\\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
@@ -941,11 +1012,11 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\label{distable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a}     & \code{b}     & \code{a | b} \\ \hline
-		\code{false} & \code{false} & \code{false} \\ \hline
-		\code{false} & \code{true}  & \code{true}  \\ \hline
-		\code{true}  & \code{false} & \code{true}  \\ \hline
-		\code{true}  & \code{true}  & \code{true}  \\ \hline
+		\code{a} & \code{b} & \code{a | b} 	\\ \hline
+		\false   & \false   & \false 		\\ \hline
+		\false   & \true    & \true  		\\ \hline
+		\true    & \false   & \true  		\\ \hline
+		\true    & \true    & \true  		\\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
@@ -958,11 +1029,11 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\label{logeqtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a}     & \code{b}     & \code{a \~ b} \\ \hline
-		\code{false} & \code{false} & \code{true}   \\ \hline
-		\code{false} & \code{true}  & \code{false}  \\ \hline
-		\code{true}  & \code{false} & \code{false}  \\ \hline
-		\code{true}  & \code{true}  & \code{true}   \\ \hline
+		\code{a} & \code{b} & \code{a \~ b} \\ \hline
+		\false   & \false   & \true   		\\ \hline
+		\false   & \true    & \false  		\\ \hline
+		\true    & \false   & \false  		\\ \hline
+		\true    & \true    & \true   		\\ \hline
 	\end{tabular}
 	\vspace{0em}
 \end{table}
@@ -975,11 +1046,11 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\label{logdifftable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a}     & \code{b}     & \code{a \^ b} \\ \hline
-		\code{false} & \code{false} & \code{false}  \\ \hline
-		\code{false} & \code{true}  & \code{true}   \\ \hline
-		\code{true}  & \code{false} & \code{true}   \\ \hline
-		\code{true}  & \code{true}  & \code{false}  \\ \hline
+		\code{a} & \code{b} & \code{a \^ b} \\ \hline
+		\false   & \false   & \false  		\\ \hline
+		\false   & \true    & \true   		\\ \hline
+		\true    & \false   & \true  		\\ \hline
+		\true    & \true    & \false  		\\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
@@ -992,54 +1063,76 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\label{invtable}
 	\begin{tabular}{|c|c|}
 		\hline
-		\code{a}     & \code{!a}    \\ \hline
-		\code{false} & \code{true}  \\ \hline
-		\code{true}  & \code{false} \\ \hline
+		\code{a} & \code{!a} \\ \hline
+		\false   & \true  	 \\ \hline
+		\true    & \false    \\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
 
 \subsubsection{\lstinline`<bool>a == <bool>b : bool`}
-Возвращает \code{true} если a равно b, иначе \code{false}.
+Возвращает \true если a равно b, иначе \false.
 
 \subsubsection{\lstinline`<bool>a != <bool>b : bool`}
-Возвращает \code{true} если a равно b, иначе \code{false}.
+Возвращает \true если a равно b, иначе \false.
 
 \subsection{{\color{bluemarin}int} и {\color{bluemarin}double}}
 
 Для чисел доступны операций:
 \begin{icItems}
-	\item 3-ого ранга:
+	\item
+		3-ого ранга:
 		\begin{icItems}
-			\item равно \lstinline`int == int : bool` и \lstinline`double == double : bool`
-			\item не равно \lstinline`int != int : bool` и \lstinline`double != double : bool`
-			\item больше \lstinline`int >> int : bool` и \lstinline`double >> double : bool`
-			\item больше или равно \lstinline`int >= int : bool` и \lstinline`double >= double : bool`
-			\item меньше \lstinline`int << int : bool` и \lstinline`double << double : bool`
-			\item меньше или равно \lstinline`int <= int : bool` и \lstinline`double <= double : bool`
+			\item
+				равно \lstinline`int == int : bool` и \lstinline`double == double : bool`
+			\item
+				не равно \lstinline`int != int : bool` и \lstinline`double != double : bool`
+			\item
+				больше \lstinline`int >> int : bool` и \lstinline`double >> double : bool`
+			\item
+				больше или равно \lstinline`int >= int : bool` и \lstinline`double >= double : bool`
+			\item
+				меньше \lstinline`int << int : bool` и \lstinline`double << double : bool`
+			\item
+				меньше или равно \lstinline`int <= int : bool` и \lstinline`double <= double : bool`
 		\end{icItems}
-	\item 4-ого ранга:
+	\item
+		4-ого ранга:
 		\begin{icItems}
-			\item сложение \lstinline`int + int : int` и \lstinline`double + double : double`;
-			\item вычитание \lstinline`int -    int : int` и \lstinline`double -    double : double`.
+			\item
+				сложение \lstinline`int + int : int` и \lstinline`double + double : double`;
+			\item
+				вычитание \lstinline`int -    int : int` и \lstinline`double -    double : double`.
 		\end{icItems}
-	\item 5-ого ранга:
+	\item
+		5-ого ранга:
 		\begin{icItems}
-			\item умножение \lstinline`int * int : int` и \lstinline`double * double : double`;
-			\item деление \lstinline`int / int : int` и \lstinline`double / double : double`;
-			\item остаток от деления целых чисел \lstinline`int \ int : int`.
+			\item
+				умножение \lstinline`int * int : int` и \lstinline`double * double : double`;
+			\item
+				деление \lstinline`int / int : int` и \lstinline`double / double : double`;
+			\item
+				остаток от деления целых чисел \lstinline`int \ int : int`.
 		\end{icItems}
-	\item 6$^+$-ого ранга:
+	\item
+		6$^+$-ого ранга:
 		\begin{icItems}
-			\item возведения в квадрат \lstinline`int** : int` и \lstinline`double** : double`;
-			\item возведения в степень \lstinline`int ** int : int` и \lstinline`double ** double : double`;
-			\item извлечения квадратного корня \lstinline`/'int : int` и \lstinline`/'double : double`;
-			\item извлечения корня \lstinline`int/'int : int` и \lstinline`double/'double : double`.
+			\item
+				возведения в квадрат \lstinline`int** : int` и \lstinline`double** : double`;
+			\item
+				возведения в степень \lstinline`int ** int : int` и \lstinline`double ** double : double`;
+			\item
+				извлечения квадратного корня \lstinline`/'int : int` и \lstinline`/'double : double`;
+			\item
+				извлечения корня \lstinline`int/'int : int` и \lstinline`double/'double : double`.
 		\end{icItems}
-	\item 7$^+$-ого ранга:
+	\item
+		7$^+$-ого ранга:
 		\begin{icItems}
-			\item инверсия знака \lstinline`-int : int` и \lstinline`-double : double`;
-			\item абсолютное значение \lstinline`+int : int` и \lstinline`+double : double`.
+			\item
+				инверсия знака \lstinline`-int : int` и \lstinline`-double : double`;
+			\item
+				абсолютное значение \lstinline`+int : int` и \lstinline`+double : double`.
 		\end{icItems}
 \end{icItems}
 
@@ -1089,40 +1182,40 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 {\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
 
 \subsubsection{\lstinline`<int>a == <int>b : bool`}
-Возвращает \code{true} если \code{a} и \code{b} имеют одинаковое значение, иначе \code{false}.
+Возвращает \true если \code{a} и \code{b} имеют одинаковое значение, иначе \false.
 
 \subsubsection{\lstinline`<double>a == <double>b : bool`}
-Возвращает \code{true} если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \code{false}.
+Возвращает \true если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false.
 
 \subsubsection{\lstinline`<int>a != <int>b : bool`}
-Возвращает \code{true} если \code{a} и \code{b} не имеют одинаковое значение, иначе \code{false}.
+Возвращает \true если \code{a} и \code{b} не имеют одинаковое значение, иначе \false.
 
 \subsubsection{\lstinline`<double>a != <double>b : bool`}
-Возвращает \code{true} если \code{a} и \code{b} отличаются больше чем на уровень погрешности машины, иначе \code{false}.
+Возвращает \true если \code{a} и \code{b} отличаются больше чем на уровень погрешности машины, иначе \false.
 
 \subsubsection{\lstinline`<int>a >> <int>b : bool`}
-Возвращает \code{true} если целое число \code{a} больше \code{b}, иначе \code{false}.
+Возвращает \true если целое число \code{a} больше \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<double>a >> <double>b : bool`}
-Возвращает \code{true} если дробное число \code{a} больше \code{b}, иначе \code{false}.
+Возвращает \true если дробное число \code{a} больше \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<int>a >= <int>b : bool`}
-Возвращает \code{true} если целое число \code{a} больше или равно \code{b}, иначе \code{false}.
+Возвращает \true если целое число \code{a} больше или равно \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<double>a >= <double>b : bool`}
-Возвращает \code{true} если дробное число \code{a} больше или равно \code{b}, иначе \code{false}.
+Возвращает \true если дробное число \code{a} больше или равно \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<int>a << <int>b : bool`}
-Возвращает \code{true} если целое число \code{a} меньше \code{b}, иначе \code{false}.
+Возвращает \true если целое число \code{a} меньше \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<double>a << <double>b : bool`}
-Возвращает \code{true} если дробное число \code{a} меньше \code{b}, иначе \code{false}.
+Возвращает \true если дробное число \code{a} меньше \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<int>a <= <int>b : bool`}
-Возвращает \code{true} если целое число \code{a} меньше или равно \code{b}, иначе \code{false}.
+Возвращает \true если целое число \code{a} меньше или равно \code{b}, иначе \false.
 
 \subsubsection{\lstinline`<double>a <= <double>b : bool`}
-Возвращает \code{true} если дробное число \code{a} меньше или равно \code{b}, иначе \code{false}.
+Возвращает \true если дробное число \code{a} меньше или равно \code{b}, иначе \false.
 
 
 \subsubsection{\lstinline`<int>a + <int>b : int`}
@@ -1197,20 +1290,30 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 	Для строк и списков доступны операций:
 \begin{icItems}
-	\item 3-ого ранга:
+	\item
+		3-ого ранга:
 		\begin{icItems}
-		\item равно \lstinline`string == string : bool` и \lstinline`list == list : bool`;
-		\item не равно \lstinline`string != string : bool` и \lstinline`list != list : bool`;
-		\item содержит \lstinline`list << string : bool` и \lstinline`string << string : bool`;
-		\item содержит строку подходящая по шаблону \lstinline`list <* string : bool`.
+		\item
+			равно \lstinline`string == string : bool` и \lstinline`list == list : bool`;
+		\item
+			не равно \lstinline`string != string : bool` и \lstinline`list != list : bool`;
+		\item
+			содержит \lstinline`list << string : bool` и \lstinline`string << string : bool`;
+		\item
+			содержит строку подходящая по шаблону \lstinline`list <* string : bool`.
 		\end{icItems}
-	\item 4-ого ранга:
+	\item
+		4-ого ранга:
 		\begin{icItems}
-		\item конкатенация \lstinline`string + string : string`;
-		\item вставка \lstinline`string + list : list`, \lstinline`list + string : list` и \lstinline`list + list : list`.
+		\item
+			конкатенация \lstinline`string + string : string`;
+		\item
+			вставка \lstinline`string + list : list`, \lstinline`list + string : list` и \lstinline`list + list : list`.
 		\end{icItems}
-	\item 5-ого ранга: шаблонное сравнение \lstinline`string * string : bool`, \lstinline`list * string : bool` и \lstinline`list * list : bool`;
-	\item 6$^+$-ого ранга: эквивалентность \lstinline`string ** string : double`.
+	\item
+		5-ого ранга: шаблонное сравнение \lstinline`string * string : bool`, \lstinline`list * string : bool` и \lstinline`list * list : bool`;
+	\item
+		6$^+$-ого ранга: эквивалентность \lstinline`string ** string : double`.
 \end{icItems}
 
 Примеры использование операторов присутствуют на листинге \ref{stringlistopex}.
@@ -1239,25 +1342,25 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 \subsubsection{\lstinline`<string>s1 == <string>s2 : bool`}
-Возвращает \code{true} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \code{false}.
+Возвращает \true если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \false.
 
 \subsubsection{\lstinline`<list>l1 == <list>l2 : bool`}
-Возвращает \code{true} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \code{false}.
+Возвращает \true если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \false.
 
 \subsubsection{\lstinline`<string>s1 != <string>s2 : bool`}
-Возвращает \code{false} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \code{true}.
+Возвращает \false если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true.
 
 \subsubsection{\lstinline`<list>l1 != <list>l2 : bool`}
-Возвращает \code{false} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \code{true}.
+Возвращает \false если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \true.
 
 \subsubsection{\lstinline`<list>l << <string>str : bool`}
-Возвращает \code{true}, если список \code{l} содержит строку \code{str}, иначе \code{false}.
+Возвращает \true, если список \code{l} содержит строку \code{str}, иначе \false.
 
 \subsubsection{\lstinline`<string>str << <string>substr : bool`}
-Возвращает \code{true}, если строка \code{str} содержит подстроку \code{substr}, иначе \code{false}.
+Возвращает \true, если строка \code{str} содержит подстроку \code{substr}, иначе \false.
 
 \subsubsection{\lstinline`<list>l <* <string>template : bool`}
-Возвращает \code{true}, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \code{false}.
+Возвращает \true, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false.
 
 {\bf Шаблон} - это строка содержащая данные и специальный символ \lstinline`*`, где \lstinline`*` означает любая последовательность символов. Рассмотрим шаблонную строку \lstinline`"Have a * day!"`, примеры строк подходящие по шаблону: \lstinline`"Have a nice day!"`, \lstinline`"Have a amazing day!"`. Пример неподходящей строки \lstinline`"Have a good day"` (отсутствует восклицательный знак).
 
@@ -1274,13 +1377,13 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 Возвращает новый список, содержащий все элементы списков \code{l1} и \code{l2}.
 
 \subsubsection{\lstinline`<string>str * <string>template : bool`}
-Возвращает \code{true}, если строка \code{str} подходит по шаблону \code{template}, иначе \code{false}.
+Возвращает \true, если строка \code{str} подходит по шаблону \code{template}, иначе \false.
 
 \subsubsection{\lstinline`<list>l * <string>template : bool`}
-Возвращает \code{true} если все строки списка \code{l} подходят по шаблону \code{template}, иначе \code{false}.
+Возвращает \true если все строки списка \code{l} подходят по шаблону \code{template}, иначе \false.
 
 \subsubsection{\lstinline`<list>l * <list>templates : bool`}
-Возвращает \code{true} если все строки списка \code{l} подходят по соответственному шаблону из списка \code{templates}, иначе \code{false}.
+Возвращает \true если все строки списка \code{l} подходят по соответственному шаблону из списка \code{templates}, иначе \false.
 
 \subsubsection{\lstinline`<string>s1 ** <string>s2 : double`}
 Возвращает коэффициент эквивалентности получен при сравнении \code{s1} с \code{s2}.
@@ -1295,22 +1398,33 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Для строк и списков доступны операций:
 \begin{icItems}
-	\item 3-ого ранга:
+	\item
+		3-ого ранга:
 		\begin{icItems}
-		\item равно \lstinline`object == object : bool` и \lstinline`set == set : bool`;
-		\item не равно \lstinline`object != object : bool` и \lstinline`set != set : bool`;
-		\item включение \lstinline`set << object : bool`;
-		\item включение шаблона \lstinline`set <* object` и \lstinline`object <* object : bool`.
+		\item
+			равно \lstinline`object == object : bool` и \lstinline`set == set : bool`;
+		\item
+			не равно \lstinline`object != object : bool` и \lstinline`set != set : bool`;
+		\item
+			включение \lstinline`set << object : bool`;
+		\item
+			включение шаблона \lstinline`set <* object` и \lstinline`object <* object : bool`.
 		\end{icItems}
-	\item 4-ого ранга:
+	\item
+		4-ого ранга:
 		\begin{icItems}
-		\item объединение \lstinline`set + set : set`;
-		\item симметрическая разность \lstinline`set -   set : set`.
+		\item
+			объединение \lstinline`set + set : set`;
+		\item
+			симметрическая разность \lstinline`set -   set : set`.
 		\end{icItems}
-	\item 5-ого ранга:
+	\item
+		5-ого ранга:
 		\begin{icItems}
-		\item разность \lstinline`set \ set : set`;
-		\item пересечение \lstinline`set * set : set`.
+		\item
+			разность \lstinline`set \ set : set`;
+		\item
+			пересечение \lstinline`set * set : set`.
 		\end{icItems}
 \end{icItems}
 
@@ -1350,25 +1464,25 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 \subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
-Возвращает \code{true} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \code{false}.
+Возвращает \true если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false.
 
 \subsubsection{\lstinline`<set>set1 == <set>set2 : bool`}
-Возвращает \code{true} если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \code{false}.
+Возвращает \true если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \false.
 
 \subsubsection{\lstinline`<object>obj1 != <object>obj2 : bool`}
-Возвращает \code{true} если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \code{false}.
+Возвращает \true если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \false.
 
 \subsubsection{\lstinline`<set>set1 != <set>set2 : bool`}
-Возвращает \code{true} если количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, иначе \code{false}.
+Возвращает \true если количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, иначе \false.
 
 \subsubsection{\lstinline`<set>s << <object>obj : bool`}
-Возвращает \code{true}, если множество \code{s} содержит объект \code{obj}, иначе \code{false}.
+Возвращает \true, если множество \code{s} содержит объект \code{obj}, иначе \false.
 
 \subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
-Возвращает \code{true}, если множество \code{s} содержит под объект \code{subobj}, иначе \code{false}.
+Возвращает \true, если множество \code{s} содержит под объект \code{subobj}, иначе \false.
 
 \subsubsection{\lstinline`<object>obj <* <object>subobj : bool`}
-Возвращает \code{true} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \code{false}.
+Возвращает \true если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \false.
 
 \subsubsection{\lstinline`<set>set1 + <set>set2 : set`}
 Возвращает новое множество содержащая все объекты множеств \code{set1} и \code{set2}.
@@ -1384,20 +1498,21 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \subsection{\color{bluemarin}void}
 
-Все \code{void} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \code{void} и не \code{void}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \code{int}, \code{double}, \code{string}, \code{list}, \code{object}, \code{set}, \code{element}.
+Все \void операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \void и не \void. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \integer, \double, \str, \listtype, \object, \set, \element.
 
-Список \code{void} операторов:
+Список \void операторов:
 
 \begin{icItems}
-	\item альтернативный выбор \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` и \lstinline`any | any : any`;
-
-	\item первичный выбор \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| и \lstinline|any & any : any|;
-
-	\item вторичный выбор \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| и \lstinline|any ~ any : any|;
-
-	\item исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| и \lstinline|any ^ any : void|;
-
-	\item коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|object % object : set| и \lstinline|set % object : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
+\item
+	альтернативный выбор \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` и \lstinline`any | any : any`;
+\item
+	первичный выбор \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| и \lstinline|any & any : any|;
+\item
+	вторичный выбор \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| и \lstinline|any ~ any : any|;
+\item
+	исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| и \lstinline|any ^ any : void|;
+\item
+	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|object % object : set| и \lstinline|set % object : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
 \end{icItems}
 
 \subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
@@ -1409,11 +1524,11 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\label{orhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\code{arg1} & \code{arg2} & \code{arg1 | arg2} \\ \hline
-		\code{void} & \code{void} & \code{void}  \\ \hline
-		\code{void} & \code{any}  & \code{arg2}  \\ \hline
-		\code{any}  & \code{void} & \code{arg1}  \\ \hline
-		\code{any}  & \code{any}  & \code{arg1}  \\ \hline
+		\code{arg1} & \code{arg2} & \code{arg1 | arg2}  \\ \hline
+		\void       & \void       & \void  				\\ \hline
+		\void       & \code{any}  & \code{arg2}  		\\ \hline
+		\code{any}  & \void       & \code{arg1}  		\\ \hline
+		\code{any}  & \code{any}  & \code{arg1}  		\\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
@@ -1428,10 +1543,10 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\code{arg1} & \code{arg2} & \code{arg1 \& arg2} \\ \hline
-		\code{void} & \code{void} & \code{void}   \\ \hline
-		\code{void} & \code{any}  & \code{void}   \\ \hline
-		\code{any}  & \code{void} & \code{void}   \\ \hline
-		\code{any}  & \code{any}  & \code{arg1}   \\ \hline
+		\void       & \void       & \void   			\\ \hline
+		\void       & \code{any}  & \void   			\\ \hline
+		\code{any}  & \void       & \void   			\\ \hline
+		\code{any}  & \code{any}  & \code{arg1}   		\\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
@@ -1446,10 +1561,10 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\code{arg1} & \code{arg2} & \code{arg1 \~ arg2} \\ \hline
-		\code{void} & \code{void} & \code{void}   \\ \hline
-		\code{void} & \code{any}  & \code{void}   \\ \hline
-		\code{any}  & \code{void} & \code{void}   \\ \hline
-		\code{any}  & \code{any}  & \code{arg2}   \\ \hline
+		\void       & \void       & \void   			\\ \hline
+		\void       & \code{any}  & \void   			\\ \hline
+		\code{any}  & \void       & \void   			\\ \hline
+		\code{any}  & \code{any}  & \code{arg2}   		\\ \hline
 	\end{tabular}
 	\vspace{0em}
 \end{table}
@@ -1464,10 +1579,10 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\code{arg1} & \code{arg2} & \code{arg1 \^ arg2} \\ \hline
-		\code{void} & \code{void} & \code{void}   \\ \hline
-		\code{void} & \code{any}  & \code{arg2}   \\ \hline
-		\code{any}  & \code{void} & \code{arg1}   \\ \hline
-		\code{any}  & \code{any}  & \code{void}   \\ \hline
+		\void       & \void       & \void   			\\ \hline
+		\void       & \code{any}  & \code{arg2}   		\\ \hline
+		\code{any}  & \void       & \code{arg1}   		\\ \hline
+		\code{any}  & \code{any}  & \void   			\\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
@@ -1483,28 +1598,28 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	\label{centhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\code{arg1}   & \code{arg2}   & \code{arg1 \% arg2}			\\ \hline
-		\code{void}   & \code{void}   & \code{void}					\\ \hline
-		\code{void}   & \code{any}    & \code{arg2}					\\ \hline
-		\code{any}    & \code{void}   & \code{arg1}					\\ \hline
-		\code{int}    & \code{int}    & \code{int}					\\ \hline
-		\code{double} & \code{double} & \code{double}				\\ \hline
-		\code{string} & \code{string} & \code{list - [arg1 arg2]}	\\ \hline
-		\code{list}   & \code{string} & \code{list - [arg1 arg2]}	\\ \hline
-		\code{object} & \code{object} & \code{set - [arg1 arg2]}	\\ \hline
-		\code{set}    & \code{object} & \code{set - [arg1 arg2]}	\\ \hline
+		\code{arg1} & \code{arg2} & \code{arg1 \% arg2}			\\ \hline
+		\void       & \void       & \void						\\ \hline
+		\void       & \code{any}  & \code{arg2}					\\ \hline
+		\code{any}  & \void       & \code{arg1}					\\ \hline
+		\integer    & \integer    & \integer					\\ \hline
+		\double     & \double     & \double						\\ \hline
+		\str        & \str        & \code{list - [arg1 arg2]}	\\ \hline
+		\listtype   & \str        & \code{list - [arg1 arg2]}	\\ \hline
+		\object     & \object     & \code{set - [arg1 arg2]}	\\ \hline
+		\set        & \object     & \code{set - [arg1 arg2]}	\\ \hline
 	\end{tabular}
 	\vspace{0em}
 \end{table}
 %}
 
-Для аргументов типов \code{int} и \code{double}, вызывается функция \code{_numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{_numbers.setProcess} с одни из следующих аргументов: \code{_numbers'sum} - сумма, \code{_numbers'product} - произведение, \code{_numbers'max} - максимум, \code{_numbers'min} - минимум. После использования оператора, вызываете \code{_numbers.restoreProcess} чтобы восстановить исходные настройки.
+Для аргументов типов \integer и \double, вызывается функция \code{_numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{_numbers.setProcess} с одни из следующих аргументов: \code{_numbers'sum} - сумма, \code{_numbers'product} - произведение, \code{_numbers'max} - максимум, \code{_numbers'min} - минимум. После использования оператора, вызываете \code{_numbers.restoreProcess} чтобы восстановить исходные настройки.
 
 \subsection{Дополнительные операторы}
 
 \subsubsection{\lstinline`[string...]`, \lstinline`[arg...]`, \lstinline`[param...]`, \lstinline`[<>]` и \lstinline`[]`}
 
-{\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \code{list}, \code{set} и \code{object}.
+{\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \listtype, \set и \object.
 
 \code{[]} создаёт пустой список.
 
@@ -1549,10 +1664,10 @@ if (condition) {
 	commands
 };
 \end{lstlisting}
-где \code{condition} любое выражение возвращающее значение типа \code{bool} и \code{commands} любой набор команд.
+где \code{condition} любое выражение возвращающее значение типа \bool и \code{commands} любой набор команд.
 
 Также допускаются и следующее упрощённые формы:
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 if true  { commands };
 if !true { commands };
 if @var  { commands };
@@ -1594,15 +1709,24 @@ if (condition1) {
 
 Условия по умолчанию:
 \begin{icItems}
-	\item для \code{bool} - \code{# == true};
-	\item для \code{int} - \code{# != 0};
-	\item для \code{double} - \code{# != 0.0};
-	\item для \code{string} - \code{!#'empty};
-	\item для \code{list} - \code{!#'empty};
-	\item для \code{object} - \code{!#'empty};
-	\item для \code{set} - \code{!#'empty};
-	\item для \code{request} - \code{!#'empty};
-	\item для \code{element} - \code{#.isValid}.
+\item
+	для \bool - \code{# == true};
+\item
+	для \integer - \code{# != 0};
+\item
+	для \double - \code{# != 0.0};
+\item
+	для \str - \code{!#'empty};
+\item
+	для \listtype - \code{!#'empty};
+\item
+	для \object - \code{!#'empty};
+\item
+	для \set - \code{!#'empty};
+\item
+	для \request - \code{!#'empty};
+\item
+	для \element - \code{#.isValid}.
 \end{icItems}
 
 Если использовать условию по умолчанию, то конструкция будет выглядеть следующим образом -
@@ -1619,7 +1743,7 @@ exists(expression, condition);
 Конструкция \code{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \code{exists}. Также повторно использовать значения выражения. В случае когда условие конструкции \code{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \code{exists} под именем \code{@}.
 
 \indent Простой и элементарный пример -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 if exists(23 + 3, # > 20) {
 	_log.out "@ = " @; `` @ = 26
 };
@@ -1630,7 +1754,7 @@ if exists(23 + 3, # > 20) {
 \code{for any} позволяет повторно использовать любое значение.
 
 \noindent Пример -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 for any(23 + 3) {
 	_log.out "@ = " @; `` @ = 26
 };
@@ -1644,12 +1768,18 @@ for any(23 + 3) {
 Язык icL предоставляет следующие типы циклов:
 
 \begin{icItems}
-	\item \code{for} - универсальный цикл;
-	\item \code{while} - условное повторение кода;
-	\item \code{do while} - цикл с постусловий;
-	\item \code{for} - прохождение коллекций;
-	\item \code{filter} - выборочное прохождение коллекций;
-	\item \code{range} - частичное прохождение коллекций.
+\item
+	\code{for} - универсальный цикл;
+\item
+	\code{while} - условное повторение кода;
+\item
+	\code{do while} - цикл с постусловий;
+\item
+	\code{for} - прохождение коллекций;
+\item
+	\code{filter} - выборочное прохождение коллекций;
+\item
+	\code{range} - частичное прохождение коллекций.
 \end{icItems}
 
 
@@ -1658,10 +1788,14 @@ for any(23 + 3) {
 {\bf Универсальный цикл} позволяет полностью управлять ход выполнения кода. Он содержит:
 
 \begin{icItems}
-	\item \code{initialization} - код отвечающий за инициализацию;
-	\item \code{condition} - условие, которая проверяется перед запуском цикла;
-	\item \code{step} - код, отвечающий за перехода на следующую итерацию цикла.
-	\item \code{commands} - тело цикла.
+\item
+	\code{initialization} - код отвечающий за инициализацию;
+\item
+	\code{condition} - условие, которая проверяется перед запуском цикла;
+\item
+	\code{step} - код, отвечающий за перехода на следующую итерацию цикла.
+\item
+	\code{commands} - тело цикла.
 \end{icItems}
 
 \noindent Выглядит она следующим образом -
@@ -1672,7 +1806,7 @@ for (initialization, condition, step) {
 \end{lstlisting}
 
 \noindent Наглядный пример -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 for (@i = 0, i < 5, @i = @i + 1) {
 	_log:out @i;
 };
@@ -1719,7 +1853,7 @@ do {
 \subsubsection{\lstinline`for` - прохождение коллекций}
 
 {Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать универсальный цикл -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 @list = ["apple" "banana" "fruit"];
 
 for (@i = 0; @i < @list'length; @i = @i + 1) {
@@ -1728,7 +1862,7 @@ for (@i = 0; @i < @list'length; @i = @i + 1) {
 \end{lstlisting}
 
 Или использовать {\bf прохождение коллекций} -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 @list = ["apple" "banana" "fruit"];
 
 for (@list) {
@@ -1750,7 +1884,7 @@ filter (collection, condition) {
 \end{lstlisting}
 
 \noindent Пример "Строки, содержащие букву а" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 @list = ["apple" "banana" "fruit"];
 
 filter (@list, @ << "a") {
@@ -1759,7 +1893,7 @@ filter (@list, @ << "a") {
 \end{lstlisting}
 
 \noindent Пример "Чётные элементы списка" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 @list = ["apple" "banana" "fruit"];
 
 filter (@list, # \ 2 == 0) {
@@ -1769,7 +1903,7 @@ filter (@list, # \ 2 == 0) {
 
 \subsubsection{\lstinline`range` - частичное прохождение коллекций}
 
-{\bf Частичное прохождение} позволяет выполнить код для интервала коллекций. Интервал определяется одной или двум условий. Первое условие используется для поиска начала интервала. Второе условие - для поиска конца, если оно отсутствует, будет использоваться первое условие. В отсутствия подходящих элементов, тела цикла не будет выполнена. Чтобы выбирать первый или последний элемент (в зависимость от предназначения условии), использует выражение \code{true}.
+{\bf Частичное прохождение} позволяет выполнить код для интервала коллекций. Интервал определяется одной или двум условий. Первое условие используется для поиска начала интервала. Второе условие - для поиска конца, если оно отсутствует, будет использоваться первое условие. В отсутствия подходящих элементов, тела цикла не будет выполнена. Чтобы выбирать первый или последний элемент (в зависимость от предназначения условии), использует выражение \true.
 
 \noindent С одним условием -
 \begin{lstlisting}[numbers=none]
@@ -1786,7 +1920,7 @@ range (collection, condition_for_begin, condition_for_end) {
 \end{lstlisting}
 
 \noindent Пример "От banana до kiwi" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 @list = ["apple" "banana" "fruit" "kiwi"];
 
 range (@list, @ == "banana", @ == "kiwi") {
@@ -1795,11 +1929,11 @@ range (@list, @ == "banana", @ == "kiwi") {
 \end{lstlisting}
 
 \noindent Пример "От второго до последнего" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 @list = ["apple" "banana" "fruit" "kiwi"];
 
 range (@list, # == 2, true) {
-@; `` fruit, kiwi
+	@; `` fruit, kiwi
 }
 \end{lstlisting}
 
@@ -1885,35 +2019,39 @@ $always "userScript2.js";
 
 Описание всех частей функции:
 \begin{icItems}
-	\item \code{name} - {\bf название функции};
-	\item \code{parameters} - {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен;
-	\item \code{return_type} - {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \code{void}. Чтобы возвращать значение используется команда \code{@ = value};
-	\item \code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
+\item
+	\code{name} - {\bf название функции};
+\item
+	\code{parameters} - {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен;
+\item
+	\code{return_type} - {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \void. Чтобы возвращать значение используется команда \code{@ = value};
+\item
+	\code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
 \end{icItems}
 
 \noindent Пример "Полноценная функция" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 !sum = <int>a <int>b : int {
 	@ = @a + @b;
 };
 \end{lstlisting}
 
 \noindent Пример "Функция без аргументов" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 !pi = double {
 	@ = 3.14;
 };
 \end{lstlisting}
 
 \noindent Пример "Функция без типа возвращаемой значений" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 !out = <int>a <int>b {
 	_log.out @a @b;
 };
 \end{lstlisting}
 
 \noindent Пример "Функция без аргументов и тип возвращаемой значений" -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 !do = {
 	_log.out "It's work!";
 };
@@ -1928,7 +2066,7 @@ $always "userScript2.js";
 где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции).
 
 \noindent Пример вызова функций, объявленных выше -
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}
 !sum 2 3; 	`` returns 5
 !pi; 		`` returns 3.14
 !out 4 5; 	`` returns void
@@ -1941,53 +2079,88 @@ $always "userScript2.js";
 \newpage
 \section{Строки}
 
-{\bf Строки} (тип \code{string}) позволяет хранить и манипулировать фрагменты текста. 
+{\bf Строки} (тип \str) позволяет хранить и манипулировать фрагменты текста. 
 
-В контексте строк появляется ещё один тип данных \code{char}, он представляет символ в составе строки, и позволяет редактировать строку.
+В контексте строк появляется ещё один тип данных \chartype, он представляет символ в составе строки, и позволяет редактировать строку.
 
-Тип данных \code{char} имеет свойство \code{code : int} - код символа и его можно преобразовать в \code{string}.
+Тип данных \chartype имеет свойство \code{code : int} - код символа и его можно преобразовать в \str.
 
 Строки имеют следующее дополнительные свойства:
 \begin{icItems}
-	\item \code{'empty : bool} - "пустая", строка считает пустой если количество содержащих символов равна нулю (доступно только для чтения);
-	\item \code{'length : int} - "длина", длина строки равна количеству символов в строке;
-	\item \code{'last : char} - последний символ строки.
-	\item \lstinline|'(<int> n) : char| - n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
+\item
+	\code{string'empty : bool} - "пустая", строка считает пустой если количество содержащих символов равна нулю (доступно только для чтения);
+\item
+	\code{string'length : int} - "длина", длина строки равна количеству символов в строке;
+\item
+	\code{string'last : char} - последний символ строки.
+\item
+	\lstinline|string'(<int> n) : char| - n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
 \end{icItems}
 
 Строки имеют следующий набор дополнительных методов:
 \begin{icItems}
-	\item \lstinline|.append <string>str : string| - вставит стоку в конце строки;
-	\item \lstinline|.append <char>ch : string| - вставит символ в конце строки;
-	\item \lstinline|.at <int>i : char| - возвращает ссылка на \code{i}-й символ;
-	\item \lstinline|.beginsWith <string>str : bool| - возвращает \code{true} если начало строки совпадает с \code{str}, иначе \code{false};
-	\item \lstinline|.beginsWith <char>ch : bool|  - возвращает \code{true} если первый символ строки равен  \code{ch}, иначе \code{false};
-	\item \lstinline|.compare <string>str <bool>caseSensitive = true : bool| - сравнивает строки, возвращает \code{true} если они равны, иначе \code{false}; аргумент \code{caseSensitive} может быть пропущен, если установить его в \code{false} то регистр букв будет проигнорирован;
-	\item \lstinline|.count <string>str : int| - считает сколько раз подстрока \code{str} встречается в строке;
-	\item \lstinline|.count <char>ch : int| - считает сколько раз символ \code{ch} встречается в строке;
-	\item \lstinline|.endsWith <string>str : bool| - возвращает \code{true} если конец строки совпадает с \code{str}, иначе \code{false};
-	\item \lstinline|.endsWith <char>ch : bool| - возвращает \code{true} если последний символ строки равен \code{ch}, иначе \code{false};
-	\item \lstinline|.indexOf <string>str <int>startPos = 0 : int| - возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1;
-	\item \lstinline|.indexOf <char>ch <int>startPos = -1 : int| - возвращает индекс первой нахождения символа \code{ch} в строке, ища вперёд с позиции \code{startPos}, если символ не найден возвращает -1;
-	\item \lstinline|.insert <string>str <int>pos : string| - вставит строку \code{str} в позиции \code{pos};
-	\item \lstinline|.insert <char>ch <int>pos : string| - вставит символ \code{ch} в позиции \code{pos};
-	\item \lstinline|.lastIndexOf <string>str <int>startPos = -1 : int| - возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1;
-	\item \lstinline|.lastIndexOf <char>ch <int>startPos = -1 : int| - возвращает индекс первой нахождения символа \code{ch} в строке, ища назад с позиции \code{startPos}, если символ не найден возвращает -1;
-	\item \lstinline|.left <int>n : string| - возвращает подстроку содержащая первый \code{n} символы;
-	\item \lstinline|.leftJustified <int>width <string>fillChar <bool>truncate = false : string| - возвращает строку длины \code{width}, содержащую эту строку, в конце ставится \code{width - .length} символов \code{fillChar}; если \code{truncate == true} и \code{width < .length} то последние \code{.length - width} символы будут удалены;
-	\item \lstinline|.mid <int>pos <int>n = -1 : string| - возвращает строку содержащую \code{n} символы строки, начиная с позиции \code{pos}; будет возвращена пустая строка если установленный интервал выходит за рамки строки; Если \code{n == -1} то будут возвращены все доступные символы начиная с позицией \code{pos};
-	\item \lstinline|.prepend <string>str : string| - вставит строку \code{str} в начале строки;
-	\item \lstinline|.prepend <char>ch : string| - вставит символ \code{ch} в начале строки;
-	\item \lstinline|.remove <int>pos <int>n : string| - удаляет \code{n} символы строки начиная с позицией \code{pos};
-	\item \lstinline|.remove <string>str <bool>caseSensitive = true : string| - удаляет каждое нахождения подстроки \code{str} в строке; аргумент \code{caseSensitive} может быть пропущен, если установить его в \code{false} то регистр букв будет проигнорирован;
-	\item \lstinline|.replace <int>pos <int>n <string>after : string| - заменяет интервал установленный позицией \code{pos} и количеством символов \code{n} строкой \code{after};
-	\item \lstinline|.replace <string>before <string>after : string| - заменяет каждое нахождение подстроки \code{before} подстрокой \code{after};
-	\item \lstinline|.replace <char>before <char>after : string| - заменяет каждый символ \code{before} на символе \code{after};
-	\item \lstinline|.right <int>n : string| - возвращает строку содержащую последние \code{n} символы строки;
-	\item \lstinline|.rightJustified <int>width <string>fillChar <bool>truncate = false : string| - возвращает строку длины \code{width}, содержащую эту строку, в начале ставится \code{width - .length} символов \code{fillChar}; если \code{truncate == true} и \code{width < .length} то первые \code{.length - width} символы будут удалены;
-	\item \lstinline|.split <string>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list| - разрывает строку на подстроки при каждой нахождения подстроки \code{separator} и собирает список из этих строк; если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки;
-	\item \lstinline|.split <char>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list| - разрывает строку на подстроки при каждой нахождения символа \code{separator} и собирает список из этих строк; если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки;
-	\item \lstinline|.substring <int>begin <int>end : string| - возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
+\item
+	\lstinline|string.append <string>str : string| - вставит стоку в конце строки;
+\item
+	\lstinline|string.append <char>ch : string| - вставит символ в конце строки;
+\item
+	\lstinline|string.at <int>i : char| - возвращает ссылка на \code{i}-й символ;
+\item
+	\lstinline|string.beginsWith <string>str : bool| - возвращает \true если начало строки совпадает с \code{str}, иначе \false;
+\item
+	\lstinline|string.beginsWith <char>ch : bool|  - возвращает \true если первый символ строки равен  \code{ch}, иначе \false;
+\item
+	\lstinline|string.compare <string>str <bool>caseSensitive = true : bool| - сравнивает строки, возвращает \true если они равны, иначе \false; аргумент \code{caseSensitive} может быть пропущен, если установить его в \false то регистр букв будет проигнорирован;
+\item
+	\lstinline|string.count <string>str : int| - считает сколько раз подстрока \code{str} встречается в строке;
+\item
+	\lstinline|string.count <char>ch : int| - считает сколько раз символ \code{ch} встречается в строке;
+\item
+	\lstinline|string.endsWith <string>str : bool| - возвращает \true если конец строки совпадает с \code{str}, иначе \false;
+\item
+	\lstinline|string.endsWith <char>ch : bool| - возвращает \true если последний символ строки равен \code{ch}, иначе \false;
+\item
+	\lstinline|string.indexOf <string>str <int>startPos = 0 : int| - возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1;
+\item
+	\lstinline|string.indexOf <char>ch <int>startPos = -1 : int| - возвращает индекс первой нахождения символа \code{ch} в строке, ища вперёд с позиции \code{startPos}, если символ не найден возвращает -1;
+\item
+	\lstinline|string.insert <string>str <int>pos : string| - вставит строку \code{str} в позиции \code{pos};
+\item
+	\lstinline|string.insert <char>ch <int>pos : string| - вставит символ \code{ch} в позиции \code{pos};
+\item
+	\lstinline|string.lastIndexOf <string>str <int>startPos = -1 : int| - возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1;
+\item
+	\lstinline|string.lastIndexOf <char>ch <int>startPos = -1 : int| - возвращает индекс первой нахождения символа \code{ch} в строке, ища назад с позиции \code{startPos}, если символ не найден возвращает -1;
+\item
+	\lstinline|string.left <int>n : string| - возвращает подстроку содержащая первый \code{n} символы;
+\item
+	\lstinline|string.leftJustified <int>width <string>fillChar <bool>truncate = false : string| - возвращает строку длины \code{width}, содержащую эту строку, в конце ставится \code{width - .length} символов \code{fillChar}; если \code{truncate == true} и \code{width < .length} то последние \code{.length - width} символы будут удалены;
+\item
+	\lstinline|string.mid <int>pos <int>n = -1 : string| - возвращает строку содержащую \code{n} символы строки, начиная с позиции \code{pos}; будет возвращена пустая строка если установленный интервал выходит за рамки строки; Если \code{n == -1} то будут возвращены все доступные символы начиная с позицией \code{pos};
+\item
+	\lstinline|string.prepend <string>str : string| - вставит строку \code{str} в начале строки;
+\item
+	\lstinline|string.prepend <char>ch : string| - вставит символ \code{ch} в начале строки;
+\item
+	\lstinline|string.remove <int>pos <int>n : string| - удаляет \code{n} символы строки начиная с позицией \code{pos};
+\item
+	\lstinline|.remove <string>str <bool>caseSensitive = true : string| - удаляет каждое нахождения подстроки \code{str} в строке; аргумент \code{caseSensitive} может быть пропущен, если установить его в \false то регистр букв будет проигнорирован;
+\item
+	\lstinline|string.replace <int>pos <int>n <string>after : string| - заменяет интервал установленный позицией \code{pos} и количеством символов \code{n} строкой \code{after};
+\item
+	\lstinline|string.replace <string>before <string>after : string| - заменяет каждое нахождение подстроки \code{before} подстрокой \code{after};
+\item
+	\lstinline|string.replace <char>before <char>after : string| - заменяет каждый символ \code{before} на символе \code{after};
+\item
+	\lstinline|string.right <int>n : string| - возвращает строку содержащую последние \code{n} символы строки;
+\item
+	\lstinline|string.rightJustified <int>width <string>fillChar <bool>truncate = false : string| - возвращает строку длины \code{width}, содержащую эту строку, в начале ставится \code{width - .length} символов \code{fillChar}; если \code{truncate == true} и \code{width < .length} то первые \code{.length - width} символы будут удалены;
+\item
+	\lstinline|string.split <string>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list| - разрывает строку на подстроки при каждой нахождения подстроки \code{separator} и собирает список из этих строк; если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки; если \code{keepEmptyParts == false} то пустые строки пропускаются
+\item
+	\lstinline|string.split <char>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list| - разрывает строку на подстроки при каждой нахождения символа \code{separator} и собирает список из этих строк; это перегруженная функция;
+\item
+	\lstinline|string.substring <int>begin <int>end : string| - возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
 \end{icItems}
 
 Некоторые методы пропущены, они будут представлены в главе \ref{regex};
@@ -2067,6 +2240,44 @@ $always "userScript2.js";
 Для освоение данного материала нужны знания в программирование. В ней не будет прописано обозначения технических терминов. Но Вы не расстраивайтесь, всё можно погуглить. Несмотря на то что язык icL - простой, на него можно реализовать сложные скрипты, работы с базами данных, регулярных выражении и много другое, ожидается сильное развитие данной части в следующих версиях языка icL.
 
 \section{Регулярные выражения {\color{bluemarin} regex}}
+
+Для объявления {\bf регулярных выражения} используется литерал \code{//pattern//}, где \code{pattern} - шаблон регулярней выражений.
+
+Для регулярных выражений доступны следующие операторы:
+\begin{icItems}
+\item
+	3-ого ранга:
+	\begin{icItems}
+	\item
+		\lstinline|string << regex : bool| - возвращает \true, если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе \false.
+	\item
+		\lstinline|string <* regex : list| - возвращает список захваченных подстрок если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе пустой список.
+	\end{icItems}
+
+\item 
+	5-ого ранга: \lstinline|string * regex : bool| - возвращает \true, если строка подходит по шаблону, иначе \false;
+
+\item 
+	6$^+$-ого ранга: \lstinline|string ** regex| - возвращает список захваченных строк, если строка подходит по шаблону, иначе пустой список.
+\end{icItems}
+
+\
+
+Методы классы \str, имеющие параметры типа \regex:
+\begin{icItems}
+\item
+	\lstinline|string.count <regex>re : int| - считает количество подстрок подходящие по шаблону \code{re};
+\item
+	\lstinline|string.indexOf <regex>re <int>startPos = -1 : int| - возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища вперёд с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1;
+\item
+	\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int| - возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища назад с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1;
+\item
+	\lstinline|string.remove <regex>re : string| - удаляет из строки все фрагменты подходящие по шаблону \code{re};
+\item 
+	\lstinline|string.replace <regex>re <string>after : string| - заменяет каждый фрагмент, подходящий по шаблону \code{re}, строкой \code{after};
+\item
+	\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list| - разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \code{re} и собирает список этих строк; если \code{keepEmptyParts == false} то пустые строки пропускаются.
+\end{icItems}
 
 \newpage
 \section{Прогресс}
