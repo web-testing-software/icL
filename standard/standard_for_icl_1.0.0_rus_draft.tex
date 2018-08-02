@@ -2093,7 +2093,7 @@ $always "path/to/file.js";
 \item
 	\code{string'last : char};
 \item
-	\lstinline|string'(<int> n) : char|.
+	\lstinline|string'(<int>n) : char|.
 \end{icItems}
 
 \
@@ -2110,8 +2110,11 @@ $always "path/to/file.js";
 @empty'length; `` 0
 @fonts'length; `` 32
 
+@empty'last; `` error
+@fonts'last; `` "r"
+
 @empty'0; `` error
-@fonts'0; `` A
+@fonts'0; `` "A"
 \end{lstlisting}
 
 \subsubsection{\code{string'empty : bool}}
@@ -2335,6 +2338,84 @@ n-й символ строки. n должен быть целым литера�
 
 % \subsubsection{}
 
+\newpage
+\section{Списки}
+
+{\bf Списки} (тип \code{string}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
+
+\subsection{Свойства}
+
+Списки имеют следующее дополнительные свойства:
+\begin{icItems}
+\item
+	\lstinline|list'empty : bool|;
+\item
+	\lstinline|list'length : int|;
+\item
+	\lstinline|list'last : string|;
+\item
+	\lstinline|list'(<int>n) : string|.
+\end{icItems}
+
+На листинге \ref{listprop} представлен код, использующий выше перечисленных свойства.
+
+\begin{lstlisting}[caption=Свойства класса list, label=listprop]
+@empty = [];
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@empty'empty; `` true
+@fonts'empty; `` false
+
+@empty'length; `` 0
+@fonts'length; `` 4
+
+@empty'last; `` error
+@fonts'last; `` "Courier"
+
+@empty'0; `` error
+@fonts'0; `` "Arial"
+\end{lstlisting}
+
+\subsubsection{\lstinline|list'empty : bool|}
+
+Список считается пустым если он не содержит ни одну строку.
+
+\subsubsection{\lstinline|list'length : int|}
+
+Длина списка равна количеству строк в списке.
+
+\subsubsection{\lstinline|list'last : string|}
+
+Последняя строка в списке, то же соме что и \lstinline|list'at (list'length - 1)|.
+
+\subsubsection{\lstinline|list'(<int>n) : string|}
+
+n-я строка списка, n должен быть целым литералом.
+
+\subsection{Методы}
+
+Списки имеют следующий набор дополнительных методов:
+\begin{icItems}
+\item \lstinline|list.append <string>str : list|;
+\item \lstinline|list.at <int>i : string|;
+\item \lstinline|list.contains <string>str <bool>caseSensitive = true : bool|;
+\item \lstinline|list.filter <string>str <bool>caseSensitive = true : bool|;
+\item \lstinline|list.indexOf <string>str <int>start = -1 : int|;
+\item \lstinline|list.insert <int>index <string>str : list|;
+\item \lstinline|list.join <string>separator : string|;
+\item \lstinline|list.lastIndexOf <string>str <int>start = -1|;
+\item \lstinline|list.mid <int>pos <int>length : list|;
+\item \lstinline|list.prepend <string>str : list|;
+\item \lstinline|list.move <int>from <int>to : list|;
+\item \lstinline|list.removeAll <string>str : list|;
+\item \lstinline|list.removeAt <int>i : list|;
+\item \lstinline|list.removeDuplicates : list|;
+\item \lstinline|list.removeFirst : list|;
+\item \lstinline|list.removeLast : list|;
+\item \lstinline|list.removeOne <string>str : list|;
+\item \lstinline|list.replaceInStrings <string>before <string>after : list|;
+\item \lstinline|list.sort <bool>caseSensitive = true : list|.
+\end{icItems}
 
 \newpage
 \part{Материал для программистов}
@@ -2345,7 +2426,7 @@ n-й символ строки. n должен быть целым литера�
 
 Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//mods|, где \code{pattern} - шаблон регулярней выражений, \code{mods} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?<name>content)|.
 
-Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|). Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
+Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| и \lstinline|!|. Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
 
 Для того чтобы захватить начало строки можно использовать \lstinline|^| и \lstinline|\A|, а для конца строки - \lstinline|$| и \lstinline|\z|. Первый вариант несмотря на его популярность может срабатывать неправильно, так как им захватывается начало и конец строки в контексте многострочного текста.
 
