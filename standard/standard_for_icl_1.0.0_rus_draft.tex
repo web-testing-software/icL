@@ -2080,7 +2080,7 @@ $always "path/to/file.js";
 
 В контексте строк появляется ещё один тип данных \chartype{}, он представляет символ в составе строки, и позволяет редактировать строку.
 
-Тип данных \chartype{} имеет свойство \code{code : int} - код символа и его можно преобразовать в \str{}.
+Тип данных \chartype{} имеет свойство \code{code : int} - код символа. Символ можно преобразовать в \str{} и он преобразуется автоматически при вызове функций. Тип \chartype{} нельзя передать как параметр функций.
 
 \subsection{Свойства}
 
@@ -2137,35 +2137,21 @@ n-й символ строки. n должен быть целым литера�
 \item
 	\lstinline|string.append <string>str : string|;
 \item
-	\lstinline|string.append <char>ch : string|;
-\item
 	\lstinline|string.at <int>i : char|;
 \item
 	\lstinline|string.beginsWith <string>str : bool|;
-\item
-	\lstinline|string.beginsWith <char>ch : bool|;
 \item
 	\lstinline|string.compare <string>str <bool>caseSensitive = true : bool|;
 \item
 	\lstinline|string.count <string>str : int|;
 \item
-	\lstinline|string.count <char>ch : int|;
-\item
 	\lstinline|string.endsWith <string>str : bool|;
-\item
-	\lstinline|string.endsWith <char>ch : bool|;
 \item
 	\lstinline|string.indexOf <string>str <int>startPos = 0 : int|;
 \item
-	\lstinline|string.indexOf <char>ch <int>startPos = -1 : int|;
-\item
 	\lstinline|string.insert <string>str <int>pos : string|;
 \item
-	\lstinline|string.insert <char>ch <int>pos : string|;
-\item
 	\lstinline|string.lastIndexOf <string>str <int>startPos = -1 : int|;
-\item
-	\lstinline|string.lastIndexOf <char>ch <int>startPos = -1 : int|;
 \item
 	\lstinline|string.left <int>n : string|;
 \item
@@ -2175,8 +2161,6 @@ n-й символ строки. n должен быть целым литера�
 \item
 	\lstinline|string.prepend <string>str : string|;
 \item
-	\lstinline|string.prepend <char>ch : string|;
-\item
 	\lstinline|string.remove <int>pos <int>n : string|;
 \item
 	\lstinline|.remove <string>str <bool>caseSensitive = true : string|;
@@ -2185,17 +2169,15 @@ n-й символ строки. n должен быть целым литера�
 \item
 	\lstinline|string.replace <string>before <string>after : string|;
 \item
-	\lstinline|string.replace <char>before <char>after : string|;
-\item
 	\lstinline|string.right <int>n : string|;
 \item
 	\lstinline|string.rightJustified <int>width <string>fillChar <bool>truncate = false : string|;
 \item
 	\lstinline|string.split <string>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list|;
 \item
-	\lstinline|string.split <char>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list|;
+	\lstinline|string.substring <int>begin <int>end : string|;
 \item
-	\lstinline|string.substring <int>begin <int>end : string|.
+	\lstinline|string.trim <bool>justWhitespace = true : string|.
 \end{icItems}
 
 Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{stringprop}.
@@ -2263,10 +2245,6 @@ n-й символ строки. n должен быть целым литера�
 
 Вставит стоку в конце строки.
 
-\subsubsection{\lstinline|string.append <char>ch : string|}
-
-Вставит символ в конце строки.
-
 \subsubsection{\lstinline|string.at <int>i : char|}
 
 Возвращает ссылка на \code{i}-й символ.
@@ -2274,10 +2252,6 @@ n-й символ строки. n должен быть целым литера�
 \subsubsection{\lstinline|string.beginsWith <string>str : bool|}
 
 Возвращает \true{}, если начало строки совпадает с \code{str}, иначе \false{}.
-
-\subsubsection{\lstinline|string.beginsWith <char>ch : bool|}
-
-Возвращает \true{}, если первый символ строки равен  \code{ch}, иначе \false{}.
 
 \subsubsection{\lstinline|string.compare <string>str <bool>caseSensitive = true : bool|}
 
@@ -2287,41 +2261,21 @@ n-й символ строки. n должен быть целым литера�
 
 Считает сколько раз подстрока \code{str} встречается в строке.
 
-\subsubsection{\lstinline|string.count <char>ch : int|}
-
-Считает сколько раз символ \code{ch} встречается в строке.
-
 \subsubsection{\lstinline|string.endsWith <string>str : bool|}
 
 Возвращает \true{}, если конец строки совпадает с \code{str}, иначе \false{}.
-
-\subsubsection{\lstinline|string.endsWith <char>ch : bool|}
-
-Возвращает \true{}, если последний символ строки равен \code{ch}, иначе \false{}.
 
 \subsubsection{\lstinline|string.indexOf <string>str <int>startPos = 0 : int|}
 
 Возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1.
 
-\subsubsection{\lstinline|string.indexOf <char>ch <int>startPos = -1 : int|}
-
-Возвращает индекс первой нахождения символа \code{ch} в строке, ища вперёд с позиции \code{startPos}, если символ не найден возвращает -1.
-
 \subsubsection{\lstinline|string.insert <string>str <int>pos : string|}
 
 Вставит строку \code{str} в позиции \code{pos}.
 
-\subsubsection{\lstinline|string.insert <char>ch <int>pos : string|}
-
-Вставит символ \code{ch} в позиции \code{pos}.
-
 \subsubsection{\lstinline|string.lastIndexOf <string>str <int>startPos = -1 : int|}
 
 Возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1.
-
-\subsubsection{\lstinline|string.lastIndexOf <char>ch <int>startPos = -1 : int|}
-
-Возвращает индекс первой нахождения символа \code{ch} в строке, ища назад с позиции \code{startPos}, если символ не найден возвращает -1.
 
 \subsubsection{\lstinline|string.left <int>n : string|}
 
@@ -2339,10 +2293,6 @@ n-й символ строки. n должен быть целым литера�
 
 Вставит строку \code{str} в начале строки.
 
-\subsubsection{\lstinline|string.prepend <char>ch : string|}
-
-Вставит символ \code{ch} в начале строки.
-
 \subsubsection{\lstinline|string.remove <int>pos <int>n : string|}
 
 Удаляет \code{n} символы строки начиная с позицией \code{pos}.
@@ -2358,10 +2308,6 @@ n-й символ строки. n должен быть целым литера�
 \subsubsection{\lstinline|string.replace <string>before <string>after : string|}
 
 Заменяет каждое нахождение подстроки \code{before} подстрокой \code{after}.
-
-\subsubsection{\lstinline|string.replace <char>before <char>after : string|}
-
-Заменяет каждый символ \code{before} на символе \code{after}.
 
 \subsubsection{\lstinline|string.right <int>n : string|}
 
@@ -2383,7 +2329,12 @@ n-й символ строки. n должен быть целым литера�
 
 Возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
 
+\subsubsection{\lstinline|string.trim <bool>justWhitespace = true : string|}
+
+Возвращает строку, копия текущей из которого удаляются пробельные символы с начало и конце строки. Если \lstinline|justWhitespace == false|, то будут удалены все знаки которые не является буквой или цифрой.
+
 % \subsubsection{}
+
 
 \newpage
 \part{Материал для программистов}
@@ -2552,7 +2503,7 @@ n-й символ строки. n должен быть целым литера�
 {\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
 
 \begin{icEnumResume}
-	\item - Дополнительные возможности
+	\item - Дополнительные возможности tabs files make
 	\item - Регулярные выражения regex
 	\item - Механизм состояний
 	\item - Базы данных (только SQLite в первой версии)
