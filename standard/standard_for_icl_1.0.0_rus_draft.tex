@@ -62,6 +62,10 @@
 \definecolor{function}{RGB}{11, 145, 89}
 \definecolor{blue2}{RGB}{15, 92, 198}
 
+\newcommand{\ferror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{function}{\textcolor{white}{#1}}}}
+
+\newcommand{\cerror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{red!75!blue}{\textcolor{white}{#1}}}}
+
 \lstdefinelanguage{icL}{
 	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
@@ -71,7 +75,7 @@
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -1978,7 +1982,7 @@ $run { window.a = @{var} }
 
 \code{[w3c]} Команда \lstinline|$run| получает переменное количество переменных. Они передаются в коде на языке JavaScript в виде аргументов вызова функций. Доступ к ним осуществляется с помощью переменной \code{arguments}. Код использующий данную тактику представлен на листинге \ref{jsrunex2}, его можно сравнивать с листингом \ref{jsrunex1}.
 
-\begin{lstlisting}[caption=Выполнение кода на языке JavaScript (w3c) label=jsrunex2]
+\begin{lstlisting}[caption=Выполнение кода на языке JavaScript (w3c), label=jsrunex2]
 @var = 2;
 $run @var { window.a = arguments[0] }
 \end{lstlisting}
@@ -1992,6 +1996,8 @@ $run @var { window.a = arguments[0] }
 $file "path/to/file.js";
 \end{lstlisting}
 
+Возможные ошибки: \ferror{FileNotFound}.
+
 \subsection{Пользовательские скрипты}
 
 \lstinline|[icL]| {\bf Пользовательские скрипты} выполняются до загрузки страницы, при переходе на страницу. Скрипт можно подкрепить как к текущей вкладке (\lstinline|$user|) так и ко всех вкладок из сессии (\lstinline|$always|).
@@ -2001,6 +2007,8 @@ $file "path/to/file.js";
 $user "path/to/file.js";
 $always "path/to/file.js";
 \end{lstlisting}
+
+Возможные ошибки: \ferror{FileNotFound}.
 
 \newpage
 \section{Функции}
@@ -2129,9 +2137,13 @@ $always "path/to/file.js";
 
 Последний символ строки, то же самое что и \lstinline|string.at (string'length - 1)|.
 
+Возможные ошибки: \ferror{OutOfBounds}.
+
 \subsubsection{\lstinline|string'(<int> n) : char|}
 
 n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
+
+Возможные ошибки: \ferror{OutOfBounds}.
 
 \subsection{Методы}
 
@@ -2229,7 +2241,7 @@ n-й символ строки. n должен быть целым литера�
 @data.prepend "11";     `` "1100010"
 @data.prepend @fonts'0; `` "A1100010"
 
-@data.remove 2 2; `` "11010"
+@data.remove 2 2;  `` "11010"
 @data.remove "01"; `` "110"
 
 @data.replace 2 1 "0101"; `` "110101"
@@ -2246,11 +2258,13 @@ n-й символ строки. n должен быть целым литера�
 
 \subsubsection{\lstinline|string.append <string>str : string|}
 
-Вставит стоку в конце строки.
+Вставит строку \code{str} в конце строки.
 
 \subsubsection{\lstinline|string.at <int>i : char|}
 
 Возвращает ссылка на \code{i}-й символ.
+
+Возможные ошибки: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|string.beginsWith <string>str : bool|}
 
@@ -2300,7 +2314,7 @@ n-й символ строки. n должен быть целым литера�
 
 Удаляет \code{n} символы строки начиная с позицией \code{pos}.
 
-\subsubsection{\lstinline|.remove <string>str <bool>caseSensitive = true : string|}
+\subsubsection{\lstinline|string.remove <string>str <bool>caseSensitive = true : string|}
 
 Удаляет каждое нахождения подстроки \code{str} в строке. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{} то регистр букв будет проигнорирован.
 
@@ -2388,9 +2402,13 @@ n-й символ строки. n должен быть целым литера�
 
 Последняя строка в списке, то же соме что и \lstinline|list'at (list'length - 1)|.
 
+Возможные ошибки: \ferror{OutOfBounds}.
+
 \subsubsection{\lstinline|list'(<int>n) : string|}
 
 n-я строка списка, n должен быть целым литералом.
+
+Возможные ошибки: \ferror{OutOfBounds}.
 
 \subsection{Методы}
 
@@ -2413,7 +2431,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.removeDuplicates : list|;
 \item \lstinline|list.removeFirst : list|;
 \item \lstinline|list.removeLast : list|;
-\item \lstinline|list.removeOne <string>str : list|;
+\item \lstinline|list.removeOne <string>str : bool|;
 \item \lstinline|list.replaceInStrings <string>before <string>after : list|;
 \item \lstinline|list.sort <bool>caseSensitive = true : list|.
 \end{icItems}
@@ -2437,8 +2455,8 @@ n-я строка списка, n должен быть целым литера�
 @fonts.lastIndexOf "Arial"; `` 0
 
 @fonts.mid 2 2;          `` ["Times" "Courier"]
-@fonts.prepend "DejaVu"; `` ["DejaVu" "Arial" "DejaVu" "Helvetica" "Times" "Courier"]
-@fonts.move 1 2;         `` ["DejaVu" "DejaVu" "Arial" "Helvetica" "Times" "Courier"]
+@fonts.prepend "DejaVu"; `` ["DejaVu" "Arial" "DejaVu" .. "Courier"]
+@fonts.move 1 2;         `` ["DejaVu" "DejaVu" "Arial" "Helvetica" ..]
 
 @fonts.removeAll "Helvetica"; `` ["DejaVu" "DejaVu" "Arial" "Times" "Courier"]
 @fonts.removeAt 3;            `` ["DejaVu" "DejaVu" "Arial" "Courier"]
@@ -2462,6 +2480,8 @@ n-я строка списка, n должен быть целым литера�
 \subsubsection{\lstinline|list.at <int>i : string|}
 
 Возвращает \code{i}-й строка.
+
+Возможные ошибки: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.contains <string>str <bool>caseSensitive = true : bool|}
 
@@ -2499,6 +2519,8 @@ n-я строка списка, n должен быть целым литера�
 
 Переставит строку с индексом \code{from} в позиции с индексом \code{to}.
 
+Возможные ошибки: \ferror{OutOfBounds}.
+
 \subsubsection{\lstinline|list.removeAll <string>str : list|}
 
 Удаляет все нахождения строке \code{str}.
@@ -2506,6 +2528,8 @@ n-я строка списка, n должен быть целым литера�
 \subsubsection{\lstinline|list.removeAt <int>i : list|}
 
 Удаляет \code{i}-я строка.
+
+Возможные ошибки: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeDuplicates : list|}
 
@@ -2515,13 +2539,17 @@ n-я строка списка, n должен быть целым литера�
 
 Удаляет первую строку.
 
+Возможные ошибки: \ferror{OutOfBounds}.
+
 \subsubsection{\lstinline|list.removeLast : list|}
 
 Удаляет последнюю строку.
 
-\subsubsection{\lstinline|list.removeOne <string>str : list|}
+Возможные ошибки: \ferror{OutOfBounds}.
 
-Удаляет первое нахождение строке \code{str}.
+\subsubsection{\lstinline|list.removeOne <string>str : bool|}
+
+Удаляет первое нахождение строке \code{str}. Возвращает \true, если строка была найдена, иначе \false.
 
 \subsubsection{\lstinline|list.replaceInStrings <string>before <string>after : list|}
 
