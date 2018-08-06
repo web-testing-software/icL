@@ -1410,7 +1410,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 		\item
 			не равно \lstinline`object != object : bool` и \lstinline`set != set : bool`;
 		\item
-			включение \lstinline`set << object : bool`;
+			включение \lstinline`set << object : bool` и \lstinline|set << set : bool|;
 		\item
 			включение шаблона \lstinline`set <* object` и \lstinline`object <* object : bool`.
 		\end{icItems}
@@ -1459,6 +1459,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 @set2 != @set3;				`` true
 @obj2 != @obj3;				`` true
 @set1 << @obj2;				`` false
+@set1 << @set2;				`` false
 @set1 <* [<23>age];			`` true
 @obj4 <* [<24>age <1>arc];	`` true
 @set1 + @set2;				`` [@obj1 @obj2 @obj3]
@@ -1481,6 +1482,9 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \subsubsection{\lstinline`<set>s << <object>obj : bool`}
 Возвращает \true{}, если множество \code{s} содержит объект \code{obj}, иначе \false{}.
+
+\subsubsection{\lstinline|<set>set1 << <set>set2 : bool|}
+Возвращает \true, если множество \code{set1} содержит подмножество \code{set2}, иначе \false.
 
 \subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
 Возвращает \true{}, если множество \code{s} содержит под объект \code{subobj}, иначе \false{}.
@@ -2424,7 +2428,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.clear : list|;
 \item \lstinline|list.count <string>what : int|;
 \item \lstinline|list.filter <string>str <bool>caseSensitive = true : bool|;
-\item \lstinline|list.indexOf <string>str <int>start = -1 : int|;
+\item \lstinline|list.indexOf <string>str <int>start = 0 : int|;
 \item \lstinline|list.insert <int>index <string>str : list|;
 \item \lstinline|list.join <string>separator : string|;
 \item \lstinline|list.lastIndexOf <string>str <int>start = -1|;
@@ -2505,7 +2509,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает новый список строк, содержащий только строки этого списка, содержащие подстроку \code{str}. 
 
-\subsubsection{\lstinline|list.indexOf <string>str <int>start = -1 : int|}
+\subsubsection{\lstinline|list.indexOf <string>str <int>start = 0 : int|}
 
 Возвращает индекс первой нахождения строки \code{str} в списке, ища вперёд с позиции \code{start}, если строка не найдено возвращает -1.
 
@@ -2658,7 +2662,7 @@ n-я строка списка, n должен быть целым литера�
 
 \subsection{Методы}
 
-Методы классы \str{}, имеющие параметры типа \regex{}:
+Методы классы \str{} и \listtype, имеющие параметры типа \regex{}:
 \begin{icItems}
 \item
 	\lstinline|string.count <regex>re : int|;
@@ -2672,6 +2676,12 @@ n-я строка списка, n должен быть целым литера�
 	\lstinline|string.replace <regex>re <string>after : string|;
 \item
 	\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|.
+\item
+	\lstinline|list.filter <regex>re : list|;
+\item
+	\lstinline|list.indexOf <regex>re <int>start : int|;
+\item
+	\lstinline|list.lastIndexOf <regex>re <int>start : int|;
 \end{icItems}
 
 Примеры использования выше перечисленных методов, представлены на листинге \ref{regexplikearg}.
@@ -2684,8 +2694,15 @@ n-я строка списка, n должен быть целым литера�
 @str.lastIndexOf //l+o//; `` 2
 @str.remove //\w{2}o//;   `` "He world, collrrs!"
 @str.split //,?\s//;      `` ["He" "world" "collrrs!"]
-\end{lstlisting}
 
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@fonts.filter //^[ac]//i;    `` ["Arial" "Courier"]
+@fonts.indexOf //e.//;       `` 1
+@fonts.indexOf //e.// 2;     `` 2
+@fonts.lastIndexOf //e.//;   `` 3
+@fonts.lastIndexOf //e.// 2; `` 2
+\end{lstlisting}
 
 \subsubsection{\lstinline|string.count <regex>re : int|}
 
@@ -2711,6 +2728,18 @@ n-я строка списка, n должен быть целым литера�
 
 Разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \code{re} и собирает список этих строк; если \code{keepEmptyParts == false} то пустые строки пропускаются.
 
+\subsubsection{\lstinline|list.filter <regex>re : list|}
+
+Возвращает новый список строк, содержащий только строки этого списка, подходящих по регулярней выражении \code{re}.
+
+\subsubsection{\lstinline|list.indexOf <regex>re <int>start = 0 : int|}
+
+Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища вперёд с позицией \code{start}, если такой строке не найдено возвращает -1.
+
+\subsubsection{\lstinline|list.lastIndexOf <regex>re <int>start = -1 : int|}
+
+Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища назад с позицией \code{start}, если такой строке не найдено возвращает -1.
+
 % \subsubsection{}
 
 \newpage
@@ -2730,7 +2759,7 @@ n-я строка списка, n должен быть целым литера�
 	\item + Интеграция с Javascript
 	\item + Функции
 	\item + Строки
-	\item - Списки
+	\item + Списки
 	\item - Множества
 	\item - Объекты
 	\item - Веб-элементы (симуляция мышки и клавиатуры) webelments
