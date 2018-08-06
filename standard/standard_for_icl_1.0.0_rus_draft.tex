@@ -752,6 +752,7 @@ if (@) {
 \subsection{Свойства}
 
 Некоторые типы данных имеют свойства. Свойства позволяют получить характеристики хранимых данных. Вне зависимо от типа данные любой объект имеет следующие свойства (перечисленные свойства доступны только для чтения):
+
 \begin{icItems}
 \item
 	\code{any'typeName : string} - при чтении получаем строку содержащая названия типа хранимых данных;
@@ -992,6 +993,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 \end{lstlisting}
 
 \subsubsection{\lstinline`<bool>a & <bool>b : bool`}
+
 Оператор принимает логическую операцию "конъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{conjtable}.
 
 \begin{table}[htb]
@@ -1009,6 +1011,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 \end{table}
 
 \subsubsection{\lstinline`<bool>a | <bool>b : bool`}
+
 Оператор принимает логическую операцию "дизъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{distable}.
 
 \begin{table}[htb]
@@ -1026,7 +1029,8 @@ _log.out "false != true = " (false != true);	`` false != true = true
 \end{table}
 
 \subsubsection{\lstinline`<bool>a ~ <bool>b : bool`}
-	Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logeqtable}.
+
+Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logeqtable}.
 
 \begin{table}[htb]
 	\caption{Таблица истинности эквивалентности}
@@ -1043,6 +1047,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 \end{table}
 
 \subsubsection{\lstinline`<bool>a ^ <bool>b : bool`}
+
 Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logdifftable}.
 
 \begin{table}[htb]
@@ -1060,6 +1065,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 \end{table}
 
 \subsubsection{\lstinline`! <bool>a : bool`}
+
 Оператор принимает логическую операцию "инверсия" над переменной a. Зависимость результата от исходных данных иллюстрирована в таблице \ref{invtable}.
 
 \begin{table}[htb]
@@ -1075,9 +1081,11 @@ _log.out "false != true = " (false != true);	`` false != true = true
 \end{table}
 
 \subsubsection{\lstinline`<bool>a == <bool>b : bool`}
+
 Возвращает \true{} если a равно b, иначе \false{}.
 
 \subsubsection{\lstinline`<bool>a != <bool>b : bool`}
+
 Возвращает \true{} если a равно b, иначе \false{}.
 
 \subsection{{\color{bluemarin}int} и {\color{bluemarin}double}}
@@ -1186,108 +1194,142 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 {\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
 
 \subsubsection{\lstinline`<int>a == <int>b : bool`}
+
 Возвращает \true{} если \code{a} и \code{b} имеют одинаковое значение, иначе \false{}.
 
 \subsubsection{\lstinline`<double>a == <double>b : bool`}
+
 Возвращает \true{} если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false{}.
 
 \subsubsection{\lstinline`<int>a != <int>b : bool`}
+
 Возвращает \true{} если \code{a} и \code{b} не имеют одинаковое значение, иначе \false{}.
 
 \subsubsection{\lstinline`<double>a != <double>b : bool`}
+
 Возвращает \true{} если \code{a} и \code{b} отличаются больше чем на уровень погрешности машины, иначе \false{}.
 
 \subsubsection{\lstinline`<int>a >> <int>b : bool`}
+
 Возвращает \true{} если целое число \code{a} больше \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<double>a >> <double>b : bool`}
+
 Возвращает \true{} если дробное число \code{a} больше \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<int>a >= <int>b : bool`}
+
 Возвращает \true{} если целое число \code{a} больше или равно \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<double>a >= <double>b : bool`}
+
 Возвращает \true{} если дробное число \code{a} больше или равно \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<int>a << <int>b : bool`}
+
 Возвращает \true{} если целое число \code{a} меньше \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<double>a << <double>b : bool`}
+
 Возвращает \true{} если дробное число \code{a} меньше \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<int>a <= <int>b : bool`}
+
 Возвращает \true{} если целое число \code{a} меньше или равно \code{b}, иначе \false{}.
 
 \subsubsection{\lstinline`<double>a <= <double>b : bool`}
+
 Возвращает \true{} если дробное число \code{a} меньше или равно \code{b}, иначе \false{}.
 
 
 \subsubsection{\lstinline`<int>a + <int>b : int`}
+
 Возвращает сумму целых чисел \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<double>a + <double>b : double`}
+
 Возвращает сумму дробных чисел \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<int>a - <int>b : int`}
+
 Возвращает разницу между целыми числами \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<double>a - <double>b : double`}
+
 Возвращает разницу между дробными числами \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<int>a * <int>b : int`}
+
 Возвращает результат умножения целых чисел \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<double>a * <double>b : double`}
+
 Возвращает результат умножения дробных чисел \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<int>a / <int>b : int`}
+
 Возвращает результат деления целых чисел \code{a} и \code{b}, остаток отбрасывается.
 
 \subsubsection{\lstinline`<double>a / <double>b : double`}
+
 Возвращает результат деления дробных чисел \code{a} и \code{b}.
 
 \subsubsection{\lstinline`<int>a \ <int>b : int`}
+
 Возвращает результат от деления целых чисел \code{a} и \code{b}.
 
 
 \subsubsection{\lstinline`<int>a ** : int`}
+
 Возвращает квадрат целого числа \code{a} (a$^2$);
 
 \subsubsection{\lstinline`<double>a ** : double`}
+
 Возвращает квадрат дробного числа \code{a} (a$^2$);
 
 \subsubsection{\lstinline`<int>a ** <int>b : int`}
+
 Возвращает результат возведения целого числа \code{a} в степени \code{b} (a$^b$).
 
 \subsubsection{\lstinline`<double>a ** <double>b : double`}
+
 Возвращает результат возведения дробного числа \code{a} в степени \code{b} (a$^b$).
 
 \subsubsection{\lstinline`/' <int>a : int`}
+
 Возвращает корень целого числа \code{a} ($\sqrt{a}$).
 
 \subsubsection{\lstinline`/' <double>a : double`}
+
 Возвращает корень дробного числа \code{a} ($\sqrt{a}$).
 
 \subsubsection{\lstinline`<int>n /' <int>a : int`}
+
 Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
 \subsubsection{\lstinline`<int>n /' <double>a : double`}
+
 Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
 \subsubsection{\lstinline`<double>n /' <double>a : double`}
+
 Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
 
 \subsubsection{\lstinline`- <int>a : int`}
+
 Возвращает $0-a$;
 
 \subsubsection{\lstinline`- <double>b : double`}
+
 Возвращает $0.0-a$;
 
 \subsubsection{\lstinline`+ <int>a : int`}
+
 Возвращает абсолютное значение целого числа \code{a}.
 
 \subsubsection{\lstinline`+ <double>a : double`}
+
 Возвращает абсолютное значение дробного числа \code{a}.
 
 \subsection{{\color{bluemarin}string} и {\color{bluemarin}list}}
@@ -1346,55 +1388,71 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 \subsubsection{\lstinline`<string>s1 == <string>s2 : bool`}
+
 Возвращает \true{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \false{}.
 
 \subsubsection{\lstinline`<list>l1 == <list>l2 : bool`}
+
 Возвращает \true{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \false{}.
 
 \subsubsection{\lstinline`<string>s1 != <string>s2 : bool`}
+
 Возвращает \false{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
 
 \subsubsection{\lstinline`<list>l1 != <list>l2 : bool`}
+
 Возвращает \false{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \true{}.
 
 \subsubsection{\lstinline`<list>l << <string>str : bool`}
+
 Возвращает \true{}, если список \code{l} содержит строку \code{str}, иначе \false{}.
 
 \subsubsection{\lstinline`<string>str << <string>substr : bool`}
+
 Возвращает \true{}, если строка \code{str} содержит подстроку \code{substr}, иначе \false{}.
 
 \subsubsection{\lstinline`<list>l <* <string>template : bool`}
+
 Возвращает \true{}, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
 
 {\bf Шаблон} - это строка содержащая данные и специальный символ \lstinline`*`, где \lstinline`*` означает любая последовательность символов. Рассмотрим шаблонную строку \lstinline`"Have a * day!"`, примеры строк подходящие по шаблону: \lstinline`"Have a nice day!"`, \lstinline`"Have a amazing day!"`. Пример неподходящей строки \lstinline`"Have a good day"` (отсутствует восклицательный знак).
 
 \subsubsection{\lstinline`<string>s1 + <string>s2 : string`}
+
 Возвращает строку содержащую все символы строк \code{s1} и \code{s2}. Полученная строка имеет длину равна суммы длин составляющих.
 
 \subsubsection{\lstinline`<string>str + <list>l : list`}
+
 Возвращает новый список, получен при вставке строке \code{str} в начале списка \code{l}.
 
 \subsubsection{\lstinline`<list>l + <string>str : list`}
+
 Возвращает новый список, получен при вставке строке \code{str} в конце списка \code{l}.
 
 \subsubsection{\lstinline`<list>l1 + <list>l2 : list`}
+
 Возвращает новый список, содержащий все элементы списков \code{l1} и \code{l2}.
 
 \subsubsection{\lstinline`<string>str * <string>template : bool`}
+
 Возвращает \true{}, если строка \code{str} подходит по шаблону \code{template}, иначе \false{}.
 
 \subsubsection{\lstinline`<list>l * <string>template : bool`}
+
 Возвращает \true{} если все строки списка \code{l} подходят по шаблону \code{template}, иначе \false{}.
 
 \subsubsection{\lstinline`<list>l * <list>templates : bool`}
+
 Возвращает \true{} если все строки списка \code{l} подходят по соответственному шаблону из списка \code{templates}, иначе \false{}.
 
 \subsubsection{\lstinline`<string>s1 ** <string>s2 : double`}
+
 Возвращает коэффициент эквивалентности получен при сравнении \code{s1} с \code{s2}.
 
 {\bf Эквивалентность} - уровень схожести строк. \lstinline`"Hi! Robert, how do you do?"` относительно \lstinline`"Robert! Hi! How do you do?"` имеет эквивалентность равна единицы. Так как они состоят из одни и те же слова. Но если сравнивать с  \lstinline`"Rich! Hi! How are you?"` оценка снижается до 0,64.
 
 \subsubsection{\lstinline`<list>l1 ** <list>l2 : double`}
+
 Возвращает коэффициент эквивалентности получен при сравнении строк из списка \code{l1} со строками из списка \code{l2}.
 Для корректности вычисления, каждая строка должна содержать одно слово.
 
@@ -1469,39 +1527,51 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 \subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
+
 Возвращает \true{} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false{}.
 
 \subsubsection{\lstinline`<set>set1 == <set>set2 : bool`}
+
 Возвращает \true{} если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \false{}.
 
 \subsubsection{\lstinline`<object>obj1 != <object>obj2 : bool`}
+
 Возвращает \true{} если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \false{}.
 
 \subsubsection{\lstinline`<set>set1 != <set>set2 : bool`}
+
 Возвращает \true{} если количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, иначе \false{}.
 
 \subsubsection{\lstinline`<set>s << <object>obj : bool`}
+
 Возвращает \true{}, если множество \code{s} содержит объект \code{obj}, иначе \false{}.
 
 \subsubsection{\lstinline|<set>set1 << <set>set2 : bool|}
+
 Возвращает \true, если множество \code{set1} содержит подмножество \code{set2}, иначе \false.
 
 \subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
+
 Возвращает \true{}, если множество \code{s} содержит под объект \code{subobj}, иначе \false{}.
 
 \subsubsection{\lstinline`<object>obj <* <object>subobj : bool`}
+
 Возвращает \true{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \false{}.
 
 \subsubsection{\lstinline`<set>set1 + <set>set2 : set`}
+
 Возвращает новое множество содержащая все объекты множеств \code{set1} и \code{set2}.
 
 \subsubsection{\lstinline`<set>set1 - <set>set2 : set`}
+
 Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}, и все объекты множестве \code{set2}, отсутствующих в \code{set1}.
 
 \subsubsection{\lstinline`<set>set1 \\ <set>set2 : set`}
+
 Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}.
 
 \subsubsection{\lstinline`<set>set1 * <set>set2 : set`}
+
 Возвращает новое множество содержащая все объекты , которые приличествуют в \code{set1} и \code{set2}.
 
 \subsection{\color{bluemarin}void}
@@ -1596,6 +1666,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{table}
 
 \subsubsection{\lstinline`<void or any> \% <void or any> : void or any`}
+
 	Возвращаемый результат оператором исключающего выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{centhacktable}.
 %\stablethree{1.5cm}{1.5cm}{5cm}
 %{centhacktable}{Оператор коллекционный выбор}
