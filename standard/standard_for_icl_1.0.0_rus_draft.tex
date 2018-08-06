@@ -1488,6 +1488,8 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 		\item
 			пересечение \lstinline`set * set : set`.
 		\end{icItems}
+	\item
+		6$^+$-ого ранга: пересекаются \lstinline|set ** set : bool|.
 \end{icItems}
 
 Примеры использование операторов присутствуют на листинге \ref{setobjopex}.
@@ -1516,14 +1518,18 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 @obj1 == @obj2;				`` false
 @set2 != @set3;				`` true
 @obj2 != @obj3;				`` true
+
 @set1 << @obj2;				`` false
 @set1 << @set2;				`` false
 @set1 <* [<23>age];			`` true
 @obj4 <* [<24>age <1>arc];	`` true
+
 @set1 + @set2;				`` [@obj1 @obj2 @obj3]
 @set1 - @set2;				`` [@obj1 @obj3]
 @set1 \ @set2;				`` [@obj1]
 @set1 * @set2;				`` [@obj2]
+
+@set1 ** @set2;				`` true
 \end{lstlisting}
 
 \subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
@@ -1573,6 +1579,10 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \subsubsection{\lstinline`<set>set1 * <set>set2 : set`}
 
 Возвращает новое множество содержащая все объекты , которые приличествуют в \code{set1} и \code{set2}.
+
+\subsubsection{\lstinline`<set>set1 ** <set>set2 : bool`}
+
+Возвращает \true, если множества \code{set1} и \code{set2} пересекаются, иначе \false.
 
 \subsection{\color{bluemarin}void}
 
@@ -2834,7 +2844,7 @@ n-я строка списка, n должен быть целым литера�
 	\item - Множества
 	\item - Объекты
 	\item - Веб-элементы (симуляция мышки и клавиатуры) webelments
-	\item - Обмен данных в веб-страннице (конкретные примеры) dataexchange
+	\item - Обмен данных в веб-странице (конкретные примеры) dataexchangeс
 	\item - DSV / CSV / TSV
 \end{icEnum}
 
