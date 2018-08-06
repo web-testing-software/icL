@@ -1016,7 +1016,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\label{distable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a} & \code{b} & \code{a | b} 	\\ \hline
+		\code{a} & \code{b} & \code{a \| b} 	\\ \hline
 		\false{} & \false{} & \false{} 		\\ \hline
 		\false{} & \true{}  & \true{}  		\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -2254,6 +2254,10 @@ n-й символ строки. n должен быть целым литера�
 @fonts.split @fonts'5; `` ["Arial" " Helvica" " Times" " Curier"];
 
 @data.substring 1 3; `` "11"
+
+@str = " , 34px \n";
+@str.trim;       `` ", 34px"
+@str.trim false; `` "34px"
 \end{lstlisting}
 
 \subsubsection{\lstinline|string.append <string>str : string|}
@@ -2418,6 +2422,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.at <int>i : string|;
 \item \lstinline|list.contains <string>str <bool>caseSensitive = true : bool|;
 \item \lstinline|list.clear : list|;
+\item \lstinline|list.count <string>what : int|;
 \item \lstinline|list.filter <string>str <bool>caseSensitive = true : bool|;
 \item \lstinline|list.indexOf <string>str <int>start = -1 : int|;
 \item \lstinline|list.insert <int>index <string>str : list|;
@@ -2447,6 +2452,7 @@ n-я строка списка, n должен быть целым литера�
 @fonts.contains "arial";       `` false
 @fonts.contains "arial" false; `` true
 @empty.clear;                  `` []
+@fonts.count "Arial";          `` 1
 
 @fonts.filter "e";          `` ["Helvetica" "Times" "Courier"]
 @fonts.indexOf "Times";     `` 2
@@ -2486,6 +2492,14 @@ n-я строка списка, n должен быть целым литера�
 \subsubsection{\lstinline|list.contains <string>str <bool>caseSensitive = true : bool|}
 
 Возвращает \true, если список содержит строка, ровна \code{str}, иначе \false.
+
+\subsubsection{\lstinline|list.clear : list|}
+
+Очищает список.
+
+\subsubsection{\lstinline|list.count <string>what : int|}
+
+Возвращает сколько раз строка \code{what} повторяется в списке.
 
 \subsubsection{\lstinline|list.filter <string>str <bool>caseSensitive = true : bool|}
 
@@ -2717,7 +2731,7 @@ n-я строка списка, n должен быть целым литера�
 	\item + Функции
 	\item + Строки
 	\item - Списки
-	\item - Многоженства
+	\item - Множества
 	\item - Объекты
 	\item - Веб-элементы (симуляция мышки и клавиатуры) webelments
 	\item - Обмен данных в веб-страннице (конкретные примеры) dataexchange
