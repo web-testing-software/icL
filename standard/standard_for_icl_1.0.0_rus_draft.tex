@@ -75,7 +75,7 @@
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -92,6 +92,8 @@
 	morestring=[b]//
 }
 
+\let\counterwithout\relax
+\let\counterwithin\relax
 \usepackage{chngcntr}
 
 \newenvironment{icItems}
@@ -1943,7 +1945,7 @@ do {
 
 \subsubsection{\lstinline`for` - прохождение коллекций}
 
-{Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать универсальный цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}).
+{Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать универсальный цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}). Под коллекции имеется в виду следующие типы данных \code{list}, \code{set} и \code{element}.
 \begin{lstlisting}[caption=Прохождение коллекций с помощью универсального цикла, label=colluniloop]
 @list = ["apple" "banana" "fruit"];
 
@@ -2659,6 +2661,176 @@ n-я строка списка, n должен быть целым литера�
 Сортирует строки в алфавитном порядке.
 
 \newpage
+\section{Множества}
+
+{\bf Множества} (тип \set) позволяют хранить несколько объектов (тип \object) без повторений, для множеств доступны операции как пересечение, объединение.
+
+\subsection{{\color{bluemarin} object}}
+
+Объект позволяет хранить несколько переменных, каждая хранимая переменная имеет тип и название. Доступ к переменным осуществляется через свойства объекта, где название свойств и есть название переменных.
+
+Поле объектов множества описаны в заголовке множества.
+
+\subsection{Свойства}
+
+Множества имеют следующие свойства:
+\begin{icItems}
+\item \lstinline|set'capacity : int|;
+\item \lstinline|set'empty : bool|;
+\end{icItems}
+
+\subsubsection{\lstinline|set'capacity : int|}
+
+Возвращает количество объектов которых можно хранить в память без дополнительных выделений.
+
+\subsubsection{\lstinline|set'empty : bool|}
+
+Множество считается пустой если оно не содержит ни один объект.
+
+\subsection{Методы}
+
+Множество имеет следующие методы:
+\begin{icItems}
+\item \lstinline|set.applicate <list ...>data|;
+\item \lstinline|set.clear : set|;
+\item \lstinline|set.getField <string>name <list>value : list|;
+\item \lstinline|set.insert <any ...>data : set|;
+\item \lstinline|set.insert <object>obj : set|;
+\item \lstinline|set.insertBoolField <string>name <list>values : set|;
+\item \lstinline|set.insertDoubleField <string>name <list>values : set|;
+\item \lstinline|set.insertIntField <string>name <list>values : set|;
+\item \lstinline|set.insertListField <string>name <list>value : set|;
+\item \lstinline|set.insertStringField <string>name <list>values : set|;
+\item \lstinline|set.remove <any ...>data : set|;
+\item \lstinline|set.remove <object>obj : set|;
+\item \lstinline|set.removeField <string>name : set|.
+\end{icItems}
+
+Код использующий выше перечисленных методов представлен на листинге \ref{setmethods};
+
+\begin{lstlisting}[caption=Методы класса set, label=setmethods]
+@set = [<int>age <string>name <string>sex]
+
+@set.applicate 
+	["23"    "45"     "67"]
+	["Basil" "Nataly" "Siri"]
+	["m"     "f"      "f"];
+``` set = [
+	[<23>age <"Basil">name  <"m">sex]
+	[<45>age <"Nataly">name <"f">sex]
+	[<67>age <"Siri">name   <"f">sex]
+	] ```
+
+@set.getField "name"; `` ["Basil" "Nataly" "Siri"]
+
+@set.insert 34 "Critiano" "m";
+``` set = [
+	[<23>age <"Basil">name    <"m">sex]
+	[<45>age <"Nataly">name   <"f">sex]
+	[<67>age <"Siri">name     <"f">sex]
+	[<34>age <"Cristiano"name <"m">sex]
+	] ```
+
+@set.insert [<"f">sex <"Sofia">name <19>age];
+``` set = [
+	[<23>age <"Basil">name    <"m">sex]
+	[<45>age <"Nataly">name   <"f">sex]
+	[<67>age <"Siri">name     <"f">sex]
+	[<34>age <"Cristiano"name <"m">sex]
+	[<19>age <"Sofia">name    <"f">sex]
+	] ```
+
+@set.insertStringField "parity" ["odd" "even"];
+``` set = [
+	[<23>age <"Basil">name    <"m">sex <"odd">parity]
+	[<45>age <"Nataly">name   <"f">sex <"even">parity]
+	[<67>age <"Siri">name     <"f">sex <"odd">parity]
+	[<34>age <"Cristiano"name <"m">sex <"even">parity]
+	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
+	] ```
+
+@set.remove 45 "Nataly" "f" "even";
+``` set = [
+	[<23>age <"Basil">name    <"m">sex <"odd">parity]
+	[<67>age <"Siri">name     <"f">sex <"odd">parity]
+	[<34>age <"Cristiano"name <"m">sex <"even">parity]
+	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
+	] ```
+
+@set.remove [<34>age <"Cristiano"name <"m">sex <"even">parity];
+``` set = [
+	[<23>age <"Basil">name <"m">sex <"odd">parity]
+	[<67>age <"Siri">name  <"f">sex <"odd">parity]
+	[<19>age <"Sofia">name <"f">sex <"odd">parity]
+	] ```
+
+@set.removeField "parity";
+``` set = [
+	[<23>age <"Basil">name <"m">sex]
+	[<67>age <"Siri">name  <"f">sex]
+	[<19>age <"Sofia">name <"f">sex]
+	] ```
+
+@set.clear; `` set = []
+\end{lstlisting}
+
+\subsubsection{\lstinline|set.applicate <list ...>data|}
+
+Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \code{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
+
+\subsubsection{\lstinline|set.clear : set|}
+
+Очищает множество.
+
+\subsubsection{\lstinline|set.getField <string>name : list|}
+
+Возвращает список значений поле \code{name} всех объектов.
+
+\subsubsection{\lstinline|set.hasField <string>name : bool|}
+
+Возвращает \true, если заголовок содержит поле \code{name}, иначе \false.
+
+\subsubsection{\lstinline|set.insert <any ...>data : set|}
+
+Вставит новый объект, значения полей (массив \code{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
+
+\subsubsection{\lstinline|set.insert <object>obj : set|}
+
+Вставит новый объект, поля объекта \code{obj} должна быть совместимы полностью с заголовком множество.
+
+\subsubsection{\lstinline|set.insertBoolField <string>name <list>values : set|}
+
+Создаёт новое поле типа \bool. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+\subsubsection{\lstinline|set.insertDoubleField <string>name <list>values : set|}
+
+Создаёт новое поле типа \double. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+\subsubsection{\lstinline|set.insertIntField <string>name <list>values : set|}
+
+Создаёт новое поле типа \integer. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+\subsubsection{\lstinline|set.insertListField <string>name <list>value : set|}
+
+Создаёт новое поле типа \bool. Все объекты множеству получат новое поле со значением \code{value}.
+
+\subsubsection{\lstinline|set.insertStringField <string>name <list>values : set|}
+
+Создаёт новое поле типа \str. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+\subsubsection{\lstinline|set.remove <any ...>data : set|}
+
+Удаляет объект, который подходит по описанию \code{data}.
+
+\subsubsection{\lstinline|set.remove <object>obj : set|}
+
+Удаляет объект \code{obj} из множества.
+
+\subsubsection{\lstinline|set.removeField <string>name : set|}
+
+Удаляет поле \code{name} с заголовка.
+
+\newpage
 \part{Материал для программистов}
 
 Для освоение данного материала нужны знания в программирование. В ней не будет прописано обозначения технических терминов. Но Вы не расстраивайтесь, всё можно погуглить. Несмотря на то что язык icL - простой, на него можно реализовать сложные скрипты, работы с базами данных, регулярных выражении и много другое, ожидается сильное развитие данной части в следующих версиях языка icL.
@@ -2841,11 +3013,11 @@ n-я строка списка, n должен быть целым литера�
 	\item + Функции
 	\item + Строки
 	\item + Списки
-	\item - Множества
-	\item - Объекты
+	\item + Множества
 	\item - Веб-элементы (симуляция мышки и клавиатуры) webelments
 	\item - Обмен данных в веб-странице (конкретные примеры) dataexchangeс
 	\item - DSV / CSV / TSV
+	\item - Преобразование типов
 \end{icEnum}
 
 {\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
