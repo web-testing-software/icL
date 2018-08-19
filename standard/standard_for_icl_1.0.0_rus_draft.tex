@@ -7,6 +7,7 @@
 \setmainlanguage{russian}
 \setotherlanguage{english}
 \usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
 
 \usepackage{longtable}
 \usepackage{ragged2e}
@@ -75,7 +76,7 @@
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -2060,14 +2061,14 @@ _log.out @title;
 
 Команда \lstinline|$run| позволяет выполнить {\bf код на языке JavaScript}.
 
-\code{[icL]} Команда \lstinline|$run| получает один аргумент - код, в коде могут присутствовать переменные icL. Глобальные переменные предаются следующим образом \lstinline|#{name}|, локальные - \lstinline|@{name}|. Пример передачи значений перемены в JavaScript представлен на листинге \ref{jsrunex1}.
+\code{[icL]} Команда \lstinline|$run| получает один аргумент - код, в коде могут присутствовать переменные icL. Глобальные переменные предаются следующим образом \lstinline|#{name}|, локальные - \lstinline|@{name}|. Пример передачи значений перемены в JavaScript представлен на листинге \ref{jsrunex1}. Код можно выполнить асинхронно используя \lstinline|$runAsync|.
 
 \begin{lstlisting}[caption=Выполнение кода на языке JavaScript (icL), label=jsrunex1]
 @var = 2;
 $run { window.a = @{var} }
 \end{lstlisting}
 
-\code{[w3c]} Команда \lstinline|$run| получает переменное количество переменных. Они передаются в коде на языке JavaScript в виде аргументов вызова функций. Доступ к ним осуществляется с помощью переменной \code{arguments}. Код использующий данную тактику представлен на листинге \ref{jsrunex2}, его можно сравнивать с листингом \ref{jsrunex1}.
+\code{[w3c]} Команда \lstinline|$run| получает переменное количество переменных. Они передаются в коде на языке JavaScript в виде аргументов вызова функций. Доступ к ним осуществляется с помощью переменной \code{arguments}. Код использующий данную тактику представлен на листинге \ref{jsrunex2}, его можно сравнивать с листингом \ref{jsrunex1}. Код можно выполнить асинхронно используя \lstinline|$runAsync|.
 
 \begin{lstlisting}[caption=Выполнение кода на языке JavaScript (w3c), label=jsrunex2]
 @var = 2;
@@ -2786,6 +2787,8 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает список значений поле \code{name} всех объектов.
 
+Возможные ошибки: \ferror{FieldNotFound}.
+
 \subsubsection{\lstinline|set.hasField <string>name : bool|}
 
 Возвращает \true, если заголовок содержит поле \code{name}, иначе \false.
@@ -2802,21 +2805,31 @@ n-я строка списка, n должен быть целым литера�
 
 Создаёт новое поле типа \bool. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
+Возможные ошибки: \ferror{FieldAlreadyExists}.
+
 \subsubsection{\lstinline|set.insertDoubleField <string>name <list>values : set|}
 
 Создаёт новое поле типа \double. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+Возможные ошибки: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertIntField <string>name <list>values : set|}
 
 Создаёт новое поле типа \integer. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
+Возможные ошибки: \ferror{FieldAlreadyExists}.
+
 \subsubsection{\lstinline|set.insertListField <string>name <list>value : set|}
 
 Создаёт новое поле типа \bool. Все объекты множеству получат новое поле со значением \code{value}.
 
+Возможные ошибки: \ferror{FieldAlreadyExists}.
+
 \subsubsection{\lstinline|set.insertStringField <string>name <list>values : set|}
 
 Создаёт новое поле типа \str. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+Возможные ошибки: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.remove <any ...>data : set|}
 
@@ -2829,6 +2842,74 @@ n-я строка списка, n должен быть целым литера�
 \subsubsection{\lstinline|set.removeField <string>name : set|}
 
 Удаляет поле \code{name} с заголовка.
+
+Возможные ошибки: \ferror{FieldNotFound}.
+
+\newpage
+\section{Веб-элементы}
+\label{webelments}
+
+{\bf Веб-элементы} (тип данных \element) представляет собой ссылки на HTML-теги веб-страницы.
+
+\subsection{Свойства}
+
+Веб-элементы имеют следующее свойства:
+\begin{icItems}
+\item \lstinline|element'attr-* : string|;
+\item \lstinline|element'css-* : string|;
+\item \lstinline|element'enabled : bool|;
+\item \lstinline|element'prop-* : string|;
+\item \lstinline|element'rect : obj|;
+\item \lstinline|element'selected : bool|;
+\item \lstinline|element'tag : string|;
+\item \lstinline|element'text : string|;
+\end{icItems} 
+
+\subsubsection{\lstinline|element'attr-* : string|}
+
+\code{[w3c]} Возвращает значения атрибута \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-attribute
+
+\code{[icL]} Возвращает JS-значение для запрашиваемого атрибута. Доступно для чтений и записи.
+
+\subsubsection{\lstinline|element'css-* : string|}
+
+\code{[w3c]} Возвращает значения свойства CSS \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-css-value
+
+\code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS. Доступно для чтений и записи.
+
+\subsubsection{\lstinline|element'enabled : bool|}
+
+Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. Больше информации: https://www.w3.org/TR/webdriver1/\#is\--element\--enabled
+
+\subsubsection{\lstinline|element'prop-* : string|}
+
+\code{[w3c]} Возвращает значения свойства \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-property
+
+\code{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Доступно для чтений и записи.
+
+\subsubsection{\lstinline|element'rect : obj|}
+
+Возвращает положение размер элемента на экране в CSS пикселей, а точнее объект содержащий следующее поля:
+\begin{icItems}
+	\item \code{x} - координата x относительно левого края;
+	\item \code{y} - координата y относительно верхнего края;
+	\item \code{width} - ширина;
+	\item \code{height} - высота;
+\end{icItems}
+
+Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-rect
+
+\subsubsection{\lstinline|element'selected : bool|}
+
+Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#is-element-selected
+
+\subsubsection{\lstinline|element'tag : string|}
+
+Возвращает название тега. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#get-element-tag-name
+
+\subsubsection{\lstinline|element'text : string|}
+
+Возвращает текст элемента видимый на экран. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#get-element-text
 
 \newpage
 \part{Материал для программистов}
