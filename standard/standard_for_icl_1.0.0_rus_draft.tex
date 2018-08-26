@@ -2871,21 +2871,29 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает JS-значение для запрашиваемого атрибута. Доступно для чтений и записи.
 
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
 \subsubsection{\lstinline|element'css-* : string|}
 
 \code{[w3c]} Возвращает значения свойства CSS \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-css-value
 
 \code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS. Доступно для чтений и записи.
 
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
 \subsubsection{\lstinline|element'enabled : bool|}
 
 Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. Больше информации: https://www.w3.org/TR/webdriver1/\#is\--element\--enabled
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'prop-* : string|}
 
 \code{[w3c]} Возвращает значения свойства \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-property
 
 \code{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Доступно для чтений и записи.
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'rect : obj|}
 
@@ -2897,19 +2905,216 @@ n-я строка списка, n должен быть целым литера�
 	\item \code{height} - высота;
 \end{icItems}
 
+\code{[icL]} Возвращает \set, если количество элементов отлично от единицы.
+
 Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-rect
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'selected : bool|}
 
 Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#is-element-selected
 
+Возможные ошибки: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+
 \subsubsection{\lstinline|element'tag : string|}
 
 Возвращает название тега. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#get-element-tag-name
 
+\code{[icL]} Возвращает \listtype, если количество элементов отлично от единицы.
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
 \subsubsection{\lstinline|element'text : string|}
 
 Возвращает текст элемента видимый на экран. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#get-element-text
+
+\code{[icL]} Возвращает \listtype, если количество элементов отлично от единицы.
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
+\subsection{Методы}
+
+{\bf Методы} класса \code{element} делится на 2 категории: базовые и расширенные. Базовые методы определены стандартом W3C WebDriver. Расширенные методы определяются стандартом языка icL и могут быть изменены в следующих версиях языка.
+
+\subsection{Базовые методы}
+
+Перечень базовых методов:
+\begin{icItems}
+	\item \lstinline|element.clear : element|;
+	\item \lstinline|element.click : element|;
+	\item \lstinline|element.query <string>cssSelector : element|;
+	\item \lstinline|element.query <int>by <string>selector : element|;
+	\item \lstinline|element.queryAll <string>cssSelector : element|;
+	\item \lstinline|element.queryAll <int>by <string>selector : element|;
+	\item \lstinline|element.queryAllByXPath <string>xpath : element|;
+	\item \lstinline|element.queryByXPath <string>xpath : element|;
+	\item \lstinline|element.queryLink <string>name <bool>isFragment = false : element|;
+	\item \lstinline|element.queryLinks <string>name <bool>isFragment = false : element|;
+	\item \lstinline|element.queryTag <string>name : element|;
+	\item \lstinline|element.queryTags <string>name : element|;
+	\item \lstinline|element.screenshot : string|;
+	\item \lstinline|element.sendKeys <int>modifiers <string>text : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|element.clear : element|}
+
+Если элемент является полем ввода данных, то ого значение очищается. Если элемент редактируемый, то его свойство \code{innerHtml} присваивается пустая строка. Больше информации: https://w3c.github.io/webdriver1/\#element-clear.
+
+\code{[icL]} Очищены будут все элементы контейнера.
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
+\subsubsection{\lstinline|element.click : element|}
+
+Симулирует клик по центре элемента, и ждёт загрузка страницы. Больше информации: https://w3c.github.io/webdriver1/\#element-click
+
+\code{[icL]} Клик будет симулирован на все элементы контейнера.
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{NoSuchElement} в любом режиме.
+
+\subsubsection{\lstinline|element.query <string>cssSelector : element|}
+
+Акроним для \lstinline|element.query _by'cssSelector @cssSelector}|; 
+
+\subsubsection{\lstinline|element.query <int>by <string>selector : element|}
+
+Параметр \code{by} получает одно из следующих значений:
+\begin{icItems}
+	\item \lstinline|_by'cssSelector| - селектор CSS;
+	\item \lstinline|_by'linkText| - текст ссылки;
+	\item \lstinline|_by'partialLinkText| - фрагмент текста ссылки;
+	\item \lstinline|_by'tagName| - название тега;
+	\item \lstinline|_by'xPath| - XPath.
+\end{icItems}
+
+Параметр \code{selector} получает селектор CSS, текст ссылки, фрагмент текста ссылки, название тега или XPath, в зависимость от значений первого параметра.
+
+Метод возвращает новый \element{} содержащий все элементы найдены по нужному методу в текущем элементе.
+
+\code{[icL]} Поиск ведётся во всех элементов контейнера.
+
+Больше информации:
+\begin{icItems}
+\item https://w3c.github.io/webdriver1/\#locator-strategies;
+\item https://w3c.github.io/webdriver1/\#find-element-from-element
+\end{icItems}
+
+Возможные ошибки: \ferror{EmptyElement}, \ferror{ElementNotFound} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
+\subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
+
+Акроним для \lstinline|element.queryAll _by'cssSelector @cssSelector}|;
+
+\subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
+
+Параметры получают такие же значения, как и в случае с \code{element.query}, только данный метод возвращает все найденные элементы или пустую коллекцию если ничего не нашлось.
+
+\code{[icL]} Поиск ведётся во всех элементов контейнера.
+
+Больше информации: https://w3c.github.io/webdriver1/\#find-elements-from-element
+
+Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
+\subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
+
+Акроним для \lstinline|element.queryAll _by'xPath @xpath}|;
+
+\subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
+
+Акроним для \lstinline|element.query _by'xPath @xpath}|;
+
+\subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
+
+Акроним для \lstinline|element.query _by'linkText @name}| и \lstinline|element.query _by'partialLinkText @name}|;
+
+\subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
+
+Акроним для \lstinline|element.queryAll _by'linkText @name}| и \lstinline|element.queryAll _by'partialLinkText @name}|;
+
+\subsubsection{\lstinline|element.queryTag <string>name : element|}
+
+Акроним для \lstinline|element.query _by'tagName @name}|;
+
+\subsubsection{\lstinline|element.queryTags <string>name : element|}
+
+Акроним для \lstinline|element.queryAll _by'tagName @name}|;
+
+\subsubsection{\lstinline|element.screenshot : string|}
+
+Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|_make.image <string>base64 <string>path : void|.
+
+Больше информации: https://w3c.github.io/webdriver1/\#take-element-screenshot
+
+Возможные ошибки: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+
+\subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
+
+Параметр \code{modifiers} получает один из следующих параметров (или сумма нескольких из них):
+\begin{icItems}
+	\item \lstinline|_key'ctrl| - Control;
+	\item \lstinline|_key'shift| - Shift;
+	\item \lstinline|_key'alt| - Alt;
+\end{icItems}
+
+Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.
+
+Больше информации: https://w3c.github.io/webdriver1/\#element-send-keys
+
+Возможные ошибки: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{ElementNotIntractable} \ferror{NoWindow} и \ferror{NoSuchElement}.
+
+\subsubsection{Расширенные методы}
+
+Расширенные методы могут работать медленно в режиме тестирования при использовании внешнего браузера. При содержании нескольких элементов в коллекции, операции принимаются на каждого элемента.
+
+Перечень расширенных методов:
+\begin{icItems}
+	\item \lstinline|element.add <element>other : element|;
+	\item \lstinline|element.child <int>index : element|;
+	\item \lstinline|element.closest <string>cssSelector : element|;
+	\item \lstinline|element.contains <string>text <bool>asFragment = false : element|;
+	\item \lstinline|element.copy : element|;
+	\item \lstinline|element.filter <string>cssSelector : element|;
+	\item \lstinline|element.next : element|;
+	\item \lstinline|element.prev : element|;
+	\item \lstinline|element.parent : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|element.add <element>other : element|}
+
+Добавит все элементы коллекции \code{other}.
+
+\subsubsection{\lstinline|element.child <int>i : element|}
+
+Возвращает новая коллекция, содержащая \code{i}-й дочерний элемент.
+
+\subsubsection{\lstinline|element.closest <string>cssSelector : element|}
+
+Возвращает новая коллекция, содержащая ближайший родительский элемент, который подходит по селектору \code{cssSelector}.
+
+\subsubsection{\lstinline|element.contains <string>text <bool>asFragment = false : element|}
+
+Возвращает новая коллекция, содержащая все элементы, которые содержат текст/фрагмент \code{text}.
+
+\subsubsection{\lstinline|element.copy : element|}
+
+Возвращает новая коллекция, содержащая все элементы текущей коллекций.
+
+\subsubsection{\lstinline|element.filter <string>cssSelector : element|}
+
+Возвращает новая коллекция, содержащая все элементы, которые подходят по селектору \code{cssSelector}.
+
+\subsubsection{\lstinline|element.next : element|}
+
+Возвращает новая коллекция, содержащая следующий дочерний элемент.
+
+\subsubsection{\lstinline|element.prev : element|}
+
+Возвращает новая коллекция, содержащая предыдущий дочерний элемент.
+
+\subsubsection{\lstinline|element.parent : element|}
+
+Возвращает новая коллекция, содержащая родительский элемент.
 
 \newpage
 \part{Материал для программистов}
