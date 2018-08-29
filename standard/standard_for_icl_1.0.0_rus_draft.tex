@@ -73,10 +73,10 @@
 	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char, regex},
 	keywordstyle=[2]\color{bluemarin},
 	classoffset=3,
-	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types, _key, _alert},
+	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types, _key, _alert, _by},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss, childNodes, firstChild, innerText, isConnected, lastChild, nodeName, nodeType, nodeValue, parentElement, textContent, className, clientHeight, clientLeft,  clientTop, clientWidth, computedName, computedRole, id, innerHTML, localName, nextElementSibling, outerHTML, prefix, previousElementSibling, scrollHeight, scrollLeft, scrollTop, scrollWidth, tagName, baseURI, accessKey, accessKeyLabel, contentEditable, isContentEditable, dataset, dir, draggable, hidden, inert, lang, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, spellcheck, download, hash, host, hostname, href, hreflang, media, password, origin, pathname, port, protocol, rel, search, target, type, username, coords, autofocus, disabled, form, formAction, formEnctype, formMethod, formNoValidate, formTarget, labels, name, value, willValidate, options, elements, action, encoding, enctype, acceptCharset, autocomplete, noValidate, allowPaymentRequest, complete, crossOrigin, isMap, naturalHeight, naturalWidth, src, useMap, checked, defaultChecked, defaultValue, dirName, indeterminate, maxLength, multiple, pattern, placeholder, required, selectionStart, selectionEnd, selectionDirection, size, step, validity, validationMessage, valueAsNumber, control, htmlFor, as, areas, autoplay, controls, currentSrc, currentTime, defaultMuted, defaultPlaybackRate, disableRemotePlayback, duration, ended, loop, mediaGroup, muted, networkState, paused, playbackRate, preload, readyState, seeking, volume, content, httpEquiv, high, low, cite, reversed, start, defaultSelected, index, label, position, charset, async, defer, noModule, selectedIndex, selectedOptions, abbr, cellIndex, colSpan, rowSpan, scope, span, caption, tBodies, tHead, tFoot, cells, rowIndex, cols, textLength, wrap, dateTime, kind, srclang, label, default, poster, videoHeight, videoWidth, cssSelector, linkText, partialLinkText, xPath},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -136,8 +136,7 @@
 	style=framed,
 	lineskip=0pt,
 	aboveskip=0pt,
-	autogobble=true,
-	literate={\_}{}{0\discretionary{\_}{}{\_}}
+	autogobble=true
 }
 
 \setlength{\LTleft}{0pt}
@@ -2862,7 +2861,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|element'css-* : string|;
 \item \lstinline|element'enabled : bool|;
 \item \lstinline|element'prop-* : string|;
-\item \lstinline|element'rect : obj|;
+\item \lstinline|element'rect : object|;
 \item \lstinline|element'selected : bool|;
 \item \lstinline|element'tag : string|;
 \item \lstinline|element'text : string|;
@@ -3013,11 +3012,11 @@ n-я строка списка, n должен быть целым литера�
 
 Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{NoSuchElement} в любом режиме.
 
-\subsubsection{\lstinline|element.query <string>cssSelector : element|}
+\subsubsection{\lstinline|(element or _dom).query <string>cssSelector : element|}
 
-Акроним для \lstinline|element.query _by'cssSelector @cssSelector}|; 
+Акроним для \lstinline|(element or _dom).query _by'cssSelector @cssSelector|; 
 
-\subsubsection{\lstinline|element.query <int>by <string>selector : element| и \lstinline|_dom.query <int>by <string>selector : element|}
+\subsubsection{\lstinline|(element or _dom).query <int>by <string>selector : element|}
 
 Параметр \code{by} получает одно из следующих значений:
 \begin{icItems}
@@ -3042,11 +3041,11 @@ n-я строка списка, n должен быть целым литера�
 
 Возможные ошибки: \ferror{EmptyElement}, \ferror{ElementNotFound} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
-\subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
+\subsubsection{\lstinline|(element or _dom).queryAll <string>cssSelector : element|}
 
-Акроним для \lstinline|element.queryAll _by'cssSelector @cssSelector}|;
+Акроним для \lstinline|(element or _dom).queryAll _by'cssSelector @cssSelector|;
 
-\subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
+\subsubsection{\lstinline|(element or _dom).queryAll <int>by <string>selector : element|}
 
 Параметры получают такие же значения, как и в случае с \code{element.query}, только данный метод возвращает коллекцию найденных элементов или пустую коллекцию если ничего не нашлось.
 
@@ -3056,29 +3055,37 @@ n-я строка списка, n должен быть целым литера�
 
 Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
-\subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
+\subsubsection{\lstinline|(element or _dom).queryAllByXPath <string>xpath : element|}
 
-Акроним для \lstinline|element.queryAll _by'xPath @xpath}|;
+Акроним для \lstinline|(element or _dom).queryAll _by'xPath @xpath|;
 
-\subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
+\subsubsection{\lstinline|(element or _dom).queryByXPath <string>xpath : element|}
 
-Акроним для \lstinline|element.query _by'xPath @xpath}|;
+Акроним для \lstinline|(element or _dom).query _by'xPath @xpath|;
 
-\subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|(element or _dom).queryLink <string>name <bool>isFragment = false : element|}
 
-Акроним для \lstinline|element.query _by'linkText @name}| и \lstinline|element.query _by'partialLinkText @name}|;
+Акроним для:
+\begin{icItems}
+	\item \lstinline|(element or _dom).query _by'linkText @name}|;
+	\item \lstinline|(element or _dom).query _by'partialLinkText @name|.-
+\end{icItems}
 
-\subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|(element or _dom).queryLinks <string>name <bool>isFragment = false : element|}
 
-Акроним для \lstinline|element.queryAll _by'linkText @name}| и \lstinline|element.queryAll _by'partialLinkText @name}|;
+Акроним для:
+\begin{icItems}
+	\item \lstinline|(element or _dom).queryAll _by'linkText @name}|;
+	\item \lstinline|(element or _dom).queryAll _by'partialLinkText @name|.
+\end{icItems}
 
-\subsubsection{\lstinline|element.queryTag <string>name : element|}
+\subsubsection{\lstinline|(element or _dom).queryTag <string>name : element|}
 
-Акроним для \lstinline|element.query _by'tagName @name}|;
+Акроним для \lstinline|(element or _dom).query _by'tagName @name|;
 
-\subsubsection{\lstinline|element.queryTags <string>name : element|}
+\subsubsection{\lstinline|(element or _dom).queryTags <string>name : element|}
 
-Акроним для \lstinline|element.queryAll _by'tagName @name}|;
+Акроним для \lstinline|(element or _dom).queryAll _by'tagName @name|;
 
 \subsubsection{\lstinline|element.screenshot : string|}
 
@@ -3170,9 +3177,9 @@ n-я строка списка, n должен быть целым литера�
 	\begin{icItems}
 		\item \lstinline|[r/o] element'prop-childNodes : element [c]|;
 		\item \lstinline|[r/o] element'prop-firstChild : element [i]|;
+		\item \lstinline|[r/o] element'prop-innerText : string|;
 		\item \lstinline|[r/o] element'prop-isConnected : bool|;
 		\item \lstinline|[r/o] element'prop-lastChild : element [i]|;
-		\item \lstinline|[r/o] element'prop-nextSibling : element [i]|;
 		\item \lstinline|[r/o] element'prop-nodeName : string|;
 		\item \lstinline|[r/o] element'prop-nodeType : int|;
 		\item \lstinline|[r/w] element'prop-nodeValue : string|;
@@ -3456,6 +3463,10 @@ n-я строка списка, n должен быть целым литера�
 	
 	% \item \lstinline|[r/w] element'prop-|;
 \end{icItems}
+
+\code{[r/w]} - доступно для чтения и записи, \code{[r/o]} - доступно только для чтения, \code{element [c]} - коллекция, \code{element [i]} - элемент или коллекция (в зависимости от субъекта, если субъект - элемент, результат также будет элементом, если субъект - коллекция, результат также будет коллекцией). 
+
+Напоминаю что стандарт W3C WebDriver предусматривает чтения свойств только для элементов, и в режиме тестирования все свойства будут доступны только для чтения.
 
 Свойства \code{rows} не указано в данном списке, потому что оно повторяется у разных элементов имея разные типы.
 
