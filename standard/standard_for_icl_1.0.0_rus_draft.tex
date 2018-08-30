@@ -2863,7 +2863,9 @@ n-я строка списка, n должен быть целым литера�
 \begin{icItems}
 \item \lstinline|element'attr-* : string|;
 \item \lstinline|element'css-* : string|;
+\item \lstinline|element'empty : bool|;
 \item \lstinline|element'enabled : bool|;
+\item \lstinline|element'length : int|;
 \item \lstinline|element'prop-* : string|;
 \item \lstinline|element'rect : object|;
 \item \lstinline|element'selected : bool|;
@@ -2888,11 +2890,19 @@ n-я строка списка, n должен быть целым литера�
 
 Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
+\subsubsection{\lstinline|element'empty : bool|}
+
+Возвращает \true, если коллекция не содержит ни одного элемента, иначе \false.
+
 \subsubsection{\lstinline|element'enabled : bool|}
 
 Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. Больше информации: https://www.w3.org/TR/webdriver1/\#is\--element\--enabled
 
 Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+
+\subsubsection{\lstinline|element'length : int|}
+
+Возвращает количество элементов в коллекции.
 
 \subsubsection{\lstinline|element'prop-* : string|}
 
@@ -4007,7 +4017,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item + Веб-элементы (симуляция мышки и клавиатуры) webelments
 	\item + Обмен данных в веб-странице (конкретные примеры) dataexchange
 	\item + DSV / CSV / TSV
-	\item - Преобразование типов
+	\item + Преобразование типов
 \end{icEnum}
 
 {\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
