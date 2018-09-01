@@ -23,6 +23,9 @@
 \usepackage{indentfirst}
 \setlength{\parindent}{1.25cm}
 
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
 \usepackage[singlelinecheck=false]{caption}
 \usepackage{listings, lstautogobble}
 \usepackage{color}
@@ -58,7 +61,7 @@
 \definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
 \definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
 \definecolor{orange}{rgb}{0.8, 0.4, 0.0}
-\definecolor{bluemarin}{RGB}{12, 134, 145}
+\definecolor{lightblue}{RGB}{12, 134, 145}
 \definecolor{grey}{rgb}{0.5, 0.5, 0.5}
 \definecolor{function}{RGB}{11, 145, 89}
 \definecolor{blue2}{RGB}{15, 92, 198}
@@ -75,12 +78,12 @@
 	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
 	keywordstyle=\color{blue2},
 	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char, regex},
-	keywordstyle=[2]\color{bluemarin},
+	keywordstyle=[2]\color{lightblue},
 	classoffset=3,
 	morekeywords={_log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types, _key, _alert, _by, _dsv, _sessions, _session, _windows, _window, _cookies, _cookie, _tabs, _tab, _files, _file, _make, _math},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss, childNodes, firstChild, innerText, isConnected, lastChild, nodeName, nodeType, nodeValue, parentElement, textContent, className, clientHeight, clientLeft,  clientTop, clientWidth, computedName, computedRole, id, innerHTML, localName, nextElementSibling, outerHTML, prefix, previousElementSibling, scrollHeight, scrollLeft, scrollTop, scrollWidth, tagName, baseURI, accessKey, accessKeyLabel, contentEditable, isContentEditable, dataset, dir, draggable, hidden, inert, lang, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, spellcheck, download, hash, host, hostname, href, hreflang, media, password, origin, pathname, port, protocol, rel, search, target, type, username, coords, autofocus, disabled, form, formAction, formEnctype, formMethod, formNoValidate, formTarget, labels, name, value, willValidate, options, elements, action, encoding, enctype, acceptCharset, autocomplete, noValidate, allowPaymentRequest, complete, crossOrigin, isMap, naturalHeight, naturalWidth, src, useMap, checked, defaultChecked, defaultValue, dirName, indeterminate, maxLength, multiple, pattern, placeholder, required, selectionStart, selectionEnd, selectionDirection, size, step, validity, validationMessage, valueAsNumber, control, htmlFor, as, areas, autoplay, controls, currentSrc, currentTime, defaultMuted, defaultPlaybackRate, disableRemotePlayback, duration, ended, loop, mediaGroup, muted, networkState, paused, playbackRate, preload, readyState, seeking, volume, content, httpEquiv, high, low, cite, reversed, start, defaultSelected, index, label, position, charset, async, defer, noModule, selectedIndex, selectedOptions, abbr, cellIndex, colSpan, rowSpan, scope, span, caption, tBodies, tHead, tFoot, cells, rowIndex, cols, textLength, wrap, dateTime, kind, srclang, label, default, poster, videoHeight, videoWidth, cssSelector, linkText, partialLinkText, xPath, load, loadCSV, loadTSV, write, sync, closeAll, new, implicitTimeout, pageLoadTimeout, scriptTimeout, switchTo, x, y, focus, fullscreen, maximize, minimize, switchToDefault, switchToFrame, switchToParent, deleteAll, domain, expiry, httpOnly, path, secure, save, current, first, previous, closeByTitle, closeToLeft, closeToRight, closeOthers, open, create, createDir, createPath, csv, tsv, format, valid, delete, image, stack, state, 1divPi, 1divSqrtPi, 2divPi, 2divSqrtPi, e, ln2, ln10, log2e, log10e, pi, piDiv2, piDiv4, sqrt2, degreesToRadians, radiansToDegrees, acos, asin, atan, ceil, cos, exp, floor, ln, round, sin, tan, restore},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss, childNodes, firstChild, innerText, isConnected, lastChild, nodeName, nodeType, nodeValue, parentElement, textContent, className, clientHeight, clientLeft,  clientTop, clientWidth, computedName, computedRole, id, innerHTML, localName, nextElementSibling, outerHTML, prefix, previousElementSibling, scrollHeight, scrollLeft, scrollTop, scrollWidth, tagName, baseURI, accessKey, accessKeyLabel, contentEditable, isContentEditable, dataset, dir, draggable, hidden, inert, lang, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, spellcheck, download, hash, host, hostname, href, hreflang, media, password, origin, pathname, port, protocol, rel, search, target, type, username, coords, autofocus, disabled, form, formAction, formEnctype, formMethod, formNoValidate, formTarget, labels, name, value, willValidate, options, elements, action, encoding, enctype, acceptCharset, autocomplete, noValidate, allowPaymentRequest, complete, crossOrigin, isMap, naturalHeight, naturalWidth, src, useMap, checked, defaultChecked, defaultValue, dirName, indeterminate, maxLength, multiple, pattern, placeholder, required, selectionStart, selectionEnd, selectionDirection, size, step, validity, validationMessage, valueAsNumber, control, htmlFor, as, areas, autoplay, controls, currentSrc, currentTime, defaultMuted, defaultPlaybackRate, disableRemotePlayback, duration, ended, loop, mediaGroup, muted, networkState, paused, playbackRate, preload, readyState, seeking, volume, content, httpEquiv, high, low, cite, reversed, start, defaultSelected, index, label, position, charset, async, defer, noModule, selectedIndex, selectedOptions, abbr, cellIndex, colSpan, rowSpan, scope, span, caption, tBodies, tHead, tFoot, cells, rowIndex, cols, textLength, wrap, dateTime, kind, srclang, label, default, poster, videoHeight, videoWidth, cssSelector, linkText, partialLinkText, xPath, load, loadCSV, loadTSV, write, sync, closeAll, new, implicitTimeout, pageLoadTimeout, scriptTimeout, switchTo, x, y, focus, fullscreen, maximize, minimize, switchToDefault, switchToFrame, switchToParent, deleteAll, domain, expiry, httpOnly, path, secure, save, current, first, previous, closeByTitle, closeToLeft, closeToRight, closeOthers, open, create, createDir, createPath, csv, tsv, format, valid, delete, image, stack, state, 1divPi, 1divSqrtPi, 2divPi, 2divSqrtPi, e, ln2, ln10, log2e, log10e, pi, piDiv2, piDiv4, sqrt2, degreesToRadians, radiansToDegrees, acos, asin, atan, ceil, cos, exp, floor, ln, round, sin, tan, restore, resetTime},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -123,6 +126,12 @@
 
 \setlength\abovecaptionskip{2pt}
 \setlength\belowcaptionskip{1pt}
+
+\pagestyle{fancy}
+%\fancyhead[]{}
+%\fancyhead[C]{12603 - 01 xx 01}
+%\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage{} из \pageref{LastPage}}
 
 \lstset{
 	language=icL,
@@ -754,7 +763,7 @@ if (@) {
 
 {\bf Системные типы данных} позволяют взаимодействовать с веб-страницей и браузером. Подробную информацию можно найти в главах \ref{webelments} и \ref{dataexchange}.
 
-\subsection{Тип данных {\color{bluemarin} void}}
+\subsection{Тип данных {\color{lightblue} void}}
 
 {\bf Тип данных \void{}} означает отсутствия информации, он используется в самых различных целях:
 
@@ -970,7 +979,7 @@ if (@) {
 
 {\bf Оператор пристраивания} имеет ранг 0 и правая ассоциативность;
 
-\subsection{\color{bluemarin}bool}
+\subsection{\color{lightblue}bool}
 
 Если у вас отсутствуют знания по алгебры логике, пожалуйста прочтите любую книгу по основы данной науке.
 
@@ -1113,7 +1122,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 
 Возвращает \true{} если a равно b, иначе \false{}.
 
-\subsection{{\color{bluemarin}int} и {\color{bluemarin}double}}
+\subsection{{\color{lightblue}int} и {\color{lightblue}double}}
 
 Для чисел доступны операций:
 \begin{icItems}
@@ -1357,7 +1366,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает абсолютное значение дробного числа \code{a}.
 
-\subsection{{\color{bluemarin}string} и {\color{bluemarin}list}}
+\subsection{{\color{lightblue}string} и {\color{lightblue}list}}
 
 	Для строк и списков доступны операций:
 \begin{icItems}
@@ -1481,7 +1490,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 Возвращает коэффициент эквивалентности получен при сравнении строк из списка \code{l1} со строками из списка \code{l2}.
 Для корректности вычисления, каждая строка должна содержать одно слово.
 
-\subsection{{\color{bluemarin}object} и {\color{bluemarin}set}}
+\subsection{{\color{lightblue}object} и {\color{lightblue}set}}
 
 Для строк и списков доступны операций:
 \begin{icItems}
@@ -1609,7 +1618,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает \true, если множества \code{set1} и \code{set2} пересекаются, иначе \false.
 
-\subsection{\color{bluemarin}void}
+\subsection{\color{lightblue}void}
 
 Все \void{} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \void{} и не \void{}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
 
@@ -2235,7 +2244,7 @@ $always "path/to/file.js";
 
 \subsubsection{\code{[r/o] string'empty : bool}}
 
-Строка считается пустой если количество содержащих символов равна нулю (доступно только для чтения);
+Строка считается пустой если количество содержащих символов равна нулю;
 
 \subsubsection{\code{[r/o] string'length : int}}
 
@@ -2686,7 +2695,7 @@ n-я строка списка, n должен быть целым литера�
 
 {\bf Множества} (тип \set) позволяют хранить несколько объектов (тип \object) без повторений, для множеств доступны операции как пересечение, объединение.
 
-\subsection{{\color{bluemarin} object}}
+\subsection{{\color{lightblue} object}}
 
 Объект позволяет хранить несколько переменных, каждая хранимая переменная имеет тип и название. Доступ к переменным осуществляется через свойства объекта, где название свойств и есть название переменных.
 
@@ -2896,17 +2905,17 @@ n-я строка списка, n должен быть целым литера�
 
 \subsubsection{\lstinline|[r/*] element'attr-* : string|}
 
-\code{[w3c]} Возвращает значения атрибута \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-attribute
+\code{[w3c]} Возвращает значения атрибута \code{*}. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-attribute
 
-\code{[icL]} Возвращает JS-значение для запрашиваемого атрибута. Доступно для чтений и записи.
+\code{[icL]} Возвращает JS-значение для запрашиваемого атрибута.
 
 Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|[r/*] element'css-* : string|}
 
-\code{[w3c]} Возвращает значения свойства CSS \code{*}, доступно только для чтения. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-css-value
+\code{[w3c]} Возвращает значения свойства CSS \code{*}. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-css-value
 
-\code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS. Доступно для чтений и записи.
+\code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS.
 
 Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
@@ -3925,17 +3934,77 @@ TSV отличается от остальных, файлы обработаю�
 \end{icItems}
 
 \subsubsection{\lstinline|[r/w] _session'implicitTimeout : int|}
+
+Время ожидания в миллисекундах нахождения элемента и перехода элемента в состоянии доступности для взаимодействий с ним. По умолчанию равна нулю.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (значение для установки меньше нуля или больше максимальной безопасной целей значений).
+
 \subsubsection{\lstinline|[r/w] _session'pageLoadTimeout : int|}
+
+Время ожидания загрузке страницы. По умолчанию 300 000 миллисекунд.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+
 \subsubsection{\lstinline|[r/w] _session'scriptTimeout : int|}
+
+Время ожидания синхронией выполнения кода на языке Javascript. По умолчанию 30 000 миллисекунд.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+
 \subsubsection{\lstinline|[r/o] _session'source : string|}
+
+Исходный код страницы.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|[r/o] _session'title : string|}
+
+Название страницы.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|[r/w] _session'url : string|}
-\subsubsection{\lstinline|_session.back : _sesion|}
+
+Адрес текущей странице.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_session.back : _session|}
+
+Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
 \subsubsection{\lstinline|_session.close : void|}
+
+Прекращает сессию. Все вкладки будут закрыты.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
+
 \subsubsection{\lstinline|_session.forward : _session|}
+
+Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
 \subsubsection{\lstinline|_session.refresh : _session|}
+
+Перезагружает страницу.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
 \subsubsection{\lstinline|_session.screenshot : string|}
+
+Возвращает скриншот, изображение кодируется в строке base64.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+
 \subsubsection{\lstinline|_session.switchTo : _session|}
+
+Переключает активную сессию.
+
+Возможные исключения: \ferror{NoSuchSession}.
+
 %\subsubsection{}
 
 \subsection{{\color{orange} \_windows}}
@@ -3949,8 +4018,22 @@ TSV отличается от остальных, файлы обработаю�
 И следующий метод \lstinline|_windows.get <int>i : _window|.
 
 \subsubsection{\lstinline|_windows'length : int|}
+
+Возвращает количество окон в текущей сессии.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_windows'(<int>i) : _window|}
+
+Возвращает \code{i}-е окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+
 \subsubsection{\lstinline|_windows.get <int>i : _window|}
+
+Возвращает \code{i}-е окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
 \subsection{{\color{orange} \_window}}
 
@@ -3977,19 +4060,88 @@ TSV отличается от остальных, файлы обработаю�
 \end{icItems}
 
 \subsubsection{\lstinline|[r/w] _window'height : int|}
+
+Высота текущей окно в пикселях.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
 \subsubsection{\lstinline|[r/w] _window'width : int|}
+
+Ширина текущей окно в пикселях.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
 \subsubsection{\lstinline|[r/w] _window'x : int|}
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
+Координата $x$ текущей окно в пикселях.
+
 \subsubsection{\lstinline|[r/w] _window'y : int|}
+
+Координата $y$ текущей окно в пикселях.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
 \subsubsection{\lstinline|_window.close : void|}
+
+Закрывает окну, если она последняя закрывается и сессию.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.focus : _window|}
+
+Делает окну активной.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.fullscreen : _window|}
+
+Переключает режим отображения окна на полный экран.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.maximize : _window|}
+
+Распахнет окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.minimize : _window|}
+
+Свернёт окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.restore : _window|}
+
+Восстановит окно в нормальном режиме.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.switchToDefault : _window|}
+
+Переключает фокус на главный frame.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_window.switchToFrame <int>i : _window|}
+
+Переключает фокус на frame с индексом \code{i}.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+
 \subsubsection{\lstinline|_window.switchToFrame <element>el : _window|}
+
+Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+
 \subsubsection{\lstinline|_window.switchToParent : _window|}
+
+Переключает фокус на родительский frame.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsection{{\color{orange} \_cookies}}
 
@@ -4002,15 +4154,27 @@ TSV отличается от остальных, файлы обработаю�
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] _cookies'<string>name : _cookie|}
+
+Возвращает \cookie{} с нужным названием.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+
 \subsubsection{\lstinline|_cookies.deleteAll : void|}
+
+Удаляет всеx существующих cookie.
+
 \subsubsection{\lstinline|_cookies.get <string>name : _cookie|}
+
+Возвращает \cookie{} с нужным названием.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
 \subsection{{\color{orange} \_cookie}}
 
 Объект \cookie{} имеет следующие свойства:
 \begin{icItems}
 	\item \lstinline|[r/w] _cookie'domain : string|;
-	\item \lstinline|[r/w] _cookie'expiry : number|;
+	\item \lstinline|[r/w] _cookie'expiry : int|;
 	\item \lstinline|[r/w] _cookie'httpOnly : bool|;
 	\item \lstinline|[r/w] _cookie'name : string|;
 	\item \lstinline|[r/w] _cookie'path : string|;
@@ -4020,19 +4184,74 @@ TSV отличается от остальных, файлы обработаю�
 
 И следующие методы:
 \begin{icItems}
+	\item \lstinline|_cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0 <int>seconds = 0 : _cookie|;
 	\item \lstinline|_cookie.load : _cookie|;
+	\item \lstinline|_cookie.resetTime : _cookie|;
 	\item \lstinline|_cookie.save : _cookie|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/w] _cookie'domain : string|}
-\subsubsection{\lstinline|[r/w] _cookie'expiry : number|}
+
+Доменное имя, на которым cookie доступен.
+
+\subsubsection{\lstinline|[r/w] _cookie'expiry : int|}
+
+Время указывающая срок годности cookie. По умолчанию -1, указывает на то что cookie будет удален при окончания сессии.
+
 \subsubsection{\lstinline|[r/w] _cookie'httpOnly : bool|}
+
+Значение по умолчанию - \false.
+
 \subsubsection{\lstinline|[r/w] _cookie'name : string|}
+
+Название, обязательное для заполнения.
+
 \subsubsection{\lstinline|[r/w] _cookie'path : string|}
+
+Значение по умолчанию - \lstinline|"/"|.
+
 \subsubsection{\lstinline|[r/w] _cookie'secure : bool|}
+
+Значение по умолчанию - \false.
+
 \subsubsection{\lstinline|[r/w] _cookie'value : string|}
+
+Значение самого cookie, обязательное для заполнения.
+
+\subsubsection{\lstinline|_cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\*\noindent\lstinline|<int>seconds = 0 : _cookie|}
+
+Добавляет к сроку годности ножное количество лет, месяцев, дней, часов, минут и секунд.
+
 \subsubsection{\lstinline|_cookie.load : _cookie|}
+
+Загружает данные о cookie с браузера.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+
+\subsubsection{\lstinline|_cookie.resetTime : _cookie|}
+
+Сбросит строк на текущее время. Например установить срок годности год: \lstinline|_cookie.resetTime.add 1 0 0|.
+
 \subsubsection{\lstinline|_cookie.save : _cookie|}
+
+Сохраняет изменения в браузере.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}.
+
+\subsubsection{Создать новый cookie}
+
+На листинге \ref{newcookies}, представлен правильный способ создания новых cookie.
+
+\begin{lstlisting}[caption=Создания новых cookie, label=newcookies]
+for any _cookie {
+	@'name = "age";
+	@'domain = "example.org";
+	@'value = 23 : string;
+	@.resetTime.add 1 0 0;
+	@.save;
+};
+\end{lstlisting}
+
 
 \subsection{{\color{orange} \_alert}}
 
@@ -4046,9 +4265,28 @@ TSV отличается от остальных, файлы обработаю�
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] _alert'text : string|}
+
+Возвращает текст предупреждений.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+
 \subsubsection{\lstinline|_alert.accept : void|}
+
+Принимает предупреждению.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+
 \subsubsection{\lstinline|_alert.dismiss : void|}
+
+Отменяет предупреждению.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+
 \subsubsection{\lstinline|_alert.sendKeys <string>keys : void|}
+
+Заполняет форму текстом \code{keys} и подтверждает ввод.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
 
 % \subsection{Возможности icL}
 
@@ -4072,57 +4310,208 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_tabs.close <regex>url : int|;
 	\item \lstinline|_tabs.closeByTitle <string>template : int|;
 	\item \lstinline|_tabs.closeByTitle <regex>title : int|;
-	\item \lstinline|_tabs.closeOthers : int|.
-	\item \lstinline|_tabs.closeToLeft : int|.
-	\item \lstinline|_tabs.closeToRight : int|.
+	\item \lstinline|_tabs.closeOthers : int|;
+	\item \lstinline|_tabs.closeToLeft : int|;
+	\item \lstinline|_tabs.closeToRight : int|;
+	\item \lstinline|_tabs.find <string>template : _tab|;
+	\item \lstinline|_tabs.find <regex>url : _tab|;
+	\item \lstinline|_tabs.findByTitle <string>template : _tab|;
+	\item \lstinline|_tabs.findByTitle <regex>title : _tab|.
 	% \item \lstinline|_tabs.|;
 \end{icItems}
 
+В режиме тестирования вкладки будут в произвольном порядке. В режиме автоматизации в строгом порядке.
+
 \subsubsection{\lstinline|[r/o] _tabs'current : _tab|}
+
+Текущая вкладка.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|[r/o] _tabs'first : _tab|}
+
+Первая вкладка.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|[r/o] _tabs'last : _tab|}
+
+Последняя вкладка.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|[r/o] _tabs'length : int|}
+
+Количество вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|[r/o] _tabs'next : _tab|}
+
+Следующая вкладка.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+
 \subsubsection{\lstinline|[r/o] _tabs'previous : _tab|}
+
+Предыдущая вкладка.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+
 \subsubsection{\lstinline|[r/o] _tabs'(<int>i) : _tab|}
+
+\code{i}-я вкладка.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+
 \subsubsection{\lstinline|_tabs.close <string>template : int|}
+
+Закрывает все вкладки, у которых URL подходит по шаблону. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tabs.close <regex>url : int|}
+
+Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tabs.closeByTitle <string>template : int|}
+
+Закрывает все вкладки, у которых название подходит по шаблону. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tabs.closeByTitle <regex>title : int|}
+
+Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tabs.closeOthers : int|}
+
+Закрывает все вкладки кроме текущей. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tabs.closeToLeft : int|}
+
+Закрывает все вкладки которые находится с лева от текущей. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tabs.closeToRight : int|}
+
+Закрывает все вкладки которые находится с права от текущей. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.find <string>template : _tab|}
+
+Возвращает первая вкладка, у которой URL подходит по шаблону.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.find <regex>url : _tab|}
+
+Возвращает первая вкладка, у которой URL подходит по регулярному выражению.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.findByTitle <string>template : _tab|}
+
+Возвращает первая вкладка, у которой название подходит по шаблону.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.findByTitle <regex>title : _tab|}
+
+Возвращает первая вкладка, у которой название подходит по регулярному выражению.
+
+Возможные исключения: \ferror{NoSessions}.
 
 \subsection{{\color{orange} \_tab}}
 
 Объект \tab{} имеет следующие свойства:
 \begin{icItems}
-	\item \lstinline|[r/o] _tab'canGoBack : bool|;
-	\item \lstinline|[r/o] _tab'canGoForward : bool|;
+	\item \lstinline|[icL] [r/o] _tab'canGoBack : bool|;
+	\item \lstinline|[icL] [r/o] _tab'canGoForward : bool|;
 	\item \lstinline|[r/o] _tab'screenshot : string|;
 	\item \lstinline|[r/o] _tab'source : string|;
 	\item \lstinline|[r/*] _tab'title|;
-	\item \lstinline|[r/w] _tab'url|;
+	\item \lstinline|[r/w] _tab'url|.
 \end{icItems}
 
 И следующие методы:
 \begin{icItems}
 	\item \lstinline|_tab.back : void|;
 	\item \lstinline|_tab.close : void|;
+	\item \lstinline|_tab.focus : void|;
 	\item \lstinline|_tab.forward : void|;
-	\item \lstinline|_tab.get <string>url : bool|;
+	\item \lstinline|_tab.get <string>url : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|[r/o] _tab'canGoBack : bool|}
-\subsubsection{\lstinline|[r/o] _tab'canGoForward : bool|}
+\subsubsection{\lstinline|[icL] [r/o] _tab'canGoBack : bool|}
+
+Возвращает \true, если можно вернутся на предыдущую страницу, иначе \false.
+
+\subsubsection{\lstinline|[icL] [r/o] _tab'canGoForward : bool|}
+
+Возвращает \true, если можно вернутся на следующую страницу, иначе \false.
+
 \subsubsection{\lstinline|[r/o] _tab'screenshot : string|}
+
+Возвращает скриншот вкладки, кодирован в base64.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+
 \subsubsection{\lstinline|[r/o] _tab'source : string|}
+
+Исходник страницы, открытой в указанной вкладке.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|[r/*] _tab'title|}
+
+Название страницы, открытой в указанной вкладке.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|[r/w] _tab'url|}
+
+URL страницы, открытой в указанной вкладке.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
 \subsubsection{\lstinline|_tab.back : void|}
+
+Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
 \subsubsection{\lstinline|_tab.close : void|}
+
+Закрывает окну, если она последняя закрывается и сессию.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_tab.focus : void|}
+
+Переключает фокус на вкладку. Фокус можно менять только внутри активной сессии.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_tab.forward : void|}
+
+Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
 \subsubsection{\lstinline|_tab.get <string>url : bool|}
+
+Загружает страницу, URL должен быть абсолютным.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}.
 
 \subsection{{\color{orange} \_dom}}
 
@@ -4137,19 +4526,60 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|;
 	\item \lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|;
 	\item \lstinline|_dom.queryTag <string>name : element|;
-	\item \lstinline|_dom.queryTags <string>name : element|;
+	\item \lstinline|_dom.queryTags <string>name : element|.
 \end{icItems}
 
 \subsubsection{\lstinline|_dom.query <int>by <string>selector : element|}
+
+Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
+
 \subsubsection{\lstinline|_dom.query <string>cssSelector : element|}
+
+Акроним для \lstinline|_dom.query _by'cssSelector @cssSelector|.
+
 \subsubsection{\lstinline|_dom.queryAll <int>by <string>selecor : element|}
+
+Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
+
+Возможные исключения: \ferror{NoSessions}.
+
 \subsubsection{\lstinline|_dom.queryAll <string>cssSelector : lement|}
+
+Акроним для \lstinline|_dom.queryAll _by'cssSelector @cssSelector|.
+
 \subsubsection{\lstinline|_dom.queryAllByXPath <string>xpath : element|}
+
+Акроним для \lstinline|_dom.queryAll _by'xPath @xpath|.
+
 \subsubsection{\lstinline|_dom.queryByXPath <string>xpath : element|}
+
+Акроним для \lstinline|_dom.query _by'xPath @xpath|.
+
 \subsubsection{\lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|}
+
+Акроним для:
+\begin{icItems}
+	\item \lstinline|_dom.query _by'linkText @name|;
+	\item \lstinline|_dom.query _by'partialLinkText @name|;
+\end{icItems}
+
 \subsubsection{\lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|}
+
+Акроним для:
+\begin{icItems}
+	\item \lstinline|_dom.queryAll _by'linkText @name|;
+	\item \lstinline|_dom.queryAll _by'partialLinkText @name|;
+\end{icItems}
+
 \subsubsection{\lstinline|_dom.queryTag <string>name : element|}
+
+Акроним для \lstinline|_dom.query _by'tagName @name|.
+
 \subsubsection{\lstinline|_dom.queryTags <string>name : element|}
+
+Акроним для \lstinline|_dom.queryAll _by'tagName @name|.
 
 \subsection{{\color{orange} \_files}}
 
@@ -4158,13 +4588,28 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_files.open <string>path : _file|;
 	\item \lstinline|_files.create <string>path : _file|;
 	\item \lstinline|_files.createDir <string>path : void|;
-	\item \lstinline|_files.createPath <string>path : void|;
+	\item \lstinline|_files.createPath <string>path : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|_files.open <string>path : _file|}
+
+Открывает файл.
+
+Возможные исключения: \ferror{FileNotFound}.
+
 \subsubsection{\lstinline|_files.create <string>path : _file|}
+
+Открывает файл, если он не существует, он создаётся.
+
 \subsubsection{\lstinline|_files.createDir <string>path : void|}
+
+Создаёт папку, папка в которым она создаётся должна уже существовать.
+
+Возможные исключения: \ferror{FolderNotFound}.
+
 \subsubsection{\lstinline|_files.createPath <string>path : void|}
+
+Создаёт все несуществующие папки пути.
 
 \subsection{{\color{orange} \_file}}
 
@@ -4174,22 +4619,42 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|[r/w] _file'format : int|;
 	\item \lstinline|[r/o] _file'none : 0 [static]|;
 	\item \lstinline|[r/o] _file'tsv : 2 [static]|;
-	\item \lstinline|[r/o] _file'valid : bool|;
+	\item \lstinline|[r/o] _file'valid : bool|.
 \end{icItems}
 
 И следующие методы:
 \begin{icItems}
 	\item \lstinline|_file.close : void|;
-	\item \lstinline|_file.delete : void|;
+	\item \lstinline|_file.delete : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] _file'csv : 1 [static]|}
+
+Формат CSV.
+
 \subsubsection{\lstinline|[r/w] _file'format : int|}
+
+Возвращает формат файла.
+
 \subsubsection{\lstinline|[r/o] _file'none : 0 [static]|}
+
+Не инициализированный файл.
+
 \subsubsection{\lstinline|[r/o] _file'tsv : 2 [static]|}
+
+Формат TSV.
+
 \subsubsection{\lstinline|[r/o] _file'valid : bool|}
+
+Возвращает \true, если файл инициализированный, иначе \false.
+
 \subsubsection{\lstinline|_file.close : void|}
+
+Закрывает файл.
+
 \subsubsection{\lstinline|_file.delete : void|}
+
+Удаляет файл.
 
 \subsection{{\color{orange} \_make}}
 
@@ -4204,19 +4669,50 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_make.string <double>d : string|;
 	\item \lstinline|_make.string <int>number <int>base : string|;
 	\item \lstinline|_make.string <object>obj : string|;
-	\item \lstinline|_make.string <set>s : string|;
+	\item \lstinline|_make.string <set>s : string|.
 \end{icItems}
 
 \subsubsection{\lstinline|_make.image <string>base64 <string>path : void|}
+
+Сохраняет скриншот на жёстком диске.
+
 \subsubsection{\lstinline|_make.int <string>str <int>base : int|}
+
+Парсит целое число в виде строки в нужном базисе.
+
+Возможные исключения: \ferror{ParsingFailed}.
+
 \subsubsection{\lstinline|_make.list <set>s : list|}
+
+Акроним для \lstinline|set : list|.
+
 \subsubsection{\lstinline|_make.object <string>json : object|}
+
+Акроним для \lstinline|object : string|.
+
 \subsubsection{\lstinline|_make.regex <string>pattern : regex|}
+
+Создаёт регулярное выражение на основе паттерна.
+
 \subsubsection{\lstinline|_make.string <bool>b : string|}
+
+Возвращает \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"true"|.
+
 \subsubsection{\lstinline|_make.string <double>d : string|}
+
+Акроним для \lstinline|double : string|.
+
 \subsubsection{\lstinline|_make.string <int>number <int>base : string|}
+
+Возвращает представления числа в заданном базисе.
+
 \subsubsection{\lstinline|_make.string <object>obj : string|}
+
+Акроним для \lstinline|object : string|.
+
 \subsubsection{\lstinline|_make.string <set>s : string|}
+
+Акроним для \lstinline|set : string|.
 
 \subsection{{\color{orange} \_log}}
 
@@ -4226,14 +4722,28 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_log.info <string>message : void|;
 	\item \lstinline|_log.out <any ...>args : void|;
 	\item \lstinline|_log.stack <any>var : void|;
-	\item \lstinline|_log.state <any>var : void|;
+	\item \lstinline|_log.state <any>var : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|_log.error <string>message : void|}
+
+Выводит сообщение об ошибке.
+
 \subsubsection{\lstinline|_log.info <string>message : void|}
+
+Выводит информационное сообщение.
+
 \subsubsection{\lstinline|_log.out <any ...>args : void|}
+
+Выводит отладочное сообщение, принимает несколько параметров любого типа. При получении переменных выводит исходник, название перемены, тип данных и значение. При получении константных только значение. При получении результата выполнения функции - тип и значение. 
+
 \subsubsection{\lstinline|_log.stack <any>var : void|}
+
+Выводит список всех стеков, указывая в каких из них встречается переменная с указанным именем, и какие значения имеются.
+
 \subsubsection{\lstinline|_log.state <any>var : void|}
+
+Выводит список всех состояний, указывая в каких из них встречается переменная с указанным именем, и какие значения имеются.
 
 \subsection{{\color{orange} \_numbers}}
 
@@ -4243,7 +4753,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|[r/o] _numbers'min : 3|;
 	\item \lstinline|[r/o] _numbers'product : 2|;
 	\item \lstinline|[r/o] _numbers'process : int|;
-	\item \lstinline|[r/o] _numbers'sum : 1|;
+	\item \lstinline|[r/o] _numbers'sum : 1|.
 \end{icItems}
 
 И следующие методы:
@@ -4251,18 +4761,48 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_numbers.process <int>a <int>b : int|;
 	\item \lstinline|_numbers.process <double>a <double>b : double|;
 	\item \lstinline|_numbers.restoreProcess : void|;
-	\item \lstinline|_numbers.setProcess <int>proc : void|;
+	\item \lstinline|_numbers.setProcess <int>proc : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] _numbers'max : 4|}
+
+Выбирать максимум.
+
 \subsubsection{\lstinline|[r/o] _numbers'min : 3|}
+
+Выбирать минимум.
+
 \subsubsection{\lstinline|[r/o] _numbers'product : 2|}
+
+Умножить числа.
+
 \subsubsection{\lstinline|[r/o] _numbers'process : int|}
+
+Текущий способ обработки чисел.
+
 \subsubsection{\lstinline|[r/o] _numbers'sum : 1|}
+
+Складывать числа.
+
 \subsubsection{\lstinline|_numbers.process <int>a <int>b : int|}
+
+Обработать целых чисел текущим методом.
+
 \subsubsection{\lstinline|_numbers.process <double>a <double>b : double|}
+
+Обработать дробных чисел текучим методом.
+
 \subsubsection{\lstinline|_numbers.restoreProcess : void|}
+
+Удаляет последняя запись стека способов обработки.
+
 \subsubsection{\lstinline|_numbers.setProcess <int>proc : void|}
+
+Добавляет новая запись в стеке способов обработки.
+
+\subsubsection{Пример}
+
+
 
 \subsection{{\color{orange} \_math}}
 
@@ -4280,7 +4820,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|[r/o] _math'pi : double|;
 	\item \lstinline|[r/o] _math'piDiv2 : double|;
 	\item \lstinline|[r/o] _math'piDiv4 : double|;
-	\item \lstinline|[r/o] _math'sqrt2 : double|;
+	\item \lstinline|[r/o] _math'sqrt2 : double|.
 \end{icItems}
 
 И следующие методы:
@@ -4345,7 +4885,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_import.functions <string>path : void|;
 	\item \lstinline|_import.all <object>data <string>path : void|;
 	\item \lstinline|_import.all <string>path : void|;
-	\item \lstinline|_import.run <string>path : void|;
+	\item \lstinline|_import.run <string>path : void|.
 \end{icItems}
 
 Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
@@ -4361,7 +4901,7 @@ TSV отличается от остальных, файлы обработаю�
 \subsection{Модификатор {\color{blue2} reverse}}
 
 \newpage
-\section{Регулярные выражения {\color{bluemarin} regex}}
+\section{Регулярные выражения}
 \label{regex}
 
 Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//mods|, где \code{pattern} - шаблон регулярней выражений, \code{mods} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?<name>content)|.
