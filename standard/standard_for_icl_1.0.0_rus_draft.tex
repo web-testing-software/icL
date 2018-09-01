@@ -378,6 +378,8 @@
 
 Этот документ предназначен для всех тех людей, которые ищут отравную точку, откуда можно начать изучать язык icL. Также данный документ используется при разработке интерпретатора, поведения командного процессора во всех ситуациях неописанных в данном документе считается неопределённой.
 
+Чувствуете себя свободным в указаниях на ошибках и представления новых идей и точек зрения, жду ваших письмах по адресу lixcode@vivaldi.net.
+
 \subsection{Что вы должны уметь}
 
 Прежде чем выступать к изучению этого языка, вам желательно иметь базовое представление о компьютерном программировании.
@@ -2096,7 +2098,7 @@ $run @var { window.a = arguments[0] }
 $file "path/to/file.js";
 \end{lstlisting}
 
-Возможные ошибки: \ferror{FileNotFound}.
+Возможные исключения: \ferror{FileNotFound}.
 
 \subsection{Пользовательские скрипты}
 
@@ -2108,7 +2110,7 @@ $user "path/to/file.js";
 $always "path/to/file.js";
 \end{lstlisting}
 
-Возможные ошибки: \ferror{FileNotFound}.
+Возможные исключения: \ferror{FileNotFound}.
 
 \newpage
 \section{Функции}
@@ -2237,13 +2239,13 @@ $always "path/to/file.js";
 
 Последний символ строки, то же самое что и \lstinline|string.at (string'length - 1)|.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|string'(<int> n) : char|}
 
 n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsection{Методы}
 
@@ -2368,7 +2370,7 @@ n-й символ строки. n должен быть целым литера�
 
 Возвращает ссылка на \code{i}-й символ.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|string.beginsWith <string>str : bool|}
 
@@ -2506,13 +2508,13 @@ n-й символ строки. n должен быть целым литера�
 
 Последняя строка в списке, то же соме что и \lstinline|list'at (list'length - 1)|.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list'(<int>n) : string|}
 
 n-я строка списка, n должен быть целым литералом.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsection{Методы}
 
@@ -2587,7 +2589,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает \code{i}-й строка.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.contains <string>str <bool>caseSensitive = true : bool|}
 
@@ -2633,7 +2635,7 @@ n-я строка списка, n должен быть целым литера�
 
 Переставит строку с индексом \code{from} в позиции с индексом \code{to}.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeAll <string>str : list|}
 
@@ -2643,7 +2645,7 @@ n-я строка списка, n должен быть целым литера�
 
 Удаляет \code{i}-я строка.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeDuplicates : list|}
 
@@ -2653,13 +2655,13 @@ n-я строка списка, n должен быть целым литера�
 
 Удаляет первую строку.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeLast : list|}
 
 Удаляет последнюю строку.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeOne <string>str : bool|}
 
@@ -2799,7 +2801,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает список значений поле \code{name} всех объектов.
 
-Возможные ошибки: \ferror{FieldNotFound}.
+Возможные исключения: \ferror{FieldNotFound}.
 
 \subsubsection{\lstinline|set.hasField <string>name : bool|}
 
@@ -2809,43 +2811,43 @@ n-я строка списка, n должен быть целым литера�
 
 Вставит новый объект, значения полей (массив \code{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
 
-Возможные ошибки: \ferror{IncompatibleData}.
+Возможные исключения: \ferror{IncompatibleData}.
 
 \subsubsection{\lstinline|set.insert <object>obj : set|}
 
 Вставит новый объект, поля объекта \code{obj} должна быть совместимы полностью с заголовком множество.
 
-Возможные ошибки: \ferror{IncompatibleObject}.
+Возможные исключения: \ferror{IncompatibleObject}.
 
 \subsubsection{\lstinline|set.insertBoolField <string>name <list>values : set|}
 
 Создаёт новое поле типа \bool. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
-Возможные ошибки: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertDoubleField <string>name <list>values : set|}
 
 Создаёт новое поле типа \double. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
-Возможные ошибки: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertIntField <string>name <list>values : set|}
 
 Создаёт новое поле типа \integer. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
-Возможные ошибки: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertListField <string>name <list>value : set|}
 
 Создаёт новое поле типа \bool. Все объекты множеству получат новое поле со значением \code{value}.
 
-Возможные ошибки: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertStringField <string>name <list>values : set|}
 
 Создаёт новое поле типа \str. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
-Возможные ошибки: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.remove <any ...>data : set|}
 
@@ -2859,7 +2861,7 @@ n-я строка списка, n должен быть целым литера�
 
 Удаляет поле \code{name} с заголовка.
 
-Возможные ошибки: \ferror{FieldNotFound}.
+Возможные исключения: \ferror{FieldNotFound}.
 
 \newpage
 \section{Веб-элементы}
@@ -2892,7 +2894,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает JS-значение для запрашиваемого атрибута. Доступно для чтений и записи.
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'css-* : string|}
 
@@ -2900,7 +2902,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS. Доступно для чтений и записи.
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'empty : bool|}
 
@@ -2910,7 +2912,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. Больше информации: https://www.w3.org/TR/webdriver1/\#is\--element\--enabled
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'length : int|}
 
@@ -2926,7 +2928,7 @@ n-я строка списка, n должен быть целым литера�
 @var:string = element'prop-userdefined;
 \end{lstlisting}
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'rect : obj|}
 
@@ -2942,13 +2944,13 @@ n-я строка списка, n должен быть целым литера�
 
 Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-rect
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'selected : bool|}
 
 Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#is-element-selected
 
-Возможные ошибки: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element'tag : string|}
 
@@ -2956,7 +2958,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'text : string|}
 
@@ -2964,13 +2966,13 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element'(<int> n) : element|}
 
 Возвращает новую коллекцию содержащую n-й элемент.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsection{Операторы}
 
@@ -3028,7 +3030,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Очищены будут все элементы контейнера.
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element.click : element|}
 
@@ -3036,13 +3038,13 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Клик будет симулирован на все элементы контейнера.
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{NoSuchElement} в любом режиме.
 
-\subsubsection{\lstinline|(element or _dom).query <string>cssSelector : element|}
+\subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
-Акроним для \lstinline|(element or _dom).query _by'cssSelector @cssSelector|; 
+Акроним для \lstinline|element.query _by'cssSelector @cssSelector|; 
 
-\subsubsection{\lstinline|(element or _dom).query <int>by <string>selector : element|}
+\subsubsection{\lstinline|element.query <int>by <string>selector : element|}
 
 Параметр \code{by} получает одно из следующих значений:
 \begin{icItems}
@@ -3065,13 +3067,13 @@ n-я строка списка, n должен быть целым литера�
 \item https://w3c.github.io/webdriver1/\#find-element-from-element
 \end{icItems}
 
-Возможные ошибки: \ferror{EmptyElement}, \ferror{ElementNotFound} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{ElementNotFound} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
-\subsubsection{\lstinline|(element or _dom).queryAll <string>cssSelector : element|}
+\subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
 
-Акроним для \lstinline|(element or _dom).queryAll _by'cssSelector @cssSelector|;
+Акроним для \lstinline|element.queryAll _by'cssSelector @cssSelector|;
 
-\subsubsection{\lstinline|(element or _dom).queryAll <int>by <string>selector : element|}
+\subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
 
 Параметры получают такие же значения, как и в случае с \code{element.query}, только данный метод возвращает коллекцию найденных элементов или пустую коллекцию если ничего не нашлось.
 
@@ -3079,39 +3081,39 @@ n-я строка списка, n должен быть целым литера�
 
 Больше информации: https://w3c.github.io/webdriver1/\#find-elements-from-element
 
-Возможные ошибки: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
 
-\subsubsection{\lstinline|(element or _dom).queryAllByXPath <string>xpath : element|}
+\subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
 
-Акроним для \lstinline|(element or _dom).queryAll _by'xPath @xpath|;
+Акроним для \lstinline|element.queryAll _by'xPath @xpath|;
 
-\subsubsection{\lstinline|(element or _dom).queryByXPath <string>xpath : element|}
+\subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
 
-Акроним для \lstinline|(element or _dom).query _by'xPath @xpath|;
+Акроним для \lstinline|element.query _by'xPath @xpath|;
 
-\subsubsection{\lstinline|(element or _dom).queryLink <string>name <bool>isFragment = false : element|}
-
-Акроним для:
-\begin{icItems}
-	\item \lstinline|(element or _dom).query _by'linkText @name}|;
-	\item \lstinline|(element or _dom).query _by'partialLinkText @name|.-
-\end{icItems}
-
-\subsubsection{\lstinline|(element or _dom).queryLinks <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|(element or _dom).queryAll _by'linkText @name}|;
-	\item \lstinline|(element or _dom).queryAll _by'partialLinkText @name|.
+	\item \lstinline|element.query _by'linkText @name|;
+	\item \lstinline|element.query _by'partialLinkText @name|.
 \end{icItems}
 
-\subsubsection{\lstinline|(element or _dom).queryTag <string>name : element|}
+\subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
 
-Акроним для \lstinline|(element or _dom).query _by'tagName @name|;
+Акроним для:
+\begin{icItems}
+	\item \lstinline|element.queryAll _by'linkText @name|;
+	\item \lstinline|element.queryAll _by'partialLinkText @name|.
+\end{icItems}
 
-\subsubsection{\lstinline|(element or _dom).queryTags <string>name : element|}
+\subsubsection{\lstinline|element.queryTag <string>name : element|}
 
-Акроним для \lstinline|(element or _dom).queryAll _by'tagName @name|;
+Акроним для \lstinline|element.query _by'tagName @name|;
+
+\subsubsection{\lstinline|element.queryTags <string>name : element|}
+
+Акроним для \lstinline|element.queryAll _by'tagName @name|;
 
 \subsubsection{\lstinline|element.screenshot : string|}
 
@@ -3119,7 +3121,7 @@ n-я строка списка, n должен быть целым литера�
 
 Больше информации: https://w3c.github.io/webdriver1/\#take-element-screenshot
 
-Возможные ошибки: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
 
@@ -3134,7 +3136,7 @@ n-я строка списка, n должен быть целым литера�
 
 Больше информации: https://w3c.github.io/webdriver1/\#element-send-keys
 
-Возможные ошибки: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{ElementNotIntractable} \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{ElementNotIntractable} \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsection{Расширенные методы}
 
@@ -3553,7 +3555,7 @@ Screenshot страницы в base64 можно получить вызывая
 
 \lstinline|_alert.sendKeys <string>str : void| - ответить текстом \code{str}. Больше информации: https://www.w3.org/TR/webdriver1/\#send-alert-text
 
-% Возможные ошибки: \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable}.
+% Возможные исключения: \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable}.
 
 \newpage
 \section{DSV: CSV и TSV}
@@ -3578,7 +3580,7 @@ icL позволяет делать следующие действия с фа�
 
 Возвращает множество содержащая все данные из файла \code{f}. Строка \code{delimiter} должна состоять из одного символа - нужного разделителя. Объект файл можно создать через \lstinline|_make.file <string>path : file|, если файл не существует, он будет создан, иначе будет открыт.
 
-Возможные ошибки: \ferror{ParsingFailed}, \ferror{WrongDelimiter}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{WrongDelimiter}.
 
 \subsubsection{\lstinline|_dsv.loadCSV <file>f : file|;}
 
@@ -3626,7 +3628,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Преобразует данные в нужном типа данных.
 
-Возможные ошибки: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
 
 \subsubsection{\lstinline|data :: type : bool|}
 
@@ -3750,13 +3752,13 @@ TSV отличается от остальных, файлы обработаю�
 
 Возвращает целое число, являющейся результат парсинга строки \str.
 
-Возможные ошибки: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed}.
 
 \subsubsection{\lstinline|string : double|}
 
 Возвращает вещественное число, являющейся результат парсинга строки \str. Целая часть от дробной делить надо точкой, ан запятой.
 
-Возможные ошибки: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed}.
 
 \subsubsection{\lstinline|string : string|}
 
@@ -3770,13 +3772,13 @@ TSV отличается от остальных, файлы обработаю�
 
 Возвращает объект, являющийся результат парсинга JSON-строки \str. JSON-объект должен иметь поля только следующих типов: \bool, \integer, \double, \str{} и \listtype.
 
-Возможные ошибки: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
 
 \subsubsection{\lstinline|string : set|}
 
 Возвращает множество, являющийся результат парсинга JSON-строки \str, которая должна содержать массив объект, а каждый объект должен соответствовать критерия оператора \lstinline|string : object|.
 
-Возможные ошибки: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
 
 \subsubsection{\lstinline|list : bool|}
 
@@ -3786,7 +3788,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Возвращает первую строку списка, если список состоит только из одной строки, иначе генерирует исключение.
 
-Возможные ошибки: \ferror{EmptyList} и \ferror{MultiList}.
+Возможные исключения: \ferror{EmptyList} и \ferror{MultiList}.
 
 \subsubsection{\lstinline|list : list|}
 
@@ -3820,7 +3822,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Возвращает единственный объект, если множество содержит только один объект, иначе генерирует исключение.
 
-Возможные ошибки: \ferror{EmptySet} и \ferror{MultiSet}.
+Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet}.
 
 \subsubsection{\lstinline|set : list|}
 
@@ -3863,7 +3865,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_sessions'(<int>i) : _session|.
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
 	\item \lstinline|_sessions.closeAll : void|;
 	\item \lstinline|_sessions.get <int>i : _session|;
@@ -3878,7 +3880,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Возвращает \code{i}-ю сессию.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_sessions.closeAll : void|}
 
@@ -3888,7 +3890,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Возвращает \code{i}-ю сессию.
 
-Возможные ошибки: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_sessions.new : _session|}
 
@@ -3896,7 +3898,7 @@ TSV отличается от остальных, файлы обработаю�
 
 \subsection{{\color{orange} \_session}}
 
-\session{} возвращает указатель на текущей сессии.
+Команда \session{} возвращает указатель на текущей сессии.
 
 Объект \session{} имеет следующие свойства:
 \begin{icItems}
@@ -3908,7 +3910,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_session'url : string|.
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
 	\item \lstinline|_session.back : _sesion|;
 	\item \lstinline|_session.close : void|;
@@ -3938,7 +3940,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_window'y : int|.
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
 	\item \lstinline|_window.close : void|;
 	\item \lstinline|_window.focus : _window|;
@@ -3975,7 +3977,7 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_cookie'value : string|.
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
 	\item \lstinline|_cookie.load : _cookie|;
 	\item \lstinline|_cookie.save : _cookie|.
@@ -3985,7 +3987,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Объект \alert{} имеет следующее свойство: \lstinline|_alert'text : string|.
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
 	\item \lstinline|_alert.accept : void|;
 	\item \lstinline|_alert.dismiss : void|;
@@ -4008,7 +4010,7 @@ TSV отличается от остальных, файлы обработаю�
 	% \item \lstinline|_tabs'|;
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
 	\item \lstinline|_tabs.close <string>template : int|;
 	\item \lstinline|_tabs.close <regex>url : int|;
@@ -4028,98 +4030,160 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_tab'source : string|;
 	\item \lstinline|_tab'title|;
 	\item \lstinline|_tab'url|;
-	\item \lstinline|_tab'|;
-	\item \lstinline|_tab'|;
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_tab.back : void|;
+	\item \lstinline|_tab.close : void|;
+	\item \lstinline|_tab.forward : void|;
+	\item \lstinline|_tab.get <string>url : bool|;
 \end{icItems}
 
 \subsection{{\color{orange} \_dom}}
 
-Объект \dom{} имеет следующие свойства:
+Объект \dom{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline||;
-\end{icItems}
-
-И следующее методы:
-\begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_dom.query <int>by <string>selector : element|;
+	\item \lstinline|_dom.query <string>cssSelector : element|;
+	\item \lstinline|_dom.queryAll <int>by <string>selecor : element|;
+	\item \lstinline|_dom.queryAll <string>cssSelector : lement|;
+	\item \lstinline|_dom.queryAllByXPath <string>xpath : element|;
+	\item \lstinline|_dom.queryByXPAth <string>xpath : element|;
+	\item \lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|;
+	\item \lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|;
+	\item \lstinline|_dom.queryTag <string>name : element|;
+	\item \lstinline|_dom.queryTags <string>name : element|;
 \end{icItems}
 
 \subsection{{\color{orange} \_files}}
 
-Объект \files{} имеет следующие свойства:
+Объект \files{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline||;
-\end{icItems}
-
-И следующее методы:
-\begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_files.open <string>path : _file|;
+	\item \lstinline|_files.create <string>path : _file|;
+	\item \lstinline|_files.createDir <string>path : void|;
+	\item \lstinline|_files.createPath <string>path : void|;
 \end{icItems}
 
 \subsection{{\color{orange} \_file}}
 
 Объект \file{} имеет следующие свойства:
 \begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_file'csv : 1 [static]|;
+	\item \lstinline|_file'format : int|;
+	\item \lstinline|_file'none : 0 [static]|;
+	\item \lstinline|_file'tsv : 2 [static]|;
+	\item \lstinline|_file'valid : bool|;
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_file.close : void|;
+	\item \lstinline|_file.delete : void|;
 \end{icItems}
 
 \subsection{{\color{orange} \_make}}
 
-Объект \make{} имеет следующие свойства:
+Объект \make{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline||;
-\end{icItems}
-
-И следующее методы:
-\begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_make.image <string>base64 <string>path : void|;
+	\item \lstinline|_make.int <string>str <int>base : int|;
+	\item \lstinline|_make.list <set>s : list|;
+	\item \lstinline|_make.object <string>json : object|;
+	\item \lstinline|_make.regex <string>pattern : regex|;
+	\item \lstinline|_make.string <bool>b : string|;
+	\item \lstinline|_make.string <double>d : string|;
+	\item \lstinline|_make.string <int>number <int>base : string|;
+	\item \lstinline|_make.string <object>obj : string|;
+	\item \lstinline|_make.string <set>s : string|;
 \end{icItems}
 
 \subsection{{\color{orange} \_log}}
 
-Объект \logtype{} имеет следующие свойства:
+Объект \logtype{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline||;
-\end{icItems}
-
-И следующее методы:
-\begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_log.error <string>message : void|;
+	\item \lstinline|_log.info <string>message : void|;
+	\item \lstinline|_log.out <any ...>args : void|;
+	\item \lstinline|_log.stack <any>var : void|;
+	\item \lstinline|_log.state <any>var : void|;
 \end{icItems}
 
 \subsection{{\color{orange} \_numbers}}
 
 Объект \numbers{} имеет следующие свойства:
 \begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_numbers'max : 4|;
+	\item \lstinline|_numbers'min : 3|;
+	\item \lstinline|_numbers'product : 2|;
+	\item \lstinline|_numbers'process : int|;
+	\item \lstinline|_numbers'sum : 1|;
 \end{icItems}
 
-И следующее методы:
+И следующие методы:
 \begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_numbers.process <int>a <int>b : int|;
+	\item \lstinline|_numbers.process <double>a <double>b : double|;
+	\item \lstinline|_numbers.restoreProcess : void|;
+	\item \lstinline|_numbers.setProcess <int>proc : void|;
+\end{icItems}
+
+
+\subsection{{\color{orange} \_math}}
+
+Объект \lstinline|_math| имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|_math'1divPi : double|;
+	\item \lstinline|_math'1divSqrt2 : double|;
+	\item \lstinline|_math'2divPi : double|;
+	\item \lstinline|_math'2sqrtPi : double|;
+	\item \lstinline|_math'e : double|;
+	\item \lstinline|_math'ln2 : double|;
+	\item \lstinline|_math'ln10 : double|;
+	\item \lstinline|_math'log2e : double|;
+	\item \lstinline|_math'log10e : double|;
+	\item \lstinline|_math'pi : double|;
+	\item \lstinline|_math'pi2 : double|;
+	\item \lstinline|_math'pi4 : double|;
+	\item \lstinline|_math'sqrt2 : double|;
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_math.acos <double>v : double|;
+	\item \lstinline|_math.asin <double>v : double|;
+	\item \lstinline|_math.atan <double>v : double|;
+	\item \lstinline|_math.ceil <double>v : int|;
+	\item \lstinline|_math.cos <double>v : double|;
+	\item \lstinline|_math.degreesToRadians <double>v : double|;
+	\item \lstinline|_math.exp <double>v : double|;
+	\item \lstinline|_math.floor <double>v : int|;
+	\item \lstinline|_math.ln <double>v : double|;
+	\item \lstinline|_math.min <int ...>arr : int|;
+	\item \lstinline|_math.min <double ...>arr : double|;
+	\item \lstinline|_math.max <int ...>arr : int|;
+	\item \lstinline|_math.max <double ...>arr : double|;
+	\item \lstinline|_math.radiansToDegrees <double>v : double|;
+	\item \lstinline|_math.round <double> : int|;
+	\item \lstinline|_math.sin <double>v : double|;
+	\item \lstinline|_math.tan <double>v : double|.
 \end{icItems}
 
 \subsection{{\color{orange} \_import}}
 
-Объект \lstinline|_import| имеет следующие свойства:
+Объект \lstinline|_import| имеет следующие методы:
 \begin{icItems}
-	\item \lstinline||;
+	\item \lstinline|_import.none <object>data <string>path : void|;
+	\item \lstinline|_import.none <string>path : void|;
+	\item \lstinline|_import.functions <object>data <string>path : void|;
+	\item \lstinline|_import.functions <string>path : void|;
+	\item \lstinline|_import.all <object>data <string>path : void|;
+	\item \lstinline|_import.all <string>path : void|;
+	\item \lstinline|_import.run <string>path : void|;
 \end{icItems}
 
-И следующее методы:
-\begin{icItems}
-	\item \lstinline||;
-\end{icItems}
+Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
 
 \subsection{Модификатор {\color{blue2} reverse}}
 
