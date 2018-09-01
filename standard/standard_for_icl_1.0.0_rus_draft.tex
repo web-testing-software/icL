@@ -63,7 +63,11 @@
 \definecolor{function}{RGB}{11, 145, 89}
 \definecolor{blue2}{RGB}{15, 92, 198}
 
-\newcommand{\ferror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{function}{\textcolor{white}{#1}}}}
+\usepackage{soul}
+
+\newcommand{\ferror}[1]{{\fontsize{11pt}{12pt}\tt{\sethlcolor{yellow}\hl{#1}}}}
+
+% \colorbox{function}{\textcolor{white}{#1}}
 
 \newcommand{\cerror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{red!75!blue}{\textcolor{white}{#1}}}}
 
@@ -2922,7 +2926,7 @@ n-я строка списка, n должен быть целым литера�
 
 \subsubsection{\lstinline|[*/*] element'prop-* : string|}
 
-\code{[w3c]} Возвращает значения свойства \code{*}. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-property
+\code{[w3c]} Возвращает значения свойства \code{*}. Больше информации: https://www.w3\-.org/TR/webdriver1/\#get-element-property
 
 \code{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Тип JS-значений не определён, это можно сводить к проблемам в динамическом анализаторе кода. При использовании свойств неопределённых в главе \ref{elements:predefined:properties}, используете преобразование для указания какого типа будет результат. Если переменная уже инициализируемая, то никаких проблем не должны быть. Новых перемен инициализируете одним из следующим способом -
 \begin{lstlisting}[numbers=none]
@@ -2952,7 +2956,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#is-element-selected
 
-Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuch\-Element}.
 
 \subsubsection{\lstinline|[r/o] element'tag : string|}
 
@@ -3040,7 +3044,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Клик будет симулирован на все элементы контейнера.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClick\-Intercepted} и \ferror{NoSuchElement} в любом режиме.
 
 \subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
@@ -3920,6 +3924,20 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_session.switchTo : _session|.
 \end{icItems}
 
+\subsubsection{\lstinline|[r/w] _session'implicitTimeout : int|}
+\subsubsection{\lstinline|[r/w] _session'pageLoadTimeout : int|}
+\subsubsection{\lstinline|[r/w] _session'scriptTimeout : int|}
+\subsubsection{\lstinline|[r/o] _session'source : string|}
+\subsubsection{\lstinline|[r/o] _session'title : string|}
+\subsubsection{\lstinline|[r/w] _session'url : string|}
+\subsubsection{\lstinline|_session.back : _sesion|}
+\subsubsection{\lstinline|_session.close : void|}
+\subsubsection{\lstinline|_session.forward : _session|}
+\subsubsection{\lstinline|_session.refresh : _session|}
+\subsubsection{\lstinline|_session.screenshot : string|}
+\subsubsection{\lstinline|_session.switchTo : _session|}
+%\subsubsection{}
+
 \subsection{{\color{orange} \_windows}}
 
 Объект \windows{} имеет следующие свойства:
@@ -3929,6 +3947,10 @@ TSV отличается от остальных, файлы обработаю�
 \end{icItems}
 
 И следующий метод \lstinline|_windows.get <int>i : _window|.
+
+\subsubsection{\lstinline|_windows'length : int|}
+\subsubsection{\lstinline|_windows'(<int>i) : _window|}
+\subsubsection{\lstinline|_windows.get <int>i : _window|}
 
 \subsection{{\color{orange} \_window}}
 
@@ -3954,6 +3976,21 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_window.switchToParent : _window|.
 \end{icItems}
 
+\subsubsection{\lstinline|[r/w] _window'height : int|}
+\subsubsection{\lstinline|[r/w] _window'width : int|}
+\subsubsection{\lstinline|[r/w] _window'x : int|}
+\subsubsection{\lstinline|[r/w] _window'y : int|}
+\subsubsection{\lstinline|_window.close : void|}
+\subsubsection{\lstinline|_window.focus : _window|}
+\subsubsection{\lstinline|_window.fullscreen : _window|}
+\subsubsection{\lstinline|_window.maximize : _window|}
+\subsubsection{\lstinline|_window.minimize : _window|}
+\subsubsection{\lstinline|_window.restore : _window|}
+\subsubsection{\lstinline|_window.switchToDefault : _window|}
+\subsubsection{\lstinline|_window.switchToFrame <int>i : _window|}
+\subsubsection{\lstinline|_window.switchToFrame <element>el : _window|}
+\subsubsection{\lstinline|_window.switchToParent : _window|}
+
 \subsection{{\color{orange} \_cookies}}
 
 Объект \cookies{} имеет следующее свойство: \lstinline|[r/o] _cookies'<string>name : _cookie|.
@@ -3964,6 +4001,9 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_cookies.get <string>name : _cookie|.
 \end{icItems}
 
+\subsubsection{\lstinline|[r/o] _cookies'<string>name : _cookie|}
+\subsubsection{\lstinline|_cookies.deleteAll : void|}
+\subsubsection{\lstinline|_cookies.get <string>name : _cookie|}
 
 \subsection{{\color{orange} \_cookie}}
 
@@ -3984,6 +4024,16 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_cookie.save : _cookie|.
 \end{icItems}
 
+\subsubsection{\lstinline|[r/w] _cookie'domain : string|}
+\subsubsection{\lstinline|[r/w] _cookie'expiry : number|}
+\subsubsection{\lstinline|[r/w] _cookie'httpOnly : bool|}
+\subsubsection{\lstinline|[r/w] _cookie'name : string|}
+\subsubsection{\lstinline|[r/w] _cookie'path : string|}
+\subsubsection{\lstinline|[r/w] _cookie'secure : bool|}
+\subsubsection{\lstinline|[r/w] _cookie'value : string|}
+\subsubsection{\lstinline|_cookie.load : _cookie|}
+\subsubsection{\lstinline|_cookie.save : _cookie|}
+
 \subsection{{\color{orange} \_alert}}
 
 Объект \alert{} имеет следующее свойство: \lstinline|[r/o] _alert'text : string|.
@@ -3994,6 +4044,11 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_alert.dismiss : void|;
 	\item \lstinline|_alert.sendKeys <string>keys : void|.
 \end{icItems}
+
+\subsubsection{\lstinline|[r/o] _alert'text : string|}
+\subsubsection{\lstinline|_alert.accept : void|}
+\subsubsection{\lstinline|_alert.dismiss : void|}
+\subsubsection{\lstinline|_alert.sendKeys <string>keys : void|}
 
 % \subsection{Возможности icL}
 
@@ -4023,6 +4078,21 @@ TSV отличается от остальных, файлы обработаю�
 	% \item \lstinline|_tabs.|;
 \end{icItems}
 
+\subsubsection{\lstinline|[r/o] _tabs'current : _tab|}
+\subsubsection{\lstinline|[r/o] _tabs'first : _tab|}
+\subsubsection{\lstinline|[r/o] _tabs'last : _tab|}
+\subsubsection{\lstinline|[r/o] _tabs'length : int|}
+\subsubsection{\lstinline|[r/o] _tabs'next : _tab|}
+\subsubsection{\lstinline|[r/o] _tabs'previous : _tab|}
+\subsubsection{\lstinline|[r/o] _tabs'(<int>i) : _tab|}
+\subsubsection{\lstinline|_tabs.close <string>template : int|}
+\subsubsection{\lstinline|_tabs.close <regex>url : int|}
+\subsubsection{\lstinline|_tabs.closeByTitle <string>template : int|}
+\subsubsection{\lstinline|_tabs.closeByTitle <regex>title : int|}
+\subsubsection{\lstinline|_tabs.closeOthers : int|}
+\subsubsection{\lstinline|_tabs.closeToLeft : int|}
+\subsubsection{\lstinline|_tabs.closeToRight : int|}
+
 \subsection{{\color{orange} \_tab}}
 
 Объект \tab{} имеет следующие свойства:
@@ -4043,6 +4113,17 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_tab.get <string>url : bool|;
 \end{icItems}
 
+\subsubsection{\lstinline|[r/o] _tab'canGoBack : bool|}
+\subsubsection{\lstinline|[r/o] _tab'canGoForward : bool|}
+\subsubsection{\lstinline|[r/o] _tab'screenshot : string|}
+\subsubsection{\lstinline|[r/o] _tab'source : string|}
+\subsubsection{\lstinline|[r/*] _tab'title|}
+\subsubsection{\lstinline|[r/w] _tab'url|}
+\subsubsection{\lstinline|_tab.back : void|}
+\subsubsection{\lstinline|_tab.close : void|}
+\subsubsection{\lstinline|_tab.forward : void|}
+\subsubsection{\lstinline|_tab.get <string>url : bool|}
+
 \subsection{{\color{orange} \_dom}}
 
 Объект \dom{} имеет следующие методы:
@@ -4059,6 +4140,17 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_dom.queryTags <string>name : element|;
 \end{icItems}
 
+\subsubsection{\lstinline|_dom.query <int>by <string>selector : element|}
+\subsubsection{\lstinline|_dom.query <string>cssSelector : element|}
+\subsubsection{\lstinline|_dom.queryAll <int>by <string>selecor : element|}
+\subsubsection{\lstinline|_dom.queryAll <string>cssSelector : lement|}
+\subsubsection{\lstinline|_dom.queryAllByXPath <string>xpath : element|}
+\subsubsection{\lstinline|_dom.queryByXPath <string>xpath : element|}
+\subsubsection{\lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|_dom.queryTag <string>name : element|}
+\subsubsection{\lstinline|_dom.queryTags <string>name : element|}
+
 \subsection{{\color{orange} \_files}}
 
 Объект \files{} имеет следующие методы:
@@ -4068,6 +4160,11 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_files.createDir <string>path : void|;
 	\item \lstinline|_files.createPath <string>path : void|;
 \end{icItems}
+
+\subsubsection{\lstinline|_files.open <string>path : _file|}
+\subsubsection{\lstinline|_files.create <string>path : _file|}
+\subsubsection{\lstinline|_files.createDir <string>path : void|}
+\subsubsection{\lstinline|_files.createPath <string>path : void|}
 
 \subsection{{\color{orange} \_file}}
 
@@ -4086,6 +4183,14 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_file.delete : void|;
 \end{icItems}
 
+\subsubsection{\lstinline|[r/o] _file'csv : 1 [static]|}
+\subsubsection{\lstinline|[r/w] _file'format : int|}
+\subsubsection{\lstinline|[r/o] _file'none : 0 [static]|}
+\subsubsection{\lstinline|[r/o] _file'tsv : 2 [static]|}
+\subsubsection{\lstinline|[r/o] _file'valid : bool|}
+\subsubsection{\lstinline|_file.close : void|}
+\subsubsection{\lstinline|_file.delete : void|}
+
 \subsection{{\color{orange} \_make}}
 
 Объект \make{} имеет следующие методы:
@@ -4102,6 +4207,17 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_make.string <set>s : string|;
 \end{icItems}
 
+\subsubsection{\lstinline|_make.image <string>base64 <string>path : void|}
+\subsubsection{\lstinline|_make.int <string>str <int>base : int|}
+\subsubsection{\lstinline|_make.list <set>s : list|}
+\subsubsection{\lstinline|_make.object <string>json : object|}
+\subsubsection{\lstinline|_make.regex <string>pattern : regex|}
+\subsubsection{\lstinline|_make.string <bool>b : string|}
+\subsubsection{\lstinline|_make.string <double>d : string|}
+\subsubsection{\lstinline|_make.string <int>number <int>base : string|}
+\subsubsection{\lstinline|_make.string <object>obj : string|}
+\subsubsection{\lstinline|_make.string <set>s : string|}
+
 \subsection{{\color{orange} \_log}}
 
 Объект \logtype{} имеет следующие методы:
@@ -4112,6 +4228,12 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_log.stack <any>var : void|;
 	\item \lstinline|_log.state <any>var : void|;
 \end{icItems}
+
+\subsubsection{\lstinline|_log.error <string>message : void|}
+\subsubsection{\lstinline|_log.info <string>message : void|}
+\subsubsection{\lstinline|_log.out <any ...>args : void|}
+\subsubsection{\lstinline|_log.stack <any>var : void|}
+\subsubsection{\lstinline|_log.state <any>var : void|}
 
 \subsection{{\color{orange} \_numbers}}
 
@@ -4132,6 +4254,15 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_numbers.setProcess <int>proc : void|;
 \end{icItems}
 
+\subsubsection{\lstinline|[r/o] _numbers'max : 4|}
+\subsubsection{\lstinline|[r/o] _numbers'min : 3|}
+\subsubsection{\lstinline|[r/o] _numbers'product : 2|}
+\subsubsection{\lstinline|[r/o] _numbers'process : int|}
+\subsubsection{\lstinline|[r/o] _numbers'sum : 1|}
+\subsubsection{\lstinline|_numbers.process <int>a <int>b : int|}
+\subsubsection{\lstinline|_numbers.process <double>a <double>b : double|}
+\subsubsection{\lstinline|_numbers.restoreProcess : void|}
+\subsubsection{\lstinline|_numbers.setProcess <int>proc : void|}
 
 \subsection{{\color{orange} \_math}}
 
@@ -4173,6 +4304,37 @@ TSV отличается от остальных, файлы обработаю�
 	\item \lstinline|_math.tan <double>v : double|.
 \end{icItems}
 
+\subsubsection{\lstinline|[r/o] _math'1divPi : double|}
+\subsubsection{\lstinline|[r/o] _math'1divSqrt2 : double|}
+\subsubsection{\lstinline|[r/o] _math'2divPi : double|}
+\subsubsection{\lstinline|[r/o] _math'2divSqrtPi : double|}
+\subsubsection{\lstinline|[r/o] _math'e : double|}
+\subsubsection{\lstinline|[r/o] _math'ln2 : double|}
+\subsubsection{\lstinline|[r/o] _math'ln10 : double|}
+\subsubsection{\lstinline|[r/o] _math'log2e : double|}
+\subsubsection{\lstinline|[r/o] _math'log10e : double|}
+\subsubsection{\lstinline|[r/o] _math'pi : double|}
+\subsubsection{\lstinline|[r/o] _math'piDiv2 : double|}
+\subsubsection{\lstinline|[r/o] _math'piDiv4 : double|}
+\subsubsection{\lstinline|[r/o] _math'sqrt2 : double|}
+\subsubsection{\lstinline|_math.acos <double>v : double|}
+\subsubsection{\lstinline|_math.asin <double>v : double|}
+\subsubsection{\lstinline|_math.atan <double>v : double|}
+\subsubsection{\lstinline|_math.ceil <double>v : int|}
+\subsubsection{\lstinline|_math.cos <double>v : double|}
+\subsubsection{\lstinline|_math.degreesToRadians <double>v : double|}
+\subsubsection{\lstinline|_math.exp <double>v : double|}
+\subsubsection{\lstinline|_math.floor <double>v : int|}
+\subsubsection{\lstinline|_math.ln <double>v : double|}
+\subsubsection{\lstinline|_math.min <int ...>arr : int|}
+\subsubsection{\lstinline|_math.min <double ...>arr : double|}
+\subsubsection{\lstinline|_math.max <int ...>arr : int|}
+\subsubsection{\lstinline|_math.max <double ...>arr : double|}
+\subsubsection{\lstinline|_math.radiansToDegrees <double>v : double|}
+\subsubsection{\lstinline|_math.round <double> : int|}
+\subsubsection{\lstinline|_math.sin <double>v : double|}
+\subsubsection{\lstinline|_math.tan <double>v : double|}
+
 \subsection{{\color{orange} \_import}}
 
 Объект \lstinline|_import| имеет следующие методы:
@@ -4187,6 +4349,14 @@ TSV отличается от остальных, файлы обработаю�
 \end{icItems}
 
 Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
+
+\subsubsection{\lstinline|_import.none <object>data <string>path : void|}
+\subsubsection{\lstinline|_import.none <string>path : void|}
+\subsubsection{\lstinline|_import.functions <object>data <string>path : void|}
+\subsubsection{\lstinline|_import.functions <string>path : void|}
+\subsubsection{\lstinline|_import.all <object>data <string>path : void|}
+\subsubsection{\lstinline|_import.all <string>path : void|}
+\subsubsection{\lstinline|_import.run <string>path : void|}
 
 \subsection{Модификатор {\color{blue2} reverse}}
 
