@@ -75,7 +75,7 @@
 \newcommand{\cerror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{red!75!blue}{\textcolor{white}{#1}}}}
 
 \lstdefinelanguage{icL}{
-	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#},
+	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#, reverse},
 	keywordstyle=\color{blue2},
 	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char, regex},
 	keywordstyle=[2]\color{lightblue},
@@ -1977,7 +1977,7 @@ do {
 \begin{lstlisting}[caption=Прохождение коллекций с помощью универсального цикла, label=colluniloop]
 @list = ["apple" "banana" "fruit"];
 
-for (@i = 0; @i < @list'length; @i = @i + 1) {
+for (@i = 0, @i < @list'length, @i = @i + 1) {
 	@list.at @i; `` get i-th value
 }
 \end{lstlisting}
@@ -4800,10 +4800,6 @@ URL страницы, открытой в указанной вкладке.
 
 Добавляет новая запись в стеке способов обработки.
 
-\subsubsection{Пример}
-
-
-
 \subsection{{\color{orange} \_math}}
 
 Объект \lstinline|_math| имеет следующие свойства:
@@ -4845,35 +4841,124 @@ URL страницы, открытой в указанной вкладке.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] _math'1divPi : double|}
+
+1 делить на пи ($\frac{1}{\pi}$).
+
 \subsubsection{\lstinline|[r/o] _math'1divSqrt2 : double|}
+
+1 делить на корень из числа 2 ($\frac{1}{\sqrt{2}}$).
+
 \subsubsection{\lstinline|[r/o] _math'2divPi : double|}
+
+2 делить на пи ($\frac{2}{\pi}$).
+
 \subsubsection{\lstinline|[r/o] _math'2divSqrtPi : double|}
+
+2 делить на корень из числа пи ($\frac{2}{\sqrt{\pi}}$).
+
 \subsubsection{\lstinline|[r/o] _math'e : double|}
+
+Число ($e$).
+
 \subsubsection{\lstinline|[r/o] _math'ln2 : double|}
+
+Натуральный логарифм числа 2 ($\ln{2}$).
+
 \subsubsection{\lstinline|[r/o] _math'ln10 : double|}
+
+Натуральный логарифм числа 10 ($\ln_{10}$).
+
 \subsubsection{\lstinline|[r/o] _math'log2e : double|}
+
+Логарифм числа е по основанию 2 ($\log_{2}{e}$).
+
 \subsubsection{\lstinline|[r/o] _math'log10e : double|}
+
+Логарифм числа е по основанию 10 ($\log{10}{e}$).
+
 \subsubsection{\lstinline|[r/o] _math'pi : double|}
+
+Число пи ($\pi$).
+
 \subsubsection{\lstinline|[r/o] _math'piDiv2 : double|}
+
+Пи по полам ($\frac{\pi}{2}$).
+
 \subsubsection{\lstinline|[r/o] _math'piDiv4 : double|}
+
+Пи на 4 ($\frac{\pi}{4}$).
+
 \subsubsection{\lstinline|[r/o] _math'sqrt2 : double|}
+
+Корень из числа 2 ($\sqrt{2}$).
+
 \subsubsection{\lstinline|_math.acos <double>v : double|}
+
+Арккосинус ($\arccos{v}$).
+
 \subsubsection{\lstinline|_math.asin <double>v : double|}
+
+Арксинус ($\arcsin{v}$).
+
 \subsubsection{\lstinline|_math.atan <double>v : double|}
+
+Арктангенс ($\arctan{v}$).
+
 \subsubsection{\lstinline|_math.ceil <double>v : int|}
+
+Наименьшее целое число больше или равна \code{v}.
+
 \subsubsection{\lstinline|_math.cos <double>v : double|}
+
+Косинус ($\cos{v}$).
+
 \subsubsection{\lstinline|_math.degreesToRadians <double>v : double|}
+
+Преобразует градусы в радианы.
+
 \subsubsection{\lstinline|_math.exp <double>v : double|}
+
+Функция экспонент ($\exp{v}$).
+
 \subsubsection{\lstinline|_math.floor <double>v : int|}
+
+Наибольшее целое число меньше или равна \code{v}.
+
 \subsubsection{\lstinline|_math.ln <double>v : double|}
+
+Натуральный логарифм ($\ln{v}$).
+
 \subsubsection{\lstinline|_math.min <int ...>arr : int|}
+
+Возвращает наименьшее целое число.
+
 \subsubsection{\lstinline|_math.min <double ...>arr : double|}
+
+Возвращает наименьшее дробное число.
+
 \subsubsection{\lstinline|_math.max <int ...>arr : int|}
+
+Возвращает наибольшее целое число.
+
 \subsubsection{\lstinline|_math.max <double ...>arr : double|}
+
+Возвращает наибольшее дробное число.
+
 \subsubsection{\lstinline|_math.radiansToDegrees <double>v : double|}
+
+Преобразует радианы в градусы.
+
 \subsubsection{\lstinline|_math.round <double> : int|}
+
+Возвращает ближайшее целое число.
+
 \subsubsection{\lstinline|_math.sin <double>v : double|}
+
+Синус ($\sin{v}$).
+
 \subsubsection{\lstinline|_math.tan <double>v : double|}
+
+Тангенс ($\tan{v}$).
 
 \subsection{{\color{orange} \_import}}
 
@@ -4891,14 +4976,86 @@ URL страницы, открытой в указанной вкладке.
 Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
 
 \subsubsection{\lstinline|_import.none <object>data <string>path : void|}
+
+Создаёт изолируемый контекст, в нём выполняет файл.
+
 \subsubsection{\lstinline|_import.none <string>path : void|}
+
+Акроним для \lstinline|_import.none [<>] @path|.
+
 \subsubsection{\lstinline|_import.functions <object>data <string>path : void|}
+
+Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции в текущем контексте.
+
 \subsubsection{\lstinline|_import.functions <string>path : void|}
+
+Акроним для \lstinline|_import.functions [<>] @path|.
+
 \subsubsection{\lstinline|_import.all <object>data <string>path : void|}
+
+Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции и глобальные переменный в текущем контексте.
+
 \subsubsection{\lstinline|_import.all <string>path : void|}
+
+Акроним для \lstinline|_import.all [<>] @path|.
+
 \subsubsection{\lstinline|_import.run <string>path : void|}
 
+Выполняет файл в текущем контексте.
+
 \subsection{Модификатор {\color{blue2} reverse}}
+
+Ключевое слово \code{reverse} позволяет изменить ход выполнения некоторых конструкций языка.
+
+\subsubsection{\lstinline|reverse if|}
+
+\lstinline|reverse if (@var == true)| эквивалентно \lstinline|if (!(@var == true))|, в этом случае уменьшения количестве скобок упрощает чтения кода. 
+
+Внимание: \lstinline|reverse if| не принимает \lstinline|else|.
+
+\subsubsection{\lstinline|reverse if exists|}
+
+\lstinline|if exists| хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \lstinline|reverse if exists|. В сравнении с \lstinline|if exists|, никакие данные не будут переданы в блоке команд.
+
+\subsubsection{\lstinline|reverse for| - универсальный цикл}
+
+В универсальном цикле меняется порядок выполнения действий. \lstinline|reverse for| гарантирует выполнение блока команд в минимум один раз.
+
+Порядок действий конструкций \lstinline|for|:
+\begin{icEnum}
+	\item инициализация;
+	\item проверка условий;
+	\item выполнения блока команд;
+	\item выполнения команды перехода на следующую итерацию.
+\end{icEnum}
+
+Порядок действий конструкций \lstinline|reverse for|:
+\begin{icEnum}
+	\item инициализация;
+	\item выполнения блока команд;
+	\item выполнения команды перехода на следующую итерацию;
+	\item проверка условий.
+\end{icEnum}
+
+\subsubsection{\lstinline|reverse while| - условное повторение кода}
+
+\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной.
+
+\subsubsection{\lstinline|do reverse while| - цикл с постусловий}
+
+\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной. Так же как и \lstinline|do while| гарантирует что тело цикла будет выполнена минимум 1 раз.
+
+\subsubsection{\lstinline|reverse for| - прохождение коллекций}
+
+\lstinline|reverse for| будет пройти коллекцию в обратном порядке.
+
+\subsubsection{\lstinline|reverse filter| - выборочное прохождение коллекций}
+
+\lstinline|reverse filter| будет пройти коллекцию в обратном порядке.
+
+\subsubsection{\lstinline|reverse range| - частичное прохождение коллекций}
+
+\lstinline|reverse filter| будет пройти интервал в обратном порядке.
 
 \newpage
 \section{Регулярные выражения}
@@ -5089,8 +5246,8 @@ URL страницы, открытой в указанной вкладке.
 {\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
 
 \begin{icEnumResume}
-	\item - Дополнительные возможности tabs files make
-	\item - Регулярные выражения regex
+	\item + Дополнительные возможности
+	\item + Регулярные выражения regex
 	\item - Механизм состояний
 	\item - Базы данных (только SQLite в первой версии)
 	\item - Обработка ошибок emiter, emit, slot
