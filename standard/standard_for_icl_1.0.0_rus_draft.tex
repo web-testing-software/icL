@@ -5058,6 +5058,75 @@ URL страницы, открытой в указанной вкладке.
 \lstinline|reverse filter| будет пройти интервал в обратном порядке.
 
 \newpage
+\section{Дополнительное взаимодействие}
+
+Данные возможности доступны только в режиме автоматизации.
+
+\subsection{Ожидание}
+
+Для ожиданий предусмотрены следующие функций:
+\begin{icItems}
+	\item \lstinline|_wait.title <object>data : bool|;
+	\item \lstinline|_wait.site <object>data : bool|;
+	\item \lstinline|_wait.for <element>el <object>data : bool|;
+	\item \lstinline|_wait.ajax <object>data : bool|.
+\end{icItems}
+
+\subsubsection{\lstinline|_wait.title <object>data : bool|}
+\subsubsection{\lstinline|_wait.site <object>data : bool|}
+\subsubsection{\lstinline|_wait.for <element>el <object>data : bool|}
+\subsubsection{\lstinline|_wait.ajax <object>data : bool|}
+
+\subsection{Клавиатура}
+
+Для работы с клавиатуры предусмотрены следующие функций:
+\begin{icItems}
+	\item \lstinline|element.keyDown <int>modifiers <text>keys : element|;
+	\item \lstinline|element.keyUp <int>modifiers <text> : element|;
+	\item \lstinline|element.keyPress <int>modifiers <int>delay <string>keys : element|;
+	\item \lstinline|element.fastType <string>text : element|;
+	\item \lstinline|element.paste <string>text : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|element.keyDown <int>modifiers <text>keys : element|}
+\subsubsection{\lstinline|element.keyUp <int>modifiers <text> : element|}
+\subsubsection{\lstinline|element.keyPress <int>modifiers <int>delay <string>keys : element|}
+\subsubsection{\lstinline|element.fastType <string>text : element|}
+\subsubsection{\lstinline|element.paste <string>text : element|}
+
+\subsection{Мышка}
+
+Для работы с мышкой предусмотрены следующие функций:
+\begin{icItems}
+	\item \lstinline|element.click <object>data : element|;
+	\item \lstinline|element.mouseDown <object>data : element|;
+	\item \lstinline|element.mouseUp <object>data : element|;
+	\item \lstinline|element.hover <object>data : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|element.click <object>data : element|}
+\subsubsection{\lstinline|element.mouseDown <object>data : element|}
+\subsubsection{\lstinline|element.mouseUp <object>data : element|}
+\subsubsection{\lstinline|element.hover <object>data : element|}
+
+\subsection{Тонкая настройка}
+
+Настроить можно следующее параметры:
+\begin{icItems}
+	\item \lstinline|_icL'clickTime : int|;
+	\item \lstinline|_icL'pressTime : int|;
+	\item \lstinline|_icl'moveTime : int|;
+	\item \lstinline|_icL'flashMode : bool|;
+	\item \lstinline|_icL'handless : bool|;
+\end{icItems}
+
+\subsubsection{\lstinline|_icL'clickTime : int|}
+\subsubsection{\lstinline|_icL'pressTime : int|}
+\subsubsection{\lstinline|_icl'moveTime : int|}
+\subsubsection{\lstinline|_icL'flashMode : bool|}
+\subsubsection{\lstinline|_icL'handless : bool|}
+
+\newpage
 \section{Регулярные выражения}
 \label{regex}
 
