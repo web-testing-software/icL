@@ -5403,6 +5403,73 @@ URL страницы, открытой в указанной вкладке.
 % \subsubsection{}
 
 \newpage
+\section{Механизм состояний}
+
+Все переменные icL хранятся в контейнерах 2 типов: стек и состояние.
+
+Стек представляет собой стек контейнеров, каждый контейнер строго привязан к фрагменту кода icL, при вводе курсора в область контейнер создаётся, при выходе разрушается.
+
+Состояние представляет собой двусвязный список контейнеров, они не привязываются к коду и доступны глобально. По умолчанию создаётся лишь один контейнер, но новые могут быть созданы пользователем.
+
+\subsection{Управление стеками}
+
+Для управления стеками, используется следующий набор функций и свойств:
+\begin{icItems}
+	\item \lstinline|_stacks'(<int>i) : _stack|;
+	\item \lstinline|_stacks'(<string>name) : _stack|;
+	\item \lstinline|_stacks.if <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.ifexists <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.loop <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.while <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.dowhile <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.for <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.forany <int>i = 0 : |;
+	\item \lstinline|_stacks.range <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.filter <int>i = 0 : _stack|;
+	\item \lstinline|_stack.clear : void|;
+	\item \lstinline|_stack.continue : void|;
+	\item \lstinline|_stack.break : void|;
+\end{icItems}
+
+\subsubsection{\lstinline|_stacks'(<int>i) : _stack|}
+\subsubsection{\lstinline|_stacks'(<string>name) : _stack|}
+\subsubsection{\lstinline|_stacks.if <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.ifexists <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.loop <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.while <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.dowhile <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.for <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.forany <int>i = 0 : |}
+\subsubsection{\lstinline|_stacks.range <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stacks.filter <int>i = 0 : _stack|}
+\subsubsection{\lstinline|_stack.clear : void|}
+\subsubsection{\lstinline|_stack.continue : void|}
+\subsubsection{\lstinline|_stack.break : void|}
+
+\subsection{Управление состояниями}
+
+Для управления стеками, используется следующий набор функций и свойств:
+\begin{icItems}
+	\item \lstinline|_states.new : void|;
+	\item \lstinline|_states.newAtEnd : void|;
+	\item \lstinline|_states.toNext : void|;
+	\item \lstinline|_states.toPrev : void|;
+	\item \lstinline|_states.clear : void|;
+	\item \lstinline|_states.delete : void|;
+	\item \lstinline|_states.toFirst : void|;
+	\item \lstinline|_states.toLast : void|;
+\end{icItems}
+
+\subsubsection{\lstinline|_states.new : void|}
+\subsubsection{\lstinline|_states.newAtEnd : void|}
+\subsubsection{\lstinline|_states.toNext : void|}
+\subsubsection{\lstinline|_states.toPrev : void|}
+\subsubsection{\lstinline|_states.clear : void|}
+\subsubsection{\lstinline|_states.delete : void|}
+\subsubsection{\lstinline|_states.toFirst : void|}
+\subsubsection{\lstinline|_states.toLast : void|}
+
+\newpage
 \section{Прогресс}
 
 {\color{red}Материал для продвинутых пользователей.}
