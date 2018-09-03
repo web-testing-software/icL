@@ -2903,19 +2903,19 @@ n-я строка списка, n должен быть целым литера�
 
 \subsubsection{\lstinline|[r/*] element'attr-* : string|}
 
-\code{[w3c]} Возвращает значения атрибута \code{*}. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-attribute
+\code{[w3c]} Возвращает значения атрибута \code{*}.
 
 \code{[icL]} Возвращает JS-значение для запрашиваемого атрибута.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/*] element'css-* : string|}
 
-\code{[w3c]} Возвращает значения свойства CSS \code{*}. Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-css-value
+\code{[w3c]} Возвращает значения свойства CSS \code{*}.
 
 \code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/o] element'empty : bool|}
 
@@ -2923,9 +2923,9 @@ n-я строка списка, n должен быть целым литера�
 
 \subsubsection{\lstinline|[r/o] element'enabled : bool|}
 
-Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. Больше информации: https://www.w3.org/TR/webdriver1/\#is\--element\--enabled
+Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. 
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/o] element'length : int|}
 
@@ -2933,7 +2933,7 @@ n-я строка списка, n должен быть целым литера�
 
 \subsubsection{\lstinline|[*/*] element'prop-* : string|}
 
-\code{[w3c]} Возвращает значения свойства \code{*}. Больше информации: https://www.w3\-.org/TR/webdriver1/\#get-element-property
+\code{[w3c]} Возвращает значения свойства \code{*}.
 
 \code{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Тип JS-значений не определён, это можно сводить к проблемам в динамическом анализаторе кода. При использовании свойств неопределённых в главе \ref{elements:predefined:properties}, используете преобразование для указания какого типа будет результат. Если переменная уже инициализируемая, то никаких проблем не должны быть. Новых перемен инициализируете одним из следующим способом -
 \begin{lstlisting}[numbers=none]
@@ -2941,7 +2941,7 @@ n-я строка списка, n должен быть целым литера�
 @var:string = element'prop-userdefined;
 \end{lstlisting}
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/o] element'rect : obj|}
 
@@ -2955,31 +2955,29 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает \set, в случае коллекции.
 
-Больше информации: https://www.w3.org/TR/webdriver1/\#get-element-rect
-
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/o] element'selected : bool|}
 
-Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#is-element-selected
+Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false.
 
 Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuch\-Element}.
 
 \subsubsection{\lstinline|[r/o] element'tag : string|}
 
-Возвращает название тега. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#get-element-tag-name
+Возвращает название тега.
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/o] element'text : string|}
 
-Возвращает текст элемента видимый на экран. Больше информации: \\* https://www.w3.org/TR/webdriver1/\#get-element-text
+Возвращает текст элемента видимый на экран. 
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|[r/o] element'(<int> n) : element|}
 
@@ -3039,19 +3037,19 @@ n-я строка списка, n должен быть целым литера�
 
 \subsubsection{\lstinline|element.clear : element|}
 
-Если элемент является полем ввода данных, то ого значение очищается. Если элемент редактируемый, то его свойство \code{innerHtml} присваивается пустая строка. Больше информации: https://w3c.github.io/webdriver1/\#element-clear.
+Если элемент является полем ввода данных, то ого значение очищается. Если элемент редактируемый, то его свойство \code{innerHtml} присваивается пустая строка.
 
 \code{[icL]} Очищены будут все элементы контейнера.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element.click : element|}
 
-Симулирует клик по центре элемента, и ждёт загрузка страницы. Больше информации: https://w3c.github.io/webdriver1/\#element-click
+Симулирует клик по центре элемента, и ждёт загрузка страницы.
 
 \code{[icL]} Клик будет симулирован на все элементы контейнера.
 
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClick\-Intercepted} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClick\-Intercepted} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
@@ -3074,13 +3072,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Больше информации:
-\begin{icItems}
-\item https://w3c.github.io/webdriver1/\#locator-strategies;
-\item https://w3c.github.io/webdriver1/\#find-element-from-element
-\end{icItems}
-
-Возможные исключения: \ferror{EmptyElement}, \ferror{ElementNotFound} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
 
@@ -3092,9 +3084,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Больше информации: https://w3c.github.io/webdriver1/\#find-elements-from-element
-
-Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements} только в режиме тестирования, также \ferror{NoWindow} и \ferror{NoSuchElement} в любом режиме.
+Возможные исключения: \ferror{EmptyElement} и \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
 
@@ -3132,8 +3122,6 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|_make.image <string>base64 <string>path : void|.
 
-Больше информации: https://w3c.github.io/webdriver1/\#take-element-screenshot
-
 Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{NoWindow} и \ferror{NoSuchElement}.
 
 \subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
@@ -3146,8 +3134,6 @@ n-я строка списка, n должен быть целым литера�
 \end{icItems}
 
 Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.
-
-Больше информации: https://w3c.github.io/webdriver1/\#element-send-keys
 
 Возможные исключения: \ferror{EmptyElement}, \ferror{MultipleElements}, \ferror{ElementNotIntractable} \ferror{NoWindow} и \ferror{NoSuchElement}.
 
@@ -3519,37 +3505,25 @@ n-я строка списка, n должен быть целым литера�
 
 Название страницы можно получить вызывая \lstinline|[r/*] _tab'title : string|.
 
-Больше информации: https://www.w3.org/TR/webdriver1/\#get-title
-
 \subsubsection{Исходный код}
 
 Исходный код страницы можно получить вызывая \lstinline|[r/o] _tab'source : string|.
-
-Больше информации: https://www.w3.org/TR/webdriver1/\#get-page-source
 
 \subsubsection{Screenshot}
 
 Screenshot страницы в base64 можно получить вызывая \lstinline|[r/o] _tab'screenshot : string|.
 
-Больше информации: https://www.w3.org/TR/webdriver1/\#take-screenshot
-
 \subsubsection{URL}
 
 Адрес доступен через свойство \lstinline|[r/w] _tab'url : string|.
 
-Больше информации:
-\begin{icItems}
-\item https://www.w3.org/TR/webdriver1/\#navigate-to
-\item https://www.w3.org/TR/webdriver1/\#get-current-url
-\end{icItems}
-
 \subsubsection{Навигация}
 
-\lstinline|_tab.back : void| - позволяет возвращаться на предыдущую страницу. Больше информации: https://www.w3.org/TR/webdriver1/\#back
+\lstinline|_tab.back : void| - позволяет возвращаться на предыдущую страницу.
 
-\lstinline|_tab.forward : void| - позволяет возвращаться на следующую страницу. Больше информации: https://www.w3.org/TR/webdriver1/\#forward
+\lstinline|_tab.forward : void| - позволяет возвращаться на следующую страницу.
 
-\lstinline|_tab.refresh : void| -  "Да". позволяет перезагрузить страницу. Больше информации: https://www.w3.org/TR/webdriver1/\#refresh
+\lstinline|_tab.refresh : void| -  "Да". позволяет перезагрузить страницу.
 
 \lstinline|[icL] [r/o] _tab'canGoBack : bool| - сообщает можно ли перейти на предыдущую страницу.
 
@@ -3558,13 +3532,13 @@ Screenshot страницы в base64 можно получить вызывая
 
 \subsubsection{Предупреждения}
 
-\lstinline|[r/o] _alert'text : string| - текст предупреждений. Больше информации: https://www.w3.org/TR/webdriver1/\#get-alert-text
+\lstinline|[r/o] _alert'text : string| - текст предупреждений.
 
-\lstinline|_alert.accept : void| - закрыть окно отвечая положительным ответом. Больше информации: https://www.w3.org/TR/webdriver1/\#accept-alert
+\lstinline|_alert.accept : void| - закрыть окно отвечая положительным ответом.
 
-\lstinline|_alert.dismiss : void| - закрыть окно отвечая отрицательным ответом. Больше информации: https://www.w3.org/TR/webdriver1/\#dismiss-alert
+\lstinline|_alert.dismiss : void| - закрыть окно отвечая отрицательным ответом.
 
-\lstinline|_alert.sendKeys <string>str : void| - ответить текстом \code{str}. Больше информации: https://www.w3.org/TR/webdriver1/\#send-alert-text
+\lstinline|_alert.sendKeys <string>str : void| - ответить текстом \code{str}.
 
 % Возможные исключения: \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable}.
 
@@ -5570,6 +5544,9 @@ URL страницы, открытой в указанной вкладке.
 \subsubsection{\lstinline|for (_states) \{\}|}
 
 Выполняет тело цикла для каждой состояний.
+
+\newpage
+\section{Базы данных}
 
 \newpage
 \section{Прогресс}
