@@ -5048,45 +5048,45 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
-	\item \lstinline|@data'template : string| - шаблон нужней имени;
-	\item \lstinline|@data'expression : regex| - регулярное выражение описывающая ножное имя (имеет приоритет над шаблоном);
-	\item \lstinline|@data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'template : string| - шаблон нужней имени;
+	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая ножное имя (имеет приоритет над шаблоном);
+	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
 \subsubsection{\lstinline|_wait.url <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
-	\item \lstinline|@data'template : string| - шаблон нужного URL;
-	\item \lstinline|@data'expression : regex| - регулярное выражение описывающая нужный URL;
-	\item \lstinline|@data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'template : string| - шаблон нужного URL;
+	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая нужный URL;
+	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
 \subsubsection{\lstinline|_wait.for <element>el <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
-	\item \lstinline|@data'count : int| - количество нужных элементов в коллекции. По умолчанию 1;
-	\item \lstinline|@data'toBe : int| - нужное состояние для достижений. Предлагается одно из следующих значения:
+	\item \lstinline|[r/w] @data'count : int| - количество нужных элементов в коллекции. По умолчанию 1;
+	\item \lstinline|[r/w] @data'toBe : int| - нужное состояние для достижений. Предлагается одно из следующих значения:
 	\begin{icItems}
-		\item \lstinline|_wait'present : 1|;
-		\item \lstinline|_wait'visible : 2|;
-		\item \lstinline|_wait'hidden : 3|;
-		\item \lstinline|_wait'interactable : 4|;
-		\item \lstinline|_wait'selected : 5|.
+		\item \lstinline|[r/o] _wait'present : 1|;
+		\item \lstinline|[r/o] _wait'visible : 2|;
+		\item \lstinline|[r/o] _wait'hidden : 3|;
+		\item \lstinline|[r/o] _wait'interactable : 4|;
+		\item \lstinline|[r/o] _wait'selected : 5|.
 	\end{icItems}
 	По умолчанию \lstinline|_wait'present|;
-	\item \lstinline|@data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
 \subsubsection{\lstinline|_wait.ajax <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
-	\item \lstinline|@data'count : int| - количество максимальных допустимых активных запросов, по умолчанию 0;
-	\item \lstinline|@data'template : string| - шаблон нужного URL;
-	\item \lstinline|@data'expression : regex| - регулярное выражение описывающая нужный URL;
-	\item \lstinline|@data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'count : int| - количество максимальных допустимых активных запросов, по умолчанию 0;
+	\item \lstinline|[r/w] @data'template : string| - шаблон нужного URL;
+	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая нужный URL;
+	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
 \subsection{Клавиатура}
@@ -5133,25 +5133,25 @@ URL страницы, открытой в указанной вкладке.
 
 В следующих функциях объект \code{data} может иметь следующие поля:
 \begin{icItems}
-	\item \lstinline|@data'button : int| - кнопка мышки, принимает одно из следующих значений:
+	\item \lstinline|[r/w] @data'button : int| - кнопка мышки, принимает одно из следующих значений:
 	\begin{icItems}
-		\item \lstinline|_mouse'left : 1| - левая кнопка;
-		\item \lstinline|_mouse'middle : 2| - средняя кнопка;
-		\item \lstinline|_mouse'right : 3| - правая кнопка.
+		\item \lstinline|[r/o] _mouse'left : 1| - левая кнопка;
+		\item \lstinline|[r/o] _mouse'middle : 2| - средняя кнопка;
+		\item \lstinline|[r/o] _mouse'right : 3| - правая кнопка.
 	\end{icItems}
 	По умолчанию \lstinline|_mouse'left|;
-	\item \lstinline|@data'rx : double| - \lstinline|ax = rx * width|;
-	\item \lstinline|@data'ry : double| - \lstinline|ay = rx * height|;
-	\item \lstinline|@data'ax : int| - относительная координата от левого края элемента;
-	\item \lstinline|@data'ay : int| - относительная координата от верхнего края элемента.
+	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;
+	\item \lstinline|[r/w] @data'ry : double| - \lstinline|ay = rx * height|;
+	\item \lstinline|[r/w] @data'ax : int| - относительная координата от левого края элемента;
+	\item \lstinline|[r/w] @data'ay : int| - относительная координата от верхнего края элемента.
 \end{icItems}
 
 \subsubsection{\lstinline|element.click <object>data : element|}
 
 Симулирует клик. Объект \code{data} имеет следующие дополнительные свойства:
 \begin{icItems}
-	\item \lstinline|@data'delay : int| - задержка между нажатием и отпускании кнопке;
-	\item \lstinline|@data'count : int| - количество симулированных кликов.
+	\item \lstinline|[r/w] @data'delay : int| - задержка между нажатием и отпускании кнопке;
+	\item \lstinline|[r/w] @data'count : int| - количество симулированных кликов.
 \end{icItems}
 
 \subsubsection{\lstinline|element.mouseDown <object>data : element|}
@@ -5166,31 +5166,31 @@ URL страницы, открытой в указанной вкладке.
 
 Перемещает мышку над элементом. \code{data} имеет следующие дополнительные свойства:
 \begin{icItems}
-	\item \lstinline|@data'time : int| - среднее время за которой курсор перемещается на 100 пикселей;
-	\item \lstinline|@data'func : int| - функция описывающая движение курсора. Принимает одно из следующих значений:
+	\item \lstinline|[r/w] @data'time : int| - среднее время за которой курсор перемещается на 100 пикселей;
+	\item \lstinline|[r/w] @data'func : int| - функция описывающая движение курсора. Принимает одно из следующих значений:
 	\begin{icItems}
-		\item \lstinline|_move'teleport : 1| - перемещает курсор немедленно;
-		\item \lstinline|_move'linear : 2| - линейная интерполяция;
-		\item \lstinline|_move'quadratic : 3| - квадратичная интерполяция;
-		\item \lstinline|_move'cubic : 4| - кубическая интерполяция;
-		\item \lstinline|_move'bezier : 5| - использовает кубическую кривую Безье. Использует дополнительные параметры \code{p1x}, \code{p1y}, \code{p2x} и \code{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
+		\item \lstinline|[r/o] _move'teleport : 1| - перемещает курсор немедленно;
+		\item \lstinline|[r/o] _move'linear : 2| - линейная интерполяция;
+		\item \lstinline|[r/o] _move'quadratic : 3| - квадратичная интерполяция;
+		\item \lstinline|[r/o] _move'cubic : 4| - кубическая интерполяция;
+		\item \lstinline|[r/o] _move'bezier : 5| - использовает кубическую кривую Безье. Использует дополнительные параметры \code{p1x}, \code{p1y}, \code{p2x} и \code{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
 	\end{icItems}
-	По умолчанию \lstinline|_move'teleport : 1|.
-	\item \lstinline|@data'p1x : double| - Координата $x$ первой точке.
-	\item \lstinline|@data'p1y : double| - Координата $y$ первой точке.
-	\item \lstinline|@data'p2x : double| - Координата $x$ второй точке.
-	\item \lstinline|@data'p2y : double| - Координата $y$ второй точке.
+	По умолчанию \lstinline|_move'teleport|.
+	\item \lstinline|[r/w] @data'p1x : double| - Координата $x$ первой точке.
+	\item \lstinline|[r/w] @data'p1y : double| - Координата $y$ первой точке.
+	\item \lstinline|[r/w] @data'p2x : double| - Координата $x$ второй точке.
+	\item \lstinline|[r/w] @data'p2y : double| - Координата $y$ второй точке.
 \end{icItems}
 
 \subsection{Тонкая настройка}
 
 Настроить можно следующее параметры:
 \begin{icItems}
-	\item \lstinline|_icL'clickTime : int|;
-	\item \lstinline|_icL'pressTime : int|;
-	\item \lstinline|_icL'moveTime : int|;
-	\item \lstinline|_icL'flashMode : bool|;
-	\item \lstinline|_icL'humanMode : bool|.
+	\item \lstinline|[r/w] _icL'clickTime : int|;
+	\item \lstinline|[r/w] _icL'pressTime : int|;
+	\item \lstinline|[r/w] _icL'moveTime : int|;
+	\item \lstinline|[r/w] _icL'flashMode : bool|;
+	\item \lstinline|[r/w] _icL'humanMode : bool|.
 \end{icItems}
 
 \subsubsection{\lstinline|_icL'clickTime : int|}
@@ -5387,8 +5387,8 @@ URL страницы, открытой в указанной вкладке.
 
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
-	\item \lstinline|_stacks'(<int>i) : _stack|;
-	\item \lstinline|_stacks'(<string>name) : _stack|;
+	\item \lstinline|[r/o] _stacks'(<int>i) : _stack|;
+	\item \lstinline|[r/w] _stacks'(<string>name) : _stack|;
 	\item \lstinline|_stacks.if <int>i = 0 : _stack|;
 	\item \lstinline|_stacks.ifexists <int>i = 0 : _stack|;
 	\item \lstinline|_stacks.loop <int>i = 0 : _stack|;
@@ -5547,6 +5547,94 @@ URL страницы, открытой в указанной вкладке.
 
 \newpage
 \section{Базы данных}
+
+Модуль баз данных определяет следующее глобальные объекты: \lstinline|_dbManager| - менеджер баз данных, \lstinline|_db| - последняя открытая база данных, \lstinline|_query| - последний запрос и \lstinline|_select| - последний select запрос.
+
+Модуль баз данных обеспечивает следующий набор возможности:
+\begin{icItems}
+	\item \lstinline|_dbManager.openSQLite <strig>path : _db|;
+	\item \lstinline|_db.query <_code>q : _query|;
+	\item \lstinline|_db.close : void|;
+	\item \lstinline|[r/w] _query'(<string>name) : any|;
+	\item \lstinline|_query.set <string>field <any>value|;
+	\item \lstinline|_query.exec : bool|;
+	\item Доступны после выполнение:
+	\begin{icItems}
+		\item \lstinline|[r/o] _select'(<string>name) : any|;
+		\item \lstinline|_query.getRowsAffected : int|;
+		\item \lstinline|_query.getError : bool|;
+		\item \lstinline|_query.getLength : int|;
+		\item \lstinline|_query.get <string>field : any|;
+		\item \lstinline|_query.next : bool|;
+		\item \lstinline|_query.previous : bool|;
+		\item \lstinline|_query.first : bool|;
+		\item \lstinline|_query.last : bool|;
+		\item \lstinline|_query.seek <int>pos <bool>relative = false : bool|;
+	\end{icItems}
+\end{icItems}
+
+\subsubsection{\lstinline|_dbManager.openSQLite <strig>path : _db|}
+\subsubsection{\lstinline|_db.query <_code>q : _query|}
+\subsubsection{\lstinline|_db.close : void|}
+\subsubsection{\lstinline|[r/w] _query'(<string>name) : any|}
+\subsubsection{\lstinline|_query.set <string>field <any>value|}
+\subsubsection{\lstinline|_query.exec : bool|}
+\subsubsection{\lstinline|_query.getError : string|}
+\subsubsection{\lstinline|[r/o] _select'(<string>name) : any|}
+\subsubsection{\lstinline|_query.getRowsAffected : int|}
+\subsubsection{\lstinline|_query.getLength : int|}
+\subsubsection{\lstinline|_query.get <string>field : any|}
+\subsubsection{\lstinline|_query.next : bool|}
+\subsubsection{\lstinline|_query.previous : bool|}
+\subsubsection{\lstinline|_query.first : bool|}
+\subsubsection{\lstinline|_query.last : bool|}
+\subsubsection{\lstinline|_query.seek <int>pos <bool>relative = false : bool|}
+
+\subsubsection{Пример}
+
+Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \code{@:name}, а глобальные - \code{\#:name}.
+
+\begin{lstlisting}[caption=Пример кода использующий базу данных, label=dbexample]
+_dbManager.openSQLite "db.sqlite";
+
+`` simple query
+_db.query {
+	SELECT country
+	FROM artists
+};
+_query.exec;
+
+while (_query.next) {
+	!doSomething _query'country;
+};
+
+`` query with parameters
+_db.query {
+	SELECT name
+	FROM programmers
+	WHERE country = :country
+	LIMIT 1
+};
+_query'country = "Moldova";
+`` is equivalent to
+@md = "Moldova";
+_db.query {
+	SELECT name
+	FROM programmers
+	WHERE country = @:md
+	LIMIT 1
+};
+
+`` insert query
+_db.query {
+	INSERT INTO person (id, forname, name)
+	VALUE (:id, :forname, :name)
+};
+_query'id = 1001;
+_query'forname = "Bart";
+_query'name = "Simpson";
+_query.exec;
+\end{lstlisting}
 
 \newpage
 \section{Прогресс}
