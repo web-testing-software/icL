@@ -6,19 +6,23 @@
 \usepackage{polyglossia}
 \setmainlanguage{russian}
 \setotherlanguage{english}
+\usepackage[htt]{hyphenat}
 \usepackage{setspace}
 \usepackage[hidelinks]{hyperref}
 
-\usepackage{longtable}
-\usepackage{ragged2e}
-\setcounter{tocdepth}{2}
-
 \setmainfont{Liberation Serif}
 \newfontfamily\cyrillicfont{Liberation Serif}
+\let\cyrillicfonttt\ttfamily
 \setmonofont{Liberation Mono}
 \setsansfont{Liberation Sans}
 \newfontfamily\cyrillicfontmono{Liberation Mono}
 \newfontfamily\cyrillicfontsans{Liberation Sans}
+\newfontfamily\cyrillicfonttt{Liberation Mono}
+\newfontfamily\cyrillicfontsf{Liberation Serif}
+
+\usepackage{longtable}
+\usepackage{ragged2e}
+\setcounter{tocdepth}{2}
 
 \usepackage{indentfirst}
 \setlength{\parindent}{1.25cm}
@@ -68,7 +72,7 @@
 
 \usepackage{soul}
 
-\newcommand{\ferror}[1]{{\fontsize{11pt}{12pt}\tt{\sethlcolor{yellow}\hl{#1}}}}
+\newcommand{\ferror}[1]{\foreignlanguage{english}{\fontsize{11pt}{12pt}\tt{\sethlcolor{yellow}\hl{#1}}}}
 
 % \colorbox{function}{\textcolor{white}{#1}}
 
@@ -195,7 +199,7 @@
 % row1 width, row2 width, label, name,
 % row1 name, row2 name, body
 \newcommand{\tabletwo}[7]{
-	\begin{longtable}[h]{p{#1}}
+	\begin{longtable}[h]{|p{#1}|p{#2}|}
 	\caption*{Таблица \thetable{}: #4} \label{#3} \\
 
 	\hline
@@ -438,8 +442,6 @@ _log.info "Hello world";
 	обменять информацию с веб-страничкой;
 \item
 	сделать screenshot;
-\item
-	сохранить страницу в формате pdf;
 \item
 	управлять памятью;
 \item
@@ -2098,6 +2100,8 @@ $run { window.a = @{var} }
 $run @var { window.a = arguments[0] }
 \end{lstlisting}
 
+Возможные исключения: \ferror{JavascriptError}, \ferror{ScriptTimeout}.
+
 \subsection{Выполнения файлов}
 
 Команда \lstinline|$file| {\bf выполняет файлы} JavaScript (.js). Для этого достаточно передать путь к файлу в качестве аргумента.
@@ -2107,7 +2111,7 @@ $run @var { window.a = arguments[0] }
 $file "path/to/file.js";
 \end{lstlisting}
 
-Возможные исключения: \ferror{FileNotFound}.
+Возможные исключения: \ferror{FileNotFound}, \ferror{JavascriptError}.
 
 \subsection{Пользовательские скрипты}
 
@@ -2901,7 +2905,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает JS-значение для запрашиваемого атрибута.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/*] element'css-* : string|}
 
@@ -2909,7 +2913,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'empty : bool|}
 
@@ -2919,7 +2923,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. 
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'length : int|}
 
@@ -2935,7 +2939,7 @@ n-я строка списка, n должен быть целым литера�
 @var:string = element'prop-userdefined;
 \end{lstlisting}
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'rect : obj|}
 
@@ -2949,13 +2953,13 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает \set, в случае коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'selected : bool|}
 
 Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuch\-Element}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'tag : string|}
 
@@ -2963,7 +2967,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'text : string|}
 
@@ -2971,13 +2975,13 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'(<int> n) : element|}
 
 Возвращает новую коллекцию содержащую n-й элемент.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds}, \ferror{StaleElementReference}.
 
 \subsection{Операторы}
 
@@ -3035,7 +3039,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Очищены будут все элементы контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement} и \ferror{Multi\-Element}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState}.
 
 \subsubsection{\lstinline|element.click : element|}
 
@@ -3043,7 +3047,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Клик будет симулирован на все элементы контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow}, \ferror{In\-validElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{In\-validElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
@@ -3066,7 +3070,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiEle\-ment}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiEle\-ment}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
 
@@ -3078,7 +3082,7 @@ n-я строка списка, n должен быть целым литера�
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
 
@@ -3116,7 +3120,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|_make.image <string>base64 <string>path : void|.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
 
@@ -3129,7 +3133,7 @@ n-я строка списка, n должен быть целым литера�
 
 Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNot\-Intractable} \ferror{NoWindow} и \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNot\-Intractable} \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsection{Расширенные методы}
 
@@ -3153,60 +3157,60 @@ n-я строка списка, n должен быть целым литера�
 
 Добавит все элементы коллекции \code{other}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.child <int>i : element|}
 
 Возвращает новый элемент, содержащая \code{i}-й дочерний элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}, \ferror{OutOfBounds}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|element.closest <string>cssSelector : element|}
 
 Возвращает новый элемент, содержащая ближайший родительский элемент, который подходит по селектору \code{cssSelector}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.contains <string>text <bool>asFragment = false : element|}
 
 Возвращает новая коллекция, содержащая все элементы, которые содержат текст/фрагмент \code{text}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.copy : element|}
 
 Возвращает новая коллекция, содержащая все элементы текущей коллекций.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.get <int>i : element|}
 
 Возвращает i-й элемент коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}, \ferror{OutOfBounds}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|element.filter <string>cssSelector : element|}
 
 Возвращает новая коллекция, содержащая все элементы, которые подходят по селектору \code{cssSelector}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 \subsubsection{\lstinline|element.next : element|}
 
 Возвращает новый элемент, содержащая следующий дочерний элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.prev : element|}
 
 Возвращает новый элемент, содержащая предыдущий дочерний элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.parent : element|}
 
 Возвращает новый элемент, содержащая родительский элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoWindow}, \ferror{NoSuchElement}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsection{Предопределённый набор свойств}
 \label{elements:predefined:properties}
@@ -3894,6 +3898,8 @@ TSV отличается от остальных, файлы обработаю�
 
 Отрывает новую сессию.
 
+Возможные исключения: \ferror{SessionNotCreated}.
+
 \subsection{{\color{orange} \_session}}
 
 Команда \session{} возвращает указатель на текущей сессии.
@@ -4120,7 +4126,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|_window.switchToParent : _window|}
 
@@ -4221,7 +4227,7 @@ TSV отличается от остальных, файлы обработаю�
 
 Сохраняет изменения в браузере.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
 
 \subsubsection{Создать новый cookie}
 
@@ -4496,7 +4502,7 @@ URL страницы, открытой в указанной вкладке.
 
 Загружает страницу, URL должен быть абсолютным.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
 
 \subsection{{\color{orange} \_dom}}
 
@@ -4585,6 +4591,8 @@ URL страницы, открытой в указанной вкладке.
 \subsubsection{\lstinline|_files.create <string>path : _file|}
 
 Открывает файл, если он не существует, он создаётся.
+
+Возможные исключения: \ferror{FolderNotFound}.
 
 \subsubsection{\lstinline|_files.createDir <string>path : void|}
 
@@ -5498,13 +5506,13 @@ URL страницы, открытой в указанной вкладке.
 
 Переход на следующую итерацию, доступно только для циклов.
 
-Возможные исключения: \ferror{InvalidArguments}.
+Возможные исключения: \ferror{InvalidArgument}.
 
 \subsubsection{\lstinline|_stack.break : void|}
 
 Прекращает немедленно работу цикла или остановит выполнение функций. Доступно только для циклов и функций.
 
-Возможные исключения: \ferror{InvalidArguments}.
+Возможные исключения: \ferror{InvalidArgument}.
 
 \subsection{Управление состояниями}
 
@@ -5703,12 +5711,12 @@ _query.exec;
 
 \subsection{Генератор сигналов}
 
-Код, который может генерировать сигнал об исключений называется эмиттер. И имеет следующий синтаксис \lstinline|emiter { ``` code ``` }|. Генерированный сигнал улавливает коллектор. Также коллекторов может быть несколько. Они имеют следующий синтаксис \lstinline|slot:exception { ``` code ``` }|,
+Код, который может генерировать сигнал об исключений называется эмиттер. И имеет следующий синтаксис \lstinline|emiter {```code```}|. Генерированный сигнал улавливает коллектор. Также коллекторов может быть несколько. Они имеют следующий синтаксис \lstinline|slot:exception {```code```}|,
 где \code{exception} - имя исключений, чтобы поймать все исключения можно использовать \lstinline|slot:Any|. Пример кода использующий эмиттер и коллектор представлен на листинге \ref{sighandling}.
 
 Для генерации собственных сигналов используется команда \lstinline|emit:exception <string>description|, где \code{exception} - имя исключений, а \code{description} - её описание.
 
-Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \lstinline|jammer { ``` code ``` }|. Сигналы об схематических и синтаксических ошибках, а также сигнал \lstinline|emit:Exit|, не могут быть остановлены подавителем.
+Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \lstinline|jammer {```code```}|. Сигналы об схематических и синтаксических ошибках, а также сигнал \lstinline|emit:Exit|, не могут быть остановлены подавителем.
 
 \begin{lstlisting}[caption=Обработка инключении, label=sighandling]
 _signal.add "NumberTooBig";
@@ -5736,6 +5744,67 @@ slot:NumberTooSmall {
 \end{lstlisting}
 
 \subsection{Предопределённые исключения}
+
+Набор {\bf предопределённых исключения} представлен в таблице \ref{errors}. В данном документе, при описаниях возможностях, представлены списки исключениях которые возможно будут сгенерированы при использовании конкретной возможности. Исключения могут появиться в результате неправильных входных данных, а также при невозможности использовании возможности в текущем состоянии программы. Сигнал \ferror{Exit} генерируется только пользователем, при необходимости открыть программу немедленно.
+
+\tabletwo{5cm}{12.1cm}{errors}{Стандартные исключения}%
+{Класс}{Описание}%
+{
+	\ferror{Exit}                    & Немедленная остановка программы.                 \\ \hline
+	
+	\ferror{NoSessions}              & Ни одна сессия не существует.                    \\ \hline
+	\ferror{NoSuchWindow}            & Нужное одно закрыта.                             \\ \hline
+	\ferror{NoSuchElement}           & Нужный элемент не найден.                        \\ \hline
+	\ferror{NoSuchFrame}             & Нет такого frame.                                \\ \hline
+	\ferror{NoSuchCookie}            & Нет такого cookie.                               \\ \hline
+	\ferror{NoSuchAlert}             & Предупреждение отсутствует.                      \\ \hline
+	\ferror{NoSuchTab}               & Вкладка уже закрыта.                             \\ \hline
+	\ferror{StaleElementReference}   & Ссылка на элемент недействительна.               \\ \hline
+	\ferror{FolderNotFound}          & Папка не найдено.                                \\ \hline
+	\ferror{FileNotFound}            & Файл не найден.                                  \\ \hline
+	\ferror{FieldNotFound}           & Поле не найдено.                                 \\ \hline
+	\ferror{FieldAlreadyExists}      & Поле уже существует.                             \\ \hline
+	\ferror{OutOfBounds}             & Выход за пределы коллекции.                      \\ \hline
+	\ferror{UnsupportedOperation}    & Операция не поддерживается веб-драйвером.        \\ \hline
+	
+	\ferror{EmptyString}             & Пустая строка.                                   \\ \hline
+	\ferror{EmptyList}               & Пустой список.                                   \\ \hline
+	\ferror{MultiList}               & Список содержит несколько строк.                 \\ \hline
+	\ferror{EmptyElement}            & Пустой/пустая элемент/коллекция.                 \\ \hline
+	\ferror{MultiElement}            & Коллекция содержит несколько элементов.          \\ \hline
+	\ferror{EmptySet}                & Пустое множество.                                \\ \hline
+	\ferror{MultiSet}                & Множество содержит несколько объектов.           \\ \hline
+	
+	\ferror{InvalidArgument}         & Неправильный аргумент.                           \\ \hline
+	\ferror{InvalidSelector}         & Неправильный селектор.                           \\ \hline
+	\ferror{InvalidElementState}     & Состояние элемента неудовлетворительна.          \\ \hline
+	\ferror{InvalidElement}          & Элемент не подходит данной операции.             \\ \hline
+	\ferror{IncompatibleRoot}        & Неподходящий корень строки JSON.                 \\ \hline
+	\ferror{IncompatibleData}        & Неподходящие данные.                             \\ \hline
+	\ferror{IncompatibleObject}      & Неподходящий объект.                             \\ \hline
+	\ferror{InvalidSessionId}        & Сессия уже закрыта.                              \\ \hline
+	\ferror{InvalidCookieDomain}     & Неподходящий домен для cookie.                   \\ \hline
+	\ferror{InsecureCertificate}     & Небезопасный сертификат.                         \\ \hline
+	\ferror{UnexpectedAlertOpen}     & Неожиданное предупреждение.                      \\ \hline
+	
+	\ferror{UnrealCast}              & Невозможное преобразование.                      \\ \hline
+	\ferror{ParsingFailed}           & Парсинг не удался.                               \\ \hline
+	\ferror{WrongDelimiter}          & Неправильный разделитель.                        \\ \hline
+	\ferror{ComplexField}            & Невозможное преобразование данных из JSON в icL. \\ \hline
+	\ferror{ElementNotInteractable}  & Элемент не интерактивный.                        \\ \hline
+	\ferror{ElementClickIntercepted} & Другой элемент мешает сделать клик.              \\ \hline
+	\ferror{MoveTargetOutOfBounds}   & Координаты мышки вне экрана.                     \\ \hline
+	\ferror{UnableToSetCookie}       & Нельзя установить cookie.                        \\ \hline
+	\ferror{UnableToCaptureScreen}   & Нельзя захватить экран.                          \\ \hline
+	\ferror{JavascriptError}         & Ошибка выполнения кода на языке Javascript.      \\ \hline
+	\ferror{ScriptTimeout}           & Время выполнения скрипта истекло.                \\ \hline
+	\ferror{Timeout}                 & Время истекло.                                   \\ \hline
+	\ferror{SessionNotCreated}       & Нельзя создать сессию.                           \\ \hline
+	
+	\ferror{UnknownCommand}          & \code{[w3c]} Неизвестная команда.                \\ \hline
+	\ferror{UnknownError}            & \code{[w3c]} Неизвестная ошибка.                 \\ \hline
+	\ferror{UnknownMethod}           & \code{[w3c]} Неизвестный метод HTTP.             \\
+}
 
 \newpage
 \section{Прогресс}
@@ -5769,7 +5838,7 @@ slot:NumberTooSmall {
 	\item + Регулярные выражения regex
 	\item + Механизм состояний
 	\item + Базы данных (только SQLite в первой версии)
-	\item - Обработка ошибок emiter, emit, slot
+	\item + Обработка ошибок emiter, emit, slot
 	\item - Crossfire.js
 \end{icEnumResume}
 
