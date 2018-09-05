@@ -20,6 +20,14 @@
 \newfontfamily\cyrillicfonttt{Liberation Mono}
 \newfontfamily\cyrillicfontsf{Liberation Serif}
 
+%\usepackage[sf]{titlesec}
+
+% ГОСТ
+%\newfontfamily\headingfont[]{Liberation Sans}
+%\titleformat*{\section}{\normalsize\headingfont\centering}
+%\titleformat*{\subsection}{\normalsize\headingfont\centering}
+%\titleformat*{\subsubsection}{\normalsize\headingfont\centering}
+
 \usepackage{longtable}
 \usepackage{ragged2e}
 \setcounter{tocdepth}{2}
@@ -132,10 +140,13 @@
 \setlength\belowcaptionskip{1pt}
 
 \pagestyle{fancy}
-%\fancyhead[]{}
-%\fancyhead[C]{12603 - 01 xx 01}
+\fancyhead[]{}
+\fancyhead[C]{12603 - 01 xx 01}
+\fancyhead[R]{\thepage{} из \pageref{LastPage}}
+\fancyfoot[]{}
+\renewcommand{\headrulewidth}{0pt}
 %\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[C]{\thepage{} из \pageref{LastPage}}
+%\fancyfoot[C]{\thepage{} из \pageref{LastPage}}
 
 \lstset{
 	language=icL,
@@ -385,8 +396,7 @@
 \renewcommand{\contentsname}{\textsf{Оглавление}}
 \tableofcontents
 
-%\newpage
-
+\newpage
 \section{Введение}
 
 \indent \textbf{icL} - \textbf{язык описания сценариев}, оптимизирован под описания сценариев тестирования веб-приложений.
