@@ -5816,40 +5816,103 @@ slot:NumberTooSmall {
 	\ferror{UnknownMethod}           & \code{[w3c]} Неизвестный метод HTTP.             \\
 }
 
+%\newpage
+\section{crossfire.js}
+
+Технология {\bf crossfire.js} позволяет вызвать функцию icL из веб-страницы. Функция будет выполнено асинхронно.
+
+Вставить функцию icL в Javascript можно с помощью заменителя \lstinline|!{name}|. При вызове функций icL, параметры по типу данных должны подходить, иначе будет сгенерирован сигнал, который остановит в последствия выполнение скрипта. Для корректность восприятия данных рекомендуется использовать следующее функций Javascript:
+\begin{icItems}
+	\item \lstinline|crossfire.bool(arg)|;
+	\item \lstinline|crossfire.int(arg)|;
+	\item \lstinline|crossfire.double(arg)|;
+	\item \lstinline|crossfire.string(arg)|;
+	\item \lstinline|crossfire.list(arg)|;
+	\item \lstinline|crossfire.object(arg)|;
+	\item \lstinline|crossfire.set(arg)|;
+	\item \lstinline|crossfire.element(arg)|;
+\end{icItems}
+
+Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \code{onclick} получает один параметр, но \code{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
+
+
+\begin{lstlisting}[caption=Пример вызова функций icL, label=crossfireexample]
+@el = _dom.query "button";
+!func = { _log.info "It's working!" };
+
+$run {
+	@{el}[0].onlick = function (ev) { !{func}() }
+};
+\end{lstlisting}
+
 \newpage
-\section{Прогресс}
+\part{Материал для разработчиков}
 
-{\color{red}Материал для продвинутых пользователей.}
+Данный материал предназначен разработчиков командных процессоров поддерживающих язык icL. В нём присутствует данные которые встречались и заранее, но они структурированы максимально удобно для моделирования макет и техник выполнения команд.
 
-\begin{icEnum}
-	\item + Введение
-	\item + Базовый синтаксис
-	\item + Переменные
-	\item + Типы данных
-	\item + Литералы
-	\item + Операторы
-	\item + Условные операторы
-	\item + Циклы
-	\item + Интеграция с Javascript
-	\item + Функции
-	\item + Строки
-	\item + Списки
-	\item + Множества
-	\item + Веб-элементы (симуляция мышки и клавиатуры) webelments
-	\item + Обмен данных в веб-странице (конкретные примеры) dataexchange
-	\item + DSV / CSV / TSV
-	\item + Преобразование типов
-\end{icEnum}
+\section{Типы данных}
+\subsection{{\color{lightblue} value}}
 
-{\color{red}далее материал для программистов, дополнительные возможности, просьба не читать далее материал если нету желание или необходимость.}
+\subsection{{\color{lightblue} bool}}
+\subsection{{\color{lightblue} double}}
+\subsection{{\color{lightblue} int}}
+\subsection{{\color{lightblue} list}}
+\subsection{{\color{lightblue} object}}
+\subsection{{\color{lightblue} regex}}
+\subsection{{\color{lightblue} set}}
+\subsection{{\color{lightblue} string}}
 
-\begin{icEnumResume}
-	\item + Дополнительные возможности
-	\item + Регулярные выражения regex
-	\item + Механизм состояний
-	\item + Базы данных (только SQLite в первой версии)
-	\item + Обработка ошибок emiter, emit, slot
-	\item - Crossfire.js
-\end{icEnumResume}
+\section{Системные типы данных}
+
+\subsection{{\color{orange} \_alert}}
+\subsection{{\color{orange} \_by}}
+\subsection{{\color{orange} \_cookie}}
+\subsection{{\color{orange} \_cookies}}
+\subsection{{\color{orange} \_dbManager}}
+\subsection{{\color{orange} \_db}}
+\subsection{{\color{orange} \_dom}}
+\subsection{{\color{orange} \_dsv}}
+\subsection{{\color{orange} \_file}}
+\subsection{{\color{orange} \_files}}
+\subsection{{\color{orange} \_icL}}
+\subsection{{\color{orange} \_import}}
+\subsection{{\color{orange} \_key}}
+\subsection{{\color{orange} \_log}}
+\subsection{{\color{orange} \_make}}
+\subsection{{\color{orange} \_math}}
+\subsection{{\color{orange} \_mouse}}
+\subsection{{\color{orange} \_move}}
+\subsection{{\color{orange} \_numbers}}
+\subsection{{\color{orange} \_query}}
+\subsection{{\color{orange} \_session}}
+\subsection{{\color{orange} \_sessions}}
+\subsection{{\color{orange} \_signal}}
+\subsection{{\color{orange} \_stack}}
+\subsection{{\color{orange} \_stacks}}
+\subsection{{\color{orange} \_states}}
+\subsection{{\color{orange} \_tab}}
+\subsection{{\color{orange} \_tabs}}
+\subsection{{\color{orange} \_types}}
+\subsection{{\color{orange} \_wait}}
+\subsection{{\color{orange} \_window}}
+\subsection{{\color{orange} \_windows}}
+
+\section{Операторы}
+
+\subsection{1\-ого ранга}
+\subsection{1+\-ого ранга}
+\subsection{2\-ого ранга}
+\subsection{2+\-ого ранга}
+\subsection{3\-ого ранга}
+\subsection{3+\-ого ранга}
+\subsection{4\-ого ранга}
+\subsection{4+\-ого ранга}
+\subsection{5\-ого ранга}
+\subsection{5+\-ого ранга}
+\subsection{6\-ого ранга}
+\subsection{6+\-ого ранга}
+\subsection{7\-ого ранга}
+\subsection{7+\-ого ранга}
+
 
 \end{document}
