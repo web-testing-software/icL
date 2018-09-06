@@ -5851,68 +5851,411 @@ $run {
 Данный материал предназначен разработчиков командных процессоров поддерживающих язык icL. В нём присутствует данные которые встречались и заранее, но они структурированы максимально удобно для моделирования макет и техник выполнения команд.
 
 \section{Типы данных}
+
+В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \code{value}.
+
 \subsection{{\color{lightblue} value}}
 
+\code{value} предлагается в роли базового класса остальных типов описанных в данном главе.
+
+Описание класса \code{value} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} bool}}
+
+Описание класса \bool -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} double}}
+
+Описание класса \double -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
+\subsection{{\color{lightblue} element}}
+
+Описание класса \element -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} int}}
+
+Описание класса \integer -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} list}}
+
+Описание класса \listtype -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} object}}
+
+Описание класса \object -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} regex}}
+
+Описание класса \regex -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} set}}
+
+Описание класса \set -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{lightblue} string}}
+
+Описание класса \str -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 
 \section{Системные типы данных}
 
+В данном главе представлены типы данных, которых нельзя создавать с помощью литералов, не поддерживают преобразование, содержат только l-значений.
+
 \subsection{{\color{orange} \_alert}}
+
+Описание класса \code{\_alert} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_by}}
+
+Описание класса \code{\_by} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_cookie}}
+
+Описание класса \code{\_cookie} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_cookies}}
+
+Описание класса \code{\_cookies} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_dbManager}}
+
+Описание класса \code{\_dbManager} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_db}}
+
+Описание класса \code{\_db} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_dom}}
+
+Описание класса \code{\_dom} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_dsv}}
+
+Описание класса \code{\_dsv} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_file}}
+
+Описание класса \code{\_file} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_files}}
+
+Описание класса \code{\_files} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_icL}}
+
+Описание класса \code{\_icL} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_import}}
+
+Описание класса \code{\_import} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_key}}
+
+Описание класса \code{\_key} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_log}}
+
+Описание класса \code{\_log} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_make}}
+
+Описание класса \code{\_make} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_math}}
+
+Описание класса \code{\_math} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_mouse}}
+
+Описание класса \code{\_mouse} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_move}}
+
+Описание класса \code{\_move} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_numbers}}
+
+Описание класса \code{\_numbers} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_query}}
+
+Описание класса \code{\_query} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_session}}
+
+Описание класса \code{\_session} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_sessions}}
+
+Описание класса \code{\_sessions} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_signal}}
+
+Описание класса \code{\_signal} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_stack}}
+
+Описание класса \code{\_stack} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_stacks}}
+
+Описание класса \code{\_stacks} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_states}}
+
+Описание класса \code{\_states} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_tab}}
+
+Описание класса \code{\_tab} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_tabs}}
+
+Описание класса \code{\_tabs} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_types}}
+
+Описание класса \code{\_types} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_wait}}
+
+Описание класса \code{\_wait} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_window}}
+
+Описание класса \code{\_window} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{{\color{orange} \_windows}}
+
+Описание класса \code{\_windows} -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 
 \section{Операторы}
 
 \subsection{1\-ого ранга}
+
+Перечень операторов 1-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{1+\-ого ранга}
+
+Перечень операторов 1+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{2\-ого ранга}
+
+Перечень операторов 2-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{2+\-ого ранга}
+
+Перечень операторов 2+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{3\-ого ранга}
+
+Перечень операторов 3-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{3+\-ого ранга}
+
+Перечень операторов 3+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{4\-ого ранга}
+
+Перечень операторов 4-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{4+\-ого ранга}
+
+Перечень операторов 4+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{5\-ого ранга}
+
+Перечень операторов 5-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{5+\-ого ранга}
+
+Перечень операторов 5+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{6\-ого ранга}
+
+Перечень операторов 6-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{6+\-ого ранга}
+
+Перечень операторов 6+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{7\-ого ранга}
+
+Перечень операторов 7-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 \subsection{7+\-ого ранга}
+
+Перечень операторов 7+-ого ранга -
+\begin{lstlisting}[numbers=none]
+
+\end{lstlisting}
+
 
 
 \end{document}
