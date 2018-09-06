@@ -393,7 +393,11 @@
 \maketitle
 
 \newpage
-\renewcommand{\contentsname}{\textsf{Оглавление}}
+\renewcommand{\contentsname}{\textsf{Оглавление}}\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{2.6em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{4.0em}{3.6em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{7.4em}{4.5em}}
+\makeatother
 \tableofcontents
 
 \newpage
@@ -1180,7 +1184,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 			\item
 				извлечения квадратного корня \lstinline`/'int : int` и \lstinline`/'double : double`;
 			\item
-				извлечения корня \lstinline`int/'int : int` и \lstinline`double/'double : double`.
+				извлечения корня \lstinline`int/'int : int`, \lstinline|int/'double : double| и \lstinline`double/'double : double`.
 		\end{icItems}
 	\item
 		7$^+$-ого ранга:
@@ -1514,7 +1518,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 		\item
 			включение \lstinline`set << object : bool` и \lstinline|set << set : bool|;
 		\item
-			включение шаблона \lstinline`set <* object` и \lstinline`object <* object : bool`.
+			включение шаблона \lstinline`set <* object : bool` и \lstinline`object <* object : bool`.
 		\end{icItems}
 	\item
 		4-ого ранга:
@@ -1644,7 +1648,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \item
 	исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| и \lstinline|any ^ any : void|;
 \item
-	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|object % object : set| и \lstinline|set % object : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
+	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
 \end{icItems}
 
 \subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
@@ -1739,8 +1743,10 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 		\double{}   & \double{}   & \double{}					\\ \hline
 		\str{}      & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
 		\listtype{} & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \listtype{} & \code{list - [arg1 arg2]}	\\ \hline
 		\object{}   & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
 		\set{}      & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \set{}      & \code{set - [arg1 arg2]}	\\ \hline
 	\end{tabular}
 	\vspace{0em}
 \end{table}
@@ -5860,21 +5866,30 @@ $run {
 
 Описание класса \code{value} -
 \begin{lstlisting}[numbers=none]
+class value {
+value'lValue   : bool;
+value'link     : bool;
+value'rValue   : bool;
+value'readOnly : bool;
+value'typeId   : int;
+value'typeName : string;
 
+value.ensureRValue : void;
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} bool}}
 
 Описание класса \bool -
 \begin{lstlisting}[numbers=none]
-
+class bool extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} double}}
 
 Описание класса \double -
 \begin{lstlisting}[numbers=none]
-
+class double extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} element}}
@@ -5888,7 +5903,7 @@ $run {
 
 Описание класса \integer -
 \begin{lstlisting}[numbers=none]
-
+class int extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} list}}
@@ -6158,104 +6173,214 @@ $run {
 
 \section{Операторы}
 
-\subsection{1\-ого ранга}
+\subsection{0$^+$-ого ранга}
 
-Перечень операторов 1-ого ранга -
+\noindent Перечень операторов 0$^+$-ого ранга -
 \begin{lstlisting}[numbers=none]
-
+bool    = bool;
+double  = double;
+element = element;
+int     = int;
+list    = list;
+object  = object;
+regex   = regex;
+set     = set;
+string  = string;
+void    = bool;
+void    = double;
+void    = element;
+void    = int;
+void    = list;
+void    = object;
+void    = regex;
+void    = set;
+void    = string;
+void    = _cookie;
+void    = _db;
+void    = _file;
+void    = _query;
+void    = _session;
+void    = _stack;
+void    = _tab;
+void    = _window;
 \end{lstlisting}
 
-\subsection{1+\-ого ранга}
+\subsection{1-ого и 1$^+$-ого ранга}
 
-Перечень операторов 1+-ого ранга -
+\noindent Перечень операторов 1-ого ранга -
 \begin{lstlisting}[numbers=none]
+!func       args...;
+data'method args...;
 
+data :  type;
+data :: type;
+data :* type;
 \end{lstlisting}
 
-\subsection{2\-ого ранга}
-
-Перечень операторов 2-ого ранга -
+\noindent Перечень операторов 1$^+$-ого ранга -
 \begin{lstlisting}[numbers=none]
-
+[arg ...]            : object;
+[list ...]           : list;
+[object ...]         : set;
+[object or set ...]  : set;
+[param ...]          : set;
+[set ...]            : set;
+[string ...]         : list;
+[string or list ...] : list;
 \end{lstlisting}
 
-\subsection{2+\-ого ранга}
+\subsection{2-ого ранга}
 
-Перечень операторов 2+-ого ранга -
+\noindent Перечень операторов 2-ого ранга -
 \begin{lstlisting}[numbers=none]
+bool  & bool  : bool;
+value & value : value;
+value & void  : void;
+void  & value : void;
+void  & void  : void;
 
+bool  | bool  : bool;
+value | void  : value;
+void  | value : value;
+void  | void  : void;
+
+bool  ~ bool  : bool;
+value ~ value : value;
+value ~ void  : void;
+void  ~ value : void;
+void  ~ void  : void;
+
+bool  ^ bool  : bool;
+value ^ value : void;
+value ^ void  : value;
+void  ^ value : value;
+void  ^ void  : void;
+
+double  % double  : double;
+element % element : element;
+int     % int     : int;
+list    % list    : list;
+list    % string  : list;
+object  % object  : set;
+set     % object  : set;
+set     % set     : set;
+string  % list    : list;
+string  % string  : list;
+value   % void    : value;
+void    % value   : value;
+void    % void    : void;
 \end{lstlisting}
 
-\subsection{3\-ого ранга}
+\subsection{3-ого ранга}
 
-Перечень операторов 3-ого ранга -
+\noindent Перечень операторов 3-ого ранга -
 \begin{lstlisting}[numbers=none]
+bool   == bool   : bool;
+double == double : bool;
+int    == int    : bool;
+list   == list   : bool;
+object == object : bool;
+set    == set    : bool;
+string == string : bool;
 
+bool   != bool   : bool;
+double != double : bool;
+int    != int    : bool;
+list   != list   : bool;
+object != object : bool;
+set    != set    : bool;
+string != string : bool;
+
+double >> double : bool;
+int    >> int    : bool;
+
+double >= double : bool;
+int    >= int    : bool;
+
+double << double : bool;
+int    << int    : bool;
+list   << string : bool;
+set    << object : bool;
+set    << set    : bool;
+string << string : bool;
+
+double <= double : bool;
+int    <= int    : bool;
+
+list   <* string : bool;
+object <* object : bool;
+set    <* object : bool;
 \end{lstlisting}
 
-\subsection{3+\-ого ранга}
+\subsection{4-ого ранга}
 
-Перечень операторов 3+-ого ранга -
+\noindent Перечень операторов 4-ого ранга -
 \begin{lstlisting}[numbers=none]
+double + double : double;
+int    + int    : int;
+list   + list   : list;
+list   + string : list;
+set    + set    : set;
+string + list   : list;
+string + string : string;
 
+double - double : double;
+int    - int    : int;
+set    - set    : set;
 \end{lstlisting}
 
-\subsection{4\-ого ранга}
+\subsection{5-ого ранга}
 
-Перечень операторов 4-ого ранга -
+\noindent Перечень операторов 5-ого ранга -
 \begin{lstlisting}[numbers=none]
+double * double : double;
+int    * int    : int;
+list   * list   : bool;
+list   * string : bool;
+set    * set    : set;
+string * string : bool;
 
+double / double : double;
+int    / int    : int;
+
+int \ int : int;
+set \ set : set;
 \end{lstlisting}
 
-\subsection{4+\-ого ранга}
+\subsection{6$^+$-ого ранга}
 
-Перечень операторов 4+-ого ранга -
+\noindent Перечень операторов 6$^+$-ого ранга -
 \begin{lstlisting}[numbers=none]
+double **        : double;
+double ** double : double;
+int    **        : int;
+int    ** int    : int;
+set    ** set    : set;
+string ** string : double;
 
+       /'double : double;
+       /'int    : int;
+double /'double : double;
+int    /'double : double;
+int    /'int    : int;
 \end{lstlisting}
 
-\subsection{5\-ого ранга}
+\subsection{7-ого и 7$^+$-ого ранга}
 
-Перечень операторов 5-ого ранга -
+\noindent Перечень операторов 7-ого ранга -
 \begin{lstlisting}[numbers=none]
-
+data'property;
 \end{lstlisting}
 
-\subsection{5+\-ого ранга}
-
-Перечень операторов 5+-ого ранга -
+\noindent Перечень операторов 7$^+$-ого ранга -
 \begin{lstlisting}[numbers=none]
+!bool : bool
 
+-double : double;
+-int    : int;
+
++double : double;
++int    : int;
 \end{lstlisting}
-
-\subsection{6\-ого ранга}
-
-Перечень операторов 6-ого ранга -
-\begin{lstlisting}[numbers=none]
-
-\end{lstlisting}
-
-\subsection{6+\-ого ранга}
-
-Перечень операторов 6+-ого ранга -
-\begin{lstlisting}[numbers=none]
-
-\end{lstlisting}
-
-\subsection{7\-ого ранга}
-
-Перечень операторов 7-ого ранга -
-\begin{lstlisting}[numbers=none]
-
-\end{lstlisting}
-
-\subsection{7+\-ого ранга}
-
-Перечень операторов 7+-ого ранга -
-\begin{lstlisting}[numbers=none]
-
-\end{lstlisting}
-
-
 
 \end{document}
