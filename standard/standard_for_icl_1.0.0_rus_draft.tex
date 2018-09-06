@@ -87,7 +87,7 @@
 \newcommand{\cerror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{red!75!blue}{\textcolor{white}{#1}}}}
 
 \lstdefinelanguage{icL}{
-	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#, reverse, jammer, SELECT, FROM, WHERE, LIMIT, INSERT, INTO, VALUE},
+	keywords={if, else, for, filter, range, exists, while, do, any,emit, emiter, slot, @, \#, class, extends, reverse, jammer, SELECT, FROM, WHERE, LIMIT, INSERT, INTO, VALUE},
 	keywordstyle=\color{blue2},
 	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char, regex},
 	keywordstyle=[2]\color{lightblue},
@@ -95,7 +95,7 @@
 	morekeywords={_icL, _log, _define, _tab, _dom, _define, _import, true, false, _numbers, _types, _key, _alert, _by, _dsv, _sessions, _session, _windows, _window, _cookies, _cookie, _tabs, _tab, _files, _file, _make, _math, _wait, _mouse, _move, _stacks, _stack, _states, _db, _query, _dbManager, _code, _signal},
 	keywordstyle=\color{orange},
 	classoffset=4,
-	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss, childNodes, firstChild, innerText, isConnected, lastChild, nodeName, nodeType, nodeValue, parentElement, textContent, className, clientHeight, clientLeft,  clientTop, clientWidth, computedName, computedRole, id, innerHTML, localName, nextElementSibling, outerHTML, prefix, previousElementSibling, scrollHeight, scrollLeft, scrollTop, scrollWidth, tagName, baseURI, accessKey, accessKeyLabel, contentEditable, isContentEditable, dataset, dir, draggable, hidden, inert, lang, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, spellcheck, download, hash, host, hostname, href, hreflang, media, password, origin, pathname, port, protocol, rel, search, target, type, username, coords, autofocus, disabled, form, formAction, formEnctype, formMethod, formNoValidate, formTarget, labels, name, value, willValidate, options, elements, action, encoding, enctype, acceptCharset, autocomplete, noValidate, allowPaymentRequest, complete, crossOrigin, isMap, naturalHeight, naturalWidth, src, useMap, checked, defaultChecked, defaultValue, dirName, indeterminate, maxLength, multiple, pattern, placeholder, required, selectionStart, selectionEnd, selectionDirection, size, step, validity, validationMessage, valueAsNumber, control, htmlFor, as, areas, autoplay, controls, currentSrc, currentTime, defaultMuted, defaultPlaybackRate, disableRemotePlayback, duration, ended, loop, mediaGroup, muted, networkState, paused, playbackRate, preload, readyState, seeking, volume, content, httpEquiv, high, low, cite, reversed, start, defaultSelected, index, label, position, charset, async, defer, noModule, selectedIndex, selectedOptions, abbr, cellIndex, colSpan, rowSpan, scope, span, caption, tBodies, tHead, tFoot, cells, rowIndex, cols, textLength, wrap, dateTime, kind, srclang, label, default, poster, videoHeight, videoWidth, cssSelector, linkText, partialLinkText, xPath, load, loadCSV, loadTSV, write, sync, closeAll, new, implicitTimeout, pageLoadTimeout, scriptTimeout, switchTo, x, y, focus, fullscreen, maximize, minimize, switchToDefault, switchToFrame, switchToParent, deleteAll, domain, expiry, httpOnly, path, secure, save, current, first, previous, closeByTitle, closeToLeft, closeToRight, closeOthers, open, create, createDir, createPath, csv, tsv, format, valid, delete, image, stack, state, 1divPi, 1divSqrtPi, 2divPi, 2divSqrtPi, e, ln2, ln10, log2e, log10e, pi, piDiv2, piDiv4, sqrt2, degreesToRadians, radiansToDegrees, acos, asin, atan, ceil, cos, exp, floor, ln, round, sin, tan, restore, resetTime, ajax, template, expression, timeout, toBe, present, interactable, keyDown, keyUp, keyPress, paste, fastType, mouseDown, mouseUp, hover, middle, rx, ry, ax, ay, delay, time, func, teleport, linear, quadratic, cubic, bezier, p1x, p1y, p2x, p2y, clickTime, pressTime, moveTime, flashMode, humanMode, ifexists, dowhile, forany, continue, break, newAtEnd, toNext, toPrev, toFirst, toLast, find, findByTitle, openSQLite, exec, getRowsAffected, getError, getLength, seek, forname, programmers, country, person, artists},
+	morekeywords={info, warm, error, signal, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss, childNodes, firstChild, innerText, isConnected, lastChild, nodeName, nodeType, nodeValue, parentElement, textContent, className, clientHeight, clientLeft,  clientTop, clientWidth, computedName, computedRole, id, innerHTML, localName, nextElementSibling, outerHTML, prefix, previousElementSibling, scrollHeight, scrollLeft, scrollTop, scrollWidth, tagName, baseURI, accessKey, accessKeyLabel, contentEditable, isContentEditable, dataset, dir, draggable, hidden, inert, lang, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, spellcheck, download, hash, host, hostname, href, hreflang, media, password, origin, pathname, port, protocol, rel, search, target, type, username, coords, autofocus, disabled, form, formAction, formEnctype, formMethod, formNoValidate, formTarget, labels, name, value, willValidate, options, elements, action, encoding, enctype, acceptCharset, autocomplete, noValidate, allowPaymentRequest, complete, crossOrigin, isMap, naturalHeight, naturalWidth, src, useMap, checked, defaultChecked, defaultValue, dirName, indeterminate, maxLength, multiple, pattern, placeholder, required, selectionStart, selectionEnd, selectionDirection, size, step, validity, validationMessage, valueAsNumber, control, htmlFor, as, areas, autoplay, controls, currentSrc, currentTime, defaultMuted, defaultPlaybackRate, disableRemotePlayback, duration, ended, loop, mediaGroup, muted, networkState, paused, playbackRate, preload, readyState, seeking, volume, content, httpEquiv, high, low, cite, reversed, start, defaultSelected, index, label, position, charset, async, defer, noModule, selectedIndex, selectedOptions, abbr, cellIndex, colSpan, rowSpan, scope, span, caption, tBodies, tHead, tFoot, cells, rowIndex, cols, textLength, wrap, dateTime, kind, srclang, label, default, poster, videoHeight, videoWidth, cssSelector, linkText, partialLinkText, xPath, load, loadCSV, loadTSV, write, sync, closeAll, new, implicitTimeout, pageLoadTimeout, scriptTimeout, switchTo, x, y, focus, fullscreen, maximize, minimize, switchToDefault, switchToFrame, switchToParent, deleteAll, domain, expiry, httpOnly, path, secure, save, current, first, previous, closeByTitle, closeToLeft, closeToRight, closeOthers, open, create, createDir, createPath, csv, tsv, format, valid, delete, image, stack, state, 1divPi, 1divSqrtPi, 2divPi, 2divSqrtPi, e, ln2, ln10, log2e, log10e, pi, piDiv2, piDiv4, sqrt2, degreesToRadians, radiansToDegrees, acos, asin, atan, ceil, cos, exp, floor, ln, round, sin, tan, restore, resetTime, ajax, template, expression, timeout, toBe, present, interactable, keyDown, keyUp, keyPress, paste, fastType, mouseDown, mouseUp, hover, middle, rx, ry, ax, ay, delay, time, func, teleport, linear, quadratic, cubic, bezier, p1x, p1y, p2x, p2y, clickTime, pressTime, moveTime, flashMode, humanMode, ifexists, dowhile, forany, continue, break, newAtEnd, toNext, toPrev, toFirst, toLast, find, findByTitle, openSQLite, exec, getRowsAffected, getError, getLength, seek, forname, programmers, country, person, artists, hasField},
 	keywordstyle=\color{function},
 	classoffset=5,
 	morekeywords={UnrealCast, StringParse, EmptyList, MultipleValues, NullElement, NotVisible,  WrongName, OutOfBounds, OutOfScreen, FileNotFound, icL, w3c},
@@ -2488,7 +2488,7 @@ n-й символ строки. n должен быть целым литера�
 %\newpage
 \section{Списки}
 
-{\bf Списки} (тип \code{string}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
+{\bf Списки} (тип \code{list}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
 
 \subsection{Свойства}
 
@@ -2556,7 +2556,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.indexOf <string>str <int>start = 0 : int|;
 \item \lstinline|list.insert <int>index <string>str : list|;
 \item \lstinline|list.join <string>separator : string|;
-\item \lstinline|list.lastIndexOf <string>str <int>start = -1|;
+\item \lstinline|list.lastIndexOf <string>str <int>start = -1 : int|;
 \item \lstinline|list.mid <int>pos <int>n = -1 : list|;
 \item \lstinline|list.prepend <string>str : list|;
 \item \lstinline|list.move <int>from <int>to : list|;
@@ -2646,7 +2646,7 @@ n-я строка списка, n должен быть целым литера�
 
 Создаёт новую строку, из строк списка, путём последовательной конкатенации, между значениями вставится \code{separator}, он может быть пустой строкой.
 
-\subsubsection{\lstinline|list.lastIndexOf <string>str <int>start = -1|}
+\subsubsection{\lstinline|list.lastIndexOf <string>str <int>start = -1 : int|}
 
 Возвращает индекс первой нахождения строки \code{str} в списке, ища назад с позиции \code{start}, если строка не найдена возвращает -1.
 
@@ -2733,9 +2733,10 @@ n-я строка списка, n должен быть целым литера�
 
 Множество имеет следующие методы:
 \begin{icItems}
-\item \lstinline|set.applicate <list ...>data|;
+\item \lstinline|set.applicate <list ...>data : set|;
 \item \lstinline|set.clear : set|;
-\item \lstinline|set.getField <string>name <list>value : list|;
+\item \lstinline|set.getField <string>name : list|;
+\item \lstinline|set.hasField <string>name : bool|;
 \item \lstinline|set.insert <any ...>data : set|;
 \item \lstinline|set.insert <object>obj : set|;
 \item \lstinline|set.insertBoolField <string>name <list>values : set|;
@@ -2816,7 +2817,7 @@ n-я строка списка, n должен быть целым литера�
 @set.clear; `` set = []
 \end{lstlisting}
 
-\subsubsection{\lstinline|set.applicate <list ...>data|}
+\subsubsection{\lstinline|set.applicate <list ...>data : set|}
 
 Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \code{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
 
@@ -2907,7 +2908,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|[r/o] element'empty : bool|;
 \item \lstinline|[r/o] element'enabled : bool|;
 \item \lstinline|[r/o] element'length : int|;
-\item \lstinline|[*/*] element'prop-* : string|;
+\item \lstinline|[*/*] element'prop-* : any|;
 \item \lstinline|[r/o] element'rect : object|;
 \item \lstinline|[r/o] element'selected : bool|;
 \item \lstinline|[r/o] element'tag : string|;
@@ -5130,8 +5131,8 @@ URL страницы, открытой в указанной вкладке.
 
 Для работы с клавиатуры предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|element.keyDown <int>modifiers <text>keys : element|;
-	\item \lstinline|element.keyUp <int>modifiers <text> : element|;
+	\item \lstinline|element.keyDown <int>modifiers <string>key : element|;
+	\item \lstinline|element.keyUp <int>modifiers <string>key : element|;
 	\item \lstinline|element.keyPress <int>modifiers <int>delay <string>keys : element|;
 	\item \lstinline|element.fastType <string>text : element|;
 	\item \lstinline|element.paste <string>text : element|.
@@ -5864,81 +5865,221 @@ $run {
 
 \code{value} предлагается в роли базового класса остальных типов описанных в данном главе.
 
-Описание класса \code{value} -
+\noindent Описание класса \code{value} -
 \begin{lstlisting}[numbers=none]
 class value {
-value'lValue   : bool;
-value'link     : bool;
-value'rValue   : bool;
-value'readOnly : bool;
-value'typeId   : int;
-value'typeName : string;
+    value'lValue   : bool;
+    value'link     : bool;
+    value'rValue   : bool;
+    value'readOnly : bool;
+    value'typeId   : int;
+    value'typeName : string;
 
-value.ensureRValue : void;
+    value.ensureRValue : void;
 }
 \end{lstlisting}
 
 \subsection{{\color{lightblue} bool}}
 
-Описание класса \bool -
+\noindent Описание класса \bool -
 \begin{lstlisting}[numbers=none]
 class bool extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} double}}
 
-Описание класса \double -
+\noindent Описание класса \double -
 \begin{lstlisting}[numbers=none]
 class double extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} element}}
 
-Описание класса \element -
+\noindent Описание класса \element -
 \begin{lstlisting}[numbers=none]
+class element extends value {
+    [r/*] element'attr-*   : string;
+    [r/*] element'css-*    : string;
+    [r/o] element'empty    : bool;
+    [r/o] element'enabled  : bool;
+    [r/o] element'length   : int;
+    [*/*] element'prop-*   : value;
+    [r/o] element'rect     : object;
+    [r/o] element'selected : bool;
+    [r/o] element'tag      : string;
+    [r/o] element'text     : string;
+    [r/o] element'int      : element;
 
+    ``      method          arg1    arg2   arg3
+    element.add             element               : element;
+    element.child           int                   : element;
+    element.clear                                 : element;
+    element.click                                 : element;
+    element.click           object                : element;
+    element.closest         string 	              : element;
+    element.contains        string 	[bool]        : element;
+    element.copy                                  : element;
+    element.fastType        string                : element;
+    element.filter          string                : element;
+    element.get             int                   : element;
+    element.hover           object                : element;
+    element.keyDown         int     string        : element;
+    element.keyPress        int     int    string : element;
+    element.keyUp           int     string        : element;
+    element.mouseDown       object                : element;
+    element.mouseUp         object                : element;
+    element.next                                  : element;
+    element.parent                                : element;
+    element.paste           string                : element;
+    element.prev                                  : element;
+    element.query           int     string        : element;
+    element.query           string                : element;
+    element.queryAll        int     string        : element;
+    element.queryAll        string                : element;
+    element.queryAllByXPath string 	              : element;
+    element.queryByXPath    string 	              : element;
+    element.queryLink       string 	[bool]        : element;
+    element.queryLinks      string  [bool]        : element;
+    element.queryTag        string                : element;
+    element.queryTags       string                : element;
+    element.screenshot                            : string;
+    element.sendKeys        int     string        : element;
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} int}}
 
-Описание класса \integer -
+\noindent Описание класса \integer -
 \begin{lstlisting}[numbers=none]
 class int extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} list}}
 
-Описание класса \listtype -
+\noindent Описание класса \listtype -
 \begin{lstlisting}[numbers=none]
+class list extends value {
+    [r/o] list'empty  : bool;
+    [r/o] list'length : int;
+    [r/o] list'last   : string;
+    [r/o] list'int    : string;
 
+    ``   method           arg1   arg2   returns
+    list.append           string        : list;
+    list.at               int           : string;
+    list.contains         string [bool] : bool;
+    list.clear                          : list;
+    list.count            string        : int;
+    list.filter           regex         : bool;
+    list.filter           string [bool] : bool;
+    list.indexOf          regex  [int]  : int;
+    list.indexOf          string [int]  : int;
+    list.join             string        : string;
+    list.lastIndexOf      regex  [int]  : int;
+    list.lastIndexOf      string [int]  : int;
+    list.mid              int    [int]  : list;
+    list.prepend          string        : list;
+    list.move             int    int    : list;
+    list.removeAll        string        : list
+    list.removeAt         int           : list;
+    list.removeDuplicates               : list;
+    list.removeFirst                    : list;
+    list.removeLast                     : list;
+    list.removeOne        string        : list;
+    list.replaceInStrings string string : list;
+    list.sort             [bool]        : list;
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} object}}
 
-Описание класса \object -
+\noindent Описание класса \object -
 \begin{lstlisting}[numbers=none]
-
+class object extends value {
+    [r/w] object'string : value;
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} regex}}
 
-Описание класса \regex -
+\noindent Описание класса \regex -
 \begin{lstlisting}[numbers=none]
-
+class regex inherits value {
+    /i
+    /s
+    /m
+    /x
+    /u
+    /f
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} set}}
 
-Описание класса \set -
+\noindent Описание класса \set -
 \begin{lstlisting}[numbers=none]
+class set extends value {
+    [r/o] set'capacity : int;
+    [r/o] set'empty    : bool;
 
+    ``  method            arg1     arg2 returns
+    set.applicate         list...       : set;
+    set.clear                           : set;
+    set.getField          string        : list;
+    set.hasField          string        : bool;
+    set.insert            value...      : set;
+    set.insert            object        : set;
+    set.insertBoolField   string   list : set;
+    set.insertDoubleField string   list : set;
+    set.insertIntField    string   list : set;
+    set.insertListField   string   list : set;
+    set.insertStringField string   list : set;
+    set.remove            value...      : set;
+    set.remove            object        : set;
+    set.removeField       string        : set;
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} string}}
 
-Описание класса \str -
+\noindent Описание класса \str -
 \begin{lstlisting}[numbers=none]
+class string extends value {
+    [r/o] string'empty  : bool;
+    [r/o] string'length : int;
+    [r/o] string'last   : string;
+    [r/o] string'int    : string;
 
+    ``     method         arg1   arg2   arg3     returns
+    string.append         string               : string;
+    string.at             int                  : string;
+    string.beginsWith     string               : bool;
+    string.compare        string [bool]        : bool;
+    string.count          string               : int;
+    string.count          regex                : int;
+    string.endsWith       string               : bool;
+    string.indexOf        regex  [int]         : int;
+    string.indexOf        string [int]         : int;
+    string.insert         string int           : string;
+    string.lastIndexOf    regex  [int]         : int;
+    string.lastIndexOf    string [int]         : int;
+    string.left           int                  : string;
+    string.leftJustified  int    string [bool] : string;
+    string.mid            int    [int]         : string;
+    string.prepend        string               : string;
+    string.remove         int    int           : string;
+    string.remove         regex                : string;
+    string.remove         string [bool]        : string;
+    string.replace        int    int    string : string;
+    string.replace        regex  string        : string;
+    string.replace        string string        : string;
+    string.right          int                  : string;
+    string.rightJustified int    string [bool] : string;
+    string.split          regex  [bool]        : list;
+    string.split          string [bool] [bool] : list;
+    string.substring      int    int           : string;
+    string.trim           [bool]               : string;
+}
 \end{lstlisting}
 
 
@@ -6220,6 +6361,7 @@ data :* type;
 \noindent Перечень операторов 1$^+$-ого ранга -
 \begin{lstlisting}[numbers=none]
 [arg ...]            : object;
+[element ...]        : element;
 [list ...]           : list;
 [object ...]         : set;
 [object or set ...]  : set;
@@ -6303,6 +6445,7 @@ list   << string : bool;
 set    << object : bool;
 set    << set    : bool;
 string << string : bool;
+string << regex  : bool;
 
 double <= double : bool;
 int    <= int    : bool;
@@ -6310,6 +6453,7 @@ int    <= int    : bool;
 list   <* string : bool;
 object <* object : bool;
 set    <* object : bool;
+string <* regex  : list;
 \end{lstlisting}
 
 \subsection{4-ого ранга}
@@ -6357,6 +6501,7 @@ int    **        : int;
 int    ** int    : int;
 set    ** set    : set;
 string ** string : double;
+string ** regex  : object;
 
        /'double : double;
        /'int    : int;
