@@ -3,12 +3,14 @@
 \usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
 \usepackage{fancyvrb}
 \fvset{tabsize=2}
+\usepackage[utf8]{inputenc}
 \usepackage{polyglossia}
 \setmainlanguage{russian}
 \setotherlanguage{english}
 \usepackage[htt]{hyphenat}
 \usepackage{setspace}
 \usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{30pt}
 
 \setmainfont{Liberation Serif}
 \newfontfamily\cyrillicfont{Liberation Serif}
@@ -45,8 +47,9 @@
 
 \usepackage{caption}
 \DeclareCaptionFont{black}{\color{black}}
-\DeclareCaptionFormat{listing}{\colorbox{codeheaderbg}
-	{\parbox{\textwidth}{#1#2#3}}}
+%\DeclareCaptionFormat{listing}{\colorbox{codeheaderbg}
+%	{\parbox{\textwidth}{#1#2#3}}}
+\DeclareCaptionFormat{listing}{#1#2#3}
 \captionsetup[lstlisting]
 	{format=listing,labelfont=black,textfont=black}
 
@@ -77,10 +80,11 @@
 \definecolor{grey}{rgb}{0.5, 0.5, 0.5}
 \definecolor{function}{RGB}{11, 145, 89}
 \definecolor{blue2}{RGB}{15, 92, 198}
+\definecolor{error}{RGB}{255, 255, 50}
 
 \usepackage{soul}
 
-\newcommand{\ferror}[1]{\foreignlanguage{english}{\fontsize{11pt}{12pt}\tt{\sethlcolor{yellow}\hl{#1}}}}
+\newcommand{\ferror}[1]{\foreignlanguage{english}{\fontsize{11pt}{12pt}\tt{\sethlcolor{error}\hl{#1}}}}
 
 % \colorbox{function}{\textcolor{white}{#1}}
 
@@ -141,7 +145,8 @@
 
 \pagestyle{fancy}
 \fancyhead[]{}
-\fancyhead[C]{\textmd{12603 - 01 xx 01}}
+\fancyhead[L]{\textmd{Релиз-кандидат}}
+%\fancyhead[C]{\textmd{12603 - 01 xx 01}}
 \fancyhead[R]{\textmd{\thepage{} из \pageref{LastPage}}}
 \fancyfoot[]{}
 \renewcommand{\headrulewidth}{0pt}
@@ -164,7 +169,12 @@
 	style=framed,
 	lineskip=0pt,
 	aboveskip=0pt,
-	autogobble=true
+	autogobble=true,
+	frame=l,
+	framesep=6mm,
+	framexleftmargin=2.5mm,
+	fillcolor=\color{codeheaderbg},
+	rulecolor=\color{blue}
 }
 
 \setlength{\LTleft}{0pt}
@@ -919,7 +929,7 @@ if (@) {
 \noindent Примеры:
 \begin{lstlisting}[numbers=none]
 23; -23; - 23; +23 + 3; 12 + -34; 15 - 24; 89--56; 2-3; `` ok
-23-; 23+; -2А; 3f5; 23f; 23l; 12u; 89i; 2w1; 1q1; rt2; `` error
+23-; 23+; -2А; 3f5; 23f; 23l; 12u; 89i; 2w1; 1q1; rt2;  `` error
 \end{lstlisting}
 
 \subsubsection{Дробные числа}
@@ -928,7 +938,7 @@ if (@) {
 
 \noindent Примеры:
 \begin{lstlisting}[numbers=none]
-23.233452; 29229992.2391; 100.0; -23.29199; -0.23; -0.45 - 1000.5; `` ok
+23.233452; 29229992.2391; 100.0; -23.29199; -0.23; -0.45 - 1000.5;  `` ok
 23.-4; 3а.34; 23-.44; 34.+23; -25.f; -23.5f; -w.45; -2.4e10; -2.E2; `` error
 \end{lstlisting}
 
@@ -5833,7 +5843,6 @@ slot:NumberTooSmall {
 
 Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \code{onclick} получает один параметр, но \code{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
 
-
 \begin{lstlisting}[caption=Пример вызова функций icL, label=crossfireexample]
 @el = _dom.query "button";
 !func = { _log.info "It's working!" };
@@ -5841,6 +5850,21 @@ slot:NumberTooSmall {
 $run {
 	@{el}[0].onlick = function (ev) { !{func}() }
 };
+\end{lstlisting}
+
+\section{Утверждения}
+
+{\bf Утверждения} позволяет оценить на сколько успешно прошел тест. Утверждения в icL имеют 2 синтаксисы: \lstinline|assert (condition)| и \lstinline|assert (condition, message)|. В первом присутствует только условие \code{condition}, если оно равно \false{} или \void, то icL будет утверждать что есть проблема в тестированным ПО, отправляя сообщение \code{message}, если оно отсутствует - условие будет отправлено в качестве сообщений. Как правильно отправлять одно и то же сообщение нескольких утверждений показано на листинге \ref{assertexample}.
+
+\begin{lstlisting}[caption=Пример использования утверждениях, label=assertexample]
+`` wrong
+assert (@val != 2 || @val != 4 || @val != 127, "Message");
+
+`` correct
+@message = "Meassage";
+assert (@val != 2,   @message);
+assert (@val != 4,   @message);
+assert (@val != 127, @message);
 \end{lstlisting}
 
 \newpage
