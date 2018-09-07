@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>header/adress_bar_icon.svg</file>
+        <file>header/blank_favicon.svg</file>
+        <file>header/new_tab.svg</file>
+        <file>content/avatar_mask.svg</file>
+        <file>content/bg_icon.svg</file>
+        <file>content/default_avatar.svg</file>
+        <file>content/qt_logo.svg</file>
+    </qresource>
+</RCC>

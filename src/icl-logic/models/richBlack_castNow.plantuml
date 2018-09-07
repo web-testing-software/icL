@@ -1,0 +1,47 @@
+@startuml
+
+!include uml_style.iuml
+title Rich.castNow()
+
+start
+
+:vt = value1.type();
+:newContext = nullptr;
+
+if (vt == Bool) then (Да)
+	-[#blue]->
+	:newContext =\nnew Bool();
+else if (vt == Int) then (Да)
+	-[#blue]->
+	:newContext =\nnew Int();
+else if (vt == Double) then (Да)
+	-[#blue]->
+	:newContext =\nnew Double();
+else if (vt == String) then (Да)
+	-[#blue]->
+	:newContext =\nnew String();
+else if (vt == StringList) then (Да)
+	-[#blue]->
+	:newContext =\nnew ListBlock();
+else (Нет)
+	-[#red]->
+	:ошибка\nсемантики>
+endif
+
+if (newContext != nullptr) then (Да)
+	-[#blue]->
+	:newContext.frag1 = frag1;
+	:newContext.frag2 = frag2;
+	:newContext.value1 = value1;
+	:newContext.oprationType = operationType;
+	:newContext.casted = true;
+else (Нет)
+	-[#red]->
+endif
+
+:return newContext;
+
+stop
+
+
+@enduml

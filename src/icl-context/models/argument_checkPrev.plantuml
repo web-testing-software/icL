@@ -1,0 +1,12 @@
+!include uml_style.iuml
+title Argument.checkPrev(prev)
+skinparam defaultTextAlignment left
+
+start
+
+:return prev != nullptr
+&& prev.role == New
+|| prev.role == Argument;
+
+stop
+@enduml

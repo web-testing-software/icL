@@ -1,0 +1,18 @@
+@startuml
+
+!include uml_style.iuml
+skinparam defaultTextAlignment left
+
+title Подготовка для crossfire.js
+start
+
+:code = код javascript;
+:replace(code, "([#@]){(\w*)}", [](QString &type, QString& name){
+	return "icL.crossget(\\""" " + type + name + "\\", \\""" " + icLpassword + "\\"")"
+})|
+:replace(code, "\*{(\w+)}\(([^\)]*)\)", [](QString &name, QString &args){
+	return "icL.crossfire(\""" " + name + "\",\""" " + icLpassword + "\",[" + args + "])"
+})|
+
+stop
+@enduml

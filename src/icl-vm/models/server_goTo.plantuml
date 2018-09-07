@@ -1,0 +1,21 @@
+@startuml
+
+!include uml_style.iuml
+title Server.goTo()
+
+start
+
+if (waitFor != Nothing) then (Да)
+	:waitFor = GoTo;
+	:working = true;
+	:emit requestGoTo(url)>
+	while (working == true?)
+	endwhile
+	:return result.toBool();
+else
+	:return false;
+endif
+
+stop
+
+@enduml

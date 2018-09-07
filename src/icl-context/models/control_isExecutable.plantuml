@@ -1,0 +1,8 @@
+@startuml
+
+!include uml_style.iuml
+title Control.isExecutable()
+start
+:return prev != nullptr;
+stop
+@enduml

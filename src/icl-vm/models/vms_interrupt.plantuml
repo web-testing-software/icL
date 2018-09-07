@@ -1,0 +1,15 @@
+@startuml
+
+!include uml_style.iuml
+title VirtualMachineStack.interrupt(codeFragment, lambda(Context*))
+
+start
+
+:nvm = new VirtualMachine()|
+:nvm.init(codeFragment)|
+:nvm.onStop = lambda;
+:nvm.parent = currentVM;
+
+stop
+
+@enduml

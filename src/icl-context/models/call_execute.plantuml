@@ -1,0 +1,39 @@
+@startuml
+
+!include uml_style.iuml
+title Call.execute()
+
+start
+if (functionExecuted == true?) then (Да)
+	-[#blue]->
+	:return true;
+	stop
+else (Нет)
+	-[#red]->
+	:Проверка аргументов по типу|
+	if (Есть несоответствия?) then (Да)
+		-[#blue]->
+		:попытка преобразовать неподходящие|
+		if (успешно?) then (Нет)
+			-[#red]->
+			:ошибка: неправильный вызов функций>
+		else (Да)
+			-[#blue]->
+		endif
+	else (Нет)
+		-[#red]->
+	endif
+endif
+
+if (ВиртуальнаяМашина.кодОшибки == 0?) then (Да)
+	-[#blue]->
+	:создать прерывания для вызова функций;
+	:functionExecuted = true;
+else (Нет)
+	-[#red]->
+endif
+
+:return false;
+
+stop
+@enduml

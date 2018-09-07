@@ -1,0 +1,17 @@
+@startuml
+
+!include uml_style.iuml
+
+class Interpreteur {
+	void backup()
+	bool parseNext()
+	void restore()
+	reset()
+}
+class Flayer {
+	Context* parseEverything()
+}
+
+Interpreteur *- Flayer
+
+@enduml

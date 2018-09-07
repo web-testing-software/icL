@@ -1,0 +1,11 @@
+!include uml_style.iuml
+title Method.checkPrev(prev)
+skinparam defaultTextAlignment left
+
+start
+
+:return prev != nullptr
+&& prev.isResultative();
+
+stop
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+
+!include uml_style.iuml
+title VirtualMachineStack.interrupt(codeFragment, lambda(QVariant&))
+
+start
+
+:interrupt(codeFragment, четвёртая анонимная функция)|
+
+stop
+
+@enduml

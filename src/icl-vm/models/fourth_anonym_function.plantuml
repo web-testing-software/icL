@@ -1,0 +1,21 @@
+@startuml
+
+!include uml_style.iuml
+title четвёртая анонимная функция (Context* context)
+
+start
+
+:QVariant variant;
+
+if (context != nullptr) then (Да)
+	-[#blue]->
+	:variant = context.getValue()|
+else (Нет)
+	-[#red]->
+endif
+
+:lambda(variant)|
+
+stop
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+title Server.finishJS()
+
+start
+
+if (waitFor == ExecuteJS) then (Да)
+	:this.result = result;
+	:this.working = false;
+	:this.waitFor = Nothing;
+endif
+
+stop
+
+!include uml_style.iuml
+
+@enduml

@@ -1,0 +1,12 @@
+!include uml_style.iuml
+title Object.containsData()
+start
+:result = true;
+if (dataType == Void || ((container == nullptr || name.isEmpty()) && value.isNull())?) then (Да)
+	-[#blue]->	
+	:result = false;
+else (Нет)
+	-[#red]->
+endif
+stop
+@enduml

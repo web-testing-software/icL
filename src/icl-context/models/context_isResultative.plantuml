@@ -1,0 +1,16 @@
+!include uml_style.iuml
+title Context.isResultative()
+skinparam defaultTextAlignment left
+
+start
+
+:return 
+   role == Object
+|| role == Property
+|| role == Method
+|| role == Isolated
+|| role == Call
+|| role == Try;
+
+stop
+@enduml

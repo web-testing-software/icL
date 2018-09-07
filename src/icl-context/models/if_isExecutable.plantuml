@@ -1,0 +1,8 @@
+@startuml
+
+!include uml_style.iuml
+title If.isExecutable()
+start
+:return !expressionExecuted || result == true;
+stop
+@enduml

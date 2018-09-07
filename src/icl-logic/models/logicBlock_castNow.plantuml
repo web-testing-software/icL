@@ -1,0 +1,11 @@
+@startuml
+
+!include uml_style.iuml
+title Logic.castNow()
+
+start
+:return nullptr;
+stop
+
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+
+!include uml_style.iuml
+title Вторая анонимная функция
+
+start
+
+:this.value2 = variant;
+
+stop
+
+@enduml

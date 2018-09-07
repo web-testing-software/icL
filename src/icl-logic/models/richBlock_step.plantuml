@@ -1,0 +1,40 @@
+@startuml
+
+!include uml_style.iuml
+title Rich.step()
+
+start
+
+if (value1.isNull()) then (Да)
+	:прерывание для выполнения
+	первой часть;
+	note left
+		При завершениях будет
+		выполняться первая
+		анонимная функция
+	end note
+	:return false;
+	stop
+else
+
+endif
+
+if (value2.isNull()) then (Да)
+	:прерывание для выполннения
+	второй часть;
+	note left
+		При завершениях будет
+		выполняться вторая
+		анонимная функция
+	end note
+	:return false;
+	stop
+endif
+
+:result = calcResult();
+:resultCalculed = true;
+:return true;
+stop
+
+
+@enduml

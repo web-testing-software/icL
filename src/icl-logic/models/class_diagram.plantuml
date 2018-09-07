@@ -1,0 +1,42 @@
+@startuml
+
+!include uml_style.iuml
+
+interface Logic {
+	+ virtual bool getResult() = 0
+	+ virtual bool isCross() = 0
+}
+
+interface Cross {
+	# Logic* block1
+	# Logic* block2
+	+ bool canAcceptBlock()
+	+ void giveBlock(Logic*)
+}
+
+interface Rich {
+	# QString code1
+	# QString code2
+	+ bool canAcceptCode()
+	+ void giveCode(QString)
+}
+
+'Logic <|-up- TrueBlock
+'Logic <|-down- FalseBlock
+Logic <|-left- Rich
+Logic <|-right- Cross
+
+Rich <|-- Bool
+Rich <|-up- Int
+Rich <|-up- Double
+Rich <|-- String
+ListBlock --|> Rich
+'Rich <|-up- StringListStringBlock
+Rich <|-- Single
+
+Cross <|-- Eq
+Cross <|-up- And
+Cross <|-up- Or
+Cross <|-- XOr
+
+@enduml

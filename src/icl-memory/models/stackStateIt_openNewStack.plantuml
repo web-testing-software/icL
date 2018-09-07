@@ -1,0 +1,13 @@
+@startuml
+
+title StackStateIt.openNewStack()
+
+start
+
+:m_stack = new StackState(m_state)|
+
+stop
+
+
+!include uml_style.iuml
+@enduml

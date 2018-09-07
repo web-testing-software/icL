@@ -1,0 +1,21 @@
+@startuml
+
+!include uml_style.iuml
+title Server.waitForLoading()
+
+start
+
+if (waitFor != Nothing) then (Да)
+	:waitFor = Loading;
+	:working = true;
+	:emit requestWaitForLoading()>
+	while (working == true?)
+	endwhile
+	:return result.toBool();
+else
+	:return false;
+endif
+
+stop
+
+@enduml

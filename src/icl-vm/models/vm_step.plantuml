@@ -1,0 +1,49 @@
+@startuml
+
+!include uml_style.iuml
+title VirtualMachine.step()
+
+start
+
+if (Курсов в конце?) then (Да)
+	if (В режиме ожидания?) then (ДА)
+		:Thread.sleep(10);
+		note left
+			Если 
+			ожидается
+			прерывание
+			из
+			javascript.
+		end note
+	else (Нет)
+		:onStop|
+	endif
+else (Нет)
+	if (Состояние OK?) then (Да)
+		if (commandParsing?) then (Да)
+			:parseNext|
+		else (Нет)
+			:поиск исполняемого контекста|
+			if (Есть такой?) then (Да)
+				:context.execute();
+				if (Успешно?) then (Да)
+					:newc = context.newContext();
+					:begin = context.begincntext();
+					:end = context.endContext();
+					:удаление контекстов\n от begin до end;
+					if (newc != nullptr) then (Да)
+						:добавления контекста в конце;
+					endif
+				else (Нет)
+				endif
+			else (Нет)
+			endif
+		endif
+	else (Нет)
+	:onStop|
+	endif
+endif
+
+stop
+
+@enduml

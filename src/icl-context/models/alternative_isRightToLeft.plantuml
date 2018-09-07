@@ -1,0 +1,6 @@
+!include uml_style.iuml
+title Alternative.isRightToLeft()
+start
+:return false;
+stop
+@enduml

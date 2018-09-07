@@ -1,0 +1,42 @@
+@startuml
+
+title Синхронизация потоков: Server.executeJS(code)
+
+participant VirtualMachineStack as vms
+participant "Server (C++)" as cpp
+participant "Server (QML)" as qml
+participant WebEngine as web
+
+' unclosed statement
+activate vms
+
+vms -[#blue]> cpp: executeJS(code)
+activate cpp
+	cpp -> cpp: waitFor = ExecuteJS
+	cpp -> cpp: working = true
+	cpp -[#green]> qml: requestExecuteJS(code)
+	activate qml #springgreen
+		cpp -> cpp: переход в режим ожидания
+		qml -[#blue]> web: executeJavaScript(code, lambda)
+		activate web #springgreen
+			web -[#red]-> qml: возврат
+		deactivate web
+		web -> web: выполнения кода
+		web -[#blue]> qml: lambda(variant)
+		activate qml  #lightgrey
+			qml -[#blue]> cpp: finishJS(variant)
+			activate cpp  #lightgrey
+				cpp -> cpp: this.result = variant
+				cpp -> cpp: waitFor = Nothing
+				cpp -> cpp: working = false
+				cpp -[#red]-> qml: возврат
+			deactivate cpp
+			qml -[#red]-> web: | возврат
+		deactivate qml
+	deactivate qml
+	cpp -[#red]-> vms: возврат
+deactivate cpp
+
+!include uml_style.iuml
+
+@enduml

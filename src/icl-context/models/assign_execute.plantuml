@@ -1,0 +1,31 @@
+@startuml
+
+!include uml_style.iuml
+title Assign.execute()
+start
+if (prev.Role == Object и prev.readOnly == false?) then (Да)
+	-[#blue]->
+	if (!!next и next.containsData()?) then (Да)
+		-[#blue]->
+		if (next.dataType == prev.dataType?) then (Да)
+			-[#blue]->
+			:присвоить значение;
+			:return true;
+			stop
+		else (Нет)
+			-[#red]->
+			:ошибка синтаксиса>
+		endif
+	else (Нет)
+		-[#red]->
+		:ошибка синтаксиса>
+	endif
+else (Нет)
+	-[#red]->
+	:ошибка синтаксиса>
+endif
+
+:return false;
+
+stop
+@enduml

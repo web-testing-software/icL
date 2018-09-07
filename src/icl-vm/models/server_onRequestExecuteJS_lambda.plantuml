@@ -1,0 +1,12 @@
+@startuml
+
+title Server.waitForLoading() lambda
+
+start
+
+:server.finishJS(result)|
+
+!include uml_style.iuml
+stop
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+
+!include uml_style.iuml
+title VirtualMachine.findExecutable()
+
+start
+
+:return_context = nullptr;
+:context = последний контекст;
+while (context != nullptr)
+	if (context.isRightToLeft() && context.isExecutable()) then (Да)
+		:return_context = context;
+	endif
+	:context = context.prev;
+endwhile
+
+if (return_context != nullptr) then (Да)
+	:context = первый контекст;
+	while (context != nullptr)
+		if (!context.isRightToLeft() && context.isExecutable()) then (Да)
+			:return_context = context;
+		endif
+		:context = context.next;
+	endwhile
+endif
+
+:return return_context;
+
+stop
+
+@enduml

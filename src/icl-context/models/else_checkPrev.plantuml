@@ -1,0 +1,25 @@
+!include uml_style.iuml
+title Else.checkPrev(prev)
+skinparam defaultTextAlignment left
+
+start
+
+:found = false;
+:context = prev;
+
+while (context != nullptr) 
+	-[#blue]->
+	if (context.role == If?) then (Да)
+		-[#blue]->
+		:found = true;
+		:break;
+	else (Нет)
+		-[#red]->
+	endif
+	-[#orange]->
+endwhile
+
+:return found;
+
+stop
+@enduml

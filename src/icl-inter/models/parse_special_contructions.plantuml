@@ -1,0 +1,130 @@
+@startuml
+
+!include uml_style.iuml
+title Парсинг специальных конструкций
+start
+
+:ch =  следующий символ;
+if (ch <= 42) then (Да)
+	-[#blue]->
+	if (ch == ") then (Да)
+		-[#blue]->
+		:парсинг
+		строки|
+	else if (ch == #) then (Да)
+		-[#blue]->
+		:парсинг
+		перемен
+		состояния|
+	else if (ch == $) then (Да)
+		-[#blue]->
+		:парсинг
+		выражений
+		javascript|
+	else if (ch == ') then (Да)
+		-[#blue]->
+		:парсинг
+		изолируемого
+		контекста|
+	else if (ch == () then (Да)
+		-[#blue]->
+		:парсинг
+		контекста
+		захвата
+		исключения|
+	else if (ch == *) then (Да)
+		-[#blue]->
+		:парсинг
+		функций|
+	else (Нет)
+		-[#red]->
+		:ошибка:
+		неожиданный
+		символ>
+	endif
+else (Нет)
+	-[#red]->
+endif
+
+if (ch > 42 && ch < 65) then (Да)
+	-[#blue]->
+	if (ch.isDigit() || ch == -) then (Да)
+		-[#blue]->
+		:парсинг чисел|
+	else if (ch == .) then (Да)
+		-[#blue]->
+		:парсинг
+		свойств|
+	else if (ch == :) then (Да)
+		-[#blue]->
+		:парсинг
+		методов|
+	else if (ch == <) then (Да)
+		-[#blue]->
+		:парсинг
+		аргументов|
+	else if (ch == =) then (Да)
+		-[#blue]->
+		:создание
+		блока с
+		ролям
+		Assign;
+	else if (ch == >) then (Да)
+		-[#blue]->
+		:парсинг
+		вывода
+		в
+		консоль|
+	else (Нет)
+		-[#red]->
+		:ошибка:
+		неожиданный
+		символ>
+	endif
+else (Нет)
+	-[#red]->
+endif
+
+if (ch >= 65) then (Да)
+	-[#blue]->
+	if (ch == @) then (Да)
+		-[#blue]->
+		:парсинг
+		локальной
+		перемены|
+	else if (ch == [) then (Да)
+		-[#blue]->
+		:парсинг
+		списка|
+	else if (ch == _) then (Да)
+		-[#blue]->
+		:парсинг
+		системной
+		перемены|
+	else if (ch == {) then (Да)
+		-[#blue]->
+		:парсинг
+		блока
+		конструкций|
+	else if (ch == |) then (Да)
+		-[#blue]->
+		:парсинг
+		блока
+		замены|
+	else if (ch == ~) then (Да)
+		-[#blue]->
+		:парсинг
+		вызова
+		исключений|
+	else (Нет)
+		-[#red]->
+		:ошибка:
+		неожиданный
+		символ>
+	endif
+else (Нет)
+	-[#red]->
+endif
+
+stop
+@enduml

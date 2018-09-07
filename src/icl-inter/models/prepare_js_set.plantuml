@@ -1,0 +1,18 @@
+@startuml
+
+!include uml_style.iuml
+skinparam defaultTextAlignment left
+
+title Подготовка для $set и $''
+start
+
+:code = код javascript;
+:replace(code, "#{(\w+)}", [](QString &name, QString&){
+	return vm.globalValue(name).toString()
+})|
+:replace(code, "@{(\w*)}", [](QString &name, QString&){
+	return vm.localValue(name).toString()
+})|
+
+stop
+@enduml

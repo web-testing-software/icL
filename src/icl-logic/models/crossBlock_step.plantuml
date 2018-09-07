@@ -1,0 +1,48 @@
+@startuml
+
+!include uml_style.iuml
+title Cross.step()
+
+start
+
+if (!value1setted) then (Да)
+	-[#blue]->
+	if(first.step()) then (Да)
+		-[#blue]->
+		:value1 =
+		first.calcResult()|
+		:value1setted = true;
+	else (Нет)
+		-[#red]->
+		if (first.needCast()?) then (Да)
+			-[#blue]->
+			:newBlock =
+			first.castNow()|
+			:delete first;
+			:first = newBlock;
+		else (Нет)
+			-[#red]->
+		endif
+	endif
+	:return false;
+	stop
+else if (!value2setted && !canResultPreliminary()) then (Да)
+	-[#blue]->
+	if (second.step()) then (Да)
+		-[#blue]->
+		:value2 = second.calcResult()|
+		:value2setted = true;
+	else (Нет)
+		-[#red]->
+	endif
+	:return false;
+	stop
+else (Нет)
+	-[#red]->
+	:result = calcResult()|
+	:resultCalculed = true;
+	:return true;
+	stop
+endif
+
+@enduml

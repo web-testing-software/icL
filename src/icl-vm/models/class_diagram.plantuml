@@ -1,0 +1,10 @@
+@startuml
+
+!include uml_style.iuml
+title Диаграмма классов модуля "Виртуальная машина"
+
+VirtualMachineStack *-- VirtualMachine
+VirtualMachineStack o-o Server
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+title Server.onRequestExecuteJS()
+
+start
+
+:webEngine.runJavaScript(code, lambda)|
+note right
+	При завершениях будет
+	выполнена функция
+	lambda
+end note
+
+!include uml_style.iuml
+stop
+
+@enduml
