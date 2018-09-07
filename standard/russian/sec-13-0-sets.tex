@@ -1,0 +1,189 @@
+\section{Множества}
+
+{\bf Множества} (тип \set) позволяют хранить несколько объектов (тип \object) без повторений, для множеств доступны операции как пересечение, объединение.
+
+\subsection{{\color{lightblue} object}}
+
+Объект позволяет хранить несколько переменных, каждая хранимая переменная имеет тип и название. Доступ к переменным осуществляется через свойства объекта, где название свойств и есть название переменных.
+
+Поле объектов множества описаны в заголовке множества.
+
+\subsection{Свойства}
+
+Множества имеют следующие свойства:
+\begin{icItems}
+\item \lstinline|[r/o] set'capacity : int|;
+\item \lstinline|[r/o] set'empty : bool|;
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] set'capacity : int|}
+
+Возвращает количество объектов которых можно хранить в память без дополнительных выделений.
+
+\subsubsection{\lstinline|[r/o] set'empty : bool|}
+
+Множество считается пустой если оно не содержит ни один объект.
+
+\subsection{Методы}
+
+Множество имеет следующие методы:
+\begin{icItems}
+\item \lstinline|set.applicate <list ...>data : set|;
+\item \lstinline|set.clear : set|;
+\item \lstinline|set.getField <string>name : list|;
+\item \lstinline|set.hasField <string>name : bool|;
+\item \lstinline|set.insert <any ...>data : set|;
+\item \lstinline|set.insert <object>obj : set|;
+\item \lstinline|set.insertBoolField <string>name <list>values : set|;
+\item \lstinline|set.insertDoubleField <string>name <list>values : set|;
+\item \lstinline|set.insertIntField <string>name <list>values : set|;
+\item \lstinline|set.insertListField <string>name <list>value : set|;
+\item \lstinline|set.insertStringField <string>name <list>values : set|;
+\item \lstinline|set.remove <any ...>data : set|;
+\item \lstinline|set.remove <object>obj : set|;
+\item \lstinline|set.removeField <string>name : set|.
+\end{icItems}
+
+Код использующий выше перечисленных методов представлен на листинге \ref{setmethods};
+
+\begin{lstlisting}[caption=Методы класса set, label=setmethods]
+@set = [<int>age <string>name <string>sex]
+
+@set.applicate 
+	["23"    "45"     "67"]
+	["Basil" "Nataly" "Siri"]
+	["m"     "f"      "f"];
+``` set = [
+	[<23>age <"Basil">name  <"m">sex]
+	[<45>age <"Nataly">name <"f">sex]
+	[<67>age <"Siri">name   <"f">sex]
+	] ```
+
+@set.getField "name"; `` ["Basil" "Nataly" "Siri"]
+
+@set.insert 34 "Critiano" "m";
+``` set = [
+	[<23>age <"Basil">name    <"m">sex]
+	[<45>age <"Nataly">name   <"f">sex]
+	[<67>age <"Siri">name     <"f">sex]
+	[<34>age <"Cristiano"name <"m">sex]
+	] ```
+
+@set.insert [<"f">sex <"Sofia">name <19>age];
+``` set = [
+	[<23>age <"Basil">name    <"m">sex]
+	[<45>age <"Nataly">name   <"f">sex]
+	[<67>age <"Siri">name     <"f">sex]
+	[<34>age <"Cristiano"name <"m">sex]
+	[<19>age <"Sofia">name    <"f">sex]
+	] ```
+
+@set.insertStringField "parity" ["odd" "even"];
+``` set = [
+	[<23>age <"Basil">name    <"m">sex <"odd">parity]
+	[<45>age <"Nataly">name   <"f">sex <"even">parity]
+	[<67>age <"Siri">name     <"f">sex <"odd">parity]
+	[<34>age <"Cristiano"name <"m">sex <"even">parity]
+	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
+	] ```
+
+@set.remove 45 "Nataly" "f" "even";
+``` set = [
+	[<23>age <"Basil">name    <"m">sex <"odd">parity]
+	[<67>age <"Siri">name     <"f">sex <"odd">parity]
+	[<34>age <"Cristiano"name <"m">sex <"even">parity]
+	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
+	] ```
+
+@set.remove [<34>age <"Cristiano"name <"m">sex <"even">parity];
+``` set = [
+	[<23>age <"Basil">name <"m">sex <"odd">parity]
+	[<67>age <"Siri">name  <"f">sex <"odd">parity]
+	[<19>age <"Sofia">name <"f">sex <"odd">parity]
+	] ```
+
+@set.removeField "parity";
+``` set = [
+	[<23>age <"Basil">name <"m">sex]
+	[<67>age <"Siri">name  <"f">sex]
+	[<19>age <"Sofia">name <"f">sex]
+	] ```
+
+@set.clear; `` set = []
+\end{lstlisting}
+
+\subsubsection{\lstinline|set.applicate <list ...>data : set|}
+
+Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \code{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
+
+\subsubsection{\lstinline|set.clear : set|}
+
+Очищает множество.
+
+\subsubsection{\lstinline|set.getField <string>name : list|}
+
+Возвращает список значений поле \code{name} всех объектов.
+
+Возможные исключения: \ferror{FieldNotFound}.
+
+\subsubsection{\lstinline|set.hasField <string>name : bool|}
+
+Возвращает \true, если заголовок содержит поле \code{name}, иначе \false.
+
+\subsubsection{\lstinline|set.insert <any ...>data : set|}
+
+Вставит новый объект, значения полей (массив \code{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
+
+Возможные исключения: \ferror{IncompatibleData}.
+
+\subsubsection{\lstinline|set.insert <object>obj : set|}
+
+Вставит новый объект, поля объекта \code{obj} должна быть совместимы полностью с заголовком множество.
+
+Возможные исключения: \ferror{IncompatibleObject}.
+
+\subsubsection{\lstinline|set.insertBoolField <string>name <list>values : set|}
+
+Создаёт новое поле типа \bool. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+Возможные исключения: \ferror{FieldAlreadyExists}.
+
+\subsubsection{\lstinline|set.insertDoubleField <string>name <list>values : set|}
+
+Создаёт новое поле типа \double. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+Возможные исключения: \ferror{FieldAlreadyExists}.
+
+\subsubsection{\lstinline|set.insertIntField <string>name <list>values : set|}
+
+Создаёт новое поле типа \integer. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+Возможные исключения: \ferror{FieldAlreadyExists}.
+
+\subsubsection{\lstinline|set.insertListField <string>name <list>value : set|}
+
+Создаёт новое поле типа \bool. Все объекты множеству получат новое поле со значением \code{value}.
+
+Возможные исключения: \ferror{FieldAlreadyExists}.
+
+\subsubsection{\lstinline|set.insertStringField <string>name <list>values : set|}
+
+Создаёт новое поле типа \str. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+
+Возможные исключения: \ferror{FieldAlreadyExists}.
+
+\subsubsection{\lstinline|set.remove <any ...>data : set|}
+
+Удаляет объект, который подходит по описанию \code{data}.
+
+\subsubsection{\lstinline|set.remove <object>obj : set|}
+
+Удаляет объект \code{obj} из множества.
+
+\subsubsection{\lstinline|set.removeField <string>name : set|}
+
+Удаляет поле \code{name} с заголовка.
+
+Возможные исключения: \ferror{FieldNotFound}.
+
+%\newpage

@@ -1,0 +1,70 @@
+\section{Интеграция с Javascript}
+
+В языке icL {\bf интеграция с Javascript} отличается в разных режимах работы. {\bf Режимы работы} всего 2: тестирование и автоматизация. В дальнейшем параграфы будут отмечены следующим меткам: \code{[icL]} - относиться к автоматизации и расширенных возможностях icL, \code{[w3c]} - относиться к тестированию и стандарту WebDriver предложен World Wide Web Consortium.
+
+\subsection{JS-Значения}
+
+{\bf JS-Значения} - главное нововведение по интеграцию с JavaScript. Оно позволяет использовать переменные JavaScript удобно, как и переменных icL. Они также могут быть доступны только для чтения или для записи и чтения.
+
+Каждое JS-Значение имеет геттер, но только переменные доступны для записи и чтения имеют сеттер. Геттеры и сеттеры являются фрагментами кода на языке JavaScript. В сеттере установленное значение передаётся следующим кодом \code{@\{value\}} Синтаксис JS-Значений:
+\begin{lstlisting}[numbers=none]
+$value {getter, setter};
+\end{lstlisting}
+
+Упрощённый синтаксис JS-Значений:
+\begin{lstlisting}[numbers=none]
+$value {getter};
+\end{lstlisting}
+
+В качестве JS-Значений может объявить любое переменное, на пример название страницы (см. листинг \ref{jsvalueex}), она остаётся доступной даже после перехода на другой странице.
+
+\begin{lstlisting}[caption=Использование JS-Значений, label=jsvalueex]
+@title = $value {document.title, document.title = @{value}};
+_log.out @title;
+@title = "Yet another title.";
+\end{lstlisting}
+
+\subsection{Выполнение кода на языке JavaScript}
+
+Команда \lstinline|$run| позволяет выполнить {\bf код на языке JavaScript}.
+
+\code{[icL]} Команда \lstinline|$run| получает один аргумент - код, в коде могут присутствовать переменные icL. Глобальные переменные предаются следующим образом \lstinline|#{name}|, локальные - \lstinline|@{name}|. Пример передачи значений перемены в JavaScript представлен на листинге \ref{jsrunex1}. Код можно выполнить асинхронно используя \lstinline|$runAsync|.
+
+\begin{lstlisting}[caption=Выполнение кода на языке JavaScript (icL), label=jsrunex1]
+@var = 2;
+$run { window.a = @{var} }
+\end{lstlisting}
+
+\code{[w3c]} Команда \lstinline|$run| получает переменное количество переменных. Они передаются в коде на языке JavaScript в виде аргументов вызова функций. Доступ к ним осуществляется с помощью переменной \code{arguments}. Код использующий данную тактику представлен на листинге \ref{jsrunex2}, его можно сравнивать с листингом \ref{jsrunex1}. Код можно выполнить асинхронно используя \lstinline|$runAsync|.
+
+\begin{lstlisting}[caption=Выполнение кода на языке JavaScript (w3c), label=jsrunex2]
+@var = 2;
+$run @var { window.a = arguments[0] }
+\end{lstlisting}
+
+Возможные исключения: \ferror{JavascriptError}, \ferror{ScriptTimeout}.
+
+\subsection{Выполнения файлов}
+
+Команда \lstinline|$file| {\bf выполняет файлы} JavaScript (.js). Для этого достаточно передать путь к файлу в качестве аргумента.
+
+Синтаксис -
+\begin{lstlisting}[numbers=none]
+$file "path/to/file.js";
+\end{lstlisting}
+
+Возможные исключения: \ferror{FileNotFound}, \ferror{JavascriptError}.
+
+\subsection{Пользовательские скрипты}
+
+\lstinline|[icL]| {\bf Пользовательские скрипты} выполняются до загрузки страницы, при переходе на страницу. Скрипт можно подкрепить как к текущей вкладке (\lstinline|$user|) так и ко всех вкладок из сессии (\lstinline|$always|).
+
+\lstinline|[icL]| Синтаксис -
+\begin{lstlisting}[numbers=none]
+$user "path/to/file.js";
+$always "path/to/file.js";
+\end{lstlisting}
+
+Возможные исключения: \ferror{FileNotFound}.
+
+%\newpage

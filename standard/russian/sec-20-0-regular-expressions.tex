@@ -1,0 +1,161 @@
+\section{Регулярные выражения}
+\label{regex}
+
+Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?<name>content)|.
+
+Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| и \lstinline|!|. Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
+
+Для того чтобы захватить начало строки можно использовать \lstinline|^| и \lstinline|\A|, а для конца строки - \lstinline|$| и \lstinline|\z|. Первый вариант несмотря на его популярность может срабатывать неправильно, так как им захватывается начало и конец строки в контексте многострочного текста.
+
+\subsection{Модификаторы}
+
+В языке icL присутствуют следующее модификаторы: \code{/i}, \code{/s}, \code{/m}, \code{/x}, \code{/u} и \code{/f}. Модификаторы можно скомбинировать, например \code{/xi}.
+
+\subsubsection{Модификатор \code{/i}}
+
+Регистр букв будет проигнорирован. 
+
+\subsubsection{Модификатор \code{/s}}
+
+Точка будет означать любой символ, включая символа {\it новая строка}.
+
+\subsubsection{Модификатор \code{/m}}
+
+Метасимволы \lstinline|^| и \lstinline|$| будут означать начало и конец строки не только в общем смысле, но и в контексте многострочного текста.
+
+\subsubsection{Модификатор \code{/x}}
+
+Все пробельные символы будут проигнорированы, и символ \lstinline|#| будет означать начало комментария, который заканчивается символом {\it новая строка}.
+
+\subsubsection{Модификатор \code{/u}}
+
+Классы символов \lstinline|\w|, \lstinline|\d| и т.д. и их отрицаний \lstinline|\W|, \lstinline|\D| и т.д. будут соответствовать не только английских символов, но и национальных.
+
+\subsubsection{Модификатор \code{/f}}
+
+Инвертирует жадность квантификаторов \lstinline|*|, \lstinline|+|, \lstinline|?| и т.д. и они становятся ленивыми. А их ленивые версии \lstinline|*?|, \lstinline|+?|, \lstinline|??| и т.д. становятся жадными.
+
+{\bf Жадный квантификатор} захватывает максимальное количество символов. {\bf Ленивый квантификатор} - минимальное.
+
+\subsection{Операторы}
+
+Для регулярных выражений доступны следующие операторы:
+\begin{icItems}
+\item
+	3-ого ранга:
+	\begin{icItems}
+	\item
+		\lstinline|string << regex : bool|;
+	\item
+		\lstinline|string <* regex : list|.
+	\end{icItems}
+
+\item 
+	6$^+$-ого ранга: \lstinline|string ** regex : object|.
+\end{icItems}
+
+Примеры использования операторов приведены на листинге \ref{regexpopsex}.
+
+\begin{lstlisting}[caption=Операторы регулярных выражений, label=regexpopsex]
+"string" << //s.r//;            `` true
+"string" <* //s(.)r//;          `` ["str" "t"]
+"string" ** //s(?<letter>.)r//; `` [<"t">letter]
+\end{lstlisting}
+
+\subsubsection{\lstinline|string << regex : bool|}
+
+Возвращает \true{}, если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе \false{}.
+
+\subsubsection{\lstinline|string <* regex : list|}
+
+Возвращает список захваченных подстрок если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе пустой список.
+
+\subsubsection{\lstinline|string ** regex : object|}
+
+Возвращает объект, содержащий значения всех именованных групп, если строка содержит подстроку подходящая по шаблону регулярней выражений и объявлены именованные группы, иначе пустой объект.
+
+% \subsubsection{}
+
+\subsection{Методы}
+
+Методы классы \str{} и \listtype, имеющие параметры типа \regex{}:
+\begin{icItems}
+\item
+	\lstinline|string.count <regex>re : int|;
+\item
+	\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|;
+\item
+	\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|;
+\item
+	\lstinline|string.remove <regex>re : string|;
+\item 
+	\lstinline|string.replace <regex>re <string>after : string|;
+\item
+	\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|.
+\item
+	\lstinline|list.filter <regex>re : list|;
+\item
+	\lstinline|list.indexOf <regex>re <int>start : int|;
+\item
+	\lstinline|list.lastIndexOf <regex>re <int>start : int|;
+\end{icItems}
+
+Примеры использования выше перечисленных методов, представлены на листинге \ref{regexplikearg}.
+
+\subsubsection{\lstinline|string.count <regex>re : int|}
+
+Считает количество подстрок подходящие по шаблону \code{re}.
+
+\subsubsection{\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|}
+
+Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища вперёд с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
+
+\begin{lstlisting}[caption=Регулярные выражения в качестве аргумента, label=regexplikearg]
+@str = "Hello world, collaborators!";
+
+@str.count //\wo//;       `` 5
+@str.indexOf //\w{6}//;   `` 13
+@str.lastIndexOf //l+o//; `` 2
+@str.remove //\w{2}o//;   `` "He world, collrrs!"
+@str.split //,?\s//;      `` ["He" "world" "collrrs!"]
+
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@fonts.filter //^[ac]//i;    `` ["Arial" "Courier"]
+@fonts.indexOf //e.//;       `` 1
+@fonts.indexOf //e.// 2;     `` 2
+@fonts.lastIndexOf //e.//;   `` 3
+@fonts.lastIndexOf //e.// 2; `` 2
+\end{lstlisting}
+
+\subsubsection{\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|}
+
+Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища назад с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
+
+\subsubsection{\lstinline|string.remove <regex>re : string|}
+
+Удаляет из строки все фрагменты подходящие по шаблону \code{re}.
+
+\subsubsection{\lstinline|string.replace <regex>re <string>after : string|}
+
+Заменяет каждый фрагмент, подходящий по шаблону \code{re}, строкой \code{after}.
+
+\subsubsection{\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|}
+
+Разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \code{re} и собирает список этих строк; если \code{keepEmptyParts == false} то пустые строки пропускаются.
+
+\subsubsection{\lstinline|list.filter <regex>re : list|}
+
+Возвращает новый список строк, содержащий только строки этого списка, подходящих по регулярней выражении \code{re}.
+
+\subsubsection{\lstinline|list.indexOf <regex>re <int>start = 0 : int|}
+
+Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища вперёд с позицией \code{start}, если такой строке не найдено возвращает -1.
+
+\subsubsection{\lstinline|list.lastIndexOf <regex>re <int>start = -1 : int|}
+
+Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища назад с позицией \code{start}, если такой строке не найдено возвращает -1.
+
+% \subsubsection{}
+
+%\newpage

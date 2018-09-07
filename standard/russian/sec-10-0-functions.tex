@@ -1,0 +1,70 @@
+\section{Функции}
+
+{\bf Функции} в icL позволяют повторное использовать код, и структурировать код. Все функций в icL - глобальные.
+
+\subsubsection{Определение функции}
+
+{\bf Определение функции} состоит из заголовка и тела функции.
+
+\noindent Синтаксис -
+\begin{lstlisting}[numbers=none]
+!name = parameters : return_type {
+	commands
+}
+\end{lstlisting}
+
+Описание всех частей функции:
+\begin{icItems}
+\item
+	\code{name} - {\bf название функции};
+\item
+	\code{parameters} - {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен (см. листинги \ref{fullfunc} и \ref{noargsfunc});
+\item
+	\code{return_type} - {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \void{}. Чтобы возвращать значение используется команда \code{@ = value} (см. листинги \ref{fullfunc}, \ref{notypefunc} и \ref{minfunc});
+\item
+	\code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
+\end{icItems}
+
+\begin{lstlisting}[caption=Полноценная функция, label=fullfunc]
+!sum = <int>a <int>b : int {
+	@ = @a + @b;
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Функция без аргументов, label=noargsfunc]
+!pi = double {
+	@ = 3.14;
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Функция без типа возвращаемой значений, label=notypefunc]
+!out = <int>a <int>b {
+	_log.out @a @b;
+};
+\end{lstlisting}
+
+\subsubsection{Вызов функции}
+
+Вы можете вызвать функцию следующим образом -
+\begin{lstlisting}[numbers=none]
+!name arguments;
+\end{lstlisting}
+где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}.
+
+\begin{lstlisting}[caption=Функция без аргументов и тип возвращаемой значений, label=minfunc]
+!do = {
+_log.out "It's work!";
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Вызов функций, label=callfunc]
+!sum 2 3; 	`` returns 5
+!pi; 		`` returns 3.14
+!out 4 5; 	`` returns void
+!do; 		`` returns void
+
+!sum (!sum 1 2) 3;	`` returns 6
+!out 1 (!sum 4 5);	`` returns void
+\end{lstlisting}
+
+%\newpage

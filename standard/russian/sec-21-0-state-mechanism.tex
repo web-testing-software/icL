@@ -1,0 +1,171 @@
+\section{Механизм состояний}
+
+Все переменные icL хранятся в контейнерах 2 типов: стек и состояние.
+
+Стек представляет собой стек контейнеров, каждый контейнер строго привязан к фрагменту кода icL, при вводе курсора в область контейнер создаётся, при выходе разрушается.
+
+Состояние представляет собой двусвязный список контейнеров, они не привязываются к коду и доступны глобально. По умолчанию создаётся лишь один контейнер, но новые могут быть созданы пользователем.
+
+\subsection{Управление стеками}
+
+Для управления стеками, используется следующий набор функций и свойств:
+\begin{icItems}
+	\item \lstinline|[r/o] _stacks'(<int>i) : _stack|;
+	\item \lstinline|[r/o] _stacks'(<string>name) : _stack|;
+	\item \lstinline|_stacks.if <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.ifexists <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.loop <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.while <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.dowhile <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.for <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.forany <int>i = 0 : |;
+	\item \lstinline|_stacks.range <int>i = 0 : _stack|;
+	\item \lstinline|_stacks.filter <int>i = 0 : _stack|;
+	\item \lstinline|_stack.clear : void|;
+	\item \lstinline|_stack.continue : void|;
+	\item \lstinline|_stack.break : void|.
+\end{icItems}
+
+\subsubsection{[r/o] \lstinline|_stacks'(<int>i) : _stack|}
+
+Возвращает \code{i}-й контейнер. Контейнеры расположены по принципу FILO, то есть нулевой контейнер (\lstinline|_stacks'0|) - текущий. Текущий контейнер можно получить и более простым путём вызывая \lstinline|_stack|.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{[r/o] \lstinline|_stacks'(<string>name) : _stack|}
+
+Возвращает контейнер имеющий имя \code{name}. Наименование контейнера имеет следующий синтаксис -
+\begin{lstlisting}[numbers=none]
+{:name
+	`` content
+}
+\end{lstlisting}
+Могут быть именованными только блоки команд (код ограничен круглыми скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт контейнер имеющий название функций.
+
+\subsubsection{\lstinline|_stacks.if <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{if} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.ifexists <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{if exists} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.loop <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{while}, \code{dowhile}, \code{for}, \code{range} или \code{filter} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.while <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{while} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.dowhile <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{do while} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.for <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{for} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.forany <int>i = 0 : |}
+
+Возвращает \code{i}-й \code{for any} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.range <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{range} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stacks.filter <int>i = 0 : _stack|}
+
+Возвращает \code{i}-й \code{filter} контейнер.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_stack'(<string>name) : any|}
+
+Возвращает переменную, находящаяся именно в этом контейнере. Например: уже существует переменная \code{i} в родительском контейнере, нужно определить переменная с таким же именем в текущем контексте. Проблема решается следующим образом: \lstinline|_stack'i = 0| вместо \lstinline|@i = 0|.
+
+\subsubsection{\lstinline|_stack.clear : void|}
+
+Удаляет все переменные, которые хранится в контейнере.
+
+\subsubsection{\lstinline|_stack.continue : void|}
+
+Переход на следующую итерацию, доступно только для циклов.
+
+Возможные исключения: \ferror{InvalidArgument}.
+
+\subsubsection{\lstinline|_stack.break : void|}
+
+Прекращает немедленно работу цикла или остановит выполнение функций. Доступно только для циклов и функций.
+
+Возможные исключения: \ferror{InvalidArgument}.
+
+\subsection{Управление состояниями}
+
+Для управления стеками, используется следующий набор функций и свойств:
+\begin{icItems}
+	\item \lstinline|_states.new : void|;
+	\item \lstinline|_states.newAtEnd : void|;
+	\item \lstinline|_states.toNext : void|;
+	\item \lstinline|_states.toPrev : void|;
+	\item \lstinline|_states.clear : void|;
+	\item \lstinline|_states.delete : void|;
+	\item \lstinline|_states.toFirst : void|;
+	\item \lstinline|_states.toLast : void|.
+\end{icItems}
+
+Объект \lstinline|_session| является коллекцией, а значит её можно посматривать через \lstinline|for (_states) {}|. Поддержка других циклов не предусматриваться.
+
+\subsubsection{\lstinline|_states.new <object>data = [<>] : void|}
+
+Создаёт новое состояние после текущей и переключает фокус на ней. Все данные объекта \code{data} добавляются в новом контейнере.
+
+\subsubsection{\lstinline|_states.newAtEnd <object>data = [<>] : void|}
+
+Создаёт новое состояние в конце, не переключает фокус на ней. Все данные объекта \code{data} добавляются в новом контейнере.
+
+\subsubsection{\lstinline|_states.toNext : bool|}
+
+Возвращает \true, если существует следующее состояние и фокус был перемещён на неё, иначе \false.
+
+\subsubsection{\lstinline|_states.toPrev : bool|}
+
+Возвращает \true, если существует предыдущее состояние и фокус был перемещён на неё, иначе \false.
+
+\subsubsection{\lstinline|_states.clear : void|}
+
+Удаляет все переменные, которые хранится в контейнере.
+
+\subsubsection{\lstinline|_states.delete : void|}
+
+Удаляет состояние, если существует следующее то фокус переходит на ней, иначе если существует предыдущее то фокус переходит на ней, в противном случае текущее состояние - последняя и она не удаляется, а только очищается.
+
+\subsubsection{\lstinline|_states.toFirst : void|}
+
+Переходит на первое состояние.
+
+\subsubsection{\lstinline|_states.toLast : void|}
+
+Переходит на последнее состояние.
+
+\subsubsection{\lstinline|for (_states) \{\}|}
+
+Выполняет тело цикла для каждой состояний.
+
+%\newpage

@@ -1,0 +1,1200 @@
+\section{Дополнительные возможности}
+
+{\bf Дополнительные возможности} присутствуют в icL для полного перекрытия стандарта W3C WebDriver и для решения определённых проблем, которые могут появиться при написании скриптов.
+
+Данные возможности не обязательно использовать, так как при запуске скрипта создаётся сессия и открывается новая вкладка, и при остановке сессия закрывается автоматически.
+
+% \subsection{Возможности W3C WebDriver}
+
+\subsection{{\color{orange} \_sessions}}
+
+Объект \sessions{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/o] _sessions'length : int|;
+	\item \lstinline|[r/o] _sessions'(<int>i) : _session|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_sessions.closeAll : void|;
+	\item \lstinline|_sessions.get <int>i : _session|;
+	\item \lstinline|_sessions.new : _session|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] _sessions'length : int|}
+
+Возвращает количество отрытых сессии.
+
+\subsubsection{\lstinline|[r/o] _sessions'(<int>i) : _session|}
+
+Возвращает \code{i}-ю сессию.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_sessions.closeAll : void|}
+
+Закрывает всех сессий.
+
+\subsubsection{\lstinline|_sessions.get <int>i : _session|}
+
+Возвращает \code{i}-ю сессию.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_sessions.new : _session|}
+
+Отрывает новую сессию.
+
+Возможные исключения: \ferror{SessionNotCreated}.
+
+\subsection{{\color{orange} \_session}}
+
+Команда \session{} возвращает указатель на текущей сессии.
+
+Объект \session{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/w] _session'implicitTimeout : int|;
+	\item \lstinline|[r/w] _session'pageLoadTimeout : int|;
+	\item \lstinline|[r/w] _session'scriptTimeout : int|;
+	\item \lstinline|[r/o] _session'source : string|;
+	\item \lstinline|[r/o] _session'title : string|;
+	\item \lstinline|[r/w] _session'url : string|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_session.back : _session|;
+	\item \lstinline|_session.close : void|;
+	\item \lstinline|_session.forward : _session|;
+	\item \lstinline|_session.refresh : _session|;
+	\item \lstinline|_session.screenshot : string|;
+	\item \lstinline|_session.switchTo : _session|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/w] _session'implicitTimeout : int|}
+
+Время ожидания в миллисекундах нахождения элемента и перехода элемента в состоянии доступности для взаимодействий с ним. По умолчанию равна нулю.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (значение для установки меньше нуля или больше максимальной безопасной целей значений).
+
+\subsubsection{\lstinline|[r/w] _session'pageLoadTimeout : int|}
+
+Время ожидания загрузке страницы. По умолчанию 300 000 миллисекунд.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+
+\subsubsection{\lstinline|[r/w] _session'scriptTimeout : int|}
+
+Время ожидания синхронией выполнения кода на языке Javascript. По умолчанию 30 000 миллисекунд.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+
+\subsubsection{\lstinline|[r/o] _session'source : string|}
+
+Исходный код страницы.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|[r/o] _session'title : string|}
+
+Название страницы.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|[r/w] _session'url : string|}
+
+Адрес текущей странице.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_session.back : _session|}
+
+Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
+\subsubsection{\lstinline|_session.close : void|}
+
+Прекращает сессию. Все вкладки будут закрыты.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
+
+\subsubsection{\lstinline|_session.forward : _session|}
+
+Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
+\subsubsection{\lstinline|_session.refresh : _session|}
+
+Перезагружает страницу.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
+\subsubsection{\lstinline|_session.screenshot : string|}
+
+Возвращает скриншот, изображение кодируется в строке base64.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+
+\subsubsection{\lstinline|_session.switchTo : _session|}
+
+Переключает активную сессию.
+
+Возможные исключения: \ferror{NoSuchSession}.
+
+%\subsubsection{}
+
+\subsection{{\color{orange} \_windows}}
+
+Объект \windows{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/o] _windows'length : int|;
+	\item \lstinline|[r/o] _windows'(<int>i) : _window|.
+\end{icItems}
+
+И следующий метод \lstinline|_windows.get <int>i : _window|.
+
+\subsubsection{\lstinline|[r/o] _windows'length : int|}
+
+Возвращает количество окон в текущей сессии.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|[r/o] _windows'(<int>i) : _window|}
+
+Возвращает \code{i}-е окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_windows.get <int>i : _window|}
+
+Возвращает \code{i}-е окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+
+\subsection{{\color{orange} \_window}}
+
+Объект \window{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/w] _window'height : int|;
+	\item \lstinline|[r/w] _window'width : int|;
+	\item \lstinline|[r/w] _window'x : int|;
+	\item \lstinline|[r/w] _window'y : int|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_window.close : void|;
+	\item \lstinline|_window.focus : _window|;
+	\item \lstinline|_window.fullscreen : _window|;
+	\item \lstinline|_window.maximize : _window|;
+	\item \lstinline|_window.minimize : _window|;
+	\item \lstinline|_window.restore : _window|;
+	\item \lstinline|_window.switchToDefault : _window|;
+	\item \lstinline|_window.switchToFrame <int>i : _window|;
+	\item \lstinline|_window.switchToFrame <element>el : _window|;
+	\item \lstinline|_window.switchToParent : _window|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/w] _window'height : int|}
+
+Высота текущей окно в пикселях.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
+\subsubsection{\lstinline|[r/w] _window'width : int|}
+
+Ширина текущей окно в пикселях.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
+\subsubsection{\lstinline|[r/w] _window'x : int|}
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
+Координата $x$ текущей окно в пикселях.
+
+\subsubsection{\lstinline|[r/w] _window'y : int|}
+
+Координата $y$ текущей окно в пикселях.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+
+\subsubsection{\lstinline|_window.close : void|}
+
+Закрывает окну, если она последняя закрывается и сессию.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.focus : _window|}
+
+Делает окну активной.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.fullscreen : _window|}
+
+Переключает режим отображения окна на полный экран.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.maximize : _window|}
+
+Распахнет окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.minimize : _window|}
+
+Свернёт окно.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.restore : _window|}
+
+Восстановит окно в нормальном режиме.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.switchToDefault : _window|}
+
+Переключает фокус на главный frame.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_window.switchToFrame <int>i : _window|}
+
+Переключает фокус на frame с индексом \code{i}.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+
+\subsubsection{\lstinline|_window.switchToFrame <element>el : _window|}
+
+Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|_window.switchToParent : _window|}
+
+Переключает фокус на родительский frame.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsection{{\color{orange} \_cookies}}
+
+Объект \cookies{} имеет следующее свойство: \lstinline|[r/o] _cookies'<string>name :|\\* \lstinline|_cookie|.
+
+И следующие методы: 
+\begin{icItems}
+	\item \lstinline|_cookies.deleteAll : void|;
+	\item \lstinline|_cookies.get <string>name : _cookie|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] _cookies'<string>name : _cookie|}
+
+Возвращает \cookie{} с нужным названием.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+
+\subsubsection{\lstinline|_cookies.deleteAll : void|}
+
+Удаляет всеx существующих cookie.
+
+\subsubsection{\lstinline|_cookies.get <string>name : _cookie|}
+
+Возвращает \cookie{} с нужным названием.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+
+\subsection{{\color{orange} \_cookie}}
+
+Объект \cookie{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/w] _cookie'domain : string|;
+	\item \lstinline|[r/w] _cookie'expiry : int|;
+	\item \lstinline|[r/w] _cookie'httpOnly : bool|;
+	\item \lstinline|[r/w] _cookie'name : string|;
+	\item \lstinline|[r/w] _cookie'path : string|;
+	\item \lstinline|[r/w] _cookie'secure : bool|;
+	\item \lstinline|[r/w] _cookie'value : string|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\* \lstinline|<int>seconds = 0 : _cookie|;
+	\item \lstinline|_cookie.load : _cookie|;
+	\item \lstinline|_cookie.resetTime : _cookie|;
+	\item \lstinline|_cookie.save : _cookie|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/w] _cookie'domain : string|}
+
+Доменное имя, на которым cookie доступен.
+
+\subsubsection{\lstinline|[r/w] _cookie'expiry : int|}
+
+Время указывающая срок годности cookie. По умолчанию -1, указывает на то что cookie будет удален при окончания сессии.
+
+\subsubsection{\lstinline|[r/w] _cookie'httpOnly : bool|}
+
+Значение по умолчанию - \false.
+
+\subsubsection{\lstinline|[r/w] _cookie'name : string|}
+
+Название, обязательное для заполнения.
+
+\subsubsection{\lstinline|[r/w] _cookie'path : string|}
+
+Значение по умолчанию - \lstinline|"/"|.
+
+\subsubsection{\lstinline|[r/w] _cookie'secure : bool|}
+
+Значение по умолчанию - \false.
+
+\subsubsection{\lstinline|[r/w] _cookie'value : string|}
+
+Значение самого cookie, обязательное для заполнения.
+
+\subsubsection{\lstinline|_cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\*\noindent\lstinline|<int>seconds = 0 : _cookie|}
+
+Добавляет к сроку годности ножное количество лет, месяцев, дней, часов, минут и секунд.
+
+\subsubsection{\lstinline|_cookie.load : _cookie|}
+
+Загружает данные о cookie с браузера.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+
+\subsubsection{\lstinline|_cookie.resetTime : _cookie|}
+
+Сбросит строк на текущее время. Например установить срок годности год: \lstinline|_cookie.resetTime.add 1 0 0|.
+
+\subsubsection{\lstinline|_cookie.save : _cookie|}
+
+Сохраняет изменения в браузере.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
+
+\subsubsection{Создать новый cookie}
+
+На листинге \ref{newcookies}, представлен правильный способ создания новых cookie.
+
+\begin{lstlisting}[caption=Создания новых cookie, label=newcookies]
+for any _cookie {
+	@'name = "age";
+	@'domain = "example.org";
+	@'value = 23 : string;
+	@.resetTime.add 1 0 0;
+	@.save;
+};
+\end{lstlisting}
+
+
+\subsection{{\color{orange} \_alert}}
+
+Объект \alert{} имеет следующее свойство: \lstinline|[r/o] _alert'text : string|.
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_alert.accept : void|;
+	\item \lstinline|_alert.dismiss : void|;
+	\item \lstinline|_alert.sendKeys <string>keys : void|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] _alert'text : string|}
+
+Возвращает текст предупреждений.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+
+\subsubsection{\lstinline|_alert.accept : void|}
+
+Принимает предупреждению.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+
+\subsubsection{\lstinline|_alert.dismiss : void|}
+
+Отменяет предупреждению.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+
+\subsubsection{\lstinline|_alert.sendKeys <string>keys : void|}
+
+Заполняет форму текстом \code{keys} и подтверждает ввод.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
+
+% \subsection{Возможности icL}
+
+\subsection{{\color{orange} \_tabs}}
+
+Объект \tabs{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/o] _tabs'current : _tab|;
+	\item \lstinline|[r/o] _tabs'first : _tab|;
+	\item \lstinline|[r/o] _tabs'last : _tab|;
+	\item \lstinline|[r/o] _tabs'length : int|;
+	\item \lstinline|[r/o] _tabs'next : _tab|;
+	\item \lstinline|[r/o] _tabs'previous : _tab|;
+	\item \lstinline|[r/o] _tabs'(<int>i) : _tab|.
+	% \item \lstinline|_tabs'|;
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_tabs.close <string>template : int|;
+	\item \lstinline|_tabs.close <regex>url : int|;
+	\item \lstinline|_tabs.closeByTitle <string>template : int|;
+	\item \lstinline|_tabs.closeByTitle <regex>title : int|;
+	\item \lstinline|_tabs.closeOthers : int|;
+	\item \lstinline|_tabs.closeToLeft : int|;
+	\item \lstinline|_tabs.closeToRight : int|;
+	\item \lstinline|_tabs.find <string>template : _tab|;
+	\item \lstinline|_tabs.find <regex>url : _tab|;
+	\item \lstinline|_tabs.findByTitle <string>template : _tab|;
+	\item \lstinline|_tabs.findByTitle <regex>title : _tab|.
+	% \item \lstinline|_tabs.|;
+\end{icItems}
+
+В режиме тестирования вкладки будут в произвольном порядке. В режиме автоматизации в строгом порядке.
+
+\subsubsection{\lstinline|[r/o] _tabs'current : _tab|}
+
+Текущая вкладка.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|[r/o] _tabs'first : _tab|}
+
+Первая вкладка.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|[r/o] _tabs'last : _tab|}
+
+Последняя вкладка.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|[r/o] _tabs'length : int|}
+
+Количество вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|[r/o] _tabs'next : _tab|}
+
+Следующая вкладка.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+
+\subsubsection{\lstinline|[r/o] _tabs'previous : _tab|}
+
+Предыдущая вкладка.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+
+\subsubsection{\lstinline|[r/o] _tabs'(<int>i) : _tab|}
+
+\code{i}-я вкладка.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|_tabs.close <string>template : int|}
+
+Закрывает все вкладки, у которых URL подходит по шаблону. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.close <regex>url : int|}
+
+Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.closeByTitle <string>template : int|}
+
+Закрывает все вкладки, у которых название подходит по шаблону. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.closeByTitle <regex>title : int|}
+
+Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.closeOthers : int|}
+
+Закрывает все вкладки кроме текущей. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.closeToLeft : int|}
+
+Закрывает все вкладки которые находится с лева от текущей. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.closeToRight : int|}
+
+Закрывает все вкладки которые находится с права от текущей. Возвращает количество закрытых вкладок.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.find <string>template : _tab|}
+
+Возвращает первая вкладка, у которой URL подходит по шаблону.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.find <regex>url : _tab|}
+
+Возвращает первая вкладка, у которой URL подходит по регулярному выражению.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.findByTitle <string>template : _tab|}
+
+Возвращает первая вкладка, у которой название подходит по шаблону.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tabs.findByTitle <regex>title : _tab|}
+
+Возвращает первая вкладка, у которой название подходит по регулярному выражению.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsection{{\color{orange} \_tab}}
+
+Объект \tab{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[icL] [r/o] _tab'canGoBack : bool|;
+	\item \lstinline|[icL] [r/o] _tab'canGoForward : bool|;
+	\item \lstinline|[r/o] _tab'screenshot : string|;
+	\item \lstinline|[r/o] _tab'source : string|;
+	\item \lstinline|[r/*] _tab'title|;
+	\item \lstinline|[r/w] _tab'url|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_tab.back : void|;
+	\item \lstinline|_tab.close : void|;
+	\item \lstinline|_tab.focus : void|;
+	\item \lstinline|_tab.forward : void|;
+	\item \lstinline|_tab.get <string>url : bool|.
+\end{icItems}
+
+\subsubsection{\lstinline|[icL] [r/o] _tab'canGoBack : bool|}
+
+Возвращает \true, если можно вернутся на предыдущую страницу, иначе \false.
+
+\subsubsection{\lstinline|[icL] [r/o] _tab'canGoForward : bool|}
+
+Возвращает \true, если можно вернутся на следующую страницу, иначе \false.
+
+\subsubsection{\lstinline|[r/o] _tab'screenshot : string|}
+
+Возвращает скриншот вкладки, кодирован в base64.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+
+\subsubsection{\lstinline|[r/o] _tab'source : string|}
+
+Исходник страницы, открытой в указанной вкладке.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|[r/*] _tab'title|}
+
+Название страницы, открытой в указанной вкладке.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|[r/w] _tab'url|}
+
+URL страницы, открытой в указанной вкладке.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_tab.back : void|}
+
+Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
+\subsubsection{\lstinline|_tab.close : void|}
+
+Закрывает окну, если она последняя закрывается и сессию.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+
+\subsubsection{\lstinline|_tab.focus : void|}
+
+Переключает фокус на вкладку. Фокус можно менять только внутри активной сессии.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_tab.forward : void|}
+
+Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+
+\subsubsection{\lstinline|_tab.get <string>url : bool|}
+
+Загружает страницу, URL должен быть абсолютным.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
+
+\subsection{{\color{orange} \_dom}}
+
+Объект \dom{} имеет следующие методы:
+\begin{icItems}
+	\item \lstinline|_dom.query <int>by <string>selector : element|;
+	\item \lstinline|_dom.query <string>cssSelector : element|;
+	\item \lstinline|_dom.queryAll <int>by <string>selecor : element|;
+	\item \lstinline|_dom.queryAll <string>cssSelector : lement|;
+	\item \lstinline|_dom.queryAllByXPath <string>xpath : element|;
+	\item \lstinline|_dom.queryByXPath <string>xpath : element|;
+	\item \lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|;
+	\item \lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|;
+	\item \lstinline|_dom.queryTag <string>name : element|;
+	\item \lstinline|_dom.queryTags <string>name : element|.
+\end{icItems}
+
+\subsubsection{\lstinline|_dom.query <int>by <string>selector : element|}
+
+Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
+
+\subsubsection{\lstinline|_dom.query <string>cssSelector : element|}
+
+Акроним для \lstinline|_dom.query _by'cssSelector @cssSelector|.
+
+\subsubsection{\lstinline|_dom.queryAll <int>by <string>selecor : element|}
+
+Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
+
+Возможные исключения: \ferror{NoSessions}.
+
+\subsubsection{\lstinline|_dom.queryAll <string>cssSelector : lement|}
+
+Акроним для \lstinline|_dom.queryAll _by'cssSelector @cssSelector|.
+
+\subsubsection{\lstinline|_dom.queryAllByXPath <string>xpath : element|}
+
+Акроним для \lstinline|_dom.queryAll _by'xPath @xpath|.
+
+\subsubsection{\lstinline|_dom.queryByXPath <string>xpath : element|}
+
+Акроним для \lstinline|_dom.query _by'xPath @xpath|.
+
+\subsubsection{\lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|}
+
+Акроним для:
+\begin{icItems}
+	\item \lstinline|_dom.query _by'linkText @name|;
+	\item \lstinline|_dom.query _by'partialLinkText @name|;
+\end{icItems}
+
+\subsubsection{\lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|}
+
+Акроним для:
+\begin{icItems}
+	\item \lstinline|_dom.queryAll _by'linkText @name|;
+	\item \lstinline|_dom.queryAll _by'partialLinkText @name|;
+\end{icItems}
+
+\subsubsection{\lstinline|_dom.queryTag <string>name : element|}
+
+Акроним для \lstinline|_dom.query _by'tagName @name|.
+
+\subsubsection{\lstinline|_dom.queryTags <string>name : element|}
+
+Акроним для \lstinline|_dom.queryAll _by'tagName @name|.
+
+\subsection{{\color{orange} \_files}}
+
+Объект \files{} имеет следующие методы:
+\begin{icItems}
+	\item \lstinline|_files.open <string>path : _file|;
+	\item \lstinline|_files.create <string>path : _file|;
+	\item \lstinline|_files.createDir <string>path : void|;
+	\item \lstinline|_files.createPath <string>path : void|.
+\end{icItems}
+
+\subsubsection{\lstinline|_files.open <string>path : _file|}
+
+Открывает файл.
+
+Возможные исключения: \ferror{FileNotFound}.
+
+\subsubsection{\lstinline|_files.create <string>path : _file|}
+
+Открывает файл, если он не существует, он создаётся.
+
+Возможные исключения: \ferror{FolderNotFound}.
+
+\subsubsection{\lstinline|_files.createDir <string>path : void|}
+
+Создаёт папку, папка в которым она создаётся должна уже существовать.
+
+Возможные исключения: \ferror{FolderNotFound}.
+
+\subsubsection{\lstinline|_files.createPath <string>path : void|}
+
+Создаёт все несуществующие папки пути.
+
+\subsection{{\color{orange} \_file}}
+
+Объект \file{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/o] _file'csv : 1|;
+	\item \lstinline|[r/w] _file'format : int|;
+	\item \lstinline|[r/o] _file'none : 0|;
+	\item \lstinline|[r/o] _file'tsv : 2|;
+	\item \lstinline|[r/o] _file'valid : bool|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_file.close : void|;
+	\item \lstinline|_file.delete : void|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] _file'csv : 1|}
+
+Формат CSV.
+
+\subsubsection{\lstinline|[r/w] _file'format : int|}
+
+Возвращает формат файла.
+
+\subsubsection{\lstinline|[r/o] _file'none : 0|}
+
+Не инициализированный файл.
+
+\subsubsection{\lstinline|[r/o] _file'tsv : 2|}
+
+Формат TSV.
+
+\subsubsection{\lstinline|[r/o] _file'valid : bool|}
+
+Возвращает \true, если файл инициализированный, иначе \false.
+
+\subsubsection{\lstinline|_file.close : void|}
+
+Закрывает файл.
+
+\subsubsection{\lstinline|_file.delete : void|}
+
+Удаляет файл.
+
+\subsection{{\color{orange} \_make}}
+
+Объект \make{} имеет следующие методы:
+\begin{icItems}
+	\item \lstinline|_make.image <string>base64 <string>path : void|;
+	\item \lstinline|_make.int <string>str <int>base : int|;
+	\item \lstinline|_make.list <set>s : list|;
+	\item \lstinline|_make.object <string>json : object|;
+	\item \lstinline|_make.regex <string>pattern : regex|;
+	\item \lstinline|_make.string <bool>b : string|;
+	\item \lstinline|_make.string <double>d : string|;
+	\item \lstinline|_make.string <int>number <int>base : string|;
+	\item \lstinline|_make.string <object>obj : string|;
+	\item \lstinline|_make.string <set>s : string|.
+\end{icItems}
+
+\subsubsection{\lstinline|_make.image <string>base64 <string>path : void|}
+
+Сохраняет скриншот на жёстком диске.
+
+\subsubsection{\lstinline|_make.int <string>str <int>base : int|}
+
+Парсит целое число в виде строки в нужном базисе.
+
+Возможные исключения: \ferror{ParsingFailed}.
+
+\subsubsection{\lstinline|_make.list <set>s : list|}
+
+Акроним для \lstinline|set : list|.
+
+\subsubsection{\lstinline|_make.object <string>json : object|}
+
+Акроним для \lstinline|object : string|.
+
+\subsubsection{\lstinline|_make.regex <string>pattern : regex|}
+
+Создаёт регулярное выражение на основе паттерна.
+
+\subsubsection{\lstinline|_make.string <bool>b : string|}
+
+Возвращает \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"true"|.
+
+\subsubsection{\lstinline|_make.string <double>d : string|}
+
+Акроним для \lstinline|double : string|.
+
+\subsubsection{\lstinline|_make.string <int>number <int>base : string|}
+
+Возвращает представления числа в заданном базисе.
+
+\subsubsection{\lstinline|_make.string <object>obj : string|}
+
+Акроним для \lstinline|object : string|.
+
+\subsubsection{\lstinline|_make.string <set>s : string|}
+
+Акроним для \lstinline|set : string|.
+
+\subsection{{\color{orange} \_log}}
+
+Объект \logtype{} имеет следующие методы:
+\begin{icItems}
+	\item \lstinline|_log.error <string>message : void|;
+	\item \lstinline|_log.info <string>message : void|;
+	\item \lstinline|_log.out <any ...>args : void|;
+	\item \lstinline|_log.stack <any>var : void|;
+	\item \lstinline|_log.state <any>var : void|.
+\end{icItems}
+
+\subsubsection{\lstinline|_log.error <string>message : void|}
+
+Выводит сообщение об ошибке.
+
+\subsubsection{\lstinline|_log.info <string>message : void|}
+
+Выводит информационное сообщение.
+
+\subsubsection{\lstinline|_log.out <any ...>args : void|}
+
+Выводит отладочное сообщение, принимает несколько параметров любого типа. При получении переменных выводит исходник, название перемены, тип данных и значение. При получении константных только значение. При получении результата выполнения функции - тип и значение. 
+
+\subsubsection{\lstinline|_log.stack <any>var : void|}
+
+Выводит список всех стеков, указывая в каких из них встречается переменная с указанным именем, и какие значения имеются.
+
+\subsubsection{\lstinline|_log.state <any>var : void|}
+
+Выводит список всех состояний, указывая в каких из них встречается переменная с указанным именем, и какие значения имеются.
+
+\subsection{{\color{orange} \_numbers}}
+
+Объект \numbers{} имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/o] _numbers'max : 4|;
+	\item \lstinline|[r/o] _numbers'min : 3|;
+	\item \lstinline|[r/o] _numbers'product : 2|;
+	\item \lstinline|[r/o] _numbers'process : int|;
+	\item \lstinline|[r/o] _numbers'sum : 1|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_numbers.process <int>a <int>b : int|;
+	\item \lstinline|_numbers.process <double>a <double>b : double|;
+	\item \lstinline|_numbers.restoreProcess : void|;
+	\item \lstinline|_numbers.setProcess <int>proc : void|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] _numbers'max : 4|}
+
+Выбирать максимум.
+
+\subsubsection{\lstinline|[r/o] _numbers'min : 3|}
+
+Выбирать минимум.
+
+\subsubsection{\lstinline|[r/o] _numbers'product : 2|}
+
+Умножить числа.
+
+\subsubsection{\lstinline|[r/o] _numbers'process : int|}
+
+Текущий способ обработки чисел.
+
+\subsubsection{\lstinline|[r/o] _numbers'sum : 1|}
+
+Складывать числа.
+
+\subsubsection{\lstinline|_numbers.process <int>a <int>b : int|}
+
+Обработать целых чисел текущим методом.
+
+\subsubsection{\lstinline|_numbers.process <double>a <double>b : double|}
+
+Обработать дробных чисел текучим методом.
+
+\subsubsection{\lstinline|_numbers.restoreProcess : void|}
+
+Удаляет последняя запись стека способов обработки.
+
+\subsubsection{\lstinline|_numbers.setProcess <int>proc : void|}
+
+Добавляет новая запись в стеке способов обработки.
+
+\subsection{{\color{orange} \_math}}
+
+Объект \lstinline|_math| имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/o] _math'1divPi : double|;
+	\item \lstinline|[r/o] _math'1divSqrt2 : double|;
+	\item \lstinline|[r/o] _math'2divPi : double|;
+	\item \lstinline|[r/o] _math'2divSqrtPi : double|;
+	\item \lstinline|[r/o] _math'e : double|;
+	\item \lstinline|[r/o] _math'ln2 : double|;
+	\item \lstinline|[r/o] _math'ln10 : double|;
+	\item \lstinline|[r/o] _math'log2e : double|;
+	\item \lstinline|[r/o] _math'log10e : double|;
+	\item \lstinline|[r/o] _math'pi : double|;
+	\item \lstinline|[r/o] _math'piDiv2 : double|;
+	\item \lstinline|[r/o] _math'piDiv4 : double|;
+	\item \lstinline|[r/o] _math'sqrt2 : double|.
+\end{icItems}
+
+И следующие методы:
+\begin{icItems}
+	\item \lstinline|_math.acos <double>v : double|;
+	\item \lstinline|_math.asin <double>v : double|;
+	\item \lstinline|_math.atan <double>v : double|;
+	\item \lstinline|_math.ceil <double>v : int|;
+	\item \lstinline|_math.cos <double>v : double|;
+	\item \lstinline|_math.degreesToRadians <double>v : double|;
+	\item \lstinline|_math.exp <double>v : double|;
+	\item \lstinline|_math.floor <double>v : int|;
+	\item \lstinline|_math.ln <double>v : double|;
+	\item \lstinline|_math.min <int ...>arr : int|;
+	\item \lstinline|_math.min <double ...>arr : double|;
+	\item \lstinline|_math.max <int ...>arr : int|;
+	\item \lstinline|_math.max <double ...>arr : double|;
+	\item \lstinline|_math.radiansToDegrees <double>v : double|;
+	\item \lstinline|_math.round <double> : int|;
+	\item \lstinline|_math.sin <double>v : double|;
+	\item \lstinline|_math.tan <double>v : double|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/o] _math'1divPi : double|}
+
+1 делить на пи ($\frac{1}{\pi}$).
+
+\subsubsection{\lstinline|[r/o] _math'1divSqrt2 : double|}
+
+1 делить на корень из числа 2 ($\frac{1}{\sqrt{2}}$).
+
+\subsubsection{\lstinline|[r/o] _math'2divPi : double|}
+
+2 делить на пи ($\frac{2}{\pi}$).
+
+\subsubsection{\lstinline|[r/o] _math'2divSqrtPi : double|}
+
+2 делить на корень из числа пи ($\frac{2}{\sqrt{\pi}}$).
+
+\subsubsection{\lstinline|[r/o] _math'e : double|}
+
+Число ($e$).
+
+\subsubsection{\lstinline|[r/o] _math'ln2 : double|}
+
+Натуральный логарифм числа 2 ($\ln{2}$).
+
+\subsubsection{\lstinline|[r/o] _math'ln10 : double|}
+
+Натуральный логарифм числа 10 ($\ln_{10}$).
+
+\subsubsection{\lstinline|[r/o] _math'log2e : double|}
+
+Логарифм числа е по основанию 2 ($\log_{2}{e}$).
+
+\subsubsection{\lstinline|[r/o] _math'log10e : double|}
+
+Логарифм числа е по основанию 10 ($\log_{10}{e}$).
+
+\subsubsection{\lstinline|[r/o] _math'pi : double|}
+
+Число пи ($\pi$).
+
+\subsubsection{\lstinline|[r/o] _math'piDiv2 : double|}
+
+Пи по полам ($\frac{\pi}{2}$).
+
+\subsubsection{\lstinline|[r/o] _math'piDiv4 : double|}
+
+Пи на 4 ($\frac{\pi}{4}$).
+
+\subsubsection{\lstinline|[r/o] _math'sqrt2 : double|}
+
+Корень из числа 2 ($\sqrt{2}$).
+
+\subsubsection{\lstinline|_math.acos <double>v : double|}
+
+Арккосинус ($\arccos{v}$).
+
+\subsubsection{\lstinline|_math.asin <double>v : double|}
+
+Арксинус ($\arcsin{v}$).
+
+\subsubsection{\lstinline|_math.atan <double>v : double|}
+
+Арктангенс ($\arctan{v}$).
+
+\subsubsection{\lstinline|_math.ceil <double>v : int|}
+
+Наименьшее целое число больше или равна \code{v}.
+
+\subsubsection{\lstinline|_math.cos <double>v : double|}
+
+Косинус ($\cos{v}$).
+
+\subsubsection{\lstinline|_math.degreesToRadians <double>v : double|}
+
+Преобразует градусы в радианы.
+
+\subsubsection{\lstinline|_math.exp <double>v : double|}
+
+Функция экспонент ($\exp{v}$).
+
+\subsubsection{\lstinline|_math.floor <double>v : int|}
+
+Наибольшее целое число меньше или равна \code{v}.
+
+\subsubsection{\lstinline|_math.ln <double>v : double|}
+
+Натуральный логарифм ($\ln{v}$).
+
+\subsubsection{\lstinline|_math.min <int ...>arr : int|}
+
+Возвращает наименьшее целое число.
+
+\subsubsection{\lstinline|_math.min <double ...>arr : double|}
+
+Возвращает наименьшее дробное число.
+
+\subsubsection{\lstinline|_math.max <int ...>arr : int|}
+
+Возвращает наибольшее целое число.
+
+\subsubsection{\lstinline|_math.max <double ...>arr : double|}
+
+Возвращает наибольшее дробное число.
+
+\subsubsection{\lstinline|_math.radiansToDegrees <double>v : double|}
+
+Преобразует радианы в градусы.
+
+\subsubsection{\lstinline|_math.round <double> : int|}
+
+Возвращает ближайшее целое число.
+
+\subsubsection{\lstinline|_math.sin <double>v : double|}
+
+Синус ($\sin{v}$).
+
+\subsubsection{\lstinline|_math.tan <double>v : double|}
+
+Тангенс ($\tan{v}$).
+
+\subsection{{\color{orange} \_import}}
+
+Объект \lstinline|_import| имеет следующие методы:
+\begin{icItems}
+	\item \lstinline|_import.none <object>data <string>path : void|;
+	\item \lstinline|_import.none <string>path : void|;
+	\item \lstinline|_import.functions <object>data <string>path : void|;
+	\item \lstinline|_import.functions <string>path : void|;
+	\item \lstinline|_import.all <object>data <string>path : void|;
+	\item \lstinline|_import.all <string>path : void|;
+	\item \lstinline|_import.run <string>path : void|.
+\end{icItems}
+
+Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
+
+\subsubsection{\lstinline|_import.none <object>data <string>path : void|}
+
+Создаёт изолируемый контекст, в нём выполняет файл.
+
+\subsubsection{\lstinline|_import.none <string>path : void|}
+
+Акроним для \lstinline|_import.none [<>] @path|.
+
+\subsubsection{\lstinline|_import.functions <object>data <string>path : void|}
+
+Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции в текущем контексте.
+
+\subsubsection{\lstinline|_import.functions <string>path : void|}
+
+Акроним для \lstinline|_import.functions [<>] @path|.
+
+\subsubsection{\lstinline|_import.all <object>data <string>path : void|}
+
+Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции и глобальные переменный в текущем контексте.
+
+\subsubsection{\lstinline|_import.all <string>path : void|}
+
+Акроним для \lstinline|_import.all [<>] @path|.
+
+\subsubsection{\lstinline|_import.run <string>path : void|}
+
+Выполняет файл в текущем контексте.
+
+\subsection{Модификатор {\color{blue2} reverse}}
+
+Ключевое слово \code{reverse} позволяет изменить ход выполнения некоторых конструкций языка.
+
+\subsubsection{\lstinline|reverse if|}
+
+\lstinline|reverse if (@var == true)| эквивалентно \lstinline|if (!(@var == true))|, в этом случае уменьшения количестве скобок упрощает чтения кода. 
+
+Внимание: \lstinline|reverse if| не принимает \lstinline|else|.
+
+\subsubsection{\lstinline|reverse if exists|}
+
+\lstinline|if exists| хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \lstinline|reverse if exists|. В сравнении с \lstinline|if exists|, никакие данные не будут переданы в блоке команд.
+
+\subsubsection{\lstinline|reverse for| - универсальный цикл}
+
+В универсальном цикле меняется порядок выполнения действий. \lstinline|reverse for| гарантирует выполнение блока команд в минимум один раз.
+
+Порядок действий конструкций \lstinline|for|:
+\begin{icEnum}
+	\item инициализация;
+	\item проверка условий;
+	\item выполнения блока команд;
+	\item выполнения команды перехода на следующую итерацию.
+\end{icEnum}
+
+Порядок действий конструкций \lstinline|reverse for|:
+\begin{icEnum}
+	\item инициализация;
+	\item выполнения блока команд;
+	\item выполнения команды перехода на следующую итерацию;
+	\item проверка условий.
+\end{icEnum}
+
+\subsubsection{\lstinline|reverse while| - условное повторение кода}
+
+\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной.
+
+\subsubsection{\lstinline|do reverse while| - цикл с постусловий}
+
+\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной. Так же как и \lstinline|do while| гарантирует что тело цикла будет выполнена минимум 1 раз.
+
+\subsubsection{\lstinline|reverse for| - прохождение коллекций}
+
+\lstinline|reverse for| будет пройти коллекцию в обратном порядке.
+
+\subsubsection{\lstinline|reverse filter| - выборочное прохождение коллекций}
+
+\lstinline|reverse filter| будет пройти коллекцию в обратном порядке.
+
+\subsubsection{\lstinline|reverse range| - частичное прохождение коллекций}
+
+\lstinline|reverse filter| будет пройти интервал в обратном порядке.
+
+%\newpage

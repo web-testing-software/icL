@@ -1,0 +1,222 @@
+\section{Типы данных}
+
+В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \code{value}.
+
+\subsection{{\color{lightblue} value}}
+
+\code{value} предлагается в роли базового класса остальных типов описанных в данном главе.
+
+\noindent Описание класса \code{value} -
+\begin{lstlisting}[numbers=none]
+class value {
+    value'lValue   : bool;
+    value'link     : bool;
+    value'rValue   : bool;
+    value'readOnly : bool;
+    value'typeId   : int;
+    value'typeName : string;
+
+    value.ensureRValue : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} bool}}
+
+\noindent Описание класса \bool -
+\begin{lstlisting}[numbers=none]
+class bool extends value {}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} double}}
+
+\noindent Описание класса \double -
+\begin{lstlisting}[numbers=none]
+class double extends value {}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} element}}
+
+\noindent Описание класса \element -
+\begin{lstlisting}[numbers=none]
+class element extends value {
+    [r/*] element'attr-*   : string;
+    [r/*] element'css-*    : string;
+    [r/o] element'empty    : bool;
+    [r/o] element'enabled  : bool;
+    [r/o] element'length   : int;
+    [*/*] element'prop-*   : value;
+    [r/o] element'rect     : object;
+    [r/o] element'selected : bool;
+    [r/o] element'tag      : string;
+    [r/o] element'text     : string;
+    [r/o] element'int      : element;
+
+    element.add             element               : element;
+    element.child           int                   : element;
+    element.clear                                 : element;
+    element.click                                 : element;
+    element.click           object                : element;
+    element.closest         string 	              : element;
+    element.contains        string 	[bool]        : element;
+    element.copy                                  : element;
+    element.fastType        string                : element;
+    element.filter          string                : element;
+    element.get             int                   : element;
+    element.hover           object                : element;
+    element.keyDown         int     string        : element;
+    element.keyPress        int     int    string : element;
+    element.keyUp           int     string        : element;
+    element.mouseDown       object                : element;
+    element.mouseUp         object                : element;
+    element.next                                  : element;
+    element.parent                                : element;
+    element.paste           string                : element;
+    element.prev                                  : element;
+    element.query           int     string        : element;
+    element.query           string                : element;
+    element.queryAll        int     string        : element;
+    element.queryAll        string                : element;
+    element.queryAllByXPath string 	              : element;
+    element.queryByXPath    string 	              : element;
+    element.queryLink       string 	[bool]        : element;
+    element.queryLinks      string  [bool]        : element;
+    element.queryTag        string                : element;
+    element.queryTags       string                : element;
+    element.screenshot                            : string;
+    element.sendKeys        int     string        : element;
+}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} int}}
+
+\noindent Описание класса \integer -
+\begin{lstlisting}[numbers=none]
+class int extends value {}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} list}}
+
+\noindent Описание класса \listtype -
+\begin{lstlisting}[numbers=none]
+class list extends value {
+    [r/o] list'empty  : bool;
+    [r/o] list'length : int;
+    [r/o] list'last   : string;
+    [r/o] list'int    : string;
+
+    list.append           string        : list;
+    list.at               int           : string;
+    list.contains         string [bool] : bool;
+    list.clear                          : list;
+    list.count            string        : int;
+    list.filter           regex         : bool;
+    list.filter           string [bool] : bool;
+    list.indexOf          regex  [int]  : int;
+    list.indexOf          string [int]  : int;
+    list.join             string        : string;
+    list.lastIndexOf      regex  [int]  : int;
+    list.lastIndexOf      string [int]  : int;
+    list.mid              int    [int]  : list;
+    list.prepend          string        : list;
+    list.move             int    int    : list;
+    list.removeAll        string        : list
+    list.removeAt         int           : list;
+    list.removeDuplicates               : list;
+    list.removeFirst                    : list;
+    list.removeLast                     : list;
+    list.removeOne        string        : list;
+    list.replaceInStrings string string : list;
+    list.sort             [bool]        : list;
+}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} object}}
+
+\noindent Описание класса \object -
+\begin{lstlisting}[numbers=none]
+class object extends value {
+    [r/w] object'string : value;
+}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} regex}}
+
+\noindent Описание класса \regex -
+\begin{lstlisting}[numbers=none]
+class regex inherits value {
+    /i
+    /s
+    /m
+    /x
+    /u
+    /f
+}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} set}}
+
+\noindent Описание класса \set -
+\begin{lstlisting}[numbers=none]
+class set extends value {
+    [r/o] set'capacity : int;
+    [r/o] set'empty    : bool;
+
+    set.applicate         list...       : set;
+    set.clear                           : set;
+    set.getField          string        : list;
+    set.hasField          string        : bool;
+    set.insert            value...      : set;
+    set.insert            object        : set;
+    set.insertBoolField   string   list : set;
+    set.insertDoubleField string   list : set;
+    set.insertIntField    string   list : set;
+    set.insertListField   string   list : set;
+    set.insertStringField string   list : set;
+    set.remove            value...      : set;
+    set.remove            object        : set;
+    set.removeField       string        : set;
+}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} string}}
+
+\noindent Описание класса \str -
+\begin{lstlisting}[numbers=none]
+class string extends value {
+    [r/o] string'empty  : bool;
+    [r/o] string'length : int;
+    [r/o] string'last   : string;
+    [r/o] string'int    : string;
+
+    string.append         string               : string;
+    string.at             int                  : string;
+    string.beginsWith     string               : bool;
+    string.compare        string [bool]        : bool;
+    string.count          string               : int;
+    string.count          regex                : int;
+    string.endsWith       string               : bool;
+    string.indexOf        regex  [int]         : int;
+    string.indexOf        string [int]         : int;
+    string.insert         string int           : string;
+    string.lastIndexOf    regex  [int]         : int;
+    string.lastIndexOf    string [int]         : int;
+    string.left           int                  : string;
+    string.leftJustified  int    string [bool] : string;
+    string.mid            int    [int]         : string;
+    string.prepend        string               : string;
+    string.remove         int    int           : string;
+    string.remove         regex                : string;
+    string.remove         string [bool]        : string;
+    string.replace        int    int    string : string;
+    string.replace        regex  string        : string;
+    string.replace        string string        : string;
+    string.right          int                  : string;
+    string.rightJustified int    string [bool] : string;
+    string.split          regex  [bool]        : list;
+    string.split          string [bool] [bool] : list;
+    string.substring      int    int           : string;
+    string.trim           [bool]               : string;
+}
+\end{lstlisting}
+
+
