@@ -1,0 +1,10 @@
+.directory
+*.pro.user
+*.kate-swp
+*.autosave
+*.aux
+*.log
+*.toc
+*.syntex.gz
+*.bak
+*.out
