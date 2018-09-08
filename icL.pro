@@ -48,4 +48,5 @@ DISTFILES += \
     bin/release/linux/extra/icL.desktop \
     bin/release/linux/extra/icL.svg \
     standard/standard_for_icl_1.0.0_draft.tex \
-    standard/russian/*.tex
+    standard/russian/*.tex \
+    standard/moldavian/*.tex

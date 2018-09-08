@@ -1,68 +1,69 @@
-\section{Введение}
+% !TeX spellcheck = ro_RO
+\section{Introducere}
 
-\indent \textbf{icL} - \textbf{язык описания сценариев}, оптимизирован под описания сценариев тестирования веб-приложений.
+\indent \textbf{icL} - \textbf{limbaj de script-are}, optimizat pentru descrierea scenariilor de testare al aplicaților web.
 
-\subsection{Читатели}
+\subsection{Cititorilor}
 
-Этот документ предназначен для всех тех людей, которые ищут отравную точку, откуда можно начать изучать язык icL. Также данный документ используется при разработке интерпретатора, поведения командного процессора во всех ситуациях неописанных в данном документе считается неопределённой.
+Acest document este desemnat celor, ce vor să înceapă să învețe limbajul icL. De asemenea acest document v-a fi folosit în procesul de dezvoltare al procesorului de comande, comportarea lui în situațiile care lipsesc se declară nedefinită.
 
-Чувствуете себя свободным в указаниях на ошибках и представления новых идей и точек зрения, жду ваших письмах по адресу lixcode@vivaldi.net.
+Simțiți-vă liberi să indicați la erori și prezentarea ideilor și punctelor de vedere noi, aștept scrisorile voastre pe adresa {\bf icl@vivaldi.net}.
 
-\subsection{Что вы должны уметь}
+\subsection{Ce capabilități trebuiesc}
 
-Прежде чем выступать к изучению этого языка, вам желательно иметь базовое представление о компьютерном программировании.
+Înainte de a învăța icL, ar trebuie să aveți cunoștințe generale în programare.
 
-\subsection{Обзор языка icL}
+\subsection{Recenzie}
 
-icL - язык сценариев тестирования веб-приложений. Его разработка началась в году, и первый выпуск планируется к 2020 году. В настоящий момент он находится в активной разработке.
+icL este un limbaj de descriere al scenariilor de aplicațiilor web. Desolvatarea a început în anul 2017, lansarea primei versiuni se plănuiește în anul 2020. În timpul de față se află în dezvoltare activă.
 
-icL - \textbf{язык с С-подобным синтаксисом}, который использует статическую типизацию. В icL нельзя определить собственные типы данных, так как он разработан не для программистов, знания получены в школе на уроках информатики должны быть достаточны. Язык icL поддерживает только одну парадигму программирования - процедурная. При необходимости обработать данные, можно использовать экспорт/импорт в/из cvs и базы данных.
+icL are \textbf{sintaxă bazată pe sintaxa limbajului C}, care folosește tipizare statică. În icL nu se poate de definit tipuri de date proprii, pentru că el nu este destinat pentru programare, cunoștințele primite în timpul cursului de programare în școală ar trebui să fie destule. Limbajul icL suportă o singură paradigmă de programare - procedurală. În caz de necesitate de a prelucra date externe, se poate de folosit export/import în CSV și baze de date.
 
-\subsection{Пример кода}
+\subsection{Exemplu de cod}
 
-В icL точка входа в программе - начало файла, программа \textit{Hello world!} иллюстрирована на листинге \ref{example0}.
+În icL puntul de intrare în script este începutul fișierului, programul \textit{Hello world!} este demonstrat pe foia \ref{example0}.
 
 \begin{lstlisting}[caption=Пример, label=example0]
 `` comment example
 _log.info "Hello world";
 \end{lstlisting}
 
-\subsection{Изучение icL}
+\subsection{Învățarea limbajului icL}
 
-Самое важное при изучении icL - это сосредоточиться на идеях и не потеряться в технических деталях его реализации.
+Cel mai important în învățarea limbajului icL este de a se concentra la idei și a nu atrage atenția la detaliile realizării.
 
-\subsection{Области применения icL}
+\subsection{Unde se folosește icL}
 
-Язык icL является частью \textbf{программы icL}, с его помощью можно управлять браузером, а именно:
+Limbajul icL este o parte a \textbf{programei icL}, cu ajutorul ei se poate de controlat un browser, anume:
 \begin{icItems}
 \item
-	открыть вкладку;
+	a deschide un tab;
 \item
-	закрыть вкладку;
+	a închide un tab;
 \item
-	перейти на веб-страницу;
+	a trece la altă pagină;
 \item
-	симулировать события клавиатуры и мышке;
+	a simula evenimentele mouse-ului și claviaturii;
 \item
-	взаимодействовать с веб-страницей;
+	a interacționa cu pagina web;
 \item
-	выполнить код на языке javascript;
+	a executa cod javascript;
 \item
-	управлять веб-страницей;
+	a controla pagina web;
 \item
-	обменять информацию с веб-страничкой;
+	a face schimb de informație cu pagina web;
 \item
-	сделать screenshot;
+	a captura ecranul;
 \item
-	управлять памятью;
+	a controla memoria;
 \item
-	экспортировать данные в csv файле;
+	a exporta date in fișiere CSV;
 \item
-	импортировать данные из csv файл;
+	a importa date din fișier CSV;
 \item
-	выполнить запросы на языке SQL.
+	a executa comenzi SQL.
 \end{icItems}
 
-\subsection{Начало работы}
+\subsection{Începutul lucrului}
 
-Чтобы начать работать достаточно установить и запустить программу icL.
+Pentru a începe a lucra folosind limbajul icL e destul de a instala programul icL.
