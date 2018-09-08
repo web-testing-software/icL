@@ -1,72 +1,78 @@
-\section{Типы данных}
+% !TeX spellcheck = ro_RO
+\section{Tipuri de date}
 
-В языке описания сценариев icL, типы данных выполняют очень важную роль, они определяют как данные и будут храниться, обработаться в процессе выполнения программы. Классификация типов данных представлена в таблице \ref{datatypeclasses}.
+În limbajul de script-are icL, tipurile de date joacă un rol tare important, ele hotărăsc cum datele au să fie păstrate și prelucrate în decursul rulării programei. Clasificarea tipurilor de date este demonstrată în tabela \ref{datatypeclasses}.
 
 \stabletwo{3.5cm}{13.6cm}
-{datatypeclasses}{Категории типов данных}
-{Категория}{Описание}
+{datatypeclasses}{Gruparea tipurilor de date}
+{Categorie}{Descriere}
 {
-	Базовые     & Типы данных описанных в предыдущем главе: \bool{}{} - логический, \integer{} - целое - числа, \double{} - дробные числа. \\ \hline
-	Сложные     & Типы данные содержащие несколько значений в контейнерах, примеры таких данных: строки, списки, множество. \\ \hline
-	Системные   & Типы данных которых нельзя создать и хранить в пользовательских переменных, но доступ к ними можно получить через системные (предопределённых) переменных, примеры таких данных: браузер, вкладка, история браузера, окно. \\ \hline
-	Тип \void{} & Тип данных обозначающий отсутствия данных.
+	De bază     & Tipurile de date descrise în capitolul precedent: \bool{} - boolean, \integer{} - numere întregi, \double{} - numere decimale. \\ \hline
+	Complexe    & Tipuri de date care conțin cîteva valori în container, exemple: șiruri de caractere, liste, mulțimi. \\ \hline
+	De sistem   & Tipuri de date pe care nu pot fi create direct de programator, accesul la ele este asigurat de obiecte de sistem. Exemple: browser, tab, istoria browserului, fereastră \\ \hline
+	Tip \void{} & Tip de date care înseamnă lipsa informației.
 }
 
-\subsection{Основные типы данных}
+\subsection{Tipuri de bază}
 
-{\bf Основные типы данных} участвуют в логических и арифметических операциях языка icL. Логическими операциями являются конъюнкция, дизъюнкция, исключающий или, эквиваленция и инверсия. Арифметическими операциями являются сложения, вычитания, умножения, деления, извлечения корня и возведения в степень.
+{\bf Tipuri de bază} se folosesc în realizarea operațiilor logice și aritmetice. Operațiile logice sunt conjuncția, disjuncția, disjuncție exclusivă, echivalență și negație logică. Operațiile aritmetice sunt adunarea, scăderea, înmulțirea, împărțirea, extragerea rădăcinii și ridicarea la putere.
 
-\subsection{Сложные типы данных}
+\subsection{Tipuri complexe}
 
-{\bf Сложные типы данных} специализированные под хранения больших массивов данных. Строка позволяет хранить более двух миллиардов символов. Список позволяет хранить более двух миллиардов строк. А множество позволяет хранить большой объём данных ограничен только оперативной памяти. Объект позволяет инкапсулировать данные разного рода по одном именем. Элемент позволяет хранить ссылку на один или несколько HTML-тэгов.
+{\bf Tipurile complexe} sunt concentrate pe păstrarea masivelor de informație. Șirul de caractere poate conține mai mult de 2 miliarde de caractere, lista - mai mult de 2 miliarde de șiruri de caractere. Mulțimile pot conține o mare cantitate de date, limitată doar de memoria operativă. Obiectele permit a salva mai multe variabile sub un nume. Elementele pot conține linkuri la mai multe tag-uri HTML.
 
-\subsection{Системные типы данных}
+\subsection{Tipuri de sistem}
 
-{\bf Системные типы данных} позволяют взаимодействовать с веб-страницей и браузером. Подробную информацию можно найти в главах \ref{webelments} и \ref{dataexchange}.
+{\bf Tipurile de siste} permit a interacționa cu pagina web și cu browserul. Mai multă informație puteți găsi în capitolele \ref{webelments} и \ref{dataexchange}.
 
-\subsection{Тип данных {\color{lightblue} void}}
+\subsection{Tip {\color{lightblue} void}}
 
-{\bf Тип данных \void{}} означает отсутствия информации, он используется в самых различных целях:
-
-\begin{icItems}
-\item
-	указать то что функция ничего не возвращает;
-\item
-	указать на то что в процессе работы функций произошла ошибка;
-\item
-	выбрать источник данных;
-\item
-	фильтровать данные;
-\item
-	удалить переменных состояния;
-\item
-	и другие.
-\end{icItems}
-
-
-\subsection{Свойства}
-
-Некоторые типы данных имеют свойства. Свойства позволяют получить характеристики хранимых данных. Вне зависимо от типа данные любой объект имеет следующие свойства (перечисленные свойства доступны только для чтения):
+{\bf Tipul \void{}} indică la lipsa informației, el poate fi folosit în cele mai diferite scopuri:
 
 \begin{icItems}
 \item
-	\code{any'typeName : string} - при чтении получаем строку содержащая названия типа хранимых данных;
+	a indica la ceea că funcția nimic nu întoarce;
 \item
-	\code{any'typeId : int} - при чтении получаем число содержащее идентификатор типа хранимых данных;
+	a indica la ceea că in timpul execuției funcția a apărut o excepție;
 \item
-	\code{any'rValue : bool} - при чтении получаем \true{} если значение предназначено для правой части операции присваивания, иначе \false{};
+	a alege sursa de date;
 \item
-	\code{any'readOnly : bool} - при чтении получаем \true{} если объект доступен только для чтения, иначе \false{};
+	a filtra datele;
 \item
-	\code{any'lValue : bool} - при чтении получаем \true{} если объект доступен только для чтения и записи, иначе \false{};
+	a șterge variabile globale;
 \item
-	\code{any'link : bool} - при чтении получаем \true{} если значение объекта хранится во внешнем контейнере и изменение значении объекта будет изменить данные во внешней среде, иначе \false{}.
+	și multe altele.
 \end{icItems}
 
-\
 
-\noindent Примеры использования свойств -
-\begin{lstlisting}
+\subsection{Proprietăți}
+
+Unele tipuri de date au proprietăți. Proprietățile permit a citi caracteristicile datelor. Indiferent de tipul de date, orice obiect are următoarele proprietăți (disponibile doar pentru citire):
+
+\begin{icItems}
+\item
+	\code{any'typeName : string} e numele tipului de date conținut de obiect;
+\item
+	\code{any'typeId : int} e identificatorul tipului de date conținut de obiect;
+\item
+	\code{any'rValue : bool} e egal cu \true{} dacă obiectul este o valoare de dreapta, în caz contrar \false{};
+\item
+	\code{any'readOnly : bool} e egal cu \true{} dacă obiectul este disponibil doar pentru citire, în caz contrar \false{};
+\item
+	\code{any'lValue : bool} e egal cu \true{} dacă obiectul este disponibil pentru citire și scriere, în caz contrar \false{};
+\item
+	\code{any'link : bool} e egal cu \true{} dacă valoare sa află într-un container extern și schimbarea valorii va schimba valoarea în mediu extern, în caz contrar \false{}.
+\end{icItems}
+
+Exemple de folosire a proprietăților sunt prezente pe foaia \ref{propertiesmain}.
+
+\subsection{Metode}
+
+Metodele permit a schimba starea obiectului. Toate tipurile de date au doar o singură metodă comună \code{any.ensureRValue}, care garantează că schimbarea valorii obiectului nu va schimba date în mediul extern.
+
+Exemplu de folosire a metodei \code{any.ensureRValue} este demonstrat pe foaia \ref{anyensureRValue}.
+
+\begin{lstlisting}[caption=Proprietăți, label=propertiesmain]
 @int = 2;
 @double = 3;
 @string = "int";
@@ -88,12 +94,8 @@
 1234'link; `` false
 \end{lstlisting}
 
-\subsection{Методы}
 
-Методы позволяют изменить состояние объекта. Все типы данных имеют только один общий метод \code{any.ensureRValue}, который гарантирует что изменение значению объекту не будет изменить данные во вне текущего контекста.
-
-\noindent Пример -
-\begin{lstlisting}
+\begin{lstlisting}[caption=Metoda any.ensureRValue, label=anyensureRValue]
 @int = 123;
 
 @int'rValue;   `` false
@@ -103,14 +105,19 @@
 @int'readOnly; `` false
 \end{lstlisting}
 
-\subsection{Преобразование типов}
+\subsection{Conversia datelor}
 
-В icL данные по умолчанию не преобразуется. На пример сложить \integer{} с \double{} нельзя, такой оператор не определён, в этом случае можно преобразовать \integer{} в \double{} или \double{} в \integer{}, в зависимости от типа нужного результата.
+În mod implicit, icL nu conversează datele. De exemplu a aduna \integer{} cu \double{} nu se poate, astfel de operator nu este definit. În acest caz se poate de conversat \integer{} în \double{} sau \double{} în \integer{}, în funcție de rezultatul necesar.
 
-Синтаксис преобразований максимально простой \code{data : type}, где \code{data} - любые данные (переменных или константные) а \code{type} - имя нужного типа данных.
+Sintaxa conversie este foarte simplă \code{data : type}, unde \code{data} e orice date, dar \code{type} numele tipului de date necesar. Exemple de conversie sunt prezente pe foaia \ref{conversionexample}.
 
-\noindent Примеры преобразования:
-\begin{lstlisting}
+\
+
+\
+
+\
+
+\begin{lstlisting}[caption=Exemple de conversie, label=conversionexample]
 @a = 2 + 2.3; `` error
 @a = (2 : double) + 2.3; `` 4.3
 @a = 2 + (2.3 : int); `` 4
@@ -124,5 +131,3 @@
 @d = 23 + 12 : double; `` @d = 35.0
 @e = 234.0 / 5.0 : int; `` @e = 46
 \end{lstlisting}
-
-%\newpage

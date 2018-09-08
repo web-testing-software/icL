@@ -1,7 +1,7 @@
 % !TeX spellcheck = ro_RO
 \section{Variabile}
 
-\textbf{Variabilă} este un nume al unui cîmp de păstrare a datelor, care pot fi manipulate de scenariu. Fiecare variabilă în icL are domeniu de vizibilitate (fragment de cod unde ea poate fi folosită) și tip, care hotărăște cîtă memorie va ocupa variabila, metoda de distribuire a memoriei și domeniul de valori.
+\textbf{Variabila} este un nume al unui cîmp de păstrare a datelor, care pot fi manipulate de scenariu. Fiecare variabilă în icL are domeniu de vizibilitate (fragment de cod unde ea poate fi folosită) și tip, care hotărăște cîtă memorie va ocupa variabila, metoda de distribuire a memoriei și domeniul de valori.
 
 Numele variabilei este identificator, care se începe cu \lstinline|@| sau {\color{blue2}\lstinline|#|}. Tipurile de bază sunt enumerate in tabela \ref{variablestypes}.
 
@@ -15,7 +15,7 @@ Numele variabilei este identificator, care se începe cu \lstinline|@| sau {\col
 
 În icL sunt prezente și \textbf{tipuri complexe}, de exemplu șiruri de caractere, liste, mulțimi, obiecte; care o sa fie descrise în capitolele următoare. În acest capitol se vorbește doar de tipurile de bază.
 
-\subsection{Definirea și inițializarea variabilelor}
+\subsection{Definire și inițializare a variabilelor}
 
 \textbf{Definirea și inițializarea} variabilelor, operația \textit{de atribuire} în icL nu se deosebesc, și au aceeași sintaxă \lstinline`a = b`, unde \lstinline`a` e o variabilă nouă sau existentă, dar \lstinline`b` e o valoare. În cazul în care variabila \textbf{se întîlnește prima oară}, ea se definește și se inițializează. În caz contrar valoarea se atribuie.
 
@@ -30,7 +30,7 @@ Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și ini
 #negative = -100.0;
 \end{lstlisting}
 
-\subsection{Variabilele locale}
+\subsection{Variabile locale}
 
 \textbf{Variabilele locale} au un domeniu îngust de vizibilitate, limitat de acoladele care le înconjoară și numai după declarare.
 
@@ -58,7 +58,7 @@ if (@) {
 @test6 = @var;
 \end{lstlisting}
 
-\subsection{Variabilele globale}
+\subsection{Variabile globale}
 
 \textbf{Variabilele globale} au cel mai larg domeniu de vizibilitate, ele sunt vizibile în orice punct al programei după declarare. Nu se recomandă a folosi variabile globale, pentru că ele pot să provoace erori serioase.
 
