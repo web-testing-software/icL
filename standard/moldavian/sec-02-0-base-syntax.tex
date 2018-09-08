@@ -1,0 +1,163 @@
+\section{Базовый синтаксис}
+
+icL достаточно прост в освоении, вставите код с листинга \ref{first} в icL и выполняете его. Первую программу можно уже сохранить в файле с расширением icl.
+
+\begin{lstlisting}[caption=Первая программа, label=first]
+_log.info "Test!";
+\end{lstlisting}
+
+В консоль можем увидеть следующий \textbf{вывод программы}:
+
+\begin{lstlisting}[numbers=none]
+Test!
+\end{lstlisting}
+
+\subsection{Импорт в icL}
+
+Все \textbf{стандартные библиотеки} встроены в языке, но можно написать импортировать \textbf{пользовательские}, с помощью:
+
+\begin{icItems}
+\item
+	\lstinline|_import.none "path/to/file.iclib"| - выполнить код, который содержатся в файле, ничего не импортировать.
+\item
+	\lstinline|_import.functions "path/to/file.iclib"| - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
+\item
+	\lstinline|_import.all "path/to/file.iclib"| -  выполнить код, импортировать функций и глобальные переменные;
+\item
+	\lstinline|_import.run "path/to/file.iclib"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
+\end{icItems}
+
+\subsection{Токены в icL}
+
+Программа на icL состоит из различных \textbf{токенов} (литералов, семантических конструкциях), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline`_log.info "Hello world!";`
+
+Отдельными токенами являются:
+
+\begin{icItems}
+\item
+	\lstinline`_log` - идентификатор объекта;
+\item
+	\lstinline`.info` - идентификатор метода;
+\item
+	\lstinline`"Hello world!"` - строковый литерал;
+\item
+	\lstinline`;` - разделитель, конец команды.
+\end{icItems}
+
+\subsection{Комментарии}
+
+\textbf{Комментарии} - это вспомогательный текст, который помогает понимать написанных сценариях, они полностью игнорируется командного процессора.
+
+\textbf{Комментарии в линии} (\textit{inline}) являются строковым литералом ограниченным специальными кавычками \texttt{`}, как показано на листинге \ref{inlinecomment}.
+
+\begin{lstlisting}[caption=Комментарий в линии,label=inlinecomment]
+No comment `comment` no comment
+\end{lstlisting}
+
+\textbf{Одиночный комментарий} записывается с использованием символов \texttt{``} в начале, смотрите листинг \ref{linecomment}.
+
+\begin{lstlisting}[caption=Одиночный комментарий,label=linecomment]
+No comment `` comment
+\end{lstlisting}
+
+\textbf{Многострочный комментарий} начинается и заканчивается с \texttt{```}, пример многострочного комментария приведён на листинге \ref{multilinecomment}.
+
+\begin{lstlisting}[caption=Многострочный комментарий,label=multilinecomment]
+No comment
+``` comment 1
+	comment 2
+	comment 3
+``` No comment
+\end{lstlisting}
+
+\subsection{Идентификторы}
+
+\textbf{Идентификатор} в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\lstinline`@`, \lstinline`#`, \lstinline`!`, \lstinline`_`, \lstinline`.` или \lstinline`'`), за которым следует от 1 до 32 букв(английского или национального алфавита) и цифр (от 0 до 9).
+
+icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
+
+\begin{lstlisting}[numbers=none]
+#loop		_tab		.Append		'Length	_dom	@i	 	@VAR
+@variable	!sumPoints	#global		.Merge	.Get	#01		!SIN
+\end{lstlisting}
+
+\subsection{Ключевые слова}
+
+В icL \textbf{ключевые слова} не зарезервированные. Их всего 15: \lstinline`if`, \lstinline|else| \lstinline`for`, \lstinline`filter`, \lstinline`range`, \lstinline`exists`, \lstinline`while`, \lstinline`do`, \lstinline`any`, \lstinline`emit`, \lstinline`emiter`, \lstinline`slot`, \lstinline|jammer|, \lstinline|reverse| и \lstinline|assert|. В данном документе они выделены синим цветом.
+
+\subsection{Пробельные символы и разделители}
+
+\textbf{Пробельный символ} (\textit{whitespace}) - этот термин используется в icL для описания пробелов, символов табуляции, символов новой строкой и комментариев. Пробельные символы не обязательные, они используются для улучшения читабельности кода. На листинге \ref{unreadable} показан пример кода без пробельных символов, а на листинге \ref{readable} с пробельными символами.
+
+\begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
+if(_tab.get"mai.ru"){(_dom.query"button").click;}else{_log.error"The site mai.ru is unaviable";};
+\end{lstlisting}
+
+В icL присутствует только один разделитель - \textbf{разделитель команд} \lstinline`;`. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline`_tab.get "URL"`, закрыть вкладку - \lstinline`_tab.close`.
+
+При описании последовательности действий, их надо разделить, например последовательность вышеперечисленных команд описывается так:
+
+\begin{lstlisting}[numbers=none]
+_tab.get "URL"; _tab.close
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
+`` the begin of program
+
+`` try to go to mai.ru
+if (_tab.get "mai.ru") {
+	`` site loaded successfull
+	`` click the button
+	(_dom.query "button").click;
+}
+else {
+	`` try again later
+	`` now log the error
+	_log.error "The site mai.ru is unaviable";
+};
+
+`` end of the program
+\end{lstlisting}
+
+Таким образом из команд собираем сценарии. Перед закрывающих скобок ставить разделитель команд опционально.
+
+\subsubsection{Дополнительные сведение}
+
+Если у вас нет знании в программировании перейдите, пожалуйста, на третью главу.
+
+icL отсутствуют разделители между значениями в списке. Примеры:
+
+\begin{icItems}
+	\item Инициализация списка в С++:
+\begin{lstlisting}[numbers=none, language=C++]
+std::list<std::string> list = {"one", "two", "three"};
+\end{lstlisting}
+	Инициализация списка в icL:
+\begin{lstlisting}[numbers=none]
+@list = ["one" "two" "three"];
+\end{lstlisting}
+	\item Функция в С++:
+\begin{lstlisting}[numbers=none, language=C++]
+int sum (int number1, int number2) { return number1 + number2; };
+\end{lstlisting}
+	Функция в icL:
+\begin{lstlisting}[numbers=none]
+!sum = <int>number1 <int>number2 : int { @ = number1 + number2 };
+\end{lstlisting}
+	\item Вызов функций в С++:
+\begin{lstlisting}[numbers=none, language=C++]
+int s = sum (100, 200);
+\end{lstlisting}
+	Вызов функций в icL:
+\begin{lstlisting}[numbers=none]
+@sum = !sum 100 200;
+\end{lstlisting}
+%	\item Код на С++:
+%\begin{lstlisting}[numbers=none, language=C++]
+%sum (100 + 50, 200);
+%\end{lstlisting}
+%	Эквивалент на icL:
+%\begin{lstlisting}[numbers=none]
+%!sum (100 + 50) 200;
+%\end{lstlisting}
+\end{icItems}

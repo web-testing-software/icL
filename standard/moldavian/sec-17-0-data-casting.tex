@@ -1,0 +1,228 @@
+\section{Преобразование типов}
+
+Для преобразования данных в icL присутствуют 3 операторы первого ранга:
+\begin{icItems}
+	\item \lstinline|data : type : type|;
+	\item \lstinline|data :: type : bool|;
+	\item \lstinline|data :* type : bool|;
+\end{icItems}
+
+\subsubsection{\lstinline|data : type : type|}
+
+Преобразует данные в нужном типа данных.
+
+Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+
+\subsubsection{\lstinline|data :: type : bool|}
+
+Возвращает \true, если данные имеют нужный тип, иначе \false.
+
+\subsubsection{\lstinline|data :* type : bool|}
+
+Возвращает \true, если данные могут быть преобразованы в нужном типе, иначе \false.
+
+\subsection{Возможные преобразования}
+
+В таблице \ref{castingtable} представлены совместимость преобразовании данных. Минусом отмечены невозможные преобразования, они всегда генерируют ошибку \ferror{UnrealCast}. Плюсом отмечены преобразования, которые никогда не генерируют ошибки. Звёздочкой отмечены возможные преобразования, но они также могут генерировать ошибки. В названии столбцов указан изначальный тип данных, в названии строки указан желаемый тип данных.
+
+\begin{table}[htb]
+	\caption{Таблица преобразований}
+	\label{castingtable}
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+		\hline
+		          & \void & \bool & \integer & \double & \str & \listtype & \object & \set & \element \\ \hline
+		\void     & +     & -     & -        & -       & -    & -         & -       & -    & -        \\ \hline
+		\bool     & +     & +     & +        & +       & +    & +         & +       & +    & +        \\ \hline
+		\integer  & +     & +     & +        & +       & *    & -         & -       & -    & -        \\ \hline
+		\double   & +     & +     & +        & +       & *    & -         & -       & -    & -        \\ \hline
+		\str      & +     & +     & +        & +       & +    & *         & +       & +    & +        \\ \hline
+		\listtype & +     & -     & -        & -       & +    & +         & -       & +    & -        \\ \hline
+		\object   & +     & -     & -        & -       & *    & -         & +       & *    & -        \\ \hline
+		\set      & +     & -     & -        & -       & *    & *         & -       & +    & -        \\ \hline
+		\element  & +     & -     & -        & -       & -    & -         & -       & -    & +        \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{\lstinline|void : void|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|void : bool|}
+
+Возвращает \false.
+
+\subsubsection{\lstinline|void : int|}
+
+Возвращает \lstinline|0|.
+
+\subsubsection{\lstinline|void : double|}
+
+Возвращает \lstinline|0.0|.
+
+\subsubsection{\lstinline|void : string|}
+
+Возвращает \lstinline|""|.
+
+\subsubsection{\lstinline|void : list|}
+
+Возвращает \lstinline|[]|.
+
+\subsubsection{\lstinline|void : object|}
+
+Возвращает \lstinline|[<>]|.
+
+\subsubsection{\lstinline|void : set|}
+
+Возвращает пустое множество.
+
+\subsubsection{\lstinline|void : element|}
+
+Возвращает пустая коллекция.
+
+\subsubsection{\lstinline|bool : bool|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|bool : int|}
+
+Возвращает \lstinline|1|, если логическое значение - единица, иначе \lstinline|0|.
+
+\subsubsection{\lstinline|bool : double|}
+
+Возвращает \lstinline|1.0|, если логическое значение - единица, иначе \lstinline|0.0|.
+
+\subsubsection{\lstinline|bool : string|}
+
+Возвращает \lstinline|"true"|, если логическое значение - единица, иначе \lstinline|"false"|.
+
+\subsubsection{\lstinline|int : bool|}
+
+Возвращает значение выражений \lstinline|int != 0|.
+
+\subsubsection{\lstinline|int : int|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|int : double|}
+
+Возвращает вещественное число, имеющее целая часть равна \integer, а дробная равна нулю.
+
+\subsubsection{\lstinline|int : string|}
+
+Возвращает строку, содержащая строковое представление числа \integer.
+
+\subsubsection{\lstinline|double : bool|}
+
+Возвращает значение выражений \lstinline|double != 0.0|.
+
+\subsubsection{\lstinline|double : int|}
+
+Возвращает целое число, равна целой части числа \double. Дробная часть пропадёт.
+
+\subsubsection{\lstinline|double : double|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|double : string|}
+
+Возвращает строку, содержащая строковое представление числа \double.
+
+\subsubsection{\lstinline|string : bool|}
+
+Возвращает значение выражений \lstinline|!string'empty|.
+
+\subsubsection{\lstinline|string : int|}
+
+Возвращает целое число, являющейся результат парсинга строки \str.
+
+Возможные исключения: \ferror{ParsingFailed}.
+
+\subsubsection{\lstinline|string : double|}
+
+Возвращает вещественное число, являющейся результат парсинга строки \str. Целая часть от дробной делить надо точкой, а не запятой.
+
+Возможные исключения: \ferror{ParsingFailed}.
+
+\subsubsection{\lstinline|string : string|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|string : list|}
+
+Возвращает \lstinline|[string]|.
+
+\subsubsection{\lstinline|string : object|}
+
+Возвращает объект, являющийся результат парсинга JSON-строки \str. JSON-объект должен иметь поля только следующих типов: \bool, \integer, \double, \str{} и \listtype.
+
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+
+\subsubsection{\lstinline|string : set|}
+
+Возвращает множество, являющийся результат парсинга JSON-строки \str, которая должна содержать массив объект, а каждый объект должен соответствовать критерия оператора \lstinline|string : object|.
+
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+
+\subsubsection{\lstinline|list : bool|}
+
+Возвращает значение выражений \lstinline|!list'empty|.
+
+\subsubsection{\lstinline|list : string|}
+
+Возвращает первую строку списка, если список состоит только из одной строки, иначе генерирует исключение.
+
+Возможные исключения: \ferror{EmptyList} и \ferror{MultiList}.
+
+\subsubsection{\lstinline|list : list|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|list : set|}
+
+Каждая строка списка будет преобразовано в объекте оператором \lstinline|string : object|, получены объекты будут группированы в множестве, полученная множество будет возвращена оператором.
+
+\subsubsection{\lstinline|object : bool|}
+
+Возвращает \true, если объект хранит хотя бы одну переменную, иначе \false.
+
+\subsubsection{\lstinline|object : string|}
+
+Возвращает JSON-строку, описывающая объект.
+
+\subsubsection{\lstinline|object : object|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|set : bool|}
+
+Возвращает значение выражений \lstinline|!set'empty|.
+
+\subsubsection{\lstinline|set : string|}
+
+Возвращает JSON-строку, описывающая множеству.
+
+\subsubsection{\lstinline|set : object|}
+
+Возвращает единственный объект, если множество содержит только один объект, иначе генерирует исключение.
+
+Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet}.
+
+\subsubsection{\lstinline|set : list|}
+
+Возвращает список JSON-строк, где каждая строка описывает объект множества.
+
+\subsubsection{\lstinline|set : set|}
+
+Возвращает исходный объект.
+
+\subsubsection{\lstinline|element : bool|}
+
+Возвращает значение выражений \lstinline|!element'empty|.
+
+\subsubsection{\lstinline|element : string|}
+
+Возвращает строка, описывающая последовательность действий, при которых была получена данная коллекция.
+
+\subsubsection{\lstinline|element : element|}
+
+Возвращает исходный объект.

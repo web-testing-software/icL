@@ -1,0 +1,45 @@
+\section{Обмен данных с веб-странице}
+\label{dataexchange}
+
+\subsubsection{Название странице}
+
+Название страницы можно получить вызывая \lstinline|[r/*] _tab'title : string|.
+
+\subsubsection{Исходный код}
+
+Исходный код страницы можно получить вызывая \lstinline|[r/o] _tab'source : string|.
+
+\subsubsection{Screenshot}
+
+Screenshot страницы в base64 можно получить вызывая \lstinline|[r/o] _tab'screenshot : string|.
+
+\subsubsection{URL}
+
+Адрес доступен через свойство \lstinline|[r/w] _tab'url : string|.
+
+\subsubsection{Навигация}
+
+\lstinline|_tab.back : void| - позволяет возвращаться на предыдущую страницу.
+
+\lstinline|_tab.forward : void| - позволяет возвращаться на следующую страницу.
+
+\lstinline|_tab.refresh : void| -  позволяет перезагрузить страницу.
+
+\lstinline|[icL] [r/o] _tab'canGoBack : bool| - сообщает можно ли перейти на предыдущую страницу.
+
+\lstinline|[icL] [r/o] _tab'canGoForward : bool| - сообщает можно ли перейти на следующую страницу.
+
+
+\subsubsection{Предупреждения}
+
+\lstinline|[r/o] _alert'text : string| - текст предупреждений.
+
+\lstinline|_alert.accept : void| - закрыть окно отвечая положительным ответом.
+
+\lstinline|_alert.dismiss : void| - закрыть окно отвечая отрицательным ответом.
+
+\lstinline|_alert.sendKeys <string>str : void| - ответить текстом \code{str}.
+
+% Возможные исключения: \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable}.
+
+%\newpage

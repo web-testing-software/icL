@@ -1,0 +1,217 @@
+\section{Списки}
+
+{\bf Списки} (тип \code{list}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
+
+\subsection{Свойства}
+
+Списки имеют следующее дополнительные свойства:
+\begin{icItems}
+\item
+	\lstinline|[r/o] list'empty : bool|;
+\item
+	\lstinline|[r/o] list'length : int|;
+\item
+	\lstinline|[r/o] list'last : string|;
+\item
+	\lstinline|[r/o] list'(<int>n) : string|.
+\end{icItems}
+
+На листинге \ref{listprop} представлен код, использующий выше перечисленных свойства.
+
+\begin{lstlisting}[caption=Свойства класса list, label=listprop]
+@empty = [];
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@empty'empty; `` true
+@fonts'empty; `` false
+
+@empty'length; `` 0
+@fonts'length; `` 4
+
+@empty'last; `` error
+@fonts'last; `` "Courier"
+
+@empty'0; `` error
+@fonts'0; `` "Arial"
+\end{lstlisting}
+
+\subsubsection{\lstinline|[r/o] list'empty : bool|}
+
+Список считается пустым если он не содержит ни одну строку.
+
+\subsubsection{\lstinline|[r/o] list'length : int|}
+
+Длина списка равна количеству строк в списке.
+
+\subsubsection{\lstinline|[r/o] list'last : string|}
+
+Последняя строка в списке, то же соме что и \lstinline|list'at (list'length - 1)|.
+
+Возможные исключения: \ferror{EmptyList}.
+
+\subsubsection{\lstinline|[r/o] list'(<int>n) : string|}
+
+n-я строка списка, n должен быть целым литералом.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsection{Методы}
+
+Списки имеют следующий набор дополнительных методов:
+\begin{icItems}
+\item \lstinline|list.append <string>str : list|;
+\item \lstinline|list.at <int>i : string|;
+\item \lstinline|list.contains <string>str <bool>caseSensitive = true : bool|;
+\item \lstinline|list.clear : list|;
+\item \lstinline|list.count <string>what : int|;
+\item \lstinline|list.filter <string>str <bool>caseSensitive = true : bool|;
+\item \lstinline|list.indexOf <string>str <int>start = 0 : int|;
+\item \lstinline|list.insert <int>index <string>str : list|;
+\item \lstinline|list.join <string>separator : string|;
+\item \lstinline|list.lastIndexOf <string>str <int>start = -1 : int|;
+\item \lstinline|list.mid <int>pos <int>n = -1 : list|;
+\item \lstinline|list.prepend <string>str : list|;
+\item \lstinline|list.move <int>from <int>to : list|;
+\item \lstinline|list.removeAll <string>str : list|;
+\item \lstinline|list.removeAt <int>i : list|;
+\item \lstinline|list.removeDuplicates : list|;
+\item \lstinline|list.removeFirst : list|;
+\item \lstinline|list.removeLast : list|;
+\item \lstinline|list.removeOne <string>str : bool|;
+\item \lstinline|list.replaceInStrings <string>before <string>after : list|;
+\item \lstinline|list.sort <bool>caseSensitive = true : list|.
+\end{icItems}
+
+Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{listmethods}. 
+
+\begin{lstlisting}[caption=Методы класса list, label=listmethods]
+@empty = [];
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@empty.append "";              `` [""]
+@fonts.at 2;                   `` "Times"
+@fonts.contains "arial";       `` false
+@fonts.contains "arial" false; `` true
+@empty.clear;                  `` []
+@fonts.count "Arial";          `` 1
+
+@fonts.filter "e";          `` ["Helvetica" "Times" "Courier"]
+@fonts.indexOf "Times";     `` 2
+@fonts.insert 1 "DejaVu";   `` ["Arial" "DejaVu" "Helvetica" "Times" "Courier"]
+@fonts.join ", ";           `` "Arial, DejaVu, Helvetica, Times, Courier"
+@fonts.lastIndexOf "Arial"; `` 0
+
+@fonts.mid 2 2;          `` ["Times" "Courier"]
+@fonts.prepend "DejaVu"; `` ["DejaVu" "Arial" "DejaVu" .. "Courier"]
+@fonts.move 1 2;         `` ["DejaVu" "DejaVu" "Arial" "Helvetica" ..]
+
+@fonts.removeAll "Helvetica"; `` ["DejaVu" "DejaVu" "Arial" "Times" "Courier"]
+@fonts.removeAt 3;            `` ["DejaVu" "DejaVu" "Arial" "Courier"]
+@fonts.removeDuplicates;      `` ["DejaVu" "Arial" "Courier"]
+@fonts.removeFirst;           `` ["Arial" "Courier"]
+@fonts.removeLast;            `` ["Arial"]
+@fonts.removeOne "Arial";     `` []
+
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@fonts.replaceInStrings "e" "-"; `` ["Arial" "H-lv-tica" "Tim-s" "Couri-r"];
+@fonts.sort;                     `` ["Arial" "Couri-r" "H-lv-tica" "Tim-s"];
+\end{lstlisting}
+
+Параметр \code{caseSensitive} во всех функциях отвечает за чувствительность к регистру. Его установка гарантирует что регистр букв будет проигнорирован.
+
+\subsubsection{\lstinline|list.append <string>str : list|}
+
+Вставит строку \code{str} в конце списка.
+
+\subsubsection{\lstinline|list.at <int>i : string|}
+
+Возвращает \code{i}-й строка.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|list.contains <string>str <bool>caseSensitive = true : bool|}
+
+Возвращает \true, если список содержит строка, ровна \code{str}, иначе \false.
+
+\subsubsection{\lstinline|list.clear : list|}
+
+Очищает список.
+
+\subsubsection{\lstinline|list.count <string>what : int|}
+
+Возвращает сколько раз строка \code{what} повторяется в списке.
+
+\subsubsection{\lstinline|list.filter <string>str <bool>caseSensitive = true : bool|}
+
+Возвращает новый список строк, содержащий только строки этого списка, содержащие подстроку \code{str}. 
+
+\subsubsection{\lstinline|list.indexOf <string>str <int>start = 0 : int|}
+
+Возвращает индекс первой нахождения строки \code{str} в списке, ища вперёд с позиции \code{start}, если строка не найдено возвращает -1.
+
+\subsubsection{\lstinline|list.insert <int>index <string>str : list|}
+
+Вставит строку \code{str} в позиции \code{index}, если \code{index <= 0} то значение вставится в начале списка, если \code{index >= list'length} то значение вставится в конце списка.
+
+\subsubsection{\lstinline|list.join <string>separator : string|}
+
+Создаёт новую строку, из строк списка, путём последовательной конкатенации, между значениями вставится \code{separator}, он может быть пустой строкой.
+
+\subsubsection{\lstinline|list.lastIndexOf <string>str <int>start = -1 : int|}
+
+Возвращает индекс первой нахождения строки \code{str} в списке, ища назад с позиции \code{start}, если строка не найдена возвращает -1.
+
+\subsubsection{\lstinline|list.mid <int>pos <int>n = -1 : list|}
+
+Возвращает новый список, содержащий \code{n} строки, начиная со строкой с индексом \code{pos}. Если \code{n} имеет значение \code{-1} то будут добавлены все значение до конца списка.
+
+\subsubsection{\lstinline|list.prepend <string>str : list|}
+
+Вставит строку \code{str} в начале списка.
+
+\subsubsection{\lstinline|list.move <int>from <int>to : list|}
+
+Переставит строку с индексом \code{from} в позиции с индексом \code{to}.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|list.removeAll <string>str : list|}
+
+Удаляет все нахождения строке \code{str}.
+
+\subsubsection{\lstinline|list.removeAt <int>i : list|}
+
+Удаляет \code{i}-я строка.
+
+Возможные исключения: \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|list.removeDuplicates : list|}
+
+Удаляет повторы строк.
+
+\subsubsection{\lstinline|list.removeFirst : list|}
+
+Удаляет первую строку.
+
+Возможные исключения: \ferror{EmptyList}.
+
+\subsubsection{\lstinline|list.removeLast : list|}
+
+Удаляет последнюю строку.
+
+Возможные исключения: \ferror{EmptyList}.
+
+\subsubsection{\lstinline|list.removeOne <string>str : bool|}
+
+Удаляет первое нахождение строке \code{str}. Возвращает \true, если строка была найдена, иначе \false.
+
+\subsubsection{\lstinline|list.replaceInStrings <string>before <string>after : list|}
+
+Заменяет подстроку \code{before} с подстрокой \code{after} в каждом строке.
+
+\subsubsection{\lstinline|list.sort <bool>caseSensitive = true : list|}
+
+Сортирует строки в алфавитном порядке.
+
+%\newpage

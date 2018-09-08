@@ -1,0 +1,106 @@
+\section{Условные операторы}
+
+Условные структуры имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значения условии.
+
+В icL приличествуют следующее условные операторы:
+\begin{icItems}
+	\item \code{if};
+	\item \code{if else};
+	\item каскадное \code{if else};
+	\item \code{exists};
+	\item \code{if exists};
+	\item \code{for any}.
+\end{icItems}
+
+\subsubsection{\lstinline`if`}
+
+\code{if} позволяет ставить условия выполнения блока команд. Он имеет следующий синтаксис -
+\begin{lstlisting}[numbers=none]
+if (condition) {
+	commands
+};
+\end{lstlisting}
+где \code{condition} любое выражение возвращающее значение типа \bool{} и \code{commands} любой набор команд.
+
+Также допускаются пропустить круглые скобки, синтаксис -
+\begin{lstlisting}[numbers=none]
+if true  { commands };
+if @var  { commands };
+\end{lstlisting}
+
+\subsubsection{\lstinline`if else`}
+
+\code{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно - выполняется первый блок, иначе второй блок.
+
+Конструкция \code{if else} имеет следующий синтаксис -
+\begin{lstlisting}[numbers=none]
+if (condition) {
+	commands1
+}
+else {
+	commands2
+};
+\end{lstlisting}
+
+\subsubsection{Каскадное \lstinline`if else`}
+
+Каскадное \code{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
+
+Каскадное \code{if else} имеет следующий синтаксис -
+\begin{lstlisting}[numbers=none]
+if (condition1) {
+	commands1
+} else if (condition2) {
+	commands2
+} else {
+	commands3
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline`exists`}
+
+\code{exists} позволяет условно возвращать данные, если они подходят под определённому критерия.
+
+Условия по умолчанию:
+\begin{icItems}
+\item
+	для \bool{} - \code{# == true};
+\item
+	для \integer{} - \code{# != 0};
+\item
+	для \double{} - \code{# != 0.0};
+\item
+	для \str{} - \code{!#'empty};
+\item
+	для \listtype{} - \code{!#'empty};
+\item
+	для \set{} - \code{!#'empty};
+\item
+	для \element{} - \code{#'empty}.
+\end{icItems}
+
+Если использовать условию по умолчанию, используется следующий синтаксис - \lstinline|exists(expression)|.
+При необходимости задать своё условие, синтаксис чуть изменяется -\lstinline|exists(expression, condition)|.
+
+\subsubsection{\lstinline`if exists`}
+
+Конструкция \code{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \code{exists}. Также повторно использовать значения выражения. В случае когда условие конструкции \code{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \code{exists} под именем \code{@}.
+Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
+
+\begin{lstlisting}[caption=Использование if exist, label=ifexistsex]
+if exists(23 + 3, # > 20) {
+	_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline`for any`}
+
+\code{for any} позволяет повторно использовать любое значение. Пример использования представлен на листинге \ref{foranyex}.
+
+\begin{lstlisting}[caption=Использование for any, label=foranyex]
+for any(23 + 3) {
+	_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
+
+%\newpage

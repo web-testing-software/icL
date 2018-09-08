@@ -1,0 +1,137 @@
+% !TeX spellcheck = ro_RO
+\documentclass[a4paper, 14pt]{extarticle}
+%\documentclass[utf8x, 14pt]{G7-32}
+
+\usepackage{ifthen}
+
+% economy papper
+\newboolean{compress}
+\setboolean{compress}{false}
+
+% optimize black-white printing
+\newboolean{whiteblack}
+\setboolean{whiteblack}{true}
+
+% ГОСТ
+\newboolean{gost}
+\setboolean{gost}{false}
+
+\ifthenelse{\boolean{whiteblack}}{
+	\input{style-whiteblack.tex}
+}{
+	\input{style-colored.tex}
+}
+
+\ifthenelse{\boolean{gost}}{
+	\usepackage[sf]{titlesec}
+	
+	\newfontfamily\headingfont[]{Liberation Sans}
+	\titleformat*{\section}{\normalsize\headingfont\centering}
+	\titleformat*{\subsection}{\normalsize\headingfont\centering}
+	\titleformat*{\subsubsection}{\normalsize\headingfont\centering}
+	
+	\setcounter{tocdepth}{3}
+}{}
+
+\begin{document}
+
+\input{header.tex}
+
+\ifthenelse{\boolean{gost}}{
+	\fancyhead[L]{}
+	\fancyhead[C]{\textmd{12603 - 01 xx 01}}
+	\fancyhead[R]{\textmd{\thepage{}}}
+}{}
+
+\title{Specificația limbajului de script-are icL v1.0.0 Candidat de release}
+\author{Лелицак Василе}
+
+\maketitle
+
+\newpage
+\renewcommand{\contentsname}{\textsf{Cuprins}}\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{2.6em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{4.0em}{3.6em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{7.4em}{4.5em}}
+\makeatother
+\tableofcontents
+
+\ifthenelse{\boolean{compress}}{
+	% compresed mode 
+	\newpage
+	\input{sec-01-0-introduction}
+	
+	\newpage
+	\input{part-01-0-advanced-users}
+	\input{sec-02-0-base-syntax}
+	\input{sec-03-0-variables}
+	\input{sec-04-0-data-types}
+	\input{sec-05-0-literals}
+	\input{sec-06-0-operators}
+	\input{sec-07-0-conditional-operators}
+	\input{sec-08-0-loops}
+	\input{sec-09-0-integration-with-js}
+	\input{sec-10-0-functions}
+	\input{sec-11-0-strings}
+	\input{sec-12-0-lists}
+	\input{sec-13-0-sets}
+	\input{sec-14-0-web-elements}
+	\input{sec-15-0-data-exchange}
+	\input{sec-16-0-dsv-csv-tsv}
+	\input{sec-17-0-data-casting}
+	
+	\newpage
+	\input{part-02-0-programmers}
+	\input{sec-18-0-additional-posibilities}
+	\input{sec-19-0-additional-interaction}
+	\input{sec-20-0-regular-expressions}
+	\input{sec-21-0-state-mechanism}
+	\input{sec-22-0-data-bases}
+	\input{sec-23-0-exceptions}
+	\input{sec-24-0-crossfire-js}
+	\input{sec-25-0-assets}
+	
+	\newpage
+	\input{part-03-0-developers}
+	\input{sec-26-0-data-types-pro}
+	\input{sec-27-0-system-data-types-pro}
+	\input{sec-28-0-operators-pro}
+}{
+	% extended mode
+	\include{sec-01-0-introduction}
+	
+	\include{part-01-0-advanced-users}
+	\include{sec-02-0-base-syntax}
+	\include{sec-03-0-variables}
+	\include{sec-04-0-data-types}
+	\include{sec-05-0-literals}
+	\include{sec-06-0-operators}
+	\include{sec-07-0-conditional-operators}
+	\include{sec-08-0-loops}
+	\include{sec-09-0-integration-with-js}
+	\include{sec-10-0-functions}
+	\include{sec-11-0-strings}
+	\include{sec-12-0-lists}
+	\include{sec-13-0-sets}
+	\include{sec-14-0-web-elements}
+	\include{sec-15-0-data-exchange}
+	\include{sec-16-0-dsv-csv-tsv}
+	\include{sec-17-0-data-casting}
+	
+	\include{part-02-0-programmers}
+	\include{sec-18-0-additional-posibilities}
+	\include{sec-19-0-additional-interaction}
+	\include{sec-20-0-regular-expressions}
+	\include{sec-21-0-state-mechanism}
+	\include{sec-22-0-data-bases}
+	\include{sec-23-0-exceptions}
+	\include{sec-24-0-crossfire-js}
+	\include{sec-25-0-assets}
+	
+	\include{part-03-0-developers}
+	\include{sec-26-0-data-types-pro}
+	\include{sec-27-0-system-data-types-pro}
+	\include{sec-28-0-operators-pro}
+}
+
+\end{document}

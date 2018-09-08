@@ -1,0 +1,179 @@
+\section{Циклы}
+
+Может возникнуть нужность в том, чтобы выполнить блок кода несколько раз. Для этого совсем не обязательно писать один то тоже код несколько раз, достаточно использовать цикл.
+
+Язык icL предоставляет следующие типы циклов:
+
+\begin{icItems}
+\item
+	\code{for} - универсальный цикл;
+\item
+	\code{while} - условное повторение кода;
+\item
+	\code{do while} - цикл с постусловий;
+\item
+	\code{for} - прохождение коллекций;
+\item
+	\code{filter} - выборочное прохождение коллекций;
+\item
+	\code{range} - частичное прохождение коллекций.
+\end{icItems}
+
+
+\subsubsection{\lstinline`for` - универсальный цикл}
+
+{\bf Универсальный цикл} позволяет полностью управлять ход выполнения кода. Он содержит:
+
+\begin{icItems}
+\item
+	\code{initialization} - код отвечающий за инициализацию;
+\item
+	\code{condition} - условие, которая проверяется перед запуском цикла;
+\item
+	\code{step} - код, отвечающий за перехода на следующую итерацию цикла.
+\item
+	\code{commands} - тело цикла.
+\end{icItems}
+
+Универсальный цикл имеет следующий синтаксис -
+\begin{lstlisting}[numbers=none]
+for (initialization, condition, step) {
+	commands
+};
+\end{lstlisting}
+
+На листинге \ref{uniloopex} показан пример использование цикла \code{for}, цикл будет выводить числа от нуля до четырёх.
+
+\begin{lstlisting}[caption=Универсальный цикл, label=uniloopex]
+for (@i = 0, i < 5, @i = @i + 1) {
+	_log.out @i;
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline`while` - условное повторение кода}
+
+{\bf Условное повторение кода} будет выполнить блок команд, пока условие остаётся истиной. Условие проверяется перед запуском цикла и если условие изначально - лож, тела цикла не будет выполниться ни разу.
+
+Главное его преимущества - его простота. В сравнения с универсального цикла, в конструкции \code{while} отсутствуют фрагменты кода для инициализации и перехода на следующую итерацию. Он содержит только условие и тело -
+\begin{lstlisting}[numbers=none]
+while (condition) {
+	commands
+};
+\end{lstlisting}
+
+На листинге \ref{whileex} переставлен код, использующий цикл \code{while}. Переменная \code{@number} объявлено до цикла и будет доступа и после него. При завершении работы цикла \code{@number} будет равен 6-и.
+
+\begin{lstlisting}[caption=Цикл while, label=whileex]
+@number = 1;
+
+while (@number <= 5) {
+	@number = @number + 1;
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline`do while` - цикл с постусловий}
+
+{\bf Цикл с постусловий} мало отличается от \code{while}, но он гарантирует что тело цикла будет выполнена минимум 1 раз. Также условие объявляется после тело цикла, указывая на то что она будет проверено после первой итерации. Синтаксис -
+\begin{lstlisting}[numbers=none]
+do {
+	commands
+} while (condition);
+\end{lstlisting}
+
+На листинге \ref{dowhileex} представлен код, использующий цикл \code{do while}. Несмотря на то что условие изначально \code{false}, первая итерация цикла будет выполнена, в результате чего \code{@number} станет равен 7-и.
+
+\begin{lstlisting}[caption=Цикл do while, label=dowhileex]
+@number = 6;
+
+do {
+	@number = @number + 1;
+} while (@number < 5);
+\end{lstlisting}
+
+\subsubsection{\lstinline`for` - прохождение коллекций}
+
+{Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать универсальный цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}). Под коллекции имеется в виду следующие типы данных \code{list}, \code{set} и \code{element}.
+\begin{lstlisting}[caption=Прохождение коллекций с помощью универсального цикла, label=colluniloop]
+@list = ["apple" "banana" "fruit"];
+
+for (@i = 0, @i < @list'length, @i = @i + 1) {
+	@list.at @i; `` get i-th value
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Упрощённое прохождение коллекций, label=collsimple]
+@list = ["apple" "banana" "fruit"];
+
+for (@list) {
+	@; `` get i-th value
+}
+\end{lstlisting}
+
+\subsubsection{\lstinline`filter` - выборочное прохождение коллекций}
+
+{\bf Конструкция \code{filter}} позволяет ставить условие, для каких элементов коллекций выполнять тело цикла, для каких нет.
+
+В условия есть специальные переменные: \lstinline|@| - значение элемента коллекций и \lstinline|#| - индекс текущей значения.
+
+Фильтр имеет следующий синтаксис -
+\begin{lstlisting}[numbers=none]
+filter (collection, condition) {
+	commands
+};
+\end{lstlisting}
+
+Фильтровать элементы можно по данных (см. листинг \ref{filterdataex}, выбирается те которые содержат букву а) или по индексам (см. листинг \ref{filterindexex}, выбирается чётные элементы списка).
+
+\begin{lstlisting}[caption=Фильтрование по данных, label=filterdataex]
+@list = ["apple" "banana" "fruit"];
+
+filter (@list, @ << "a") {
+	@; `` apple, banana
+}
+\end{lstlisting}
+
+\subsubsection{\lstinline`range` - частичное прохождение коллекций}
+
+{\bf Частичное прохождение} позволяет выполнить код для интервала коллекций. Интервал определяется одной или двум условий. Первое условие используется для поиска начала интервала. Второе условие - для поиска конца, если оно отсутствует, будет использоваться первое условие. В отсутствия подходящих элементов, тела цикла не будет выполнена. Чтобы выбирать первый или последний элемент (в зависимость от предназначения условии), использует выражение \true{}.
+
+Синтаксис для интервала с одним условием -
+\begin{lstlisting}[numbers=none]
+range (collection, condition) {
+	commands
+};
+\end{lstlisting}
+
+Синтаксис для интервала с отдельным условием для начало и конца -
+\begin{lstlisting}[numbers=none]
+range (collection, condition_for_begin, condition_for_end) {
+	commands
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Фильтрование по индексов, label=filterindexex]
+@list = ["apple" "banana" "fruit"];
+
+filter (@list, # \ 2 == 0) {
+@; `` apple, fruit
+}
+\end{lstlisting}
+
+Выбрать первый и последний элемент можно по значении (см. листинг \ref{bananakiwiex}, интервал от значений \code{banana} до \code{kiwi}) или по индексам (см. листинг \ref{seclastex}, интервал от второго до последнего).
+
+\begin{lstlisting}[caption=Интервал: от banana до kiwi, label=bananakiwiex]
+@list = ["apple" "banana" "fruit" "kiwi"];
+
+range (@list, @ == "banana", @ == "kiwi") {
+	@; `` banana, fruit, kiwi
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Интервал: от второго до последнего, label=seclastex]
+@list = ["apple" "banana" "fruit" "kiwi"];
+
+range (@list, # == 2, true) {
+	@; `` fruit, kiwi
+}
+\end{lstlisting}
+
+%\newpage
