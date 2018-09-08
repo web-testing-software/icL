@@ -1,27 +1,27 @@
-\section{Переменные}
+% !TeX spellcheck = ro_RO
+\section{Variabile}
 
-\textbf{Переменная} - название области хранения, который могут манипулировать сценария. Каждая переменная в icL имеет область видимость (фрагмент кода где можно её использовать) и тип, который определяет размер и способ размещения памяти переменной; диапазон значений можно применить к переменной.
+\textbf{Variabilă} este un nume al unui cîmp de păstrare a datelor, care pot fi manipulate de scenariu. Fiecare variabilă în icL are domeniu de vizibilitate (fragment de cod unde ea poate fi folosită) și tip, care hotărăște cîtă memorie va ocupa variabila, metoda de distribuire a memoriei și domeniul de valori.
 
-Имя переменной является идентификатором, начинающийся с \lstinline`@` или {\color{blue2}\lstinline`#`}.
-\textbf{Основные типы} переменных показаны в таблице \ref{variablestypes}.
+Numele variabilei este identificator, care se începe cu \lstinline|@| sau {\color{blue2}\lstinline|#|}. Tipurile de bază sunt enumerate in tabela \ref{variablestypes}.
 
-\stabletwo{2cm}{15.1cm}{variablestypes}{Типы переменных}%
-{Тип}{Описание}%
+\stabletwo{2cm}{15.1cm}{variablestypes}{Tipuri de date}%
+{Tip}{Descriere}%
 {
-	bool   & Логическое значения, имеет в состояние: истинно или лож. 					 \\ \hline
-	int    & Целое число, позволяет хранить значения от -2.147.483.648 до 2.147.483.647. \\ \hline
-	double & Дробное число, позволяет хранить вещественные числа. 						 \\
+	bool   & Valoare booleană, are 2 stări: adevărat și fals. 				  \\ \hline
+	int    & Număr întreg, domeniu de valori [-2.147.483.648, 2.147.483.647]. \\ \hline
+	double & Număr decimal, conține numere din mulțimea $R$. 				  \\
 }
 
-icL также присутствуют и \textbf{сложные типы} переменных, такие как строки, списки, множества, объекты, которые мы посмотрим в полеживающих главах. В этой главе изучаем только основные типы.
+În icL sunt prezente și \textbf{tipuri complexe}, de exemplu șiruri de caractere, liste, mulțimi, obiecte; care o sa fie descrise în capitolele următoare. În acest capitol se vorbește doar de tipurile de bază.
 
-\subsection{Объявления и инициализация переменных}
+\subsection{Definirea și inițializarea variabilelor}
 
-\textbf{Объявления и инициализация} переменных, также операция \textit{присваивание} в icL неотличимы, и имеют общий вид \lstinline`a = b`, где \lstinline`a` новая или существующая переменная, а \lstinline`b` - значение. В тех случаев когда переменная \textbf{встречается первый раз}, мы её объявляем и инициализируем. В противном случае мы присваиваем ей значение.
+\textbf{Definirea și inițializarea} variabilelor, operația \textit{de atribuire} în icL nu se deosebesc, și au aceeași sintaxă \lstinline`a = b`, unde \lstinline`a` e o variabilă nouă sau existentă, dar \lstinline`b` e o valoare. În cazul în care variabila \textbf{se întîlnește prima oară}, ea se definește și se inițializează. În caz contrar valoarea se atribuie.
 
-На листинге \ref{initexample} показаны несколько пример объявлений и инициализации переменных, обратите внимание что дробные числа пишется через точку, а не через запятую как принято в Европе и Российском Федераций.
+Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și inițializare. Atrageți atenția la aceea că numerele reale se scriu prin punct (.), nu prin virgulă (,), așa cum este primit în Europa și Republica Moldova.
 
-\begin{lstlisting}[caption=Пример объявлений и инициализации переменных,label=initexample]
+\begin{lstlisting}[caption=Exemplu de declarare și inițializare al variabilelor,label=initexample]
 @bool = false;
 @catched = true;
 @int = 234;
@@ -30,14 +30,14 @@ icL также присутствуют и \textbf{сложные типы} пе
 #negative = -100.0;
 \end{lstlisting}
 
-\subsection{Локальные переменные}
+\subsection{Variabilele locale}
 
-\textbf{Локальные переменные} имею узкую область видимость, ограниченные фигурными скобками которые их охватывает, и только после их объявлений.
+\textbf{Variabilele locale} au un domeniu îngust de vizibilitate, limitat de acoladele care le înconjoară și numai după declarare.
 
-{\bf Идентификаторы} локальных переменных начинается с символом \lstinline`@`.
+{\bf Identificatorii} variabilelor locale se încep cu simbolul \lstinline|@|.
 
-На листинге \ref{localvars} показана область видимость переменной \lstinline`@var`, в точках объявления переменных \lstinline`@test1`, \lstinline`@test2` и \lstinline`@test6` - она не видна, когда в точках объявления переменных \lstinline`@test3`, \lstinline`@test4` и \lstinline`@test5` - да.
-\begin{lstlisting}[caption=Область видимости локальных перемен, label=localvars]
+Pe foaia \ref{localvars} se demonstrează domeniul de vizibilitate al variabilei \lstinline|@var|, în punctele de declarare al variabilelor \lstinline|@test1|, \lstinline|@test2| și \lstinline|@test6| ea nu este vizibilă, dar în punctele de declarare ale variabilelor \lstinline|@test3|, \lstinline|@test4| și \lstinline|@test5| - da.
+\begin{lstlisting}[caption=Domeniul de vizibilitate al variabilei locale, label=localvars]
 `` error
 @test1 = @var;
 if (@) {
@@ -58,17 +58,19 @@ if (@) {
 @test6 = @var;
 \end{lstlisting}
 
-\subsection{Глобальные переменные}
+\subsection{Variabilele globale}
 
-\textbf{Глобальные переменные} имеют самую широкую область видимости, их видны из любой точке программы после их инициализации. Использовать глобальные переменные не рекомендуется, так как они могут привести к серьезных ошибок.
+\textbf{Variabilele globale} au cel mai larg domeniu de vizibilitate, ele sunt vizibile în orice punct al programei după declarare. Nu se recomandă a folosi variabile globale, pentru că ele pot să provoace erori serioase.
 
-{\bf Идентификаторы} глобальных переменных начинается с символом {\color{blue2}\lstinline`#`}. Локальные переменные с одинаковым названием могут быть несколько, когда глобальные - нет. Идентификатор глобальной переменной - уникальный.
+{\bf Identificatorii} variabilelor globale se încep cu caracterul {\color{blue2}\lstinline|#|}. Mai multe variabile locale pot avea același nume, dar variabilele globale au nume unic, care nu poate fi repetat.
 
-Как указано на листинге \ref{globalvars}, в точках объявления переменных \lstinline`@test1`, \lstinline`@test2` и \lstinline`@test3` переменная \lstinline`@var` не видна, когда в точках объявления переменных \lstinline`@test4`, \lstinline`@test5` и \lstinline`@test6` - да.
+Pe foaia \ref{globalvars}, este demonstrat domeniul de vizibilitate al variabilei \lstinline|@var|, ea nu este vizibilă în punctele de declarare ale variabilelor \lstinline|@test1|, \lstinline|@test2| și \lstinline|@test3|, dar este vizibilă în punctele de declarare ale variabilelor \lstinline|@test4|, \lstinline|@test5| și \lstinline|@test6|.
 
 \
 
-\begin{lstlisting}[caption=Область видимости глобальных перемен, label=globalvars]
+\
+
+\begin{lstlisting}[caption=Domeniu de vizibilitate al variabilei globale, label=globalvars]
 `` error
 @test1 = @var;
 if (@) {
@@ -89,26 +91,26 @@ if (@) {
 @test6 = @var;
 \end{lstlisting}
 
-\subsection{Левые и правые значения в icL}
+\subsection{Valori de stînga și dreapta în icL}
 
-В icL присутствуют 3 типа значении:
+În icL sunt 3 tipuri de valori:
 
 \begin{icEnum}
 \item
-	левые значения ({\it lvalue}) - переменные;
+	valori de stînga ({\it lvalue}) - variabile;
 \item
-	правые значения ({\it rvalue}) - переменные и константы;
+	valori de dreapta ({\it rvalue}) - variabile și constante;
 \item
-	javascript значения ({\it jsvalue}) - их будем рассматривать позже.
+	valori javascript ({\it jsvalue}) - vor fi descrise mai tîrziu.
 \end{icEnum}
 
-Левые значения могут находиться с обеих сторон знака {\it присваивание}, когда правые - только справа. Примеры правильно и неправильно кода иллюстрированы на листинге \ref{rlvalues};
+Valorile de stînga se pot afla în ambele părți ale operație {\it de atribuire}, dar valorile de dreapta - numai în partea dreaptă. Exemple de folosire corectă și incorectă sunt demonstrate pe foaia \ref{rlvalues};
 
-\begin{lstlisting}[caption=Левые и правые значения, label=rlvalues]
+\begin{lstlisting}[caption=Valori de stînga și dreapta, label=rlvalues]
 @a1 = @a2; @a3 = 123; `` ok
 123 = @a1; 125 = 456; `` error
 \end{lstlisting}
 
-\subsection{Выводы}
+\subsection{Concluzii}
 
-{\bf Работа с переменными в icL} - максимально проста, но продвинутых пользователях без знания в программировании рекомендуется не использовать глобальные переменные. Для написания сценариев средней и низкой сложности, локальные переменные лучше подходят.
+{\bf Operarea cu variabile în icL} este foarte simplă, dar utilizatorilor avansați fără cunoștințe în programare nu se recomandă de folosit variabile globale. Pentru descrierea scenariilor de complexitate medie și joasă pot fi folosite doar variabile locale.
