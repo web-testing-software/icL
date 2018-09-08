@@ -1,68 +1,68 @@
-\section{Базовый синтаксис}
+% !TeX spellcheck = ro_RO
+\section{Sintaxă de bază}
 
-icL достаточно прост в освоении, вставите код с листинга \ref{first} в icL и выполняете его. Первую программу можно уже сохранить в файле с расширением icl.
+icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icl}.
 
-\begin{lstlisting}[caption=Первая программа, label=first]
+\begin{lstlisting}[caption=Prima programă, label=first]
 _log.info "Test!";
 \end{lstlisting}
 
-В консоль можем увидеть следующий \textbf{вывод программы}:
+În consolă ar trebui să apară următorul \textbf{text}:
 
 \begin{lstlisting}[numbers=none]
 Test!
 \end{lstlisting}
 
-\subsection{Импорт в icL}
+\subsection{Import în icL}
 
-Все \textbf{стандартные библиотеки} встроены в языке, но можно написать импортировать \textbf{пользовательские}, с помощью:
-
-\begin{icItems}
-\item
-	\lstinline|_import.none "path/to/file.iclib"| - выполнить код, который содержатся в файле, ничего не импортировать.
-\item
-	\lstinline|_import.functions "path/to/file.iclib"| - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
-\item
-	\lstinline|_import.all "path/to/file.iclib"| -  выполнить код, импортировать функций и глобальные переменные;
-\item
-	\lstinline|_import.run "path/to/file.iclib"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
-\end{icItems}
-
-\subsection{Токены в icL}
-
-Программа на icL состоит из различных \textbf{токенов} (литералов, семантических конструкциях), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline`_log.info "Hello world!";`
-
-Отдельными токенами являются:
+Toate \textbf{bibliotecile standarde} sunt include in limbaj, dar se poate de inclus biblioteci \textbf{personalizate} folosind:
 
 \begin{icItems}
 \item
-	\lstinline`_log` - идентификатор объекта;
+	\lstinline|_import.none "path/to/file.iclib"| - execută codul care se află în fișier, nu importă nimic;
 \item
-	\lstinline`.info` - идентификатор метода;
+	\lstinline|_import.functions "path/to/file.iclib"| - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
 \item
-	\lstinline`"Hello world!"` - строковый литерал;
+	\lstinline|_import.all "path/to/file.iclib"| -  execută codul, importa funcțiile și variabilele globale;
 \item
-	\lstinline`;` - разделитель, конец команды.
+	\lstinline|_import.run "path/to/file.iclib"| - execută codul în contextul curent, toate funcțiile si variabilele globale se importă și exportă.
 \end{icItems}
 
-\subsection{Комментарии}
+\subsection{Semne în icL}
 
-\textbf{Комментарии} - это вспомогательный текст, который помогает понимать написанных сценариях, они полностью игнорируется командного процессора.
+Programa în icL conține diferite \textbf{semne} (literale, construcții semantice). Semnul poate fi cuvînt cheie, identificator, constantă ori caracter. De exemple comanda următoare conține 4 semne: \lstinline|_log.info "Hello world!";|.
 
-\textbf{Комментарии в линии} (\textit{inline}) являются строковым литералом ограниченным специальными кавычками \texttt{`}, как показано на листинге \ref{inlinecomment}.
+Semnele prezente:
+\begin{icItems}
+\item
+	\lstinline`_log` - identificator de obiect;
+\item
+	\lstinline`.info` - identificator de metodă;
+\item
+	\lstinline`"Hello world!"` - literal, sir de caracter;
+\item
+	\lstinline`;` - delimitator, sfîrșit de comandă.
+\end{icItems}
 
-\begin{lstlisting}[caption=Комментарий в линии,label=inlinecomment]
+\subsection{Comentarii}
+
+\textbf{Comentariu} este un text adjunct, care ajută să înțelegi scenariile descrise. Comentariile sunt ignorate de procesorul de comande.
+
+\textbf{Comentariu în linie} (\textit{inline}) este un fragment de text limitat cu caractere speciale \texttt{`}, cum este arătat pe foaia \ref{inlinecomment}.
+
+\begin{lstlisting}[caption=Comentariu în linie,label=inlinecomment]
 No comment `comment` no comment
 \end{lstlisting}
 
-\textbf{Одиночный комментарий} записывается с использованием символов \texttt{``} в начале, смотрите листинг \ref{linecomment}.
+\textbf{Comentariu al liniei} este desemnat de începutul \texttt{``}, cum este prezentat pe foaia \ref{linecomment}.
 
-\begin{lstlisting}[caption=Одиночный комментарий,label=linecomment]
+\begin{lstlisting}[caption=Comentariu al liniei,label=linecomment]
 No comment `` comment
 \end{lstlisting}
 
-\textbf{Многострочный комментарий} начинается и заканчивается с \texttt{```}, пример многострочного комментария приведён на листинге \ref{multilinecomment}.
+\textbf{Comentariu în cîteva linii} se începe și se termină cu \texttt{```}, exemplu de acest comentariu este prezent pe foaia \ref{multilinecomment}.
 
-\begin{lstlisting}[caption=Многострочный комментарий,label=multilinecomment]
+\begin{lstlisting}[caption=Comentariu în cîteva linii,label=multilinecomment]
 No comment
 ``` comment 1
 	comment 2
@@ -70,38 +70,37 @@ No comment
 ``` No comment
 \end{lstlisting}
 
-\subsection{Идентификторы}
+\subsection{Identificatori}
 
-\textbf{Идентификатор} в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\lstinline`@`, \lstinline`#`, \lstinline`!`, \lstinline`_`, \lstinline`.` или \lstinline`'`), за которым следует от 1 до 32 букв(английского или национального алфавита) и цифр (от 0 до 9).
+\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\lstinline`@`, \lstinline`#`, \lstinline`!`, \lstinline`_`, \lstinline`.` или \lstinline`'`), după care merg de la 1 la 32 de caracter: litere latine, diacritice și cifre.
 
-icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
+icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
 
 \begin{lstlisting}[numbers=none]
 #loop		_tab		.Append		'Length	_dom	@i	 	@VAR
 @variable	!sumPoints	#global		.Merge	.Get	#01		!SIN
 \end{lstlisting}
 
-\subsection{Ключевые слова}
+\subsection{Cuvinte cheie}
 
-В icL \textbf{ключевые слова} не зарезервированные. Их всего 15: \lstinline`if`, \lstinline|else| \lstinline`for`, \lstinline`filter`, \lstinline`range`, \lstinline`exists`, \lstinline`while`, \lstinline`do`, \lstinline`any`, \lstinline`emit`, \lstinline`emiter`, \lstinline`slot`, \lstinline|jammer|, \lstinline|reverse| и \lstinline|assert|. В данном документе они выделены синим цветом.
+În icL \textbf{cuvintele cheie} nu sunt rezervate. Ele sunt doar 15: \lstinline`if`, \lstinline|else| \lstinline`for`, \lstinline`filter`, \lstinline`range`, \lstinline`exists`, \lstinline`while`, \lstinline`do`, \lstinline`any`, \lstinline`emit`, \lstinline`emiter`, \lstinline`slot`, \lstinline|jammer|, \lstinline|reverse| и \lstinline|assert|. În acest document ele sunt accentuate folosind culoarea albastră.
 
-\subsection{Пробельные символы и разделители}
+\subsection{Spații si delimitatori}
 
-\textbf{Пробельный символ} (\textit{whitespace}) - этот термин используется в icL для описания пробелов, символов табуляции, символов новой строкой и комментариев. Пробельные символы не обязательные, они используются для улучшения читабельности кода. На листинге \ref{unreadable} показан пример кода без пробельных символов, а на листинге \ref{readable} с пробельными символами.
+\textbf{Spațiu} (\textit{whitespace}) - este un termen, folosit în icL, pentru a însemna caracterul "spațiu", caracterul de tabulare, caracterul "rînd nou" și comentariu. Spațiile nu sunt obligatorii, ele sunt folosite pentru a face codul mai citabil. Pe foia \ref{unreadable} este prezent un exemplu de cod fără spații, dar pe foia \ref{readable} cu spații.
 
-\begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
+\begin{lstlisting}[caption=Cod fără spații,label=unreadable]
 if(_tab.get"mai.ru"){(_dom.query"button").click;}else{_log.error"The site mai.ru is unaviable";};
 \end{lstlisting}
 
-В icL присутствует только один разделитель - \textbf{разделитель команд} \lstinline`;`. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline`_tab.get "URL"`, закрыть вкладку - \lstinline`_tab.close`.
+În icL este prezent doar un singur delimitator - \textbf{delimitatorul de comenzi} \lstinline`;`. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \lstinline`_tab.get "URL"`, închide tabul - \lstinline`_tab.close`.
 
-При описании последовательности действий, их надо разделить, например последовательность вышеперечисленных команд описывается так:
-
+În descrierea succesiunii de acțiuni, acțiunile trebuie despărțite. De exemplu succesiunea din comenzile precedente se descrie în felul următor -
 \begin{lstlisting}[numbers=none]
 _tab.get "URL"; _tab.close
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
+\begin{lstlisting}[caption=Cod cu spații,label=readable]
 `` the begin of program
 
 `` try to go to mai.ru
@@ -119,45 +118,37 @@ else {
 `` end of the program
 \end{lstlisting}
 
-Таким образом из команд собираем сценарии. Перед закрывающих скобок ставить разделитель команд опционально.
+În acest fel se descriu scenariile. Înainte de acolada închisă delimitatorul de comenzi poate lipsi.
 
-\subsubsection{Дополнительные сведение}
+\subsubsection{Informație adițională}
 
-Если у вас нет знании в программировании перейдите, пожалуйста, на третью главу.
+Dacă nu aveți cunoștințe în programare, vă rog să săriți imediat la următorul capitol.
 
-icL отсутствуют разделители между значениями в списке. Примеры:
+În icL lipsesc delimitatorii dintre valori în listă. Exemple:
 
 \begin{icItems}
-	\item Инициализация списка в С++:
+	\item Inițializarea listei în С++:
 \begin{lstlisting}[numbers=none, language=C++]
 std::list<std::string> list = {"one", "two", "three"};
 \end{lstlisting}
-	Инициализация списка в icL:
+	Inițializarea listei în icL:
 \begin{lstlisting}[numbers=none]
 @list = ["one" "two" "three"];
 \end{lstlisting}
-	\item Функция в С++:
+	\item Funcție în С++:
 \begin{lstlisting}[numbers=none, language=C++]
 int sum (int number1, int number2) { return number1 + number2; };
 \end{lstlisting}
-	Функция в icL:
+	Funcție în icL:
 \begin{lstlisting}[numbers=none]
 !sum = <int>number1 <int>number2 : int { @ = number1 + number2 };
 \end{lstlisting}
-	\item Вызов функций в С++:
+	\item Apelul funcției în С++:
 \begin{lstlisting}[numbers=none, language=C++]
 int s = sum (100, 200);
 \end{lstlisting}
-	Вызов функций в icL:
+	Apelul funcției în icL:
 \begin{lstlisting}[numbers=none]
 @sum = !sum 100 200;
 \end{lstlisting}
-%	\item Код на С++:
-%\begin{lstlisting}[numbers=none, language=C++]
-%sum (100 + 50, 200);
-%\end{lstlisting}
-%	Эквивалент на icL:
-%\begin{lstlisting}[numbers=none]
-%!sum (100 + 50) 200;
-%\end{lstlisting}
 \end{icItems}
