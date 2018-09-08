@@ -1,6 +1,7 @@
-\section{Операторы}
+% !TeX spellcheck = ro_RO
+\section{Operatori}
 
-{\bf Оператор} - это токен, который предписывает выполнение определённой манипуляции данных. Встроенных операторов в icL очень много, по этому будет их разбирать по типу данных, в следующем порядке:
+{\bf Operatorul} este un semn, care desemnează o anumită manipulare de date. Operatori predefiniți în icL sunt foarte mulți, din cauza aceasta ei vor fi repartizați pe tipuri de date în ordinea următoare:
 
 \begin{icEnum}
 	\item \bool{};
@@ -13,45 +14,45 @@
 	\item \void{}.
 \end{icEnum}
 
-Операторы имеют ранг, операторы имеющие наивысший ранг выполняются первыми, а имеющие наименьший ранг - последними. Операторы имеющие правая ассоциативность выполняются раньше чем операторы имеющие левое ассоциативность, они отмечены плюсом справа от ранга, например 7$^+$.
+Fiecare operator are rang, operatorii care au cel mai mare rang se execut primii, dar cei cu cel mai mic - ultimii. Operatori care au asociativitate dreaptă se execută înainte de operatorii cu asociativitate stîngă. Ei sunt însemnați cu un plus în partea dreaptă, de exemplu 7$^+$.
 
-{\bf Оператор пристраивания} имеет ранг 0 и правая ассоциативность;
+{\bf Operatorul de atribuire} are rang 0 și asociativitate dreaptă.
 
 \subsection{\color{lightblue}bool}
 
-Если у вас отсутствуют знания по алгебры логике, пожалуйста прочтите любую книгу по основы данной науке.
+Dacă nu aveți cunoștințe în algebră booleană, vă rugăm să citați o carte pe această temă.
 
-Для типа данных \bool{}, доступны:
+Pentru tipul de date \bool{}, sunt disponibile:
 
 \begin{icItems}
 	\item
-		операции алгебры логике (имеющие ранг 2):
+		operatori de algebră booleană (care dețin rangul 2):
 	\begin{icItems}
 		\item
-			конъюнкция - \lstinline`bool & bool : bool`;
+			conjuncție - \lstinline|bool & bool : bool|;
 		\item
-			дизъюнкция - \lstinline`bool | bool : bool`;
+			disjuncție - \lstinline`bool | bool : bool`;
 		\item
-			эквивалентность - \lstinline`bool ~ bool : bool`;
+			echivalență logică - \lstinline|bool ~ bool : bool|;
 		\item
-			исключающий или - \lstinline`bool ^ bool : bool`;
+			disjuncție exclusivă - \lstinline|bool ^ bool : bool|;
 		\item
-			инверсия (имеет ранг 7$^+$) - \lstinline`! bool : bool`;
+			negație booleană (care deține rangul 7$^+$) - \lstinline|! bool : bool|;
 	\end{icItems}
 
 	\item
-		операций сравнения (имеющие ранг 3):
+		operatori de comparare (care dețin rangul 3):
 	\begin{icItems}
 		\item
-			равно - \lstinline`bool == bool : bool`;
+			egal - \lstinline|bool == bool : bool|;
 		\item
-			не равно - \lstinline`bool != bool : bool`;
+			inegal - \lstinline|bool != bool : bool|;
 	\end{icItems}
 \end{icItems}
 
-Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{boolopex}.
+Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{boolopex}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа bool, label=boolopex]
+\begin{lstlisting}[caption=Exemple de folosite a operatorilor asupra tipului bool, label=boolopex]
 _log.out "true & false = " (true & false);		`` true \& false = false
 _log.out "false | true =  " (false | true);		`` false | true = true
 _log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
@@ -64,12 +65,12 @@ _log.out "true == false = " (true == false);	`` true == false = false
 _log.out "false != true = " (false != true);	`` false != true = true
 \end{lstlisting}
 
-\subsubsection{\lstinline`<bool>a & <bool>b : bool`}
+\subsubsection{\lstinline|<bool>a & <bool>b : bool|}
 
-Оператор принимает логическую операцию "конъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{conjtable}.
+Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{conjtable}.
 
 \begin{table}[htb]
-	\caption{Таблица истинности конъюнкции}
+	\caption{Tabelul de adevăr al conjuncției}
 	\label{conjtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
@@ -84,10 +85,10 @@ _log.out "false != true = " (false != true);	`` false != true = true
 
 \subsubsection{\lstinline`<bool>a | <bool>b : bool`}
 
-Оператор принимает логическую операцию "дизъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{distable}.
+Operatorul aplică operația "disjuncție logică" asupra variabilelor a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela  \ref{distable}.
 
 \begin{table}[htb]
-	\caption{Таблица истинности дизъюнкции}
+	\caption{Tabelul de adevăr al disjuncției}
 	\label{distable}
 	\begin{tabular}{|c|c|c|}
 		\hline
@@ -100,12 +101,12 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a ~ <bool>b : bool`}
+\subsubsection{\lstinline|<bool>a ~ <bool>b : bool|}
 
-Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logeqtable}.
+Operatorul aplică operația "echivalență logică" asupra variabilelor a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{logeqtable}.
 
 \begin{table}[htb]
-	\caption{Таблица истинности эквивалентности}
+	\caption{Tabelul de adevăr al echivalenței}
 	\label{logeqtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
@@ -118,12 +119,12 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a ^ <bool>b : bool`}
+\subsubsection{\lstinline|<bool>a ^ <bool>b : bool|}
 
-Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logdifftable}.
+Operatorul aplică operația "disjuncție exclusivă" asupra variabilelor a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{logdifftable}.
 
 \begin{table}[htb]
-	\caption{Таблица истинности исключающего или}
+	\caption{Tabelul de adevăr al disjuncției exclusive}
 	\label{logdifftable}
 	\begin{tabular}{|c|c|c|}
 		\hline
@@ -136,12 +137,12 @@ _log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`! <bool>a : bool`}
+\subsubsection{\lstinline|! <bool>a : bool|}
 
-Оператор принимает логическую операцию "инверсия" над переменной a. Зависимость результата от исходных данных иллюстрирована в таблице \ref{invtable}.
+Operatorul aplică operația "negație logică" asupra variabilei a. Dependența rezultatului de datele de intrare este demonstrată în tabela  \ref{invtable}.
 
 \begin{table}[htb]
-	\caption{Таблица истинности инверсии}
+	\caption{Tabelul de adevăr al negației logice}
 	\label{invtable}
 	\begin{tabular}{|c|c|}
 		\hline
@@ -232,7 +233,7 @@ _log.out "false != true = " (false != true);	`` false != true = true
 
 Возвращает \true{} если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false{}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа int и double, label=numberopex]
+\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului int и double, label=numberopex]
 `` 3rd rank
 _log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
 _log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
@@ -453,7 +454,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает \false{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа string и list, label=stringlistopex]
+\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului string и list, label=stringlistopex]
 "String1" == "String2";					`` false
 ["a" "b"] == ["a" "b"];					`` true
 ["a" "b"] == ["b" "a"];					`` true
@@ -570,7 +571,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает \true{} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false{}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа object и set, label=setobjopex]
+\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului object и set, label=setobjopex]
 `` init
 @set1 = [<int>age <string>name];
 @set2 = [<int>age <string>name];
