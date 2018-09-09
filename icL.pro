@@ -14,16 +14,32 @@ SUBDIRS = \
         app \
         context \
         driver \
-        dsv
+        dsv \
+        ce \
+        cp \
+        edit \
+        il \
+        share \
+        sv \
+        wd \
+        worker
 
 memory.subdir   = src/icl-memory
-logic.subdir    = src/icl-logic
-context.subdir  = src/icl-context
+logic.subdir    = src/old-logic
+context.subdir  = src/old-context
 vm.subdir       = src/icl-vm
-driver.subdir   = src/icl-driver
-inter.subdir    = src/icl-inter
-app.subdir      = src/icl-app
-dsv.subdir      = src/icl-dsv
+driver.subdir   = src/old-driver
+inter.subdir    = src/old-inter
+app.subdir      = src/old-app
+dsv.subdir      = src/old-dsv
+ce.subdir       = src/icl-ce
+cp.subdir       = src/icl-cp
+edit.subdir     = src/icl-edit
+il.subdir       = src/icl-il
+share.subdir    = src/icl-share
+sv.subdir       = src/icl-sv
+wd.subdir       = src/icl-wd
+worker.subdir   = src/icl-worker
 
 logic.depends   = memory
 context.depends = memory logic
@@ -53,4 +69,5 @@ DISTFILES += \
     README.md \
     graduation/README.md \
     graduation/bachelor/README.md \
-    standart/README.md
+    standart/README.md \
+    CONTRIBUTING.md

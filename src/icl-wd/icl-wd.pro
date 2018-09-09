@@ -1,0 +1,5 @@
+
+
+DISTFILES += \
+    README.md
+
