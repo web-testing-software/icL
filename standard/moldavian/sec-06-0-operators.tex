@@ -572,6 +572,14 @@ Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \r
 
 Returnează \true{} dacă \code{obj1} și \code{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \code{obj1} sunt egale cu valori cîmpurilor obiectului \code{obj2}, în caz contrar \false{}.
 
+\subsubsection{\lstinline|<set>set1 == <set>set2 : bool|}
+
+Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate obiectele din mulțimea \code{set1} sunt prezente în mulțimea \code{set2} și invers, în caz contrar \false{}.
+
+\
+
+\
+
 \begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului object și set, label=setobjopex]
 `` init
 @set1 = [<int>age <string>name];
@@ -609,10 +617,6 @@ Returnează \true{} dacă \code{obj1} și \code{obj2} conțin aceleași cîmpuri
 
 @set1 ** @set2;				`` true
 \end{lstlisting}
-
-\subsubsection{\lstinline|<set>set1 == <set>set2 : bool|}
-
-Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate obiectele din mulțimea \code{set1} sunt prezente în mulțimea \code{set2} și invers, în caz contrar \false{}.
 
 \subsubsection{\lstinline|<object>obj1 != <object>obj2 : bool|}
 
@@ -660,29 +664,33 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 
 \subsection{\color{lightblue}void}
 
-Все \void{} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \void{} și не \void{}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
+Toți operatorii \void{} sunt de rangul 2. Acești operatori împart datele în 2 tipuri \void{} și nu \void{}. Al doilea tip mai departe va fi numit \code{any}, el poate înlocui unul din tipurile următoare: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
 
-Список \void{} операторов:
+Lista operatorilor \void{}:
 
 \begin{icItems}
 \item
-	альтернативный выбор \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` și \lstinline`any | any : any`;
+	alegere alternativă \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` și \lstinline`any | any : any`;
 \item
-	первичный выбор \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| și \lstinline|any & any : any|;
+	alegere primară \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| și \lstinline|any & any : any|;
 \item
-	вторичный выбор \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| și \lstinline|any ~ any : any|;
+	alegere secundară \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| și \lstinline|any ~ any : any|;
 \item
-	исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| și \lstinline|any ^ any : void|;
+	alegere exclusivă \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| și \lstinline|any ^ any : void|;
 \item
-	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
+	alegere selecționistă \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Încă un operator va fi descris în capitolul \ref{webelments}.
 \end{icItems}
 
 \subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
 
-Возвращаемый результат оператором альтернативного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{orhacktable}.
+Dependența alegerii alternative de datele de intrare este demonstrată în tabela \ref{orhacktable}.
+
+\subsubsection{\lstinline|<void or any> \& <void or any> : void or any|}
+
+Dependența alegerii primare de datele de intrare este demonstrată în tabela \ref{andhacktable}.
 
 \begin{table}[htb]
-	\caption{Оператор альтернативный выбор}
+	\caption{Operatorul "alegerea alternativă"}
 	\label{orhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -692,15 +700,11 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 		\code{any}  & \void{}     & \code{arg1}  		\\ \hline
 		\code{any}  & \code{any}  & \code{arg1}  		\\ \hline
 	\end{tabular}
-	\vspace{-2em}
+	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> \& <void or any> : void or any`}
-
-Возвращаемый результат оператором первичного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{andhacktable}.
-
 \begin{table}[htb]
-	\caption{Оператор первичный выбор}
+	\caption{Operatorul "alegerea primară"}
 	\label{andhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -710,15 +714,15 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 		\code{any}  & \void{}     & \void{}   			\\ \hline
 		\code{any}  & \code{any}  & \code{arg1}   		\\ \hline
 	\end{tabular}
-	\vspace{-2em}
+	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> ~ <void or any> : void or any`}
+\subsubsection{\lstinline|<void or any> ~ <void or any> : void or any|}
 
-Возвращаемый результат оператором вторичного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{eqhacktable}.
+Dependența alegerii secundare de datele de intrare este demonstrată în tabela \ref{eqhacktable}.
 
 \begin{table}[htb]
-	\caption{Оператор вторичный выбор}
+	\caption{Operatorul "alegerea secundară"}
 	\label{eqhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -728,15 +732,15 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 		\code{any}  & \void{}     & \void{}   			\\ \hline
 		\code{any}  & \code{any}  & \code{arg2}   		\\ \hline
 	\end{tabular}
-	\vspace{0em}
+	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> ^ <void or any> : void or any`}
+\subsubsection{\lstinline|<void or any> ^ <void or any> : void or any|}
 
-Возвращаемый результат оператором исключающего выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{xorhacktable}.
+Dependența alegerii exclusive de datele de intrare este demonstrată în tabela \ref{xorhacktable}.
 
 \begin{table}[htb]
-	\caption{Оператор исключающий выбор}
+	\caption{Operatorul "alegerea exclusivă"}
 	\label{xorhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -749,15 +753,12 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> \% <void or any> : void or any`}
+\subsubsection{\lstinline|<void or any> \% <void or any> : void or any|}
 
-	Возвращаемый результат оператором исключающего выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{centhacktable}.
-%\stablethree{1.5cm}{1.5cm}{5cm}
-%{centhacktable}{Оператор коллекционный выбор}
-%{\code{arg1}}{\code{arg2}}{\code{a \^ b}}
-%{
+	Dependența alegerii selective de datele de intrare este demonstrată în tabela \ref{centhacktable}.
+	
 \begin{table}[htb]
-	\caption{Оператор коллекционный выбор}
+	\caption{Operatorul "alegerea selectivă"}
 	\label{centhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -776,34 +777,30 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 	\end{tabular}
 	\vspace{0em}
 \end{table}
-%}
 
-Для аргументов типов \integer{} și \double{}, вызывается функция \code{_numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{_numbers.setProcess} с одни из следующих аргументов: \code{_numbers'sum} - сумма, \code{_numbers'product} - произведение, \code{_numbers'max} - максимум, \code{_numbers'min} - минимум. После использования оператора, вызываете \code{_numbers .restoreProcess} чтобы восстановить исходные настройки.
+Pentru argumentele \integer{} și \double{}, se apelează funcția \code{_numbers.process}, înainte de folosire indicați care funcție doriți să folosiți, folosind funcția \code{_numbers.setProcess} cu una din următoarele argumente: \code{_numbers'sum} - suma, \code{_numbers'product} - produs, \code{_numbers'max} - maximum, \code{_numbers'min} - minimum. După folosirea operatorului, apelați \code{_numbers .restoreProcess} ca să restaurați setările.
 
-\subsection{Дополнительные операторы}
+\subsection{Operatori suplimentari}
 
-\subsubsection{\lstinline`[string...]`, \lstinline`[arg...]`, \lstinline`[param...]`, \lstinline`[<>]` și \lstinline`[]`}
+{\bf Parantezele pătrate} sau {\bf operatorul de grupare a datelor} permite a crea obiecte de tipurile următoare \listtype{}, \set{} și \object{}.
 
-{\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \listtype{}, \set{} și \object{}.
+\code{[] : list} creează o lită goală.
 
-\code{[] : list} создаёт пустой список.
+\code{[string ...] : list} creează o listă din șiruri de caractere variabile și constante, de asemenea se permite apeluri la funcții care returnează șiruri de caractere.
 
-\code{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так și вызовы на функций возвращающие строки. Пример: \code{["a" "b" "c"]}.
+\code{[list ...] : list} unește mai multe liste în una.
 
-\code{[list ...] : list} объединяет несколько списков в один.
+\code{[string or list ...] : list} unește șirurile de caractere și listele într-o listă.
 
-\code{[string or list ...] : list} - строки și списки можно смешать.
+\code{[<>] : object} creează un obiect nul.
 
-\code{[<>] : object} создаёт пустой объект.
+\code{[arg ...] : object} creează un obiect cu cîmpuri (fiecare cîmp se descrie ca argument), argumentele se descriu prin următoarea sintaxă \code{<value>name}, unde \code{value} este o valoare, \code{name} - numele argumentului. Exemplu \code{[<2>number <"str">str]}.
 
-\code{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \code{<value>name}, где \code{value} - значение, \code{name} - название аргумента. Пример \code{[<2>number <"str">str]}.
+\code{[param ...] : set} creează o mulțime cu header-ul dorit, fiecare coloană se descrie ca un parametru, parametrul se descrie prin următoarea sintaxă \code{<type>name}, unde \code{type} este un tip de date, \code{name} - numele parametrului. Nu se poate de creat mulțime fără header. Exemplu \code{[<int>number <string>str]}.
 
-\code{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \code{<type>name}, где \code{type} - тип значения, \code{name} - название параметра. Создавать множество с пустым заголовком - запрещено. Пример \code{[<int>number <string>str]}.
+\code{[object ...] : set} creează o mulțime din mai multe obiecte.
 
-\code{[object ...] : set} создаёт множество из несколько объектов.
+\code{[set ...] : set} unește mai multe mulțimi în una.
 
-\code{[set ...] : set} объединяет несколько множеств в одной.
+\code{[object or set ...] : set} unește mulțimi si obiecte într-o mulțime.
 
-\code{[object or set ...] : set} объекты și множества также можно смешать.
-
-%\newpage
