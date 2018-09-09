@@ -52,6 +52,8 @@ Pentru tipul de date \bool{}, sunt disponibile:
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{boolopex}.
 
+\
+
 \begin{lstlisting}[caption=Exemple de folosite a operatorilor asupra tipului bool, label=boolopex]
 _log.out "true & false = " (true & false);		`` true \& false = false
 _log.out "false | true =  " (false | true);		`` false | true = true
@@ -155,85 +157,85 @@ Operatorul aplică operația "negație logică" asupra variabilei a. Dependența
 
 \subsubsection{\lstinline`<bool>a == <bool>b : bool`}
 
-Возвращает \true{} если a равно b, иначе \false{}.
+Returnează \true{} dacă a este egal cu b, în caz contrar \false{}.
 
 \subsubsection{\lstinline`<bool>a != <bool>b : bool`}
 
-Возвращает \true{} если a равно b, иначе \false{}.
+Returnează \true{} dacă a ne este egal b, în caz contrar \false{}.
 
-\subsection{{\color{lightblue}int} и {\color{lightblue}double}}
+\subsection{{\color{lightblue}int} și {\color{lightblue}double}}
 
-Для чисел доступны операций:
+Pentru numere sunt disponibili operatori:
 \begin{icItems}
 	\item
-		3-ого ранга:
+		de rangul 3:
 		\begin{icItems}
 			\item
-				равно \lstinline`int == int : bool` и \lstinline`double == double : bool`
+				egal \lstinline|int == int : bool| și \lstinline|double == double : bool|;
 			\item
-				не равно \lstinline`int != int : bool` и \lstinline`double != double : bool`
+				inegal \lstinline|int != int : bool| și \lstinline|double != double : bool|;
 			\item
-				больше \lstinline`int >> int : bool` и \lstinline`double >> double : bool`
+				mai mare \lstinline|int >> int : bool| și \lstinline|double >> double : bool|;
 			\item
-				больше или равно \lstinline`int >= int : bool` и \lstinline`double >= double : bool`
+				mai mare sau egal \lstinline|int >= int : bool| și \lstinline|double >= double : bool|;
 			\item
-				меньше \lstinline`int << int : bool` и \lstinline`double << double : bool`
+				mai mic \lstinline|int << int : bool| și \lstinline|double << double : bool|;
 			\item
-				меньше или равно \lstinline`int <= int : bool` и \lstinline`double <= double : bool`
+				mai mic sau egal \lstinline|int <= int : bool| și \lstinline|double <= double : bool|.
 		\end{icItems}
 	\item
-		4-ого ранга:
+		de rangul 4:
 		\begin{icItems}
 			\item
-				сложение \lstinline`int + int : int` и \lstinline`double + double : double`;
+				adunare \lstinline|int + int : int| și \lstinline|double + double : double|;
 			\item
-				вычитание \lstinline`int -    int : int` и \lstinline`double -    double : double`.
+				scădere \lstinline|int -    int : int| și \lstinline|double -    double : double|.
 		\end{icItems}
 	\item
-		5-ого ранга:
+		de rangul 5:
 		\begin{icItems}
 			\item
-				умножение \lstinline`int * int : int` и \lstinline`double * double : double`;
+				înmulțire \lstinline|int * int : int| și \lstinline|double * double : double|;
 			\item
-				деление \lstinline`int / int : int` и \lstinline`double / double : double`;
+				împărțire \lstinline|int / int : int| și \lstinline|double / double : double|;
 			\item
-				остаток от деления целых чисел \lstinline`int \ int : int`.
+				restul împărțirii \lstinline|int \ int : int|.
 		\end{icItems}
 	\item
-		6$^+$-ого ранга:
+		de rangul 6$^+$:
 		\begin{icItems}
 			\item
-				возведения в квадрат \lstinline`int** : int` и \lstinline`double** : double`;
+				ridicare la puterea a doua \lstinline|int** : int| și \lstinline|double** : double|;
 			\item
-				возведения в степень \lstinline`int ** int : int` и \lstinline`double ** double : double`;
+				ridicare la putere \lstinline|int ** int : int| și \lstinline|double ** double : double|;
 			\item
-				извлечения квадратного корня \lstinline`/'int : int` и \lstinline`/'double : double`;
+				radical \lstinline|/'int : int| și \lstinline|/'double : double|;
 			\item
-				извлечения корня \lstinline`int/'int : int`, \lstinline|int/'double : double| и \lstinline`double/'double : double`.
+				extragere rădăcinii \lstinline|int/'int : int|, \lstinline|int/'double : double| și \lstinline|double/'double : double|.
 		\end{icItems}
 	\item
-		7$^+$-ого ранга:
+		de rangul 7$^+$:
 		\begin{icItems}
 			\item
-				инверсия знака \lstinline`-int : int` и \lstinline`-double : double`;
+				negație \lstinline|-int : int| și \lstinline|-double : double|;
 			\item
-				абсолютное значение \lstinline`+int : int` и \lstinline`+double : double`.
+				valoare absolută \lstinline|+int : int| și \lstinline|+double : double|.
 		\end{icItems}
 \end{icItems}
 
-Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{numberopex}.
+Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{numberopex}.
 
-{\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
+{\bf Atenție:} indiferent de faptul că spațiile in icL se ignoră, ele influențează la procesul de interpretare al comenzilor, \code{-23-4} va fi interpretată ca \lstinline`(-23) (-4)` și nu ca \lstinline`(-23) - (4)`. Neînțelegerea între om și calculator poate fi rezolvată adăugînd spații \lstinline`-23  - 4`.
 
-\subsubsection{\lstinline`<int>a == <int>b : bool`}
+\subsubsection{\lstinline|<int>a == <int>b : bool|}
 
-Возвращает \true{} если \code{a} и \code{b} имеют одинаковое значение, иначе \false{}.
+Returnează \true{} dacă \code{a} și \code{b} conțin aceeași valoare, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<double>a == <double>b : bool`}
+\subsubsection{\lstinline|<double>a == <double>b : bool|}
 
-Возвращает \true{} если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false{}.
+Returnează \true{} dacă \code{a} și \code{b} au aproximativ aceeași valoare, în caz contrar \false{}.
 
-\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului int и double, label=numberopex]
+\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului int și double, label=numberopex]
 `` 3rd rank
 _log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
 _log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
@@ -274,187 +276,186 @@ _log.out "+ -100 = "		+ -100;		`` + -100 = 100
 _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
-\subsubsection{\lstinline`<int>a != <int>b : bool`}
+\subsubsection{\lstinline|<int>a != <int>b : bool|}
 
-Возвращает \true{} если \code{a} и \code{b} не имеют одинаковое значение, иначе \false{}.
+Returnează \true{} dacă \code{a} și \code{b} conțin valori diferite, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<double>a != <double>b : bool`}
+\subsubsection{\lstinline|<double>a != <double>b : bool|}
 
-Возвращает \true{} если \code{a} и \code{b} отличаются больше чем на уровень погрешности машины, иначе \false{}.
+Returnează \true{} dacă \code{a} și \code{b} conțin valori diferite, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<int>a >> <int>b : bool`}
+\subsubsection{\lstinline|<int>a >> <int>b : bool|}
 
-Возвращает \true{} если целое число \code{a} больше \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul întreg \code{a} este mai mare decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<double>a >> <double>b : bool`}
+\subsubsection{\lstinline|<double>a >> <double>b : bool|}
 
-Возвращает \true{} если дробное число \code{a} больше \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul decimal \code{a} este mai mare decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<int>a >= <int>b : bool`}
+\subsubsection{\lstinline|<int>a >= <int>b : bool|}
 
-Возвращает \true{} если целое число \code{a} больше или равно \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul întreg \code{a} este mai mare sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<double>a >= <double>b : bool`}
+\subsubsection{\lstinline|<double>a >= <double>b : bool|}
 
-Возвращает \true{} если дробное число \code{a} больше или равно \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul decimal \code{a} este mai mare sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<int>a << <int>b : bool`}
+\subsubsection{\lstinline|<int>a << <int>b : bool|}
 
-Возвращает \true{} если целое число \code{a} меньше \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul întreg \code{a} este mai mic decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<double>a << <double>b : bool`}
+\subsubsection{\lstinline|<double>a << <double>b : bool|}
 
-Возвращает \true{} если дробное число \code{a} меньше \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul decimal \code{a} este mai mic decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<int>a <= <int>b : bool`}
+\subsubsection{\lstinline|<int>a <= <int>b : bool|}
 
-Возвращает \true{} если целое число \code{a} меньше или равно \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul întreg \code{a} este mai mic sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<double>a <= <double>b : bool`}
+\subsubsection{\lstinline|<double>a <= <double>b : bool|}
 
-Возвращает \true{} если дробное число \code{a} меньше или равно \code{b}, иначе \false{}.
+Returnează \true{} dacă numărul decimal \code{a} este mai mic sau egal cu \code{b}, în caz contrar \false{}.
 
+\subsubsection{\lstinline|<int>a + <int>b : int|}
 
-\subsubsection{\lstinline`<int>a + <int>b : int`}
+Returnează suma numerelor întregi \code{a} și \code{b}.
 
-Возвращает сумму целых чисел \code{a} и \code{b}.
+\subsubsection{\lstinline|<double>a + <double>b : double|}
 
-\subsubsection{\lstinline`<double>a + <double>b : double`}
+Returnează suma numerelor decimale \code{a} și \code{b}.
 
-Возвращает сумму дробных чисел \code{a} и \code{b}.
+\subsubsection{\lstinline|<int>a - <int>b : int|}
 
-\subsubsection{\lstinline`<int>a - <int>b : int`}
+Returnează diferența dintre numerele întregi \code{a} și \code{b}.
 
-Возвращает разницу между целыми числами \code{a} и \code{b}.
+\subsubsection{\lstinline|<double>a - <double>b : double|}
 
-\subsubsection{\lstinline`<double>a - <double>b : double`}
+Returnează diferența dintre numerele decimale \code{a} și \code{b}.
 
-Возвращает разницу между дробными числами \code{a} и \code{b}.
+\subsubsection{\lstinline|<int>a * <int>b : int|}
 
-\subsubsection{\lstinline`<int>a * <int>b : int`}
+Returnează produsul numerelor întregi \code{a} și \code{b}.
 
-Возвращает результат умножения целых чисел \code{a} и \code{b}.
+\subsubsection{\lstinline|<double>a * <double>b : double|}
 
-\subsubsection{\lstinline`<double>a * <double>b : double`}
+Returnează produsul numerelor decimale \code{a} și \code{b}.
 
-Возвращает результат умножения дробных чисел \code{a} и \code{b}.
+\subsubsection{\lstinline|<int>a / <int>b : int|}
 
-\subsubsection{\lstinline`<int>a / <int>b : int`}
+Returnează cîtul împărțirii \code{a} la \code{b}, restul se exclude.
 
-Возвращает результат деления целых чисел \code{a} и \code{b}, остаток отбрасывается.
+\subsubsection{\lstinline|<double>a / <double>b : double|}
 
-\subsubsection{\lstinline`<double>a / <double>b : double`}
+Returnează cîtul împărțirii \code{a} la \code{b}.
 
-Возвращает результат деления дробных чисел \code{a} и \code{b}.
+\subsubsection{\lstinline|<int>a \ <int>b : int|}
 
-\subsubsection{\lstinline`<int>a \ <int>b : int`}
+Returnează restul împărțirii \code{a} la \code{b}.
 
-Возвращает результат от деления целых чисел \code{a} и \code{b}.
 
+\subsubsection{\lstinline|<int>a ** : int|}
 
-\subsubsection{\lstinline`<int>a ** : int`}
+Returnează pătratul numărului întreg \code{a} (a$^2$);
 
-Возвращает квадрат целого числа \code{a} (a$^2$);
+\subsubsection{\lstinline|<double>a ** : double|}
 
-\subsubsection{\lstinline`<double>a ** : double`}
+Returnează pătratul numărului decimal \code{a} (a$^2$);
 
-Возвращает квадрат дробного числа \code{a} (a$^2$);
+\subsubsection{\lstinline|<int>a ** <int>b : int|}
 
-\subsubsection{\lstinline`<int>a ** <int>b : int`}
+Returnează \code{a} la puterea \code{b} (a$^b$).
 
-Возвращает результат возведения целого числа \code{a} в степени \code{b} (a$^b$).
+\subsubsection{\lstinline|<double>a ** <double>b : double|}
 
-\subsubsection{\lstinline`<double>a ** <double>b : double`}
+Returnează \code{a} la puterea \code{b} (a$^b$).
 
-Возвращает результат возведения дробного числа \code{a} в степени \code{b} (a$^b$).
+\subsubsection{\lstinline|/' <int>a : int|}
 
-\subsubsection{\lstinline`/' <int>a : int`}
+Returnează rădăcina pătrată numărului întreg \code{a} ($\sqrt{a}$).
 
-Возвращает корень целого числа \code{a} ($\sqrt{a}$).
+\subsubsection{\lstinline|/' <double>a : double|}
 
-\subsubsection{\lstinline`/' <double>a : double`}
+Returnează rădăcina pătrată numărului decimal \code{a} ($\sqrt{a}$).
 
-Возвращает корень дробного числа \code{a} ($\sqrt{a}$).
+\subsubsection{\lstinline|<int>n /' <int>a : int|}
 
-\subsubsection{\lstinline`<int>n /' <int>a : int`}
+Returnează radical de ordinul \code{n} din \code{a} ($\sqrt[n]{a}$).
 
-Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
+\subsubsection{\lstinline|<int>n /' <double>a : double|}
 
-\subsubsection{\lstinline`<int>n /' <double>a : double`}
+Returnează radical de ordinul \code{n} din \code{a} ($\sqrt[n]{a}$).
 
-Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
+\subsubsection{\lstinline|<double>n /' <double>a : double|}
 
-\subsubsection{\lstinline`<double>n /' <double>a : double`}
+Returnează radical de ordinul \code{n} din \code{a} ($\sqrt[n]{a}$).
 
-Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
+\subsubsection{\lstinline|- <int>a : int|}
 
-\subsubsection{\lstinline`- <int>a : int`}
+Returnează \lstinline|0 - a|;
 
-Возвращает \lstinline|0 - a|;
+\subsubsection{\lstinline|- <double>b : double|}
 
-\subsubsection{\lstinline`- <double>b : double`}
+Returnează \lstinline|0.0 - a|;
 
-Возвращает \lstinline|0.0 - a|;
+\subsubsection{\lstinline|+ <int>a : int|}
 
-\subsubsection{\lstinline`+ <int>a : int`}
+Returnează valoare absolută a numărului întreg \code{a}.
 
-Возвращает абсолютное значение целого числа \code{a}.
+\subsubsection{\lstinline|+ <double>a : double|}
 
-\subsubsection{\lstinline`+ <double>a : double`}
+Returnează valoare absolută a numărului decimal \code{a}.
 
-Возвращает абсолютное значение дробного числа \code{a}.
+\subsection{{\color{lightblue}string} și {\color{lightblue}list}}
 
-\subsection{{\color{lightblue}string} и {\color{lightblue}list}}
-
-	Для строк и списков доступны операций:
+Pentru șiruri de caractere și liste sunt disponibili operatori:
 \begin{icItems}
 	\item
-		3-ого ранга:
+		de rangul 3:
 		\begin{icItems}
 		\item
-			равно \lstinline`string == string : bool` и \lstinline`list == list : bool`;
+			egal \lstinline|string == string : bool| și \lstinline|list == list : bool|;
 		\item
-			не равно \lstinline`string != string : bool` и \lstinline`list != list : bool`;
+			inegal \lstinline|string != string : bool| și \lstinline|list != list : bool|;
 		\item
-			содержит \lstinline`list << string : bool` и \lstinline`string << string : bool`;
+			includere \lstinline|list << string : bool| și \lstinline|string << string : bool|;
 		\item
-			содержит строку подходящая по шаблону \lstinline`list <* string : bool`.
+			includere de șablon \lstinline|list <* string : bool|.
 		\end{icItems}
 	\item
-		4-ого ранга:
+		de rangul 4:
 		\begin{icItems}
 		\item
-			конкатенация \lstinline`string + string : string`;
+			concatenare \lstinline|string + string : string|;
 		\item
-			вставка \lstinline`string + list : list`, \lstinline`list + string : list` и \lstinline`list + list : list`.
+			inserare \lstinline|string + list : list|, \lstinline|list + string : list| și \lstinline|list + list : list|.
 		\end{icItems}
 	\item
-		5-ого ранга: шаблонное сравнение \lstinline`string * string : bool`, \lstinline`list * string : bool` и \lstinline`list * list : bool`;
+		de rangul 5: comparare cu șablon \lstinline|string * string : bool|, \lstinline|list * string : bool| și \lstinline|list * list : bool|;
 	\item
-		6$^+$-ого ранга: эквивалентность \lstinline`string ** string : double`.
+		de rangul 6$^+$: echivalență \lstinline|string ** string : double|.
 \end{icItems}
 
-Примеры использование операторов присутствуют на листинге \ref{stringlistopex}.
+Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{stringlistopex}.
 
-Чтобы из несколько строк получить список, оператор вставки рекомендуется не использовать, вместо него использовать литерал:
+Pentru a uni cîteva șiruri de caractere în listă, no se recomandă de folosit concatenarea, dar următorul literal:
 \begin{lstlisting}[numbers=none]
 [@str1 @str2 "Const string" (!func) (37.1 : string) (@bool : string) @list.Join]
 \end{lstlisting}
 
-\subsubsection{\lstinline`<string>s1 == <string>s2 : bool`}
+\subsubsection{\lstinline|<string>s1 == <string>s2 : bool|}
 
-Возвращает \true{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \false{}.
+Returnează \true{} dacă \code{s1} și \code{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<list>l1 == <list>l2 : bool`}
+\subsubsection{\lstinline|<list>l1 == <list>l2 : bool|}
 
-Возвращает \true{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \false{}.
+Returnează \true{} dacă \code{l1} și \code{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), în caz contrar \false{}.
 
 \subsubsection{\lstinline`<string>s1 != <string>s2 : bool`}
 
-Возвращает \false{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
+Returnează \false{} dacă \code{s1} și \code{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, în caz contrar \true{}.
 
-\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului string и list, label=stringlistopex]
+\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului string și list, label=stringlistopex]
 "String1" == "String2";					`` false
 ["a" "b"] == ["a" "b"];					`` true
 ["a" "b"] == ["b" "a"];					`` true
@@ -472,78 +473,78 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 "Tom is a cat" ** "Tom is not a cat";	`` 0.875
 \end{lstlisting}
 
-\subsubsection{\lstinline`<list>l1 != <list>l2 : bool`}
+\subsubsection{\lstinline|<list>l1 != <list>l2 : bool|}
 
-Возвращает \false{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \true{}.
+Returnează \false{} dacă \code{l1} și \code{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), în caz contrar \true{}.
 
-\subsubsection{\lstinline`<list>l << <string>str : bool`}
+\subsubsection{\lstinline|<list>l << <string>str : bool|}
 
-Возвращает \true{}, если список \code{l} содержит строку \code{str}, иначе \false{}.
+Returnează \true{}, dacă lista \code{l} conține șirurl de caractere \code{str}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<string>str << <string>substr : bool`}
+\subsubsection{\lstinline|<string>str << <string>substr : bool|}
 
-Возвращает \true{}, если строка \code{str} содержит подстроку \code{substr}, иначе \false{}.
+Returnează \true{}, dacă șirul de caractere \code{str} conține subșirul \code{substr}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<list>l <* <string>template : bool`}
+\subsubsection{\lstinline|<list>l <* <string>template : bool|}
 
-Возвращает \true{}, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
+Returnează \true{}, dacă lista \code{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
-{\bf Шаблон} - это строка содержащая данные и специальный символ \lstinline`*`, где \lstinline`*` означает любая последовательность символов. Рассмотрим шаблонную строку \lstinline`"Have a * day!"`, примеры строк подходящие по шаблону: \lstinline`"Have a nice day!"`, \lstinline`"Have a amazing day!"`. Пример неподходящей строки \lstinline`"Have a good day"` (отсутствует восклицательный знак).
+{\bf Șablonul} este un și de caractere, el conține date și un caracter special \lstinline`*`, care \lstinline`*` orice succesiune de simboluri. Cercetăm următorul șablon \lstinline|"Have a * day!"|, exemple de șiruri de caracter care se potrivesc: \lstinline|"Have a nice day!"|, \lstinline|"Have a amazing day!"|. Exemplu de șir care nu se potrivește \lstinline|"Have a good day"| (lipsește semnul exclamării).
 
-\subsubsection{\lstinline`<string>s1 + <string>s2 : string`}
+\subsubsection{\lstinline|<string>s1 + <string>s2 : string|}
 
-Возвращает строку содержащую все символы строк \code{s1} и \code{s2}. Полученная строка имеет длину равна суммы длин составляющих.
+Returnează un nou șir de caractere, care conține toate caracterele șirelor de caracter \code{s1} și \code{s2}. Șirul obținut va avea lungimea egală cu suma lungimilor șirurilor componente.
 
-\subsubsection{\lstinline`<string>str + <list>l : list`}
+\subsubsection{\lstinline|<string>str + <list>l : list|}
 
-Возвращает новый список, получен при вставке строке \code{str} в начале списка \code{l}.
+Returnează o listă nouă, primită în rezultatul adăugării șirului \code{str} la începutul listei \code{l}.
 
-\subsubsection{\lstinline`<list>l + <string>str : list`}
+\subsubsection{\lstinline|<list>l + <string>str : list|}
 
-Возвращает новый список, получен при вставке строке \code{str} в конце списка \code{l}.
+Returnează o listă nouă, primită în rezultatul adăugării șirului \code{str} la sfîrșitul listei \code{l}.
 
-\subsubsection{\lstinline`<list>l1 + <list>l2 : list`}
+\subsubsection{\lstinline|<list>l1 + <list>l2 : list|}
 
-Возвращает новый список, содержащий все элементы списков \code{l1} и \code{l2}.
+Returnează o listă nouă, care conține toate șirurile listelor \code{l1} și \code{l2}.
 
-\subsubsection{\lstinline`<string>str * <string>template : bool`}
+\subsubsection{\lstinline|<string>str * <string>template : bool|}
 
-Возвращает \true{}, если строка \code{str} подходит по шаблону \code{template}, иначе \false{}.
+Returnează \true{}, dacă șirul de caractere \code{str} se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<list>l * <string>template : bool`}
+\subsubsection{\lstinline|<list>l * <string>template : bool|}
 
-Возвращает \true{} если все строки списка \code{l} подходят по шаблону \code{template}, иначе \false{}.
+Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șablonul \code{template}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<list>l * <list>templates : bool`}
+\subsubsection{\lstinline|<list>l * <list>templates : bool|}
 
-Возвращает \true{} если все строки списка \code{l} подходят по соответственному шаблону из списка \code{templates}, иначе \false{}.
+Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șablonul cuvenit din lista \code{templates}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<string>s1 ** <string>s2 : double`}
+\subsubsection{\lstinline|<string>s1 ** <string>s2 : double|}
 
-Возвращает коэффициент эквивалентности получен при сравнении \code{s1} с \code{s2}.
+Returnează coeficientul de echivalență primit prin comparare șirului \code{s1} cu \code{s2}.
 
-{\bf Эквивалентность} - уровень схожести строк. \lstinline`"Hi! Robert, how do you do?"` относительно \lstinline`"Robert! Hi! How do you do?"` имеет эквивалентность равна единицы. Так как они состоят из одни и те же слова. Но если сравнивать с  \lstinline`"Rich! Hi! How are you?"` оценка снижается до 0,64.
+{\bf Echivalența} este nivelul de asemănare al șirurilor. \lstinline`"Hi! Robert, how do you do?"` în comparație cu \lstinline`"Robert! Hi! How do you do?"` are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \lstinline`"Rich! Hi! How are you?"` coeficientul scade pînă la 0,64.
 
-\subsubsection{\lstinline`<list>l1 ** <list>l2 : double`}
+\subsubsection{\lstinline|<list>l1 ** <list>l2 : double|}
 
-Возвращает коэффициент эквивалентности получен при сравнении строк из списка \code{l1} со строками из списка \code{l2}.
-Для корректности вычисления, каждая строка должна содержать одно слово.
+Returnează primit prin compararea șirurilor din lista \code{l1} cu șirurile din lista \code{l2}.
+Pentru a primi un rezultat corecte, șirurile de caractere trebuie să dețină un singur cuvînt.
 
-\subsection{{\color{lightblue}object} и {\color{lightblue}set}}
+\subsection{{\color{lightblue}object} și {\color{lightblue}set}}
 
-Для строк и списков доступны операций:
+Для строк și списков доступны операций:
 \begin{icItems}
 	\item
 		3-ого ранга:
 		\begin{icItems}
 		\item
-			равно \lstinline`object == object : bool` и \lstinline`set == set : bool`;
+			равно \lstinline`object == object : bool` și \lstinline`set == set : bool`;
 		\item
-			не равно \lstinline`object != object : bool` и \lstinline`set != set : bool`;
+			не равно \lstinline`object != object : bool` și \lstinline`set != set : bool`;
 		\item
-			включение \lstinline`set << object : bool` и \lstinline|set << set : bool|;
+			включение \lstinline`set << object : bool` și \lstinline|set << set : bool|;
 		\item
-			включение шаблона \lstinline`set <* object : bool` и \lstinline`object <* object : bool`.
+			включение шаблона \lstinline`set <* object : bool` și \lstinline`object <* object : bool`.
 		\end{icItems}
 	\item
 		4-ого ранга:
@@ -569,9 +570,9 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
 
-Возвращает \true{} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false{}.
+Returnează \true{} dacă \code{obj1} și \code{obj2} имеют одни și те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, în caz contrar \false{}.
 
-\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului object и set, label=setobjopex]
+\begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului object și set, label=setobjopex]
 `` init
 @set1 = [<int>age <string>name];
 @set2 = [<int>age <string>name];
@@ -611,67 +612,67 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \subsubsection{\lstinline`<set>set1 == <set>set2 : bool`}
 
-Возвращает \true{} если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \false{}.
+Returnează \true{} dacă \code{set1} și \code{set2} имеют один și тоже заголовок, всё объекты из первой множестве приличествуют во вторым și наоборот, în caz contrar \false{}.
 
 \subsubsection{\lstinline`<object>obj1 != <object>obj2 : bool`}
 
-Возвращает \true{} если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \false{}.
+Returnează \true{} dacă один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, în caz contrar \false{}.
 
 \subsubsection{\lstinline`<set>set1 != <set>set2 : bool`}
 
-Возвращает \true{} если количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, иначе \false{}.
+Returnează \true{} dacă количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, în caz contrar \false{}.
 
 \subsubsection{\lstinline`<set>s << <object>obj : bool`}
 
-Возвращает \true{}, если множество \code{s} содержит объект \code{obj}, иначе \false{}.
+Returnează \true{}, dacă множество \code{s} содержит объект \code{obj}, în caz contrar \false{}.
 
 \subsubsection{\lstinline|<set>set1 << <set>set2 : bool|}
 
-Возвращает \true, если множество \code{set1} содержит подмножество \code{set2}, иначе \false.
+Returnează \true, dacă множество \code{set1} содержит подмножество \code{set2}, în caz contrar \false.
 
 \subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
 
-Возвращает \true{}, если множество \code{s} содержит под объект \code{subobj}, иначе \false{}.
+Returnează \true{}, dacă множество \code{s} содержит под объект \code{subobj}, în caz contrar \false{}.
 
 \subsubsection{\lstinline`<object>obj <* <object>subobj : bool`}
 
-Возвращает \true{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \false{}.
+Returnează \true{} dacă каждое поле объекта \code{subobj} содержится в объекте \code{obj} și значение одноимённых полях совпадает, în caz contrar \false{}.
 
 \subsubsection{\lstinline`<set>set1 + <set>set2 : set`}
 
-Возвращает новое множество содержащая все объекты множеств \code{set1} и \code{set2}.
+Returnează новое множество содержащая все объекты множеств \code{set1} și \code{set2}.
 
 \subsubsection{\lstinline`<set>set1 - <set>set2 : set`}
 
-Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}, и все объекты множестве \code{set2}, отсутствующих в \code{set1}.
+Returnează новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}, și все объекты множестве \code{set2}, отсутствующих в \code{set1}.
 
 \subsubsection{\lstinline`<set>set1 \\ <set>set2 : set`}
 
-Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}.
+Returnează новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}.
 
 \subsubsection{\lstinline`<set>set1 * <set>set2 : set`}
 
-Возвращает новое множество содержащая все объекты , которые приличествуют в \code{set1} и \code{set2}.
+Returnează новое множество содержащая все объекты , которые приличествуют в \code{set1} și \code{set2}.
 
 \subsubsection{\lstinline`<set>set1 ** <set>set2 : bool`}
 
-Возвращает \true, если множества \code{set1} и \code{set2} пересекаются, иначе \false.
+Returnează \true, dacă множества \code{set1} și \code{set2} пересекаются, în caz contrar \false.
 
 \subsection{\color{lightblue}void}
 
-Все \void{} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \void{} и не \void{}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
+Все \void{} операторы имеют 2-ой ранг. Данные операторы делят данных на 2 типа \void{} și не \void{}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
 
 Список \void{} операторов:
 
 \begin{icItems}
 \item
-	альтернативный выбор \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` и \lstinline`any | any : any`;
+	альтернативный выбор \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` și \lstinline`any | any : any`;
 \item
-	первичный выбор \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| и \lstinline|any & any : any|;
+	первичный выбор \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| și \lstinline|any & any : any|;
 \item
-	вторичный выбор \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| и \lstinline|any ~ any : any|;
+	вторичный выбор \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| și \lstinline|any ~ any : any|;
 \item
-	исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| и \lstinline|any ^ any : void|;
+	исключающий выбор \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| și \lstinline|any ^ any : void|;
 \item
 	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
 \end{icItems}
@@ -777,21 +778,21 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{table}
 %}
 
-Для аргументов типов \integer{} и \double{}, вызывается функция \code{_numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{_numbers.setProcess} с одни из следующих аргументов: \code{_numbers'sum} - сумма, \code{_numbers'product} - произведение, \code{_numbers'max} - максимум, \code{_numbers'min} - минимум. После использования оператора, вызываете \code{_numbers.restoreProcess} чтобы восстановить исходные настройки.
+Для аргументов типов \integer{} și \double{}, вызывается функция \code{_numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{_numbers.setProcess} с одни из следующих аргументов: \code{_numbers'sum} - сумма, \code{_numbers'product} - произведение, \code{_numbers'max} - максимум, \code{_numbers'min} - минимум. После использования оператора, вызываете \code{_numbers .restoreProcess} чтобы восстановить исходные настройки.
 
 \subsection{Дополнительные операторы}
 
-\subsubsection{\lstinline`[string...]`, \lstinline`[arg...]`, \lstinline`[param...]`, \lstinline`[<>]` и \lstinline`[]`}
+\subsubsection{\lstinline`[string...]`, \lstinline`[arg...]`, \lstinline`[param...]`, \lstinline`[<>]` și \lstinline`[]`}
 
-{\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \listtype{}, \set{} и \object{}.
+{\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \listtype{}, \set{} și \object{}.
 
 \code{[] : list} создаёт пустой список.
 
-\code{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так и вызовы на функций возвращающие строки. Пример: \code{["a" "b" "c"]}.
+\code{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так și вызовы на функций возвращающие строки. Пример: \code{["a" "b" "c"]}.
 
 \code{[list ...] : list} объединяет несколько списков в один.
 
-\code{[string or list ...] : list} - строки и списки можно смешать.
+\code{[string or list ...] : list} - строки și списки можно смешать.
 
 \code{[<>] : object} создаёт пустой объект.
 
@@ -803,6 +804,6 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \code{[set ...] : set} объединяет несколько множеств в одной.
 
-\code{[object or set ...] : set} объекты и множества также можно смешать.
+\code{[object or set ...] : set} объекты și множества также можно смешать.
 
 %\newpage
