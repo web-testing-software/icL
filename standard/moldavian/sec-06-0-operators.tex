@@ -532,45 +532,45 @@ Pentru a primi un rezultat corecte, șirurile de caractere trebuie să dețină 
 
 \subsection{{\color{lightblue}object} și {\color{lightblue}set}}
 
-Для строк și списков доступны операций:
+Pentru obiecte și liste sunt disponibili operatori:
 \begin{icItems}
 	\item
-		3-ого ранга:
+		de rangul 3:
 		\begin{icItems}
 		\item
-			равно \lstinline`object == object : bool` și \lstinline`set == set : bool`;
+			egal \lstinline|object == object : bool| și \lstinline|set == set : bool|;
 		\item
-			не равно \lstinline`object != object : bool` și \lstinline`set != set : bool`;
+			inegal \lstinline|object != object : bool| și \lstinline|set != set : bool|;
 		\item
-			включение \lstinline`set << object : bool` și \lstinline|set << set : bool|;
+			includere \lstinline|set << object : bool| și \lstinline|set << set : bool|;
 		\item
-			включение шаблона \lstinline`set <* object : bool` și \lstinline`object <* object : bool`.
+			includere de șablon \lstinline|set <* object : bool| și \lstinline|object <* object : bool|.
 		\end{icItems}
 	\item
-		4-ого ранга:
+		de rangul 4:
 		\begin{icItems}
 		\item
-			объединение \lstinline`set + set : set`;
+			reuniune \lstinline|set + set : set|;
 		\item
-			симметрическая разность \lstinline`set -   set : set`.
+			diferență simetrică \lstinline|set - set : set|.
 		\end{icItems}
 	\item
-		5-ого ранга:
+		de rangul 5:
 		\begin{icItems}
 		\item
-			разность \lstinline`set \ set : set`;
+			diferență \lstinline`set \ set : set`;
 		\item
-			пересечение \lstinline`set * set : set`.
+			intersecție \lstinline`set * set : set`.
 		\end{icItems}
 	\item
-		6$^+$-ого ранга: пересекаются \lstinline|set ** set : bool|.
+		de rangul 6$^+$: se intersectează \lstinline|set ** set : bool|.
 \end{icItems}
 
-Примеры использование операторов присутствуют на листинге \ref{setobjopex}.
+Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \ref{setobjopex}.
 
 \subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
 
-Returnează \true{} dacă \code{obj1} și \code{obj2} имеют одни și те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, în caz contrar \false{}.
+Returnează \true{} dacă \code{obj1} și \code{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \code{obj1} sunt egale cu valori cîmpurilor obiectului \code{obj2}, în caz contrar \false{}.
 
 \begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului object și set, label=setobjopex]
 `` init
@@ -610,53 +610,53 @@ Returnează \true{} dacă \code{obj1} și \code{obj2} имеют одни și т
 @set1 ** @set2;				`` true
 \end{lstlisting}
 
-\subsubsection{\lstinline`<set>set1 == <set>set2 : bool`}
+\subsubsection{\lstinline|<set>set1 == <set>set2 : bool|}
 
-Returnează \true{} dacă \code{set1} și \code{set2} имеют один și тоже заголовок, всё объекты из первой множестве приличествуют во вторым și наоборот, în caz contrar \false{}.
+Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate obiectele din mulțimea \code{set1} sunt prezente în mulțimea \code{set2} și invers, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<object>obj1 != <object>obj2 : bool`}
+\subsubsection{\lstinline|<object>obj1 != <object>obj2 : bool|}
 
-Returnează \true{} dacă один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, în caz contrar \false{}.
+Returnează \true{} unul din obiecte are un cîmp care lipsește în celălalt sau valoarea unui cîmp al unui obiect se deosebește de valoarea cu aceeași denumire al celuilalt obiect, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<set>set1 != <set>set2 : bool`}
+\subsubsection{\lstinline|<set>set1 != <set>set2 : bool|}
 
-Returnează \true{} dacă количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, în caz contrar \false{}.
+Returnează \true{} dacă mulțimile conțin număr diferit de obiecte sau există un obiect care se conține într-o mulțime, dar lipsește în cealaltă, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<set>s << <object>obj : bool`}
+\subsubsection{\lstinline|<set>s << <object>obj : bool|}
 
-Returnează \true{}, dacă множество \code{s} содержит объект \code{obj}, în caz contrar \false{}.
+Returnează \true{}, dacă mulțimea \code{s} conține obiectul \code{obj}, în caz contrar \false{}.
 
 \subsubsection{\lstinline|<set>set1 << <set>set2 : bool|}
 
-Returnează \true, dacă множество \code{set1} содержит подмножество \code{set2}, în caz contrar \false.
+Returnează \true, dacă mulțimea \code{set1} conține toate obiectele mulțimii \code{set2}, în caz contrar \false.
 
-\subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
+\subsubsection{\lstinline|<set>s <* <object>subobj : bool|}
 
-Returnează \true{}, dacă множество \code{s} содержит под объект \code{subobj}, în caz contrar \false{}.
+Returnează \true{}, dacă mulțimea \code{s} conține fragmentul de obiect \code{subobj}, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<object>obj <* <object>subobj : bool`}
+\subsubsection{\lstinline|<object>obj <* <object>subobj : bool|}
 
-Returnează \true{} dacă каждое поле объекта \code{subobj} содержится в объекте \code{obj} și значение одноимённых полях совпадает, în caz contrar \false{}.
+Returnează \true{} dacă fiecare cîmp al obiectului \code{subobj} se conține in obiectul \code{obj} și dețin aceleași valori, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<set>set1 + <set>set2 : set`}
+\subsubsection{\lstinline|<set>set1 + <set>set2 : set|}
 
-Returnează новое множество содержащая все объекты множеств \code{set1} și \code{set2}.
+Returnează o mulțime nouă, ce conține toate obiectele din mulțimile \code{set1} și \code{set2}.
 
-\subsubsection{\lstinline`<set>set1 - <set>set2 : set`}
+\subsubsection{\lstinline|<set>set1 - <set>set2 : set|}
 
-Returnează новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}, și все объекты множестве \code{set2}, отсутствующих в \code{set1}.
+Returnează o mulțime nouă, ce conține toate obiectele mulțimii \code{set1}, care lipsesc în mulțimea \code{set2}, și obiectele mulțimii \code{set2}, ce lipsesc în \code{set1}.
 
-\subsubsection{\lstinline`<set>set1 \\ <set>set2 : set`}
+\subsubsection{\lstinline|<set>set1 \\ <set>set2 : set|}
 
-Returnează новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}.
+Returnează o mulțime nouă, ce conține toate obiectele mulțimii \code{set1}, care lipsesc în \code{set2}.
 
-\subsubsection{\lstinline`<set>set1 * <set>set2 : set`}
+\subsubsection{\lstinline|<set>set1 * <set>set2 : set|}
 
-Returnează новое множество содержащая все объекты , которые приличествуют в \code{set1} și \code{set2}.
+Returnează o mulțime nouă, ce conține toate obiectele ce se conțin în mulțimile \code{set1} și \code{set2} concomitent.
 
-\subsubsection{\lstinline`<set>set1 ** <set>set2 : bool`}
+\subsubsection{\lstinline|<set>set1 ** <set>set2 : bool|}
 
-Returnează \true, dacă множества \code{set1} și \code{set2} пересекаются, în caz contrar \false.
+Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulțimile \code{set1} și \code{set2} concomitent, în caz contrar \false.
 
 \subsection{\color{lightblue}void}
 
