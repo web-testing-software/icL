@@ -19,6 +19,7 @@ SUBDIRS = \
         cp \
         edit \
         il \
+        manager \
         share \
         sv \
         wd \
@@ -36,6 +37,7 @@ ce.subdir       = src/icl-ce
 cp.subdir       = src/icl-cp
 edit.subdir     = src/icl-edit
 il.subdir       = src/icl-il
+manager.subdir  = src/icl-manager
 share.subdir    = src/icl-share
 sv.subdir       = src/icl-sv
 wd.subdir       = src/icl-wd
