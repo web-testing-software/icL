@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1360"
+   height="760"
+   viewBox="0 0 359.83332 201.08333"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="mode-more-debug-panels.svg">
+  <defs
+     id="defs2">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-14.003498 : 104.7428 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="345.82978 : 104.7428 : 1"
+       inkscape:persp3d-origin="165.91312 : 71.228902 : 1"
+       id="perspective1024" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="448.70372"
+     inkscape:cy="509.94245"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:snap-page="true"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     showborder="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="740"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-global="true">
+    <sodipodi:guide
+       position="6.9490151,152.2389"
+       orientation="1,0"
+       id="guide1048"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="54.055171,152.2389"
+       orientation="1,0"
+       id="guide1050"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="223.3885,178.74826"
+       orientation="1,0"
+       id="guide829"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="54.055164,194.57222"
+       orientation="0,1"
+       id="guide831"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="54.055164,183.98888"
+       orientation="0,1"
+       id="guide833"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="54.05517,168.11389"
+       orientation="1,0"
+       id="guide835"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="59.346834,168.11389"
+       orientation="1,0"
+       id="guide837"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="54.055169,178.74826"
+       orientation="0,1"
+       id="guide857"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="75.878718,170.81076"
+       orientation="0,1"
+       id="guide869"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="64.6385,153.55282"
+       orientation="1,0"
+       id="guide871"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="218.09683,160.22808"
+       orientation="1,0"
+       id="guide873"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="69.930167,153.55282"
+       orientation="1,0"
+       id="guide877"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="212.80516,146.99824"
+       orientation="1,0"
+       id="guide879"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="151.27455,162.87326"
+       orientation="0,1"
+       id="guide881"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="76.54475,140.60714"
+       orientation="1,0"
+       id="guide891"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="207.5135,141.36309"
+       orientation="1,0"
+       id="guide893"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="202.22183,141.36309"
+       orientation="1,0"
+       id="guide905"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="196.93016,136.36387"
+       orientation="1,0"
+       id="guide907"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="191.6385,142.11905"
+       orientation="1,0"
+       id="guide909"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="186.34683,142.11905"
+       orientation="1,0"
+       id="guide911"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="181.05516,136.36387"
+       orientation="1,0"
+       id="guide913"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="175.7635,136.36387"
+       orientation="1,0"
+       id="guide915"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="130.42752,157.5816"
+       orientation="0,1"
+       id="guide921"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="110.38231,152.28993"
+       orientation="0,1"
+       id="guide923"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="98.084818,144.35243"
+       orientation="0,1"
+       id="guide935"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="88.257437,136.41493"
+       orientation="0,1"
+       id="guide937"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="99.156992,131.12326"
+       orientation="0,1"
+       id="guide945"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="120.27128,125.8316"
+       orientation="0,1"
+       id="guide947"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="120.27128,117.8941"
+       orientation="0,1"
+       id="guide959"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="120.27128,109.9566"
+       orientation="0,1"
+       id="guide971"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="120.27128,102.0191"
+       orientation="0,1"
+       id="guide973"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="120.27128,96.727431"
+       orientation="0,1"
+       id="guide985"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="94.34614,91.435764"
+       orientation="0,1"
+       id="guide987"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-95.916647)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="18.038767"
+       y="109.29762"
+       id="text1760"><tspan
+         sodipodi:role="line"
+         id="tspan1758"
+         x="18.038767"
+         y="109.29762"
+         style="stroke-width:0.26458332">StackViewV</tspan></text>
+    <text
+       id="text1764"
+       y="172.79767"
+       x="18.862497"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="172.79767"
+         x="18.862497"
+         id="tspan1762"
+         sodipodi:role="line">StateClone</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="16.084375"
+       y="209.83934"
+       id="text1768"><tspan
+         sodipodi:role="line"
+         id="tspan1766"
+         x="16.084375"
+         y="209.83934"
+         style="stroke-width:0.26458332">ConsoleClone</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1074"
+       width="47.106155"
+       height="10.583333"
+       x="6.9490075"
+       y="102.42776" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1076"
+       width="47.106155"
+       height="10.583333"
+       x="6.9490151"
+       y="165.9278" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1078"
+       width="47.106155"
+       height="10.583333"
+       x="6.9490151"
+       y="202.96948" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1164"
+       width="47.106155"
+       height="10.634365"
+       x="6.949017"
+       y="128.83505" />
+    <text
+       id="text1178"
+       y="135.73044"
+       x="18.085276"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="135.73044"
+         x="18.085276"
+         id="tspan1176"
+         sodipodi:role="line">StackViewH</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect839"
+       width="164.04167"
+       height="10.583341"
+       x="59.346832"
+       y="102.42776" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="60.793468"
+       y="107.00448"
+       id="text5544"><tspan
+         sodipodi:role="line"
+         id="tspan5542"
+         x="60.793468"
+         y="107.00448"
+         style="stroke-width:0.26458332">TreeView</tspan></text>
+    <text
+       id="text855"
+       y="107.00448"
+       x="87.251793"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="107.00448"
+         x="87.251793"
+         id="tspan853"
+         sodipodi:role="line">StackViewV</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#d7d7d7;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect859"
+       width="164.04167"
+       height="21.166658"
+       x="59.346832"
+       y="128.83505" />
+    <text
+       id="text863"
+       y="133.46281"
+       x="60.793468"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="133.46281"
+         x="60.793468"
+         id="tspan861"
+         sodipodi:role="line">ListView</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="87.251793"
+       y="133.46281"
+       id="text867"><tspan
+         sodipodi:role="line"
+         id="tspan865"
+         x="87.251793"
+         y="133.46281"
+         style="stroke-width:0.26458332">StackViewH</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect875"
+       width="153.45833"
+       height="7.9374981"
+       x="64.638496"
+       y="136.77255" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="67.143463"
+       y="141.92952"
+       id="text885"><tspan
+         sodipodi:role="line"
+         id="tspan883"
+         x="67.143463"
+         y="141.92952"
+         style="stroke-width:0.26458332">TreeView</tspan></text>
+    <text
+       id="text919"
+       y="141.92952"
+       x="93.601784"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="141.92952"
+         x="93.601784"
+         id="tspan917"
+         sodipodi:role="line">StackView</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#d7d7d7;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect925"
+       width="164.04167"
+       height="21.166662"
+       x="59.346832"
+       y="165.87674" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="60.793468"
+       y="170.50452"
+       id="text929"><tspan
+         sodipodi:role="line"
+         id="tspan927"
+         x="60.793468"
+         y="170.50452"
+         style="stroke-width:0.26458332">Frame</tspan></text>
+    <text
+       id="text933"
+       y="170.50452"
+       x="81.960129"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="170.50452"
+         x="81.960129"
+         id="tspan931"
+         sodipodi:role="line">StateClone</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect939"
+       width="153.45833"
+       height="7.9375"
+       x="64.638496"
+       y="173.81424" />
+    <text
+       id="text943"
+       y="179.2616"
+       x="67.197517"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="179.2616"
+         x="67.197517"
+         id="tspan941"
+         sodipodi:role="line">TreeView</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#d7d7d7;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect949"
+       width="164.04167"
+       height="34.395832"
+       x="59.346832"
+       y="202.91841" />
+    <text
+       id="text953"
+       y="207.54622"
+       x="60.793468"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="207.54622"
+         x="60.793468"
+         id="tspan951"
+         sodipodi:role="line">Frame</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="81.960129"
+       y="207.54622"
+       id="text957"><tspan
+         sodipodi:role="line"
+         id="tspan955"
+         x="81.960129"
+         y="207.54622"
+         style="stroke-width:0.26458332">ConsoleClone</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#d7d7d7;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect961"
+       width="153.45833"
+       height="21.166664"
+       x="64.638496"
+       y="210.85591" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="66.614304"
+       y="215.48376"
+       id="text965"><tspan
+         sodipodi:role="line"
+         id="tspan963"
+         x="66.614304"
+         y="215.48376"
+         style="stroke-width:0.26458332">ListView</tspan></text>
+    <text
+       id="text969"
+       y="215.48376"
+       x="93.072624"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="215.48376"
+         x="93.072624"
+         id="tspan967"
+         sodipodi:role="line">Console</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#d7d7d7;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect975"
+       width="142.875"
+       height="7.9375"
+       x="69.930168"
+       y="218.79341" />
+    <text
+       id="text979"
+       y="223.95047"
+       x="71.905968"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="223.95047"
+         x="71.905968"
+         id="tspan977"
+         sodipodi:role="line">ListItem</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="97.305954"
+       y="223.95047"
+       id="text983"><tspan
+         sodipodi:role="line"
+         id="tspan981"
+         x="97.305954"
+         y="223.95047"
+         style="stroke-width:0.26458332">ConsoleMessage</tspan></text>
+    <rect
+       y="217.73509"
+       x="70.988503"
+       height="7.9375"
+       width="142.875"
+       id="rect896"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#d7d7d7;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       y="219.85173"
+       x="68.871834"
+       height="7.9375"
+       width="142.875"
+       id="rect898"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>

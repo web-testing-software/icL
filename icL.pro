@@ -8,16 +8,10 @@ TEMPLATE = subdirs
 
 SUBDIRS = \
         memory \
-        logic \
         vm \
-        inter \
-        app \
-        context \
-        driver \
-        dsv \
         ce \
         cp \
-        edit \
+        ide \
         il \
         manager \
         share \
@@ -26,29 +20,16 @@ SUBDIRS = \
         worker
 
 memory.subdir   = src/icl-memory
-logic.subdir    = src/old-logic
-context.subdir  = src/old-context
 vm.subdir       = src/icl-vm
-driver.subdir   = src/old-driver
-inter.subdir    = src/old-inter
-app.subdir      = src/old-app
-dsv.subdir      = src/old-dsv
 ce.subdir       = src/icl-ce
 cp.subdir       = src/icl-cp
-edit.subdir     = src/icl-edit
+ide.subdir      = src/icl-ide
 il.subdir       = src/icl-il
 manager.subdir  = src/icl-manager
 share.subdir    = src/icl-share
 sv.subdir       = src/icl-sv
 wd.subdir       = src/icl-wd
 worker.subdir   = src/icl-worker
-
-logic.depends   = memory
-context.depends = memory logic
-dsv.depends     = context
-inter.depends   = logic context
-vm.depends      = context memory inter
-app.depends     = memory inter vm
 
 DISTFILES += \
     Doxyfile \
@@ -72,4 +53,7 @@ DISTFILES += \
     graduation/README.md \
     graduation/bachelor/README.md \
     standart/README.md \
-    CONTRIBUTING.md
+    CONTRIBUTING.md \
+    layouts/dark/*.svg \
+    layouts/light/*.svg \
+    layouts/structure/*.svg
