@@ -11,7 +11,7 @@ Poate să apară necesitatea de a folosi unul și același grup de comenzi de ma
 \item
 	\code{while} - repetarea condiționată a codului;
 \item
-	\code{do while} - ciclu cu condiție posterioară;
+	\code{do-while} - ciclu cu condiție posterioară;
 \item
 	\code{for} - răsfoirea colecției;
 \item
@@ -72,7 +72,7 @@ while (@number <= 5) {
 };
 \end{lstlisting}
 
-\subsubsection{\lstinline`do while` - ciclu cu condiție posterioară}
+\subsubsection{\lstinline`do-while` - ciclu cu condiție posterioară}
 
 {\bf Ciclu cu condiție posterioară} nu tare se doasebește de \code{while}, dar el garantează că grupul de comenzi va fi executat cel puțin o dată. De asemenea condiția se declară după grupul de comenzi, arătînd la ceea că ea va fi verificată după prima iterație. Sintaxă -
 \begin{lstlisting}[numbers=none]
@@ -81,7 +81,7 @@ do {
 } while (condition);
 \end{lstlisting}
 
-Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \code{do while}. Necătînd la aceea că condiția este implicit falsă, o iterație va avea loc, în rezultat variabila \code{@number} va deveni egală cu 7.
+Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \code{do-while}. Necătînd la aceea că condiția este implicit falsă, o iterație va avea loc, în rezultat variabila \code{@number} va deveni egală cu 7.
 
 \begin{lstlisting}[caption=Ciclu do while, label=dowhileex]
 @number = 6;
@@ -155,7 +155,7 @@ range (collection, condition_for_begin, condition_for_end) {
 @list = ["apple" "banana" "fruit"];
 
 filter (@list, # \ 2 == 0) {
-@; `` apple, fruit
+	@; `` apple, fruit
 }
 \end{lstlisting}
 

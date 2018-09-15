@@ -1,63 +1,64 @@
-\section{Функции}
+% !TeX spellcheck = ro_RO
+\section{Funcții}
 
-{\bf Функции} в icL позволяют повторное использовать код, и структурировать код. Все функций в icL - глобальные.
+{\bf Funcțiile} în icL permit a folosi repetat fragmente de cod și a structura codul. Toate funcțiile în icL sunt globale.
 
-\subsubsection{Определение функции}
+\subsubsection{Definirea funcțiilor}
 
-{\bf Определение функции} состоит из заголовка и тела функции.
+{\bf Definirea funcției} constă din header și corp.
 
-\noindent Синтаксис -
+\noindent Sintaxă -
 \begin{lstlisting}[numbers=none]
 !name = parameters : return_type {
 	commands
 }
 \end{lstlisting}
 
-Описание всех частей функции:
+Descrierea parților funcției:
 \begin{icItems}
 \item
-	\code{name} - {\bf название функции};
+	\code{name} - {\bf numele funcției};
 \item
-	\code{parameters} - {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен (см. листинги \ref{fullfunc} и \ref{noargsfunc});
+	\code{parameters} - {\bf lista parametrilor}. La chemarea funcției fiecare parametru primește o valoare. Lista parametrilor definește tipul, cantitatea și ordinea parametrilor. Lista nu este obligatorie (vezi foile \ref{fullfunc} și \ref{noargsfunc});
 \item
-	\code{return_type} - {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \void{}. Чтобы возвращать значение используется команда \code{@ = value} (см. листинги \ref{fullfunc}, \ref{notypefunc} и \ref{minfunc});
+	\code{return_type} - {\bf tipul de datelor} returnate de funcție. Dacă funcția nimic nu întoarce se tipul poate fi omis sau indicat clar - \void{}. Pentru a întoarce date se folosește comanda \code{@ = value} (vezi foile \ref{fullfunc}, \ref{notypefunc} și \ref{minfunc});
 \item
-	\code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
+	\code{commands} - {\bf corpul} conține comenzi, care definesc acțiunile executate de funcție.
 \end{icItems}
 
-\begin{lstlisting}[caption=Полноценная функция, label=fullfunc]
+\begin{lstlisting}[caption=Funcție completă, label=fullfunc]
 !sum = <int>a <int>b : int {
 	@ = @a + @b;
 };
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Функция без аргументов, label=noargsfunc]
+\begin{lstlisting}[caption=Funcție fără argumente, label=noargsfunc]
 !pi = double {
 	@ = 3.14;
 };
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Функция без типа возвращаемой значений, label=notypefunc]
+\begin{lstlisting}[caption=Funcție făra tip de date, label=notypefunc]
 !out = <int>a <int>b {
 	_log.out @a @b;
 };
 \end{lstlisting}
 
-\subsubsection{Вызов функции}
+\subsubsection{Apelul funcției}
 
-Вы можете вызвать функцию следующим образом -
+Puteți să apelați funcția în felul următor -
 \begin{lstlisting}[numbers=none]
 !name arguments;
 \end{lstlisting}
-где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}.
+unde \code{name} este {\bf numele funcției}, \code{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
 
-\begin{lstlisting}[caption=Функция без аргументов и тип возвращаемой значений, label=minfunc]
+\begin{lstlisting}[caption=Funcție fără argumente și tip de date, label=minfunc]
 !do = {
-_log.out "It's work!";
+	_log.out "It's work!";
 };
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Вызов функций, label=callfunc]
+\begin{lstlisting}[caption=Apeluri de funcții, label=callfunc]
 !sum 2 3; 	`` returns 5
 !pi; 		`` returns 3.14
 !out 4 5; 	`` returns void

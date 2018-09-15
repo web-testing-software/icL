@@ -43,7 +43,7 @@ else {
 };
 \end{lstlisting}
 
-\subsubsection{\lstinline|if else| în cascadă}
+\subsubsection{\lstinline|if-else| în cascadă}
 
 \code{if-else} în cascadă permite a alege dintre n grupe de comenzi, numai că necesită n-1 condiții.
 
@@ -83,20 +83,20 @@ Condiții implicite:
 În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \lstinline|exists(expression)|.
 Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă -\lstinline|exists(expression, condition)|.
 
-\subsubsection{\lstinline|if exists|}
+\subsubsection{\lstinline|if-exists|}
 
 Construcția \code{if-exists} permite a execută o grupă de comenzi în condiție de rezultatul \code{exists}-ului și de a folosi valoarea repetat. În cazul în care condiția \code{exists}-ului e adevărată, se execută grupa de comenzi și se transmitwe valoare returnată de \code{exists} sub numele \code{@}.
 Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
 
-\begin{lstlisting}[caption=Folosirea if-exist-ului, label=ifexistsex]
-if exists(23 + 3, # > 20) {
-	_log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
-
 \subsubsection{\lstinline|for-any|}
 
 \code{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
+
+\begin{lstlisting}[caption=Folosirea if-exist-ului, label=ifexistsex]
+if exists(23 + 3, # > 20) {
+_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
 
 \begin{lstlisting}[caption=Folosirea for-any-ului, label=foranyex]
 for any(23 + 3) {
