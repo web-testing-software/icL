@@ -17,8 +17,8 @@
    inkscape:version="0.92.2 2405546, 2018-03-11"
    sodipodi:docname="icL-share.svg"
    inkscape:export-filename="/home/lixcode/Qt/Projects/icL/images/icL-share.png"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96">
+   inkscape:export-xdpi="65"
+   inkscape:export-ydpi="65">
   <defs
      id="defs2">
     <marker
@@ -255,7 +255,7 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35355339"
-     inkscape:cx="669.95656"
+     inkscape:cx="587.93217"
      inkscape:cy="317.50682"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -339,7 +339,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
