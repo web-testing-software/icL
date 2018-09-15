@@ -1,10 +1,11 @@
-\section{Списки}
+% !TeX spellcheck = ro_RO
+\section{Liste}
 
-{\bf Списки} (тип \code{list}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
+{\bf Listele} (tipul \code{list}) permit a salva cîteva șiruri de caractere într-o variabilă. Accesul la șiruri se realizează prin index - numărul de ordine al șirului în listă.
 
-\subsection{Свойства}
+\subsection{Proprietăți}
 
-Списки имеют следующее дополнительные свойства:
+Listele dețin următoarele proprietăți adiționale:
 \begin{icItems}
 \item
 	\lstinline|[r/o] list'empty : bool|;
@@ -16,9 +17,9 @@
 	\lstinline|[r/o] list'(<int>n) : string|.
 \end{icItems}
 
-На листинге \ref{listprop} представлен код, использующий выше перечисленных свойства.
+Pe foaia \ref{listprop} este prezentat cod, care folosește proprietățile enumerate mai sus.
 
-\begin{lstlisting}[caption=Свойства класса list, label=listprop]
+\begin{lstlisting}[caption=Proprietățile clasei list, label=listprop]
 @empty = [];
 @fonts = ["Arial" "Helvetica" "Times" "Courier"];
 
@@ -37,27 +38,27 @@
 
 \subsubsection{\lstinline|[r/o] list'empty : bool|}
 
-Список считается пустым если он не содержит ни одну строку.
+Listă se consideră deșartă dacă nu conține nici un șir.
 
 \subsubsection{\lstinline|[r/o] list'length : int|}
 
-Длина списка равна количеству строк в списке.
+Lungimea listei este egală cu numărul de șiruri în ea.
 
 \subsubsection{\lstinline|[r/o] list'last : string|}
 
-Последняя строка в списке, то же соме что и \lstinline|list'at (list'length - 1)|.
+Ultimul șir din listă, echivalent \lstinline|list'at (list'length - 1)|.
 
-Возможные исключения: \ferror{EmptyList}.
+Excepții posibile: \ferror{EmptyList}.
 
 \subsubsection{\lstinline|[r/o] list'(<int>n) : string|}
 
-n-я строка списка, n должен быть целым литералом.
+Al n-lea șir, n trebuie să fie un literal întreg.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
-\subsection{Методы}
+\subsection{Metode}
 
-Списки имеют следующий набор дополнительных методов:
+Listele dețin următoarele metode adiționale:
 \begin{icItems}
 \item \lstinline|list.append <string>str : list|;
 \item \lstinline|list.at <int>i : string|;
@@ -82,9 +83,9 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.sort <bool>caseSensitive = true : list|.
 \end{icItems}
 
-Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{listmethods}. 
+Unele metode au fost omise, ele for fi enumerate în capitulul \ref{regex}. Exemplu de cod, care folosește metodele enumerate mai sus, este prezentat pe foaia \ref{listmethods}. 
 
-\begin{lstlisting}[caption=Методы класса list, label=listmethods]
+\begin{lstlisting}[caption=Metodele clasei list, label=listmethods]
 @empty = [];
 @fonts = ["Arial" "Helvetica" "Times" "Courier"];
 
@@ -118,100 +119,100 @@ n-я строка списка, n должен быть целым литера�
 @fonts.sort;                     `` ["Arial" "Couri-r" "H-lv-tica" "Tim-s"];
 \end{lstlisting}
 
-Параметр \code{caseSensitive} во всех функциях отвечает за чувствительность к регистру. Его установка гарантирует что регистр букв будет проигнорирован.
+Parametrul \code{caseSensitive} în toate funcție răspunde de diferențierea majusculelor și minusculelor. Dacă el va primi valoarea \false, diferența dintre majuscule și minuscule va fi ignorată.
 
 \subsubsection{\lstinline|list.append <string>str : list|}
 
-Вставит строку \code{str} в конце списка.
+Inserează șirul \code{str} la sfîrșitul listei.
 
 \subsubsection{\lstinline|list.at <int>i : string|}
 
-Возвращает \code{i}-й строка.
+Returnează al \code{i}-lea șir.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.contains <string>str <bool>caseSensitive = true : bool|}
 
-Возвращает \true, если список содержит строка, ровна \code{str}, иначе \false.
+Returnează \true, dacă lista conține șir egal cu \code{str}, în caz contrar \false.
 
 \subsubsection{\lstinline|list.clear : list|}
 
-Очищает список.
+Curăță lista.
 
 \subsubsection{\lstinline|list.count <string>what : int|}
 
-Возвращает сколько раз строка \code{what} повторяется в списке.
+Returnează de cîte ori șirul \code{what} se repetă în listă.
 
 \subsubsection{\lstinline|list.filter <string>str <bool>caseSensitive = true : bool|}
 
-Возвращает новый список строк, содержащий только строки этого списка, содержащие подстроку \code{str}. 
+Returnează o nouă listă de șiruri, care conține numai șirurile, care conțin subșirul \code{str}. 
 
 \subsubsection{\lstinline|list.indexOf <string>str <int>start = 0 : int|}
 
-Возвращает индекс первой нахождения строки \code{str} в списке, ища вперёд с позиции \code{start}, если строка не найдено возвращает -1.
+Returnează indexul primii includeri al șirului \code{str} în listă, căutînd înainte de pe poziția \code{start}, dacă lista nu conține așa șir se returnează -1.
 
 \subsubsection{\lstinline|list.insert <int>index <string>str : list|}
 
-Вставит строку \code{str} в позиции \code{index}, если \code{index <= 0} то значение вставится в начале списка, если \code{index >= list'length} то значение вставится в конце списка.
+Inserează șirul \code{str} pe poziția \code{index}, dacă \code{index <= 0} șirul se înserează la începutul listei, dacă \code{index >= list'length} șirul se inserează la sfîrșitul listei.
 
 \subsubsection{\lstinline|list.join <string>separator : string|}
 
-Создаёт новую строку, из строк списка, путём последовательной конкатенации, между значениями вставится \code{separator}, он может быть пустой строкой.
+Creează un șir nou, din șirurile listei, prin concatenarea lor, între șiruri se inserează șirul \code{separator}, el poate fi un sir deșert.
 
 \subsubsection{\lstinline|list.lastIndexOf <string>str <int>start = -1 : int|}
 
-Возвращает индекс первой нахождения строки \code{str} в списке, ища назад с позиции \code{start}, если строка не найдена возвращает -1.
+Returnează indexul primii includeri al șirului \code{str} în listă, căutînd înapoi de pe poziția \code{start}, dacă lista nu conține așa șir se returnează -1.
 
 \subsubsection{\lstinline|list.mid <int>pos <int>n = -1 : list|}
 
-Возвращает новый список, содержащий \code{n} строки, начиная со строкой с индексом \code{pos}. Если \code{n} имеет значение \code{-1} то будут добавлены все значение до конца списка.
+Returnează o listă nouă, care conține \code{n} șiruri din listă, începînd cu poziția \code{pos}. Dacă \code{n} are valoarea \code{-1} vor fi adăugate toate șirurile pînă la sfîrșitul listei.
 
 \subsubsection{\lstinline|list.prepend <string>str : list|}
 
-Вставит строку \code{str} в начале списка.
+Inserează șirul \code{str} la începutul listei.
 
 \subsubsection{\lstinline|list.move <int>from <int>to : list|}
 
-Переставит строку с индексом \code{from} в позиции с индексом \code{to}.
+Mută șirul de pe poziția \code{from} pe poziția \code{to}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeAll <string>str : list|}
 
-Удаляет все нахождения строке \code{str}.
+Șterge toate șirurile egale cu \code{str}.
 
 \subsubsection{\lstinline|list.removeAt <int>i : list|}
 
-Удаляет \code{i}-я строка.
+Șterge al \code{i}-lea șir.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|list.removeDuplicates : list|}
 
-Удаляет повторы строк.
+Șterge șirurile care se repetă.
 
 \subsubsection{\lstinline|list.removeFirst : list|}
 
-Удаляет первую строку.
+Șterge primul șir.
 
-Возможные исключения: \ferror{EmptyList}.
+Excepții posibile: \ferror{EmptyList}.
 
 \subsubsection{\lstinline|list.removeLast : list|}
 
-Удаляет последнюю строку.
+Șterge ultimul șir.
 
-Возможные исключения: \ferror{EmptyList}.
+Excepții posibile: \ferror{EmptyList}.
 
 \subsubsection{\lstinline|list.removeOne <string>str : bool|}
 
-Удаляет первое нахождение строке \code{str}. Возвращает \true, если строка была найдена, иначе \false.
+Șterge primul șir egal cu \code{str}. Returnează \true, dacă așa șir a fost găsit, în caz contrar \false.
 
 \subsubsection{\lstinline|list.replaceInStrings <string>before <string>after : list|}
 
-Заменяет подстроку \code{before} с подстрокой \code{after} в каждом строке.
+Înlocuiește subșirul \code{before} cu subșirul \code{after} în fiecare șir din listă.
 
 \subsubsection{\lstinline|list.sort <bool>caseSensitive = true : list|}
 
-Сортирует строки в алфавитном порядке.
+Sortează șirurile în ordine alfabetică.
 
 %\newpage
