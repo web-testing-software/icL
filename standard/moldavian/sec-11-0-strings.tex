@@ -1,12 +1,13 @@
-\section{Строки}
+% !TeX spellcheck = ro_RO
+\section{Șiruri de caractere}
 
-{\bf Строки} (тип \str{}) позволяет хранить и манипулировать фрагменты текста. 
+{\bf Șirurile de caractere} (tipul \str{}) permite a reține și a manipula fragmente de text. 
 
-\subsection{Свойства}
+\subsection{Proprietăți}
 
-В дальнейшем свойства будут отмечены следующим маркером: \code{[r/w]} - доступно для чтения и записи, \code{[r/o]} - доступно только для чтения, \code{[w/o]} - доступно только для записи,  \code{[r/*]} - доступно для записи только в режиме автоматизации, \code{[*/*]} - доступ будет конкретизирован потом.
+Mai departe proprietățile for fi însemnate cu următoarele semne: \code{[r/w]} - disponibil pentru citire și scriere, \code{[r/o]} - disponibil numai pentru citire, \code{[w/o]} - disponibil numai pentru scriere,  \code{[r/*]} - disponibil pentru scriere numai în regim de automatizare, \code{[*/*]} - accesul va fi concretizat mai apoi.
 
-Строки имеют следующее дополнительные свойства:
+Șirurile de caractere dețin următoarele proprietăți adiționale
 \begin{icItems}
 \item
 	\code{[r/o] string'empty : bool};
@@ -20,13 +21,13 @@
 
 \
 
-На листинге \ref{stringprop} представлен код, использующий выше перечисленных свойства.
+Pe foaia \ref{stringprop} este prezentat cod, care folosește proprietățile enumerate.
 
 \subsubsection{\code{[r/o] string'empty : bool}}
 
-Строка считается пустой если количество содержащих символов равна нулю;
+Șirul se socoate deșert dacă lungimea lui este egală cu zero;
 
-\begin{lstlisting}[caption=Свойства класса string, label=stringprop]
+\begin{lstlisting}[caption=Proprietățile clasei string, label=stringprop]
 @empty = "";
 @fonts = "Arial, Helvetica, Times, Courier";
 
@@ -45,23 +46,23 @@
 
 \subsubsection{\code{[r/o] string'length : int}}
 
-Длина строки равна количеству символов в строке;
+Lungimea șirului este egală cu numărul de caractere;
 
 \subsubsection{\code{[r/o] string'last : char}}
 
-Последний символ строки, то же самое что и \lstinline|string.at (string'length - 1)|.
+Ultimul caracter al șirului \lstinline|string.at (string'length - 1)|.
 
-Возможные исключения: \ferror{EmptyString}.
+Excepții posibile: \ferror{EmptyString}.
 
 \subsubsection{\lstinline|[r/o] string'(<int> n) : string|}
 
-n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
+Al n-lea caracter. n trebuie sa fie literal întreg, exemple: \lstinline|@str'0; @string'2|.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsection{Методы}
 
-Строки имеют следующий набор дополнительных методов:
+Șirurile dețin următoarele metode adiționale:
 \begin{icItems}
 \item
 	\lstinline|string.append <string>str : string|;
@@ -109,9 +110,9 @@ n-й символ строки. n должен быть целым литера�
 	\lstinline|string.trim <bool>justWhitespace = true : string|.
 \end{icItems}
 
-Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{stringmethods}.
+Unele metode sunt ignorate, ele vor fi enumerate în capitolul \ref{regex}; Exemplu de cod, care folosește metodele enumerate este prezent pe foaia \ref{stringmethods}.
 
-\begin{lstlisting}[caption=Методы класса string, label=stringmethods]
+\begin{lstlisting}[caption=Metodele clasei string, label=stringmethods]
 @empty = "";
 @fonts = "Arial, Helvetica, Times, Courier";
 @index = 2;
@@ -176,93 +177,93 @@ n-й символ строки. n должен быть целым литера�
 
 \subsubsection{\lstinline|string.append <string>str : string|}
 
-Вставит строку \code{str} в конце строки.
+Inserează șirul \code{str} la sfîrșitul listei.
 
 \subsubsection{\lstinline|string.at <int>i : string|}
 
-Возвращает ссылка на \code{i}-й символ.
+Returnează al \code{i}-lea simbol.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|string.beginsWith <string>str : bool|}
 
-Возвращает \true{}, если начало строки совпадает с \code{str}, иначе \false{}.
+Returnează \true{}, dacă începutul șirului coincide cu \code{str}, în caz contrar \false{}.
 
 \subsubsection{\lstinline|string.compare <string>str <bool>caseSensitive = true : bool|}
 
-Сравнивает строки, возвращает \true{} если они равны, иначе \false{}. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{}, то регистр букв будет проигнорирован.
+Compară șirurile, returnează \true{} dacă ele sunt egale, în caz contrar \false{}. Argument \code{caseSensitive} poate fi omis, dacă el primește valoarea \false{}, diferența dintre majuscule și minuscule va fi ignorată.
 
 \subsubsection{\lstinline|string.count <string>str : int|}
 
-Считает сколько раз подстрока \code{str} встречается в строке.
+Calculează de cîte ori subșirul \code{str} se întîlnește în șir.
 
 \subsubsection{\lstinline|string.endsWith <string>str : bool|}
 
-Возвращает \true{}, если конец строки совпадает с \code{str}, иначе \false{}.
+Returnează \true{}, dacă sfîrșitul șirului coincide cu \code{str}, în caz contrar \false{}.
 
 \subsubsection{\lstinline|string.indexOf <string>str <int>startPos = 0 : int|}
 
-Возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1.
+Returnează indexul primii includeri a șubșirului \code{str} în șir, căutînd înainte de pe poziția \code{startPos}, dacă șirul nu include subșirul se returnează -1.
 
 \subsubsection{\lstinline|string.insert <string>str <int>pos : string|}
 
-Вставит строку \code{str} в позиции \code{pos}.
+Inserează șirul \code{str} pe poziția \code{pos}.
 
 \subsubsection{\lstinline|string.lastIndexOf <string>str <int>startPos = -1 : int|}
 
-Возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1.
+Returnează indexul primii includeri a șubșirului \code{str} în șir, căutînd înapoi de pe poziția \code{startPos}, dacă șirul nu include subșirul se returnează -1.
 
 \subsubsection{\lstinline|string.left <int>n : string|}
 
-Возвращает подстроку содержащая первый \code{n} символы.
+Returnează subșir, care conține primele \code{n} caractere.
 
 \subsubsection{\lstinline|string.leftJustified <int>width <string>fillChar <bool>truncate = false :|\\* \lstinline|string|}
 
-Возвращает строку длины \code{width}, содержащую эту строку, в конце ставится \code{width - .length} символов \code{fillChar}. Если \code{truncate == true} и \code{width < .length}, то последние \code{.length - width} символы будут удалены.
+Returnează șir cu lungimea \code{width}, care conține șirul acesta la început, dar la sfîrșit se inserează \code{width - .length} caractere \code{fillChar}. Dacă \code{truncate == true} și \code{width < .length}, ultimele \code{.length - width} simboluri se șterg.
 
 \subsubsection{\lstinline|string.mid <int>pos <int>n = -1 : string|}
 
-Возвращает строку содержащую \code{n} символы строки, начиная с позиции \code{pos}. Будет возвращена пустая строка если установленный интервал выходит за рамки строки. Если \code{n == -1} то будут возвращены все доступные символы начиная с позицией \code{pos}.
+Returnează șir, care conține \code{n} caractere din șirul acesta, începînd cu poziția \code{pos.} Va fi întors un șir deșert în cazul în care intervalul iese din granițele șirului. Dacă \code{n == -1} vor fi returnate toate caractere disponibile începînd cu caracterul de pe poziția \code{pos}.
 
 \subsubsection{\lstinline|string.prepend <string>str : string|}
 
-Вставит строку \code{str} в начале строки.
+Inserează șirul \code{str} la început.
 
 \subsubsection{\lstinline|string.remove <int>pos <int>n : string|}
 
-Удаляет \code{n} символы строки начиная с позицией \code{pos}.
+Șterge \code{n} caractere din șir începînd cu poziția \code{pos}.
 
 \subsubsection{\lstinline|string.remove <string>str <bool>caseSensitive = true : string|}
 
-Удаляет каждое нахождения подстроки \code{str} в строке. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{} то регистр букв будет проигнорирован.
+Șterge fiecare includere al subșirului \code{str} în șir. Argumentul \code{caseSensitive} poate fi omis, dacă el primește valoarea \false{} diferența între majuscule și minuscule va fi ignorată.
 
 \subsubsection{\lstinline|string.replace <int>pos <int>n <string>after : string|}
 
-Заменяет интервал установленный позицией \code{pos} и количеством символов \code{n} строкой \code{after}.
+Înlocuiește intervalul [\code{pos}; \code{pos + n}] cu șirul \code{after}.
 
 \subsubsection{\lstinline|string.replace <string>before <string>after : string|}
 
-Заменяет каждое нахождение подстроки \code{before} подстрокой \code{after}.
+Înlocuiește fiecare includere a șirului \code{before} cu șirul \code{after}.
 
 \subsubsection{\lstinline|string.right <int>n : string|}
 
-Возвращает строку содержащую последние \code{n} символы строки.
+Returnează șir, care conține ultimele \code{n} caractere din șir.
 
 \subsubsection{\lstinline|string.rightJustified <int>width <string>fillChar <bool>truncate = false :|\\* \lstinline|string|;}
 
-Возвращает строку длины \code{width}, содержащую эту строку, в начале ставится \code{width - .length} символов \code{fillChar}. Если \code{truncate == true} и \code{width < .length}, то первые \code{.length - width} символы будут удалены.
+Returnează șir cu lungimea \code{width}, care conține acest șir, la început se înserează \code{width - .length} caractere \code{fillChar}. Dacă \code{truncate == true} și \code{width < .length}, primele \code{.length - width} caractere vor fi șterse.
 
-\subsubsection{\lstinline|string.split <string>separator <bool>keepEmptyParts = true <bool>caseSensiti|\\* \lstinline|ve = true : list|}
+\subsubsection{\lstinline|string.split <string>separator <bool>keepEmptyParts = true <bool>case Sensitive = true : list|}
 
-Разрывает строку на подстроки при каждой нахождения подстроки \code{separator} и собирает список из этих строк. Если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки. Если \code{keepEmptyParts == false} то пустые строки пропускаются.
+Împarte șirul în subșiruri, la fiecare găsire a subșirului \code{separator} și strînge subșirurile în lista. Dacă \code{separator} nu se întîlneste nici o dată, va fi returnată o listă dintr-un șir - acest șir. Dacă \code{keepEmptyParts == false} șirurile deșarte se ignoră.
 
 \subsubsection{\lstinline|string.substring <int>begin <int>end : string|}
 
-Возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
+Returnează șir, care conține caracterele din intervalul [\code{begin}; \code{end}].
 
 \subsubsection{\lstinline|string.trim <bool>justWhitespace = true : string|}
 
-Возвращает строку, копия текущей из которого удаляются пробельные символы с начало и конце строки. Если \lstinline|justWhitespace == false|, то будут удалены все знаки которые не является буквой или цифрой.
+Returnează șir, copia acestui șir din care se șterg toate spațiile de la început și sfîrșit. Dacă \lstinline|justWhitespace == false| vor fi șterse toate caracterele care nu sunt litere sau cifre (de la începutul și sfîrșitul șirului).
 
 % \subsubsection{}
 
