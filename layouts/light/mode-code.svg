@@ -16,7 +16,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 2405546, 2018-03-11"
-   sodipodi:docname="mode-code.svg">
+   sodipodi:docname="mode-code.svg"
+   inkscape:export-filename="/home/lixcode/Qt/Projects/icL/images/light.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2">
     <linearGradient
@@ -97,9 +100,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="517.50908"
-     inkscape:cy="35.870723"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="540.55984"
+     inkscape:cy="420.6576"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"

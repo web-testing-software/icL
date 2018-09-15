@@ -60,4 +60,6 @@ DISTFILES += \
     CONTRIBUTING.md \
     layouts/dark/*.svg \
     layouts/light/*.svg \
-    layouts/structure/*.svg
+    layouts/structure/*.svg \
+    layouts/models/*.svg \
+    images/*.png
