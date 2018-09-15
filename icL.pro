@@ -19,17 +19,20 @@ SUBDIRS = \
         wd \
         worker
 
-memory.subdir   = src/icl-memory
-vm.subdir       = src/icl-vm
-ce.subdir       = src/icl-ce
-cp.subdir       = src/icl-cp
-ide.subdir      = src/icl-ide
-il.subdir       = src/icl-il
-manager.subdir  = src/icl-manager
-share.subdir    = src/icl-share
-sv.subdir       = src/icl-sv
-wd.subdir       = src/icl-wd
-worker.subdir   = src/icl-worker
+# libs
+memory.subdir   = src/icL-memory
+vm.subdir       = src/icL-vm
+ce.subdir       = src/icL-ce
+cp.subdir       = src/icL-cp
+il.subdir       = src/icL-il
+sv.subdir       = src/icL-sv
+wd.subdir       = src/icL-wd
+
+# apps
+ide.subdir      = src/icL-ide
+share.subdir    = src/icL-share
+manager.subdir  = src/icL-manager
+worker.subdir   = src/icL-worker
 
 DISTFILES += \
     Doxyfile \
@@ -50,6 +53,7 @@ DISTFILES += \
     standard/russian/*.tex \
     standard/moldavian/*.tex \
     README.md \
+    clang-format \
     graduation/README.md \
     graduation/bachelor/README.md \
     standart/README.md \

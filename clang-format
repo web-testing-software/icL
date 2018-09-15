@@ -55,17 +55,13 @@ IncludeBlocks: Regroup
 
 IncludeCategories:
   - Regex:           '^<Q'
-    Priority:        6
-  - Regex:           '^<context'
     Priority:        4
-  - Regex:           '^<icl'
-    Priority:        3
-  - Regex:           '^<.*\.h>$'
+  - Regex:           '^<icL'
     Priority:        2
   - Regex:           '^".*\.h"$'
     Priority:        1
   - Regex:           '.*'
-    Priority:        5
+    Priority:        3
 
 IndentCaseLabels: false
 IndentWrappedFunctionNames: false

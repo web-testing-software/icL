@@ -1,5 +1,0 @@
-
-
-DISTFILES += \
-    README.md
-
