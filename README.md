@@ -25,6 +25,20 @@ For crossplatform testing Selenium use the next architecture -
 icL use a more complex, but more peformant architecture -
 ![icL share architecture](images/icL-share.png)
 
+Comparation between icL share and Selenium Grid -
+
+|Criteria              |Selenium Grid| icL share |
+|----------------------|-------------|-----------|
+|multithreading        |manual       |automatic  |
+|trafic                |commands     |code + data|
+|browsers              |same         |same + icL |
+|API                   |W3C + JSWP   |W3C only   |
+|crossplatform         |yes          |yes        |
+|autoshare             |no           |yes        |
+|optimization          |no           |yes        |
+|extern IDE needed     |yes          |no         |
+|safe password storange|no           |yes        |
+
 # Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
