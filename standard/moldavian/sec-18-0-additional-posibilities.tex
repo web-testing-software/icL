@@ -282,7 +282,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsection{{\color{orange} \_cookies}}
 
-Obiectul \cookies{} имеет следующее свойство: \lstinline|[r/o] _cookies'<string>name :|\\* \lstinline|_cookie|.
+Obiectul \cookies{} are următoarea proprietate: \lstinline|[r/o] _cookies'<string>name :|\\* \lstinline|_cookie|.
 
 Și următoarele metode: 
 \begin{icItems}
@@ -292,17 +292,17 @@ Obiectul \cookies{} имеет следующее свойство: \lstinline|[
 
 \subsubsection{\lstinline|[r/o] _cookies'<string>name : _cookie|}
 
-Returnează \cookie{} с нужным названием.
+Returnează \cookie{} cu numele \code{name}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
 \subsubsection{\lstinline|_cookies.deleteAll : void|}
 
-Удаляет всеx существующих cookie.
+Șterge toate fișierele cookie.
 
 \subsubsection{\lstinline|_cookies.get <string>name : _cookie|}
 
-Returnează \cookie{} с нужным названием.
+Returnează \cookie{} cu numele \code{name}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
@@ -329,57 +329,57 @@ Obiectul \cookie{} are următoarele proprietăți:
 
 \subsubsection{\lstinline|[r/w] _cookie'domain : string|}
 
-Доменное имя, на которым cookie доступен.
+Numele de domeniu, pe care \cookie{} este disponibil.
 
 \subsubsection{\lstinline|[r/w] _cookie'expiry : int|}
 
-Время указывающая срок годности cookie. По умолчанию -1, указывает на то что cookie будет удален при окончания сессии.
+Timpul de expirare al fișierului cookie. Implicit -1, indică că fișierul cookie va fi șters la sfîrșitul sesiei.
 
 \subsubsection{\lstinline|[r/w] _cookie'httpOnly : bool|}
 
-Значение по умолчанию - \false.
+Doar pentru protocolul HTTP. Implicit \false.
 
 \subsubsection{\lstinline|[r/w] _cookie'name : string|}
 
-Название, обязательное для заполнения.
+Denumire, obligatorie pentru completare.
 
 \subsubsection{\lstinline|[r/w] _cookie'path : string|}
 
-Значение по умолчанию - \lstinline|"/"|.
+Calea pe care fișierul cookie este diponibil, implicit \lstinline|"/"|.
 
 \subsubsection{\lstinline|[r/w] _cookie'secure : bool|}
 
-Значение по умолчанию - \false.
+Securizat, implicit \false.
 
 \subsubsection{\lstinline|[r/w] _cookie'value : string|}
 
-Значение самого cookie, обязательное для заполнения.
+Valoarea fișierului cookie, obligatorie pentru completare.
 
 \subsubsection{\lstinline|_cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\*\noindent\lstinline|<int>seconds = 0 : _cookie|}
 
-Добавляет к сроку годности ножное количество лет, месяцев, дней, часов, минут и секунд.
+Adaugă la timpul de expirare numărul necesar de ani, luni, zile, ore, minute și secunde.
 
 \subsubsection{\lstinline|_cookie.load : _cookie|}
 
-Загружает данные о cookie с браузера.
+Încarcă datele despre \cookie din browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
 \subsubsection{\lstinline|_cookie.resetTime : _cookie|}
 
-Сбросит строк на текущее время. Например установить срок годности год: \lstinline|_cookie.resetTime.add 1 0 0|.
+Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să expire peste un an se folosește comanda următoare: \lstinline|_cookie.resetTime.add 1 0 0|.
 
 \subsubsection{\lstinline|_cookie.save : _cookie|}
 
-Сохраняет изменения в браузере.
+Transmite schimbările fișierului cookie în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
 
-\subsubsection{Создать новый cookie}
+\subsubsection{Crearea noilor fișiere cookie}
 
-На листинге \ref{newcookies}, представлен правильный способ создания новых cookie.
+Pe foaia \ref{newcookies}, este prezentată metoda corectă de a crea fișiere cookie noi.
 
-\begin{lstlisting}[caption=Создания новых cookie, label=newcookies]
+\begin{lstlisting}[caption=Crearea noilor fișiere cookie, label=newcookies]
 for any _cookie {
 	@'name = "age";
 	@'domain = "example.org";
