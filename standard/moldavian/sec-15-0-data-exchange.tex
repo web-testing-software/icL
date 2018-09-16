@@ -1,45 +1,44 @@
-\section{Обмен данных с веб-странице}
+% !TeX spellcheck = ro_RO
+\section{Schimbul de date cu pagina web}
 \label{dataexchange}
 
-\subsubsection{Название странице}
+\subsubsection{Titlul paginii}
 
-Название страницы можно получить вызывая \lstinline|[r/*] _tab'title : string|.
+Titlu pagini poate fi obținut cu ajutorul \lstinline|[r/*] _tab'title : string|.
 
-\subsubsection{Исходный код}
+\subsubsection{Codul sursă}
 
-Исходный код страницы можно получить вызывая \lstinline|[r/o] _tab'source : string|.
+Codul sursă al paginii poate \lstinline|[r/o] _tab'source : string|.
 
-\subsubsection{Screenshot}
+\subsubsection{Captură de ecran}
 
-Screenshot страницы в base64 можно получить вызывая \lstinline|[r/o] _tab'screenshot : string|.
+Captura de ecran, codată în base64, poate fi obținută cu ajutorul \lstinline|[r/o] _tab'screenshot : string|.
 
 \subsubsection{URL}
 
-Адрес доступен через свойство \lstinline|[r/w] _tab'url : string|.
+Adresa URL este disponibilă prin proprietatea \lstinline|[r/w] _tab'url : string|.
 
-\subsubsection{Навигация}
+\subsubsection{Navigare}
 
-\lstinline|_tab.back : void| - позволяет возвращаться на предыдущую страницу.
+\lstinline|_tab.back : void| permite a se întoarce la pagina precedentă.
 
-\lstinline|_tab.forward : void| - позволяет возвращаться на следующую страницу.
+\lstinline|_tab.forward : void| permite a se întoarce la pagina următoare.
 
-\lstinline|_tab.refresh : void| -  позволяет перезагрузить страницу.
+\lstinline|_tab.refresh : void|  permite a reîncărca pagina.
 
-\lstinline|[icL] [r/o] _tab'canGoBack : bool| - сообщает можно ли перейти на предыдущую страницу.
+\lstinline|[icL] [r/o] _tab'canGoBack : bool| - informează dacă se poate de se întors la pagina precedentă.
 
-\lstinline|[icL] [r/o] _tab'canGoForward : bool| - сообщает можно ли перейти на следующую страницу.
+\lstinline|[icL] [r/o] _tab'canGoForward : bool| - informează dacă se poate de se întors la pagina următoare.
 
 
-\subsubsection{Предупреждения}
+\subsubsection{Avertizări}
 
-\lstinline|[r/o] _alert'text : string| - текст предупреждений.
+\lstinline|[r/o] _alert'text : string| este textul avertizării
 
-\lstinline|_alert.accept : void| - закрыть окно отвечая положительным ответом.
+\lstinline|_alert.accept : void| închide avertizarea cu răspuns pozitiv.
 
-\lstinline|_alert.dismiss : void| - закрыть окно отвечая отрицательным ответом.
+\lstinline|_alert.dismiss : void| închide avertizarea cu răspuns negativ.
 
-\lstinline|_alert.sendKeys <string>str : void| - ответить текстом \code{str}.
-
-% Возможные исключения: \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable}.
+\lstinline|_alert.sendKeys <string>str : void| răspunde cu textul \code{str}.
 
 %\newpage
