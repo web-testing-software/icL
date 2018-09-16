@@ -1,16 +1,17 @@
-\section{Множества}
+% !TeX spellcheck = ro_RO
+\section{Mulțimi}
 
-{\bf Множества} (тип \set) позволяют хранить несколько объектов (тип \object) без повторений, для множеств доступны операции как пересечение, объединение.
+{\bf Mulțimile} (tipul \set) cîteva obiecte (de tip \object) fără repetări, pentru mulțimi sunt disponibile operații ca intersecția și reuniunea.
 
 \subsection{{\color{lightblue} object}}
 
-Объект позволяет хранить несколько переменных, каждая хранимая переменная имеет тип и название. Доступ к переменным осуществляется через свойства объекта, где название свойств и есть название переменных.
+Obiectul conține variabile, fiecare variabilă în obiect are tip și nume. Accesul la variabile se realizează prin proprietăți, unde numele proprietății este numele variabilei.
 
-Поле объектов множества описаны в заголовке множества.
+Cîmpurile obiectelor din mulțime se descriu în header-ul mulțimii.
 
-\subsection{Свойства}
+\subsection{Proprietăți}
 
-Множества имеют следующие свойства:
+Mulțimile dețin următoarele proprietăți:
 \begin{icItems}
 \item \lstinline|[r/o] set'capacity : int|;
 \item \lstinline|[r/o] set'empty : bool|;
@@ -18,15 +19,15 @@
 
 \subsubsection{\lstinline|[r/o] set'capacity : int|}
 
-Возвращает количество объектов которых можно хранить в память без дополнительных выделений.
+Numărul de obiecte care poate fi salvat în mulțime fără a realoca memorie.
 
 \subsubsection{\lstinline|[r/o] set'empty : bool|}
 
-Множество считается пустой если оно не содержит ни один объект.
+Mulțimea se socoate vidă, dacă nu conține nici un obiect.
 
-\subsection{Методы}
+\subsection{Metode}
 
-Множество имеет следующие методы:
+Mulțimile dețin următoarele metode:
 \begin{icItems}
 \item \lstinline|set.applicate <list ...>data : set|;
 \item \lstinline|set.clear : set|;
@@ -44,9 +45,9 @@
 \item \lstinline|set.removeField <string>name : set|.
 \end{icItems}
 
-Код использующий выше перечисленных методов представлен на листинге \ref{setmethods};
+Exemple de folosire al metodelor descrise mai sus, sunt prezentate pe foaia \ref{setmethods};
 
-\begin{lstlisting}[caption=Методы класса set, label=setmethods]
+\begin{lstlisting}[caption=Metodele clasei set, label=setmethods]
 @set = [<int>age <string>name <string>sex]
 
 @set.applicate 
@@ -114,76 +115,78 @@
 
 \subsubsection{\lstinline|set.applicate <list ...>data : set|}
 
-Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \code{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
+Numărul de argumente, trebuie să fie egal cu numărul de cîmpuri în header. Numărul de obiecte adăugate este egal cu lungimea celei mai lungi liste din \code{data}. Din listele mai scurte elementele vor fi adăugate repetat.
+
+Excepții posibile: \ferror{IncompatibleData}.
 
 \subsubsection{\lstinline|set.clear : set|}
 
-Очищает множество.
+Curăță mulțimea.
 
 \subsubsection{\lstinline|set.getField <string>name : list|}
 
-Возвращает список значений поле \code{name} всех объектов.
+Întoarce lista de valori al cîmpului \code{name}, acumulînd informație din toate obiectele mulțimii.
 
-Возможные исключения: \ferror{FieldNotFound}.
+Excepții posibile: \ferror{FieldNotFound}.
 
 \subsubsection{\lstinline|set.hasField <string>name : bool|}
 
-Возвращает \true, если заголовок содержит поле \code{name}, иначе \false.
+Returnează \true, dacă header-ul mulțimii conține cîmpul \code{name}, în caz contrar \false.
 
 \subsubsection{\lstinline|set.insert <any ...>data : set|}
 
-Вставит новый объект, значения полей (массив \code{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
+Inserează un obiect nou, vectorul \code{data} trebuie numaidecît să fie compatibil complet cu header-ul mulțimii;
 
-Возможные исключения: \ferror{IncompatibleData}.
+Excepții posibile: \ferror{IncompatibleData}.
 
 \subsubsection{\lstinline|set.insert <object>obj : set|}
 
-Вставит новый объект, поля объекта \code{obj} должна быть совместимы полностью с заголовком множество.
+Inserează un obiect nou, obiectul \code{obj} trebuie numaidecît să fie compatibil cu header-ul mulțimii.
 
-Возможные исключения: \ferror{IncompatibleObject}.
+Excepții posibile: \ferror{IncompatibleObject}.
 
 \subsubsection{\lstinline|set.insertBoolField <string>name <list>values : set|}
 
-Создаёт новое поле типа \bool. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+Creează un cîmp nou de tip \bool. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertDoubleField <string>name <list>values : set|}
 
-Создаёт новое поле типа \double. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+Creează un cîmp nou de tip \double. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertIntField <string>name <list>values : set|}
 
-Создаёт новое поле типа \integer. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+Creează un cîmp nou de tip \integer. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertListField <string>name <list>value : set|}
 
-Создаёт новое поле типа \bool. Все объекты множеству получат новое поле со значением \code{value}.
+Creează un cîmp nou de tip \bool. Cîmpul \code{name} în toate obiectele va primi valoarea \code{value}.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.insertStringField <string>name <list>values : set|}
 
-Создаёт новое поле типа \str. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+Creează un cîmp nou de tip \str. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists}.
 
 \subsubsection{\lstinline|set.remove <any ...>data : set|}
 
-Удаляет объект, который подходит по описанию \code{data}.
+Șterge obiectul, care este compatibil cu descrierea \code{data}.
 
 \subsubsection{\lstinline|set.remove <object>obj : set|}
 
-Удаляет объект \code{obj} из множества.
+Șterge obiectul \code{obj} din mulțime.
 
 \subsubsection{\lstinline|set.removeField <string>name : set|}
 
-Удаляет поле \code{name} с заголовка.
+Șterge cîmpul \code{name} din header-ul mulțimii.
 
-Возможные исключения: \ferror{FieldNotFound}.
+Excepții posibile: \ferror{FieldNotFound}.
 
 %\newpage
