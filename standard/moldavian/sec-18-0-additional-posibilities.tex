@@ -719,7 +719,7 @@ Acronim pentru \lstinline|_dom.queryAll _by'tagName @name|.
 
 \subsection{{\color{orange} \_files}}
 
-Obiectul \files{} имеет следующие методы:
+Obiectul \files{} are următoarele metode:
 \begin{icItems}
 	\item \lstinline|_files.open <string>path : _file|;
 	\item \lstinline|_files.create <string>path : _file|;
@@ -729,25 +729,25 @@ Obiectul \files{} имеет следующие методы:
 
 \subsubsection{\lstinline|_files.open <string>path : _file|}
 
-Открывает файл.
+Deschide fișierul.
 
 Excepții posibile: \ferror{FileNotFound}.
 
 \subsubsection{\lstinline|_files.create <string>path : _file|}
 
-Открывает файл, если он не существует, он создаётся.
+Deschide fișierul, dacă el nu există se creează.
 
 Excepții posibile: \ferror{FolderNotFound}.
 
 \subsubsection{\lstinline|_files.createDir <string>path : void|}
 
-Создаёт папку, папка в которым она создаётся должна уже существовать.
+Creează folder, folderul ascendent trebuie să existe deja.
 
 Excepții posibile: \ferror{FolderNotFound}.
 
 \subsubsection{\lstinline|_files.createPath <string>path : void|}
 
-Создаёт все несуществующие папки пути.
+Creează toate folderele care nu există în calea indicată.
 
 \subsection{{\color{orange} \_file}}
 
@@ -768,31 +768,31 @@ Obiectul \file{} are următoarele proprietăți:
 
 \subsubsection{\lstinline|[r/o] _file'csv : 1|}
 
-Формат CSV.
+Format CSV.
 
 \subsubsection{\lstinline|[r/w] _file'format : int|}
 
-Returnează формат файла.
+Returnează formatul fișierului.
 
 \subsubsection{\lstinline|[r/o] _file'none : 0|}
 
-Не инициализированный файл.
+File neinițializat.
 
 \subsubsection{\lstinline|[r/o] _file'tsv : 2|}
 
-Формат TSV.
+Format TSV.
 
 \subsubsection{\lstinline|[r/o] _file'valid : bool|}
 
-Returnează \true, если файл инициализированный, în caz contrar \false.
+Returnează \true, dacă fișierul este inițializat, în caz contrar \false.
 
 \subsubsection{\lstinline|_file.close : void|}
 
-Закрывает файл.
+Închide fișierul.
 
 \subsubsection{\lstinline|_file.delete : void|}
 
-Удаляет файл.
+Șterge fișierul.
 
 \subsection{{\color{orange} \_make}}
 
