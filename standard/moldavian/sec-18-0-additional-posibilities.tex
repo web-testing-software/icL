@@ -651,7 +651,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidA
 
 \subsection{{\color{orange} \_dom}}
 
-Obiectul \dom{} имеет следующие методы:
+Obiectul \dom{} are următoarele metode:
 \begin{icItems}
 	\item \lstinline|_dom.query <int>by <string>selector : element|;
 	\item \lstinline|_dom.query <string>cssSelector : element|;
@@ -667,35 +667,35 @@ Obiectul \dom{} имеет следующие методы:
 
 \subsubsection{\lstinline|_dom.query <int>by <string>selector : element|}
 
-Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
+Primește aceiași parametri ca și  \lstinline|element.query|, numai că această funcție va căuta în tot documentul.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_dom.query <string>cssSelector : element|}
 
-Акроним для \lstinline|_dom.query _by'cssSelector @cssSelector|.
+Acronim pentru \lstinline|_dom.query _by'cssSelector @cssSelector|.
 
 \subsubsection{\lstinline|_dom.queryAll <int>by <string>selecor : element|}
 
-Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
+Primește aceiași parametri ca și \lstinline|element.queryAll|, numai că această funcție va căuta în tot documentul.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_dom.queryAll <string>cssSelector : lement|}
 
-Акроним для \lstinline|_dom.queryAll _by'cssSelector @cssSelector|.
+Acronim pentru \lstinline|_dom.queryAll _by'cssSelector @cssSelector|.
 
 \subsubsection{\lstinline|_dom.queryAllByXPath <string>xpath : element|}
 
-Акроним для \lstinline|_dom.queryAll _by'xPath @xpath|.
+Acronim pentru \lstinline|_dom.queryAll _by'xPath @xpath|.
 
 \subsubsection{\lstinline|_dom.queryByXPath <string>xpath : element|}
 
-Акроним для \lstinline|_dom.query _by'xPath @xpath|.
+Acronim pentru \lstinline|_dom.query _by'xPath @xpath|.
 
 \subsubsection{\lstinline|_dom.queryLink <string>name <bool>isFragment = false : element|}
 
-Акроним для:
+Acronim pentru:
 \begin{icItems}
 	\item \lstinline|_dom.query _by'linkText @name|;
 	\item \lstinline|_dom.query _by'partialLinkText @name|;
@@ -703,7 +703,7 @@ Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_dom.queryLinks <string>name <bool>isFragment = false : element|}
 
-Акроним для:
+Acronim pentru:
 \begin{icItems}
 	\item \lstinline|_dom.queryAll _by'linkText @name|;
 	\item \lstinline|_dom.queryAll _by'partialLinkText @name|;
@@ -711,11 +711,11 @@ Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_dom.queryTag <string>name : element|}
 
-Акроним для \lstinline|_dom.query _by'tagName @name|.
+Acronim pentru \lstinline|_dom.query _by'tagName @name|.
 
 \subsubsection{\lstinline|_dom.queryTags <string>name : element|}
 
-Акроним для \lstinline|_dom.queryAll _by'tagName @name|.
+Acronim pentru \lstinline|_dom.queryAll _by'tagName @name|.
 
 \subsection{{\color{orange} \_files}}
 
