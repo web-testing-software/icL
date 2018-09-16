@@ -1111,35 +1111,35 @@ Obiectul \lstinline|_import| deține următoarele metode:
 	\item \lstinline|_import.run <string>path : void|.
 \end{icItems}
 
-Obiectul \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
+Obiectul \code{data} permite a transmite date în contextul izolat în care se execut fișierele externe, proprietățile obiectului \code{data} vor fi disponibile ca variabile globale. Aceasta permite a deține într-un fișier mai multe versiuni ale bibliotecii de exemplu, și la folosire se poate de indicat care versiune e necesară.
 
 \subsubsection{\lstinline|_import.none <object>data <string>path : void|}
 
-Создаёт изолируемый контекст, в нём выполняет файл.
+Creează context izolat în care se execută fișierul.
 
 \subsubsection{\lstinline|_import.none <string>path : void|}
 
-Акроним для \lstinline|_import.none [<>] @path|.
+Acronim pentru \lstinline|_import.none [<>] @path|.
 
 \subsubsection{\lstinline|_import.functions <object>data <string>path : void|}
 
-Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции в текущем контексте.
+Creează context izolat în care se execută fișierul, Apoi se importă funcțiile în contextul curent.
 
 \subsubsection{\lstinline|_import.functions <string>path : void|}
 
-Акроним для \lstinline|_import.functions [<>] @path|.
+Acronim pentru \lstinline|_import.functions [<>] @path|.
 
 \subsubsection{\lstinline|_import.all <object>data <string>path : void|}
 
-Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции и глобальные переменный в текущем контексте.
+Creează context izolat în care se execută fișierul, Apoi se importă funcțiile și variabilele globale în contextul curent.
 
 \subsubsection{\lstinline|_import.all <string>path : void|}
 
-Акроним для \lstinline|_import.all [<>] @path|.
+Acronim pentru \lstinline|_import.all [<>] @path|.
 
 \subsubsection{\lstinline|_import.run <string>path : void|}
 
-Выполняет файл в текущем контексте.
+Execută fișierul în contextul curent.
 
 \subsection{Модификатор {\color{blue2} reverse}}
 
