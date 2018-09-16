@@ -13,7 +13,7 @@ Obiectul \sessions{} are următoarele proprietăți:
 	\item \lstinline|[r/o] _sessions'(<int>i) : _session|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_sessions.closeAll : void|;
 	\item \lstinline|_sessions.get <int>i : _session|;
@@ -60,7 +60,7 @@ Obiectul \session{} are următoarele proprietăți:
 	\item \lstinline|[r/w] _session'url : string|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_session.back : _session|;
 	\item \lstinline|_session.close : void|;
@@ -152,23 +152,23 @@ Obiectul \windows{} are următoarele proprietăți:
 	\item \lstinline|[r/o] _windows'(<int>i) : _window|.
 \end{icItems}
 
-И следующий метод \lstinline|_windows.get <int>i : _window|.
+Și următoarea metodă \lstinline|_windows.get <int>i : _window|.
 
 \subsubsection{\lstinline|[r/o] _windows'length : int|}
 
-Returnează количество окон в текущей сессии.
+Returnează numărul de ferestre în sesiunea curentă.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _windows'(<int>i) : _window|}
 
-Returnează \code{i}-е окно.
+Returnează a \code{i}-a fereastră.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_windows.get <int>i : _window|}
 
-Returnează \code{i}-е окно.
+Returnează a \code{i}-a fereastră.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
@@ -182,7 +182,7 @@ Obiectul \window{} are următoarele proprietăți:
 	\item \lstinline|[r/w] _window'y : int|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_window.close : void|;
 	\item \lstinline|_window.focus : _window|;
@@ -198,85 +198,85 @@ Obiectul \window{} are următoarele proprietăți:
 
 \subsubsection{\lstinline|[r/w] _window'height : int|}
 
-Высота текущей окно в пикселях.
+Înălțimea ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|[r/w] _window'width : int|}
 
-Ширина текущей окно в пикселях.
+Lățimea ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|[r/w] _window'x : int|}
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Coordonata $x$ a ferestrei curente în pixeli.
 
-Координата $x$ текущей окно в пикселях.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|[r/w] _window'y : int|}
 
-Координата $y$ текущей окно в пикселях.
+Coordinata $y$ a ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|_window.close : void|}
 
-Закрывает окну, если она последняя закрывается и сессию.
+Închide fereastra curentă, dacă ea este ultima se închide și sesia.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.focus : _window|}
 
-Делает окну активной.
+Schimbă focosul la fereastra aceasta.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.fullscreen : _window|}
 
-Переключает режим отображения окна на полный экран.
+Schimbă regimul de afișare a ferestrei browserului la \textit{ecran complet}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.maximize : _window|}
 
-Распахнет окно.
+Maximizează fereastra browserului.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.minimize : _window|}
 
-Свернёт окно.
+Minimizează fereastra browserului.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.restore : _window|}
 
-Восстановит окно в нормальном режиме.
+Restaurează fereastra în regim normal.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.switchToDefault : _window|}
 
-Переключает фокус на главный frame.
+Schimbă focusul la frame-ul principal.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.switchToFrame <int>i : _window|}
 
-Переключает фокус на frame с индексом \code{i}.
+Schimbă focusul la frame-ul cu indexul \code{i}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
 
 \subsubsection{\lstinline|_window.switchToFrame <element>el : _window|}
 
-Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
+Schimbă focusul la frame-ul elementului \code{el}. Elementul trebuie să fir numaidecît tag frame sau iframe.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|_window.switchToParent : _window|}
 
-Переключает фокус на родительский frame.
+Schimbă focusul la frame-ul ascensor.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
@@ -284,7 +284,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 Obiectul \cookies{} имеет следующее свойство: \lstinline|[r/o] _cookies'<string>name :|\\* \lstinline|_cookie|.
 
-И следующие методы: 
+Și următoarele metode: 
 \begin{icItems}
 	\item \lstinline|_cookies.deleteAll : void|;
 	\item \lstinline|_cookies.get <string>name : _cookie|.
@@ -319,7 +319,7 @@ Obiectul \cookie{} are următoarele proprietăți:
 	\item \lstinline|[r/w] _cookie'value : string|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\* \lstinline|<int>seconds = 0 : _cookie|;
 	\item \lstinline|_cookie.load : _cookie|;
@@ -394,7 +394,7 @@ for any _cookie {
 
 Obiectul \alert{} имеет следующее свойство: \lstinline|[r/o] _alert'text : string|.
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_alert.accept : void|;
 	\item \lstinline|_alert.dismiss : void|;
@@ -441,7 +441,7 @@ Obiectul \tabs{} are următoarele proprietăți:
 	% \item \lstinline|_tabs'|;
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_tabs.close <string>template : int|;
 	\item \lstinline|_tabs.close <regex>url : int|;
@@ -579,7 +579,7 @@ Obiectul \tab{} are următoarele proprietăți:
 	\item \lstinline|[r/w] _tab'url|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_tab.back : void|;
 	\item \lstinline|_tab.close : void|;
@@ -761,7 +761,7 @@ Obiectul \file{} are următoarele proprietăți:
 	\item \lstinline|[r/o] _file'valid : bool|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_file.close : void|;
 	\item \lstinline|_file.delete : void|.
@@ -895,7 +895,7 @@ Obiectul \numbers{} are următoarele proprietăți:
 	\item \lstinline|[r/o] _numbers'sum : 1|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_numbers.process <int>a <int>b : int|;
 	\item \lstinline|_numbers.process <double>a <double>b : double|;
@@ -958,7 +958,7 @@ Obiectul \lstinline|_math| are următoarele proprietăți:
 	\item \lstinline|[r/o] _math'sqrt2 : double|.
 \end{icItems}
 
-И следующие методы:
+Și următoarele metode:
 \begin{icItems}
 	\item \lstinline|_math.acos <double>v : double|;
 	\item \lstinline|_math.asin <double>v : double|;
