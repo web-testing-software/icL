@@ -392,7 +392,7 @@ for any _cookie {
 
 \subsection{{\color{orange} \_alert}}
 
-Obiectul \alert{} имеет следующее свойство: \lstinline|[r/o] _alert'text : string|.
+Obiectul \alert{} are următoarea proprietate: \lstinline|[r/o] _alert'text : string|.
 
 Și următoarele metode:
 \begin{icItems}
@@ -403,29 +403,27 @@ Obiectul \alert{} имеет следующее свойство: \lstinline|[r/
 
 \subsubsection{\lstinline|[r/o] _alert'text : string|}
 
-Returnează текст предупреждений.
+Returnează textul avertizării.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
 \subsubsection{\lstinline|_alert.accept : void|}
 
-Принимает предупреждению.
+Acceptă avertizarea.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
 \subsubsection{\lstinline|_alert.dismiss : void|}
 
-Отменяет предупреждению.
+Refuză avertizarea.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
 \subsubsection{\lstinline|_alert.sendKeys <string>keys : void|}
 
-Заполняет форму текстом \code{keys} и подтверждает ввод.
+Completează formularul cu textul \code{keys} și confirmă inserarea.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
-
-% \subsection{Возможности icL}
 
 \subsection{{\color{orange} \_tabs}}
 
