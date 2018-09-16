@@ -1,13 +1,14 @@
-\section{Веб-элементы}
+% !TeX spellcheck = ro_RO
+\section{Elemente web}
 \label{webelments}
 
-{\bf Веб-элементы} (тип данных \element) представляет собой ссылки на HTML-теги веб-страницы.
+{\bf Elementele web} (tipul de date \element) sunt linkuri la taguri HTML din pagina web.
 
-Элемент считается единым если он получен с помощью функций \lstinline|_dom.query| или \lstinline|element.query|. Элемент считается коллекцией если он получен с помощью функций \lstinline|_dom.queryAll| или \lstinline|element.queryAll|. При получении элемента по индексу, результат также будет единым.
+Elementul se numește unic dacă este creat de funcția \lstinline|_dom.query| sau \lstinline|element.query|. Elementul se numește colecție dacă este creat de funcția \lstinline|_dom.queryAll| sau \lstinline|element.queryAll|. Extragerea elementului după index returnează element unic. 
 
 \subsection{Свойства}
 
-Веб-элементы имеют следующее свойства:
+Elementele web au următoarele proprietăți:
 \begin{icItems}
 \item \lstinline|[r/*] element'attr-* : string|;
 \item \lstinline|[r/*] element'css-* : string|;
@@ -24,91 +25,91 @@
 
 \subsubsection{\lstinline|[r/*] element'attr-* : string|}
 
-\code{[w3c]} Возвращает значения атрибута \code{*}.
+\code{[w3c]} Returnează valoarea atributului \code{*}.
 
-\code{[icL]} Возвращает JS-значение для запрашиваемого атрибута.
+\code{[icL]} Returnează o valoare JS pentru atributul necesar.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/*] element'css-* : string|}
 
-\code{[w3c]} Возвращает значения свойства CSS \code{*}.
+\code{[w3c]} Returnează valoarea proprietății CSS \code{*}.
 
-\code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS.
+\code{[icL]} Returnează o valoare JS pentru proprietatea CSS necesară.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'empty : bool|}
 
-Возвращает \true, если коллекция не содержит ни одного элемента, иначе \false.
+Returnează \true, dacă colecția nu conține nici un element, în caz contrar \false.
 
 \subsubsection{\lstinline|[r/o] element'enabled : bool|}
 
-Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. 
+Returnează \false, dacă elementul este un formular și el este închis, în caz contrar \true.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'length : int|}
 
-Возвращает количество элементов в коллекции.
+Returnează numărul de elemente în colecție.
 
 \subsubsection{\lstinline|[*/*] element'prop-* : string|}
 
-\code{[w3c]} Возвращает значения свойства \code{*}.
+\code{[w3c]} Returnează valoare proprietății \code{*}.
 
-\code{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Тип JS-значений не определён, это можно сводить к проблемам в динамическом анализаторе кода. При использовании свойств неопределённых в главе \ref{elements:predefined:properties}, используете преобразование для указания какого типа будет результат. Если переменная уже инициализируемая, то никаких проблем не должны быть. Новых перемен инициализируете одним из следующим способом -
+\code{[icL]}  Returnează o valoare JS pentru proprietatea necesară. Tipul valorii JS este nedefinit, asta poate conduce la erori în analizarea dinamică a codului. Cînd folosiți proprietăți nedefinite în paragraful \ref{elements:predefined:properties}, folosiți conversia pentru a indica tipul rezultatului. Dacă variabila este deja inițializată, probleme nu vor fi. Variabilele noi inițializați în felul următor -
 \begin{lstlisting}[numbers=none]
 @var = element'prop-userdefined : string;
 @var:string = element'prop-userdefined;
 \end{lstlisting}
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'rect : obj|}
 
-Возвращает положение размер элемента на экране в CSS пикселей, а точнее объект содержащий следующее поля:
+Returnează poziția și mărimea elementului pe ecran in pixeli CSS, dar mai exact un obiect cu următoarele cîmpuri:
 \begin{icItems}
-	\item \code{x : double} - координата x относительно левого края;
-	\item \code{y : double} - координата y относительно верхнего края;
-	\item \code{width : double} - ширина;
-	\item \code{height : double} - высота;
+	\item \code{x : double} - coordinata x relativ la marginea stîngă a ecranului;
+	\item \code{y : double} - coordinata y relativ la marginea de sus a ecranului;
+	\item \code{width : double} - lungimea;
+	\item \code{height : double} - înălțimea;
 \end{icItems}
 
-\code{[icL]} Возвращает \set, в случае коллекции.
+\code{[icL]} Returnează \set, în caz ca elementul este o colecție.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'selected : bool|}
 
-Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false.
+Returnează \true, dacă elementul este o casetă bifată, radio buton selectat sau o opțiune selectată, în caz contrar \false.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'tag : string|}
 
-Возвращает название тега.
+Returnează numele tagului.
 
-\code{[icL]} Возвращает \listtype, в случае коллекции.
+\code{[icL]} Returnează \listtype, dacă elementul este o colecție.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'text : string|}
 
-Возвращает текст элемента видимый на экран. 
+Returnează textul elementului vizibil pe ecran. 
 
-\code{[icL]} Возвращает \listtype, в случае коллекции.
+\code{[icL]} Returnează \listtype, dacă elementul este o colecție.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement} și \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|[r/o] element'(<int> n) : element|}
 
-Возвращает новую коллекцию содержащую n-й элемент.
+Returnează element unic care conține al n-lea element.
 
-Возможные исключения: \ferror{OutOfBounds}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{OutOfBounds}, \ferror{StaleElementReference}.
 
-\subsection{Операторы}
+\subsection{Operatori}
 
-В контексте веб-элементов появляются новые операторы:
+În contextul elementelor web apar operatori noi:
 \begin{icItems}
 	\item \lstinline|void % element : element|;
 	\item \lstinline|element % void : element|;
@@ -118,27 +119,27 @@
 
 \subsubsection{\lstinline|void \% element : element|}
 
-Возвращает полученный элемент.
+Returnează elementul primit.
 
 \subsubsection{\lstinline|element \% void : element|}
 
-Возвращает полученный элемент.
+Returnează elementul primit.
 
 \subsubsection{\lstinline|element \% element : element|}
 
-Возвращает новую коллекцию, содержащая обоих элементов.
+Returnează o colecție nouă, care conține elementele din ambele argumente.
 
 \subsubsection{\lstinline|[element ...] : element|}
 
-Возвращает новую коллекцию, содержащая всех представленных элементов.
+Returnează o colecție nouă, care conține toate elementele indicate.
 
-\subsection{Методы}
+\subsection{Metode}
 
-{\bf Методы} класса \code{element} делится на 2 категории: базовые и расширенные. Базовые методы определены стандартом W3C WebDriver. Расширенные методы определяются стандартом языка icL и могут быть изменены в следующих версиях языка.
+{\bf Metodele} clasei \code{element} se împart în 2 categorii: de bază și adiționale. Metodele de bază sunt definite pe baza de standardul W3C WebDriver. Metodele adiționale sunt definite de standardul icL și pot fi modificate în versiunile succesive ale limbajului.
 
-\subsection{Базовые методы}
+\subsection{Metode de bază}
 
-Перечень базовых методов:
+Lista metodelor de bază:
 \begin{icItems}
 	\item \lstinline|element.clear : element|;
 	\item \lstinline|element.click : element|;
@@ -158,66 +159,66 @@
 
 \subsubsection{\lstinline|element.clear : element|}
 
-Если элемент является полем ввода данных, то ого значение очищается. Если элемент редактируемый, то его свойство \code{innerHtml} присваивается пустая строка.
+Dacă elementul este un cîmp de inserarea a datelor, atunci valoarea lui se anulează. Dacă este un element editabil, atunci proprietății lui \code{innerHtml} se atribuie un șir deșert.
 
-\code{[icL]} Очищены будут все элементы контейнера.
+\code{[icL]} Se vor curăți toate elementele colecției.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState}.
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState}.
 
 \subsubsection{\lstinline|element.click : element|}
 
-Симулирует клик по центре элемента, и ждёт загрузка страницы.
+Simulează un clic pe centrul elementului, și așteaptă încărcarea paginii.
 
-\code{[icL]} Клик будет симулирован на все элементы контейнера.
+\code{[icL]} Clicul va fi simulat pentru fiecare element al colecției.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{In\-validElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
-Акроним для \lstinline|element.query _by'cssSelector @cssSelector|; 
+Acronim pentru \lstinline|element.query _by'cssSelector @cssSelector|; 
 
 \subsubsection{\lstinline|element.query <int>by <string>selector : element|}
 
-Параметр \code{by} получает одно из следующих значений:
+Parametrul \code{by} primește una din următoarele valori:
 \begin{icItems}
-	\item \lstinline|[r/o] _by'cssSelector : 1| - селектор CSS;
-	\item \lstinline|[r/o] _by'linkText : 2| - текст ссылки;
-	\item \lstinline|[r/o] _by'partialLinkText : 3| - фрагмент текста ссылки;
-	\item \lstinline|[r/o] _by'tagName : 4| - название тега;
+	\item \lstinline|[r/o] _by'cssSelector : 1| - selector CSS;
+	\item \lstinline|[r/o] _by'linkText : 2| - textul linkului;
+	\item \lstinline|[r/o] _by'partialLinkText : 3| - fragment al textului linkului;
+	\item \lstinline|[r/o] _by'tagName : 4| - denumirea tagului;
 	\item \lstinline|[r/o] _by'xPath : 5| - XPath.
 \end{icItems}
 
-Параметр \code{selector} получает селектор CSS, текст ссылки, фрагмент текста ссылки, название тега или XPath, в зависимость от значений первого параметра.
+Parametru \code{selector} primește un selector CSS, un text al linkului, un fragment de text al linkului, un nume de tag sau un XPath, în dependență de valoarea primului argument.
 
-Метод возвращает новый \element{} содержащий первый элемент найден по нужному методу в текущем элементе.
+Metoda returnează un element nou care conține primul element, găsit după criteriul necesar în elementul current.
 
-\code{[icL]} Поиск ведётся во всех элементов контейнера.
+\code{[icL]} Cătarea se realizează în toate elementele colecției.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiEle\-ment}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
 
-Акроним для \lstinline|element.queryAll _by'cssSelector @cssSelector|;
+Acronim pentru \lstinline|element.queryAll _by'cssSelector @cssSelector|;
 
 \subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
 
-Параметры получают такие же значения, как и в случае с \code{element.query}, только данный метод возвращает коллекцию найденных элементов или пустую коллекцию если ничего не нашлось.
+Primește aceiași parametri ca și \code{element.query}, numai că metoda dată returnează o colecție din elementele găsite, sau o colecție deșartă dacă nimic nu o fost găsit.
 
-\code{[icL]} Поиск ведётся во всех элементов контейнера.
+\code{[icL]} Căutarea se realizează în toate elementele colecției.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
 
-Акроним для \lstinline|element.queryAll _by'xPath @xpath|;
+Acronim pentru \lstinline|element.queryAll _by'xPath @xpath|;
 
 \subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
 
-Акроним для \lstinline|element.query _by'xPath @xpath|;
+Acronim pentru \lstinline|element.query _by'xPath @xpath|;
 
 \subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
 
-Акроним для:
+Acronim pentru:
 \begin{icItems}
 	\item \lstinline|element.query _by'linkText @name|;
 	\item \lstinline|element.query _by'partialLinkText @name|.
@@ -225,7 +226,7 @@
 
 \subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
 
-Акроним для:
+Acronim pentru:
 \begin{icItems}
 	\item \lstinline|element.queryAll _by'linkText @name|;
 	\item \lstinline|element.queryAll _by'partialLinkText @name|.
@@ -233,36 +234,36 @@
 
 \subsubsection{\lstinline|element.queryTag <string>name : element|}
 
-Акроним для \lstinline|element.query _by'tagName @name|;
+Acronim pentru \lstinline|element.query _by'tagName @name|;
 
 \subsubsection{\lstinline|element.queryTags <string>name : element|}
 
-Акроним для \lstinline|element.queryAll _by'tagName @name|;
+Acronim pentru \lstinline|element.queryAll _by'tagName @name|;
 
 \subsubsection{\lstinline|element.screenshot : string|}
 
-Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|_make.image <string>base64 <string>path : void|.
+Returnează un șir de caractere, care conține captura elementului, codată în base64. Captura poate fi salvată ca imagine cu \lstinline|_make.image <string>base64 <string>path : void|.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
 
-Параметр \code{modifiers} получает один из следующих параметров (или сумма нескольких из них):
+Parametrul \code{modifiers} primește una din valorile următoare (sau suma din cîteva dintre ele):
 \begin{icItems}
 	\item \lstinline|[r/o] _key'ctrl : 1| - Control;
 	\item \lstinline|[r/o] _key'shift : 2| - Shift;
 	\item \lstinline|[r/o] _key'alt : 3| - Alt;
 \end{icItems}
 
-Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.
+Parametrul \code{text} primește textul, care va fi tastat tastatură.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNot\-Intractable} \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
 
-\subsection{Расширенные методы}
+\subsection{Metode adiționale}
 
-Расширенные методы могут работать медленно в режиме тестирования при использовании внешнего браузера. При содержании нескольких элементов в коллекции, операции принимаются на каждого элемента, и возвращена будет коллекция, а не единый элемент.
+Metodele adiționale pot lucra încet în regimul de testare la folosirea browserului extern. În cazul colecției, operațiile vor fi aplicate pentru fiecare element, și vor fi returnate colecții, nu elemente unice. 
 
-Перечень расширенных методов:
+Lista metodelor adiționale:
 \begin{icItems}
 	\item \lstinline|element.add <element>other : element|;
 	\item \lstinline|element.child <int>index : element|;
@@ -278,67 +279,67 @@
 
 \subsubsection{\lstinline|element.add <element>other : element|}
 
-Добавит все элементы коллекции \code{other}.
+Adăugă toate elementele colecției \code{other}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.child <int>i : element|}
 
-Возвращает новый элемент, содержащая \code{i}-й дочерний элемент.
+Returnează un element nou, care conține al \code{i}-lea succesor.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|element.closest <string>cssSelector : element|}
 
-Возвращает новый элемент, содержащая ближайший родительский элемент, который подходит по селектору \code{cssSelector}.
+Returnează un element nou, care conține cel mai apropiat predecesor, care este compatibil cu selectorul CSS \code{cssSelector}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.contains <string>text <bool>asFragment = false : element|}
 
-Возвращает новая коллекция, содержащая все элементы, которые содержат текст/фрагмент \code{text}.
+Returnează o colecție nouă, care conține toate elementele, care conțin textul (ca fragment sau ca text întreg) \code{text}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.copy : element|}
 
-Возвращает новая коллекция, содержащая все элементы текущей коллекций.
+Returnează o colecție nouă, care conține toate elementele colecției curente.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.get <int>i : element|}
 
-Возвращает i-й элемент коллекции.
+Returnează al i-lea element al colecției.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|element.filter <string>cssSelector : element|}
 
-Возвращает новая коллекция, содержащая все элементы, которые подходят по селектору \code{cssSelector}.
+Returnează o colecție nouă, care conține doar elementele care sunt compatibile cu selectorul CSS \code{cssSelector}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 \subsubsection{\lstinline|element.next : element|}
 
-Возвращает новый элемент, содержащая следующий дочерний элемент.
+Returnează un element nou, care conține următorul nod.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.prev : element|}
 
-Возвращает новый элемент, содержащая предыдущий дочерний элемент.
+Returnează un element nou, care conține nodul precedent.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.parent : element|}
 
-Возвращает новый элемент, содержащая родительский элемент.
+Returnează ul element nou, care conține nodul ascensor.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsection{Предопределённый набор свойств}
+\subsection{Lista proprietăților prestabilite}
 \label{elements:predefined:properties}
 
-В icL предопределены только те свойства, которые имеют тип данных присутствующий в icL:
+În icL sunt prestabilite doar proprietățile ce au tipuri de date compatibile cu tipurile de date prezente în icL:
 \begin{icItems}
 	\item Node:	
 	\begin{icItems}
@@ -631,10 +632,10 @@
 	% \item \lstinline|[r/w] element'prop-|;
 \end{icItems}
 
-\code{element [c]} будет всегда коллекцией, \code{element [i]} - варьирует в зависимости от субъекта, если субъект - элемент, результат также будет элементом, если субъект - коллекция, результат также будет коллекцией. 
+\code{element [c]} întotdeauna va fi o colecție, \code{element [i]} - variază în dependența de subiect, dacă subiectul este un element unic, atunci rezultatul va vi un element unic, dacă subiectul este o colecție, atunci rezultatul va fi de asemenea colecție. 
 
-Напоминаю что стандарт W3C WebDriver предусматривает чтения свойств только для элементов, и в режиме тестирования все свойства будут доступны только для чтения.
+Amintim că standardul W3C WebDriver privește numai citirea proprietăților numai pentru elemente unice, și în regim de testare proprietățile var fi disponibile numai pentru citire.
 
-Свойства \code{rows} не указано в данном списке, потому что оно повторяется у разных элементов имея разные типы.
+Proprietatea \code{rows} nu este prezent în lista dată, pentru că tipul ei de date se diferențiază de la element la element.
 
 %\newpage

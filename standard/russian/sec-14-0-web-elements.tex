@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Веб-элементы}
 \label{webelments}
 
@@ -80,7 +81,7 @@
 
 \subsubsection{\lstinline|[r/o] element'selected : bool|}
 
-Возвращает true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе false.
+Возвращает \true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе \false.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
@@ -102,7 +103,7 @@
 
 \subsubsection{\lstinline|[r/o] element'(<int> n) : element|}
 
-Возвращает новую коллекцию содержащую n-й элемент.
+Возвращает новую единый элемент содержащий n-й элемент.
 
 Возможные исключения: \ferror{OutOfBounds}, \ferror{StaleElementReference}.
 
@@ -170,7 +171,7 @@
 
 \code{[icL]} Клик будет симулирован на все элементы контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{In\-validElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
@@ -193,7 +194,7 @@
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiEle\-ment}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
 
@@ -205,7 +206,7 @@
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
 
@@ -256,7 +257,7 @@
 
 Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNot\-Intractable} \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
 \subsection{Расширенные методы}
 
