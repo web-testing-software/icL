@@ -1,6 +1,7 @@
-\section{Преобразование типов}
+% !TeX spellcheck = ro_RO
+\section{Conversia datelor}
 
-Для преобразования данных в icL присутствуют 3 операторы первого ранга:
+De conversia datelor în icL răspund 3 operatori de rangul 1:
 \begin{icItems}
 	\item \lstinline|data : type : type|;
 	\item \lstinline|data :: type : bool|;
@@ -9,24 +10,24 @@
 
 \subsubsection{\lstinline|data : type : type|}
 
-Преобразует данные в нужном типа данных.
+Conversează datele în tipul necesar.
 
-Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
 
 \subsubsection{\lstinline|data :: type : bool|}
 
-Возвращает \true, если данные имеют нужный тип, иначе \false.
+Returnează \true, datele dețin tipul indicat, în caz contrar \false.
 
 \subsubsection{\lstinline|data :* type : bool|}
 
-Возвращает \true, если данные могут быть преобразованы в нужном типе, иначе \false.
+Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false.
 
-\subsection{Возможные преобразования}
+\subsection{Conversii posibile}
 
-В таблице \ref{castingtable} представлены совместимость преобразовании данных. Минусом отмечены невозможные преобразования, они всегда генерируют ошибку \ferror{UnrealCast}. Плюсом отмечены преобразования, которые никогда не генерируют ошибки. Звёздочкой отмечены возможные преобразования, но они также могут генерировать ошибки. В названии столбцов указан изначальный тип данных, в названии строки указан желаемый тип данных.
+În tabela \ref{castingtable} este prezentată compatibilitatea conversiei datelor. Cu minus sunt însemnate conversiile imposibile, ele mereu generează excepția \ferror{UnrealCast}. Cu plus sunt însemnate conversiile care mereu sunt posibile. Cu steluță sunt însemnate conversiile care pot eșua, ele la fel pot genera excepții. În numele coloanelor este indicat tipul de date curent, în numele rîndurilor - tipul de date necesar.
 
 \begin{table}[htb]
-	\caption{Таблица преобразований}
+	\caption{Conversii}
 	\label{castingtable}
 	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
 		\hline
@@ -45,184 +46,184 @@
 
 \subsubsection{\lstinline|void : void|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|void : bool|}
 
-Возвращает \false.
+Returnează \false.
 
 \subsubsection{\lstinline|void : int|}
 
-Возвращает \lstinline|0|.
+Returnează \lstinline|0|.
 
 \subsubsection{\lstinline|void : double|}
 
-Возвращает \lstinline|0.0|.
+Returnează \lstinline|0.0|.
 
 \subsubsection{\lstinline|void : string|}
 
-Возвращает \lstinline|""|.
+Returnează \lstinline|""|.
 
 \subsubsection{\lstinline|void : list|}
 
-Возвращает \lstinline|[]|.
+Returnează \lstinline|[]|.
 
 \subsubsection{\lstinline|void : object|}
 
-Возвращает \lstinline|[<>]|.
+Returnează \lstinline|[<>]|.
 
 \subsubsection{\lstinline|void : set|}
 
-Возвращает пустое множество.
+Returnează mulțime vidă.
 
 \subsubsection{\lstinline|void : element|}
 
-Возвращает пустая коллекция.
+Returnează colecție deșartă.
 
 \subsubsection{\lstinline|bool : bool|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|bool : int|}
 
-Возвращает \lstinline|1|, если логическое значение - единица, иначе \lstinline|0|.
+Returnează \lstinline|1|, dacă valoare booleană e adevărată, în caz contrar \lstinline|0|.
 
 \subsubsection{\lstinline|bool : double|}
 
-Возвращает \lstinline|1.0|, если логическое значение - единица, иначе \lstinline|0.0|.
+Returnează \lstinline|1.0|, dacă valoare booleană e adevărată, în caz contrar \lstinline|0.0|.
 
 \subsubsection{\lstinline|bool : string|}
 
-Возвращает \lstinline|"true"|, если логическое значение - единица, иначе \lstinline|"false"|.
+Returnează \lstinline|"true"|, dacă valoare booleană e adevărată, în caz contrar \lstinline|"false"|.
 
 \subsubsection{\lstinline|int : bool|}
 
-Возвращает значение выражений \lstinline|int != 0|.
+Returnează valoarea expresiei \lstinline|int != 0|.
 
 \subsubsection{\lstinline|int : int|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|int : double|}
 
-Возвращает вещественное число, имеющее целая часть равна \integer, а дробная равна нулю.
+Returnează număr decimal, cu partea întreagă egală cu  \integer, dar decimală egală cu 0.
 
 \subsubsection{\lstinline|int : string|}
 
-Возвращает строку, содержащая строковое представление числа \integer.
+Returnează un șir de caractere, care conține descrierea numărului \integer{} în sistemul decimal.
 
 \subsubsection{\lstinline|double : bool|}
 
-Возвращает значение выражений \lstinline|double != 0.0|.
+Returnează valoarea expresiei \lstinline|double != 0.0|.
 
 \subsubsection{\lstinline|double : int|}
 
-Возвращает целое число, равна целой части числа \double. Дробная часть пропадёт.
+Returnează un număr întreg egal cu partea întreagă a \double. Partea decimală se omite.
 
 \subsubsection{\lstinline|double : double|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|double : string|}
 
-Возвращает строку, содержащая строковое представление числа \double.
+Returnează un șir de caractere, care conține reprezentarea în caractere a numărului \double.
 
 \subsubsection{\lstinline|string : bool|}
 
-Возвращает значение выражений \lstinline|!string'empty|.
+Returnează valoarea expresiei \lstinline|!string'empty|.
 
 \subsubsection{\lstinline|string : int|}
 
-Возвращает целое число, являющейся результат парсинга строки \str.
+Returnează număr întreg, care este rezultatul parsing-ului șirului \str.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed}.
 
 \subsubsection{\lstinline|string : double|}
 
-Возвращает вещественное число, являющейся результат парсинга строки \str. Целая часть от дробной делить надо точкой, а не запятой.
+Returnează număr decimal, care este rezultatul parsing-ului șirului \str. Partea întreagă de decimală se desparte prin punct, nu prin virgulă.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed}.
 
 \subsubsection{\lstinline|string : string|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|string : list|}
 
-Возвращает \lstinline|[string]|.
+Returnează \lstinline|[string]|.
 
 \subsubsection{\lstinline|string : object|}
 
-Возвращает объект, являющийся результат парсинга JSON-строки \str. JSON-объект должен иметь поля только следующих типов: \bool, \integer, \double, \str{} и \listtype.
+Returnează obiect, care este rezultatul parsing-ului șirului JSON \str. Obiectul JSON trebuie să conțină numai cîmpuri de următoarele tipuri: \bool, \integer, \double, \str{} și \listtype.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
 
 \subsubsection{\lstinline|string : set|}
 
-Возвращает множество, являющийся результат парсинга JSON-строки \str, которая должна содержать массив объект, а каждый объект должен соответствовать критерия оператора \lstinline|string : object|.
+Returnează o mulțime, care este rezultatul parsing-ului șirului JSON \str, care trebuie să conțină un masiv de obiecte și fiecare obiect trebuie să corespundă criteriilor operatorului \lstinline|string : object|.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
 
 \subsubsection{\lstinline|list : bool|}
 
-Возвращает значение выражений \lstinline|!list'empty|.
+Returnează valoarea expresiei \lstinline|!list'empty|.
 
 \subsubsection{\lstinline|list : string|}
 
-Возвращает первую строку списка, если список состоит только из одной строки, иначе генерирует исключение.
+Returnează primul șir al listei, dacă lista constă dintr-un singur șir, în caz contrar generează excepție.
 
-Возможные исключения: \ferror{EmptyList} и \ferror{MultiList}.
+Excepții posibile: \ferror{EmptyList} și \ferror{MultiList}.
 
 \subsubsection{\lstinline|list : list|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|list : set|}
 
-Каждая строка списка будет преобразовано в объекте оператором \lstinline|string : object|, получены объекты будут группированы в множестве, полученная множество будет возвращена оператором.
+Fiecare șir de caractere din listă va fi convertit în obiect prin \lstinline|string : object|, obiectele generate for fi grupate în mulțime, mulțimea generată va fi returnata de operator.
 
 \subsubsection{\lstinline|object : bool|}
 
-Возвращает \true, если объект хранит хотя бы одну переменную, иначе \false.
+Returnează \true, dacă obiectul conține cel puțin o variabilă, în caz contrar \false.
 
 \subsubsection{\lstinline|object : string|}
 
-Возвращает JSON-строку, описывающая объект.
+Returnează un șir JSON, care descrie obiectul.
 
 \subsubsection{\lstinline|object : object|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|set : bool|}
 
-Возвращает значение выражений \lstinline|!set'empty|.
+Returnează valoarea expresiei \lstinline|!set'empty|.
 
 \subsubsection{\lstinline|set : string|}
 
-Возвращает JSON-строку, описывающая множеству.
+Returnează un șir JSON, care descrie mulțimea.
 
 \subsubsection{\lstinline|set : object|}
 
-Возвращает единственный объект, если множество содержит только один объект, иначе генерирует исключение.
+Returnează singurul obiect, dacă mulțimea conține doar un singur obiect, în caz contrar generează o excepție.
 
-Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet}.
+Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet}.
 
 \subsubsection{\lstinline|set : list|}
 
-Возвращает список JSON-строк, где каждая строка описывает объект множества.
+Returnează o listă de șiruri JSON, unde fiecare șir descrie un obiect din mulțime.
 
 \subsubsection{\lstinline|set : set|}
 
-Возвращает исходный объект.
+Returnează datele primite.
 
 \subsubsection{\lstinline|element : bool|}
 
-Возвращает значение выражений \lstinline|!element'empty|.
+Returnează valoarea expresiei \lstinline|!element'empty|.
 
 \subsubsection{\lstinline|element : string|}
 
-Возвращает строка, описывающая последовательность действий, при которых была получена данная коллекция.
+Returnează un șir care descrie, descrie ordinea de acțiuni necesare, ca să primești colecția dată.
 
 \subsubsection{\lstinline|element : element|}
 
-Возвращает исходный объект.
+Returnează datele primite.
