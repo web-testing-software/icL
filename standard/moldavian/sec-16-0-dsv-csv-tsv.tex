@@ -1,57 +1,60 @@
-\section{DSV: CSV и TSV}
+% !TeX spellcheck = ro_RO
+\section{DSV: CSV și TSV}
 
-{\bf DSV (Delimiter Separated Values, Значения Разделены Разделителем)} представляет собой текстовый файл, содержащий значения в текстовом виде.
+{\bf DSV (Delimiter Separated Values, Valori Delimitate de Delimitator)} sunt fișiere text, care conțin valori sub formă de text.
 
-{\bf CSV (Comma Separated Values, Значения Разделены Запятыми)} использует запятые в качестве разделителя, формат очень знаменитый и используется часто офисными программами. Больше о нём можете прочитать в интернете.
+{\bf CSV (Comma Separated Values, Valori Delimitate de Virgulă)} folosește virgula în calitate de delimitator, formatul este forate popular și folosit des de programe office. Mai multă informație despre el puteți găsi în internet.
 
-{\bf TSV (Tab Separated Values, Значения Разделены Символом Табуляции)} более простой, использует символ табуляции в качестве разделителя и используется во веб-приложениях.
+{\bf TSV (Tab Separated Values, Valori Delimitate de Tabulator)} este mult mai simplu, folosește tabulatorul în calitate de delimitator și se folosește des în aplicații web.
 
-icL позволяет делать следующие действия с файлами такого рода:
+icL permite a efectua următoarele operații cu fișiere de acest tip:
 \begin{icItems}
-	\item Загрузить;
-	\item Записать;
-	\item Вставить;
-	\item Синхронизировать.
+	\item a încărca;
+	\item a scrie;
+	\item a insera date;
+	\item a sincroniza.
 \end{icItems}
 
-\subsection{Загрузка}
+\subsection{Încărcarea}
 
-\subsubsection{\lstinline|_dsv.load <string>delimiter <_file>f : set|;}
+\subsubsection{\lstinline|_dsv.load <string>delimiter <_file>f <set>base : set|;}
 
-Возвращает множество содержащая все данные из файла \code{f}. Строка \code{delimiter} должна состоять из одного символа - нужного разделителя. Объект файл можно создать через \lstinline|_files.create <string>path : _file|, если файл не существует, он будет создан, иначе будет открыт.
+Returnează o mulțime care conține toate datele din fișierul \code{f}. Șirul de caractere \code{delimiter} trebuie să conțină un singur caracter - caracterul delimitator. Obiect de tipul \code{\_file} poate fi creat cu ajutorul funcției \lstinline|_files.create <string>path : _file|, dacă fișierul nu există el va fi creat, în caz contrat deschis.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{WrongDelimiter}.
+Parametrul \code{base} primește mulțimea pe baza cărei va fi creată noua mulțime, header-ul ei trebui să fie compatibil cu datele din fișier. De asemenea poate conține date care vor fi prezente în mulțimea returnată.
 
-\subsubsection{\lstinline|_dsv.loadCSV <_file>f : _file|;}
+Excepții posibile: \ferror{ParsingFailed}, \ferror{WrongDelimiter}.
 
-Акроним для \lstinline|_dsv.load "," f|.
+\subsubsection{\lstinline|_dsv.loadCSV <_file>f <set>base : _file|;}
 
-\subsubsection{\lstinline|_dsv.loadTSV <_file>f : _file|;}
+Acronim pentru \lstinline|_dsv.load "," f base|.
 
-TSV отличается от остальных, файлы обработаются по другому алгоритму, по этому данная функция не имеет эквивалент и не является акронимом.
+\subsubsection{\lstinline|_dsv.loadTSV <_file>f <set>base : _file|;}
 
-\subsection{Запись}
+TSV se deosebește de restul, fișierele se prelucrează după un alt algoritm, de aceea această funcție nu are alternativă și nu este un acronim.
+
+\subsection{Scrierea}
 
 \subsubsection{\lstinline|_dsv.write <_file>f <set>s: _file|;}
 
-Вся содержимое файла будет перезаписано.
+Tot conținutul fișierului va fi rescris.
 
-\subsection{Вставка}
+\subsection{Inserarea}
 
-Содержимое файла не трогается, новые записи записываются в конце файла. За совместимость с предыдущих отвечает пользователь, icL не проверяет предыдущие записи.
+Conținutul fișierului nu va fi atins, datele noi vor fi înscrise la sfârșitul fișierului. De compatibilitate răspunde utilizatorul, icL nu controlează datele existente.
 
 \subsubsection{\lstinline|_dsv.append <_file>f <set>s : _file|;}
 
-Вставит все объект множество \code{s}.
+Inserează toate obiectele din mulțime la sfîrșitul fișierului \code{s}.
 
 \subsubsection{\lstinline|_dsv.append <_file>f <object>obj : _file|;}
 
-Вставит отдельный объект \code{obj}.
+Inserează un obiect la sfîrșitul fișierului \code{obj}.
 
-\subsection{Синхронизация}
+\subsection{Sincronizarea}
 
 \subsubsection{\lstinline|_dsv.sync <_file>f <set>s : set|;}
 
-При установке связи синхронизации файл перезаписывается полностью. При добавлениях записей они будут вставлены в конце. При удалении записей файл перезаписывается полностью.
+La instalarea legăturii de sincronizare fișierul este rescris complet. La adăugarea datelor ele vor fi inserate la sfîrșitul fișierului. La ștergerea datelor fișierul va fi rescris complet.
 
 %\newpage
