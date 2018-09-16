@@ -47,7 +47,7 @@ Pull request process:
 
 ### Donating
 
-1. Using a [bank card][ymoney].
+1. Using a [bank card][ymoney] or [paypal][ppal].
 2. On IndieGoGo (coming soon).
 
 ## Code of Conduct
@@ -118,3 +118,4 @@ faith may face temporary or permanent repercussions as determined by other
 members of the project's leadership.
 
 [ymoney]: http://yasobe.ru/na/icl
+[ppal]: https://www.paypal.me/lixcode
