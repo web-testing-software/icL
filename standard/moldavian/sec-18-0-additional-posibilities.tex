@@ -1,14 +1,13 @@
-\section{Дополнительные возможности}
+% !TeX spellcheck = ro_RO
+\section{Posibilități adiționale}
 
-{\bf Дополнительные возможности} присутствуют в icL для полного перекрытия стандарта W3C WebDriver и для решения определённых проблем, которые могут появиться при написании скриптов.
+{\bf Posibilitățile adiționale} sunt prezente în icL pentru acoperirea completă a standardului W3C WebDriver și pentru rezolvarea unor probleme care pot apărea la practică.
 
-Данные возможности не обязательно использовать, так как при запуске скрипта создаётся сессия и открывается новая вкладка, и при остановке сессия закрывается автоматически.
-
-% \subsection{Возможности W3C WebDriver}
+Aceste posibilități nu trebuiesc numaidecît, se poate de se descurcat și fără ele. Pentru că la executarea scriptului automat se deschide o nouă sesie și un nou tab, iar la oprire sesia se închide automat.
 
 \subsection{{\color{orange} \_sessions}}
 
-Объект \sessions{} имеет следующие свойства:
+Obiectul \sessions{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _sessions'length : int|;
 	\item \lstinline|[r/o] _sessions'(<int>i) : _session|.
@@ -23,35 +22,35 @@
 
 \subsubsection{\lstinline|[r/o] _sessions'length : int|}
 
-Возвращает количество отрытых сессии.
+Returnează numărul de sesiuni deschise.
 
 \subsubsection{\lstinline|[r/o] _sessions'(<int>i) : _session|}
 
-Возвращает \code{i}-ю сессию.
+Returnează a \code{i}-a sesiune.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_sessions.closeAll : void|}
 
-Закрывает всех сессий.
+Închide toate sesiunile.
 
 \subsubsection{\lstinline|_sessions.get <int>i : _session|}
 
-Возвращает \code{i}-ю сессию.
+Returnează a \code{i}-a sesie.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_sessions.new : _session|}
 
-Отрывает новую сессию.
+Deschide o sesiune nouă.
 
-Возможные исключения: \ferror{SessionNotCreated}.
+Excepții posibile: \ferror{SessionNotCreated}.
 
 \subsection{{\color{orange} \_session}}
 
-Команда \session{} возвращает указатель на текущей сессии.
+Comanda \session{} returnează un link la sesiunea curentă.
 
-Объект \session{} имеет следующие свойства:
+Obiectul \session{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/w] _session'implicitTimeout : int|;
 	\item \lstinline|[r/w] _session'pageLoadTimeout : int|;
@@ -73,81 +72,81 @@
 
 \subsubsection{\lstinline|[r/w] _session'implicitTimeout : int|}
 
-Время ожидания в миллисекундах нахождения элемента и перехода элемента в состоянии доступности для взаимодействий с ним. По умолчанию равна нулю.
+Tipul în milisecunde de așteptare a găsirii elementului sau al trecerii în stare interactivă. Implicit egal cu 0.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (значение для установки меньше нуля или больше максимальной безопасной целей значений).
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi).
 
 \subsubsection{\lstinline|[r/w] _session'pageLoadTimeout : int|}
 
-Время ожидания загрузке страницы. По умолчанию 300 000 миллисекунд.
+Timpul de așteptare al încărcării paginii web. Implicit 300 000 de milisecunde.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument}.
 
 \subsubsection{\lstinline|[r/w] _session'scriptTimeout : int|}
 
-Время ожидания синхронией выполнения кода на языке Javascript. По умолчанию 30 000 миллисекунд.
+Timpul de așteptare al executării codului Javascript. Implicit 30 000 de milisecunde.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument}.
 
 \subsubsection{\lstinline|[r/o] _session'source : string|}
 
-Исходный код страницы.
+Codul sursă al paginii.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|[r/o] _session'title : string|}
 
-Название страницы.
+Titlu paginii.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|[r/w] _session'url : string|}
 
-Адрес текущей странице.
+Adresa URL a pagini curente.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_session.back : _session|}
 
-Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
+Trece la pagina precedentă, cum ar fi să faceți clic pe butonul "Înapoi" în browserul Google Chrome.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_session.close : void|}
 
-Прекращает сессию. Все вкладки будут закрыты.
+Închide sesia. Toate taburile vor fi închise.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
 
 \subsubsection{\lstinline|_session.forward : _session|}
 
-Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
+Trece la pagina precedentă, cum ar fi să faceți clic pe butonul "Înainte" în browserul Google Chrome.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_session.refresh : _session|}
 
-Перезагружает страницу.
+Reîncarcă pagina.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_session.screenshot : string|}
 
-Возвращает скриншот, изображение кодируется в строке base64.
+Returnează un șir de caracter, care reprezintă captură de ecran codată în base64.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
 
 \subsubsection{\lstinline|_session.switchTo : _session|}
 
-Переключает активную сессию.
+Schimbă focusul la altă sesie.
 
-Возможные исключения: \ferror{NoSuchSession}.
+Excepții posibile: \ferror{NoSuchSession}.
 
 %\subsubsection{}
 
 \subsection{{\color{orange} \_windows}}
 
-Объект \windows{} имеет следующие свойства:
+Obiectul \windows{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _windows'length : int|;
 	\item \lstinline|[r/o] _windows'(<int>i) : _window|.
@@ -157,25 +156,25 @@
 
 \subsubsection{\lstinline|[r/o] _windows'length : int|}
 
-Возвращает количество окон в текущей сессии.
+Returnează количество окон в текущей сессии.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _windows'(<int>i) : _window|}
 
-Возвращает \code{i}-е окно.
+Returnează \code{i}-е окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_windows.get <int>i : _window|}
 
-Возвращает \code{i}-е окно.
+Returnează \code{i}-е окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
 \subsection{{\color{orange} \_window}}
 
-Объект \window{} имеет следующие свойства:
+Obiectul \window{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/w] _window'height : int|;
 	\item \lstinline|[r/w] _window'width : int|;
@@ -201,17 +200,17 @@
 
 Высота текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|[r/w] _window'width : int|}
 
 Ширина текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|[r/w] _window'x : int|}
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 Координата $x$ текущей окно в пикселях.
 
@@ -219,71 +218,71 @@
 
 Координата $y$ текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
 \subsubsection{\lstinline|_window.close : void|}
 
 Закрывает окну, если она последняя закрывается и сессию.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.focus : _window|}
 
 Делает окну активной.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.fullscreen : _window|}
 
 Переключает режим отображения окна на полный экран.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.maximize : _window|}
 
 Распахнет окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.minimize : _window|}
 
 Свернёт окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.restore : _window|}
 
 Восстановит окно в нормальном режиме.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.switchToDefault : _window|}
 
 Переключает фокус на главный frame.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_window.switchToFrame <int>i : _window|}
 
 Переключает фокус на frame с индексом \code{i}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
 
 \subsubsection{\lstinline|_window.switchToFrame <element>el : _window|}
 
 Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
 
 \subsubsection{\lstinline|_window.switchToParent : _window|}
 
 Переключает фокус на родительский frame.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsection{{\color{orange} \_cookies}}
 
-Объект \cookies{} имеет следующее свойство: \lstinline|[r/o] _cookies'<string>name :|\\* \lstinline|_cookie|.
+Obiectul \cookies{} имеет следующее свойство: \lstinline|[r/o] _cookies'<string>name :|\\* \lstinline|_cookie|.
 
 И следующие методы: 
 \begin{icItems}
@@ -293,9 +292,9 @@
 
 \subsubsection{\lstinline|[r/o] _cookies'<string>name : _cookie|}
 
-Возвращает \cookie{} с нужным названием.
+Returnează \cookie{} с нужным названием.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
 \subsubsection{\lstinline|_cookies.deleteAll : void|}
 
@@ -303,13 +302,13 @@
 
 \subsubsection{\lstinline|_cookies.get <string>name : _cookie|}
 
-Возвращает \cookie{} с нужным названием.
+Returnează \cookie{} с нужным названием.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
 \subsection{{\color{orange} \_cookie}}
 
-Объект \cookie{} имеет следующие свойства:
+Obiectul \cookie{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/w] _cookie'domain : string|;
 	\item \lstinline|[r/w] _cookie'expiry : int|;
@@ -364,7 +363,7 @@
 
 Загружает данные о cookie с браузера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
 \subsubsection{\lstinline|_cookie.resetTime : _cookie|}
 
@@ -374,7 +373,7 @@
 
 Сохраняет изменения в браузере.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
 
 \subsubsection{Создать новый cookie}
 
@@ -393,7 +392,7 @@ for any _cookie {
 
 \subsection{{\color{orange} \_alert}}
 
-Объект \alert{} имеет следующее свойство: \lstinline|[r/o] _alert'text : string|.
+Obiectul \alert{} имеет следующее свойство: \lstinline|[r/o] _alert'text : string|.
 
 И следующие методы:
 \begin{icItems}
@@ -404,33 +403,33 @@ for any _cookie {
 
 \subsubsection{\lstinline|[r/o] _alert'text : string|}
 
-Возвращает текст предупреждений.
+Returnează текст предупреждений.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
 \subsubsection{\lstinline|_alert.accept : void|}
 
 Принимает предупреждению.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
 \subsubsection{\lstinline|_alert.dismiss : void|}
 
 Отменяет предупреждению.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
 \subsubsection{\lstinline|_alert.sendKeys <string>keys : void|}
 
 Заполняет форму текстом \code{keys} и подтверждает ввод.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
 
 % \subsection{Возможности icL}
 
 \subsection{{\color{orange} \_tabs}}
 
-Объект \tabs{} имеет следующие свойства:
+Obiectul \tabs{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _tabs'current : _tab|;
 	\item \lstinline|[r/o] _tabs'first : _tab|;
@@ -464,113 +463,113 @@ for any _cookie {
 
 Текущая вкладка.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'first : _tab|}
 
 Первая вкладка.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'last : _tab|}
 
 Последняя вкладка.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'length : int|}
 
 Количество вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'next : _tab|}
 
 Следующая вкладка.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab}.
 
 \subsubsection{\lstinline|[r/o] _tabs'previous : _tab|}
 
 Предыдущая вкладка.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab}.
 
 \subsubsection{\lstinline|[r/o] _tabs'(<int>i) : _tab|}
 
 \code{i}-я вкладка.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_tabs.close <string>template : int|}
 
-Закрывает все вкладки, у которых URL подходит по шаблону. Возвращает количество закрытых вкладок.
+Закрывает все вкладки, у которых URL подходит по шаблону. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.close <regex>url : int|}
 
-Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
+Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeByTitle <string>template : int|}
 
-Закрывает все вкладки, у которых название подходит по шаблону. Возвращает количество закрытых вкладок.
+Закрывает все вкладки, у которых название подходит по шаблону. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeByTitle <regex>title : int|}
 
-Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
+Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeOthers : int|}
 
-Закрывает все вкладки кроме текущей. Возвращает количество закрытых вкладок.
+Закрывает все вкладки кроме текущей. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeToLeft : int|}
 
-Закрывает все вкладки которые находится с лева от текущей. Возвращает количество закрытых вкладок.
+Закрывает все вкладки которые находится с лева от текущей. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeToRight : int|}
 
-Закрывает все вкладки которые находится с права от текущей. Возвращает количество закрытых вкладок.
+Закрывает все вкладки которые находится с права от текущей. Returnează количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.find <string>template : _tab|}
 
-Возвращает первая вкладка, у которой URL подходит по шаблону.
+Returnează первая вкладка, у которой URL подходит по шаблону.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.find <regex>url : _tab|}
 
-Возвращает первая вкладка, у которой URL подходит по регулярному выражению.
+Returnează первая вкладка, у которой URL подходит по регулярному выражению.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.findByTitle <string>template : _tab|}
 
-Возвращает первая вкладка, у которой название подходит по шаблону.
+Returnează первая вкладка, у которой название подходит по шаблону.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.findByTitle <regex>title : _tab|}
 
-Возвращает первая вкладка, у которой название подходит по регулярному выражению.
+Returnează первая вкладка, у которой название подходит по регулярному выражению.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsection{{\color{orange} \_tab}}
 
-Объект \tab{} имеет следующие свойства:
+Obiectul \tab{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[icL] [r/o] _tab'canGoBack : bool|;
 	\item \lstinline|[icL] [r/o] _tab'canGoForward : bool|;
@@ -591,69 +590,69 @@ for any _cookie {
 
 \subsubsection{\lstinline|[icL] [r/o] _tab'canGoBack : bool|}
 
-Возвращает \true, если можно вернутся на предыдущую страницу, иначе \false.
+Returnează \true, если можно вернутся на предыдущую страницу, иначе \false.
 
 \subsubsection{\lstinline|[icL] [r/o] _tab'canGoForward : bool|}
 
-Возвращает \true, если можно вернутся на следующую страницу, иначе \false.
+Returnează \true, если можно вернутся на следующую страницу, иначе \false.
 
 \subsubsection{\lstinline|[r/o] _tab'screenshot : string|}
 
-Возвращает скриншот вкладки, кодирован в base64.
+Returnează скриншот вкладки, кодирован в base64.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
 
 \subsubsection{\lstinline|[r/o] _tab'source : string|}
 
 Исходник страницы, открытой в указанной вкладке.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|[r/*] _tab'title|}
 
 Название страницы, открытой в указанной вкладке.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|[r/w] _tab'url|}
 
 URL страницы, открытой в указанной вкладке.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_tab.back : void|}
 
 Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_tab.close : void|}
 
 Закрывает окну, если она последняя закрывается и сессию.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_tab.focus : void|}
 
 Переключает фокус на вкладку. Фокус можно менять только внутри активной сессии.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tab.forward : void|}
 
 Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_tab.get <string>url : bool|}
 
 Загружает страницу, URL должен быть абсолютным.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
 
 \subsection{{\color{orange} \_dom}}
 
-Объект \dom{} имеет следующие методы:
+Obiectul \dom{} имеет следующие методы:
 \begin{icItems}
 	\item \lstinline|_dom.query <int>by <string>selector : element|;
 	\item \lstinline|_dom.query <string>cssSelector : element|;
@@ -671,7 +670,7 @@ URL страницы, открытой в указанной вкладке.
 
 Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_dom.query <string>cssSelector : element|}
 
@@ -681,7 +680,7 @@ URL страницы, открытой в указанной вкладке.
 
 Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
 
-Возможные исключения: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_dom.queryAll <string>cssSelector : lement|}
 
@@ -721,7 +720,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_files}}
 
-Объект \files{} имеет следующие методы:
+Obiectul \files{} имеет следующие методы:
 \begin{icItems}
 	\item \lstinline|_files.open <string>path : _file|;
 	\item \lstinline|_files.create <string>path : _file|;
@@ -733,19 +732,19 @@ URL страницы, открытой в указанной вкладке.
 
 Открывает файл.
 
-Возможные исключения: \ferror{FileNotFound}.
+Excepții posibile: \ferror{FileNotFound}.
 
 \subsubsection{\lstinline|_files.create <string>path : _file|}
 
 Открывает файл, если он не существует, он создаётся.
 
-Возможные исключения: \ferror{FolderNotFound}.
+Excepții posibile: \ferror{FolderNotFound}.
 
 \subsubsection{\lstinline|_files.createDir <string>path : void|}
 
 Создаёт папку, папка в которым она создаётся должна уже существовать.
 
-Возможные исключения: \ferror{FolderNotFound}.
+Excepții posibile: \ferror{FolderNotFound}.
 
 \subsubsection{\lstinline|_files.createPath <string>path : void|}
 
@@ -753,7 +752,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_file}}
 
-Объект \file{} имеет следующие свойства:
+Obiectul \file{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _file'csv : 1|;
 	\item \lstinline|[r/w] _file'format : int|;
@@ -774,7 +773,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|[r/w] _file'format : int|}
 
-Возвращает формат файла.
+Returnează формат файла.
 
 \subsubsection{\lstinline|[r/o] _file'none : 0|}
 
@@ -786,7 +785,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|[r/o] _file'valid : bool|}
 
-Возвращает \true, если файл инициализированный, иначе \false.
+Returnează \true, если файл инициализированный, иначе \false.
 
 \subsubsection{\lstinline|_file.close : void|}
 
@@ -798,7 +797,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_make}}
 
-Объект \make{} имеет следующие методы:
+Obiectul \make{} имеет следующие методы:
 \begin{icItems}
 	\item \lstinline|_make.image <string>base64 <string>path : void|;
 	\item \lstinline|_make.int <string>str <int>base : int|;
@@ -820,7 +819,7 @@ URL страницы, открытой в указанной вкладке.
 
 Парсит целое число в виде строки в нужном базисе.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed}.
 
 \subsubsection{\lstinline|_make.list <set>s : list|}
 
@@ -836,7 +835,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|_make.string <bool>b : string|}
 
-Возвращает \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"true"|.
+Returnează \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"true"|.
 
 \subsubsection{\lstinline|_make.string <double>d : string|}
 
@@ -844,7 +843,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|_make.string <int>number <int>base : string|}
 
-Возвращает представления числа в заданном базисе.
+Returnează представления числа в заданном базисе.
 
 \subsubsection{\lstinline|_make.string <object>obj : string|}
 
@@ -856,7 +855,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_log}}
 
-Объект \logtype{} имеет следующие методы:
+Obiectul \logtype{} имеет следующие методы:
 \begin{icItems}
 	\item \lstinline|_log.error <string>message : void|;
 	\item \lstinline|_log.info <string>message : void|;
@@ -887,7 +886,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_numbers}}
 
-Объект \numbers{} имеет следующие свойства:
+Obiectul \numbers{} are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _numbers'max : 4|;
 	\item \lstinline|[r/o] _numbers'min : 3|;
@@ -942,7 +941,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_math}}
 
-Объект \lstinline|_math| имеет следующие свойства:
+Obiectul \lstinline|_math| are următoarele proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _math'1divPi : double|;
 	\item \lstinline|[r/o] _math'1divSqrt2 : double|;
@@ -1070,19 +1069,19 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|_math.min <int ...>arr : int|}
 
-Возвращает наименьшее целое число.
+Returnează наименьшее целое число.
 
 \subsubsection{\lstinline|_math.min <double ...>arr : double|}
 
-Возвращает наименьшее дробное число.
+Returnează наименьшее дробное число.
 
 \subsubsection{\lstinline|_math.max <int ...>arr : int|}
 
-Возвращает наибольшее целое число.
+Returnează наибольшее целое число.
 
 \subsubsection{\lstinline|_math.max <double ...>arr : double|}
 
-Возвращает наибольшее дробное число.
+Returnează наибольшее дробное число.
 
 \subsubsection{\lstinline|_math.radiansToDegrees <double>v : double|}
 
@@ -1090,7 +1089,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|_math.round <double> : int|}
 
-Возвращает ближайшее целое число.
+Returnează ближайшее целое число.
 
 \subsubsection{\lstinline|_math.sin <double>v : double|}
 
@@ -1102,7 +1101,7 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} \_import}}
 
-Объект \lstinline|_import| имеет следующие методы:
+Obiectul \lstinline|_import| имеет следующие методы:
 \begin{icItems}
 	\item \lstinline|_import.none <object>data <string>path : void|;
 	\item \lstinline|_import.none <string>path : void|;
@@ -1113,7 +1112,7 @@ URL страницы, открытой в указанной вкладке.
 	\item \lstinline|_import.run <string>path : void|.
 \end{icItems}
 
-Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
+Obiectul \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
 
 \subsubsection{\lstinline|_import.none <object>data <string>path : void|}
 
