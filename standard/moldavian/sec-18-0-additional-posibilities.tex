@@ -1141,58 +1141,58 @@ Acronim pentru \lstinline|_import.all [<>] @path|.
 
 Execută fișierul în contextul curent.
 
-\subsection{Модификатор {\color{blue2} reverse}}
+\subsection{Modificatorul {\color{blue2} reverse}}
 
-Ключевое слово \code{reverse} позволяет изменить ход выполнения некоторых конструкций языка.
+Cuvîntul cheie \code{reverse} permite a schimba strategia de executare a unor construcții ale limbajului icL.
 
-\subsubsection{\lstinline|reverse if|}
+\subsubsection{\lstinline|reverse-if|}
 
-\lstinline|reverse if (@var == true)| эквивалентно \lstinline|if (!(@var == true))|, в этом случае уменьшения количестве скобок упрощает чтения кода. 
+\lstinline|reverse if (@var == true)| este echivalent cu \lstinline|if (!(@var == true))|, în acest caz micșorarea numărului perechilor de paranteze face codul mai citabil.
 
-Внимание: \lstinline|reverse if| не принимает \lstinline|else|.
+Atenție: \lstinline|reverse if| nu poate fi urmat de \lstinline|else|.
 
-\subsubsection{\lstinline|reverse if exists|}
+\subsubsection{\lstinline|reverse-if-exists|}
 
-\lstinline|if exists| хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \lstinline|reverse if exists|. В сравнении с \lstinline|if exists|, никакие данные не будут переданы в блоке команд.
+\lstinline|if-exists| permite a executa codul numai cînd sunt datele necesare, dar apar probleme cînd trebuie de generat excepție cînd datele necesare lipsesc. Această problemă este rezolvată de \lstinline|reverse-if-exists|. În comparație cu \lstinline|if-exists|, date nu var fi transmise în grupul de comenzi.
 
-\subsubsection{\lstinline|reverse for| - универсальный цикл}
+\subsubsection{\lstinline|reverse-for| - ciclu universal}
 
-В универсальном цикле меняется порядок выполнения действий. \lstinline|reverse for| гарантирует выполнение блока команд в минимум один раз.
+În ciclul universal se schimbă ordinea de executare a operațiilor. \lstinline|reverse-for| garantează că grupul de comenzi va fi executat minim o dată.
 
-Порядок действий конструкций \lstinline|for|:
+Ordinea operațiilor construcții \lstinline|for|:
 \begin{icEnum}
-	\item инициализация;
-	\item проверка условий;
-	\item выполнения блока команд;
-	\item выполнения команды перехода на следующую итерацию.
+	\item inițializarea;
+	\item inițializarea;
+	\item executarea grupului de comenzi;
+	\item trecerea la următoarea iterație.
 \end{icEnum}
 
-Порядок действий конструкций \lstinline|reverse for|:
+Ordinea operațiilor construcției \lstinline|reverse-for|:
 \begin{icEnum}
-	\item инициализация;
-	\item выполнения блока команд;
-	\item выполнения команды перехода на следующую итерацию;
-	\item проверка условий.
+	\item inițializarea;
+	\item executarea grupului de comenzi;
+	\item trecerea la următoarea iterație;
+	\item inițializarea.
 \end{icEnum}
 
-\subsubsection{\lstinline|reverse while| - условное повторение кода}
+\subsubsection{\lstinline|reverse-while| - repetarea condiționată a codului}
 
-\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной.
+\lstinline|reverse-while| va executa grupul de comenzi cît timp condiția rămîne falsă.
 
-\subsubsection{\lstinline|do reverse while| - цикл с постусловий}
+\subsubsection{\lstinline|do-reverse-while| - ciclu cu condiție posterioară}
 
-\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной. Так же как и \lstinline|do while| гарантирует что тело цикла будет выполнена минимум 1 раз.
+\lstinline|reverse-while| va executa grupul de comenzi cît timp condiția rămîne falsă. Ca \lstinline|do-while| garantează că grupul de comenzi va fi executat minim o dată.
 
-\subsubsection{\lstinline|reverse for| - прохождение коллекций}
+\subsubsection{\lstinline|reverse-for| - răsfoirea colecției}
 
-\lstinline|reverse for| будет пройти коллекцию в обратном порядке.
+\lstinline|reverse-for| va răsfoi colecția de la sfîrșit la început.
 
-\subsubsection{\lstinline|reverse filter| - выборочное прохождение коллекций}
+\subsubsection{\lstinline|reverse-filter| - răsfoirea selectivă a colecției}
 
-\lstinline|reverse filter| будет пройти коллекцию в обратном порядке.
+\lstinline|reverse filter| va răsfoi colecția de la sfîrșit la început.
 
-\subsubsection{\lstinline|reverse range| - частичное прохождение коллекций}
+\subsubsection{\lstinline|reverse-range| - răsfoirea parțială a colecției}
 
-\lstinline|reverse filter| будет пройти интервал в обратном порядке.
+\lstinline|reverse filter| va răsfoi colecția de la sfîrșit la început.
 
 %\newpage
