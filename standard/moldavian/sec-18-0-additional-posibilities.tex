@@ -108,7 +108,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_session.back : _session|}
 
-Trece la pagina precedentă, cum ar fi să faceți clic pe butonul "Înapoi" în browserul Google Chrome.
+Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înapoi} în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
@@ -120,7 +120,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSess
 
 \subsubsection{\lstinline|_session.forward : _session|}
 
-Trece la pagina precedentă, cum ar fi să faceți clic pe butonul "Înainte" în browserul Google Chrome.
+Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înainte} în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
@@ -455,113 +455,113 @@ Obiectul \tabs{} are următoarele proprietăți:
 	% \item \lstinline|_tabs.|;
 \end{icItems}
 
-В режиме тестирования вкладки будут в произвольном порядке. В режиме автоматизации в строгом порядке.
+În regimul de testare taburile vor fi în ordine aleatorie. În regim de automatizare în ordine strictă.
 
 \subsubsection{\lstinline|[r/o] _tabs'current : _tab|}
 
-Текущая вкладка.
+Tabul curent.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'first : _tab|}
 
-Первая вкладка.
+Primul tab.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'last : _tab|}
 
-Последняя вкладка.
+Ultimul tab.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'length : int|}
 
-Количество вкладок.
+Numărul de taburi în sesie.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|[r/o] _tabs'next : _tab|}
 
-Следующая вкладка.
+Următorul tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab}.
 
 \subsubsection{\lstinline|[r/o] _tabs'previous : _tab|}
 
-Предыдущая вкладка.
+Tabul precedent.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab}.
 
 \subsubsection{\lstinline|[r/o] _tabs'(<int>i) : _tab|}
 
-\code{i}-я вкладка.
+Al \code{i}-lea tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_tabs.close <string>template : int|}
 
-Закрывает все вкладки, у которых URL подходит по шаблону. Returnează количество закрытых вкладок.
+Închide toate taburile, la care adresa URL convine șablonului. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.close <regex>url : int|}
 
-Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Returnează количество закрытых вкладок.
+Închide toate taburile, la care adresa URL convine expresii regulare \code{url}. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeByTitle <string>template : int|}
 
-Закрывает все вкладки, у которых название подходит по шаблону. Returnează количество закрытых вкладок.
+Închide toate taburile, la care titlul convine șablonului. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeByTitle <regex>title : int|}
 
-Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Returnează количество закрытых вкладок.
+Închide toate taburile, la care titlul convine expresii regulare \code{url}. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeOthers : int|}
 
-Закрывает все вкладки кроме текущей. Returnează количество закрытых вкладок.
+Închide toate taburile în afară de tabul curent. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeToLeft : int|}
 
-Закрывает все вкладки которые находится с лева от текущей. Returnează количество закрытых вкладок.
+Închide toate taburile care se află la stînga de tabul curent. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.closeToRight : int|}
 
-Закрывает все вкладки которые находится с права от текущей. Returnează количество закрытых вкладок.
+Închide toate taburile care se află la dreapta de tabul curent. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.find <string>template : _tab|}
 
-Returnează первая вкладка, у которой URL подходит по шаблону.
+Returnează primul tab, la care adresa URL convine șablonului.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.find <regex>url : _tab|}
 
-Returnează первая вкладка, у которой URL подходит по регулярному выражению.
+Returnează primul tab, la care adresa URL convine expresii regulare.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.findByTitle <string>template : _tab|}
 
-Returnează первая вкладка, у которой название подходит по шаблону.
+Returnează primul tab, la care titlul convine șablonului.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tabs.findByTitle <regex>title : _tab|}
 
-Returnează первая вкладка, у которой название подходит по регулярному выражению.
+Returnează primul tab, la care titlul convine expresii regulare.
 
 Excepții posibile: \ferror{NoSessions}.
 
@@ -588,63 +588,64 @@ Obiectul \tab{} are următoarele proprietăți:
 
 \subsubsection{\lstinline|[icL] [r/o] _tab'canGoBack : bool|}
 
-Returnează \true, если можно вернутся на предыдущую страницу, иначе \false.
+Returnează \true, dacă butonul \textit{Înapoi} e disponibil, în caz contrar \false.
 
 \subsubsection{\lstinline|[icL] [r/o] _tab'canGoForward : bool|}
 
-Returnează \true, если можно вернутся на следующую страницу, иначе \false.
+Returnează \true, dacă butonul \textit{Înainte} e disponibil, în caz contrar \false.
 
 \subsubsection{\lstinline|[r/o] _tab'screenshot : string|}
 
-Returnează скриншот вкладки, кодирован в base64.
+Returnează captura tabului, codată în base64.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
 
 \subsubsection{\lstinline|[r/o] _tab'source : string|}
 
-Исходник страницы, открытой в указанной вкладке.
+Codul sursă al paginii deschise în tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|[r/*] _tab'title|}
 
-Название страницы, открытой в указанной вкладке.
+Titlu paginii deschise în tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|[r/w] _tab'url|}
 
-URL страницы, открытой в указанной вкладке.
+Adresa URL a paginii deschise în tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_tab.back : void|}
 
-Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
+Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înapoi} în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_tab.close : void|}
 
-Закрывает окну, если она последняя закрывается и сессию.
+Închide tabul, dacă e ultimul închide și sesia.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{\lstinline|_tab.focus : void|}
 
-Переключает фокус на вкладку. Фокус можно менять только внутри активной сессии.
+Schimbă focosul la tab. Focosul se schimbă între taburile din sesiune.
 
 Excepții posibile: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|_tab.forward : void|}
 
-Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
+Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înainte} în browser.
+
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
 \subsubsection{\lstinline|_tab.get <string>url : bool|}
 
-Загружает страницу, URL должен быть абсолютным.
+Trece la pagină, URL trebuie să fie absolut.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
 
@@ -783,7 +784,7 @@ Returnează формат файла.
 
 \subsubsection{\lstinline|[r/o] _file'valid : bool|}
 
-Returnează \true, если файл инициализированный, иначе \false.
+Returnează \true, если файл инициализированный, în caz contrar \false.
 
 \subsubsection{\lstinline|_file.close : void|}
 
@@ -833,7 +834,7 @@ Excepții posibile: \ferror{ParsingFailed}.
 
 \subsubsection{\lstinline|_make.string <bool>b : string|}
 
-Returnează \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"true"|.
+Returnează \lstinline|"true"|, если \lstinline|b == true|, în caz contrar \lstinline|"true"|.
 
 \subsubsection{\lstinline|_make.string <double>d : string|}
 
