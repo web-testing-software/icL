@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Механизм состояний}
 
 Все переменные icL хранятся в контейнерах 2 типов: стек и состояние.
@@ -118,7 +119,7 @@
 
 \subsection{Управление состояниями}
 
-Для управления стеками, используется следующий набор функций и свойств:
+Для управления состояниями, используется следующий набор функций и свойств:
 \begin{icItems}
 	\item \lstinline|_states.new : void|;
 	\item \lstinline|_states.newAtEnd : void|;
@@ -130,7 +131,7 @@
 	\item \lstinline|_states.toLast : void|.
 \end{icItems}
 
-Объект \lstinline|_session| является коллекцией, а значит её можно посматривать через \lstinline|for (_states) {}|. Поддержка других циклов не предусматриваться.
+Объект \lstinline|_states| является коллекцией, а значит её можно посматривать через \lstinline|for (_states) {}|. Поддержка других циклов не предусматриваться.
 
 \subsubsection{\lstinline|_states.new <object>data = [<>] : void|}
 

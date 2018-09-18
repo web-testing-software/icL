@@ -1,14 +1,15 @@
-\section{Механизм состояний}
+% !TeX spellcheck = ro_RO
+\section{Mecanismul de stări}
 
-Все переменные icL хранятся в контейнерах 2 типов: стек и состояние.
+Toate variabilele icL se păstrează în containere de 2 tipuri: stivă și stare.
 
-Стек представляет собой стек контейнеров, каждый контейнер строго привязан к фрагменту кода icL, при вводе курсора в область контейнер создаётся, при выходе разрушается.
+Stiva reprezintă containere grupate în stivă, fiecare container este strict legat de fragment de cod icL, la intrarea în fragment containerul se creează, iar la ieșire se distruge.
 
-Состояние представляет собой двусвязный список контейнеров, они не привязываются к коду и доступны глобально. По умолчанию создаётся лишь один контейнер, но новые могут быть созданы пользователем.
+Starea reprezintă o listă dublă de containere, ele nu sunt legate de cod și sunt disponibile global. Implicit se creează un singur container, dar containere noi sunt create de utilizator.
 
-\subsection{Управление стеками}
+\subsection{Controlul stivelor}
 
-Для управления стеками, используется следующий набор функций и свойств:
+Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
 \begin{icItems}
 	\item \lstinline|[r/o] _stacks'(<int>i) : _stack|;
 	\item \lstinline|[r/o] _stacks'(<string>name) : _stack|;
@@ -28,97 +29,97 @@
 
 \subsubsection{[r/o] \lstinline|_stacks'(<int>i) : _stack|}
 
-Возвращает \code{i}-й контейнер. Контейнеры расположены по принципу FILO, то есть нулевой контейнер (\lstinline|_stacks'0|) - текущий. Текущий контейнер можно получить и более простым путём вызывая \lstinline|_stack|.
+Returnează al \code{i}-lea container. Containerele sunt repartizate pe principiul FILO, adică containerul cu numărul 0  (\lstinline|_stacks'0|) este containerul curent. El poate fi obținut printr-un mod mai simplu \lstinline|_stack|.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{[r/o] \lstinline|_stacks'(<string>name) : _stack|}
 
-Возвращает контейнер имеющий имя \code{name}. Наименование контейнера имеет следующий синтаксис -
+Returnează containerul cu numele \code{name}. A numi containerul se poate în felul următor -
 \begin{lstlisting}[numbers=none]
 {:name
 	`` content
 }
 \end{lstlisting}
-Могут быть именованными только блоки команд (код ограничен круглыми скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт контейнер имеющий название функций.
+Pot avea nume numai grupurile de comenzi (cod în acolade). Kodul în paranteze rotunde nu poate avea nume. Apelul funcții creează un container numele funcției.
 
 \subsubsection{\lstinline|_stacks.if <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{if} контейнер.
+Returnează al \code{i}-lea container \code{if}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.ifexists <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{if exists} контейнер.
+Returnează al \code{i}-lea container \code{if exists}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.loop <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{while}, \code{dowhile}, \code{for}, \code{range} или \code{filter} контейнер.
+Returnează al \code{i}-lea container \code{while}, \code{dowhile}, \code{for}, \code{range} sau \code{filter}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.while <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{while} контейнер.
+Returnează al \code{i}-lea container \code{while}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.dowhile <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{do while} контейнер.
+Returnează al \code{i}-lea container \code{do while}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.for <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{for} контейнер.
+Returnează al \code{i}-lea container \code{for}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.forany <int>i = 0 : |}
 
-Возвращает \code{i}-й \code{for any} контейнер.
+Returnează al \code{i}-lea container \code{for any}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.range <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{range} контейнер.
+Returnează al \code{i}-lea container \code{range}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.filter <int>i = 0 : _stack|}
 
-Возвращает \code{i}-й \code{filter} контейнер.
+Returnează al \code{i}-lea container \code{filter}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stack'(<string>name) : any|}
 
-Возвращает переменную, находящаяся именно в этом контейнере. Например: уже существует переменная \code{i} в родительском контейнере, нужно определить переменная с таким же именем в текущем контексте. Проблема решается следующим образом: \lstinline|_stack'i = 0| вместо \lstinline|@i = 0|.
+Returnează variabila, care se află anume în acest container. De exemplu: deja există o variabilă cu numele \code{i} în containerul ascendent, trebui de definit o variabilă cu același nume în containerul curent. Problema se rezolvă în felul următor: \lstinline|_stack'i = 0| în loc de \lstinline|@i = 0|.
 
 \subsubsection{\lstinline|_stack.clear : void|}
 
-Удаляет все переменные, которые хранится в контейнере.
+Șterge toate variabilele din container.
 
 \subsubsection{\lstinline|_stack.continue : void|}
 
-Переход на следующую итерацию, доступно только для циклов.
+Trece la următoarea iterație, disponibil doar pentru cicluri.
 
-Возможные исключения: \ferror{InvalidArgument}.
+Excepții posibile: \ferror{InvalidArgument}.
 
 \subsubsection{\lstinline|_stack.break : void|}
 
-Прекращает немедленно работу цикла или остановит выполнение функций. Доступно только для циклов и функций.
+Întrerupe imediat ciclul sau executarea funcției. Disponibil doar pentru cicluri și funcții.
 
-Возможные исключения: \ferror{InvalidArgument}.
+Excepții posibile: \ferror{InvalidArgument}.
 
-\subsection{Управление состояниями}
+\subsection{Controlul stărilor}
 
-Для управления стеками, используется следующий набор функций и свойств:
+Pentru a controla stările, se folosesc următoarele metode și proprietăți:
 \begin{icItems}
 	\item \lstinline|_states.new : void|;
 	\item \lstinline|_states.newAtEnd : void|;
@@ -130,42 +131,42 @@
 	\item \lstinline|_states.toLast : void|.
 \end{icItems}
 
-Объект \lstinline|_session| является коллекцией, а значит её можно посматривать через \lstinline|for (_states) {}|. Поддержка других циклов не предусматриваться.
+Obiectul \lstinline|_states| este o colecție, înseamnă că ea poate fi răsfoită prin \lstinline|for (_states) {}|. Suportul pentru alte cicluri lipsește.
 
 \subsubsection{\lstinline|_states.new <object>data = [<>] : void|}
 
-Создаёт новое состояние после текущей и переключает фокус на ней. Все данные объекта \code{data} добавляются в новом контейнере.
+Creează o nouă stare după starea curentă și schimbă focosul la ea. Toate datele obiectului \code{data} se adaugă în containerul nou.
 
 \subsubsection{\lstinline|_states.newAtEnd <object>data = [<>] : void|}
 
-Создаёт новое состояние в конце, не переключает фокус на ней. Все данные объекта \code{data} добавляются в новом контейнере.
+Creează o nouă stare la sfîrșit, care nu va fi primi focus.  Toate datele obiectului \code{data} se adaugă în containerul nou.
 
 \subsubsection{\lstinline|_states.toNext : bool|}
 
-Возвращает \true, если существует следующее состояние и фокус был перемещён на неё, иначе \false.
+Returnează \true, dacă există o stare următoare și focusul a fost schimbat la ea, în caz contrar \false.
 
 \subsubsection{\lstinline|_states.toPrev : bool|}
 
-Возвращает \true, если существует предыдущее состояние и фокус был перемещён на неё, иначе \false.
+Returnează \true, dacă există o stare precedentă și focusul a fost schimbat la ea, în caz contrar \false.
 
 \subsubsection{\lstinline|_states.clear : void|}
 
-Удаляет все переменные, которые хранится в контейнере.
+Șterge toate variabilele din stare.
 
 \subsubsection{\lstinline|_states.delete : void|}
 
-Удаляет состояние, если существует следующее то фокус переходит на ней, иначе если существует предыдущее то фокус переходит на ней, в противном случае текущее состояние - последняя и она не удаляется, а только очищается.
+Șterge starea, dacă există o stare următoare focusul trece la ea, în caz contrar dacă există o stare precedentă focusul trece la ea, iar dacă această este ultima, ea este doar curățită.
 
 \subsubsection{\lstinline|_states.toFirst : void|}
 
-Переходит на первое состояние.
+Schimbă focusul la prima stare.
 
 \subsubsection{\lstinline|_states.toLast : void|}
 
-Переходит на последнее состояние.
+Schimbă focusul la ultima stare.
 
 \subsubsection{\lstinline|for (_states) \{\}|}
 
-Выполняет тело цикла для каждой состояний.
+Îndeplinește ciclul pentru fiecare stare în parte.
 
 %\newpage
