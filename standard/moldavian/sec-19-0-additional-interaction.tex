@@ -1,10 +1,11 @@
-\section{Дополнительное взаимодействие}
+% !TeX spellcheck = ro_RO
+\section{Interacționări adiționale}
 
-Данные возможности доступны только в режиме автоматизации.
+Aceste posibilități sunt disponibile numai în regim de automatizare.
 
-\subsection{Ожидание}
+\subsection{Așteptare}
 
-Для ожиданий предусмотрены следующие функций:
+Pentru așteptare se propun următoarele funcții:
 \begin{icItems}
 	\item \lstinline|_wait.title <object>data : bool|;
 	\item \lstinline|_wait.url <object>data : bool|;
@@ -14,28 +15,28 @@
 
 \subsubsection{\lstinline|_wait.title <object>data : bool|}
 
-Объект \code{data} может иметь следующие поля:
+Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'template : string| - шаблон нужней имени;
-	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая ножное имя (имеет приоритет над шаблоном);
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'template : string| e un șablon al titlului dorit;
+	\item \lstinline|[r/w] @data'expression : regex| e o expresie regulară care descrie titlul (are prioritate asupra șablonului);
+	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
 \subsubsection{\lstinline|_wait.url <object>data : bool|}
 
-Объект \code{data} может иметь следующие поля:
+Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'template : string| - шаблон нужного URL;
-	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая нужный URL;
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'template : string| e un șablon al adresei URL dorite;
+	\item \lstinline|[r/w] @data'expression : regex| e o expresie regulară care descrie adresa URL dorită ;
+	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
 \subsubsection{\lstinline|_wait.for <element>el <object>data : bool|}
 
-Объект \code{data} может иметь следующие поля:
+Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'count : int| - количество нужных элементов в коллекции. По умолчанию 1;
-	\item \lstinline|[r/w] @data'toBe : int| - нужное состояние для достижений. Предлагается одно из следующих значения:
+	\item \lstinline|[r/w] @data'count : int| e numărul de elemente așteptat. Implicit 1;
+	\item \lstinline|[r/w] @data'toBe : int| e starea dorită, în care trebuie să treacă elementele. ?Una din următoarele valori:
 	\begin{icItems}
 		\item \lstinline|[r/o] _wait'present : 1|;
 		\item \lstinline|[r/o] _wait'visible : 2|;
@@ -43,23 +44,23 @@
 		\item \lstinline|[r/o] _wait'interactable : 4|;
 		\item \lstinline|[r/o] _wait'selected : 5|.
 	\end{icItems}
-	По умолчанию \lstinline|_wait'present|;
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	Implicit \lstinline|_wait'present|;
+	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
 \subsubsection{\lstinline|_wait.ajax <object>data : bool|}
 
-Объект \code{data} может иметь следующие поля:
+Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'count : int| - количество максимальных допустимых активных запросов, по умолчанию 0;
-	\item \lstinline|[r/w] @data'template : string| - шаблон нужного URL;
-	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая нужный URL;
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
+	\item \lstinline|[r/w] @data'count : int| e numărul maxim de conexiune active permise, implicit 0;
+	\item \lstinline|[r/w] @data'template : string| e un șablon al unei adrese URL, de la care trebuie să fie primit răspuns;
+	\item \lstinline|[r/w] @data'expression : regex| e expresie regulară care descrie o adresă URL;
+	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
-\subsection{Клавиатура}
+\subsection{Claviatură}
 
-Для работы с клавиатуры предусмотрены следующие функций:
+Pentru a lucra cu claviatura se propun următoarele funcții:
 \begin{icItems}
 	\item \lstinline|element.keyDown <int>modifiers <string>key : element|;
 	\item \lstinline|element.keyUp <int>modifiers <string>key : element|;
@@ -70,28 +71,28 @@
 
 \subsubsection{\lstinline|element.keyDown <int>modifiers <text>keys : element|}
 
-Симулирует нажатия кнопки.
+Simulează apăsarea butonului.
 
 \subsubsection{\lstinline|element.keyUp <int>modifiers <text> : element|}
 
-Симулирует отпускания кнопки.
+Simulează eliberarea butonului.
 
 \subsubsection{\lstinline|element.keyPress <int>modifiers <int>delay <string>keys : element|}
 
-Симулирует процесс печати на клавиатуре с установленной задержкой.
+Simulează procesul de culegere a textului cu intervalul \code{delay}.
 
 \subsubsection{\lstinline|element.fastType <string>text : element|}
 
-Симулирует процесс нажатия на клавиатуре с максимальной скоростью.
+Simulează procesul de culegere a textului pe claviatură cu viteză maximală.
 
 \subsubsection{\lstinline|element.paste <string>text : element|}
 
-Копирует текст в буфер обмена, фокусирует элемент и вставит текст.
+Copiază textul în clipboard, 
 
-\subsection{Мышка}
+\subsection{Mouse}
 \label{mouse}
 
-Для работы с мышкой предусмотрены следующие функций:
+Pentru a lucra cu mouse-ul se propun următoarele funcții:
 \begin{icItems}
 	\item \lstinline|element.click <object>data : element|;
 	\item \lstinline|element.mouseDown <object>data : element|;
@@ -99,60 +100,60 @@
 	\item \lstinline|element.hover <object>data : element|.
 \end{icItems}
 
-В следующих функциях объект \code{data} может иметь следующие поля:
+În aceste funcții obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'button : int| - кнопка мышки, принимает одно из следующих значений:
+	\item \lstinline|[r/w] @data'button : int| e butonul mouse-lui (una din următoarele valori):
 	\begin{icItems}
-		\item \lstinline|[r/o] _mouse'left : 1| - левая кнопка;
-		\item \lstinline|[r/o] _mouse'middle : 2| - средняя кнопка;
-		\item \lstinline|[r/o] _mouse'right : 3| - правая кнопка.
+		\item \lstinline|[r/o] _mouse'left : 1| e butonul sțing;
+		\item \lstinline|[r/o] _mouse'middle : 2| e butonul mijlociu;
+		\item \lstinline|[r/o] _mouse'right : 3| e butonul drept.
 	\end{icItems}
-	По умолчанию \lstinline|_mouse'left|;
+	Implicit \lstinline|_mouse'left|;
 	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;
 	\item \lstinline|[r/w] @data'ry : double| - \lstinline|ay = rx * height|;
-	\item \lstinline|[r/w] @data'ax : int| - относительная координата от левого края элемента;
-	\item \lstinline|[r/w] @data'ay : int| - относительная координата от верхнего края элемента.
+	\item \lstinline|[r/w] @data'ax : int| - coordonata x relativă la marginea stîngă a elementului;
+	\item \lstinline|[r/w] @data'ay : int| - coordonata y relativă la marginea de sus a elementului.
 \end{icItems}
 
 \subsubsection{\lstinline|element.click <object>data : element|}
 
-Симулирует клик. Объект \code{data} имеет следующие дополнительные свойства:
+Simulează un clic. Obiectul \code{data} deține următoarele proprietăți adiționale
 \begin{icItems}
-	\item \lstinline|[r/w] @data'delay : int| - задержка между нажатием и отпускании кнопке;
-	\item \lstinline|[r/w] @data'count : int| - количество симулированных кликов.
+	\item \lstinline|[r/w] @data'delay : int| e intervalul între apăsarea și eliberarea butonului;
+	\item \lstinline|[r/w] @data'count : int| e numărul de clicuri consecutive simulate.
 \end{icItems}
 
 \subsubsection{\lstinline|element.mouseDown <object>data : element|}
 
-Симулирует нажатие кнопки мышки.
+Simulează apăsarea butonului mouse-ului.
 
 \subsubsection{\lstinline|element.mouseUp <object>data : element|}
 
-Симулирует отпускание кнопки мышки.
+Simulează eliberarea butonului mouse-ului.
 
 \subsubsection{\lstinline|element.hover <object>data : element|}
 
-Перемещает мышку над элементом. \code{data} имеет следующие дополнительные свойства:
+Mută mouse-ul deasupra elementului. \code{data} are următoarele proprietăți adiționale:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'time : int| - среднее время за которой курсор перемещается на 100 пикселей;
-	\item \lstinline|[r/w] @data'func : int| - функция описывающая движение курсора. Принимает одно из следующих значений:
+	\item \lstinline|[r/w] @data'time : int| e timpul mediu în care cursorul se mută la distanța de 100 de pixeli;
+	\item \lstinline|[r/w] @data'func : int| e funcția care descrie mișcarea cursorului. Primește una din următoarele valori:
 	\begin{icItems}
-		\item \lstinline|[r/o] _move'teleport : 1| - перемещает курсор немедленно;
-		\item \lstinline|[r/o] _move'linear : 2| - линейная интерполяция;
-		\item \lstinline|[r/o] _move'quadratic : 3| - квадратичная интерполяция;
-		\item \lstinline|[r/o] _move'cubic : 4| - кубическая интерполяция;
-		\item \lstinline|[r/o] _move'bezier : 5| - использовает кубическую кривую Безье. Использует дополнительные параметры \code{p1x}, \code{p1y}, \code{p2x} и \code{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
+		\item \lstinline|[r/o] _move'teleport : 1| e mișcare simultană;
+		\item \lstinline|[r/o] _move'linear : 2| e mișcare pe linie dreaptă;
+		\item \lstinline|[r/o] _move'quadratic : 3| e mișcare pe curbă de ordinul 2;
+		\item \lstinline|[r/o] _move'cubic : 4| e mișcare pe curbă de ordinul 3;
+		\item \lstinline|[r/o] _move'bezier : 5| e mișcare pe curba Bezie de ordinul 3. Folosește următoarele proprietăți adiționale \code{p1x}, \code{p1y}, \code{p2x} și \code{p2y}. Dacă ele nu sunt indicate vor primi valori aleatorii din intervalul [0,0; 1,0].
 	\end{icItems}
-	По умолчанию \lstinline|_move'teleport|.
-	\item \lstinline|[r/w] @data'p1x : double| - Координата $x$ первой точке.
-	\item \lstinline|[r/w] @data'p1y : double| - Координата $y$ первой точке.
-	\item \lstinline|[r/w] @data'p2x : double| - Координата $x$ второй точке.
-	\item \lstinline|[r/w] @data'p2y : double| - Координата $y$ второй точке.
+	Implicit \lstinline|_move'teleport|.
+	\item \lstinline|[r/w] @data'p1x : double| - Coordinata $x$ primului punct.
+	\item \lstinline|[r/w] @data'p1y : double| - Coordinata $y$ primului punct.
+	\item \lstinline|[r/w] @data'p2x : double| - Coordinata $x$ punctului secundar.
+	\item \lstinline|[r/w] @data'p2y : double| - Coordinata $y$ punctului secundar.
 \end{icItems}
 
-\subsection{Тонкая настройка}
+\subsection{Setarea detaliilor}
 
-Настроить можно следующее параметры:
+Pot fi setați următorii parametri:
 \begin{icItems}
 	\item \lstinline|[r/w] _icL'clickTime : int|;
 	\item \lstinline|[r/w] _icL'pressTime : int|;
@@ -163,22 +164,22 @@
 
 \subsubsection{\lstinline|_icL'clickTime : int|}
 
-Время задержки клика, по умолчанию 300.
+Intervalul clicului, implicit 300.
 
 \subsubsection{\lstinline|_icL'pressTime : int|}
 
-Время задержки нажатий кнопки, по умолчанию 60.
+Intervalul apăsării butonului pe claviatură, implicit 60.
 
 \subsubsection{\lstinline|_icL'moveTime : int|}
 
-Среднее время в миллисекундах за которой курсор перемещается на 100 пикселей, по умолчанию 32.
+Timpul mediu în milisecunde în care cursorul se mută la distanța de 100 de pixeli, implicit 32.
 
 \subsubsection{\lstinline|_icL'flashMode : bool|}
 
-Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \lstinline|_icL'humanMode|. По умолчанию выключен. \lstinline|element.sendKeys| и \lstinline|element.fastType| будут работать также быстро как и \lstinline|element.paste|, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
+Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \lstinline|_icL'humanMode|. Implicit închis. \lstinline|element.sendKeys| și \lstinline|element.fastType| vor lucra la fel de rapid ca \lstinline|element.paste|, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
 
 \subsubsection{\lstinline|_icL'humanMode : bool|}
 
-Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \lstinline|_icL'flashMode|. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
+Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \lstinline|_icL'flashMode|. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
 
 %\newpage
