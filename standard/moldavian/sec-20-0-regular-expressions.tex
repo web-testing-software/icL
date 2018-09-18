@@ -38,12 +38,12 @@ Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstin
 
 {\bf Cuantificatorul zgîrgit} capturează cantitatea maximă de simboluri, dar {\bf cuantificatorul leneș} - minimală.
 
-\subsection{Операторы}
+\subsection{Operatori}
 
-Для регулярных выражений доступны следующие операторы:
+Pentru expresiile regulare sunt disponibili următorii operatori:
 \begin{icItems}
 \item
-	3-ого ранга:
+	de rangul 3:
 	\begin{icItems}
 	\item
 		\lstinline|string << regex : bool|;
@@ -52,12 +52,12 @@ Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstin
 	\end{icItems}
 
 \item 
-	6$^+$-ого ранга: \lstinline|string ** regex : object|.
+	de rangul 6$^+$: \lstinline|string ** regex : object|.
 \end{icItems}
 
-Примеры использования операторов приведены на листинге \ref{regexpopsex}.
+Exemple de folosire a operatorilor sunt prezenți pe foaia \ref{regexpopsex}.
 
-\begin{lstlisting}[caption=Операторы регулярных выражений, label=regexpopsex]
+\begin{lstlisting}[caption=Operații cu expresii regulare, label=regexpopsex]
 "string" << //s.r//;            `` true
 "string" <* //s(.)r//;          `` ["str" "t"]
 "string" ** //s(?<letter>.)r//; `` [<"t">letter]
@@ -65,21 +65,21 @@ Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstin
 
 \subsubsection{\lstinline|string << regex : bool|}
 
-Возвращает \true{}, если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе \false{}.
+Returnează \true{}, dacă șirul conține subșir care convine după expresia regulară, în caz contrar \false{}.
 
 \subsubsection{\lstinline|string <* regex : list|}
 
-Возвращает список захваченных подстрок если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе пустой список.
+Returnează lista de șiruri capturate, dacă șirul conține subșir care convine după expresia regulară, în caz contrar o listă deșartă.
 
 \subsubsection{\lstinline|string ** regex : object|}
 
-Возвращает объект, содержащий значения всех именованных групп, если строка содержит подстроку подходящая по шаблону регулярней выражений и объявлены именованные группы, иначе пустой объект.
+Returnează un obiect, care conține toate valorilor grupelor cu nume, dacă șirul conține subșir care convine după expresia regulară, în caz contrar o obiect deșert.
 
 % \subsubsection{}
 
-\subsection{Методы}
+\subsection{Metode}
 
-Методы классы \str{} и \listtype, имеющие параметры типа \regex{}:
+Metodele clasei \str{} și \listtype, care primesc parametri de tipul \regex{}:
 \begin{icItems}
 \item
 	\lstinline|string.count <regex>re : int|;
@@ -101,17 +101,9 @@ Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstin
 	\lstinline|list.lastIndexOf <regex>re <int>start : int|;
 \end{icItems}
 
-Примеры использования выше перечисленных методов, представлены на листинге \ref{regexplikearg}.
+Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{regexplikearg}.
 
-\subsubsection{\lstinline|string.count <regex>re : int|}
-
-Считает количество подстрок подходящие по шаблону \code{re}.
-
-\subsubsection{\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|}
-
-Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища вперёд с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
-
-\begin{lstlisting}[caption=Регулярные выражения в качестве аргумента, label=regexplikearg]
+\begin{lstlisting}[caption=Expresii regulare în calitate de argumente, label=regexplikearg]
 @str = "Hello world, collaborators!";
 
 @str.count //\wo//;       `` 5
@@ -129,33 +121,41 @@ Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstin
 @fonts.lastIndexOf //e.// 2; `` 2
 \end{lstlisting}
 
+\subsubsection{\lstinline|string.count <regex>re : int|}
+
+Numără cîte subșiruri convin expresii regulare \code{re}.
+
+\subsubsection{\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|}
+
+Returnează indexul primului subșir care convine expresii regulare \code{re}, căutînd înainte de pe poziția code{startPos}. Dacă așa subșir nu a fost găsit, returnează -1.
+
 \subsubsection{\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|}
 
-Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища назад с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
+Returnează primului subșir care convine expresii regulare \code{re}, căutînd înapoi de pe poziția \code{startPos}; dacă așa subșir nu a fost găsit, returnează -1.
 
 \subsubsection{\lstinline|string.remove <regex>re : string|}
 
-Удаляет из строки все фрагменты подходящие по шаблону \code{re}.
+Șterge din șir toate subșirurile care convin expresii regulare \code{re}.
 
 \subsubsection{\lstinline|string.replace <regex>re <string>after : string|}
 
-Заменяет каждый фрагмент, подходящий по шаблону \code{re}, строкой \code{after}.
+Înlocuiește subșirurile care convin expresii regulare \code{re}, cu șirul \code{after}.
 
 \subsubsection{\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|}
 
-Разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \code{re} и собирает список этих строк; если \code{keepEmptyParts == false} то пустые строки пропускаются.
+Împarte șirul în subșiruri, la fiecare găsire a subșirului care convine expresii regulare \code{re} și strînge subșirurile în listă. Dacă \code{keepEmptyParts == false} șirurile deșarte se ignoră.
 
 \subsubsection{\lstinline|list.filter <regex>re : list|}
 
-Возвращает новый список строк, содержащий только строки этого списка, подходящих по регулярней выражении \code{re}.
+Returnează o listă nouă, care conține doar șirurile acestei liste, care convin expresii regulare \code{re}.
 
 \subsubsection{\lstinline|list.indexOf <regex>re <int>start = 0 : int|}
 
-Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища вперёд с позицией \code{start}, если такой строке не найдено возвращает -1.
+Returnează indexul primului șir, care convine expresii regulare \code{re}, căutînd înainte de pe poziția \code{start}, dacă așa șir nu a fost găsit returnează -1.
 
 \subsubsection{\lstinline|list.lastIndexOf <regex>re <int>start = -1 : int|}
 
-Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища назад с позицией \code{start}, если такой строке не найдено возвращает -1.
+Returnează indexul primului șir, care convine expresii regulare \code{re}, căutînd înapoi de pe poziția \code{start}, dacă așa șir nu a fost găsit returnează -1.
 
 % \subsubsection{}
 
