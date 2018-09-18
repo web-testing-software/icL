@@ -1,104 +1,103 @@
-\section{Обработка исключений}
+% !TeX spellcheck = ro_RO
+\section{Tratarea excepțiilor}
 
-Все ошибки в icL имеют название и описание. Что бы выводить в консоль название и описание текущей ошибке, достаточно вызвать \lstinline|_log.error ""|. Возможные исключения при вызове разных функций и методов в данном стандарте указаны в конце описания. Что зарегистрировать пользовательскую исключение используете \lstinline|_signal.add <string>name|.
+Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în consolă denumire și descrierea erorii curente e destul să apelezi \lstinline|_log.error ""|. Excepțiile posibile care pot fi generate la apelarea funcțiilor diferite sunt enumerate la sfîrșitul descrierei . Ca să înregistrezi eroare personalizată e destul să apelezi \lstinline|_signal.add <string>name|.
 
-\subsection{Генератор сигналов}
+\subsection{Generarea excepțiilor}
 
-Код, который может генерировать сигнал об исключений называется эмиттер. И имеет следующий синтаксис \lstinline|emiter {```code```}|. Генерированный сигнал улавливает коллектор. Также коллекторов может быть несколько. Они имеют следующий синтаксис \lstinline|slot:exception {```code```}|,
-где \code{exception} - имя исключений, чтобы поймать все исключения можно использовать \lstinline|slot:Any|. Пример кода использующий эмиттер и коллектор представлен на листинге \ref{sighandling}.
+Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \lstinline|emiter {```code```}|. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \lstinline|slot:exception {```code```}|,
+unde \code{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \lstinline|slot:Any|. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
 
-Для генерации собственных сигналов используется команда \lstinline|emit:exception <string>description|, где \code{exception} - имя исключений, а \code{description} - её описание.
-
-Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \lstinline|jammer {```code```}|. Сигналы об схематических и синтаксических ошибках, а также сигнал \lstinline|emit:Exit|, не могут быть остановлены подавителем.
-
-\begin{lstlisting}[caption=Обработка инключении, label=sighandling]
+\begin{lstlisting}[caption=Prelucrarea excepțiilor, label=sighandling]
 _signal.add "NumberTooBig";
 _signal.add "NumberTooSmall";
 
 @i = 3;
 
 emiter {
-	if (@i < 2) {
-		emit:NumberTooSmall (@i:string) + " is smaller then 2.";
-	}
-	
-	if (@i > 5) {
-		emit:NumberTooBig (@i:string) + " is bigger then 5."
-	}
+if (@i < 2) {
+emit:NumberTooSmall (@i:string) + " is smaller then 2.";
+}
 
-	`` @i >= 2 \& @i <= 5
+if (@i > 5) {
+emit:NumberTooBig (@i:string) + " is bigger then 5."
+}
+
+`` @i >= 2 \& @i <= 5
 }
 slot:NumberTooBig {
-	_log.error "Oooops...";
+_log.error "Oooops...";
 }
 slot:NumberTooSmall {
-	_log.error "Nope! O_O";
+_log.error "Nope! O_O";
 };
 \end{lstlisting}
 
-\subsection{Предопределённые исключения}
+Pentru a genera semnale proprii folosiți comanda \lstinline|emit:exception <string>description|, unde \code{exception} e numele semnalului, dar \code{description} e descrierea.
 
-Набор {\bf предопределённых исключения} представлен в таблице \ref{errors}. В данном документе, при описаниях возможностях, представлены списки исключениях которые возможно будут сгенерированы при использовании конкретной возможности. Исключения могут появиться в результате неправильных входных данных, а также при невозможности использовании возможности в текущем состоянии программы. Сигнал \ferror{Exit} генерируется только пользователем, при необходимости открыть программу немедленно.
+Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \lstinline|jammer {```code```}|. Semnalele erorilor semantice și de sintaxă, și \lstinline|emit:Exit| de asemenea, nu pot fi oprite de jammer.
 
-\ 
+\subsection{Semnale implicite}
 
-\tabletwo{5cm}{12.1cm}{errors}{Стандартные исключения}%
+{\bf Excepțiile implicite} este enumerate în tabela \ref{errors}. În acest document la descrierea posibilităților, sunt prezente liste de semnale care pot fi emise la folosirea posibilităților concrete. Semnale pot fi generate ca rezultat al datelor de intrare incorecte, la fel și atunci cînd posibilitățile nu sunt disponibile în contextul curent. Semnalul \ferror{Exit} poate fi generat numai de utilizator, dacă apare necesitatea de a opri programul imediat.
+
+\tabletwo{5cm}{12.1cm}{errors}{Semnale implicite}%
 {Класс}{Описание}%
 {
-	\ferror{Exit}                    & Немедленная остановка программы.                 \\ \hline
+	\ferror{Exit}                    & Oprirea imediată a programei.                \\ \hline
 	
-	\ferror{NoSessions}              & Ни одна сессия не существует.                    \\ \hline
-	\ferror{NoSuchWindow}            & Нужное одно закрыта.                             \\ \hline
-	\ferror{NoSuchElement}           & Нужный элемент не найден.                        \\ \hline
-	\ferror{NoSuchFrame}             & Нет такого frame.                                \\ \hline
-	\ferror{NoSuchCookie}            & Нет такого cookie.                               \\ \hline
-	\ferror{NoSuchAlert}             & Предупреждение отсутствует.                      \\ \hline
-	\ferror{NoSuchTab}               & Вкладка уже закрыта.                             \\ \hline
-	\ferror{StaleElementReference}   & Ссылка на элемент недействительна.               \\ \hline
-	\ferror{FolderNotFound}          & Папка не найдено.                                \\ \hline
-	\ferror{FileNotFound}            & Файл не найден.                                  \\ \hline
-	\ferror{FieldNotFound}           & Поле не найдено.                                 \\ \hline
-	\ferror{FieldAlreadyExists}      & Поле уже существует.                             \\ \hline
-	\ferror{OutOfBounds}             & Выход за пределы коллекции.                      \\ \hline
-	\ferror{UnsupportedOperation}    & Операция не поддерживается веб-драйвером.        \\ \hline
+	\ferror{NoSessions}              & Nici o sesie nu e deschisă.                  \\ \hline
+	\ferror{NoSuchWindow}            & Fereastra necesară a fost închisă.           \\ \hline
+	\ferror{NoSuchElement}           & Elementul necesar nu a fost găsit.           \\ \hline
+	\ferror{NoSuchFrame}             & Nu-i așa frame.                              \\ \hline
+	\ferror{NoSuchCookie}            & Nu-i așa cookie.                             \\ \hline
+	\ferror{NoSuchAlert}             & Nu există avertizare.                        \\ \hline
+	\ferror{NoSuchTab}               & Tabul necesar a fost închis.                 \\ \hline
+	\ferror{StaleElementReference}   & Linkul la element este invalid.              \\ \hline
+	\ferror{FolderNotFound}          & Folderul nu a fost găsit.                    \\ \hline
+	\ferror{FileNotFound}            & Fișierul nu a fost găsit.                    \\ \hline
+	\ferror{FieldNotFound}           & Cîmpul nu a fost găsit.                      \\ \hline
+	\ferror{FieldAlreadyExists}      & Cîmpul deja există.                          \\ \hline
+	\ferror{OutOfBounds}             & Ieșire în afara colecției.                   \\ \hline
+	\ferror{UnsupportedOperation}    & Operația nu este suportată de web driver.    \\ \hline
 	
-	\ferror{EmptyString}             & Пустая строка.                                   \\ \hline
-	\ferror{EmptyList}               & Пустой список.                                   \\ \hline
-	\ferror{MultiList}               & Список содержит несколько строк.                 \\ \hline
-	\ferror{EmptyElement}            & Пустой/пустая элемент/коллекция.                 \\ \hline
-	\ferror{MultiElement}            & Коллекция содержит несколько элементов.          \\ \hline
-	\ferror{EmptySet}                & Пустое множество.                                \\ \hline
-	\ferror{MultiSet}                & Множество содержит несколько объектов.           \\ \hline
+	\ferror{EmptyString}             & Șir deșert.                                  \\ \hline
+	\ferror{EmptyList}               & Listă deșartă.                               \\ \hline
+	\ferror{MultiList}               & Listă din cîteva șiruri.                     \\ \hline
+	\ferror{EmptyElement}            & Element invalid / colecție vidă.             \\ \hline
+	\ferror{MultiElement}            & Colecție din cîteva elemente.                \\ \hline
+	\ferror{EmptySet}                & Mulțime vidă.                                \\ \hline
+	\ferror{MultiSet}                & Mulțime din cîteva elemente.                 \\ \hline
 	
-	\ferror{InvalidArgument}         & Неправильный аргумент.                           \\ \hline
-	\ferror{InvalidSelector}         & Неправильный селектор.                           \\ \hline
-	\ferror{InvalidElementState}     & Состояние элемента неудовлетворительна.          \\ \hline
-	\ferror{InvalidElement}          & Элемент не подходит данной операции.             \\ \hline
-	\ferror{IncompatibleRoot}        & Неподходящий корень строки JSON.                 \\ \hline
-	\ferror{IncompatibleData}        & Неподходящие данные.                             \\ \hline
-	\ferror{IncompatibleObject}      & Неподходящий объект.                             \\ \hline
-	\ferror{InvalidSessionId}        & Сессия уже закрыта.                              \\ \hline
-	\ferror{InvalidCookieDomain}     & Неподходящий домен для cookie.                   \\ \hline
-	\ferror{InsecureCertificate}     & Небезопасный сертификат.                         \\ \hline
-	\ferror{UnexpectedAlertOpen}     & Неожиданное предупреждение.                      \\ \hline
+	\ferror{InvalidArgument}         & Argument incorect.                           \\ \hline
+	\ferror{InvalidSelector}         & Selector incorect.                           \\ \hline
+	\ferror{InvalidElementState}     & Starea elementului e nesatisfăcătoare.       \\ \hline
+	\ferror{InvalidElement}          & Operația nu este disponibilă pentru element. \\ \hline
+	\ferror{IncompatibleRoot}        & Rădăcină incorectă a șirului JSON.           \\ \hline
+	\ferror{IncompatibleData}        & Date incorecte.                              \\ \hline
+	\ferror{IncompatibleObject}      & Obiect necorespunzător.                      \\ \hline
+	\ferror{InvalidSessionId}        & Sesia e deja închisă.                        \\ \hline
+	\ferror{InvalidCookieDomain}     & Domeniu incorect pentru cookie.              \\ \hline
+	\ferror{InsecureCertificate}     & Certificat nesecurizat.                      \\ \hline
+	\ferror{UnexpectedAlertOpen}     & Alertă neașteptată.                          \\ \hline
 	
-	\ferror{UnrealCast}              & Невозможное преобразование.                      \\ \hline
-	\ferror{ParsingFailed}           & Парсинг не удался.                               \\ \hline
-	\ferror{WrongDelimiter}          & Неправильный разделитель.                        \\ \hline
-	\ferror{ComplexField}            & Невозможное преобразование данных из JSON в icL. \\ \hline
-	\ferror{ElementNotInteractable}  & Элемент не интерактивный.                        \\ \hline
-	\ferror{ElementClickIntercepted} & Другой элемент мешает сделать клик.              \\ \hline
-	\ferror{MoveTargetOutOfBounds}   & Координаты мышки вне экрана.                     \\ \hline
-	\ferror{UnableToSetCookie}       & Нельзя установить cookie.                        \\ \hline
-	\ferror{UnableToCaptureScreen}   & Нельзя захватить экран.                          \\ \hline
-	\ferror{JavascriptError}         & Ошибка выполнения кода на языке Javascript.      \\ \hline
-	\ferror{ScriptTimeout}           & Время выполнения скрипта истекло.                \\ \hline
-	\ferror{Timeout}                 & Время истекло.                                   \\ \hline
-	\ferror{SessionNotCreated}       & Нельзя создать сессию.                           \\ \hline
+	\ferror{UnrealCast}              & Conversație imposibilă.                      \\ \hline
+	\ferror{ParsingFailed}           & Parsing-ul a eșuat.                          \\ \hline
+	\ferror{WrongDelimiter}          & Delimitator incorect.                        \\ \hline
+	\ferror{ComplexField}            & Conversia din JSON în icL a eșuat.           \\ \hline
+	\ferror{ElementNotInteractable}  & Elementul nu este interactiv.                \\ \hline
+	\ferror{ElementClickIntercepted} & Alt element încărcă a face clic.             \\ \hline
+	\ferror{MoveTargetOutOfBounds}   & Coordinatele mouse-ului în afara ecranului.  \\ \hline
+	\ferror{UnableToSetCookie}       & Nu se poate de creat cookie.                 \\ \hline
+	\ferror{UnableToCaptureScreen}   & Nu se poate de capturat ecranul.             \\ \hline
+	\ferror{JavascriptError}         & Codul Javascript a dat eroare.               \\ \hline
+	\ferror{ScriptTimeout}           & Timpul de executare a scriptului a expirat.  \\ \hline
+	\ferror{Timeout}                 & Timpul a expirat.                            \\ \hline
+	\ferror{SessionNotCreated}       & Nu este posibil de creat sesie.              \\ \hline
 	
-	\ferror{UnknownCommand}          & \code{[w3c]} Неизвестная команда.                \\ \hline
-	\ferror{UnknownError}            & \code{[w3c]} Неизвестная ошибка.                 \\ \hline
-	\ferror{UnknownMethod}           & \code{[w3c]} Неизвестный метод HTTP.             \\
+	\ferror{UnknownCommand}          & \code{[w3c]} Comandă necunoscută.            \\ \hline
+	\ferror{UnknownError}            & \code{[w3c]} Eroare necunoscută.             \\ \hline
+	\ferror{UnknownMethod}           & \code{[w3c]} Metodă HTTP necunoscută.        \\
 }
 
 %\newpage
