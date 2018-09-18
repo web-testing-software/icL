@@ -5,20 +5,23 @@ engish, russian and moldavian.
 
 # Requests
 
-_18.09.2018_
+__18.09.2018__
 
  * Add new method _tab.goto, which doesn't generate signals, just resturn true 
- on success otherwise false.
- * Remove _stacks'(int).
- * Remove _stacks.if.
- * Remove _stacks.ifexists.
- * Remove _stacks.loop.
- * Remove _stacks.while.
- * Remove _stacks.dowhile.
- * Remove _stacks.for.
- * Remove _stacks.forany.
- * Remove _stacks.range.
- * Remove _stacks.filter.
- * Change _stacks.break -> aviable just for loops.
- * Add _stacks.return -> especially for functions.
- * Rename all System data types to first uppercase names and remove underline(_)
+   on success otherwise false. **[approved]**
+ * Remove _stacks'(int). **[approved]**
+ * Remove _stacks.if. **[approved]**
+ * Remove _stacks.ifexists. **[approved]**
+ * Remove _stacks.loop. **[approved]**
+ * Remove _stacks.while. **[approved]**
+ * Remove _stacks.dowhile. **[approved]**
+ * Remove _stacks.for. **[approved]**
+ * Remove _stacks.forany. **[approved]**
+ * Remove _stacks.range. **[approved]**
+ * Remove _stacks.filter. **[approved]**
+ * Change _stacks.break -> aviable just for loops. **[approved]**
+ * Add _stacks.return -> especially for functions. **[approved]**
+ * Rename all System data types to first uppercase names and remove underline
+   (_)  **[approved]**
+
+All approved changes will be applicated in Standard for icL RC 2.
