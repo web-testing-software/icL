@@ -1,41 +1,42 @@
-\section{Регулярные выражения}
+% !TeX spellcheck = ro_RO
+\section{Expresii regulare}
 \label{regex}
 
-Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?<name>content)|.
+Pentru definirea {\bf expresiilor regulare} se folosește literalul \lstinline|//pattern//mods|, unde \code{pattern} este paternul expresii, \code{mods} sunt modificatorii. În patern grupele pot avea nume, gupa anonimă are următoarea sintaxă \lstinline|(content)|, grupa cu nume - \lstinline|(?<name>content)|.
 
-Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| и \lstinline|!|. Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
+Simbolul intern poate fi nu numai \code{/}, dar și oricare alt simbol, în afară de apostrof (\lstinline|'|) el intră în conflict cu operatorul {\it rădăcină} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| și \lstinline|!|. De exemplu  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
 
-Для того чтобы захватить начало строки можно использовать \lstinline|^| и \lstinline|\A|, а для конца строки - \lstinline|$| и \lstinline|\z|. Первый вариант несмотря на его популярность может срабатывать неправильно, так как им захватывается начало и конец строки в контексте многострочного текста.
+Ca să capturezi începutul șirului de caractere se poate de folosit \lstinline|^| și \lstinline|\A|, dar pentru sfîrșit - \lstinline|$| și \lstinline|\z|. Primul variant necătînd la popularitatea lui poate funcționa incorect, pentru ca ele capturează începutul și sfîrșitul liniilor în context de text în mai multe linii.
 
-\subsection{Модификаторы}
+\subsection{Modificatori}
 
-В языке icL присутствуют следующее модификаторы: \code{/i}, \code{/s}, \code{/m}, \code{/x}, \code{/u} и \code{/f}. Модификаторы можно скомбинировать, например \code{/xi}.
+În limbajul icL sunt prezenți următorii modificatori: \code{/i}, \code{/s}, \code{/m}, \code{/x}, \code{/u} и \code{/f}. Modificatorii pot fi combinați, de exemplu \code{/xi}.
 
-\subsubsection{Модификатор \code{/i}}
+\subsubsection{Modificator \code{/i}}
 
-Регистр букв будет проигнорирован. 
+Diferența între majuscule și minuscule va fi ignorată. 
 
-\subsubsection{Модификатор \code{/s}}
+\subsubsection{Modificator \code{/s}}
 
-Точка будет означать любой символ, включая символа {\it новая строка}.
+Punctul va însemna orice simbol, inclusiv și simbolul {\it rînd nou}.
 
-\subsubsection{Модификатор \code{/m}}
+\subsubsection{Modificator \code{/m}}
 
-Метасимволы \lstinline|^| и \lstinline|$| будут означать начало и конец строки не только в общем смысле, но и в контексте многострочного текста.
+Meta-simbolurile \lstinline|^| și \lstinline|$| vor captura nu numai începutul și sfîrșitul șirului, dar și al liniilor de text.
 
-\subsubsection{Модификатор \code{/x}}
+\subsubsection{Modificator \code{/x}}
 
-Все пробельные символы будут проигнорированы, и символ \lstinline|#| будет означать начало комментария, который заканчивается символом {\it новая строка}.
+Toate spațiile vor fi ignorate, simbolul \lstinline|#| va însemna începutul comentariului, care se termină cu simbolul {\it rînd nou}.
 
-\subsubsection{Модификатор \code{/u}}
+\subsubsection{Modificator \code{/u}}
 
-Классы символов \lstinline|\w|, \lstinline|\d| и т.д. и их отрицаний \lstinline|\W|, \lstinline|\D| и т.д. будут соответствовать не только английских символов, но и национальных.
+Clasele de simboluri \lstinline|\w|, \lstinline|\d| ș.a.m.d. și inversiile lor \lstinline|\W|, \lstinline|\D| ș.a.m.d. vor captura nu numai literele latine, dar și literele alfabetelor naționale.
 
-\subsubsection{Модификатор \code{/f}}
+\subsubsection{Modificator \code{/f}}
 
-Инвертирует жадность квантификаторов \lstinline|*|, \lstinline|+|, \lstinline|?| и т.д. и они становятся ленивыми. А их ленивые версии \lstinline|*?|, \lstinline|+?|, \lstinline|??| и т.д. становятся жадными.
+Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstinline|?| ș.a.m.d. și ei devin leneși. Dar versiunile lor leneșe \lstinline|*?|, \lstinline|+?|, \lstinline|??| ș.a.m.d. devin zgîrite.
 
-{\bf Жадный квантификатор} захватывает максимальное количество символов. {\bf Ленивый квантификатор} - минимальное.
+{\bf Cuantificatorul zgîrgit} capturează cantitatea maximă de simboluri, dar {\bf cuantificatorul leneș} - minimală.
 
 \subsection{Операторы}
 
