@@ -13,7 +13,7 @@ __18.09.2018__
  * Remove _stacks'(int). **[approved]** [+]
  * Remove _stacks.if. **[approved]** [+]
  * Remove _stacks.ifexists. **[approved]** [+]
- * Remove _stacks.loop. **[approved]**
+ * Remove _stacks.loop. **[approved]** [+]
  * Remove _stacks.while. **[approved]**
  * Remove _stacks.dowhile. **[approved]**
  * Remove _stacks.for. **[approved]**
