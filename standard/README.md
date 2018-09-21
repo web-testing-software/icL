@@ -34,7 +34,7 @@ __21.09.2018__
  * Add comma delimiter beetwen grouped values, the list changes from
    ["str1" "str2" "str3"] to ["str1", "str2", "str3"]
  * Change object field syntax from <value>name to name = value, the objects
-   changes from [<23>age <"Alice"name] to [age = 23, name = "Alice"],
+   changes from [<23>age <"Alice">name] to [age = 23, name = "Alice"],
    the empty object will look like [=]
  * Change parameter syntax from <type>name to name : type, the set changes from
    [<int>age <string>name] to [age : int, name : string], the empty set will
@@ -45,3 +45,4 @@ __21.09.2018__
    arg2) : string {}
  * Add new function call syntax instead !name args... use name (args..), beetwen
    arguments needs to be comma delimiter
+ * Change the operator << to < and >> to >
