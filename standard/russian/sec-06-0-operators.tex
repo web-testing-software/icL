@@ -52,16 +52,16 @@
 Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{boolopex}.
 
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа bool, label=boolopex]
-_log.out "true & false = " (true & false);		`` true \& false = false
-_log.out "false | true =  " (false | true);		`` false | true = true
-_log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
-_log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
+Log.out "true & false = " (true & false);		`` true \& false = false
+Log.out "false | true =  " (false | true);		`` false | true = true
+Log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
+Log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
 
-_log.out "!true = " !true;						`` !true = false
-_log.out "!false = " !false;					`` !false = true
+Log.out "!true = " !true;						`` !true = false
+Log.out "!false = " !false;					`` !false = true
 
-_log.out "true == false = " (true == false);	`` true == false = false
-_log.out "false != true = " (false != true);	`` false != true = true
+Log.out "true == false = " (true == false);	`` true == false = false
+Log.out "false != true = " (false != true);	`` false != true = true
 \end{lstlisting}
 
 \subsubsection{\lstinline`<bool>a & <bool>b : bool`}
@@ -234,43 +234,43 @@ _log.out "false != true = " (false != true);	`` false != true = true
 
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа int и double, label=numberopex]
 `` 3rd rank
-_log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
-_log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
-_log.out "1 != 2 = "		1 != 2;		`` 1 $\neq$ 2 = true
-_log.out "2.1 != 2.1 = "	2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
-_log.out "3 >> 2 = "		3 >> 2;		`` 3 > 2 = true
-_log.out "1.1 >> 2.1 = "	1.1 >> 2.1;	`` 1.1 > 2.1 = false
-_log.out "5 >= 2 = "		5 >= 2;		`` 5 $\geq$ 2 = true
-_log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
-_log.out "3 << 9 = "		3 << 9;		`` 3 < 9 = true
-_log.out "6.1 << 6.2 = "	6.1 << 6.2;	`` 6.1 < 6.2 = true
-_log.out "4 <= 5 = "		4 <= 5;		`` 4 $\leq$ 5 = true
-_log.out "5.6 <= 6.5 = "	5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
+Log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
+Log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
+Log.out "1 != 2 = "		1 != 2;		`` 1 $\neq$ 2 = true
+Log.out "2.1 != 2.1 = "	2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
+Log.out "3 >> 2 = "		3 >> 2;		`` 3 > 2 = true
+Log.out "1.1 >> 2.1 = "	1.1 >> 2.1;	`` 1.1 > 2.1 = false
+Log.out "5 >= 2 = "		5 >= 2;		`` 5 $\geq$ 2 = true
+Log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
+Log.out "3 << 9 = "		3 << 9;		`` 3 < 9 = true
+Log.out "6.1 << 6.2 = "	6.1 << 6.2;	`` 6.1 < 6.2 = true
+Log.out "4 <= 5 = "		4 <= 5;		`` 4 $\leq$ 5 = true
+Log.out "5.6 <= 6.5 = "	5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
 `` 4th rank
-_log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
-_log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
-_log.out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
-_log.out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
+Log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
+Log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
+Log.out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
+Log.out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
 `` 5th rank
-_log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
-_log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
-_log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
-_log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
-_log.out "45 \ 8 = "		45 \ 8;		`` 45 \textbackslash 8 = 5
+Log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
+Log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
+Log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
+Log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
+Log.out "45 \ 8 = "		45 \ 8;		`` 45 \textbackslash 8 = 5
 `` 6+th rank
-_log.out "25** = "			25**;		`` $25^2$ = 625
-_log.out "25.1** = "		25.1**;		`` $25.1^2$ = 630,01
-_log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
-_log.out "2.0 ** 1.5 = "	2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
-_log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
-_log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
-_log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
-_log.out "5.0/'125.5 = "	5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
+Log.out "25** = "			25**;		`` $25^2$ = 625
+Log.out "25.1** = "		25.1**;		`` $25.1^2$ = 630,01
+Log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
+Log.out "2.0 ** 1.5 = "	2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
+Log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
+Log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
+Log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
+Log.out "5.0/'125.5 = "	5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
 `` 7+th rank
-_log.out "- 35 = "			- 35;		`` - 35 = -35
-_log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
-_log.out "+ -100 = "		+ -100;		`` + -100 = 100
-_log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
+Log.out "- 35 = "			- 35;		`` - 35 = -35
+Log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
+Log.out "+ -100 = "		+ -100;		`` + -100 = 100
+Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
 \subsubsection{\lstinline`<int>a != <int>b : bool`}
@@ -776,7 +776,7 @@ _log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 \end{table}
 %}
 
-Для аргументов типов \integer{} и \double{}, вызывается функция \code{_numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{_numbers.setProcess} с одни из следующих аргументов: \code{_numbers'sum} - сумма, \code{_numbers'product} - произведение, \code{_numbers'max} - максимум, \code{_numbers'min} - минимум. После использования оператора, вызываете \code{_numbers.restoreProcess} чтобы восстановить исходные настройки.
+Для аргументов типов \integer{} и \double{}, вызывается функция \code{Numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{Numbers.setProcess} с одни из следующих аргументов: \code{Numbers'sum} - сумма, \code{Numbers'product} - произведение, \code{Numbers'max} - максимум, \code{Numbers'min} - минимум. После использования оператора, вызываете \code{Numbers.restoreProcess} чтобы восстановить исходные настройки.
 
 \subsection{Дополнительные операторы}
 

@@ -1,7 +1,7 @@
 % !TeX spellcheck = ro_RO
 \section{Tratarea excepțiilor}
 
-Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în consolă denumire și descrierea erorii curente e destul să apelezi \lstinline|_log.error ""|. Excepțiile posibile care pot fi generate la apelarea funcțiilor diferite sunt enumerate la sfîrșitul descrierei . Ca să înregistrezi eroare personalizată e destul să apelezi \lstinline|_signal.add <string>name|.
+Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în consolă denumire și descrierea erorii curente e destul să apelezi \lstinline|Log.error ""|. Excepțiile posibile care pot fi generate la apelarea funcțiilor diferite sunt enumerate la sfîrșitul descrierei . Ca să înregistrezi eroare personalizată e destul să apelezi \lstinline|Signal.add <string>name|.
 
 \subsection{Generarea excepțiilor}
 
@@ -9,8 +9,8 @@ Codul, care generează erori se numește emitor. El se declară folosind următo
 unde \code{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \lstinline|slot:Any|. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
 
 \begin{lstlisting}[caption=Prelucrarea excepțiilor, label=sighandling]
-_signal.add "NumberTooBig";
-_signal.add "NumberTooSmall";
+Signal.add "NumberTooBig";
+Signal.add "NumberTooSmall";
 
 @i = 3;
 
@@ -26,10 +26,10 @@ emit:NumberTooBig (@i:string) + " is bigger then 5."
 `` @i >= 2 \& @i <= 5
 }
 slot:NumberTooBig {
-_log.error "Oooops...";
+Log.error "Oooops...";
 }
 slot:NumberTooSmall {
-_log.error "Nope! O_O";
+Log.error "Nope! O_O";
 };
 \end{lstlisting}
 

@@ -4,7 +4,7 @@
 
 {\bf Веб-элементы} (тип данных \element) представляет собой ссылки на HTML-теги веб-страницы.
 
-Элемент считается единым если он получен с помощью функций \lstinline|_dom.query| или \lstinline|element.query|. Элемент считается коллекцией если он получен с помощью функций \lstinline|_dom.queryAll| или \lstinline|element.queryAll|. При получении элемента по индексу, результат также будет единым.
+Элемент считается единым если он получен с помощью функций \lstinline|DOM.query| или \lstinline|element.query|. Элемент считается коллекцией если он получен с помощью функций \lstinline|DOM.queryAll| или \lstinline|element.queryAll|. При получении элемента по индексу, результат также будет единым.
 
 \subsection{Свойства}
 
@@ -175,17 +175,17 @@
 
 \subsubsection{\lstinline|element.query <string>cssSelector : element|}
 
-Акроним для \lstinline|element.query _by'cssSelector @cssSelector|; 
+Акроним для \lstinline|element.query By'cssSelector @cssSelector|; 
 
 \subsubsection{\lstinline|element.query <int>by <string>selector : element|}
 
 Параметр \code{by} получает одно из следующих значений:
 \begin{icItems}
-	\item \lstinline|[r/o] _by'cssSelector : 1| - селектор CSS;
-	\item \lstinline|[r/o] _by'linkText : 2| - текст ссылки;
-	\item \lstinline|[r/o] _by'partialLinkText : 3| - фрагмент текста ссылки;
-	\item \lstinline|[r/o] _by'tagName : 4| - название тега;
-	\item \lstinline|[r/o] _by'xPath : 5| - XPath.
+	\item \lstinline|[r/o] By'cssSelector : 1| - селектор CSS;
+	\item \lstinline|[r/o] By'linkText : 2| - текст ссылки;
+	\item \lstinline|[r/o] By'partialLinkText : 3| - фрагмент текста ссылки;
+	\item \lstinline|[r/o] By'tagName : 4| - название тега;
+	\item \lstinline|[r/o] By'xPath : 5| - XPath.
 \end{icItems}
 
 Параметр \code{selector} получает селектор CSS, текст ссылки, фрагмент текста ссылки, название тега или XPath, в зависимость от значений первого параметра.
@@ -198,7 +198,7 @@
 
 \subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
 
-Акроним для \lstinline|element.queryAll _by'cssSelector @cssSelector|;
+Акроним для \lstinline|element.queryAll By'cssSelector @cssSelector|;
 
 \subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
 
@@ -210,39 +210,39 @@
 
 \subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
 
-Акроним для \lstinline|element.queryAll _by'xPath @xpath|;
+Акроним для \lstinline|element.queryAll By'xPath @xpath|;
 
 \subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
 
-Акроним для \lstinline|element.query _by'xPath @xpath|;
+Акроним для \lstinline|element.query By'xPath @xpath|;
 
 \subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|element.query _by'linkText @name|;
-	\item \lstinline|element.query _by'partialLinkText @name|.
+	\item \lstinline|element.query By'linkText @name|;
+	\item \lstinline|element.query By'partialLinkText @name|.
 \end{icItems}
 
 \subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|element.queryAll _by'linkText @name|;
-	\item \lstinline|element.queryAll _by'partialLinkText @name|.
+	\item \lstinline|element.queryAll By'linkText @name|;
+	\item \lstinline|element.queryAll By'partialLinkText @name|.
 \end{icItems}
 
 \subsubsection{\lstinline|element.queryTag <string>name : element|}
 
-Акроним для \lstinline|element.query _by'tagName @name|;
+Акроним для \lstinline|element.query By'tagName @name|;
 
 \subsubsection{\lstinline|element.queryTags <string>name : element|}
 
-Акроним для \lstinline|element.queryAll _by'tagName @name|;
+Акроним для \lstinline|element.queryAll By'tagName @name|;
 
 \subsubsection{\lstinline|element.screenshot : string|}
 
-Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|_make.image <string>base64 <string>path : void|.
+Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|Make.image <string>base64 <string>path : void|.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
@@ -250,9 +250,9 @@
 
 Параметр \code{modifiers} получает один из следующих параметров (или сумма нескольких из них):
 \begin{icItems}
-	\item \lstinline|[r/o] _key'ctrl : 1| - Control;
-	\item \lstinline|[r/o] _key'shift : 2| - Shift;
-	\item \lstinline|[r/o] _key'alt : 3| - Alt;
+	\item \lstinline|[r/o] Key'ctrl : 1| - Control;
+	\item \lstinline|[r/o] Key'shift : 2| - Shift;
+	\item \lstinline|[r/o] Key'alt : 3| - Alt;
 \end{icItems}
 
 Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.

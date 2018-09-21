@@ -1,91 +1,91 @@
 \section{Базы данных}
 
-Модуль баз данных определяет следующее глобальные объекты: \lstinline|_dbManager| - менеджер баз данных, \lstinline|_db| - последняя открытая база данных, \lstinline|_query| - последний запрос.
+Модуль баз данных определяет следующее глобальные объекты: \lstinline|DBManager| - менеджер баз данных, \lstinline|DB| - последняя открытая база данных, \lstinline|Query| - последний запрос.
 
 Модуль баз данных обеспечивает следующий набор возможности:
 \begin{icItems}
-	\item \lstinline|_dbManager.openSQLite <string>path : _db|;
-	\item \lstinline|_db.query <_code>q : _query|;
-	\item \lstinline|_db.close : void|;
-	\item \lstinline|[w/o] _query'(<string>name) : any|;
-	\item \lstinline|_query.set <string>field <any>value : void|;
-	\item \lstinline|_query.exec : bool|;
+	\item \lstinline|DBManager.openSQLite <string>path : DB|;
+	\item \lstinline|DB.query <Code>q : Query|;
+	\item \lstinline|DB.close : void|;
+	\item \lstinline|[w/o] Query'(<string>name) : any|;
+	\item \lstinline|Query.set <string>field <any>value : void|;
+	\item \lstinline|Query.exec : bool|;
 	\item Доступны после выполнение:
 	\begin{icItems}
-		\item \lstinline|[r/o] _query'(<string>name) : any|;
-		\item \lstinline|_query.getRowsAffected : int|;
-		\item \lstinline|_query.getError : bool|;
-		\item \lstinline|_query.getLength : int|;
-		\item \lstinline|_query.get <string>field : any|;
-		\item \lstinline|_query.next : bool|;
-		\item \lstinline|_query.previous : bool|;
-		\item \lstinline|_query.first : bool|;
-		\item \lstinline|_query.last : bool|;
-		\item \lstinline|_query.seek <int>i <bool>relative = false : bool|;
+		\item \lstinline|[r/o] Query'(<string>name) : any|;
+		\item \lstinline|Query.getRowsAffected : int|;
+		\item \lstinline|Query.getError : bool|;
+		\item \lstinline|Query.getLength : int|;
+		\item \lstinline|Query.get <string>field : any|;
+		\item \lstinline|Query.next : bool|;
+		\item \lstinline|Query.previous : bool|;
+		\item \lstinline|Query.first : bool|;
+		\item \lstinline|Query.last : bool|;
+		\item \lstinline|Query.seek <int>i <bool>relative = false : bool|;
 	\end{icItems}
 \end{icItems}
 
-\subsubsection{\lstinline|_dbManager.openSQLite <string>path : _db|}
+\subsubsection{\lstinline|DBManager.openSQLite <string>path : DB|}
 
 Открывает новое подключение. \code{path} - путь к файлу базы данных.
 
-\subsubsection{\lstinline|_db.query <_code>q : _query|}
+\subsubsection{\lstinline|DB.query <Code>q : Query|}
 
 Создаёт запрос, на основе кода SQL, изолированный в фигурных скобках.
 
-\subsubsection{\lstinline|_db.close : void|}
+\subsubsection{\lstinline|DB.close : void|}
 
 Закрывает подключение к базу данных.
 
-\subsubsection{\lstinline|[w/o] _query'(<string>name) : any|}
+\subsubsection{\lstinline|[w/o] Query'(<string>name) : any|}
 
 Возвращает объект, позволяющий заменить заменитель на значение через присваивание. Заменители в коде имеют следующий синтаксис \lstinline|:name|.
 
-\subsubsection{\lstinline|_query.set <string>field <any>value : void|}
+\subsubsection{\lstinline|Query.set <string>field <any>value : void|}
 
 Установит значения заменителя с именем \code{field}.
 
-\subsubsection{\lstinline|_query.exec : bool|}
+\subsubsection{\lstinline|Query.exec : bool|}
 
 Возвращает \true, если выполнения запроса была успешной, иначе \false.
 
-\subsubsection{\lstinline|_query.getError : string|}
+\subsubsection{\lstinline|Query.getError : string|}
 
 Возвращает текст ошибки, если при выполнении кода произошла ошибка.
 
-\subsubsection{\lstinline|[r/o] _query'(<string>name) : any|}
+\subsubsection{\lstinline|[r/o] Query'(<string>name) : any|}
 
-После вызова функции \lstinline|_query.exec| свойства будут возвращать значения запрошенных полей. Если такое поле отсутствует, будет возвращать \void.
+После вызова функции \lstinline|Query.exec| свойства будут возвращать значения запрошенных полей. Если такое поле отсутствует, будет возвращать \void.
 
-\subsubsection{\lstinline|_query.getRowsAffected : int|}
+\subsubsection{\lstinline|Query.getRowsAffected : int|}
 
 Количество обновлённых/добавленных строк в базе данных.
 
-\subsubsection{\lstinline|_query.getLength : int|}
+\subsubsection{\lstinline|Query.getLength : int|}
 
 Количество результатов полученных при выполнении команды \code{SELECT}.
 
-\subsubsection{\lstinline|_query.get <string>field : any|}
+\subsubsection{\lstinline|Query.get <string>field : any|}
 
 Возвращает значение поле или \void{} если столбец \code{field} отсутствует.
 
-\subsubsection{\lstinline|_query.next : bool|}
+\subsubsection{\lstinline|Query.next : bool|}
 
 Возвращает \true, если получилось перейти на следующую запись, иначе \false.
 
-\subsubsection{\lstinline|_query.previous : bool|}
+\subsubsection{\lstinline|Query.previous : bool|}
 
 Возвращает \true, если получилось перейти на предыдущую запись, иначе \false.
 
-\subsubsection{\lstinline|_query.first : bool|}
+\subsubsection{\lstinline|Query.first : bool|}
 
 Возвращает \true, если получилось перейти на первую запись, иначе \false.
 
-\subsubsection{\lstinline|_query.last : bool|}
+\subsubsection{\lstinline|Query.last : bool|}
 
 Возвращает \true, если получилось перейти на последнюю запись, иначе \false.
 
-\subsubsection{\lstinline|_query.seek <int>i <bool>relative = false : bool|}
+\subsubsection{\lstinline|Query.seek <int>i <bool>relative = false : bool|}
 
 Возвращает \true, если получилось перейти на \code{i}-ю запись или сдвинуть курсор на \code{i}-e количество шагов (при условии \code{@relative == true}), иначе \false.
 
@@ -94,30 +94,30 @@
 Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \code{@:name}, а глобальные - \code{\#:name}.
 
 \begin{lstlisting}[caption=Пример кода использующий базу данных, label=dbexample]
-_dbManager.openSQLite "db.sqlite";
+DBManager.openSQLite "db.sqlite";
 
 `` simple query
-_db.query {
+DB.query {
 	SELECT country
 	FROM artists
 };
-_query.exec;
+Query.exec;
 
-while (_query.next) {
-	!doSomething _query'country;
+while (Query.next) {
+	!doSomething Query'country;
 };
 
 `` query with parameters
-_db.query {
+DB.query {
 	SELECT name
 	FROM programmers
 	WHERE country = :country
 	LIMIT 1
 };
-_query'country = "Moldova";
+Query'country = "Moldova";
 `` is equivalent to
 @md = "Moldova";
-_db.query {
+DB.query {
 	SELECT name
 	FROM programmers
 	WHERE country = @:md
@@ -125,14 +125,14 @@ _db.query {
 };
 
 `` insert query
-_db.query {
+DB.query {
 	INSERT INTO person (id, forname, name)
 	VALUE (:id, :forname, :name)
 };
-_query'id = 1001;
-_query'forname = "Bart";
-_query'name = "Simpson";
-_query.exec;
+Query'id = 1001;
+Query'forname = "Bart";
+Query'name = "Simpson";
+Query.exec;
 \end{lstlisting}
 
 %\newpage

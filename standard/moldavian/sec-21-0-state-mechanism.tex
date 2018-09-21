@@ -11,29 +11,29 @@ Starea reprezintă o listă dublă de containere, ele nu sunt legate de cod și 
 
 Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
 \begin{icItems}
-	\item \lstinline|[r/o] _stacks'(<int>i) : _stack|;
-	\item \lstinline|[r/o] _stacks'(<string>name) : _stack|;
-	\item \lstinline|_stacks.if <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.ifexists <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.loop <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.while <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.dowhile <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.for <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.forany <int>i = 0 : |;
-	\item \lstinline|_stacks.range <int>i = 0 : _stack|;
-	\item \lstinline|_stacks.filter <int>i = 0 : _stack|;
-	\item \lstinline|_stack.clear : void|;
-	\item \lstinline|_stack.continue : void|;
-	\item \lstinline|_stack.break : void|.
+	\item \lstinline|[r/o] Stacks'(<int>i) : Stack|;
+	\item \lstinline|[r/o] Stacks'(<string>name) : Stack|;
+	\item \lstinline|Stacks.if <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.ifexists <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.loop <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.while <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.dowhile <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.for <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.forany <int>i = 0 : |;
+	\item \lstinline|Stacks.range <int>i = 0 : Stack|;
+	\item \lstinline|Stacks.filter <int>i = 0 : Stack|;
+	\item \lstinline|Stack.clear : void|;
+	\item \lstinline|Stack.continue : void|;
+	\item \lstinline|Stack.break : void|.
 \end{icItems}
 
-\subsubsection{[r/o] \lstinline|_stacks'(<int>i) : _stack|}
+\subsubsection{[r/o] \lstinline|Stacks'(<int>i) : Stack|}
 
-Returnează al \code{i}-lea container. Containerele sunt repartizate pe principiul FILO, adică containerul cu numărul 0  (\lstinline|_stacks'0|) este containerul curent. El poate fi obținut printr-un mod mai simplu \lstinline|_stack|.
+Returnează al \code{i}-lea container. Containerele sunt repartizate pe principiul FILO, adică containerul cu numărul 0  (\lstinline|Stacks'0|) este containerul curent. El poate fi obținut printr-un mod mai simplu \lstinline|Stack|.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{[r/o] \lstinline|_stacks'(<string>name) : _stack|}
+\subsubsection{[r/o] \lstinline|Stacks'(<string>name) : Stack|}
 
 Returnează containerul cu numele \code{name}. A numi containerul se poate în felul următor -
 \begin{lstlisting}[numbers=none]
@@ -43,75 +43,75 @@ Returnează containerul cu numele \code{name}. A numi containerul se poate în f
 \end{lstlisting}
 Pot avea nume numai grupurile de comenzi (cod în acolade). Kodul în paranteze rotunde nu poate avea nume. Apelul funcții creează un container numele funcției.
 
-\subsubsection{\lstinline|_stacks.if <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.if <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{if}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.ifexists <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.ifexists <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{if exists}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.loop <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.loop <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{while}, \code{dowhile}, \code{for}, \code{range} sau \code{filter}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.while <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.while <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{while}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.dowhile <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.dowhile <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{do while}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.for <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.for <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{for}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.forany <int>i = 0 : |}
+\subsubsection{\lstinline|Stacks.forany <int>i = 0 : |}
 
 Returnează al \code{i}-lea container \code{for any}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.range <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.range <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{range}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stacks.filter <int>i = 0 : _stack|}
+\subsubsection{\lstinline|Stacks.filter <int>i = 0 : Stack|}
 
 Returnează al \code{i}-lea container \code{filter}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|_stack'(<string>name) : any|}
+\subsubsection{\lstinline|Stack'(<string>name) : any|}
 
-Returnează variabila, care se află anume în acest container. De exemplu: deja există o variabilă cu numele \code{i} în containerul ascendent, trebui de definit o variabilă cu același nume în containerul curent. Problema se rezolvă în felul următor: \lstinline|_stack'i = 0| în loc de \lstinline|@i = 0|.
+Returnează variabila, care se află anume în acest container. De exemplu: deja există o variabilă cu numele \code{i} în containerul ascendent, trebui de definit o variabilă cu același nume în containerul curent. Problema se rezolvă în felul următor: \lstinline|Stack'i = 0| în loc de \lstinline|@i = 0|.
 
-\subsubsection{\lstinline|_stack.clear : void|}
+\subsubsection{\lstinline|Stack.clear : void|}
 
 Șterge toate variabilele din container.
 
-\subsubsection{\lstinline|_stack.continue : void|}
+\subsubsection{\lstinline|Stack.continue : void|}
 
 Trece la următoarea iterație, disponibil doar pentru cicluri.
 
 Excepții posibile: \ferror{InvalidArgument}.
 
-\subsubsection{\lstinline|_stack.break : void|}
+\subsubsection{\lstinline|Stack.break : void|}
 
 Întrerupe imediat ciclul sau executarea funcției. Disponibil doar pentru cicluri și funcții.
 
@@ -121,51 +121,51 @@ Excepții posibile: \ferror{InvalidArgument}.
 
 Pentru a controla stările, se folosesc următoarele metode și proprietăți:
 \begin{icItems}
-	\item \lstinline|_states.new : void|;
-	\item \lstinline|_states.newAtEnd : void|;
-	\item \lstinline|_states.toNext : void|;
-	\item \lstinline|_states.toPrev : void|;
-	\item \lstinline|_states.clear : void|;
-	\item \lstinline|_states.delete : void|;
-	\item \lstinline|_states.toFirst : void|;
-	\item \lstinline|_states.toLast : void|.
+	\item \lstinline|States.new : void|;
+	\item \lstinline|States.newAtEnd : void|;
+	\item \lstinline|States.toNext : void|;
+	\item \lstinline|States.toPrev : void|;
+	\item \lstinline|States.clear : void|;
+	\item \lstinline|States.delete : void|;
+	\item \lstinline|States.toFirst : void|;
+	\item \lstinline|States.toLast : void|.
 \end{icItems}
 
-Obiectul \lstinline|_states| este o colecție, înseamnă că ea poate fi răsfoită prin \lstinline|for (_states) {}|. Suportul pentru alte cicluri lipsește.
+Obiectul \lstinline|States| este o colecție, înseamnă că ea poate fi răsfoită prin \lstinline|for (States) {}|. Suportul pentru alte cicluri lipsește.
 
-\subsubsection{\lstinline|_states.new <object>data = [<>] : void|}
+\subsubsection{\lstinline|States.new <object>data = [<>] : void|}
 
 Creează o nouă stare după starea curentă și schimbă focusul la ea. Toate datele obiectului \code{data} se adaugă în containerul nou.
 
-\subsubsection{\lstinline|_states.newAtEnd <object>data = [<>] : void|}
+\subsubsection{\lstinline|States.newAtEnd <object>data = [<>] : void|}
 
 Creează o nouă stare la sfîrșit, care nu va fi primi focus.  Toate datele obiectului \code{data} se adaugă în containerul nou.
 
-\subsubsection{\lstinline|_states.toNext : bool|}
+\subsubsection{\lstinline|States.toNext : bool|}
 
 Returnează \true, dacă există o stare următoare și focusul a fost schimbat la ea, în caz contrar \false.
 
-\subsubsection{\lstinline|_states.toPrev : bool|}
+\subsubsection{\lstinline|States.toPrev : bool|}
 
 Returnează \true, dacă există o stare precedentă și focusul a fost schimbat la ea, în caz contrar \false.
 
-\subsubsection{\lstinline|_states.clear : void|}
+\subsubsection{\lstinline|States.clear : void|}
 
 Șterge toate variabilele din stare.
 
-\subsubsection{\lstinline|_states.delete : void|}
+\subsubsection{\lstinline|States.delete : void|}
 
 Șterge starea, dacă există o stare următoare focusul trece la ea, în caz contrar dacă există o stare precedentă focusul trece la ea, iar dacă această este ultima, ea este doar curățită.
 
-\subsubsection{\lstinline|_states.toFirst : void|}
+\subsubsection{\lstinline|States.toFirst : void|}
 
 Schimbă focusul la prima stare.
 
-\subsubsection{\lstinline|_states.toLast : void|}
+\subsubsection{\lstinline|States.toLast : void|}
 
 Schimbă focusul la ultima stare.
 
-\subsubsection{\lstinline|for (_states) \{\}|}
+\subsubsection{\lstinline|for (States) \{\}|}
 
 Îndeplinește ciclul pentru fiecare stare în parte.
 

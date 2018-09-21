@@ -17,8 +17,8 @@
 Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \code{onclick} получает один параметр, но \code{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
 
 \begin{lstlisting}[caption=Пример вызова функций icL, label=crossfireexample]
-@el = _dom.query "button";
-!func = { _log.info "It's working!" };
+@el = DOM.query "button";
+!func = { Log.info "It's working!" };
 
 $run {
 	@{el}[0].onlick = function (ev) { !{func}() }

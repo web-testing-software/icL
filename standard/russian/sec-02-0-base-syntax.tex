@@ -3,7 +3,7 @@
 icL достаточно прост в освоении, вставите код с листинга \ref{first} в icL и выполняете его. Первую программу можно уже сохранить в файле с расширением icl.
 
 \begin{lstlisting}[caption=Первая программа, label=first]
-_log.info "Test!";
+Log.info "Test!";
 \end{lstlisting}
 
 В консоль можем увидеть следующий \textbf{вывод программы}:
@@ -18,24 +18,24 @@ Test!
 
 \begin{icItems}
 \item
-	\lstinline|_import.none "path/to/file.iclib"| - выполнить код, который содержатся в файле, ничего не импортировать.
+	\lstinline|Import.none "path/to/file.iclib"| - выполнить код, который содержатся в файле, ничего не импортировать.
 \item
-	\lstinline|_import.functions "path/to/file.iclib"| - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
+	\lstinline|Import.functions "path/to/file.iclib"| - выполнить код и импортировать функций; {\color{red}Важно:} импортированные функций не должны использовать глобальные переменные.
 \item
-	\lstinline|_import.all "path/to/file.iclib"| -  выполнить код, импортировать функций и глобальные переменные;
+	\lstinline|Import.all "path/to/file.iclib"| -  выполнить код, импортировать функций и глобальные переменные;
 \item
-	\lstinline|_import.run "path/to/file.iclib"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
+	\lstinline|Import.run "path/to/file.iclib"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
 \end{icItems}
 
 \subsection{Токены в icL}
 
-Программа на icL состоит из различных \textbf{токенов} (литералов, семантических конструкциях), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline`_log.info "Hello world!";`
+Программа на icL состоит из различных \textbf{токенов} (литералов, семантических конструкциях), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline`Log.info "Hello world!";`
 
 Отдельными токенами являются:
 
 \begin{icItems}
 \item
-	\lstinline`_log` - идентификатор объекта;
+	\lstinline`Log` - идентификатор объекта;
 \item
 	\lstinline`.info` - идентификатор метода;
 \item
@@ -77,7 +77,7 @@ No comment
 icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
 
 \begin{lstlisting}[numbers=none]
-#loop		_tab		.Append		'Length	_dom	@i	 	@VAR
+#loop		Tab		.Append		'Length	DOM	@i	 	@VAR
 @variable	!sumPoints	#global		.Merge	.Get	#01		!SIN
 \end{lstlisting}
 
@@ -90,30 +90,30 @@ icL - чувствительный к регистру язык. Таким об
 \textbf{Пробельный символ} (\textit{whitespace}) - этот термин используется в icL для описания пробелов, символов табуляции, символов новой строкой и комментариев. Пробельные символы не обязательные, они используются для улучшения читабельности кода. На листинге \ref{unreadable} показан пример кода без пробельных символов, а на листинге \ref{readable} с пробельными символами.
 
 \begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
-if(_tab.get"mai.ru"){(_dom.query"button").click;}else{_log.error"The site mai.ru is unaviable";};
+if(Tab.get"mai.ru"){(DOM.query"button").click;}else{Log.error"The site mai.ru is unaviable";};
 \end{lstlisting}
 
-В icL присутствует только один разделитель - \textbf{разделитель команд} \lstinline`;`. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline`_tab.get "URL"`, закрыть вкладку - \lstinline`_tab.close`.
+В icL присутствует только один разделитель - \textbf{разделитель команд} \lstinline`;`. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline`Tab.get "URL"`, закрыть вкладку - \lstinline`Tab.close`.
 
 При описании последовательности действий, их надо разделить, например последовательность вышеперечисленных команд описывается так:
 
 \begin{lstlisting}[numbers=none]
-_tab.get "URL"; _tab.close
+Tab.get "URL"; Tab.close
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
 `` the begin of program
 
 `` try to go to mai.ru
-if (_tab.get "mai.ru") {
+if (Tab.get "mai.ru") {
 	`` site loaded successfull
 	`` click the button
-	(_dom.query "button").click;
+	(DOM.query "button").click;
 }
 else {
 	`` try again later
 	`` now log the error
-	_log.error "The site mai.ru is unaviable";
+	Log.error "The site mai.ru is unaviable";
 };
 
 `` end of the program

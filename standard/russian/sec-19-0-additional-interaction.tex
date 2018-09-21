@@ -6,13 +6,13 @@
 
 Для ожиданий предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|_wait.title <object>data : bool|;
-	\item \lstinline|_wait.url <object>data : bool|;
-	\item \lstinline|_wait.for <element>el <object>data : bool|;
-	\item \lstinline|_wait.ajax <object>data : bool|.
+	\item \lstinline|Wait.title <object>data : bool|;
+	\item \lstinline|Wait.url <object>data : bool|;
+	\item \lstinline|Wait.for <element>el <object>data : bool|;
+	\item \lstinline|Wait.ajax <object>data : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.title <object>data : bool|}
+\subsubsection{\lstinline|Wait.title <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -21,7 +21,7 @@
 	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.url <object>data : bool|}
+\subsubsection{\lstinline|Wait.url <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -30,24 +30,24 @@
 	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.for <element>el <object>data : bool|}
+\subsubsection{\lstinline|Wait.for <element>el <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
 	\item \lstinline|[r/w] @data'count : int| - количество нужных элементов в коллекции. По умолчанию 1;
 	\item \lstinline|[r/w] @data'toBe : int| - нужное состояние для достижений. Предлагается одно из следующих значения:
 	\begin{icItems}
-		\item \lstinline|[r/o] _wait'present : 1|;
-		\item \lstinline|[r/o] _wait'visible : 2|;
-		\item \lstinline|[r/o] _wait'hidden : 3|;
-		\item \lstinline|[r/o] _wait'interactable : 4|;
-		\item \lstinline|[r/o] _wait'selected : 5|.
+		\item \lstinline|[r/o] Wait'present : 1|;
+		\item \lstinline|[r/o] Wait'visible : 2|;
+		\item \lstinline|[r/o] Wait'hidden : 3|;
+		\item \lstinline|[r/o] Wait'interactable : 4|;
+		\item \lstinline|[r/o] Wait'selected : 5|.
 	\end{icItems}
-	По умолчанию \lstinline|_wait'present|;
+	По умолчанию \lstinline|Wait'present|;
 	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.ajax <object>data : bool|}
+\subsubsection{\lstinline|Wait.ajax <object>data : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -103,11 +103,11 @@
 \begin{icItems}
 	\item \lstinline|[r/w] @data'button : int| - кнопка мышки, принимает одно из следующих значений:
 	\begin{icItems}
-		\item \lstinline|[r/o] _mouse'left : 1| - левая кнопка;
-		\item \lstinline|[r/o] _mouse'middle : 2| - средняя кнопка;
-		\item \lstinline|[r/o] _mouse'right : 3| - правая кнопка.
+		\item \lstinline|[r/o] Mouse'left : 1| - левая кнопка;
+		\item \lstinline|[r/o] Mouse'middle : 2| - средняя кнопка;
+		\item \lstinline|[r/o] Mouse'right : 3| - правая кнопка.
 	\end{icItems}
-	По умолчанию \lstinline|_mouse'left|;
+	По умолчанию \lstinline|Mouse'left|;
 	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;
 	\item \lstinline|[r/w] @data'ry : double| - \lstinline|ay = rx * height|;
 	\item \lstinline|[r/w] @data'ax : int| - относительная координата от левого края элемента;
@@ -137,13 +137,13 @@
 	\item \lstinline|[r/w] @data'time : int| - среднее время за которой курсор перемещается на 100 пикселей;
 	\item \lstinline|[r/w] @data'func : int| - функция описывающая движение курсора. Принимает одно из следующих значений:
 	\begin{icItems}
-		\item \lstinline|[r/o] _move'teleport : 1| - перемещает курсор немедленно;
-		\item \lstinline|[r/o] _move'linear : 2| - линейная интерполяция;
-		\item \lstinline|[r/o] _move'quadratic : 3| - квадратичная интерполяция;
-		\item \lstinline|[r/o] _move'cubic : 4| - кубическая интерполяция;
-		\item \lstinline|[r/o] _move'bezier : 5| - использовает кубическую кривую Безье. Использует дополнительные параметры \code{p1x}, \code{p1y}, \code{p2x} и \code{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
+		\item \lstinline|[r/o] Move'teleport : 1| - перемещает курсор немедленно;
+		\item \lstinline|[r/o] Move'linear : 2| - линейная интерполяция;
+		\item \lstinline|[r/o] Move'quadratic : 3| - квадратичная интерполяция;
+		\item \lstinline|[r/o] Move'cubic : 4| - кубическая интерполяция;
+		\item \lstinline|[r/o] Move'bezier : 5| - использовает кубическую кривую Безье. Использует дополнительные параметры \code{p1x}, \code{p1y}, \code{p2x} и \code{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
 	\end{icItems}
-	По умолчанию \lstinline|_move'teleport|.
+	По умолчанию \lstinline|Move'teleport|.
 	\item \lstinline|[r/w] @data'p1x : double| - Координата $x$ первой точке.
 	\item \lstinline|[r/w] @data'p1y : double| - Координата $y$ первой точке.
 	\item \lstinline|[r/w] @data'p2x : double| - Координата $x$ второй точке.
@@ -154,31 +154,31 @@
 
 Настроить можно следующее параметры:
 \begin{icItems}
-	\item \lstinline|[r/w] _icL'clickTime : int|;
-	\item \lstinline|[r/w] _icL'pressTime : int|;
-	\item \lstinline|[r/w] _icL'moveTime : int|;
-	\item \lstinline|[r/w] _icL'flashMode : bool|;
-	\item \lstinline|[r/w] _icL'humanMode : bool|.
+	\item \lstinline|[r/w] ICL'clickTime : int|;
+	\item \lstinline|[r/w] ICL'pressTime : int|;
+	\item \lstinline|[r/w] ICL'moveTime : int|;
+	\item \lstinline|[r/w] ICL'flashMode : bool|;
+	\item \lstinline|[r/w] ICL'humanMode : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|_icL'clickTime : int|}
+\subsubsection{\lstinline|ICL'clickTime : int|}
 
 Время задержки клика, по умолчанию 300.
 
-\subsubsection{\lstinline|_icL'pressTime : int|}
+\subsubsection{\lstinline|ICL'pressTime : int|}
 
 Время задержки нажатий кнопки, по умолчанию 60.
 
-\subsubsection{\lstinline|_icL'moveTime : int|}
+\subsubsection{\lstinline|ICL'moveTime : int|}
 
 Среднее время в миллисекундах за которой курсор перемещается на 100 пикселей, по умолчанию 32.
 
-\subsubsection{\lstinline|_icL'flashMode : bool|}
+\subsubsection{\lstinline|ICL'flashMode : bool|}
 
-Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \lstinline|_icL'humanMode|. По умолчанию выключен. \lstinline|element.sendKeys| и \lstinline|element.fastType| будут работать также быстро как и \lstinline|element.paste|, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
+Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \lstinline|ICL'humanMode|. По умолчанию выключен. \lstinline|element.sendKeys| и \lstinline|element.fastType| будут работать также быстро как и \lstinline|element.paste|, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
 
-\subsubsection{\lstinline|_icL'humanMode : bool|}
+\subsubsection{\lstinline|ICL'humanMode : bool|}
 
-Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \lstinline|_icL'flashMode|. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
+Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \lstinline|ICL'flashMode|. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
 
 %\newpage

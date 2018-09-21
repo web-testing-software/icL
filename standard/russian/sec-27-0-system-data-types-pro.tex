@@ -2,530 +2,530 @@
 
 В данном главе представлены типы данных, которых нельзя создавать с помощью литералов, не поддерживают преобразование, содержат только l-значений.
 
-\subsection{{\color{orange} \_alert}}
+\subsection{{\color{orange} Alert}}
 
-\noindent Описание класса \code{\_alert} -
+\noindent Описание класса \code{Alert} -
 \begin{lstlisting}[numbers=none]
-class _alert {
-	[r/o] _alert'text : string;
+class Alert {
+        [r/o] Alert'text : string;
 	
-	_alert.accept          : void;
-	_alert.dismiss         : void;
-	_alert.sendKeys string : void;
+        Alert.accept          : void;
+	Alert.dismiss         : void;
+	Alert.sendKeys string : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_by}}
+\subsection{{\color{orange} By}}
 
-\noindent Описание класса \code{\_by} -
+\noindent Описание класса \code{By} -
 \begin{lstlisting}[numbers=none]
-class _by {
-	[r/o] _by'cssSelector     : 1;
-	[r/o] _by'linkText        : 2;
-	[r/o] _by'partialLinkText : 3;
-	[r/o] _by'tagName         : 4;
-	[r/o] _by'xPath           : 5;
+class By {
+        [r/o] By'cssSelector     : 1;
+	[r/o] By'linkText        : 2;
+	[r/o] By'partialLinkText : 3;
+	[r/o] By'tagName         : 4;
+	[r/o] By'xPath           : 5;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_cookie}}
+\subsection{{\color{orange} Cookie}}
 
-\noindent Описание класса \code{\_cookie} -
+\noindent Описание класса \code{Cookie} -
 \begin{lstlisting}[numbers=none]
-class _cookie {
-	[r/w] _cookie'domain   : string;
-	[r/w] _cookie'expiry   : int;
-	[r/w] _cookie'httpOnly : bool;
-	[r/w] _cookie'name     : string;
-	[r/w] _cookie'path     : string;
-	[r/w] _cookie'secure   : bool;
-	[r/w] _cookie'value    : string;
+class Cookie {
+        [r/w] Cookie'domain   : string;
+	[r/w] Cookie'expiry   : int;
+	[r/w] Cookie'httpOnly : bool;
+	[r/w] Cookie'name     : string;
+	[r/w] Cookie'path     : string;
+	[r/w] Cookie'secure   : bool;
+	[r/w] Cookie'value    : string;
 	
-	_cookie.add int int int [int] [int] [int] : _cookie;
-	_cookie.load                              : _cookie;
-	_cookie.resetTime                         : _cookie;
-	_cookie.save                              : _cookie;
+        Cookie.add int int int [int] [int] [int] : Cookie;
+	Cookie.load                              : Cookie;
+	Cookie.resetTime                         : Cookie;
+	Cookie.save                              : Cookie;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_cookies}}
+\subsection{{\color{orange} Cookies}}
 
-\noindent Описание класса \code{\_cookies} -
+\noindent Описание класса \code{Cookies} -
 \begin{lstlisting}[numbers=none]
-class _cookies {
-	[r/o] _cookies'string : _cookie;
+class Cookies {
+        [r/o] Cookies'string : Cookie;
 
-	_cookies.deleteAll        : void;
-	_cookies.get       string : _cookie;
+        Cookies.deleteAll        : void;
+	Cookies.get       string : Cookie;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_db}}
+\subsection{{\color{orange} DB}}
 
-\noindent Описание класса \code{\_db} -
+\noindent Описание класса \code{DB} -
 \begin{lstlisting}[numbers=none]
-class _db {
-_db.query _code : _query;
-_db.close       : void;
+class DB {
+DB.query Code : Query;
+DB.close       : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_dbManager}}
+\subsection{{\color{orange} DBManager}}
 
-\noindent Описание класса \code{\_dbManager} -
+\noindent Описание класса \code{DBManager} -
 \begin{lstlisting}[numbers=none]
-class _dbManager {
-	_dbManager.openSQLite string : _db;
+class DBManager {
+        DBManager.openSQLite string : DB;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_dom}}
+\subsection{{\color{orange} DOM}}
 
-\noindent Описание класса \code{\_dom} -
+\noindent Описание класса \code{DOM} -
 \begin{lstlisting}[numbers=none]
-class _dom {
-	_dom.query           int    string : element;
-	_dom.query           string        : element;
-	_dom.queryAll        int    string : element;
-	_dom.queryAll        string        : element;
-	_dom.queryAllByXPath string        : element;
-	_dom.queryByXPath    string        : element;
-	_dom.queryLink       string        : element;
-	_dom.queryLinks      string        : element;
-	_dom.queryTag        string        : element;
-	_dom.queryTags       string        : element;
+class DOM {
+        DOM.query           int    string : element;
+	DOM.query           string        : element;
+	DOM.queryAll        int    string : element;
+	DOM.queryAll        string        : element;
+	DOM.queryAllByXPath string        : element;
+	DOM.queryByXPath    string        : element;
+	DOM.queryLink       string        : element;
+	DOM.queryLinks      string        : element;
+	DOM.queryTag        string        : element;
+	DOM.queryTags       string        : element;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_dsv}}
+\subsection{{\color{orange} DSV}}
 
-\noindent Описание класса \code{\_dsv} -
+\noindent Описание класса \code{DSV} -
 \begin{lstlisting}[numbers=none]
-class _dsv {
-	_dsv.load    string _file  : set;
-	_dsv.loadCSV string        : set;
-	_dsv.loadTSV string        : set;
-	_dsv.write   _file  set    : _file;
-	_dsv.append  _file  set    : _file;
-	_dsv.append  _file  object : _file;
-	_dsv.sync    _file  set    : set;
+class DSV {
+        DSV.load    string File  : set;
+	DSV.loadCSV string        : set;
+	DSV.loadTSV string        : set;
+	DSV.write   File  set    : File;
+	DSV.append  File  set    : File;
+	DSV.append  File  object : File;
+	DSV.sync    File  set    : set;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_file}}
+\subsection{{\color{orange} File}}
 
-\noindent Описание класса \code{\_file} -
+\noindent Описание класса \code{File} -
 \begin{lstlisting}[numbers=none]
-class _file {
-	[r/o] _file'csv    : 1;
-	[r/o] _file'format : int;
-	[r/o] _file'none   : 0;
-	[r/o] _file'tsv    : 2;
-	[r/o] _file'valid  : bool;
+class File {
+        [r/o] File'CSV    : 1;
+	[r/o] File'format : int;
+	[r/o] File'none   : 0;
+	[r/o] File'TSV    : 2;
+	[r/o] File'valid  : bool;
 	
-	_file.close  : void;
-	_file.delete : void;
+        File.close  : void;
+	File.delete : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_files}}
+\subsection{{\color{orange} Files}}
 
-\noindent Описание класса \code{\_files} -
+\noindent Описание класса \code{Files} -
 \begin{lstlisting}[numbers=none]
-class _files {
-	_file.open       string : _file;
-	_file.create     string : _file;
-	_file.createDir  string : void;
-	_file.createPath string : void;
+class Files {
+        File.open       string : File;
+	File.create     string : File;
+	File.createDir  string : void;
+	File.createPath string : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_icL}}
+\subsection{{\color{orange} ICL}}
 
-\noindent Описание класса \code{\_icL} -
+\noindent Описание класса \code{ICL} -
 \begin{lstlisting}[numbers=none]
-class _icL {
-	[r/w] _icL'clickTime : int;
-	[r/w] _icL'pressTime : int;
-	[r/w] _icL'moveTime  : int;
-	[r/w] _icL'flashMode : int;
-	[r/w] _icL'humanMode : int;
+class ICL {
+        [r/w] ICL'clickTime : int;
+	[r/w] ICL'pressTime : int;
+	[r/w] ICL'moveTime  : int;
+	[r/w] ICL'flashMode : int;
+	[r/w] ICL'humanMode : int;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_import}}
+\subsection{{\color{orange} Import}}
 
-\noindent Описание класса \code{\_import} -
+\noindent Описание класса \code{Import} -
 \begin{lstlisting}[numbers=none]
-class _import {
-	_import.none      [object] string : void;
-	_import.functions [object] string : void;
-	_import.all       [object] string : void;
-	_import.run       string          : void;
+class Import {
+        Import.none      [object] string : void;
+	Import.functions [object] string : void;
+	Import.all       [object] string : void;
+	Import.run       string          : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_key}}
+\subsection{{\color{orange} Key}}
 
-\noindent Описание класса \code{\_key} -
+\noindent Описание класса \code{Key} -
 \begin{lstlisting}[numbers=none]
-class _key {
-	_key'alt   : 3;
-	_key'ctrl  : 1;
-	_key'shift : 2;
+class Key {
+        Key'alt   : 3;
+	Key'ctrl  : 1;
+	Key'shift : 2;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_log}}
+\subsection{{\color{orange} Log}}
 
-\noindent Описание класса \code{\_log} -
+\noindent Описание класса \code{Log} -
 \begin{lstlisting}[numbers=none]
-class _log {
-	_log.error string   : void;
-	_log.info  string   : void;
-	_log.out   value... : void;
-	_log.stack value    : void;
-	_log.state value    : void;
+class Log {
+        Log.error string   : void;
+	Log.info  string   : void;
+	Log.out   value... : void;
+	Log.stack value    : void;
+	Log.state value    : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_make}}
+\subsection{{\color{orange} Make}}
 
-\noindent Описание класса \code{\_make} -
+\noindent Описание класса \code{Make} -
 \begin{lstlisting}[numbers=none]
-class _make {
-	_make.image  string string : void;
-	_make.int    string int    : int;
-	_make.list   set           : list;
-	_make.object string        : object;
-	_make.regex  string        : regex;
-	_make.string bool          : string;
-	_make.string double        : string;
-	_make.string int    int    : string;
-	_make.string object        : string;
-	_make.string set           : string;
+class Make {
+        Make.image  string string : void;
+	Make.int    string int    : int;
+	Make.list   set           : list;
+	Make.object string        : object;
+	Make.regex  string        : regex;
+	Make.string bool          : string;
+	Make.string double        : string;
+	Make.string int    int    : string;
+	Make.string object        : string;
+	Make.string set           : string;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_math}}
+\subsection{{\color{orange} Math}}
 
-\noindent Описание класса \code{\_math} -
+\noindent Описание класса \code{Math} -
 \begin{lstlisting}[numbers=none]
-class _math {
-	[r/o] _math'1divPi     : double;
-	[r/o] _math'1divSqrt2  : double;
-	[r/o] _math'2divPi     : double;
-	[r/o] _math'2divSqrtPi : double;
-	[r/o] _math'e          : double;
-	[r/o] _math'ln2        : double;
-	[r/o] _math'ln10       : double;
-	[r/o] _math'log2e      : double;
-	[r/o] _math'log10e     : double;
-	[r/o] _math'pi         : double;
-	[r/o] _math'piDiv2     : double;
-	[r/o] _math'piDiv4     : double;
-	[r/o] _math'sqrt2      : double;
+class Math {
+        [r/o] Math'1divPi     : double;
+	[r/o] Math'1divSqrt2  : double;
+	[r/o] Math'2divPi     : double;
+	[r/o] Math'2divSqrtPi : double;
+	[r/o] Math'e          : double;
+	[r/o] Math'ln2        : double;
+	[r/o] Math'ln10       : double;
+	[r/o] Math'log2e      : double;
+	[r/o] Math'log10e     : double;
+	[r/o] Math'pi         : double;
+	[r/o] Math'piDiv2     : double;
+	[r/o] Math'piDiv4     : double;
+	[r/o] Math'sqrt2      : double;
 	
-	_math.acos             double    : double;
-	_math.asin             double    : double;
-	_math.atan             double    : double;
-	_math.ceil             double    : double;
-	_math.degreesToRadians double    : double;
-	_math.exp              double    : double;
-	_math.floor            double    : int;
-	_math.ln               double    : double;
-	_math.min              int...    : double;
-	_math.min              double... : double;
-	_math.max              int...    : double;
-	_math.max              double... : double;
-	_math.radiansToDegrees double    : double;
-	_math.round            double    : double;
-	_math.sin              double    : double;
-	_math.tan              double    : double;
+        Math.acos             double    : double;
+	Math.asin             double    : double;
+	Math.atan             double    : double;
+	Math.ceil             double    : double;
+	Math.degreesToRadians double    : double;
+	Math.exp              double    : double;
+	Math.floor            double    : int;
+	Math.ln               double    : double;
+	Math.min              int...    : double;
+	Math.min              double... : double;
+	Math.max              int...    : double;
+	Math.max              double... : double;
+	Math.radiansToDegrees double    : double;
+	Math.round            double    : double;
+	Math.sin              double    : double;
+	Math.tan              double    : double;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_mouse}}
+\subsection{{\color{orange} Mouse}}
 
-\noindent Описание класса \code{\_mouse} -
+\noindent Описание класса \code{Mouse} -
 \begin{lstlisting}[numbers=none]
-class _mouse {
-	[r/o] _mouse'left   : 1;
-	[r/o] _mouse'middle : 2;
-	[r/o] _mouse'right  : 3;
+class Mouse {
+        [r/o] Mouse'left   : 1;
+	[r/o] Mouse'middle : 2;
+	[r/o] Mouse'right  : 3;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_move}}
+\subsection{{\color{orange} Move}}
 
-\noindent Описание класса \code{\_move} -
+\noindent Описание класса \code{Move} -
 \begin{lstlisting}[numbers=none]
-class _move {
-	[r/o] _move'bezier    : 5;
-	[r/o] _move'cubic     : 4;
-	[r/o] _move'linear    : 2;
-	[r/o] _move'quadratic : 3;
-	[r/o] _move'teleport  : 1;
+class Move {
+        [r/o] Move'bezier    : 5;
+	[r/o] Move'cubic     : 4;
+	[r/o] Move'linear    : 2;
+	[r/o] Move'quadratic : 3;
+	[r/o] Move'teleport  : 1;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_numbers}}
+\subsection{{\color{orange} Numbers}}
 
-\noindent Описание класса \code{\_numbers} -
+\noindent Описание класса \code{Numbers} -
 \begin{lstlisting}[numbers=none]
-	[r/o] _numbers'max     : 4;
-	[r/o] _numbers'min     : 3;
-	[r/o] _numbers'product : 2;
-	[r/o] _numbers'process : int;
-	[r/o] _numbers'sum     : 1;
+        [r/o] Numbers'max     : 4;
+	[r/o] Numbers'min     : 3;
+	[r/o] Numbers'product : 2;
+	[r/o] Numbers'process : int;
+	[r/o] Numbers'sum     : 1;
 \end{lstlisting}
 
-\subsection{{\color{orange} \_query}}
+\subsection{{\color{orange} Query}}
 
-\noindent Описание класса \code{\_query} -
+\noindent Описание класса \code{Query} -
 \begin{lstlisting}[numbers=none]
-class _query {
-	[w/o] _query'string : value;
-	[r/o] _query'string : value;
+class Query {
+        [w/o] Query'string : value;
+	[r/o] Query'string : value;
 	
-	_query.exec                          : bool;
-	_query.first                         : bool;
-	_query.getRowsAffected               : int;
-	_query.getError                      : bool;
-	_query.getLength                     : int;
-	_query.get string                    : value;
-	_query.last                          : bool;
-	_query.next                          : bool;
-	_query.previous                      : bool;
-	_query.seek            int    [bool] : bool;
-	_query.set             string value  : void;
+        Query.exec                          : bool;
+	Query.first                         : bool;
+	Query.getRowsAffected               : int;
+	Query.getError                      : bool;
+	Query.getLength                     : int;
+	Query.get string                    : value;
+	Query.last                          : bool;
+	Query.next                          : bool;
+	Query.previous                      : bool;
+	Query.seek            int    [bool] : bool;
+	Query.set             string value  : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_session}}
+\subsection{{\color{orange} Session}}
 
-\noindent Описание класса \code{\_session} -
+\noindent Описание класса \code{Session} -
 \begin{lstlisting}[numbers=none]
-class _session {
-	[r/w] _session'implicitTimeout : int;
-	[r/w] _session'pageLoadTimeout : int;
-	[r/w] _session'scriptTimeout   : int;
-	[r/w] _session'source          : string;
-	[r/w] _session'title           : string;
-	[r/w] _session'url             : string;
+class Session {
+        [r/w] Session'implicitTimeout : int;
+	[r/w] Session'pageLoadTimeout : int;
+	[r/w] Session'scriptTimeout   : int;
+	[r/w] Session'source          : string;
+	[r/w] Session'title           : string;
+	[r/w] Session'url             : string;
 	
-	_session.back       : _session;
-	_session.close      : void;
-	_session.forward    : _session;
-	_session.refresh    : _session;
-	_session.screenshot : string;
-	_session.switchTo   : _session;
+        Session.back       : Session;
+	Session.close      : void;
+	Session.forward    : Session;
+	Session.refresh    : Session;
+	Session.screenshot : string;
+	Session.switchTo   : Session;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_sessions}}
+\subsection{{\color{orange} Sessions}}
 
-\noindent Описание класса \code{\_sessions} -
+\noindent Описание класса \code{Sessions} -
 \begin{lstlisting}[numbers=none]
-class _sessions {
-	[r/o] _sessions'length : int;
-	[r/o] _sessions'int    : _session;
+class Sessions {
+        [r/o] Sessions'length : int;
+	[r/o] Sessions'int    : Session;
 	
-	_sessions.closeAll     : void;
-	_sessions.get      int : _session;
-	_sessions.new          : _session;
+        Sessions.closeAll     : void;
+	Sessions.get      int : Session;
+	Sessions.new          : Session;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_signal}}
+\subsection{{\color{orange} Signal}}
 
-\noindent Описание класса \code{\_signal} -
+\noindent Описание класса \code{Signal} -
 \begin{lstlisting}[numbers=none]
-class _signal {
-	_signal.add string : void;
+class Signal {
+        Signal.add string : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_stack}}
+\subsection{{\color{orange} Stack}}
 
-\noindent Описание класса \code{\_stack} -
+\noindent Описание класса \code{Stack} -
 \begin{lstlisting}[numbers=none]
-class _stack {
-	[r/w] _stack : value;
+class Stack {
+        [r/w] Stack : value;
 	
-	_stack.clear             : void;
-	_stack.continue          : void;
-	_stack.break             : void;
-	_stack.return <any>value : void;
+        Stack.clear             : void;
+	Stack.continue          : void;
+	Stack.break             : void;
+	Stack.return <any>value : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_stacks}}
+\subsection{{\color{orange} Stacks}}
 
-\noindent Описание класса \code{\_stacks} -
+\noindent Описание класса \code{Stacks} -
 \begin{lstlisting}[numbers=none]
-class _stacks {
-	[r/w] _stacks'string : _stack;
+class Stacks {
+        [r/w] Stacks'string : Stack;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_states}}
+\subsection{{\color{orange} States}}
 
-\noindent Описание класса \code{\_states} -
+\noindent Описание класса \code{States} -
 \begin{lstlisting}[numbers=none]
-class _states {
-	_states.clear    : void;
-	_states.delete   : void;
-	_states.new      : void;
-	_states.newAtEnd : void;
-	_states.toFirst  : void;
-	_states.toLast   : void;
-	_states.toNext   : void;
-	_states.toPrev   : void;
+class States {
+        States.clear    : void;
+	States.delete   : void;
+	States.new      : void;
+	States.newAtEnd : void;
+	States.toFirst  : void;
+	States.toLast   : void;
+	States.toNext   : void;
+	States.toPrev   : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_tab}}
+\subsection{{\color{orange} Tab}}
 
-\noindent Описание класса \code{\_tab} -
+\noindent Описание класса \code{Tab} -
 \begin{lstlisting}[numbers=none]
-class _tab {
-	[icL] [r/o] _tab'canGoBack    : bool;
-	[icL] [r/o] _tab'canGoForward : bool;
-	      [r/o] _tab'screenshot   : string;
-	      [r/o] _tab'source       : string;
-	      [r/*] _tab'title        : string;
-	      [r/w] _tab'url          : string;
+class Tab {
+        [icL] [r/o] Tab'canGoBack    : bool;
+	[icL] [r/o] Tab'canGoForward : bool;
+	      [r/o] Tab'screenshot   : string;
+	      [r/o] Tab'source       : string;
+	      [r/*] Tab'title        : string;
+	      [r/w] Tab'url          : string;
 
-	_tab.back           : void;
-	_tab.close          : void;
-	_tab.focus          : void;
-	_tab.forward        : void;
-	_tab.get     string : bool;
-	_tab.load    string : void;
+        Tab.back           : void;
+	Tab.close          : void;
+	Tab.focus          : void;
+	Tab.forward        : void;
+	Tab.get     string : bool;
+	Tab.load    string : void;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_tabs}}
+\subsection{{\color{orange} Tabs}}
 
-\noindent Описание класса \code{\_tabs} -
+\noindent Описание класса \code{Tabs} -
 \begin{lstlisting}[numbers=none]
-class _tabs {
-	[r/o] _tabs'current  : _tab;
-	[r/o] _tabs'first    : _tab;
-	[r/o] _tabs'last     : _tab;
-	[r/o] _tabs'length   : _tab;
-	[r/o] _tabs'next     : _tab;
-	[r/o] _tabs'previous : _tab;
-	[r/o] _tabs'int      : _tab;
+class Tabs {
+        [r/o] Tabs'current  : Tab;
+	[r/o] Tabs'first    : Tab;
+	[r/o] Tabs'last     : Tab;
+	[r/o] Tabs'length   : Tab;
+	[r/o] Tabs'next     : Tab;
+	[r/o] Tabs'previous : Tab;
+	[r/o] Tabs'int      : Tab;
 	
-	_tabs.close        regex  : int;
-	_tabs.close        string : int;
-	_tabs.closeByTitle regex  : int;
-	_tabs.closeByTitle string : int;
-	_tabs.closeOthers         : int;
-	_tabs.closeToLeft         : int;
-	_tabs.closeToRight        : int;
-	_tabs.find regex          : _tab;
-	_tabs.find string         : _tab;
-	_tabs.findByTitle  regex  : _tab;
-	_tabs.findByTitle  string : _tab;
+        Tabs.close        regex  : int;
+	Tabs.close        string : int;
+	Tabs.closeByTitle regex  : int;
+	Tabs.closeByTitle string : int;
+	Tabs.closeOthers         : int;
+	Tabs.closeToLeft         : int;
+	Tabs.closeToRight        : int;
+	Tabs.find regex          : Tab;
+	Tabs.find string         : Tab;
+	Tabs.findByTitle  regex  : Tab;
+	Tabs.findByTitle  string : Tab;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_types}}
+\subsection{{\color{orange} Types}}
 
-\noindent Описание класса \code{\_types} -
+\noindent Описание класса \code{Types} -
 \begin{lstlisting}[numbers=none]
-class _types {
-	[r/o] _types'alert     : 10;
-	[r/o] _types'bool      : 1;
-	[r/o] _types'by        : 11;
-	[r/o] _types'cookie    : 12;
-	[r/o] _types'cookies   : 13;
-	[r/o] _types'db        : 14;
-	[r/o] _types'dbManager : 15;
-	[r/o] _types'dom       : 16;
-	[r/o] _types'double    : 2;
-	[r/o] _types'dsv       : 17;
-	[r/o] _types'element   : 3;
-	[r/o] _types'file      : 18;
-	[r/o] _types'files     : 19;
-	[r/o] _types'icL       : 20;
-	[r/o] _types'import    : 21;
-	[r/o] _types'int       : 4;
-	[r/o] _types'key       : 22;
-	[r/o] _types'list      : 5;
-	[r/o] _types'log       : 23;
-	[r/o] _types'make      : 24;
-	[r/o] _types'math      : 25;
-	[r/o] _types'mouse     : 26;
-	[r/o] _types'move      : 27;
-	[r/o] _types'numbers   : 28;
-	[r/o] _types'object    : 6;
-	[r/o] _types'query     : 29;
-	[r/o] _types'regex     : 7;
-	[r/o] _types'session   : 30;
-	[r/o] _types'sessions  : 31;
-	[r/o] _types'set       : 8;
-	[r/o] _types'signal    : 32;
-	[r/o] _types'stack     : 33;
-	[r/o] _types'stacks    : 34;
-	[r/o] _types'states    : 35;
-	[r/o] _types'string    : 9;
-	[r/o] _types'tab       : 36;
-	[r/o] _types'tabs      : 37;
-	[r/o] _types'types     : 38;
-	[r/o] _types'value     : 0;
-	[r/o] _types'wait      : 39;
-	[r/o] _types'window    : 40;
-	[r/o] _types'windows   : 41;
+class Types {
+        [r/o] Types'alert     : 10;
+	[r/o] Types'bool      : 1;
+	[r/o] Types'by        : 11;
+	[r/o] Types'cookie    : 12;
+	[r/o] Types'cookies   : 13;
+	[r/o] Types'db        : 14;
+	[r/o] Types'dbManager : 15;
+	[r/o] Types'dom       : 16;
+	[r/o] Types'double    : 2;
+	[r/o] Types'dsv       : 17;
+	[r/o] Types'element   : 3;
+	[r/o] Types'file      : 18;
+	[r/o] Types'files     : 19;
+	[r/o] Types'icL       : 20;
+	[r/o] Types'import    : 21;
+	[r/o] Types'int       : 4;
+	[r/o] Types'key       : 22;
+	[r/o] Types'list      : 5;
+	[r/o] Types'log       : 23;
+	[r/o] Types'make      : 24;
+	[r/o] Types'math      : 25;
+	[r/o] Types'mouse     : 26;
+	[r/o] Types'move      : 27;
+	[r/o] Types'numbers   : 28;
+	[r/o] Types'object    : 6;
+	[r/o] Types'query     : 29;
+	[r/o] Types'regex     : 7;
+	[r/o] Types'session   : 30;
+	[r/o] Types'sessions  : 31;
+	[r/o] Types'set       : 8;
+	[r/o] Types'signal    : 32;
+	[r/o] Types'stack     : 33;
+	[r/o] Types'stacks    : 34;
+	[r/o] Types'states    : 35;
+	[r/o] Types'string    : 9;
+	[r/o] Types'tab       : 36;
+	[r/o] Types'tabs      : 37;
+	[r/o] Types'types     : 38;
+	[r/o] Types'value     : 0;
+	[r/o] Types'wait      : 39;
+	[r/o] Types'window    : 40;
+	[r/o] Types'windows   : 41;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_wait}}
+\subsection{{\color{orange} Wait}}
 
-\noindent Описание класса \code{\_wait} -
+\noindent Описание класса \code{Wait} -
 \begin{lstlisting}[numbers=none]
-class _wait {
-	_wait.ajax  object         : bool;
-	_wait.for   element object : bool;
-	_wait.title object         : bool;
-	_wait.url   object         : bool;
+class Wait {
+        Wait.ajax  object         : bool;
+	Wait.for   element object : bool;
+	Wait.title object         : bool;
+	Wait.url   object         : bool;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_window}}
+\subsection{{\color{orange} Window}}
 
-\noindent Описание класса \code{\_window} -
+\noindent Описание класса \code{Window} -
 \begin{lstlisting}[numbers=none]
-class _window {
-	[r/w] _window'height : int;
-	[r/w] _window'width  : int;
-	[r/w] _window'x      : int;
-	[r/w] _window'y      : int;
+class Window {
+        [r/w] Window'height : int;
+	[r/w] Window'width  : int;
+	[r/w] Window'x      : int;
+	[r/w] Window'y      : int;
 	
-	_window.close                   : void;
-	_window.focus                   : _window;
-	_window.fullscreen              : _window;
-	_window.maximize                : _window;
-	_window.restore                 : _window;
-	_window.switchToDefault         : _window;
-	_window.switchToFrame   element : _window;
-	_window.switchToFrame   int     : _window;
-	_window.switchToParent          : _window;
+        Window.close                   : void;
+	Window.focus                   : Window;
+	Window.fullscreen              : Window;
+	Window.maximize                : Window;
+	Window.restore                 : Window;
+	Window.switchToDefault         : Window;
+	Window.switchToFrame   element : Window;
+	Window.switchToFrame   int     : Window;
+	Window.switchToParent          : Window;
 }
 \end{lstlisting}
 
-\subsection{{\color{orange} \_windows}}
+\subsection{{\color{orange} Windows}}
 
-\noindent Описание класса \code{\_windows} -
+\noindent Описание класса \code{Windows} -
 \begin{lstlisting}[numbers=none]
-class _windows {
-	[r/o] _window'length : int;
-	[r/o] _window'int    : _window;
+class Windows {
+        [r/o] Window'length : int;
+	[r/o] Window'int    : Window;
 	
-	_windows.get int : _window;
+        Windows.get int : Window;
 }
 \end{lstlisting}
 

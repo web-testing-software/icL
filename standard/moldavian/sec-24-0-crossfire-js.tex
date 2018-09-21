@@ -18,8 +18,8 @@ A insera funcții icL în JavaScript se poate cu următorul înlocuitor \lstinli
 Exemplu elementar de apelare corectă a funcției icL este prezentat pe foaia \ref{crossfireexample}. Funcția \code{onclick} primește un parametru, dar \code{func} - nu. În cauză trebuie interface, cel mai simplu mod este de a defini o funcție anonimă.
 
 \begin{lstlisting}[caption=Exemplu de apelare a funcției icL, label=crossfireexample]
-@el = _dom.query "button";
-!func = { _log.info "It's working!" };
+@el = DOM.query "button";
+!func = { Log.info "It's working!" };
 
 $run {
 	@{el}[0].onlick = function (ev) { !{func}() }

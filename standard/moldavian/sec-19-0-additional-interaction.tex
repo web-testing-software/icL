@@ -7,13 +7,13 @@ Aceste posibilități sunt disponibile numai în regim de automatizare.
 
 Pentru așteptare se propun următoarele funcții:
 \begin{icItems}
-	\item \lstinline|_wait.title <object>data : bool|;
-	\item \lstinline|_wait.url <object>data : bool|;
-	\item \lstinline|_wait.for <element>el <object>data : bool|;
-	\item \lstinline|_wait.ajax <object>data : bool|.
+	\item \lstinline|Wait.title <object>data : bool|;
+	\item \lstinline|Wait.url <object>data : bool|;
+	\item \lstinline|Wait.for <element>el <object>data : bool|;
+	\item \lstinline|Wait.ajax <object>data : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.title <object>data : bool|}
+\subsubsection{\lstinline|Wait.title <object>data : bool|}
 
 Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
@@ -22,7 +22,7 @@ Obiectul \code{data} poate avea următoarele cîmpuri:
 	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.url <object>data : bool|}
+\subsubsection{\lstinline|Wait.url <object>data : bool|}
 
 Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
@@ -31,24 +31,24 @@ Obiectul \code{data} poate avea următoarele cîmpuri:
 	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.for <element>el <object>data : bool|}
+\subsubsection{\lstinline|Wait.for <element>el <object>data : bool|}
 
 Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
 	\item \lstinline|[r/w] @data'count : int| e numărul de elemente așteptat. Implicit 1;
 	\item \lstinline|[r/w] @data'toBe : int| e starea dorită, în care trebuie să treacă elementele. ?Una din următoarele valori:
 	\begin{icItems}
-		\item \lstinline|[r/o] _wait'present : 1|;
-		\item \lstinline|[r/o] _wait'visible : 2|;
-		\item \lstinline|[r/o] _wait'hidden : 3|;
-		\item \lstinline|[r/o] _wait'interactable : 4|;
-		\item \lstinline|[r/o] _wait'selected : 5|.
+		\item \lstinline|[r/o] Wait'present : 1|;
+		\item \lstinline|[r/o] Wait'visible : 2|;
+		\item \lstinline|[r/o] Wait'hidden : 3|;
+		\item \lstinline|[r/o] Wait'interactable : 4|;
+		\item \lstinline|[r/o] Wait'selected : 5|.
 	\end{icItems}
-	Implicit \lstinline|_wait'present|;
+	Implicit \lstinline|Wait'present|;
 	\item \lstinline|[r/w] @data'timeout : int| e timpul de așteptare în milisecunde, implicit 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|_wait.ajax <object>data : bool|}
+\subsubsection{\lstinline|Wait.ajax <object>data : bool|}
 
 Obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
@@ -104,11 +104,11 @@ Pentru a lucra cu mouse-ul se propun următoarele funcții:
 \begin{icItems}
 	\item \lstinline|[r/w] @data'button : int| e butonul mouse-lui (una din următoarele valori):
 	\begin{icItems}
-		\item \lstinline|[r/o] _mouse'left : 1| e butonul sțing;
-		\item \lstinline|[r/o] _mouse'middle : 2| e butonul mijlociu;
-		\item \lstinline|[r/o] _mouse'right : 3| e butonul drept.
+		\item \lstinline|[r/o] Mouse'left : 1| e butonul sțing;
+		\item \lstinline|[r/o] Mouse'middle : 2| e butonul mijlociu;
+		\item \lstinline|[r/o] Mouse'right : 3| e butonul drept.
 	\end{icItems}
-	Implicit \lstinline|_mouse'left|;
+	Implicit \lstinline|Mouse'left|;
 	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;
 	\item \lstinline|[r/w] @data'ry : double| - \lstinline|ay = rx * height|;
 	\item \lstinline|[r/w] @data'ax : int| - coordonata x relativă la marginea stîngă a elementului;
@@ -138,13 +138,13 @@ Mută mouse-ul deasupra elementului. \code{data} are următoarele proprietăți 
 	\item \lstinline|[r/w] @data'time : int| e timpul mediu în care cursorul se mută la distanța de 100 de pixeli;
 	\item \lstinline|[r/w] @data'func : int| e funcția care descrie mișcarea cursorului. Primește una din următoarele valori:
 	\begin{icItems}
-		\item \lstinline|[r/o] _move'teleport : 1| e mișcare simultană;
-		\item \lstinline|[r/o] _move'linear : 2| e mișcare pe linie dreaptă;
-		\item \lstinline|[r/o] _move'quadratic : 3| e mișcare pe curbă de ordinul 2;
-		\item \lstinline|[r/o] _move'cubic : 4| e mișcare pe curbă de ordinul 3;
-		\item \lstinline|[r/o] _move'bezier : 5| e mișcare pe curba Bezie de ordinul 3. Folosește următoarele proprietăți adiționale \code{p1x}, \code{p1y}, \code{p2x} și \code{p2y}. Dacă ele nu sunt indicate vor primi valori aleatorii din intervalul [0,0; 1,0].
+		\item \lstinline|[r/o] Move'teleport : 1| e mișcare simultană;
+		\item \lstinline|[r/o] Move'linear : 2| e mișcare pe linie dreaptă;
+		\item \lstinline|[r/o] Move'quadratic : 3| e mișcare pe curbă de ordinul 2;
+		\item \lstinline|[r/o] Move'cubic : 4| e mișcare pe curbă de ordinul 3;
+		\item \lstinline|[r/o] Move'bezier : 5| e mișcare pe curba Bezie de ordinul 3. Folosește următoarele proprietăți adiționale \code{p1x}, \code{p1y}, \code{p2x} și \code{p2y}. Dacă ele nu sunt indicate vor primi valori aleatorii din intervalul [0,0; 1,0].
 	\end{icItems}
-	Implicit \lstinline|_move'teleport|.
+	Implicit \lstinline|Move'teleport|.
 	\item \lstinline|[r/w] @data'p1x : double| - Coordinata $x$ primului punct.
 	\item \lstinline|[r/w] @data'p1y : double| - Coordinata $y$ primului punct.
 	\item \lstinline|[r/w] @data'p2x : double| - Coordinata $x$ punctului secundar.
@@ -155,31 +155,31 @@ Mută mouse-ul deasupra elementului. \code{data} are următoarele proprietăți 
 
 Pot fi setați următorii parametri:
 \begin{icItems}
-	\item \lstinline|[r/w] _icL'clickTime : int|;
-	\item \lstinline|[r/w] _icL'pressTime : int|;
-	\item \lstinline|[r/w] _icL'moveTime : int|;
-	\item \lstinline|[r/w] _icL'flashMode : bool|;
-	\item \lstinline|[r/w] _icL'humanMode : bool|.
+	\item \lstinline|[r/w] ICL'clickTime : int|;
+	\item \lstinline|[r/w] ICL'pressTime : int|;
+	\item \lstinline|[r/w] ICL'moveTime : int|;
+	\item \lstinline|[r/w] ICL'flashMode : bool|;
+	\item \lstinline|[r/w] ICL'humanMode : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|_icL'clickTime : int|}
+\subsubsection{\lstinline|ICL'clickTime : int|}
 
 Intervalul clicului, implicit 300.
 
-\subsubsection{\lstinline|_icL'pressTime : int|}
+\subsubsection{\lstinline|ICL'pressTime : int|}
 
 Intervalul apăsării butonului pe claviatură, implicit 60.
 
-\subsubsection{\lstinline|_icL'moveTime : int|}
+\subsubsection{\lstinline|ICL'moveTime : int|}
 
 Timpul mediu în milisecunde în care cursorul se mută la distanța de 100 de pixeli, implicit 32.
 
-\subsubsection{\lstinline|_icL'flashMode : bool|}
+\subsubsection{\lstinline|ICL'flashMode : bool|}
 
-Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \lstinline|_icL'humanMode|. Implicit închis. \lstinline|element.sendKeys| și \lstinline|element.fastType| vor lucra la fel de rapid ca \lstinline|element.paste|, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
+Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \lstinline|ICL'humanMode|. Implicit închis. \lstinline|element.sendKeys| și \lstinline|element.fastType| vor lucra la fel de rapid ca \lstinline|element.paste|, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
 
-\subsubsection{\lstinline|_icL'humanMode : bool|}
+\subsubsection{\lstinline|ICL'humanMode : bool|}
 
-Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \lstinline|_icL'flashMode|. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
+Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \lstinline|ICL'flashMode|. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
 
 %\newpage

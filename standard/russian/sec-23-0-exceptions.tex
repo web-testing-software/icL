@@ -1,6 +1,6 @@
 \section{Обработка исключений}
 
-Все ошибки в icL имеют название и описание. Что бы выводить в консоль название и описание текущей ошибке, достаточно вызвать \lstinline|_log.error ""|. Возможные исключения при вызове разных функций и методов в данном стандарте указаны в конце описания. Что зарегистрировать пользовательскую исключение используете \lstinline|_signal.add <string>name|.
+Все ошибки в icL имеют название и описание. Что бы выводить в консоль название и описание текущей ошибке, достаточно вызвать \lstinline|Log.error ""|. Возможные исключения при вызове разных функций и методов в данном стандарте указаны в конце описания. Что зарегистрировать пользовательскую исключение используете \lstinline|Signal.add <string>name|.
 
 \subsection{Генератор сигналов}
 
@@ -12,8 +12,8 @@
 Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \lstinline|jammer {```code```}|. Сигналы об схематических и синтаксических ошибках, а также сигнал \lstinline|emit:Exit|, не могут быть остановлены подавителем.
 
 \begin{lstlisting}[caption=Обработка инключении, label=sighandling]
-_signal.add "NumberTooBig";
-_signal.add "NumberTooSmall";
+Signal.add "NumberTooBig";
+Signal.add "NumberTooSmall";
 
 @i = 3;
 
@@ -29,10 +29,10 @@ emiter {
 	`` @i >= 2 \& @i <= 5
 }
 slot:NumberTooBig {
-	_log.error "Oooops...";
+	Log.error "Oooops...";
 }
 slot:NumberTooSmall {
-	_log.error "Nope! O_O";
+	Log.error "Nope! O_O";
 };
 \end{lstlisting}
 
