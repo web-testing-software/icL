@@ -46,3 +46,4 @@ __21.09.2018__
  * Add new function call syntax instead !name args... use name (args..), beetwen
    arguments needs to be comma delimiter
  * Change the operator << to < and >> to >
+ * Brackets may be skiped if the number of args is 0 or 1
