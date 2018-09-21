@@ -1,8 +1,9 @@
-\section{Утверждения}
+% !TeX spellcheck = ro_RO
+\section{Confirmații}
 
-{\bf Утверждения} позволяет оценить на сколько успешно прошел тест. Утверждения в icL имеют 2 синтаксисы: \lstinline|assert (condition)| и \lstinline|assert (condition, message)|. В первом присутствует только условие \code{condition}, если оно равно \false{} или \void, то icL будет утверждать что есть проблема в тестированным ПО, отправляя сообщение \code{message}, если оно отсутствует - условие будет отправлено в качестве сообщений. Как правильно отправлять одно и то же сообщение нескольких утверждений показано на листинге \ref{assertexample}.
+{\bf Confirmațiile} permit a aprecia cît de bine au se execută testele. Confirmațiile în icL sunt de 2 tipuri: \lstinline|assert (condition)| și \lstinline|assert (condition, message)|. În primul este prezentă doar condiție \code{condition}, dacă ea este egală cu \false{} sau \void, atunci icL atunci icL va confirma că este o problemă în aplicația testată, trimițînd mesajul \code{message}, dacă el lipsește se va trimite condiția în calitate de mesaj. Cum să trimiți corect același mesaj pentru cîteva condiții este demonstrat pe foaia \ref{assertexample}.
 
-\begin{lstlisting}[caption=Пример использования утверждениях, label=assertexample]
+\begin{lstlisting}[caption=Exemple de folosire a confirmațiilor, label=assertexample]
 `` wrong
 assert (@val != 2 || @val != 4 || @val != 127, "Message");
 
