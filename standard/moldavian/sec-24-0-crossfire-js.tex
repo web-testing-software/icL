@@ -1,8 +1,9 @@
+% !TeX spellcheck = ro_RO
 \section{crossfire.js}
 
-Технология {\bf crossfire.js} позволяет вызвать функцию icL из веб-страницы. Функция будет выполнено асинхронно.
+Tehnologia {\bf crossfire.js} permite a apela funcții icL din pagina web. Funcția va fi executată asincron.
 
-Вставить функцию icL в Javascript можно с помощью заменителя \lstinline|!{name}|. При вызове функций icL, параметры по типу данных должны подходить, иначе будет сгенерирован сигнал, который остановит в последствия выполнение скрипта. Для корректность восприятия данных рекомендуется использовать следующее функций Javascript:
+A insera funcții icL în JavaScript se poate cu următorul înlocuitor \lstinline|!{name}|. La apelul funcției icL, parametri trebuie să fie compatibili, în caz contrar va fi generat un semnal care va opri executarea funcției, în urma căruia executarea scriptului va fi oprită. Pentru a garanta înțelegerea corectă a datelor se recomadă de folosit următoarele funcții JavaScript:
 \begin{icItems}
 	\item \lstinline|crossfire.bool(arg)|;
 	\item \lstinline|crossfire.int(arg)|;
@@ -14,9 +15,9 @@
 	\item \lstinline|crossfire.element(arg)|;
 \end{icItems}
 
-Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \code{onclick} получает один параметр, но \code{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
+Exemplu elementar de apelare corectă a funcției icL este prezentat pe foaia \ref{crossfireexample}. Funcția \code{onclick} primește un parametru, dar \code{func} - nu. În cauză trebuie interface, cel mai simplu mod este de a defini o funcție anonimă.
 
-\begin{lstlisting}[caption=Пример вызова функций icL, label=crossfireexample]
+\begin{lstlisting}[caption=Exemplu de apelare a funcției icL, label=crossfireexample]
 @el = _dom.query "button";
 !func = { _log.info "It's working!" };
 
