@@ -1,10 +1,11 @@
-\section{Системные типы данных}
+% !TeX spellcheck = ro_RO
+\section{Tipuri de date de sistem}
 
-В данном главе представлены типы данных, которых нельзя создавать с помощью литералов, не поддерживают преобразование, содержат только l-значений.
+În acest capitol sunt prezentate tipurile de date de sistem. Care nu pot fi create cu ajutorul literalelor, nu suportă conversii și pot doar valori de stînga.
 
 \subsection{{\color{orange} \_alert}}
 
-\noindent Описание класса \code{\_alert} -
+\noindent Descrierea clasei \code{\_alert} -
 \begin{lstlisting}[numbers=none]
 class _alert {
 	[r/o] _alert'text : string;
@@ -17,7 +18,7 @@ class _alert {
 
 \subsection{{\color{orange} \_by}}
 
-\noindent Описание класса \code{\_by} -
+\noindent Descrierea clasei \code{\_by} -
 \begin{lstlisting}[numbers=none]
 class _by {
 	[r/o] _by'cssSelector     : 1;
@@ -30,7 +31,7 @@ class _by {
 
 \subsection{{\color{orange} \_cookie}}
 
-\noindent Описание класса \code{\_cookie} -
+\noindent Descrierea clasei \code{\_cookie} -
 \begin{lstlisting}[numbers=none]
 class _cookie {
 	[r/w] _cookie'domain   : string;
@@ -50,7 +51,7 @@ class _cookie {
 
 \subsection{{\color{orange} \_cookies}}
 
-\noindent Описание класса \code{\_cookies} -
+\noindent Descrierea clasei \code{\_cookies} -
 \begin{lstlisting}[numbers=none]
 class _cookies {
 	[r/o] _cookies'string : _cookie;
@@ -62,7 +63,7 @@ class _cookies {
 
 \subsection{{\color{orange} \_db}}
 
-\noindent Описание класса \code{\_db} -
+\noindent Descrierea clasei \code{\_db} -
 \begin{lstlisting}[numbers=none]
 class _db {
 _db.query _code : _query;
@@ -72,7 +73,7 @@ _db.close       : void;
 
 \subsection{{\color{orange} \_dbManager}}
 
-\noindent Описание класса \code{\_dbManager} -
+\noindent Descrierea clasei \code{\_dbManager} -
 \begin{lstlisting}[numbers=none]
 class _dbManager {
 	_dbManager.openSQLite string : _db;
@@ -81,7 +82,7 @@ class _dbManager {
 
 \subsection{{\color{orange} \_dom}}
 
-\noindent Описание класса \code{\_dom} -
+\noindent Descrierea clasei \code{\_dom} -
 \begin{lstlisting}[numbers=none]
 class _dom {
 	_dom.query           int    string : element;
@@ -99,7 +100,7 @@ class _dom {
 
 \subsection{{\color{orange} \_dsv}}
 
-\noindent Описание класса \code{\_dsv} -
+\noindent Descrierea clasei \code{\_dsv} -
 \begin{lstlisting}[numbers=none]
 class _dsv {
 	_dsv.load    string _file  : set;
@@ -114,7 +115,7 @@ class _dsv {
 
 \subsection{{\color{orange} \_file}}
 
-\noindent Описание класса \code{\_file} -
+\noindent Descrierea clasei \code{\_file} -
 \begin{lstlisting}[numbers=none]
 class _file {
 	[r/o] _file'csv    : 1;
@@ -130,7 +131,7 @@ class _file {
 
 \subsection{{\color{orange} \_files}}
 
-\noindent Описание класса \code{\_files} -
+\noindent Descrierea clasei \code{\_files} -
 \begin{lstlisting}[numbers=none]
 class _files {
 	_file.open       string : _file;
@@ -142,7 +143,7 @@ class _files {
 
 \subsection{{\color{orange} \_icL}}
 
-\noindent Описание класса \code{\_icL} -
+\noindent Descrierea clasei \code{\_icL} -
 \begin{lstlisting}[numbers=none]
 class _icL {
 	[r/w] _icL'clickTime : int;
@@ -155,7 +156,7 @@ class _icL {
 
 \subsection{{\color{orange} \_import}}
 
-\noindent Описание класса \code{\_import} -
+\noindent Descrierea clasei \code{\_import} -
 \begin{lstlisting}[numbers=none]
 class _import {
 	_import.none      [object] string : void;
@@ -167,7 +168,7 @@ class _import {
 
 \subsection{{\color{orange} \_key}}
 
-\noindent Описание класса \code{\_key} -
+\noindent Descrierea clasei \code{\_key} -
 \begin{lstlisting}[numbers=none]
 class _key {
 	_key'alt   : 3;
@@ -178,7 +179,7 @@ class _key {
 
 \subsection{{\color{orange} \_log}}
 
-\noindent Описание класса \code{\_log} -
+\noindent Descrierea clasei \code{\_log} -
 \begin{lstlisting}[numbers=none]
 class _log {
 	_log.error string   : void;
@@ -191,7 +192,7 @@ class _log {
 
 \subsection{{\color{orange} \_make}}
 
-\noindent Описание класса \code{\_make} -
+\noindent Descrierea clasei \code{\_make} -
 \begin{lstlisting}[numbers=none]
 class _make {
 	_make.image  string string : void;
@@ -209,7 +210,7 @@ class _make {
 
 \subsection{{\color{orange} \_math}}
 
-\noindent Описание класса \code{\_math} -
+\noindent Descrierea clasei \code{\_math} -
 \begin{lstlisting}[numbers=none]
 class _math {
 	[r/o] _math'1divPi     : double;
@@ -247,7 +248,7 @@ class _math {
 
 \subsection{{\color{orange} \_mouse}}
 
-\noindent Описание класса \code{\_mouse} -
+\noindent Descrierea clasei \code{\_mouse} -
 \begin{lstlisting}[numbers=none]
 class _mouse {
 	[r/o] _mouse'left   : 1;
@@ -258,7 +259,7 @@ class _mouse {
 
 \subsection{{\color{orange} \_move}}
 
-\noindent Описание класса \code{\_move} -
+\noindent Descrierea clasei \code{\_move} -
 \begin{lstlisting}[numbers=none]
 class _move {
 	[r/o] _move'bezier    : 5;
@@ -271,7 +272,7 @@ class _move {
 
 \subsection{{\color{orange} \_numbers}}
 
-\noindent Описание класса \code{\_numbers} -
+\noindent Descrierea clasei \code{\_numbers} -
 \begin{lstlisting}[numbers=none]
 	[r/o] _numbers'max     : 4;
 	[r/o] _numbers'min     : 3;
@@ -282,7 +283,7 @@ class _move {
 
 \subsection{{\color{orange} \_query}}
 
-\noindent Описание класса \code{\_query} -
+\noindent Descrierea clasei \code{\_query} -
 \begin{lstlisting}[numbers=none]
 class _query {
 	[w/o] _query'string : value;
@@ -304,7 +305,7 @@ class _query {
 
 \subsection{{\color{orange} \_session}}
 
-\noindent Описание класса \code{\_session} -
+\noindent Descrierea clasei \code{\_session} -
 \begin{lstlisting}[numbers=none]
 class _session {
 	[r/w] _session'implicitTimeout : int;
@@ -325,7 +326,7 @@ class _session {
 
 \subsection{{\color{orange} \_sessions}}
 
-\noindent Описание класса \code{\_sessions} -
+\noindent Descrierea clasei \code{\_sessions} -
 \begin{lstlisting}[numbers=none]
 class _sessions {
 	[r/o] _sessions'length : int;
@@ -339,7 +340,7 @@ class _sessions {
 
 \subsection{{\color{orange} \_signal}}
 
-\noindent Описание класса \code{\_signal} -
+\noindent Descrierea clasei \code{\_signal} -
 \begin{lstlisting}[numbers=none]
 class _signal {
 	_signal.add string : void;
@@ -348,7 +349,7 @@ class _signal {
 
 \subsection{{\color{orange} \_stack}}
 
-\noindent Описание класса \code{\_stack} -
+\noindent Descrierea clasei \code{\_stack} -
 \begin{lstlisting}[numbers=none]
 class _stack {
 	[r/w] _stack : value;
@@ -361,7 +362,7 @@ class _stack {
 
 \subsection{{\color{orange} \_stacks}}
 
-\noindent Описание класса \code{\_stacks} -
+\noindent Descrierea clasei \code{\_stacks} -
 \begin{lstlisting}[numbers=none]
 class _stacks {
 	[r/o] _stacks'int    : _stack;
@@ -381,7 +382,7 @@ class _stacks {
 
 \subsection{{\color{orange} \_states}}
 
-\noindent Описание класса \code{\_states} -
+\noindent Descrierea clasei \code{\_states} -
 \begin{lstlisting}[numbers=none]
 class _states {
 	_states.clear    : void;
@@ -397,7 +398,7 @@ class _states {
 
 \subsection{{\color{orange} \_tab}}
 
-\noindent Описание класса \code{\_tab} -
+\noindent Descrierea clasei \code{\_tab} -
 \begin{lstlisting}[numbers=none]
 class _tab {
 	[icL] [r/o] _tab'canGoBack    : bool;
@@ -417,7 +418,7 @@ class _tab {
 
 \subsection{{\color{orange} \_tabs}}
 
-\noindent Описание класса \code{\_tabs} -
+\noindent Descrierea clasei \code{\_tabs} -
 \begin{lstlisting}[numbers=none]
 class _tabs {
 	[r/o] _tabs'current  : _tab;
@@ -444,7 +445,7 @@ class _tabs {
 
 \subsection{{\color{orange} \_types}}
 
-\noindent Описание класса \code{\_types} -
+\noindent Descrierea clasei \code{\_types} -
 \begin{lstlisting}[numbers=none]
 class _types {
 	[r/o] _types'alert     : 10;
@@ -494,7 +495,7 @@ class _types {
 
 \subsection{{\color{orange} \_wait}}
 
-\noindent Описание класса \code{\_wait} -
+\noindent Descrierea clasei \code{\_wait} -
 \begin{lstlisting}[numbers=none]
 class _wait {
 	_wait.ajax  object         : bool;
@@ -506,7 +507,7 @@ class _wait {
 
 \subsection{{\color{orange} \_window}}
 
-\noindent Описание класса \code{\_window} -
+\noindent Descrierea clasei \code{\_window} -
 \begin{lstlisting}[numbers=none]
 class _window {
 	[r/w] _window'height : int;
@@ -528,7 +529,7 @@ class _window {
 
 \subsection{{\color{orange} \_windows}}
 
-\noindent Описание класса \code{\_windows} -
+\noindent Descrierea clasei \code{\_windows} -
 \begin{lstlisting}[numbers=none]
 class _windows {
 	[r/o] _window'length : int;
