@@ -7,7 +7,7 @@ engish, russian and moldavian.
 
 __18.09.2018__
 
- * Add new method _tab.goto, which doesn't generate signals, just resturn true 
+ * Add new method _tab.goto, which doesn't generate signals, just resturn true
    on success otherwise false. **[approved]**
  * Remove _stacks'(int). **[approved]**
  * Remove _stacks.if. **[approved]**
