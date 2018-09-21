@@ -1,8 +1,9 @@
-\section{Операторы}
+% !TeX spellcheck = ro_RO
+\section{Operatori}
 
-\subsection{0$^+$-ого ранга}
+\subsection{De rangul 0$^+$}
 
-\noindent Перечень операторов 0$^+$-ого ранга -
+\noindent Lista operatorilor de rangul 0$^+$ -
 \begin{lstlisting}[numbers=none]
 bool    = bool;
 double  = double;
@@ -32,9 +33,9 @@ void    = _tab;
 void    = _window;
 \end{lstlisting}
 
-\subsection{1-ого и 1$^+$-ого ранга}
+\subsection{De rangul 1 și 1$^+$}
 
-\noindent Перечень операторов 1-ого ранга -
+\noindent Lista operatorilor de rangul 1 -
 \begin{lstlisting}[numbers=none]
 data.method args... : any;
 
@@ -43,7 +44,7 @@ data :: type;
 data :* type;
 \end{lstlisting}
 
-\noindent Перечень операторов 1$^+$-ого ранга -
+\noindent Lista operatorilor de rangul 1$^+$ -
 \begin{lstlisting}[numbers=none]
 !func args...        : any;
 [arg ...]            : object;
@@ -57,9 +58,9 @@ data :* type;
 [string or list ...] : list;
 \end{lstlisting}
 
-\subsection{2-ого ранга}
+\subsection{De rangul 2}
 
-\noindent Перечень операторов 2-ого ранга -
+\noindent Lista operatorilor de rangul 2 -
 \begin{lstlisting}[numbers=none]
 bool  & bool  : bool;
 value & value : value;
@@ -99,9 +100,9 @@ void    % value   : value;
 void    % void    : void;
 \end{lstlisting}
 
-\subsection{3-ого ранга}
+\subsection{De rangul 3}
 
-\noindent Перечень операторов 3-ого ранга -
+\noindent Lista operatorilor de rangul 3 -
 \begin{lstlisting}[numbers=none]
 bool   == bool   : bool;
 double == double : bool;
@@ -142,9 +143,9 @@ set    <* object : bool;
 string <* regex  : list;
 \end{lstlisting}
 
-\subsection{4-ого ранга}
+\subsection{De rangul 4}
 
-\noindent Перечень операторов 4-ого ранга -
+\noindent Lista operatorilor de rangul 4 -
 \begin{lstlisting}[numbers=none]
 double + double : double;
 int    + int    : int;
@@ -159,9 +160,9 @@ int    - int    : int;
 set    - set    : set;
 \end{lstlisting}
 
-\subsection{5-ого ранга}
+\subsection{De rangul 5}
 
-\noindent Перечень операторов 5-ого ранга -
+\noindent Lista operatorilor de rangul 5 -
 \begin{lstlisting}[numbers=none]
 double * double : double;
 int    * int    : int;
@@ -177,9 +178,9 @@ int \ int : int;
 set \ set : set;
 \end{lstlisting}
 
-\subsection{6$^+$-ого ранга}
+\subsection{De rangul 6$^+$}
 
-\noindent Перечень операторов 6$^+$-ого ранга -
+\noindent Lista operatorilor de rangul 6$^+$ -
 \begin{lstlisting}[numbers=none]
 double **        : double;
 double ** double : double;
@@ -196,14 +197,14 @@ int    /'double : double;
 int    /'int    : int;
 \end{lstlisting}
 
-\subsection{7-ого и 7$^+$-ого ранга}
+\subsection{De rangul 7 și 7$^+$}
 
-\noindent Перечень операторов 7-ого ранга -
+\noindent Lista operatorilor de rangul 7 -
 \begin{lstlisting}[numbers=none]
 data'property;
 \end{lstlisting}
 
-\noindent Перечень операторов 7$^+$-ого ранга -
+\noindent Lista operatorilor de rangul 7$^+$ -
 \begin{lstlisting}[numbers=none]
 !bool : bool
 
