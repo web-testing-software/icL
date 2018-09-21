@@ -353,9 +353,10 @@ class _signal {
 class _stack {
 	[r/w] _stack : value;
 	
-	_stack.clear    : void;
-	_stack.continue : void;
-	_stack.break    : void;
+	_stack.clear             : void;
+	_stack.continue          : void;
+	_stack.break             : void;
+	_stack.return <any>value : void;
 }
 \end{lstlisting}
 

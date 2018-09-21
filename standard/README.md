@@ -21,7 +21,7 @@ __18.09.2018__
  * Remove _stacks.range. **[approved]** [+]
  * Remove _stacks.filter. **[approved]** [+]
  * Change _stacks.break -> aviable just for loops. **[approved]** [+]
- * Add _stacks.return -> especially for functions. **[approved]**
+ * Add _stack.return -> especially for functions. **[approved]** [+]
  * Rename all System data types to first uppercase names and remove underline
    (_)  **[approved]**
  * Add States'first, States'last, States'next, States'prev : object, to get

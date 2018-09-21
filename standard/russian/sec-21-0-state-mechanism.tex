@@ -14,7 +14,8 @@
 	\item \lstinline|[r/o] _stacks'(<string>name) : _stack|;
 	\item \lstinline|_stack.clear : void|;
 	\item \lstinline|_stack.continue : void|;
-	\item \lstinline|_stack.break : void|.
+	\item \lstinline|_stack.break : void|;
+	\item \lstinline|_stack.return <any>value : void|.
 \end{icItems}
 
 \subsubsection{[r/o] \lstinline|_stacks'(<string>name) : _stack|}
@@ -44,6 +45,12 @@
 \subsubsection{\lstinline|_stack.break : void|}
 
 Прекращает немедленно работу цикла. Доступно только для циклов.
+
+Возможные исключения: \ferror{InvalidArgument}.
+
+\subsection{\lstinline|_stack.return <any>value : void|}
+
+Возвращает результат выполнения функции во внешней среды.
 
 Возможные исключения: \ferror{InvalidArgument}.
 
