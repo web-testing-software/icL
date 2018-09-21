@@ -12,7 +12,6 @@
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
 	\item \lstinline|[r/o] _stacks'(<string>name) : _stack|;
-	\item \lstinline|_stacks.if <int>i = 0 : _stack|;
 	\item \lstinline|_stacks.ifexists <int>i = 0 : _stack|;
 	\item \lstinline|_stacks.loop <int>i = 0 : _stack|;
 	\item \lstinline|_stacks.while <int>i = 0 : _stack|;
@@ -35,12 +34,6 @@
 }
 \end{lstlisting}
 Могут быть именованными только блоки команд (код ограничен круглыми скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт контейнер имеющий название функций.
-
-\subsubsection{\lstinline|_stacks.if <int>i = 0 : _stack|}
-
-Возвращает \code{i}-й \code{if} контейнер.
-
-Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{\lstinline|_stacks.ifexists <int>i = 0 : _stack|}
 
