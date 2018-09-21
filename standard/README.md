@@ -12,7 +12,7 @@ __18.09.2018__
    on success otherwise false. **[approved]** [+]
  * Remove _stacks'(int). **[approved]** [+]
  * Remove _stacks.if. **[approved]** [+]
- * Remove _stacks.ifexists. **[approved]**
+ * Remove _stacks.ifexists. **[approved]** [+]
  * Remove _stacks.loop. **[approved]**
  * Remove _stacks.while. **[approved]**
  * Remove _stacks.dowhile. **[approved]**
