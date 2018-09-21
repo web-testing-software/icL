@@ -10,7 +10,7 @@ __18.09.2018__
  * Rename _tab.get -> _tab.load. **[approved]** [+]
  * Add new method _tab.get, which doesn't generate signals, just resturn true
    on success otherwise false. **[approved]** [+]
- * Remove _stacks'(int). **[approved]**
+ * Remove _stacks'(int). **[approved]** [+]
  * Remove _stacks.if. **[approved]**
  * Remove _stacks.ifexists. **[approved]**
  * Remove _stacks.loop. **[approved]**

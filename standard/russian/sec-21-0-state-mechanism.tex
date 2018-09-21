@@ -11,7 +11,6 @@
 
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
-	\item \lstinline|[r/o] _stacks'(<int>i) : _stack|;
 	\item \lstinline|[r/o] _stacks'(<string>name) : _stack|;
 	\item \lstinline|_stacks.if <int>i = 0 : _stack|;
 	\item \lstinline|_stacks.ifexists <int>i = 0 : _stack|;
@@ -26,12 +25,6 @@
 	\item \lstinline|_stack.continue : void|;
 	\item \lstinline|_stack.break : void|.
 \end{icItems}
-
-\subsubsection{[r/o] \lstinline|_stacks'(<int>i) : _stack|}
-
-Возвращает \code{i}-й контейнер. Контейнеры расположены по принципу FILO, то есть нулевой контейнер (\lstinline|_stacks'0|) - текущий. Текущий контейнер можно получить и более простым путём вызывая \lstinline|_stack|.
-
-Возможные исключения: \ferror{OutOfBounds}.
 
 \subsubsection{[r/o] \lstinline|_stacks'(<string>name) : _stack|}
 
