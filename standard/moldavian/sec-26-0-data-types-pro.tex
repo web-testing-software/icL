@@ -1,12 +1,13 @@
-\section{Типы данных}
+% !TeX spellcheck = ro_RO
+\section{Tipuri de date}
 
-В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \code{value}.
+În acest capitol sunt enumerate tipurile de date care pot fi valori de stînga, de dreapta și javascript. Toate tipurile sunt sortate în ordine alfabetică, numai că pe primul loc este plasată clasa \code{value}.
 
 \subsection{{\color{lightblue} value}}
 
-\code{value} предлагается в роли базового класса остальных типов описанных в данном главе.
+\code{value} se propune în rol de clasă de bază pentru restul tipurilor descrise în acest capitol.
 
-\noindent Описание класса \code{value} -
+\noindent Descrierea clasei \code{value} -
 \begin{lstlisting}[numbers=none]
 class value {
     value'lValue   : bool;
@@ -22,21 +23,21 @@ class value {
 
 \subsection{{\color{lightblue} bool}}
 
-\noindent Описание класса \bool -
+\noindent Descrierea clasei \bool -
 \begin{lstlisting}[numbers=none]
 class bool extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} double}}
 
-\noindent Описание класса \double -
+\noindent Descrierea clasei \double -
 \begin{lstlisting}[numbers=none]
 class double extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} element}}
 
-\noindent Описание класса \element -
+\noindent Descrierea clasei \element -
 \begin{lstlisting}[numbers=none]
 class element extends value {
     [r/*] element'attr-*   : string;
@@ -89,14 +90,14 @@ class element extends value {
 
 \subsection{{\color{lightblue} int}}
 
-\noindent Описание класса \integer -
+\noindent Descrierea clasei \integer -
 \begin{lstlisting}[numbers=none]
 class int extends value {}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} list}}
 
-\noindent Описание класса \listtype -
+\noindent Descrierea clasei \listtype -
 \begin{lstlisting}[numbers=none]
 class list extends value {
     [r/o] list'empty  : bool;
@@ -132,7 +133,7 @@ class list extends value {
 
 \subsection{{\color{lightblue} object}}
 
-\noindent Описание класса \object -
+\noindent Descrierea clasei \object -
 \begin{lstlisting}[numbers=none]
 class object extends value {
     [r/w] object'string : value;
@@ -141,7 +142,7 @@ class object extends value {
 
 \subsection{{\color{lightblue} regex}}
 
-\noindent Описание класса \regex -
+\noindent Descrierea clasei \regex -
 \begin{lstlisting}[numbers=none]
 class regex inherits value {
     /i
@@ -155,7 +156,7 @@ class regex inherits value {
 
 \subsection{{\color{lightblue} set}}
 
-\noindent Описание класса \set -
+\noindent Descrierea clasei \set -
 \begin{lstlisting}[numbers=none]
 class set extends value {
     [r/o] set'capacity : int;
@@ -180,7 +181,7 @@ class set extends value {
 
 \subsection{{\color{lightblue} string}}
 
-\noindent Описание класса \str -
+\noindent Descrierea clasei \str -
 \begin{lstlisting}[numbers=none]
 class string extends value {
     [r/o] string'empty  : bool;
