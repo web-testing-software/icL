@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Дополнительные возможности}
 
 {\bf Дополнительные возможности} присутствуют в icL для полного перекрытия стандарта W3C WebDriver и для решения определённых проблем, которые могут появиться при написании скриптов.
@@ -647,7 +648,11 @@ URL страницы, открытой в указанной вкладке.
 
 \subsubsection{\lstinline|_tab.get <string>url : bool|}
 
-Загружает страницу, URL должен быть абсолютным.
+Загружает страницу, URL должен быть абсолютным. Возвращает \true{} при удачной загрузке, иначе \false.
+
+\subsubsection{\lstinline|_tab.load <string>url : void|}
+
+Загружает страницу, URL должен быть абсолютным. При неудаче генерирует ошибку.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
 
