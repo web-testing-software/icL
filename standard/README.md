@@ -18,7 +18,7 @@ __18.09.2018__
  * Remove _stacks.dowhile. **[approved]** [+]
  * Remove _stacks.for. **[approved]** [+]
  * Remove _stacks.forany. **[approved]** [+]
- * Remove _stacks.range. **[approved]**
+ * Remove _stacks.range. **[approved]** [+]
  * Remove _stacks.filter. **[approved]**
  * Change _stacks.break -> aviable just for loops. **[approved]**
  * Add _stacks.return -> especially for functions. **[approved]**
