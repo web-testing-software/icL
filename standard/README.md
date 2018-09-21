@@ -46,5 +46,6 @@ __21.09.2018__
  * Change the function call syntax from !name args... to name (args..), beetwen
    arguments needs to be comma delimiter.
  * Brackets may be skiped if the number of args is **0** or **1**.
- * Change the operator **<<** to **<** and **>>** to *>*.
- * Add autofinish of commands and delimiterless icL philosophy
+ * Change the operator **<<** to **<** and **>>** to **>**.
+ * Add autofinish of commands and delimiterless icL philosophy.
+ * Now the underline (_) symbol can be used in variables names.
