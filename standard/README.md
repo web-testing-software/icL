@@ -52,14 +52,18 @@ __21.09.2018__
  * [*] Add datetime type (equivalent to QDateTime), with the next properties
    'year, 'month, 'day, 'hour, 'minut, 'second.
  * [*] Add Set.clone method.
- * [*] Add type var define [type] === [type : type] and (type) ===
-   (@type : type), simplify set and functions headers.
- * [*] Add m : 1 operations, cast all variables in one type, etc.
- * [*] Add 1 : m operations, test cast in several types, etc.
- * [*] Add m : m operations, cast each variable in diferent type.
- * [*] Add ~ sign, which permite to generate void object.
+ * [*] Add type var define [**type**] === [**type** : **type**] and
+   (**type**) === (**@type** : **type**), simplify set and functions headers.
+ * [*] Add **m** : **1** operations, cast all variables in one type, etc.
+ * [*] Add **1** : **m** operations, test cast in several types, etc.
+ * [*] Add **m** : **m** operations, cast each variable in diferent type.
  * [*] Add default values for functiuons params.
- * [*] Rename ICL to icL, DOM to Doc.
- * [*] Add new operator !<, inversion of <<.
+ * [*] Rename **ICL** to **icL**, **DOM** to **Doc**.
+ * [*] Add new operator **!<**, inversion of **<<**.
+ * [*] Add **~** sign, which permite to generate void object.
+ * [*] Add default values to functions parameters, syntax func =
+   (**@var** = **value**, @var2 : int) {}, the default values must be any, not
+   just the last, the last default parameters can be skipped, to set default
+   value for non last parameter use void sign, example: func (~, 3).
 
 All approved changes will be applicated in Standard for icL RC 3.
