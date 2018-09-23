@@ -15,7 +15,7 @@
 \item
 	\code{[r/o] string'last : string};
 \item
-	\lstinline|[r/o] string'(<int>n) : string|.
+    \lstinline|[r/o] string'(n : int) : string|.
 \end{icItems}
 
 \
@@ -64,49 +64,49 @@ n-й символ строки. n должен быть целым литера�
 Строки имеют следующий набор дополнительных методов:
 \begin{icItems}
 \item
-	\lstinline|string.append <string>str : string|;
+    \lstinline|string.append (str : string) : string|;
 \item
-	\lstinline|string.at <int>i : string|;
+    \lstinline|string.at (i : int) : string|;
 \item
-	\lstinline|string.beginsWith <string>str : bool|;
+    \lstinline|string.beginsWith (str : string) : bool|;
 \item
-	\lstinline|string.compare <string>str <bool>caseSensitive = true : bool|;
+    \lstinline|string.compare (str : string, caseSensitive = true) : bool|;
 \item
-	\lstinline|string.count <string>str : int|;
+    \lstinline|string.count (str : string) : int|;
 \item
-	\lstinline|string.endsWith <string>str : bool|;
+    \lstinline|string.endsWith (str : string) : bool|;
 \item
-	\lstinline|string.indexOf <string>str <int>startPos = 0 : int|;
+    \lstinline|string.indexOf (str : string, startPos = 0) : int|;
 \item
-	\lstinline|string.insert <string>str <int>pos : string|;
+    \lstinline|string.insert (str : string, pos : int) : string|;
 \item
-	\lstinline|string.lastIndexOf <string>str <int>startPos = -1 : int|;
+    \lstinline|string.lastIndexOf (str : string, startPos = -1) : int|;
 \item
-	\lstinline|string.left <int>n : string|;
+    \lstinline|string.left (n : int) : string|;
 \item
-	\lstinline|string.leftJustified <int>width <string>fillChar <bool>truncate = false :string|;
+    \lstinline|string.leftJustified (width : int, fillChar) : string, truncate = false :string|;
 \item
-	\lstinline|string.mid <int>pos <int>n = -1 : string|;
+    \lstinline|string.mid (pos : int, n = -1) : string|;
 \item
-	\lstinline|string.prepend <string>str : string|;
+    \lstinline|string.prepend (str : string) : string|;
 \item
-	\lstinline|string.remove <int>pos <int>n : string|;
+    \lstinline|string.remove (pos : int, n : int) : string|;
 \item
-	\lstinline|string.remove <string>str <bool>caseSensitive = true : string|;
+    \lstinline|string.remove (str : string, caseSensitive = true) : string|;
 \item
-	\lstinline|string.replace <int>pos <int>n <string>after : string|;
+    \lstinline|string.replace (pos : int, n : int, after : string) : string|;
 \item
-	\lstinline|string.replace <string>before <string>after : string|;
+    \lstinline|string.replace (before : string, after : string) : string|;
 \item
-	\lstinline|string.right <int>n : string|;
+    \lstinline|string.right (n : int) : string|;
 \item
-	\lstinline|string.rightJustified <int>width <string>fillChar <bool>truncate = false:string|;
+    \lstinline|string.rightJustified (width : int, fillChar : string, truncate) : bool, = false:string|;
 \item
-	\lstinline|string.split <string>separator <bool>keepEmptyParts = true <bool>caseSensitive = true : list|;
+    \lstinline|string.split (separator : string, keepEmptyParts = true, caseSensitive = true) : list|;
 \item
-	\lstinline|string.substring <int>begin <int>end : string|;
+    \lstinline|string.substring (begin : int, end : int) : string|;
 \item
-	\lstinline|string.trim <bool>justWhitespace = true : string|.
+    \lstinline|string.trim (justWhitespace = true) : string|.
 \end{icItems}
 
 Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{stringmethods}.
@@ -174,93 +174,93 @@ n-й символ строки. n должен быть целым литера�
 @str.trim false; `` "34px"
 \end{lstlisting}
 
-\subsubsection{\lstinline|string.append <string>str : string|}
+\subsubsection{\lstinline|string.append (str : string) : string|}
 
 Вставит строку \code{str} в конце строки.
 
-\subsubsection{\lstinline|string.at <int>i : string|}
+\subsubsection{\lstinline|string.at (i : int) : string|}
 
 Возвращает ссылка на \code{i}-й символ.
 
 Возможные исключения: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|string.beginsWith <string>str : bool|}
+\subsubsection{\lstinline|string.beginsWith (str : string) : bool|}
 
 Возвращает \true{}, если начало строки совпадает с \code{str}, иначе \false{}.
 
-\subsubsection{\lstinline|string.compare <string>str <bool>caseSensitive = true : bool|}
+\subsubsection{\lstinline|string.compare (str : string, caseSensitive = true) : bool|}
 
 Сравнивает строки, возвращает \true{} если они равны, иначе \false{}. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{}, то регистр букв будет проигнорирован.
 
-\subsubsection{\lstinline|string.count <string>str : int|}
+\subsubsection{\lstinline|string.count (str : string) : int|}
 
 Считает сколько раз подстрока \code{str} встречается в строке.
 
-\subsubsection{\lstinline|string.endsWith <string>str : bool|}
+\subsubsection{\lstinline|string.endsWith (str : string) : bool|}
 
 Возвращает \true{}, если конец строки совпадает с \code{str}, иначе \false{}.
 
-\subsubsection{\lstinline|string.indexOf <string>str <int>startPos = 0 : int|}
+\subsubsection{\lstinline|string.indexOf (str : string, startPos = 0) : int|}
 
 Возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1.
 
-\subsubsection{\lstinline|string.insert <string>str <int>pos : string|}
+\subsubsection{\lstinline|string.insert (str : string, pos : int) : string|}
 
 Вставит строку \code{str} в позиции \code{pos}.
 
-\subsubsection{\lstinline|string.lastIndexOf <string>str <int>startPos = -1 : int|}
+\subsubsection{\lstinline|string.lastIndexOf (str : string, startPos = -1) : int|}
 
 Возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1.
 
-\subsubsection{\lstinline|string.left <int>n : string|}
+\subsubsection{\lstinline|string.left (n : int) : string|}
 
 Возвращает подстроку содержащая первый \code{n} символы.
 
-\subsubsection{\lstinline|string.leftJustified <int>width <string>fillChar <bool>truncate = false :|\\* \lstinline|string|}
+\subsubsection{\lstinline|string.leftJustified (width : int, fillChar) : string, truncate = false :|\\* \lstinline|string|}
 
 Возвращает строку длины \code{width}, содержащую эту строку, в конце ставится \code{width - .length} символов \code{fillChar}. Если \code{truncate == true} и \code{width < .length}, то последние \code{.length - width} символы будут удалены.
 
-\subsubsection{\lstinline|string.mid <int>pos <int>n = -1 : string|}
+\subsubsection{\lstinline|string.mid (pos : int, n = -1) : string|}
 
 Возвращает строку содержащую \code{n} символы строки, начиная с позиции \code{pos}. Будет возвращена пустая строка если установленный интервал выходит за рамки строки. Если \code{n == -1} то будут возвращены все доступные символы начиная с позицией \code{pos}.
 
-\subsubsection{\lstinline|string.prepend <string>str : string|}
+\subsubsection{\lstinline|string.prepend (str : string) : string|}
 
 Вставит строку \code{str} в начале строки.
 
-\subsubsection{\lstinline|string.remove <int>pos <int>n : string|}
+\subsubsection{\lstinline|string.remove (pos : int, n : int) : string|}
 
 Удаляет \code{n} символы строки начиная с позицией \code{pos}.
 
-\subsubsection{\lstinline|string.remove <string>str <bool>caseSensitive = true : string|}
+\subsubsection{\lstinline|string.remove (str : string, caseSensitive = true) : string|}
 
 Удаляет каждое нахождения подстроки \code{str} в строке. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{} то регистр букв будет проигнорирован.
 
-\subsubsection{\lstinline|string.replace <int>pos <int>n <string>after : string|}
+\subsubsection{\lstinline|string.replace (pos : int, n : int, after : string) : string|}
 
 Заменяет интервал установленный позицией \code{pos} и количеством символов \code{n} строкой \code{after}.
 
-\subsubsection{\lstinline|string.replace <string>before <string>after : string|}
+\subsubsection{\lstinline|string.replace (before : string, after : string) : string|}
 
 Заменяет каждое нахождение подстроки \code{before} подстрокой \code{after}.
 
-\subsubsection{\lstinline|string.right <int>n : string|}
+\subsubsection{\lstinline|string.right (n : int) : string|}
 
 Возвращает строку содержащую последние \code{n} символы строки.
 
-\subsubsection{\lstinline|string.rightJustified <int>width <string>fillChar <bool>truncate = false :|\\* \lstinline|string|;}
+\subsubsection{\lstinline|string.rightJustified (width : int, fillChar) : string, truncate = false :|\\* \lstinline|string|;}
 
 Возвращает строку длины \code{width}, содержащую эту строку, в начале ставится \code{width - .length} символов \code{fillChar}. Если \code{truncate == true} и \code{width < .length}, то первые \code{.length - width} символы будут удалены.
 
-\subsubsection{\lstinline|string.split <string>separator <bool>keepEmptyParts = true <bool>caseSensiti|\\* \lstinline|ve = true : list|}
+\subsubsection{\lstinline|string.split (separator : string, keepEmptyParts = true, caseSensiti : bool,|\\* \lstinline|ve = true) : list|}
 
 Разрывает строку на подстроки при каждой нахождения подстроки \code{separator} и собирает список из этих строк. Если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки. Если \code{keepEmptyParts == false} то пустые строки пропускаются.
 
-\subsubsection{\lstinline|string.substring <int>begin <int>end : string|}
+\subsubsection{\lstinline|string.substring (begin : int, end : int) : string|}
 
 Возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
 
-\subsubsection{\lstinline|string.trim <bool>justWhitespace = true : string|}
+\subsubsection{\lstinline|string.trim (justWhitespace = true) : string|}
 
 Возвращает строку, копия текущей из которого удаляются пробельные символы с начало и конце строки. Если \lstinline|justWhitespace == false|, то будут удалены все знаки которые не является буквой или цифрой.
 

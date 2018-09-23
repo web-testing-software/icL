@@ -4,32 +4,32 @@
 
 Модуль баз данных обеспечивает следующий набор возможности:
 \begin{icItems}
-	\item \lstinline|DBManager.openSQLite <string>path : DB|;
-	\item \lstinline|DB.query <Code>q : Query|;
+    \item \lstinline|DBManager.openSQLite (path : string) : DB|;
+	\item \lstinline|DB.query (q : Code) : Query|;
 	\item \lstinline|DB.close : void|;
-	\item \lstinline|[w/o] Query'(<string>name) : any|;
-	\item \lstinline|Query.set <string>field <any>value : void|;
+	\item \lstinline|[w/o] Query'(name : string) : any|;
+	\item \lstinline|Query.set (field : string, value : any) : void|;
 	\item \lstinline|Query.exec : bool|;
 	\item Доступны после выполнение:
 	\begin{icItems}
-		\item \lstinline|[r/o] Query'(<string>name) : any|;
+	    \item \lstinline|[r/o] Query'(name : string) : any|;
 		\item \lstinline|Query.getRowsAffected : int|;
 		\item \lstinline|Query.getError : bool|;
 		\item \lstinline|Query.getLength : int|;
-		\item \lstinline|Query.get <string>field : any|;
+		\item \lstinline|Query.get (field : string) : any|;
 		\item \lstinline|Query.next : bool|;
 		\item \lstinline|Query.previous : bool|;
 		\item \lstinline|Query.first : bool|;
 		\item \lstinline|Query.last : bool|;
-		\item \lstinline|Query.seek <int>i <bool>relative = false : bool|;
+		\item \lstinline|Query.seek (i : int, relative = false) : bool|;
 	\end{icItems}
 \end{icItems}
 
-\subsubsection{\lstinline|DBManager.openSQLite <string>path : DB|}
+\subsubsection{\lstinline|DBManager.openSQLite (path : string) : DB|}
 
 Открывает новое подключение. \code{path} - путь к файлу базы данных.
 
-\subsubsection{\lstinline|DB.query <Code>q : Query|}
+\subsubsection{\lstinline|DB.query (q : Code) : Query|}
 
 Создаёт запрос, на основе кода SQL, изолированный в фигурных скобках.
 
@@ -37,11 +37,11 @@
 
 Закрывает подключение к базу данных.
 
-\subsubsection{\lstinline|[w/o] Query'(<string>name) : any|}
+\subsubsection{\lstinline|[w/o] Query'(name : string) : any|}
 
 Возвращает объект, позволяющий заменить заменитель на значение через присваивание. Заменители в коде имеют следующий синтаксис \lstinline|:name|.
 
-\subsubsection{\lstinline|Query.set <string>field <any>value : void|}
+\subsubsection{\lstinline|Query.set (field : string, value : any) : void|}
 
 Установит значения заменителя с именем \code{field}.
 
@@ -53,7 +53,7 @@
 
 Возвращает текст ошибки, если при выполнении кода произошла ошибка.
 
-\subsubsection{\lstinline|[r/o] Query'(<string>name) : any|}
+\subsubsection{\lstinline|[r/o] Query'(name : string) : any|}
 
 После вызова функции \lstinline|Query.exec| свойства будут возвращать значения запрошенных полей. Если такое поле отсутствует, будет возвращать \void.
 
@@ -65,7 +65,7 @@
 
 Количество результатов полученных при выполнении команды \code{SELECT}.
 
-\subsubsection{\lstinline|Query.get <string>field : any|}
+\subsubsection{\lstinline|Query.get (field : string) : any|}
 
 Возвращает значение поле или \void{} если столбец \code{field} отсутствует.
 
@@ -85,7 +85,7 @@
 
 Возвращает \true, если получилось перейти на последнюю запись, иначе \false.
 
-\subsubsection{\lstinline|Query.seek <int>i <bool>relative = false : bool|}
+\subsubsection{\lstinline|Query.seek (i : int, relative = false) : bool|}
 
 Возвращает \true, если получилось перейти на \code{i}-ю запись или сдвинуть курсор на \code{i}-e количество шагов (при условии \code{@relative == true}), иначе \false.
 
@@ -127,7 +127,7 @@ DB.query {
 `` insert query
 DB.query {
 	INSERT INTO person (id, forname, name)
-	VALUE (:id, :forname, :name)
+	VALUE (:id :forname :name)
 };
 Query'id = 1001;
 Query'forname = "Bart";

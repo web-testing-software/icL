@@ -1,7 +1,7 @@
 \section{Регулярные выражения}
 \label{regex}
 
-Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?<name>content)|.
+Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?content : name)|.
 
 Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| и \lstinline|!|. Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
 
@@ -81,32 +81,32 @@
 Методы классы \str{} и \listtype, имеющие параметры типа \regex{}:
 \begin{icItems}
 \item
-	\lstinline|string.count <regex>re : int|;
+	\lstinline|string.count (re : regex) : int|;
 \item
-	\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|;
+	\lstinline|string.indexOf (re : regex, startPos = -1) : int|;
 \item
-	\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|;
+	\lstinline|string.lastIndexOf (re : regex, startPos = -1) : int|;
 \item
-	\lstinline|string.remove <regex>re : string|;
+	\lstinline|string.remove (re : regex) : string|;
 \item 
-	\lstinline|string.replace <regex>re <string>after : string|;
+	\lstinline|string.replace (re : regex, after : string) : string|;
 \item
-	\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|.
+	\lstinline|string.split (re : regex, keepEmptyParts = true) : list|.
 \item
-	\lstinline|list.filter <regex>re : list|;
+	\lstinline|list.filter (re : regex) : list|;
 \item
-	\lstinline|list.indexOf <regex>re <int>start : int|;
+	\lstinline|list.indexOf (re : regex, start : int) : int|;
 \item
-	\lstinline|list.lastIndexOf <regex>re <int>start : int|;
+	\lstinline|list.lastIndexOf (re : regex, start : int) : int|;
 \end{icItems}
 
 Примеры использования выше перечисленных методов, представлены на листинге \ref{regexplikearg}.
 
-\subsubsection{\lstinline|string.count <regex>re : int|}
+\subsubsection{\lstinline|string.count (re : regex) : int|}
 
 Считает количество подстрок подходящие по шаблону \code{re}.
 
-\subsubsection{\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|}
+\subsubsection{\lstinline|string.indexOf (re : regex, startPos = -1) : int|}
 
 Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища вперёд с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
 
@@ -128,31 +128,31 @@
 @fonts.lastIndexOf //e.// 2; `` 2
 \end{lstlisting}
 
-\subsubsection{\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|}
+\subsubsection{\lstinline|string.lastIndexOf (re : regex, startPos = -1) : int|}
 
 Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища назад с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
 
-\subsubsection{\lstinline|string.remove <regex>re : string|}
+\subsubsection{\lstinline|string.remove (re : regex) : string|}
 
 Удаляет из строки все фрагменты подходящие по шаблону \code{re}.
 
-\subsubsection{\lstinline|string.replace <regex>re <string>after : string|}
+\subsubsection{\lstinline|string.replace (re : regex, after : string) : string|}
 
 Заменяет каждый фрагмент, подходящий по шаблону \code{re}, строкой \code{after}.
 
-\subsubsection{\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|}
+\subsubsection{\lstinline|string.split (re : regex, keepEmptyParts = true) : list|}
 
 Разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \code{re} и собирает список этих строк; если \code{keepEmptyParts == false} то пустые строки пропускаются.
 
-\subsubsection{\lstinline|list.filter <regex>re : list|}
+\subsubsection{\lstinline|list.filter (re : regex) : list|}
 
 Возвращает новый список строк, содержащий только строки этого списка, подходящих по регулярней выражении \code{re}.
 
-\subsubsection{\lstinline|list.indexOf <regex>re <int>start = 0 : int|}
+\subsubsection{\lstinline|list.indexOf (re : regex, start = 0) : int|}
 
 Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища вперёд с позицией \code{start}, если такой строке не найдено возвращает -1.
 
-\subsubsection{\lstinline|list.lastIndexOf <regex>re <int>start = -1 : int|}
+\subsubsection{\lstinline|list.lastIndexOf (re : regex, start = -1) : int|}
 
 Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища назад с позицией \code{start}, если такой строке не найдено возвращает -1.
 

@@ -9,7 +9,7 @@
 
 \noindent Синтаксис -
 \begin{lstlisting}[numbers=none]
-name = parameters : return_type {
+name = (parameters) : return_type {
 	commands
 }
 \end{lstlisting}
@@ -27,7 +27,7 @@ name = parameters : return_type {
 \end{icItems}
 
 \begin{lstlisting}[caption=Полноценная функция, label=fullfunc]
-sum = <int>a <int>b : int {
+sum = (a : int, b : int) : int {
 	@ = @a + @b;
 };
 \end{lstlisting}
@@ -39,7 +39,7 @@ pi = double {
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Функция без типа возвращаемой значений, label=notypefunc]
-out = <int>a <int>b {
+out = (a : int, b : int) {
 	Log.out @a @b;
 };
 \end{lstlisting}

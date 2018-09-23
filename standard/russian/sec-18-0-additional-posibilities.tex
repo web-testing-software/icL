@@ -12,13 +12,13 @@
 Объект \sessions{} имеет следующие свойства:
 \begin{icItems}
 	\item \lstinline|[r/o] Sessions'length : int|;
-	\item \lstinline|[r/o] Sessions'(<int>i) : Session|.
+	\item \lstinline|[r/o] Sessions'(i : int) : Session|.
 \end{icItems}
 
 И следующие методы:
 \begin{icItems}
 	\item \lstinline|Sessions.closeAll : void|;
-	\item \lstinline|Sessions.get <int>i : Session|;
+	\item \lstinline|Sessions.get (i : int) : Session|;
 	\item \lstinline|Sessions.new : Session|.
 \end{icItems}
 
@@ -26,7 +26,7 @@
 
 Возвращает количество отрытых сессии.
 
-\subsubsection{\lstinline|[r/o] Sessions'(<int>i) : Session|}
+\subsubsection{\lstinline|[r/o] Sessions'(i : int) : Session|}
 
 Возвращает \code{i}-ю сессию.
 
@@ -36,7 +36,7 @@
 
 Закрывает всех сессий.
 
-\subsubsection{\lstinline|Sessions.get <int>i : Session|}
+\subsubsection{\lstinline|Sessions.get (i : int) : Session|}
 
 Возвращает \code{i}-ю сессию.
 
@@ -151,10 +151,10 @@
 Объект \windows{} имеет следующие свойства:
 \begin{icItems}
 	\item \lstinline|[r/o] Windows'length : int|;
-	\item \lstinline|[r/o] Windows'(<int>i) : Window|.
+	\item \lstinline|[r/o] Windows'(i : int) : Window|.
 \end{icItems}
 
-И следующий метод \lstinline|Windows.get <int>i : Window|.
+И следующий метод \lstinline|Windows.get (i : int) : Window|.
 
 \subsubsection{\lstinline|[r/o] Windows'length : int|}
 
@@ -162,13 +162,13 @@
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|[r/o] Windows'(<int>i) : Window|}
+\subsubsection{\lstinline|[r/o] Windows'(i : int) : Window|}
 
 Возвращает \code{i}-е окно.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|Windows.get <int>i : Window|}
+\subsubsection{\lstinline|Windows.get (i : int) : Window|}
 
 Возвращает \code{i}-е окно.
 
@@ -193,8 +193,8 @@
 	\item \lstinline|Window.minimize : Window|;
 	\item \lstinline|Window.restore : Window|;
 	\item \lstinline|Window.switchToDefault : Window|;
-	\item \lstinline|Window.switchToFrame <int>i : Window|;
-	\item \lstinline|Window.switchToFrame <element>el : Window|;
+	\item \lstinline|Window.switchToFrame (i : int) : Window|;
+	\item \lstinline|Window.switchToFrame (el : element) : Window|;
 	\item \lstinline|Window.switchToParent : Window|.
 \end{icItems}
 
@@ -264,13 +264,13 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.switchToFrame <int>i : Window|}
+\subsubsection{\lstinline|Window.switchToFrame (i : int) : Window|}
 
 Переключает фокус на frame с индексом \code{i}.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
 
-\subsubsection{\lstinline|Window.switchToFrame <element>el : Window|}
+\subsubsection{\lstinline|Window.switchToFrame (el : element) : Window|}
 
 Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
 
@@ -284,15 +284,15 @@
 
 \subsection{{\color{orange} Cookies}}
 
-Объект \cookies{} имеет следующее свойство: \lstinline|[r/o] Cookies'<string>name :|\\* \lstinline|Cookie|.
+Объект \cookies{} имеет следующее свойство: \lstinline|[r/o] Cookies'name : string :|\\* \lstinline|Cookie|.
 
 И следующие методы: 
 \begin{icItems}
 	\item \lstinline|Cookies.deleteAll : void|;
-	\item \lstinline|Cookies.get <string>name : Cookie|.
+	\item \lstinline|Cookies.get (name : string) : Cookie|.
 \end{icItems}
 
-\subsubsection{\lstinline|[r/o] Cookies'<string>name : Cookie|}
+\subsubsection{\lstinline|[r/o] Cookies'name : string : Cookie|}
 
 Возвращает \cookie{} с нужным названием.
 
@@ -302,7 +302,7 @@
 
 Удаляет всеx существующих cookie.
 
-\subsubsection{\lstinline|Cookies.get <string>name : Cookie|}
+\subsubsection{\lstinline|Cookies.get (name : string) : Cookie|}
 
 Возвращает \cookie{} с нужным названием.
 
@@ -323,7 +323,7 @@
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\* \lstinline|<int>seconds = 0 : Cookie|;
+	\item \lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0|\\*, \lstinline|seconds = 0) : Cookie|;
 	\item \lstinline|Cookie.load : Cookie|;
 	\item \lstinline|Cookie.resetTime : Cookie|;
 	\item \lstinline|Cookie.save : Cookie|.
@@ -357,7 +357,7 @@
 
 Значение самого cookie, обязательное для заполнения.
 
-\subsubsection{\lstinline|Cookie.add <int>years <int>months <int>days <int>hours = 0 <int>minutes = 0|\\*\noindent\lstinline|<int>seconds = 0 : Cookie|}
+\subsubsection{\lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0|\\*\noindent\lstinline|seconds : int,, = 0) : Cookie|}
 
 Добавляет к сроку годности ножное количество лет, месяцев, дней, часов, минут и секунд.
 
@@ -400,7 +400,7 @@ for any Cookie {
 \begin{icItems}
 	\item \lstinline|Alert.accept : void|;
 	\item \lstinline|Alert.dismiss : void|;
-	\item \lstinline|Alert.sendKeys <string>keys : void|.
+	\item \lstinline|Alert.sendKeys (keys : string) : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] Alert'text : string|}
@@ -421,7 +421,7 @@ for any Cookie {
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
-\subsubsection{\lstinline|Alert.sendKeys <string>keys : void|}
+\subsubsection{\lstinline|Alert.sendKeys (keys : string) : void|}
 
 Заполняет форму текстом \code{keys} и подтверждает ввод.
 
@@ -439,23 +439,23 @@ for any Cookie {
 	\item \lstinline|[r/o] Tabs'length : int|;
 	\item \lstinline|[r/o] Tabs'next : Tab|;
 	\item \lstinline|[r/o] Tabs'previous : Tab|;
-	\item \lstinline|[r/o] Tabs'(<int>i) : Tab|.
+	\item \lstinline|[r/o] Tabs'(i : int) : Tab|.
 	% \item \lstinline|Tabs'|;
 \end{icItems}
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Tabs.close <string>template : int|;
-	\item \lstinline|Tabs.close <regex>url : int|;
-	\item \lstinline|Tabs.closeByTitle <string>template : int|;
-	\item \lstinline|Tabs.closeByTitle <regex>title : int|;
+	\item \lstinline|Tabs.close (template : string) : int|;
+	\item \lstinline|Tabs.close (url : regex) : int|;
+	\item \lstinline|Tabs.closeByTitle (template : string) : int|;
+	\item \lstinline|Tabs.closeByTitle (title : regex) : int|;
 	\item \lstinline|Tabs.closeOthers : int|;
 	\item \lstinline|Tabs.closeToLeft : int|;
 	\item \lstinline|Tabs.closeToRight : int|;
-	\item \lstinline|Tabs.find <string>template : Tab|;
-	\item \lstinline|Tabs.find <regex>url : Tab|;
-	\item \lstinline|Tabs.findByTitle <string>template : Tab|;
-	\item \lstinline|Tabs.findByTitle <regex>title : Tab|.
+	\item \lstinline|Tabs.find (template : string) : Tab|;
+	\item \lstinline|Tabs.find (url : regex) : Tab|;
+	\item \lstinline|Tabs.findByTitle (template : string) : Tab|;
+	\item \lstinline|Tabs.findByTitle (title : regex) : Tab|.
 	% \item \lstinline|Tabs.|;
 \end{icItems}
 
@@ -497,31 +497,31 @@ for any Cookie {
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
 
-\subsubsection{\lstinline|[r/o] Tabs'(<int>i) : Tab|}
+\subsubsection{\lstinline|[r/o] Tabs'(i : int) : Tab|}
 
 \code{i}-я вкладка.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|Tabs.close <string>template : int|}
+\subsubsection{\lstinline|Tabs.close (template : string) : int|}
 
 Закрывает все вкладки, у которых URL подходит по шаблону. Возвращает количество закрытых вкладок.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.close <regex>url : int|}
+\subsubsection{\lstinline|Tabs.close (url : regex) : int|}
 
 Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.closeByTitle <string>template : int|}
+\subsubsection{\lstinline|Tabs.closeByTitle (template : string) : int|}
 
 Закрывает все вкладки, у которых название подходит по шаблону. Возвращает количество закрытых вкладок.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.closeByTitle <regex>title : int|}
+\subsubsection{\lstinline|Tabs.closeByTitle (title : regex) : int|}
 
 Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
 
@@ -545,25 +545,25 @@ for any Cookie {
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.find <string>template : Tab|}
+\subsubsection{\lstinline|Tabs.find (template : string) : Tab|}
 
 Возвращает первая вкладка, у которой URL подходит по шаблону.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.find <regex>url : Tab|}
+\subsubsection{\lstinline|Tabs.find (url : regex) : Tab|}
 
 Возвращает первая вкладка, у которой URL подходит по регулярному выражению.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.findByTitle <string>template : Tab|}
+\subsubsection{\lstinline|Tabs.findByTitle (template : string) : Tab|}
 
 Возвращает первая вкладка, у которой название подходит по шаблону.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.findByTitle <regex>title : Tab|}
+\subsubsection{\lstinline|Tabs.findByTitle (title : regex) : Tab|}
 
 Возвращает первая вкладка, у которой название подходит по регулярному выражению.
 
@@ -587,7 +587,7 @@ for any Cookie {
 	\item \lstinline|Tab.close : void|;
 	\item \lstinline|Tab.focus : void|;
 	\item \lstinline|Tab.forward : void|;
-	\item \lstinline|Tab.get <string>url : bool|.
+	\item \lstinline|Tab.get (url : string) : bool|.
 \end{icItems}
 
 \subsubsection{\lstinline|[icL] [r/o] Tab'canGoBack : bool|}
@@ -646,11 +646,11 @@ URL страницы, открытой в указанной вкладке.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|Tab.get <string>url : bool|}
+\subsubsection{\lstinline|Tab.get (url : string) : bool|}
 
 Загружает страницу, URL должен быть абсолютным. Возвращает \true{} при удачной загрузке, иначе \false.
 
-\subsubsection{\lstinline|Tab.load <string>url : void|}
+\subsubsection{\lstinline|Tab.load (url : string) : void|}
 
 Загружает страницу, URL должен быть абсолютным. При неудаче генерирует ошибку.
 
@@ -660,47 +660,47 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \dom{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|DOM.query <int>by <string>selector : element|;
-	\item \lstinline|DOM.query <string>cssSelector : element|;
-	\item \lstinline|DOM.queryAll <int>by <string>selecor : element|;
-	\item \lstinline|DOM.queryAll <string>cssSelector : lement|;
-	\item \lstinline|DOM.queryAllByXPath <string>xpath : element|;
-	\item \lstinline|DOM.queryByXPath <string>xpath : element|;
-	\item \lstinline|DOM.queryLink <string>name <bool>isFragment = false : element|;
-	\item \lstinline|DOM.queryLinks <string>name <bool>isFragment = false : element|;
-	\item \lstinline|DOM.queryTag <string>name : element|;
-	\item \lstinline|DOM.queryTags <string>name : element|.
+	\item \lstinline|DOM.query (by : int, selector : string) : element|;
+	\item \lstinline|DOM.query (cssSelector : string) : element|;
+	\item \lstinline|DOM.queryAll (by : int, selecor : string) : element|;
+	\item \lstinline|DOM.queryAll (cssSelector : string) : lement|;
+	\item \lstinline|DOM.queryAllByXPath (xpath : string) : element|;
+	\item \lstinline|DOM.queryByXPath (xpath : string) : element|;
+	\item \lstinline|DOM.queryLink (name : string, isFragment = false) : element|;
+	\item \lstinline|DOM.queryLinks (name : string, isFragment = false) : element|;
+	\item \lstinline|DOM.queryTag (name : string) : element|;
+	\item \lstinline|DOM.queryTags (name : string) : element|.
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.query <int>by <string>selector : element|}
+\subsubsection{\lstinline|DOM.query (by : int, selector : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|DOM.query <string>cssSelector : element|}
+\subsubsection{\lstinline|DOM.query (cssSelector : string) : element|}
 
 Акроним для \lstinline|DOM.query By'cssSelector @cssSelector|.
 
-\subsubsection{\lstinline|DOM.queryAll <int>by <string>selecor : element|}
+\subsubsection{\lstinline|DOM.queryAll (by : int, selecor : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.queryAll|, только поиск ведётся по всему документу.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|DOM.queryAll <string>cssSelector : lement|}
+\subsubsection{\lstinline|DOM.queryAll (cssSelector : string) : lement|}
 
 Акроним для \lstinline|DOM.queryAll By'cssSelector @cssSelector|.
 
-\subsubsection{\lstinline|DOM.queryAllByXPath <string>xpath : element|}
+\subsubsection{\lstinline|DOM.queryAllByXPath (xpath : string) : element|}
 
 Акроним для \lstinline|DOM.queryAll By'xPath @xpath|.
 
-\subsubsection{\lstinline|DOM.queryByXPath <string>xpath : element|}
+\subsubsection{\lstinline|DOM.queryByXPath (xpath : string) : element|}
 
 Акроним для \lstinline|DOM.query By'xPath @xpath|.
 
-\subsubsection{\lstinline|DOM.queryLink <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|DOM.queryLink (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
@@ -708,7 +708,7 @@ URL страницы, открытой в указанной вкладке.
 	\item \lstinline|DOM.query By'partialLinkText @name|;
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.queryLinks <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|DOM.queryLinks (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
@@ -716,11 +716,11 @@ URL страницы, открытой в указанной вкладке.
 	\item \lstinline|DOM.queryAll By'partialLinkText @name|;
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.queryTag <string>name : element|}
+\subsubsection{\lstinline|DOM.queryTag (name : string) : element|}
 
 Акроним для \lstinline|DOM.query By'tagName @name|.
 
-\subsubsection{\lstinline|DOM.queryTags <string>name : element|}
+\subsubsection{\lstinline|DOM.queryTags (name : string) : element|}
 
 Акроним для \lstinline|DOM.queryAll By'tagName @name|.
 
@@ -728,31 +728,31 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \files{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|Files.open <string>path : File|;
-	\item \lstinline|Files.create <string>path : File|;
-	\item \lstinline|Files.createDir <string>path : void|;
-	\item \lstinline|Files.createPath <string>path : void|.
+	\item \lstinline|Files.open (path : string) : File|;
+	\item \lstinline|Files.create (path : string) : File|;
+	\item \lstinline|Files.createDir (path : string) : void|;
+	\item \lstinline|Files.createPath (path : string) : void|.
 \end{icItems}
 
-\subsubsection{\lstinline|Files.open <string>path : File|}
+\subsubsection{\lstinline|Files.open (path : string) : File|}
 
 Открывает файл.
 
 Возможные исключения: \ferror{FileNotFound}.
 
-\subsubsection{\lstinline|Files.create <string>path : File|}
+\subsubsection{\lstinline|Files.create (path : string) : File|}
 
 Открывает файл, если он не существует, он создаётся.
 
 Возможные исключения: \ferror{FolderNotFound}.
 
-\subsubsection{\lstinline|Files.createDir <string>path : void|}
+\subsubsection{\lstinline|Files.createDir (path : string) : void|}
 
 Создаёт папку, папка в которым она создаётся должна уже существовать.
 
 Возможные исключения: \ferror{FolderNotFound}.
 
-\subsubsection{\lstinline|Files.createPath <string>path : void|}
+\subsubsection{\lstinline|Files.createPath (path : string) : void|}
 
 Создаёт все несуществующие папки пути.
 
@@ -805,57 +805,57 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \make{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|Make.image <string>base64 <string>path : void|;
-	\item \lstinline|Make.int <string>str <int>base : int|;
-	\item \lstinline|Make.list <set>s : list|;
-	\item \lstinline|Make.object <string>json : object|;
-	\item \lstinline|Make.regex <string>pattern : regex|;
-	\item \lstinline|Make.string <bool>b : string|;
-	\item \lstinline|Make.string <double>d : string|;
-	\item \lstinline|Make.string <int>number <int>base : string|;
-	\item \lstinline|Make.string <object>obj : string|;
-	\item \lstinline|Make.string <set>s : string|.
+	\item \lstinline|Make.image (base64 : string, path : string) : void|;
+	\item \lstinline|Make.int (str : string, base : int) : int|;
+	\item \lstinline|Make.list (s : set) : list|;
+	\item \lstinline|Make.object (json : string) : object|;
+	\item \lstinline|Make.regex (pattern : string) : regex|;
+	\item \lstinline|Make.string (b : bool) : string|;
+	\item \lstinline|Make.string (d : double) : string|;
+	\item \lstinline|Make.string (number : int, base : int) : string|;
+	\item \lstinline|Make.string (obj : object) : string|;
+	\item \lstinline|Make.string (s : set) : string|.
 \end{icItems}
 
-\subsubsection{\lstinline|Make.image <string>base64 <string>path : void|}
+\subsubsection{\lstinline|Make.image (base64 : string, path : string) : void|}
 
 Сохраняет скриншот на жёстком диске.
 
-\subsubsection{\lstinline|Make.int <string>str <int>base : int|}
+\subsubsection{\lstinline|Make.int (str : string, base : int) : int|}
 
 Парсит целое число в виде строки в нужном базисе.
 
 Возможные исключения: \ferror{ParsingFailed}.
 
-\subsubsection{\lstinline|Make.list <set>s : list|}
+\subsubsection{\lstinline|Make.list (s : set) : list|}
 
 Акроним для \lstinline|set : list|.
 
-\subsubsection{\lstinline|Make.object <string>json : object|}
+\subsubsection{\lstinline|Make.object (json : string) : object|}
 
 Акроним для \lstinline|object : string|.
 
-\subsubsection{\lstinline|Make.regex <string>pattern : regex|}
+\subsubsection{\lstinline|Make.regex (pattern : string) : regex|}
 
 Создаёт регулярное выражение на основе паттерна.
 
-\subsubsection{\lstinline|Make.string <bool>b : string|}
+\subsubsection{\lstinline|Make.string (b : bool) : string|}
 
 Возвращает \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"false"|.
 
-\subsubsection{\lstinline|Make.string <double>d : string|}
+\subsubsection{\lstinline|Make.string (d : double) : string|}
 
 Акроним для \lstinline|double : string|.
 
-\subsubsection{\lstinline|Make.string <int>number <int>base : string|}
+\subsubsection{\lstinline|Make.string (number : int, base : int) : string|}
 
 Возвращает представления числа в заданном базисе.
 
-\subsubsection{\lstinline|Make.string <object>obj : string|}
+\subsubsection{\lstinline|Make.string (obj : object) : string|}
 
 Акроним для \lstinline|object : string|.
 
-\subsubsection{\lstinline|Make.string <set>s : string|}
+\subsubsection{\lstinline|Make.string (s : set) : string|}
 
 Акроним для \lstinline|set : string|.
 
@@ -863,30 +863,30 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \logtype{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|Log.error <string>message : void|;
-	\item \lstinline|Log.info <string>message : void|;
-	\item \lstinline|Log.out <any ...>args : void|;
-	\item \lstinline|Log.stack <any>var : void|;
-	\item \lstinline|Log.state <any>var : void|.
+	\item \lstinline|Log.error (message : string) : void|;
+	\item \lstinline|Log.info (message : string) : void|;
+	\item \lstinline|Log.out (<any ...>args) : void|;
+	\item \lstinline|Log.stack (var : any) : void|;
+	\item \lstinline|Log.state (var : any) : void|.
 \end{icItems}
 
-\subsubsection{\lstinline|Log.error <string>message : void|}
+\subsubsection{\lstinline|Log.error (message : string) : void|}
 
 Выводит сообщение об ошибке.
 
-\subsubsection{\lstinline|Log.info <string>message : void|}
+\subsubsection{\lstinline|Log.info (message : string) : void|}
 
 Выводит информационное сообщение.
 
-\subsubsection{\lstinline|Log.out <any ...>args : void|}
+\subsubsection{\lstinline|Log.out (<any ...>args) : void|}
 
 Выводит отладочное сообщение, принимает несколько параметров любого типа. При получении переменных выводит исходник, название перемены, тип данных и значение. При получении константных только значение. При получении результата выполнения функции - тип и значение. 
 
-\subsubsection{\lstinline|Log.stack <any>var : void|}
+\subsubsection{\lstinline|Log.stack (var : any) : void|}
 
 Выводит список всех стеков, указывая в каких из них встречается переменная с указанным именем, и какие значения имеются.
 
-\subsubsection{\lstinline|Log.state <any>var : void|}
+\subsubsection{\lstinline|Log.state (var : any) : void|}
 
 Выводит список всех состояний, указывая в каких из них встречается переменная с указанным именем, и какие значения имеются.
 
@@ -903,10 +903,10 @@ URL страницы, открытой в указанной вкладке.
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Numbers.process <int>a <int>b : int|;
-	\item \lstinline|Numbers.process <double>a <double>b : double|;
+	\item \lstinline|Numbers.process (a : int, b : int) : int|;
+	\item \lstinline|Numbers.process (a : double, b : double) : double|;
 	\item \lstinline|Numbers.restoreProcess : void|;
-	\item \lstinline|Numbers.setProcess <int>proc : void|.
+	\item \lstinline|Numbers.setProcess (proc : int) : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] Numbers'max : 4|}
@@ -929,11 +929,11 @@ URL страницы, открытой в указанной вкладке.
 
 Складывать числа.
 
-\subsubsection{\lstinline|Numbers.process <int>a <int>b : int|}
+\subsubsection{\lstinline|Numbers.process (a : int, b : int) : int|}
 
 Обработать целых чисел текущим методом.
 
-\subsubsection{\lstinline|Numbers.process <double>a <double>b : double|}
+\subsubsection{\lstinline|Numbers.process (a : double, b : double) : double|}
 
 Обработать дробных чисел текучим методом.
 
@@ -941,7 +941,7 @@ URL страницы, открытой в указанной вкладке.
 
 Удаляет последняя запись стека способов обработки.
 
-\subsubsection{\lstinline|Numbers.setProcess <int>proc : void|}
+\subsubsection{\lstinline|Numbers.setProcess (proc : int) : void|}
 
 Добавляет новая запись в стеке способов обработки.
 
@@ -966,23 +966,23 @@ URL страницы, открытой в указанной вкладке.
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Math.acos <double>v : double|;
-	\item \lstinline|Math.asin <double>v : double|;
-	\item \lstinline|Math.atan <double>v : double|;
-	\item \lstinline|Math.ceil <double>v : int|;
-	\item \lstinline|Math.cos <double>v : double|;
-	\item \lstinline|Math.degreesToRadians <double>v : double|;
-	\item \lstinline|Math.exp <double>v : double|;
-	\item \lstinline|Math.floor <double>v : int|;
-	\item \lstinline|Math.ln <double>v : double|;
-	\item \lstinline|Math.min <int ...>arr : int|;
-	\item \lstinline|Math.min <double ...>arr : double|;
-	\item \lstinline|Math.max <int ...>arr : int|;
-	\item \lstinline|Math.max <double ...>arr : double|;
-	\item \lstinline|Math.radiansToDegrees <double>v : double|;
-	\item \lstinline|Math.round <double> : int|;
-	\item \lstinline|Math.sin <double>v : double|;
-	\item \lstinline|Math.tan <double>v : double|.
+	\item \lstinline|Math.acos (v : double) : double|;
+	\item \lstinline|Math.asin (v : double) : double|;
+	\item \lstinline|Math.atan (v : double) : double|;
+	\item \lstinline|Math.ceil (v : double) : int|;
+	\item \lstinline|Math.cos (v : double) : double|;
+	\item \lstinline|Math.degreesToRadians (v : double) : double|;
+	\item \lstinline|Math.exp (v : double) : double|;
+	\item \lstinline|Math.floor (v : double) : int|;
+	\item \lstinline|Math.ln (v : double) : double|;
+	\item \lstinline|Math.min (<int ...>arr) : int|;
+	\item \lstinline|Math.min (<double ...>arr) : double|;
+	\item \lstinline|Math.max (<int ...>arr) : int|;
+	\item \lstinline|Math.max (<double ...>arr) : double|;
+	\item \lstinline|Math.radiansToDegrees (v : double) : double|;
+	\item \lstinline|Math.round (<double>) : int|;
+	\item \lstinline|Math.sin (v : double) : double|;
+	\item \lstinline|Math.tan (v : double) : double|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] Math'1divPi : double|}
@@ -1037,71 +1037,71 @@ URL страницы, открытой в указанной вкладке.
 
 Корень из числа 2 ($\sqrt{2}$).
 
-\subsubsection{\lstinline|Math.acos <double>v : double|}
+\subsubsection{\lstinline|Math.acos (v : double) : double|}
 
 Арккосинус ($\arccos{v}$).
 
-\subsubsection{\lstinline|Math.asin <double>v : double|}
+\subsubsection{\lstinline|Math.asin (v : double) : double|}
 
 Арксинус ($\arcsin{v}$).
 
-\subsubsection{\lstinline|Math.atan <double>v : double|}
+\subsubsection{\lstinline|Math.atan (v : double) : double|}
 
 Арктангенс ($\arctan{v}$).
 
-\subsubsection{\lstinline|Math.ceil <double>v : int|}
+\subsubsection{\lstinline|Math.ceil (v : double) : int|}
 
 Наименьшее целое число больше или равна \code{v}.
 
-\subsubsection{\lstinline|Math.cos <double>v : double|}
+\subsubsection{\lstinline|Math.cos (v : double) : double|}
 
 Косинус ($\cos{v}$).
 
-\subsubsection{\lstinline|Math.degreesToRadians <double>v : double|}
+\subsubsection{\lstinline|Math.degreesToRadians (v : double) : double|}
 
 Преобразует градусы в радианы.
 
-\subsubsection{\lstinline|Math.exp <double>v : double|}
+\subsubsection{\lstinline|Math.exp (v : double) : double|}
 
 Функция экспонент ($\exp{v}$).
 
-\subsubsection{\lstinline|Math.floor <double>v : int|}
+\subsubsection{\lstinline|Math.floor (v : double) : int|}
 
 Наибольшее целое число меньше или равна \code{v}.
 
-\subsubsection{\lstinline|Math.ln <double>v : double|}
+\subsubsection{\lstinline|Math.ln (v : double) : double|}
 
 Натуральный логарифм ($\ln{v}$).
 
-\subsubsection{\lstinline|Math.min <int ...>arr : int|}
+\subsubsection{\lstinline|Math.min (<int ...>arr) : int|}
 
 Возвращает наименьшее целое число.
 
-\subsubsection{\lstinline|Math.min <double ...>arr : double|}
+\subsubsection{\lstinline|Math.min (<double ...>arr) : double|}
 
 Возвращает наименьшее дробное число.
 
-\subsubsection{\lstinline|Math.max <int ...>arr : int|}
+\subsubsection{\lstinline|Math.max (<int ...>arr) : int|}
 
 Возвращает наибольшее целое число.
 
-\subsubsection{\lstinline|Math.max <double ...>arr : double|}
+\subsubsection{\lstinline|Math.max (<double ...>arr) : double|}
 
 Возвращает наибольшее дробное число.
 
-\subsubsection{\lstinline|Math.radiansToDegrees <double>v : double|}
+\subsubsection{\lstinline|Math.radiansToDegrees (v : double) : double|}
 
 Преобразует радианы в градусы.
 
-\subsubsection{\lstinline|Math.round <double> : int|}
+\subsubsection{\lstinline|Math.round (<double>) : int|}
 
 Возвращает ближайшее целое число.
 
-\subsubsection{\lstinline|Math.sin <double>v : double|}
+\subsubsection{\lstinline|Math.sin (v : double) : double|}
 
 Синус ($\sin{v}$).
 
-\subsubsection{\lstinline|Math.tan <double>v : double|}
+\subsubsection{\lstinline|Math.tan (v : double) : double|}
 
 Тангенс ($\tan{v}$).
 
@@ -1109,42 +1109,42 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \lstinline|Import| имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|Import.none <object>data <string>path : void|;
-	\item \lstinline|Import.none <string>path : void|;
-	\item \lstinline|Import.functions <object>data <string>path : void|;
-	\item \lstinline|Import.functions <string>path : void|;
-	\item \lstinline|Import.all <object>data <string>path : void|;
-	\item \lstinline|Import.all <string>path : void|;
-	\item \lstinline|Import.run <string>path : void|.
+	\item \lstinline|Import.none (data : object, path : string) : void|;
+	\item \lstinline|Import.none (path : string) : void|;
+	\item \lstinline|Import.functions (data : object, path : string) : void|;
+	\item \lstinline|Import.functions (path : string) : void|;
+	\item \lstinline|Import.all (data : object, path : string) : void|;
+	\item \lstinline|Import.all (path : string) : void|;
+	\item \lstinline|Import.run (path : string) : void|.
 \end{icItems}
 
 Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
 
-\subsubsection{\lstinline|Import.none <object>data <string>path : void|}
+\subsubsection{\lstinline|Import.none (data : object, path : string) : void|}
 
 Создаёт изолируемый контекст, в нём выполняет файл.
 
-\subsubsection{\lstinline|Import.none <string>path : void|}
+\subsubsection{\lstinline|Import.none (path : string) : void|}
 
 Акроним для \lstinline|Import.none [<>] @path|.
 
-\subsubsection{\lstinline|Import.functions <object>data <string>path : void|}
+\subsubsection{\lstinline|Import.functions (data : object, path : string) : void|}
 
 Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции в текущем контексте.
 
-\subsubsection{\lstinline|Import.functions <string>path : void|}
+\subsubsection{\lstinline|Import.functions (path : string) : void|}
 
 Акроним для \lstinline|Import.functions [<>] @path|.
 
-\subsubsection{\lstinline|Import.all <object>data <string>path : void|}
+\subsubsection{\lstinline|Import.all (data : object, path : string) : void|}
 
 Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции и глобальные переменный в текущем контексте.
 
-\subsubsection{\lstinline|Import.all <string>path : void|}
+\subsubsection{\lstinline|Import.all (path : string) : void|}
 
 Акроним для \lstinline|Import.all [<>] @path|.
 
-\subsubsection{\lstinline|Import.run <string>path : void|}
+\subsubsection{\lstinline|Import.run (path : string) : void|}
 
 Выполняет файл в текущем контексте.
 

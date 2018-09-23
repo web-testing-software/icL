@@ -6,13 +6,13 @@
 
 Для ожиданий предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|Wait.title <object>data : bool|;
-	\item \lstinline|Wait.url <object>data : bool|;
-	\item \lstinline|Wait.for <element>el <object>data : bool|;
-	\item \lstinline|Wait.ajax <object>data : bool|.
+	\item \lstinline|Wait.title (data : object) : bool|;
+	\item \lstinline|Wait.url (data : object) : bool|;
+	\item \lstinline|Wait.for (el : element, data : object) : bool|;
+	\item \lstinline|Wait.ajax (data : object) : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|Wait.title <object>data : bool|}
+\subsubsection{\lstinline|Wait.title (data : object) : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -21,7 +21,7 @@
 	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|Wait.url <object>data : bool|}
+\subsubsection{\lstinline|Wait.url (data : object) : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -30,7 +30,7 @@
 	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|Wait.for <element>el <object>data : bool|}
+\subsubsection{\lstinline|Wait.for (el : element, data : object) : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -47,7 +47,7 @@
 	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
 \end{icItems}
 
-\subsubsection{\lstinline|Wait.ajax <object>data : bool|}
+\subsubsection{\lstinline|Wait.ajax (data : object) : bool|}
 
 Объект \code{data} может иметь следующие поля:
 \begin{icItems}
@@ -61,30 +61,30 @@
 
 Для работы с клавиатуры предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|element.keyDown <int>modifiers <string>key : element|;
-	\item \lstinline|element.keyUp <int>modifiers <string>key : element|;
-	\item \lstinline|element.keyPress <int>modifiers <int>delay <string>keys : element|;
-	\item \lstinline|element.fastType <string>text : element|;
-	\item \lstinline|element.paste <string>text : element|.
+	\item \lstinline|element.keyDown (modifiers : int, key : string) : element|;
+	\item \lstinline|element.keyUp (modifiers : int, key : string) : element|;
+	\item \lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|;
+	\item \lstinline|element.fastType (text : string) : element|;
+	\item \lstinline|element.paste (text : string) : element|.
 \end{icItems}
 
-\subsubsection{\lstinline|element.keyDown <int>modifiers <text>keys : element|}
+\subsubsection{\lstinline|element.keyDown (modifiers : int, keys : text) : element|}
 
 Симулирует нажатия кнопки.
 
-\subsubsection{\lstinline|element.keyUp <int>modifiers <text> : element|}
+\subsubsection{\lstinline|element.keyUp (modifiers : int, <text>) : element|}
 
 Симулирует отпускания кнопки.
 
-\subsubsection{\lstinline|element.keyPress <int>modifiers <int>delay <string>keys : element|}
+\subsubsection{\lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|}
 
 Симулирует процесс печати на клавиатуре с установленной задержкой.
 
-\subsubsection{\lstinline|element.fastType <string>text : element|}
+\subsubsection{\lstinline|element.fastType (text : string) : element|}
 
 Симулирует процесс нажатия на клавиатуре с максимальной скоростью.
 
-\subsubsection{\lstinline|element.paste <string>text : element|}
+\subsubsection{\lstinline|element.paste (text : string) : element|}
 
 Копирует текст в буфер обмена, фокусирует элемент и вставит текст.
 
@@ -93,10 +93,10 @@
 
 Для работы с мышкой предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|element.click <object>data : element|;
-	\item \lstinline|element.mouseDown <object>data : element|;
-	\item \lstinline|element.mouseUp <object>data : element|;
-	\item \lstinline|element.hover <object>data : element|.
+	\item \lstinline|element.click (data : object) : element|;
+	\item \lstinline|element.mouseDown (data : object) : element|;
+	\item \lstinline|element.mouseUp (data : object) : element|;
+	\item \lstinline|element.hover (data : object) : element|.
 \end{icItems}
 
 В следующих функциях объект \code{data} может иметь следующие поля:
@@ -114,7 +114,7 @@
 	\item \lstinline|[r/w] @data'ay : int| - относительная координата от верхнего края элемента.
 \end{icItems}
 
-\subsubsection{\lstinline|element.click <object>data : element|}
+\subsubsection{\lstinline|element.click (data : object) : element|}
 
 Симулирует клик. Объект \code{data} имеет следующие дополнительные свойства:
 \begin{icItems}
@@ -122,15 +122,15 @@
 	\item \lstinline|[r/w] @data'count : int| - количество симулированных кликов.
 \end{icItems}
 
-\subsubsection{\lstinline|element.mouseDown <object>data : element|}
+\subsubsection{\lstinline|element.mouseDown (data : object) : element|}
 
 Симулирует нажатие кнопки мышки.
 
-\subsubsection{\lstinline|element.mouseUp <object>data : element|}
+\subsubsection{\lstinline|element.mouseUp (data : object) : element|}
 
 Симулирует отпускание кнопки мышки.
 
-\subsubsection{\lstinline|element.hover <object>data : element|}
+\subsubsection{\lstinline|element.hover (data : object) : element|}
 
 Перемещает мышку над элементом. \code{data} имеет следующие дополнительные свойства:
 \begin{icItems}

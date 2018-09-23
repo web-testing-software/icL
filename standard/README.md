@@ -39,7 +39,7 @@ __21-22.09.2018__
  * [+] Change parameter syntax from &lt;type&gt;name to name : type, the set
    changes from [&lt;**int**&gt;*age* &lt;**string**&gt;*name*] to 
    [*age* : **int**, *name* : **string**], the empty set will look like [:].
- * [/] Change function syntax from !*name* = **params** : **type** {} to *name*
+ * [+] Change function syntax from !*name* = **params** : **type** {} to *name*
    = (**params**) : **type** {}, restict first upper case letter in function
    name, with the previous changes the function declaration will look like
    *func* = (*@arg1* : **int**, *@arg2* : **string**) : **string** {}.

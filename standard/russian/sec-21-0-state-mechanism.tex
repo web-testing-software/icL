@@ -11,14 +11,14 @@
 
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
-	\item \lstinline|[r/o] Stacks'(<string>name) : Stack|;
+	\item \lstinline|[r/o] Stacks'(name : string) : Stack|;
 	\item \lstinline|Stack.clear : void|;
 	\item \lstinline|Stack.continue : void|;
 	\item \lstinline|Stack.break : void|;
-	\item \lstinline|Stack.return <any>value : void|.
+	\item \lstinline|Stack.return (value : any) : void|.
 \end{icItems}
 
-\subsubsection{[r/o] \lstinline|Stacks'(<string>name) : Stack|}
+\subsubsection{[r/o] \lstinline|Stacks'(name : string) : Stack|}
 
 Возвращает контейнер имеющий имя \code{name}. Наименование контейнера имеет следующий синтаксис -
 \begin{lstlisting}[numbers=none]
@@ -28,7 +28,7 @@
 \end{lstlisting}
 Могут быть именованными только блоки команд (код ограничен круглыми скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт контейнер имеющий название функций.
 
-\subsubsection{\lstinline|Stack'(<string>name) : any|}
+\subsubsection{\lstinline|Stack'(name : string) : any|}
 
 Возвращает переменную, находящаяся именно в этом контейнере. Например: уже существует переменная \code{i} в родительском контейнере, нужно определить переменная с таким же именем в текущем контексте. Проблема решается следующим образом: \lstinline|Stack'i = 0| вместо \lstinline|@i = 0|.
 
@@ -48,7 +48,7 @@
 
 Возможные исключения: \ferror{InvalidArgument}.
 
-\subsubsection{\lstinline|Stack.return <any>value : void|}
+\subsubsection{\lstinline|Stack.return (value : any) : void|}
 
 Возвращает результат выполнения функции во внешней среды.
 
@@ -90,11 +90,11 @@
 
 Возвращает последнее состояние в виде объекта.
 
-\subsubsection{\lstinline|States.new <object>data = [<>] : void|}
+\subsubsection{\lstinline|States.new (data = [<>]) : void|}
 
 Создаёт новое состояние после текущей и переключает фокус на ней. Все данные объекта \code{data} добавляются в новом контейнере.
 
-\subsubsection{\lstinline|States.newAtEnd <object>data = [<>] : void|}
+\subsubsection{\lstinline|States.newAtEnd (data = [<>]) : void|}
 
 Создаёт новое состояние в конце, не переключает фокус на ней. Все данные объекта \code{data} добавляются в новом контейнере.
 

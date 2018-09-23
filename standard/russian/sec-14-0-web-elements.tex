@@ -143,18 +143,18 @@
 \begin{icItems}
 	\item \lstinline|element.clear : element|;
 	\item \lstinline|element.click : element|;
-	\item \lstinline|element.query <string>cssSelector : element|;
-	\item \lstinline|element.query <int>by <string>selector : element|;
-	\item \lstinline|element.queryAll <string>cssSelector : element|;
-	\item \lstinline|element.queryAll <int>by <string>selector : element|;
-	\item \lstinline|element.queryAllByXPath <string>xpath : element|;
-	\item \lstinline|element.queryByXPath <string>xpath : element|;
-	\item \lstinline|element.queryLink <string>name <bool>isFragment = false : element|;
-	\item \lstinline|element.queryLinks <string>name <bool>isFragment = false : element|;
-	\item \lstinline|element.queryTag <string>name : element|;
-	\item \lstinline|element.queryTags <string>name : element|;
+	\item \lstinline|element.query (cssSelector : string) : element|;
+	\item \lstinline|element.query (by : int, selector : string) : element|;
+	\item \lstinline|element.queryAll (cssSelector : string) : element|;
+	\item \lstinline|element.queryAll (by : int, selector : string) : element|;
+	\item \lstinline|element.queryAllByXPath (xpath : string) : element|;
+	\item \lstinline|element.queryByXPath (xpath : string) : element|;
+	\item \lstinline|element.queryLink (name : string, isFragment = false) : element|;
+	\item \lstinline|element.queryLinks (name : string, isFragment = false) : element|;
+	\item \lstinline|element.queryTag (name : string) : element|;
+	\item \lstinline|element.queryTags (name : string) : element|;
 	\item \lstinline|element.screenshot : string|;
-	\item \lstinline|element.sendKeys <int>modifiers <string>text : element|;
+	\item \lstinline|element.sendKeys (modifiers : int, text : string) : element|;
 \end{icItems}
 
 \subsubsection{\lstinline|element.clear : element|}
@@ -173,11 +173,11 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.query <string>cssSelector : element|}
+\subsubsection{\lstinline|element.query (cssSelector : string) : element|}
 
 Акроним для \lstinline|element.query By'cssSelector @cssSelector|; 
 
-\subsubsection{\lstinline|element.query <int>by <string>selector : element|}
+\subsubsection{\lstinline|element.query (by : int, selector : string) : element|}
 
 Параметр \code{by} получает одно из следующих значений:
 \begin{icItems}
@@ -196,11 +196,11 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
+\subsubsection{\lstinline|element.queryAll (cssSelector : string) : element|}
 
 Акроним для \lstinline|element.queryAll By'cssSelector @cssSelector|;
 
-\subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
+\subsubsection{\lstinline|element.queryAll (by : int, selector : string) : element|}
 
 Параметры получают такие же значения, как и в случае с \code{element.query}, только данный метод возвращает коллекцию найденных элементов или пустую коллекцию если ничего не нашлось.
 
@@ -208,15 +208,15 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
+\subsubsection{\lstinline|element.queryAllByXPath (xpath : string) : element|}
 
 Акроним для \lstinline|element.queryAll By'xPath @xpath|;
 
-\subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
+\subsubsection{\lstinline|element.queryByXPath (xpath : string) : element|}
 
 Акроним для \lstinline|element.query By'xPath @xpath|;
 
-\subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|element.queryLink (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
@@ -224,7 +224,7 @@
 	\item \lstinline|element.query By'partialLinkText @name|.
 \end{icItems}
 
-\subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|element.queryLinks (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
@@ -232,21 +232,21 @@
 	\item \lstinline|element.queryAll By'partialLinkText @name|.
 \end{icItems}
 
-\subsubsection{\lstinline|element.queryTag <string>name : element|}
+\subsubsection{\lstinline|element.queryTag (name : string) : element|}
 
 Акроним для \lstinline|element.query By'tagName @name|;
 
-\subsubsection{\lstinline|element.queryTags <string>name : element|}
+\subsubsection{\lstinline|element.queryTags (name : string) : element|}
 
 Акроним для \lstinline|element.queryAll By'tagName @name|;
 
 \subsubsection{\lstinline|element.screenshot : string|}
 
-Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|Make.image <string>base64 <string>path : void|.
+Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|Make.image (base64 : string, path : string) : void|.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
+\subsubsection{\lstinline|element.sendKeys (modifiers : int, text : string) : element|}
 
 Параметр \code{modifiers} получает один из следующих параметров (или сумма нескольких из них):
 \begin{icItems}
@@ -265,37 +265,37 @@
 
 Перечень расширенных методов:
 \begin{icItems}
-	\item \lstinline|element.add <element>other : element|;
-	\item \lstinline|element.child <int>index : element|;
-	\item \lstinline|element.closest <string>cssSelector : element|;
-	\item \lstinline|element.contains <string>text <bool>asFragment = false : element|;
+    \item \lstinline|element.add (other : element) : element|;
+	\item \lstinline|element.child (index : int) : element|;
+	\item \lstinline|element.closest (cssSelector : string) : element|;
+	\item \lstinline|element.contains (text : string, asFragment = false) : element|;
 	\item \lstinline|element.copy : element|;
-	\item \lstinline|element.get <int>i : element|;
-	\item \lstinline|element.filter <string>cssSelector : element|;
+	\item \lstinline|element.get (i : int) : element|;
+	\item \lstinline|element.filter (cssSelector : string) : element|;
 	\item \lstinline|element.next : element|;
 	\item \lstinline|element.prev : element|;
 	\item \lstinline|element.parent : element|;
 \end{icItems}
 
-\subsubsection{\lstinline|element.add <element>other : element|}
+\subsubsection{\lstinline|element.add (other : element) : element|}
 
 Добавит все элементы коллекции \code{other}.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.child <int>i : element|}
+\subsubsection{\lstinline|element.child (i : int) : element|}
 
 Возвращает новый элемент, содержащая \code{i}-й дочерний элемент.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|element.closest <string>cssSelector : element|}
+\subsubsection{\lstinline|element.closest (cssSelector : string) : element|}
 
 Возвращает новый элемент, содержащая ближайший родительский элемент, который подходит по селектору \code{cssSelector}.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.contains <string>text <bool>asFragment = false : element|}
+\subsubsection{\lstinline|element.contains (text : string, asFragment = false) : element|}
 
 Возвращает новая коллекция, содержащая все элементы, которые содержат текст/фрагмент \code{text}.
 
@@ -307,13 +307,13 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.get <int>i : element|}
+\subsubsection{\lstinline|element.get (i : int) : element|}
 
 Возвращает i-й элемент коллекции.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|element.filter <string>cssSelector : element|}
+\subsubsection{\lstinline|element.filter (cssSelector : string) : element|}
 
 Возвращает новая коллекция, содержащая все элементы, которые подходят по селектору \code{cssSelector}.
 
