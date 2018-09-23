@@ -7,7 +7,7 @@ engish, russian and moldavian.
 
 __18.09.2018__
 
- * [+] Rename _tab.get -> _tab.load.
+ * [+] Rename _tab.get -&gt; _tab.load.
  * [+] Add new method _tab.get, which doesn't generate signals, just return
    true on success otherwise false.
  * [+] Remove _stacks'(int).
@@ -20,8 +20,8 @@ __18.09.2018__
  * [+] Remove _stacks.forany.
  * [+] Remove _stacks.range.
  * [+] Remove _stacks.filter.
- * [+] Change _stacks.break -> aviable just for loops.
- * [+] Add _stack.return -> especially for functions.
+ * [+] Change _stacks.break -&gt; aviable just for loops.
+ * [+] Add _stack.return -&gt; especially for functions.
  * [+] Rename all System data types to first uppercase names and remove
    underline (_)
  * [+] Add States'first, States'last, States'next, States'prev : object, to get
@@ -33,12 +33,12 @@ __21-22.09.2018__
 
  * [/] Add comma delimiter beetwen grouped values, the list changes from
    [**"str1"** **"str2"** **"str3"**] to [**"str1"**, **"str2"**, **"str3"**].
- * [/] Change object field syntax from <value>name to name = value, the objects
-   changes from [<**23**>*age* <**"Alice"**>*name*] to [*age* = **23**, *name*
-   = **"Alice"**], the empty object will look like [=].
- * [/] Change parameter syntax from <type>name to name : type, the set changes
-   from [<**int**>*age* <**string**>*name*] to [*age* : **int**, *name* :
-   **string**], the empty set will look like [:].
+ * [/] Change object field syntax from &lt;value&gt;name to name = value, the 
+   objects changes from [&lt;**23**&gt;*age* &lt;**"Alice"**&gt;*name*] to 
+   [*age* = **23**, *name* = **"Alice"**], the empty object will look like [=].
+ * [/] Change parameter syntax from &lt;type&gt;name to name : type, the set 
+   changes from [&lt;**int**&gt;*age* &lt;**string**&gt;*name*] to 
+   [*age* : **int**, *name* : **string**], the empty set will look like [:].
  * [/] Change function syntax from !*name* = **params** : **type** {} to *name*
    = (**params**) : **type** {}, restict first upper case letter in function
    name, with the previous changes the function declaration will look like
@@ -46,7 +46,8 @@ __21-22.09.2018__
  * [/] Change the function call syntax from !name args... to name (args..),
    beetwen arguments needs to be comma delimiter.
  * [/] Brackets may be skiped if the number of args is equal with **1**.
- * [/] Change the operator **<<** to **<** and **>>** to **>**.
+ * [/] Change the operator **&lt;&lt;** to **&lt;** and **&gt;&gt;** to 
+   **&gt;**.
  * [/] Add autofinish of commands.
  * [/] Now the underline (_) symbol can be used in variables names.
  * [/] Add datetime type (equivalent to QDateTime), with the next properties
@@ -59,7 +60,7 @@ __21-22.09.2018__
  * [/] Add **m** : **m** operations, cast each variable in diferent type.
  * [/] Add default values for functiuons params.
  * [/] Rename **ICL** to **icL**, **DOM** to **Doc**.
- * [/] Add new operator **!<**, inversion of **<<**.
+ * [/] Add new operator **!&lt;**, inversion of **&lt;&lt;**.
  * [/] Add **~** sign, which permite to generate void object.
  * [/] Add default values to functions parameters, syntax func =
    (**@var** = **value**, **@var2** : **int**) {}, the default values must be 
