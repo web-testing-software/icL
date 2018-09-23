@@ -36,7 +36,7 @@ __21-22.09.2018__
  * [/] Change object field syntax from &lt;value&gt;name to name = value, the 
    objects changes from [&lt;**23**&gt;*age* &lt;**"Alice"**&gt;*name*] to 
    [*age* = **23**, *name* = **"Alice"**], the empty object will look like [=].
- * [/] Change parameter syntax from &lt;type&gt;name to name : type, the set 
+ * [+] Change parameter syntax from &lt;type&gt;name to name : type, the set
    changes from [&lt;**int**&gt;*age* &lt;**string**&gt;*name*] to 
    [*age* : **int**, *name* : **string**], the empty set will look like [:].
  * [/] Change function syntax from !*name* = **params** : **type** {} to *name*
