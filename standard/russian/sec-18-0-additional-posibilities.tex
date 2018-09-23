@@ -17,9 +17,9 @@
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Sessions.closeAll : void|;
+	\item \lstinline|Sessions.closeAll () : void|;
 	\item \lstinline|Sessions.get (i : int) : Session|;
-	\item \lstinline|Sessions.new : Session|.
+	\item \lstinline|Sessions.new () : Session|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] Sessions'length : int|}
@@ -32,7 +32,7 @@
 
 Возможные исключения: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|Sessions.closeAll : void|}
+\subsubsection{\lstinline|Sessions.closeAll () : void|}
 
 Закрывает всех сессий.
 
@@ -42,7 +42,7 @@
 
 Возможные исключения: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|Sessions.new : Session|}
+\subsubsection{\lstinline|Sessions.new () : Session|}
 
 Отрывает новую сессию.
 
@@ -64,12 +64,12 @@
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Session.back : Session|;
-	\item \lstinline|Session.close : void|;
-	\item \lstinline|Session.forward : Session|;
-	\item \lstinline|Session.refresh : Session|;
-	\item \lstinline|Session.screenshot : string|;
-	\item \lstinline|Session.switchTo : Session|.
+	\item \lstinline|Session.back () : Session|;
+	\item \lstinline|Session.close () : void|;
+	\item \lstinline|Session.forward () : Session|;
+	\item \lstinline|Session.refresh () : Session|;
+	\item \lstinline|Session.screenshot () : string|;
+	\item \lstinline|Session.switchTo () : Session|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/w] Session'implicitTimeout : int|}
@@ -108,37 +108,37 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Session.back : Session|}
+\subsubsection{\lstinline|Session.back () : Session|}
 
 Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|Session.close : void|}
+\subsubsection{\lstinline|Session.close () : void|}
 
 Прекращает сессию. Все вкладки будут закрыты.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
 
-\subsubsection{\lstinline|Session.forward : Session|}
+\subsubsection{\lstinline|Session.forward () : Session|}
 
 Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|Session.refresh : Session|}
+\subsubsection{\lstinline|Session.refresh () : Session|}
 
 Перезагружает страницу.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|Session.screenshot : string|}
+\subsubsection{\lstinline|Session.screenshot () : string|}
 
 Возвращает скриншот, изображение кодируется в строке base64.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
 
-\subsubsection{\lstinline|Session.switchTo : Session|}
+\subsubsection{\lstinline|Session.switchTo () : Session|}
 
 Переключает активную сессию.
 
@@ -186,16 +186,16 @@
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Window.close : void|;
-	\item \lstinline|Window.focus : Window|;
-	\item \lstinline|Window.fullscreen : Window|;
-	\item \lstinline|Window.maximize : Window|;
-	\item \lstinline|Window.minimize : Window|;
-	\item \lstinline|Window.restore : Window|;
-	\item \lstinline|Window.switchToDefault : Window|;
+	\item \lstinline|Window.close () : void|;
+	\item \lstinline|Window.focus () : Window|;
+	\item \lstinline|Window.fullscreen () : Window|;
+	\item \lstinline|Window.maximize () : Window|;
+	\item \lstinline|Window.minimize () : Window|;
+	\item \lstinline|Window.restore () : Window|;
+	\item \lstinline|Window.switchToDefault () : Window|;
 	\item \lstinline|Window.switchToFrame (i : int) : Window|;
 	\item \lstinline|Window.switchToFrame (el : element) : Window|;
-	\item \lstinline|Window.switchToParent : Window|.
+	\item \lstinline|Window.switchToParent () : Window|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/w] Window'height : int|}
@@ -222,43 +222,43 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
 
-\subsubsection{\lstinline|Window.close : void|}
+\subsubsection{\lstinline|Window.close () : void|}
 
 Закрывает окну, если она последняя закрывается и сессию.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.focus : Window|}
+\subsubsection{\lstinline|Window.focus () : Window|}
 
 Делает окну активной.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.fullscreen : Window|}
+\subsubsection{\lstinline|Window.fullscreen () : Window|}
 
 Переключает режим отображения окна на полный экран.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.maximize : Window|}
+\subsubsection{\lstinline|Window.maximize () : Window|}
 
 Распахнет окно.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.minimize : Window|}
+\subsubsection{\lstinline|Window.minimize () : Window|}
 
 Свернёт окно.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.restore : Window|}
+\subsubsection{\lstinline|Window.restore () : Window|}
 
 Восстановит окно в нормальном режиме.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Window.switchToDefault : Window|}
+\subsubsection{\lstinline|Window.switchToDefault () : Window|}
 
 Переключает фокус на главный frame.
 
@@ -276,7 +276,7 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|Window.switchToParent : Window|}
+\subsubsection{\lstinline|Window.switchToParent () : Window|}
 
 Переключает фокус на родительский frame.
 
@@ -288,7 +288,7 @@
 
 И следующие методы: 
 \begin{icItems}
-	\item \lstinline|Cookies.deleteAll : void|;
+	\item \lstinline|Cookies.deleteAll () : void|;
 	\item \lstinline|Cookies.get (name : string) : Cookie|.
 \end{icItems}
 
@@ -298,7 +298,7 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
-\subsubsection{\lstinline|Cookies.deleteAll : void|}
+\subsubsection{\lstinline|Cookies.deleteAll () : void|}
 
 Удаляет всеx существующих cookie.
 
@@ -324,9 +324,9 @@
 И следующие методы:
 \begin{icItems}
 	\item \lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0|\\*, \lstinline|seconds = 0) : Cookie|;
-	\item \lstinline|Cookie.load : Cookie|;
-	\item \lstinline|Cookie.resetTime : Cookie|;
-	\item \lstinline|Cookie.save : Cookie|.
+	\item \lstinline|Cookie.load () : Cookie|;
+	\item \lstinline|Cookie.resetTime () : Cookie|;
+	\item \lstinline|Cookie.save () : Cookie|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/w] Cookie'domain : string|}
@@ -361,17 +361,17 @@
 
 Добавляет к сроку годности ножное количество лет, месяцев, дней, часов, минут и секунд.
 
-\subsubsection{\lstinline|Cookie.load : Cookie|}
+\subsubsection{\lstinline|Cookie.load () : Cookie|}
 
 Загружает данные о cookie с браузера.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
 
-\subsubsection{\lstinline|Cookie.resetTime : Cookie|}
+\subsubsection{\lstinline|Cookie.resetTime () : Cookie|}
 
 Сбросит строк на текущее время. Например установить срок годности год: \lstinline|Cookie.resetTime.add 1 0 0|.
 
-\subsubsection{\lstinline|Cookie.save : Cookie|}
+\subsubsection{\lstinline|Cookie.save () : Cookie|}
 
 Сохраняет изменения в браузере.
 
@@ -398,8 +398,8 @@ for any Cookie {
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Alert.accept : void|;
-	\item \lstinline|Alert.dismiss : void|;
+	\item \lstinline|Alert.accept () : void|;
+	\item \lstinline|Alert.dismiss () : void|;
 	\item \lstinline|Alert.sendKeys (keys : string) : void|.
 \end{icItems}
 
@@ -409,13 +409,13 @@ for any Cookie {
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
-\subsubsection{\lstinline|Alert.accept : void|}
+\subsubsection{\lstinline|Alert.accept () : void|}
 
 Принимает предупреждению.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
 
-\subsubsection{\lstinline|Alert.dismiss : void|}
+\subsubsection{\lstinline|Alert.dismiss () : void|}
 
 Отменяет предупреждению.
 
@@ -449,9 +449,9 @@ for any Cookie {
 	\item \lstinline|Tabs.close (url : regex) : int|;
 	\item \lstinline|Tabs.closeByTitle (template : string) : int|;
 	\item \lstinline|Tabs.closeByTitle (title : regex) : int|;
-	\item \lstinline|Tabs.closeOthers : int|;
-	\item \lstinline|Tabs.closeToLeft : int|;
-	\item \lstinline|Tabs.closeToRight : int|;
+	\item \lstinline|Tabs.closeOthers () : int|;
+	\item \lstinline|Tabs.closeToLeft () : int|;
+	\item \lstinline|Tabs.closeToRight () : int|;
 	\item \lstinline|Tabs.find (template : string) : Tab|;
 	\item \lstinline|Tabs.find (url : regex) : Tab|;
 	\item \lstinline|Tabs.findByTitle (template : string) : Tab|;
@@ -527,19 +527,19 @@ for any Cookie {
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.closeOthers : int|}
+\subsubsection{\lstinline|Tabs.closeOthers () : int|}
 
 Закрывает все вкладки кроме текущей. Возвращает количество закрытых вкладок.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.closeToLeft : int|}
+\subsubsection{\lstinline|Tabs.closeToLeft () : int|}
 
 Закрывает все вкладки которые находится с лева от текущей. Возвращает количество закрытых вкладок.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tabs.closeToRight : int|}
+\subsubsection{\lstinline|Tabs.closeToRight () : int|}
 
 Закрывает все вкладки которые находится с права от текущей. Возвращает количество закрытых вкладок.
 
@@ -583,10 +583,10 @@ for any Cookie {
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Tab.back : void|;
-	\item \lstinline|Tab.close : void|;
-	\item \lstinline|Tab.focus : void|;
-	\item \lstinline|Tab.forward : void|;
+	\item \lstinline|Tab.back () : void|;
+	\item \lstinline|Tab.close () : void|;
+	\item \lstinline|Tab.focus () : void|;
+	\item \lstinline|Tab.forward () : void|;
 	\item \lstinline|Tab.get (url : string) : bool|.
 \end{icItems}
 
@@ -622,25 +622,25 @@ URL страницы, открытой в указанной вкладке.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Tab.back : void|}
+\subsubsection{\lstinline|Tab.back () : void|}
 
 Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|Tab.close : void|}
+\subsubsection{\lstinline|Tab.close () : void|}
 
 Закрывает окну, если она последняя закрывается и сессию.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
-\subsubsection{\lstinline|Tab.focus : void|}
+\subsubsection{\lstinline|Tab.focus () : void|}
 
 Переключает фокус на вкладку. Фокус можно менять только внутри активной сессии.
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|Tab.forward : void|}
+\subsubsection{\lstinline|Tab.forward () : void|}
 
 Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
 
@@ -769,8 +769,8 @@ URL страницы, открытой в указанной вкладке.
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|File.close : void|;
-	\item \lstinline|File.delete : void|.
+	\item \lstinline|File.close () : void|;
+	\item \lstinline|File.delete () : void|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] File'CSV : 1|}
@@ -793,11 +793,11 @@ URL страницы, открытой в указанной вкладке.
 
 Возвращает \true, если файл инициализированный, иначе \false.
 
-\subsubsection{\lstinline|File.close : void|}
+\subsubsection{\lstinline|File.close () : void|}
 
 Закрывает файл.
 
-\subsubsection{\lstinline|File.delete : void|}
+\subsubsection{\lstinline|File.delete () : void|}
 
 Удаляет файл.
 
@@ -905,7 +905,7 @@ URL страницы, открытой в указанной вкладке.
 \begin{icItems}
 	\item \lstinline|Numbers.process (a : int, b : int) : int|;
 	\item \lstinline|Numbers.process (a : double, b : double) : double|;
-	\item \lstinline|Numbers.restoreProcess : void|;
+	\item \lstinline|Numbers.restoreProcess () : void|;
 	\item \lstinline|Numbers.setProcess (proc : int) : void|.
 \end{icItems}
 
@@ -937,7 +937,7 @@ URL страницы, открытой в указанной вкладке.
 
 Обработать дробных чисел текучим методом.
 
-\subsubsection{\lstinline|Numbers.restoreProcess : void|}
+\subsubsection{\lstinline|Numbers.restoreProcess () : void|}
 
 Удаляет последняя запись стека способов обработки.
 

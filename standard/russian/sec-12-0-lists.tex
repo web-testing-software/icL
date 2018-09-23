@@ -62,7 +62,7 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.append (str : string) : list|;
 \item \lstinline|list.at (i : int) : string|;
 \item \lstinline|list.contains (str : string, caseSensitive = true) : bool|;
-\item \lstinline|list.clear : list|;
+\item \lstinline|list.clear () : list|;
 \item \lstinline|list.count (what : string) : int|;
 \item \lstinline|list.filter (str : string, caseSensitive = true) : bool|;
 \item \lstinline|list.indexOf (str : string, start = 0) : int|;
@@ -74,9 +74,9 @@ n-я строка списка, n должен быть целым литера�
 \item \lstinline|list.move (from : int, to : int) : list|;
 \item \lstinline|list.removeAll (str : string) : list|;
 \item \lstinline|list.removeAt (i : int) : list|;
-\item \lstinline|list.removeDuplicates : list|;
-\item \lstinline|list.removeFirst : list|;
-\item \lstinline|list.removeLast : list|;
+\item \lstinline|list.removeDuplicates () : list|;
+\item \lstinline|list.removeFirst () : list|;
+\item \lstinline|list.removeLast () : list|;
 \item \lstinline|list.removeOne (str : string) : bool|;
 \item \lstinline|list.replaceInStrings (before : string, after : string) : list|;
 \item \lstinline|list.sort (caseSensitive = true) : list|.
@@ -134,7 +134,7 @@ n-я строка списка, n должен быть целым литера�
 
 Возвращает \true, если список содержит строка, ровна \code{str}, иначе \false.
 
-\subsubsection{\lstinline|list.clear : list|}
+\subsubsection{\lstinline|list.clear () : list|}
 
 Очищает список.
 
@@ -186,17 +186,17 @@ n-я строка списка, n должен быть целым литера�
 
 Возможные исключения: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|list.removeDuplicates : list|}
+\subsubsection{\lstinline|list.removeDuplicates () : list|}
 
 Удаляет повторы строк.
 
-\subsubsection{\lstinline|list.removeFirst : list|}
+\subsubsection{\lstinline|list.removeFirst () : list|}
 
 Удаляет первую строку.
 
 Возможные исключения: \ferror{EmptyList}.
 
-\subsubsection{\lstinline|list.removeLast : list|}
+\subsubsection{\lstinline|list.removeLast () : list|}
 
 Удаляет последнюю строку.
 

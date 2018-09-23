@@ -19,11 +19,11 @@ Screenshot страницы в base64 можно получить вызывая
 
 \subsubsection{Навигация}
 
-\lstinline|Tab.back : void| - позволяет возвращаться на предыдущую страницу.
+\lstinline|Tab.back () : void| - позволяет возвращаться на предыдущую страницу.
 
-\lstinline|Tab.forward : void| - позволяет возвращаться на следующую страницу.
+\lstinline|Tab.forward () : void| - позволяет возвращаться на следующую страницу.
 
-\lstinline|Tab.refresh : void| -  позволяет перезагрузить страницу.
+\lstinline|Tab.refresh () : void| -  позволяет перезагрузить страницу.
 
 \lstinline|[icL] [r/o] Tab'canGoBack : bool| - сообщает можно ли перейти на предыдущую страницу.
 
@@ -34,9 +34,9 @@ Screenshot страницы в base64 можно получить вызывая
 
 \lstinline|[r/o] Alert'text : string| - текст предупреждений.
 
-\lstinline|Alert.accept : void| - закрыть окно отвечая положительным ответом.
+\lstinline|Alert.accept () : void| - закрыть окно отвечая положительным ответом.
 
-\lstinline|Alert.dismiss : void| - закрыть окно отвечая отрицательным ответом.
+\lstinline|Alert.dismiss () : void| - закрыть окно отвечая отрицательным ответом.
 
 \lstinline|Alert.sendKeys (str : string) : void| - ответить текстом \code{str}.
 

@@ -141,8 +141,8 @@
 
 Перечень базовых методов:
 \begin{icItems}
-	\item \lstinline|element.clear : element|;
-	\item \lstinline|element.click : element|;
+    \item \lstinline|element.clear () : element|;
+	\item \lstinline|element.click () : element|;
 	\item \lstinline|element.query (cssSelector : string) : element|;
 	\item \lstinline|element.query (by : int, selector : string) : element|;
 	\item \lstinline|element.queryAll (cssSelector : string) : element|;
@@ -153,11 +153,11 @@
 	\item \lstinline|element.queryLinks (name : string, isFragment = false) : element|;
 	\item \lstinline|element.queryTag (name : string) : element|;
 	\item \lstinline|element.queryTags (name : string) : element|;
-	\item \lstinline|element.screenshot : string|;
+	\item \lstinline|element.screenshot () : string|;
 	\item \lstinline|element.sendKeys (modifiers : int, text : string) : element|;
 \end{icItems}
 
-\subsubsection{\lstinline|element.clear : element|}
+\subsubsection{\lstinline|element.clear () : element|}
 
 Если элемент является полем ввода данных, то ого значение очищается. Если элемент редактируемый, то его свойство \code{innerHtml} присваивается пустая строка.
 
@@ -165,7 +165,7 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState}.
 
-\subsubsection{\lstinline|element.click : element|}
+\subsubsection{\lstinline|element.click () : element|}
 
 Симулирует клик по центре элемента, и ждёт загрузка страницы.
 
@@ -240,7 +240,7 @@
 
 Акроним для \lstinline|element.queryAll By'tagName @name|;
 
-\subsubsection{\lstinline|element.screenshot : string|}
+\subsubsection{\lstinline|element.screenshot () : string|}
 
 Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|Make.image (base64 : string, path : string) : void|.
 
@@ -269,12 +269,12 @@
 	\item \lstinline|element.child (index : int) : element|;
 	\item \lstinline|element.closest (cssSelector : string) : element|;
 	\item \lstinline|element.contains (text : string, asFragment = false) : element|;
-	\item \lstinline|element.copy : element|;
+	\item \lstinline|element.copy () : element|;
 	\item \lstinline|element.get (i : int) : element|;
 	\item \lstinline|element.filter (cssSelector : string) : element|;
-	\item \lstinline|element.next : element|;
-	\item \lstinline|element.prev : element|;
-	\item \lstinline|element.parent : element|;
+	\item \lstinline|element.next () : element|;
+	\item \lstinline|element.prev () : element|;
+	\item \lstinline|element.parent () : element|;
 \end{icItems}
 
 \subsubsection{\lstinline|element.add (other : element) : element|}
@@ -301,7 +301,7 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.copy : element|}
+\subsubsection{\lstinline|element.copy () : element|}
 
 Возвращает новая коллекция, содержащая все элементы текущей коллекций.
 
@@ -318,19 +318,19 @@
 Возвращает новая коллекция, содержащая все элементы, которые подходят по селектору \code{cssSelector}.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
-\subsubsection{\lstinline|element.next : element|}
+\subsubsection{\lstinline|element.next () : element|}
 
 Возвращает новый элемент, содержащая следующий дочерний элемент.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.prev : element|}
+\subsubsection{\lstinline|element.prev () : element|}
 
 Возвращает новый элемент, содержащая предыдущий дочерний элемент.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.parent : element|}
+\subsubsection{\lstinline|element.parent () : element|}
 
 Возвращает новый элемент, содержащая родительский элемент.
 

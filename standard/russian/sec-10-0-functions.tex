@@ -33,7 +33,7 @@ sum = (a : int, b : int) : int {
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Функция без аргументов, label=noargsfunc]
-pi = double {
+pi = () : double {
 	@ = 3.14;
 };
 \end{lstlisting}
@@ -53,16 +53,16 @@ name arguments;
 где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}.
 
 \begin{lstlisting}[caption=Функция без аргументов и тип возвращаемой значений, label=minfunc]
-do = {
+do = () {
 	Log.out "It's work!";
 };
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Вызов функций, label=callfunc]
-sum 2 3; 	`` returns 5
-pi; 		`` returns 3.14
-out 4 5; 	`` returns void
-do; 		`` returns void
+sum (2, 3); 	`` returns 5
+pi;				`` returns 3.14
+out (4, 5); 	`` returns void
+do;				`` returns void
 
 sum (sum (1, 2), 3);	`` returns 6
 out (1, sum (,4 5));	`` returns void

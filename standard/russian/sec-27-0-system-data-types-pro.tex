@@ -125,7 +125,7 @@ class File {
 	[r/o] File'valid  : bool;
 	
         File.close  : void;
-	File.delete : void;
+	File.delete () : void;
 }
 \end{lstlisting}
 
@@ -319,7 +319,7 @@ class Session {
 	Session.close      : void;
 	Session.forward    : Session;
 	Session.refresh    : Session;
-	Session.screenshot : string;
+	Session.screenshot () : string;
 	Session.switchTo   : Session;
 }
 \end{lstlisting}
@@ -378,7 +378,7 @@ class States {
         States.clear    : void;
 	States.delete   : void;
 	States.new      : void;
-	States.newAtEnd : void;
+	States.newAtEnd () : void;
 	States.toFirst  : void;
 	States.toLast   : void;
 	States.toNext   : void;
