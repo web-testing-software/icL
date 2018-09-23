@@ -33,7 +33,7 @@ __21-22.09.2018__
 
  * [+] Add comma delimiter beetwen grouped values, the list changes from
    [**"str1"** **"str2"** **"str3"**] to [**"str1"**, **"str2"**, **"str3"**].
- * [/] Change object field syntax from &lt;value&gt;name to name = value, the 
+ * [+] Change object field syntax from &lt;value&gt;name to name = value, the
    objects changes from [&lt;**23**&gt;*age* &lt;**"Alice"**&gt;*name*] to 
    [*age* = **23**, *name* = **"Alice"**], the empty object will look like [=].
  * [+] Change parameter syntax from &lt;type&gt;name to name : type, the set

@@ -70,13 +70,13 @@
 
 \subsubsection{Объекты}
 
-{\bf Объектом} является объединение нескольких переменных под общем именем, переменная объявлена внутри объекта называется {\it поле}. Литерал {\it поле} имеет следующий синтаксис \lstinline`<value>name`, где  {\it value} - значение и {\it name} - название. В icL неинициализируемые поля, как и неинициализируемые переменные, нельзя объявить.
+{\bf Объектом} является объединение нескольких переменных под общем именем, переменная объявлена внутри объекта называется {\it поле}. Литерал {\it поле} имеет следующий синтаксис \lstinline`name = value,`, где  {\it value} - значение и {\it name} - название. В icL неинициализируемые поля, как и неинициализируемые переменные, нельзя объявить.
 
 \noindent Примеры:
 \begin{lstlisting}[numbers=none]
-@quotation = [<"author">author <"text">text];
-@child = [<4>age <true>hasBrothers <true>hasParents];
-@file = [<false>isEmpty <25220>size <true>readOnly];
+@quotation = [author = "author", text = "text"];
+@child = [age = 4, hasBrothers = true, hasParents = true];
+@file = [isEmpty = false, size = 25220, readOnly = true];
 \end{lstlisting}
 
 \subsubsection{Множества}

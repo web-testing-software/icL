@@ -54,59 +54,59 @@
 	["Basil" "Nataly" "Siri"]
 	["m"     "f"      "f"];
 ``` set = [
-	[<23>age <"Basil">name  <"m">sex]
-	[<45>age <"Nataly">name <"f">sex]
-	[<67>age <"Siri">name   <"f">sex]
+    [age = 23, name = "Basil",  sex = "m"]
+	[age = 45, name = "Nataly", sex = "f"]
+	[age = 67, name = "Siri",   sex = "f"]
 	] ```
 
 @set.getField "name"; `` ["Basil" "Nataly" "Siri"]
 
 @set.insert 34 "Critiano" "m";
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex]
-	[<45>age <"Nataly">name   <"f">sex]
-	[<67>age <"Siri">name     <"f">sex]
-	[<34>age <"Cristiano"name <"m">sex]
+    [age = 23, name = "Basil",     sex = "m"]
+	[age = 45, name = "Nataly",    sex = "f"]
+	[age = 67, name = "Siri",      sex = "f"]
+	[age = 34, name = "Cristiano", sex = "m"]
 	] ```
 
-@set.insert [<"f">sex <"Sofia">name <19>age];
+@set.insert [sex = "f", name = "Sofia", age = 19];
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex]
-	[<45>age <"Nataly">name   <"f">sex]
-	[<67>age <"Siri">name     <"f">sex]
-	[<34>age <"Cristiano"name <"m">sex]
-	[<19>age <"Sofia">name    <"f">sex]
+    [age = 23, name = "Basil",    sex = "m"]
+	[age = 45, name = "Nataly",   sex = "f"]
+	[age = 67, name = "Siri",     sex = "f"]
+	[age = 34, name = "Cristiano" sex = "m"]
+	[age = 19, name = "Sofia",    sex = "f"]
 	] ```
 
 @set.insertStringField "parity" ["odd" "even"];
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex <"odd">parity]
-	[<45>age <"Nataly">name   <"f">sex <"even">parity]
-	[<67>age <"Siri">name     <"f">sex <"odd">parity]
-	[<34>age <"Cristiano"name <"m">sex <"even">parity]
-	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
+    [age = 23, name = "Basil",    sex = "m", parity = "odd"]
+	[age = 45, name = "Nataly",   sex = "f", parity = "even"]
+	[age = 67, name = "Siri",     sex = "f", parity = "odd"]
+	[age = 34, name = "Cristiano" sex = "m", parity = "even"]
+	[age = 19, name = "Sofia",    sex = "f", parity = "odd"]
 	] ```
 
 @set.remove 45 "Nataly" "f" "even";
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex <"odd">parity]
-	[<67>age <"Siri">name     <"f">sex <"odd">parity]
-	[<34>age <"Cristiano"name <"m">sex <"even">parity]
-	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
+    [age = 23, name = "Basil",    sex = "m", parity = "odd"]
+	[age = 67, name = "Siri",     sex = "f", parity = "odd"]
+	[age = 34, name = "Cristiano" sex = "m", parity = "even"]
+	[age = 19, name = "Sofia",    sex = "f", parity = "odd"]
 	] ```
 
-@set.remove [<34>age <"Cristiano"name <"m">sex <"even">parity];
+@set.remove [age = 34, sex = "Cristiano"name <"m", parity = "even"];
 ``` set = [
-	[<23>age <"Basil">name <"m">sex <"odd">parity]
-	[<67>age <"Siri">name  <"f">sex <"odd">parity]
-	[<19>age <"Sofia">name <"f">sex <"odd">parity]
+    [age = 23, name = "Basil", sex = "m", parity = "odd"]
+	[age = 67, name = "Siri",  sex = "f", parity = "odd"]
+	[age = 19, name = "Sofia", sex = "f", parity = "odd"]
 	] ```
 
 @set.removeField "parity";
 ``` set = [
-	[<23>age <"Basil">name <"m">sex]
-	[<67>age <"Siri">name  <"f">sex]
-	[<19>age <"Sofia">name <"f">sex]
+    [age = 23, name = "Basil", sex = "m"]
+	[age = 67, name = "Siri",  sex = "f"]
+	[age = 19, name = "Sofia", sex = "f"]
 	] ```
 
 @set.clear; `` set = []
