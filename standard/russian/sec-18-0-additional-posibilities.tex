@@ -357,7 +357,7 @@
 
 Значение самого cookie, обязательное для заполнения.
 
-\subsubsection{\lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0|\\*\noindent\lstinline|seconds : int,, = 0) : Cookie|}
+\subsubsection{\lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0|\\*\noindent\lstinline|seconds = 0) : Cookie|}
 
 Добавляет к сроку годности ножное количество лет, месяцев, дней, часов, минут и секунд.
 
@@ -369,7 +369,7 @@
 
 \subsubsection{\lstinline|Cookie.resetTime () : Cookie|}
 
-Сбросит строк на текущее время. Например установить срок годности год: \lstinline|Cookie.resetTime.add 1 0 0|.
+Сбросит строк на текущее время. Например установить срок годности год: \lstinline|Cookie.resetTime().add 1 0 0|.
 
 \subsubsection{\lstinline|Cookie.save () : Cookie|}
 
@@ -672,57 +672,53 @@ URL страницы, открытой в указанной вкладке.
 	\item \lstinline|DOM.queryTags (name : string) : element|.
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.query (by : int, selector : string) : element|}
+\subsubsection{\lstinline|DOM.query (by = By'cssSelector, selector : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|DOM.query (cssSelector : string) : element|}
+\subsubsection{\lstinline|DOM.queryAll (by = By'cssSelector, selecor : string) : element|}
 
-Акроним для \lstinline|DOM.query By'cssSelector @cssSelector|.
-
-\subsubsection{\lstinline|DOM.queryAll (by : int, selecor : string) : element|}
-
-Принимает то же самые параметры, как и \lstinline|element.queryAll|, только поиск ведётся по всему документу.
+Принимает то же самые параметры, как и \lstinline|element.queryAll|, только поиск ведётся по всему документу. 
 
 Возможные исключения: \ferror{NoSessions}.
 
 \subsubsection{\lstinline|DOM.queryAll (cssSelector : string) : lement|}
 
-Акроним для \lstinline|DOM.queryAll By'cssSelector @cssSelector|.
+Акроним для \lstinline|DOM.queryAll (By'cssSelector, @cssSelector)|.
 
 \subsubsection{\lstinline|DOM.queryAllByXPath (xpath : string) : element|}
 
-Акроним для \lstinline|DOM.queryAll By'xPath @xpath|.
+Акроним для \lstinline|DOM.queryAll (By'xPath, @xpath)|.
 
 \subsubsection{\lstinline|DOM.queryByXPath (xpath : string) : element|}
 
-Акроним для \lstinline|DOM.query By'xPath @xpath|.
+Акроним для \lstinline|DOM.query (By'xPath, @xpath)|.
 
 \subsubsection{\lstinline|DOM.queryLink (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|DOM.query By'linkText @name|;
-	\item \lstinline|DOM.query By'partialLinkText @name|;
+	\item \lstinline|DOM.query (By'linkText, @name)|;
+	\item \lstinline|DOM.query (By'partialLinkText, @name)|;
 \end{icItems}
 
 \subsubsection{\lstinline|DOM.queryLinks (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|DOM.queryAll By'linkText @name|;
-	\item \lstinline|DOM.queryAll By'partialLinkText @name|;
+	\item \lstinline|DOM.queryAll (By'linkText, @name)|;
+	\item \lstinline|DOM.queryAll (By'partialLinkText, @name)|;
 \end{icItems}
 
 \subsubsection{\lstinline|DOM.queryTag (name : string) : element|}
 
-Акроним для \lstinline|DOM.query By'tagName @name|.
+Акроним для \lstinline|DOM.query (By'tagName, @name)|.
 
 \subsubsection{\lstinline|DOM.queryTags (name : string) : element|}
 
-Акроним для \lstinline|DOM.queryAll By'tagName @name|.
+Акроним для \lstinline|DOM.queryAll (By'tagName, @name)|.
 
 \subsection{{\color{orange} Files}}
 
@@ -865,7 +861,7 @@ URL страницы, открытой в указанной вкладке.
 \begin{icItems}
 	\item \lstinline|Log.error (message : string) : void|;
 	\item \lstinline|Log.info (message : string) : void|;
-	\item \lstinline|Log.out (<any ...>args) : void|;
+	\item \lstinline|Log.out (args : any ...) : void|;
 	\item \lstinline|Log.stack (var : any) : void|;
 	\item \lstinline|Log.state (var : any) : void|.
 \end{icItems}
@@ -878,7 +874,7 @@ URL страницы, открытой в указанной вкладке.
 
 Выводит информационное сообщение.
 
-\subsubsection{\lstinline|Log.out (<any ...>args) : void|}
+\subsubsection{\lstinline|Log.out (args : any ...) : void|}
 
 Выводит отладочное сообщение, принимает несколько параметров любого типа. При получении переменных выводит исходник, название перемены, тип данных и значение. При получении константных только значение. При получении результата выполнения функции - тип и значение. 
 
@@ -975,10 +971,10 @@ URL страницы, открытой в указанной вкладке.
 	\item \lstinline|Math.exp (v : double) : double|;
 	\item \lstinline|Math.floor (v : double) : int|;
 	\item \lstinline|Math.ln (v : double) : double|;
-	\item \lstinline|Math.min (<int ...>arr) : int|;
-	\item \lstinline|Math.min (<double ...>arr) : double|;
-	\item \lstinline|Math.max (<int ...>arr) : int|;
-	\item \lstinline|Math.max (<double ...>arr) : double|;
+	\item \lstinline|Math.min (arr : int ...) : int|;
+	\item \lstinline|Math.min (arr : double ...) : double|;
+	\item \lstinline|Math.max (arr : int ...) : int|;
+	\item \lstinline|Math.max (arr : double ...) : double|;
 	\item \lstinline|Math.radiansToDegrees (v : double) : double|;
 	\item \lstinline|Math.round (<double>) : int|;
 	\item \lstinline|Math.sin (v : double) : double|;
@@ -1073,19 +1069,19 @@ URL страницы, открытой в указанной вкладке.
 
 Натуральный логарифм ($\ln{v}$).
 
-\subsubsection{\lstinline|Math.min (<int ...>arr) : int|}
+\subsubsection{\lstinline|Math.min (arr : int ...) : int|}
 
 Возвращает наименьшее целое число.
 
-\subsubsection{\lstinline|Math.min (<double ...>arr) : double|}
+\subsubsection{\lstinline|Math.min (arr : double ...) : double|}
 
 Возвращает наименьшее дробное число.
 
-\subsubsection{\lstinline|Math.max (<int ...>arr) : int|}
+\subsubsection{\lstinline|Math.max (arr : int ...) : int|}
 
 Возвращает наибольшее целое число.
 
-\subsubsection{\lstinline|Math.max (<double ...>arr) : double|}
+\subsubsection{\lstinline|Math.max (arr : double ...) : double|}
 
 Возвращает наибольшее дробное число.
 
@@ -1109,40 +1105,25 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \lstinline|Import| имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|Import.none (data : object, path : string) : void|;
-	\item \lstinline|Import.none (path : string) : void|;
-	\item \lstinline|Import.functions (data : object, path : string) : void|;
-	\item \lstinline|Import.functions (path : string) : void|;
-	\item \lstinline|Import.all (data : object, path : string) : void|;
-	\item \lstinline|Import.all (path : string) : void|;
+	\item \lstinline|Import.none (data = [=], path : string) : void|;
+	\item \lstinline|Import.functions (data = [=], path : string) : void|;
+	\item \lstinline|Import.all (data = [=], path : string) : void|;
 	\item \lstinline|Import.run (path : string) : void|.
 \end{icItems}
 
 Объект \code{data} позволяет передать данные в изолированном контексте, они там будут доступны как глобальные переменные. Это позволяет в одном файле хранить несколько версий библиотеки например, и при использовании указать какую версию загрузить.
 
-\subsubsection{\lstinline|Import.none (data : object, path : string) : void|}
+\subsubsection{\lstinline|Import.none (data = [=], path : string) : void|}
 
 Создаёт изолируемый контекст, в нём выполняет файл.
 
-\subsubsection{\lstinline|Import.none (path : string) : void|}
-
-Акроним для \lstinline|Import.none [<>] @path|.
-
-\subsubsection{\lstinline|Import.functions (data : object, path : string) : void|}
+\subsubsection{\lstinline|Import.functions (data = [=], path : string) : void|}
 
 Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции в текущем контексте.
 
-\subsubsection{\lstinline|Import.functions (path : string) : void|}
-
-Акроним для \lstinline|Import.functions [<>] @path|.
-
-\subsubsection{\lstinline|Import.all (data : object, path : string) : void|}
+\subsubsection{\lstinline|Import.all (data = [=], path : string) : void|}
 
 Создаёт изолируемый контекст, в нём выполняет файл, потом импортирует все функции и глобальные переменный в текущем контексте.
-
-\subsubsection{\lstinline|Import.all (path : string) : void|}
-
-Акроним для \lstinline|Import.all [<>] @path|.
 
 \subsubsection{\lstinline|Import.run (path : string) : void|}
 

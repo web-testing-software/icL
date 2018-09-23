@@ -43,7 +43,7 @@ __21-22.09.2018__
    = (**params**) : **type** {}, restict first upper case letter in function
    name, with the previous changes the function declaration will look like
    *func* = (*@arg1* : **int**, *@arg2* : **string**) : **string** {}.
- * [/] Change the function call syntax from !name args... to name (args..),
+ * [+] Change the function call syntax from !name args... to name (args..),
    beetwen arguments needs to be comma delimiter.
  * [/] Brackets may be skiped if the number of args is equal with **1**.
  * [/] Change the operator **&lt;&lt;** to **&lt;** and **&gt;&gt;** to 
@@ -69,7 +69,9 @@ __21-22.09.2018__
  * [/] Add default values to functions parameters, syntax func =
    (**@var** = **value**, **@var2** : **int**) {}, the default values must be 
    any, not just the last, the last default parameters can be skipped, to set 
-   default value for non last parameter use void sign, example: func (~, 3).
+   default value for non last parameter use void sign, example: func (~, 3) or
+   func 3 (if all params are optional, excepting the last, the function can be
+   called without curly brackets, indicating just the last argument).
  * [/] Add Stack.root to get root stack, in function it's the function stack.
  * [/] Add explication for @ and # variables.
 

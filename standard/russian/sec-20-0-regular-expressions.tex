@@ -1,7 +1,7 @@
 \section{Регулярные выражения}
 \label{regex}
 
-Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?content : name)|.
+Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?(content : name))|.
 
 Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| и \lstinline|!|. Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
 
@@ -58,8 +58,8 @@
 
 \begin{lstlisting}[caption=Операторы регулярных выражений, label=regexpopsex]
 "string" << //s.r//;            `` true
-"string" <* //s(.)r//;          `` ["str" "t"]
-"string" ** //s(?<letter>.)r//; `` [<"t">letter]
+"string" <* //s(.)r//;          `` ["str", "t"]
+"string" ** //s(?<letter>.)r//; `` [letter = "t"]
 \end{lstlisting}
 
 \subsubsection{\lstinline|string << regex : bool|}

@@ -95,7 +95,7 @@ do {
 
 {Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать универсальный цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}). Под коллекции имеется в виду следующие типы данных \code{list}, \code{set} и \code{element}.
 \begin{lstlisting}[caption=Прохождение коллекций с помощью универсального цикла, label=colluniloop]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
 for (@i = 0, @i < @list'length, @i = @i + 1) {
 	@list.at @i; `` get i-th value
@@ -103,7 +103,7 @@ for (@i = 0, @i < @list'length, @i = @i + 1) {
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Упрощённое прохождение коллекций, label=collsimple]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
 for (@list) {
 	@; `` get i-th value
@@ -126,7 +126,7 @@ filter (collection, condition) {
 Фильтровать элементы можно по данных (см. листинг \ref{filterdataex}, выбирается те которые содержат букву а) или по индексам (см. листинг \ref{filterindexex}, выбирается чётные элементы списка).
 
 \begin{lstlisting}[caption=Фильтрование по данных, label=filterdataex]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
 filter (@list, @ << "a") {
 	@; `` apple, banana

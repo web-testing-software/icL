@@ -65,7 +65,7 @@ Log.out "true == false = " (true == false);	`` true == false = false
 Log.out "false != true = " (false != true);	`` false != true = true
 \end{lstlisting}
 
-\subsubsection{\lstinline`<bool>a & <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) & (b : bool) : bool`}
 
 Оператор принимает логическую операцию "конъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{conjtable}.
 
@@ -83,7 +83,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a | <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) | (b : bool) : bool`}
 
 Оператор принимает логическую операцию "дизъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{distable}.
 
@@ -101,7 +101,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a ~ <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) ~ (b : bool) : bool`}
 
 Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logeqtable}.
 
@@ -119,7 +119,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a ^ <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) ^ (b : bool) : bool`}
 
 Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logdifftable}.
 
@@ -137,7 +137,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`! <bool>a : bool`}
+\subsubsection{\lstinline`! (a : bool) : bool`}
 
 Оператор принимает логическую операцию "инверсия" над переменной a. Зависимость результата от исходных данных иллюстрирована в таблице \ref{invtable}.
 
@@ -153,11 +153,11 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a == <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) == (b : bool) : bool`}
 
 Возвращает \true{} если a равно b, иначе \false{}.
 
-\subsubsection{\lstinline`<bool>a != <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) != (b : bool) : bool`}
 
 Возвращает \true{} если a равно b, иначе \false{}.
 
@@ -225,28 +225,28 @@ Log.out "false != true = " (false != true);	`` false != true = true
 
 {\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
 
-\subsubsection{\lstinline`<int>a == <int>b : bool`}
+\subsubsection{\lstinline`(a : int) == (b : int) : bool`}
 
 Возвращает \true{} если \code{a} и \code{b} имеют одинаковое значение, иначе \false{}.
 
-\subsubsection{\lstinline`<double>a == <double>b : bool`}
+\subsubsection{\lstinline`(a : double) == (b : double) : bool`}
 
 Возвращает \true{} если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false{}.
 
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа int и double, label=numberopex]
 `` 3rd rank
-Log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
-Log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
-Log.out "1 != 2 = "		1 != 2;		`` 1 $\neq$ 2 = true
-Log.out "2.1 != 2.1 = "	2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
-Log.out "3 >> 2 = "		3 >> 2;		`` 3 > 2 = true
-Log.out "1.1 >> 2.1 = "	1.1 >> 2.1;	`` 1.1 > 2.1 = false
-Log.out "5 >= 2 = "		5 >= 2;		`` 5 $\geq$ 2 = true
+Log.out "2 == 3 = "			2 == 3;		`` 2 = 3 = false
+Log.out "2.5 == 2.5 = "		2.5 == 2.5;	`` 2.5 = 2.5 = true
+Log.out "1 != 2 = "			1 != 2;		`` 1 $\neq$ 2 = true
+Log.out "2.1 != 2.1 = "		2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
+Log.out "3 >> 2 = "			3 >> 2;		`` 3 > 2 = true
+Log.out "1.1 >> 2.1 = "		1.1 >> 2.1;	`` 1.1 > 2.1 = false
+Log.out "5 >= 2 = "			5 >= 2;		`` 5 $\geq$ 2 = true
 Log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
-Log.out "3 << 9 = "		3 << 9;		`` 3 < 9 = true
-Log.out "6.1 << 6.2 = "	6.1 << 6.2;	`` 6.1 < 6.2 = true
-Log.out "4 <= 5 = "		4 <= 5;		`` 4 $\leq$ 5 = true
-Log.out "5.6 <= 6.5 = "	5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
+Log.out "3 << 9 = "			3 << 9;		`` 3 < 9 = true
+Log.out "6.1 << 6.2 = "		6.1 << 6.2;	`` 6.1 < 6.2 = true
+Log.out "4 <= 5 = "			4 <= 5;		`` 4 $\leq$ 5 = true
+Log.out "5.6 <= 6.5 = "		5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
 `` 4th rank
 Log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
 Log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
@@ -257,151 +257,151 @@ Log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
 Log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
 Log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
 Log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
-Log.out "45 \ 8 = "		45 \ 8;		`` 45 \textbackslash 8 = 5
+Log.out "45 \ 8 = "			45 \ 8;		`` 45 \textbackslash 8 = 5
 `` 6+th rank
 Log.out "25** = "			25**;		`` $25^2$ = 625
-Log.out "25.1** = "		25.1**;		`` $25.1^2$ = 630,01
+Log.out "25.1** = "			25.1**;		`` $25.1^2$ = 630,01
 Log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
-Log.out "2.0 ** 1.5 = "	2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
+Log.out "2.0 ** 1.5 = "		2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
 Log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
 Log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
 Log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
-Log.out "5.0/'125.5 = "	5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
+Log.out "5.0/'125.5 = "		5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
 `` 7+th rank
 Log.out "- 35 = "			- 35;		`` - 35 = -35
 Log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
-Log.out "+ -100 = "		+ -100;		`` + -100 = 100
-Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
+Log.out "+ -100 = "			+ -100;		`` + -100 = 100
+Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
-\subsubsection{\lstinline`<int>a != <int>b : bool`}
+\subsubsection{\lstinline`(a : int) != (b : int) : bool`}
 
 Возвращает \true{} если \code{a} и \code{b} не имеют одинаковое значение, иначе \false{}.
 
-\subsubsection{\lstinline`<double>a != <double>b : bool`}
+\subsubsection{\lstinline`(a : double) != (b : double) : bool`}
 
 Возвращает \true{} если \code{a} и \code{b} отличаются больше чем на уровень погрешности машины, иначе \false{}.
 
-\subsubsection{\lstinline`<int>a >> <int>b : bool`}
+\subsubsection{\lstinline`(a : int) >> (b : int) : bool`}
 
 Возвращает \true{} если целое число \code{a} больше \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<double>a >> <double>b : bool`}
+\subsubsection{\lstinline`(a : double) >> (b : double) : bool`}
 
 Возвращает \true{} если дробное число \code{a} больше \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<int>a >= <int>b : bool`}
+\subsubsection{\lstinline`(a : int) >= (b : int) : bool`}
 
 Возвращает \true{} если целое число \code{a} больше или равно \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<double>a >= <double>b : bool`}
+\subsubsection{\lstinline`(a : double) >= (b : double) : bool`}
 
 Возвращает \true{} если дробное число \code{a} больше или равно \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<int>a << <int>b : bool`}
+\subsubsection{\lstinline`(a : int) << (b : int) : bool`}
 
 Возвращает \true{} если целое число \code{a} меньше \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<double>a << <double>b : bool`}
+\subsubsection{\lstinline`(a : double) << (b : double) : bool`}
 
 Возвращает \true{} если дробное число \code{a} меньше \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<int>a <= <int>b : bool`}
+\subsubsection{\lstinline`(a : int) <= (b : int) : bool`}
 
 Возвращает \true{} если целое число \code{a} меньше или равно \code{b}, иначе \false{}.
 
-\subsubsection{\lstinline`<double>a <= <double>b : bool`}
+\subsubsection{\lstinline`(a : double) <= (b : double) : bool`}
 
 Возвращает \true{} если дробное число \code{a} меньше или равно \code{b}, иначе \false{}.
 
 
-\subsubsection{\lstinline`<int>a + <int>b : int`}
+\subsubsection{\lstinline`(a : int) + (b : int) : int`}
 
 Возвращает сумму целых чисел \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<double>a + <double>b : double`}
+\subsubsection{\lstinline`(a : double) + (b : double) : double`}
 
 Возвращает сумму дробных чисел \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<int>a - <int>b : int`}
+\subsubsection{\lstinline`(a : int) - (b : int) : int`}
 
 Возвращает разницу между целыми числами \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<double>a - <double>b : double`}
+\subsubsection{\lstinline`(a : double) - (b : double) : double`}
 
 Возвращает разницу между дробными числами \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<int>a * <int>b : int`}
+\subsubsection{\lstinline`(a : int) * (b : int) : int`}
 
 Возвращает результат умножения целых чисел \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<double>a * <double>b : double`}
+\subsubsection{\lstinline`(a : double) * (b : double) : double`}
 
 Возвращает результат умножения дробных чисел \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<int>a / <int>b : int`}
+\subsubsection{\lstinline`(a : int) / (b : int) : int`}
 
 Возвращает результат деления целых чисел \code{a} и \code{b}, остаток отбрасывается.
 
-\subsubsection{\lstinline`<double>a / <double>b : double`}
+\subsubsection{\lstinline`(a : double) / (b : double) : double`}
 
 Возвращает результат деления дробных чисел \code{a} и \code{b}.
 
-\subsubsection{\lstinline`<int>a \ <int>b : int`}
+\subsubsection{\lstinline`(a : int) \ (b : int) : int`}
 
 Возвращает результат от деления целых чисел \code{a} и \code{b}.
 
 
-\subsubsection{\lstinline`<int>a ** : int`}
+\subsubsection{\lstinline`(a : int) ** : int`}
 
 Возвращает квадрат целого числа \code{a} (a$^2$);
 
-\subsubsection{\lstinline`<double>a ** : double`}
+\subsubsection{\lstinline`(a : double) ** : double`}
 
 Возвращает квадрат дробного числа \code{a} (a$^2$);
 
-\subsubsection{\lstinline`<int>a ** <int>b : int`}
+\subsubsection{\lstinline`(a : int) ** (b : int) : int`}
 
 Возвращает результат возведения целого числа \code{a} в степени \code{b} (a$^b$).
 
-\subsubsection{\lstinline`<double>a ** <double>b : double`}
+\subsubsection{\lstinline`(a : double) ** (b : double) : double`}
 
 Возвращает результат возведения дробного числа \code{a} в степени \code{b} (a$^b$).
 
-\subsubsection{\lstinline`/' <int>a : int`}
+\subsubsection{\lstinline`/' (a : int) : int`}
 
 Возвращает корень целого числа \code{a} ($\sqrt{a}$).
 
-\subsubsection{\lstinline`/' <double>a : double`}
+\subsubsection{\lstinline`/' (a : double) : double`}
 
 Возвращает корень дробного числа \code{a} ($\sqrt{a}$).
 
-\subsubsection{\lstinline`<int>n /' <int>a : int`}
+\subsubsection{\lstinline`(n : int) /' (a : int) : int`}
 
 Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\lstinline`<int>n /' <double>a : double`}
+\subsubsection{\lstinline`(n : int) /' (a : double) : double`}
 
 Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\lstinline`<double>n /' <double>a : double`}
+\subsubsection{\lstinline`(n : double) /' (a : double) : double`}
 
 Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
 
 
-\subsubsection{\lstinline`- <int>a : int`}
+\subsubsection{\lstinline`- (a : int) : int`}
 
 Возвращает \lstinline|0 - a|;
 
-\subsubsection{\lstinline`- <double>b : double`}
+\subsubsection{\lstinline`- (b : double) : double`}
 
 Возвращает \lstinline|0.0 - a|;
 
-\subsubsection{\lstinline`+ <int>a : int`}
+\subsubsection{\lstinline`+ (a : int) : int`}
 
 Возвращает абсолютное значение целого числа \code{a}.
 
-\subsubsection{\lstinline`+ <double>a : double`}
+\subsubsection{\lstinline`+ (a : double) : double`}
 
 Возвращает абсолютное значение дробного числа \code{a}.
 
@@ -442,15 +442,15 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 [@str1, @str2, "Const string", func, 37.1 : string, @bool : string, @list.Join]
 \end{lstlisting}
 
-\subsubsection{\lstinline`<string>s1 == <string>s2 : bool`}
+\subsubsection{\lstinline`(s1 : string) == (s2 : string) : bool`}
 
 Возвращает \true{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \false{}.
 
-\subsubsection{\lstinline`<list>l1 == <list>l2 : bool`}
+\subsubsection{\lstinline`(l1 : list) == (l2 : list) : bool`}
 
 Возвращает \true{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \false{}.
 
-\subsubsection{\lstinline`<string>s1 != <string>s2 : bool`}
+\subsubsection{\lstinline`(s1 : string) != (s2 : string) : bool`}
 
 Возвращает \false{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
 
@@ -472,59 +472,59 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 "Tom is a cat" ** "Tom is not a cat";	 `` 0.875
 \end{lstlisting}
 
-\subsubsection{\lstinline`<list>l1 != <list>l2 : bool`}
+\subsubsection{\lstinline`(l1 : list) != (l2 : list) : bool`}
 
 Возвращает \false{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \true{}.
 
-\subsubsection{\lstinline`<list>l << <string>str : bool`}
+\subsubsection{\lstinline`(l : list) << (str : string) : bool`}
 
 Возвращает \true{}, если список \code{l} содержит строку \code{str}, иначе \false{}.
 
-\subsubsection{\lstinline`<string>str << <string>substr : bool`}
+\subsubsection{\lstinline`(str : string) << (substr : string) : bool`}
 
 Возвращает \true{}, если строка \code{str} содержит подстроку \code{substr}, иначе \false{}.
 
-\subsubsection{\lstinline`<list>l <* <string>template : bool`}
+\subsubsection{\lstinline`(l : list) <* (template : string) : bool`}
 
 Возвращает \true{}, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
 
 {\bf Шаблон} - это строка содержащая данные и специальный символ \lstinline`*`, где \lstinline`*` означает любая последовательность символов. Рассмотрим шаблонную строку \lstinline`"Have a * day!"`, примеры строк подходящие по шаблону: \lstinline`"Have a nice day!"`, \lstinline`"Have a amazing day!"`. Пример неподходящей строки \lstinline`"Have a good day"` (отсутствует восклицательный знак).
 
-\subsubsection{\lstinline`<string>s1 + <string>s2 : string`}
+\subsubsection{\lstinline`(s1 : string) + (s2 : string) : string`}
 
 Возвращает строку содержащую все символы строк \code{s1} и \code{s2}. Полученная строка имеет длину равна суммы длин составляющих.
 
-\subsubsection{\lstinline`<string>str + <list>l : list`}
+\subsubsection{\lstinline`(str : string) + (l : list) : list`}
 
 Возвращает новый список, получен при вставке строке \code{str} в начале списка \code{l}.
 
-\subsubsection{\lstinline`<list>l + <string>str : list`}
+\subsubsection{\lstinline`(l : list) + (str : string) : list`}
 
 Возвращает новый список, получен при вставке строке \code{str} в конце списка \code{l}.
 
-\subsubsection{\lstinline`<list>l1 + <list>l2 : list`}
+\subsubsection{\lstinline`(l1 : list) + (l2 : list) : list`}
 
 Возвращает новый список, содержащий все элементы списков \code{l1} и \code{l2}.
 
-\subsubsection{\lstinline`<string>str * <string>template : bool`}
+\subsubsection{\lstinline`(str : string) * (template : string) : bool`}
 
 Возвращает \true{}, если строка \code{str} подходит по шаблону \code{template}, иначе \false{}.
 
-\subsubsection{\lstinline`<list>l * <string>template : bool`}
+\subsubsection{\lstinline`(l : list) * (template : string) : bool`}
 
 Возвращает \true{} если все строки списка \code{l} подходят по шаблону \code{template}, иначе \false{}.
 
-\subsubsection{\lstinline`<list>l * <list>templates : bool`}
+\subsubsection{\lstinline`(l : list) * (templates : list) : bool`}
 
 Возвращает \true{} если все строки списка \code{l} подходят по соответственному шаблону из списка \code{templates}, иначе \false{}.
 
-\subsubsection{\lstinline`<string>s1 ** <string>s2 : double`}
+\subsubsection{\lstinline`(s1 : string) ** (s2 : string) : double`}
 
 Возвращает коэффициент эквивалентности получен при сравнении \code{s1} с \code{s2}.
 
 {\bf Эквивалентность} - уровень схожести строк. \lstinline`"Hi! Robert, how do you do?"` относительно \lstinline`"Robert! Hi! How do you do?"` имеет эквивалентность равна единицы. Так как они состоят из одни и те же слова. Но если сравнивать с  \lstinline`"Rich! Hi! How are you?"` оценка снижается до 0,64.
 
-\subsubsection{\lstinline`<list>l1 ** <list>l2 : double`}
+\subsubsection{\lstinline`(l1 : list) ** (l2 : list) : double`}
 
 Возвращает коэффициент эквивалентности получен при сравнении строк из списка \code{l1} со строками из списка \code{l2}.
 Для корректности вычисления, каждая строка должна содержать одно слово.
@@ -567,20 +567,20 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Примеры использование операторов присутствуют на листинге \ref{setobjopex}.
 
-\subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
+\subsubsection{\lstinline`(obj1 : object) == (obj2 : object) : bool`}
 
 Возвращает \true{} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false{}.
 
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа object и set, label=setobjopex]
 `` init
-@set1 = [<int>age <string>name];
-@set2 = [<int>age <string>name];
-@set3 = [<int>age <string>name];
+@set1 = [age : int, name : string];
+@set2 = [age : int, name : string];
+@set3 = [age : int, name : string];
 
-@obj1 = [<24>age <"User1">name];
-@obj2 = [<23>age <"User2">name];
-@obj3 = [<26>age <"User3">name];
-@obj4 = [<24>age <80>length <40>height <1>arc];
+@obj1 = [age : 24, name = "User1"];
+@obj2 = [age : 23, name = "User2"];
+@obj3 = [age : 26, name = "User3"];
+@obj4 = [age : 24, length : 80, height : 40, arc : 1];
 
 @set1.insert @obj1;
 @set1.insert @obj2;
@@ -590,70 +590,70 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 @set3.insert @obj1;
 
 `` operators
-@set1 == @set2;				`` false
-@set1 == @set3;				`` true
-@obj1 == @obj2;				`` false
-@set2 != @set3;				`` true
-@obj2 != @obj3;				`` true
+@set1 == @set2;					`` false
+@set1 == @set3;					`` true
+@obj1 == @obj2;					`` false
+@set2 != @set3;					`` true
+@obj2 != @obj3;					`` true
 
-@set1 << @obj2;				`` false
-@set1 << @set2;				`` false
-@set1 <* [<23>age];			`` true
-@obj4 <* [<24>age <1>arc];	`` true
+@set1 << @obj2;					`` false
+@set1 << @set2;					`` false
+@set1 <* [age : 23];			`` true
+@obj4 <* [age : 24, arc : 1];	`` true
 
-@set1 + @set2;				`` [@obj1 @obj2 @obj3]
-@set1 - @set2;				`` [@obj1 @obj3]
-@set1 \ @set2;				`` [@obj1]
-@set1 * @set2;				`` [@obj2]
+@set1 + @set2;					`` [@obj1 @obj2 @obj3]
+@set1 - @set2;					`` [@obj1 @obj3]
+@set1 \ @set2;					`` [@obj1]
+@set1 * @set2;					`` [@obj2]
 
-@set1 ** @set2;				`` true
+@set1 ** @set2;					`` true
 \end{lstlisting}
 
-\subsubsection{\lstinline`<set>set1 == <set>set2 : bool`}
+\subsubsection{\lstinline`(set1 : set) == (set2 : set) : bool`}
 
 Возвращает \true{} если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \false{}.
 
-\subsubsection{\lstinline`<object>obj1 != <object>obj2 : bool`}
+\subsubsection{\lstinline`(obj1 : object) != (obj2 : object) : bool`}
 
 Возвращает \true{} если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \false{}.
 
-\subsubsection{\lstinline`<set>set1 != <set>set2 : bool`}
+\subsubsection{\lstinline`(set1 : set) != (set2 : set) : bool`}
 
 Возвращает \true{} если количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, иначе \false{}.
 
-\subsubsection{\lstinline`<set>s << <object>obj : bool`}
+\subsubsection{\lstinline`(s : set) << (obj : object) : bool`}
 
 Возвращает \true{}, если множество \code{s} содержит объект \code{obj}, иначе \false{}.
 
-\subsubsection{\lstinline|<set>set1 << <set>set2 : bool|}
+\subsubsection{\lstinline|(set1 : set) << (set2 : set) : bool|}
 
 Возвращает \true, если множество \code{set1} содержит подмножество \code{set2}, иначе \false.
 
-\subsubsection{\lstinline`<set>s <* <object>subobj : bool`}
+\subsubsection{\lstinline`(s : set) <* (subobj : object) : bool`}
 
 Возвращает \true{}, если множество \code{s} содержит под объект \code{subobj}, иначе \false{}.
 
-\subsubsection{\lstinline`<object>obj <* <object>subobj : bool`}
+\subsubsection{\lstinline`(obj : object) <* (subobj : object) : bool`}
 
 Возвращает \true{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \false{}.
 
-\subsubsection{\lstinline`<set>set1 + <set>set2 : set`}
+\subsubsection{\lstinline`(set1 : set) + (set2 : set) : set`}
 
 Возвращает новое множество содержащая все объекты множеств \code{set1} и \code{set2}.
 
-\subsubsection{\lstinline`<set>set1 - <set>set2 : set`}
+\subsubsection{\lstinline`(set1 : set) - (set2 : set) : set`}
 
 Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}, и все объекты множестве \code{set2}, отсутствующих в \code{set1}.
 
-\subsubsection{\lstinline`<set>set1 \\ <set>set2 : set`}
+\subsubsection{\lstinline`(set1 : set) \\ (set2 : set) : set`}
 
 Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}.
 
-\subsubsection{\lstinline`<set>set1 * <set>set2 : set`}
+\subsubsection{\lstinline`(set1 : set) * (set2 : set) : set`}
 
 Возвращает новое множество содержащая все объекты , которые приличествуют в \code{set1} и \code{set2}.
 
-\subsubsection{\lstinline`<set>set1 ** <set>set2 : bool`}
+\subsubsection{\lstinline`(set1 : set) ** (set2 : set) : bool`}
 
 Возвращает \true, если множества \code{set1} и \code{set2} пересекаются, иначе \false.
 
@@ -676,7 +676,7 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
 \end{icItems}
 
-\subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
+\subsubsection{\lstinline`arg1 : void or any | arg2 : void or any : void or any`}
 
 Возвращаемый результат оператором альтернативного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{orhacktable}.
 
@@ -781,7 +781,7 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \subsection{Дополнительные операторы}
 
-\subsubsection{\lstinline`[string...]`, \lstinline`[arg...]`, \lstinline`[param...]`, \lstinline`[<>]` и \lstinline`[]`}
+\subsubsection{\lstinline`[string...]`, \lstinline`[arg...]`, \lstinline`[param...]`, \lstinline`[=]` и \lstinline`[]`}
 
 {\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \listtype{}, \set{} и \object{}.
 
@@ -793,11 +793,13 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \code{[string or list ...] : list} - строки и списки можно смешать.
 
-\code{[<>] : object} создаёт пустой объект.
+\code{[=] : object} создаёт пустой объект.
 
-\code{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \code{<value>name}, где \code{value} - значение, \code{name} - название аргумента. Пример \code{[<2>number <"str">str]}.
+\code{[:] : object} создаёт пустое множество.
 
-\code{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \code{<type>name}, где \code{type} - тип значения, \code{name} - название параметра. Создавать множество с пустым заголовком - запрещено. Пример \code{[<int>number <string>str]}.
+\code{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \code{(name : value)}, где \code{value} - значение, \code{name} - название аргумента. Пример \code{[(number : 2) str : "str"]}.
+
+\code{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \code{(name : type)}, где \code{type} - тип значения, \code{name} - название параметра. Создавать множество с пустым заголовком - запрещено. Пример \code{[(number : int) (str : string)]}.
 
 \code{[object ...] : set} создаёт множество из несколько объектов.
 

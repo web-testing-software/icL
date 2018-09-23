@@ -173,11 +173,7 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.query (cssSelector : string) : element|}
-
-Акроним для \lstinline|element.query By'cssSelector @cssSelector|; 
-
-\subsubsection{\lstinline|element.query (by : int, selector : string) : element|}
+\subsubsection{\lstinline|element.query (by = By'cssSelector, selector : string) : element|}
 
 Параметр \code{by} получает одно из следующих значений:
 \begin{icItems}
@@ -196,11 +192,7 @@
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
 
-\subsubsection{\lstinline|element.queryAll (cssSelector : string) : element|}
-
-Акроним для \lstinline|element.queryAll By'cssSelector @cssSelector|;
-
-\subsubsection{\lstinline|element.queryAll (by : int, selector : string) : element|}
+\subsubsection{\lstinline|element.queryAll (by = By'cssSelector, selector : string) : element|}
 
 Параметры получают такие же значения, как и в случае с \code{element.query}, только данный метод возвращает коллекцию найденных элементов или пустую коллекцию если ничего не нашлось.
 
@@ -210,35 +202,35 @@
 
 \subsubsection{\lstinline|element.queryAllByXPath (xpath : string) : element|}
 
-Акроним для \lstinline|element.queryAll By'xPath @xpath|;
+Акроним для \lstinline|element.queryAll (By'xPath, @xpath)|;
 
 \subsubsection{\lstinline|element.queryByXPath (xpath : string) : element|}
 
-Акроним для \lstinline|element.query By'xPath @xpath|;
+Акроним для \lstinline|element.query (By'xPath, @xpath)|;
 
 \subsubsection{\lstinline|element.queryLink (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|element.query By'linkText @name|;
-	\item \lstinline|element.query By'partialLinkText @name|.
+	\item \lstinline|element.query (By'linkText, @name)|;
+	\item \lstinline|element.query (By'partialLinkText, @name)|.
 \end{icItems}
 
 \subsubsection{\lstinline|element.queryLinks (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|element.queryAll By'linkText @name|;
-	\item \lstinline|element.queryAll By'partialLinkText @name|.
+	\item \lstinline|element.queryAll (By'linkText, @name)|;
+	\item \lstinline|element.queryAll (By'partialLinkText, @name)|.
 \end{icItems}
 
 \subsubsection{\lstinline|element.queryTag (name : string) : element|}
 
-Акроним для \lstinline|element.query By'tagName @name|;
+Акроним для \lstinline|element.query (By'tagName, @name)|;
 
 \subsubsection{\lstinline|element.queryTags (name : string) : element|}
 
-Акроним для \lstinline|element.queryAll By'tagName @name|;
+Акроним для \lstinline|element.queryAll (By'tagName, @name)|;
 
 \subsubsection{\lstinline|element.screenshot () : string|}
 
