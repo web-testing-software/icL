@@ -65,5 +65,6 @@ __21-22.09.2018__
    (**@var** = **value**, **@var2** : **int**) {}, the default values must be 
    any, not just the last, the last default parameters can be skipped, to set 
    default value for non last parameter use void sign, example: func (~, 3).
+ * [/] Add Stack.root to get root stack, in function it's the function stack.
 
 All approved changes will be applicated in Standard for icL RC 3.
