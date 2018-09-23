@@ -45,8 +45,8 @@ __21-22.09.2018__
    *func* = (*@arg1* : **int**, *@arg2* : **string**) : **string** {}.
  * [+] Change the function call syntax from !name args... to name (args..),
    beetwen arguments needs to be comma delimiter.
- * [/] Brackets may be skiped if the number of args is equal with **1**.
- * [/] Change the operator **&lt;&lt;** to **&lt;** and **&gt;&gt;** to 
+ * [+] Brackets may be skiped if the number of args is equal with **1**.
+ * [+] Change the operator **&lt;&lt;** to **&lt;** and **&gt;&gt;** to
    **&gt;**.
  * [/] Add autofinish of commands.
  * [/] Now the underline (_) symbol can be used in variables names.
