@@ -48,7 +48,7 @@ __21-22.09.2018__
  * [+] Brackets may be skiped if the number of args is equal with **1**.
  * [+] Change the operator **&lt;&lt;** to **&lt;** and **&gt;&gt;** to
    **&gt;**.
- * [/] Add autofinish of commands.
+ * [+] Add autofinish of commands.
  * [/] Now the underline (_) symbol can be used in variables names.
  * [/] Add datetime type (equivalent to QDateTime), with the next properties
    'year, 'month, 'day, 'hour, 'minut, 'second.
@@ -59,6 +59,7 @@ __21-22.09.2018__
    object define. On multiple values [@var1, @var2] the expresion will be
    parsed like group operator, to elude conflicts add an empty parameter at
    the first position, like [=, @var1, @var2].
+ * [/] Add packed values description.
  * [/] Add **m** : **1** operations, cast all variables in one type, etc.
  * [/] Add **1** : **m** operations, test cast in several types, etc.
  * [/] Add **m** : **m** operations, cast each variable in diferent type.
