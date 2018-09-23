@@ -49,7 +49,7 @@ __21-22.09.2018__
  * [+] Change the operator **&lt;&lt;** to **&lt;** and **&gt;&gt;** to
    **&gt;**.
  * [+] Add autofinish of commands.
- * [/] Now the underline (_) symbol can be used in variables names.
+ * [+] Now the underline (_) symbol can be used in variables names.
  * [/] Add datetime type (equivalent to QDateTime), with the next properties
    'year, 'month, 'day, 'hour, 'minut, 'second.
  * [/] Add Set.clone method.
