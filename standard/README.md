@@ -24,7 +24,7 @@ __18.09.2018__
  * [+] Add _stack.return -> especially for functions.
  * [+] Rename all System data types to first uppercase names and remove
    underline (_)
- * [/] Add States'first, States'last, States'next, States'prev : object, to get
+ * [+] Add States'first, States'last, States'next, States'prev : object, to get
    access to data, which can be important.
 
 All approved changes will be applicated in Standard for icL RC 2.

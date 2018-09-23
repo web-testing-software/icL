@@ -58,6 +58,10 @@
 
 Для управления состояниями, используется следующий набор функций и свойств:
 \begin{icItems}
+	\item \lstinline|States'first : object|;
+	\item \lstinline|States'prev : object|;
+	\item \lstinline|States'next : object|;
+	\item \lstinline|States'last : object|;
 	\item \lstinline|States.new : void|;
 	\item \lstinline|States.newAtEnd : void|;
 	\item \lstinline|States.toNext : void|;
@@ -69,6 +73,22 @@
 \end{icItems}
 
 Объект \lstinline|States| является коллекцией, а значит её можно посматривать через \lstinline|for (States) {}|. Поддержка других циклов не предусматриваться.
+
+\subsubsection{\lstinline|States'first : object|}
+
+Возвращает первое состояние в виде объекта.
+
+\subsubsection{\lstinline|States'prev : object|}
+
+Возвращает предыдущее состояние в виде объекта.
+
+\subsubsection{\lstinline|States'next : object|}
+
+Возвращает следующее состояние в виде объекта.
+
+\subsubsection{\lstinline|States'last : object|}
+
+Возвращает последнее состояние в виде объекта.
 
 \subsubsection{\lstinline|States.new <object>data = [<>] : void|}
 
