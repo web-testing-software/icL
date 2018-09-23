@@ -109,7 +109,7 @@ Tab.get "URL"; Tab.close
 if (Tab.get "mai.ru") {
 	`` site loaded successfull
 	`` click the button
-	(DOM.query "button").click;
+	DOM.query("button").click;
 }
 else {
 	`` try again later
@@ -121,44 +121,3 @@ else {
 \end{lstlisting}
 
 Таким образом из команд собираем сценарии. Перед закрывающих скобок ставить разделитель команд опционально.
-
-\subsubsection{Дополнительные сведение}
-
-Если у вас нет знании в программировании перейдите, пожалуйста, на третью главу.
-
-icL отсутствуют разделители между значениями в списке. Примеры:
-
-\begin{icItems}
-	\item Инициализация списка в С++:
-\begin{lstlisting}[numbers=none, language=C++]
-std::list<std::string> list = {"one", "two", "three"};
-\end{lstlisting}
-	Инициализация списка в icL:
-\begin{lstlisting}[numbers=none]
-@list = ["one" "two" "three"];
-\end{lstlisting}
-	\item Функция в С++:
-\begin{lstlisting}[numbers=none, language=C++]
-int sum (int number1, int number2) { return number1 + number2; };
-\end{lstlisting}
-	Функция в icL:
-\begin{lstlisting}[numbers=none]
-!sum = <int>number1 <int>number2 : int { @ = number1 + number2 };
-\end{lstlisting}
-	\item Вызов функций в С++:
-\begin{lstlisting}[numbers=none, language=C++]
-int s = sum (100, 200);
-\end{lstlisting}
-	Вызов функций в icL:
-\begin{lstlisting}[numbers=none]
-@sum = !sum 100 200;
-\end{lstlisting}
-%	\item Код на С++:
-%\begin{lstlisting}[numbers=none, language=C++]
-%sum (100 + 50, 200);
-%\end{lstlisting}
-%	Эквивалент на icL:
-%\begin{lstlisting}[numbers=none]
-%!sum (100 + 50) 200;
-%\end{lstlisting}
-\end{icItems}

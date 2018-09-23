@@ -31,7 +31,7 @@ All approved changes will be applicated in Standard for icL RC 2.
 
 __21-22.09.2018__
 
- * [/] Add comma delimiter beetwen grouped values, the list changes from
+ * [+] Add comma delimiter beetwen grouped values, the list changes from
    [**"str1"** **"str2"** **"str3"**] to [**"str1"**, **"str2"**, **"str3"**].
  * [/] Change object field syntax from &lt;value&gt;name to name = value, the 
    objects changes from [&lt;**23**&gt;*age* &lt;**"Alice"**&gt;*name*] to 
@@ -55,6 +55,10 @@ __21-22.09.2018__
  * [/] Add Set.clone method.
  * [/] Add type var define [**type**] === [**type** : **type**] and
    (**type**) === (**@type** : **type**), simplify set and functions headers.
+ * [/] Add var field define [**@var**] === [**var** = **@var**], simplify
+   object define. On multiple values [@var1, @var2] the expresion will be
+   parsed like group operator, to elude conflicts add an empty parameter at
+   the first position, like [=, @var1, @var2].
  * [/] Add **m** : **1** operations, cast all variables in one type, etc.
  * [/] Add **1** : **m** operations, test cast in several types, etc.
  * [/] Add **m** : **m** operations, cast each variable in diferent type.
@@ -67,5 +71,6 @@ __21-22.09.2018__
    any, not just the last, the last default parameters can be skipped, to set 
    default value for non last parameter use void sign, example: func (~, 3).
  * [/] Add Stack.root to get root stack, in function it's the function stack.
+ * [/] Add explication for @ and # variables.
 
 All approved changes will be applicated in Standard for icL RC 3.

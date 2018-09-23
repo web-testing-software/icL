@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Циклы}
 
 Может возникнуть нужность в том, чтобы выполнить блок кода несколько раз. Для этого совсем не обязательно писать один то тоже код несколько раз, достаточно использовать цикл.
@@ -151,7 +152,7 @@ range (collection, condition_for_begin, condition_for_end) {
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Фильтрование по индексов, label=filterindexex]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
 filter (@list, # \ 2 == 0) {
 @; `` apple, fruit
@@ -161,7 +162,7 @@ filter (@list, # \ 2 == 0) {
 Выбрать первый и последний элемент можно по значении (см. листинг \ref{bananakiwiex}, интервал от значений \code{banana} до \code{kiwi}) или по индексам (см. листинг \ref{seclastex}, интервал от второго до последнего).
 
 \begin{lstlisting}[caption=Интервал: от banana до kiwi, label=bananakiwiex]
-@list = ["apple" "banana" "fruit" "kiwi"];
+@list = ["apple", "banana", "fruit", "kiwi"];
 
 range (@list, @ == "banana", @ == "kiwi") {
 	@; `` banana, fruit, kiwi
@@ -169,7 +170,7 @@ range (@list, @ == "banana", @ == "kiwi") {
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Интервал: от второго до последнего, label=seclastex]
-@list = ["apple" "banana" "fruit" "kiwi"];
+@list = ["apple", "banana", "fruit", "kiwi"];
 
 range (@list, # == 2, true) {
 	@; `` fruit, kiwi

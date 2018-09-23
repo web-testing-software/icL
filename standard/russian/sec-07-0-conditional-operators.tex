@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Условные операторы}
 
 Условные структуры имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значения условии.
@@ -25,7 +26,9 @@ if (condition) {
 Также допускаются пропустить круглые скобки, синтаксис -
 \begin{lstlisting}[numbers=none]
 if true  { commands };
+if !true { commands };
 if @var  { commands };
+if !@var { commands };
 \end{lstlisting}
 
 \subsubsection{\lstinline`if else`}

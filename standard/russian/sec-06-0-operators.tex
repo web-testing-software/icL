@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Операторы}
 
 {\bf Оператор} - это токен, который предписывает выполнение определённой манипуляции данных. Встроенных операторов в icL очень много, по этому будет их разбирать по типу данных, в следующем порядке:
@@ -438,7 +439,7 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 Чтобы из несколько строк получить список, оператор вставки рекомендуется не использовать, вместо него использовать литерал:
 \begin{lstlisting}[numbers=none]
-[@str1 @str2 "Const string" (!func) (37.1 : string) (@bool : string) @list.Join]
+[@str1, @str2, "Const string", !func, 37.1 : string, @bool : string, @list.Join]
 \end{lstlisting}
 
 \subsubsection{\lstinline`<string>s1 == <string>s2 : bool`}
@@ -454,21 +455,21 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 Возвращает \false{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
 
 \begin{lstlisting}[caption=Примеры использования операторов над данными типа string и list, label=stringlistopex]
-"String1" == "String2";					`` false
-["a" "b"] == ["a" "b"];					`` true
-["a" "b"] == ["b" "a"];					`` true
-["a" "b"] << "c";						`` false
-"abc" << "c";							`` true
-"ab" + "c";								`` "abc"
-"ab" + ["c"];							`` ["ac" "c"]
-["a" "b"] + "c";						`` ["a" "b" "c"]
-["a" "b"] + ["c" "d"];					`` ["a" "b" "c" "d"]
-"abc" * "*c";							`` true
-["ac" "bc"] * "*c";						`` true
-["ac" "bc"] * "a*";						`` false
-["ad" "ac" "bd" "cc"] * ["*d" "*c"];	`` true
-["ad" "ac" "bc" "cd"] * ["*d" "*c"];	`` false
-"Tom is a cat" ** "Tom is not a cat";	`` 0.875
+"String1" == "String2";					 `` false
+["a", "b"] == ["a", "b"];				 `` true
+["a", "b"] == ["b", "a"];				 `` true
+["a", "b"] << "c";						 `` false
+"abc" << "c";							 `` true
+"ab" + "c";								 `` "abc"
+"ab" + ["c"];							 `` ["ac", "c"]
+["a", "b"] + "c";						 `` ["a", "b", "c"]
+["a", "b"] + ["c", "d"];				 `` ["a", "b", "c", "d"]
+"abc" * "*c";							 `` true
+["ac", "bc"] * "*c";					 `` true
+["ac", "bc"] * "a*";					 `` false
+["ad", "ac", "bd", "cc"] * ["*d", "*c"]; `` true
+["ad", "ac", "bc", "cd"] * ["*d", "*c"]; `` false
+"Tom is a cat" ** "Tom is not a cat";	 `` 0.875
 \end{lstlisting}
 
 \subsubsection{\lstinline`<list>l1 != <list>l2 : bool`}
@@ -786,7 +787,7 @@ Log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
 
 \code{[] : list} создаёт пустой список.
 
-\code{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так и вызовы на функций возвращающие строки. Пример: \code{["a" "b" "c"]}.
+\code{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так и вызовы на функций возвращающие строки. Пример: \code{["a", "b", "c"]}.
 
 \code{[list ...] : list} объединяет несколько списков в один.
 
