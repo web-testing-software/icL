@@ -50,7 +50,7 @@ __21-22.09.2018__
    **&gt;**.
  * [+] Add autofinish of commands.
  * [+] Now the underline (_) symbol can be used in variables names.
- * [/] Add datetime type (equivalent to QDateTime), with the next properties
+ * [+] Add datetime type (equivalent to QDateTime), with the next properties
    'year, 'month, 'day, 'hour, 'minut, 'second.
  * [/] Add Set.clone method.
  * [/] Add type var define [**type**] === [**type** : **type**] and

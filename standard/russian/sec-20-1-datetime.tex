@@ -1,0 +1,153 @@
+% !TeX spellcheck = ru_RU
+\section{Дата и время}
+
+Временная метка (тип \code{datetime}) не может быть описаны литералом, а только преобразованы из строки используя определённый формат.
+
+\subsection{Операторы}
+
+Для временной метки доступны следующие операторы первого ранга:
+\begin{icItems}
+	\item \lstinline|string : datetime|;
+	\item \lstinline|(dt : string) : (datetime, format : string)|;
+	\item \lstinline|datetime : string|;
+	\item \lstinline|datetime : (string, format : string)|;
+\end{icItems}
+
+\subsubsection{\lstinline|string : datetime|}
+
+Преобразует строку в \code{datetime}, используя формат \\* \lstinline`yyyy-MM-ddTHH:mm:ss[Z|[+|-]HH:mm]`.
+
+\subsubsection{\lstinline|(dt : string) : (datetime, format : string)|}
+
+Преобразует строку \code{dt} в \code{datetime}, используя указанный формат, например: \lstinline|"21.01.2019" : (datetime, "dd.MM.yyyy")|. Список доступных заменителей:
+\begin{icItems}
+	\item \code{d} - число;
+	\item \code{dd} - число с ведущем нулём;
+	\item \code{ddd} - сокращение названий дня;
+	\item \code{dddd} - полное название дня;
+	\item \code{M} - месяц;
+	\item \code{MM} - месяц с ведущем нулём;
+	\item \code{MMM} - сокращение названий месяца;
+	\item \code{MMMM} - полное название месяца;
+	\item \code{yy} - год как двухзначное число;
+	\item \code{yyyy} - год как четырёхзначное число;
+	\item \code{h} - час;
+	\item \code{hh} - час с ведущем нулём;
+	\item \code{m} - минута;
+	\item \code{mm} - минута с ведущем нулём;
+	\item \code{s} - секунда;
+	\item \code{ss} - секунда с ведущем нулём;
+	\item \code{ap} - am или pm;
+	\item \code{AP} - AP или PM;
+\end{icItems}
+
+\subsubsection{\lstinline|datetime : string|}
+
+Преобразует дату и время в строке формата \lstinline`yyyy-MM-ddTHH:mm:ss[Z|[+|-]HH:mm]`.
+
+\subsubsection{\lstinline|datetime : (string, format : string)|}
+
+Пробрезует дату и время в строке с нужным форматом.
+
+\subsection{Свойства}
+
+Временная метка имеет следующие свойства:
+\begin{icItems}
+	\item \lstinline|[r/w] datetime'year : int|;
+	\item \lstinline|[r/w] datetime'month : int|;
+	\item \lstinline|[r/w] datetime'day : int|;
+	\item \lstinline|[r/w] datetime'hour : int|;
+	\item \lstinline|[r/w] datetime'minute : int|;
+	\item \lstinline|[r/w] datetime'second : int|;
+	\item \lstinline|[r/o] datetime'valid : bool|.
+\end{icItems}
+
+\subsubsection{\lstinline|[r/w] datetime'year : int|}
+
+Год временной метки.
+
+\subsubsection{\lstinline|[r/w] datetime'month : int|};
+
+Месяц временной метки.
+
+\subsubsection{\lstinline|[r/w] datetime'day : int|}
+
+Число временной метки.
+
+\subsubsection{\lstinline|[r/w] datetime'hour : int|}
+
+Час временной метки.
+
+\subsubsection{\lstinline|[r/w] datetime'minute : int|}
+
+Минута временной метки.
+
+\subsubsection{\lstinline|[r/w] datetime'second : int|}
+
+Секунда временной метки.
+
+\subsubsection{\lstinline|[r/о] datetime'valid : bool|}
+
+\true, если временная метка правильная, иначе \false.
+
+\subsection{Методы}
+
+Временная метка имеет следующие методы:
+\begin{icItems}
+	\item \lstinline|datetime.addSecs (secs : int) : datetime|;
+	\item \lstinline|datetime.addDays (days : int) : datetime|;
+	\item \lstinline|datetime.addMonth (months : int) : datetime|;
+	\item \lstinline|datetime.addYears (months : int) : datetime|;
+	\item \lstinline|datetime.secsTo (dt : datetime) : int|;
+	\item \lstinline|datetime.daysTo (dt : datetime) : int|;
+	\item \lstinline|datetime.toUTC () : datetime|;
+	\item \lstinline|datetime.toTimeZone (hours : int, minutes : int) : datetime|.
+\end{icItems}
+
+\subsubsection{\lstinline|datetime.addSecs (secs : int) : datetime|}
+
+Добавляет нужное количество секунд к времени.
+
+\subsubsection{\lstinline|datetime.addDays (days : int) : datetime|}
+
+Добавляет нужное количество дней к времени.
+
+\subsubsection{\lstinline|datetime.addMonth (months : int) : datetime|}
+
+Добавляет нужное количество месяцев к времени.
+
+\subsubsection{\lstinline|datetime.addYears (months : int) : datetime|}
+
+Добавляет нужное количество лет к времени.
+
+\subsubsection{\lstinline|datetime.secsTo (dt : datetime) : int|}
+
+Вычисляет количество секунд от первой временной метки до второй.
+
+\subsubsection{\lstinline|datetime.daysTo (dt : datetime) : int|}
+
+Вычисляет количество дней от первой временной метки до второй.
+
+\subsubsection{\lstinline|datetime.toUTC () : datetime|}
+
+Возвращает новую временную метку, представляя всемирное координированное время.
+
+\subsubsection{\lstinline|datetime.toTimeZone (hours : int, minutes : int) : datetime|}
+
+Возвращает новую временную метку, представляя время в нужном часовом поясе.
+
+\subsection{Текущее время}
+
+Для получение текущей времени предусматриваются следующие функций:
+\begin{icItems}
+	\item \lstinline|Datetime.current () : datetime|;
+	\item \lstinline|Datetime.currentUTC () : datetime|.
+\end{icItems}
+
+\subsubsection{\lstinline|Datetime.current () : datetime|}
+
+Текущее локальное время.
+
+\subsubsection{\lstinline|Datetime.currentUTC () : datetime|}
+
+Текущее UTC время.
