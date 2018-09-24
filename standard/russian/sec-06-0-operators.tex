@@ -227,8 +227,6 @@ Log.out "false != true = " (false != true);	`` false != true = true
 
 Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{numberopex}.
 
-{\bf Внимание:} несмотря на то что пробелы в icL игнорируются, они влияют на восприятии кода, \code{-23-4} будет восприниматься как \lstinline`(-23) (-4)` а не как \lstinline`(-23) - (4)`. Недоразумение между человеком и машиной решается добавлением пробелов \lstinline`-23  - 4`.
-
 \subsubsection{\lstinline`(a : int) == (b : int) : bool`}
 
 Возвращает \true{} если \code{a} и \code{b} имеют одинаковое значение, иначе \false{}.
@@ -441,7 +439,11 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 		\item
 			содержит \lstinline`list << string : bool` и \lstinline`string << string : bool`;
 		\item
+			не содержит \lstinline`list !< string : bool` и \lstinline`string !< string : bool`;
+		\item
 			содержит строку подходящая по шаблону \lstinline`list <* string : bool`.
+		\item 
+			не содержит строку подходящая по шаблону \lstinline`list !* string : bool`.
 		\end{icItems}
 	\item
 		4-ого ранга:
@@ -506,11 +508,23 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает \true{}, если строка \code{str} содержит подстроку \code{substr}, иначе \false{}.
 
+\subsubsection{\lstinline`(l : list) !< (str : string) : bool`}
+
+Возвращает \true{}, если список \code{l} не содержит строку \code{str}, иначе \false{}.
+
+\subsubsection{\lstinline`(str : string) !< (substr : string) : bool`}
+
+Возвращает \true{}, если строка \code{str} не содержит подстроку \code{substr}, иначе \false{}.
+
 \subsubsection{\lstinline`(l : list) <* (template : string) : bool`}
 
 Возвращает \true{}, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
 
 {\bf Шаблон} - это строка содержащая данные и специальный символ \lstinline`*`, где \lstinline`*` означает любая последовательность символов. Рассмотрим шаблонную строку \lstinline`"Have a * day!"`, примеры строк подходящие по шаблону: \lstinline`"Have a nice day!"`, \lstinline`"Have a amazing day!"`. Пример неподходящей строки \lstinline`"Have a good day"` (отсутствует восклицательный знак).
+
+\subsubsection{\lstinline`(l : list) !* (template : string) : bool`}
+
+Возвращает \true{}, если список \code{l} не содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
 
 \subsubsection{\lstinline`(s1 : string) + (s2 : string) : string`}
 
@@ -553,7 +567,7 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 
 \subsection{{\color{lightblue}object} и {\color{lightblue}set}}
 
-Для строк и списков доступны операций:
+Для множеств и объектов доступны операций:
 \begin{icItems}
 	\item
 		3-ого ранга:
@@ -564,8 +578,12 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 			не равно \lstinline`object != object : bool` и \lstinline`set != set : bool`;
 		\item
 			включение \lstinline`set << object : bool` и \lstinline|set << set : bool|;
+		\item 
+			исключение \lstinline`set !< object : bool` и \lstinline|set !< set : bool|;
 		\item
-			включение шаблона \lstinline`set <* object : bool` и \lstinline`object <* object : bool`.
+			включение шаблона \lstinline`set <* object : bool` и \lstinline`object <* object : bool`;
+		\item 
+			исключение шаблона \lstinline`set !* object : bool` и \lstinline`object !* object : bool`.
 		\end{icItems}
 	\item
 		4-ого ранга:
@@ -651,6 +669,14 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает \true, если множество \code{set1} содержит подмножество \code{set2}, иначе \false.
 
+\subsubsection{\lstinline`(s : set) !< (obj : object) : bool`}
+
+Возвращает \true{}, если множество \code{s} не содержит объект \code{obj}, иначе \false{}.
+
+\subsubsection{\lstinline|(set1 : set) !< (set2 : set) : bool|}
+
+Возвращает \true, если множество \code{set1} не содержит подмножество \code{set2}, иначе \false.
+
 \subsubsection{\lstinline`(s : set) <* (subobj : object) : bool`}
 
 Возвращает \true{}, если множество \code{s} содержит под объект \code{subobj}, иначе \false{}.
@@ -658,6 +684,14 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 \subsubsection{\lstinline`(obj : object) <* (subobj : object) : bool`}
 
 Возвращает \true{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \false{}.
+
+\subsubsection{\lstinline`(s : set) !* (subobj : object) : bool`}
+
+Возвращает \true{}, если множество \code{s} не содержит под объект \code{subobj}, иначе \false{}.
+
+\subsubsection{\lstinline`(obj : object) !* (subobj : object) : bool`}
+
+Возвращает \false{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \true{}.
 
 \subsubsection{\lstinline`(set1 : set) + (set2 : set) : set`}
 

@@ -144,11 +144,18 @@ int    >= int    : bool;
 
 double <  double : bool;
 int    <  int    : bool;
+
 list   << string : bool;
 set    << object : bool;
 set    << set    : bool;
 string << string : bool;
 string << regex  : bool;
+
+list   !< string : bool;
+set    !< object : bool;
+set    !< set    : bool;
+string !< string : bool;
+string !< regex  : bool;
 
 double <= double : bool;
 int    <= int    : bool;
@@ -157,6 +164,11 @@ list   <* string : bool;
 object <* object : bool;
 set    <* object : bool;
 string <* regex  : list;
+
+list   !* string : bool;
+object !* object : bool;
+set    !* object : bool;
+string !* regex  : list;
 \end{lstlisting}
 
 \subsection{4-ого ранга}
@@ -164,7 +176,11 @@ string <* regex  : list;
 \noindent Перечень операторов 4-ого ранга -
 \begin{lstlisting}[numbers=none]
 double + double : double;
-int    + int    : int;
+
+list   <* string : bool;
+object <* object : bool;
+set    <* object : bool;
+string <* regex  : list;int    + int    : int;
 list   + list   : list;
 list   + string : list;
 set    + set    : set;

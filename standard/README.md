@@ -69,7 +69,7 @@ __21-22.09.2018__
  * [+] Add **m** : **m** operations, cast each variable in diferent type.
  * [+] Add default values for functiuons params.
  * [+] Rename **ICL** to **icL**, **DOM** to **Doc**.
- * [-] Add new operator **!&lt;**, inversion of **&lt;&lt;**.
+ * [+] Add new operator **!&lt;**, inversion of **&lt;&lt;**.
  * [+] Add **~** sign, which permite to generate void object.
  * [+] Add default values to functions parameters, syntax func =
    (**@var** = **value**, **@var2** : **int**) {}, the default values must be 
