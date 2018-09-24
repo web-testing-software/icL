@@ -52,7 +52,7 @@ __21-22.09.2018__
  * [+] Now the underline (_) symbol can be used in variables names.
  * [+] Add datetime type (equivalent to QDateTime), with the next properties
    'year, 'month, 'day, 'hour, 'minut, 'second.
- * [/] Add Set.clone, Object.clone methods.
+ * [+] Add Set.clone, Object.clone methods.
  * [/] Add type var define [**type**] === [**type** : **type**] and
    (**type**) === (**@type** : **type**), simplify set and functions headers.
  * [/] Add var field define [**@var**] === [**var** = **@var**], simplify

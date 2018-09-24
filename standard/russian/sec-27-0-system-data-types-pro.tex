@@ -7,9 +7,9 @@
 \noindent Описание класса \code{Alert} -
 \begin{lstlisting}[numbers=none]
 class Alert {
-        [r/o] Alert'text : string;
+    [r/o] Alert'text : string;
 	
-        Alert.accept          : void;
+    Alert.accept          : void;
 	Alert.dismiss         : void;
 	Alert.sendKeys string : void;
 }
@@ -20,7 +20,7 @@ class Alert {
 \noindent Описание класса \code{By} -
 \begin{lstlisting}[numbers=none]
 class By {
-        [r/o] By'cssSelector     : 1;
+    [r/o] By'cssSelector     : 1;
 	[r/o] By'linkText        : 2;
 	[r/o] By'partialLinkText : 3;
 	[r/o] By'tagName         : 4;
@@ -33,7 +33,7 @@ class By {
 \noindent Описание класса \code{Cookie} -
 \begin{lstlisting}[numbers=none]
 class Cookie {
-        [r/w] Cookie'domain   : string;
+    [r/w] Cookie'domain   : string;
 	[r/w] Cookie'expiry   : int;
 	[r/w] Cookie'httpOnly : bool;
 	[r/w] Cookie'name     : string;
@@ -41,7 +41,7 @@ class Cookie {
 	[r/w] Cookie'secure   : bool;
 	[r/w] Cookie'value    : string;
 	
-        Cookie.add  int   int   int
+    Cookie.add  int   int   int
 	           [int] [int] [int] : Cookie;
 	Cookie.load                  : Cookie;
 	Cookie.resetTime             : Cookie;
@@ -54,10 +54,20 @@ class Cookie {
 \noindent Описание класса \code{Cookies} -
 \begin{lstlisting}[numbers=none]
 class Cookies {
-        [r/o] Cookies'string : Cookie;
+    [r/o] Cookies'string : Cookie;
 
-        Cookies.deleteAll        : void;
+    Cookies.deleteAll        : void;
 	Cookies.get       string : Cookie;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} Datetime}}
+
+\noindent Описание класса \code{Datetime} -
+\begin{lstlisting}[numbers=none]
+class Datetime {
+	Datetime.current    : datetime;
+	Datetime.currentUTC : datetime;
 }
 \end{lstlisting}
 
@@ -66,8 +76,8 @@ class Cookies {
 \noindent Описание класса \code{DB} -
 \begin{lstlisting}[numbers=none]
 class DB {
-DB.query Code : Query;
-DB.close       : void;
+	DB.query Code : Query;
+	DB.close       : void;
 }
 \end{lstlisting}
 
@@ -76,7 +86,7 @@ DB.close       : void;
 \noindent Описание класса \code{DBManager} -
 \begin{lstlisting}[numbers=none]
 class DBManager {
-        DBManager.openSQLite string : DB;
+    DBManager.openSQLite string : DB;
 }
 \end{lstlisting}
 
@@ -85,7 +95,7 @@ class DBManager {
 \noindent Описание класса \code{DOM} -
 \begin{lstlisting}[numbers=none]
 class DOM {
-        DOM.query           int    string : element;
+    DOM.query           int    string : element;
 	DOM.query           string        : element;
 	DOM.queryAll        int    string : element;
 	DOM.queryAll        string        : element;
@@ -103,7 +113,7 @@ class DOM {
 \noindent Описание класса \code{DSV} -
 \begin{lstlisting}[numbers=none]
 class DSV {
-        DSV.load    string File  : set;
+    DSV.load    string File  : set;
 	DSV.loadCSV string        : set;
 	DSV.loadTSV string        : set;
 	DSV.write   File  set    : File;
@@ -118,13 +128,13 @@ class DSV {
 \noindent Описание класса \code{File} -
 \begin{lstlisting}[numbers=none]
 class File {
-        [r/o] File'CSV    : 1;
+    [r/o] File'CSV    : 1;
 	[r/o] File'format : int;
 	[r/o] File'none   : 0;
 	[r/o] File'TSV    : 2;
 	[r/o] File'valid  : bool;
 	
-        File.close  : void;
+    File.close  : void;
 	File.delete () : void;
 }
 \end{lstlisting}
@@ -134,7 +144,7 @@ class File {
 \noindent Описание класса \code{Files} -
 \begin{lstlisting}[numbers=none]
 class Files {
-        File.open       string : File;
+    File.open       string : File;
 	File.create     string : File;
 	File.createDir  string : void;
 	File.createPath string : void;
@@ -146,7 +156,7 @@ class Files {
 \noindent Описание класса \code{ICL} -
 \begin{lstlisting}[numbers=none]
 class ICL {
-        [r/w] ICL'clickTime : int;
+    [r/w] ICL'clickTime : int;
 	[r/w] ICL'pressTime : int;
 	[r/w] ICL'moveTime  : int;
 	[r/w] ICL'flashMode : int;
@@ -159,7 +169,7 @@ class ICL {
 \noindent Описание класса \code{Import} -
 \begin{lstlisting}[numbers=none]
 class Import {
-        Import.none      [object] string : void;
+    Import.none      [object] string : void;
 	Import.functions [object] string : void;
 	Import.all       [object] string : void;
 	Import.run       string          : void;
@@ -171,7 +181,7 @@ class Import {
 \noindent Описание класса \code{Key} -
 \begin{lstlisting}[numbers=none]
 class Key {
-        Key'alt   : 3;
+    Key'alt   : 3;
 	Key'ctrl  : 1;
 	Key'shift : 2;
 }
@@ -182,7 +192,7 @@ class Key {
 \noindent Описание класса \code{Log} -
 \begin{lstlisting}[numbers=none]
 class Log {
-        Log.error string   : void;
+    Log.error string   : void;
 	Log.info  string   : void;
 	Log.out   value... : void;
 	Log.stack value    : void;
@@ -195,7 +205,7 @@ class Log {
 \noindent Описание класса \code{Make} -
 \begin{lstlisting}[numbers=none]
 class Make {
-        Make.image  string string : void;
+    Make.image  string string : void;
 	Make.int    string int    : int;
 	Make.list   set           : list;
 	Make.object string        : object;
@@ -213,7 +223,7 @@ class Make {
 \noindent Описание класса \code{Math} -
 \begin{lstlisting}[numbers=none]
 class Math {
-        [r/o] Math'1divPi     : double;
+    [r/o] Math'1divPi     : double;
 	[r/o] Math'1divSqrt2  : double;
 	[r/o] Math'2divPi     : double;
 	[r/o] Math'2divSqrtPi : double;
@@ -227,7 +237,7 @@ class Math {
 	[r/o] Math'piDiv4     : double;
 	[r/o] Math'sqrt2      : double;
 	
-        Math.acos             double    : double;
+    Math.acos             double    : double;
 	Math.asin             double    : double;
 	Math.atan             double    : double;
 	Math.ceil             double    : double;
@@ -251,7 +261,7 @@ class Math {
 \noindent Описание класса \code{Mouse} -
 \begin{lstlisting}[numbers=none]
 class Mouse {
-        [r/o] Mouse'left   : 1;
+    [r/o] Mouse'left   : 1;
 	[r/o] Mouse'middle : 2;
 	[r/o] Mouse'right  : 3;
 }
@@ -262,7 +272,7 @@ class Mouse {
 \noindent Описание класса \code{Move} -
 \begin{lstlisting}[numbers=none]
 class Move {
-        [r/o] Move'bezier    : 5;
+    [r/o] Move'bezier    : 5;
 	[r/o] Move'cubic     : 4;
 	[r/o] Move'linear    : 2;
 	[r/o] Move'quadratic : 3;
@@ -274,7 +284,7 @@ class Move {
 
 \noindent Описание класса \code{Numbers} -
 \begin{lstlisting}[numbers=none]
-        [r/o] Numbers'max     : 4;
+    [r/o] Numbers'max     : 4;
 	[r/o] Numbers'min     : 3;
 	[r/o] Numbers'product : 2;
 	[r/o] Numbers'process : int;
@@ -286,10 +296,10 @@ class Move {
 \noindent Описание класса \code{Query} -
 \begin{lstlisting}[numbers=none]
 class Query {
-        [w/o] Query'string : value;
+    [w/o] Query'string : value;
 	[r/o] Query'string : value;
 	
-        Query.exec                          : bool;
+    Query.exec                          : bool;
 	Query.first                         : bool;
 	Query.getRowsAffected               : int;
 	Query.getError                      : bool;
@@ -308,14 +318,14 @@ class Query {
 \noindent Описание класса \code{Session} -
 \begin{lstlisting}[numbers=none]
 class Session {
-        [r/w] Session'implicitTimeout : int;
+    [r/w] Session'implicitTimeout : int;
 	[r/w] Session'pageLoadTimeout : int;
 	[r/w] Session'scriptTimeout   : int;
 	[r/w] Session'source          : string;
 	[r/w] Session'title           : string;
 	[r/w] Session'url             : string;
 	
-        Session.back       : Session;
+    Session.back       : Session;
 	Session.close      : void;
 	Session.forward    : Session;
 	Session.refresh    : Session;
@@ -329,10 +339,10 @@ class Session {
 \noindent Описание класса \code{Sessions} -
 \begin{lstlisting}[numbers=none]
 class Sessions {
-        [r/o] Sessions'length : int;
+    [r/o] Sessions'length : int;
 	[r/o] Sessions'int    : Session;
 	
-        Sessions.closeAll     : void;
+    Sessions.closeAll     : void;
 	Sessions.get      int : Session;
 	Sessions.new          : Session;
 }
@@ -343,7 +353,7 @@ class Sessions {
 \noindent Описание класса \code{Signal} -
 \begin{lstlisting}[numbers=none]
 class Signal {
-        Signal.add string : void;
+    Signal.add string : void;
 }
 \end{lstlisting}
 
@@ -352,9 +362,9 @@ class Signal {
 \noindent Описание класса \code{Stack} -
 \begin{lstlisting}[numbers=none]
 class Stack {
-        [r/w] Stack : value;
+    [r/w] Stack : value;
 	
-        Stack.clear             : void;
+    Stack.clear             : void;
 	Stack.continue          : void;
 	Stack.break             : void;
 	Stack.return value : any : void;
@@ -366,7 +376,7 @@ class Stack {
 \noindent Описание класса \code{Stacks} -
 \begin{lstlisting}[numbers=none]
 class Stacks {
-        [r/w] Stacks'string : Stack;
+    [r/w] Stacks'string : Stack;
 }
 \end{lstlisting}
 
@@ -375,7 +385,7 @@ class Stacks {
 \noindent Описание класса \code{States} -
 \begin{lstlisting}[numbers=none]
 class States {
-        States.clear    : void;
+    States.clear    : void;
 	States.delete   : void;
 	States.new      : void;
 	States.newAtEnd () : void;
@@ -391,14 +401,14 @@ class States {
 \noindent Описание класса \code{Tab} -
 \begin{lstlisting}[numbers=none]
 class Tab {
-        [icL] [r/o] Tab'canGoBack    : bool;
+    [icL] [r/o] Tab'canGoBack    : bool;
 	[icL] [r/o] Tab'canGoForward : bool;
 	      [r/o] Tab'screenshot   : string;
 	      [r/o] Tab'source       : string;
 	      [r/*] Tab'title        : string;
 	      [r/w] Tab'url          : string;
 
-        Tab.back           : void;
+    Tab.back           : void;
 	Tab.close          : void;
 	Tab.focus          : void;
 	Tab.forward        : void;
@@ -412,7 +422,7 @@ class Tab {
 \noindent Описание класса \code{Tabs} -
 \begin{lstlisting}[numbers=none]
 class Tabs {
-        [r/o] Tabs'current  : Tab;
+    [r/o] Tabs'current  : Tab;
 	[r/o] Tabs'first    : Tab;
 	[r/o] Tabs'last     : Tab;
 	[r/o] Tabs'length   : Tab;
@@ -420,7 +430,7 @@ class Tabs {
 	[r/o] Tabs'previous : Tab;
 	[r/o] Tabs'int      : Tab;
 	
-        Tabs.close        regex  : int;
+    Tabs.close        regex  : int;
 	Tabs.close        string : int;
 	Tabs.closeByTitle regex  : int;
 	Tabs.closeByTitle string : int;
@@ -439,7 +449,7 @@ class Tabs {
 \noindent Описание класса \code{Types} -
 \begin{lstlisting}[numbers=none]
 class Types {
-        [r/o] Types'alert     : 10;
+    [r/o] Types'alert     : 10;
 	[r/o] Types'bool      : 1;
 	[r/o] Types'by        : 11;
 	[r/o] Types'cookie    : 12;
@@ -489,7 +499,7 @@ class Types {
 \noindent Описание класса \code{Wait} -
 \begin{lstlisting}[numbers=none]
 class Wait {
-        Wait.ajax  object         : bool;
+    Wait.ajax  object         : bool;
 	Wait.for   element object : bool;
 	Wait.title object         : bool;
 	Wait.url   object         : bool;
@@ -501,12 +511,12 @@ class Wait {
 \noindent Описание класса \code{Window} -
 \begin{lstlisting}[numbers=none]
 class Window {
-        [r/w] Window'height : int;
+    [r/w] Window'height : int;
 	[r/w] Window'width  : int;
 	[r/w] Window'x      : int;
 	[r/w] Window'y      : int;
 	
-        Window.close                   : void;
+    Window.close                   : void;
 	Window.focus                   : Window;
 	Window.fullscreen              : Window;
 	Window.maximize                : Window;
@@ -523,10 +533,10 @@ class Window {
 \noindent Описание класса \code{Windows} -
 \begin{lstlisting}[numbers=none]
 class Windows {
-        [r/o] Window'length : int;
+    [r/o] Window'length : int;
 	[r/o] Window'int    : Window;
 	
-        Windows.get int : Window;
+    Windows.get int : Window;
 }
 \end{lstlisting}
 

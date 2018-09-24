@@ -1,12 +1,15 @@
+% !TeX spellcheck = ru_RU
 \section{Множества}
 
 {\bf Множества} (тип \set) позволяют хранить несколько объектов (тип \object) без повторений, для множеств доступны операции как пересечение, объединение.
 
 \subsection{{\color{lightblue} object}}
 
-Объект позволяет хранить несколько переменных, каждая хранимая переменная имеет тип и название. Доступ к переменным осуществляется через свойства объекта, где название свойств и есть название переменных.
+Объект позволяет хранить несколько переменных, каждая хранимая переменная имеет тип и название. Доступ к переменным осуществляется через свойства объекта, где название свойств и есть название переменных. 
 
 Поле объектов множества описаны в заголовке множества.
+
+Значение типа \object{} - ссылочное значение, чтобы получить копию объект недостаточно присвоить его другой переменной, нужно его копировать (клонировать) используя следующий метод - \lstinline|object.clone () : object|.
 
 \subsection{Свойства}
 
@@ -30,6 +33,7 @@
 \begin{icItems}
 \item \lstinline|set.applicate (data : list ...) : set|;
 \item \lstinline|set.clear () : set|;
+\item \lstinline|set.clone () : set|;
 \item \lstinline|set.getField (name : string) : list|;
 \item \lstinline|set.hasField (name : string) : bool|;
 \item \lstinline|set.insert (data : any ...) : set|;
@@ -121,6 +125,10 @@
 \subsubsection{\lstinline|set.clear () : set|}
 
 Очищает множество.
+
+\subsubsection{\lstinline|set.clone () : set|}
+
+Создаёт копию множества, путём копирования всех данных в другую область памяти.
 
 \subsubsection{\lstinline|set.getField (name : string) : list|}
 

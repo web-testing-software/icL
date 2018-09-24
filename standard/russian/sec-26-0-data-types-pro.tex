@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Типы данных}
 
 В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \code{value}.
@@ -16,7 +17,7 @@ class value {
     value'typeId   : int;
     value'typeName : string;
 
-    value.ensureRValue () : void;
+    value.ensureRValue () : value;
 }
 \end{lstlisting}
 
@@ -25,6 +26,27 @@ class value {
 \noindent Описание класса \bool -
 \begin{lstlisting}[numbers=none]
 class bool extends value {}
+\end{lstlisting}
+
+\subsection{{\color{lightblue} datetime}}
+
+\begin{lstlisting}[numbers=none]
+class datetime extends value {
+	[r/w] datetime'year : int;
+	[r/w] datetime'month : int;
+	[r/w] datetime'day : int;
+	[r/w] datetime'hour : int;
+	[r/w] datetime'minute : int;
+	[r/w] datetime'second : int;
+	[r/w] datetime'valid : bool;
+	
+	datetime.addSecs    int      : datetime;
+	datetime.addDays    int      : datetime;
+	datetime.addMonths  int      : datetime;
+	datetime.secsTo     datetime : datetime;
+	datetime.toUTC      datetime : datetime;
+	datetime.toTimeZone int int  : datetime;
+}
 \end{lstlisting}
 
 \subsection{{\color{lightblue} double}}
@@ -119,7 +141,7 @@ class list extends value {
     list.mid              int    [int]  : list;
     list.prepend          string        : list;
     list.move             int    int    : list;
-    list.removeAll        string        : list
+    list.removeAll        string        : list;
     list.removeAt         int           : list;
     list.removeDuplicates               : list;
     list.removeFirst                    : list;
@@ -136,6 +158,8 @@ class list extends value {
 \begin{lstlisting}[numbers=none]
 class object extends value {
     [r/w] object'string : value;
+    
+    object.clone () : object;
 }
 \end{lstlisting}
 
@@ -163,6 +187,7 @@ class set extends value {
 
     set.applicate         list...       : set;
     set.clear                           : set;
+    set.clone                           : set;
     set.getField          string        : list;
     set.hasField          string        : bool;
     set.insert            value...      : set;
