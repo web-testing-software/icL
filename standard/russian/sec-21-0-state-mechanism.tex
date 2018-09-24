@@ -12,6 +12,7 @@
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
 	\item \lstinline|[r/o] Stacks'(name : string) : Stack|;
+	\item \lstinline|Stacks.root() : Stack|;
 	\item \lstinline|Stack.clear () : void|;
 	\item \lstinline|Stack.continue () : void|;
 	\item \lstinline|Stack.break () : void|;
@@ -27,6 +28,10 @@
 }
 \end{lstlisting}
 Могут быть именованными только блоки команд (код ограничен круглыми скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт контейнер имеющий название функций.
+
+\subsubsection{\lstinline|Stacks.root() : Stack|}
+
+Возвращает коренной контейнер. В функциях это контейнер функций.
 
 \subsubsection{\lstinline|Stack'(name : string) : any|}
 
