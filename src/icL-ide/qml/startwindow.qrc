@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>startwindow/Left.qml</file>
+        <file>startwindow/NewOffline.qml</file>
+        <file>startwindow/NewOnline.qml</file>
+        <file>startwindow/OfflineList.qml</file>
+        <file>startwindow/OnlineList.qml</file>
+        <file>startwindow/Right.qml</file>
+    </qresource>
+</RCC>

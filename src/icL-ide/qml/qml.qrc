@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>main/StartWindow.qml</file>
+        <file>main/SessionWindow.qml</file>
+        <file>main/Static.qml</file>
+        <file>main/LeftPanel.qml</file>
+        <file>main/CenterPanel.qml</file>
+        <file>main/CentralSide.qml</file>
+        <file>main/BottomSide.qml</file>
+        <file>main/Sessions.qml</file>
+        <file>main/NavigationBar.qml</file>
     </qresource>
 </RCC>

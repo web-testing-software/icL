@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/sessions/centerpanel/bottomside"/>
+    <qresource prefix="/">
+        <file>bottomside/StackViewH.qml</file>
+        <file>bottomside/Issues.qml</file>
+        <file>bottomside/Console.qml</file>
+        <file>bottomside/ProgramOutput.qml</file>
+    </qresource>
+</RCC>

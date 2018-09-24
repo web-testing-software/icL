@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/sessions/centerpanel/centralside"/>
+    <qresource prefix="/">
+        <file>centralside/WebViewClone.qml</file>
+        <file>centralside/WebViewStack.qml</file>
+        <file>centralside/TextEditorStack.qml</file>
+        <file>centralside/DevToolsStack.qml</file>
+    </qresource>
+</RCC>

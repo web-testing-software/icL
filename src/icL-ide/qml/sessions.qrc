@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sessions/Session.qml</file>
+        <file>sessions/tabs/TabBar.qml</file>
+        <file>sessions/buttons/Prev.qml</file>
+        <file>sessions/buttons/Close.qml</file>
+        <file>sessions/buttons/Max.qml</file>
+        <file>sessions/buttons/Min.qml</file>
+        <file>sessions/buttons/Next.qml</file>
+    </qresource>
+</RCC>
