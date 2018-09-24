@@ -77,7 +77,7 @@ No comment
 icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
 
 \begin{lstlisting}[numbers=none]
-#loop		Tab		.Append		'Length	DOM	@i	 	@VAR
+#loop		Tab		.Append		'Length	Doc	@i	 	@VAR
 @variable	!sumPoints	#global		.Merge	.Get	#01		!SIN
 \end{lstlisting}
 
@@ -90,7 +90,7 @@ icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@
 \textbf{Spațiu} (\textit{whitespace}) - este un termen, folosit în icL, pentru a însemna caracterul "spațiu", caracterul de tabulare, caracterul "rînd nou" și comentariu. Spațiile nu sunt obligatorii, ele sunt folosite pentru a face codul mai citabil. Pe foia \ref{unreadable} este prezent un exemplu de cod fără spații, dar pe foia \ref{readable} cu spații.
 
 \begin{lstlisting}[caption=Cod fără spații,label=unreadable]
-if(Tab.get"mai.ru"){(DOM.query"button").click;}else{Log.error"The site mai.ru is unaviable";};
+if(Tab.get"mai.ru"){(Doc.query"button").click;}else{Log.error"The site mai.ru is unaviable";};
 \end{lstlisting}
 
 În icL este prezent doar un singur delimitator - \textbf{delimitatorul de comenzi} \lstinline`;`. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \lstinline`Tab.get "URL"`, închide tabul - \lstinline`Tab.close`.
@@ -107,7 +107,7 @@ Tab.get "URL"; Tab.close
 if (Tab.get "mai.ru") {
 	`` site loaded successfull
 	`` click the button
-	(DOM.query "button").click;
+	(Doc.query "button").click;
 }
 else {
 	`` try again later

@@ -154,31 +154,31 @@
 
 Настроить можно следующее параметры:
 \begin{icItems}
-	\item \lstinline|[r/w] ICL'clickTime : int|;
-	\item \lstinline|[r/w] ICL'pressTime : int|;
-	\item \lstinline|[r/w] ICL'moveTime : int|;
-	\item \lstinline|[r/w] ICL'flashMode : bool|;
-	\item \lstinline|[r/w] ICL'humanMode : bool|.
+	\item \lstinline|[r/w] icL'clickTime : int|;
+	\item \lstinline|[r/w] icL'pressTime : int|;
+	\item \lstinline|[r/w] icL'moveTime : int|;
+	\item \lstinline|[r/w] icL'flashMode : bool|;
+	\item \lstinline|[r/w] icL'humanMode : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|ICL'clickTime : int|}
+\subsubsection{\lstinline|icL'clickTime : int|}
 
 Время задержки клика, по умолчанию 300.
 
-\subsubsection{\lstinline|ICL'pressTime : int|}
+\subsubsection{\lstinline|icL'pressTime : int|}
 
 Время задержки нажатий кнопки, по умолчанию 60.
 
-\subsubsection{\lstinline|ICL'moveTime : int|}
+\subsubsection{\lstinline|icL'moveTime : int|}
 
 Среднее время в миллисекундах за которой курсор перемещается на 100 пикселей, по умолчанию 32.
 
-\subsubsection{\lstinline|ICL'flashMode : bool|}
+\subsubsection{\lstinline|icL'flashMode : bool|}
 
-Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \lstinline|ICL'humanMode|. По умолчанию выключен. \lstinline|element.sendKeys| и \lstinline|element.fastType| будут работать также быстро как и \lstinline|element.paste|, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
+Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \lstinline|icL'humanMode|. По умолчанию выключен. \lstinline|element.sendKeys| и \lstinline|element.fastType| будут работать также быстро как и \lstinline|element.paste|, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
 
-\subsubsection{\lstinline|ICL'humanMode : bool|}
+\subsubsection{\lstinline|icL'humanMode : bool|}
 
-Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \lstinline|ICL'flashMode|. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
+Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \lstinline|icL'flashMode|. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
 
 %\newpage

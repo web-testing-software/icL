@@ -155,31 +155,31 @@ Mută mouse-ul deasupra elementului. \code{data} are următoarele proprietăți 
 
 Pot fi setați următorii parametri:
 \begin{icItems}
-	\item \lstinline|[r/w] ICL'clickTime : int|;
-	\item \lstinline|[r/w] ICL'pressTime : int|;
-	\item \lstinline|[r/w] ICL'moveTime : int|;
-	\item \lstinline|[r/w] ICL'flashMode : bool|;
-	\item \lstinline|[r/w] ICL'humanMode : bool|.
+	\item \lstinline|[r/w] icL'clickTime : int|;
+	\item \lstinline|[r/w] icL'pressTime : int|;
+	\item \lstinline|[r/w] icL'moveTime : int|;
+	\item \lstinline|[r/w] icL'flashMode : bool|;
+	\item \lstinline|[r/w] icL'humanMode : bool|.
 \end{icItems}
 
-\subsubsection{\lstinline|ICL'clickTime : int|}
+\subsubsection{\lstinline|icL'clickTime : int|}
 
 Intervalul clicului, implicit 300.
 
-\subsubsection{\lstinline|ICL'pressTime : int|}
+\subsubsection{\lstinline|icL'pressTime : int|}
 
 Intervalul apăsării butonului pe claviatură, implicit 60.
 
-\subsubsection{\lstinline|ICL'moveTime : int|}
+\subsubsection{\lstinline|icL'moveTime : int|}
 
 Timpul mediu în milisecunde în care cursorul se mută la distanța de 100 de pixeli, implicit 32.
 
-\subsubsection{\lstinline|ICL'flashMode : bool|}
+\subsubsection{\lstinline|icL'flashMode : bool|}
 
-Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \lstinline|ICL'humanMode|. Implicit închis. \lstinline|element.sendKeys| și \lstinline|element.fastType| vor lucra la fel de rapid ca \lstinline|element.paste|, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
+Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \lstinline|icL'humanMode|. Implicit închis. \lstinline|element.sendKeys| și \lstinline|element.fastType| vor lucra la fel de rapid ca \lstinline|element.paste|, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
 
-\subsubsection{\lstinline|ICL'humanMode : bool|}
+\subsubsection{\lstinline|icL'humanMode : bool|}
 
-Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \lstinline|ICL'flashMode|. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
+Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \lstinline|icL'flashMode|. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
 
 %\newpage

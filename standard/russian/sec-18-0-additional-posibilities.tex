@@ -656,69 +656,69 @@ URL страницы, открытой в указанной вкладке.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
 
-\subsection{{\color{orange} DOM}}
+\subsection{{\color{orange} Doc}}
 
 Объект \dom{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|DOM.query (by : int, selector : string) : element|;
-	\item \lstinline|DOM.query (cssSelector : string) : element|;
-	\item \lstinline|DOM.queryAll (by : int, selecor : string) : element|;
-	\item \lstinline|DOM.queryAll (cssSelector : string) : lement|;
-	\item \lstinline|DOM.queryAllByXPath (xpath : string) : element|;
-	\item \lstinline|DOM.queryByXPath (xpath : string) : element|;
-	\item \lstinline|DOM.queryLink (name : string, isFragment = false) : element|;
-	\item \lstinline|DOM.queryLinks (name : string, isFragment = false) : element|;
-	\item \lstinline|DOM.queryTag (name : string) : element|;
-	\item \lstinline|DOM.queryTags (name : string) : element|.
+	\item \lstinline|Doc.query (by : int, selector : string) : element|;
+	\item \lstinline|Doc.query (cssSelector : string) : element|;
+	\item \lstinline|Doc.queryAll (by : int, selecor : string) : element|;
+	\item \lstinline|Doc.queryAll (cssSelector : string) : lement|;
+	\item \lstinline|Doc.queryAllByXPath (xpath : string) : element|;
+	\item \lstinline|Doc.queryByXPath (xpath : string) : element|;
+	\item \lstinline|Doc.queryLink (name : string, isFragment = false) : element|;
+	\item \lstinline|Doc.queryLinks (name : string, isFragment = false) : element|;
+	\item \lstinline|Doc.queryTag (name : string) : element|;
+	\item \lstinline|Doc.queryTags (name : string) : element|.
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.query (by = By'cssSelector, selector : string) : element|}
+\subsubsection{\lstinline|Doc.query (by = By'cssSelector, selector : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|DOM.queryAll (by = By'cssSelector, selecor : string) : element|}
+\subsubsection{\lstinline|Doc.queryAll (by = By'cssSelector, selecor : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.queryAll|, только поиск ведётся по всему документу. 
 
 Возможные исключения: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|DOM.queryAll (cssSelector : string) : lement|}
+\subsubsection{\lstinline|Doc.queryAll (cssSelector : string) : lement|}
 
-Акроним для \lstinline|DOM.queryAll (By'cssSelector, @cssSelector)|.
+Акроним для \lstinline|Doc.queryAll (By'cssSelector, @cssSelector)|.
 
-\subsubsection{\lstinline|DOM.queryAllByXPath (xpath : string) : element|}
+\subsubsection{\lstinline|Doc.queryAllByXPath (xpath : string) : element|}
 
-Акроним для \lstinline|DOM.queryAll (By'xPath, @xpath)|.
+Акроним для \lstinline|Doc.queryAll (By'xPath, @xpath)|.
 
-\subsubsection{\lstinline|DOM.queryByXPath (xpath : string) : element|}
+\subsubsection{\lstinline|Doc.queryByXPath (xpath : string) : element|}
 
-Акроним для \lstinline|DOM.query (By'xPath, @xpath)|.
+Акроним для \lstinline|Doc.query (By'xPath, @xpath)|.
 
-\subsubsection{\lstinline|DOM.queryLink (name : string, isFragment = false) : element|}
-
-Акроним для:
-\begin{icItems}
-	\item \lstinline|DOM.query (By'linkText, @name)|;
-	\item \lstinline|DOM.query (By'partialLinkText, @name)|;
-\end{icItems}
-
-\subsubsection{\lstinline|DOM.queryLinks (name : string, isFragment = false) : element|}
+\subsubsection{\lstinline|Doc.queryLink (name : string, isFragment = false) : element|}
 
 Акроним для:
 \begin{icItems}
-	\item \lstinline|DOM.queryAll (By'linkText, @name)|;
-	\item \lstinline|DOM.queryAll (By'partialLinkText, @name)|;
+	\item \lstinline|Doc.query (By'linkText, @name)|;
+	\item \lstinline|Doc.query (By'partialLinkText, @name)|;
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.queryTag (name : string) : element|}
+\subsubsection{\lstinline|Doc.queryLinks (name : string, isFragment = false) : element|}
 
-Акроним для \lstinline|DOM.query (By'tagName, @name)|.
+Акроним для:
+\begin{icItems}
+	\item \lstinline|Doc.queryAll (By'linkText, @name)|;
+	\item \lstinline|Doc.queryAll (By'partialLinkText, @name)|;
+\end{icItems}
 
-\subsubsection{\lstinline|DOM.queryTags (name : string) : element|}
+\subsubsection{\lstinline|Doc.queryTag (name : string) : element|}
 
-Акроним для \lstinline|DOM.queryAll (By'tagName, @name)|.
+Акроним для \lstinline|Doc.query (By'tagName, @name)|.
+
+\subsubsection{\lstinline|Doc.queryTags (name : string) : element|}
+
+Акроним для \lstinline|Doc.queryAll (By'tagName, @name)|.
 
 \subsection{{\color{orange} Files}}
 

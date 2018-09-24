@@ -649,73 +649,73 @@ Trece la pagină, URL trebuie să fie absolut.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
 
-\subsection{{\color{orange} DOM}}
+\subsection{{\color{orange} Doc}}
 
 Obiectul \dom{} are următoarele metode:
 \begin{icItems}
-	\item \lstinline|DOM.query <int>by <string>selector : element|;
-	\item \lstinline|DOM.query <string>cssSelector : element|;
-	\item \lstinline|DOM.queryAll <int>by <string>selecor : element|;
-	\item \lstinline|DOM.queryAll <string>cssSelector : lement|;
-	\item \lstinline|DOM.queryAllByXPath <string>xpath : element|;
-	\item \lstinline|DOM.queryByXPath <string>xpath : element|;
-	\item \lstinline|DOM.queryLink <string>name <bool>isFragment = false : element|;
-	\item \lstinline|DOM.queryLinks <string>name <bool>isFragment = false : element|;
-	\item \lstinline|DOM.queryTag <string>name : element|;
-	\item \lstinline|DOM.queryTags <string>name : element|.
+	\item \lstinline|Doc.query <int>by <string>selector : element|;
+	\item \lstinline|Doc.query <string>cssSelector : element|;
+	\item \lstinline|Doc.queryAll <int>by <string>selecor : element|;
+	\item \lstinline|Doc.queryAll <string>cssSelector : lement|;
+	\item \lstinline|Doc.queryAllByXPath <string>xpath : element|;
+	\item \lstinline|Doc.queryByXPath <string>xpath : element|;
+	\item \lstinline|Doc.queryLink <string>name <bool>isFragment = false : element|;
+	\item \lstinline|Doc.queryLinks <string>name <bool>isFragment = false : element|;
+	\item \lstinline|Doc.queryTag <string>name : element|;
+	\item \lstinline|Doc.queryTags <string>name : element|.
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.query <int>by <string>selector : element|}
+\subsubsection{\lstinline|Doc.query <int>by <string>selector : element|}
 
 Primește aceiași parametri ca și  \lstinline|element.query|, numai că această funcție va căuta în tot documentul.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{Timeout}.
 
-\subsubsection{\lstinline|DOM.query <string>cssSelector : element|}
+\subsubsection{\lstinline|Doc.query <string>cssSelector : element|}
 
-Acronim pentru \lstinline|DOM.query By'cssSelector @cssSelector|.
+Acronim pentru \lstinline|Doc.query By'cssSelector @cssSelector|.
 
-\subsubsection{\lstinline|DOM.queryAll <int>by <string>selecor : element|}
+\subsubsection{\lstinline|Doc.queryAll <int>by <string>selecor : element|}
 
 Primește aceiași parametri ca și \lstinline|element.queryAll|, numai că această funcție va căuta în tot documentul.
 
 Excepții posibile: \ferror{NoSessions}.
 
-\subsubsection{\lstinline|DOM.queryAll <string>cssSelector : lement|}
+\subsubsection{\lstinline|Doc.queryAll <string>cssSelector : lement|}
 
-Acronim pentru \lstinline|DOM.queryAll By'cssSelector @cssSelector|.
+Acronim pentru \lstinline|Doc.queryAll By'cssSelector @cssSelector|.
 
-\subsubsection{\lstinline|DOM.queryAllByXPath <string>xpath : element|}
+\subsubsection{\lstinline|Doc.queryAllByXPath <string>xpath : element|}
 
-Acronim pentru \lstinline|DOM.queryAll By'xPath @xpath|.
+Acronim pentru \lstinline|Doc.queryAll By'xPath @xpath|.
 
-\subsubsection{\lstinline|DOM.queryByXPath <string>xpath : element|}
+\subsubsection{\lstinline|Doc.queryByXPath <string>xpath : element|}
 
-Acronim pentru \lstinline|DOM.query By'xPath @xpath|.
+Acronim pentru \lstinline|Doc.query By'xPath @xpath|.
 
-\subsubsection{\lstinline|DOM.queryLink <string>name <bool>isFragment = false : element|}
-
-Acronim pentru:
-\begin{icItems}
-	\item \lstinline|DOM.query By'linkText @name|;
-	\item \lstinline|DOM.query By'partialLinkText @name|;
-\end{icItems}
-
-\subsubsection{\lstinline|DOM.queryLinks <string>name <bool>isFragment = false : element|}
+\subsubsection{\lstinline|Doc.queryLink <string>name <bool>isFragment = false : element|}
 
 Acronim pentru:
 \begin{icItems}
-	\item \lstinline|DOM.queryAll By'linkText @name|;
-	\item \lstinline|DOM.queryAll By'partialLinkText @name|;
+	\item \lstinline|Doc.query By'linkText @name|;
+	\item \lstinline|Doc.query By'partialLinkText @name|;
 \end{icItems}
 
-\subsubsection{\lstinline|DOM.queryTag <string>name : element|}
+\subsubsection{\lstinline|Doc.queryLinks <string>name <bool>isFragment = false : element|}
 
-Acronim pentru \lstinline|DOM.query By'tagName @name|.
+Acronim pentru:
+\begin{icItems}
+	\item \lstinline|Doc.queryAll By'linkText @name|;
+	\item \lstinline|Doc.queryAll By'partialLinkText @name|;
+\end{icItems}
 
-\subsubsection{\lstinline|DOM.queryTags <string>name : element|}
+\subsubsection{\lstinline|Doc.queryTag <string>name : element|}
 
-Acronim pentru \lstinline|DOM.queryAll By'tagName @name|.
+Acronim pentru \lstinline|Doc.query By'tagName @name|.
+
+\subsubsection{\lstinline|Doc.queryTags <string>name : element|}
+
+Acronim pentru \lstinline|Doc.queryAll By'tagName @name|.
 
 \subsection{{\color{orange} Files}}
 

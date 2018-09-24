@@ -78,7 +78,7 @@ No comment
 icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
 
 \begin{lstlisting}[numbers=none]
-#loop		Tab		    .append		'length	DOM	    @i	 	@VAR
+#loop		Tab		    .append		'length	Doc	    @i	 	@VAR
 @variable	sumPoints	#global		.merge	.get	#01		sin
 \end{lstlisting}
 
@@ -91,7 +91,7 @@ icL - чувствительный к регистру язык. Таким об
 \textbf{Пробельный символ} (\textit{whitespace}) - этот термин используется в icL для описания пробелов, символов табуляции, символов новой строкой и комментариев. Пробельные символы не обязательные, они используются для улучшения читабельности кода. На листинге \ref{unreadable} показан пример кода без пробельных символов, а на листинге \ref{readable} с пробельными символами.
 
 \begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
-if(Tab.get"mai.ru"){(DOM.query"button").click;}else{Log.error"The site mai.ru is unaviable";};
+if(Tab.get"mai.ru"){(Doc.query"button").click;}else{Log.error"The site mai.ru is unaviable";};
 \end{lstlisting}
 
 В icL присутствует только один разделитель - \textbf{разделитель команд} \lstinline`;`. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline`Tab.get "URL"`, закрыть вкладку - \lstinline`Tab.close`.
@@ -108,7 +108,7 @@ Tab.get "URL"; Tab.close
 if (Tab.get "mai.ru") {
 	`` site loaded successfull
 	`` click the button
-	DOM.query("button").click;
+	Doc.query("button").click;
 }
 else {
 	`` try again later

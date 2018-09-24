@@ -25,7 +25,7 @@ parse_bat = {
 		})()
 	}
 
-	@ls = DOM.queryAll ".lshpanel";
+	@ls = Doc.queryAll ".lshpanel";
 
 	for (@ls) {
 		@obj = [=];
@@ -77,7 +77,7 @@ parse_source = {
 		})()
 	}
 
-	@trs = DOM.queryAll ".HomeTable tr:not(:first-child)";
+	@trs = Doc.queryAll ".HomeTable tr:not(:first-child)";
 
 	for (@trs) {
 		@obj = [=];
@@ -130,7 +130,7 @@ parse_date (date : string, time : string) : datetime = {
 }
 
 css = (@selector : string) : element {
-	@ = DOM.query @selector;
+	@ = Doc.query @selector;
 }
 
 add_data = {
