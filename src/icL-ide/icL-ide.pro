@@ -15,13 +15,13 @@ SOURCES += \
 
 RESOURCES += \
     qml/qml.qrc \
-    qml/static.qrc \
-    qml/leftpanel.qrc \
-    qml/centralside.qrc \
-    qml/bottomside.qrc \
-    qml/sessions.qrc \
-    qml/navigationbar.qrc \
-    qml/startwindow.qrc
+    qml/bottomside/qml.qrc \
+    qml/centralside/qml.qrc \
+    qml/leftpanel/qml.qrc \
+    qml/sessions/qml.qrc \
+    qml/navigationbar/qml.qrc \
+    qml/startwindow/qmldow.qrc \
+    qml/static/qml.qrc
 
 
 DISTFILES += \
