@@ -14,7 +14,14 @@ SOURCES += \
     main.cpp
 
 RESOURCES += \
-    qml/qml.qrc
+    qml/qml.qrc \
+    qml/static.qrc \
+    qml/leftpanel.qrc \
+    qml/centralside.qrc \
+    qml/bottomside.qrc \
+    qml/sessions.qrc \
+    qml/navigationbar.qrc \
+    qml/startwindow.qrc
 
 
 DISTFILES += \
