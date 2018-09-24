@@ -1,6 +1,6 @@
 # ide - integrated development environment
 
-QT       += core gui qml webengine sql
+QT       += core widgets gui qml webengine sql
 
 TARGET = icL-ide
 TEMPLATE = app
@@ -15,4 +15,7 @@ DISTFILES += \
 
 SOURCES += \
     main.cpp
+
+RESOURCES += \
+    qml/qml.qrc
 

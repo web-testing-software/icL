@@ -58,6 +58,8 @@ DISTFILES += \
     graduation/README.md \
     graduation/bachelor/README.md \
     standart/README.md \
+    src/icL-memory/README.md \
+    src/icL-vm/README.md \
     CONTRIBUTING.md \
     layouts/dark/*.svg \
     layouts/light/*.svg \

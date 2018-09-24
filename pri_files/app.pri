@@ -15,12 +15,12 @@ unix {
         INSTALLS += target
 }
 
-LIBS += -l-icl-memory
-LIBS += -l-icl-logic
-LIBS += -l-icl-context-base
-LIBS += -l-icl-context-complex
-LIBS += -l-icl-context-control
-LIBS += -l-icl-context-data
-LIBS += -l-icl-inter
-LIBS += -l-icl-vm
-LIBS += -l-icl-dsv
+#LIBS += -l-icl-memory
+#LIBS += -l-icl-logic
+#LIBS += -l-icl-context-base
+#LIBS += -l-icl-context-complex
+#LIBS += -l-icl-context-control
+#LIBS += -l-icl-context-data
+#LIBS += -l-icl-inter
+#LIBS += -l-icl-vm
+#LIBS += -l-icl-dsv
