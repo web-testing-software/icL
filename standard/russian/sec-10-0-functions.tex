@@ -26,8 +26,14 @@ name = (parameters) : return_type {
 	\code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
 \end{icItems}
 
+Между параметрами ставится разделитель - запятая. Даже если параметр только один, скобки нельзя пропускать.
+
+Параметр описывается следующим синтаксисом \lstinline|@name : type|, где \lstinline|@name| - название, \lstinline|type| - тип данных. Можно указать только тип данных (без двоеточия), в этом случае название параметра будет название типа данных.
+
+Параметр имеющий значение по умолчанию описывается следующим способом \lstinline|@name = value|, где \lstinline|@name| - название, \lstinline|value| - значение по умолчанию, она может быть константном литералом, переменной или выражений. Значения будут вычислены один раз - про объявлений функций. Значение по умолчанию могут иметь любые параметры, не только последнее.
+
 \begin{lstlisting}[caption=Полноценная функция, label=fullfunc]
-sum = (a : int, b : int) : int {
+sum = (@a : int, @b : int) : int {
 	@ = @a + @b;
 };
 \end{lstlisting}
@@ -39,8 +45,14 @@ pi = () : double {
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Функция без типа возвращаемой значений, label=notypefunc]
-out = (a : int, b : int) {
+out = (@a : int, @b : int) {
 	Log.out @a @b;
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Функция без аргументов и тип возвращаемой значений, label=minfunc]
+do = () {
+Log.out "It's work!";
 };
 \end{lstlisting}
 
@@ -48,14 +60,22 @@ out = (a : int, b : int) {
 
 Вы можете вызвать функцию следующим образом -
 \begin{lstlisting}[numbers=none]
-name arguments;
+name (arguments);
 \end{lstlisting}
-где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}.
+где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}. 
 
-\begin{lstlisting}[caption=Функция без аргументов и тип возвращаемой значений, label=minfunc]
-do = () {
-	Log.out "It's work!";
-};
+Последнее параметры имеющие значение по умолчанию могут быть пропущены, для остальных при желаниях использовать значение по умолчанию нужно передать \void{} значение, её можно описать одним символом - тильда (\lstinline|~|). Например функция \lstinline|func = (@var1 = 3, @var2 : int) {}|, можно вызвать следующим образом \lstinline|fun (~, 3)|. Значения по умолчанию могут сократить код, см. листинг \ref{defaultparametrs}.
+
+Функций имеющие всего 1 обязательным параметром, можно вызвать используя акроним \lstinline|name arg| или \lstinline|name (arg)|. Положение обязательного параметра не имеет значение (в начале, в середине или в конце списка параметров).
+
+\begin{lstlisting}[caption=Вызов функций, label=callfunc]
+sum (2, 3); 	`` returns 5
+pi;				`` returns 3.14
+out (4, 5); 	`` returns void
+do;				`` returns void
+
+sum (sum (1, 2), 3);	`` returns 6
+out (1, sum (,4 5));	`` returns void
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Вызов функций, label=callfunc]
@@ -66,6 +86,30 @@ do;				`` returns void
 
 sum (sum (1, 2), 3);	`` returns 6
 out (1, sum (,4 5));	`` returns void
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Значения по умольчанию, label=defaultparametrs]
+fun = (@a = 21, @b = 23) {}
+
+`` the line 
+fun(exists(@a, # > 3), exists(@b, # < 5));
+`` replace the next code
+if (@a > 3) {
+	if (@b < 5) {
+		fun (@a, @b);
+	}
+	else {
+		fun (@a, 23);
+	}
+}
+else {
+	if (@b < 5) {
+		fun (21, @b);
+	}
+	else {
+		fun (21, 23);
+	}
+}
 \end{lstlisting}
 
 %\newpage
