@@ -169,17 +169,21 @@ Log.out "false != true = " (false != true);	`` false != true = true
 		3-ого ранга:
 		\begin{icItems}
 			\item
-				равно \lstinline`int == int : bool` и \lstinline`double == double : bool`
+				равно \lstinline`int == int : bool` и \lstinline`double == double : bool`;
 			\item
-				не равно \lstinline`int != int : bool` и \lstinline`double != double : bool`
+				не равно \lstinline`int != int : bool` и \lstinline`double != double : bool`;
 			\item
-			    больше \lstinline`int > int : bool` и \lstinline`double > double : bool`
+			    больше \lstinline`int > int : bool`, \lstinline`double > double : bool`;
 			\item
 				больше или равно \lstinline`int >= int : bool` и \lstinline`double >= double : bool`
 			\item
-			    меньше \lstinline`int < int : bool` и \lstinline`double < double : bool`
+			    меньше \lstinline`int < int : bool` и \lstinline`double < double : bool`;
 			\item
-				меньше или равно \lstinline`int <= int : bool` и \lstinline`double <= double : bool`
+				меньше или равно \lstinline`int <= int : bool` и \lstinline`double <= double : bool`;
+			\item
+				меньше или больше \lstinline|int <> (int, int)|, \lstinline|double <> (double, double)|;
+			\item
+				больше и меньше \lstinline|int >< (int, int)|, \lstinline|double >< (double, double)|.
 		\end{icItems}
 	\item
 		4-ого ранга:
@@ -187,7 +191,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 			\item
 				сложение \lstinline`int + int : int` и \lstinline`double + double : double`;
 			\item
-				вычитание \lstinline`int -    int : int` и \lstinline`double -    double : double`.
+				вычитание \lstinline`int - int : int` и \lstinline`double - double : double`.
 		\end{icItems}
 	\item
 		5-ого ранга:
@@ -247,6 +251,8 @@ Log.out "3 < 9 = "			3 < 9;		`` 3 < 9 = true
 Log.out "6.1 < 6.2 = "		6.1 < 6.2;	`` 6.1 < 6.2 = true
 Log.out "4 <= 5 = "			4 <= 5;		`` 4 $\leq$ 5 = true
 Log.out "5.6 <= 6.5 = "		5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
+Log.out "1 <> (2, 3) = "	1 <> (2,3); `` 1 < 2 | 1 > 3 = true
+Log.out "1 >< (2, 3) = "	1 >< (2,3); `` 2 < 1 < 3 = false
 `` 4th rank
 Log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
 Log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
@@ -313,6 +319,22 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 \subsubsection{\lstinline`(a : double) <= (b : double) : bool`}
 
 Возвращает \true{} если дробное число \code{a} меньше или равно \code{b}, иначе \false{}.
+
+\subsubsection{\lstinline`(a : int) <> (b : double, c : double) : bool`}
+
+Возвращает \true{} если целое число \code{a} меньше \code{b} или больше \code{c}, иначе \false{}.
+
+\subsubsection{\lstinline`(a : double) <> (b : double, c : doubleuble) : bool`}
+
+Возвращает \true{} если дробное число \code{a} меньше \code{b} или больше \code{c}, иначе \false{}.
+
+\subsubsection{\lstinline`(a : int) >< (b : double, c : double) : bool`}
+
+Возвращает \true{} если целое число \code{a} больше \code{b} и меньше \code{c}, иначе \false{}.
+
+\subsubsection{\lstinline`(a : double) <> (b : double, c : doubleuble) : bool`}
+
+Возвращает \true{} если дробное число \code{a} больше \code{b} и меньше \code{c}, иначе \false{}.
 
 
 \subsubsection{\lstinline`(a : int) + (b : int) : int`}
@@ -577,10 +599,10 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 @set2 = [age : int, name : string];
 @set3 = [age : int, name : string];
 
-@obj1 = [age : 24, name = "User1"];
-@obj2 = [age : 23, name = "User2"];
-@obj3 = [age : 26, name = "User3"];
-@obj4 = [age : 24, length : 80, height : 40, arc : 1];
+@obj1 = [age = 24, name = "User1"];
+@obj2 = [age = 23, name = "User2"];
+@obj3 = [age = 26, name = "User3"];
+@obj4 = [age = 24, length = 80, height = 40, arc = 1];
 
 @set1.insert @obj1;
 @set1.insert @obj2;
@@ -598,8 +620,8 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 
 @set1 << @obj2;					`` false
 @set1 << @set2;					`` false
-@set1 <* [age : 23];			`` true
-@obj4 <* [age : 24, arc : 1];	`` true
+@set1 <* [age = 23];			`` true
+@obj4 <* [age = 24, arc = 1];	`` true
 
 @set1 + @set2;					`` [@obj1 @obj2 @obj3]
 @set1 - @set2;					`` [@obj1 @obj3]
@@ -676,7 +698,7 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 	коллекционный выбор \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Ещё одна перегрузка оператора будет объявлена в главе \ref{webelments}.
 \end{icItems}
 
-\subsubsection{\lstinline`arg1 : void or any | arg2 : void or any : void or any`}
+\subsubsection{\lstinline`(arg1 : void or any) | (arg2 : void or any) : (void or any)`}
 
 Возвращаемый результат оператором альтернативного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{orhacktable}.
 
@@ -694,7 +716,7 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> \& <void or any> : void or any`}
+\subsubsection{\lstinline`(void or any) \& (void or any) : (void or any)`}
 
 Возвращаемый результат оператором первичного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{andhacktable}.
 
@@ -712,7 +734,7 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> ~ <void or any> : void or any`}
+\subsubsection{\lstinline`(void or any) ~ (void or any) : void or any`}
 
 Возвращаемый результат оператором вторичного выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{eqhacktable}.
 
@@ -730,7 +752,7 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> ^ <void or any> : void or any`}
+\subsubsection{\lstinline`(void or any) ^ (void or any) : (void or any)`}
 
 Возвращаемый результат оператором исключающего выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{xorhacktable}.
 
@@ -748,13 +770,10 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline`<void or any> \% <void or any> : void or any`}
+\subsubsection{\lstinline`(void or any) \% (void or any) : (void or any)`}
 
 	Возвращаемый результат оператором исключающего выбора, в зависимость от аргументов, указан в третьем столбце таблицы \ref{centhacktable}.
-%\stablethree{1.5cm}{1.5cm}{5cm}
-%{centhacktable}{Оператор коллекционный выбор}
-%{\code{arg1}}{\code{arg2}}{\code{a \^ b}}
-%{
+
 \begin{table}[htb]
 	\caption{Оператор коллекционный выбор}
 	\label{centhacktable}
@@ -775,7 +794,6 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 	\end{tabular}
 	\vspace{0em}
 \end{table}
-%}
 
 Для аргументов типов \integer{} и \double{}, вызывается функция \code{Numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{Numbers.setProcess} с одни из следующих аргументов: \code{Numbers'sum} - сумма, \code{Numbers'product} - произведение, \code{Numbers'max} - максимум, \code{Numbers'min} - минимум. После использования оператора, вызываете \code{Numbers.restoreProcess} чтобы восстановить исходные настройки.
 

@@ -64,9 +64,9 @@ __21-22.09.2018__
    parsed like group operator, to elude conflicts add an empty parameter at
    the first position, like [=, @var1, @var2].
  * [+] Add packed values description.
- * [-] Add **m** : **1** operations, cast all variables in one type, etc.
- * [-] Add **1** : **m** operations, test cast in several types, etc.
- * [-] Add **m** : **m** operations, cast each variable in diferent type.
+ * [+] Add **m** : **1** operations, cast all variables in one type, etc.
+ * [+] Add **1** : **m** operations, test cast in several types, etc.
+ * [+] Add **m** : **m** operations, cast each variable in diferent type.
  * [+] Add default values for functiuons params.
  * [-] Rename **ICL** to **icL**, **DOM** to **Doc**.
  * [-] Add new operator **!&lt;**, inversion of **&lt;&lt;**.

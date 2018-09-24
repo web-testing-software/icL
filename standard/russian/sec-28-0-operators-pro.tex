@@ -34,14 +34,25 @@ void    = Window;
 \end{lstlisting}
 
 \subsection{1-ого и 1$^+$-ого ранга}
-
+Имеет следующие вариации:
+\begin{icItems}
+	\item \lstinline|value :: type|;
+	\item \lstinline|(value...) :: type|;
+	\item \lstinline|(value...) :: (type...)|;
+\end{icItems}
 \noindent Перечень операторов 1-ого ранга -
 \begin{lstlisting}[numbers=none]
 data.method (args...) : any;
 
-data :  type;
-data :: type;
-data :* type;
+data    :  type;
+data... :  type;
+data... :  type...;
+data    :: type;
+data... :: type;
+data... :: type...;
+data    :* type;
+data... :* type;
+data... :* type...;
 
 string   : datetime;
 string   : (datetime, string);

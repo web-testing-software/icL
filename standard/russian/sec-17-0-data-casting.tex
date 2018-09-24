@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Преобразование типов}
 
 Для преобразования данных в icL присутствуют 3 операторы первого ранга:
@@ -7,19 +8,40 @@
 	\item \lstinline|data :* type : bool|;
 \end{icItems}
 
-\subsubsection{\lstinline|data : type : type|}
+\subsubsection{\lstinline|data : type|}
 
-Преобразует данные в нужном типа данных.
+Преобразует данные в нужном типа данных. Доступен следующее вариации:
+\begin{icItems}
+	\item \lstinline|value : type|;
+	\item \lstinline|(value...) : type|;
+	\item \lstinline|(value...) : (type...)|;
+\end{icItems}
+
+\lstinline|value : type| - преобразует значение в нужном типа данных.
+
+\lstinline|(value...) : type| - преобразует запакованные значения в запакованных значении нужного типа. Возвращает запакованные значения, они могут быть использованы для вызова функции, например \lstinline|func ((2.0, 3.2) : int)|.
+
+\lstinline|(value...) : (type...)| - преобразует каждое запакованное значение в нужном типа данных, количество значений в обоих пакетов должна совпадать. Возвращает также запакованное значения.
 
 Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
 
 \subsubsection{\lstinline|data :: type : bool|}
 
-Возвращает \true, если данные имеют нужный тип, иначе \false.
+Возвращает \true, если данные имеют нужный тип, иначе \false. Имеет следующие вариации:
+\begin{icItems}
+	\item \lstinline|value :: type|;
+	\item \lstinline|(value...) :: type|;
+	\item \lstinline|(value...) :: (type...)|;
+\end{icItems}
 
 \subsubsection{\lstinline|data :* type : bool|}
 
-Возвращает \true, если данные могут быть преобразованы в нужном типе, иначе \false.
+Возвращает \true, если данные могут быть преобразованы в нужном типе, иначе \false. Имеет следующие вариации:
+\begin{icItems}
+	\item \lstinline|value :* type|;
+	\item \lstinline|(value...) :* type|;
+	\item \lstinline|(value...) :* (type...)|;
+\end{icItems}
 
 \subsection{Возможные преобразования}
 
