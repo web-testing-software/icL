@@ -63,7 +63,7 @@ __21-22.09.2018__
    object define. On multiple values [@var1, @var2] the expresion will be
    parsed like group operator, to elude conflicts add an empty parameter at
    the first position, like [=, @var1, @var2].
- * [-] Add packed values description.
+ * [+] Add packed values description.
  * [-] Add **m** : **1** operations, cast all variables in one type, etc.
  * [-] Add **1** : **m** operations, test cast in several types, etc.
  * [-] Add **m** : **m** operations, cast each variable in diferent type.
@@ -78,6 +78,6 @@ __21-22.09.2018__
    func 3 (if all params are optional, excepting the last, the function can be
    called without curly brackets, indicating just the last argument).
  * [-] Add Stack.root to get root stack, in function it's the function stack.
- * [-] Add explication for @ and # variables.
+ * [+] Add explication for @ and # variables.
 
 All approved changes will be applicated in Standard for icL RC 3.
