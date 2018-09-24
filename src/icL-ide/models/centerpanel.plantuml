@@ -1,0 +1,21 @@
+@startuml
+
+!include "uml_style.iuml"
+
+CenterPanel *-- CentralSide
+CenterPanel *-- TopBar
+CenterPanel *-- BottomSide
+
+CentralSide *-left- WebViewClone
+CentralSide *-- TextEditorStack
+CentralSide *-- DevToolsStack
+WebViewClone *-- WebViewStack
+
+BottomSide *-- StackViewH
+BottomSide *-left- Issues
+BottomSide *-- Console
+BottomSide *-up- ProgramOutput
+
+BottomSide -left[hidden]- WebViewClone
+
+@enduml

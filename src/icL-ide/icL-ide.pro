@@ -10,12 +10,13 @@ ICL_ROOT = $$PWD/../..
 include($$ICL_ROOT/pri_files/app.pri)
 
 
-DISTFILES += \
-    README.md
-
 SOURCES += \
     main.cpp
 
 RESOURCES += \
     qml/qml.qrc
 
+
+DISTFILES += \
+    README.md \
+    models/*.*uml

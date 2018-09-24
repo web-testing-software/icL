@@ -1,0 +1,13 @@
+@startuml
+
+!include "uml_style.iuml"
+
+Static *-left- IcLPanel
+Static *-- Browser
+Static *-- Code
+Static *-- Debug
+Static *-- Run
+Static *-- RunDebug
+Static *-right- Views
+
+@enduml

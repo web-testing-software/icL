@@ -1,0 +1,14 @@
+@startuml
+
+!include "uml_style.iuml"
+
+StartWindow *-- Left
+StartWindow *-- Right
+
+Left *-- OfflineList
+Left *-- NewOffline
+
+Right *-- OnlineList
+Right *-- NewOnline
+
+@enduml
