@@ -8,7 +8,6 @@ class Text {
 	color text
 }
 
-Link *-- Text
 class Link {
 	Text normal
 	Text hover
@@ -21,43 +20,47 @@ class Effect {
 	color active
 }
 
-Link <|-- Input
-Input *-up- Text
 class Input {
 	Text inactive
+	Color selection
+	Color cursor
 }
 
-Link <|-- LinkAdvanced
-Text --* LinkAdvanced
-class LinkAdvanced {
+class LinkAdv {
 	Text activehover
 }
 
-Effect <|-- EffectAdv
 class EffectAdv {
 	color activehover
 }
 
-ListItem -down-|> Link
-ListItem *-- Effect
 class ListItem {
 	Link item
 	Effect border
 }
 
-Side -up-|> ListItem
-Side *-- Text
 class Side {
 	Text header
 }
 
-StartWindow *- Side
-StartWindow *-- Text
 class StartWindow {
 	Text header
 	Side left
 	Side right
 }
+
+Link *-- Text
+Link <|-- Input
+Input *-up- Text
+Link <|-- LinkAdv
+Text --* LinkAdv
+Effect <|-- EffectAdv
+ListItem -down-|> Link
+ListItem *-- Effect
+Side -up-|> ListItem
+Side *-- Text
+StartWindow *- Side
+StartWindow *-- Text
 
 Link -right[hidden]- Effect
 

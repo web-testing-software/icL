@@ -25,8 +25,6 @@
  */
 
 int main(int argc, char * argv[]) {
-	std::cout << "Text";
-
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 

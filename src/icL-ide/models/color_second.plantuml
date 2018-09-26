@@ -1,0 +1,67 @@
+@startuml
+
+!include "uml_style.iuml"
+show fields
+
+class SessionWidow {
+	TopBar top
+	LeftSide left
+	CentralSide center
+	Floating floating
+}
+
+class LeftSide {
+	Link switcher
+	Tree projects
+	ListItem files
+}
+
+class Tree {
+	Link parent
+	Link child
+}
+
+class TopBar {
+	LinkAdv tab
+	LinkAdv url
+	EffectAdv button
+	EffectAdv tool
+	Text input
+}
+
+class CentralSide {
+	Text header
+	Issue warn
+	Issue error
+	LinkAdv undertext
+	LinkAdv underdigit
+	color command
+	color errorResult
+	color okResult
+	Input input
+}
+
+class Issue {
+	Effect effect
+}
+
+class Floating {
+	Text header
+	Tree stack
+	Tree state
+	Color error
+	Color warm
+	Color console
+	Input input
+}
+
+SessionWidow *-- LeftSide
+SessionWidow *-- TopBar
+LeftSide *-- Tree
+SessionWidow *-- CentralSide
+CentralSide *-- Issue
+LinkAdv <|- Issue
+SessionWidow *-- Floating
+Floating *-- Tree
+
+@enduml
