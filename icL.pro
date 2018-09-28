@@ -17,7 +17,9 @@ SUBDIRS = \
         share \
         sv \
         wd \
-        worker
+        worker \
+        editor \
+        look
 
 # libs
 memory.subdir   = src/icL-memory
@@ -27,6 +29,8 @@ cp.subdir       = src/icL-cp
 il.subdir       = src/icL-il
 sv.subdir       = src/icL-sv
 wd.subdir       = src/icL-wd
+editor.subdir   = src/icL-editor
+look.subdir     = src/icL-look
 
 # apps
 ide.subdir      = src/icL-ide
