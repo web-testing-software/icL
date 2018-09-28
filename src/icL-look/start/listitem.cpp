@@ -2,18 +2,20 @@
 
 namespace icL::look::start {
 
-ListItem::ListItem(QObject *parent) : Link(parent)
-{
+ListItem::ListItem(QObject * parent)
+	: Link(parent) {}
 
+ListItem::~ListItem() {
+	if (m_border != nullptr) {
+		delete m_border;
+	}
 }
 
-base::Effect *ListItem::border() const
-{
+base::Effect * ListItem::border() const {
 	return m_border;
 }
 
-void ListItem::setBorder(base::Effect *border)
-{
+void ListItem::setBorder(base::Effect * border) {
 	if (m_border == border)
 		return;
 
@@ -21,4 +23,4 @@ void ListItem::setBorder(base::Effect *border)
 	emit borderChanged(m_border);
 }
 
-} // namespace
+}  // namespace icL::look::start

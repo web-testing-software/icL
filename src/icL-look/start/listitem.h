@@ -16,7 +16,7 @@ class ListItem : public base::Link
 	Q_PROPERTY(base::Effect *border READ border WRITE setBorder NOTIFY borderChanged)
 	// clang-format on
 
-	base::Effect * m_border;
+	base::Effect * m_border = nullptr;
 
 public:
 	/**
@@ -24,6 +24,8 @@ public:
 	 * @param parent is the default QObject arg
 	 */
 	explicit ListItem(QObject * parent = nullptr);
+
+	~ListItem();
 
 	/**
 	 * @brief border is the color of border for list items
