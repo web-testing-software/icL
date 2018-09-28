@@ -14,8 +14,9 @@ class LinkAdv : public Link
 {
 	Q_OBJECT
 
-	Q_PROPERTY(Text * activeHover READ activeHover WRITE setActiveHover NOTIFY
-																		activeHoverChanged)
+	// clang-format off
+	Q_PROPERTY(Text * activeHover READ activeHover WRITE setActiveHover NOTIFY ctiveHoverChanged)
+	// clang-format on
 
 	Text * m_activeHover = nullptr;
 

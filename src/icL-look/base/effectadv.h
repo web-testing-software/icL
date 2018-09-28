@@ -12,8 +12,9 @@ class EffectAdv : public Effect
 {
 	Q_OBJECT
 
-	Q_PROPERTY(QColor activeHover READ activeHover WRITE setActiveHover NOTIFY
-																		activeHoverChanged)
+	// clang-format off
+	Q_PROPERTY(QColor activeHover READ activeHover WRITE setActiveHover NOTIFY ctiveHoverChanged)
+	// clang-format on
 
 	QColor m_activeHover;
 

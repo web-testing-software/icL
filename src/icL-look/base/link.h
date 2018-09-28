@@ -14,9 +14,11 @@ class Link : public QObject
 {
 	Q_OBJECT
 
+	// clang-format off
 	Q_PROPERTY(Text * normal READ normal WRITE setNormal NOTIFY normalChanged)
 	Q_PROPERTY(Text * hover READ hover WRITE setHover NOTIFY hoverChanged)
 	Q_PROPERTY(Text * active READ active WRITE setActive NOTIFY activeChanged)
+	// clang-format on
 
 	Text * m_normal = nullptr;
 	Text * m_hover  = nullptr;

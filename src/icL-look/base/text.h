@@ -16,10 +16,10 @@ class Text : public QObject
 {
 	Q_OBJECT
 
-	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY
-																	 backgroundChanged)
-	Q_PROPERTY(QColor foreground READ foreground WRITE setForeground NOTIFY
-																	 foregroundChanged)
+	// clang-format off
+	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
+	Q_PROPERTY(QColor foreground READ foreground WRITE setForeground NOTIFY foregroundChanged)
+	// clang-format on
 
 	QColor m_background;
 	QColor m_foreground;
