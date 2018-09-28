@@ -18,9 +18,9 @@ class StartWindow : public QObject
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text* header READ header WRITE setHeader NOTIFY headerChanged)
-	Q_PROPERTY(Side* left READ left WRITE setLeft NOTIFY leftChanged)
-	Q_PROPERTY(Side* right READ right WRITE setRight NOTIFY rightChanged)
+	Q_PROPERTY(base::Text* header    READ header    WRITE setHeader    NOTIFY headerChanged)
+	Q_PROPERTY(Side*       left      READ left      WRITE setLeft      NOTIFY leftChanged)
+	Q_PROPERTY(Side*       right     READ right     WRITE setRight     NOTIFY rightChanged)
 	Q_PROPERTY(base::Text* underline READ underline WRITE setUnderline NOTIFY underlineChanged)
 	// clang-format on
 
