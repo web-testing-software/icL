@@ -8,6 +8,9 @@
 
 namespace icL::look::start {
 
+/**
+ * @brief The ListItem class describes a look for a list item
+ */
 class ListItem : public base::Link
 {
 	Q_OBJECT

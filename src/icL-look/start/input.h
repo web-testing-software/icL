@@ -7,6 +7,9 @@
 
 namespace icL::look::start {
 
+/**
+ * @brief The Input class describes a text input look
+ */
 class Input : public base::Link
 {
 	Q_OBJECT

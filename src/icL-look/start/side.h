@@ -7,6 +7,9 @@
 
 namespace icL::look::start {
 
+/**
+ * @brief The Side class describes a look for a start page side
+ */
 class Side : public ListItem
 {
 	Q_OBJECT

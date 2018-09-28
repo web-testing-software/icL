@@ -5,7 +5,7 @@
 #include <QColor>
 
 /**
- * Defines base color container for look component
+ * The icL.look.base namespace defines base color container for look component
  */
 namespace icL::look::base {
 
