@@ -25,7 +25,8 @@ HEADERS += \
     start/side.h \
     start/startwindow.h \
     session/tree.h \
-    session/leftside.h
+    session/leftside.h \
+    session/topbar.h
 
 SOURCES += \
     base/text.cpp \
@@ -38,5 +39,6 @@ SOURCES += \
     start/side.cpp \
     start/startwindow.cpp \
     session/tree.cpp \
-    session/leftside.cpp
+    session/leftside.cpp \
+    session/topbar.cpp
 
