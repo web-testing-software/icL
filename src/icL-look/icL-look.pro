@@ -23,7 +23,8 @@ HEADERS += \
     start/input.h \
     start/listitem.h \
     start/side.h \
-    start/startwindow.h
+    start/startwindow.h \
+    session/tree.h
 
 SOURCES += \
     base/text.cpp \
@@ -34,5 +35,6 @@ SOURCES += \
     start/input.cpp \
     start/listitem.cpp \
     start/side.cpp \
-    start/startwindow.cpp
+    start/startwindow.cpp \
+    session/tree.cpp
 
