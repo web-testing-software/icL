@@ -16,9 +16,11 @@ class Side : public ListItem
 
 	// clang-format off
 	Q_PROPERTY(base::Text* header READ header WRITE setHeader NOTIFY headerChanged)
+	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
 	// clang-format on
 
 	base::Text * m_header = nullptr;
+	QColor       m_background;
 
 public:
 	/**
@@ -35,8 +37,15 @@ public:
 	 */
 	base::Text * header() const;
 
+	/**
+	 * @brief background is the brackground color
+	 * @return the color of background
+	 */
+	QColor background() const;
+
 signals:
 	void headerChanged(base::Text * header);
+	void backgroundChanged(QColor background);
 
 public slots:
 	/**
@@ -44,6 +53,12 @@ public slots:
 	 * @param header is the new look for a side header
 	 */
 	void setHeader(base::Text * header);
+
+	/**
+	 * @brief setBackground changes the background color
+	 * @param background is the new background color
+	 */
+	void setBackground(QColor background);
 };
 
 }  // namespace icL::look::start
