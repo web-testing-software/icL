@@ -22,6 +22,10 @@ class Input : public base::Link
 	QColor       m_cursor;
 
 public:
+	/**
+	 * @brief Input is the default contructor
+	 * @param parent is the default QObject arg
+	 */
 	explicit Input(QObject * parent = nullptr);
 	~Input();
 

@@ -20,7 +20,8 @@ HEADERS += \
     base/linkadv.h \
     base/effect.h \
     base/effectadv.h \
-    start/input.h
+    start/input.h \
+    start/listitem.h
 
 SOURCES += \
     base/text.cpp \
@@ -28,5 +29,6 @@ SOURCES += \
     base/linkadv.cpp \
     base/effect.cpp \
     base/effectadv.cpp \
-    start/input.cpp
+    start/input.cpp \
+    start/listitem.cpp
 
