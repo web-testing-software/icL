@@ -5,6 +5,24 @@ namespace icL::look::start {
 StartWindow::StartWindow(QObject * parent)
 	: QObject(parent) {}
 
+StartWindow::~StartWindow() {
+	if (m_header != nullptr) {
+		delete m_header;
+	}
+
+	if (m_left != nullptr) {
+		delete m_left;
+	}
+
+	if (m_right != nullptr) {
+		delete m_right;
+	}
+
+	if (m_underline != nullptr) {
+		delete m_underline;
+	}
+}
+
 base::Text * StartWindow::header() const {
 	return m_header;
 }

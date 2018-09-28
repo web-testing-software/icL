@@ -24,10 +24,10 @@ class StartWindow : public QObject
 	Q_PROPERTY(base::Text* underline READ underline WRITE setUnderline NOTIFY underlineChanged)
 	// clang-format on
 
-	base::Text * m_header;
-	Side *       m_left;
-	Side *       m_right;
-	base::Text * m_underline;
+	base::Text * m_header    = nullptr;
+	Side *       m_left      = nullptr;
+	Side *       m_right     = nullptr;
+	base::Text * m_underline = nullptr;
 
 public:
 	/**
@@ -35,6 +35,8 @@ public:
 	 * @param parent is the default QObject arg
 	 */
 	explicit StartWindow(QObject * parent = nullptr);
+
+	~StartWindow();
 
 	/**
 	 * @brief header is the look for window header
