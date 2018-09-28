@@ -1,5 +1,5 @@
-#ifndef SIDE_H
-#define SIDE_H
+#ifndef icL_look_start_Side
+#define icL_look_start_Side
 
 #include "listitem.h"
 
@@ -63,4 +63,4 @@ public slots:
 
 }  // namespace icL::look::start
 
-#endif  // SIDE_H
+#endif  // icL_look_start_Side

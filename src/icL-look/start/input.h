@@ -1,5 +1,5 @@
-#ifndef INPUT_H
-#define INPUT_H
+#ifndef icL_look_start_Input
+#define icL_look_start_Input
 
 #include "../base/link.h"
 
@@ -77,4 +77,4 @@ public slots:
 };
 
 }  // namespace icL::look::start
-#endif  // INPUT_H
+#endif  // icL_look_start_Input

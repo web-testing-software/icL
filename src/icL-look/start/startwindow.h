@@ -1,5 +1,5 @@
-#ifndef STARTWINDOW_H
-#define STARTWINDOW_H
+#ifndef icL_look_start_StartWindow
+#define icL_look_start_StartWindow
 
 #include "side.h"
 
@@ -94,4 +94,4 @@ public slots:
 
 }  // namespace icL::look::start
 
-#endif  // STARTWINDOW_H
+#endif  // icL_look_start_StartWindow

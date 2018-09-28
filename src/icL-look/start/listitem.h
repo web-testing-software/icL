@@ -1,5 +1,5 @@
-#ifndef LISTITEM_H
-#define LISTITEM_H
+#ifndef icL_look_start_ListItem
+#define icL_look_start_ListItem
 
 #include "../base/effect.h"
 #include "../base/link.h"
@@ -49,4 +49,4 @@ public slots:
 
 }  // namespace icL::look::start
 
-#endif  // LISTITEM_H
+#endif  // icL_look_start_ListItem
