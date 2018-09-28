@@ -22,7 +22,8 @@ HEADERS += \
     base/effectadv.h \
     start/input.h \
     start/listitem.h \
-    start/side.h
+    start/side.h \
+    start/startwindow.h
 
 SOURCES += \
     base/text.cpp \
@@ -32,5 +33,6 @@ SOURCES += \
     base/effectadv.cpp \
     start/input.cpp \
     start/listitem.cpp \
-    start/side.cpp
+    start/side.cpp \
+    start/startwindow.cpp
 
