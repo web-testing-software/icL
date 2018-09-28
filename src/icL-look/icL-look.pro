@@ -19,12 +19,14 @@ HEADERS += \
     base/link.h \
     base/linkadv.h \
     base/effect.h \
-    base/effectadv.h
+    base/effectadv.h \
+    start/input.h
 
 SOURCES += \
     base/text.cpp \
     base/link.cpp \
     base/linkadv.cpp \
     base/effect.cpp \
-    base/effectadv.cpp
+    base/effectadv.cpp \
+    start/input.cpp
 
