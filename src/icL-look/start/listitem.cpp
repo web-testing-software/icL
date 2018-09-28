@@ -6,9 +6,7 @@ ListItem::ListItem(QObject * parent)
 	: Link(parent) {}
 
 ListItem::~ListItem() {
-	if (m_border != nullptr) {
-		delete m_border;
-	}
+	icL_dropField (m_border);
 }
 
 base::Effect * ListItem::border() const {

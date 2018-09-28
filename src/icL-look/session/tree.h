@@ -23,7 +23,13 @@ class Tree : public QObject
 	base::Link * m_child  = nullptr;
 
 public:
+	/**
+	 * @brief Tree is the default contructor
+	 * @param parent is the default QObject arg
+	 */
 	explicit Tree(QObject * parent = nullptr);
+
+	~Tree();
 
 	/**
 	 * @brief parent is the look for parent (root) item

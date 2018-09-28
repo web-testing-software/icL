@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QColor>
 
+#define icL_dropField(x) if (x != nullptr) delete x
+
 /**
  * The icL.look.base namespace defines base color container for look component
  */

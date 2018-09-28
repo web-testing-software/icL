@@ -6,9 +6,7 @@ Side::Side(QObject * parent)
 	: ListItem(parent) {}
 
 Side::~Side() {
-	if (m_header != nullptr) {
-		delete m_header;
-	}
+	icL_dropField (m_header);
 }
 
 base::Text * Side::header() const {

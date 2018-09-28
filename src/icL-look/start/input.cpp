@@ -6,13 +6,8 @@ Input::Input(QObject * parent)
 	: Link(parent) {}
 
 Input::~Input() {
-	if (m_inactive != nullptr) {
-		delete m_inactive;
-	}
-
-	if (m_selection != nullptr) {
-		delete m_selection;
-	}
+	icL_dropField (m_inactive);
+	icL_dropField (m_selection);
 }
 
 base::Text * Input::inactive() const {

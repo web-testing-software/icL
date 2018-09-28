@@ -6,12 +6,9 @@ Link::Link(QObject * parent)
 	: QObject(parent) {}
 
 Link::~Link() {
-	if (m_normal != nullptr)
-		delete m_normal;
-	if (m_hover != nullptr)
-		delete m_hover;
-	if (m_active != nullptr)
-		delete m_active;
+	icL_dropField (m_normal);
+	icL_dropField (m_hover);
+	icL_dropField (m_active);
 }
 
 Text * Link::normal() const {

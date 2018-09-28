@@ -6,17 +6,9 @@ LeftSide::LeftSide(QObject * parent)
 	: QObject(parent) {}
 
 LeftSide::~LeftSide() {
-	if (m_files != nullptr) {
-		delete m_files;
-	}
-
-	if (m_projects != nullptr) {
-		delete m_projects;
-	}
-
-	if (m_switcher != nullptr) {
-		delete m_switcher;
-	}
+	icL_dropField (m_files);
+	icL_dropField (m_projects);
+	icL_dropField (m_switcher);
 }
 
 base::Link * LeftSide::switcher() const {

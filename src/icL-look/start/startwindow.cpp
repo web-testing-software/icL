@@ -6,21 +6,10 @@ StartWindow::StartWindow(QObject * parent)
 	: QObject(parent) {}
 
 StartWindow::~StartWindow() {
-	if (m_header != nullptr) {
-		delete m_header;
-	}
-
-	if (m_left != nullptr) {
-		delete m_left;
-	}
-
-	if (m_right != nullptr) {
-		delete m_right;
-	}
-
-	if (m_underline != nullptr) {
-		delete m_underline;
-	}
+	icL_dropField (m_header);
+	icL_dropField (m_left);
+	icL_dropField (m_right);
+	icL_dropField (m_underline);
 }
 
 base::Text * StartWindow::header() const {

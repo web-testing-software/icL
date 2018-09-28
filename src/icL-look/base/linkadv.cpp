@@ -6,9 +6,7 @@ LinkAdv::LinkAdv(QObject * parent)
 	: Link(parent) {}
 
 LinkAdv::~LinkAdv() {
-	if (m_activeHover != nullptr) {
-		delete m_activeHover;
-	}
+	icL_dropField (m_activeHover);
 }
 
 Text * LinkAdv::activeHover() const {

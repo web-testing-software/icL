@@ -5,6 +5,11 @@ namespace icL::look::session {
 Tree::Tree(QObject * parent)
 	: QObject(parent) {}
 
+Tree::~Tree() {
+	icL_dropField(m_parent);
+	icL_dropField(m_child);
+}
+
 base::Link * Tree::parent() const {
 	return m_parent;
 }
