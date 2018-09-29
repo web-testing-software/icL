@@ -28,7 +28,8 @@ HEADERS += \
     session/leftside.h \
     session/topbar.h \
     session/floating.h \
-    session/issue.h
+    session/issue.h \
+    session/centralside.h
 
 SOURCES += \
     base/text.cpp \
@@ -44,5 +45,6 @@ SOURCES += \
     session/leftside.cpp \
     session/topbar.cpp \
     session/floating.cpp \
-    session/issue.cpp
+    session/issue.cpp \
+    session/centralside.cpp
 
