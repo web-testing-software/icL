@@ -29,6 +29,10 @@ class TopBar : public QObject
 	QColor            m_cursor;
 
 public:
+	/**
+	 * @brief TopBar is the default constructor
+	 * @param parent is the default QObject arg
+	 */
 	explicit TopBar(QObject * parent = nullptr);
 
 	~TopBar();
