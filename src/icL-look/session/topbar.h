@@ -1,5 +1,5 @@
-#ifndef TOPBAR_H
-#define TOPBAR_H
+#ifndef icL_look_session_TopBar
+#define icL_look_session_TopBar
 
 #include "../base/effectadv.h"
 #include "../base/linkadv.h"
@@ -121,4 +121,4 @@ public slots:
 
 }  // namespace icL::look::session
 
-#endif  // TOPBAR_H
+#endif  // icL_look_session_TopBar
