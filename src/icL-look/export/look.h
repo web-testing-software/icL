@@ -14,9 +14,9 @@ class Look : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(start::StartWindow*       start READ start   WRITE setStart   NOTIFY startChanged)
-	Q_PROPERTY(session::SessionWindow* session READ session WRITE setSession NOTIFY sessionChanged)
-	Q_PROPERTY(editor::Editor*          editor READ editor  WRITE setEditor  NOTIFY editorChanged)
+	Q_PROPERTY(start::StartWindow*       start READ start)
+	Q_PROPERTY(session::SessionWindow* session READ session)
+	Q_PROPERTY(editor::Editor*          editor READ editor)
 	// clang-format on
 
 	start::StartWindow *     m_start   = nullptr;
@@ -58,30 +58,6 @@ public:
 	Q_INVOKABLE bool loadConf(const QString & path);
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void startChanged(start::StartWindow * start);
-	void sessionChanged(session::SessionWindow * session);
-	void editorChanged(editor::Editor * editor);
-
-public slots:
-	/**
-	 * @brief setStart changes the look of start window
-	 * @param start is the new look for start window
-	 */
-	void setStart(start::StartWindow * start);
-
-	/**
-	 * @brief setSession changes the look of session window
-	 * @param session is the new look for session window
-	 */
-	void setSession(session::SessionWindow * session);
-
-	/**
-	 * @brief setEditor changes the look of code editor
-	 * @param editor is the new look for code editor
-	 */
-	void setEditor(editor::Editor * editor);
 };
 
 }  // namespace icL::look

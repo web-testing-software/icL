@@ -15,7 +15,7 @@ class Side : public ListItem
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text* header READ header     WRITE setHeader     NOTIFY headerChanged)
+	Q_PROPERTY(base::Text* header READ header)
 	Q_PROPERTY(QColor  background READ background WRITE setBackground NOTIFY backgroundChanged)
 	// clang-format on
 
@@ -46,16 +46,9 @@ public:
 	void setUp(const QJsonObject & obj) override;
 
 signals:
-	void headerChanged(base::Text * header);
 	void backgroundChanged(QColor background);
 
 public slots:
-	/**
-	 * @brief headerChanged changes the look for a side header
-	 * @param header is the new look for a side header
-	 */
-	void setHeader(base::Text * header);
-
 	/**
 	 * @brief setBackground changes the background color
 	 * @param background is the new background color

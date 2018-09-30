@@ -16,7 +16,7 @@ class Issue : public base::LinkAdv
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Effect* effect READ effect WRITE setEffect NOTIFY effectChanged)
+	Q_PROPERTY(base::Effect* effect READ effect)
 	// clang-format on
 
 	base::Effect * m_effect;
@@ -37,17 +37,6 @@ public:
 	base::Effect * effect() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-
-	void effectChanged(base::Effect * effect);
-
-public slots:
-	/**
-	 * @brief setEffect changes the underline effect
-	 * @param effect is the new underline effect
-	 */
-	void setEffect(base::Effect * effect);
 };
 
 }  // namespace icL::look::session

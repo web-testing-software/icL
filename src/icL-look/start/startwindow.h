@@ -18,10 +18,10 @@ class StartWindow : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*    header READ header    WRITE setHeader    NOTIFY headerChanged)
-	Q_PROPERTY(Side*            left READ left      WRITE setLeft      NOTIFY leftChanged)
-	Q_PROPERTY(Side*           right READ right     WRITE setRight     NOTIFY rightChanged)
-	Q_PROPERTY(base::Text* underline READ underline WRITE setUnderline NOTIFY underlineChanged)
+	Q_PROPERTY(base::Text*    header READ header)
+	Q_PROPERTY(Side*            left READ left)
+	Q_PROPERTY(Side*           right READ right)
+	Q_PROPERTY(base::Text* underline READ underline)
 	// clang-format on
 
 	base::Text * m_header    = nullptr;
@@ -63,37 +63,6 @@ public:
 	base::Text * underline() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void headerChanged(base::Text * header);
-	void leftChanged(Side * left);
-	void rightChanged(Side * right);
-	void underlineChanged(base::Text * underline);
-
-public slots:
-	/**
-	 * @brief setHeader changes the header look
-	 * @param header is the new header look
-	 */
-	void setHeader(base::Text * header);
-
-	/**
-	 * @brief setLeft changes the left side look
-	 * @param left is the new look for left side
-	 */
-	void setLeft(Side * left);
-
-	/**
-	 * @brief setRight changes the right side look
-	 * @param right is the new look for right side
-	 */
-	void setRight(Side * right);
-
-	/**
-	 * @brief setUnderline changes the look of bottom line
-	 * @param underline is the new look for bottom line
-	 */
-	void setUnderline(base::Text * underline);
 };
 
 }  // namespace icL::look::start

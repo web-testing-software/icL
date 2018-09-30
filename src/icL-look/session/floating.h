@@ -16,13 +16,13 @@ class Floating : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*  header READ header  WRITE setHeader  NOTIFY headerChanged)
-	Q_PROPERTY(Tree*         stack READ stack   WRITE setStack   NOTIFY stackChanged)
-	Q_PROPERTY(Tree*         state READ state   WRITE setState   NOTIFY stateChanged)
+	Q_PROPERTY(base::Text*  header READ header)
+	Q_PROPERTY(Tree*         stack READ stack)
+	Q_PROPERTY(Tree*         state READ state)
+	Q_PROPERTY(start::Input* input READ input)
 	Q_PROPERTY(QColor        error READ error   WRITE setError   NOTIFY errorChanged)
 	Q_PROPERTY(QColor         warn READ warn    WRITE setWarn    NOTIFY warnChanged)
 	Q_PROPERTY(QColor      console READ console WRITE setConsole NOTIFY consoleChanged)
-	Q_PROPERTY(start::Input* input READ input   WRITE setInput   NOTIFY inputChanged)
 	Q_PROPERTY(QColor           bg READ bg      WRITE setBg      NOTIFY bgChanged)
 	// clang-format on
 
@@ -95,34 +95,12 @@ public:
 	void setUp(const QJsonObject & obj) override;
 
 signals:
-	void headerChanged(base::Text * header);
-	void stackChanged(Tree * stack);
-	void stateChanged(Tree * state);
 	void errorChanged(QColor error);
 	void warnChanged(QColor warn);
 	void consoleChanged(QColor console);
-	void inputChanged(start::Input * input);
 	void bgChanged(QColor bg);
 
 public slots:
-	/**
-	 * @brief setHeader changes the look of headers
-	 * @param header is the new look for headers
-	 */
-	void setHeader(base::Text * header);
-
-	/**
-	 * @brief setStack changes the look of stack view
-	 * @param stack is the new look for stack view
-	 */
-	void setStack(Tree * stack);
-
-	/**
-	 * @brief setState changes the look of states view
-	 * @param state is the new look for sttates view
-	 */
-	void setState(Tree * state);
-
 	/**
 	 * @brief setError changes the color of errors in console
 	 * @param error is the new color for errors in console
@@ -140,12 +118,6 @@ public slots:
 	 * @param console is the new color for text in console
 	 */
 	void setConsole(QColor console);
-
-	/**
-	 * @brief setInput changes the look of command input
-	 * @param input is the new look for command input
-	 */
-	void setInput(start::Input * input);
 
 	/**
 	 * @brief setBg changes the color of background

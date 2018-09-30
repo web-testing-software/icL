@@ -16,15 +16,15 @@ class CentralSide : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*        header READ header      WRITE setHeader      NOTIFY headerChanged)
-	Q_PROPERTY(Issue*               warn READ warn        WRITE setWarn        NOTIFY warnChanged)
-	Q_PROPERTY(Issue*              error READ error       WRITE setError       NOTIFY errorChanged)
-	Q_PROPERTY(base::LinkAdv*  undertext READ undertext   WRITE setUndertext   NOTIFY undertextChanged)
-	Q_PROPERTY(base::LinkAdv* underdigit READ underdigit  WRITE setUnderdigit  NOTIFY underdigitChanged)
+	Q_PROPERTY(base::Text*        header READ header)
+	Q_PROPERTY(Issue*               warn READ warn)
+	Q_PROPERTY(Issue*              error READ error)
+	Q_PROPERTY(base::LinkAdv*  undertext READ undertext)
+	Q_PROPERTY(base::LinkAdv* underdigit READ underdigit)
 	Q_PROPERTY(QColor            command READ command     WRITE setCommand     NOTIFY commandChanged)
 	Q_PROPERTY(QColor        errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
 	Q_PROPERTY(QColor           okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
-	Q_PROPERTY(start::Input*       input READ input       WRITE setInput       NOTIFY inputChanged)
+	Q_PROPERTY(start::Input*       input READ input)
 	// clang-format on
 
 	base::Text *    m_header     = nullptr;
@@ -103,47 +103,11 @@ public:
 	void setUp(const QJsonObject & obj) override;
 
 signals:
-	void headerChanged(base::Text * header);
-	void warnChanged(Issue * warn);
-	void errorChanged(Issue * error);
-	void undertextChanged(base::LinkAdv * undertext);
-	void underdigitChanged(base::LinkAdv * underdigit);
 	void commandChanged(QColor command);
 	void errorResultChanged(QColor errorResult);
 	void okResultChanged(QColor okResult);
-	void inputChanged(start::Input * input);
 
 public slots:
-	/**
-	 * @brief setHeader changes the look of header
-	 * @param header is the new look for header
-	 */
-	void setHeader(base::Text * header);
-
-	/**
-	 * @brief setWarn changes the look of warnings
-	 * @param warn is the new look for warnings
-	 */
-	void setWarn(Issue * warn);
-
-	/**
-	 * @brief setError changes the look of errors
-	 * @param error is the new look for errors
-	 */
-	void setError(Issue * error);
-
-	/**
-	 * @brief setUndertext changes the look of text in state bar
-	 * @param undertext is the new look for text in state bar
-	 */
-	void setUndertext(base::LinkAdv * undertext);
-
-	/**
-	 * @brief setUnderdigit changes the look of digits in state bar
-	 * @param underdigit is the new look for digits in state bar
-	 */
-	void setUnderdigit(base::LinkAdv * underdigit);
-
 	/**
 	 * @brief setCommand shanges the color of commands in console
 	 * @param command is the new color for comands in console
@@ -161,12 +125,6 @@ public slots:
 	 * @param okResult is the nre color for results in console
 	 */
 	void setOkResult(QColor okResult);
-
-	/**
-	 * @brief setInput changes the look of command input
-	 * @param input is the new look for command input
-	 */
-	void setInput(start::Input * input);
 };
 
 }  // namespace icL::look::session

@@ -15,8 +15,8 @@ class Tree : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Link* parent READ parent WRITE setParent NOTIFY parentChanged)
-	Q_PROPERTY(base::Link*  child READ child  WRITE setChild  NOTIFY childChanged)
+	Q_PROPERTY(base::Link* parent READ parent)
+	Q_PROPERTY(base::Link*  child READ child)
 	// clang-format on
 
 	base::Link * m_parent = nullptr;
@@ -44,23 +44,6 @@ public:
 	base::Link * child() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void parentChanged(base::Link * parent);
-	void childChanged(base::Link * child);
-
-public slots:
-	/**
-	 * @brief setParent changes the look of parent items
-	 * @param parent the new look for parent items
-	 */
-	void setParent(base::Link * parent);
-
-	/**
-	 * @brief setChild changes the look for children items
-	 * @param child the new look for children items
-	 */
-	void setChild(base::Link * child);
 };
 
 }  // namespace icL::look::session

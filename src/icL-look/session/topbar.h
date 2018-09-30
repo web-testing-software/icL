@@ -13,12 +13,12 @@ class TopBar : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::LinkAdv*      tab READ tab    WRITE setTab    NOTIFY tabChanged)
-	Q_PROPERTY(base::LinkAdv*      url READ url    WRITE setUrl    NOTIFY urlChanged)
-	Q_PROPERTY(base::EffectAdv* button READ button WRITE setButton NOTIFY buttonChanged)
-	Q_PROPERTY(base::EffectAdv*   tool READ tool   WRITE setTool   NOTIFY toolChanged)
-	Q_PROPERTY(base::Text*       input READ input  WRITE setInput  NOTIFY inputChanged)
-	Q_PROPERTY(QColor           cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
+	Q_PROPERTY(base::LinkAdv*      tab READ tab)
+	Q_PROPERTY(base::LinkAdv*      url READ url)
+	Q_PROPERTY(base::EffectAdv* button READ button)
+	Q_PROPERTY(base::EffectAdv*   tool READ tool)
+	Q_PROPERTY(base::Text*       input READ input)
+	Q_PROPERTY(QColor           cursor READ cursor)
 	// clang-format on
 
 	base::LinkAdv *   m_tab    = nullptr;
@@ -74,51 +74,6 @@ public:
 	QColor cursor() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void tabChanged(base::LinkAdv * tab);
-	void urlChanged(base::LinkAdv * url);
-	void buttonChanged(base::EffectAdv * button);
-	void toolChanged(base::EffectAdv * tool);
-	void inputChanged(base::Text * input);
-	void cursorChanged(QColor cursor);
-
-public slots:
-	/**
-	 * @brief setTab changes the look of tabs
-	 * @param tab is the new look for tabs
-	 */
-	void setTab(base::LinkAdv * tab);
-
-	/**
-	 * @brief setUrl changes the look of url bar
-	 * @param url is the new look for url bar
-	 */
-	void setUrl(base::LinkAdv * url);
-
-	/**
-	 * @brief setButton changes the look of title bar buttons
-	 * @param button is the new look for title bar buttons
-	 */
-	void setButton(base::EffectAdv * button);
-
-	/**
-	 * @brief setTool changes the look of tool buttons
-	 * @param tool is the new look for tool buttons
-	 */
-	void setTool(base::EffectAdv * tool);
-
-	/**
-	 * @brief setInput changes the look of url input
-	 * @param input is the new look for urm inputs
-	 */
-	void setInput(base::Text * input);
-
-	/**
-	 * @brief setCursor changes the color of text cursor
-	 * @param cursor is the new color for text cursor
-	 */
-	void setCursor(QColor cursor);
 };
 
 }  // namespace icL::look::session

@@ -16,7 +16,7 @@ class ListItem : public base::Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Effect * border READ border WRITE setBorder NOTIFY borderChanged)
+	Q_PROPERTY(base::Effect * border READ border)
 	// clang-format on
 
 	base::Effect * m_border = nullptr;
@@ -37,16 +37,6 @@ public:
 	base::Effect * border() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void borderChanged(base::Effect * border);
-
-public slots:
-	/**
-	 * @brief setBorder changes the border color for list items
-	 * @param border is the new border color for list items
-	 */
-	void setBorder(base::Effect * border);
 };
 
 }  // namespace icL::look::start

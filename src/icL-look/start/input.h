@@ -15,9 +15,9 @@ class Input : public base::Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text *  inactive READ inactive  WRITE setInactive  NOTIFY inactiveChanged)
-	Q_PROPERTY(base::Text * selection READ selection WRITE setSelection NOTIFY selectionChanged)
-	Q_PROPERTY(QColor          cursor READ cursor    WRITE setCursor    NOTIFY cursorChanged)
+	Q_PROPERTY(base::Text *  inactive READ inactive)
+	Q_PROPERTY(base::Text * selection READ selection)
+	Q_PROPERTY(QColor          cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 
 	base::Text * m_inactive  = nullptr;
@@ -53,23 +53,9 @@ public:
 	void setUp(const QJsonObject & obj) override;
 
 signals:
-	void inactiveChanged(base::Text * inactive);
-	void selectionChanged(base::Text * selection);
 	void cursorChanged(QColor cursor);
 
 public slots:
-	/**
-	 * @brief setInactive changes the look for an inactive input
-	 * @param inactive is the new look of inactive inputs
-	 */
-	void setInactive(base::Text * inactive);
-
-	/**
-	 * @brief setSelection changes the look for an text selection
-	 * @param selectionis the new look for inactive inputs
-	 */
-	void setSelection(base::Text * selection);
-
 	/**
 	 * @brief setCursor changes the color of text cursor
 	 * @param cursor is the new color for text cursors

@@ -16,9 +16,9 @@ class Link : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Text * normal READ normal WRITE setNormal NOTIFY normalChanged)
-	Q_PROPERTY(Text *  hover READ hover  WRITE setHover  NOTIFY hoverChanged)
-	Q_PROPERTY(Text * active READ active WRITE setActive NOTIFY activeChanged)
+	Q_PROPERTY(Text * normal READ normal)
+	Q_PROPERTY(Text *  hover READ hover)
+	Q_PROPERTY(Text * active READ active)
 	// clang-format on
 
 	Text * m_normal = nullptr;
@@ -53,30 +53,6 @@ public:
 	Text * active() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void normalChanged(Text * normal);
-	void hoverChanged(Text * hover);
-	void activeChanged(Text * active);
-
-public slots:
-	/**
-	 * @brief setNormal changes the default text color
-	 * @param normal is the new default text color
-	 */
-	void setNormal(Text * normal);
-
-	/**
-	 * @brief setHover changes the hovered text color
-	 * @param hover is the new hovered text color
-	 */
-	void setHover(Text * hover);
-
-	/**
-	 * @brief setActive changes the active text color
-	 * @param active is the new active text color
-	 */
-	void setActive(Text * active);
 };
 
 }  // namespace icL::look::base

@@ -16,9 +16,9 @@ class LeftSide : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Link*   switcher READ switcher WRITE setSwitcher NOTIFY switcherChanged)
-	Q_PROPERTY(Tree          projects READ projects WRITE setProjects NOTIFY projectsChanged)
-	Q_PROPERTY(start::ListItem* files READ files    WRITE setFiles    NOTIFY filesChanged)
+	Q_PROPERTY(base::Link*   switcher READ switcher)
+	Q_PROPERTY(Tree*         projects READ projects)
+	Q_PROPERTY(start::ListItem* files READ files)
 	// clang-format on
 
 	base::Link *      m_switcher = nullptr;
@@ -53,30 +53,6 @@ public:
 	start::ListItem * files() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void switcherChanged(base::Link * switcher);
-	void projectsChanged(Tree * projects);
-	void filesChanged(start::ListItem * files);
-
-public slots:
-	/**
-	 * @brief setSwitcher changes the look of pro/files switcher
-	 * @param switcher the new look for pro/files switcher
-	 */
-	void setSwitcher(base::Link * switcher);
-
-	/**
-	 * @brief setProjects changes the look of projects tree
-	 * @param projects the new look for projects tree
-	 */
-	void setProjects(Tree * projects);
-
-	/**
-	 * @brief setFiles changes the look of files list
-	 * @param files the new look for files list
-	 */
-	void setFiles(start::ListItem * files);
 };
 
 }  // namespace icL::look::session

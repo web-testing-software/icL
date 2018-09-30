@@ -21,10 +21,10 @@ class SessionWindow : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(CentralSide* center READ center   WRITE setCenter   NOTIFY centerChanged)
-	Q_PROPERTY(Floating*  floating READ floating WRITE setFloating NOTIFY floatingChanged)
-	Q_PROPERTY(LeftSide*      left READ left     WRITE setLeft     NOTIFY leftChanged)
-	Q_PROPERTY(TopBar*         top READ top      WRITE setTop      NOTIFY topChanged)
+	Q_PROPERTY(CentralSide* center READ center)
+	Q_PROPERTY(Floating*  floating READ floating)
+	Q_PROPERTY(LeftSide*      left READ left)
+	Q_PROPERTY(TopBar*         top READ top)
 	// clang-format on
 
 	CentralSide * m_center   = nullptr;
@@ -66,37 +66,6 @@ public:
 	TopBar * top() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void centerChanged(CentralSide * center);
-	void floatingChanged(Floating * floating);
-	void leftChanged(LeftSide * left);
-	void topChanged(TopBar * top);
-
-public slots:
-	/**
-	 * @brief setCenter changes the look of central widget
-	 * @param center is the new look for the central widget
-	 */
-	void setCenter(CentralSide * center);
-
-	/**
-	 * @brief setFloating changes the look of floating panel
-	 * @param floating is the new look for the floating panel
-	 */
-	void setFloating(Floating * floating);
-
-	/**
-	 * @brief setLeft changes the look of left panel
-	 * @param left is the new look for the left panel
-	 */
-	void setLeft(LeftSide * left);
-
-	/**
-	 * @brief setTop changes the look of the top bar
-	 * @param top is the new look for the top bar
-	 */
-	void setTop(TopBar * top);
 };
 
 }  // namespace icL::look::session

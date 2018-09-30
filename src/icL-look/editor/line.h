@@ -18,8 +18,8 @@ class Line : public base::Base
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(QColor              lineBg READ lineBg     WRITE setLineBg     NOTIFY lineBgChanged)
-	Q_PROPERTY(CharFormatBase* lineNumber READ lineNumber WRITE setLineNumber NOTIFY lineNumberChanged)
+	Q_PROPERTY(QColor              lineBg READ lineBg WRITE setLineBg NOTIFY lineBgChanged)
+	Q_PROPERTY(CharFormatBase* lineNumber READ lineNumber)
 	// clang-format on
 
 	QColor           m_lineBg;
@@ -50,7 +50,6 @@ public:
 
 signals:
 	void lineBgChanged(QColor lineBg);
-	void lineNumberChanged(CharFormatBase * lineNumber);
 
 public slots:
 	/**
@@ -58,12 +57,6 @@ public slots:
 	 * @param lineBg is the new background color for highlighted line
 	 */
 	void setLineBg(QColor lineBg);
-
-	/**
-	 * @brief setLineNumber changes the look of line numbers
-	 * @param lineNumber is the new look for line number
-	 */
-	void setLineNumber(CharFormatBase * lineNumber);
 };
 
 }  // namespace icL::look::editor

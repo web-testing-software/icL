@@ -15,7 +15,7 @@ class LinkAdv : public Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Text * activeHover READ activeHover WRITE setActiveHover NOTIFY ctiveHoverChanged)
+	Q_PROPERTY(Text * activeHover READ activeHover)
 	// clang-format on
 
 	Text * m_activeHover = nullptr;
@@ -36,16 +36,6 @@ public:
 	Text * activeHover() const;
 
 	void setUp(const QJsonObject & obj) override;
-
-signals:
-	void activeHoverChanged(Text * activeHover);
-
-public slots:
-	/**
-	 * @brief setActiveHover
-	 * @param activeHover
-	 */
-	void setActiveHover(Text * activeHover);
 };
 
 }  // namespace icL::look::base
