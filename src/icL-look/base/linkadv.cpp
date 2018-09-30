@@ -21,13 +21,4 @@ void LinkAdv::setUp(const QJsonObject & obj) {
 	m_activeHover->setUp(obj.value("active-hover").toObject());
 }
 
-void LinkAdv::setActiveHover(Text * activeHover) {
-	if (m_activeHover == activeHover) {
-		return;
-	}
-
-	m_activeHover = activeHover;
-	emit activeHoverChanged(m_activeHover);
-}
-
 }  // namespace icL::look::base

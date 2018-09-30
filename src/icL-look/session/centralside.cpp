@@ -58,46 +58,6 @@ start::Input * CentralSide::input() const {
 	return m_input;
 }
 
-void CentralSide::setHeader(base::Text * header) {
-	if (m_header == header)
-		return;
-
-	m_header = header;
-	emit headerChanged(m_header);
-}
-
-void CentralSide::setWarn(Issue * warn) {
-	if (m_warn == warn)
-		return;
-
-	m_warn = warn;
-	emit warnChanged(m_warn);
-}
-
-void CentralSide::setError(Issue * error) {
-	if (m_error == error)
-		return;
-
-	m_error = error;
-	emit errorChanged(m_error);
-}
-
-void CentralSide::setUndertext(base::LinkAdv * undertext) {
-	if (m_undertext == undertext)
-		return;
-
-	m_undertext = undertext;
-	emit undertextChanged(m_undertext);
-}
-
-void CentralSide::setUnderdigit(base::LinkAdv * underdigit) {
-	if (m_underdigit == underdigit)
-		return;
-
-	m_underdigit = underdigit;
-	emit underdigitChanged(m_underdigit);
-}
-
 void CentralSide::setCommand(QColor command) {
 	if (m_command == command)
 		return;
@@ -120,14 +80,6 @@ void CentralSide::setOkResult(QColor okResult) {
 
 	m_okResult = okResult;
 	emit okResultChanged(m_okResult);
-}
-
-void CentralSide::setInput(start::Input * input) {
-	if (m_input == input)
-		return;
-
-	m_input = input;
-	emit inputChanged(m_input);
 }
 
 }  // namespace icL::look::session

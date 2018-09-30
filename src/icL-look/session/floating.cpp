@@ -51,30 +51,6 @@ QColor Floating::bg() const {
 	return m_bg;
 }
 
-void Floating::setHeader(base::Text * header) {
-	if (m_header == header)
-		return;
-
-	m_header = header;
-	emit headerChanged(m_header);
-}
-
-void Floating::setStack(Tree * stack) {
-	if (m_stack == stack)
-		return;
-
-	m_stack = stack;
-	emit stackChanged(m_stack);
-}
-
-void Floating::setState(Tree * state) {
-	if (m_state == state)
-		return;
-
-	m_state = state;
-	emit stateChanged(m_state);
-}
-
 void Floating::setError(QColor error) {
 	if (m_error == error)
 		return;
@@ -97,14 +73,6 @@ void Floating::setConsole(QColor console) {
 
 	m_console = console;
 	emit consoleChanged(m_console);
-}
-
-void Floating::setInput(start::Input * input) {
-	if (m_input == input)
-		return;
-
-	m_input = input;
-	emit inputChanged(m_input);
 }
 
 void Floating::setBg(QColor bg) {

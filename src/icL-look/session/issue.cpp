@@ -15,12 +15,4 @@ base::Effect * Issue::effect() const {
 	return m_effect;
 }
 
-void Issue::setEffect(base::Effect * effect) {
-	if (m_effect == effect)
-		return;
-
-	m_effect = effect;
-	emit effectChanged(m_effect);
-}
-
 }  // namespace icL::look::session

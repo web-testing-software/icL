@@ -61,28 +61,4 @@ void Look::setUp(const QJsonObject & obj) {
 	m_start->setUp(obj.value("start").toObject());
 }
 
-void Look::setStart(start::StartWindow * start) {
-	if (m_start == start)
-		return;
-
-	m_start = start;
-	emit startChanged(m_start);
-}
-
-void Look::setSession(session::SessionWindow * session) {
-	if (m_session == session)
-		return;
-
-	m_session = session;
-	emit sessionChanged(m_session);
-}
-
-void Look::setEditor(editor::Editor * editor) {
-	if (m_editor == editor)
-		return;
-
-	m_editor = editor;
-	emit editorChanged(m_editor);
-}
-
 }  // namespace icL::look

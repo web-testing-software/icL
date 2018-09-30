@@ -33,31 +33,4 @@ void Link::setUp(const QJsonObject & obj) {
 	m_normal->setUp(obj.value("normal").toObject());
 }
 
-void Link::setNormal(Text * normal) {
-	if (m_normal == normal) {
-		return;
-	}
-
-	m_normal = normal;
-	emit normalChanged(m_normal);
-}
-
-void Link::setHover(Text * hover) {
-	if (m_hover == hover) {
-		return;
-	}
-
-	m_hover = hover;
-	emit hoverChanged(m_hover);
-}
-
-void Link::setActive(Text * active) {
-	if (m_active == active) {
-		return;
-	}
-
-	m_active = active;
-	emit activeChanged(m_active);
-}
-
 }  // namespace icL::look::base

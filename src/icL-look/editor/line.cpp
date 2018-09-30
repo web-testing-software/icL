@@ -35,12 +35,4 @@ void Line::setLineBg(QColor lineBg) {
 	emit lineBgChanged(m_lineBg);
 }
 
-void Line::setLineNumber(CharFormatBase * lineNumber) {
-	if (m_lineNumber == lineNumber)
-		return;
-
-	m_lineNumber = lineNumber;
-	emit lineNumberChanged(m_lineNumber);
-}
-
 }  // namespace icL::look::editor

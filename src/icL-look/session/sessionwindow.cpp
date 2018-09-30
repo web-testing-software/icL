@@ -33,36 +33,4 @@ TopBar * SessionWindow::top() const {
 	return m_top;
 }
 
-void SessionWindow::setCenter(CentralSide * center) {
-	if (m_center == center)
-		return;
-
-	m_center = center;
-	emit centerChanged(m_center);
-}
-
-void SessionWindow::setFloating(Floating * floating) {
-	if (m_floating == floating)
-		return;
-
-	m_floating = floating;
-	emit floatingChanged(m_floating);
-}
-
-void SessionWindow::setLeft(LeftSide * left) {
-	if (m_left == left)
-		return;
-
-	m_left = left;
-	emit leftChanged(m_left);
-}
-
-void SessionWindow::setTop(TopBar * top) {
-	if (m_top == top)
-		return;
-
-	m_top = top;
-	emit topChanged(m_top);
-}
-
 }  // namespace icL::look::session

@@ -27,22 +27,6 @@ QColor Input::cursor() const {
 	return m_cursor;
 }
 
-void Input::setInactive(base::Text * inactive) {
-	if (m_inactive == inactive)
-		return;
-
-	m_inactive = inactive;
-	emit inactiveChanged(m_inactive);
-}
-
-void Input::setSelection(base::Text * selection) {
-	if (m_selection == selection)
-		return;
-
-	m_selection = selection;
-	emit selectionChanged(m_selection);
-}
-
 void Input::setCursor(QColor cursor) {
 	if (m_cursor == cursor)
 		return;
