@@ -9,6 +9,9 @@
 
 namespace icL::look::editor {
 
+/**
+ * @brief The Editor class defines a color scheme for an editor
+ */
 class Editor : public QObject
 {
 	Q_OBJECT
@@ -56,46 +59,126 @@ class Editor : public QObject
 	Line *       m_breakpoint = nullptr;
 
 public:
+	/**
+	 * @brief Editor is the default constructor
+	 * @param parent is the default QObject arg
+	 */
 	explicit Editor(QObject * parent = nullptr);
 
 	~Editor();
 
+	/**
+	 * @brief text is the defalt text look
+	 * @return the default text look
+	 */
 	CharFormat * text() const;
 
+	/**
+	 * @brief selection is the look of text selection
+	 * @return the selection text look
+	 */
 	CharFormat * selection() const;
 
+	/**
+	 * @brief number is the look of numbers
+	 * @return the look for numbers
+	 */
 	CharFormat * number() const;
 
+	/**
+	 * @brief string is the look of strings
+	 * @return the look for string
+	 */
 	CharFormat * string() const;
 
+	/**
+	 * @brief type is the look of data types
+	 * @return the look for data types
+	 */
 	CharFormat * type() const;
 
+	/**
+	 * @brief local is the look of local variables
+	 * @return the look for local variables
+	 */
 	CharFormat * local() const;
 
+	/**
+	 * @brief global is the look of global variables
+	 * @return the look for global variables
+	 */
 	CharFormat * global() const;
 
+	/**
+	 * @brief property is the look of properties
+	 * @return the look for properties
+	 */
 	CharFormat * property() const;
 
+	/**
+	 * @brief method is the look of methods
+	 * @return the look for methods
+	 */
 	CharFormat * method() const;
 
+	/**
+	 * @brief function is the look of functions
+	 * @return the look for functions
+	 */
 	CharFormat * function() const;
 
+	/**
+	 * @brief keyword is the look of keywords
+	 * @return the look for keywords
+	 */
 	CharFormat * keyword() const;
 
+	/**
+	 * @brief comment is the look of comments
+	 * @return the look for comments
+	 */
 	CharFormat * comment() const;
 
+	/**
+	 * @brief system is the look of system types
+	 * @return the look for sytem types
+	 */
 	CharFormat * system() const;
 
+	/**
+	 * @brief error is the look of inline errors
+	 * @return the look for inline errors
+	 */
 	CharFormat * error() const;
 
+	/**
+	 * @brief warning is the look of inline warning
+	 * @return the look for inline warnings
+	 */
 	CharFormat * warning() const;
 
+	/**
+	 * @brief occurrence is the look of eccurrences
+	 * @return the look for occurrences
+	 */
 	Highlight * occurrence() const;
 
+	/**
+	 * @brief current is the look of current line
+	 * @return the look for current line
+	 */
 	Line * current() const;
 
+	/**
+	 * @brief debug is the look of running line
+	 * @return the look for running line
+	 */
 	Line * debug() const;
 
+	/**
+	 * @brief breakpoint is the look of break line
+	 * @return the look for break line
+	 */
 	Line * breakpoint() const;
 
 signals:
@@ -120,24 +203,118 @@ signals:
 	void breakpointChanged(Line * breakpoint);
 
 public slots:
+	/**
+	 * @brief setText changes the default look
+	 * @param text is the new default look
+	 */
 	void setText(CharFormat * text);
+
+	/**
+	 * @brief setSelection changes the look of selection
+	 * @param selection is the new look for selection
+	 */
 	void setSelection(CharFormat * selection);
+
+	/**
+	 * @brief setNumber changes the look of number
+	 * @param number is the new look for numbers
+	 */
 	void setNumber(CharFormat * number);
+
+	/**
+	 * @brief setString changes the look of string
+	 * @param string is the new look for string
+	 */
 	void setString(CharFormat * string);
+
+	/**
+	 * @brief setType changes the look of types
+	 * @param type is the new look for types
+	 */
 	void setType(CharFormat * type);
+
+	/**
+	 * @brief setLocal changes the look of local variables
+	 * @param local is the new look for local variables
+	 */
 	void setLocal(CharFormat * local);
+
+	/**
+	 * @brief setGlobal changes the look of global variables
+	 * @param global is the new look for global variables
+	 */
 	void setGlobal(CharFormat * global);
+
+	/**
+	 * @brief setProperty changes the look of properties
+	 * @param property is the new look for properties
+	 */
 	void setProperty(CharFormat * property);
+
+	/**
+	 * @brief setMethod changes the look of methods
+	 * @param method is the new look for methods
+	 */
 	void setMethod(CharFormat * method);
+
+	/**
+	 * @brief setFunction changes the look of functions
+	 * @param function is the new look for functions
+	 */
 	void setFunction(CharFormat * function);
+
+	/**
+	 * @brief setKeyword changes the look of keywords
+	 * @param keyword is the new look for keywords
+	 */
 	void setKeyword(CharFormat * keyword);
+
+	/**
+	 * @brief setComment changes the look of comments
+	 * @param comment is the new look for comments
+	 */
 	void setComment(CharFormat * comment);
+
+	/**
+	 * @brief setSystem changes the look of system types
+	 * @param system is the new look for system types
+	 */
 	void setSystem(CharFormat * system);
+
+	/**
+	 * @brief setError changes the look of inline errors
+	 * @param error is the new look for inline errors
+	 */
 	void setError(CharFormat * error);
+
+	/**
+	 * @brief setWarning changes the look of inline warnings
+	 * @param warning is the new look for inline warnings
+	 */
 	void setWarning(CharFormat * warning);
+
+	/**
+	 * @brief setOccurrence changes the look of occurrences
+	 * @param occurrence is the new look for occurrences
+	 */
 	void setOccurrence(Highlight * occurrence);
+
+	/**
+	 * @brief setCurrent changes the look of current line
+	 * @param current is the new look for current line
+	 */
 	void setCurrent(Line * current);
+
+	/**
+	 * @brief setDebug changes the look of running line
+	 * @param debug is the new look for running line
+	 */
 	void setDebug(Line * debug);
+
+	/**
+	 * @brief setBreakpoint changes the look of break lines
+	 * @param breakpoint is the new look for break lines
+	 */
 	void setBreakpoint(Line * breakpoint);
 };
 
