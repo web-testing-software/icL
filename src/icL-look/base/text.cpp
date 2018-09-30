@@ -2,10 +2,8 @@
 
 namespace icL::look::base {
 
-Text::Text(const QString &fg, const QString &bg, QObject * parent)
-	: m_background(bg)
-	, m_foreground(fg)
-	, QObject(parent) {}
+Text::Text(QObject * parent)
+	: QObject(parent) {}
 
 QColor Text::background() const {
 	return m_background;

@@ -27,7 +27,7 @@ class Text : public QObject
 	QColor m_foreground;
 
 public:
-	Text(const QString & fg, const QString & bg, QObject * parent = nullptr);
+	Text(QObject * parent = nullptr);
 
 	/**
 	 * @brief background is the background color

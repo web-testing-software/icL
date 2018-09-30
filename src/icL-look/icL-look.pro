@@ -32,7 +32,8 @@ HEADERS += \
     session/centralside.h \
     session/sessionwindow.h \
     editor/highlight.h \
-    editor/line.h
+    editor/line.h \
+    editor/charformatbase.h
 
 SOURCES += \
     base/text.cpp \
@@ -52,5 +53,6 @@ SOURCES += \
     session/centralside.cpp \
     session/sessionwindow.cpp \
     editor/highlight.cpp \
-    editor/line.cpp
+    editor/line.cpp \
+    editor/charformatbase.cpp
 
