@@ -62,11 +62,7 @@ public:
 	 */
 	base::Text * underline() const;
 
-	/**
-	 * @brief setUp set up the state from JSON object
-	 * @param obj is the configuration object
-	 */
-	void setUp(const QJsonObject & obj);
+	void setUp(const QJsonObject & obj) override;
 
 signals:
 	void headerChanged(base::Text * header);

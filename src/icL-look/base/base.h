@@ -19,6 +19,12 @@ public:
 	Base(QObject * parent = nullptr);
 
 	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	virtual void setUp(const QJsonObject & obj);
+
+	/**
 	 * @brief objToColor converts a JSON object to QColor
 	 * @param obj is a JSON object
 	 * @return Color getted from hex or r/g/b/a properties
