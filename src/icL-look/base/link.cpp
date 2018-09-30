@@ -27,6 +27,12 @@ Text * Link::active() const {
 	return m_active;
 }
 
+void Link::setUp(const QJsonObject & obj) {
+	m_active->setUp(obj.value("active").toObject());
+	m_hover->setUp(obj.value("hover").toObject());
+	m_normal->setUp(obj.value("normal").toObject());
+}
+
 void Link::setNormal(Text * normal) {
 	if (m_normal == normal) {
 		return;

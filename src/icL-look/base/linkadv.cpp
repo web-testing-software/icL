@@ -15,6 +15,11 @@ Text * LinkAdv::activeHover() const {
 	return m_activeHover;
 }
 
+void LinkAdv::setUp(const QJsonObject & obj) {
+	Link::setUp(obj);
+	m_activeHover->setUp(obj.value("active-hover").toObject());
+}
+
 void LinkAdv::setActiveHover(Text * activeHover) {
 	if (m_activeHover == activeHover) {
 		return;

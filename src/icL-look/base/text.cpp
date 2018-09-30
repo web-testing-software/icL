@@ -15,6 +15,11 @@ QColor Text::foreground() const {
 	return m_foreground;
 }
 
+void Text::setUp(const QJsonObject & obj) {
+	m_background = objToColor(obj.value("background").toObject());
+	m_foreground = objToColor(obj.value("foreground").toObject());
+}
+
 void Text::setBackground(QColor background) {
 	if (m_background == background)
 		return;

@@ -1,6 +1,7 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include <QJsonObject>
 #include <QObject>
 
 
@@ -16,6 +17,13 @@ class Base : public QObject
 
 public:
 	Base(QObject * parent = nullptr);
+
+	/**
+	 * @brief objToColor converts a JSON object to QColor
+	 * @param obj is a JSON object
+	 * @return Color getted from hex or r/g/b/a properties
+	 */
+	QColor objToColor (const QJsonObject & obj);
 };
 
 }  // namespace icL::look::base

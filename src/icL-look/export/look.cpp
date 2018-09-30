@@ -55,7 +55,11 @@ bool Look::loadConf(const QString & path) {
 	return true;
 }
 
-void Look::setUp(const QJsonObject & obj) {}
+void Look::setUp(const QJsonObject & obj) {
+	m_editor->setUp(obj.value("editor").toObject());
+	m_session->setUp(obj.value("session").toObject());
+	m_start->setUp(obj.value("start").toObject());
+}
 
 void Look::setStart(start::StartWindow * start) {
 	if (m_start == start)
