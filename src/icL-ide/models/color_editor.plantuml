@@ -21,7 +21,7 @@ class Line {
 	color lineNumber
 }
 
-class Hightlight {
+class Highlight {
 	color bg
 	color border
 }
@@ -69,7 +69,7 @@ class BlockUserData {
 	BlockMessage* warm
 }
 
-Editor *-- Hightlight
+Editor *-- Highlight
 Editor *-- CharFormat
 Editor *-- Line
 
