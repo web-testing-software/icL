@@ -3,7 +3,15 @@
 namespace icL::look::session {
 
 CentralSide::CentralSide(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
+
+	m_error      = new Issue(this);
+	m_header     = new base::Text(this);
+	m_input      = new start::Input(this);
+	m_underdigit = new base::LinkAdv(this);
+	m_undertext  = new base::LinkAdv(this);
+}
 
 CentralSide::~CentralSide() {
 	icL_dropField(m_error);

@@ -3,7 +3,14 @@
 namespace icL::look::session {
 
 TopBar::TopBar(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_cursor = QColor(Qt::transparent);
+	m_button = new base::EffectAdv(this);
+	m_input  = new base::Text(this);
+	m_tab    = new base::LinkAdv(this);
+	m_tool   = new base::EffectAdv(this);
+	m_url    = new base::LinkAdv(this);
+}
 
 TopBar::~TopBar() {
 	icL_dropField(m_button);

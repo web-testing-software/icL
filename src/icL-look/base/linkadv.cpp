@@ -3,10 +3,12 @@
 namespace icL::look::base {
 
 LinkAdv::LinkAdv(QObject * parent)
-	: Link(parent) {}
+	: Link(parent) {
+	m_activeHover = new Text(this);
+}
 
 LinkAdv::~LinkAdv() {
-	icL_dropField (m_activeHover);
+	icL_dropField(m_activeHover);
 }
 
 Text * LinkAdv::activeHover() const {

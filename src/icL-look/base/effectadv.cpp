@@ -3,7 +3,9 @@
 namespace icL::look::base {
 
 EffectAdv::EffectAdv(QObject * parent)
-	: Effect(parent) {}
+	: Effect(parent) {
+	m_activeHover = QColor(Qt::transparent);
+}
 
 QColor EffectAdv::activeHover() const {
 	return m_activeHover;

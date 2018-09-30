@@ -3,12 +3,16 @@
 namespace icL::look::session {
 
 LeftSide::LeftSide(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_files    = new start::ListItem(this);
+	m_projects = new Tree(this);
+	m_switcher = new base::Link(this);
+}
 
 LeftSide::~LeftSide() {
-	icL_dropField (m_files);
-	icL_dropField (m_projects);
-	icL_dropField (m_switcher);
+	icL_dropField(m_files);
+	icL_dropField(m_projects);
+	icL_dropField(m_switcher);
 }
 
 base::Link * LeftSide::switcher() const {

@@ -3,7 +3,12 @@
 namespace icL::look::session {
 
 SessionWindow::SessionWindow(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_center   = new CentralSide(this);
+	m_floating = new Floating(this);
+	m_left     = new LeftSide(this);
+	m_top      = new TopBar(this);
+}
 
 SessionWindow::~SessionWindow() {
 	icL_dropField(m_center);

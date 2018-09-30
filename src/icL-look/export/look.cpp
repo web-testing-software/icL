@@ -3,7 +3,11 @@
 namespace icL::look {
 
 Look::Look(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_editor  = new editor::Editor(this);
+	m_session = new session::SessionWindow(this);
+	m_start   = new start::StartWindow(this);
+}
 
 Look::~Look() {
 	icL_dropField(m_editor);

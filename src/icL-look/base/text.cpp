@@ -3,7 +3,9 @@
 namespace icL::look::base {
 
 Text::Text(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_background = m_foreground = QColor(Qt::transparent);
+}
 
 QColor Text::background() const {
 	return m_background;

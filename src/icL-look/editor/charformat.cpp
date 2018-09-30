@@ -3,7 +3,10 @@
 namespace icL::look::editor {
 
 CharFormat::CharFormat(QObject * parent)
-	: CharFormatBase (parent) {}
+	: CharFormatBase(parent) {
+	m_undercolor = QColor(Qt::transparent);
+	m_underline  = 0;
+}
 
 int CharFormat::underline() const {
 	return m_underline;

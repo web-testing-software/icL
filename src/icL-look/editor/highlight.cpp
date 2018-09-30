@@ -3,7 +3,9 @@
 namespace icL::look::editor {
 
 Highlight::Highlight(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_background = m_border = QColor(Qt::transparent);
+}
 
 QColor Highlight::background() const {
 	return m_background;

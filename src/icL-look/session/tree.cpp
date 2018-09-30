@@ -3,7 +3,10 @@
 namespace icL::look::session {
 
 Tree::Tree(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_parent = new base::Link(this);
+	m_child  = new base::Link(this);
+}
 
 Tree::~Tree() {
 	icL_dropField(m_parent);

@@ -3,11 +3,16 @@
 namespace icL::look::start {
 
 Input::Input(QObject * parent)
-	: Link(parent) {}
+	: Link(parent) {
+	m_cursor = QColor(Qt::transparent);
+
+	m_inactive  = new base::Text(this);
+	m_selection = new base::Text(this);
+}
 
 Input::~Input() {
-	icL_dropField (m_inactive);
-	icL_dropField (m_selection);
+	icL_dropField(m_inactive);
+	icL_dropField(m_selection);
 }
 
 base::Text * Input::inactive() const {

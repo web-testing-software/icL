@@ -3,7 +3,27 @@
 namespace icL::look::editor {
 
 Editor::Editor(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_breakpoint = new Line(this);
+	m_comment    = new CharFormat(this);
+	m_current    = new Line(this);
+	m_debug      = new Line(this);
+	m_error      = new CharFormat(this);
+	m_function   = new CharFormat(this);
+	m_global     = new CharFormat(this);
+	m_keyword    = new CharFormat(this);
+	m_local      = new CharFormat(this);
+	m_method     = new CharFormat(this);
+	m_number     = new CharFormat(this);
+	m_occurrence = new Highlight(this);
+	m_property   = new CharFormat(this);
+	m_selection  = new CharFormat(this);
+	m_string     = new CharFormat(this);
+	m_system     = new CharFormat(this);
+	m_text       = new CharFormat(this);
+	m_type       = new CharFormat(this);
+	m_warning    = new CharFormat(this);
+}
 
 Editor::~Editor() {
 	icL_dropField(m_breakpoint);

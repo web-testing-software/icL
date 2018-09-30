@@ -3,10 +3,13 @@
 namespace icL::look::start {
 
 Side::Side(QObject * parent)
-	: ListItem(parent) {}
+	: ListItem(parent) {
+	m_background = QColor(Qt::transparent);
+	m_header     = new base::Text(this);
+}
 
 Side::~Side() {
-	icL_dropField (m_header);
+	icL_dropField(m_header);
 }
 
 base::Text * Side::header() const {

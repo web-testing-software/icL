@@ -3,7 +3,10 @@
 namespace icL::look::editor {
 
 Line::Line(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_lineBg     = QColor(Qt::transparent);
+	m_lineNumber = new CharFormatBase(this);
+}
 
 Line::~Line() {
 	icL_dropField(m_lineNumber);

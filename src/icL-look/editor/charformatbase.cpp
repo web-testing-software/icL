@@ -3,7 +3,9 @@
 namespace icL::look::editor {
 
 CharFormatBase::CharFormatBase(QObject * parent)
-	: Text(parent) {}
+	: Text(parent) {
+	m_bold = m_italic = false;
+}
 
 bool CharFormatBase::bold() const {
 	return m_bold;

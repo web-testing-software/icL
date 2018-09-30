@@ -3,7 +3,9 @@
 namespace icL::look::session {
 
 Issue::Issue(QObject * parent)
-	: LinkAdv(parent) {}
+	: LinkAdv(parent) {
+	m_effect = new base::Effect(this);
+}
 
 Issue::~Issue() {
 	icL_dropField(m_effect);

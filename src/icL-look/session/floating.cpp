@@ -3,7 +3,14 @@
 namespace icL::look::session {
 
 Floating::Floating(QObject * parent)
-	: QObject(parent) {}
+	: QObject(parent) {
+	m_error = m_warn = m_console = m_bg = QColor(Qt::transparent);
+
+	m_header = new base::Text(this);
+	m_input  = new start::Input(this);
+	m_stack  = new Tree(this);
+	m_state  = new Tree(this);
+}
 
 Floating::~Floating() {
 	icL_dropField(m_header);
