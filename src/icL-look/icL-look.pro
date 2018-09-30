@@ -35,7 +35,8 @@ HEADERS += \
     editor/line.h \
     editor/charformatbase.h \
     editor/charformat.h \
-    editor/editor.h
+    editor/editor.h \
+    export/look.h
 
 SOURCES += \
     base/text.cpp \
@@ -58,5 +59,6 @@ SOURCES += \
     editor/line.cpp \
     editor/charformatbase.cpp \
     editor/charformat.cpp \
-    editor/editor.cpp
+    editor/editor.cpp \
+    export/look.cpp
 
