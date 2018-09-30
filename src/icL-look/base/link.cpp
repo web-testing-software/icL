@@ -31,10 +31,6 @@ void Link::setUp(const QJsonObject & obj) {
 	m_active->setUp(obj.value("active").toObject());
 	m_hover->setUp(obj.value("hover").toObject());
 	m_normal->setUp(obj.value("normal").toObject());
-
-	emit activeChanged(m_active);
-	emit hoverChanged(m_hover);
-	emit normalChanged(m_normal);
 }
 
 void Link::setNormal(Text * normal) {
