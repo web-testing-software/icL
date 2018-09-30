@@ -15,7 +15,7 @@ class Highlight : public QObject
 
 	// clang-format off
 	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
-	Q_PROPERTY(QColor border     READ border     WRITE setBorder     NOTIFY borderChanged)
+	Q_PROPERTY(QColor     border READ border     WRITE setBorder     NOTIFY borderChanged)
 	// clang-format on
 
 	QColor m_background;

@@ -15,9 +15,9 @@ class Input : public base::Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text * inactive  READ inactive  WRITE setInactive  NOTIFY inactiveChanged)
+	Q_PROPERTY(base::Text *  inactive READ inactive  WRITE setInactive  NOTIFY inactiveChanged)
 	Q_PROPERTY(base::Text * selection READ selection WRITE setSelection NOTIFY selectionChanged)
-	Q_PROPERTY(QColor       cursor    READ cursor    WRITE setCursor    NOTIFY cursorChanged)
+	Q_PROPERTY(QColor          cursor READ cursor    WRITE setCursor    NOTIFY cursorChanged)
 	// clang-format on
 
 	base::Text * m_inactive  = nullptr;

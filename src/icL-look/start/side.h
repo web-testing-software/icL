@@ -16,7 +16,7 @@ class Side : public ListItem
 
 	// clang-format off
 	Q_PROPERTY(base::Text* header READ header     WRITE setHeader     NOTIFY headerChanged)
-	Q_PROPERTY(QColor background  READ background WRITE setBackground NOTIFY backgroundChanged)
+	Q_PROPERTY(QColor  background READ background WRITE setBackground NOTIFY backgroundChanged)
 	// clang-format on
 
 	base::Text * m_header = nullptr;

@@ -13,11 +13,11 @@ class TopBar : public QObject
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::LinkAdv*   tab    READ tab    WRITE setTab    NOTIFY tabChanged)
-	Q_PROPERTY(base::LinkAdv*   url    READ url    WRITE setUrl    NOTIFY urlChanged)
+	Q_PROPERTY(base::LinkAdv*      tab READ tab    WRITE setTab    NOTIFY tabChanged)
+	Q_PROPERTY(base::LinkAdv*      url READ url    WRITE setUrl    NOTIFY urlChanged)
 	Q_PROPERTY(base::EffectAdv* button READ button WRITE setButton NOTIFY buttonChanged)
-	Q_PROPERTY(base::EffectAdv* tool   READ tool   WRITE setTool   NOTIFY toolChanged)
-	Q_PROPERTY(base::Text*      input  READ input  WRITE setInput  NOTIFY inputChanged)
+	Q_PROPERTY(base::EffectAdv*   tool READ tool   WRITE setTool   NOTIFY toolChanged)
+	Q_PROPERTY(base::Text*       input READ input  WRITE setInput  NOTIFY inputChanged)
 	Q_PROPERTY(QColor           cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 

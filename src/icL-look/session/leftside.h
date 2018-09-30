@@ -18,8 +18,8 @@ class LeftSide : public QObject
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Link* switcher   READ switcher WRITE setSwitcher NOTIFY switcherChanged)
-	Q_PROPERTY(Tree        projects   READ projects WRITE setProjects NOTIFY projectsChanged)
+	Q_PROPERTY(base::Link*   switcher READ switcher WRITE setSwitcher NOTIFY switcherChanged)
+	Q_PROPERTY(Tree          projects READ projects WRITE setProjects NOTIFY projectsChanged)
 	Q_PROPERTY(start::ListItem* files READ files    WRITE setFiles    NOTIFY filesChanged)
 	// clang-format on
 

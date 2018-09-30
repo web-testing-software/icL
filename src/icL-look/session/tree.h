@@ -16,7 +16,7 @@ class Tree : public QObject
 
 	// clang-format off
 	Q_PROPERTY(base::Link* parent READ parent WRITE setParent NOTIFY parentChanged)
-	Q_PROPERTY(base::Link* child  READ child  WRITE setChild  NOTIFY childChanged)
+	Q_PROPERTY(base::Link*  child READ child  WRITE setChild  NOTIFY childChanged)
 	// clang-format on
 
 	base::Link * m_parent = nullptr;

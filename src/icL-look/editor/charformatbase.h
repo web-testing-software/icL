@@ -12,7 +12,7 @@ class CharFormatBase : public base::Text
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(bool bold READ bold WRITE setBold NOTIFY boldChanged)
+	Q_PROPERTY(bool   bold READ bold   WRITE setBold   NOTIFY boldChanged)
 	Q_PROPERTY(bool italic READ italic WRITE setItalic NOTIFY italicChanged)
 	// clang-format on
 
