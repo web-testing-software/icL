@@ -30,6 +30,8 @@ public:
 	 */
 	explicit Line(QObject * parent = nullptr);
 
+	~Line();
+
 	/**
 	 * @brief lineBg is the backgound color of highlighted line
 	 * @return the color for hightlighted line

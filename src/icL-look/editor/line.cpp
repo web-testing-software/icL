@@ -5,12 +5,15 @@ namespace icL::look::editor {
 Line::Line(QObject * parent)
 	: QObject(parent) {}
 
+Line::~Line() {
+	icL_dropField(m_lineNumber);
+}
+
 QColor Line::lineBg() const {
 	return m_lineBg;
 }
 
-CharFormatBase *Line::lineNumber() const
-{
+CharFormatBase * Line::lineNumber() const {
 	return m_lineNumber;
 }
 
@@ -22,8 +25,7 @@ void Line::setLineBg(QColor lineBg) {
 	emit lineBgChanged(m_lineBg);
 }
 
-void Line::setLineNumber(CharFormatBase *lineNumber)
-{
+void Line::setLineNumber(CharFormatBase * lineNumber) {
 	if (m_lineNumber == lineNumber)
 		return;
 
