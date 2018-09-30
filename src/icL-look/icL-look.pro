@@ -34,7 +34,8 @@ HEADERS += \
     editor/highlight.h \
     editor/line.h \
     editor/charformatbase.h \
-    editor/charformat.h
+    editor/charformat.h \
+    editor/editor.h
 
 SOURCES += \
     base/text.cpp \
@@ -56,5 +57,6 @@ SOURCES += \
     editor/highlight.cpp \
     editor/line.cpp \
     editor/charformatbase.cpp \
-    editor/charformat.cpp
+    editor/charformat.cpp \
+    editor/editor.cpp
 
