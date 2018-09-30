@@ -3,7 +3,7 @@
 namespace icL::look::session {
 
 SessionWindow::SessionWindow(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_center   = new CentralSide(this);
 	m_floating = new Floating(this);
 	m_left     = new LeftSide(this);

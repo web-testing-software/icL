@@ -3,7 +3,7 @@
 namespace icL::look::base {
 
 Link::Link(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_active = new Text(this);
 	m_hover  = new Text(this);
 	m_normal = new Text(this);

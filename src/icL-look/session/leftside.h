@@ -4,8 +4,6 @@
 #include "../start/listitem.h"
 #include "tree.h"
 
-#include <QObject>
-
 
 
 namespace icL::look::session {
@@ -13,7 +11,7 @@ namespace icL::look::session {
 /**
  * @brief The LeftSide class describes a look for the left panel
  */
-class LeftSide : public QObject
+class LeftSide : public base::Base
 {
 	Q_OBJECT
 
@@ -53,6 +51,12 @@ public:
 	 * @return the look of projects tree
 	 */
 	start::ListItem * files() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void switcherChanged(base::Link * switcher);

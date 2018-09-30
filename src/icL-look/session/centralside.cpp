@@ -3,7 +3,7 @@
 namespace icL::look::session {
 
 CentralSide::CentralSide(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
 
 	m_error      = new Issue(this);

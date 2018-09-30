@@ -3,7 +3,7 @@
 namespace icL::look::session {
 
 TopBar::TopBar(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_cursor = QColor(Qt::transparent);
 	m_button = new base::EffectAdv(this);
 	m_input  = new base::Text(this);

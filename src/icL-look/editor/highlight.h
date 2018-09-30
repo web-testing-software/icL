@@ -1,15 +1,18 @@
 #ifndef icL_look_editor_Highlight
 #define icL_look_editor_Highlight
 
+#include "../base/base.h"
+
 #include <QColor>
-#include <QObject>
+
+
 
 namespace icL::look::editor {
 
 /**
  * @brief The Highlight class describes a look for highlighting fragment of text
  */
-class Highlight : public QObject
+class Highlight : public base::Base
 {
 	Q_OBJECT
 
@@ -39,6 +42,12 @@ public:
 	 * @return the color for border
 	 */
 	QColor border() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void backgroundChanged(QColor background);

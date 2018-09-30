@@ -4,14 +4,14 @@
 #include "../start/input.h"
 #include "issue.h"
 
-#include <QObject>
+
 
 namespace icL::look::session {
 
 /**
  * @brief The CentralSide class decribes a look for the central widget
  */
-class CentralSide : public QObject
+class CentralSide : public base::Base
 {
 	Q_OBJECT
 
@@ -99,6 +99,12 @@ public:
 	 * @return the look for commad input
 	 */
 	start::Input * input() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void headerChanged(base::Text * header);

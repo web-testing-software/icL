@@ -3,6 +3,8 @@
 
 #include "effect.h"
 
+
+
 namespace icL::look::base {
 
 /**
@@ -30,6 +32,12 @@ public:
 	 * @return the color for link in active and hover state
 	 */
 	QColor activeHover() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void activeHoverChanged(QColor activeHover);

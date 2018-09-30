@@ -4,7 +4,7 @@
 #include "../base/effect.h"
 #include "../base/link.h"
 
-#include <QObject>
+
 
 namespace icL::look::start {
 
@@ -35,6 +35,12 @@ public:
 	 * @return the color of list item border
 	 */
 	base::Effect * border() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void borderChanged(base::Effect * border);

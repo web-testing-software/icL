@@ -1,18 +1,21 @@
 #ifndef icL_look_start_Editor
 #define icL_look_start_Editor
 
+#include "../base/base.h"
 #include "charformat.h"
 #include "highlight.h"
 #include "line.h"
 
 #include <QObject>
 
+
+
 namespace icL::look::editor {
 
 /**
  * @brief The Editor class defines a color scheme for an editor
  */
-class Editor : public QObject
+class Editor : public base::Base
 {
 	Q_OBJECT
 
@@ -180,6 +183,12 @@ public:
 	 * @return the look for break line
 	 */
 	Line * breakpoint() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void textChanged(CharFormat * text);

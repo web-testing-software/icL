@@ -4,7 +4,7 @@
 #include "../base/effect.h"
 #include "../base/linkadv.h"
 
-#include <QObject>
+
 
 namespace icL::look::session {
 
@@ -35,6 +35,12 @@ public:
 	 * @return the underline effect
 	 */
 	base::Effect * effect() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 

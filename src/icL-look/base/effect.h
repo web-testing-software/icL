@@ -1,15 +1,18 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
+#include "base.h"
+
 #include <QColor>
-#include <QObject>
+
+
 
 namespace icL::look::base {
 
 /**
  * @brief The Effect class decribes a look for an effect
  */
-class Effect : public QObject
+class Effect : public base::Base
 {
 	Q_OBJECT
 
@@ -47,6 +50,12 @@ public:
 	 * @return the effect color for active state
 	 */
 	QColor active() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void normalChanged(QColor normal);

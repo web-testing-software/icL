@@ -3,7 +3,7 @@
 namespace icL::look::session {
 
 Floating::Floating(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_error = m_warn = m_console = m_bg = QColor(Qt::transparent);
 
 	m_header = new base::Text(this);

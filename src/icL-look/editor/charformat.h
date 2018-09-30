@@ -3,8 +3,7 @@
 
 #include "charformatbase.h"
 
-#include <QColor>
-#include <QObject>
+
 
 namespace icL::look::editor {
 
@@ -41,6 +40,12 @@ public:
 	 * @return the color for underline
 	 */
 	QColor undercolor() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void underlineChanged(int underline);

@@ -3,7 +3,7 @@
 
 #include "side.h"
 
-#include <QObject>
+
 
 /**
  * The icL.look.start namespace contains look for the start window
@@ -13,7 +13,7 @@ namespace icL::look::start {
 /**
  * @brief The StartWindow class describes a look for start window
  */
-class StartWindow : public QObject
+class StartWindow : public base::Base
 {
 	Q_OBJECT
 
@@ -61,6 +61,12 @@ public:
 	 * @return the look for bottom line
 	 */
 	base::Text * underline() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void headerChanged(base::Text * header);

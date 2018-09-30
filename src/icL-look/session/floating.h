@@ -4,12 +4,14 @@
 #include "../start/input.h"
 #include "tree.h"
 
+
+
 namespace icL::look::session {
 
 /**
  * @brief The Floating class describes the look for the floating panel
  */
-class Floating : public QObject
+class Floating : public base::Base
 {
 	Q_OBJECT
 
@@ -89,6 +91,12 @@ public:
 	 * @return the color for background
 	 */
 	QColor bg() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void headerChanged(base::Text * header);

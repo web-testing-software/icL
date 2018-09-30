@@ -1,9 +1,14 @@
 #include "look.h"
 
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QTextStream>
+
 namespace icL::look {
 
 Look::Look(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_editor  = new editor::Editor(this);
 	m_session = new session::SessionWindow(this);
 	m_start   = new start::StartWindow(this);
@@ -26,6 +31,31 @@ session::SessionWindow * Look::session() const {
 editor::Editor * Look::editor() const {
 	return m_editor;
 }
+
+bool Look::loadConf(const QString & path) {
+	QFile         file(path);
+	QTextStream   stream(&file);
+	QJsonDocument doc;
+
+	if (!file.open(QFile::ReadOnly)) {
+		return false;
+	}
+
+	QString content = stream.readAll();
+	doc             = QJsonDocument::fromJson(content.toUtf8());
+
+	if (!doc.isObject()) {
+		doc = QJsonDocument::fromJson(QString("{}").toUtf8());
+	}
+
+	QJsonObject obj = doc.object();
+
+	setUp(obj);
+
+	return true;
+}
+
+void Look::setUp(const QJsonObject & obj) {}
 
 void Look::setStart(start::StartWindow * start) {
 	if (m_start == start)

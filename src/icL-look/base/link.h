@@ -1,16 +1,17 @@
 #ifndef icL_look_base_Link
 #define icL_look_base_Link
 
+#include "base.h"
 #include "text.h"
 
-#include <QObject>
+
 
 namespace icL::look::base {
 
 /**
  * @brief The Link class describes a look for links
  */
-class Link : public QObject
+class Link : public base::Base
 {
 	Q_OBJECT
 
@@ -50,6 +51,12 @@ public:
 	 * @return the active link color
 	 */
 	Text * active() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void normalChanged(Text * normal);

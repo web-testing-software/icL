@@ -3,7 +3,7 @@
 namespace icL::look::base {
 
 Effect::Effect(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_active = m_hover = m_normal = QColor(Qt::transparent);
 }
 

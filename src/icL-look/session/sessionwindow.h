@@ -6,7 +6,7 @@
 #include "leftside.h"
 #include "topbar.h"
 
-#include <QObject>
+
 
 /**
  * The icL.look.session namespace defines a look for session window
@@ -16,7 +16,7 @@ namespace icL::look::session {
 /**
  * @brief The SessionWindow class describes a look for session window
  */
-class SessionWindow : public QObject
+class SessionWindow : public base::Base
 {
 	Q_OBJECT
 
@@ -64,6 +64,12 @@ public:
 	 * @return the look for the top bar
 	 */
 	TopBar * top() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void centerChanged(CentralSide * center);

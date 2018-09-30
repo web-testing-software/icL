@@ -1,17 +1,19 @@
 #ifndef icL_look_editor_Line
 #define icL_look_editor_Line
 
+#include "../base/base.h"
 #include "charformatbase.h"
 
 #include <QColor>
-#include <QObject>
+
+
 
 namespace icL::look::editor {
 
 /**
  * @brief The Line class describes a look for a line
  */
-class Line : public QObject
+class Line : public base::Base
 {
 	Q_OBJECT
 
@@ -20,8 +22,8 @@ class Line : public QObject
 	Q_PROPERTY(CharFormatBase* lineNumber READ lineNumber WRITE setLineNumber NOTIFY lineNumberChanged)
 	// clang-format on
 
-	QColor m_lineBg;
-	CharFormatBase* m_lineNumber;
+	QColor           m_lineBg;
+	CharFormatBase * m_lineNumber;
 
 public:
 	/**
@@ -42,24 +44,30 @@ public:
 	 * @brief lineNumber is the look of line number
 	 * @return the look for line number
 	 */
-	CharFormatBase* lineNumber() const;
+	CharFormatBase * lineNumber() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void lineBgChanged(QColor lineBg);
-	void lineNumberChanged(CharFormatBase* lineNumber);
+	void lineNumberChanged(CharFormatBase * lineNumber);
 
 public slots:
 	/**
 	 * @brief setLineBg changes the background of the highlighted line
 	 * @param lineBg is the new background color for highlighted line
 	 */
-void setLineBg(QColor lineBg);
+	void setLineBg(QColor lineBg);
 
-/**
- * @brief setLineNumber changes the look of line numbers
- * @param lineNumber is the new look for line number
- */
-void setLineNumber(CharFormatBase* lineNumber);
+	/**
+	 * @brief setLineNumber changes the look of line numbers
+	 * @param lineNumber is the new look for line number
+	 */
+	void setLineNumber(CharFormatBase * lineNumber);
 };
 
 }  // namespace icL::look::editor

@@ -3,7 +3,7 @@
 namespace icL::look::editor {
 
 Line::Line(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_lineBg     = QColor(Qt::transparent);
 	m_lineNumber = new CharFormatBase(this);
 }

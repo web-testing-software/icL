@@ -1,10 +1,13 @@
 #ifndef icL_look_base_Text
 #define icL_look_base_Text
 
-#include <QObject>
+#include "base.h"
+
 #include <QColor>
 
-#define icL_dropField(x) if (x != nullptr) delete x
+#define icL_dropField(x) \
+	if (x != nullptr)    \
+	delete x
 
 /**
  * The icL.look.base namespace defines base color container for look component
@@ -14,7 +17,7 @@ namespace icL::look::base {
 /**
  * @brief The Text class describes a look for a text fragment
  */
-class Text : public QObject
+class Text : public base::Base
 {
 	Q_OBJECT
 
@@ -40,6 +43,12 @@ public:
 	 * @return the forground color
 	 */
 	QColor foreground() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void backgroundChanged(QColor background);

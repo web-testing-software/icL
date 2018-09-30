@@ -3,14 +3,14 @@
 
 #include "../base/link.h"
 
-#include <QObject>
+
 
 namespace icL::look::session {
 
 /**
  * @brief The Tree class describes a look for a tree widget
  */
-class Tree : public QObject
+class Tree : public base::Base
 {
 	Q_OBJECT
 
@@ -42,6 +42,12 @@ public:
 	 * @return the look for child item
 	 */
 	base::Link * child() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void parentChanged(base::Link * parent);

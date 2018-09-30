@@ -3,7 +3,7 @@
 
 #include "../base/link.h"
 
-#include <QObject>
+
 
 namespace icL::look::start {
 
@@ -50,8 +50,13 @@ public:
 	 */
 	QColor cursor() const;
 
-signals:
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
+signals:
 	void inactiveChanged(base::Text * inactive);
 	void selectionChanged(base::Text * selection);
 	void cursorChanged(QColor cursor);

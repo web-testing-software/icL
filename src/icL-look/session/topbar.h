@@ -4,11 +4,11 @@
 #include "../base/effectadv.h"
 #include "../base/linkadv.h"
 
-#include <QObject>
+
 
 namespace icL::look::session {
 
-class TopBar : public QObject
+class TopBar : public base::Base
 {
 	Q_OBJECT
 
@@ -72,6 +72,12 @@ public:
 	 * @return the color for text input cursors
 	 */
 	QColor cursor() const;
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void tabChanged(base::LinkAdv * tab);

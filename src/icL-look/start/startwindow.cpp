@@ -3,7 +3,7 @@
 namespace icL::look::start {
 
 StartWindow::StartWindow(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_header    = new base::Text(this);
 	m_left      = new Side(this);
 	m_right     = new Side(this);

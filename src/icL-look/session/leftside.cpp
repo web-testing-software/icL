@@ -3,7 +3,7 @@
 namespace icL::look::session {
 
 LeftSide::LeftSide(QObject * parent)
-	: QObject(parent) {
+	: Base(parent) {
 	m_files    = new start::ListItem(this);
 	m_projects = new Tree(this);
 	m_switcher = new base::Link(this);

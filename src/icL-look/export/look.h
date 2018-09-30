@@ -5,11 +5,11 @@
 #include "../session/sessionwindow.h"
 #include "../start/startwindow.h"
 
-#include <QObject>
+
 
 namespace icL::look {
 
-class Look : public QObject
+class Look : public base::Base
 {
 	Q_OBJECT
 
@@ -49,6 +49,19 @@ public:
 	 * @return the look for code editor
 	 */
 	editor::Editor * editor() const;
+
+	/**
+	 * @brief loadConf loads the configuration from JSON file
+	 * @param path is the path to the JSON file
+	 * @return true, if so file exists, otherwise false
+	 */
+	Q_INVOKABLE bool loadConf(const QString & path);
+
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	void setUp(const QJsonObject & obj);
 
 signals:
 	void startChanged(start::StartWindow * start);
