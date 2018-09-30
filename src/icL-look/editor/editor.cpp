@@ -123,6 +123,30 @@ Line * Editor::breakpoint() const {
 	return m_breakpoint;
 }
 
+void Editor::setUp(const QJsonObject & obj) {
+	m_text->setUp(obj.value("text").toObject());
+	m_selection->setUp(obj.value("selection").toObject());
+	m_number->setUp(obj.value("number").toObject());
+	m_string->setUp(obj.value("string").toObject());
+	m_type->setUp(obj.value("type").toObject());
+	m_local->setUp(obj.value("local").toObject());
+	m_global->setUp(obj.value("global").toObject());
+	m_property->setUp(obj.value("property").toObject());
+	m_method->setUp(obj.value("method").toObject());
+	m_function->setUp(obj.value("function").toObject());
+	m_keyword->setUp(obj.value("keyword").toObject());
+	m_comment->setUp(obj.value("comment").toObject());
+	m_system->setUp(obj.value("system").toObject());
+	m_error->setUp(obj.value("error").toObject());
+	m_warning->setUp(obj.value("warning").toObject());
+
+	m_occurrence->setUp(obj.value("occurrence").toObject());
+
+	m_current->setUp(obj.value("current").toObject());
+	m_debug->setUp(obj.value("debug").toObject());
+	m_breakpoint->setUp(obj.value("breakpoint").toObject());
+}
+
 void Editor::setText(CharFormat * text) {
 	if (m_text == text)
 		return;

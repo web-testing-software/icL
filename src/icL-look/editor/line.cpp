@@ -20,6 +20,13 @@ CharFormatBase * Line::lineNumber() const {
 	return m_lineNumber;
 }
 
+void Line::setUp(const QJsonObject & obj) {
+	m_lineNumber->setUp(obj.value("lineNumber").toObject());
+	m_lineBg = objToColor(obj.value("lineBg").toObject());
+
+	emit lineBgChanged(m_lineBg);
+}
+
 void Line::setLineBg(QColor lineBg) {
 	if (m_lineBg == lineBg)
 		return;

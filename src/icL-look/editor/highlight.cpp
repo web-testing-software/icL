@@ -15,6 +15,14 @@ QColor Highlight::border() const {
 	return m_border;
 }
 
+void Highlight::setUp(const QJsonObject & obj) {
+	m_background = objToColor(obj.value("background").toObject());
+	m_border     = objToColor(obj.value("border").toObject());
+
+	emit backgroundChanged(m_background);
+	emit borderChanged(m_border);
+}
+
 void Highlight::setBackground(QColor background) {
 	if (m_background == background)
 		return;
