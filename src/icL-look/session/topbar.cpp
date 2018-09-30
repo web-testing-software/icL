@@ -44,4 +44,24 @@ QColor TopBar::cursor() const {
 	return m_cursor;
 }
 
+void TopBar::setUp(const QJsonObject & obj) {
+	m_tab->setUp(obj.value("tab").toObject());
+	m_url->setUp(obj.value("url").toObject());
+	m_button->setUp(obj.value("button").toObject());
+	m_tool->setUp(obj.value("tool").toObject());
+	m_input->setUp(obj.value("input").toObject());
+
+	m_cursor = objToColor(obj.value("cursor").toObject());
+
+	emit cursorChanged(m_cursor);
+}
+
+void TopBar::setCursor(QColor cursor) {
+	if (m_cursor == cursor)
+		return;
+
+	m_cursor = cursor;
+	emit cursorChanged(m_cursor);
+}
+
 }  // namespace icL::look::session

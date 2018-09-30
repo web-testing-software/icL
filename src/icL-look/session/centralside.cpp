@@ -58,6 +58,23 @@ start::Input * CentralSide::input() const {
 	return m_input;
 }
 
+void CentralSide::setUp(const QJsonObject & obj) {
+	m_header->setUp(obj.value("header").toObject());
+	m_warn->setUp(obj.value("warn").toObject());
+	m_error->setUp(obj.value("error").toObject());
+	m_undertext->setUp(obj.value("undertext").toObject());
+	m_underdigit->setUp(obj.value("underdigit").toObject());
+	m_input->setUp(obj.value("input").toObject());
+
+	m_command     = objToColor(obj.value("command").toObject());
+	m_errorResult = objToColor(obj.value("error-result").toObject());
+	m_okResult    = objToColor(obj.value("ok-result").toObject());
+
+	emit commandChanged(m_command);
+	emit errorResultChanged(m_errorResult);
+	emit okResultChanged(m_okResult);
+}
+
 void CentralSide::setCommand(QColor command) {
 	if (m_command == command)
 		return;

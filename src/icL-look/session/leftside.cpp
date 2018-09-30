@@ -27,4 +27,10 @@ start::ListItem * LeftSide::files() const {
 	return m_files;
 }
 
+void LeftSide::setUp(const QJsonObject & obj) {
+	m_switcher->setUp(obj.value("switcher").toObject());
+	m_projects->setUp(obj.value("projects").toObject());
+	m_files->setUp(obj.value("files").toObject());
+}
+
 }  // namespace icL::look::session

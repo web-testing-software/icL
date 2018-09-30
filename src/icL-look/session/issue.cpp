@@ -15,4 +15,8 @@ base::Effect * Issue::effect() const {
 	return m_effect;
 }
 
+void Issue::setUp(const QJsonObject & obj) {
+	m_effect->setUp(obj.value("effect").toObject());
+}
+
 }  // namespace icL::look::session

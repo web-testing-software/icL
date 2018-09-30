@@ -33,4 +33,11 @@ TopBar * SessionWindow::top() const {
 	return m_top;
 }
 
+void SessionWindow::setUp(const QJsonObject & obj) {
+	m_center->setUp(obj.value("center").toObject());
+	m_floating->setUp(obj.value("floating").toObject());
+	m_left->setUp(obj.value("left").toObject());
+	m_top->setUp(obj.value("top").toObject());
+}
+
 }  // namespace icL::look::session

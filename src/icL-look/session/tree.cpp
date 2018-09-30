@@ -21,4 +21,9 @@ base::Link * Tree::child() const {
 	return m_child;
 }
 
+void Tree::setUp(const QJsonObject & obj) {
+	m_parent->setUp(obj.value("parent").toObject());
+	m_child->setUp(obj.value("child").toObject());
+}
+
 }  // namespace icL::look::session

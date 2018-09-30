@@ -51,6 +51,23 @@ QColor Floating::bg() const {
 	return m_bg;
 }
 
+void Floating::setUp(const QJsonObject & obj) {
+	m_header->setUp(obj.value("header").toObject());
+	m_stack->setUp(obj.value("stack").toObject());
+	m_state->setUp(obj.value("state").toObject());
+	m_input->setUp(obj.value("input").toObject());
+
+	m_error   = objToColor(obj.value("error").toObject());
+	m_warn    = objToColor(obj.value("warn").toObject());
+	m_console = objToColor(obj.value("console").toObject());
+	m_bg      = objToColor(obj.value("bg").toObject());
+
+	emit errorChanged(m_error);
+	emit warnChanged(m_warn);
+	emit consoleChanged(m_console);
+	emit bgChanged(m_bg);
+}
+
 void Floating::setError(QColor error) {
 	if (m_error == error)
 		return;

@@ -18,7 +18,7 @@ class TopBar : public base::Base
 	Q_PROPERTY(base::EffectAdv* button READ button)
 	Q_PROPERTY(base::EffectAdv*   tool READ tool)
 	Q_PROPERTY(base::Text*       input READ input)
-	Q_PROPERTY(QColor           cursor READ cursor)
+	Q_PROPERTY(QColor           cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 
 	base::LinkAdv *   m_tab    = nullptr;
@@ -74,6 +74,16 @@ public:
 	QColor cursor() const;
 
 	void setUp(const QJsonObject & obj) override;
+
+signals:
+	void cursorChanged(QColor cursor);
+
+public slots:
+	/**
+	 * @brief setCursor changes the color of text cursor
+	 * @param cursor is the new color for text cursor
+	 */
+	void setCursor(QColor cursor);
 };
 
 }  // namespace icL::look::session
