@@ -18,6 +18,9 @@ QColor Text::foreground() const {
 void Text::setUp(const QJsonObject & obj) {
 	m_background = objToColor(obj.value("background").toObject());
 	m_foreground = objToColor(obj.value("foreground").toObject());
+
+	emit backgroundChanged(m_background);
+	emit foregroundChanged(m_foreground);
 }
 
 void Text::setBackground(QColor background) {

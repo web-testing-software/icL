@@ -20,9 +20,13 @@ QColor Effect::active() const {
 }
 
 void Effect::setUp(const QJsonObject & obj) {
-	m_active = objToColor(obj.value("normal").toObject());
+	m_normal = objToColor(obj.value("normal").toObject());
 	m_hover  = objToColor(obj.value("hover").toObject());
 	m_active = objToColor(obj.value("active").toObject());
+
+	emit activeChanged(m_active);
+	emit hoverChanged(m_hover);
+	emit normalChanged(m_normal);
 }
 
 void Effect::setNormal(QColor normal) {

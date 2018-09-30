@@ -13,7 +13,10 @@ QColor EffectAdv::activeHover() const {
 
 void EffectAdv::setUp(const QJsonObject & obj) {
 	Effect::setUp(obj);
+
 	m_activeHover = objToColor(obj.value("active-hover").toObject());
+
+	emit activeHoverChanged(m_activeHover);
 }
 
 void EffectAdv::setActiveHover(QColor activeHover) {
