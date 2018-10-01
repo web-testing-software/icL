@@ -23,6 +23,8 @@ class Look : public base::Base
 	session::SessionWindow * m_session = nullptr;
 	editor::Editor *         m_editor  = nullptr;
 
+	QString confFilePath;
+
 public:
 	/**
 	 * @brief Look is the default constructor
@@ -58,6 +60,14 @@ public:
 	Q_INVOKABLE bool loadConf(const QString & path);
 
 	void setUp(const QJsonObject & obj) override;
+
+	/**
+	 * @brief saveConf saves the configuration in loaded JSON file
+	 * @return true, if file is writtable, otherwise false
+	 */
+	Q_INVOKABLE bool saveConf();
+
+	QJsonObject getUp() override;
 };
 
 }  // namespace icL::look

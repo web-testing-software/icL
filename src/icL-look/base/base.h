@@ -22,8 +22,15 @@ public:
 	 * @brief setUp set up the state from JSON object
 	 * @param obj is the configuration object
 	 */
-	virtual void setUp(const QJsonObject & obj);
+	virtual void setUp(const QJsonObject & obj) = 0;
 
+	/**
+	 * @brief getUp get the state like JSON object
+	 * @return the state like JSON object
+	 */
+	virtual QJsonObject getUp() = 0;
+
+protected:
 	/**
 	 * @brief objToColor converts a JSON object to QColor
 	 * @param obj is a JSON object

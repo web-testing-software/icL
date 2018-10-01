@@ -40,6 +40,9 @@ bool Look::loadConf(const QString & path) {
 	if (!file.open(QFile::ReadOnly)) {
 		return false;
 	}
+	else {
+		confFilePath = path;
+	}
 
 	QString content = stream.readAll();
 	doc             = QJsonDocument::fromJson(content.toUtf8());
@@ -51,6 +54,7 @@ bool Look::loadConf(const QString & path) {
 	QJsonObject obj = doc.object();
 
 	setUp(obj);
+	file.close();
 
 	return true;
 }
@@ -59,6 +63,33 @@ void Look::setUp(const QJsonObject & obj) {
 	m_editor->setUp(obj.value("editor").toObject());
 	m_session->setUp(obj.value("session").toObject());
 	m_start->setUp(obj.value("start").toObject());
+}
+
+bool Look::saveConf() {
+	QFile         file(confFilePath);
+	QTextStream   stream(&file);
+	QJsonDocument doc;
+
+	if (!file.open(QFile::WriteOnly)) {
+		return false;
+	}
+
+	doc.setObject(getUp());
+
+	stream << doc.toJson(QJsonDocument::Indented);
+
+	file.close();
+	return true;
+}
+
+QJsonObject Look::getUp() {
+	QJsonObject obj;
+
+	obj["editor"]  = m_editor->getUp();
+	obj["session"] = m_session->getUp();
+	obj["start"]   = m_start->getUp();
+
+	return obj;
 }
 
 }  // namespace icL::look
