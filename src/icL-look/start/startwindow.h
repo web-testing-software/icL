@@ -63,6 +63,8 @@ public:
 	base::Text * underline() const;
 
 	void setUp(const QJsonObject & obj) override;
+
+	QJsonObject getUp() override;
 };
 
 }  // namespace icL::look::start

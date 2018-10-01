@@ -38,6 +38,16 @@ void Input::setUp(const QJsonObject & obj) {
 	emit cursorChanged(m_cursor);
 }
 
+QJsonObject Input::getUp() {
+	auto obj = Link::getUp();
+
+	obj["inactive"]  = m_inactive->getUp();
+	obj["selection"] = m_selection->getUp();
+	obj["cursor"]    = colorToObj(m_cursor);
+
+	return obj;
+}
+
 void Input::setCursor(QColor cursor) {
 	if (m_cursor == cursor)
 		return;

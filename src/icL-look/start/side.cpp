@@ -28,6 +28,11 @@ void Side::setUp(const QJsonObject & obj) {
 	emit backgroundChanged(m_background);
 }
 
+QJsonObject Side::getUp() {
+	return {{"header", m_header->getUp()},
+			{"background", colorToObj(m_background)}};
+}
+
 void Side::setBackground(QColor background) {
 	if (m_background == background)
 		return;

@@ -40,4 +40,11 @@ void StartWindow::setUp(const QJsonObject & obj) {
 	m_underline->setUp(obj.value("underline").toObject());
 }
 
+QJsonObject StartWindow::getUp() {
+	return {{"header", m_header->getUp()},
+			{"left", m_left->getUp()},
+			{"right", m_right->getUp()},
+			{"underline", m_underline->getUp()}};
+}
+
 }  // namespace icL::look::start

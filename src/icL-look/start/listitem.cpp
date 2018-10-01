@@ -21,4 +21,12 @@ void ListItem::setUp(const QJsonObject & obj) {
 	m_border->setUp(obj.value("border").toObject());
 }
 
+QJsonObject ListItem::getUp() {
+	auto obj = Link::getUp();
+
+	obj["border"] = m_border->getUp();
+
+	return obj;
+}
+
 }  // namespace icL::look::start

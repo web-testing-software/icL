@@ -52,6 +52,8 @@ public:
 
 	void setUp(const QJsonObject & obj) override;
 
+	QJsonObject getUp() override;
+
 signals:
 	void cursorChanged(QColor cursor);
 
