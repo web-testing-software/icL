@@ -7,7 +7,13 @@
 
 
 
+// clang-format off
+namespace icL::look::base { class LinkAdv; }
+// clang-format on
+
 namespace icL::look::start {
+
+class Input;
 
 /**
  * @brief The Side class describes a look for a start page side
@@ -18,11 +24,15 @@ class Side : public ListItem
 
 	// clang-format off
 	Q_PROPERTY(base::Text* header READ header)
-	Q_PROPERTY(QColor  background READ background WRITE setBackground NOTIFY backgroundChanged)
+	Q_PROPERTY(QColor     background READ background WRITE setBackground NOTIFY backgroundChanged)
+	Q_PROPERTY(Input*          input READ input)
+	Q_PROPERTY(base::LinkAdv* button READ button)
 	// clang-format on
 
-	base::Text * m_header = nullptr;
-	QColor       m_background;
+	base::Text *    m_header = nullptr;
+	QColor          m_background;
+	Input *         m_input;
+	base::LinkAdv * m_button;
 
 public:
 	/**
@@ -44,6 +54,18 @@ public:
 	 * @return the color of background
 	 */
 	QColor background() const;
+
+	/**
+	 * @brief input is the look of text input
+	 * @return the look for text input
+	 */
+	Input * input() const;
+
+	/**
+	 * @brief button is the look of buttons
+	 * @return the look for buttons
+	 */
+	base::LinkAdv * button() const;
 
 	void setUp(const QJsonObject & obj) override;
 
