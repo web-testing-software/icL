@@ -1,5 +1,9 @@
 #include "link.h"
 
+#include "text.h"
+
+#include <QJsonObject>
+
 namespace icL::look::base {
 
 Link::Link(QObject * parent)

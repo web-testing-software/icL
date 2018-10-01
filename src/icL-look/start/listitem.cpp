@@ -1,5 +1,9 @@
 #include "listitem.h"
 
+#include "../base/effect.h"
+
+#include <QJsonObject>
+
 namespace icL::look::start {
 
 ListItem::ListItem(QObject * parent)

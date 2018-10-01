@@ -1,10 +1,12 @@
 #ifndef icL_look_session_Issue
 #define icL_look_session_Issue
 
-#include "../base/effect.h"
 #include "../base/linkadv.h"
 
 
+// clang-format off
+namespace icL::look::base  { class Effect; }
+// clang-format on
 
 namespace icL::look::session {
 

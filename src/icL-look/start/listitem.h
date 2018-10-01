@@ -1,10 +1,13 @@
 #ifndef icL_look_start_ListItem
 #define icL_look_start_ListItem
 
-#include "../base/effect.h"
 #include "../base/link.h"
 
 
+
+// clang-format off
+namespace icL::look::base  { class Effect; }
+// clang-format on
 
 namespace icL::look::start {
 

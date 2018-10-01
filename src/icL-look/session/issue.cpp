@@ -1,5 +1,10 @@
 #include "issue.h"
 
+#include "../base/effect.h"
+#include "../base/linkadv.h"
+
+#include <QJsonObject>
+
 namespace icL::look::session {
 
 Issue::Issue(QObject * parent)

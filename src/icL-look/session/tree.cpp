@@ -1,5 +1,9 @@
 #include "tree.h"
 
+#include "../base/link.h"
+
+#include <QJsonObject>
+
 namespace icL::look::session {
 
 Tree::Tree(QObject * parent)

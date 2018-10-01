@@ -1,10 +1,7 @@
 #ifndef icL_look_session_SessionWindow
 #define icL_look_session_SessionWindow
 
-#include "centralside.h"
-#include "floating.h"
-#include "leftside.h"
-#include "topbar.h"
+#include "../base/base.h"
 
 
 
@@ -12,6 +9,11 @@
  * The icL.look.session namespace defines a look for session window
  */
 namespace icL::look::session {
+
+class CentralSide;
+class Floating;
+class LeftSide;
+class TopBar;
 
 /**
  * @brief The SessionWindow class describes a look for session window
@@ -66,6 +68,8 @@ public:
 	TopBar * top() const;
 
 	void setUp(const QJsonObject & obj) override;
+
+	QJsonObject getUp() override;
 };
 
 }  // namespace icL::look::session

@@ -1,5 +1,10 @@
 #include "leftside.h"
 
+#include "../start/listitem.h"
+#include "tree.h"
+
+#include <QJsonObject>
+
 namespace icL::look::session {
 
 LeftSide::LeftSide(QObject * parent)

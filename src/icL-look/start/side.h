@@ -3,6 +3,8 @@
 
 #include "listitem.h"
 
+#include <QColor>
+
 
 
 namespace icL::look::start {

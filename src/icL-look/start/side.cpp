@@ -1,5 +1,9 @@
 #include "side.h"
 
+#include "../base/text.h"
+
+#include <QJsonObject>
+
 namespace icL::look::start {
 
 Side::Side(QObject * parent)

@@ -1,5 +1,11 @@
 #include "floating.h"
 
+#include "../base/text.h"
+#include "../start/input.h"
+#include "tree.h"
+
+#include <QJsonObject>
+
 namespace icL::look::session {
 
 Floating::Floating(QObject * parent)

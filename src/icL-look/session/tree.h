@@ -1,9 +1,13 @@
 #ifndef icL_look_session_Tree
 #define icL_look_session_Tree
 
-#include "../base/link.h"
+#include "../base/base.h"
 
 
+
+// clang-format off
+namespace icL::look::base  { class Link; }
+// clang-format on
 
 namespace icL::look::session {
 

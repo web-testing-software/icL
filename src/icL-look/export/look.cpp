@@ -1,5 +1,9 @@
 #include "look.h"
 
+#include "../editor/editor.h"
+#include "../session/sessionwindow.h"
+#include "../start/startwindow.h"
+
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>

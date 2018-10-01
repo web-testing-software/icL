@@ -1,6 +1,7 @@
 #include "base.h"
 
 #include <QColor>
+#include <QJsonObject>
 
 namespace icL::look::base {
 

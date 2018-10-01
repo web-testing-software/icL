@@ -1,5 +1,11 @@
 #include "topbar.h"
 
+#include "../base/effectadv.h"
+#include "../base/linkadv.h"
+#include "../base/text.h"
+
+#include <QJsonObject>
+
 namespace icL::look::session {
 
 TopBar::TopBar(QObject * parent)

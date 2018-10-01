@@ -2,15 +2,13 @@
 #define icL_look_start_Editor
 
 #include "../base/base.h"
-#include "charformat.h"
-#include "highlight.h"
-#include "line.h"
-
-#include <QObject>
-
 
 
 namespace icL::look::editor {
+
+class CharFormat;
+class Highlight;
+class Line;
 
 /**
  * @brief The Editor class defines a color scheme for an editor

@@ -1,14 +1,20 @@
 #ifndef icL_look_start_StartWindow
 #define icL_look_start_StartWindow
 
-#include "side.h"
+#include "../base/base.h"
 
 
+
+// clang-format off
+namespace icL::look::base  { class Text; }
+// clang-format on
 
 /**
  * The icL.look.start namespace contains look for the start window
  */
 namespace icL::look::start {
+
+class Side;
 
 /**
  * @brief The StartWindow class describes a look for start window

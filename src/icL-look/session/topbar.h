@@ -1,10 +1,15 @@
 #ifndef icL_look_session_TopBar
 #define icL_look_session_TopBar
 
-#include "../base/effectadv.h"
-#include "../base/linkadv.h"
+#include "../base/base.h"
+
+#include <QColor>
 
 
+
+// clang-format off
+namespace icL::look::base  { class Text; class LinkAdv; class EffectAdv; }
+// clang-format on
 
 namespace icL::look::session {
 

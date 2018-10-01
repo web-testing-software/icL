@@ -1,5 +1,7 @@
 #include "text.h"
 
+#include <QJsonObject>
+
 namespace icL::look::base {
 
 Text::Text(QObject * parent)

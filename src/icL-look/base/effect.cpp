@@ -1,5 +1,7 @@
 #include "effect.h"
 
+#include <QJsonObject>
+
 namespace icL::look::base {
 
 Effect::Effect(QObject * parent)

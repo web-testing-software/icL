@@ -1,5 +1,9 @@
 #include "line.h"
 
+#include "charformatbase.h"
+
+#include <QJsonObject>
+
 namespace icL::look::editor {
 
 Line::Line(QObject * parent)

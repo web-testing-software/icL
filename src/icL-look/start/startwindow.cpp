@@ -1,5 +1,10 @@
 #include "startwindow.h"
 
+#include "../base/text.h"
+#include "side.h"
+
+#include <QJsonObject>
+
 namespace icL::look::start {
 
 StartWindow::StartWindow(QObject * parent)

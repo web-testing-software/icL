@@ -1,12 +1,20 @@
 #ifndef icL_look_session_CentralSide
 #define icL_look_session_CentralSide
 
-#include "../start/input.h"
-#include "issue.h"
+#include "../base/base.h"
+
+#include <QColor>
 
 
+
+// clang-format off
+namespace icL::look::base  { class Text; class LinkAdv; }
+namespace icL::look::start { class Input; }
+// clang-format on
 
 namespace icL::look::session {
+
+class Issue;
 
 /**
  * @brief The CentralSide class decribes a look for the central widget

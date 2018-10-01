@@ -2,13 +2,14 @@
 #define icL_look_editor_Line
 
 #include "../base/base.h"
-#include "charformatbase.h"
 
 #include <QColor>
 
 
 
 namespace icL::look::editor {
+
+class CharFormatBase;
 
 /**
  * @brief The Line class describes a look for a line

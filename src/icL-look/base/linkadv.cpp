@@ -1,5 +1,9 @@
 #include "linkadv.h"
 
+#include "text.h"
+
+#include <QJsonObject>
+
 namespace icL::look::base {
 
 LinkAdv::LinkAdv(QObject * parent)

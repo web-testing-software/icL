@@ -1,5 +1,7 @@
 #include "highlight.h"
 
+#include <QJsonObject>
+
 namespace icL::look::editor {
 
 Highlight::Highlight(QObject * parent)

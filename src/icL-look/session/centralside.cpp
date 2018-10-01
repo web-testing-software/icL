@@ -1,5 +1,11 @@
 #include "centralside.h"
 
+#include "../base/text.h"
+#include "../start/input.h"
+#include "issue.h"
+
+#include <QJsonObject>
+
 namespace icL::look::session {
 
 CentralSide::CentralSide(QObject * parent)

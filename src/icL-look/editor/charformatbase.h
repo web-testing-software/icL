@@ -3,8 +3,6 @@
 
 #include "../base/text.h"
 
-#include <QObject>
-
 
 
 namespace icL::look::editor {

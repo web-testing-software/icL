@@ -1,12 +1,17 @@
 #ifndef icL_look_session_LeftSide
 #define icL_look_session_LeftSide
 
-#include "../start/listitem.h"
-#include "tree.h"
+#include "../base/base.h"
 
 
+// clang-format off
+namespace icL::look::base  { class Link; }
+namespace icL::look::start { class ListItem; }
+// clang-format on
 
 namespace icL::look::session {
+
+class Tree;
 
 /**
  * @brief The LeftSide class describes a look for the left panel

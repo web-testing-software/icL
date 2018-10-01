@@ -3,6 +3,8 @@
 
 #include "../base/link.h"
 
+#include <QColor>
+
 
 
 namespace icL::look::start {

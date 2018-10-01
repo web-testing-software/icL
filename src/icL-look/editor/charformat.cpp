@@ -1,5 +1,7 @@
 #include "charformat.h"
 
+#include <QJsonObject>
+
 namespace icL::look::editor {
 
 CharFormat::CharFormat(QObject * parent)

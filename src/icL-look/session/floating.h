@@ -1,12 +1,18 @@
 #ifndef icL_look_session_Floating
 #define icL_look_session_Floating
 
-#include "../start/input.h"
-#include "tree.h"
+#include "../base/base.h"
 
+#include <QColor>
 
+// clang-format off
+namespace icL::look::base  { class Text; }
+namespace icL::look::start { class Input; }
+// clang-format on
 
 namespace icL::look::session {
+
+class Tree;
 
 /**
  * @brief The Floating class describes the look for the floating panel

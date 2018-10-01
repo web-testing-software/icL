@@ -1,11 +1,13 @@
 #ifndef icL_look_Look
 #define icL_look_Look
 
-#include "../editor/editor.h"
-#include "../session/sessionwindow.h"
-#include "../start/startwindow.h"
+#include "../base/base.h"
 
-
+// clang-format off
+namespace icL::look::start   { class StartWindow; }
+namespace icL::look::session { class SessionWindow; }
+namespace icL::look::editor  { class Editor; }
+// clang-format on
 
 namespace icL::look {
 

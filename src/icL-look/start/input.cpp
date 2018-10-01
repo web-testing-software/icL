@@ -1,5 +1,9 @@
 #include "input.h"
 
+#include "../base/text.h"
+
+#include <QJsonObject>
+
 namespace icL::look::start {
 
 Input::Input(QObject * parent)

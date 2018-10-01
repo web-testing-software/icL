@@ -1,9 +1,15 @@
+#include "charformat.h"
 #include "editor.h"
+#include "highlight.h"
+#include "line.h"
+
+#include <QJsonObject>
 
 namespace icL::look::editor {
 
 Editor::Editor(QObject * parent)
 	: Base(parent) {
+
 	m_breakpoint = new Line(this);
 	m_comment    = new CharFormat(this);
 	m_current    = new Line(this);

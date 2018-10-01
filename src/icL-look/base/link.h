@@ -2,11 +2,14 @@
 #define icL_look_base_Link
 
 #include "base.h"
-#include "text.h"
+
+#include <QObject>
 
 
 
 namespace icL::look::base {
+
+class Text;
 
 /**
  * @brief The Link class describes a look for links
