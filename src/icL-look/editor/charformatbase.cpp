@@ -22,6 +22,15 @@ void CharFormatBase::setUp(const QJsonObject & obj) {
 	m_italic = obj.value("italic").toBool();
 }
 
+QJsonObject CharFormatBase::getUp() {
+	auto obj = Text::getUp();
+
+	obj["bold"]   = m_bold;
+	obj["italic"] = m_italic;
+
+	return obj;
+}
+
 void CharFormatBase::setBold(bool bold) {
 	if (m_bold == bold)
 		return;

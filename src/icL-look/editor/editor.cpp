@@ -147,4 +147,26 @@ void Editor::setUp(const QJsonObject & obj) {
 	m_breakpoint->setUp(obj.value("breakpoint").toObject());
 }
 
+QJsonObject Editor::getUp() {
+	return {{"text", m_text->getUp()},
+			{"selection", m_selection->getUp()},
+			{"number", m_number->getUp()},
+			{"string", m_string->getUp()},
+			{"type", m_type->getUp()},
+			{"local", m_local->getUp()},
+			{"global", m_global->getUp()},
+			{"property", m_property->getUp()},
+			{"method", m_method->getUp()},
+			{"function", m_function->getUp()},
+			{"keyword", m_keyword->getUp()},
+			{"comment", m_comment->getUp()},
+			{"system", m_system->getUp()},
+			{"error", m_error->getUp()},
+			{"warning", m_warning->getUp()},
+			{"occurrence", m_occurrence->getUp()},
+			{"current", m_current->getUp()},
+			{"debug", m_debug->getUp()},
+			{"breakpoint", m_breakpoint->getUp()}};
+}
+
 }  // namespace icL::look::editor

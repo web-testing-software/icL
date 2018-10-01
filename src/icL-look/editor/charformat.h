@@ -41,7 +41,9 @@ public:
 	 */
 	QColor undercolor() const;
 
-	void setUp(const QJsonObject & obj);
+	void setUp(const QJsonObject & obj) override;
+
+	QJsonObject getUp() override;
 
 signals:
 	void underlineChanged(int underline);

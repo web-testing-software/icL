@@ -45,6 +45,8 @@ public:
 
 	void setUp(const QJsonObject & obj) override;
 
+	QJsonObject getUp() override;
+
 signals:
 	void backgroundChanged(QColor background);
 	void borderChanged(QColor border);

@@ -23,6 +23,11 @@ void Highlight::setUp(const QJsonObject & obj) {
 	emit borderChanged(m_border);
 }
 
+QJsonObject Highlight::getUp() {
+	return {{"background", colorToObj(m_background)},
+			{"border", colorToObj(m_border)}};
+}
+
 void Highlight::setBackground(QColor background) {
 	if (m_background == background)
 		return;

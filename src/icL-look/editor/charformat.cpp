@@ -23,6 +23,15 @@ void CharFormat::setUp(const QJsonObject & obj) {
 	m_underline  = obj.value("underline").toInt();
 }
 
+QJsonObject CharFormat::getUp() {
+	auto obj = CharFormatBase::getUp();
+
+	obj["undercolor"] = colorToObj(m_undercolor);
+	obj["underline"]  = m_underline;
+
+	return obj;
+}
+
 void CharFormat::setUnderline(int underline) {
 	if (m_underline == underline)
 		return;

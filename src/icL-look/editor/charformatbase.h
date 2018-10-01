@@ -42,6 +42,8 @@ public:
 
 	void setUp(const QJsonObject & obj) override;
 
+	QJsonObject getUp() override;
+
 signals:
 	void boldChanged(bool bold);
 	void italicChanged(bool italic);
