@@ -20,6 +20,14 @@ QColor Side::background() const {
 	return m_background;
 }
 
+void Side::setUp(const QJsonObject & obj) {
+	m_header->setUp(obj.value("header").toObject());
+
+	m_background = objToColor(obj.value("background").toObject());
+
+	emit backgroundChanged(m_background);
+}
+
 void Side::setBackground(QColor background) {
 	if (m_background == background)
 		return;

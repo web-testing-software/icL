@@ -33,4 +33,11 @@ base::Text * StartWindow::underline() const {
 	return m_underline;
 }
 
+void StartWindow::setUp(const QJsonObject & obj) {
+	m_header->setUp(obj.value("header").toObject());
+	m_left->setUp(obj.value("left").toObject());
+	m_right->setUp(obj.value("right").toObject());
+	m_underline->setUp(obj.value("underline").toObject());
+}
+
 }  // namespace icL::look::start

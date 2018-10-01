@@ -15,4 +15,10 @@ base::Effect * ListItem::border() const {
 	return m_border;
 }
 
+void ListItem::setUp(const QJsonObject & obj) {
+	Link::setUp(obj);
+
+	m_border->setUp(obj.value("border").toObject());
+}
+
 }  // namespace icL::look::start

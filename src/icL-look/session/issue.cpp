@@ -16,6 +16,8 @@ base::Effect * Issue::effect() const {
 }
 
 void Issue::setUp(const QJsonObject & obj) {
+	LinkAdv::setUp(obj);
+
 	m_effect->setUp(obj.value("effect").toObject());
 }
 
