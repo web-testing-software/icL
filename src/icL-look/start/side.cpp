@@ -25,6 +25,8 @@ QColor Side::background() const {
 }
 
 void Side::setUp(const QJsonObject & obj) {
+	ListItem::setUp(obj);
+
 	m_header->setUp(obj.value("header").toObject());
 
 	m_background = objToColor(obj.value("background").toObject());
@@ -33,8 +35,12 @@ void Side::setUp(const QJsonObject & obj) {
 }
 
 QJsonObject Side::getUp() {
-	return {{"header", m_header->getUp()},
-			{"background", colorToObj(m_background)}};
+	auto obj = ListItem::getUp();
+
+	obj["header"]     = m_header->getUp();
+	obj["background"] = colorToObj(m_background);
+
+	return obj;
 }
 
 void Side::setBackground(QColor background) {

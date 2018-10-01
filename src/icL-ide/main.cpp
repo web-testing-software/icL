@@ -7,6 +7,8 @@
 #include <QSurface>
 #include <QtWebEngine>
 
+#include <icL-look/export/look.h>
+
 
 /**
  * @file main.cpp - decalar window object and QML meta types.
@@ -27,6 +29,10 @@
 int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
+
+	icL::look::Look look;
+	look.loadConf("conf.json");
+	look.saveConf();
 
 	QQmlApplicationEngine engine;
 	QQmlContext *         context = engine.rootContext();

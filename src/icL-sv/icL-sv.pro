@@ -1,6 +1,6 @@
 # sv - Separated Values
 
-TARGET = -icl-sv
+TARGET = -icL-sv
 TEMPLATE = lib
 
 QT = core

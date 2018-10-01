@@ -1,6 +1,6 @@
 # editor - code editor pro
 
-TARGET = -icl-editor
+TARGET = -icL-editor
 TEMPLATE = lib
 
 QT = core

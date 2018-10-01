@@ -1,6 +1,6 @@
 # look - personalize look of programs
 
-TARGET = -icl-look
+TARGET = -icL-look
 TEMPLATE = lib
 
 QT = core gui

@@ -13,6 +13,7 @@ CentralSide::CentralSide(QObject * parent)
 	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
 
 	m_error      = new Issue(this);
+	m_warn       = new Issue(this);
 	m_header     = new base::Text(this);
 	m_input      = new start::Input(this);
 	m_underdigit = new base::LinkAdv(this);

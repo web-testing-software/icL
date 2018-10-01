@@ -15,7 +15,7 @@ unix {
         INSTALLS += target
 }
 
-#LIBS += -l-icl-memory
+LIBS += -l-icL-look
 #LIBS += -l-icl-logic
 #LIBS += -l-icl-context-base
 #LIBS += -l-icl-context-complex

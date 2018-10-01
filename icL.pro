@@ -11,15 +11,15 @@ SUBDIRS = \
         vm \
         ce \
         cp \
-        ide \
+        look \
         il \
-        manager \
-        share \
+        editor \
         sv \
         wd \
+        ide \
+        share \
         worker \
-        editor \
-        look
+        manager
 
 # libs
 memory.subdir   = src/icL-memory
@@ -37,6 +37,12 @@ ide.subdir      = src/icL-ide
 share.subdir    = src/icL-share
 manager.subdir  = src/icL-manager
 worker.subdir   = src/icL-worker
+
+# depends
+ide.depends = look
+share.depends = look
+manager.depends = look
+worker.depends = look
 
 DISTFILES += \
     Doxyfile \
