@@ -44,6 +44,8 @@ public:
 	base::Link * child() const;
 
 	void setUp(const QJsonObject & obj) override;
+
+	QJsonObject getUp() override;
 };
 
 }  // namespace icL::look::session

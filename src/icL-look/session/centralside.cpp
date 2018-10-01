@@ -75,6 +75,18 @@ void CentralSide::setUp(const QJsonObject & obj) {
 	emit okResultChanged(m_okResult);
 }
 
+QJsonObject CentralSide::getUp() {
+	return {{"header", m_header->getUp()},
+			{"warn", m_header->getUp()},
+			{"error", m_error->getUp()},
+			{"undertext", m_undertext->getUp()},
+			{"underdigit", m_underdigit->getUp()},
+			{"input", m_input->getUp()},
+			{"command", colorToObj(m_command)},
+			{"error-result", colorToObj(m_errorResult)},
+			{"ok-result", colorToObj(m_okResult)}};
+}
+
 void CentralSide::setCommand(QColor command) {
 	if (m_command == command)
 		return;

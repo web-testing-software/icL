@@ -26,4 +26,8 @@ void Tree::setUp(const QJsonObject & obj) {
 	m_child->setUp(obj.value("child").toObject());
 }
 
+QJsonObject Tree::getUp() {
+	return {{"parent", m_parent->getUp()}, {"child", m_child->getUp()}};
+}
+
 }  // namespace icL::look::session

@@ -102,6 +102,8 @@ public:
 
 	void setUp(const QJsonObject & obj) override;
 
+	QJsonObject getUp() override;
+
 signals:
 	void commandChanged(QColor command);
 	void errorResultChanged(QColor errorResult);

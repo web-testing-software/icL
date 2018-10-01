@@ -68,6 +68,13 @@ void Floating::setUp(const QJsonObject & obj) {
 	emit bgChanged(m_bg);
 }
 
+QJsonObject Floating::getUp() {
+	return {{"header", m_header->getUp()},      {"stack", m_stack->getUp()},
+			{"state", m_state->getUp()},        {"input", m_input->getUp()},
+			{"error", colorToObj(m_error)},     {"warn", colorToObj(m_warn)},
+			{"console", colorToObj(m_console)}, {"bg", colorToObj(m_bg)}};
+}
+
 void Floating::setError(QColor error) {
 	if (m_error == error)
 		return;

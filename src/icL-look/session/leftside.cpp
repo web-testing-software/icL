@@ -33,4 +33,10 @@ void LeftSide::setUp(const QJsonObject & obj) {
 	m_files->setUp(obj.value("files").toObject());
 }
 
+QJsonObject LeftSide::getUp() {
+	return {{"switcher", m_switcher->getUp()},
+			{"projects", m_projects->getUp()},
+			{"files", m_files->getUp()}};
+}
+
 }  // namespace icL::look::session

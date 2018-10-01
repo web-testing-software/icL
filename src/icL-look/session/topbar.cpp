@@ -56,6 +56,14 @@ void TopBar::setUp(const QJsonObject & obj) {
 	emit cursorChanged(m_cursor);
 }
 
+QJsonObject TopBar::getUp() {
+	return {{"tab", m_tab->getUp()},
+			{"url", m_url->getUp()},
+			{"button", m_button->getUp()},
+			{"tool", m_tool->getUp()},
+			{"input", m_input->getUp()}};
+}
+
 void TopBar::setCursor(QColor cursor) {
 	if (m_cursor == cursor)
 		return;

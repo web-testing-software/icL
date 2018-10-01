@@ -21,4 +21,12 @@ void Issue::setUp(const QJsonObject & obj) {
 	m_effect->setUp(obj.value("effect").toObject());
 }
 
+QJsonObject Issue::getUp() {
+	auto obj = LinkAdv::getUp();
+
+	obj["effect"] = m_effect->getUp();
+
+	return obj;
+}
+
 }  // namespace icL::look::session

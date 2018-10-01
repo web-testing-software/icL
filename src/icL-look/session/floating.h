@@ -94,6 +94,8 @@ public:
 
 	void setUp(const QJsonObject & obj) override;
 
+	QJsonObject getUp() override;
+
 signals:
 	void errorChanged(QColor error);
 	void warnChanged(QColor warn);
