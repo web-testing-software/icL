@@ -33,4 +33,10 @@ void Link::setUp(const QJsonObject & obj) {
 	m_normal->setUp(obj.value("normal").toObject());
 }
 
+QJsonObject Link::getUp() {
+	return {{"active", m_active->getUp()},
+			{"hover", m_hover->getUp()},
+			{"normal", m_normal->getUp()}};
+}
+
 }  // namespace icL::look::base

@@ -21,4 +21,12 @@ void LinkAdv::setUp(const QJsonObject & obj) {
 	m_activeHover->setUp(obj.value("active-hover").toObject());
 }
 
+QJsonObject LinkAdv::getUp() {
+	auto obj = Link::getUp();
+
+	obj["active-hover"] = m_activeHover->getUp();
+
+	return obj;
+}
+
 }  // namespace icL::look::base

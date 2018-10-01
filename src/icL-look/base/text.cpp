@@ -23,6 +23,11 @@ void Text::setUp(const QJsonObject & obj) {
 	emit foregroundChanged(m_foreground);
 }
 
+QJsonObject Text::getUp() {
+	return {{"background", colorToObj(m_background)},
+			{"foreground", colorToObj(m_foreground)}};
+}
+
 void Text::setBackground(QColor background) {
 	if (m_background == background)
 		return;

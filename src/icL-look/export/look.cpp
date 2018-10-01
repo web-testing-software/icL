@@ -83,13 +83,9 @@ bool Look::saveConf() {
 }
 
 QJsonObject Look::getUp() {
-	QJsonObject obj;
-
-	obj["editor"]  = m_editor->getUp();
-	obj["session"] = m_session->getUp();
-	obj["start"]   = m_start->getUp();
-
-	return obj;
+	return {{"editor", m_editor->getUp()},
+			{"session", m_session->getUp()},
+			{"start", m_start->getUp()}};
 }
 
 }  // namespace icL::look

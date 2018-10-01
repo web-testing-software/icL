@@ -29,6 +29,12 @@ void Effect::setUp(const QJsonObject & obj) {
 	emit normalChanged(m_normal);
 }
 
+QJsonObject Effect::getUp() {
+	return {{"normal", colorToObj(m_normal)},
+			{"hover", colorToObj(m_hover)},
+			{"active", colorToObj(m_active)}};
+}
+
 void Effect::setNormal(QColor normal) {
 	if (m_normal == normal)
 		return;

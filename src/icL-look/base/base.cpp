@@ -23,4 +23,16 @@ QColor Base::objToColor(const QJsonObject & obj) {
 	}
 }
 
+QJsonObject Base::colorToObj(const QColor & color) {
+	if (color.alpha() == 255) {
+		return {{"hex", color.name()}};
+	}
+	else {
+		return {{"r", color.red()},
+				{"g", color.green()},
+				{"b", color.blue()},
+				{"a", color.alpha()}};
+	}
+}
+
 }  // namespace icL::look::base

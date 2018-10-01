@@ -19,6 +19,14 @@ void EffectAdv::setUp(const QJsonObject & obj) {
 	emit activeHoverChanged(m_activeHover);
 }
 
+QJsonObject EffectAdv::getUp() {
+	auto obj = Effect::getUp();
+
+	obj["active-hover"] = colorToObj(m_activeHover);
+
+	return obj;
+}
+
 void EffectAdv::setActiveHover(QColor activeHover) {
 	if (m_activeHover == activeHover)
 		return;

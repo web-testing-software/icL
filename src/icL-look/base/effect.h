@@ -53,6 +53,8 @@ public:
 
 	void setUp(const QJsonObject & obj) override;
 
+	QJsonObject getUp() override;
+
 signals:
 	void normalChanged(QColor normal);
 	void hoverChanged(QColor hover);

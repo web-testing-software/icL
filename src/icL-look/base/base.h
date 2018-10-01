@@ -34,9 +34,16 @@ protected:
 	/**
 	 * @brief objToColor converts a JSON object to QColor
 	 * @param obj is a JSON object
-	 * @return Color getted from hex or r/g/b/a properties
+	 * @return color getted from hex or r/g/b/a properties
 	 */
 	QColor objToColor (const QJsonObject & obj);
+
+	/**
+	 * @brief colorToObj converts a QColor to JSON object
+	 * @param color is a color to convert
+	 * @return JSON object with hex field or r/g/b/a fields
+	 */
+	QJsonObject colorToObj (const QColor & color);
 };
 
 }  // namespace icL::look::base

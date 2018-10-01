@@ -53,6 +53,8 @@ public:
 	Text * active() const;
 
 	void setUp(const QJsonObject & obj) override;
+
+	QJsonObject getUp() override;
 };
 
 }  // namespace icL::look::base
