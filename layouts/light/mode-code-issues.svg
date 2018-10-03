@@ -100,9 +100,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="880.51978"
-     inkscape:cy="432.98028"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="854.91855"
+     inkscape:cy="213.38288"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -4549,7 +4549,7 @@
        height="5.2917209"
        width="260.57611"
        id="rect1754"
-       style="opacity:1;fill:#fff5f5;fill-opacity:1;stroke:none;stroke-width:0.52899998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="opacity:1;fill:#ff4b4b;fill-opacity:1;stroke:none;stroke-width:0.52899998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        style="opacity:1;fill:#fffff9;fill-opacity:1;stroke:none;stroke-width:0.52899998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1756"
@@ -4563,7 +4563,7 @@
        height="5.2917209"
        width="260.57611"
        id="rect1758"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.52899998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="opacity:1;fill:#ff9351;fill-opacity:1;stroke:none;stroke-width:0.52899998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.52899998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1760"
@@ -4712,16 +4712,16 @@
          id="text1841"
          y="247.04735"
          x="101.76196"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';letter-spacing:0px;word-spacing:0px;fill:#ba0000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#ba0000;fill-opacity:1;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332;"
            y="247.04735"
            x="101.76196"
            id="tspan1839"
            sodipodi:role="line">This is the text of an error message</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';letter-spacing:0px;word-spacing:0px;fill:#cc0000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';letter-spacing:0px;word-spacing:0px;fill:#fff1f1;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
          x="357.15219"
          y="247.04735"
          id="text1845"><tspan
@@ -4729,7 +4729,7 @@
            id="tspan1843"
            x="357.15219"
            y="247.04735"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:end;text-anchor:end;fill:#cc0000;fill-opacity:1;stroke-width:0.26458332">main.icL:24</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:end;text-anchor:end;fill:#fff1f1;fill-opacity:1;stroke-width:0.26458332;">main.icL:24</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path1847"
@@ -4839,7 +4839,7 @@
        id="g1910">
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';letter-spacing:0px;word-spacing:0px;fill:#ef5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
          x="101.76196"
          y="252.33902"
          id="text1898"><tspan
@@ -4847,7 +4847,7 @@
            id="tspan1896"
            x="101.76196"
            y="252.33902"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#ef5c00;fill-opacity:1;stroke-width:0.26458332">This is an warning</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332;">This is an warning</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path1900"
@@ -4858,9 +4858,9 @@
          id="text1904"
          y="252.33902"
          x="357.15216"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ef5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#fff9f5;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:end;text-anchor:end;fill:#ef5c00;fill-opacity:1;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:end;text-anchor:end;fill:#fff9f5;fill-opacity:1;stroke-width:0.26458332;"
            y="252.33902"
            x="357.15216"
            id="tspan1902"

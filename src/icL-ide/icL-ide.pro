@@ -21,7 +21,8 @@ RESOURCES += \
     qml/sessions.qrc \
     qml/navigationbar.qrc \
     qml/static.qrc \
-    qml/startwindow.qrc
+    qml/startwindow.qrc \
+    qml/themes.qrc
 
 
 DISTFILES += \

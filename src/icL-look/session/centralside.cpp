@@ -84,7 +84,7 @@ void CentralSide::setUp(const QJsonObject & obj) {
 
 QJsonObject CentralSide::getUp() {
 	return {{"header", m_header->getUp()},
-			{"warn", m_header->getUp()},
+			{"warn", m_warn->getUp()},
 			{"error", m_error->getUp()},
 			{"undertext", m_undertext->getUp()},
 			{"underdigit", m_underdigit->getUp()},

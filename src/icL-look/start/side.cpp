@@ -12,10 +12,14 @@ Side::Side(QObject * parent)
 	: ListItem(parent) {
 	m_background = QColor(Qt::transparent);
 	m_header     = new base::Text(this);
+	m_input      = new Input(this);
+	m_button     = new base::LinkAdv(this);
 }
 
 Side::~Side() {
 	icL_dropField(m_header);
+	icL_dropField(m_input);
+	icL_dropField(m_button);
 }
 
 base::Text * Side::header() const {
@@ -55,6 +59,14 @@ QJsonObject Side::getUp() {
 	obj["button"]     = m_button->getUp();
 
 	return obj;
+}
+
+void Side::setBackground(QColor background) {
+	if (m_background == background)
+		return;
+
+	m_background = background;
+	emit backgroundChanged(m_background);
 }
 
 }  // namespace icL::look::start

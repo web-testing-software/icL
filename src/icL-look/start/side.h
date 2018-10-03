@@ -31,8 +31,8 @@ class Side : public ListItem
 
 	base::Text *    m_header = nullptr;
 	QColor          m_background;
-	Input *         m_input;
-	base::LinkAdv * m_button;
+	Input *         m_input = nullptr;
+	base::LinkAdv * m_button = nullptr;
 
 public:
 	/**
