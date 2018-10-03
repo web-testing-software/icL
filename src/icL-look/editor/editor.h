@@ -3,6 +3,7 @@
 
 #include "../base/base.h"
 
+class QTextCharFormat;
 
 namespace icL::look::editor {
 
@@ -185,6 +186,29 @@ public:
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
+
+public slots:
+	void updateOccurrence(...);
+	void updateNumber(...);
+	void updateString(...);
+	void updateType(...);
+	void updateLocal(...);
+	void updateGlobal(...);
+	void updateProperty(...);
+	void updateMethod(...);
+	void updateFunction(...);
+	void updateKeyword(...);
+	void updateComment(...);
+	void updateSystem(...);
+	void updateError(...);
+	void updateWarning(...);
+
+private:
+	void updateStyle(QTextCharFormat & chars, const CharFormat * format);
+
+	void bindChars();
+	void bindHighlights();
+	void bindMessages();
 };
 
 }  // namespace icL::look::editor
