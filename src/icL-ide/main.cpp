@@ -6,6 +6,7 @@
 #include <QQmlEngine>
 #include <QSurface>
 #include <QtWebEngine>
+#include <QDebug>
 
 #include <icL-look/export/look.h>
 

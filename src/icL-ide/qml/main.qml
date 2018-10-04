@@ -14,29 +14,31 @@ Window {
 	visibility: Window.Maximized
 
 	// Scale all the interface
-	property real _rm: 1.0
-	property real _rq: 1.0 * _rm
-	function rq(pixels) {
-		return Qt.binding(function () {
-			return Math.round(pixels * _rq)
-		})
+	property real _rm: 1.0 //< manual resize of interface
+	property real rq: 1.0 * _rm //< ratio qualifier
+
+	// round decimal numbers
+	function rd(pixels) {
+		return Math.round(pixels)
 	}
 
 	Main.Static {
 		id: staticPanel
 
-		anchors: {
+		anchors {
 			top: parent.top
 			left: parent.left
-			right: parent.right
+			bottom: parent.bottom
 		}
+
+		height: 300
 	}
 
 	SplitView {
 		id: leftCentralSplit
 		orientation: Qt.Horizontal
 
-		anchors: {
+		anchors {
 			top: parent.top
 			left: staticPanel.right
 			bottom: parent.bottom
@@ -49,5 +51,15 @@ Window {
 		Main.CentralSide {
 			id: centralSide
 		}
+
+		Keys.onPressed: {
+			if (event.text === "-") {
+				_rm -= 0.1
+			} else if (event.text === "+") {
+				_rm += 0.1
+			}
+		}
+
+		Component.onCompleted: forceActiveFocus()
 	}
 }
