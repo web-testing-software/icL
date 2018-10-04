@@ -180,7 +180,8 @@ QJsonObject Editor::getUp() {
 }
 
 void Editor::updateOccurrence(...) {
-	// TODO: Write it
+	icL::editor::look::Chars::occurence.background = m_occurrence->background();
+	icL::editor::look::Chars::occurence.border     = m_occurrence->border();
 }
 
 void Editor::updateNumber(...) {
@@ -228,11 +229,13 @@ void Editor::updateSystem(...) {
 }
 
 void Editor::updateError(...) {
-	// TODO: Write it later
+	icL::editor::look::Chars::error = m_error->undercolor();
+	icL::editor::look::Chars::update();
 }
 
 void Editor::updateWarning(...) {
-	// TODO: Write it later
+	icL::editor::look::Chars::warning = m_warning->undercolor();
+	icL::editor::look::Chars::update();
 }
 
 void Editor::updateStyle(QTextCharFormat & chars, const CharFormat * format) {
@@ -372,21 +375,8 @@ void Editor::bindHighlights() {
 
 void Editor::bindMessages() {
 	// clang-format off
-
 	connect(m_error,   &CharFormat::undercolorChanged, this, &Editor::updateError);
-	connect(m_error,   &CharFormat::underlineChanged,  this, &Editor::updateError);
-	connect(m_error,   &CharFormatBase::boldChanged,   this, &Editor::updateError);
-	connect(m_error,   &CharFormatBase::italicChanged, this, &Editor::updateError);
-	connect(m_error,   &base::Text::foregroundChanged, this, &Editor::updateError);
-	connect(m_error,   &base::Text::backgroundChanged, this, &Editor::updateError);
-
 	connect(m_warning, &CharFormat::undercolorChanged, this, &Editor::updateWarning);
-	connect(m_warning, &CharFormat::underlineChanged,  this, &Editor::updateWarning);
-	connect(m_warning, &CharFormatBase::boldChanged,   this, &Editor::updateWarning);
-	connect(m_warning, &CharFormatBase::italicChanged, this, &Editor::updateWarning);
-	connect(m_warning, &base::Text::foregroundChanged, this, &Editor::updateWarning);
-	connect(m_warning, &base::Text::backgroundChanged, this, &Editor::updateWarning);
-
 	// clang-format on
 }
 
