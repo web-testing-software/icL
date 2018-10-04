@@ -17,7 +17,7 @@ class Look : public base::Base
 
 	// clang-format off
 	Q_PROPERTY(start::StartWindow*       start READ start)
-	Q_PROPERTY(session::SessionWindow* session READ session)
+	Q_PROPERTY(icL::look::session::SessionWindow* session READ session)
 	Q_PROPERTY(editor::Editor*          editor READ editor)
 	// clang-format on
 

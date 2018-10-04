@@ -2,17 +2,22 @@
 
 TARGET = -icL-look
 TEMPLATE = lib
+CONFIG += plugin
 
-QT = core gui
-CONFIG -= app_bundle
+QT = core gui qml
 
 ICL_ROOT = $$PWD/../..
 
 include($$ICL_ROOT/pri_files/lib.pri)
 
+DESTDIR = $$ICL_ROOT/bin/$$BUILDTYPE/$$OS/Look
+
+TARGET = $$qtLibraryTarget($$TARGET)
+uri = Look
 
 DISTFILES += \
-    README.md
+    README.md \
+    qmldir
 
 HEADERS += \
     base/text.h \
@@ -37,7 +42,8 @@ HEADERS += \
     editor/charformat.h \
     editor/editor.h \
     export/look.h \
-    base/base.h
+    base/base.h \
+    export/plugin.h
 
 SOURCES += \
     base/text.cpp \
@@ -62,5 +68,21 @@ SOURCES += \
     editor/charformat.cpp \
     editor/editor.cpp \
     export/look.cpp \
-    base/base.cpp
+    base/base.cpp \
+    export/plugin.cpp
 
+!equals(_PRO_FILE_PWD_, $$OUT_PWD) {
+    copy_qmldir.target = $$DESTDIR/qmldir
+    copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir
+    copy_qmldir.commands = $(COPY_FILE) \"$$replace(copy_qmldir.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_qmldir.target, /, $$QMAKE_DIR_SEP)\"
+    QMAKE_EXTRA_TARGETS += copy_qmldir
+    PRE_TARGETDEPS += $$copy_qmldir.target
+}
+
+qmldir.files = qmldir
+unix {
+    installPath = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)
+    qmldir.path = $$installPath
+    target.path = $$installPath
+    INSTALLS += qmldir
+}

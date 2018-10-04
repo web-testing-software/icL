@@ -8,5 +8,13 @@ QMAKE_CXXFLAGS += -std=c++1z
 INCLUDEPATH += $$ICL_ROOT/src
 
 CONFIG(debug, debug|release) {
+}
+
+
+CONFIG(debug, debug|release) {
+    BUILDTYPE = debug
     DEFINES += icL_debug
+}
+else {
+    BUILDTYPE = release
 }

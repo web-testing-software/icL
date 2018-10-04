@@ -9,6 +9,8 @@ ICL_ROOT = $$PWD/../..
 
 include($$ICL_ROOT/pri_files/app.pri)
 
+DEFINES += icL_root=\"$$ICL_ROOT\"
+
 
 SOURCES += \
     main.cpp
@@ -22,9 +24,12 @@ RESOURCES += \
     qml/navigationbar.qrc \
     qml/static.qrc \
     qml/startwindow.qrc \
-    qml/themes.qrc
+    qml/themes.qrc \
+    qml/themes-images.qrc
 
 
 DISTFILES += \
     README.md \
     models/*.*uml
+
+HEADERS +=

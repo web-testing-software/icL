@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Window 2.3
 import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.3
+
+import Look 1.0
 
 import "main" as Main
 
@@ -13,6 +16,8 @@ Window {
 	visible: true
 	visibility: Window.Maximized
 
+	// [!] Scale begin
+
 	// Scale all the interface
 	property real _rm: 1.0 //< manual resize of interface
 	property real rq: 1.0 * _rm //< ratio qualifier
@@ -22,6 +27,14 @@ Window {
 		return Math.round(pixels)
 	}
 
+	// [!] Scale end
+
+	// Global objects
+	Look {
+		id: look
+	}
+
+	// Window content
 	Main.Static {
 		id: staticPanel
 
@@ -30,8 +43,6 @@ Window {
 			left: parent.left
 			bottom: parent.bottom
 		}
-
-		height: 300
 	}
 
 	SplitView {
@@ -41,25 +52,24 @@ Window {
 		anchors {
 			top: parent.top
 			left: staticPanel.right
+			right: parent.right
 			bottom: parent.bottom
 		}
 
 		Main.LeftPanel {
 			id: leftPanel
+
+			width: 250 // load from settings
+
+			Layout.minimumWidth: rd(rq * 100)
+			Layout.maximumWidth: rd(rq * 400)
 		}
 
 		Main.CentralSide {
 			id: centralSide
-		}
 
-		Keys.onPressed: {
-			if (event.text === "-") {
-				_rm -= 0.1
-			} else if (event.text === "+") {
-				_rm += 0.1
-			}
+			Layout.fillWidth: true
+			Layout.minimumWidth: rd(rq * 800)
 		}
-
-		Component.onCompleted: forceActiveFocus()
 	}
 }

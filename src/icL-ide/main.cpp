@@ -1,14 +1,12 @@
 #include <iostream>
 
 #include <QApplication>
+#include <QDebug>
 #include <QObject>
 #include <QOpenGLContext>
 #include <QQmlEngine>
 #include <QSurface>
 #include <QtWebEngine>
-#include <QDebug>
-
-#include <icL-look/export/look.h>
 
 
 /**
@@ -31,16 +29,19 @@ int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 
-	icL::look::Look look;
-	look.loadConf("conf.json");
-	look.saveConf();
+//	icL::look::Look look;
+//	look.loadConf(":/themes/light.json");
+
 
 	QQmlApplicationEngine engine;
 	QQmlContext *         context = engine.rootContext();
 
-	//	context->setContextProperty("helper", &helper);
+//	engine.addImportPath("/home/lixcode/Qt/Projects/icL/bin/debug/linux/qml");
+
+	//	context->setContextProperty("look", &look);
 	//	context->setContextProperty("database", &database);
 
+	qDebug() << engine.importPathList();
 	engine.load(QUrl("qrc:/main.qml"));
 	return QGuiApplication::exec();
 	return 0;

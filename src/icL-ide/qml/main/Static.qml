@@ -1,6 +1,8 @@
 import QtQuick 2.0
 
 Rectangle {
-	width: rd(rq * 50)
-	color: "green"
+	id: staticRoot
+
+	width: rd(rq * 75)
+	color: look.session;
 }

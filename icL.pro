@@ -39,6 +39,7 @@ manager.subdir  = src/icL-manager
 worker.subdir   = src/icL-worker
 
 # depends
+look.depends = editor
 ide.depends = look
 share.depends = look
 manager.depends = look
