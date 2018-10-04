@@ -188,20 +188,20 @@ public:
 	QJsonObject getUp() override;
 
 public slots:
-	void updateOccurrence(...);
-	void updateNumber(...);
-	void updateString(...);
-	void updateType(...);
-	void updateLocal(...);
-	void updateGlobal(...);
-	void updateProperty(...);
-	void updateMethod(...);
-	void updateFunction(...);
-	void updateKeyword(...);
-	void updateComment(...);
-	void updateSystem(...);
-	void updateError(...);
-	void updateWarning(...);
+	void updateOccurrence();
+	void updateNumber();
+	void updateString();
+	void updateType();
+	void updateLocal();
+	void updateGlobal();
+	void updateProperty();
+	void updateMethod();
+	void updateFunction();
+	void updateKeyword();
+	void updateComment();
+	void updateSystem();
+	void updateError();
+	void updateWarning();
 
 private:
 	void updateStyle(QTextCharFormat & chars, const CharFormat * format);

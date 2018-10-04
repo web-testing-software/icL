@@ -30,4 +30,6 @@ void Chars::update() {
 	}
 }
 
+Chars * Chars::instance = nullptr;
+
 }  // namespace icL::editor::look
