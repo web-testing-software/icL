@@ -2,10 +2,8 @@
 
 #include <QJsonObject>
 
-namespace icL::look::editor {
-
 CharFormatBase::CharFormatBase(QObject * parent)
-	: Text(parent) {
+	: TextLook(parent) {
 	m_bold = m_italic = false;
 }
 
@@ -18,14 +16,14 @@ bool CharFormatBase::italic() const {
 }
 
 void CharFormatBase::setUp(const QJsonObject & obj) {
-	Text::setUp(obj);
+	TextLook::setUp(obj);
 
 	m_bold   = obj.value("bold").toBool();
 	m_italic = obj.value("italic").toBool();
 }
 
 QJsonObject CharFormatBase::getUp() {
-	auto obj = Text::getUp();
+	auto obj = TextLook::getUp();
 
 	obj["bold"]   = m_bold;
 	obj["italic"] = m_italic;
@@ -48,5 +46,3 @@ void CharFormatBase::setItalic(bool italic) {
 	m_italic = italic;
 	emit italicChanged(m_italic);
 }
-
-}  // namespace icL::look::editor

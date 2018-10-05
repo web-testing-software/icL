@@ -9,13 +9,11 @@
 #include <QJsonObject>
 #include <QTextStream>
 
-namespace icL::look {
-
 Look::Look(QObject * parent)
-	: Base(parent) {
-	m_editor  = new editor::Editor(this);
-	m_session = new session::SessionWindow(this);
-	m_start   = new start::StartWindow(this);
+	: BaseLook(parent) {
+	m_editor  = new Editor(this);
+	m_session = new SessionWindow(this);
+	m_start   = new StartWindow(this);
 }
 
 Look::~Look() {
@@ -24,15 +22,15 @@ Look::~Look() {
 	icL_dropField(m_start);
 }
 
-start::StartWindow * Look::start() const {
+StartWindow * Look::start() const {
 	return m_start;
 }
 
-session::SessionWindow * Look::session() const {
+SessionWindow * Look::session() const {
 	return m_session;
 }
 
-editor::Editor * Look::editor() const {
+Editor * Look::editor() const {
 	return m_editor;
 }
 
@@ -91,5 +89,3 @@ QJsonObject Look::getUp() {
 			{"session", m_session->getUp()},
 			{"start", m_start->getUp()}};
 }
-
-}  // namespace icL::look

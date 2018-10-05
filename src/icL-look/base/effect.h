@@ -1,18 +1,16 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
-#include "base.h"
+#include "baselook.h"
 
 #include <QColor>
 
 
 
-namespace icL::look::base {
-
 /**
  * @brief The Effect class decribes a look for an effect
  */
-class Effect : public base::Base
+class Effect : public BaseLook
 {
 	Q_OBJECT
 
@@ -79,7 +77,5 @@ public slots:
 	 */
 	void setActive(QColor active);
 };
-
-}  // namespace icL::look::base
 
 #endif  // EFFECT_H

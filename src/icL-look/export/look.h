@@ -1,29 +1,27 @@
 #ifndef icL_look_Look
 #define icL_look_Look
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 // clang-format off
-namespace icL::look::start   { class StartWindow; }
-namespace icL::look::session { class SessionWindow; }
-namespace icL::look::editor  { class Editor; }
+class StartWindow;
+class SessionWindow;
+class Editor;
 // clang-format on
 
-namespace icL::look {
-
-class Look : public base::Base
+class Look : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(start::StartWindow*       start READ start)
-	Q_PROPERTY(icL::look::session::SessionWindow* session READ session)
-	Q_PROPERTY(editor::Editor*          editor READ editor)
+	Q_PROPERTY(StartWindow*       start READ start   NOTIFY startChanged)
+	Q_PROPERTY(SessionWindow* session READ session NOTIFY sessionChanged)
+	Q_PROPERTY(Editor*          editor READ editor  NOTIFY editorChanged)
 	// clang-format on
 
-	start::StartWindow *     m_start   = nullptr;
-	session::SessionWindow * m_session = nullptr;
-	editor::Editor *         m_editor  = nullptr;
+	StartWindow *     m_start   = nullptr;
+	SessionWindow * m_session = nullptr;
+	Editor *         m_editor  = nullptr;
 
 	QString confFilePath;
 
@@ -40,19 +38,19 @@ public:
 	 * @brief start is the look of start window
 	 * @return the look for start window
 	 */
-	start::StartWindow * start() const;
+	StartWindow * start() const;
 
 	/**
 	 * @brief session is the look of session window
 	 * @return the look for session window
 	 */
-	session::SessionWindow * session() const;
+	SessionWindow * session() const;
 
 	/**
 	 * @brief editor is the look of code editor
 	 * @return the look for code editor
 	 */
-	editor::Editor * editor() const;
+	Editor * editor() const;
 
 	/**
 	 * @brief loadConf loads the configuration from JSON file
@@ -70,8 +68,11 @@ public:
 	Q_INVOKABLE bool saveConf();
 
 	QJsonObject getUp() override;
-};
 
-}  // namespace icL::look
+signals:
+	void startChanged(StartWindow * start);
+	void sessionChanged(SessionWindow * session);
+	void editorChanged(Editor * editor);
+};
 
 #endif  // icL_look_Look

@@ -5,8 +5,6 @@
 
 
 
-namespace icL::look::base {
-
 /**
  * @brief The EffectAdv class
  */
@@ -47,7 +45,5 @@ public slots:
 	 */
 	void setActiveHover(QColor activeHover);
 };
-
-}  // namespace icL::look::base
 
 #endif  // EFFECTADV_H

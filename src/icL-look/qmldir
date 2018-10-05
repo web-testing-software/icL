@@ -1,2 +1,4 @@
-module Look
-plugin -icL-look
+module icL.Look
+plugin icLlookPlugin
+classname LookPlugin
+typeinfo look.qmltypes

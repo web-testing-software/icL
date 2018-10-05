@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 
-//	icL::look::Look look;
+//	Look look;
 //	look.loadConf(":/themes/light.json");
 
 
@@ -41,6 +41,7 @@ int main(int argc, char * argv[]) {
 	//	context->setContextProperty("look", &look);
 	//	context->setContextProperty("database", &database);
 
+	engine.addImportPath(".");
 	qDebug() << engine.importPathList();
 	engine.load(QUrl("qrc:/main.qml"));
 	return QGuiApplication::exec();

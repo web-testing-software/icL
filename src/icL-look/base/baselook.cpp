@@ -1,14 +1,12 @@
-#include "base.h"
+#include "baselook.h"
 
 #include <QColor>
 #include <QJsonObject>
 
-namespace icL::look::base {
-
-Base::Base(QObject * parent)
+BaseLook::BaseLook(QObject * parent)
 	: QObject(parent) {}
 
-QColor Base::objToColor(const QJsonObject & obj) {
+QColor BaseLook::objToColor(const QJsonObject & obj) {
 	QJsonValue hex = obj.value("hex");
 
 	if (hex.isString()) {
@@ -24,7 +22,7 @@ QColor Base::objToColor(const QJsonObject & obj) {
 	}
 }
 
-QJsonObject Base::colorToObj(const QColor & color) {
+QJsonObject BaseLook::colorToObj(const QColor & color) {
 	if (color.alpha() == 255) {
 		return {{"hex", color.name()}};
 	}
@@ -35,5 +33,3 @@ QJsonObject Base::colorToObj(const QColor & color) {
 				{"a", color.alpha()}};
 	}
 }
-
-}  // namespace icL::look::base

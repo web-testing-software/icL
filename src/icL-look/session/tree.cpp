@@ -4,12 +4,10 @@
 
 #include <QJsonObject>
 
-namespace icL::look::session {
-
 Tree::Tree(QObject * parent)
-	: Base(parent) {
-	m_parent = new base::Link(this);
-	m_child  = new base::Link(this);
+	: BaseLook(parent) {
+	m_parent = new Link(this);
+	m_child  = new Link(this);
 }
 
 Tree::~Tree() {
@@ -17,11 +15,11 @@ Tree::~Tree() {
 	icL_dropField(m_child);
 }
 
-base::Link * Tree::parent() const {
+Link * Tree::parent() const {
 	return m_parent;
 }
 
-base::Link * Tree::child() const {
+Link * Tree::child() const {
 	return m_child;
 }
 
@@ -33,5 +31,3 @@ void Tree::setUp(const QJsonObject & obj) {
 QJsonObject Tree::getUp() {
 	return {{"parent", m_parent->getUp()}, {"child", m_child->getUp()}};
 }
-
-}  // namespace icL::look::session

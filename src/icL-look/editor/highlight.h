@@ -1,18 +1,16 @@
 #ifndef icL_look_editor_Highlight
 #define icL_look_editor_Highlight
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 #include <QColor>
 
 
 
-namespace icL::look::editor {
-
 /**
  * @brief The Highlight class describes a look for highlighting fragment of text
  */
-class Highlight : public base::Base
+class Highlight : public BaseLook
 {
 	Q_OBJECT
 
@@ -63,7 +61,5 @@ public slots:
 	 */
 	void setBorder(QColor border);
 };
-
-}  // namespace icL::look::editor
 
 #endif  // icL_look_editor_Highlight

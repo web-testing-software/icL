@@ -7,10 +7,8 @@
 
 #include <QJsonObject>
 
-namespace icL::look::session {
-
 SessionWindow::SessionWindow(QObject * parent)
-	: Base(parent) {
+	: BaseLook(parent) {
 	m_center   = new CentralSide(this);
 	m_floating = new Floating(this);
 	m_left     = new LeftSide(this);
@@ -53,5 +51,3 @@ QJsonObject SessionWindow::getUp() {
 			{"left", m_left->getUp()},
 			{"top", m_top->getUp()}};
 }
-
-}  // namespace icL::look::session

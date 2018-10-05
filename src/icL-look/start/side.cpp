@@ -1,19 +1,17 @@
 #include "side.h"
 
 #include "../base/linkadv.h"
-#include "../base/text.h"
+#include "../base/textlook.h"
 #include "input.h"
 
 #include <QJsonObject>
 
-namespace icL::look::start {
-
 Side::Side(QObject * parent)
 	: ListItem(parent) {
 	m_background = QColor(Qt::transparent);
-	m_header     = new base::Text(this);
+	m_header     = new TextLook(this);
 	m_input      = new Input(this);
-	m_button     = new base::LinkAdv(this);
+	m_button     = new LinkAdv(this);
 }
 
 Side::~Side() {
@@ -22,7 +20,7 @@ Side::~Side() {
 	icL_dropField(m_button);
 }
 
-base::Text * Side::header() const {
+TextLook * Side::header() const {
 	return m_header;
 }
 
@@ -34,7 +32,7 @@ Input * Side::input() const {
 	return m_input;
 }
 
-base::LinkAdv * Side::button() const {
+LinkAdv * Side::button() const {
 	return m_button;
 }
 
@@ -68,5 +66,3 @@ void Side::setBackground(QColor background) {
 	m_background = background;
 	emit backgroundChanged(m_background);
 }
-
-}  // namespace icL::look::start

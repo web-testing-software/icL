@@ -1,11 +1,9 @@
 #ifndef icL_look_start_Editor
 #define icL_look_start_Editor
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 class QTextCharFormat;
-
-namespace icL::look::editor {
 
 class CharFormat;
 class Highlight;
@@ -14,30 +12,30 @@ class Line;
 /**
  * @brief The Editor class defines a color scheme for an editor
  */
-class Editor : public base::Base
+class Editor : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(CharFormat*      text READ text)
-	Q_PROPERTY(CharFormat* selection READ selection)
-	Q_PROPERTY(CharFormat*    number READ number)
-	Q_PROPERTY(CharFormat*    string READ string)
-	Q_PROPERTY(CharFormat*      type READ type)
-	Q_PROPERTY(CharFormat*     local READ local)
-	Q_PROPERTY(CharFormat*    global READ global)
-	Q_PROPERTY(CharFormat*  property READ property)
-	Q_PROPERTY(CharFormat*    method READ method)
-	Q_PROPERTY(CharFormat*  function READ function)
-	Q_PROPERTY(CharFormat*   keyword READ keyword)
-	Q_PROPERTY(CharFormat*   comment READ comment)
-	Q_PROPERTY(CharFormat*    system READ system)
-	Q_PROPERTY(CharFormat*     error READ error)
-	Q_PROPERTY(CharFormat*   warning READ warning)
-	Q_PROPERTY(Highlight* occurrence READ occurrence)
-	Q_PROPERTY(Line*         current READ current)
-	Q_PROPERTY(Line*           debug READ debug)
-	Q_PROPERTY(Line*      breakpoint READ breakpoint)
+	Q_PROPERTY(CharFormat*      text READ text       NOTIFY textChanged)
+	Q_PROPERTY(CharFormat* selection READ selection  NOTIFY selectionChanged)
+	Q_PROPERTY(CharFormat*    number READ number     NOTIFY numberChanged)
+	Q_PROPERTY(CharFormat*    string READ string     NOTIFY stringChanged)
+	Q_PROPERTY(CharFormat*      type READ type       NOTIFY typeChanged)
+	Q_PROPERTY(CharFormat*     local READ local      NOTIFY localChanged)
+	Q_PROPERTY(CharFormat*    global READ global     NOTIFY globalChanged)
+	Q_PROPERTY(CharFormat*  property READ property   NOTIFY propertyChanged)
+	Q_PROPERTY(CharFormat*    method READ method     NOTIFY methodChanged)
+	Q_PROPERTY(CharFormat*  function READ function   NOTIFY functionChanged)
+	Q_PROPERTY(CharFormat*   keyword READ keyword    NOTIFY keywordChanged)
+	Q_PROPERTY(CharFormat*   comment READ comment    NOTIFY commentChanged)
+	Q_PROPERTY(CharFormat*    system READ system     NOTIFY systemChanged)
+	Q_PROPERTY(CharFormat*     error READ error      NOTIFY errorChanged)
+	Q_PROPERTY(CharFormat*   warning READ warning    NOTIFY warningChanged)
+	Q_PROPERTY(Highlight* occurrence READ occurrence NOTIFY occurrenceChanged)
+	Q_PROPERTY(Line*         current READ current    NOTIFY currentChanged)
+	Q_PROPERTY(Line*           debug READ debug      NOTIFY debugChanged)
+	Q_PROPERTY(Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
 	// clang-format on
 
 	CharFormat * m_text       = nullptr;
@@ -187,6 +185,27 @@ public:
 
 	QJsonObject getUp() override;
 
+signals:
+	void textChanged(CharFormat * text);
+	void selectionChanged(CharFormat * selection);
+	void numberChanged(CharFormat * number);
+	void stringChanged(CharFormat * string);
+	void typeChanged(CharFormat * type);
+	void localChanged(CharFormat * local);
+	void globalChanged(CharFormat * global);
+	void propertyChanged(CharFormat * property);
+	void methodChanged(CharFormat * method);
+	void functionChanged(CharFormat * function);
+	void keywordChanged(CharFormat * keyword);
+	void commentChanged(CharFormat * comment);
+	void systemChanged(CharFormat * system);
+	void errorChanged(CharFormat * error);
+	void warningChanged(CharFormat * warning);
+	void occurrenceChanged(Highlight * occurrence);
+	void currentChanged(Line * current);
+	void debugChanged(Line * debug);
+	void breakpointChanged(Line * breakpoint);
+
 public slots:
 	void updateOccurrence();
 	void updateNumber();
@@ -210,7 +229,5 @@ private:
 	void bindHighlights();
 	void bindMessages();
 };
-
-}  // namespace icL::look::editor
 
 #endif  // icL_look_start_Editor

@@ -1,14 +1,9 @@
 #ifndef icL_look_session_SessionWindow
 #define icL_look_session_SessionWindow
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 
-
-/**
- * The icL.look.session namespace defines a look for session window
- */
-namespace icL::look::session {
 
 class CentralSide;
 class Floating;
@@ -18,15 +13,15 @@ class TopBar;
 /**
  * @brief The SessionWindow class describes a look for session window
  */
-class SessionWindow : public base::Base
+class SessionWindow : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(CentralSide* center READ center)
-	Q_PROPERTY(Floating*  floating READ floating)
-	Q_PROPERTY(LeftSide*      left READ left)
-	Q_PROPERTY(TopBar*         top READ top)
+	Q_PROPERTY(CentralSide* center READ center   NOTIFY centerChanged)
+	Q_PROPERTY(Floating*  floating READ floating NOTIFY floatingChanged)
+	Q_PROPERTY(LeftSide*      left READ left     NOTIFY leftChanged)
+	Q_PROPERTY(TopBar*         top READ top      NOTIFY topChanged)
 	// clang-format on
 
 	CentralSide * m_center   = nullptr;
@@ -70,8 +65,12 @@ public:
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
-};
 
-}  // namespace icL::look::session
+signals:
+	void centerChanged(CentralSide * center);
+	void floatingChanged(Floating * floating);
+	void leftChanged(LeftSide * left);
+	void topChanged(TopBar * top);
+};
 
 #endif  // icL_look_session_SessionWindow

@@ -1,34 +1,29 @@
 #ifndef icL_look_session_LeftSide
 #define icL_look_session_LeftSide
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 
-// clang-format off
-namespace icL::look::base  { class Link; }
-namespace icL::look::start { class ListItem; }
-// clang-format on
-
-namespace icL::look::session {
-
+class Link;
+class ListItem;
 class Tree;
 
 /**
  * @brief The LeftSide class describes a look for the left panel
  */
-class LeftSide : public base::Base
+class LeftSide : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Link*   switcher READ switcher)
-	Q_PROPERTY(Tree*         projects READ projects)
-	Q_PROPERTY(start::ListItem* files READ files)
+	Q_PROPERTY(Link*    switcher READ switcher NOTIFY switcherChanged)
+	Q_PROPERTY(Tree* projects READ projects NOTIFY projectsChanged)
+	Q_PROPERTY(ListItem*  files READ files    NOTIFY filesChanged)
 	// clang-format on
 
-	base::Link *      m_switcher = nullptr;
+	Link *      m_switcher = nullptr;
 	Tree *            m_projects = nullptr;
-	start::ListItem * m_files    = nullptr;
+	ListItem * m_files    = nullptr;
 
 public:
 	/**
@@ -43,7 +38,7 @@ public:
 	 * @brief switcher is the look of the projects/files switcher
 	 * @return the look of pro/files switcher
 	 */
-	base::Link * switcher() const;
+	Link * switcher() const;
 
 	/**
 	 * @brief projects is the look of projects tree
@@ -55,13 +50,16 @@ public:
 	 * @brief files is the look of open files list
 	 * @return the look of projects tree
 	 */
-	start::ListItem * files() const;
+	ListItem * files() const;
 
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
-};
 
-}  // namespace icL::look::session
+signals:
+	void switcherChanged(Link * switcher);
+	void projectsChanged(Tree * projects);
+	void filesChanged(ListItem * files);
+};
 
 #endif  // icL_look_session_LeftSide

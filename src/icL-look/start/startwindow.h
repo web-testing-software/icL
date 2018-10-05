@@ -1,39 +1,31 @@
 #ifndef icL_look_start_StartWindow
 #define icL_look_start_StartWindow
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 
 
-// clang-format off
-namespace icL::look::base  { class Text; }
-// clang-format on
-
-/**
- * The icL.look.start namespace contains look for the start window
- */
-namespace icL::look::start {
-
+class TextLook;
 class Side;
 
 /**
  * @brief The StartWindow class describes a look for start window
  */
-class StartWindow : public base::Base
+class StartWindow : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*    header READ header)
-	Q_PROPERTY(Side*            left READ left)
-	Q_PROPERTY(Side*           right READ right)
-	Q_PROPERTY(base::Text* underline READ underline)
+	Q_PROPERTY(TextLook*    header READ header    NOTIFY headerChanged)
+	Q_PROPERTY(Side*     left READ left      NOTIFY leftChanged)
+	Q_PROPERTY(Side*    right READ right     NOTIFY rightChanged)
+	Q_PROPERTY(TextLook* underline READ underline NOTIFY underlineChanged)
 	// clang-format on
 
-	base::Text * m_header    = nullptr;
+	TextLook * m_header    = nullptr;
 	Side *       m_left      = nullptr;
 	Side *       m_right     = nullptr;
-	base::Text * m_underline = nullptr;
+	TextLook * m_underline = nullptr;
 
 public:
 	/**
@@ -48,7 +40,7 @@ public:
 	 * @brief header is the look for window header
 	 * @return the look for window header
 	 */
-	base::Text * header() const;
+	TextLook * header() const;
 
 	/**
 	 * @brief left is look for the left side
@@ -66,13 +58,17 @@ public:
 	 * @brief underline is the look for bottom line
 	 * @return the look for bottom line
 	 */
-	base::Text * underline() const;
+	TextLook * underline() const;
 
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
-};
 
-}  // namespace icL::look::start
+signals:
+	void underlineChanged(TextLook * underline);
+	void rightChanged(Side * right);
+	void leftChanged(Side * left);
+	void headerChanged(TextLook * header);
+};
 
 #endif  // icL_look_start_StartWindow

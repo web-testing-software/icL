@@ -3,7 +3,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.3
 
-import Look 1.0
+import icL.Look 1.0
 
 import "main" as Main
 
@@ -29,9 +29,15 @@ Window {
 
 	// [!] Scale end
 
+	property int ready: 0;
+
 	// Global objects
 	Look {
 		id: look
+
+		Component.onCompleted: {
+			loadConf(":/themes/light.json");
+		}
 	}
 
 	// Window content

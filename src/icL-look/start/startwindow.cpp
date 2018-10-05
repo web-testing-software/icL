@@ -1,18 +1,16 @@
 #include "startwindow.h"
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 #include "side.h"
 
 #include <QJsonObject>
 
-namespace icL::look::start {
-
 StartWindow::StartWindow(QObject * parent)
-	: Base(parent) {
-	m_header    = new base::Text(this);
+	: BaseLook(parent) {
+	m_header    = new TextLook(this);
 	m_left      = new Side(this);
 	m_right     = new Side(this);
-	m_underline = new base::Text(this);
+	m_underline = new TextLook(this);
 }
 
 StartWindow::~StartWindow() {
@@ -22,7 +20,7 @@ StartWindow::~StartWindow() {
 	icL_dropField(m_underline);
 }
 
-base::Text * StartWindow::header() const {
+TextLook * StartWindow::header() const {
 	return m_header;
 }
 
@@ -34,7 +32,7 @@ Side * StartWindow::right() const {
 	return m_right;
 }
 
-base::Text * StartWindow::underline() const {
+TextLook * StartWindow::underline() const {
 	return m_underline;
 }
 
@@ -51,5 +49,3 @@ QJsonObject StartWindow::getUp() {
 			{"right", m_right->getUp()},
 			{"underline", m_underline->getUp()}};
 }
-
-}  // namespace icL::look::start

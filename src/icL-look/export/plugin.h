@@ -4,15 +4,13 @@
 #include <QObject>
 #include <QQmlExtensionPlugin>
 
-namespace icL::look {
-
-class Plugin : public QQmlExtensionPlugin
+class LookPlugin : public QQmlExtensionPlugin
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
 public:
-	explicit Plugin(QObject * parent = nullptr);
+	explicit LookPlugin(QObject * parent = nullptr);
 
 signals:
 
@@ -22,7 +20,5 @@ public slots:
 public:
 	void registerTypes(const char *uri) override;
 };
-
-}  // namespace icL::look
 
 #endif  // PLUGIN_H

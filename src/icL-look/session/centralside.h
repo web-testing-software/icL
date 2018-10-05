@@ -1,46 +1,44 @@
 #ifndef icL_look_session_CentralSide
 #define icL_look_session_CentralSide
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 #include <QColor>
 
 
 
 // clang-format off
-namespace icL::look::base  { class Text; class LinkAdv; }
-namespace icL::look::start { class Input; }
+class TextLook; class LinkAdv;
+class Input;
 // clang-format on
-
-namespace icL::look::session {
 
 class Issue;
 
 /**
  * @brief The CentralSide class decribes a look for the central widget
  */
-class CentralSide : public base::Base
+class CentralSide : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*        header READ header)
-	Q_PROPERTY(Issue*               warn READ warn)
-	Q_PROPERTY(Issue*              error READ error)
-	Q_PROPERTY(base::LinkAdv*  undertext READ undertext)
-	Q_PROPERTY(base::LinkAdv* underdigit READ underdigit)
-	Q_PROPERTY(QColor            command READ command     WRITE setCommand     NOTIFY commandChanged)
-	Q_PROPERTY(QColor        errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
-	Q_PROPERTY(QColor           okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
-	Q_PROPERTY(start::Input*       input READ input)
+	Q_PROPERTY(TextLook*        header READ header     NOTIFY headerChanged)
+	Q_PROPERTY(Issue*      warn READ warn       NOTIFY warnChanged)
+	Q_PROPERTY(Issue*     error READ error      NOTIFY errorChanged)
+	Q_PROPERTY(LinkAdv*  undertext READ undertext  NOTIFY undertextChanged)
+	Q_PROPERTY(LinkAdv* underdigit READ underdigit NOTIFY underdigitChanged)
+	Q_PROPERTY(Input*       input READ input      NOTIFY inputChanged)
+	Q_PROPERTY(QColor     command READ command     WRITE setCommand     NOTIFY commandChanged)
+	Q_PROPERTY(QColor errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
+	Q_PROPERTY(QColor    okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
 	// clang-format on
 
-	base::Text *    m_header     = nullptr;
+	TextLook *    m_header     = nullptr;
 	Issue *         m_warn       = nullptr;
 	Issue *         m_error      = nullptr;
-	base::LinkAdv * m_undertext  = nullptr;
-	base::LinkAdv * m_underdigit = nullptr;
-	start::Input *  m_input      = nullptr;
+	LinkAdv * m_undertext  = nullptr;
+	LinkAdv * m_underdigit = nullptr;
+	Input *  m_input      = nullptr;
 	QColor          m_command;
 	QColor          m_errorResult;
 	QColor          m_okResult;
@@ -58,7 +56,7 @@ public:
 	 * @brief header is the look of editor header
 	 * @return the look for editor header
 	 */
-	base::Text * header() const;
+	TextLook * header() const;
 
 	/**
 	 * @brief warn is the look of a warning
@@ -76,13 +74,13 @@ public:
 	 * @brief undertext is the look for the text in state bar
 	 * @return the look for the text in the state bar
 	 */
-	base::LinkAdv * undertext() const;
+	LinkAdv * undertext() const;
 
 	/**
 	 * @brief underdigit is the look for digits in the state bar
 	 * @return the look for digits in the state bar
 	 */
-	base::LinkAdv * underdigit() const;
+	LinkAdv * underdigit() const;
 
 	/**
 	 * @brief command is the color of commands in console
@@ -106,7 +104,7 @@ public:
 	 * @brief input is the look for command input
 	 * @return the look for commad input
 	 */
-	start::Input * input() const;
+	Input * input() const;
 
 	void setUp(const QJsonObject & obj) override;
 
@@ -116,6 +114,12 @@ signals:
 	void commandChanged(QColor command);
 	void errorResultChanged(QColor errorResult);
 	void okResultChanged(QColor okResult);
+	void headerChanged(TextLook * header);
+	void warnChanged(Issue * warn);
+	void errorChanged(Issue * error);
+	void undertextChanged(LinkAdv * undertext);
+	void underdigitChanged(LinkAdv * underdigit);
+	void inputChanged(Input * input);
 
 public slots:
 	/**
@@ -136,7 +140,5 @@ public slots:
 	 */
 	void setOkResult(QColor okResult);
 };
-
-}  // namespace icL::look::session
 
 #endif  // icL_look_session_CentralSide

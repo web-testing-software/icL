@@ -5,8 +5,6 @@
 
 
 
-namespace icL::look::editor {
-
 /**
  * @brief The CharFormat class define a format for a fragment of text
  */
@@ -62,7 +60,5 @@ public slots:
 	 */
 	void setUndercolor(QColor undercolor);
 };
-
-}  // namespace icL::look::editor
 
 #endif  // icL_look_editor_CharFormat

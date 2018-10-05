@@ -1,13 +1,11 @@
 #ifndef icL_look_editor_CharFormatBase
 #define icL_look_editor_CharFormatBase
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 
 
 
-namespace icL::look::editor {
-
-class CharFormatBase : public base::Text
+class CharFormatBase : public TextLook
 {
 	Q_OBJECT
 
@@ -59,7 +57,5 @@ public slots:
 	 */
 	void setItalic(bool italic);
 };
-
-}  // namespace icL::look::editor
 
 #endif  // icL_look_editor_CharFormatBase

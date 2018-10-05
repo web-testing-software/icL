@@ -1,6 +1,6 @@
 # look - personalize look of programs
 
-TARGET = -icL-look
+TARGET = icLlookPlugin
 TEMPLATE = lib
 CONFIG += plugin
 
@@ -10,17 +10,17 @@ ICL_ROOT = $$PWD/../..
 
 include($$ICL_ROOT/pri_files/lib.pri)
 
-DESTDIR = $$ICL_ROOT/bin/$$BUILDTYPE/$$OS/Look
+DESTDIR = $$ICL_ROOT/bin/$$BUILDTYPE/$$OS/icL/Look
 
 TARGET = $$qtLibraryTarget($$TARGET)
-uri = Look
+uri = icL.Look
 
 DISTFILES += \
     README.md \
-    qmldir
+    qmldir \
+    look.qmltypes
 
 HEADERS += \
-    base/text.h \
     base/link.h \
     base/linkadv.h \
     base/effect.h \
@@ -42,11 +42,11 @@ HEADERS += \
     editor/charformat.h \
     editor/editor.h \
     export/look.h \
-    base/base.h \
-    export/plugin.h
+    export/plugin.h \
+    base/baselook.h \
+    base/textlook.h
 
 SOURCES += \
-    base/text.cpp \
     base/link.cpp \
     base/linkadv.cpp \
     base/effect.cpp \
@@ -68,21 +68,24 @@ SOURCES += \
     editor/charformat.cpp \
     editor/editor.cpp \
     export/look.cpp \
-    base/base.cpp \
-    export/plugin.cpp
+    export/plugin.cpp \
+    base/baselook.cpp \
+    base/textlook.cpp
 
-!equals(_PRO_FILE_PWD_, $$OUT_PWD) {
-    copy_qmldir.target = $$DESTDIR/qmldir
-    copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir
-    copy_qmldir.commands = $(COPY_FILE) \"$$replace(copy_qmldir.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_qmldir.target, /, $$QMAKE_DIR_SEP)\"
-    QMAKE_EXTRA_TARGETS += copy_qmldir
-    PRE_TARGETDEPS += $$copy_qmldir.target
-}
+copy_qmldir.target = $$DESTDIR/qmldir
+copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir
+copy_qmldir.commands = mkdir -p \"$$replace($$DESTDIR, /, $$QMAKE_DIR_SEP)\"; \
+    $(COPY_FILE) \"$$replace(copy_qmldir.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_qmldir.target, /, $$QMAKE_DIR_SEP)\"
+copy_qmltypes.target = $$DESTDIR/look.qmltypes
+copy_qmltypes.depends = $$_PRO_FILE_PWD_/look.qmltypes
+copy_qmltypes.commands = $(COPY_FILE) \"$$replace(copy_qmltypes.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_qmltypes.target, /, $$QMAKE_DIR_SEP)\"
+QMAKE_EXTRA_TARGETS += copy_qmldir copy_qmltypes
+PRE_TARGETDEPS += $$copy_qmldir.target $$copy_qmltypes.target
 
-qmldir.files = qmldir
+qmldir.files = qmldir look.qmltypes
 unix {
     installPath = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)
     qmldir.path = $$installPath
     target.path = $$installPath
-    INSTALLS += qmldir
+    INSTALLS += qmldir look.qmltypes
 }

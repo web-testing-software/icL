@@ -4,24 +4,20 @@
 #include "../base/linkadv.h"
 
 
-// clang-format off
-namespace icL::look::base  { class Effect; }
-// clang-format on
-
-namespace icL::look::session {
+class Effect;
 
 /**
  * @brief The Issue class describe a look for a issue item
  */
-class Issue : public base::LinkAdv
+class Issue : public LinkAdv
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Effect* effect READ effect)
+	Q_PROPERTY(Effect* effect READ effect NOTIFY effectChanged)
 	// clang-format on
 
-	base::Effect * m_effect;
+	Effect * m_effect;
 
 public:
 	/**
@@ -36,13 +32,14 @@ public:
 	 * @brief effect is the underline effect
 	 * @return the underline effect
 	 */
-	base::Effect * effect() const;
+	Effect * effect() const;
 
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
-};
 
-}  // namespace icL::look::session
+signals:
+	void effectChanged(Effect * effect);
+};
 
 #endif  // icL_look_session_Issue

@@ -4,10 +4,8 @@
 
 #include <QJsonObject>
 
-namespace icL::look::editor {
-
 Line::Line(QObject * parent)
-	: Base(parent) {
+	: BaseLook(parent) {
 	m_lineBg     = QColor(Qt::transparent);
 	m_lineNumber = new CharFormatBase(this);
 }
@@ -43,5 +41,3 @@ void Line::setLineBg(QColor lineBg) {
 	m_lineBg = lineBg;
 	emit lineBgChanged(m_lineBg);
 }
-
-}  // namespace icL::look::editor

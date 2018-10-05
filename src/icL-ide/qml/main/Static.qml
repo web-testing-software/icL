@@ -4,5 +4,5 @@ Rectangle {
 	id: staticRoot
 
 	width: rd(rq * 75)
-	color: look.session;
+	color: look.session.top.tab.activeHover.foreground;
 }

@@ -1,21 +1,16 @@
 #ifndef icL_look_base_Text
 #define icL_look_base_Text
 
-#include "base.h"
+#include "baselook.h"
 
 #include <QColor>
 
 
 
 /**
- * The icL.look.base namespace defines base color container for look component
- */
-namespace icL::look::base {
-
-/**
  * @brief The Text class describes a look for a text fragment
  */
-class Text : public base::Base
+class TextLook : public BaseLook
 {
 	Q_OBJECT
 
@@ -28,7 +23,7 @@ class Text : public base::Base
 	QColor m_foreground;
 
 public:
-	Text(QObject * parent = nullptr);
+	TextLook(QObject * parent = nullptr);
 
 	/**
 	 * @brief background is the background color
@@ -63,7 +58,5 @@ public slots:
 	 */
 	void setForeground(QColor foreground);
 };
-
-}  // namespace icL::look::base
 
 #endif  // icL_look_base_Text

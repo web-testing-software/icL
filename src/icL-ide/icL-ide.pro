@@ -11,6 +11,7 @@ include($$ICL_ROOT/pri_files/app.pri)
 
 DEFINES += icL_root=\"$$ICL_ROOT\"
 
+QML_IMPORT_PATH += $$DESTDIR
 
 SOURCES += \
     main.cpp
