@@ -41,26 +41,6 @@ class Editor : public BaseLook
 	Q_PROPERTY(Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
 	// clang-format on
 
-	CharFormat * m_text       = nullptr;
-	CharFormat * m_selection  = nullptr;
-	CharFormat * m_number     = nullptr;
-	CharFormat * m_string     = nullptr;
-	CharFormat * m_type       = nullptr;
-	CharFormat * m_local      = nullptr;
-	CharFormat * m_global     = nullptr;
-	CharFormat * m_property   = nullptr;
-	CharFormat * m_method     = nullptr;
-	CharFormat * m_function   = nullptr;
-	CharFormat * m_keyword    = nullptr;
-	CharFormat * m_comment    = nullptr;
-	CharFormat * m_system     = nullptr;
-	CharFormat * m_error      = nullptr;
-	CharFormat * m_warning    = nullptr;
-	Highlight *  m_occurrence = nullptr;
-	Line *       m_current    = nullptr;
-	Line *       m_debug      = nullptr;
-	Line *       m_breakpoint = nullptr;
-
 public:
 	/**
 	 * @brief Editor is the default constructor
@@ -231,8 +211,28 @@ private:
 	void bindChars();
 	void bindHighlights();
 	void bindMessages();
+
+	CharFormat * m_text       = nullptr;
+	CharFormat * m_selection  = nullptr;
+	CharFormat * m_number     = nullptr;
+	CharFormat * m_string     = nullptr;
+	CharFormat * m_type       = nullptr;
+	CharFormat * m_local      = nullptr;
+	CharFormat * m_global     = nullptr;
+	CharFormat * m_property   = nullptr;
+	CharFormat * m_method     = nullptr;
+	CharFormat * m_function   = nullptr;
+	CharFormat * m_keyword    = nullptr;
+	CharFormat * m_comment    = nullptr;
+	CharFormat * m_system     = nullptr;
+	CharFormat * m_error      = nullptr;
+	CharFormat * m_warning    = nullptr;
+	Highlight *  m_occurrence = nullptr;
+	Line *       m_current    = nullptr;
+	Line *       m_debug      = nullptr;
+	Line *       m_breakpoint = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_start_Editor

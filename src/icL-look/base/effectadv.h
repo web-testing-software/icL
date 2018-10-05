@@ -16,8 +16,6 @@ class EffectAdv : public Effect
 	Q_PROPERTY(QColor activeHover READ activeHover WRITE setActiveHover NOTIFY activeHoverChanged)
 	// clang-format on
 
-	QColor m_activeHover;
-
 public:
 	/**
 	 * @brief EffectAdv is the default constructor
@@ -44,8 +42,11 @@ public slots:
 	 * @param activeHover is the new link color for active and hover state
 	 */
 	void setActiveHover(QColor activeHover);
+
+private:
+	QColor m_activeHover;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // EFFECTADV_H

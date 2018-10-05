@@ -29,15 +29,6 @@ class Floating : public BaseLook
 	Q_PROPERTY(QColor      bg READ bg      WRITE setBg      NOTIFY bgChanged)
 	// clang-format on
 
-	TextLook * m_header = nullptr;
-	Tree *     m_stack  = nullptr;
-	Tree *     m_state  = nullptr;
-	Input *    m_input  = nullptr;
-	QColor     m_error;
-	QColor     m_warn;
-	QColor     m_console;
-	QColor     m_bg;
-
 public:
 	/**
 	 * @brief Floating is the default constructor
@@ -133,8 +124,18 @@ public slots:
 	 * @param bg is the new color for background
 	 */
 	void setBg(QColor bg);
+
+private:
+	TextLook * m_header = nullptr;
+	Tree *     m_stack  = nullptr;
+	Tree *     m_state  = nullptr;
+	Input *    m_input  = nullptr;
+	QColor     m_error;
+	QColor     m_warn;
+	QColor     m_console;
+	QColor     m_bg;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_Floating

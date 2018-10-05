@@ -22,10 +22,6 @@ class Effect : public BaseLook
 	Q_PROPERTY(QColor active READ active WRITE setActive NOTIFY activeChanged)
 	// clang-format on
 
-	QColor m_normal;
-	QColor m_hover;
-	QColor m_active;
-
 public:
 	/**
 	 * @brief Effect is the default constructor
@@ -78,8 +74,13 @@ public slots:
 	 * @param active is the new effect color for active state
 	 */
 	void setActive(QColor active);
+
+private:
+	QColor m_normal;
+	QColor m_hover;
+	QColor m_active;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // EFFECT_H

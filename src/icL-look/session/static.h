@@ -27,15 +27,6 @@ class Static : public BaseLook
 	Q_PROPERTY(QColor  handleHidden READ handleHidden  WRITE setHandleHidden  NOTIFY handleHiddenChanged)
 	// clang-format on
 
-	LinkAdv *   m_menuItem      = nullptr;
-	LinkAdv *   m_submenuItem   = nullptr;
-	EffectAdv * m_submenuBorder = nullptr;
-	LinkAdv *   m_button        = nullptr;
-	QColor      m_background;
-	QColor      m_handle;
-	QColor      m_handleVisible;
-	QColor      m_handleHidden;
-
 public:
 	/**
 	 * @brief Static is the default constructor
@@ -129,8 +120,18 @@ public slots:
 	 * @param handleHidden is the color for inactive handler
 	 */
 	void setHandleHidden(QColor handleHidden);
+
+private:
+	LinkAdv *   m_menuItem      = nullptr;
+	LinkAdv *   m_submenuItem   = nullptr;
+	EffectAdv * m_submenuBorder = nullptr;
+	LinkAdv *   m_button        = nullptr;
+	QColor      m_background;
+	QColor      m_handle;
+	QColor      m_handleVisible;
+	QColor      m_handleHidden;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_Static

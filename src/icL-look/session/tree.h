@@ -21,9 +21,6 @@ class Tree : public BaseLook
 	Q_PROPERTY(Link*  child READ child  NOTIFY childChanged)
 	// clang-format on
 
-	Link * m_parent = nullptr;
-	Link * m_child  = nullptr;
-
 public:
 	/**
 	 * @brief Tree is the default contructor
@@ -52,8 +49,12 @@ public:
 signals:
 	void parentChanged(Link * parent);
 	void childChanged(Link * child);
+
+private:
+	Link * m_parent = nullptr;
+	Link * m_child  = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_Tree

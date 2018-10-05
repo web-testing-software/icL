@@ -32,16 +32,6 @@ class CentralSide : public BaseLook
 	Q_PROPERTY(QColor     okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
 	// clang-format on
 
-	TextLook * m_header     = nullptr;
-	Issue *    m_warn       = nullptr;
-	Issue *    m_error      = nullptr;
-	LinkAdv *  m_undertext  = nullptr;
-	LinkAdv *  m_underdigit = nullptr;
-	Input *    m_input      = nullptr;
-	QColor     m_command;
-	QColor     m_errorResult;
-	QColor     m_okResult;
-
 public:
 	/**
 	 * @brief CentralSide is the default constructor
@@ -138,8 +128,19 @@ public slots:
 	 * @param okResult is the nre color for results in console
 	 */
 	void setOkResult(QColor okResult);
+
+private:
+	TextLook * m_header     = nullptr;
+	Issue *    m_warn       = nullptr;
+	Issue *    m_error      = nullptr;
+	LinkAdv *  m_undertext  = nullptr;
+	LinkAdv *  m_underdigit = nullptr;
+	Input *    m_input      = nullptr;
+	QColor     m_command;
+	QColor     m_errorResult;
+	QColor     m_okResult;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_CentralSide

@@ -24,10 +24,6 @@ class LeftSide : public BaseLook
 	Q_PROPERTY(ListItem* files READ files    NOTIFY filesChanged)
 	// clang-format on
 
-	Link *      m_switcher = nullptr;
-	Tree *            m_projects = nullptr;
-	ListItem * m_files    = nullptr;
-
 public:
 	/**
 	 * @brief LeftSide is the default constructor
@@ -63,8 +59,13 @@ signals:
 	void switcherChanged(Link * switcher);
 	void projectsChanged(Tree * projects);
 	void filesChanged(ListItem * files);
+
+private:
+	Link *     m_switcher = nullptr;
+	Tree *     m_projects = nullptr;
+	ListItem * m_files    = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_LeftSide

@@ -21,12 +21,6 @@ class Look : public BaseLook
 	Q_PROPERTY(Editor*         editor READ editor  NOTIFY editorChanged)
 	// clang-format on
 
-	StartWindow *   m_start   = nullptr;
-	SessionWindow * m_session = nullptr;
-	Editor *        m_editor  = nullptr;
-
-	QString confFilePath;
-
 public:
 	/**
 	 * @brief Look is the default constructor
@@ -75,8 +69,15 @@ signals:
 	void startChanged(StartWindow * start);
 	void sessionChanged(SessionWindow * session);
 	void editorChanged(Editor * editor);
+
+private:
+	StartWindow *   m_start   = nullptr;
+	SessionWindow * m_session = nullptr;
+	Editor *        m_editor  = nullptr;
+
+	QString confFilePath;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_Look

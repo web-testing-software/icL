@@ -22,10 +22,6 @@ class Input : public Link
 	Q_PROPERTY(QColor cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 
-	TextLook * m_inactive  = nullptr;
-	TextLook * m_selection = nullptr;
-	QColor       m_cursor;
-
 public:
 	/**
 	 * @brief Input is the default contructor
@@ -67,8 +63,13 @@ public slots:
 	 * @param cursor is the new color for text cursors
 	 */
 	void setCursor(QColor cursor);
+
+private:
+	TextLook * m_inactive  = nullptr;
+	TextLook * m_selection = nullptr;
+	QColor     m_cursor;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_start_Input

@@ -21,9 +21,6 @@ class TextLook : public BaseLook
 	Q_PROPERTY(QColor foreground READ foreground WRITE setForeground NOTIFY foregroundChanged)
 	// clang-format on
 
-	QColor m_background;
-	QColor m_foreground;
-
 public:
 	TextLook(QObject * parent = nullptr);
 
@@ -59,8 +56,12 @@ public slots:
 	 * @param foreground is the new foreground color
 	 */
 	void setForeground(QColor foreground);
+
+private:
+	QColor m_background;
+	QColor m_foreground;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_base_Text

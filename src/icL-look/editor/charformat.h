@@ -19,9 +19,6 @@ class CharFormat : public CharFormatBase
 	Q_PROPERTY(QColor undercolor READ undercolor WRITE setUndercolor NOTIFY undercolorChanged)
 	// clang-format on
 
-	int    m_underline;
-	QColor m_undercolor;
-
 public:
 	/**
 	 * @brief CharFormat is the default constructor
@@ -61,8 +58,12 @@ public slots:
 	 * @param undercolor is the new color for underline
 	 */
 	void setUndercolor(QColor undercolor);
+
+private:
+	int    m_underline;
+	QColor m_undercolor;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_editor_CharFormat

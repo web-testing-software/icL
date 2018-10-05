@@ -28,12 +28,6 @@ class SessionWindow : public BaseLook
 	Q_PROPERTY(Static*        main READ main     NOTIFY mainChanged)
 	// clang-format on
 
-	CentralSide * m_center   = nullptr;
-	Floating *    m_floating = nullptr;
-	LeftSide *    m_left     = nullptr;
-	TopBar *      m_top      = nullptr;
-	Static *      m_main     = nullptr;
-
 public:
 	/**
 	 * @brief SessionWindow is the default constructor
@@ -83,8 +77,15 @@ signals:
 	void leftChanged(LeftSide * left);
 	void topChanged(TopBar * top);
 	void mainChanged(Static * main);
+
+private:
+	CentralSide * m_center   = nullptr;
+	Floating *    m_floating = nullptr;
+	LeftSide *    m_left     = nullptr;
+	TopBar *      m_top      = nullptr;
+	Static *      m_main     = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_SessionWindow

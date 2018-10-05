@@ -16,9 +16,6 @@ class CharFormatBase : public TextLook
 	Q_PROPERTY(bool italic READ italic WRITE setItalic NOTIFY italicChanged)
 	// clang-format on
 
-	bool m_bold;
-	bool m_italic;
-
 public:
 	/**
 	 * @brief CharFormatBase is the default constructor
@@ -58,8 +55,12 @@ public slots:
 	 * @param italic is the new angle for text
 	 */
 	void setItalic(bool italic);
+
+private:
+	bool m_bold;
+	bool m_italic;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_editor_CharFormatBase

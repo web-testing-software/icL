@@ -24,10 +24,6 @@ class Link : public BaseLook
 	Q_PROPERTY(TextLook * active READ active NOTIFY activeChanged)
 	// clang-format on
 
-	TextLook * m_normal = nullptr;
-	TextLook * m_hover  = nullptr;
-	TextLook * m_active = nullptr;
-
 public:
 	/**
 	 * @brief Link is the default constructor
@@ -63,8 +59,13 @@ signals:
 	void normalChanged(TextLook * normal);
 	void hoverChganged(TextLook * hover);
 	void activeChanged(TextLook * active);
+
+private:
+	TextLook * m_normal = nullptr;
+	TextLook * m_hover  = nullptr;
+	TextLook * m_active = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_base_Link

@@ -20,8 +20,6 @@ class ListItem : public Link
 	Q_PROPERTY(Effect * border READ border NOTIFY borderChanged)
 	// clang-format on
 
-	Effect * m_border = nullptr;
-
 public:
 	/**
 	 * @brief ListItem is the default constructor
@@ -43,8 +41,11 @@ public:
 
 signals:
 	void borderChanged(Effect * border);
+
+private:
+	Effect * m_border = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_start_ListItem

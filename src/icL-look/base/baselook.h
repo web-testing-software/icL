@@ -49,6 +49,6 @@ protected:
 	QJsonObject colorToObj(const QColor & color);
 };
 
-}
+}  // namespace icL::look
 
 #endif  // BASE_H

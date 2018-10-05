@@ -23,9 +23,6 @@ class Line : public BaseLook
 	Q_PROPERTY(CharFormatBase* lineNumber READ lineNumber NOTIFY lineNumberChanged)
 	// clang-format on
 
-	QColor           m_lineBg;
-	CharFormatBase * m_lineNumber;
-
 public:
 	/**
 	 * @brief Line is the default contructor
@@ -61,8 +58,12 @@ public slots:
 	 * @param lineBg is the new background color for highlighted line
 	 */
 	void setLineBg(QColor lineBg);
+
+private:
+	QColor           m_lineBg;
+	CharFormatBase * m_lineNumber;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_editor_Line

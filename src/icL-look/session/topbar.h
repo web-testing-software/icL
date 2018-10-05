@@ -26,13 +26,6 @@ class TopBar : public BaseLook
 	Q_PROPERTY(QColor cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 
-	LinkAdv *   m_tab    = nullptr;
-	LinkAdv *   m_url    = nullptr;
-	EffectAdv * m_button = nullptr;
-	EffectAdv * m_tool   = nullptr;
-	TextLook *  m_input  = nullptr;
-	QColor      m_cursor;
-
 public:
 	/**
 	 * @brief TopBar is the default constructor
@@ -96,8 +89,16 @@ public slots:
 	 * @param cursor is the new color for text cursor
 	 */
 	void setCursor(QColor cursor);
+
+private:
+	LinkAdv *   m_tab    = nullptr;
+	LinkAdv *   m_url    = nullptr;
+	EffectAdv * m_button = nullptr;
+	EffectAdv * m_tool   = nullptr;
+	TextLook *  m_input  = nullptr;
+	QColor      m_cursor;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_session_TopBar

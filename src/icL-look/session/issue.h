@@ -20,8 +20,6 @@ class Issue : public LinkAdv
 	Q_PROPERTY(Effect* effect READ effect NOTIFY effectChanged)
 	// clang-format on
 
-	Effect * m_effect;
-
 public:
 	/**
 	 * @brief Issue is the default constructor
@@ -43,6 +41,9 @@ public:
 
 signals:
 	void effectChanged(Effect * effect);
+
+private:
+	Effect * m_effect;
 };
 
 }  // namespace icL::look

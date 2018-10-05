@@ -18,8 +18,6 @@ class LinkAdv : public Link
 	Q_PROPERTY(TextLook * activeHover READ activeHover NOTIFY activeHoverChanged)
 	// clang-format on
 
-	TextLook * m_activeHover = nullptr;
-
 public:
 	/**
 	 * @brief LinkAdv is the default constructor
@@ -41,8 +39,11 @@ public:
 
 signals:
 	void activeHoverChanged(TextLook * activeHover);
+
+private:
+	TextLook * m_activeHover = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_base_LinkAdv

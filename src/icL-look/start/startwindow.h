@@ -24,11 +24,6 @@ class StartWindow : public BaseLook
 	Q_PROPERTY(TextLook* underline READ underline NOTIFY underlineChanged)
 	// clang-format on
 
-	TextLook * m_header    = nullptr;
-	Side *     m_left      = nullptr;
-	Side *     m_right     = nullptr;
-	TextLook * m_underline = nullptr;
-
 public:
 	/**
 	 * @brief StartWindow is the default constructor
@@ -71,8 +66,14 @@ signals:
 	void rightChanged(Side * right);
 	void leftChanged(Side * left);
 	void headerChanged(TextLook * header);
+
+private:
+	TextLook * m_header    = nullptr;
+	Side *     m_left      = nullptr;
+	Side *     m_right     = nullptr;
+	TextLook * m_underline = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_start_StartWindow

@@ -21,9 +21,6 @@ class Highlight : public BaseLook
 	Q_PROPERTY(QColor     border READ border     WRITE setBorder     NOTIFY borderChanged)
 	// clang-format on
 
-	QColor m_background;
-	QColor m_border;
-
 public:
 	/**
 	 * @brief Highlight is the default constructor
@@ -62,8 +59,12 @@ public slots:
 	 * @param border is the new color for border
 	 */
 	void setBorder(QColor border);
+
+private:
+	QColor m_background;
+	QColor m_border;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_editor_Highlight

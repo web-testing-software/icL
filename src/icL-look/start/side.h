@@ -26,11 +26,6 @@ class Side : public ListItem
 	Q_PROPERTY(LinkAdv*  button READ button NOTIFY buttonChanged)
 	// clang-format on
 
-	TextLook * m_header = nullptr;
-	QColor     m_background;
-	Input *    m_input  = nullptr;
-	LinkAdv *  m_button = nullptr;
-
 public:
 	/**
 	 * @brief Side is the default contructor
@@ -80,8 +75,14 @@ public slots:
 	 * @param background is the new background color
 	 */
 	void setBackground(QColor background);
+
+private:
+	TextLook * m_header = nullptr;
+	QColor     m_background;
+	Input *    m_input  = nullptr;
+	LinkAdv *  m_button = nullptr;
 };
 
-}
+}  // namespace icL::look
 
 #endif  // icL_look_start_Side
