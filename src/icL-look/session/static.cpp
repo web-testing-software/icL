@@ -56,6 +56,8 @@ void Static::setUp(const QJsonObject & obj) {
 	m_handle        = objToColor(obj.value("handle").toObject());
 	m_handleVisible = objToColor(obj.value("handle-visible").toObject());
 	m_handleHidden  = objToColor(obj.value("handle-hidden").toObject());
+	m_menuShadow    = objToColor(obj.value("menu-shadow").toObject());
+	m_submenuShadow = objToColor(obj.value("submenu-shadow").toObject());
 }
 
 QJsonObject Static::getUp() {
@@ -66,7 +68,17 @@ QJsonObject Static::getUp() {
 			{"background", colorToObj(m_background)},
 			{"handle", colorToObj(m_handle)},
 			{"handle-visible", colorToObj(m_handleVisible)},
-			{"handle-hidden", colorToObj(m_handleHidden)}};
+			{"handle-hidden", colorToObj(m_handleHidden)},
+			{"menu-shadow", colorToObj(m_menuShadow)},
+			{"submenu-shadow", colorToObj(m_submenuShadow)}};
+}
+
+QColor Static::menuShadow() const {
+	return m_menuShadow;
+}
+
+QColor Static::submenuShadow() const {
+	return m_submenuShadow;
 }
 
 void Static::setBackground(QColor background) {
@@ -101,4 +113,20 @@ void Static::setHandleHidden(QColor handleHidden) {
 	emit handleHiddenChanged(m_handleHidden);
 }
 
+void Static::setMenuShadow(QColor menuShadow) {
+	if (m_menuShadow == menuShadow)
+		return;
+
+	m_menuShadow = menuShadow;
+	emit menuShadowChanged(m_menuShadow);
 }
+
+void Static::setSubmenuShadow(QColor submenuShadow) {
+	if (m_submenuShadow == submenuShadow)
+		return;
+
+	m_submenuShadow = submenuShadow;
+	emit submenuShadowChanged(m_submenuShadow);
+}
+
+}  // namespace icL::look

@@ -573,6 +573,89 @@ Module {
         }
     }
     Component {
+        name: "icL::look::Static"
+        prototype: "icL::look::BaseLook"
+        Property { name: "menuItem"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "submenuItem"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property {
+            name: "submenuBorder"
+            type: "icL::look::EffectAdv"
+            isReadonly: true
+            isPointer: true
+        }
+        Property { name: "button"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "background"; type: "QColor" }
+        Property { name: "handle"; type: "QColor" }
+        Property { name: "handleVisible"; type: "QColor" }
+        Property { name: "handleHidden"; type: "QColor" }
+        Property { name: "menuShadow"; type: "QColor" }
+        Property { name: "submenuShadow"; type: "QColor" }
+        Signal {
+            name: "menuItemChanged"
+            Parameter { name: "menuItem"; type: "LinkAdv"; isPointer: true }
+        }
+        Signal {
+            name: "submenuItemChanged"
+            Parameter { name: "submenuItem"; type: "LinkAdv"; isPointer: true }
+        }
+        Signal {
+            name: "submenuBorderChanged"
+            Parameter { name: "submenuBorder"; type: "EffectAdv"; isPointer: true }
+        }
+        Signal {
+            name: "buttonChanged"
+            Parameter { name: "button"; type: "LinkAdv"; isPointer: true }
+        }
+        Signal {
+            name: "backgroundChanged"
+            Parameter { name: "background"; type: "QColor" }
+        }
+        Signal {
+            name: "handleChanged"
+            Parameter { name: "handle"; type: "QColor" }
+        }
+        Signal {
+            name: "handleVisibleChanged"
+            Parameter { name: "handleVisible"; type: "QColor" }
+        }
+        Signal {
+            name: "handleHiddenChanged"
+            Parameter { name: "handleHidden"; type: "QColor" }
+        }
+        Signal {
+            name: "menuShadowChanged"
+            Parameter { name: "menuShadow"; type: "QColor" }
+        }
+        Signal {
+            name: "submenuShadowChanged"
+            Parameter { name: "submenuShadow"; type: "QColor" }
+        }
+        Method {
+            name: "setBackground"
+            Parameter { name: "background"; type: "QColor" }
+        }
+        Method {
+            name: "setHandle"
+            Parameter { name: "handle"; type: "QColor" }
+        }
+        Method {
+            name: "setHandleVisible"
+            Parameter { name: "handleVisible"; type: "QColor" }
+        }
+        Method {
+            name: "setHandleHidden"
+            Parameter { name: "handleHidden"; type: "QColor" }
+        }
+        Method {
+            name: "setMenuShadow"
+            Parameter { name: "menuShadow"; type: "QColor" }
+        }
+        Method {
+            name: "setSubmenuShadow"
+            Parameter { name: "submenuShadow"; type: "QColor" }
+        }
+    }
+    Component {
         name: "icL::look::TextLook"
         prototype: "icL::look::BaseLook"
         Property { name: "background"; type: "QColor" }

@@ -36,7 +36,8 @@ Window {
 		id: look
 
 		Component.onCompleted: {
-			loadConf(":/themes/light.json");
+			loadConf("light.json");
+			saveConf();
 		}
 	}
 

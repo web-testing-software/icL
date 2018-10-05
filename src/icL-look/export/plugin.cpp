@@ -13,6 +13,7 @@
 #include <icL-look/session/issue.h>
 #include <icL-look/session/leftside.h>
 #include <icL-look/session/sessionwindow.h>
+#include <icL-look/session/static.h>
 #include <icL-look/session/topbar.h>
 #include <icL-look/session/tree.h>
 #include <icL-look/start/input.h>
@@ -49,5 +50,6 @@ void LookPlugin::registerTypes(const char * uri) {
 	qmlRegisterType<icL::look::ListItem>();
 	qmlRegisterType<icL::look::Side>();
 	qmlRegisterType<icL::look::StartWindow>();
+	qmlRegisterType<icL::look::Static>();
 	qmlRegisterType<icL::look::Look>(uri, 1, 0, "Look");
 }
