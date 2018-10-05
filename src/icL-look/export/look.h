@@ -14,14 +14,14 @@ class Look : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(StartWindow*       start READ start   NOTIFY startChanged)
+	Q_PROPERTY(StartWindow*     start READ start   NOTIFY startChanged)
 	Q_PROPERTY(SessionWindow* session READ session NOTIFY sessionChanged)
-	Q_PROPERTY(Editor*          editor READ editor  NOTIFY editorChanged)
+	Q_PROPERTY(Editor*         editor READ editor  NOTIFY editorChanged)
 	// clang-format on
 
-	StartWindow *     m_start   = nullptr;
+	StartWindow *   m_start   = nullptr;
 	SessionWindow * m_session = nullptr;
-	Editor *         m_editor  = nullptr;
+	Editor *        m_editor  = nullptr;
 
 	QString confFilePath;
 

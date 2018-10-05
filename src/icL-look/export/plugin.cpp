@@ -19,39 +19,15 @@
 #include <icL-look/start/side.h>
 #include <icL-look/start/startwindow.h>
 
-#include <QtDebug>
 #include <QQmlEngine>
+#include <QtDebug>
 
 LookPlugin::LookPlugin(QObject * parent)
 	: QQmlExtensionPlugin(parent) {}
 
 void LookPlugin::registerTypes(const char * uri) {
-//	Q_ASSERT(uri == QLatin1String("icL.Look"));
-	qDebug() << uri;
+	Q_ASSERT(uri == QLatin1String("icL.Look"));
 
-//	qmlRegisterType<icL::editor::look::base::Base>();
-//	qmlRegisterType<TextLook>(uri, 1, 0, "TextLook");
-//	qmlRegisterType<Effect>(uri, 1, 0, "Effect");
-//	qmlRegisterType<EffectAdv>(uri, 1, 0, "EffectAdv");
-//	qmlRegisterType<Link>(uri, 1, 0, "Link");
-//	qmlRegisterType<LinkAdv>(uri, 1, 0, "LinkAdv");
-//	qmlRegisterType<CharFormatBase>(uri, 1, 0, "CharFormatBase");
-//	qmlRegisterType<CharFormat>(uri, 1, 0, "CharFormat");
-//	qmlRegisterType<Editor>(uri, 1, 0, "Editor");
-//	qmlRegisterType<Highlight>(uri, 1, 0, "Highlight");
-//	qmlRegisterType<Line>(uri, 1, 0, "Line");
-//	qmlRegisterType<CentralSide>(uri, 1, 0, "CentralSide");
-//	qmlRegisterType<Floating>(uri, 1, 0, "Floating");
-//	qmlRegisterType<Issue>(uri, 1, 0, "Issue");
-//	qmlRegisterType<LeftSide>(uri, 1, 0, "LeftSide");
-//	qmlRegisterType<SessionWindow>(uri, 1, 0, "SessionWindow");
-//	qmlRegisterType<TopBar>(uri, 1, 0, "TopBar");
-//	qmlRegisterType<Tree>(uri, 1, 0, "Tree");
-//	qmlRegisterType<Input>(uri, 1, 0, "Input");
-//	qmlRegisterType<ListItem>(uri, 1, 0, "ListItem");
-//	qmlRegisterType<Side>(uri, 1, 0, "Side");
-//	qmlRegisterType<StartWindow>(uri, 1, 0, "StartWindow");
-//	qmlRegisterType<Look>(uri, 1, 0, "Look");
 	qmlRegisterType<TextLook>();
 	qmlRegisterType<Effect>();
 	qmlRegisterType<EffectAdv>();

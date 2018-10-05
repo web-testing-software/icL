@@ -20,24 +20,24 @@ class Floating : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook*   header READ header NOTIFY headerChanged)
-	Q_PROPERTY(Tree* stack READ stack  NOTIFY stackChanged)
-	Q_PROPERTY(Tree* state READ state  NOTIFY stateChanged)
-	Q_PROPERTY(Input*  input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(TextLook* header READ header NOTIFY headerChanged)
+	Q_PROPERTY(Tree*      stack READ stack  NOTIFY stackChanged)
+	Q_PROPERTY(Tree*      state READ state  NOTIFY stateChanged)
+	Q_PROPERTY(Input*     input READ input  NOTIFY inputChanged)
 	Q_PROPERTY(QColor   error READ error   WRITE setError   NOTIFY errorChanged)
 	Q_PROPERTY(QColor    warn READ warn    WRITE setWarn    NOTIFY warnChanged)
 	Q_PROPERTY(QColor console READ console WRITE setConsole NOTIFY consoleChanged)
 	Q_PROPERTY(QColor      bg READ bg      WRITE setBg      NOTIFY bgChanged)
 	// clang-format on
 
-	TextLook *   m_header = nullptr;
-	Tree *         m_stack  = nullptr;
-	Tree *         m_state  = nullptr;
-	Input * m_input  = nullptr;
-	QColor         m_error;
-	QColor         m_warn;
-	QColor         m_console;
-	QColor         m_bg;
+	TextLook * m_header = nullptr;
+	Tree *     m_stack  = nullptr;
+	Tree *     m_state  = nullptr;
+	Input *    m_input  = nullptr;
+	QColor     m_error;
+	QColor     m_warn;
+	QColor     m_console;
+	QColor     m_bg;
 
 public:
 	/**

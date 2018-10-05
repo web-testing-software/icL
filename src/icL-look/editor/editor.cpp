@@ -178,62 +178,63 @@ QJsonObject Editor::getUp() {
 }
 
 void Editor::updateOccurrence() {
-//	icL::editor::look::Chars::occurence.background = m_occurrence->background();
-//	icL::editor::look::Chars::occurence.border     = m_occurrence->border();
+	//	icL::editor::look::Chars::occurence.background =
+	//m_occurrence->background(); 	icL::editor::look::Chars::occurence.border =
+	//m_occurrence->border();
 }
 
 void Editor::updateNumber() {
-//	updateStyle(icL::editor::look::Chars::number, m_number);
+	//	updateStyle(icL::editor::look::Chars::number, m_number);
 }
 
 void Editor::updateString() {
-//	updateStyle(icL::editor::look::Chars::string, m_string);
+	//	updateStyle(icL::editor::look::Chars::string, m_string);
 }
 
 void Editor::updateType() {
-//	updateStyle(icL::editor::look::Chars::type, m_type);
+	//	updateStyle(icL::editor::look::Chars::type, m_type);
 }
 
 void Editor::updateLocal() {
-//	updateStyle(icL::editor::look::Chars::local, m_local);
+	//	updateStyle(icL::editor::look::Chars::local, m_local);
 }
 
 void Editor::updateGlobal() {
-//	updateStyle(icL::editor::look::Chars::global, m_global);
+	//	updateStyle(icL::editor::look::Chars::global, m_global);
 }
 
 void Editor::updateProperty() {
-//	updateStyle(icL::editor::look::Chars::property, m_property);
+	//	updateStyle(icL::editor::look::Chars::property, m_property);
 }
 
 void Editor::updateMethod() {
-//	updateStyle(icL::editor::look::Chars::method, m_method);
+	//	updateStyle(icL::editor::look::Chars::method, m_method);
 }
 
 void Editor::updateFunction() {
-//	updateStyle(icL::editor::look::Chars::function, m_function);
+	//	updateStyle(icL::editor::look::Chars::function, m_function);
 }
 
 void Editor::updateKeyword() {
-//	updateStyle(icL::editor::look::Chars::keyword, m_keyword);
+	//	updateStyle(icL::editor::look::Chars::keyword, m_keyword);
 }
 
 void Editor::updateComment() {
-//	updateStyle(icL::editor::look::Chars::comment, m_comment);
+	//	updateStyle(icL::editor::look::Chars::comment, m_comment);
 }
 
 void Editor::updateSystem() {
-//	updateStyle(icL::editor::look::Chars::system, m_system);
+	//	updateStyle(icL::editor::look::Chars::system, m_system);
 }
 
 void Editor::updateError() {
-//	icL::editor::look::Chars::error = m_error->undercolor();
-//	icL::editor::look::Chars::update();
+	//	icL::editor::look::Chars::error = m_error->undercolor();
+	//	icL::editor::look::Chars::update();
 }
 
 void Editor::updateWarning() {
-//	icL::editor::look::Chars::warning = m_warning->undercolor();
-//	icL::editor::look::Chars::update();
+	//	icL::editor::look::Chars::warning = m_warning->undercolor();
+	//	icL::editor::look::Chars::update();
 }
 
 void Editor::updateStyle(QTextCharFormat & chars, const CharFormat * format) {
@@ -278,7 +279,7 @@ void Editor::updateStyle(QTextCharFormat & chars, const CharFormat * format) {
 	}
 
 	chars = cf;
-//	icL::editor::look::Chars::update();
+	//	icL::editor::look::Chars::update();
 }
 
 void Editor::bindChars() {
@@ -377,4 +378,3 @@ void Editor::bindMessages() {
 	connect(m_warning, &CharFormat::undercolorChanged, this, &Editor::updateWarning);
 	// clang-format on
 }
-

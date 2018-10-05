@@ -8,7 +8,6 @@
 
 
 class LinkAdv;
-
 class Input;
 
 /**
@@ -20,15 +19,15 @@ class Side : public ListItem
 
 	// clang-format off
 	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
-	Q_PROPERTY(TextLook*    header READ header NOTIFY headerChanged)
-	Q_PROPERTY(Input*   input READ input  NOTIFY inputChanged)
-	Q_PROPERTY(LinkAdv* button READ button NOTIFY buttonChanged)
+	Q_PROPERTY(TextLook* header READ header NOTIFY headerChanged)
+	Q_PROPERTY(Input*     input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(LinkAdv*  button READ button NOTIFY buttonChanged)
 	// clang-format on
 
-	TextLook *    m_header = nullptr;
-	QColor          m_background;
-	Input *         m_input  = nullptr;
-	LinkAdv * m_button = nullptr;
+	TextLook * m_header = nullptr;
+	QColor     m_background;
+	Input *    m_input  = nullptr;
+	LinkAdv *  m_button = nullptr;
 
 public:
 	/**

@@ -17,14 +17,14 @@ class StartWindow : public BaseLook
 
 	// clang-format off
 	Q_PROPERTY(TextLook*    header READ header    NOTIFY headerChanged)
-	Q_PROPERTY(Side*     left READ left      NOTIFY leftChanged)
-	Q_PROPERTY(Side*    right READ right     NOTIFY rightChanged)
+	Q_PROPERTY(Side*          left READ left      NOTIFY leftChanged)
+	Q_PROPERTY(Side*         right READ right     NOTIFY rightChanged)
 	Q_PROPERTY(TextLook* underline READ underline NOTIFY underlineChanged)
 	// clang-format on
 
 	TextLook * m_header    = nullptr;
-	Side *       m_left      = nullptr;
-	Side *       m_right     = nullptr;
+	Side *     m_left      = nullptr;
+	Side *     m_right     = nullptr;
 	TextLook * m_underline = nullptr;
 
 public:

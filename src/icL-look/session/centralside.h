@@ -22,26 +22,26 @@ class CentralSide : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook*        header READ header     NOTIFY headerChanged)
-	Q_PROPERTY(Issue*      warn READ warn       NOTIFY warnChanged)
-	Q_PROPERTY(Issue*     error READ error      NOTIFY errorChanged)
+	Q_PROPERTY(TextLook*    header READ header     NOTIFY headerChanged)
+	Q_PROPERTY(Issue*         warn READ warn       NOTIFY warnChanged)
+	Q_PROPERTY(Issue*        error READ error      NOTIFY errorChanged)
 	Q_PROPERTY(LinkAdv*  undertext READ undertext  NOTIFY undertextChanged)
 	Q_PROPERTY(LinkAdv* underdigit READ underdigit NOTIFY underdigitChanged)
-	Q_PROPERTY(Input*       input READ input      NOTIFY inputChanged)
-	Q_PROPERTY(QColor     command READ command     WRITE setCommand     NOTIFY commandChanged)
-	Q_PROPERTY(QColor errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
-	Q_PROPERTY(QColor    okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
+	Q_PROPERTY(Input*        input READ input      NOTIFY inputChanged)
+	Q_PROPERTY(QColor      command READ command     WRITE setCommand     NOTIFY commandChanged)
+	Q_PROPERTY(QColor  errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
+	Q_PROPERTY(QColor     okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
 	// clang-format on
 
-	TextLook *    m_header     = nullptr;
-	Issue *         m_warn       = nullptr;
-	Issue *         m_error      = nullptr;
-	LinkAdv * m_undertext  = nullptr;
-	LinkAdv * m_underdigit = nullptr;
-	Input *  m_input      = nullptr;
-	QColor          m_command;
-	QColor          m_errorResult;
-	QColor          m_okResult;
+	TextLook * m_header     = nullptr;
+	Issue *    m_warn       = nullptr;
+	Issue *    m_error      = nullptr;
+	LinkAdv *  m_undertext  = nullptr;
+	LinkAdv *  m_underdigit = nullptr;
+	Input *    m_input      = nullptr;
+	QColor     m_command;
+	QColor     m_errorResult;
+	QColor     m_okResult;
 
 public:
 	/**

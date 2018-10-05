@@ -51,8 +51,9 @@ QJsonObject Input::getUp() {
 }
 
 void Input::setCursor(QColor cursor) {
-	if (m_cursor == cursor)
+	if (m_cursor == cursor) {
 		return;
+	}
 
 	m_cursor = cursor;
 	emit cursorChanged(m_cursor);

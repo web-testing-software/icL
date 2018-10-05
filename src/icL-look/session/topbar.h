@@ -7,7 +7,9 @@
 
 
 
-class TextLook; class LinkAdv; class EffectAdv;
+class TextLook;
+class LinkAdv;
+class EffectAdv;
 
 class TopBar : public BaseLook
 {
@@ -18,7 +20,7 @@ class TopBar : public BaseLook
 	Q_PROPERTY(LinkAdv*      url READ url    NOTIFY urlChanged)
 	Q_PROPERTY(EffectAdv* button READ button NOTIFY buttonChanged)
 	Q_PROPERTY(EffectAdv*   tool READ tool   NOTIFY toolChanged)
-	Q_PROPERTY(TextLook*       input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(TextLook*   input READ input  NOTIFY inputChanged)
 	Q_PROPERTY(QColor cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 
@@ -26,8 +28,8 @@ class TopBar : public BaseLook
 	LinkAdv *   m_url    = nullptr;
 	EffectAdv * m_button = nullptr;
 	EffectAdv * m_tool   = nullptr;
-	TextLook *      m_input  = nullptr;
-	QColor            m_cursor;
+	TextLook *  m_input  = nullptr;
+	QColor      m_cursor;
 
 public:
 	/**
