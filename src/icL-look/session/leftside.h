@@ -4,6 +4,9 @@
 #include "../base/baselook.h"
 
 
+
+namespace icL::look {
+
 class Link;
 class ListItem;
 class Tree;
@@ -61,5 +64,7 @@ signals:
 	void projectsChanged(Tree * projects);
 	void filesChanged(ListItem * files);
 };
+
+}
 
 #endif  // icL_look_session_LeftSide

@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 /**
  * @brief The Input class describes a text input look
  */
@@ -66,5 +68,7 @@ public slots:
 	 */
 	void setCursor(QColor cursor);
 };
+
+}
 
 #endif  // icL_look_start_Input

@@ -3,7 +3,7 @@
 
 #include "effect.h"
 
-
+namespace icL::look {
 
 /**
  * @brief The EffectAdv class
@@ -45,5 +45,7 @@ public slots:
 	 */
 	void setActiveHover(QColor activeHover);
 };
+
+}
 
 #endif  // EFFECTADV_H

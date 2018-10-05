@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 class CharFormatBase;
 
 /**
@@ -60,5 +62,7 @@ public slots:
 	 */
 	void setLineBg(QColor lineBg);
 };
+
+}
 
 #endif  // icL_look_editor_Line

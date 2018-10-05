@@ -3,11 +3,13 @@
 
 #include "../base/baselook.h"
 
-// clang-format off
+
+
+namespace icL::look {
+
 class StartWindow;
 class SessionWindow;
 class Editor;
-// clang-format on
 
 class Look : public BaseLook
 {
@@ -74,5 +76,7 @@ signals:
 	void sessionChanged(SessionWindow * session);
 	void editorChanged(Editor * editor);
 };
+
+}
 
 #endif  // icL_look_Look

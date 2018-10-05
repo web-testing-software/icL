@@ -5,6 +5,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Static::Static(QObject * parent)
 	: BaseLook(parent) {
 	m_menuItem      = new LinkAdv(this);
@@ -97,4 +99,6 @@ void Static::setHandleHidden(QColor handleHidden) {
 
 	m_handleHidden = handleHidden;
 	emit handleHiddenChanged(m_handleHidden);
+}
+
 }

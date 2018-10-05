@@ -28,26 +28,26 @@ LookPlugin::LookPlugin(QObject * parent)
 void LookPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Look"));
 
-	qmlRegisterType<TextLook>();
-	qmlRegisterType<Effect>();
-	qmlRegisterType<EffectAdv>();
-	qmlRegisterType<Link>();
-	qmlRegisterType<LinkAdv>();
-	qmlRegisterType<CharFormatBase>();
-	qmlRegisterType<CharFormat>();
-	qmlRegisterType<Editor>();
-	qmlRegisterType<Highlight>();
-	qmlRegisterType<Line>();
-	qmlRegisterType<CentralSide>();
-	qmlRegisterType<Floating>();
-	qmlRegisterType<Issue>();
-	qmlRegisterType<LeftSide>();
-	qmlRegisterType<SessionWindow>();
-	qmlRegisterType<TopBar>();
-	qmlRegisterType<Tree>();
-	qmlRegisterType<Input>();
-	qmlRegisterType<ListItem>();
-	qmlRegisterType<Side>();
-	qmlRegisterType<StartWindow>();
-	qmlRegisterType<Look>(uri, 1, 0, "Look");
+	qmlRegisterType<icL::look::TextLook>();
+	qmlRegisterType<icL::look::Effect>();
+	qmlRegisterType<icL::look::EffectAdv>();
+	qmlRegisterType<icL::look::Link>();
+	qmlRegisterType<icL::look::LinkAdv>();
+	qmlRegisterType<icL::look::CharFormatBase>();
+	qmlRegisterType<icL::look::CharFormat>();
+	qmlRegisterType<icL::look::Editor>();
+	qmlRegisterType<icL::look::Highlight>();
+	qmlRegisterType<icL::look::Line>();
+	qmlRegisterType<icL::look::CentralSide>();
+	qmlRegisterType<icL::look::Floating>();
+	qmlRegisterType<icL::look::Issue>();
+	qmlRegisterType<icL::look::LeftSide>();
+	qmlRegisterType<icL::look::SessionWindow>();
+	qmlRegisterType<icL::look::TopBar>();
+	qmlRegisterType<icL::look::Tree>();
+	qmlRegisterType<icL::look::Input>();
+	qmlRegisterType<icL::look::ListItem>();
+	qmlRegisterType<icL::look::Side>();
+	qmlRegisterType<icL::look::StartWindow>();
+	qmlRegisterType<icL::look::Look>(uri, 1, 0, "Look");
 }

@@ -3,6 +3,8 @@
 #include <QColor>
 #include <QJsonObject>
 
+namespace icL::look {
+
 BaseLook::BaseLook(QObject * parent)
 	: QObject(parent) {}
 
@@ -32,4 +34,6 @@ QJsonObject BaseLook::colorToObj(const QColor & color) {
 				{"b", color.blue()},
 				{"a", color.alpha()}};
 	}
+}
+
 }

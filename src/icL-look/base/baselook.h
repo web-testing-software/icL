@@ -9,6 +9,8 @@
 	if (x != nullptr)    \
 	delete x
 
+namespace icL::look {
+
 /**
  * @brief The Base class shares some functionality to all classes in project
  */
@@ -46,5 +48,7 @@ protected:
 	 */
 	QJsonObject colorToObj(const QColor & color);
 };
+
+}
 
 #endif  // BASE_H

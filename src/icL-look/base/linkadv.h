@@ -5,6 +5,8 @@
 
 
 
+namespace icL::look {
+
 /**
  * @brief The LinkAdv class describes a look for advanced links
  */
@@ -40,5 +42,7 @@ public:
 signals:
 	void activeHoverChanged(TextLook * activeHover);
 };
+
+}
 
 #endif  // icL_look_base_LinkAdv

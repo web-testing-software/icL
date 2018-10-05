@@ -5,6 +5,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 LeftSide::LeftSide(QObject * parent)
 	: BaseLook(parent) {
 	m_files    = new ListItem(this);
@@ -40,4 +42,6 @@ QJsonObject LeftSide::getUp() {
 	return {{"switcher", m_switcher->getUp()},
 			{"projects", m_projects->getUp()},
 			{"files", m_files->getUp()}};
+}
+
 }

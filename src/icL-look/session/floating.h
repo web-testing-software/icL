@@ -5,11 +5,10 @@
 
 #include <QColor>
 
-// clang-format off
+namespace icL::look {
+
 class TextLook;
 class Input;
-// clang-format on
-
 class Tree;
 
 /**
@@ -135,5 +134,7 @@ public slots:
 	 */
 	void setBg(QColor bg);
 };
+
+}
 
 #endif  // icL_look_session_Floating

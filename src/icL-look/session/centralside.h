@@ -6,12 +6,11 @@
 #include <QColor>
 
 
+namespace icL::look {
 
-// clang-format off
-class TextLook; class LinkAdv;
+class TextLook;
+class LinkAdv;
 class Input;
-// clang-format on
-
 class Issue;
 
 /**
@@ -140,5 +139,7 @@ public slots:
 	 */
 	void setOkResult(QColor okResult);
 };
+
+}
 
 #endif  // icL_look_session_CentralSide

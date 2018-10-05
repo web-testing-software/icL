@@ -9,6 +9,8 @@
 #include <QJsonObject>
 #include <QTextCharFormat>
 
+namespace icL::look {
+
 Editor::Editor(QObject * parent)
 	: BaseLook(parent) {
 
@@ -377,4 +379,6 @@ void Editor::bindMessages() {
 	connect(m_error,   &CharFormat::undercolorChanged, this, &Editor::updateError);
 	connect(m_warning, &CharFormat::undercolorChanged, this, &Editor::updateWarning);
 	// clang-format on
+}
+
 }

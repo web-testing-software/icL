@@ -1,5 +1,5 @@
-#ifndef PLUGIN_H
-#define PLUGIN_H
+#ifndef icL_look_Plugin
+#define icL_look_Plugin
 
 #include <QObject>
 #include <QQmlExtensionPlugin>
@@ -21,4 +21,4 @@ public:
 	void registerTypes(const char *uri) override;
 };
 
-#endif  // PLUGIN_H
+#endif  // icL_look_Plugin

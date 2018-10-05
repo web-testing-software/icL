@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 class TextLook;
 class LinkAdv;
 class EffectAdv;
@@ -95,5 +97,7 @@ public slots:
 	 */
 	void setCursor(QColor cursor);
 };
+
+}
 
 #endif  // icL_look_session_TopBar

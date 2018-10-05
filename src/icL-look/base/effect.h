@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 /**
  * @brief The Effect class decribes a look for an effect
  */
@@ -77,5 +79,7 @@ public slots:
 	 */
 	void setActive(QColor active);
 };
+
+}
 
 #endif  // EFFECT_H

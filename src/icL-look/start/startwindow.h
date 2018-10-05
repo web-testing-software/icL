@@ -5,6 +5,8 @@
 
 
 
+namespace icL::look {
+
 class TextLook;
 class Side;
 
@@ -70,5 +72,7 @@ signals:
 	void leftChanged(Side * left);
 	void headerChanged(TextLook * header);
 };
+
+}
 
 #endif  // icL_look_start_StartWindow

@@ -5,6 +5,8 @@
 
 
 
+namespace icL::look {
+
 class CharFormatBase : public TextLook
 {
 	Q_OBJECT
@@ -57,5 +59,7 @@ public slots:
 	 */
 	void setItalic(bool italic);
 };
+
+}
 
 #endif  // icL_look_editor_CharFormatBase

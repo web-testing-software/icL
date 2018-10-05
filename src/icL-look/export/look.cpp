@@ -9,6 +9,8 @@
 #include <QJsonObject>
 #include <QTextStream>
 
+namespace icL::look {
+
 Look::Look(QObject * parent)
 	: BaseLook(parent) {
 	m_editor  = new Editor(this);
@@ -88,4 +90,6 @@ QJsonObject Look::getUp() {
 	return {{"editor", m_editor->getUp()},
 			{"session", m_session->getUp()},
 			{"start", m_start->getUp()}};
+}
+
 }

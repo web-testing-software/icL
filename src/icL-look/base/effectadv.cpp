@@ -2,6 +2,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 EffectAdv::EffectAdv(QObject * parent)
 	: Effect(parent) {
 	m_activeHover = QColor(Qt::transparent);
@@ -33,4 +35,6 @@ void EffectAdv::setActiveHover(QColor activeHover) {
 
 	m_activeHover = activeHover;
 	emit activeHoverChanged(m_activeHover);
+}
+
 }

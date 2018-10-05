@@ -4,6 +4,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 ListItem::ListItem(QObject * parent)
 	: Link(parent) {
 	m_border = new Effect(this);
@@ -29,4 +31,6 @@ QJsonObject ListItem::getUp() {
 	obj["border"] = m_border->getUp();
 
 	return obj;
+}
+
 }

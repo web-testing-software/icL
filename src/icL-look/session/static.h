@@ -1,9 +1,13 @@
-#ifndef STATIC_H
-#define STATIC_H
+#ifndef icL_look_session_Static
+#define icL_look_session_Static
 
 #include "../base/baselook.h"
 
 #include <QColor>
+
+
+
+namespace icL::look {
 
 class LinkAdv;
 class EffectAdv;
@@ -127,4 +131,6 @@ public slots:
 	void setHandleHidden(QColor handleHidden);
 };
 
-#endif  // STATIC_H
+}
+
+#endif  // icL_look_session_Static

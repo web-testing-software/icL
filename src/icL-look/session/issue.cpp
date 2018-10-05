@@ -5,6 +5,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Issue::Issue(QObject * parent)
 	: LinkAdv(parent) {
 	m_effect = new Effect(this);
@@ -30,4 +32,6 @@ QJsonObject Issue::getUp() {
 	obj["effect"] = m_effect->getUp();
 
 	return obj;
+}
+
 }

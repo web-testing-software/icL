@@ -4,6 +4,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 LinkAdv::LinkAdv(QObject * parent)
 	: Link(parent) {
 	m_activeHover = new TextLook(this);
@@ -29,4 +31,6 @@ QJsonObject LinkAdv::getUp() {
 	obj["active-hover"] = m_activeHover->getUp();
 
 	return obj;
+}
+
 }

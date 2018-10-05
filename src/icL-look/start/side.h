@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 class LinkAdv;
 class Input;
 
@@ -79,5 +81,7 @@ public slots:
 	 */
 	void setBackground(QColor background);
 };
+
+}
 
 #endif  // icL_look_start_Side

@@ -6,6 +6,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 CentralSide::CentralSide(QObject * parent)
 	: BaseLook(parent) {
 	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
@@ -114,4 +116,6 @@ void CentralSide::setOkResult(QColor okResult) {
 
 	m_okResult = okResult;
 	emit okResultChanged(m_okResult);
+}
+
 }

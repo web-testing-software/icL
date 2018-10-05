@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 /**
  * @brief The Text class describes a look for a text fragment
  */
@@ -58,5 +60,7 @@ public slots:
 	 */
 	void setForeground(QColor foreground);
 };
+
+}
 
 #endif  // icL_look_base_Text

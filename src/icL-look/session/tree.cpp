@@ -4,6 +4,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Tree::Tree(QObject * parent)
 	: BaseLook(parent) {
 	m_parent = new Link(this);
@@ -30,4 +32,6 @@ void Tree::setUp(const QJsonObject & obj) {
 
 QJsonObject Tree::getUp() {
 	return {{"parent", m_parent->getUp()}, {"child", m_child->getUp()}};
+}
+
 }

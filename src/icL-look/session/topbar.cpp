@@ -6,6 +6,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 TopBar::TopBar(QObject * parent)
 	: BaseLook(parent) {
 	m_cursor = QColor(Qt::transparent);
@@ -74,4 +76,6 @@ void TopBar::setCursor(QColor cursor) {
 
 	m_cursor = cursor;
 	emit cursorChanged(m_cursor);
+}
+
 }

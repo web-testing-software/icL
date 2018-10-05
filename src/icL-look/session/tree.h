@@ -5,6 +5,8 @@
 
 
 
+namespace icL::look {
+
 class Link;
 
 /**
@@ -51,5 +53,7 @@ signals:
 	void parentChanged(Link * parent);
 	void childChanged(Link * child);
 };
+
+}
 
 #endif  // icL_look_session_Tree

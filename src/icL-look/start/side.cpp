@@ -6,6 +6,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Side::Side(QObject * parent)
 	: ListItem(parent) {
 	m_background = QColor(Qt::transparent);
@@ -65,4 +67,6 @@ void Side::setBackground(QColor background) {
 
 	m_background = background;
 	emit backgroundChanged(m_background);
+}
+
 }

@@ -4,6 +4,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Line::Line(QObject * parent)
 	: BaseLook(parent) {
 	m_lineBg     = QColor(Qt::transparent);
@@ -40,4 +42,6 @@ void Line::setLineBg(QColor lineBg) {
 
 	m_lineBg = lineBg;
 	emit lineBgChanged(m_lineBg);
+}
+
 }

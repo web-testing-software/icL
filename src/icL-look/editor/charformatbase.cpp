@@ -2,6 +2,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 CharFormatBase::CharFormatBase(QObject * parent)
 	: TextLook(parent) {
 	m_bold = m_italic = false;
@@ -45,4 +47,6 @@ void CharFormatBase::setItalic(bool italic) {
 
 	m_italic = italic;
 	emit italicChanged(m_italic);
+}
+
 }

@@ -4,6 +4,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Link::Link(QObject * parent)
 	: BaseLook(parent) {
 	m_active = new TextLook(this);
@@ -39,4 +41,6 @@ QJsonObject Link::getUp() {
 	return {{"active", m_active->getUp()},
 			{"hover", m_hover->getUp()},
 			{"normal", m_normal->getUp()}};
+}
+
 }

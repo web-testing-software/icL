@@ -6,6 +6,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Floating::Floating(QObject * parent)
 	: BaseLook(parent) {
 	m_error = m_warn = m_console = m_bg = QColor(Qt::transparent);
@@ -109,4 +111,6 @@ void Floating::setBg(QColor bg) {
 
 	m_bg = bg;
 	emit bgChanged(m_bg);
+}
+
 }

@@ -5,6 +5,8 @@
 
 
 
+namespace icL::look {
+
 class CentralSide;
 class Floating;
 class LeftSide;
@@ -82,5 +84,7 @@ signals:
 	void topChanged(TopBar * top);
 	void mainChanged(Static * main);
 };
+
+}
 
 #endif  // icL_look_session_SessionWindow

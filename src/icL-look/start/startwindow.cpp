@@ -5,6 +5,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 StartWindow::StartWindow(QObject * parent)
 	: BaseLook(parent) {
 	m_header    = new TextLook(this);
@@ -48,4 +50,6 @@ QJsonObject StartWindow::getUp() {
 			{"left", m_left->getUp()},
 			{"right", m_right->getUp()},
 			{"underline", m_underline->getUp()}};
+}
+
 }

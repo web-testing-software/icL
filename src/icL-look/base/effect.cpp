@@ -2,6 +2,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Effect::Effect(QObject * parent)
 	: BaseLook(parent) {
 	m_active = m_hover = m_normal = QColor(Qt::transparent);
@@ -57,4 +59,6 @@ void Effect::setActive(QColor active) {
 
 	m_active = active;
 	emit activeChanged(m_active);
+}
+
 }

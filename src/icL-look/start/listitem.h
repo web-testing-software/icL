@@ -5,6 +5,8 @@
 
 
 
+namespace icL::look {
+
 class Effect;
 
 /**
@@ -42,5 +44,7 @@ public:
 signals:
 	void borderChanged(Effect * border);
 };
+
+}
 
 #endif  // icL_look_start_ListItem

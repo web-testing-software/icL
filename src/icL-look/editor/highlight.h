@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 /**
  * @brief The Highlight class describes a look for highlighting fragment of text
  */
@@ -61,5 +63,7 @@ public slots:
 	 */
 	void setBorder(QColor border);
 };
+
+}
 
 #endif  // icL_look_editor_Highlight

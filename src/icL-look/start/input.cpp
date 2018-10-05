@@ -4,6 +4,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 Input::Input(QObject * parent)
 	: Link(parent) {
 	m_cursor = QColor(Qt::transparent);
@@ -57,4 +59,6 @@ void Input::setCursor(QColor cursor) {
 
 	m_cursor = cursor;
 	emit cursorChanged(m_cursor);
+}
+
 }

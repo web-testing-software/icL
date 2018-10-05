@@ -4,6 +4,9 @@
 #include "../base/linkadv.h"
 
 
+
+namespace icL::look {
+
 class Effect;
 
 /**
@@ -41,5 +44,7 @@ public:
 signals:
 	void effectChanged(Effect * effect);
 };
+
+}  // namespace icL::look
 
 #endif  // icL_look_session_Issue

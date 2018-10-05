@@ -2,6 +2,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 TextLook::TextLook(QObject * parent)
 	: BaseLook(parent) {
 	m_background = m_foreground = QColor(Qt::transparent);
@@ -42,4 +44,6 @@ void TextLook::setForeground(QColor foreground) {
 
 	m_foreground = foreground;
 	emit foregroundChanged(m_foreground);
+}
+
 }

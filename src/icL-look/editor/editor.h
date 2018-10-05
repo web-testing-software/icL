@@ -3,7 +3,10 @@
 
 #include "../base/baselook.h"
 
+
 class QTextCharFormat;
+
+namespace icL::look {
 
 class CharFormat;
 class Highlight;
@@ -229,5 +232,7 @@ private:
 	void bindHighlights();
 	void bindMessages();
 };
+
+}
 
 #endif  // icL_look_start_Editor

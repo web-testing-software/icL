@@ -7,6 +7,8 @@
 
 
 
+namespace icL::look {
+
 class TextLook;
 
 /**
@@ -62,5 +64,7 @@ signals:
 	void hoverChganged(TextLook * hover);
 	void activeChanged(TextLook * active);
 };
+
+}
 
 #endif  // icL_look_base_Link

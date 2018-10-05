@@ -8,6 +8,8 @@
 
 #include <QJsonObject>
 
+namespace icL::look {
+
 SessionWindow::SessionWindow(QObject * parent)
 	: BaseLook(parent) {
 	m_center   = new CentralSide(this);
@@ -59,4 +61,6 @@ QJsonObject SessionWindow::getUp() {
 
 Static * SessionWindow::main() const {
 	return m_main;
+}
+
 }
