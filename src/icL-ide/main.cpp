@@ -41,7 +41,9 @@ int main(int argc, char * argv[]) {
 	//	context->setContextProperty("look", &look);
 	//	context->setContextProperty("database", &database);
 
-	engine.addImportPath(".");
+//	 QDirIterator it(":/", QDirIterator::Subdirectories); while (it.hasNext()) qDebug() << it.next();
+
+//	engine.addImportPath("qrc:///");
 	qDebug() << engine.importPathList();
 	engine.load(QUrl("qrc:/main.qml"));
 	return QGuiApplication::exec();

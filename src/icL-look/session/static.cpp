@@ -58,6 +58,13 @@ void Static::setUp(const QJsonObject & obj) {
 	m_handleHidden  = objToColor(obj.value("handle-hidden").toObject());
 	m_menuShadow    = objToColor(obj.value("menu-shadow").toObject());
 	m_submenuShadow = objToColor(obj.value("submenu-shadow").toObject());
+
+	emit backgroundChanged(m_background);
+	emit handleChanged(m_handle);
+	emit handleVisibleChanged(m_handleVisible);
+	emit handleHiddenChanged(m_handleHidden);
+	emit menuShadowChanged(m_menuShadow);
+	emit submenuShadowChanged(m_submenuShadow);
 }
 
 QJsonObject Static::getUp() {

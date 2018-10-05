@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ui/ImageButton.qml</file>
+        <file>ui/static/ButtonBase.qml</file>
+        <file>ui/static/ImageButton.qml</file>
+        <file>ui/static/Button.qml</file>
+    </qresource>
+</RCC>

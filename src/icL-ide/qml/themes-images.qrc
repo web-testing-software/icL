@@ -1,3 +1,6 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>themes-images/light/icL.svg</file>
+        <file>themes-images/light/browser.svg</file>
+    </qresource>
 </RCC>

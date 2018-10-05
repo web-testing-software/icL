@@ -472,6 +472,7 @@ Module {
         Property { name: "start"; type: "icL::look::StartWindow"; isReadonly: true; isPointer: true }
         Property { name: "session"; type: "icL::look::SessionWindow"; isReadonly: true; isPointer: true }
         Property { name: "editor"; type: "icL::look::Editor"; isReadonly: true; isPointer: true }
+        Property { name: "path"; type: "string" }
         Signal {
             name: "startChanged"
             Parameter { name: "start"; type: "StartWindow"; isPointer: true }
@@ -484,12 +485,25 @@ Module {
             name: "editorChanged"
             Parameter { name: "editor"; type: "Editor"; isPointer: true }
         }
+        Signal {
+            name: "pathChanged"
+            Parameter { name: "path"; type: "string" }
+        }
+        Method {
+            name: "setPath"
+            Parameter { name: "path"; type: "string" }
+        }
         Method {
             name: "loadConf"
             type: "bool"
             Parameter { name: "path"; type: "string" }
+            Parameter { name: "editorOnly"; type: "bool" }
         }
-        Method { name: "saveConf"; type: "bool" }
+        Method {
+            name: "saveConf"
+            type: "bool"
+            Parameter { name: "editorOnly"; type: "bool" }
+        }
     }
     Component {
         name: "icL::look::SessionWindow"
