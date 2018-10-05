@@ -12,12 +12,12 @@ Module {
     Component {
         name: "icL::look::CentralSide"
         prototype: "icL::look::BaseLook"
-        Property { name: "header"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "warn"; type: "Issue"; isReadonly: true; isPointer: true }
-        Property { name: "error"; type: "Issue"; isReadonly: true; isPointer: true }
-        Property { name: "undertext"; type: "LinkAdv"; isReadonly: true; isPointer: true }
-        Property { name: "underdigit"; type: "LinkAdv"; isReadonly: true; isPointer: true }
-        Property { name: "input"; type: "Input"; isReadonly: true; isPointer: true }
+        Property { name: "header"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "warn"; type: "icL::look::Issue"; isReadonly: true; isPointer: true }
+        Property { name: "error"; type: "icL::look::Issue"; isReadonly: true; isPointer: true }
+        Property { name: "undertext"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "underdigit"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "input"; type: "icL::look::Input"; isReadonly: true; isPointer: true }
         Property { name: "command"; type: "QColor" }
         Property { name: "errorResult"; type: "QColor" }
         Property { name: "okResult"; type: "QColor" }
@@ -117,25 +117,25 @@ Module {
     Component {
         name: "icL::look::Editor"
         prototype: "icL::look::BaseLook"
-        Property { name: "text"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "selection"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "number"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "string"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "type"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "local"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "global"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "property"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "method"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "function"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "keyword"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "comment"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "system"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "error"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "warning"; type: "CharFormat"; isReadonly: true; isPointer: true }
-        Property { name: "occurrence"; type: "Highlight"; isReadonly: true; isPointer: true }
-        Property { name: "current"; type: "Line"; isReadonly: true; isPointer: true }
-        Property { name: "debug"; type: "Line"; isReadonly: true; isPointer: true }
-        Property { name: "breakpoint"; type: "Line"; isReadonly: true; isPointer: true }
+        Property { name: "text"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "selection"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "number"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "string"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "type"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "local"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "global"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "property"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "method"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "function"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "keyword"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "comment"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "system"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "error"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "warning"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
+        Property { name: "occurrence"; type: "icL::look::Highlight"; isReadonly: true; isPointer: true }
+        Property { name: "current"; type: "icL::look::Line"; isReadonly: true; isPointer: true }
+        Property { name: "debug"; type: "icL::look::Line"; isReadonly: true; isPointer: true }
+        Property { name: "breakpoint"; type: "icL::look::Line"; isReadonly: true; isPointer: true }
         Signal {
             name: "textChanged"
             Parameter { name: "text"; type: "CharFormat"; isPointer: true }
@@ -274,10 +274,10 @@ Module {
     Component {
         name: "icL::look::Floating"
         prototype: "icL::look::BaseLook"
-        Property { name: "header"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "stack"; type: "Tree"; isReadonly: true; isPointer: true }
-        Property { name: "state"; type: "Tree"; isReadonly: true; isPointer: true }
-        Property { name: "input"; type: "Input"; isReadonly: true; isPointer: true }
+        Property { name: "header"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "stack"; type: "icL::look::Tree"; isReadonly: true; isPointer: true }
+        Property { name: "state"; type: "icL::look::Tree"; isReadonly: true; isPointer: true }
+        Property { name: "input"; type: "icL::look::Input"; isReadonly: true; isPointer: true }
         Property { name: "error"; type: "QColor" }
         Property { name: "warn"; type: "QColor" }
         Property { name: "console"; type: "QColor" }
@@ -356,8 +356,8 @@ Module {
     Component {
         name: "icL::look::Input"
         prototype: "icL::look::Link"
-        Property { name: "inactive"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "selection"; type: "TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "inactive"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "selection"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
         Property { name: "cursor"; type: "QColor" }
         Signal {
             name: "cursorChanged"
@@ -379,7 +379,7 @@ Module {
     Component {
         name: "icL::look::Issue"
         prototype: "icL::look::LinkAdv"
-        Property { name: "effect"; type: "Effect"; isReadonly: true; isPointer: true }
+        Property { name: "effect"; type: "icL::look::Effect"; isReadonly: true; isPointer: true }
         Signal {
             name: "effectChanged"
             Parameter { name: "effect"; type: "Effect"; isPointer: true }
@@ -388,9 +388,9 @@ Module {
     Component {
         name: "icL::look::LeftSide"
         prototype: "icL::look::BaseLook"
-        Property { name: "switcher"; type: "Link"; isReadonly: true; isPointer: true }
-        Property { name: "projects"; type: "Tree"; isReadonly: true; isPointer: true }
-        Property { name: "files"; type: "ListItem"; isReadonly: true; isPointer: true }
+        Property { name: "switcher"; type: "icL::look::Link"; isReadonly: true; isPointer: true }
+        Property { name: "projects"; type: "icL::look::Tree"; isReadonly: true; isPointer: true }
+        Property { name: "files"; type: "icL::look::ListItem"; isReadonly: true; isPointer: true }
         Signal {
             name: "switcherChanged"
             Parameter { name: "switcher"; type: "Link"; isPointer: true }
@@ -408,7 +408,12 @@ Module {
         name: "icL::look::Line"
         prototype: "icL::look::BaseLook"
         Property { name: "lineBg"; type: "QColor" }
-        Property { name: "lineNumber"; type: "CharFormatBase"; isReadonly: true; isPointer: true }
+        Property {
+            name: "lineNumber"
+            type: "icL::look::CharFormatBase"
+            isReadonly: true
+            isPointer: true
+        }
         Signal {
             name: "lineBgChanged"
             Parameter { name: "lineBg"; type: "QColor" }
@@ -425,9 +430,9 @@ Module {
     Component {
         name: "icL::look::Link"
         prototype: "icL::look::BaseLook"
-        Property { name: "normal"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "hover"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "active"; type: "TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "normal"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "hover"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "active"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
         Signal {
             name: "normalChanged"
             Parameter { name: "normal"; type: "TextLook"; isPointer: true }
@@ -444,7 +449,7 @@ Module {
     Component {
         name: "icL::look::LinkAdv"
         prototype: "icL::look::Link"
-        Property { name: "activeHover"; type: "TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "activeHover"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
         Signal {
             name: "activeHoverChanged"
             Parameter { name: "activeHover"; type: "TextLook"; isPointer: true }
@@ -453,7 +458,7 @@ Module {
     Component {
         name: "icL::look::ListItem"
         prototype: "icL::look::Link"
-        Property { name: "border"; type: "Effect"; isReadonly: true; isPointer: true }
+        Property { name: "border"; type: "icL::look::Effect"; isReadonly: true; isPointer: true }
         Signal {
             name: "borderChanged"
             Parameter { name: "border"; type: "Effect"; isPointer: true }
@@ -464,9 +469,9 @@ Module {
         prototype: "icL::look::BaseLook"
         exports: ["Look 1.0"]
         exportMetaObjectRevisions: [0]
-        Property { name: "start"; type: "StartWindow"; isReadonly: true; isPointer: true }
-        Property { name: "session"; type: "SessionWindow"; isReadonly: true; isPointer: true }
-        Property { name: "editor"; type: "Editor"; isReadonly: true; isPointer: true }
+        Property { name: "start"; type: "icL::look::StartWindow"; isReadonly: true; isPointer: true }
+        Property { name: "session"; type: "icL::look::SessionWindow"; isReadonly: true; isPointer: true }
+        Property { name: "editor"; type: "icL::look::Editor"; isReadonly: true; isPointer: true }
         Signal {
             name: "startChanged"
             Parameter { name: "start"; type: "StartWindow"; isPointer: true }
@@ -489,11 +494,11 @@ Module {
     Component {
         name: "icL::look::SessionWindow"
         prototype: "icL::look::BaseLook"
-        Property { name: "center"; type: "CentralSide"; isReadonly: true; isPointer: true }
-        Property { name: "floating"; type: "Floating"; isReadonly: true; isPointer: true }
-        Property { name: "left"; type: "LeftSide"; isReadonly: true; isPointer: true }
-        Property { name: "top"; type: "TopBar"; isReadonly: true; isPointer: true }
-        Property { name: "main"; type: "Static"; isReadonly: true; isPointer: true }
+        Property { name: "center"; type: "icL::look::CentralSide"; isReadonly: true; isPointer: true }
+        Property { name: "floating"; type: "icL::look::Floating"; isReadonly: true; isPointer: true }
+        Property { name: "left"; type: "icL::look::LeftSide"; isReadonly: true; isPointer: true }
+        Property { name: "top"; type: "icL::look::TopBar"; isReadonly: true; isPointer: true }
+        Property { name: "main"; type: "icL::look::Static"; isReadonly: true; isPointer: true }
         Signal {
             name: "centerChanged"
             Parameter { name: "center"; type: "CentralSide"; isPointer: true }
@@ -519,9 +524,9 @@ Module {
         name: "icL::look::Side"
         prototype: "icL::look::ListItem"
         Property { name: "background"; type: "QColor" }
-        Property { name: "header"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "input"; type: "Input"; isReadonly: true; isPointer: true }
-        Property { name: "button"; type: "LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "header"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "input"; type: "icL::look::Input"; isReadonly: true; isPointer: true }
+        Property { name: "button"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
         Signal {
             name: "backgroundChanged"
             Parameter { name: "background"; type: "QColor" }
@@ -546,10 +551,10 @@ Module {
     Component {
         name: "icL::look::StartWindow"
         prototype: "icL::look::BaseLook"
-        Property { name: "header"; type: "TextLook"; isReadonly: true; isPointer: true }
-        Property { name: "left"; type: "Side"; isReadonly: true; isPointer: true }
-        Property { name: "right"; type: "Side"; isReadonly: true; isPointer: true }
-        Property { name: "underline"; type: "TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "header"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "left"; type: "icL::look::Side"; isReadonly: true; isPointer: true }
+        Property { name: "right"; type: "icL::look::Side"; isReadonly: true; isPointer: true }
+        Property { name: "underline"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
         Signal {
             name: "underlineChanged"
             Parameter { name: "underline"; type: "TextLook"; isPointer: true }
@@ -592,11 +597,11 @@ Module {
     Component {
         name: "icL::look::TopBar"
         prototype: "icL::look::BaseLook"
-        Property { name: "tab"; type: "LinkAdv"; isReadonly: true; isPointer: true }
-        Property { name: "url"; type: "LinkAdv"; isReadonly: true; isPointer: true }
-        Property { name: "button"; type: "EffectAdv"; isReadonly: true; isPointer: true }
-        Property { name: "tool"; type: "EffectAdv"; isReadonly: true; isPointer: true }
-        Property { name: "input"; type: "TextLook"; isReadonly: true; isPointer: true }
+        Property { name: "tab"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "url"; type: "icL::look::LinkAdv"; isReadonly: true; isPointer: true }
+        Property { name: "button"; type: "icL::look::EffectAdv"; isReadonly: true; isPointer: true }
+        Property { name: "tool"; type: "icL::look::EffectAdv"; isReadonly: true; isPointer: true }
+        Property { name: "input"; type: "icL::look::TextLook"; isReadonly: true; isPointer: true }
         Property { name: "cursor"; type: "QColor" }
         Signal {
             name: "cursorChanged"
@@ -630,8 +635,8 @@ Module {
     Component {
         name: "icL::look::Tree"
         prototype: "icL::look::BaseLook"
-        Property { name: "parent"; type: "Link"; isReadonly: true; isPointer: true }
-        Property { name: "child"; type: "Link"; isReadonly: true; isPointer: true }
+        Property { name: "parent"; type: "icL::look::Link"; isReadonly: true; isPointer: true }
+        Property { name: "child"; type: "icL::look::Link"; isReadonly: true; isPointer: true }
         Signal {
             name: "parentChanged"
             Parameter { name: "parent"; type: "Link"; isPointer: true }

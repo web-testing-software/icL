@@ -21,12 +21,12 @@ class CentralSide : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook*    header READ header     NOTIFY headerChanged)
-	Q_PROPERTY(Issue*         warn READ warn       NOTIFY warnChanged)
-	Q_PROPERTY(Issue*        error READ error      NOTIFY errorChanged)
-	Q_PROPERTY(LinkAdv*  undertext READ undertext  NOTIFY undertextChanged)
-	Q_PROPERTY(LinkAdv* underdigit READ underdigit NOTIFY underdigitChanged)
-	Q_PROPERTY(Input*        input READ input      NOTIFY inputChanged)
+	Q_PROPERTY(icL::look::TextLook*    header READ header     NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Issue*         warn READ warn       NOTIFY warnChanged)
+	Q_PROPERTY(icL::look::Issue*        error READ error      NOTIFY errorChanged)
+	Q_PROPERTY(icL::look::LinkAdv*  undertext READ undertext  NOTIFY undertextChanged)
+	Q_PROPERTY(icL::look::LinkAdv* underdigit READ underdigit NOTIFY underdigitChanged)
+	Q_PROPERTY(icL::look::Input*        input READ input      NOTIFY inputChanged)
 	Q_PROPERTY(QColor      command READ command     WRITE setCommand     NOTIFY commandChanged)
 	Q_PROPERTY(QColor  errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
 	Q_PROPERTY(QColor     okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)

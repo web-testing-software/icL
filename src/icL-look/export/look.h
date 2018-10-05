@@ -19,9 +19,9 @@ class Look : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(StartWindow*     start READ start   NOTIFY startChanged)
-	Q_PROPERTY(SessionWindow* session READ session NOTIFY sessionChanged)
-	Q_PROPERTY(Editor*         editor READ editor  NOTIFY editorChanged)
+	Q_PROPERTY(icL::look::StartWindow*     start READ start   NOTIFY startChanged)
+	Q_PROPERTY(icL::look::SessionWindow* session READ session NOTIFY sessionChanged)
+	Q_PROPERTY(icL::look::Editor*         editor READ editor  NOTIFY editorChanged)
 	// clang-format on
 
 public:

@@ -18,11 +18,11 @@ class TopBar : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(LinkAdv*      tab READ tab    NOTIFY tabChanged)
-	Q_PROPERTY(LinkAdv*      url READ url    NOTIFY urlChanged)
-	Q_PROPERTY(EffectAdv* button READ button NOTIFY buttonChanged)
-	Q_PROPERTY(EffectAdv*   tool READ tool   NOTIFY toolChanged)
-	Q_PROPERTY(TextLook*   input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(icL::look::LinkAdv*      tab READ tab    NOTIFY tabChanged)
+	Q_PROPERTY(icL::look::LinkAdv*      url READ url    NOTIFY urlChanged)
+	Q_PROPERTY(icL::look::EffectAdv* button READ button NOTIFY buttonChanged)
+	Q_PROPERTY(icL::look::EffectAdv*   tool READ tool   NOTIFY toolChanged)
+	Q_PROPERTY(icL::look::TextLook*   input READ input  NOTIFY inputChanged)
 	Q_PROPERTY(QColor cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 

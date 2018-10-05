@@ -15,7 +15,7 @@ class LinkAdv : public Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook * activeHover READ activeHover NOTIFY activeHoverChanged)
+	Q_PROPERTY(icL::look::TextLook * activeHover READ activeHover NOTIFY activeHoverChanged)
 	// clang-format on
 
 public:

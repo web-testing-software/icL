@@ -20,7 +20,7 @@ class Line : public BaseLook
 
 	// clang-format off
 	Q_PROPERTY(QColor lineBg READ lineBg WRITE setLineBg NOTIFY lineBgChanged)
-	Q_PROPERTY(CharFormatBase* lineNumber READ lineNumber NOTIFY lineNumberChanged)
+	Q_PROPERTY(icL::look::CharFormatBase* lineNumber READ lineNumber NOTIFY lineNumberChanged)
 	// clang-format on
 
 public:

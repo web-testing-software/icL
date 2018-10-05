@@ -17,10 +17,10 @@ class Static : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(LinkAdv*        menuItem READ menuItem      NOTIFY menuItemChanged)
-	Q_PROPERTY(LinkAdv*     submenuItem READ submenuItem   NOTIFY submenuItemChanged)
-	Q_PROPERTY(EffectAdv* submenuBorder READ submenuBorder NOTIFY submenuBorderChanged)
-	Q_PROPERTY(LinkAdv*          button READ button        NOTIFY buttonChanged)
+	Q_PROPERTY(icL::look::LinkAdv*        menuItem READ menuItem      NOTIFY menuItemChanged)
+	Q_PROPERTY(icL::look::LinkAdv*     submenuItem READ submenuItem   NOTIFY submenuItemChanged)
+	Q_PROPERTY(icL::look::EffectAdv* submenuBorder READ submenuBorder NOTIFY submenuBorderChanged)
+	Q_PROPERTY(icL::look::LinkAdv*          button READ button        NOTIFY buttonChanged)
 	Q_PROPERTY(QColor    background READ background    WRITE setBackground    NOTIFY backgroundChanged)
 	Q_PROPERTY(QColor        handle READ handle        WRITE setHandle        NOTIFY handleChanged)
 	Q_PROPERTY(QColor handleVisible READ handleVisible WRITE setHandleVisible NOTIFY handleVisibleChanged)

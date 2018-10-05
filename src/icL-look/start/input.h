@@ -17,8 +17,8 @@ class Input : public Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook *  inactive READ inactive  NOTIFY inactiveChanged)
-	Q_PROPERTY(TextLook * selection READ selection NOTIFY selectionChanged)
+	Q_PROPERTY(icL::look::TextLook *  inactive READ inactive  NOTIFY inactiveChanged)
+	Q_PROPERTY(icL::look::TextLook * selection READ selection NOTIFY selectionChanged)
 	Q_PROPERTY(QColor cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
 

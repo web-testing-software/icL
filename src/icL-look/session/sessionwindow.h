@@ -21,11 +21,11 @@ class SessionWindow : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(CentralSide* center READ center   NOTIFY centerChanged)
-	Q_PROPERTY(Floating*  floating READ floating NOTIFY floatingChanged)
-	Q_PROPERTY(LeftSide*      left READ left     NOTIFY leftChanged)
-	Q_PROPERTY(TopBar*         top READ top      NOTIFY topChanged)
-	Q_PROPERTY(Static*        main READ main     NOTIFY mainChanged)
+	Q_PROPERTY(icL::look::CentralSide* center READ center   NOTIFY centerChanged)
+	Q_PROPERTY(icL::look::Floating*  floating READ floating NOTIFY floatingChanged)
+	Q_PROPERTY(icL::look::LeftSide*      left READ left     NOTIFY leftChanged)
+	Q_PROPERTY(icL::look::TopBar*         top READ top      NOTIFY topChanged)
+	Q_PROPERTY(icL::look::Static*        main READ main     NOTIFY mainChanged)
 	// clang-format on
 
 public:

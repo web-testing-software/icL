@@ -17,8 +17,8 @@ class Tree : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Link* parent READ parent NOTIFY parentChanged)
-	Q_PROPERTY(Link*  child READ child  NOTIFY childChanged)
+	Q_PROPERTY(icL::look::Link* parent READ parent NOTIFY parentChanged)
+	Q_PROPERTY(icL::look::Link*  child READ child  NOTIFY childChanged)
 	// clang-format on
 
 public:

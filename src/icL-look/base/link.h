@@ -19,9 +19,9 @@ class Link : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook * normal READ normal NOTIFY normalChanged)
-	Q_PROPERTY(TextLook *  hover READ hover  NOTIFY hoverChganged)
-	Q_PROPERTY(TextLook * active READ active NOTIFY activeChanged)
+	Q_PROPERTY(icL::look::TextLook * normal READ normal NOTIFY normalChanged)
+	Q_PROPERTY(icL::look::TextLook *  hover READ hover  NOTIFY hoverChganged)
+	Q_PROPERTY(icL::look::TextLook * active READ active NOTIFY activeChanged)
 	// clang-format on
 
 public:

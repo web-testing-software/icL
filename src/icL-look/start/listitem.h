@@ -17,7 +17,7 @@ class ListItem : public Link
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Effect * border READ border NOTIFY borderChanged)
+	Q_PROPERTY(icL::look::Effect * border READ border NOTIFY borderChanged)
 	// clang-format on
 
 public:

@@ -17,7 +17,7 @@ class Issue : public LinkAdv
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Effect* effect READ effect NOTIFY effectChanged)
+	Q_PROPERTY(icL::look::Effect* effect READ effect NOTIFY effectChanged)
 	// clang-format on
 
 public:

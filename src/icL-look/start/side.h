@@ -21,9 +21,9 @@ class Side : public ListItem
 
 	// clang-format off
 	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
-	Q_PROPERTY(TextLook* header READ header NOTIFY headerChanged)
-	Q_PROPERTY(Input*     input READ input  NOTIFY inputChanged)
-	Q_PROPERTY(LinkAdv*  button READ button NOTIFY buttonChanged)
+	Q_PROPERTY(icL::look::TextLook* header READ header NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Input*     input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(icL::look::LinkAdv*  button READ button NOTIFY buttonChanged)
 	// clang-format on
 
 public:

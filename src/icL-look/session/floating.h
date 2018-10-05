@@ -19,10 +19,10 @@ class Floating : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook* header READ header NOTIFY headerChanged)
-	Q_PROPERTY(Tree*      stack READ stack  NOTIFY stackChanged)
-	Q_PROPERTY(Tree*      state READ state  NOTIFY stateChanged)
-	Q_PROPERTY(Input*     input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(icL::look::TextLook* header READ header NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Tree*      stack READ stack  NOTIFY stackChanged)
+	Q_PROPERTY(icL::look::Tree*      state READ state  NOTIFY stateChanged)
+	Q_PROPERTY(icL::look::Input*     input READ input  NOTIFY inputChanged)
 	Q_PROPERTY(QColor   error READ error   WRITE setError   NOTIFY errorChanged)
 	Q_PROPERTY(QColor    warn READ warn    WRITE setWarn    NOTIFY warnChanged)
 	Q_PROPERTY(QColor console READ console WRITE setConsole NOTIFY consoleChanged)

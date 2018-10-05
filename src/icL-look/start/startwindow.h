@@ -18,10 +18,10 @@ class StartWindow : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(TextLook*    header READ header    NOTIFY headerChanged)
-	Q_PROPERTY(Side*          left READ left      NOTIFY leftChanged)
-	Q_PROPERTY(Side*         right READ right     NOTIFY rightChanged)
-	Q_PROPERTY(TextLook* underline READ underline NOTIFY underlineChanged)
+	Q_PROPERTY(icL::look::TextLook*    header READ header    NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Side*          left READ left      NOTIFY leftChanged)
+	Q_PROPERTY(icL::look::Side*         right READ right     NOTIFY rightChanged)
+	Q_PROPERTY(icL::look::TextLook* underline READ underline NOTIFY underlineChanged)
 	// clang-format on
 
 public:

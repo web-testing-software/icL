@@ -19,9 +19,9 @@ class LeftSide : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Link*  switcher READ switcher NOTIFY switcherChanged)
-	Q_PROPERTY(Tree*  projects READ projects NOTIFY projectsChanged)
-	Q_PROPERTY(ListItem* files READ files    NOTIFY filesChanged)
+	Q_PROPERTY(icL::look::Link*  switcher READ switcher NOTIFY switcherChanged)
+	Q_PROPERTY(icL::look::Tree*  projects READ projects NOTIFY projectsChanged)
+	Q_PROPERTY(icL::look::ListItem* files READ files    NOTIFY filesChanged)
 	// clang-format on
 
 public:
