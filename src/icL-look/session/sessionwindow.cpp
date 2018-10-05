@@ -3,6 +3,7 @@
 #include "centralside.h"
 #include "floating.h"
 #include "leftside.h"
+#include "static.h"
 #include "topbar.h"
 
 #include <QJsonObject>
@@ -13,6 +14,7 @@ SessionWindow::SessionWindow(QObject * parent)
 	m_floating = new Floating(this);
 	m_left     = new LeftSide(this);
 	m_top      = new TopBar(this);
+	m_main     = new Static(this);
 }
 
 SessionWindow::~SessionWindow() {
@@ -20,6 +22,7 @@ SessionWindow::~SessionWindow() {
 	icL_dropField(m_floating);
 	icL_dropField(m_left);
 	icL_dropField(m_top);
+	icL_dropField(m_main);
 }
 
 CentralSide * SessionWindow::center() const {
@@ -43,11 +46,17 @@ void SessionWindow::setUp(const QJsonObject & obj) {
 	m_floating->setUp(obj.value("floating").toObject());
 	m_left->setUp(obj.value("left").toObject());
 	m_top->setUp(obj.value("top").toObject());
+	m_main->setUp(obj.value("main").toObject());
 }
 
 QJsonObject SessionWindow::getUp() {
 	return {{"center", m_center->getUp()},
 			{"floating", m_floating->getUp()},
 			{"left", m_left->getUp()},
-			{"top", m_top->getUp()}};
+			{"top", m_top->getUp()},
+			{"main", m_main->getUp()}};
+}
+
+Static * SessionWindow::main() const {
+	return m_main;
 }

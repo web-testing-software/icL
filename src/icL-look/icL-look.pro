@@ -44,7 +44,8 @@ HEADERS += \
     export/look.h \
     export/plugin.h \
     base/baselook.h \
-    base/textlook.h
+    base/textlook.h \
+    session/static.h
 
 SOURCES += \
     base/link.cpp \
@@ -70,7 +71,8 @@ SOURCES += \
     export/look.cpp \
     export/plugin.cpp \
     base/baselook.cpp \
-    base/textlook.cpp
+    base/textlook.cpp \
+    session/static.cpp
 
 copy_qmldir.target = $$DESTDIR/qmldir
 copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir
