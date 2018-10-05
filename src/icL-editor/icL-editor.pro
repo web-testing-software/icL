@@ -14,10 +14,8 @@ include($$ICL_ROOT/pri_files/lib.pri)
 DISTFILES += \
     README.md
 
-HEADERS += \
-    look/chars.h
+HEADERS +=
 
-SOURCES += \
-    look/chars.cpp
+SOURCES +=
 
 

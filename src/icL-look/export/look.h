@@ -11,6 +11,9 @@ class StartWindow;
 class SessionWindow;
 class Editor;
 
+/**
+ * @brief The Look class export look model to QML
+ */
 class Look : public BaseLook
 {
 	Q_OBJECT

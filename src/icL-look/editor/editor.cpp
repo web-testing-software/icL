@@ -1,10 +1,9 @@
 #include "editor.h"
 
+#include "../export/chars.h"
 #include "charformat.h"
 #include "highlight.h"
 #include "line.h"
-
-//#include <icL-editor/look/chars.h>
 
 #include <QJsonObject>
 #include <QTextCharFormat>
@@ -180,63 +179,62 @@ QJsonObject Editor::getUp() {
 }
 
 void Editor::updateOccurrence() {
-	//	icL::editor::look::Chars::occurence.background =
-	//m_occurrence->background(); 	icL::editor::look::Chars::occurence.border =
-	//m_occurrence->border();
+	Chars::occurence.background = m_occurrence->background();
+	Chars::occurence.border     = m_occurrence->border();
 }
 
 void Editor::updateNumber() {
-	//	updateStyle(icL::editor::look::Chars::number, m_number);
+	updateStyle(Chars::number, m_number);
 }
 
 void Editor::updateString() {
-	//	updateStyle(icL::editor::look::Chars::string, m_string);
+	updateStyle(Chars::string, m_string);
 }
 
 void Editor::updateType() {
-	//	updateStyle(icL::editor::look::Chars::type, m_type);
+	updateStyle(Chars::type, m_type);
 }
 
 void Editor::updateLocal() {
-	//	updateStyle(icL::editor::look::Chars::local, m_local);
+	updateStyle(Chars::local, m_local);
 }
 
 void Editor::updateGlobal() {
-	//	updateStyle(icL::editor::look::Chars::global, m_global);
+	updateStyle(Chars::global, m_global);
 }
 
 void Editor::updateProperty() {
-	//	updateStyle(icL::editor::look::Chars::property, m_property);
+	updateStyle(Chars::property, m_property);
 }
 
 void Editor::updateMethod() {
-	//	updateStyle(icL::editor::look::Chars::method, m_method);
+	updateStyle(Chars::method, m_method);
 }
 
 void Editor::updateFunction() {
-	//	updateStyle(icL::editor::look::Chars::function, m_function);
+	updateStyle(Chars::function, m_function);
 }
 
 void Editor::updateKeyword() {
-	//	updateStyle(icL::editor::look::Chars::keyword, m_keyword);
+	updateStyle(Chars::keyword, m_keyword);
 }
 
 void Editor::updateComment() {
-	//	updateStyle(icL::editor::look::Chars::comment, m_comment);
+	updateStyle(Chars::comment, m_comment);
 }
 
 void Editor::updateSystem() {
-	//	updateStyle(icL::editor::look::Chars::system, m_system);
+	updateStyle(Chars::system, m_system);
 }
 
 void Editor::updateError() {
-	//	icL::editor::look::Chars::error = m_error->undercolor();
-	//	icL::editor::look::Chars::update();
+	Chars::error = m_error->undercolor();
+	Chars::update();
 }
 
 void Editor::updateWarning() {
-	//	icL::editor::look::Chars::warning = m_warning->undercolor();
-	//	icL::editor::look::Chars::update();
+	Chars::warning = m_warning->undercolor();
+	Chars::update();
 }
 
 void Editor::updateStyle(QTextCharFormat & chars, const CharFormat * format) {
@@ -281,7 +279,7 @@ void Editor::updateStyle(QTextCharFormat & chars, const CharFormat * format) {
 	}
 
 	chars = cf;
-	//	icL::editor::look::Chars::update();
+	Chars::update();
 }
 
 void Editor::bindChars() {
@@ -291,78 +289,78 @@ void Editor::bindChars() {
 	connect(m_number,   &CharFormat::underlineChanged,  this, &Editor::updateNumber);
 	connect(m_number,   &CharFormatBase::boldChanged,   this, &Editor::updateNumber);
 	connect(m_number,   &CharFormatBase::italicChanged, this, &Editor::updateNumber);
-	connect(m_number,   &TextLook::foregroundChanged, this, &Editor::updateNumber);
-	connect(m_number,   &TextLook::backgroundChanged, this, &Editor::updateNumber);
+	connect(m_number,   &TextLook::foregroundChanged,   this, &Editor::updateNumber);
+	connect(m_number,   &TextLook::backgroundChanged,   this, &Editor::updateNumber);
 
 	connect(m_string,   &CharFormat::undercolorChanged, this, &Editor::updateString);
 	connect(m_string,   &CharFormat::underlineChanged,  this, &Editor::updateString);
 	connect(m_string,   &CharFormatBase::boldChanged,   this, &Editor::updateString);
 	connect(m_string,   &CharFormatBase::italicChanged, this, &Editor::updateString);
-	connect(m_string,   &TextLook::foregroundChanged, this, &Editor::updateString);
-	connect(m_string,   &TextLook::backgroundChanged, this, &Editor::updateString);
+	connect(m_string,   &TextLook::foregroundChanged,   this, &Editor::updateString);
+	connect(m_string,   &TextLook::backgroundChanged,   this, &Editor::updateString);
 
 	connect(m_type,     &CharFormat::undercolorChanged, this, &Editor::updateType);
 	connect(m_type,     &CharFormat::underlineChanged,  this, &Editor::updateType);
 	connect(m_type,     &CharFormatBase::boldChanged,   this, &Editor::updateType);
 	connect(m_type,     &CharFormatBase::italicChanged, this, &Editor::updateType);
-	connect(m_type,     &TextLook::foregroundChanged, this, &Editor::updateType);
-	connect(m_type,     &TextLook::backgroundChanged, this, &Editor::updateType);
+	connect(m_type,     &TextLook::foregroundChanged,   this, &Editor::updateType);
+	connect(m_type,     &TextLook::backgroundChanged,   this, &Editor::updateType);
 
 	connect(m_local,    &CharFormat::undercolorChanged, this, &Editor::updateLocal);
 	connect(m_local,    &CharFormat::underlineChanged,  this, &Editor::updateLocal);
 	connect(m_local,    &CharFormatBase::boldChanged,   this, &Editor::updateLocal);
 	connect(m_local,    &CharFormatBase::italicChanged, this, &Editor::updateLocal);
-	connect(m_local,    &TextLook::foregroundChanged, this, &Editor::updateLocal);
-	connect(m_local,    &TextLook::backgroundChanged, this, &Editor::updateLocal);
+	connect(m_local,    &TextLook::foregroundChanged,   this, &Editor::updateLocal);
+	connect(m_local,    &TextLook::backgroundChanged,   this, &Editor::updateLocal);
 
 	connect(m_global,   &CharFormat::undercolorChanged, this, &Editor::updateGlobal);
 	connect(m_global,   &CharFormat::underlineChanged,  this, &Editor::updateGlobal);
 	connect(m_global,   &CharFormatBase::boldChanged,   this, &Editor::updateGlobal);
 	connect(m_global,   &CharFormatBase::italicChanged, this, &Editor::updateGlobal);
-	connect(m_global,   &TextLook::foregroundChanged, this, &Editor::updateGlobal);
-	connect(m_global,   &TextLook::backgroundChanged, this, &Editor::updateGlobal);
+	connect(m_global,   &TextLook::foregroundChanged,   this, &Editor::updateGlobal);
+	connect(m_global,   &TextLook::backgroundChanged,   this, &Editor::updateGlobal);
 
 	connect(m_property, &CharFormat::undercolorChanged, this, &Editor::updateProperty);
 	connect(m_property, &CharFormat::underlineChanged,  this, &Editor::updateProperty);
 	connect(m_property, &CharFormatBase::boldChanged,   this, &Editor::updateProperty);
 	connect(m_property, &CharFormatBase::italicChanged, this, &Editor::updateProperty);
-	connect(m_property, &TextLook::foregroundChanged, this, &Editor::updateProperty);
-	connect(m_property, &TextLook::backgroundChanged, this, &Editor::updateProperty);
+	connect(m_property, &TextLook::foregroundChanged,   this, &Editor::updateProperty);
+	connect(m_property, &TextLook::backgroundChanged,   this, &Editor::updateProperty);
 
 	connect(m_method,   &CharFormat::undercolorChanged, this, &Editor::updateMethod);
 	connect(m_method,   &CharFormat::underlineChanged,  this, &Editor::updateMethod);
 	connect(m_method,   &CharFormatBase::boldChanged,   this, &Editor::updateMethod);
 	connect(m_method,   &CharFormatBase::italicChanged, this, &Editor::updateMethod);
-	connect(m_method,   &TextLook::foregroundChanged, this, &Editor::updateMethod);
-	connect(m_method,   &TextLook::backgroundChanged, this, &Editor::updateMethod);
+	connect(m_method,   &TextLook::foregroundChanged,   this, &Editor::updateMethod);
+	connect(m_method,   &TextLook::backgroundChanged,   this, &Editor::updateMethod);
 
 	connect(m_function, &CharFormat::undercolorChanged, this, &Editor::updateFunction);
 	connect(m_function, &CharFormat::underlineChanged,  this, &Editor::updateFunction);
 	connect(m_function, &CharFormatBase::boldChanged,   this, &Editor::updateFunction);
 	connect(m_function, &CharFormatBase::italicChanged, this, &Editor::updateFunction);
-	connect(m_function, &TextLook::foregroundChanged, this, &Editor::updateFunction);
-	connect(m_function, &TextLook::backgroundChanged, this, &Editor::updateFunction);
+	connect(m_function, &TextLook::foregroundChanged,   this, &Editor::updateFunction);
+	connect(m_function, &TextLook::backgroundChanged,   this, &Editor::updateFunction);
 
 	connect(m_keyword,  &CharFormat::undercolorChanged, this, &Editor::updateKeyword);
 	connect(m_keyword,  &CharFormat::underlineChanged,  this, &Editor::updateKeyword);
 	connect(m_keyword,  &CharFormatBase::boldChanged,   this, &Editor::updateKeyword);
 	connect(m_keyword,  &CharFormatBase::italicChanged, this, &Editor::updateKeyword);
-	connect(m_keyword,  &TextLook::foregroundChanged, this, &Editor::updateKeyword);
-	connect(m_keyword,  &TextLook::backgroundChanged, this, &Editor::updateKeyword);
+	connect(m_keyword,  &TextLook::foregroundChanged,   this, &Editor::updateKeyword);
+	connect(m_keyword,  &TextLook::backgroundChanged,   this, &Editor::updateKeyword);
 
 	connect(m_comment,  &CharFormat::undercolorChanged, this, &Editor::updateComment);
 	connect(m_comment,  &CharFormat::underlineChanged,  this, &Editor::updateComment);
 	connect(m_comment,  &CharFormatBase::boldChanged,   this, &Editor::updateComment);
 	connect(m_comment,  &CharFormatBase::italicChanged, this, &Editor::updateComment);
-	connect(m_comment,  &TextLook::foregroundChanged, this, &Editor::updateComment);
-	connect(m_comment,  &TextLook::backgroundChanged, this, &Editor::updateComment);
+	connect(m_comment,  &TextLook::foregroundChanged,   this, &Editor::updateComment);
+	connect(m_comment,  &TextLook::backgroundChanged,   this, &Editor::updateComment);
 
 	connect(m_system,   &CharFormat::undercolorChanged, this, &Editor::updateSystem);
 	connect(m_system,   &CharFormat::underlineChanged,  this, &Editor::updateSystem);
 	connect(m_system,   &CharFormatBase::boldChanged,   this, &Editor::updateSystem);
 	connect(m_system,   &CharFormatBase::italicChanged, this, &Editor::updateSystem);
-	connect(m_system,   &TextLook::foregroundChanged, this, &Editor::updateSystem);
-	connect(m_system,   &TextLook::backgroundChanged, this, &Editor::updateSystem);
+	connect(m_system,   &TextLook::foregroundChanged,   this, &Editor::updateSystem);
+	connect(m_system,   &TextLook::backgroundChanged,   this, &Editor::updateSystem);
 
 	// clang-format off
 }
@@ -381,4 +379,4 @@ void Editor::bindMessages() {
 	// clang-format on
 }
 
-}
+}  // namespace icL::look
