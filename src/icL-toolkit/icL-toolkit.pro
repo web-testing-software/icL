@@ -18,7 +18,8 @@ uri = icL.Toolkit
 DISTFILES += \
     README.md \
     qmldir \
-    toolkit.qmltypes
+    toolkit.qmltypes \
+    models/*.*uml
 
 
 copy_qmldir.target = $$DESTDIR/qmldir
