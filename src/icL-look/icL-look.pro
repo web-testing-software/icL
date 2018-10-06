@@ -18,7 +18,8 @@ uri = icL.Look
 DISTFILES += \
     README.md \
     qmldir \
-    look.qmltypes
+    look.qmltypes \
+    models/*.*uml
 
 HEADERS += \
     base/link.h \
