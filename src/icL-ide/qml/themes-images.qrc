@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>themes-images/light/icL.svg</file>
         <file>themes-images/light/browser.svg</file>
+        <file>themes-images/light/code.svg</file>
+        <file>themes-images/light/debug.svg</file>
+        <file>themes-images/light/run.svg</file>
+        <file>themes-images/light/rundebug.svg</file>
     </qresource>
 </RCC>
