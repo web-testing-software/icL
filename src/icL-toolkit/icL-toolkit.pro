@@ -38,3 +38,9 @@ unix {
     target.path = $$installPath
     INSTALLS += qmldir toolkit.qmltypes
 }
+
+HEADERS += \
+    export/plugin.h
+
+SOURCES += \
+    export/plugin.cpp
