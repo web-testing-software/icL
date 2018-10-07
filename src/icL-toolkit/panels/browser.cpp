@@ -9,10 +9,6 @@ bool Browser::leftPanel() const {
 	return m_leftPanel;
 }
 
-bool Browser::navigationBar() const {
-	return m_navigationBar;
-}
-
 bool Browser::devTools() const {
 	return m_devTools;
 }
@@ -23,14 +19,6 @@ void Browser::setLeftPanel(bool leftPanel) {
 
 	m_leftPanel = leftPanel;
 	emit leftPanelChanged(m_leftPanel);
-}
-
-void Browser::setNavigationBar(bool navigationBar) {
-	if (m_navigationBar == navigationBar)
-		return;
-
-	m_navigationBar = navigationBar;
-	emit navigationBarChanged(m_navigationBar);
 }
 
 void Browser::setDevTools(bool devTools) {
