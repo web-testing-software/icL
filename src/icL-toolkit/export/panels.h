@@ -16,9 +16,9 @@ class Panels : public QObject
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(Browser* browser READ browser NOTIFY browserChanged)
-	Q_PROPERTY(Code*       code READ code    NOTIFY codeChanged)
-	Q_PROPERTY(Debug*     debug READ debug   NOTIFY debugChanged)
+	Q_PROPERTY(icL::toolkit::panels::Browser* browser READ browser NOTIFY browserChanged)
+	Q_PROPERTY(icL::toolkit::panels::Code*       code READ code    NOTIFY codeChanged)
+	Q_PROPERTY(icL::toolkit::panels::Debug*     debug READ debug   NOTIFY debugChanged)
 	Q_PROPERTY(bool projectsOrFiles READ projectsOrFiles WRITE setProjectsOrFiles NOTIFY projectsOrFilesChanged)
 	// clang-format on
 

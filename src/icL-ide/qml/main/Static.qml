@@ -25,6 +25,8 @@ Rectangle {
 		Static.Button {
 			text: qsTr("Browser")
 			source: look.path + "browser.svg"
+
+			activeState: true
 		}
 
 		Static.Button {
@@ -55,17 +57,73 @@ Rectangle {
 
 		Static.ButtonBase {
 			Item {
-				id: panels
+				id: panelsItem
 
 				width: rd(rq * 59)
 				height: rd(rq * 59)
 
+				anchors.horizontalCenter: parent.horizontalCenter
+				anchors.top: parent.top
+				anchors.topMargin: rd(rq * 6)
+
 				Item {
-					id: panels1
+					id: panelsBrowserH
+					anchors.fill: parent
 
 					Static.Panel {
-						//
+						id: browserLeftH
+
+						anchors.top: parent.top
+						anchors.bottom: parent.bottom
+						anchors.left: parent.left
+
+						selected: panels.browser.leftPanel
 					}
+
+					Static.Panel {
+						id: browserNavigationH
+
+						anchors.top: parent.top
+						anchors.left: browserLeftH.right
+						anchors.leftMargin: rd(rq * 4)
+						anchors.right: parent.right
+
+						selected: panels.browser.navigationBar
+					}
+
+					Static.Panel {
+						id: browserCenterH
+
+						anchors.top: browserNavigationH.bottom
+						anchors.topMargin: rd(rq * 4)
+						anchors.bottom: parent.bottom
+						anchors.horizontalCenter: parent.horizontalCenter
+
+						selected: true
+					}
+
+					Static.Panel {
+						id: browserDevH
+
+						anchors.top: browserNavigationH.bottom
+						anchors.topMargin: rd(rq * 4)
+						anchors.bottom: parent.bottom
+						anchors.right: parent.right
+
+						selected: panels.browser.devTools
+					}
+				}
+
+				Rectangle {
+					color: look.session.main.handle
+
+					width: rd(rq * 12)
+					height: rd(rq * 12)
+
+					x: (parent.width - width) * 0.5
+					y: (parent.height - height) * 0.5
+
+					radius: width * 0.5
 				}
 			}
 

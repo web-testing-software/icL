@@ -4,6 +4,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.3
 
 import icL.Look 1.0
+import icL.Toolkit 1.0
 
 import "main" as Main
 
@@ -38,6 +39,10 @@ Window {
 		Component.onCompleted: {
 			loadConf(":/themes/light.json", false);
 		}
+	}
+
+	Panels {
+		id: panels
 	}
 
 	// Window content
