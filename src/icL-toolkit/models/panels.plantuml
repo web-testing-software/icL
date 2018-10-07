@@ -1,0 +1,43 @@
+@startuml
+
+!include "uml_style.iuml"
+show fields
+
+class PanelsBase {
+	bool navigationBar
+	bool orientationH
+}
+
+class Browser {
+	bool leftPanel
+	bool devTools
+}
+
+class Code {
+	bool leftPanel
+	bool browser
+}
+
+class Debug {
+	bool stack
+	bool state
+	bool console
+	bool browser
+}
+
+class Panels {
+	Browser browser
+	Code code
+	Debug debug
+	bool projectsOrFiles
+}
+
+PanelsBase <|-- Browser
+PanelsBase <|-- Code
+PanelsBase <|-- Debug
+
+Panels *-- Browser
+Panels *-- Code
+Panels *-- Debug
+
+@enduml

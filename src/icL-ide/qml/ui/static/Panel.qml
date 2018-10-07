@@ -3,6 +3,10 @@ import QtQuick 2.0
 Rectangle {
 	id: panel
 
+	width: rd(rq * 17)
+	height: rd(rq * 17)
+	radius: rd(rq * 8)
+
 	signal click
 
 	property bool selected: false;

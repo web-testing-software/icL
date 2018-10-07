@@ -11,5 +11,7 @@ ButtonBase {
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.top: parent.top
 		anchors.topMargin: rd(rq * 6)
+
+		switcher: activeState
 	}
 }

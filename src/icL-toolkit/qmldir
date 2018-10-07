@@ -1,0 +1,4 @@
+module icL.Toolkit
+plugin icLtoolkitPlugin
+classname ToolkitPlugin
+typeinfo toolkit.qmltypes
