@@ -45,11 +45,13 @@ HEADERS += \
     panels/browser.h \
     panels/code.h \
     panels/basepanels.h \
-    panels/debug.h
+    panels/debug.h \
+    export/panels.h
 
 SOURCES += \
     export/plugin.cpp \
     panels/browser.cpp \
     panels/code.cpp \
     panels/basepanels.cpp \
-    panels/debug.cpp
+    panels/debug.cpp \
+    export/panels.cpp

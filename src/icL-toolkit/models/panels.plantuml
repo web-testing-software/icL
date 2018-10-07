@@ -29,6 +29,7 @@ class Panels {
 	Browser browser
 	Code code
 	Debug debug
+	bool projectsOrFiles
 }
 
 PanelsBase <|-- Browser
