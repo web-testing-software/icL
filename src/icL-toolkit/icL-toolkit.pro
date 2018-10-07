@@ -41,7 +41,9 @@ unix {
 }
 
 HEADERS += \
-    export/plugin.h
+    export/plugin.h \
+    panels/browser.h
 
 SOURCES += \
-    export/plugin.cpp
+    export/plugin.cpp \
+    panels/browser.cpp
