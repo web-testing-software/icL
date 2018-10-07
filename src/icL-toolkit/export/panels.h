@@ -64,10 +64,11 @@ public slots:
 	void setProjectsOrFiles(bool projectsOrFiles);
 
 private:
-	Browser * m_browser;
-	Code *    m_code;
-	Debug *   m_debug;
-	bool      m_projectsOrFiles;
+	Browser * m_browser = nullptr;
+	Code *    m_code    = nullptr;
+	Debug *   m_debug   = nullptr;
+
+	bool m_projectsOrFiles = true;
 };
 
 }  // namespace icL::toolkit::panels

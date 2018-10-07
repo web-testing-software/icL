@@ -47,8 +47,8 @@ public slots:
 	void setDevTools(bool devTools);
 
 private:
-	bool m_leftPanel;
-	bool m_devTools;
+	bool m_leftPanel = true;
+	bool m_devTools  = true;
 };
 
 }  // namespace icL::toolkit::panels

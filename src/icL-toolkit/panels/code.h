@@ -47,8 +47,8 @@ public slots:
 	void setBrowser(bool browser);
 
 private:
-	bool m_leftPanel;
-	bool m_browser;
+	bool m_leftPanel = true;
+	bool m_browser   = true;
 };
 
 }  // namespace icL::toolkit::panels

@@ -75,10 +75,10 @@ public slots:
 	void setBrowser(bool browser);
 
 private:
-	bool m_stack;
-	bool m_state;
-	bool m_console;
-	bool m_browser;
+	bool m_stack   = true;
+	bool m_state   = true;
+	bool m_console = true;
+	bool m_browser = true;
 };
 
 }  // namespace icL::toolkit::panels
