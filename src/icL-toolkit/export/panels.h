@@ -25,6 +25,8 @@ class Panels : public QObject
 public:
 	explicit Panels(QObject * parent = nullptr);
 
+	~Panels();
+
 	/**
 	 * @brief browser is the visibility of panels in browser mode
 	 * @return the visibility for panels in browser mode
