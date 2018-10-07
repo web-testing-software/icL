@@ -3,27 +3,26 @@
 !include "uml_style.iuml"
 show fields
 
+class PanelsBase {
+	bool navigationBar
+	bool orientationH
+}
+
 class Browser {
 	bool leftPanel
-	bool navigationBar
 	bool devTools
-	bool orientationH
 }
 
 class Code {
 	bool leftPanel
-	bool navigationBar
 	bool browser
-	bool orientationH
 }
 
 class Debug {
-	bool navigationBar
 	bool stack
 	bool state
 	bool console
 	bool browser
-	bool orientationH
 }
 
 class Panels {
@@ -31,6 +30,10 @@ class Panels {
 	Code code
 	Debug debug
 }
+
+PanelsBase <|-- Browser
+PanelsBase <|-- Code
+PanelsBase <|-- Debug
 
 Panels *-- Browser
 Panels *-- Code
