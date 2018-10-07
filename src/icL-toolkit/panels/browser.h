@@ -1,11 +1,13 @@
 #ifndef icL_toolkit_panels_Browser
 #define icL_toolkit_panels_Browser
 
-#include <QObject>
+#include "basepanels.h"
+
+
 
 namespace icL::toolkit::panels {
 
-class Browser : public QObject
+class Browser : public BasePanels
 {
 	Q_OBJECT
 
@@ -28,6 +30,10 @@ public:
 	 * @return the visibility of dev tools
 	 */
 	bool devTools() const;
+
+	// BasePanels interface
+	void setUp(const QJsonObject &obj) override;
+	QJsonObject getUp() override;
 
 signals:
 	void leftPanelChanged(bool leftPanel);

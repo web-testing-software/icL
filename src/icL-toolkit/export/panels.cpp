@@ -4,6 +4,11 @@
 #include "../panels/code.h"
 #include "../panels/debug.h"
 
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QTextStream>
+
 namespace icL::toolkit::panels {
 
 Panels::Panels(QObject * parent)
@@ -33,6 +38,59 @@ Debug * Panels::debug() const {
 
 bool Panels::projectsOrFiles() const {
 	return m_projectsOrFiles;
+}
+
+bool Panels::loadConf(const QString & path) {
+	QFile         file(path);
+	QTextStream   stream(&file);
+	QJsonDocument doc;
+
+	if (!file.open(QFile::ReadOnly)) {
+		return false;
+	}
+	else {
+		m_path = path;
+	}
+
+	QString content = stream.readAll();
+	doc             = QJsonDocument::fromJson(content.toUtf8());
+
+	if (!doc.isObject()) {
+		doc = QJsonDocument::fromJson(QString("{}").toUtf8());
+	}
+
+	QJsonObject obj = doc.object();
+
+	m_browser->setUp(obj.value("browser").toObject());
+	m_code->setUp(obj.value("code").toObject());
+	m_debug->setUp(obj.value("debug").toObject());
+	m_projectsOrFiles = obj.value("projects-or-files").toBool();
+
+	file.close();
+
+	return true;
+}
+
+bool Panels::saveConf() {
+	QFile         file(m_path);
+	QTextStream   stream(&file);
+	QJsonDocument doc;
+
+	if (!file.open(QFile::WriteOnly)) {
+		return false;
+	}
+
+	QJsonObject obj = {{"browser", m_browser->getUp()},
+					   {"code", m_code->getUp()},
+					   {"debug", m_debug->getUp()},
+					   {"projects-or-files", m_projectsOrFiles}};
+
+	doc.setObject(obj);
+
+	stream << doc.toJson(QJsonDocument::Indented);
+
+	file.close();
+	return true;
 }
 
 void Panels::setProjectsOrFiles(bool projectsOrFiles) {

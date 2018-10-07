@@ -1,9 +1,11 @@
 #include "debug.h"
 
+#include <QJsonObject>
+
 namespace icL::toolkit::panels {
 
 Debug::Debug(QObject * parent)
-	: QObject(parent) {}
+	: BasePanels(parent) {}
 
 bool Debug::stack() const {
 	return m_stack;
@@ -19,6 +21,26 @@ bool Debug::console() const {
 
 bool Debug::browser() const {
 	return m_browser;
+}
+
+void Debug::setUp(const QJsonObject & obj) {
+	BasePanels::setUp(obj);
+
+	m_stack   = obj.value("stack").toBool();
+	m_state   = obj.value("state").toBool();
+	m_console = obj.value("console").toBool();
+	m_browser = obj.value("browser").toBool();
+}
+
+QJsonObject Debug::getUp() {
+	auto obj = BasePanels::getUp();
+
+	obj["stack"]   = m_stack;
+	obj["state"]   = m_state;
+	obj["console"] = m_console;
+	obj["browser"] = m_browser;
+
+	return obj;
 }
 
 void Debug::setStack(bool stack) {

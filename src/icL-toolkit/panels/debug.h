@@ -1,11 +1,13 @@
 #ifndef icL_toolkit_panels_Debug
 #define icL_toolkit_panels_Debug
 
-#include <QObject>
+#include "basepanels.h"
+
+
 
 namespace icL::toolkit::panels {
 
-class Debug : public QObject
+class Debug : public BasePanels
 {
 	Q_OBJECT
 
@@ -42,6 +44,10 @@ public:
 	 * @return the visibility for web view
 	 */
 	bool browser() const;
+
+	// BasePanels interface
+	void setUp(const QJsonObject &obj) override;
+	QJsonObject getUp() override;
 
 signals:
 	void stackChanged(bool stack);

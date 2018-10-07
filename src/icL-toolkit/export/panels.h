@@ -51,6 +51,19 @@ public:
 	 */
 	bool projectsOrFiles() const;
 
+	/**
+	 * @brief loadConf loads the configuration from JSON file
+	 * @param path is the path to the JSON file
+	 * @return true, if so file exists, otherwise false
+	 */
+	Q_INVOKABLE bool loadConf (const QString & path);
+
+	/**
+	 * @brief saveConf saves the configuration in loaded JSON file
+	 * @return true, if file is writtable, otherwise false
+	 */
+	Q_INVOKABLE bool saveConf ();
+
 signals:
 	void browserChanged(Browser * browser);
 	void codeChanged(Code * code);
@@ -71,6 +84,11 @@ private:
 	Debug *   m_debug   = nullptr;
 
 	bool m_projectsOrFiles = true;
+
+	/**
+	 * @brief m_path is the path to the configuration file
+	 */
+	QString m_path;
 };
 
 }  // namespace icL::toolkit::panels

@@ -29,6 +29,18 @@ public:
 	 */
 	bool orientationH() const;
 
+	/**
+	 * @brief setUp set up the state from JSON object
+	 * @param obj is the configuration object
+	 */
+	virtual void setUp(const QJsonObject & obj);
+
+	/**
+	 * @brief getUp get the state like JSON object
+	 * @return the state like JSON object
+	 */
+	virtual QJsonObject getUp();
+
 signals:
 	void navigationBarChanged(bool navigationBar);
 	void orientationHChanged(bool orientationH);
