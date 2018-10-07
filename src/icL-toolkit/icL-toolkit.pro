@@ -43,9 +43,11 @@ unix {
 HEADERS += \
     export/plugin.h \
     panels/browser.h \
+    panels/code.h \
     panels/basepanels.h
 
 SOURCES += \
     export/plugin.cpp \
     panels/browser.cpp \
+    panels/code.cpp \
     panels/basepanels.cpp
