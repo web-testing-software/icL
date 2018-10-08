@@ -13,6 +13,10 @@ bool GateWay::startWindowMode() const {
 	return m_startWindowMode;
 }
 
+QObject * GateWay::crossLook() const {
+	return m_crossLook;
+}
+
 void GateWay::closeSessionWindows() {
 	emit requestToCloseSessionWindows();
 }
@@ -32,6 +36,14 @@ void GateWay::setStartWindowMode(bool startWindowMode) {
 
 	m_startWindowMode = startWindowMode;
 	emit startWindowModeChanged(m_startWindowMode);
+}
+
+void GateWay::setCrossLook(QObject * crossLook) {
+	if (m_crossLook == crossLook)
+		return;
+
+	m_crossLook = crossLook;
+	emit crossLookChanged(m_crossLook);
 }
 
 }  // namespace icL::ide

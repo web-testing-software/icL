@@ -10,6 +10,8 @@
 #include <QSurface>
 #include <QtWebEngine>
 
+#include <icL-look/export/look.h>
+
 
 /**
  * @file main.cpp - decalar window object and QML meta types.
@@ -42,8 +44,8 @@ int main(int argc, char * argv[]) {
 	startContext->setContextProperty("gateway", &gateway);
 	sessionContext->setContextProperty("gateway", &gateway);
 
-	sessionWindow.load(QUrl("qrc:/main.qml"));
 	startWindow.load("qrc:/windows/start-window.qml");
+	sessionWindow.load("qrc:/main.qml");
 
 	QObject::connect(
 	  &startWindow, &QQmlApplicationEngine::quit, &app,

@@ -12,7 +12,7 @@ Window {
 	id: win
 
 	width: 800
-	height: 500
+	height: 600
 
 	visible: true
 	visibility: Window.Maximized
@@ -41,6 +41,7 @@ Window {
 		id: look
 
 		Component.onCompleted: {
+			console.log("session")
 			loadConf(":/themes/light.json", false);
 		}
 	}

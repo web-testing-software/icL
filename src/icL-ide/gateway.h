@@ -10,8 +10,9 @@ class GateWay : public QObject
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY (qreal userInterfaceScale READ userInterfaceScale WRITE setUserInterfaceScale NOTIFY userInterfaceScaleChanged)
-	Q_PROPERTY (bool     startWindowMode READ startWindowMode    WRITE setStartWindowMode    NOTIFY startWindowModeChanged)
+	Q_PROPERTY(qreal userInterfaceScale READ userInterfaceScale WRITE setUserInterfaceScale NOTIFY userInterfaceScaleChanged)
+	Q_PROPERTY(bool     startWindowMode READ startWindowMode    WRITE setStartWindowMode    NOTIFY startWindowModeChanged)
+	Q_PROPERTY(QObject*       crossLook READ crossLook          WRITE setCrossLook          NOTIFY crossLookChanged)
 	// clang-format on
 
 public:
@@ -30,6 +31,12 @@ public:
 	bool startWindowMode() const;
 
 	/**
+	 * @brief crossLook is the look of start window
+	 * @return the look of start window to the session window
+	 */
+	QObject * crossLook() const;
+
+	/**
 	 * @brief closeSessionWindow reuest to close all session windows
 	 */
 	Q_INVOKABLE void closeSessionWindows();
@@ -37,6 +44,7 @@ public:
 signals:
 	void userInterfaceScaleChanged(qreal userInterfaceScale);
 	void startWindowModeChanged(bool startWindowMode);
+	void crossLookChanged(QObject * crossLook);
 
 	/**
 	 * @brief requestToCloseSessionWindows sends to QML the request to close
@@ -57,9 +65,16 @@ public slots:
 	 */
 	void setStartWindowMode(bool startWindowMode);
 
+	/**
+	 * @brief setCrossLook set the look on start window look completed
+	 * @param crossLook is the look of start window
+	 */
+	void setCrossLook(QObject * crossLook);
+
 private:
-	qreal m_userInterfaceScale = 1.0;
-	bool  m_startWindowMode = true;
+	qreal     m_userInterfaceScale = 1.0;
+	bool      m_startWindowMode    = true;
+	QObject * m_crossLook          = nullptr;
 };
 
 }  // namespace icL::ide
