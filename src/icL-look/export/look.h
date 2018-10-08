@@ -59,6 +59,12 @@ public:
 	QString path() const;
 
 	/**
+	 * @brief clone clones a look to this object
+	 * @param look is a look to clone
+	 */
+	Q_INVOKABLE void clone(icL::look::Look * look);
+
+	/**
 	 * @brief loadConf loads the configuration from JSON file
 	 * @param path is the path to the JSON file
 	 * @return true, if so file exists, otherwise false
@@ -93,9 +99,15 @@ private:
 	SessionWindow * m_session = nullptr;
 	Editor *        m_editor  = nullptr;
 
-	QString confFilePath;
-	QString editorConfFilePath;
-	QString m_path = "qrc:/themes-images/light/";
+	QString   confFilePath;
+	QString   editorConfFilePath;
+	QString * m_path = new QString("qrc:/themes-images/light/");
+
+	/**
+	 * @brief source, if the objects is cloned the desructor doesn't need to
+	 * delete pointed objects, all data will be deleted by source
+	 */
+	Look * source = nullptr;
 };
 
 }  // namespace icL::look

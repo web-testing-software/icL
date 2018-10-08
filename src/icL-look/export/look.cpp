@@ -19,9 +19,11 @@ Look::Look(QObject * parent)
 }
 
 Look::~Look() {
-	icL_dropField(m_editor);
-	icL_dropField(m_session);
-	icL_dropField(m_start);
+	if (source != nullptr) {
+		icL_dropField(m_editor);
+		icL_dropField(m_session);
+		icL_dropField(m_start);
+	}
 }
 
 StartWindow * Look::start() const {
@@ -37,7 +39,35 @@ Editor * Look::editor() const {
 }
 
 QString Look::path() const {
-	return m_path;
+	return *m_path;
+}
+
+void Look::clone(Look * look) {
+	auto* old_path = m_path;
+	auto* old_editor = m_editor;
+	auto* old_session = session();
+	auto* old_start = m_start;
+
+	m_path    = look->m_path;
+	m_editor  = look->m_editor;
+	m_session = look->m_session;
+	m_start   = look->m_start;
+
+	emit pathChanged(*m_path);
+	emit editorChanged(m_editor);
+	emit sessionChanged(m_session);
+	emit startChanged(m_start);
+
+	old_editor->setParent(nullptr);
+	old_session->setParent(nullptr);
+	old_start->setParent(nullptr);
+
+	delete old_path;
+	delete old_editor;
+	delete old_session;
+	delete old_start;
+
+	source = look;
 }
 
 bool Look::loadConf(const QString & path, bool editorOnly) {
@@ -69,9 +99,9 @@ bool Look::loadConf(const QString & path, bool editorOnly) {
 		QString path = obj.value("path").toString();
 
 		if (!path.isEmpty()) {
-			m_path = path;
+			*m_path = path;
 
-			emit pathChanged(m_path);
+			emit pathChanged(path);
 		}
 	}
 
@@ -98,7 +128,7 @@ bool Look::saveConf(bool editorOnly) {
 		obj.remove("start");
 	}
 	else {
-		obj["path"] = m_path;
+		obj["path"] = *m_path;
 	}
 
 	doc.setObject(obj);
@@ -122,11 +152,15 @@ QJsonObject Look::getUp() {
 }
 
 void Look::setPath(QString path) {
-	if (m_path == path)
+	if (*m_path == path)
 		return;
 
-	m_path = path;
-	emit pathChanged(m_path);
+	*m_path = path;
+	emit pathChanged(path);
+
+	if (source) {
+		emit source->pathChanged(path);
+	}
 }
 
 }  // namespace icL::look

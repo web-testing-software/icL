@@ -1,3 +1,5 @@
+#include "gateway.h"
+
 #include <iostream>
 
 #include <QApplication>
@@ -7,6 +9,8 @@
 #include <QQmlEngine>
 #include <QSurface>
 #include <QtWebEngine>
+
+#include <icL-look/export/look.h>
 
 
 /**
@@ -29,23 +33,24 @@ int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 
-//	Look look;
-//	look.loadConf(":/themes/light.json");
+	QQmlApplicationEngine startWindow;
+	QQmlApplicationEngine sessionWindow;
 
+	QQmlContext * startContext   = startWindow.rootContext();
+	QQmlContext * sessionContext = sessionWindow.rootContext();
 
-	QQmlApplicationEngine engine;
-	QQmlContext *         context = engine.rootContext();
+	icL::ide::GateWay gateway;
 
-//	engine.addImportPath("/home/lixcode/Qt/Projects/icL/bin/debug/linux/qml");
+	startContext->setContextProperty("gateway", &gateway);
+	sessionContext->setContextProperty("gateway", &gateway);
 
-	//	context->setContextProperty("look", &look);
-	//	context->setContextProperty("database", &database);
+	startWindow.load("qrc:/windows/start-window.qml");
+	sessionWindow.load("qrc:/main.qml");
 
-//	 QDirIterator it(":/", QDirIterator::Subdirectories); while (it.hasNext()) qDebug() << it.next();
+	QObject::connect(
+	  &startWindow, &QQmlApplicationEngine::quit, &app,
+	  &QApplication::closeAllWindows);
 
-//	engine.addImportPath("qrc:///");
-	qDebug() << engine.importPathList();
-	engine.load(QUrl("qrc:/main.qml"));
 	return QGuiApplication::exec();
 	return 0;
 }
