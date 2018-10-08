@@ -59,11 +59,6 @@ public:
 	QString path() const;
 
 	/**
-	 * @brief create creates a new look object
-	 */
-	Q_INVOKABLE void create();
-
-	/**
 	 * @brief clone clones a look to this object
 	 * @param look is a look to clone
 	 */

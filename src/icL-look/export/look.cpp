@@ -12,7 +12,11 @@
 namespace icL::look {
 
 Look::Look(QObject * parent)
-	: BaseLook(parent) {}
+	: BaseLook(parent) {
+	m_editor  = new Editor(this);
+	m_session = new SessionWindow(this);
+	m_start   = new StartWindow(this);
+}
 
 Look::~Look() {
 	if (source != nullptr) {
@@ -38,19 +42,30 @@ QString Look::path() const {
 	return *m_path;
 }
 
-void Look::create() {
-	m_editor  = new Editor(this);
-	m_session = new SessionWindow(this);
-	m_start   = new StartWindow(this);
-}
-
 void Look::clone(Look * look) {
-	delete m_path;
+	auto* old_path = m_path;
+	auto* old_editor = m_editor;
+	auto* old_session = session();
+	auto* old_start = m_start;
 
 	m_path    = look->m_path;
 	m_editor  = look->m_editor;
 	m_session = look->m_session;
 	m_start   = look->m_start;
+
+	emit pathChanged(*m_path);
+	emit editorChanged(m_editor);
+	emit sessionChanged(m_session);
+	emit startChanged(m_start);
+
+	old_editor->setParent(nullptr);
+	old_session->setParent(nullptr);
+	old_start->setParent(nullptr);
+
+	delete old_path;
+	delete old_editor;
+	delete old_session;
+	delete old_start;
 
 	source = look;
 }

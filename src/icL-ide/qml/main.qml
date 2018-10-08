@@ -41,7 +41,7 @@ Window {
 		id: look
 
 		Component.onCompleted: {
-			console.log("session")
+			clone(gateway.crossLook)
 			loadConf(":/themes/light.json", false);
 		}
 	}

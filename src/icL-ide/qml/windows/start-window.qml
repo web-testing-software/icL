@@ -27,7 +27,7 @@ Window {
 		id: look
 
 		Component.onCompleted: {
-			console.log("start")
+			gateway.crossLook = this;
 		}
 	}
 
