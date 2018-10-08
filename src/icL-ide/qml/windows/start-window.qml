@@ -7,8 +7,8 @@ Window {
 	width: rd(rq * 800)
 	height: rd(rq * 600)
 
-	visibility: "Windowed"
 	visible: true
+	visibility: gateway.startWindowMode ? Window.Windowed : Window.Hidden
 
 	// [!] Scale begin
 
@@ -29,6 +29,12 @@ Window {
 		Component.onCompleted: {
 			gateway.crossLook = this;
 		}
+	}
+
+	MouseArea {
+		anchors.fill: parent;
+
+		onClicked: gateway.startWindowMode = !gateway.startWindowMode
 	}
 
 	// [!] Content

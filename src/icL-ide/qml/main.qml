@@ -14,8 +14,15 @@ Window {
 	width: 800
 	height: 600
 
-	visible: true
-	visibility: Window.Maximized
+	visibility: !gateway.startWindowMode ? showMode : Window.Hidden
+
+	// @disable-check M16
+	onClosing: {
+		gateway.startWindowMode = true;
+		close.accepted = false;
+	}
+
+	property int showMode: Window.Maximized
 
 	// [!] Scale begin
 
