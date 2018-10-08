@@ -92,5 +92,5 @@ unix {
     installPath = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)
     qmldir.path = $$installPath
     target.path = $$installPath
-    INSTALLS += qmldir look.qmltypes
+    INSTALLS += qmldir copy_qmltypes
 }
