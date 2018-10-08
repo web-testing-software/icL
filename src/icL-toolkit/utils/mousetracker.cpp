@@ -24,7 +24,6 @@ QPoint MouseTracker::startTracking() {
 }
 
 QPoint MouseTracker::stopTracking() {
-	exit(0);
 	m_tracking = false;
 	emit trackingChanged(m_tracking);
 
@@ -32,7 +31,7 @@ QPoint MouseTracker::stopTracking() {
 }
 
 void MouseTracker::run() {
-	while (true) {
+	while (m_tracking) {
 		QPoint cursor = QCursor::pos();
 
 		if (cursor != m_position) {

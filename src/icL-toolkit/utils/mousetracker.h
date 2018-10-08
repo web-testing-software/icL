@@ -34,13 +34,13 @@ public:
 	 * @brief startTracking starts the tracking process
 	 * @return the current position of mouse
 	 */
-	QPoint startTracking();
+	Q_INVOKABLE QPoint startTracking();
 
 	/**
 	 * @brief stopTracking stops the tracking process
 	 * @return the last position of cursor
 	 */
-	QPoint stopTracking();
+	Q_INVOKABLE QPoint stopTracking();
 
 signals:
 	void trackingChanged(bool tracking);
