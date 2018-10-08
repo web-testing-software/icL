@@ -1,3 +1,5 @@
+#include "gateway.h"
+
 #include <iostream>
 
 #include <QApplication>
@@ -29,18 +31,23 @@ int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 
-	QQmlApplicationEngine engine;
 	QQmlApplicationEngine startWindow;
-	//	QQmlContext *         context = engine.rootContext();
+	QQmlApplicationEngine sessionWindow;
 
-	//	context->setContextProperty("look", &look);
-	//	context->setContextProperty("database", &database);
+	QQmlContext * startContext   = startWindow.rootContext();
+	QQmlContext * sessionContext = sessionWindow.rootContext();
 
-	engine.load(QUrl("qrc:/main.qml"));
+	icL::ide::GateWay gateway;
+
+	startContext->setContextProperty("gateway", &gateway);
+	sessionContext->setContextProperty("gateway", &gateway);
+
+	sessionWindow.load(QUrl("qrc:/main.qml"));
 	startWindow.load("qrc:/windows/start-window.qml");
 
 	QObject::connect(
-	  &startWindow, &QQmlApplicationEngine::quit, &app, &QApplication::closeAllWindows);
+	  &startWindow, &QQmlApplicationEngine::quit, &app,
+	  &QApplication::closeAllWindows);
 
 	return QGuiApplication::exec();
 	return 0;

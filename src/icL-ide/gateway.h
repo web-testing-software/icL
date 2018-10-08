@@ -58,8 +58,8 @@ public slots:
 	void setStartWindowMode(bool startWindowMode);
 
 private:
-	qreal m_userInterfaceScale;
-	bool  m_startWindowMode;
+	qreal m_userInterfaceScale = 1.0;
+	bool  m_startWindowMode = true;
 };
 
 }  // namespace icL::ide
