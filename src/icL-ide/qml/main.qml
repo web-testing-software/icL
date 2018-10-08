@@ -44,6 +44,12 @@ Window {
 	property int ready: 0;
 
 	// Global objects
+
+	FontLoader {
+		source: "qrc:/fonts/NotoSans-Regular.ttf"
+		name: "icL"
+	}
+
 	Look {
 		id: look
 

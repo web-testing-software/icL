@@ -3,7 +3,10 @@ import QtQuick.Window 2.3
 
 import icL.Look 1.0
 
+import "../main" as Main
+
 Window {
+	id: win
 	width: rd(rq * 800)
 	height: rd(rq * 600)
 
@@ -21,44 +24,35 @@ Window {
 		return Math.round(pixels)
 	}
 
+//	color: "red"
+
 	// [!] Global objects
+
+	FontLoader {
+		source: "qrc:/fonts/NotoSans-Regular.ttf"
+		name: "icL"
+	}
 
 	Look {
 		id: look
 
 		Component.onCompleted: {
-			gateway.crossLook = this;
+			gateway.crossLook = this
 		}
 	}
 
-	MouseArea {
-		anchors.fill: parent;
-
-		onClicked: gateway.startWindowMode = !gateway.startWindowMode
-	}
-
 	// [!] Content
-
-	Rectangle {
-		id: header
-
-//		color: look.
-	}
-
-	Rectangle {
-		id: left
-	}
-
-	Rectangle {
-		id: right
-	}
-
-	Rectangle {
-		id: bottom
+	Main.SessionWindow {
+		id: sessionWindow
+		anchors.fill: parent
 	}
 
 	// @disable-check M16
 	onClosing: {
-		gateway.closeSessionWindows();
+		gateway.closeSessionWindows()
+	}
+
+	Component.onCompleted: {
+		flags = flags | Qt.FramelessWindowHint
 	}
 }
