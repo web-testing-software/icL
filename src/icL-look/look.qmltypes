@@ -493,6 +493,11 @@ Module {
             name: "setPath"
             Parameter { name: "path"; type: "string" }
         }
+        Method { name: "create" }
+        Method {
+            name: "clone"
+            Parameter { name: "look"; type: "icL::look::Look"; isPointer: true }
+        }
         Method {
             name: "loadConf"
             type: "bool"
