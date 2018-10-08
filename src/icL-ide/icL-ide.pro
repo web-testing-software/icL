@@ -14,7 +14,8 @@ DEFINES += icL_root=\"$$ICL_ROOT\"
 QML_IMPORT_PATH += $$DESTDIR
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    gateway.cpp
 
 RESOURCES += \
     qml/qml.qrc \
@@ -34,4 +35,5 @@ DISTFILES += \
     README.md \
     models/*.*uml
 
-HEADERS +=
+HEADERS += \
+    gateway.h

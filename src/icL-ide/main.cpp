@@ -29,23 +29,19 @@ int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 
-//	Look look;
-//	look.loadConf(":/themes/light.json");
-
-
 	QQmlApplicationEngine engine;
-	QQmlContext *         context = engine.rootContext();
-
-//	engine.addImportPath("/home/lixcode/Qt/Projects/icL/bin/debug/linux/qml");
+	QQmlApplicationEngine startWindow;
+	//	QQmlContext *         context = engine.rootContext();
 
 	//	context->setContextProperty("look", &look);
 	//	context->setContextProperty("database", &database);
 
-//	 QDirIterator it(":/", QDirIterator::Subdirectories); while (it.hasNext()) qDebug() << it.next();
-
-//	engine.addImportPath("qrc:///");
-	qDebug() << engine.importPathList();
 	engine.load(QUrl("qrc:/main.qml"));
+	startWindow.load("qrc:/windows/start-window.qml");
+
+	QObject::connect(
+	  &startWindow, &QQmlApplicationEngine::quit, &app, &QApplication::closeAllWindows);
+
 	return QGuiApplication::exec();
 	return 0;
 }
