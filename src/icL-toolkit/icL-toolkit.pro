@@ -37,7 +37,7 @@ unix {
     installPath = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)
     qmldir.path = $$installPath
     target.path = $$installPath
-    INSTALLS += qmldir toolkit.qmltypes
+    INSTALLS += qmldir copy_qmltypes
 }
 
 HEADERS += \
@@ -46,7 +46,8 @@ HEADERS += \
     panels/code.h \
     panels/basepanels.h \
     panels/debug.h \
-    export/panels.h
+    export/panels.h \
+    utils/mousetracker.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -54,4 +55,5 @@ SOURCES += \
     panels/code.cpp \
     panels/basepanels.cpp \
     panels/debug.cpp \
-    export/panels.cpp
+    export/panels.cpp \
+    utils/mousetracker.cpp
