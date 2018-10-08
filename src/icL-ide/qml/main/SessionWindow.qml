@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import icL.Toolkit 1.0
 
 Item {
 	id: sessionWindow
@@ -23,29 +24,29 @@ Item {
 			color: look.start.header.foreground
 		}
 
+		MouseTrack {
+			id: mtrack
+
+			onPositionChanged: marea.move(position);
+		}
+
 		MouseArea {
+			id: marea
 			anchors.fill: parent;
 
-			property int winx: 0
-			property int winy: 0
-			property int beginx: 0
-			property int beginy: 0
+			property point winxy: Qt.point(0, 0)
+			property point beginxy: Qt.point(0, 0)
 
 			onPressed: {
-				winx = win.x
-				winy = win.y
-				beginx = winx + mouseX
-				beginy = winy + mouseY
+				winxy = Qt.point(win.x, win.y)
+				beginxy = mtrack.startTracking()
 			}
 
-			onMouseXChanged: {
-				if (containsMouse) {
-					var screenx = mouseX + win.x
-					var screeny = mouseY + win.y
+			onReleased: move(mtrack.stopTracking());
 
-					win.x = winx + (screenx - beginx)
-					win.y = winy + (screeny - beginy)
-				}
+			function move(pos) {
+				win.x = winxy.x + (pos.x - beginxy.x)
+				win.y = winxy.y + (pos.y - beginxy.y)
 			}
 		}
 	}
