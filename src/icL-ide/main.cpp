@@ -1,5 +1,7 @@
 #include "gateway.h"
 
+#include <icL-look/export/look.h>
+
 #include <iostream>
 
 #include <QApplication>
@@ -9,8 +11,6 @@
 #include <QQmlEngine>
 #include <QSurface>
 #include <QtWebEngine>
-
-#include <icL-look/export/look.h>
 
 
 /**
@@ -33,23 +33,19 @@ int main(int argc, char * argv[]) {
 	QApplication app(argc, argv);
 	QtWebEngine::initialize();
 
-	QQmlApplicationEngine startWindow;
-	QQmlApplicationEngine sessionWindow;
+	// Now we are using a single engine
+	// Thnaks to derM for his/her answer
+	// https://stackoverflow.com/questions/52696330/how-to-create-some-independent-windows-in-qml/52699869
+	QQmlApplicationEngine engine;
 
-	QQmlContext * startContext   = startWindow.rootContext();
-	QQmlContext * sessionContext = sessionWindow.rootContext();
+	QQmlContext * context = engine.rootContext();
 
 	icL::ide::GateWay gateway;
 
-	startContext->setContextProperty("gateway", &gateway);
-	sessionContext->setContextProperty("gateway", &gateway);
+	context->setContextProperty("gateway", &gateway);
 
-	startWindow.load("qrc:/windows/start-window.qml");
-	sessionWindow.load("qrc:/main.qml");
-
-	QObject::connect(
-	  &startWindow, &QQmlApplicationEngine::quit, &app,
-	  &QApplication::closeAllWindows);
+	engine.load("qrc:/windows/start-window.qml");
+	engine.load("qrc:/main.qml");
 
 	return QGuiApplication::exec();
 	return 0;

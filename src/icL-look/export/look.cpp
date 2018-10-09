@@ -19,7 +19,7 @@ Look::Look(QObject * parent)
 }
 
 Look::~Look() {
-	if (source != nullptr) {
+	if (source == nullptr) {
 		icL_dropField(m_editor);
 		icL_dropField(m_session);
 		icL_dropField(m_start);
