@@ -1,5 +1,7 @@
 #include "gateway.h"
 
+#include <QApplication>
+
 namespace icL::ide {
 
 GateWay::GateWay(QObject * parent)
@@ -19,6 +21,10 @@ QObject * GateWay::crossLook() const {
 
 void GateWay::closeSessionWindows() {
 	emit requestToCloseSessionWindows();
+}
+
+void GateWay::aboutQt() {
+	QApplication::aboutQt();
 }
 
 void GateWay::setUserInterfaceScale(qreal userInterfaceScale) {

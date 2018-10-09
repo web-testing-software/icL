@@ -61,6 +61,35 @@ Item {
 
 	Rectangle {
 		id: bottom
+
+		anchors {
+			left: parent.left
+			right: parent.right
+			bottom: parent.bottom
+		}
+
+		height: rd(rq * 24)
+		color: look.start.underline.background
+
+		Text {
+			text: qsTr("icL 1.0.0 powered by Qt")
+			color: look.start.underline.foreground
+			font.family: "icL"
+			font.pixelSize: rd(rq * 12.5)
+
+			anchors {
+				right: parent.right
+				rightMargin: rd(rq * 8)
+				verticalCenter: parent.verticalCenter
+			}
+
+			MouseArea {
+				anchors.fill: parent
+				cursorShape: Qt.PointingHandCursor
+
+				onClicked: gateway.aboutQt();
+			}
+		}
 	}
 
 }

@@ -28,7 +28,7 @@ Rectangle {
 		anchors.bottom: parent.bottom
 		anchors.bottomMargin: rd(rq * 6)
 
-		font.family: "Noto Sans"
+		font.family: "icL"
 		font.pixelSize: rd(rq * 10.7)
 	}
 
