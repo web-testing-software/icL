@@ -42,7 +42,7 @@ Window {
 	}
 
 	// [!] Content
-	Main.SessionWindow {
+	Main.StartWindow {
 		id: sessionWindow
 		anchors.fill: parent
 	}
