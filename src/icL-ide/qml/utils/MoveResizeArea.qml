@@ -100,8 +100,10 @@ MouseField {
 
 	onReleased: {
 		if (resizeMoveTimer.running) {
-			move(mtrack.stopTracking());
 			resizeMoveTimer.stop()
+		}
+		else {
+			move(mtrack.stopTracking());
 		}
 
 		copyOfFlag = 0x0
