@@ -55,4 +55,16 @@ Window {
 	Component.onCompleted: {
 		flags = flags | Qt.FramelessWindowHint
 	}
+
+	// This timer fix bug for maximised window
+	Timer {
+		id: resizeMoveTimer;
+		interval: 10;
+		running: false
+		repeat: false
+
+		property var resizeMoveArea;
+
+		onTriggered: resizeMoveArea.pressedDelayFunction();
+	}
 }

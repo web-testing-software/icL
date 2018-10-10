@@ -44,6 +44,9 @@ int main(int argc, char * argv[]) {
 
 	context->setContextProperty("gateway", &gateway);
 
+	qmlRegisterSingletonType(
+	  {"qrc:/utils/MoveFlags.qml"}, "icL", 1, 0, "MoveFlags");
+
 	engine.load("qrc:/windows/start-window.qml");
 	engine.load("qrc:/main.qml");
 

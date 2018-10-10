@@ -1,5 +1,8 @@
 import QtQuick 2.0
 import icL.Toolkit 1.0
+import icL 1.0
+
+import "../utils" as Utils
 
 Item {
 	id: sessionWindow
@@ -24,30 +27,9 @@ Item {
 			color: look.start.header.foreground
 		}
 
-		MouseTrack {
-			id: mtrack
-
-			onPositionChanged: marea.move(position);
-		}
-
-		MouseArea {
-			id: marea
-			anchors.fill: parent;
-
-			property point winxy: Qt.point(0, 0)
-			property point beginxy: Qt.point(0, 0)
-
-			onPressed: {
-				winxy = Qt.point(win.x, win.y)
-				beginxy = mtrack.startTracking()
-			}
-
-			onReleased: move(mtrack.stopTracking());
-
-			function move(pos) {
-				win.x = winxy.x + (pos.x - beginxy.x)
-				win.y = winxy.y + (pos.y - beginxy.y)
-			}
+		Utils.MoveResizeArea {
+			anchors.fill: parent
+			flag: MoveFlags.hMove | MoveFlags.vMove
 		}
 	}
 

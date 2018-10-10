@@ -28,7 +28,8 @@ RESOURCES += \
     qml/startwindow.qrc \
     qml/themes.qrc \
     qml/themes-images.qrc \
-    qml/ui.qrc
+    qml/ui.qrc \
+    qml/utils.qrc
 
 
 DISTFILES += \
