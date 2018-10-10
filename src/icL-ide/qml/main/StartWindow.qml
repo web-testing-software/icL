@@ -3,6 +3,7 @@ import icL.Toolkit 1.0
 import icL 1.0
 
 import "../utils" as Utils
+import "../startwindow"
 
 Item {
 	id: sessionWindow
@@ -35,7 +36,7 @@ Item {
 		}
 	}
 
-	Rectangle {
+	Left {
 		id: left
 
 		anchors {
@@ -44,38 +45,9 @@ Item {
 			bottom: underline.top
 			left: parent.left
 		}
-
-		color: look.start.left.background
-
-		Rectangle {
-			id: leftHeader
-
-			anchors {
-				top: parent.top
-				right: parent.right
-				left: parent.left
-			}
-
-			height: rd(rq * 60)
-			color: look.start.left.header.background
-
-			Text {
-				text: qsTr("Offline sessions")
-
-				anchors {
-					verticalCenter: parent.verticalCenter
-					left: parent.left
-					leftMargin: rd(rq * 20)
-				}
-
-				color: look.start.left.header.foreground
-				font.family: "icL"
-				font.pixelSize: rd(rq * 21)
-			}
-		}
 	}
 
-	Rectangle {
+	Right {
 		id: right
 
 		anchors {
@@ -83,35 +55,6 @@ Item {
 			right: parent.right
 			bottom: parent.bottom
 			left: parent.horizontalCenter
-		}
-
-		color: look.start.right.background
-
-		Rectangle {
-			id: rightHeader
-
-			anchors {
-				top: parent.top
-				right: parent.right
-				left: parent.left
-			}
-
-			height: rd(rq * 60)
-			color: look.start.right.header.background
-
-			Text {
-				text: qsTr("Online sessions")
-
-				anchors {
-					verticalCenter: parent.verticalCenter
-					left: parent.left
-					leftMargin: rd(rq * 20)
-				}
-
-				color: look.start.right.header.foreground
-				font.family: "icL"
-				font.pixelSize: rd(rq * 21)
-			}
 		}
 	}
 
