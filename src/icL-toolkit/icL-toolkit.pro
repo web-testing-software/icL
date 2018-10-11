@@ -53,7 +53,8 @@ HEADERS += \
     tree/folder.h \
     tree/finaly.h \
     session/project.h \
-    session/libs.h
+    session/libs.h \
+    session/resources.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -68,4 +69,5 @@ SOURCES += \
     tree/folder.cpp \
     tree/finaly.cpp \
     session/project.cpp \
-    session/libs.cpp
+    session/libs.cpp \
+    session/resources.cpp
