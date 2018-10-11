@@ -4,6 +4,9 @@
 #include "../tree/item.h"
 
 
+class Script;
+class Libs;
+class Resources;
 
 namespace icL::toolkit::session {
 
@@ -20,6 +23,11 @@ public:
 	int          columnCount() override;
 	QVariant     data(int column) override;
 	QString      getIcon() override;
+
+private:
+	Script *    script    = nullptr;
+	Libs *      libs      = nullptr;
+	Resources * resources = nullptr;
 };
 
 }  // namespace icL::toolkit::session
