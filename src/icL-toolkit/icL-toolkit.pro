@@ -47,7 +47,10 @@ HEADERS += \
     panels/basepanels.h \
     panels/debug.h \
     export/panels.h \
-    utils/mousetracker.h
+    utils/mousetracker.h \
+    tree/item.h \
+    tree/folder.h \
+    tree/finaly.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -56,4 +59,7 @@ SOURCES += \
     panels/basepanels.cpp \
     panels/debug.cpp \
     export/panels.cpp \
-    utils/mousetracker.cpp
+    utils/mousetracker.cpp \
+    tree/item.cpp \
+    tree/folder.cpp \
+    tree/finaly.cpp
