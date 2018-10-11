@@ -22,6 +22,9 @@ public:
 
 protected:
 	QList<Item *> children;
+
+public:
+	friend class Item;
 };
 
 }  // namespace icL::toolkit::tree

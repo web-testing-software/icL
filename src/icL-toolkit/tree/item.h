@@ -17,12 +17,12 @@ public:
 	virtual int      childCount()     = 0;
 	virtual int      columnCount()    = 0;
 	virtual QVariant data(int column) = 0;
-	virtual int      selfIndex()      = 0;
-	virtual Item *   parent()         = 0;
-	virtual QString  getIcon()        = 0;
+	virtual int      selfIndex();
+	virtual Item *   parent();
+	virtual QString  getIcon() = 0;
 
 protected:
-	Item * m_parent;
+	Item * m_parent = nullptr;
 };
 
 }  // namespace icL::toolkit::tree
