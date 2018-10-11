@@ -1,5 +1,5 @@
-#ifndef SESSION_H
-#define SESSION_H
+#ifndef icL_toolkit_session_Session
+#define icL_toolkit_session_Session
 
 #include "../tree/folder.h"
 
@@ -26,4 +26,4 @@ public:
 
 }  // namespace icL::toolkit::session
 
-#endif  // SESSION_H
+#endif  // icL_toolkit_session_Session

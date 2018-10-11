@@ -1,5 +1,5 @@
-#ifndef FOLDER_H
-#define FOLDER_H
+#ifndef icL_toolkit_tree_Folder
+#define icL_toolkit_tree_Folder
 
 #include "item.h"
 
@@ -29,4 +29,4 @@ public:
 
 }  // namespace icL::toolkit::tree
 
-#endif  // FOLDER_H
+#endif  // icL_toolkit_tree_Folder

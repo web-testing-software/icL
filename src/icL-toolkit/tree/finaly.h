@@ -1,5 +1,5 @@
-#ifndef FINALY_H
-#define FINALY_H
+#ifndef icL_toolkit_tree_Finaly
+#define icL_toolkit_tree_Finaly
 
 #include "item.h"
 
@@ -20,4 +20,4 @@ public:
 
 }  // namespace icL::toolkit::tree
 
-#endif  // FINALY_H
+#endif  // icL_toolkit_tree_Finaly
