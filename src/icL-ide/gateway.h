@@ -41,6 +41,11 @@ public:
 	 */
 	Q_INVOKABLE void closeSessionWindows();
 
+	/**
+	 * @brief aboutQt opens qApp->aboutQt() from QML
+	 */
+	Q_INVOKABLE void aboutQt();
+
 signals:
 	void userInterfaceScaleChanged(qreal userInterfaceScale);
 	void startWindowModeChanged(bool startWindowMode);
