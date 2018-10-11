@@ -56,7 +56,8 @@ HEADERS += \
     session/libs.h \
     session/resources.h \
     session/script.h \
-    session/lib.h
+    session/lib.h \
+    session/resource.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -74,4 +75,5 @@ SOURCES += \
     session/libs.cpp \
     session/resources.cpp \
     session/script.cpp \
-    session/lib.cpp
+    session/lib.cpp \
+    session/resource.cpp
