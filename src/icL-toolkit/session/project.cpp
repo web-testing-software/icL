@@ -8,8 +8,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QTextStream>
 #include <QStringBuilder>
+#include <QTextStream>
 
 namespace icL::toolkit::session {
 
@@ -50,6 +50,29 @@ bool Project::loadProject(const QString & path) {
 	res = res && libs->setLibsList(path, obj["libs"].toArray().toVariantList());
 
 	return res;
+}
+
+tree::Item * Project::child(int row) {
+	tree::Item * ret = nullptr;
+
+	switch (row) {
+	case 0:
+		ret = script;
+		break;
+
+	case 1:
+		if (libs->childCount() > 0)
+			ret = libs;
+		else
+			ret = resources;
+		break;
+
+	case 2:
+		ret = resources;
+		break;
+	}
+
+	return ret;
 }
 
 }  // namespace icL::toolkit::session

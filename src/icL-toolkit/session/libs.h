@@ -10,7 +10,7 @@ namespace icL::toolkit::session {
 /**
  * @brief The Libs class describes a libs folder
  */
-class Libs : tree::Folder
+class Libs : public tree::Folder
 {
 public:
 	/**
