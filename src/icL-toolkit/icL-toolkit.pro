@@ -57,7 +57,8 @@ HEADERS += \
     session/resources.h \
     session/script.h \
     session/lib.h \
-    session/resource.h
+    session/resource.h \
+    utils/remotecall.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -76,4 +77,5 @@ SOURCES += \
     session/resources.cpp \
     session/script.cpp \
     session/lib.cpp \
-    session/resource.cpp
+    session/resource.cpp \
+    utils/remotecall.cpp
