@@ -103,4 +103,8 @@ QVariant Project::data(int column) {
 	}
 }
 
+QString Project::getIcon() {
+	return "project.svg";
+}
+
 }  // namespace icL::toolkit::session
