@@ -86,4 +86,8 @@ int Project::childCount() {
 	return ret;
 }
 
+int Project::columnCount() {
+	return 1;
+}
+
 }  // namespace icL::toolkit::session
