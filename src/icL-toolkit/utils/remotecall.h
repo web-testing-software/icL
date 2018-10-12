@@ -110,6 +110,8 @@ private:
 	QList<RemoteArg *> m_args;
 };
 
+using Actions = QList<RemoteCall*>;
+
 }  // namespace icL::toolkit::utils
 
 #endif  // icL_toolkit_utils_RemoteCall

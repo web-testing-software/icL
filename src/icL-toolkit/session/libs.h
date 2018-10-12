@@ -24,15 +24,16 @@ public:
 	 * @param libs is the new libs list
 	 * @return true if all libs exist, otherwise false
 	 */
-	bool setLibsList(const QString &path, const QVariantList & libs);
+	bool setLibsList(const QString & path, const QVariantList & libs);
 
 	// Item interface
 public:
 	QVariant data(int column) override;
 	QString  getIcon() override;
 
-	const QStringList & getActionsList() override;
-	bool                runAction(const QString & arg) override;
+	const utils::Actions & getActionsList() override;
+
+	bool runAction(utils::RemoteCall * call) override;
 };
 
 }  // namespace icL::toolkit::session

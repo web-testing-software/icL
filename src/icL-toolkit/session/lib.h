@@ -35,8 +35,9 @@ public:
 	int      selfIndex() override;
 	QString  getIcon() override;
 
-	const QStringList & getActionsList() override;
-	bool                runAction(const QString & arg) override;
+	const utils::Actions & getActionsList() override;
+
+	bool runAction(utils::RemoteCall * call) override;
 
 private:
 	/// \brief libname is the name of lib file

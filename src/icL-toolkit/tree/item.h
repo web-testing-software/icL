@@ -6,6 +6,13 @@
 class QVariant;
 class QString;
 class QStringList;
+template <typename T>
+class QList;
+
+namespace icL::toolkit::utils {
+class RemoteCall;
+using Actions = QList<RemoteCall *>;
+}  // namespace icL::toolkit::utils
 
 /**
  * @brief The icL.toolkit.tree namespace contains base classes of a tree model
@@ -75,7 +82,7 @@ public:
 	 * @brief getActionsList get aviable actions list
 	 * @return the list of aviable actions as JSON string
 	 */
-	virtual const QStringList & getActionsList() = 0;
+	virtual const utils::Actions & getActionsList() = 0;
 
 	/**
 	 * @brief runAction run a action
@@ -83,7 +90,7 @@ public:
 	 * @return true if the needed action was executed successful, otherwise
 	 * false
 	 */
-	virtual bool runAction(const QString & arg) = 0;
+	virtual bool runAction(utils::RemoteCall * call) = 0;
 
 protected:
 	/// @brief m_parent is the pointer to the parent item
