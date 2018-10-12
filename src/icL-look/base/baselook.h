@@ -9,6 +9,9 @@
 	if (x != nullptr)    \
 	delete x
 
+/**
+ * @brief The icL.look namespace contains a icL theme
+ */
 namespace icL::look {
 
 /**

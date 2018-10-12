@@ -3,6 +3,9 @@
 
 #include <QQmlExtensionPlugin>
 
+/**
+ * @brief The ToolkitPlugin class export the C++ toolkit classes to QML
+ */
 class ToolkitPlugin : public QQmlExtensionPlugin
 {
 	Q_OBJECT

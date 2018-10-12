@@ -12,6 +12,9 @@ namespace icL::look {
 class LinkAdv;
 class EffectAdv;
 
+/**
+ * @brief The Static class describes a look for the static left bar
+ */
 class Static : public BaseLook
 {
 	Q_OBJECT

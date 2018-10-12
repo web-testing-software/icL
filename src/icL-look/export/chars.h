@@ -6,9 +6,15 @@
 
 namespace icL::look {
 
+/**
+ * @brief The HighlightChars struct describes a simple highlight format
+ */
 struct HighlightChars
 {
+	/// @brief background is the background color
 	QColor background;
+
+	/// @brief border is the border color
 	QColor border;
 };
 

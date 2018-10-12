@@ -10,7 +10,7 @@
 namespace icL::toolkit::session {
 
 /**
- * @brief The Lib class represents a lib ina  project
+ * @brief The Lib class represents a lib in a project
  */
 class Lib : public tree::Finaly
 {

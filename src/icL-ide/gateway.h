@@ -3,8 +3,15 @@
 
 #include <QObject>
 
+/**
+ * @brief The icL.ide namespace contains IDE specific classes
+ */
 namespace icL::ide {
 
+/**
+ * @brief The GateWay class represents a gateway beetwen the start window and
+ * session window
+ */
 class GateWay : public QObject
 {
 	Q_OBJECT

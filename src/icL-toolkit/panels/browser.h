@@ -7,6 +7,9 @@
 
 namespace icL::toolkit::panels {
 
+/**
+ * @brief The Browser class describes visibility of panel in browser mode
+ */
 class Browser : public BasePanels
 {
 	Q_OBJECT

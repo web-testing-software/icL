@@ -7,6 +7,9 @@
 
 namespace icL::toolkit::panels {
 
+/**
+ * @brief The Code class describes the visibility of panels in code mode
+ */
 class Code : public BasePanels
 {
 	Q_OBJECT

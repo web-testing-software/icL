@@ -7,6 +7,9 @@
 
 namespace icL::look {
 
+/**
+ * @brief The CharFormatBase class represents a minimal char format
+ */
 class CharFormatBase : public TextLook
 {
 	Q_OBJECT

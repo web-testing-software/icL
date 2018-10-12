@@ -7,6 +7,9 @@
 
 namespace icL::toolkit::panels {
 
+/**
+ * @brief The Debug class describes the visibility of panels in debug mode
+ */
 class Debug : public BasePanels
 {
 	Q_OBJECT

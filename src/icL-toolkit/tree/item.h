@@ -7,7 +7,7 @@ class QVariant;
 class QString;
 
 /**
- * The namespace icL.toolkit.tree contains base classes of a tree model
+ * @brief The icL.toolkit.tree namespace contains base classes of a tree model
  */
 namespace icL::toolkit::tree {
 

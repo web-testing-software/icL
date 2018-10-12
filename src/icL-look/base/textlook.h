@@ -10,7 +10,7 @@
 namespace icL::look {
 
 /**
- * @brief The Text class describes a look for a text fragment
+ * @brief The TextLook class describes a look for a text fragment
  */
 class TextLook : public BaseLook
 {

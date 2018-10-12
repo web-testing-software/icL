@@ -12,7 +12,7 @@ class SessionWindow;
 class Editor;
 
 /**
- * @brief The Look class export look model to QML
+ * @brief The Look class exports look model to QML
  */
 class Look : public BaseLook
 {

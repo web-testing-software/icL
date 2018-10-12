@@ -4,8 +4,14 @@
 #include <QPoint>
 #include <QThread>
 
+/**
+ * @brief The icL.toolkit.utils namespace contains useful classes
+ */
 namespace icL::toolkit::utils {
 
+/**
+ * @brief The MouseTracker class track the mouse in global mode
+ */
 class MouseTracker : public QThread
 {
 	Q_OBJECT

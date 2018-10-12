@@ -3,8 +3,15 @@
 
 #include <QObject>
 
+/**
+ * @brief The icl.toolkit.panels namespace describes the visibility og panels in
+ * compact window
+ */
 namespace icL::toolkit::panels {
 
+/**
+ * @brief The BasePanels class contians commom properties for panels in any mode
+ */
 class BasePanels : public QObject
 {
 	Q_OBJECT

@@ -11,6 +11,9 @@ class Browser;
 class Code;
 class Debug;
 
+/**
+ * @brief The Panels class esports the visibility for all panels in all modes
+ */
 class Panels : public QObject
 {
 	Q_OBJECT

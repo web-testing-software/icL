@@ -5,6 +5,10 @@
 
 #include <QObject>
 
+/**
+ * @brief The icL.toolkit.session namespace define the tree items for projects
+ * view
+ */
 namespace icL::toolkit::session {
 
 /**

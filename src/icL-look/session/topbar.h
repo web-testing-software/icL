@@ -13,6 +13,9 @@ class TextLook;
 class LinkAdv;
 class EffectAdv;
 
+/**
+ * @brief The TopBar class describes a look for a top bar
+ */
 class TopBar : public BaseLook
 {
 	Q_OBJECT

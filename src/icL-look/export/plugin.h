@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QQmlExtensionPlugin>
 
+/**
+ * @brief The LookPlugin class export the C++ look classes to QML
+ */
 class LookPlugin : public QQmlExtensionPlugin
 {
 	Q_OBJECT
