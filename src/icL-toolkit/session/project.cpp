@@ -1,5 +1,6 @@
 #include "project.h"
 
+#include "../utils/remotecall.h"
 #include "libs.h"
 #include "resources.h"
 #include "script.h"
@@ -113,7 +114,17 @@ QString Project::getIcon() {
 
 enum Actions { NewLib = 0, NewResource = 1 };
 
-const utils::Actions & Project::getActionsList() {}
+const utils::Actions & Project::getActionsList() {
+	static utils::Actions actions = {
+	  new utils::RemoteCall(
+		Actions::NewLib, QObject::tr("New library"),
+		{new utils::RemoteArg(QObject::tr("Library name"))}),
+	  new utils::RemoteCall(
+		Actions::NewResource, QObject::tr("New resource"),
+		{new utils::RemoteArg(QObject::tr("Resource name"))})};
+
+	return actions;
+}
 
 bool Project::runAction(utils::RemoteCall * call) {}
 
