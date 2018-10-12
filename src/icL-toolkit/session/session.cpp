@@ -17,9 +17,7 @@ bool Session::loadSession(const QJsonObject & obj) {
 		return false;
 	}
 
-	for (auto * ptr : children) {
-		delete ptr;
-	}
+	clear();
 
 	m_name = obj["icL-session"].toString();
 

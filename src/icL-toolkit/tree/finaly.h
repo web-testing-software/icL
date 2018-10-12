@@ -7,9 +7,16 @@
 
 namespace icL::toolkit::tree {
 
+/**
+ * @brief The Finaly class represent an item without children
+ */
 class Finaly : public Item
 {
 public:
+	/**
+	 * @brief Finaly is the default constructor
+	 * @param parent is the default Item arg
+	 */
 	Finaly(Item * parent);
 
 	// Item interface

@@ -7,11 +7,23 @@
 
 namespace icL::toolkit::session {
 
+/**
+ * @brief The Libs class describes a libs folder
+ */
 class Libs : tree::Folder
 {
 public:
+	/**
+	 * @brief Libs is the default constructor
+	 * @param parent is the default Item arg
+	 */
 	Libs(Item * parent);
 
+	/**
+	 * @brief setLibsList setup the list of libs
+	 * @param libs is the new libs list
+	 * @return true if all libs exist, otherwise false
+	 */
 	bool setLibsList(const QStringList & libs);
 
 	// Item interface

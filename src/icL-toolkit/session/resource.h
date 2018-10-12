@@ -9,11 +9,23 @@
 
 namespace icL::toolkit::session {
 
+/**
+ * @brief The Resource class describe a resource in icL
+ */
 class Resource : tree::Finaly
 {
 public:
+	/**
+	 * @brief Resource is the default constructor
+	 * @param parent is the default Item arg
+	 */
 	Resource(Item * parent);
 
+	/**
+	 * @brief setPath sets up the resource item
+	 * @param path is the path to the file
+	 * @return true if file exists, otherwise false
+	 */
 	bool setPath(const QString & path);
 
 	// Item interface
@@ -24,7 +36,8 @@ public:
 	QString  getIcon() override;
 
 private:
-	QString resurceName;
+	/// @brief resurceName is the display name
+	QString resourceName;
 };
 
 }  // namespace icL::toolkit::session

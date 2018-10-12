@@ -7,11 +7,22 @@
 
 namespace icL::toolkit::session {
 
+/**
+ * @brief The Session class describes a icL IDE session
+ */
 class Session : public tree::Folder
 {
 public:
+	/**
+	 * @brief Session is the default constructor
+	 */
 	explicit Session();
 
+	/**
+	 * @brief loadSession sets up a session from a JSON object
+	 * @param obj is the JSON object to analize
+	 * @return true if loaded successfull, otherwise false
+	 */
 	bool loadSession(const QJsonObject & obj);
 
 	// Item interface
@@ -21,6 +32,7 @@ public:
 	QString      getIcon() override;
 
 private:
+	/// @brief m_name is the name of loaded session
 	QString m_name;
 };
 

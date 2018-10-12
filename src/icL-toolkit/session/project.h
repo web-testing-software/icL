@@ -10,11 +10,23 @@ class Resources;
 
 namespace icL::toolkit::session {
 
+/**
+ * @brief The Project class describes a icL project
+ */
 class Project : public tree::Item
 {
 public:
+	/**
+	 * @brief Project is the default constructor
+	 * @param parent is the default Item arg
+	 */
 	Project(Item * parent);
 
+	/**
+	 * @brief loadProject loads a project from folder path
+	 * @param path is the path to the project folder
+	 * @return true if loadded successfull, otherwise false
+	 */
 	bool loadProject(const QString & path);
 
 	// Item interface
@@ -26,8 +38,13 @@ public:
 	QString      getIcon() override;
 
 private:
-	Script *    script    = nullptr;
-	Libs *      libs      = nullptr;
+	/// @brief script is the executable file of project
+	Script * script = nullptr;
+
+	/// @brief libs is the folder with libs files
+	Libs * libs = nullptr;
+
+	/// @brief resources is the resource folder
 	Resources * resources = nullptr;
 };
 
