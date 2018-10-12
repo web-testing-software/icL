@@ -1,5 +1,7 @@
 #include "script.h"
 
+#include "../utils/remotecall.h"
+
 #include <QFile>
 #include <QVariant>
 
@@ -30,7 +32,16 @@ QString Script::getIcon() {
 
 enum Actions { Rename = 0, MakeLib = 1 };
 
-const utils::Actions & Script::getActionsList() {}
+const utils::Actions & Script::getActionsList() {
+	static utils::Actions actions = {
+	  new utils::RemoteCall(
+		Actions::Rename, QObject::tr("Rename"),
+		{new utils::RemoteArg(QObject::tr("New name"))}),
+	  new utils::RemoteCall(
+		Actions::MakeLib, QObject::tr("Make library from script"), {})};
+
+	return actions;
+}
 
 bool Script::runAction(utils::RemoteCall * call) {}
 
