@@ -75,4 +75,15 @@ tree::Item * Project::child(int row) {
 	return ret;
 }
 
+int Project::childCount() {
+	int ret = 1;
+
+	if (libs->childCount() > 0)
+		ret++;
+	if (resources->childCount() > 0)
+		ret++;
+
+	return ret;
+}
+
 }  // namespace icL::toolkit::session
