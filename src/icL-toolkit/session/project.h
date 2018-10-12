@@ -3,12 +3,14 @@
 
 #include "../tree/item.h"
 
+#include <QString>
+
+
+namespace icL::toolkit::session {
 
 class Script;
 class Libs;
 class Resources;
-
-namespace icL::toolkit::session {
 
 /**
  * @brief The Project class describes a icL project
@@ -21,6 +23,8 @@ public:
 	 * @param parent is the default Item arg
 	 */
 	Project(Item * parent);
+
+	~Project();
 
 	/**
 	 * @brief loadProject loads a project from folder path
@@ -38,6 +42,9 @@ public:
 	QString      getIcon() override;
 
 private:
+	/// @brief m_name is the name of the project
+	QString m_name;
+
 	/// @brief script is the executable file of project
 	Script * script = nullptr;
 

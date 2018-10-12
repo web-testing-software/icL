@@ -24,7 +24,7 @@ public:
 	 * @param files is the list of initial resources
 	 * @return true if resources exist, otherwise false
 	 */
-	bool setResourceList(const QStringList & files);
+	bool setResourceList(const QVariantList & files);
 
 	// Item interface
 public:
