@@ -1,5 +1,6 @@
 #include "resource.h"
 
+#include "../utils/remotecall.h"
 #include "project.h"
 
 #include <QDir>
@@ -43,7 +44,12 @@ QString Resource::getIcon() {
 
 enum Actions { Delete = 0 };
 
-const utils::Actions & Resource::getActionsList() {}
+const utils::Actions & Resource::getActionsList() {
+	static utils::Actions actions = {
+	  new utils::RemoteCall(Actions::Delete, QObject::tr("Delete"), {})};
+
+	return actions;
+}
 
 bool Resource::runAction(utils::RemoteCall * call) {}
 
