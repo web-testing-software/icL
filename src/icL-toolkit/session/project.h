@@ -10,11 +10,12 @@ class Resources;
 
 namespace icL::toolkit::session {
 
-class Project : tree::Item
+class Project : public tree::Item
 {
 public:
 	Project(Item * parent);
 
+	bool loadProject(const QString & path);
 
 	// Item interface
 public:

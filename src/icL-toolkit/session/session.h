@@ -9,19 +9,19 @@ namespace icL::toolkit::session {
 
 class Session : public tree::Folder
 {
-	Q_OBJECT
 public:
 	explicit Session();
 
-signals:
-
-public slots:
+	bool loadSession(const QJsonObject & obj);
 
 	// Item interface
 public:
 	QVariant     data(int column) override;
 	tree::Item * parent() override;
 	QString      getIcon() override;
+
+private:
+	QString m_name;
 };
 
 }  // namespace icL::toolkit::session

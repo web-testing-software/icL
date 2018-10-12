@@ -12,6 +12,7 @@ class Item
 {
 public:
 	Item(Item * parent);
+	virtual ~Item() = default;
 
 	virtual Item *   child(int row)   = 0;
 	virtual int      childCount()     = 0;

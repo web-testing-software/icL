@@ -12,6 +12,8 @@ class Resources : public tree::Folder
 public:
 	Resources(Item * parent);
 
+	bool setResourceList(const QStringList & files);
+
 	// Item interface
 public:
 	QVariant data(int column) override;

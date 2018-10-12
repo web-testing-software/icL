@@ -14,6 +14,8 @@ class Resource : tree::Finaly
 public:
 	Resource(Item * parent);
 
+	bool setPath(const QString & path);
+
 	// Item interface
 public:
 	int      columnCount() override;

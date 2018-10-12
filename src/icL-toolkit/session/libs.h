@@ -12,6 +12,8 @@ class Libs : tree::Folder
 public:
 	Libs(Item * parent);
 
+	bool setLibsList(const QStringList & libs);
+
 	// Item interface
 public:
 	QVariant data(int column) override;
