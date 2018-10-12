@@ -1,11 +1,27 @@
 #include "lib.h"
 
+#include <QFile>
 #include <QVariant>
 
 namespace icL::toolkit::session {
 
 Lib::Lib(Item * parent)
 	: Finaly(parent) {}
+
+bool Lib::setPath(const QString & path) {
+	QFile file{path};
+
+	if (!file.open(QFile::ReadOnly)) {
+		return false;
+	}
+
+	file.close();
+
+	int slash = path.lastIndexOf('/');
+	libname   = path.mid(slash + 1);
+
+	return true;
+}
 
 int Lib::columnCount() {
 	return 1;
