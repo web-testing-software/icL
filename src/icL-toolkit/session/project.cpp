@@ -61,10 +61,12 @@ tree::Item * Project::child(int row) {
 		break;
 
 	case 1:
-		if (libs->childCount() > 0)
+		if (libs->childCount() > 0) {
 			ret = libs;
-		else
+		}
+		else {
 			ret = resources;
+		}
 		break;
 
 	case 2:
@@ -78,16 +80,27 @@ tree::Item * Project::child(int row) {
 int Project::childCount() {
 	int ret = 1;
 
-	if (libs->childCount() > 0)
+	if (libs->childCount() > 0) {
 		ret++;
-	if (resources->childCount() > 0)
+	}
+	if (resources->childCount() > 0) {
 		ret++;
+	}
 
 	return ret;
 }
 
 int Project::columnCount() {
 	return 1;
+}
+
+QVariant Project::data(int column) {
+	if (column == 0) {
+		return {m_name};
+	}
+	else {
+		return {};
+	}
 }
 
 }  // namespace icL::toolkit::session
