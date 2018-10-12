@@ -1,5 +1,6 @@
 #include "resources.h"
 
+#include "../utils/remotecall.h"
 #include "resource.h"
 
 #include <QStringBuilder>
@@ -43,7 +44,12 @@ QString Resources::getIcon() {
 
 enum Actions { NewResource = 0 };
 
-const utils::Actions & Resources::getActionsList() {}
+const utils::Actions & Resources::getActionsList() {
+	static utils::Actions actions = {new utils::RemoteCall(
+	  Actions::NewResource, QObject::tr("New resource"), {})};
+
+	return actions;
+}
 
 bool Resources::runAction(utils::RemoteCall * call) {}
 

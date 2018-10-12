@@ -120,8 +120,7 @@ const utils::Actions & Project::getActionsList() {
 		Actions::NewLib, QObject::tr("New library"),
 		{new utils::RemoteArg(QObject::tr("Library name"))}),
 	  new utils::RemoteCall(
-		Actions::NewResource, QObject::tr("New resource"),
-		{new utils::RemoteArg(QObject::tr("Resource name"))})};
+		Actions::NewResource, QObject::tr("New resource"), {})};
 
 	return actions;
 }
