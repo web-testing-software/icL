@@ -9,6 +9,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTextStream>
+#include <QStringBuilder>
 
 namespace icL::toolkit::session {
 
@@ -43,10 +44,10 @@ bool Project::loadProject(const QString & path) {
 
 	bool res = true;
 
-	res = res && script->setPath(obj["script"].toString());
+	res = res && script->setPath(path % '/' % obj["script"].toString());
 	res = res && resources->setResourceList(
 				   path, obj["resources"].toArray().toVariantList());
-	res = res && libs->setLibsList(obj["libs"].toArray().toVariantList());
+	res = res && libs->setLibsList(path, obj["libs"].toArray().toVariantList());
 
 	return res;
 }

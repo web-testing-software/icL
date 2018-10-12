@@ -24,7 +24,7 @@ public:
 	 * @param libs is the new libs list
 	 * @return true if all libs exist, otherwise false
 	 */
-	bool setLibsList(const QVariantList & libs);
+	bool setLibsList(const QString &path, const QVariantList & libs);
 
 	// Item interface
 public:
