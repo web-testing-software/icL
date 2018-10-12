@@ -1,5 +1,7 @@
 #include "resource.h"
 
+#include "project.h"
+
 #include <QDir>
 #include <QFile>
 #include <QVariant>
@@ -27,7 +29,12 @@ QVariant Resource::data(int column) {
 }
 
 int Resource::selfIndex() {
-	// TODO: Write this function later
+	if (dynamic_cast<Project *>(m_parent)->hasLibs()) {
+		return 2;
+	}
+	else {
+		return 1;
+	}
 }
 
 QString Resource::getIcon() {

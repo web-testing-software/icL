@@ -52,6 +52,10 @@ bool Project::loadProject(const QString & path) {
 	return res;
 }
 
+bool Project::hasLibs() {
+	return libs->childCount() > 0;
+}
+
 tree::Item * Project::child(int row) {
 	tree::Item * ret = nullptr;
 

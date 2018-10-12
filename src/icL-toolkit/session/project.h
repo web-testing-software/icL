@@ -33,6 +33,12 @@ public:
 	 */
 	bool loadProject(const QString & path);
 
+	/**
+	 * @brief hasLibs detects if is some libs in this project
+	 * @return true if exists one lib at minimum, otherwise false
+	 */
+	bool hasLibs();
+
 	// Item interface
 public:
 	tree::Item * child(int row) override;
