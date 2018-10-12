@@ -1,5 +1,6 @@
 #include "libs.h"
 
+#include "../utils/remotecall.h"
 #include "lib.h"
 
 #include <QStringBuilder>
@@ -43,7 +44,13 @@ QString Libs::getIcon() {
 
 enum Actions { NewLib = 0 };
 
-const utils::Actions & Libs::getActionsList() {}
+const utils::Actions & Libs::getActionsList() {
+	static utils::Actions actions = {new utils::RemoteCall(
+	  Actions::NewLib, QObject::tr("New library"),
+	  {new utils::RemoteArg(QObject::tr("Library name"))})};
+
+	return actions;
+}
 
 bool Libs::runAction(utils::RemoteCall * call) {}
 
