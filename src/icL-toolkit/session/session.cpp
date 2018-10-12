@@ -1,5 +1,6 @@
 #include "session.h"
 
+#include "../utils/remotecall.h"
 #include "project.h"
 
 #include <QDir>
@@ -50,8 +51,15 @@ QString Session::getIcon() {
 	return {};
 }
 
-const utils::Actions & Session::getActionsList() {}
+const utils::Actions & Session::getActionsList() {
+	static utils::Actions actions = {};
 
-bool Session::runAction(utils::RemoteCall * call) {}
+	return actions;
+}
+
+bool Session::runAction(utils::RemoteCall *) {
+	// Session is the root item, it has no actions
+	return false;
+}
 
 }  // namespace icL::toolkit::session
