@@ -111,4 +111,10 @@ QString Project::getIcon() {
 	return "project.svg";
 }
 
+enum Actions { NewLib = 0, NewResource = 1 };
+
+const utils::Actions & Project::getActionsList() {}
+
+bool Project::runAction(utils::RemoteCall * call) {}
+
 }  // namespace icL::toolkit::session

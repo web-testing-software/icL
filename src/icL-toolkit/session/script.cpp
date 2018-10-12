@@ -28,4 +28,10 @@ QString Script::getIcon() {
 	return "icL-file.svg";
 }
 
+enum Actions { Rename = 0, MakeLib = 1 };
+
+const utils::Actions & Script::getActionsList() {}
+
+bool Script::runAction(utils::RemoteCall * call) {}
+
 }  // namespace icL::toolkit::session

@@ -41,4 +41,10 @@ QString Libs::getIcon() {
 	return "libs.svg";
 }
 
+enum Actions { NewLib = 0 };
+
+const utils::Actions & Libs::getActionsList() {}
+
+bool Libs::runAction(utils::RemoteCall * call) {}
+
 }  // namespace icL::toolkit::session

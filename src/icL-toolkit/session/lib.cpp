@@ -36,16 +36,20 @@ QString Lib::getIcon() {
 	return "lib.svg";
 }
 
+enum Actions { Rename = 0, Delete = 1 };
+
 const utils::Actions & Lib::getActionsList() {
-	static utils::Actions actions = {new utils::RemoteCall(
-	  0, QObject::tr("Rename"),
-	  {new utils::RemoteArg(QObject::tr("New name"))})};
+	static utils::Actions actions = {
+	  new utils::RemoteCall(
+		Actions::Rename, QObject::tr("Rename"),
+		{new utils::RemoteArg(QObject::tr("New name"))}),
+	  new utils::RemoteCall(Actions::Delete, QObject::tr("Delete"), {})};
 
 	return actions;
 }
 
 bool Lib::runAction(utils::RemoteCall * call) {
-	if (call->id() != 0) {
+	if (call->id() != Actions::Rename) {
 		return false;
 	}
 

@@ -50,4 +50,8 @@ QString Session::getIcon() {
 	return {};
 }
 
+const utils::Actions & Session::getActionsList() {}
+
+bool Session::runAction(utils::RemoteCall * call) {}
+
 }  // namespace icL::toolkit::session

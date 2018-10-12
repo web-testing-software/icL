@@ -41,4 +41,10 @@ QString Resources::getIcon() {
 	return "resources.svg";
 }
 
+enum Actions { NewResource = 0 };
+
+const utils::Actions & Resources::getActionsList() {}
+
+bool Resources::runAction(utils::RemoteCall * call) {}
+
 }  // namespace icL::toolkit::session
