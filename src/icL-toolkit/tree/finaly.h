@@ -23,6 +23,9 @@ public:
 public:
 	Item * child(int row) override;
 	int    childCount() override;
+
+    protected:
+	bool checkIfFileExist(const QString & path, QString & fname);
 };
 
 }  // namespace icL::toolkit::tree

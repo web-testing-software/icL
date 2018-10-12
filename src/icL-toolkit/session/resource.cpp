@@ -10,18 +10,7 @@ Resource::Resource(Item * parent)
 	: Finaly(parent) {}
 
 bool Resource::setPath(const QString & path) {
-	QFile file{path};
-
-	if (!file.open(QFile::ReadOnly)) {
-		return false;
-	}
-
-	file.close();
-
-	int slash    = path.lastIndexOf('/');
-	resourceName = path.mid(slash + 1);
-
-	return true;
+	return checkIfFileExist(path, resourceName);
 }
 
 int Resource::columnCount() {
