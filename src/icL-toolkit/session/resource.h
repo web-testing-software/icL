@@ -12,7 +12,7 @@ namespace icL::toolkit::session {
 /**
  * @brief The Resource class describe a resource in icL
  */
-class Resource : tree::Finaly
+class Resource : public tree::Finaly
 {
 public:
 	/**

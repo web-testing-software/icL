@@ -45,7 +45,7 @@ bool Project::loadProject(const QString & path) {
 
 	res = res && script->setPath(obj["script"].toString());
 	res = res && resources->setResourceList(
-				   obj["resources"].toArray().toVariantList());
+				   path, obj["resources"].toArray().toVariantList());
 	res = res && libs->setLibsList(obj["libs"].toArray().toVariantList());
 
 	return res;
