@@ -24,6 +24,14 @@ RemoteCall::RemoteCall(int id, QString name, QList<RemoteArg *> args) {
 	m_args = args;
 }
 
+RemoteCall::~RemoteCall() {
+	for (auto * ptr : m_args) {
+		delete ptr;
+	}
+
+	m_args.clear();
+}
+
 int RemoteCall::id() const {
 	return m_id;
 }

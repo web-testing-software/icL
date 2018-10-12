@@ -32,7 +32,7 @@ public:
 	Item(Item * parent);
 
 	/// @brief ~Item is the deafult virtual constructor
-	virtual ~Item() = default;
+	virtual ~Item();
 
 	/**
 	 * @brief child returns the row-th child
@@ -92,9 +92,16 @@ public:
 	 */
 	virtual bool runAction(utils::RemoteCall * call) = 0;
 
+private:
+	/**
+	 * @brief clear clears the memory of action list
+	 */
+	void clear();
+
 protected:
 	/// @brief m_parent is the pointer to the parent item
 	Item * m_parent = nullptr;
+
 };
 
 }  // namespace icL::toolkit::tree

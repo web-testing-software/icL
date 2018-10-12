@@ -78,6 +78,8 @@ public:
 	 */
 	RemoteCall(int id, QString name, QList<RemoteArg *> args);
 
+	~RemoteCall();
+
 	/**
 	 * @brief id is the id of function
 	 * @return the id of function
