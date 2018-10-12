@@ -30,6 +30,9 @@ public:
 public:
 	QVariant data(int column) override;
 	QString  getIcon() override;
+
+	const QStringList & getActionsList() override;
+	bool                runAction(const QString & arg) override;
 };
 
 }  // namespace icL::toolkit::session

@@ -35,6 +35,9 @@ public:
 	tree::Item * parent() override;
 	QString      getIcon() override;
 
+	const QStringList & getActionsList() override;
+	bool                runAction(const QString & arg) override;
+
 private:
 	/// @brief m_name is the name of loaded session
 	QString m_name;

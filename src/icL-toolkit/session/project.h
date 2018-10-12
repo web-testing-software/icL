@@ -47,6 +47,9 @@ public:
 	QVariant     data(int column) override;
 	QString      getIcon() override;
 
+	const QStringList & getActionsList() override;
+	bool                runAction(const QString & arg) override;
+
 private:
 	/// @brief m_name is the name of the project
 	QString m_name;

@@ -5,6 +5,7 @@
 
 class QVariant;
 class QString;
+class QStringList;
 
 /**
  * @brief The icL.toolkit.tree namespace contains base classes of a tree model
@@ -69,6 +70,20 @@ public:
 	 * @return the name of icon int theme
 	 */
 	virtual QString getIcon() = 0;
+
+	/**
+	 * @brief getActionsList get aviable actions list
+	 * @return the list of aviable actions as JSON string
+	 */
+	virtual const QStringList & getActionsList() = 0;
+
+	/**
+	 * @brief runAction run a action
+	 * @param arg is JSON string with action name and args
+	 * @return true if the needed action was executed successful, otherwise
+	 * false
+	 */
+	virtual bool runAction(const QString & arg) = 0;
 
 protected:
 	/// @brief m_parent is the pointer to the parent item
