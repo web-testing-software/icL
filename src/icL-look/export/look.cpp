@@ -12,31 +12,65 @@
 namespace icL::look {
 
 Look::Look(QObject * parent)
-	: Base(parent) {
-	m_editor  = new editor::Editor(this);
-	m_session = new session::SessionWindow(this);
-	m_start   = new start::StartWindow(this);
+	: BaseLook(parent) {
+	m_editor  = new Editor(this);
+	m_session = new SessionWindow(this);
+	m_start   = new StartWindow(this);
 }
 
 Look::~Look() {
-	icL_dropField(m_editor);
-	icL_dropField(m_session);
-	icL_dropField(m_start);
+	if (source == nullptr) {
+		icL_dropField(m_editor);
+		icL_dropField(m_session);
+		icL_dropField(m_start);
+	}
 }
 
-start::StartWindow * Look::start() const {
+StartWindow * Look::start() const {
 	return m_start;
 }
 
-session::SessionWindow * Look::session() const {
+SessionWindow * Look::session() const {
 	return m_session;
 }
 
-editor::Editor * Look::editor() const {
+Editor * Look::editor() const {
 	return m_editor;
 }
 
-bool Look::loadConf(const QString & path) {
+QString Look::path() const {
+	return *m_path;
+}
+
+void Look::clone(Look * look) {
+	auto* old_path = m_path;
+	auto* old_editor = m_editor;
+	auto* old_session = session();
+	auto* old_start = m_start;
+
+	m_path    = look->m_path;
+	m_editor  = look->m_editor;
+	m_session = look->m_session;
+	m_start   = look->m_start;
+
+	emit pathChanged(*m_path);
+	emit editorChanged(m_editor);
+	emit sessionChanged(m_session);
+	emit startChanged(m_start);
+
+	old_editor->setParent(nullptr);
+	old_session->setParent(nullptr);
+	old_start->setParent(nullptr);
+
+	delete old_path;
+	delete old_editor;
+	delete old_session;
+	delete old_start;
+
+	source = look;
+}
+
+bool Look::loadConf(const QString & path, bool editorOnly) {
 	QFile         file(path);
 	QTextStream   stream(&file);
 	QJsonDocument doc;
@@ -45,7 +79,7 @@ bool Look::loadConf(const QString & path) {
 		return false;
 	}
 	else {
-		confFilePath = path;
+		editorOnly ? editorConfFilePath : confFilePath = path;
 	}
 
 	QString content = stream.readAll();
@@ -57,9 +91,51 @@ bool Look::loadConf(const QString & path) {
 
 	QJsonObject obj = doc.object();
 
+	if (editorOnly) {
+		obj.remove("session");
+		obj.remove("start");
+	}
+	else {
+		QString path = obj.value("path").toString();
+
+		if (!path.isEmpty()) {
+			*m_path = path;
+
+			emit pathChanged(path);
+		}
+	}
+
 	setUp(obj);
+
 	file.close();
 
+	return true;
+}
+
+bool Look::saveConf(bool editorOnly) {
+	QFile         file(editorOnly ? editorConfFilePath : confFilePath);
+	QTextStream   stream(&file);
+	QJsonDocument doc;
+
+	if (!file.open(QFile::WriteOnly)) {
+		return false;
+	}
+
+	QJsonObject obj = getUp();
+
+	if (editorOnly) {
+		obj.remove("session");
+		obj.remove("start");
+	}
+	else {
+		obj["path"] = *m_path;
+	}
+
+	doc.setObject(obj);
+
+	stream << doc.toJson(QJsonDocument::Indented);
+
+	file.close();
 	return true;
 }
 
@@ -69,27 +145,22 @@ void Look::setUp(const QJsonObject & obj) {
 	m_start->setUp(obj.value("start").toObject());
 }
 
-bool Look::saveConf() {
-	QFile         file(confFilePath);
-	QTextStream   stream(&file);
-	QJsonDocument doc;
-
-	if (!file.open(QFile::WriteOnly)) {
-		return false;
-	}
-
-	doc.setObject(getUp());
-
-	stream << doc.toJson(QJsonDocument::Indented);
-
-	file.close();
-	return true;
-}
-
 QJsonObject Look::getUp() {
 	return {{"editor", m_editor->getUp()},
 			{"session", m_session->getUp()},
 			{"start", m_start->getUp()}};
+}
+
+void Look::setPath(QString path) {
+	if (*m_path == path)
+		return;
+
+	*m_path = path;
+	emit pathChanged(path);
+
+	if (source) {
+		emit source->pathChanged(path);
+	}
 }
 
 }  // namespace icL::look

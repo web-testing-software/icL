@@ -1,23 +1,23 @@
 #include "centralside.h"
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 #include "../start/input.h"
 #include "issue.h"
 
 #include <QJsonObject>
 
-namespace icL::look::session {
+namespace icL::look {
 
 CentralSide::CentralSide(QObject * parent)
-	: Base(parent) {
+	: BaseLook(parent) {
 	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
 
 	m_error      = new Issue(this);
 	m_warn       = new Issue(this);
-	m_header     = new base::Text(this);
-	m_input      = new start::Input(this);
-	m_underdigit = new base::LinkAdv(this);
-	m_undertext  = new base::LinkAdv(this);
+	m_header     = new TextLook(this);
+	m_input      = new Input(this);
+	m_underdigit = new LinkAdv(this);
+	m_undertext  = new LinkAdv(this);
 }
 
 CentralSide::~CentralSide() {
@@ -29,7 +29,7 @@ CentralSide::~CentralSide() {
 	icL_dropField(m_warn);
 }
 
-base::Text * session::CentralSide::header() const {
+TextLook * CentralSide::header() const {
 	return m_header;
 }
 
@@ -41,11 +41,11 @@ Issue * CentralSide::error() const {
 	return m_error;
 }
 
-base::LinkAdv * CentralSide::undertext() const {
+LinkAdv * CentralSide::undertext() const {
 	return m_undertext;
 }
 
-base::LinkAdv * CentralSide::underdigit() const {
+LinkAdv * CentralSide::underdigit() const {
 	return m_underdigit;
 }
 
@@ -61,7 +61,7 @@ QColor CentralSide::okResult() const {
 	return m_okResult;
 }
 
-start::Input * CentralSide::input() const {
+Input * CentralSide::input() const {
 	return m_input;
 }
 
@@ -118,4 +118,4 @@ void CentralSide::setOkResult(QColor okResult) {
 	emit okResultChanged(m_okResult);
 }
 
-}  // namespace icL::look::session
+}

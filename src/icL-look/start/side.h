@@ -7,12 +7,9 @@
 
 
 
-// clang-format off
-namespace icL::look::base { class LinkAdv; }
-// clang-format on
+namespace icL::look {
 
-namespace icL::look::start {
-
+class LinkAdv;
 class Input;
 
 /**
@@ -23,16 +20,11 @@ class Side : public ListItem
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text* header READ header)
-	Q_PROPERTY(QColor     background READ background WRITE setBackground NOTIFY backgroundChanged)
-	Q_PROPERTY(Input*          input READ input)
-	Q_PROPERTY(base::LinkAdv* button READ button)
+	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
+	Q_PROPERTY(icL::look::TextLook* header READ header NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Input*     input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(icL::look::LinkAdv*  button READ button NOTIFY buttonChanged)
 	// clang-format on
-
-	base::Text *    m_header = nullptr;
-	QColor          m_background;
-	Input *         m_input = nullptr;
-	base::LinkAdv * m_button = nullptr;
 
 public:
 	/**
@@ -47,7 +39,7 @@ public:
 	 * @brief header is a look for a side header
 	 * @return the look for a side header
 	 */
-	base::Text * header() const;
+	TextLook * header() const;
 
 	/**
 	 * @brief background is the brackground color
@@ -65,7 +57,7 @@ public:
 	 * @brief button is the look of buttons
 	 * @return the look for buttons
 	 */
-	base::LinkAdv * button() const;
+	LinkAdv * button() const;
 
 	void setUp(const QJsonObject & obj) override;
 
@@ -73,6 +65,9 @@ public:
 
 signals:
 	void backgroundChanged(QColor background);
+	void headerChanged(TextLook * header);
+	void inputChanged(Input * input);
+	void buttonChanged(LinkAdv * button);
 
 public slots:
 	/**
@@ -80,8 +75,14 @@ public slots:
 	 * @param background is the new background color
 	 */
 	void setBackground(QColor background);
+
+private:
+	TextLook * m_header = nullptr;
+	QColor     m_background;
+	Input *    m_input  = nullptr;
+	LinkAdv *  m_button = nullptr;
 };
 
-}  // namespace icL::look::start
+}  // namespace icL::look
 
 #endif  // icL_look_start_Side

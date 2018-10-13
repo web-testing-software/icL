@@ -1,21 +1,15 @@
 include($$ICL_ROOT/pri_files/common.pri)
 include($$ICL_ROOT/pri_files/os.pri)
 
-CONFIG(debug, debug|release) {
-    DESTDIR = $$ICL_ROOT/bin/debug/$$OS
-    LIBS += -L$$ICL_ROOT/bin/debug/$$OS/lib
-}
-else {
-    DESTDIR = $$ICL_ROOT/bin/release/$$OS
-    LIBS += -L$$ICL_ROOT/bin/release/$$OS/lib
-}
+DESTDIR = $$ICL_ROOT/bin/$$BUILDTYPE/$$OS
+LIBS += -L$$ICL_ROOT/bin/$$BUILDTYPE/$$OS/lib
 
 unix {
         target.path = /usr/bin
         INSTALLS += target
 }
 
-LIBS += -l-icL-look
+#LIBS += -l-icL-look
 LIBS += -l-icL-editor
 #LIBS += -l-icl-context-base
 #LIBS += -l-icl-context-complex

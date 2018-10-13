@@ -2,10 +2,10 @@
 
 #include <QJsonObject>
 
-namespace icL::look::editor {
+namespace icL::look {
 
 Highlight::Highlight(QObject * parent)
-	: Base(parent) {
+	: BaseLook(parent) {
 	m_background = m_border = QColor(Qt::transparent);
 }
 
@@ -46,4 +46,4 @@ void Highlight::setBorder(QColor border) {
 	emit borderChanged(m_border);
 }
 
-}  // namespace icL::look::editor
+}

@@ -1,30 +1,27 @@
 #ifndef icL_look_editor_Line
 #define icL_look_editor_Line
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 #include <QColor>
 
 
 
-namespace icL::look::editor {
+namespace icL::look {
 
 class CharFormatBase;
 
 /**
  * @brief The Line class describes a look for a line
  */
-class Line : public base::Base
+class Line : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(QColor              lineBg READ lineBg WRITE setLineBg NOTIFY lineBgChanged)
-	Q_PROPERTY(CharFormatBase* lineNumber READ lineNumber)
+	Q_PROPERTY(QColor lineBg READ lineBg WRITE setLineBg NOTIFY lineBgChanged)
+	Q_PROPERTY(icL::look::CharFormatBase* lineNumber READ lineNumber NOTIFY lineNumberChanged)
 	// clang-format on
-
-	QColor           m_lineBg;
-	CharFormatBase * m_lineNumber;
 
 public:
 	/**
@@ -53,6 +50,7 @@ public:
 
 signals:
 	void lineBgChanged(QColor lineBg);
+	void lineNumberChanged(CharFormatBase * lineNumber);
 
 public slots:
 	/**
@@ -60,8 +58,12 @@ public slots:
 	 * @param lineBg is the new background color for highlighted line
 	 */
 	void setLineBg(QColor lineBg);
+
+private:
+	QColor           m_lineBg;
+	CharFormatBase * m_lineNumber;
 };
 
-}  // namespace icL::look::editor
+}  // namespace icL::look
 
 #endif  // icL_look_editor_Line

@@ -1,17 +1,26 @@
-#ifndef CHARS_H
-#define CHARS_H
+#ifndef icL_look_Chars
+#define icL_look_Chars
 
 #include <QObject>
 #include <QTextCharFormat>
 
-namespace icL::editor::look {
+namespace icL::look {
 
-struct Highlight
+/**
+ * @brief The HighlightChars struct describes a simple highlight format
+ */
+struct HighlightChars
 {
+	/// @brief background is the background color
 	QColor background;
+
+	/// @brief border is the border color
 	QColor border;
 };
 
+/**
+ * @brief The Chars class exports editor hightlight rules to C++
+ */
 class Chars : public QObject
 {
 	Q_OBJECT
@@ -52,7 +61,7 @@ public:
 	static QTextCharFormat type;
 
 	/// @brief occurrence is the style for occurrence highlight
-	static Highlight occurence;
+	static HighlightChars occurence;
 
 	/// @brief error is the color of errors underline
 	static QColor error;
@@ -80,4 +89,4 @@ private:
 
 }  // namespace icL::editor::look
 
-#endif  // CHARS_H
+#endif  // icL_look_Chars

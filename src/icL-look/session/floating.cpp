@@ -1,19 +1,19 @@
 #include "floating.h"
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 #include "../start/input.h"
 #include "tree.h"
 
 #include <QJsonObject>
 
-namespace icL::look::session {
+namespace icL::look {
 
 Floating::Floating(QObject * parent)
-	: Base(parent) {
+	: BaseLook(parent) {
 	m_error = m_warn = m_console = m_bg = QColor(Qt::transparent);
 
-	m_header = new base::Text(this);
-	m_input  = new start::Input(this);
+	m_header = new TextLook(this);
+	m_input  = new Input(this);
 	m_stack  = new Tree(this);
 	m_state  = new Tree(this);
 }
@@ -25,7 +25,7 @@ Floating::~Floating() {
 	icL_dropField(m_state);
 }
 
-base::Text * Floating::header() const {
+TextLook * Floating::header() const {
 	return m_header;
 }
 
@@ -49,7 +49,7 @@ QColor Floating::console() const {
 	return m_console;
 }
 
-start::Input * Floating::input() const {
+Input * Floating::input() const {
 	return m_input;
 }
 
@@ -113,4 +113,4 @@ void Floating::setBg(QColor bg) {
 	emit bgChanged(m_bg);
 }
 
-}  // namespace icL::look::session
+}

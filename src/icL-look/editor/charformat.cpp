@@ -2,7 +2,7 @@
 
 #include <QJsonObject>
 
-namespace icL::look::editor {
+namespace icL::look {
 
 CharFormat::CharFormat(QObject * parent)
 	: CharFormatBase(parent) {
@@ -50,4 +50,4 @@ void CharFormat::setUndercolor(QColor undercolor) {
 	emit undercolorChanged(m_undercolor);
 }
 
-}  // namespace icL::look::editor
+}

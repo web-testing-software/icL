@@ -1,6 +1,6 @@
 #include "chars.h"
 
-namespace icL::editor::look {
+namespace icL::look {
 
 Chars::Chars(QObject * parent)
 	: QObject(parent) {
@@ -20,7 +20,7 @@ QTextCharFormat Chars::property  = {};
 QTextCharFormat Chars::string    = {};
 QTextCharFormat Chars::system    = {};
 QTextCharFormat Chars::type      = {};
-Highlight       Chars::occurence = {};
+HighlightChars  Chars::occurence = {};
 QColor          Chars::error     = {};
 QColor          Chars::warning   = {};
 
@@ -32,4 +32,4 @@ void Chars::update() {
 
 Chars * Chars::instance = nullptr;
 
-}  // namespace icL::editor::look
+}  // namespace icL::look

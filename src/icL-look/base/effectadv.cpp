@@ -2,7 +2,7 @@
 
 #include <QJsonObject>
 
-namespace icL::look::base {
+namespace icL::look {
 
 EffectAdv::EffectAdv(QObject * parent)
 	: Effect(parent) {
@@ -37,4 +37,4 @@ void EffectAdv::setActiveHover(QColor activeHover) {
 	emit activeHoverChanged(m_activeHover);
 }
 
-}  // namespace icL::look::base
+}

@@ -10,5 +10,6 @@
         <file>main/BottomSide.qml</file>
         <file>main/Sessions.qml</file>
         <file>main/NavigationBar.qml</file>
+        <file>windows/start-window.qml</file>
     </qresource>
 </RCC>

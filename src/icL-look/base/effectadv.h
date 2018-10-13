@@ -3,9 +3,7 @@
 
 #include "effect.h"
 
-
-
-namespace icL::look::base {
+namespace icL::look {
 
 /**
  * @brief The EffectAdv class
@@ -17,8 +15,6 @@ class EffectAdv : public Effect
 	// clang-format off
 	Q_PROPERTY(QColor activeHover READ activeHover WRITE setActiveHover NOTIFY activeHoverChanged)
 	// clang-format on
-
-	QColor m_activeHover;
 
 public:
 	/**
@@ -46,8 +42,11 @@ public slots:
 	 * @param activeHover is the new link color for active and hover state
 	 */
 	void setActiveHover(QColor activeHover);
+
+private:
+	QColor m_activeHover;
 };
 
-}  // namespace icL::look::base
+}  // namespace icL::look
 
 #endif  // EFFECTADV_H

@@ -5,7 +5,7 @@
 
 
 
-namespace icL::look::editor {
+namespace icL::look {
 
 /**
  * @brief The CharFormat class define a format for a fragment of text
@@ -18,9 +18,6 @@ class CharFormat : public CharFormatBase
 	Q_PROPERTY(int     underline READ underline  WRITE setUnderline  NOTIFY underlineChanged)
 	Q_PROPERTY(QColor undercolor READ undercolor WRITE setUndercolor NOTIFY undercolorChanged)
 	// clang-format on
-
-	int    m_underline;
-	QColor m_undercolor;
 
 public:
 	/**
@@ -61,8 +58,12 @@ public slots:
 	 * @param undercolor is the new color for underline
 	 */
 	void setUndercolor(QColor undercolor);
+
+private:
+	int    m_underline;
+	QColor m_undercolor;
 };
 
-}  // namespace icL::look::editor
+}  // namespace icL::look
 
 #endif  // icL_look_editor_CharFormat

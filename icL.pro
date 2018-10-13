@@ -12,6 +12,7 @@ SUBDIRS = \
         ce \
         cp \
         look \
+        toolkit \
         il \
         editor \
         sv \
@@ -31,6 +32,7 @@ sv.subdir       = src/icL-sv
 wd.subdir       = src/icL-wd
 editor.subdir   = src/icL-editor
 look.subdir     = src/icL-look
+toolkit.subdir  = src/icL-toolkit
 
 # apps
 ide.subdir      = src/icL-ide
@@ -39,6 +41,7 @@ manager.subdir  = src/icL-manager
 worker.subdir   = src/icL-worker
 
 # depends
+look.depends = editor
 ide.depends = look
 share.depends = look
 manager.depends = look

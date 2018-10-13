@@ -1,17 +1,17 @@
 #include "input.h"
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 
 #include <QJsonObject>
 
-namespace icL::look::start {
+namespace icL::look {
 
 Input::Input(QObject * parent)
 	: Link(parent) {
 	m_cursor = QColor(Qt::transparent);
 
-	m_inactive  = new base::Text(this);
-	m_selection = new base::Text(this);
+	m_inactive  = new TextLook(this);
+	m_selection = new TextLook(this);
 }
 
 Input::~Input() {
@@ -19,11 +19,11 @@ Input::~Input() {
 	icL_dropField(m_selection);
 }
 
-base::Text * Input::inactive() const {
+TextLook * Input::inactive() const {
 	return m_inactive;
 }
 
-base::Text * Input::selection() const {
+TextLook * Input::selection() const {
 	return m_selection;
 }
 
@@ -53,11 +53,12 @@ QJsonObject Input::getUp() {
 }
 
 void Input::setCursor(QColor cursor) {
-	if (m_cursor == cursor)
+	if (m_cursor == cursor) {
 		return;
+	}
 
 	m_cursor = cursor;
 	emit cursorChanged(m_cursor);
 }
 
-}  // namespace icL::look::start
+}
