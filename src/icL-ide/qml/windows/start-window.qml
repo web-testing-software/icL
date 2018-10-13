@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 
 import icL.Look 1.0
+import icL.Editor 1.0
 
 import "../main" as Main
 
@@ -66,5 +67,9 @@ Window {
 		property var resizeMoveArea;
 
 		onTriggered: resizeMoveArea.pressedDelayFunction();
+	}
+
+	Editor {
+		anchors.fill: parent
 	}
 }

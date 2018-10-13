@@ -1,9 +1,18 @@
 #include "editor.h"
 
+#include <QPainter>
+
 namespace icL::editor {
 
 Editor::Editor(QQuickItem * parent)
-	: QQuickPaintedItem(parent) {}
+	: QQuickPaintedItem(parent) {
+	lineNumbers.setWidth(100);
+
+	setRenderTarget(Editor::FramebufferObject);
+
+	connect(this, &Editor::widthChanged, this, &Editor::resize);
+	connect(this, &Editor::heightChanged, this, &Editor::resize);
+}
 
 look::Editor * Editor::look() const {
 	return m_look;
@@ -51,6 +60,34 @@ void Editor::setFontS(int fontS) {
 
 	m_fontS = fontS;
 	emit fontSChanged(m_fontS);
+}
+
+void Editor::resize() {
+	lineNumbers.setBottom(height());
+	textArea.setLeft(100);
+	textArea.setRight(width());
+	textArea.setBottom(height());
+
+	update();
+}
+
+void Editor::paint(QPainter * painter) {
+
+	QFont font("monospace");
+	font.setPixelSize(16);
+	painter->setFont(font);
+
+	painter->setPen(Qt::NoPen);
+
+	painter->setBrush(QBrush(QColor("#e2e2e2")));
+	painter->drawRect(lineNumbers);
+
+	painter->setBrush(QBrush(QColor("#f2f2f2")));
+	painter->drawRect(textArea);
+
+	painter->setBrush(QBrush(QColor("#232323")));
+	painter->setPen(QColor("#232323"));
+	painter->drawText(QPoint(25, 25), "Text");
 }
 
 }  // namespace icL::editor

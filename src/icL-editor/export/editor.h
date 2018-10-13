@@ -30,7 +30,7 @@ public:
 	 * @brief Editor is the default constructor
 	 * @param parent is the default QObject arg
 	 */
-	Editor(QQuickItem * parent);
+	Editor(QQuickItem * parent = nullptr);
 
 	/**
 	 * @brief look is the look of this editor
@@ -87,15 +87,27 @@ public slots:
 	 */
 	void setFontS(int fontS);
 
+	/**
+	 * @brief resize handles the width and height changes
+	 */
+	void resize();
+
 	// QQuickPaintedItem interface
 public:
-void paint(QPainter * painter) override;
+	void paint(QPainter * painter) override;
 
 private:
+	// Properties
+
 	look::Editor * m_look = nullptr;
+
 	int m_charW;
 	int m_charH;
 	int m_fontS;
+
+	// Drawing cache
+	QRect lineNumbers;
+	QRect textArea;
 };
 
 }  // namespace icL::editor

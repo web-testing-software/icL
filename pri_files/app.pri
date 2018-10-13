@@ -10,7 +10,7 @@ unix {
 }
 
 #LIBS += -l-icL-look
-LIBS += -l-icL-editor
+#LIBS += -l-icL-editor
 #LIBS += -l-icl-context-base
 #LIBS += -l-icl-context-complex
 #LIBS += -l-icl-context-control
