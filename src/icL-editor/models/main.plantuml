@@ -1,0 +1,70 @@
+@startuml
+
+!include "uml_style.iuml"
+show fields
+show methods
+
+class Line {
+	Fragment * first
+	Fragment * last ???
+	
+	int8 length
+	int32 beginPos
+	int16 lineNumber
+	
+	const QString & getText()
+}
+
+class Fragment {
+	Fragment * prev
+	Fragment * next
+	Line * line
+	
+	int8 step
+	
+	virtual const QString & displayText()
+
+	Fragment * nextFragment()
+	Fragment * prevFragment()
+	
+	bool isCached()
+	bool cacheNow()
+	bool freeCache()
+	QStaticText * getCache()
+	
+	virtual insert(int, String)
+	drop(int begin, int end)
+	virtual replace(int begin, int end, string after)
+	
+}
+
+class Cursor {
+	Fragment * fragment
+	int8 position
+}
+
+class Selection {
+	Cursor begin
+	Cursor end
+	bool beginOrEnd = Selection::End
+	Selection *next
+	
+	move(int step, bool select = false)
+	moveOverWords(int words, bool select = false)
+}
+
+class Editor {
+	Selection * main
+	Line * first
+	Line * current
+	Line * firstVisible
+	Line * lastVisible
+}
+
+Editor *-- Line
+Editor *-- Selection
+
+Selection *-- Cursor
+Line *-- Fragment
+
+@enduml

@@ -18,15 +18,20 @@ uri = icL.Editor
 
 DISTFILES += \
     README.md \
-    qmldir
+    qmldir \
+    models/*.*uml
 
 HEADERS += \
     export/editor.h \
-    export/plugin.h
+    export/plugin.h \
+    private/line.h \
+    private/fragment.h
 
 SOURCES += \
     export/editor.cpp \
-    export/plugin.cpp
+    export/plugin.cpp \
+    private/line.cpp \
+    private/fragment.cpp
 
 copy_qmldir.target = $$DESTDIR/qmldir
 copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir
