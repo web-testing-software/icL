@@ -74,9 +74,9 @@ public slots:
 	void setNext(Selection * next);
 
 private:
-	Cursor *    m_begin;
-	Cursor *    m_end;
-	Selection * m_next;
+	Cursor *    m_begin = nullptr;
+	Cursor *    m_end   = nullptr;
+	Selection * m_next  = nullptr;
 };
 
 }  // namespace icL::editor

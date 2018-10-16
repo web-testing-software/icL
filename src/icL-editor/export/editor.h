@@ -39,7 +39,7 @@ public:
 	 * @brief main is the main selection
 	 * @return the main selection
 	 */
-	Selection *         main() const;
+	Selection * main() const;
 
 	/**
 	 * @brief first is the first line of text
@@ -105,14 +105,14 @@ public slots:
 	void setLastVisible(Line * lastVisible);
 
 private:
-	look::EditorStyle * m_style;
+	look::EditorStyle * m_style = nullptr;
 
-	Selection * m_main;
+	Selection * m_main = nullptr;
 
-	Line * m_first;
-	Line * m_current;
-	Line * m_firstVisible;
-	Line * m_lastVisible;
+	Line * m_first = nullptr;
+	Line * m_current = nullptr;
+	Line * m_firstVisible = nullptr;
+	Line * m_lastVisible = nullptr;
 };
 
 }  // namespace icL::editor

@@ -92,7 +92,7 @@ public slots:
 	void setVisible(bool visible);
 
 private:
-	Fragment * m_first;
+	Fragment * m_first = nullptr;
 
 	uint8_t m_length;
 	int32_t m_beginPos;

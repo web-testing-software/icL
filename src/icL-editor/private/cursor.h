@@ -65,7 +65,7 @@ public slots:
 
 private:
 	// Properties
-	Fragment * m_fragment;
+	Fragment * m_fragment = nullptr;
 	int8_t     m_position;
 	uint8_t    m_preffered;
 };

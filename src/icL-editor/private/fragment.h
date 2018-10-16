@@ -155,9 +155,9 @@ public slots:
 
 private:
 	// Properties
-	Fragment * m_prev;
-	Fragment * m_next;
-	Line *     m_line;
+	Fragment * m_prev = nullptr;
+	Fragment * m_next = nullptr;
+	Line *     m_line = nullptr;
 
 	uint8_t m_length;
 	int8_t  m_spaces;
