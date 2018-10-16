@@ -1,11 +1,8 @@
 #ifndef EDITOR_H
 #define EDITOR_H
 
-#include <QQuickPaintedItem>
-
-namespace icL::look {
-class Editor;
-}
+#include <QFont>
+#include <QObject>
 
 /**
  * The icL.editor namespace defines a own QPlainText editor
@@ -15,28 +12,21 @@ namespace icL::editor {
 /**
  * @brief The Editor class is class which will be on display
  */
-class Editor : public QQuickPaintedItem
+class EditorStyleHub : public QObject
 {
 	Q_OBJECT
-
-	Q_PROPERTY(look::Editor * look READ look WRITE setLook NOTIFY lookChanged)
 
 	Q_PROPERTY(int charW READ charW WRITE setCharW NOTIFY charWChanged)
 	Q_PROPERTY(int charH READ charH WRITE setCharH NOTIFY charHChanged)
 	Q_PROPERTY(int fontS READ fontS WRITE setFontS NOTIFY fontSChanged)
+	Q_PROPERTY(int lineS READ lineS WRITE setLineS NOTIFY lineSChanged)
 
 public:
 	/**
 	 * @brief Editor is the default constructor
 	 * @param parent is the default QObject arg
 	 */
-	Editor(QQuickItem * parent = nullptr);
-
-	/**
-	 * @brief look is the look of this editor
-	 * @return the look for this editor
-	 */
-	look::Editor * look() const;
+	EditorStyleHub(QObject * parent = nullptr);
 
 	/**
 	 * @brief charW is the width of char in editor
@@ -56,19 +46,19 @@ public:
 	 */
 	int fontS() const;
 
+	/**
+	 * @brief lineS is the line spacing
+	 * @return the spacing of line
+	 */
+	int lineS() const;
+
 signals:
-	void lookChanged(look::Editor * look);
 	void charWChanged(int charW);
 	void charHChanged(int charH);
 	void fontSChanged(int fontS);
+	void lineSChanged(int lineS);
 
 public slots:
-	/**
-	 * @brief setLook changes the look of editor
-	 * @param look is the new look for editor
-	 */
-	void setLook(look::Editor * look);
-
 	/**
 	 * @brief setCharW changes the width of char
 	 * @param charW is the new width of char
@@ -92,22 +82,34 @@ public slots:
 	 */
 	void resize();
 
-	// QQuickPaintedItem interface
-public:
-	void paint(QPainter * painter) override;
+	/**
+	 * @brief setLineS changes the current line spacing
+	 * @param lineS is the new line spacing
+	 */
+	void setLineS(int lineS);
 
 private:
+	/**
+	 * @brief fixFont fix font on font size changes
+	 */
+	void fixFont();
+
 	// Properties
+	int m_charW = 10;
+	int m_charH = 20;
+	int m_fontS = 10;
+	int m_lineS = 4;
 
-	look::Editor * m_look = nullptr;
+	// fields
 
-	int m_charW;
-	int m_charH;
-	int m_fontS;
+	/// @brief m_divLineSBy2 is the line spacing divided by 2
+	int m_divLineSBy2 = 2;
 
-	// Drawing cache
-	QRect lineNumbers;
-	QRect textArea;
+	/// @brief m_fullLineH is the full height of line (text + spacing)
+	int m_fullLineH = 14;
+
+	/// @brief font is the standart font object
+	QFont m_font;
 };
 
 }  // namespace icL::editor

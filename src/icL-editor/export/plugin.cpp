@@ -1,6 +1,6 @@
 #include "plugin.h"
 
-#include "editor.h"
+#include "editorstylehub.h"
 
 EditorPlugin::EditorPlugin(QObject * parent)
 	: QQmlExtensionPlugin(parent) {}
@@ -8,5 +8,5 @@ EditorPlugin::EditorPlugin(QObject * parent)
 void EditorPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Editor"));
 
-	qmlRegisterType<icL::editor::Editor>(uri, 1, 0, "Editor");
+	qmlRegisterType<icL::editor::EditorStyleHub>(uri, 1, 0, "Editor");
 }
