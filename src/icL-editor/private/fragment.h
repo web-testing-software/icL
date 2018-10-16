@@ -19,6 +19,8 @@ class Fragment : public QObject
 	Q_PROPERTY(icL::Editor::Line*     line READ line WRITE setLine NOTIFY lineChanged)
 
 	Q_PROPERTY(uint8_t length READ length WRITE setLength NOTIFY lengthChanged)
+	Q_PROPERTY(int8_t  spaces READ spaces WRITE setSpaces NOTIFY spacesChanged)
+	Q_PROPERTY(int8_t  glyphs READ glyphs WRITE setGlyphs NOTIFY glyphsChanged)
 	// clang-format on
 
 public:
