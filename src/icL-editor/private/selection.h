@@ -19,10 +19,6 @@ class Selection : public QObject
 	Q_PROPERTY(bool rtl READ rtl WRITE setRtl NOTIFY rtlChanged)
 	// clang-format on
 
-	Cursor *    m_begin;
-	Cursor *    m_end;
-	Selection * m_next;
-
 public:
 	explicit Selection(QObject * parent = nullptr);
 
@@ -76,6 +72,11 @@ public slots:
 	 * @param next is the new selection in collection
 	 */
 	void setNext(Selection * next);
+
+private:
+	Cursor *    m_begin;
+	Cursor *    m_end;
+	Selection * m_next;
 };
 
 }  // namespace icL::editor
