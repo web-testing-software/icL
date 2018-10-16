@@ -1,5 +1,5 @@
-#ifndef icL_look_session_SessionWindow
-#define icL_look_session_SessionWindow
+#ifndef icL_look_SessionWindow
+#define icL_look_SessionWindow
 
 #include "../base/baselook.h"
 
@@ -88,4 +88,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_SessionWindow
+#endif  // icL_look_SessionWindow

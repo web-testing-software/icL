@@ -20,9 +20,9 @@ struct HighlightChars
 };
 
 /**
- * @brief The CharFormat struct defines format for chars in editor
+ * @brief The TextCharFormat struct defines format for chars in editor
  */
-struct CharFormat
+struct TextCharFormat
 {
 	/// @brief the font of text (italic, bold)
 	QFont font;
@@ -47,46 +47,46 @@ public:
 	explicit Chars(QObject * parent = nullptr);
 
 	/// @brief comment is the style for comments in code
-	static CharFormat comment;
+	static TextCharFormat comment;
 
 	/// @brief function is the style for functions in code
-	static CharFormat function;
+	static TextCharFormat function;
 
 	/// @brief global is the style for global variables in code
-	static CharFormat global;
+	static TextCharFormat global;
 
 	/// @brief keyword is the style for keywords in code
-	static CharFormat keyword;
+	static TextCharFormat keyword;
 
 	/// @brief local is the style for local variables in code
-	static CharFormat local;
+	static TextCharFormat local;
 
 	/// @brief method is the style for methods in code
-	static CharFormat method;
+	static TextCharFormat method;
 
 	/// @brief number is the style for numbers in code
-	static CharFormat number;
+	static TextCharFormat number;
 
 	/// @brief property is the style for properties in code
-	static CharFormat property;
+	static TextCharFormat property;
 
 	/// @brief string is the style for string in code
-	static CharFormat string;
+	static TextCharFormat string;
 
 	/// @brief system is the style for system types in code
-	static CharFormat system;
+	static TextCharFormat system;
 
 	/// @brief type is the style for types names in code
-	static CharFormat type;
+	static TextCharFormat type;
 
 	/// @brief occurrence is the style for occurrence highlight
 	static HighlightChars occurence;
 
 	/// @brief error is the color of errors underline
-	static CharFormat error;
+	static TextCharFormat error;
 
 	/// @brief warning is the color of warning underline
-	static CharFormat warning;
+	static TextCharFormat warning;
 
 	/// @brief send signal to QML to rehighlight editor
 	static void update();

@@ -1,5 +1,5 @@
-#ifndef icL_look_session_Tree
-#define icL_look_session_Tree
+#ifndef icL_look_Tree
+#define icL_look_Tree
 
 #include "../base/baselook.h"
 
@@ -57,4 +57,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_Tree
+#endif  // icL_look_Tree

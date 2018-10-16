@@ -1,5 +1,5 @@
-#ifndef icL_look_start_Input
-#define icL_look_start_Input
+#ifndef icL_look_Input
+#define icL_look_Input
 
 #include "../base/link.h"
 
@@ -72,4 +72,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_start_Input
+#endif  // icL_look_Input

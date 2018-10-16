@@ -1,5 +1,5 @@
-#ifndef icL_look_base_Link
-#define icL_look_base_Link
+#ifndef icL_look_Link
+#define icL_look_Link
 
 #include "baselook.h"
 
@@ -68,4 +68,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_base_Link
+#endif  // icL_look_Link

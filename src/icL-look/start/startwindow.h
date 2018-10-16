@@ -1,5 +1,5 @@
-#ifndef icL_look_start_StartWindow
-#define icL_look_start_StartWindow
+#ifndef icL_look_StartWindow
+#define icL_look_StartWindow
 
 #include "../base/baselook.h"
 
@@ -76,4 +76,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_start_StartWindow
+#endif  // icL_look_StartWindow

@@ -1,5 +1,5 @@
-#ifndef icL_look_editor_Highlight
-#define icL_look_editor_Highlight
+#ifndef icL_look_Highlight
+#define icL_look_Highlight
 
 #include "../base/baselook.h"
 
@@ -67,4 +67,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_editor_Highlight
+#endif  // icL_look_Highlight

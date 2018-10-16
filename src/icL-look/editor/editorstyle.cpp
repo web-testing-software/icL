@@ -1,12 +1,12 @@
-#include "editorstylehub.h"
+#include "editorstyle.h"
 
 #include <math.h>
 
 #include <QFontMetrics>
 
-namespace icL::editor {
+namespace icL::look {
 
-EditorStyleHub::EditorStyleHub(QObject * parent)
+EditorStyle::EditorStyle(QObject * parent)
 	: QObject(parent) {
 
 	m_font.setFixedPitch(true);
@@ -15,35 +15,35 @@ EditorStyleHub::EditorStyleHub(QObject * parent)
 	fixFont();
 }
 
-int EditorStyleHub::charW() const {
+int EditorStyle::charW() const {
 	return m_charW;
 }
 
-int EditorStyleHub::charH() const {
+int EditorStyle::charH() const {
 	return m_charH;
 }
 
-int EditorStyleHub::fontS() const {
+int EditorStyle::fontS() const {
 	return m_fontS;
 }
 
-int EditorStyleHub::lineS() const {
+int EditorStyle::lineS() const {
 	return m_lineS;
 }
 
-int EditorStyleHub::divLineSBy2() const {
+int EditorStyle::divLineSBy2() const {
 	return m_divLineSBy2;
 }
 
-int EditorStyleHub::fullLineH() const {
+int EditorStyle::fullLineH() const {
 	return m_fullLineH;
 }
 
-const QFont & EditorStyleHub::font() {
+const QFont & EditorStyle::font() {
 	return m_font;
 }
 
-void EditorStyleHub::setCharW(int charW) {
+void EditorStyle::setCharW(int charW) {
 	if (m_charW == charW)
 		return;
 
@@ -51,7 +51,7 @@ void EditorStyleHub::setCharW(int charW) {
 	emit charWChanged(m_charW);
 }
 
-void EditorStyleHub::setCharH(int charH) {
+void EditorStyle::setCharH(int charH) {
 	if (m_charH == charH)
 		return;
 
@@ -59,7 +59,7 @@ void EditorStyleHub::setCharH(int charH) {
 	emit charHChanged(m_charH);
 }
 
-void EditorStyleHub::setFontS(int fontS) {
+void EditorStyle::setFontS(int fontS) {
 	if (m_fontS == fontS)
 		return;
 
@@ -69,7 +69,7 @@ void EditorStyleHub::setFontS(int fontS) {
 	emit fontSChanged(m_fontS);
 }
 
-void EditorStyleHub::setLineS(int lineS) {
+void EditorStyle::setLineS(int lineS) {
 	// The line spacing must be always a even number
 	if ((lineS & 1) != 0) {
 		lineS++;
@@ -84,7 +84,7 @@ void EditorStyleHub::setLineS(int lineS) {
 	emit lineSChanged(m_lineS);
 }
 
-void EditorStyleHub::fixFont() {
+void EditorStyle::fixFont() {
 	QFontMetricsF fmetrics(m_font);
 
 	m_font.setLetterSpacing(QFont::PercentageSpacing, 100.f);

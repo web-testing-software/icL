@@ -1,5 +1,5 @@
-#ifndef icL_look_editor_Line
-#define icL_look_editor_Line
+#ifndef icL_look_Line
+#define icL_look_Line
 
 #include "../base/baselook.h"
 
@@ -66,4 +66,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_editor_Line
+#endif  // icL_look_Line

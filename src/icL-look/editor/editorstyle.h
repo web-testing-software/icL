@@ -1,5 +1,5 @@
-#ifndef EDITOR_H
-#define EDITOR_H
+#ifndef icL_look_EditorStyle
+#define icL_look_EditorStyle
 
 #include <QFont>
 #include <QObject>
@@ -7,12 +7,12 @@
 /**
  * The icL.editor namespace defines a own QPlainText editor
  */
-namespace icL::editor {
+namespace icL::look {
 
 /**
  * @brief The Editor class is class which will be on display
  */
-class EditorStyleHub : public QObject
+class EditorStyle : public QObject
 {
 	Q_OBJECT
 
@@ -26,7 +26,7 @@ public:
 	 * @brief Editor is the default constructor
 	 * @param parent is the default QObject arg
 	 */
-	EditorStyleHub(QObject * parent = nullptr);
+	EditorStyle(QObject * parent = nullptr);
 
 	/**
 	 * @brief charW is the width of char in editor
@@ -132,4 +132,4 @@ private:
 
 }  // namespace icL::editor
 
-#endif  // EDITOR_H
+#endif  // icL_look_EditorStyle

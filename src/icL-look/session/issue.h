@@ -1,5 +1,5 @@
-#ifndef icL_look_session_Issue
-#define icL_look_session_Issue
+#ifndef icL_look_Issue
+#define icL_look_Issue
 
 #include "../base/linkadv.h"
 
@@ -48,4 +48,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_Issue
+#endif  // icL_look_Issue

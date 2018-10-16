@@ -1,5 +1,5 @@
-#ifndef icL_look_start_Editor
-#define icL_look_start_Editor
+#ifndef icL_look_Editor
+#define icL_look_Editor
 
 #include "../base/baselook.h"
 
@@ -11,6 +11,8 @@ namespace icL::look {
 class CharFormat;
 class Highlight;
 class Line;
+class TextCharFormat;
+class EditorStyle;
 
 /**
  * @brief The Editor class defines a color scheme for an editor
@@ -20,6 +22,7 @@ class Editor : public BaseLook
 	Q_OBJECT
 
 	// clang-format off
+	Q_PROPERTY(icL::look::EditorStyle*    style READ style      NOTIFY styleChanged)
 	Q_PROPERTY(icL::look::CharFormat*      text READ text       NOTIFY textChanged)
 	Q_PROPERTY(icL::look::CharFormat* selection READ selection  NOTIFY selectionChanged)
 	Q_PROPERTY(icL::look::CharFormat*    number READ number     NOTIFY numberChanged)
@@ -49,6 +52,12 @@ public:
 	explicit Editor(QObject * parent = nullptr);
 
 	~Editor();
+
+	/**
+	 * @brief style is the base style of all editors
+	 * @return the base style for all editors
+	 */
+	EditorStyle * style();
 
 	/**
 	 * @brief text is the defalt text look
@@ -169,6 +178,7 @@ public:
 	QJsonObject getUp() override;
 
 signals:
+	void styleChanged(EditorStyle * style);
 	void textChanged(CharFormat * text);
 	void selectionChanged(CharFormat * selection);
 	void numberChanged(CharFormat * number);
@@ -206,33 +216,34 @@ public slots:
 	void updateWarning();
 
 private:
-	void updateStyle(QTextCharFormat & chars, const CharFormat * format);
+	void updateStyle(TextCharFormat & chars, const CharFormat * format);
 
 	void bindChars();
 	void bindHighlights();
 	void bindMessages();
 
-	CharFormat * m_text       = nullptr;
-	CharFormat * m_selection  = nullptr;
-	CharFormat * m_number     = nullptr;
-	CharFormat * m_string     = nullptr;
-	CharFormat * m_type       = nullptr;
-	CharFormat * m_local      = nullptr;
-	CharFormat * m_global     = nullptr;
-	CharFormat * m_property   = nullptr;
-	CharFormat * m_method     = nullptr;
-	CharFormat * m_function   = nullptr;
-	CharFormat * m_keyword    = nullptr;
-	CharFormat * m_comment    = nullptr;
-	CharFormat * m_system     = nullptr;
-	CharFormat * m_error      = nullptr;
-	CharFormat * m_warning    = nullptr;
-	Highlight *  m_occurrence = nullptr;
-	Line *       m_current    = nullptr;
-	Line *       m_debug      = nullptr;
-	Line *       m_breakpoint = nullptr;
+	EditorStyle * m_style      = nullptr;
+	CharFormat *  m_text       = nullptr;
+	CharFormat *  m_selection  = nullptr;
+	CharFormat *  m_number     = nullptr;
+	CharFormat *  m_string     = nullptr;
+	CharFormat *  m_type       = nullptr;
+	CharFormat *  m_local      = nullptr;
+	CharFormat *  m_global     = nullptr;
+	CharFormat *  m_property   = nullptr;
+	CharFormat *  m_method     = nullptr;
+	CharFormat *  m_function   = nullptr;
+	CharFormat *  m_keyword    = nullptr;
+	CharFormat *  m_comment    = nullptr;
+	CharFormat *  m_system     = nullptr;
+	CharFormat *  m_error      = nullptr;
+	CharFormat *  m_warning    = nullptr;
+	Highlight *   m_occurrence = nullptr;
+	Line *        m_current    = nullptr;
+	Line *        m_debug      = nullptr;
+	Line *        m_breakpoint = nullptr;
 };
 
 }  // namespace icL::look
 
-#endif  // icL_look_start_Editor
+#endif  // icL_look_Editor

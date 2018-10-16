@@ -2,6 +2,7 @@
 
 #include "../export/chars.h"
 #include "charformat.h"
+#include "editorstyle.h"
 #include "highlight.h"
 #include "line.h"
 
@@ -13,6 +14,7 @@ namespace icL::look {
 Editor::Editor(QObject * parent)
 	: BaseLook(parent) {
 
+	m_style      = new EditorStyle(this);
 	m_breakpoint = new Line(this);
 	m_comment    = new CharFormat(this);
 	m_current    = new Line(this);
@@ -35,6 +37,7 @@ Editor::Editor(QObject * parent)
 }
 
 Editor::~Editor() {
+	icL_dropField(m_style);
 	icL_dropField(m_breakpoint);
 	icL_dropField(m_comment);
 	icL_dropField(m_current);
@@ -54,6 +57,10 @@ Editor::~Editor() {
 	icL_dropField(m_text);
 	icL_dropField(m_type);
 	icL_dropField(m_warning);
+}
+
+EditorStyle * Editor::style() {
+	return m_style;
 }
 
 CharFormat * Editor::text() const {
@@ -228,54 +235,60 @@ void Editor::updateSystem() {
 }
 
 void Editor::updateError() {
-	Chars::error = m_error->undercolor();
-	Chars::update();
+	updateStyle(Chars::error, m_error);
 }
 
 void Editor::updateWarning() {
-	Chars::warning = m_warning->undercolor();
-	Chars::update();
+	updateStyle(Chars::warning, m_warning);
 }
 
-void Editor::updateStyle(QTextCharFormat & chars, const CharFormat * format) {
-	QTextCharFormat cf;
+void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
+	TextCharFormat cf;
 
-	cf.setFontItalic(format->italic());
-	cf.setFontWeight(format->bold() ? QFont::Bold : QFont::Normal);
-	cf.setForeground(QBrush{format->foreground()});
+	cf.font = m_style->font();
+
+	cf.font.setItalic(format->italic());
+	cf.font.setBold(format->bold());
+
+	cf.text = format->foreground();
 
 	if (format->background().alpha() != 0) {
-		cf.setBackground(format->background());
+		cf.background = format->background();
+	}
+	else {
+		cf.background = {Qt::NoBrush};
 	}
 
 	if (format->underline() != 0) {
-		cf.setUnderlineColor(format->undercolor());
+		cf.underline.setColor(format->undercolor());
 
 		switch (format->underline()) {
 		case 1:
-			cf.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+			cf.underline.setStyle(Qt::SolidLine);
 			break;
 
 		case 2:
-			cf.setUnderlineStyle(QTextCharFormat::DashUnderline);
+			cf.underline.setStyle(Qt::DashLine);
 			break;
 
 		case 3:
-			cf.setUnderlineStyle(QTextCharFormat::DotLine);
+			cf.underline.setStyle(Qt::DotLine);
 			break;
 
 		case 4:
-			cf.setUnderlineStyle(QTextCharFormat::DashDotLine);
+			cf.underline.setStyle(Qt::DashDotLine);
 			break;
 
 		case 5:
-			cf.setUnderlineStyle(QTextCharFormat::DashDotDotLine);
+			cf.underline.setStyle(Qt::DashDotDotLine);
 			break;
 
-		case 6:
-			cf.setUnderlineStyle(QTextCharFormat::WaveUnderline);
-			break;
+		default:
+			cf.underline.setStyle(Qt::NoPen);
 		}
+	}
+	else {
+		cf.underline = {Qt::NoPen};
 	}
 
 	chars = cf;
@@ -375,7 +388,18 @@ void Editor::bindHighlights() {
 void Editor::bindMessages() {
 	// clang-format off
 	connect(m_error,   &CharFormat::undercolorChanged, this, &Editor::updateError);
+	connect(m_error,   &CharFormat::underlineChanged,  this, &Editor::updateError);
+	connect(m_error,   &CharFormatBase::boldChanged,   this, &Editor::updateError);
+	connect(m_error,   &CharFormatBase::italicChanged, this, &Editor::updateError);
+	connect(m_error,   &TextLook::foregroundChanged,   this, &Editor::updateError);
+	connect(m_error,   &TextLook::backgroundChanged,   this, &Editor::updateError);
+
 	connect(m_warning, &CharFormat::undercolorChanged, this, &Editor::updateWarning);
+	connect(m_warning, &CharFormat::underlineChanged,  this, &Editor::updateWarning);
+	connect(m_warning, &CharFormatBase::boldChanged,   this, &Editor::updateWarning);
+	connect(m_warning, &CharFormatBase::italicChanged, this, &Editor::updateWarning);
+	connect(m_warning, &TextLook::foregroundChanged,   this, &Editor::updateWarning);
+	connect(m_warning, &TextLook::backgroundChanged,   this, &Editor::updateWarning);
 	// clang-format on
 }
 

@@ -1,5 +1,5 @@
-#ifndef icL_look_start_Side
-#define icL_look_start_Side
+#ifndef icL_look_Side
+#define icL_look_Side
 
 #include "listitem.h"
 
@@ -85,4 +85,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_start_Side
+#endif  // icL_look_Side

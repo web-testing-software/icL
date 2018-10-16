@@ -9,22 +9,20 @@ Chars::Chars(QObject * parent)
 	}
 }
 
-CharFormat Chars::comment  = {};
-CharFormat Chars::function = {};
-CharFormat Chars::global   = {};
-CharFormat Chars::keyword  = {};
-CharFormat Chars::local    = {};
-CharFormat Chars::method   = {};
-CharFormat Chars::number   = {};
-CharFormat Chars::property = {};
-CharFormat Chars::string   = {};
-CharFormat Chars::system   = {};
-CharFormat Chars::type     = {};
-
+TextCharFormat Chars::comment   = {};
+TextCharFormat Chars::function  = {};
+TextCharFormat Chars::global    = {};
+TextCharFormat Chars::keyword   = {};
+TextCharFormat Chars::local     = {};
+TextCharFormat Chars::method    = {};
+TextCharFormat Chars::number    = {};
+TextCharFormat Chars::property  = {};
+TextCharFormat Chars::string    = {};
+TextCharFormat Chars::system    = {};
+TextCharFormat Chars::type      = {};
 HighlightChars Chars::occurence = {};
-
-CharFormat Chars::error   = {};
-CharFormat Chars::warning = {};
+TextCharFormat Chars::error     = {};
+TextCharFormat Chars::warning   = {};
 
 void Chars::update() {
 	if (instance != nullptr) {

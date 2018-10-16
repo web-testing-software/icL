@@ -1,5 +1,5 @@
-#ifndef icL_look_editor_CharFormat
-#define icL_look_editor_CharFormat
+#ifndef icL_look_CharFormat
+#define icL_look_CharFormat
 
 #include "charformatbase.h"
 
@@ -66,4 +66,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_editor_CharFormat
+#endif  // icL_look_CharFormat

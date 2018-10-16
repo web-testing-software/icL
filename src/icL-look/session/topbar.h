@@ -1,5 +1,5 @@
-#ifndef icL_look_session_TopBar
-#define icL_look_session_TopBar
+#ifndef icL_look_TopBar
+#define icL_look_TopBar
 
 #include "../base/baselook.h"
 
@@ -104,4 +104,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_TopBar
+#endif  // icL_look_TopBar

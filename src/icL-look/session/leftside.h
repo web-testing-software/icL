@@ -1,5 +1,5 @@
-#ifndef icL_look_session_LeftSide
-#define icL_look_session_LeftSide
+#ifndef icL_look_LeftSide
+#define icL_look_LeftSide
 
 #include "../base/baselook.h"
 
@@ -68,4 +68,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_LeftSide
+#endif  // icL_look_LeftSide

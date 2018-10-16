@@ -1,5 +1,5 @@
-#ifndef icL_look_base_Text
-#define icL_look_base_Text
+#ifndef icL_look_Text
+#define icL_look_Text
 
 #include "baselook.h"
 
@@ -64,4 +64,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_base_Text
+#endif  // icL_look_Text

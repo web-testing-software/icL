@@ -1,5 +1,5 @@
-#ifndef icL_look_session_Static
-#define icL_look_session_Static
+#ifndef icL_look_Static
+#define icL_look_Static
 
 #include "../base/baselook.h"
 
@@ -168,4 +168,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_Static
+#endif  // icL_look_Static

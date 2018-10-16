@@ -1,5 +1,5 @@
-#ifndef icL_look_session_Floating
-#define icL_look_session_Floating
+#ifndef icL_look_Floating
+#define icL_look_Floating
 
 #include "../base/baselook.h"
 
@@ -138,4 +138,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_Floating
+#endif  // icL_look_Floating

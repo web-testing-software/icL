@@ -1,5 +1,5 @@
-#ifndef icL_look_start_ListItem
-#define icL_look_start_ListItem
+#ifndef icL_look_ListItem
+#define icL_look_ListItem
 
 #include "../base/link.h"
 
@@ -48,4 +48,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_start_ListItem
+#endif  // icL_look_ListItem

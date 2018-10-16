@@ -1,5 +1,5 @@
-#ifndef icL_look_base_LinkAdv
-#define icL_look_base_LinkAdv
+#ifndef icL_look_LinkAdv
+#define icL_look_LinkAdv
 
 #include "link.h"
 
@@ -46,4 +46,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // icL_look_base_LinkAdv
+#endif  // icL_look_LinkAdv
