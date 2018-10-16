@@ -1,5 +1,5 @@
-#ifndef EFFECTADV_H
-#define EFFECTADV_H
+#ifndef icL_look_EffectAdv
+#define icL_look_EffectAdv
 
 #include "effect.h"
 
@@ -49,4 +49,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // EFFECTADV_H
+#endif  // icL_look_EffectAdv

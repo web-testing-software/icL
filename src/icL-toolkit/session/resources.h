@@ -1,5 +1,5 @@
-#ifndef RESOURCES_H
-#define RESOURCES_H
+#ifndef icL_toolkit_session_Resources
+#define icL_toolkit_session_Resources
 
 #include "../tree/folder.h"
 
@@ -38,4 +38,4 @@ public:
 
 }  // namespace icL::toolkit::session
 
-#endif  // RESOURCES_H
+#endif  // icL_toolkit_session_Resources

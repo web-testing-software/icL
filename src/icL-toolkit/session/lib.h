@@ -1,5 +1,5 @@
-#ifndef LIB_H
-#define LIB_H
+#ifndef icL_toolkit_session_Lib
+#define icL_toolkit_session_Lib
 
 #include "../tree/finaly.h"
 
@@ -46,4 +46,4 @@ private:
 
 }  // namespace icL::toolkit::session
 
-#endif  // LIB_H
+#endif  // icL_toolkit_session_Lib

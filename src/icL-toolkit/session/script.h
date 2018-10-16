@@ -1,5 +1,5 @@
-#ifndef SCRIPT_H
-#define SCRIPT_H
+#ifndef icL_toolkit_session_Script
+#define icL_toolkit_session_Script
 
 #include "../tree/finaly.h"
 
@@ -46,4 +46,4 @@ private:
 
 }  // namespace icL::toolkit::session
 
-#endif  // SCRIPT_H
+#endif  // icL_toolkit_session_Script

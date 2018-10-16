@@ -1,5 +1,5 @@
-#ifndef MOUSETRACKER_H
-#define MOUSETRACKER_H
+#ifndef icL_toolkit_utils_MouseTracker
+#define icL_toolkit_utils_MouseTracker
 
 #include <QPoint>
 #include <QThread>
@@ -65,4 +65,4 @@ private:
 
 }  // namespace icL::toolkit::utils
 
-#endif  // MOUSETRACKER_H
+#endif  // icL_toolkit_utils_MouseTracker

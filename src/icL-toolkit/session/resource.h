@@ -1,5 +1,5 @@
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#ifndef icL_toolkit_session_Resource
+#define icL_toolkit_session_Resource
 
 #include "../tree/finaly.h"
 
@@ -46,4 +46,4 @@ private:
 
 }  // namespace icL::toolkit::session
 
-#endif  // RESOURCE_H
+#endif  // icL_toolkit_session_Resource

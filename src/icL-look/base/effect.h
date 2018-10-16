@@ -1,5 +1,5 @@
-#ifndef EFFECT_H
-#define EFFECT_H
+#ifndef icL_look_Effect
+#define icL_look_Effect
 
 #include "baselook.h"
 
@@ -83,4 +83,4 @@ private:
 
 }  // namespace icL::look
 
-#endif  // EFFECT_H
+#endif  // icL_look_Effect

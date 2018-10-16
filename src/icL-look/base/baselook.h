@@ -1,5 +1,5 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef icL_look_BaseLook
+#define icL_look_BaseLook
 
 #include <QObject>
 
@@ -54,4 +54,4 @@ protected:
 
 }  // namespace icL::look
 
-#endif  // BASE_H
+#endif  // icL_look_BaseLook
