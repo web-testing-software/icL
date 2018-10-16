@@ -1,7 +1,8 @@
 #include "editorstylehub.h"
 
-#include <QPainter>
-#include <QtMath>
+#include <math.h>
+
+#include <QFontMetrics>
 
 namespace icL::editor {
 
@@ -28,6 +29,18 @@ int EditorStyleHub::fontS() const {
 
 int EditorStyleHub::lineS() const {
 	return m_lineS;
+}
+
+int EditorStyleHub::divLineSBy2() const {
+	return m_divLineSBy2;
+}
+
+int EditorStyleHub::fullLineH() const {
+	return m_fullLineH;
+}
+
+const QFont & EditorStyleHub::font() {
+	return m_font;
 }
 
 void EditorStyleHub::setCharW(int charW) {
@@ -65,9 +78,9 @@ void EditorStyleHub::setLineS(int lineS) {
 	if (m_lineS == lineS)
 		return;
 
-	m_lineS = lineS;
+	m_lineS       = lineS;
 	m_divLineSBy2 = lineS / 2;
-	m_fullLineH = m_charH + lineS;
+	m_fullLineH   = m_charH + lineS;
 	emit lineSChanged(m_lineS);
 }
 
@@ -77,13 +90,13 @@ void EditorStyleHub::fixFont() {
 	m_font.setLetterSpacing(QFont::PercentageSpacing, 100.f);
 
 	qreal charWidth = fmetrics.horizontalAdvance(QString('_', 160)) / 160.f;
-	setCharW(qCeil(charWidth));
+	setCharW(std::ceil(charWidth));
 
 	qreal neededSpacing = static_cast<float>(m_charW) - charWidth;
 	m_font.setLetterSpacing(QFont::AbsoluteSpacing, neededSpacing);
 
-	setCharH(qCeil(fmetrics.height()));
-	setLineS(qCeil(fmetrics.lineSpacing()));
+	setCharH(std::ceil(fmetrics.height()));
+	setLineS(std::ceil(fmetrics.lineSpacing()));
 }
 
 }  // namespace icL::editor

@@ -52,6 +52,24 @@ public:
 	 */
 	int lineS() const;
 
+	/**
+	 * @brief divLineSBy2 is the line spacing divided by 2
+	 * @return the line spacing divided by 2
+	 */
+	int divLineSBy2() const;
+
+	/**
+	 * @brief fullLineH is the full line height
+	 * @return the full height of line
+	 */
+	int fullLineH() const;
+
+	/**
+	 * @brief font is the base font for editor
+	 * @return the base font
+	 */
+	const QFont & font();
+
 signals:
 	void charWChanged(int charW);
 	void charHChanged(int charH);
