@@ -70,6 +70,17 @@ public:
 	 */
 	void makeChanged();
 
+	/**
+	 * @brief clear deletes all editor content
+	 */
+	void clear();
+
+	/**
+	 * @brief loadFile loads a file from disk
+	 * @param path is the path of file
+	 */
+	bool loadFile(const QString & path);
+
 signals:
 	void styleChanged(look::EditorStyle * style);
 	void mainChanged(Selection * main);
@@ -110,6 +121,13 @@ public slots:
 	void setLastVisible(Line * lastVisible);
 
 private:
+	/**
+	 * @brief addNewLine inserts a new line after the current
+	 * @param line is the line to add
+	 */
+	void addNewLine(Line *line);
+
+	// properties
 	look::EditorStyle * m_style = nullptr;
 
 	Selection * m_main = nullptr;
@@ -118,6 +136,9 @@ private:
 	Line * m_current      = nullptr;
 	Line * m_firstVisible = nullptr;
 	Line * m_lastVisible  = nullptr;
+
+	// fields
+	bool changed = false;
 };
 
 }  // namespace icL::editor

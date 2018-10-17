@@ -1,5 +1,8 @@
 #include "editor.h"
 
+#include "../private/fragment.h"
+#include "../private/line.h"
+
 namespace icL::editor {
 
 Editor::Editor(QQuickItem * parent)
@@ -27,6 +30,48 @@ Line * Editor::firstVisible() const {
 
 Line * Editor::lastVisible() const {
 	return m_lastVisible;
+}
+
+void Editor::makeChanged() {
+	changed = true;
+	update();
+}
+
+void Editor::clear() {
+	auto * it = m_first;
+
+	while (it != nullptr) {
+		auto * tmp = it;
+
+		it = it->next();
+		delete tmp;
+	}
+
+	m_first        = nullptr;
+	m_firstVisible = nullptr;
+	m_lastVisible  = nullptr;
+	m_current      = nullptr;
+}
+
+bool Editor::loadFile(const QString & path) {
+	QFile       file(path);
+	QTextStream stream(&file);
+
+	if (!file.open(QFile::ReadOnly)) {
+		return false;
+	}
+
+	while (!file.atEnd()) {
+		QString str = stream.readLine(160);
+
+		auto * line     = new Line(this);
+		auto * fragment = new Fragment(line);
+
+		fragment->insert(0, str);
+		addNewLine(line);
+	}
+
+	return true;
 }
 
 void Editor::setStyle(look::EditorStyle * style) {
@@ -67,6 +112,27 @@ void Editor::setLastVisible(Line * lastVisible) {
 
 	m_lastVisible = lastVisible;
 	emit lastVisibleChanged(m_lastVisible);
+}
+
+void Editor::addNewLine(Line * line) {
+	if (m_current == nullptr) {
+		m_first = m_current = line;
+	}
+	else {
+		if (m_current->next() != nullptr) {
+			m_current->next()->setPrev(line);
+			line->setNext(m_current->next());
+		}
+		m_current->setNext(line);
+		line->setPrev(m_current);
+
+		if (m_lastVisible == m_current) {
+			m_firstVisible = m_firstVisible->next();
+			m_lastVisible = line;
+		}
+
+		setCurrent(line);
+	}
 }
 
 }  // namespace icL::editor
