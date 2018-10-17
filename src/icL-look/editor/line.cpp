@@ -44,6 +44,9 @@ void Line::setLineBg(QColor lineBg) {
 	emit lineBgChanged(m_lineBg);
 }
 
+CLine::CLine(QObject * parent)
+	: Line(parent) {}
+
 QColor CLine::edited() const {
 	return m_edited;
 }
@@ -66,6 +69,25 @@ void CLine::setSaved(QColor saved) {
 
 	m_saved = saved;
 	emit savedChanged(m_saved);
+}
+
+void CLine::setUp(const QJsonObject & obj) {
+	Line::setUp(obj);
+
+	m_edited = objToColor(obj.value("edited").toObject());
+	m_saved  = objToColor(obj.value("saved").toObject());
+
+	emit editedChanged(m_edited);
+	emit savedChanged(m_saved);
+}
+
+QJsonObject CLine::getUp() {
+	auto obj = Line::getUp();
+
+	obj["edited"] = colorToObj(m_edited);
+	obj["saved"]  = colorToObj(m_saved);
+
+	return obj;
 }
 
 }  // namespace icL::look

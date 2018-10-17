@@ -11,8 +11,10 @@ namespace icL::look {
 class CharFormat;
 class Highlight;
 class Line;
+class CLine;
 class TextCharFormat;
 class EditorStyle;
+class LineFormat;
 
 /**
  * @brief The Editor class defines a color scheme for an editor
@@ -42,7 +44,7 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::Line*         current READ current    NOTIFY currentChanged)
 	Q_PROPERTY(icL::look::Line*           debug READ debug      NOTIFY debugChanged)
 	Q_PROPERTY(icL::look::Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
-	//
+	Q_PROPERTY(icL::look::CLine*          cline READ cline      NOTIFY clineChanged)
 	// clang-format on
 
 public:
@@ -174,6 +176,12 @@ public:
 	 */
 	Line * breakpoint() const;
 
+	/**
+	 * @brief cline is the look of line numbers
+	 * @return the look for all lines numbers
+	 */
+	CLine * cline() const;
+
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
@@ -199,6 +207,7 @@ signals:
 	void currentChanged(Line * current);
 	void debugChanged(Line * debug);
 	void breakpointChanged(Line * breakpoint);
+	void clineChanged(CLine * cline);
 
 public slots:
 	void updateOccurrence();
@@ -215,13 +224,20 @@ public slots:
 	void updateSystem();
 	void updateError();
 	void updateWarning();
+	void updateCurrent();
+	void updateDebug();
+	void updateBreakpoint();
+	void updateCLine();
 
 private:
 	void updateStyle(TextCharFormat & chars, const CharFormat * format);
 
+	void updateStyle(LineFormat & format, const Line * line);
+
 	void bindChars();
 	void bindHighlights();
 	void bindMessages();
+	void bindLines();
 
 	EditorStyle * m_style      = nullptr;
 	CharFormat *  m_text       = nullptr;
@@ -240,9 +256,11 @@ private:
 	CharFormat *  m_error      = nullptr;
 	CharFormat *  m_warning    = nullptr;
 	Highlight *   m_occurrence = nullptr;
-	Line *        m_current    = nullptr;
-	Line *        m_debug      = nullptr;
-	Line *        m_breakpoint = nullptr;
+
+	Line *  m_current    = nullptr;
+	Line *  m_debug      = nullptr;
+	Line *  m_breakpoint = nullptr;
+	CLine * m_cline      = nullptr;
 };
 
 }  // namespace icL::look

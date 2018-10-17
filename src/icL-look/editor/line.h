@@ -73,6 +73,8 @@ class CLine : public Line {
 	// clang-format on
 
 public:
+	CLine(QObject * parent = nullptr);
+
 	/**
 	 * @brief edited is a color to highlight edited line
 	 * @return the color for hightlight edited lines
@@ -101,6 +103,11 @@ public slots:
 	 * @param saved is the new color for saved lines
 	 */
 	void setSaved(QColor saved);
+
+	// BaseLook interface
+public:
+	void setUp(const QJsonObject &obj) override;
+	QJsonObject getUp() override;
 
 private:
 	QColor m_saved;

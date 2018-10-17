@@ -16,6 +16,7 @@ Editor::Editor(QObject * parent)
 
 	m_style      = new EditorStyle(this);
 	m_breakpoint = new Line(this);
+	m_cline      = new CLine(this);
 	m_comment    = new CharFormat(this);
 	m_current    = new Line(this);
 	m_debug      = new Line(this);
@@ -40,6 +41,7 @@ Editor::~Editor() {
 	icL_dropField(m_style);
 	icL_dropField(m_breakpoint);
 	icL_dropField(m_comment);
+	icL_dropField(m_cline);
 	icL_dropField(m_current);
 	icL_dropField(m_debug);
 	icL_dropField(m_error);
@@ -139,6 +141,10 @@ Line * Editor::breakpoint() const {
 	return m_breakpoint;
 }
 
+CLine * Editor::cline() const {
+	return m_cline;
+}
+
 void Editor::setUp(const QJsonObject & obj) {
 	m_text->setUp(obj.value("text").toObject());
 	m_selection->setUp(obj.value("selection").toObject());
@@ -161,6 +167,7 @@ void Editor::setUp(const QJsonObject & obj) {
 	m_current->setUp(obj.value("current").toObject());
 	m_debug->setUp(obj.value("debug").toObject());
 	m_breakpoint->setUp(obj.value("breakpoint").toObject());
+	m_cline->setUp(obj.value("cline").toObject());
 }
 
 QJsonObject Editor::getUp() {
@@ -182,7 +189,8 @@ QJsonObject Editor::getUp() {
 			{"occurrence", m_occurrence->getUp()},
 			{"current", m_current->getUp()},
 			{"debug", m_debug->getUp()},
-			{"breakpoint", m_breakpoint->getUp()}};
+			{"breakpoint", m_breakpoint->getUp()},
+			{"cline", m_cline->getUp()}};
 }
 
 void Editor::updateOccurrence() {
@@ -242,6 +250,24 @@ void Editor::updateWarning() {
 	updateStyle(Chars::warning, m_warning);
 }
 
+void Editor::updateCurrent() {
+	updateStyle(Chars::current, m_current);
+}
+
+void Editor::updateDebug() {
+	updateStyle(Chars::debug, m_debug);
+}
+
+void Editor::updateBreakpoint() {
+	updateStyle(Chars::breakpoint, m_breakpoint);
+}
+
+void Editor::updateCLine() {
+	Chars::cline.changed = m_cline->edited();
+	Chars::cline.saved   = m_cline->saved();
+	updateStyle(Chars::cline, m_cline);
+}
+
 void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
 	TextCharFormat cf;
 
@@ -292,6 +318,26 @@ void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
 	}
 
 	chars = cf;
+	Chars::update();
+}
+
+void Editor::updateStyle(LineFormat & format, const Line * line) {
+	LineFormat lf;
+
+	lf.background = line->lineBg();
+
+	auto & font = lf.lineNumber.font;
+	auto * ln   = line->lineNumber();
+
+	font = m_style->font();
+
+	font.setBold(ln->italic());
+	font.setItalic(ln->italic());
+
+	lf.lineNumber.background = ln->background();
+	lf.lineNumber.text       = ln->foreground();
+
+	format = lf;
 	Chars::update();
 }
 
@@ -400,6 +446,37 @@ void Editor::bindMessages() {
 	connect(m_warning, &CharFormatBase::italicChanged, this, &Editor::updateWarning);
 	connect(m_warning, &TextLook::foregroundChanged,   this, &Editor::updateWarning);
 	connect(m_warning, &TextLook::backgroundChanged,   this, &Editor::updateWarning);
+	// clang-format on
+}
+
+void Editor::bindLines() {
+	// clang-format off
+	connect(m_current->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateCurrent);
+	connect(m_current->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateCurrent);
+	connect(m_current->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateCurrent);
+	connect(m_current->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateCurrent);
+	connect(m_current->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateCurrent);
+	connect(m_current,               &Line::lineBgChanged,           this, &Editor::updateCurrent);
+
+	connect(m_debug->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateDebug);
+	connect(m_debug->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateDebug);
+	connect(m_debug->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateDebug);
+	connect(m_debug->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateDebug);
+	connect(m_debug,               &Line::lineBgChanged,           this, &Editor::updateDebug);
+
+	connect(m_breakpoint->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateBreakpoint);
+	connect(m_breakpoint->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateBreakpoint);
+	connect(m_breakpoint->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateBreakpoint);
+	connect(m_breakpoint->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateBreakpoint);
+	connect(m_breakpoint,               &Line::lineBgChanged,           this, &Editor::updateBreakpoint);
+
+	connect(m_cline->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateCLine);
+	connect(m_cline->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateCLine);
+	connect(m_cline->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateCLine);
+	connect(m_cline->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateCLine);
+	connect(m_cline,               &Line::lineBgChanged,           this, &Editor::updateCLine);
+	connect(m_cline,               &CLine::editedChanged,          this, &Editor::updateCLine);
+	connect(m_cline,               &CLine::savedChanged,           this, &Editor::updateCLine);
 	// clang-format on
 }
 
