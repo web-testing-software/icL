@@ -96,11 +96,6 @@ public slots:
 	void setFontS(int fontS);
 
 	/**
-	 * @brief resize handles the width and height changes
-	 */
-	void resize();
-
-	/**
 	 * @brief setLineS changes the current line spacing
 	 * @param lineS is the new line spacing
 	 */

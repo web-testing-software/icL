@@ -4,7 +4,10 @@
 #include <QQuickPaintedItem>
 
 
-namespace look {
+
+class QStaticText;
+
+namespace icL::look {
 class EditorStyle;
 }
 
@@ -18,7 +21,6 @@ class Editor : public QQuickPaintedItem
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(icL::look::EditorStyle*   style READ style        WRITE setStyle        NOTIFY styleChanged)
 	Q_PROPERTY(icL::editor::Selection*    main READ main         NOTIFY mainChanged)
 	Q_PROPERTY(icL::editor::Line*        first READ first        WRITE setFirst        NOTIFY firstChanged)
 	Q_PROPERTY(icL::editor::Line*      current READ current      WRITE setCurrent      NOTIFY currentChanged)
@@ -28,12 +30,6 @@ class Editor : public QQuickPaintedItem
 
 public:
 	Editor(QQuickItem * parent);
-
-	/**
-	 * @brief style is the style of all editors
-	 * @return the style for all editrs
-	 */
-	look::EditorStyle * style() const;
 
 	/**
 	 * @brief main is the main selection
@@ -82,7 +78,6 @@ public:
 	bool loadFile(const QString & path);
 
 signals:
-	void styleChanged(look::EditorStyle * style);
 	void mainChanged(Selection * main);
 	void firstChanged(Line * first);
 	void currentChanged(Line * current);
@@ -90,12 +85,6 @@ signals:
 	void lastVisibleChanged(Line * lastVisible);
 
 public slots:
-	/**
-	 * @brief setStyle sets the style of editor
-	 * @param style is the new style for editor
-	 */
-	void setStyle(look::EditorStyle * style);
-
 	/**
 	 * @brief setFirst changes the pointer to the first line
 	 * @param first is the new first line
@@ -120,16 +109,20 @@ public slots:
 	 */
 	void setLastVisible(Line * lastVisible);
 
-private:
+protected:
 	/**
 	 * @brief addNewLine inserts a new line after the current
 	 * @param line is the line to add
 	 */
-	void addNewLine(Line *line);
+	void addNewLine(Line * line, bool focus = true);
+
+	/**
+	 * @brief changeNumberOfLines changes the numbers of lines
+	 * @param newValue is the number of lines
+	 */
+	void changeNumberOfLines(int newValue);
 
 	// properties
-	look::EditorStyle * m_style = nullptr;
-
 	Selection * m_main = nullptr;
 
 	Line * m_first        = nullptr;
@@ -138,7 +131,14 @@ private:
 	Line * m_lastVisible  = nullptr;
 
 	// fields
+	/// @brief changed confirm that the document was changed or not
 	bool changed = false;
+
+	/// @brief numberOfLines is the number of line in document
+	int numberOfLines = 0;
+
+	/// @brief numberOfDigits is the number of digits in line number
+	int numberOfDigits = 0;
 };
 
 }  // namespace icL::editor

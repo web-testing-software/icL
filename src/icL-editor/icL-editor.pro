@@ -27,7 +27,8 @@ HEADERS += \
     private/fragment.h \
     export/editor.h \
     private/cursor.h \
-    private/selection.h
+    private/selection.h \
+    export/editordrawing.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -35,7 +36,8 @@ SOURCES += \
     private/fragment.cpp \
     export/editor.cpp \
     private/cursor.cpp \
-    private/selection.cpp
+    private/selection.cpp \
+    export/editordrawing.cpp
 
 copy_qmldir.target = $$DESTDIR/qmldir
 copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir

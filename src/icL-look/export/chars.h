@@ -38,6 +38,28 @@ struct TextCharFormat
 };
 
 /**
+ * @brief The LineFormat struct defines the format for line numbers and bg color
+ */
+struct LineFormat {
+	/// @brief the format for line number
+	TextCharFormat lineNumber;
+
+	/// @brief the background of line
+	QBrush background;
+};
+
+/**
+ * @brief The CLineFormat struct defines the format for all lines
+ */
+struct CLineFormat : public LineFormat {
+	/// The color for changed line number
+	QPen changed;
+
+	/// The color for saved line number
+	QPen saved;
+};
+
+/**
  * @brief The Chars class exports editor hightlight rules to C++
  */
 class Chars : public QObject
@@ -87,6 +109,18 @@ public:
 
 	/// @brief warning is the color of warning underline
 	static TextCharFormat warning;
+
+	/// @brief cline is the format for any line number
+	static CLineFormat cline;
+
+	/// @brief current is the format for current line
+	static LineFormat current;
+
+	/// @brief debug is the format for current debugging line
+	static LineFormat debug;
+
+	/// @brief breakpoint is the format for breakpointed line
+	static LineFormat breakpoint;
 
 	/// @brief send signal to QML to rehighlight editor
 	static void update();

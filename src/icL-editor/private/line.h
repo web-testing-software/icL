@@ -6,6 +6,7 @@
 
 
 class QTextStream;
+class QStaticText;
 
 namespace icL::editor {
 
@@ -157,12 +158,15 @@ private:
 	uint8_t m_length;
 	int32_t m_beginPos;
 	int16_t m_lineNumber;
-	bool    m_visible;
+	bool    m_visible = false;
 
 	// fields
 	bool     m_isChanged = false;
 	QString  content;
 	Editor * m_parent;
+
+	/// @brief cache is the geometry of line number
+	QStaticText * cache = nullptr;
 };
 
 }  // namespace icL::editor

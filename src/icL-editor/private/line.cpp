@@ -3,6 +3,7 @@
 #include "../export/editor.h"
 #include "fragment.h"
 
+#include <QStaticText>
 #include <QTextStream>
 
 namespace icL::editor {
@@ -112,6 +113,10 @@ void Line::setLineNumber(int16_t lineNumber) {
 	if (m_lineNumber == lineNumber)
 		return;
 
+	if (cache != nullptr) {
+		cache->setText(QString::number(lineNumber));
+	}
+
 	m_lineNumber = lineNumber;
 	emit lineNumberChanged(m_lineNumber);
 }
@@ -119,6 +124,26 @@ void Line::setLineNumber(int16_t lineNumber) {
 void Line::setVisible(bool visible) {
 	if (m_visible == visible)
 		return;
+
+	if (visible) {
+		if (cache == nullptr) {
+			cache = new QStaticText(QString::number(m_lineNumber));
+		}
+
+		for (auto * it = m_first; it != nullptr; it = it->next()) {
+			it->cacheNow();
+		}
+	}
+	else {
+		if (cache != nullptr) {
+			delete cache;
+			cache = nullptr;
+
+			for (auto * it = m_first; it != nullptr; it = it->next()) {
+				it->freeCache();
+			}
+		}
+	}
 
 	m_visible = visible;
 	emit visibleChanged(m_visible);

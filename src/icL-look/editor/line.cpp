@@ -44,4 +44,28 @@ void Line::setLineBg(QColor lineBg) {
 	emit lineBgChanged(m_lineBg);
 }
 
+QColor CLine::edited() const {
+	return m_edited;
 }
+
+QColor CLine::saved() const {
+	return m_saved;
+}
+
+void CLine::setEdited(QColor edited) {
+	if (m_edited == edited)
+		return;
+
+	m_edited = edited;
+	emit editedChanged(m_edited);
+}
+
+void CLine::setSaved(QColor saved) {
+	if (m_saved == saved)
+		return;
+
+	m_saved = saved;
+	emit savedChanged(m_saved);
+}
+
+}  // namespace icL::look

@@ -8,10 +8,6 @@ namespace icL::editor {
 Editor::Editor(QQuickItem * parent)
 	: QQuickPaintedItem(parent) {}
 
-look::EditorStyle * Editor::style() const {
-	return m_style;
-}
-
 Selection * Editor::main() const {
 	return m_main;
 }
@@ -51,6 +47,7 @@ void Editor::clear() {
 	m_firstVisible = nullptr;
 	m_lastVisible  = nullptr;
 	m_current      = nullptr;
+	numberOfLines  = 0;
 }
 
 bool Editor::loadFile(const QString & path) {
@@ -68,18 +65,17 @@ bool Editor::loadFile(const QString & path) {
 		auto * fragment = new Fragment(line);
 
 		fragment->insert(0, str);
+		line->getText();
 		addNewLine(line);
 	}
 
+	auto * it = m_first;
+	for (int i = 0; i < numberOfLines && it != nullptr; i++) {
+		it->setVisible(true);
+		it = it->next();
+	}
+
 	return true;
-}
-
-void Editor::setStyle(look::EditorStyle * style) {
-	if (m_style == style)
-		return;
-
-	m_style = style;
-	emit styleChanged(m_style);
 }
 
 void Editor::setFirst(Line * first) {
@@ -114,9 +110,10 @@ void Editor::setLastVisible(Line * lastVisible) {
 	emit lastVisibleChanged(m_lastVisible);
 }
 
-void Editor::addNewLine(Line * line) {
+void Editor::addNewLine(Line * line, bool focus) {
 	if (m_current == nullptr) {
 		m_first = m_current = line;
+		line->setLineNumber(1);
 	}
 	else {
 		if (m_current->next() != nullptr) {
@@ -125,14 +122,17 @@ void Editor::addNewLine(Line * line) {
 		}
 		m_current->setNext(line);
 		line->setPrev(m_current);
+		line->setLineNumber(m_current->lineNumber() + 1);
 
-		if (m_lastVisible == m_current) {
+		if (m_lastVisible == m_current && focus) {
 			m_firstVisible = m_firstVisible->next();
-			m_lastVisible = line;
+			m_lastVisible  = line;
 		}
 
 		setCurrent(line);
 	}
+
+	numberOfLines++;
 }
 
 }  // namespace icL::editor

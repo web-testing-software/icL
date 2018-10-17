@@ -42,6 +42,7 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::Line*         current READ current    NOTIFY currentChanged)
 	Q_PROPERTY(icL::look::Line*           debug READ debug      NOTIFY debugChanged)
 	Q_PROPERTY(icL::look::Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
+	//
 	// clang-format on
 
 public:

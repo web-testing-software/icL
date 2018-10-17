@@ -24,6 +24,11 @@ HighlightChars Chars::occurence = {};
 TextCharFormat Chars::error     = {};
 TextCharFormat Chars::warning   = {};
 
+CLineFormat Chars::cline      = {};
+LineFormat  Chars::current    = {};
+LineFormat  Chars::debug      = {};
+LineFormat  Chars::breakpoint = {};
+
 void Chars::update() {
 	if (instance != nullptr) {
 		emit instance->highlight();

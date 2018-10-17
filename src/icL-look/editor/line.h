@@ -64,6 +64,49 @@ private:
 	CharFormatBase * m_lineNumber;
 };
 
+class CLine : public Line {
+	Q_OBJECT
+
+	// clang-format off
+	Q_PROPERTY(QColor edited READ edited WRITE setEdited NOTIFY editedChanged)
+	Q_PROPERTY(QColor  saved READ saved  WRITE setSaved  NOTIFY savedChanged)
+	// clang-format on
+
+public:
+	/**
+	 * @brief edited is a color to highlight edited line
+	 * @return the color for hightlight edited lines
+	 */
+	QColor edited() const;
+
+	/**
+	 * @brief saved is a color to highlight saved line
+	 * @return the color for highlight saved line
+	 */
+	QColor saved() const;
+
+signals:
+	void editedChanged(QColor edited);
+	void savedChanged(QColor saved);
+
+public slots:
+	/**
+	 * @brief setEdited changes the color for edited lines
+	 * @param edited is the new color to edited edited lines
+	 */
+	void setEdited(QColor edited);
+
+	/**
+	 * @brief setSaved changes the color for saved lines
+	 * @param saved is the new color for saved lines
+	 */
+	void setSaved(QColor saved);
+
+private:
+	QColor m_saved;
+	QColor m_edited;
+};
+
 }  // namespace icL::look
 
 #endif  // icL_look_Line
