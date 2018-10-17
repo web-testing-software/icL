@@ -162,6 +162,10 @@ private:
 	uint8_t m_length;
 	int8_t  m_spaces;
 	int8_t  m_glyphs;
+
+	// fields
+	QStaticText * cache = nullptr;
+	QString       content;
 };
 
 

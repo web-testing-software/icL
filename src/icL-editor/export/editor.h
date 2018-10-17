@@ -109,10 +109,10 @@ private:
 
 	Selection * m_main = nullptr;
 
-	Line * m_first = nullptr;
-	Line * m_current = nullptr;
+	Line * m_first        = nullptr;
+	Line * m_current      = nullptr;
 	Line * m_firstVisible = nullptr;
-	Line * m_lastVisible = nullptr;
+	Line * m_lastVisible  = nullptr;
 };
 
 }  // namespace icL::editor

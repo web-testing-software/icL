@@ -13,6 +13,8 @@ class Line : public QObject
 
 	// clang-format off
 	Q_PROPERTY(icL::editor::Fragment* first READ first WRITE setFirst NOTIFY firstChanged)
+	Q_PROPERTY(icL::editor::Line*      next READ next  WRITE setNext  NOTIFY nextChanged)
+	Q_PROPERTY(icL::editor::Line*      prev READ prev  WRITE setPrev  NOTIFY prevChanged)
 
 	Q_PROPERTY(uint8_t     length READ length     NOTIFY lengthChanged)
 	Q_PROPERTY(int32_t   beginPos READ beginPos   WRITE setBeginPos   NOTIFY beginPosChanged)
@@ -30,13 +32,25 @@ public:
 	Fragment * first() const;
 
 	/**
+	 * @brief next gets the next line
+	 * @return the next line
+	 */
+	Line * next() const;
+
+	/**
+	 * @brief prev gets the previous line
+	 * @return the previous line
+	 */
+	Line * prev() const;
+
+	/**
 	 * @brief length gets the length of the line
 	 * @return the lenght of the line
 	 */
 	uint8_t length() const;
 
 	/**
-	 * @brief beginPos is the begin position of the line
+	 * @brief beginPos is the begin pselectionosition of the line
 	 * @return the begin position of text fragment
 	 */
 	int32_t beginPos() const;
@@ -65,6 +79,8 @@ signals:
 	void beginPosChanged(int32_t beginPos);
 	void lineNumberChanged(int16_t lineNumber);
 	void visibleChanged(bool visible);
+	void nextChanged(Line * next);
+	void prevChanged(Line * prev);
 
 public slots:
 	/**
@@ -72,6 +88,18 @@ public slots:
 	 * @param first is the new first fragment
 	 */
 	void setFirst(Fragment * first);
+
+	/**
+	 * @brief setNext sets the next line
+	 * @param next is the new next line
+	 */
+	void setNext(Line * next);
+
+	/**
+	 * @brief setPrev sets the previous line
+	 * @param prev is the new previous line
+	 */
+	void setPrev(Line * prev);
 
 	/**
 	 * @brief setBeginPos changes the begin pos of line
@@ -93,6 +121,8 @@ public slots:
 
 private:
 	Fragment * m_first = nullptr;
+	Line *     m_next  = nullptr;
+	Line *     m_prev  = nullptr;
 
 	uint8_t m_length;
 	int32_t m_beginPos;
