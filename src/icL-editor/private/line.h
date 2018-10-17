@@ -3,18 +3,24 @@
 
 #include <QObject>
 
+
+
+class QTextStream;
+
 namespace icL::editor {
 
 class Fragment;
+class Editor;
 
 class Line : public QObject
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(icL::editor::Fragment* first READ first WRITE setFirst NOTIFY firstChanged)
-	Q_PROPERTY(icL::editor::Line*      next READ next  WRITE setNext  NOTIFY nextChanged)
-	Q_PROPERTY(icL::editor::Line*      prev READ prev  WRITE setPrev  NOTIFY prevChanged)
+	Q_PROPERTY(icL::editor::Fragment* first READ first  WRITE setFirst NOTIFY firstChanged)
+	Q_PROPERTY(icL::editor::Line*      next READ next   WRITE setNext  NOTIFY nextChanged)
+	Q_PROPERTY(icL::editor::Line*      prev READ prev   WRITE setPrev  NOTIFY prevChanged)
+	Q_PROPERTY(icL::editor::Editor*  parent READ parent NOTIFY parentChanged)
 
 	Q_PROPERTY(uint8_t     length READ length     NOTIFY lengthChanged)
 	Q_PROPERTY(int32_t   beginPos READ beginPos   WRITE setBeginPos   NOTIFY beginPosChanged)
@@ -23,7 +29,7 @@ class Line : public QObject
 	// clang-format on
 
 public:
-	explicit Line(QObject * parent = nullptr);
+	explicit Line(Editor * parent = nullptr);
 
 	/**
 	 * @brief first gets the first fragment in the line
@@ -73,6 +79,24 @@ public:
 	 */
 	const QString & getText();
 
+	/**
+	 * @brief isChanged gets the changed state
+	 * @return true id is changed, otherwise false
+	 */
+	bool isChanged();
+
+	/**
+	 * @brief save saves the line content to file
+	 * @param straem is the strem to send in the text
+	 */
+	void save(QTextStream * stream);
+
+	/**
+	 * @brief parent is the editor of line
+	 * @return the editor of line
+	 */
+	Editor * parent() const;
+
 signals:
 	void firstChanged(Fragment * first);
 	void lengthChanged(uint8_t length);
@@ -81,6 +105,7 @@ signals:
 	void visibleChanged(bool visible);
 	void nextChanged(Line * next);
 	void prevChanged(Line * prev);
+	void parentChanged(Editor * parent);
 
 public slots:
 	/**
@@ -119,6 +144,11 @@ public slots:
 	 */
 	void setVisible(bool visible);
 
+	/**
+	 * @brief makeChanged sets up the changed state
+	 */
+	void makeChanged();
+
 private:
 	Fragment * m_first = nullptr;
 	Line *     m_next  = nullptr;
@@ -128,6 +158,11 @@ private:
 	int32_t m_beginPos;
 	int16_t m_lineNumber;
 	bool    m_visible;
+
+	// fields
+	bool     m_isChanged = false;
+	QString  content;
+	Editor * m_parent;
 };
 
 }  // namespace icL::editor

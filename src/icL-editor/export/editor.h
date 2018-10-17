@@ -65,6 +65,11 @@ public:
 	 */
 	Line * lastVisible() const;
 
+	/**
+	 * @brief makeChanged set up the changed state of editor
+	 */
+	void makeChanged();
+
 signals:
 	void styleChanged(look::EditorStyle * style);
 	void mainChanged(Selection * main);

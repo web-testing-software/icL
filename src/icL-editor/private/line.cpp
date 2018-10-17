@@ -1,9 +1,16 @@
 #include "line.h"
 
+#include "../export/editor.h"
+#include "fragment.h"
+
+#include <QTextStream>
+
 namespace icL::editor {
 
-Line::Line(QObject * parent)
-	: QObject(parent) {}
+Line::Line(Editor * parent)
+	: QObject(parent) {
+	m_parent = parent;
+}
 
 Fragment * Line::first() const {
 	return m_first;
@@ -31,6 +38,42 @@ int16_t Line::lineNumber() const {
 
 bool Line::visible() const {
 	return m_visible;
+}
+
+const QString & Line::getText() {
+	if (!m_isChanged) {
+		return content;
+	}
+
+	auto * it = m_first;
+
+	content.clear();
+	content.reserve(m_length);
+
+	content += QString('\t', it->spaces() / 4);
+	content += QString(' ', it->spaces() % 4);
+	content += it->displayText();
+	it = it->next();
+
+	while (it != nullptr) {
+		content += QString(' ', it->spaces());
+		content += it->displayText();
+	}
+
+	return content;
+}
+
+bool Line::isChanged() {
+	return m_isChanged;
+}
+
+void Line::save(QTextStream * stream) {
+	(*stream) << getText();
+	m_isChanged = false;
+}
+
+Editor * Line::parent() const {
+	return m_parent;
 }
 
 void Line::setFirst(Fragment * first) {
@@ -79,6 +122,11 @@ void Line::setVisible(bool visible) {
 
 	m_visible = visible;
 	emit visibleChanged(m_visible);
+}
+
+void Line::makeChanged() {
+	m_parent->makeChanged();
+	m_isChanged = true;
 }
 
 }  // namespace icL::editor

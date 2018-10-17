@@ -90,14 +90,17 @@ const QStaticText * Fragment::getCache() {
 
 void Fragment::drop(int begin, int end) {
 	content.remove(begin, end - begin);
+	m_line->makeChanged();
 }
 
 void Fragment::insert(int pos, const QString & text) {
 	content.insert(pos, text);
+	m_line->makeChanged();
 }
 
 void Fragment::replace(int p1, int p2, const QString & after) {
 	content.replace(p1, p2, after);
+	m_line->makeChanged();
 }
 
 void Fragment::setPrev(Fragment * prev) {
