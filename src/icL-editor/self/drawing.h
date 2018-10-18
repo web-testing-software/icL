@@ -65,6 +65,55 @@ private slots:
 	 */
 	void updateBackgroundGeometry();
 
+private:
+	/**
+	 * @brief drawLineNumbers is the 1st step of drawing (after display clear)
+	 *
+	 * It draws the line number of left side for each visible line.
+	 */
+	void drawLineNumbers(QPainter *painter);
+
+	/**
+	 * @brief drawBreakPoints is the 2nd step of drawing
+	 *
+	 * Draw each visible breakpoint over the existing line numbers.
+	 */
+	void drawBreakPoints();
+
+	/**
+	 * @brief drawCurrentLine is the 3rd step of drawing
+	 *
+	 * Draw the current line number and background over the existing
+	 * lines numbers and breakpoints
+	 */
+	void drawCurrentLine();
+
+	/**
+	 * @brief drawDebugLine is the 4th step of drawing
+	 *
+	 * Draw the debug line over all existing content.
+	 */
+	void drawDebugLine();
+
+	/**
+	 * @brief setUpClipArea restricts drawing on line number area
+	 */
+	void setUpClipArea();
+
+	/**
+	 * @brief drawSelection is the 5th step of drawing
+	 *
+	 * Draws the selection over the all line hightlights.
+	 */
+	void drawSelection();
+
+	/**
+	 * @brief drawContent is the 6th step of drawing
+	 *
+	 * Draw the text of editor itself, over all selection all line hightlights.
+	 */
+	void drawContent();
+
 protected:
 	// properties
 	look::EditorStyle * m_style = nullptr;

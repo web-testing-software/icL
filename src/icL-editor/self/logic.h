@@ -71,7 +71,7 @@ public:
 	 * @brief loadFile loads a file from disk
 	 * @param path is the path of file
 	 */
-	bool loadFile(const QString & path);
+	Q_INVOKABLE bool loadFile(const QString & path);
 
 signals:
 	void mainChanged(Selection * main);

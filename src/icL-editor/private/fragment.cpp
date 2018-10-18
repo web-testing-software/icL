@@ -6,8 +6,10 @@
 
 namespace icL::editor {
 
-Fragment::Fragment(QObject * parent)
-	: QObject(parent) {}
+Fragment::Fragment(Line * parent)
+	: QObject(parent) {
+	m_line = parent;
+}
 
 Fragment * Fragment::prev() const {
 	return m_prev;

@@ -58,21 +58,23 @@ bool Logic::loadFile(const QString & path) {
 		return false;
 	}
 
-	while (!file.atEnd()) {
+	while (!stream.atEnd()) {
 		QString str = stream.readLine(160);
 
 		auto * line     = new Line(this);
 		auto * fragment = new Fragment(line);
 
 		fragment->insert(0, str);
+		line->setFirst(fragment);
 		line->getText();
 		addNewLine(line);
 	}
 
-	auto * it = m_first;
+	auto * it = m_firstVisible = m_first;
 	for (int i = 0; i < numberOfLines && it != nullptr; i++) {
 		it->setVisible(true);
 		it = it->next();
+		m_lastVisible = it;
 	}
 
 	return true;

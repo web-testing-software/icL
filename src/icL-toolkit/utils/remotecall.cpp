@@ -2,6 +2,10 @@
 
 namespace icL::toolkit::utils {
 
+RemoteArg::RemoteArg(const QString & name) {
+	m_name = name;
+}
+
 QString RemoteArg::name() const {
 	return m_name;
 }

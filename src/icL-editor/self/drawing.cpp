@@ -1,20 +1,21 @@
 #include "drawing.h"
 
+#include "../private/line.h"
+
 #include <icL-look/editor/editorstyle.h>
 #include <icL-look/export/chars.h>
 
 #include <QPainter>
+#include <QStaticText>
 
 namespace icL::editor {
 
 Drawing::Drawing(QQuickItem * parent)
 	: Logic(parent) {
 	connect(
-	  this, &Logic::widthChanged, this,
-	  &Drawing::updateBackgroundGeometry);
+	  this, &Logic::widthChanged, this, &Drawing::updateBackgroundGeometry);
 	connect(
-	  this, &Logic::heightChanged, this,
-	  &Drawing::updateBackgroundGeometry);
+	  this, &Logic::heightChanged, this, &Drawing::updateBackgroundGeometry);
 }
 
 look::EditorStyle * Drawing::style() const {
@@ -35,6 +36,8 @@ void Drawing::paint(QPainter * painter) {
 
 	painter->setBrush(m_chars->cline.background);
 	painter->drawRect(contentArea);
+
+	drawLineNumbers(painter);
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
@@ -76,5 +79,37 @@ void Drawing::updateBackgroundGeometry() {
 	scissorsArea.setRight(width());
 	scissorsArea.setBottom(height());
 }
+
+void Drawing::drawLineNumbers(QPainter * painter) {
+	painter->setFont(m_chars->cline.lineNumber.font);
+	painter->setPen(m_chars->cline.lineNumber.text);
+	painter->setBrush(Qt::NoBrush);
+
+	int    yStep = m_style->m_charH;
+	int    yPos  = m_style->m_divLineSBy2;
+	auto * it    = m_firstVisible;
+
+	while (it != nullptr && it->visible()) {
+		auto * stext = it->getCache();
+
+		painter->drawStaticText(
+		  lineNumberRight - stext->size().width(), yPos, *stext);
+		yPos += yStep;
+		qDebug() << stext->size().width() << m_style->m_charW * 2;
+		it = it->next();
+	}
+}
+
+void Drawing::drawBreakPoints() {}
+
+void Drawing::drawCurrentLine() {}
+
+void Drawing::drawDebugLine() {}
+
+void Drawing::setUpClipArea() {}
+
+void Drawing::drawSelection() {}
+
+void Drawing::drawContent() {}
 
 }  // namespace icL::editor

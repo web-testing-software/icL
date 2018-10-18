@@ -77,6 +77,10 @@ Logic * Line::parent() const {
 	return m_parent;
 }
 
+QStaticText * Line::getCache() {
+	return cache;
+}
+
 void Line::setFirst(Fragment * first) {
 	if (m_first == first)
 		return;

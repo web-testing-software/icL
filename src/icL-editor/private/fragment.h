@@ -26,7 +26,7 @@ class Fragment : public QObject
 	// clang-format on
 
 public:
-	explicit Fragment(QObject * parent = nullptr);
+	explicit Fragment(Line *parent = nullptr);
 
 	/**
 	 * @brief prev is the previous sibling

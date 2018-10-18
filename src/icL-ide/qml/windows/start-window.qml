@@ -37,10 +37,10 @@ Window {
 	Look {
 		id: look
 
+		editor.style.fontS: rd(rq * 14)
+
 		Component.onCompleted: {
 			gateway.crossLook = this
-
-//			look.editor.st
 		}
 	}
 
@@ -76,5 +76,9 @@ Window {
 
 		style: look.editor.style
 		chars: look.editor.chars
+
+		Component.onCompleted: {
+			loadFile("test.txt")
+		}
 	}
 }

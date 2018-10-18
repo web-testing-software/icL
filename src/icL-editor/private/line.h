@@ -7,6 +7,7 @@
 
 class QTextStream;
 class QStaticText;
+class QPainter;
 
 namespace icL::editor {
 
@@ -97,6 +98,12 @@ public:
 	 * @return the editor of line
 	 */
 	Logic * parent() const;
+
+	/**
+	 * @brief getCache return the cache of line number
+	 * @return the pointer to cache of line number
+	 */
+	QStaticText* getCache();
 
 signals:
 	void firstChanged(Fragment * first);
