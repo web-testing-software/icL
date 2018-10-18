@@ -1,6 +1,6 @@
 #include "line.h"
 
-#include "../export/logic.h"
+#include "../self/logic.h"
 #include "fragment.h"
 
 #include <QStaticText>
