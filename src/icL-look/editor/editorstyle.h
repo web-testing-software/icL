@@ -7,7 +7,7 @@
 
 
 namespace icL::editor {
-class EditorDrawing;
+class Drawing;
 }
 
 /**
@@ -110,7 +110,7 @@ public slots:
 	// Get the private properties without getters
 	// This fixes dependency beetwen QML plugins
 	// Never change the values, just read
-	friend class editor::EditorDrawing;
+	friend class editor::Drawing;
 
 private:
 	/**

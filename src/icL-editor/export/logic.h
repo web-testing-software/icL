@@ -12,7 +12,7 @@ namespace icL::editor {
 class Selection;
 class Line;
 
-class EditorLogic : public QQuickPaintedItem
+class Logic : public QQuickPaintedItem
 {
 	Q_OBJECT
 
@@ -25,7 +25,7 @@ class EditorLogic : public QQuickPaintedItem
 	// clang-format on
 
 public:
-	EditorLogic(QQuickItem * parent);
+	Logic(QQuickItem * parent);
 
 	/**
 	 * @brief main is the main selection

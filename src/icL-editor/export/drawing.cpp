@@ -1,4 +1,4 @@
-#include "editordrawing.h"
+#include "drawing.h"
 
 #include <icL-look/editor/editorstyle.h>
 #include <icL-look/export/chars.h>
@@ -7,25 +7,25 @@
 
 namespace icL::editor {
 
-EditorDrawing::EditorDrawing(QQuickItem * parent)
-	: EditorLogic(parent) {
+Drawing::Drawing(QQuickItem * parent)
+	: Logic(parent) {
 	connect(
-	  this, &EditorLogic::widthChanged, this,
-	  &EditorDrawing::updateBackgroundGeometry);
+	  this, &Logic::widthChanged, this,
+	  &Drawing::updateBackgroundGeometry);
 	connect(
-	  this, &EditorLogic::heightChanged, this,
-	  &EditorDrawing::updateBackgroundGeometry);
+	  this, &Logic::heightChanged, this,
+	  &Drawing::updateBackgroundGeometry);
 }
 
-look::EditorStyle * EditorDrawing::style() const {
+look::EditorStyle * Drawing::style() const {
 	return m_style;
 }
 
-look::Chars * EditorDrawing::chars() const {
+look::Chars * Drawing::chars() const {
 	return m_chars;
 }
 
-void EditorDrawing::paint(QPainter * painter) {
+void Drawing::paint(QPainter * painter) {
 	if (!m_chars)
 		return;
 
@@ -37,7 +37,7 @@ void EditorDrawing::paint(QPainter * painter) {
 	painter->drawRect(contentArea);
 }
 
-void EditorDrawing::setStyle(look::EditorStyle * style) {
+void Drawing::setStyle(look::EditorStyle * style) {
 	if (m_style == style)
 		return;
 
@@ -46,7 +46,7 @@ void EditorDrawing::setStyle(look::EditorStyle * style) {
 	emit styleChanged(m_style);
 }
 
-void EditorDrawing::setChars(look::Chars * chars) {
+void Drawing::setChars(look::Chars * chars) {
 	if (m_chars == chars)
 		return;
 
@@ -55,7 +55,7 @@ void EditorDrawing::setChars(look::Chars * chars) {
 	emit charsChanged(m_chars);
 }
 
-void EditorDrawing::updateBackgroundGeometry() {
+void Drawing::updateBackgroundGeometry() {
 	if (m_style == nullptr)
 		return;
 

@@ -1,39 +1,39 @@
-#include "editorlogic.h"
+#include "logic.h"
 
 #include "../private/fragment.h"
 #include "../private/line.h"
 
 namespace icL::editor {
 
-EditorLogic::EditorLogic(QQuickItem * parent)
+Logic::Logic(QQuickItem * parent)
 	: QQuickPaintedItem(parent) {}
 
-Selection * EditorLogic::main() const {
+Selection * Logic::main() const {
 	return m_main;
 }
 
-Line * EditorLogic::first() const {
+Line * Logic::first() const {
 	return m_first;
 }
 
-Line * EditorLogic::current() const {
+Line * Logic::current() const {
 	return m_current;
 }
 
-Line * EditorLogic::firstVisible() const {
+Line * Logic::firstVisible() const {
 	return m_firstVisible;
 }
 
-Line * EditorLogic::lastVisible() const {
+Line * Logic::lastVisible() const {
 	return m_lastVisible;
 }
 
-void EditorLogic::makeChanged() {
+void Logic::makeChanged() {
 	changed = true;
 	update();
 }
 
-void EditorLogic::clear() {
+void Logic::clear() {
 	auto * it = m_first;
 
 	while (it != nullptr) {
@@ -50,7 +50,7 @@ void EditorLogic::clear() {
 	numberOfLines  = 0;
 }
 
-bool EditorLogic::loadFile(const QString & path) {
+bool Logic::loadFile(const QString & path) {
 	QFile       file(path);
 	QTextStream stream(&file);
 
@@ -78,7 +78,7 @@ bool EditorLogic::loadFile(const QString & path) {
 	return true;
 }
 
-void EditorLogic::setFirst(Line * first) {
+void Logic::setFirst(Line * first) {
 	if (m_first == first)
 		return;
 
@@ -86,7 +86,7 @@ void EditorLogic::setFirst(Line * first) {
 	emit firstChanged(m_first);
 }
 
-void EditorLogic::setCurrent(Line * current) {
+void Logic::setCurrent(Line * current) {
 	if (m_current == current)
 		return;
 
@@ -94,7 +94,7 @@ void EditorLogic::setCurrent(Line * current) {
 	emit currentChanged(m_current);
 }
 
-void EditorLogic::setFirstVisible(Line * firstVisible) {
+void Logic::setFirstVisible(Line * firstVisible) {
 	if (m_firstVisible == firstVisible)
 		return;
 
@@ -102,7 +102,7 @@ void EditorLogic::setFirstVisible(Line * firstVisible) {
 	emit firstVisibleChanged(m_firstVisible);
 }
 
-void EditorLogic::setLastVisible(Line * lastVisible) {
+void Logic::setLastVisible(Line * lastVisible) {
 	if (m_lastVisible == lastVisible)
 		return;
 
@@ -110,7 +110,7 @@ void EditorLogic::setLastVisible(Line * lastVisible) {
 	emit lastVisibleChanged(m_lastVisible);
 }
 
-void EditorLogic::addNewLine(Line * line, bool focus) {
+void Logic::addNewLine(Line * line, bool focus) {
 	if (m_current == nullptr) {
 		m_first = m_current = line;
 		line->setLineNumber(1);

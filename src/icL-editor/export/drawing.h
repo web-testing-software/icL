@@ -1,7 +1,7 @@
 #ifndef EDITORDRAWING_H
 #define EDITORDRAWING_H
 
-#include "editorlogic.h"
+#include "logic.h"
 
 #include <QObject>
 
@@ -12,7 +12,7 @@ class Chars;
 
 namespace icL::editor {
 
-class EditorDrawing : public EditorLogic
+class Drawing : public Logic
 {
 	Q_OBJECT
 
@@ -22,7 +22,7 @@ class EditorDrawing : public EditorLogic
 	// clang-format on
 
 public:
-	explicit EditorDrawing(QQuickItem * parent = nullptr);
+	explicit Drawing(QQuickItem * parent = nullptr);
 
 	/**
 	 * @brief style is the style of all editors
