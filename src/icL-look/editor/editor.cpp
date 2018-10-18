@@ -15,6 +15,7 @@ Editor::Editor(QObject * parent)
 	: BaseLook(parent) {
 
 	m_style      = new EditorStyle(this);
+	m_chars      = new Chars(this);
 	m_breakpoint = new Line(this);
 	m_cline      = new CLine(this);
 	m_comment    = new CharFormat(this);
@@ -35,6 +36,11 @@ Editor::Editor(QObject * parent)
 	m_text       = new CharFormat(this);
 	m_type       = new CharFormat(this);
 	m_warning    = new CharFormat(this);
+
+	bindHighlights();
+	bindChars();
+	bindMessages();
+	bindLines();
 }
 
 Editor::~Editor() {
@@ -63,6 +69,10 @@ Editor::~Editor() {
 
 EditorStyle * Editor::style() {
 	return m_style;
+}
+
+Chars * Editor::chars() const {
+	return m_chars;
 }
 
 CharFormat * Editor::text() const {
@@ -194,78 +204,78 @@ QJsonObject Editor::getUp() {
 }
 
 void Editor::updateOccurrence() {
-	Chars::occurence.background = m_occurrence->background();
-	Chars::occurence.border     = m_occurrence->border();
+	m_chars->occurence.background = m_occurrence->background();
+	m_chars->occurence.border     = m_occurrence->border();
 }
 
 void Editor::updateNumber() {
-	updateStyle(Chars::number, m_number);
+	updateStyle(m_chars->number, m_number);
 }
 
 void Editor::updateString() {
-	updateStyle(Chars::string, m_string);
+	updateStyle(m_chars->string, m_string);
 }
 
 void Editor::updateType() {
-	updateStyle(Chars::type, m_type);
+	updateStyle(m_chars->type, m_type);
 }
 
 void Editor::updateLocal() {
-	updateStyle(Chars::local, m_local);
+	updateStyle(m_chars->local, m_local);
 }
 
 void Editor::updateGlobal() {
-	updateStyle(Chars::global, m_global);
+	updateStyle(m_chars->global, m_global);
 }
 
 void Editor::updateProperty() {
-	updateStyle(Chars::property, m_property);
+	updateStyle(m_chars->property, m_property);
 }
 
 void Editor::updateMethod() {
-	updateStyle(Chars::method, m_method);
+	updateStyle(m_chars->method, m_method);
 }
 
 void Editor::updateFunction() {
-	updateStyle(Chars::function, m_function);
+	updateStyle(m_chars->function, m_function);
 }
 
 void Editor::updateKeyword() {
-	updateStyle(Chars::keyword, m_keyword);
+	updateStyle(m_chars->keyword, m_keyword);
 }
 
 void Editor::updateComment() {
-	updateStyle(Chars::comment, m_comment);
+	updateStyle(m_chars->comment, m_comment);
 }
 
 void Editor::updateSystem() {
-	updateStyle(Chars::system, m_system);
+	updateStyle(m_chars->system, m_system);
 }
 
 void Editor::updateError() {
-	updateStyle(Chars::error, m_error);
+	updateStyle(m_chars->error, m_error);
 }
 
 void Editor::updateWarning() {
-	updateStyle(Chars::warning, m_warning);
+	updateStyle(m_chars->warning, m_warning);
 }
 
 void Editor::updateCurrent() {
-	updateStyle(Chars::current, m_current);
+	updateStyle(m_chars->current, m_current);
 }
 
 void Editor::updateDebug() {
-	updateStyle(Chars::debug, m_debug);
+	updateStyle(m_chars->debug, m_debug);
 }
 
 void Editor::updateBreakpoint() {
-	updateStyle(Chars::breakpoint, m_breakpoint);
+	updateStyle(m_chars->breakpoint, m_breakpoint);
 }
 
 void Editor::updateCLine() {
-	Chars::cline.changed = m_cline->edited();
-	Chars::cline.saved   = m_cline->saved();
-	updateStyle(Chars::cline, m_cline);
+	m_chars->cline.changed = m_cline->edited();
+	m_chars->cline.saved   = m_cline->saved();
+	updateStyle(m_chars->cline, m_cline);
 }
 
 void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
@@ -318,7 +328,7 @@ void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
 	}
 
 	chars = cf;
-	Chars::update();
+	m_chars->update();
 }
 
 void Editor::updateStyle(LineFormat & format, const Line * line) {
@@ -338,7 +348,7 @@ void Editor::updateStyle(LineFormat & format, const Line * line) {
 	lf.lineNumber.text       = ln->foreground();
 
 	format = lf;
-	Chars::update();
+	m_chars->update();
 }
 
 void Editor::bindChars() {

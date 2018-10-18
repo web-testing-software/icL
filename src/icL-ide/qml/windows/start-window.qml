@@ -71,5 +71,8 @@ Window {
 
 	Editor {
 		anchors.fill: parent
+
+		style: look.editor.style
+		chars: look.editor.chars
 	}
 }

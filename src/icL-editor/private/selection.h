@@ -61,10 +61,17 @@ public:
 	 */
 	void moveUpDown(int lines, bool select = false);
 
+	/**
+	 * @brief rtl is the direction of selection
+	 * @return the direction of selection
+	 */
+	bool rtl() const;
+
 signals:
 	void beginChanged(Cursor * begin);
 	void endChanged(Cursor * end);
 	void nextChanged(Selection * next);
+	void rtlChanged(bool rtl);
 
 public slots:
 	/**
@@ -73,10 +80,17 @@ public slots:
 	 */
 	void setNext(Selection * next);
 
+	/**
+	 * @brief setRtl change the main cursor
+	 * @param rtl if true use left, otherwise use right
+	 */
+	void setRtl(bool rtl);
+
 private:
 	Cursor *    m_begin = nullptr;
 	Cursor *    m_end   = nullptr;
 	Selection * m_next  = nullptr;
+	bool        m_rtl;
 };
 
 }  // namespace icL::editor

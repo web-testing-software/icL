@@ -12,9 +12,10 @@ class CharFormat;
 class Highlight;
 class Line;
 class CLine;
-class TextCharFormat;
 class EditorStyle;
-class LineFormat;
+class Chars;
+struct TextCharFormat;
+struct LineFormat;
 
 /**
  * @brief The Editor class defines a color scheme for an editor
@@ -25,6 +26,7 @@ class Editor : public BaseLook
 
 	// clang-format off
 	Q_PROPERTY(icL::look::EditorStyle*    style READ style      NOTIFY styleChanged)
+	Q_PROPERTY(icL::look::Chars*          chars READ chars      NOTIFY charsChanged)
 	Q_PROPERTY(icL::look::CharFormat*      text READ text       NOTIFY textChanged)
 	Q_PROPERTY(icL::look::CharFormat* selection READ selection  NOTIFY selectionChanged)
 	Q_PROPERTY(icL::look::CharFormat*    number READ number     NOTIFY numberChanged)
@@ -61,6 +63,12 @@ public:
 	 * @return the base style for all editors
 	 */
 	EditorStyle * style();
+
+	/**
+	 * @brief chars is the style of chars shared to editor
+	 * @return style of chars shared to editor
+	 */
+	Chars * chars() const;
 
 	/**
 	 * @brief text is the defalt text look
@@ -188,6 +196,7 @@ public:
 
 signals:
 	void styleChanged(EditorStyle * style);
+	void charsChanged(Chars * chars);
 	void textChanged(CharFormat * text);
 	void selectionChanged(CharFormat * selection);
 	void numberChanged(CharFormat * number);
@@ -261,6 +270,7 @@ private:
 	Line *  m_debug      = nullptr;
 	Line *  m_breakpoint = nullptr;
 	CLine * m_cline      = nullptr;
+	Chars * m_chars;
 };
 
 }  // namespace icL::look

@@ -7,10 +7,6 @@
 
 class QStaticText;
 
-namespace icL::look {
-class EditorStyle;
-}
-
 namespace icL::editor {
 
 class Selection;

@@ -69,61 +69,61 @@ public:
 	explicit Chars(QObject * parent = nullptr);
 
 	/// @brief comment is the style for comments in code
-	static TextCharFormat comment;
+	TextCharFormat comment;
 
 	/// @brief function is the style for functions in code
-	static TextCharFormat function;
+	TextCharFormat function;
 
 	/// @brief global is the style for global variables in code
-	static TextCharFormat global;
+	TextCharFormat global;
 
 	/// @brief keyword is the style for keywords in code
-	static TextCharFormat keyword;
+	TextCharFormat keyword;
 
 	/// @brief local is the style for local variables in code
-	static TextCharFormat local;
+	TextCharFormat local;
 
 	/// @brief method is the style for methods in code
-	static TextCharFormat method;
+	TextCharFormat method;
 
 	/// @brief number is the style for numbers in code
-	static TextCharFormat number;
+	TextCharFormat number;
 
 	/// @brief property is the style for properties in code
-	static TextCharFormat property;
+	TextCharFormat property;
 
 	/// @brief string is the style for string in code
-	static TextCharFormat string;
+	TextCharFormat string;
 
 	/// @brief system is the style for system types in code
-	static TextCharFormat system;
+	TextCharFormat system;
 
 	/// @brief type is the style for types names in code
-	static TextCharFormat type;
+	TextCharFormat type;
 
 	/// @brief occurrence is the style for occurrence highlight
-	static HighlightChars occurence;
+	HighlightChars occurence;
 
 	/// @brief error is the color of errors underline
-	static TextCharFormat error;
+	TextCharFormat error;
 
 	/// @brief warning is the color of warning underline
-	static TextCharFormat warning;
+	TextCharFormat warning;
 
 	/// @brief cline is the format for any line number
-	static CLineFormat cline;
+	CLineFormat cline;
 
 	/// @brief current is the format for current line
-	static LineFormat current;
+	LineFormat current;
 
 	/// @brief debug is the format for current debugging line
-	static LineFormat debug;
+	LineFormat debug;
 
 	/// @brief breakpoint is the format for breakpointed line
-	static LineFormat breakpoint;
+	LineFormat breakpoint;
 
 	/// @brief send signal to QML to rehighlight editor
-	static void update();
+	void update();
 
 signals:
 	/// request rehiglight of code
@@ -135,7 +135,7 @@ private:
 	/**
 	 * @brief instance is needed to send signals to QML to update current file
 	 * systax highlighting
-	 * @return a static intance of chars
+	 * @return a intance of chars
 	 */
 	static Chars * instance;
 };

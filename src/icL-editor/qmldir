@@ -1,3 +1,4 @@
 module icL.Editor
 plugin icLeditorPlugin
 classname EditorPlugin
+depends icL.Look 1.0

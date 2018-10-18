@@ -1,11 +1,13 @@
 #include "plugin.h"
 
+#include "chars.h"
 #include "look.h"
 
 #include <icL-look/base/effectadv.h>
 #include <icL-look/base/linkadv.h>
 #include <icL-look/editor/charformat.h>
 #include <icL-look/editor/editor.h>
+#include <icL-look/editor/editorstyle.h>
 #include <icL-look/editor/highlight.h>
 #include <icL-look/editor/line.h>
 #include <icL-look/session/centralside.h>
@@ -51,5 +53,9 @@ void LookPlugin::registerTypes(const char * uri) {
 	qmlRegisterType<icL::look::Side>();
 	qmlRegisterType<icL::look::StartWindow>();
 	qmlRegisterType<icL::look::Static>();
+	qmlRegisterType<icL::look::EditorStyle>();
+	qmlRegisterType<icL::look::Chars>();
 	qmlRegisterType<icL::look::Look>(uri, 1, 0, "Look");
+
+	qDebug() << uri << "loaded";
 }

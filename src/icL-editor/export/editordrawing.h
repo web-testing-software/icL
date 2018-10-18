@@ -5,6 +5,11 @@
 
 #include <QObject>
 
+namespace icL::look {
+class EditorStyle;
+class Chars;
+}  // namespace icL::look
+
 namespace icL::editor {
 
 class EditorDrawing : public Editor
@@ -13,10 +18,11 @@ class EditorDrawing : public Editor
 
 	// clang-format off
 	Q_PROPERTY(icL::look::EditorStyle* style READ style WRITE setStyle NOTIFY styleChanged)
+	Q_PROPERTY(icL::look::Chars*       chars READ chars WRITE setChars NOTIFY charsChanged)
 	// clang-format on
 
 public:
-	explicit EditorDrawing(QQuickItem *parent = nullptr);
+	explicit EditorDrawing(QQuickItem * parent = nullptr);
 
 	/**
 	 * @brief style is the style of all editors
@@ -24,13 +30,20 @@ public:
 	 */
 	look::EditorStyle * style() const;
 
+	/**
+	 * @brief chars is the look of chars in editor
+	 * @return the style for chars in editor
+	 */
+	look::Chars * chars() const;
 
 	// QQuickPaintedItem interface
 public:
-	void paint(QPainter *painter) override;
+	void paint(QPainter * painter) override;
 
 signals:
 	void styleChanged(look::EditorStyle * style);
+
+	void charsChanged(look::Chars * chars);
 
 public slots:
 	/**
@@ -38,6 +51,12 @@ public slots:
 	 * @param style is the new style for editor
 	 */
 	void setStyle(look::EditorStyle * style);
+
+	/**
+	 * @brief setChars changes the look of chars
+	 * @param chars is the new look for chars
+	 */
+	void setChars(look::Chars * chars);
 
 private slots:
 	/**
@@ -49,6 +68,8 @@ private slots:
 protected:
 	// properties
 	look::EditorStyle * m_style = nullptr;
+	look::Chars *       m_chars = nullptr;
+
 
 	// fields
 	QRect lineNumberArea;
@@ -65,6 +86,6 @@ protected:
 	int visibleLines;
 };
 
-} // namespace
+}  // namespace icL::editor
 
-#endif // EDITORDRAWING_H
+#endif  // EDITORDRAWING_H

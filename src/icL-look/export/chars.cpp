@@ -9,26 +9,6 @@ Chars::Chars(QObject * parent)
 	}
 }
 
-TextCharFormat Chars::comment   = {};
-TextCharFormat Chars::function  = {};
-TextCharFormat Chars::global    = {};
-TextCharFormat Chars::keyword   = {};
-TextCharFormat Chars::local     = {};
-TextCharFormat Chars::method    = {};
-TextCharFormat Chars::number    = {};
-TextCharFormat Chars::property  = {};
-TextCharFormat Chars::string    = {};
-TextCharFormat Chars::system    = {};
-TextCharFormat Chars::type      = {};
-HighlightChars Chars::occurence = {};
-TextCharFormat Chars::error     = {};
-TextCharFormat Chars::warning   = {};
-
-CLineFormat Chars::cline      = {};
-LineFormat  Chars::current    = {};
-LineFormat  Chars::debug      = {};
-LineFormat  Chars::breakpoint = {};
-
 void Chars::update() {
 	if (instance != nullptr) {
 		emit instance->highlight();

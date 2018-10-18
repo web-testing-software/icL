@@ -24,7 +24,7 @@
 			},
 			"line-number": {
 				"background": {
-					"hex": "#ddddd"
+					"hex": "#dddddd"
 				},
 				"bold": false,
 				"foreground": {

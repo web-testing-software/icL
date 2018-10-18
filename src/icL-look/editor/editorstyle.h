@@ -4,6 +4,12 @@
 #include <QFont>
 #include <QObject>
 
+
+
+namespace icL::editor {
+class EditorDrawing;
+}
+
 /**
  * The icL.editor namespace defines a own QPlainText editor
  */
@@ -100,6 +106,11 @@ public slots:
 	 * @param lineS is the new line spacing
 	 */
 	void setLineS(int lineS);
+
+	// Get the private properties without getters
+	// This fixes dependency beetwen QML plugins
+	// Never change the values, just read
+	friend class editor::EditorDrawing;
 
 private:
 	/**
