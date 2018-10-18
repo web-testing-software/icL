@@ -1,6 +1,6 @@
 #include "plugin.h"
 
-#include "drawing.h"
+#include "../self/drawing.h"
 
 EditorPlugin::EditorPlugin(QObject * parent)
 	: QQmlExtensionPlugin(parent) {}
