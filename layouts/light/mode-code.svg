@@ -100,9 +100,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="540.55984"
-     inkscape:cy="420.6576"
+     inkscape:zoom="7.919596"
+     inkscape:cx="388.1283"
+     inkscape:cy="355.82677"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -4414,5 +4414,23 @@
            y="294.95209"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Script output</tspan></text>
     </g>
+    <circle
+       style="opacity:1;fill:#15c50e;fill-opacity:1;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path1626"
+       cx="101.86458"
+       cy="208.35275"
+       r="0.37797621" />
+    <circle
+       r="0.37797621"
+       cy="203.06108"
+       cx="101.86458"
+       id="circle1628"
+       style="opacity:1;fill:#c5450e;fill-opacity:1;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <circle
+       style="opacity:1;fill:#15c50e;fill-opacity:1;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="circle1630"
+       cx="101.86458"
+       cy="197.76941"
+       r="0.37797621" />
   </g>
 </svg>

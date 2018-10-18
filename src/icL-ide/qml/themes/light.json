@@ -1,5 +1,4 @@
 {
-	"path": "qrc:/themes-images/light/",
 	"editor": {
 		"breakpoint": {
 			"line-bg": {
@@ -14,6 +13,27 @@
 					"hex": "#4551ca"
 				},
 				"italic": false
+			}
+		},
+		"cline": {
+			"edited": {
+				"hex": "#c5450e"
+			},
+			"line-bg": {
+				"hex": "#ffffff"
+			},
+			"line-number": {
+				"background": {
+					"hex": "#ddddd"
+				},
+				"bold": false,
+				"foreground": {
+					"hex": "#494949"
+				},
+				"italic": false
+			},
+			"saved": {
+				"hex": "#15c50e"
 			}
 		},
 		"comment": {
@@ -304,6 +324,7 @@
 			"underline": 0
 		}
 	},
+	"path": "qrc:/themes-images/light/",
 	"session": {
 		"center": {
 			"command": {
