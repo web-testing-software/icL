@@ -11,7 +11,7 @@ class QStaticText;
 namespace icL::editor {
 
 class Fragment;
-class Editor;
+class EditorLogic;
 
 class Line : public QObject
 {
@@ -21,7 +21,7 @@ class Line : public QObject
 	Q_PROPERTY(icL::editor::Fragment* first READ first  WRITE setFirst NOTIFY firstChanged)
 	Q_PROPERTY(icL::editor::Line*      next READ next   WRITE setNext  NOTIFY nextChanged)
 	Q_PROPERTY(icL::editor::Line*      prev READ prev   WRITE setPrev  NOTIFY prevChanged)
-	Q_PROPERTY(icL::editor::Editor*  parent READ parent NOTIFY parentChanged)
+	Q_PROPERTY(icL::editor::EditorLogic*  parent READ parent NOTIFY parentChanged)
 
 	Q_PROPERTY(uint8_t     length READ length     NOTIFY lengthChanged)
 	Q_PROPERTY(int32_t   beginPos READ beginPos   WRITE setBeginPos   NOTIFY beginPosChanged)
@@ -30,7 +30,7 @@ class Line : public QObject
 	// clang-format on
 
 public:
-	explicit Line(Editor * parent = nullptr);
+	explicit Line(EditorLogic * parent = nullptr);
 
 	/**
 	 * @brief first gets the first fragment in the line
@@ -96,7 +96,7 @@ public:
 	 * @brief parent is the editor of line
 	 * @return the editor of line
 	 */
-	Editor * parent() const;
+	EditorLogic * parent() const;
 
 signals:
 	void firstChanged(Fragment * first);
@@ -106,7 +106,7 @@ signals:
 	void visibleChanged(bool visible);
 	void nextChanged(Line * next);
 	void prevChanged(Line * prev);
-	void parentChanged(Editor * parent);
+	void parentChanged(EditorLogic * parent);
 
 public slots:
 	/**
@@ -163,7 +163,7 @@ private:
 	// fields
 	bool     m_isChanged = false;
 	QString  content;
-	Editor * m_parent;
+	EditorLogic * m_parent;
 
 	/// @brief cache is the geometry of line number
 	QStaticText * cache = nullptr;

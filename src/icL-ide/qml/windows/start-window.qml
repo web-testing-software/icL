@@ -39,6 +39,8 @@ Window {
 
 		Component.onCompleted: {
 			gateway.crossLook = this
+
+//			look.editor.st
 		}
 	}
 

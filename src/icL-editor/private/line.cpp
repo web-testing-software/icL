@@ -1,6 +1,6 @@
 #include "line.h"
 
-#include "../export/editor.h"
+#include "../export/editorlogic.h"
 #include "fragment.h"
 
 #include <QStaticText>
@@ -8,7 +8,7 @@
 
 namespace icL::editor {
 
-Line::Line(Editor * parent)
+Line::Line(EditorLogic * parent)
 	: QObject(parent) {
 	m_parent = parent;
 }
@@ -73,7 +73,7 @@ void Line::save(QTextStream * stream) {
 	m_isChanged = false;
 }
 
-Editor * Line::parent() const {
+EditorLogic * Line::parent() const {
 	return m_parent;
 }
 

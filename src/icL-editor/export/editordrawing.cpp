@@ -8,12 +8,12 @@
 namespace icL::editor {
 
 EditorDrawing::EditorDrawing(QQuickItem * parent)
-	: Editor(parent) {
+	: EditorLogic(parent) {
 	connect(
-	  this, &Editor::widthChanged, this,
+	  this, &EditorLogic::widthChanged, this,
 	  &EditorDrawing::updateBackgroundGeometry);
 	connect(
-	  this, &Editor::heightChanged, this,
+	  this, &EditorLogic::heightChanged, this,
 	  &EditorDrawing::updateBackgroundGeometry);
 }
 

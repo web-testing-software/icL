@@ -1,7 +1,7 @@
 #ifndef EDITORDRAWING_H
 #define EDITORDRAWING_H
 
-#include "editor.h"
+#include "editorlogic.h"
 
 #include <QObject>
 
@@ -12,7 +12,7 @@ class Chars;
 
 namespace icL::editor {
 
-class EditorDrawing : public Editor
+class EditorDrawing : public EditorLogic
 {
 	Q_OBJECT
 
