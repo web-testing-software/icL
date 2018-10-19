@@ -92,3 +92,4 @@ __07.10.2018__
    * [?] **~**'anyProperty : **void**
    * [?] value.anyMethod **~** : **void**
    * [?] value.anyMethod(**~**, **~**, **...**) : **void**
+ * [?] Replace , by ; in controls and loops
