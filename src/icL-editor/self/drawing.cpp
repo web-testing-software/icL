@@ -30,6 +30,8 @@ void Drawing::paint(QPainter * painter) {
 	if (!m_chars)
 		return;
 
+	painter->setRenderHint(QPainter::Antialiasing);
+
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(m_chars->cline.lineNumber.background);
 	painter->drawRect(lineNumberArea);
@@ -38,6 +40,7 @@ void Drawing::paint(QPainter * painter) {
 	painter->drawRect(contentArea);
 
 	drawLineNumbers(painter);
+	drawBreakPoints(painter);
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
@@ -78,6 +81,18 @@ void Drawing::updateBackgroundGeometry() {
 	scissorsArea.setTop(0);
 	scissorsArea.setRight(width());
 	scissorsArea.setBottom(height());
+
+	QList<QPoint> lnArea = {};
+
+	leftArrow = {
+	  QVector<QPoint>({{0, 0},
+					   {lineNumberArea.right(), 0},
+					   {scissorsArea.left(), m_style->m_fullLineH / 2},
+					   {lineNumberArea.right(), m_style->m_fullLineH},
+					   {0, m_style->m_fullLineH}})};
+
+	lineRect = contentArea;
+	lineRect.setBottom(m_style->m_fullLineH);
 }
 
 void Drawing::drawLineNumbers(QPainter * painter) {
@@ -85,9 +100,10 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	painter->setPen(m_chars->cline.lineNumber.text);
 	painter->setBrush(Qt::NoBrush);
 
-	int    yStep = m_style->m_fullLineH;
-	int    yPos  = m_style->m_divLineSBy2;
-	auto * it    = m_firstVisible;
+	auto * it = m_firstVisible;
+	int yStep = m_style->m_fullLineH;
+	int yPos  = m_style->m_divLineSBy2 +
+			   (m_style->m_charH - it->getCache()->size().height()) / 2;
 
 	while (it != nullptr && it->visible()) {
 		auto * stext = it->getCache();
@@ -101,7 +117,65 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	}
 }
 
-void Drawing::drawBreakPoints() {}
+void Drawing::drawBreakPoints(QPainter * painter) {
+
+	int    yStep = m_style->m_fullLineH;
+	int    yPos  = 0;
+	auto * it    = m_firstVisible;
+
+	painter->setPen(Qt::NoPen);
+
+	if (m_chars->breakpoint.background.color().alpha() > 0) {
+		painter->setBrush(m_chars->breakpoint.background);
+
+		while (it != nullptr && it->visible()) {
+
+			if (it->hasBreakPoint()) {
+				painter->drawRect(lineRect.translated(0, yPos));
+			}
+
+			yPos += yStep;
+			it = it->next();
+		}
+	}
+
+	// Init for second drawing
+	it   = m_firstVisible;
+	yPos = 0;
+	painter->setBrush(m_chars->breakpoint.lineNumber.background);
+
+	while (it != nullptr && it->visible()) {
+
+		if (it->hasBreakPoint()) {
+			painter->drawConvexPolygon(leftArrow.translated(0, yPos));
+		}
+
+		yPos += yStep;
+		it = it->next();
+	}
+
+	// Init for third drawing
+	it   = m_firstVisible;
+	yPos = m_style->m_divLineSBy2 +
+		   (m_style->m_charH - it->getCache()->size().height()) / 2;
+	painter->setBrush(Qt::NoBrush);
+	painter->setPen(m_chars->breakpoint.lineNumber.text);
+
+	while (it != nullptr && it->visible()) {
+
+		if (it->hasBreakPoint()) {
+			auto * stext = it->getCache();
+
+			painter->drawStaticText(
+			  lineNumberRight -
+				m_style->m_charW * it->charsNumberInLineNumber(),
+			  yPos, *stext);
+		}
+
+		yPos += yStep;
+		it = it->next();
+	}
+}
 
 void Drawing::drawCurrentLine() {}
 

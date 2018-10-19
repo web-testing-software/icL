@@ -28,6 +28,8 @@ class Line : public QObject
 	Q_PROPERTY(int32_t   beginPos READ beginPos   WRITE setBeginPos   NOTIFY beginPosChanged)
 	Q_PROPERTY(int16_t lineNumber READ lineNumber WRITE setLineNumber NOTIFY lineNumberChanged)
 	Q_PROPERTY(bool       visible READ visible    WRITE setVisible    NOTIFY visibleChanged)
+
+	Q_PROPERTY(bool hasBreakPoint READ hasBreakPoint WRITE setHasBreakPoint NOTIFY hasBreakPointChanged)
 	// clang-format on
 
 public:
@@ -76,6 +78,14 @@ public:
 	bool visible() const;
 
 	/**
+	 * @brief hasBreakPoint gets the breaking property of line
+	 * @return true if need to break, otherwise false
+	 */
+	bool hasBreakPoint() const {
+		return m_hasBreakPoint;
+	}
+
+	/**
 	 * @brief getText gets the text of line by concatenation all fragments
 	 * @return the text of line
 	 */
@@ -114,6 +124,7 @@ signals:
 	void nextChanged(Line * next);
 	void prevChanged(Line * prev);
 	void parentChanged(Logic * parent);
+	void hasBreakPointChanged(bool hasBreakPoint);
 
 public slots:
 	/**
@@ -153,6 +164,18 @@ public slots:
 	void setVisible(bool visible);
 
 	/**
+	 * @brief setHasBreakPoint changes the break necesity
+	 * @param hasBreakPoint is true if need to break, otherwise false
+	 */
+	void setHasBreakPoint(bool hasBreakPoint) {
+		if (m_hasBreakPoint == hasBreakPoint)
+			return;
+
+		m_hasBreakPoint = hasBreakPoint;
+		emit hasBreakPointChanged(m_hasBreakPoint);
+	}
+
+	/**
 	 * @brief makeChanged sets up the changed state
 	 */
 	void makeChanged();
@@ -181,7 +204,8 @@ private:
 	/// @brief cache is the geometry of line number
 	QStaticText * cache = nullptr;
 
-	int m_charsNumberInLineNumber = 0;
+	int  m_charsNumberInLineNumber = 0;
+	bool m_hasBreakPoint = false;
 };
 
 }  // namespace icL::editor

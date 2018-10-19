@@ -77,6 +77,12 @@ bool Logic::loadFile(const QString & path) {
 		m_lastVisible = it;
 	}
 
+	// Testing data
+	// To be removed after
+	m_first->next()->next()->setHasBreakPoint(true);
+	m_first->next()->next()->next()->next()->next()->next()->setHasBreakPoint(
+	  true);
+
 	return true;
 }
 

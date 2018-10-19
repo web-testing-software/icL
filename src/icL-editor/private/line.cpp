@@ -124,10 +124,6 @@ void Line::setLineNumber(int16_t lineNumber) {
 	m_lineNumber              = lineNumber;
 	m_charsNumberInLineNumber = 0;
 
-//	while (lineNumber > 0) {
-//		lineNumber /= 10;
-//		m_charsNumberInLineNumber++;
-//	}
 	if (lineNumber < 10) {
 		m_charsNumberInLineNumber = 1;
 	}
@@ -144,7 +140,7 @@ void Line::setLineNumber(int16_t lineNumber) {
 		m_charsNumberInLineNumber = 5;
 	}
 
-	qDebug() << m_charsNumberInLineNumber << m_lineNumber;
+	qDebug() << lineNumber << m_charsNumberInLineNumber;
 
 	emit lineNumberChanged(m_lineNumber);
 }

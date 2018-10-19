@@ -4,6 +4,7 @@
 #include "logic.h"
 
 #include <QObject>
+#include <QPolygon>
 
 namespace icL::look {
 class EditorStyle;
@@ -78,7 +79,7 @@ private:
 	 *
 	 * Draw each visible breakpoint over the existing line numbers.
 	 */
-	void drawBreakPoints();
+	void drawBreakPoints(QPainter *painter);
 
 	/**
 	 * @brief drawCurrentLine is the 3rd step of drawing
@@ -133,6 +134,12 @@ protected:
 
 	/// @brief number of visible lines in editor
 	int visibleLines;
+
+	/// @brief the arrow for hightlight current line
+	QPolygon leftArrow;
+
+	/// @brief used to highlight current line
+	QRect lineRect;
 };
 
 }  // namespace icL::editor
