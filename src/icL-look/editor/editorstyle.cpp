@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include <QFontMetrics>
+#include <QtDebug>
 
 namespace icL::look {
 
@@ -11,6 +12,7 @@ EditorStyle::EditorStyle(QObject * parent)
 
 	m_font.setFixedPitch(true);
 	m_font.setPixelSize(m_fontS);
+	m_font.setFamily("monospace");
 
 	fixFont();
 }
@@ -89,14 +91,14 @@ void EditorStyle::fixFont() {
 
 	m_font.setLetterSpacing(QFont::PercentageSpacing, 100.f);
 
-	qreal charWidth = fmetrics.horizontalAdvance(QString('_', 160)) / 160.f;
+	qreal charWidth = fmetrics.averageCharWidth();
 	setCharW(std::ceil(charWidth));
 
 	qreal neededSpacing = static_cast<float>(m_charW) - charWidth;
 	m_font.setLetterSpacing(QFont::AbsoluteSpacing, neededSpacing);
 
 	setCharH(std::ceil(fmetrics.height()));
-	setLineS(std::ceil(fmetrics.lineSpacing()));
+//	setLineS(std::ceil(fmetrics.leading()));
 }
 
 }  // namespace icL::editor

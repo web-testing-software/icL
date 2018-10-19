@@ -103,7 +103,7 @@ public:
 	 * @brief getCache return the cache of line number
 	 * @return the pointer to cache of line number
 	 */
-	QStaticText* getCache();
+	QStaticText * getCache();
 
 signals:
 	void firstChanged(Fragment * first);
@@ -157,6 +157,12 @@ public slots:
 	 */
 	void makeChanged();
 
+	/**
+	 * @brief charsNumberInLineNumber helps to align to right line number
+	 * @return return the number of charaters in line number
+	 */
+	int charsNumberInLineNumber();
+
 private:
 	Fragment * m_first = nullptr;
 	Line *     m_next  = nullptr;
@@ -168,12 +174,14 @@ private:
 	bool    m_visible = false;
 
 	// fields
-	bool     m_isChanged = false;
-	QString  content;
+	bool    m_isChanged = false;
+	QString content;
 	Logic * m_parent;
 
 	/// @brief cache is the geometry of line number
 	QStaticText * cache = nullptr;
+
+	int m_charsNumberInLineNumber = 0;
 };
 
 }  // namespace icL::editor

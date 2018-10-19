@@ -121,7 +121,31 @@ void Line::setLineNumber(int16_t lineNumber) {
 		cache->setText(QString::number(lineNumber));
 	}
 
-	m_lineNumber = lineNumber;
+	m_lineNumber              = lineNumber;
+	m_charsNumberInLineNumber = 0;
+
+//	while (lineNumber > 0) {
+//		lineNumber /= 10;
+//		m_charsNumberInLineNumber++;
+//	}
+	if (lineNumber < 10) {
+		m_charsNumberInLineNumber = 1;
+	}
+	else if (lineNumber < 100) {
+		m_charsNumberInLineNumber = 2;
+	}
+	else if (lineNumber < 1000) {
+		m_charsNumberInLineNumber = 3;
+	}
+	else if (lineNumber < 10000) {
+		m_charsNumberInLineNumber = 4;
+	}
+	else {
+		m_charsNumberInLineNumber = 5;
+	}
+
+	qDebug() << m_charsNumberInLineNumber << m_lineNumber;
+
 	emit lineNumberChanged(m_lineNumber);
 }
 
@@ -156,6 +180,10 @@ void Line::setVisible(bool visible) {
 void Line::makeChanged() {
 	m_parent->makeChanged();
 	m_isChanged = true;
+}
+
+int Line::charsNumberInLineNumber() {
+	return m_charsNumberInLineNumber;
 }
 
 }  // namespace icL::editor

@@ -73,7 +73,7 @@ bool Logic::loadFile(const QString & path) {
 	auto * it = m_firstVisible = m_first;
 	for (int i = 0; i < numberOfLines && it != nullptr; i++) {
 		it->setVisible(true);
-		it = it->next();
+		it            = it->next();
 		m_lastVisible = it;
 	}
 
@@ -134,7 +134,17 @@ void Logic::addNewLine(Line * line, bool focus) {
 		setCurrent(line);
 	}
 
-	numberOfLines++;
+	changeNumberOfLines(numberOfLines + 1);
+}
+
+void Logic::changeNumberOfLines(int newValue) {
+	numberOfLines  = newValue;
+	numberOfDigits = 0;
+
+	while (newValue > 0) {
+		newValue /= 10;
+		numberOfDigits++;
+	}
 }
 
 }  // namespace icL::editor

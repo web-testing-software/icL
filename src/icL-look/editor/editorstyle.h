@@ -119,18 +119,18 @@ private:
 	void fixFont();
 
 	// Properties
-	int m_charW = 10;
-	int m_charH = 20;
-	int m_fontS = 10;
-	int m_lineS = 4;
+	int m_charW = 1;
+	int m_charH = 1;
+	int m_fontS = 1;
+	int m_lineS = 1;
 
 	// fields
 
 	/// @brief m_divLineSBy2 is the line spacing divided by 2
-	int m_divLineSBy2 = 2;
+	int m_divLineSBy2 = 1;
 
 	/// @brief m_fullLineH is the full height of line (text + spacing)
-	int m_fullLineH = 14;
+	int m_fullLineH = 1;
 
 	/// @brief font is the standart font object
 	QFont m_font;

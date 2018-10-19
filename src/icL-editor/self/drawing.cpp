@@ -85,7 +85,7 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	painter->setPen(m_chars->cline.lineNumber.text);
 	painter->setBrush(Qt::NoBrush);
 
-	int    yStep = m_style->m_charH;
+	int    yStep = m_style->m_fullLineH;
 	int    yPos  = m_style->m_divLineSBy2;
 	auto * it    = m_firstVisible;
 
@@ -93,9 +93,10 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 		auto * stext = it->getCache();
 
 		painter->drawStaticText(
-		  lineNumberRight - stext->size().width(), yPos, *stext);
+		  lineNumberRight - m_style->m_charW * it->charsNumberInLineNumber(),
+		  yPos, *stext);
+
 		yPos += yStep;
-		qDebug() << stext->size().width() << m_style->m_charW * 2;
 		it = it->next();
 	}
 }

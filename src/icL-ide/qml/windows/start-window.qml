@@ -37,7 +37,10 @@ Window {
 	Look {
 		id: look
 
-		editor.style.fontS: rd(rq * 14)
+		editor.style{
+			fontS: rd(rq * 16.5)
+			lineS: rd(rq * 2)
+		}
 
 		Component.onCompleted: {
 			gateway.crossLook = this
