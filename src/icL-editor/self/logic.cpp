@@ -79,11 +79,14 @@ bool Logic::loadFile(const QString & path) {
 
 	// Testing data
 	// To be removed after
+	auto * ptr = m_first->next()->next()->next()->next()->next()->next();
+	ptr = ptr->next()->next()->next()->next()->next()->next();
 	m_first->next()->next()->setHasBreakPoint(true);
 	m_first->next()->next()->next()->next()->next()->next()->setHasBreakPoint(
 	  true);
 
-	m_current = m_first->next()->next()->next()->next();
+	ptr->setHasBreakPoint(true);
+	debugLine = m_current = ptr->prev();
 
 	return true;
 }

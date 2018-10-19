@@ -74,11 +74,11 @@
 			},
 			"line-number": {
 				"background": {
-					"hex": "#0e0e0e"
+					"hex": "#78ff66"
 				},
 				"bold": false,
 				"foreground": {
-					"hex": "#78ff66"
+					"hex": "#0e0e0e"
 				},
 				"italic": false
 			}

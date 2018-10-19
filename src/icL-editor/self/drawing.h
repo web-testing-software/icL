@@ -9,6 +9,7 @@
 namespace icL::look {
 class EditorStyle;
 class Chars;
+struct LineFormat;
 }  // namespace icL::look
 
 namespace icL::editor {
@@ -82,6 +83,14 @@ private:
 	void drawBreakPoints(QPainter *painter);
 
 	/**
+	 * @brief drawLine draws a line with a specified format
+	 * @param painter is the painter to use
+	 * @param line is the line to draw
+	 * @param format is the format to use
+	 */
+	void drawLine(QPainter *painter, Line * line, look::LineFormat & format);
+
+	/**
 	 * @brief drawCurrentLine is the 3rd step of drawing
 	 *
 	 * Draw the current line number and background over the existing
@@ -94,7 +103,7 @@ private:
 	 *
 	 * Draw the debug line over all existing content.
 	 */
-	void drawDebugLine();
+	void drawDebugLine(QPainter *painter);
 
 	/**
 	 * @brief setUpClipArea restricts drawing on line number area

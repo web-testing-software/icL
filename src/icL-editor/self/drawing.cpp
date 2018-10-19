@@ -45,7 +45,8 @@ void Drawing::paint(QPainter * painter) {
 
 	drawLineNumbers(painter);
 	drawBreakPoints(painter);
-	drawCurrentLine(painter);
+//	drawCurrentLine(painter);
+	drawDebugLine(painter);
 
 	qDebug() << "render time" << timer.elapsed();
 }
@@ -185,33 +186,47 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 	}
 }
 
-void Drawing::drawCurrentLine(QPainter * painter) {
-	if (!m_current->visible()) {
+void Drawing::drawLine(QPainter *painter, Line *line, look::LineFormat &format)
+{
+	if (!line->visible()) {
 		return;
 	}
 
 	int visibleLineNumber =
-	  m_current->lineNumber() - m_firstVisible->lineNumber();
+	  line->lineNumber() - m_firstVisible->lineNumber();
 	int yPos = visibleLineNumber * m_style->m_fullLineH;
 
 	painter->setPen(Qt::NoPen);
-	painter->setBrush(m_chars->current.background);
+	painter->setBrush(format.background);
 	painter->drawRect(lineRect.translated(0, yPos));
 
-	painter->setBrush(m_chars->current.lineNumber.background);
-	painter->drawConvexPolygon(leftArrow.translated(0, yPos));
+	painter->setBrush(format.lineNumber.background);
+	painter->drawConvexPolygon(leftArrow.translated(
+	  0, yPos));
+
+
+	if (line->hasBreakPoint()) {
+		painter->setBrush(m_chars->breakpoint.lineNumber.background);
+		painter->drawRect(0, yPos, m_style->m_fullLineH, m_style->m_fullLineH);
+	}
 
 	painter->setBrush(Qt::NoBrush);
-	painter->setPen(m_chars->current.lineNumber.text);
-	painter->setFont(m_chars->current.lineNumber.font);
+	painter->setPen(format.lineNumber.text);
+	painter->setFont(format.lineNumber.font);
 	painter->drawStaticText(
-	  lineNumberRight - m_style->m_charW * m_current->charsNumberInLineNumber(),
+	  lineNumberRight - m_style->m_charW * line->charsNumberInLineNumber(),
 	  yPos + m_style->m_divLineSBy2 +
-		(m_style->m_charH - m_current->getCache()->size().height()) / 2,
-	  *m_current->getCache());
+		(m_style->m_charH - line->getCache()->size().height()) / 2,
+	  *line->getCache());
 }
 
-void Drawing::drawDebugLine() {}
+void Drawing::drawCurrentLine(QPainter * painter) {
+	drawLine(painter, m_current, m_chars->current);
+}
+
+void Drawing::drawDebugLine(QPainter * painter) {
+	drawLine(painter, debugLine, m_chars->debug);
+}
 
 void Drawing::setUpClipArea() {}
 

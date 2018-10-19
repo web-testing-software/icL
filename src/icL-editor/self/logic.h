@@ -135,6 +135,9 @@ protected:
 
 	/// @brief numberOfDigits is the number of digits in line number
 	int numberOfDigits = 0;
+
+	/// @brief the line in which currently is placed the debug cursor
+	Line * debugLine;
 };
 
 }  // namespace icL::editor
