@@ -87,7 +87,7 @@ private:
 	 * Draw the current line number and background over the existing
 	 * lines numbers and breakpoints
 	 */
-	void drawCurrentLine();
+	void drawCurrentLine(QPainter *painter);
 
 	/**
 	 * @brief drawDebugLine is the 4th step of drawing

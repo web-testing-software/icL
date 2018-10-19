@@ -5,6 +5,7 @@
 #include <icL-look/editor/editorstyle.h>
 #include <icL-look/export/chars.h>
 
+#include <QDateTime>
 #include <QPainter>
 #include <QStaticText>
 
@@ -30,6 +31,9 @@ void Drawing::paint(QPainter * painter) {
 	if (!m_chars)
 		return;
 
+	QTime timer;
+	timer.start();
+
 	painter->setRenderHint(QPainter::Antialiasing);
 
 	painter->setPen(Qt::NoPen);
@@ -41,6 +45,9 @@ void Drawing::paint(QPainter * painter) {
 
 	drawLineNumbers(painter);
 	drawBreakPoints(painter);
+	drawCurrentLine(painter);
+
+	qDebug() << "render time" << timer.elapsed();
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
@@ -100,9 +107,9 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	painter->setPen(m_chars->cline.lineNumber.text);
 	painter->setBrush(Qt::NoBrush);
 
-	auto * it = m_firstVisible;
-	int yStep = m_style->m_fullLineH;
-	int yPos  = m_style->m_divLineSBy2 +
+	auto * it    = m_firstVisible;
+	int    yStep = m_style->m_fullLineH;
+	int    yPos  = m_style->m_divLineSBy2 +
 			   (m_style->m_charH - it->getCache()->size().height()) / 2;
 
 	while (it != nullptr && it->visible()) {
@@ -160,6 +167,7 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 		   (m_style->m_charH - it->getCache()->size().height()) / 2;
 	painter->setBrush(Qt::NoBrush);
 	painter->setPen(m_chars->breakpoint.lineNumber.text);
+	painter->setFont(m_chars->breakpoint.lineNumber.font);
 
 	while (it != nullptr && it->visible()) {
 
@@ -177,7 +185,31 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 	}
 }
 
-void Drawing::drawCurrentLine() {}
+void Drawing::drawCurrentLine(QPainter * painter) {
+	if (!m_current->visible()) {
+		return;
+	}
+
+	int visibleLineNumber =
+	  m_current->lineNumber() - m_firstVisible->lineNumber();
+	int yPos = visibleLineNumber * m_style->m_fullLineH;
+
+	painter->setPen(Qt::NoPen);
+	painter->setBrush(m_chars->current.background);
+	painter->drawRect(lineRect.translated(0, yPos));
+
+	painter->setBrush(m_chars->current.lineNumber.background);
+	painter->drawConvexPolygon(leftArrow.translated(0, yPos));
+
+	painter->setBrush(Qt::NoBrush);
+	painter->setPen(m_chars->current.lineNumber.text);
+	painter->setFont(m_chars->current.lineNumber.font);
+	painter->drawStaticText(
+	  lineNumberRight - m_style->m_charW * m_current->charsNumberInLineNumber(),
+	  yPos + m_style->m_divLineSBy2 +
+		(m_style->m_charH - m_current->getCache()->size().height()) / 2,
+	  *m_current->getCache());
+}
 
 void Drawing::drawDebugLine() {}
 

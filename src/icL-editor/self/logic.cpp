@@ -83,6 +83,8 @@ bool Logic::loadFile(const QString & path) {
 	m_first->next()->next()->next()->next()->next()->next()->setHasBreakPoint(
 	  true);
 
+	m_current = m_first->next()->next()->next()->next();
+
 	return true;
 }
 
