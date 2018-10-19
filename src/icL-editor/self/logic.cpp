@@ -1,12 +1,20 @@
 #include "logic.h"
 
+#include "../private/cursor.h"
 #include "../private/fragment.h"
 #include "../private/line.h"
+#include "../private/selection.h"
 
 namespace icL::editor {
 
 Logic::Logic(QQuickItem * parent)
-	: QQuickPaintedItem(parent) {}
+	: QQuickPaintedItem(parent) {
+	m_main = new Selection(this);
+}
+
+Logic::~Logic() {
+	delete m_main;
+}
 
 Selection * Logic::main() const {
 	return m_main;
@@ -73,20 +81,26 @@ bool Logic::loadFile(const QString & path) {
 	auto * it = m_firstVisible = m_first;
 	for (int i = 0; i < numberOfLines && it != nullptr; i++) {
 		it->setVisible(true);
-		it            = it->next();
 		m_lastVisible = it;
+		it            = it->next();
 	}
 
 	// Testing data
 	// To be removed after
 	auto * ptr = m_first->next()->next()->next()->next()->next()->next();
-	ptr = ptr->next()->next()->next()->next()->next()->next();
+	ptr        = ptr->next()->next()->next()->next()->next()->next();
 	m_first->next()->next()->setHasBreakPoint(true);
 	m_first->next()->next()->next()->next()->next()->next()->setHasBreakPoint(
 	  true);
 
 	ptr->setHasBreakPoint(true);
 	debugLine = m_current = ptr->prev();
+
+	auto * sixth = m_first->next()->next()->next()->next()->next();
+	m_main->begin()->setFragment(sixth->first());
+	m_main->end()->setFragment(sixth->first());
+	m_main->begin()->setPosition(2);
+	m_main->end()->setPosition(16);
 
 	return true;
 }

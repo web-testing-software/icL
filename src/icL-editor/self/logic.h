@@ -27,6 +27,8 @@ class Logic : public QQuickPaintedItem
 public:
 	Logic(QQuickItem * parent);
 
+	~Logic();
+
 	/**
 	 * @brief main is the main selection
 	 * @return the main selection

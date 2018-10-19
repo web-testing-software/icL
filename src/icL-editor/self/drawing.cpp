@@ -1,6 +1,9 @@
 #include "drawing.h"
 
+#include "../private/cursor.h"
+#include "../private/fragment.h"
 #include "../private/line.h"
+#include "../private/selection.h"
 
 #include <icL-look/editor/editorstyle.h>
 #include <icL-look/export/chars.h>
@@ -45,8 +48,9 @@ void Drawing::paint(QPainter * painter) {
 
 	drawLineNumbers(painter);
 	drawBreakPoints(painter);
-//	drawCurrentLine(painter);
-	drawDebugLine(painter);
+	drawCurrentLine(painter);
+	//	drawDebugLine(painter);
+	drawSelection(painter, m_main);
 
 	qDebug() << "render time" << timer.elapsed();
 }
@@ -186,23 +190,21 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 	}
 }
 
-void Drawing::drawLine(QPainter *painter, Line *line, look::LineFormat &format)
-{
+void Drawing::drawLine(
+  QPainter * painter, Line * line, look::LineFormat & format) {
 	if (!line->visible()) {
 		return;
 	}
 
-	int visibleLineNumber =
-	  line->lineNumber() - m_firstVisible->lineNumber();
-	int yPos = visibleLineNumber * m_style->m_fullLineH;
+	int visibleLineNumber = line->lineNumber() - m_firstVisible->lineNumber();
+	int yPos              = visibleLineNumber * m_style->m_fullLineH;
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(format.background);
 	painter->drawRect(lineRect.translated(0, yPos));
 
 	painter->setBrush(format.lineNumber.background);
-	painter->drawConvexPolygon(leftArrow.translated(
-	  0, yPos));
+	painter->drawConvexPolygon(leftArrow.translated(0, yPos));
 
 
 	if (line->hasBreakPoint()) {
@@ -228,9 +230,57 @@ void Drawing::drawDebugLine(QPainter * painter) {
 	drawLine(painter, debugLine, m_chars->debug);
 }
 
-void Drawing::setUpClipArea() {}
+void Drawing::setUpClipArea(QPainter * painter) {
+	painter->setClipRect(scissorsArea);
+}
 
-void Drawing::drawSelection() {}
+void Drawing::drawSelection(QPainter * painter, Selection * selection) {
+	auto * beginFrag = selection->begin()->fragment();
+	auto * endFrag   = selection->end()->fragment();
+	auto * beginLine = beginFrag->line();
+	auto * endLine   = endFrag->line();
+
+	if (
+	  beginLine->lineNumber() > m_lastVisible->lineNumber() ||
+	  endLine->lineNumber() < m_firstVisible->lineNumber()) {
+		return;
+	}
+
+	int xBegin = scissorsArea.left();
+	int xStep  = m_style->m_charW;
+	int yStep  = m_style->m_fullLineH;
+	int yPos = (beginLine->lineNumber() - m_firstVisible->lineNumber()) * yStep;
+
+	painter->setPen(Qt::NoPen);
+	painter->setBrush(m_chars->selection.background);
+
+	if (beginLine == endLine) {
+		auto * fragIt    = beginLine->first();
+		int    beginChar = 0, endChar;
+
+		while (fragIt != beginFrag) {
+			beginChar += fragIt->length();
+			fragIt = fragIt->next();
+		}
+
+		endChar = beginChar;
+		beginChar += selection->begin()->position();
+
+		if (endFrag == beginFrag) {
+			endChar += selection->end()->position();
+		}
+		else {
+			while (fragIt != endFrag) {
+				endChar += fragIt->length();
+				fragIt = fragIt->next();
+			}
+		}
+
+		painter->drawRect(
+		  xBegin + xStep * beginChar, yPos, (endChar - beginChar) * xStep,
+		  yStep);
+	}
+}
 
 void Drawing::drawContent() {}
 

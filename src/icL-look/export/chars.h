@@ -104,6 +104,9 @@ public:
 	/// @brief occurrence is the style for occurrence highlight
 	HighlightChars occurence;
 
+	/// @brief selection is the style for selection highlight
+	HighlightChars selection;
+
 	/// @brief error is the color of errors underline
 	TextCharFormat error;
 

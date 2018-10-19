@@ -108,14 +108,14 @@ private:
 	/**
 	 * @brief setUpClipArea restricts drawing on line number area
 	 */
-	void setUpClipArea();
+	void setUpClipArea(QPainter *painter);
 
 	/**
 	 * @brief drawSelection is the 5th step of drawing
 	 *
 	 * Draws the selection over the all line hightlights.
 	 */
-	void drawSelection();
+	void drawSelection(QPainter *painter, Selection *selection);
 
 	/**
 	 * @brief drawContent is the 6th step of drawing

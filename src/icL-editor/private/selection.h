@@ -22,6 +22,8 @@ class Selection : public QObject
 public:
 	explicit Selection(QObject * parent = nullptr);
 
+	~Selection();
+
 	/**
 	 * @brief begin is the begin of selection
 	 * @return the begin of selection

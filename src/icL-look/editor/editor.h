@@ -28,7 +28,6 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::EditorStyle*    style READ style      NOTIFY styleChanged)
 	Q_PROPERTY(icL::look::Chars*          chars READ chars      NOTIFY charsChanged)
 	Q_PROPERTY(icL::look::CharFormat*      text READ text       NOTIFY textChanged)
-	Q_PROPERTY(icL::look::CharFormat* selection READ selection  NOTIFY selectionChanged)
 	Q_PROPERTY(icL::look::CharFormat*    number READ number     NOTIFY numberChanged)
 	Q_PROPERTY(icL::look::CharFormat*    string READ string     NOTIFY stringChanged)
 	Q_PROPERTY(icL::look::CharFormat*      type READ type       NOTIFY typeChanged)
@@ -43,6 +42,7 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::CharFormat*     error READ error      NOTIFY errorChanged)
 	Q_PROPERTY(icL::look::CharFormat*   warning READ warning    NOTIFY warningChanged)
 	Q_PROPERTY(icL::look::Highlight* occurrence READ occurrence NOTIFY occurrenceChanged)
+	Q_PROPERTY(icL::look::Highlight*  selection READ occurrence NOTIFY occurrenceChanged)
 	Q_PROPERTY(icL::look::Line*         current READ current    NOTIFY currentChanged)
 	Q_PROPERTY(icL::look::Line*           debug READ debug      NOTIFY debugChanged)
 	Q_PROPERTY(icL::look::Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
@@ -71,16 +71,22 @@ public:
 	Chars * chars() const;
 
 	/**
-	 * @brief text is the defalt text look
-	 * @return the default text look
+	 * @brief occurrence is the look of eccurrences
+	 * @return the look for occurrences
 	 */
-	CharFormat * text() const;
+	Highlight * occurrence() const;
 
 	/**
 	 * @brief selection is the look of text selection
 	 * @return the selection text look
 	 */
-	CharFormat * selection() const;
+	Highlight * selection() const;
+
+	/**
+	 * @brief text is the defalt text look
+	 * @return the default text look
+	 */
+	CharFormat * text() const;
 
 	/**
 	 * @brief number is the look of numbers
@@ -161,12 +167,6 @@ public:
 	CharFormat * warning() const;
 
 	/**
-	 * @brief occurrence is the look of eccurrences
-	 * @return the look for occurrences
-	 */
-	Highlight * occurrence() const;
-
-	/**
 	 * @brief current is the look of current line
 	 * @return the look for current line
 	 */
@@ -197,8 +197,9 @@ public:
 signals:
 	void styleChanged(EditorStyle * style);
 	void charsChanged(Chars * chars);
+	void occurrenceChanged(Highlight * occurrence);
+	void selectionChanged(Highlight * selection);
 	void textChanged(CharFormat * text);
-	void selectionChanged(CharFormat * selection);
 	void numberChanged(CharFormat * number);
 	void stringChanged(CharFormat * string);
 	void typeChanged(CharFormat * type);
@@ -212,7 +213,6 @@ signals:
 	void systemChanged(CharFormat * system);
 	void errorChanged(CharFormat * error);
 	void warningChanged(CharFormat * warning);
-	void occurrenceChanged(Highlight * occurrence);
 	void currentChanged(Line * current);
 	void debugChanged(Line * debug);
 	void breakpointChanged(Line * breakpoint);
@@ -220,6 +220,7 @@ signals:
 
 public slots:
 	void updateOccurrence();
+	void updateSelection();
 	void updateNumber();
 	void updateString();
 	void updateType();
@@ -248,9 +249,10 @@ private:
 	void bindMessages();
 	void bindLines();
 
+	Highlight *   m_occurrence = nullptr;
+	Highlight *   m_selection  = nullptr;
 	EditorStyle * m_style      = nullptr;
 	CharFormat *  m_text       = nullptr;
-	CharFormat *  m_selection  = nullptr;
 	CharFormat *  m_number     = nullptr;
 	CharFormat *  m_string     = nullptr;
 	CharFormat *  m_type       = nullptr;
@@ -264,7 +266,6 @@ private:
 	CharFormat *  m_system     = nullptr;
 	CharFormat *  m_error      = nullptr;
 	CharFormat *  m_warning    = nullptr;
-	Highlight *   m_occurrence = nullptr;
 
 	Line *  m_current    = nullptr;
 	Line *  m_debug      = nullptr;

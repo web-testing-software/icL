@@ -30,7 +30,7 @@ Editor::Editor(QObject * parent)
 	m_number     = new CharFormat(this);
 	m_occurrence = new Highlight(this);
 	m_property   = new CharFormat(this);
-	m_selection  = new CharFormat(this);
+	m_selection  = new Highlight(this);
 	m_string     = new CharFormat(this);
 	m_system     = new CharFormat(this);
 	m_text       = new CharFormat(this);
@@ -79,7 +79,7 @@ CharFormat * Editor::text() const {
 	return m_text;
 }
 
-CharFormat * Editor::selection() const {
+Highlight * Editor::selection() const {
 	return m_selection;
 }
 
@@ -157,7 +157,6 @@ CLine * Editor::cline() const {
 
 void Editor::setUp(const QJsonObject & obj) {
 	m_text->setUp(obj.value("text").toObject());
-	m_selection->setUp(obj.value("selection").toObject());
 	m_number->setUp(obj.value("number").toObject());
 	m_string->setUp(obj.value("string").toObject());
 	m_type->setUp(obj.value("type").toObject());
@@ -173,6 +172,7 @@ void Editor::setUp(const QJsonObject & obj) {
 	m_warning->setUp(obj.value("warning").toObject());
 
 	m_occurrence->setUp(obj.value("occurrence").toObject());
+	m_selection->setUp(obj.value("selection").toObject());
 
 	m_current->setUp(obj.value("current").toObject());
 	m_debug->setUp(obj.value("debug").toObject());
@@ -182,7 +182,6 @@ void Editor::setUp(const QJsonObject & obj) {
 
 QJsonObject Editor::getUp() {
 	return {{"text", m_text->getUp()},
-			{"selection", m_selection->getUp()},
 			{"number", m_number->getUp()},
 			{"string", m_string->getUp()},
 			{"type", m_type->getUp()},
@@ -197,6 +196,7 @@ QJsonObject Editor::getUp() {
 			{"error", m_error->getUp()},
 			{"warning", m_warning->getUp()},
 			{"occurrence", m_occurrence->getUp()},
+			{"selection", m_selection->getUp()},
 			{"current", m_current->getUp()},
 			{"debug", m_debug->getUp()},
 			{"breakpoint", m_breakpoint->getUp()},
@@ -206,6 +206,11 @@ QJsonObject Editor::getUp() {
 void Editor::updateOccurrence() {
 	m_chars->occurence.background = m_occurrence->background();
 	m_chars->occurence.border     = m_occurrence->border();
+}
+
+void Editor::updateSelection() {
+	m_chars->selection.background = m_selection->background();
+	m_chars->selection.border     = m_selection->background();
 }
 
 void Editor::updateNumber() {
@@ -438,6 +443,9 @@ void Editor::bindHighlights() {
 	// clang-format off
 	connect(m_occurrence, &Highlight::backgroundChanged, this, &Editor::updateOccurrence);
 	connect(m_occurrence, &Highlight::borderChanged,     this, &Editor::updateOccurrence);
+
+	connect(m_selection, &Highlight::backgroundChanged, this, &Editor::updateSelection);
+	connect(m_selection, &Highlight::borderChanged,     this, &Editor::updateSelection);
 	// clang-format on
 }
 
