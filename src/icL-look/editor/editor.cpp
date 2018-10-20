@@ -215,6 +215,11 @@ void Editor::updateSelection() {
 	m_chars->selection.border.setWidth(m_style->lineS());
 }
 
+void Editor::updateText()
+{
+	updateStyle(m_chars->text, m_text);
+}
+
 void Editor::updateNumber() {
 	updateStyle(m_chars->number, m_number);
 }
@@ -360,6 +365,13 @@ void Editor::updateStyle(LineFormat & format, const Line * line) {
 
 void Editor::bindChars() {
 	// clang-format off
+
+	connect(m_text,   &CharFormat::undercolorChanged, this, &Editor::updateText);
+	connect(m_text,   &CharFormat::underlineChanged,  this, &Editor::updateText);
+	connect(m_text,   &CharFormatBase::boldChanged,   this, &Editor::updateText);
+	connect(m_text,   &CharFormatBase::italicChanged, this, &Editor::updateText);
+	connect(m_text,   &TextLook::foregroundChanged,   this, &Editor::updateText);
+	connect(m_text,   &TextLook::backgroundChanged,   this, &Editor::updateText);
 
 	connect(m_number,   &CharFormat::undercolorChanged, this, &Editor::updateNumber);
 	connect(m_number,   &CharFormat::underlineChanged,  this, &Editor::updateNumber);

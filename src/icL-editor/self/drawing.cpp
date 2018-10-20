@@ -51,6 +51,7 @@ void Drawing::paint(QPainter * painter) {
 	drawCurrentLine(painter);
 	//	drawDebugLine(painter);
 	drawSelection(painter, m_main);
+	drawContent(painter);
 
 	qDebug() << "render time" << timer.elapsed();
 }
@@ -281,7 +282,7 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 		if (endLine->visible()) {
 			painter->drawRect(
-			  xBegin, yPos, selection->end()->getPosInLine() * xStep + toAdd,
+			  xBegin, yPos, selection->end()->getPosInLine() * xStep,
 			  yStep);
 		}
 
@@ -302,13 +303,42 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 				yPos += yStep + m_style->m_divLineSBy2;
 				left = beginLine->next()->length();
 				painter->drawLine(
-				  xBegin + left * xStep, yPos, xBegin + right * xStep + toAdd,
-				  yPos);
+				  xBegin + left * xStep + toAdd, yPos,
+				  xBegin + right * xStep + toAdd, yPos);
 			}
 		}
 	}
 }
 
-void Drawing::drawContent() {}
+void Drawing::drawContent(QPainter * painter) {
+	painter->setBrush(Qt::NoBrush);
+	painter->setPen(m_chars->text.text);
+	painter->setFont(m_chars->text.font);
+
+	auto * itLine = m_firstVisible;
+	int    yStep  = m_style->m_fullLineH;
+	int    yPos   = m_style->m_divLineSBy2 +
+			   (m_style->m_charH - itLine->getCache()->size().height()) / 2;
+	int xBegin = scissorsArea.left();
+	int xStep  = m_style->m_charW;
+
+	while (itLine != nullptr && itLine->visible()) {
+		auto * itFrag = itLine->first();
+		int    xPos   = xBegin;
+
+		while (itFrag != nullptr && xPos < width()) {
+			auto * stext = itFrag->getCache();
+
+			xPos += itFrag->spaces() * xStep;
+			painter->drawStaticText(xPos, yPos, *stext);
+
+			xPos += itFrag->glyphs() * xStep;
+			itFrag = itFrag->next();
+		}
+
+		yPos += yStep;
+		itLine = itLine->next();
+	}
+}
 
 }  // namespace icL::editor

@@ -68,6 +68,9 @@ class Chars : public QObject
 public:
 	explicit Chars(QObject * parent = nullptr);
 
+	/// @brief text is the style for all text
+	TextCharFormat text;
+
 	/// @brief comment is the style for comments in code
 	TextCharFormat comment;
 

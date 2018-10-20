@@ -122,7 +122,7 @@ private:
 	 *
 	 * Draw the text of editor itself, over all selection all line hightlights.
 	 */
-	void drawContent();
+	void drawContent(QPainter *painter);
 
 protected:
 	// properties

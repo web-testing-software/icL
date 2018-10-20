@@ -221,6 +221,7 @@ signals:
 public slots:
 	void updateOccurrence();
 	void updateSelection();
+	void updateText();
 	void updateNumber();
 	void updateString();
 	void updateType();
