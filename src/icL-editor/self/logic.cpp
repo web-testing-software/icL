@@ -98,9 +98,9 @@ bool Logic::loadFile(const QString & path) {
 
 	auto * sixth = m_first->next()->next()->next()->next()->next();
 	m_main->begin()->setFragment(sixth->first());
-	m_main->end()->setFragment(sixth->first());
-	m_main->begin()->setPosition(2);
-	m_main->end()->setPosition(16);
+	m_main->end()->setFragment(m_current->first());
+	m_main->begin()->setPosition(16);
+	m_main->end()->setPosition(2);
 
 	return true;
 }

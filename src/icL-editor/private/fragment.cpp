@@ -97,6 +97,7 @@ void Fragment::drop(int begin, int end) {
 
 void Fragment::insert(int pos, const QString & text) {
 	content.insert(pos, text);
+	m_length += text.length();
 	m_line->makeChanged();
 }
 

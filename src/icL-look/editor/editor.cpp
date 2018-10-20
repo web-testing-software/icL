@@ -211,6 +211,8 @@ void Editor::updateOccurrence() {
 void Editor::updateSelection() {
 	m_chars->selection.background = m_selection->background();
 	m_chars->selection.border     = m_selection->background();
+	m_chars->selection.border.setCapStyle(Qt::FlatCap);
+	m_chars->selection.border.setWidth(m_style->lineS());
 }
 
 void Editor::updateNumber() {

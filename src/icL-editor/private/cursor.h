@@ -39,6 +39,18 @@ public:
 	 */
 	uint8_t preffered() const;
 
+	/**
+	 * @brief getPosInLine gets the position in line
+	 * @return the position of cursor in line
+	 */
+	int getPosInLine();
+
+	/**
+	 * @brief getPosInFile gets the position in file
+	 * @return the position of cursor in file
+	 */
+	int getPosInFile();
+
 signals:
 	void fragmentChanged(Fragment * fragment);
 	void positionChanged(int8_t position);

@@ -1,5 +1,8 @@
 #include "cursor.h"
 
+#include "fragment.h"
+#include "line.h"
+
 namespace icL::editor {
 
 Cursor::Cursor(QObject * parent)
@@ -15,6 +18,25 @@ int8_t Cursor::position() const {
 
 uint8_t Cursor::preffered() const {
 	return m_preffered;
+}
+
+int Cursor::getPosInLine() {
+	int    pos = 0;
+	auto * it  = m_fragment->line()->first();
+
+	while (it != nullptr && it != m_fragment) {
+		pos += it->length();
+		it = it->next();
+	}
+
+	pos += m_position;
+
+	return pos;
+}
+
+int Cursor::getPosInFile() {
+	//	m_fragment->line()->
+	// TODO: Write it later
 }
 
 void Cursor::setFragment(Fragment * fragment) {

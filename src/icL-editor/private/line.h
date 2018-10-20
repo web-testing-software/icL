@@ -191,7 +191,7 @@ private:
 	Line *     m_next  = nullptr;
 	Line *     m_prev  = nullptr;
 
-	uint8_t m_length;
+	uint8_t m_length = 0;
 	int32_t m_beginPos;
 	int16_t m_lineNumber;
 	bool    m_visible = false;

@@ -159,9 +159,9 @@ private:
 	Fragment * m_next = nullptr;
 	Line *     m_line = nullptr;
 
-	uint8_t m_length;
-	int8_t  m_spaces;
-	int8_t  m_glyphs;
+	uint8_t m_length = 0;
+	int8_t  m_spaces = 0;
+	int8_t  m_glyphs = 0;
 
 	// fields
 	QStaticText * cache = nullptr;

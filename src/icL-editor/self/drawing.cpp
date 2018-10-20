@@ -248,37 +248,64 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 	int xBegin = scissorsArea.left();
 	int xStep  = m_style->m_charW;
+	int toAdd  = xStep / 2;  // Add extra space after lines
 	int yStep  = m_style->m_fullLineH;
-	int yPos = (beginLine->lineNumber() - m_firstVisible->lineNumber()) * yStep;
+	int yPos =
+	  (beginLine->lineNumber() - m_firstVisible->lineNumber() + 1) * yStep;
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(m_chars->selection.background);
 
 	if (beginLine == endLine) {
-		auto * fragIt    = beginLine->first();
-		int    beginChar = 0, endChar;
-
-		while (fragIt != beginFrag) {
-			beginChar += fragIt->length();
-			fragIt = fragIt->next();
-		}
-
-		endChar = beginChar;
-		beginChar += selection->begin()->position();
-
-		if (endFrag == beginFrag) {
-			endChar += selection->end()->position();
-		}
-		else {
-			while (fragIt != endFrag) {
-				endChar += fragIt->length();
-				fragIt = fragIt->next();
-			}
-		}
+		int beginChar = selection->begin()->getPosInLine();
+		int endChar   = selection->end()->getPosInLine();
 
 		painter->drawRect(
-		  xBegin + xStep * beginChar, yPos, (endChar - beginChar) * xStep,
-		  yStep);
+		  xBegin + xStep * beginChar, yPos,
+		  (endChar - beginChar) * xStep + toAdd, yStep);
+	}
+	else {
+		auto * it = beginLine->next();
+
+		while (!it->visible()) {
+			it = it->next();
+			yPos += yStep;
+		}
+
+		while (it->visible() && it != endLine) {
+			painter->drawRect(
+			  xBegin, yPos, it->length() * xStep + toAdd, yStep);
+			it = it->next();
+			yPos += yStep;
+		}
+
+		if (endLine->visible()) {
+			painter->drawRect(
+			  xBegin, yPos, selection->end()->getPosInLine() * xStep + toAdd,
+			  yStep);
+		}
+
+		if (beginLine->visible()) {
+			int left  = selection->begin()->getPosInLine();
+			int right = beginLine->length();
+
+			yPos =
+			  (beginLine->lineNumber() - m_firstVisible->lineNumber()) * yStep;
+			painter->drawRect(
+			  xBegin + left * xStep, yPos, (right - left) * xStep + toAdd,
+			  yStep);
+
+			if (beginLine->next()->length() < left) {
+				painter->setBrush(Qt::NoBrush);
+				painter->setPen(m_chars->selection.border);
+
+				yPos += yStep + m_style->m_divLineSBy2;
+				left = beginLine->next()->length();
+				painter->drawLine(
+				  xBegin + left * xStep, yPos, xBegin + right * xStep + toAdd,
+				  yPos);
+			}
+		}
 	}
 }
 

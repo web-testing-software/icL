@@ -86,6 +86,7 @@ void Line::setFirst(Fragment * first) {
 		return;
 
 	m_first = first;
+	m_length = first->length();
 	emit firstChanged(m_first);
 }
 
