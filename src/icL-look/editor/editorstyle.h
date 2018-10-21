@@ -7,7 +7,7 @@
 
 
 namespace icL::editor {
-class Drawing;
+class StyleProxy;
 }
 
 /**
@@ -76,18 +76,6 @@ public:
 	bool saveTabs() const;
 
 	/**
-	 * @brief divLineSBy2 is the line spacing divided by 2
-	 * @return the line spacing divided by 2
-	 */
-	int divLineSBy2() const;
-
-	/**
-	 * @brief fullLineH is the full line height
-	 * @return the full height of line
-	 */
-	int fullLineH() const;
-
-	/**
 	 * @brief font is the base font for editor
 	 * @return the base font
 	 */
@@ -141,7 +129,7 @@ public slots:
 	// Get the private properties without getters
 	// This fixes dependency beetwen QML plugins
 	// Never change the values, just read
-	friend class editor::Drawing;
+	friend class editor::StyleProxy;
 
 private:
 	/**

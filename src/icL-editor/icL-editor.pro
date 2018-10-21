@@ -29,7 +29,8 @@ HEADERS += \
     self/history.h \
     self/keyboard.h \
     self/mouse.h \
-    self/advanced.h
+    self/advanced.h \
+    private/styleproxy.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -42,4 +43,5 @@ SOURCES += \
     self/history.cpp \
     self/keyboard.cpp \
     self/mouse.cpp \
-    self/advanced.cpp
+    self/advanced.cpp \
+    private/styleproxy.cpp

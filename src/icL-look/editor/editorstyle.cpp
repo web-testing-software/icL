@@ -41,14 +41,6 @@ bool EditorStyle::saveTabs() const {
 	return m_saveTabs;
 }
 
-int EditorStyle::divLineSBy2() const {
-	return m_divLineSBy2;
-}
-
-int EditorStyle::fullLineH() const {
-	return m_fullLineH;
-}
-
 const QFont & EditorStyle::font() {
 	return m_font;
 }

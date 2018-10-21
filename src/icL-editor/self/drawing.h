@@ -15,6 +15,8 @@ struct LineFormat;
 
 namespace icL::editor {
 
+class StyleProxy;
+
 /**
  * @brief The Drawing class draws the content of editor
  */
@@ -142,7 +144,6 @@ private:
 
 protected:
 	// properties
-	look::EditorStyle * m_style = nullptr;
 	look::Chars *       m_chars = nullptr;
 
 
@@ -151,7 +152,10 @@ protected:
 	QRect contentArea;
 	QRect scissorsArea;
 
-	/// The right line for line numbers align
+	/// @brief The proxy to style value from Look QML plugin
+	StyleProxy * m_proxy;
+
+	/// @brief The right line for line numbers align
 	int lineNumberRight;
 
 	/// @brief number of visible chars in line

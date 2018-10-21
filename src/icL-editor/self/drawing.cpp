@@ -4,6 +4,7 @@
 #include "../private/fragment.h"
 #include "../private/line.h"
 #include "../private/selection.h"
+#include "../private/styleproxy.h"
 
 #include <icL-look/editor/editorstyle.h>
 #include <icL-look/export/chars.h>
@@ -24,10 +25,12 @@ Drawing::Drawing(QQuickItem * parent)
 	  this, &Logic::heightChanged, this, &Drawing::updateBackgroundGeometry);
 
 	cursorTimer.start();
+
+	m_proxy = new StyleProxy();
 }
 
 look::EditorStyle * Drawing::style() const {
-	return m_style;
+	return m_proxy->style();
 }
 
 look::Chars * Drawing::chars() const {
@@ -64,12 +67,12 @@ void Drawing::paint(QPainter * painter) {
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
-	if (m_style == style)
+	if (m_proxy->style() == style)
 		return;
 
-	m_style = style;
+	m_proxy->setStyle(style);
 	updateBackgroundGeometry();
-	emit styleChanged(m_style);
+	emit styleChanged(style);
 }
 
 void Drawing::setChars(look::Chars * chars) {
@@ -82,22 +85,22 @@ void Drawing::setChars(look::Chars * chars) {
 }
 
 void Drawing::updateBackgroundGeometry() {
-	if (m_style == nullptr)
+	if (m_proxy->style() == nullptr)
 		return;
 
-	lineNumberRight = m_style->m_fullLineH + numberOfDigits * m_style->m_charW;
+	lineNumberRight = m_proxy->fullLineH() + numberOfDigits * m_proxy->charW();
 
 	lineNumberArea.setLeft(0);
 	lineNumberArea.setTop(0);
 	lineNumberArea.setBottom(width());
-	lineNumberArea.setRight(lineNumberRight + m_style->m_fullLineH);
+	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
 	contentArea.setLeft(lineNumberArea.right());
 	contentArea.setTop(0);
 	contentArea.setBottom(height());
 	contentArea.setRight(width());
 
-	scissorsArea.setLeft(contentArea.left() + m_style->m_fullLineH / 2);
+	scissorsArea.setLeft(contentArea.left() + m_proxy->fullLineH() / 2);
 	scissorsArea.setTop(0);
 	scissorsArea.setRight(width());
 	scissorsArea.setBottom(height());
@@ -107,12 +110,12 @@ void Drawing::updateBackgroundGeometry() {
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
 					   {lineNumberArea.right(), 0},
-					   {scissorsArea.left(), m_style->m_fullLineH / 2},
-					   {lineNumberArea.right(), m_style->m_fullLineH},
-					   {0, m_style->m_fullLineH}})};
+					   {scissorsArea.left(), m_proxy->fullLineH() / 2},
+					   {lineNumberArea.right(), m_proxy->fullLineH()},
+					   {0, m_proxy->fullLineH()}})};
 
 	lineRect = contentArea;
-	lineRect.setBottom(m_style->m_fullLineH);
+	lineRect.setBottom(m_proxy->fullLineH());
 }
 
 void Drawing::drawLineNumbers(QPainter * painter) {
@@ -121,15 +124,15 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	painter->setBrush(Qt::NoBrush);
 
 	auto * it    = m_firstVisible;
-	int    yStep = m_style->m_fullLineH;
-	int    yPos  = m_style->m_divLineSBy2 +
-			   (m_style->m_charH - it->getCache()->size().height()) / 2;
+	int    yStep = m_proxy->fullLineH();
+	int    yPos  = m_proxy->divLineSBy2() +
+			   (m_proxy->charH() - it->getCache()->size().height()) / 2;
 
 	while (it != nullptr && it->visible()) {
 		auto * stext = it->getCache();
 
 		painter->drawStaticText(
-		  lineNumberRight - m_style->m_charW * it->charsNumberInLineNumber(),
+		  lineNumberRight - m_proxy->charW() * it->charsNumberInLineNumber(),
 		  yPos, *stext);
 
 		yPos += yStep;
@@ -139,7 +142,7 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 
 void Drawing::drawBreakPoints(QPainter * painter) {
 
-	int    yStep = m_style->m_fullLineH;
+	int    yStep = m_proxy->fullLineH();
 	int    yPos  = 0;
 	auto * it    = m_firstVisible;
 
@@ -176,8 +179,8 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 
 	// Init for third drawing
 	it   = m_firstVisible;
-	yPos = m_style->m_divLineSBy2 +
-		   (m_style->m_charH - it->getCache()->size().height()) / 2;
+	yPos = m_proxy->divLineSBy2() +
+		   (m_proxy->charH() - it->getCache()->size().height()) / 2;
 	painter->setBrush(Qt::NoBrush);
 	painter->setPen(m_chars->breakpoint.lineNumber.text);
 	painter->setFont(m_chars->breakpoint.lineNumber.font);
@@ -189,7 +192,7 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 
 			painter->drawStaticText(
 			  lineNumberRight -
-				m_style->m_charW * it->charsNumberInLineNumber(),
+				m_proxy->charW() * it->charsNumberInLineNumber(),
 			  yPos, *stext);
 		}
 
@@ -205,7 +208,7 @@ void Drawing::drawLine(
 	}
 
 	int visibleLineNumber = line->lineNumber() - m_firstVisible->lineNumber();
-	int yPos              = visibleLineNumber * m_style->m_fullLineH;
+	int yPos              = visibleLineNumber * m_proxy->fullLineH();
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(format.background);
@@ -217,16 +220,16 @@ void Drawing::drawLine(
 
 	if (line->hasBreakPoint()) {
 		painter->setBrush(m_chars->breakpoint.lineNumber.background);
-		painter->drawRect(0, yPos, m_style->m_fullLineH, m_style->m_fullLineH);
+		painter->drawRect(0, yPos, m_proxy->fullLineH(), m_proxy->fullLineH());
 	}
 
 	painter->setBrush(Qt::NoBrush);
 	painter->setPen(format.lineNumber.text);
 	painter->setFont(format.lineNumber.font);
 	painter->drawStaticText(
-	  lineNumberRight - m_style->m_charW * line->charsNumberInLineNumber(),
-	  yPos + m_style->m_divLineSBy2 +
-		(m_style->m_charH - line->getCache()->size().height()) / 2,
+	  lineNumberRight - m_proxy->charW() * line->charsNumberInLineNumber(),
+	  yPos + m_proxy->divLineSBy2() +
+		(m_proxy->charH() - line->getCache()->size().height()) / 2,
 	  *line->getCache());
 }
 
@@ -255,9 +258,9 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 	}
 
 	int xBegin = scissorsArea.left();
-	int xStep  = m_style->m_charW;
+	int xStep  = m_proxy->charW();
 	int toAdd  = xStep / 2;  // Add extra space after lines
-	int yStep  = m_style->m_fullLineH;
+	int yStep  = m_proxy->fullLineH();
 	int yPos =
 	  (beginLine->lineNumber() - m_firstVisible->lineNumber() + 1) * yStep;
 
@@ -306,7 +309,7 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 				painter->setBrush(Qt::NoBrush);
 				painter->setPen(m_chars->selection.border);
 
-				yPos += yStep + m_style->m_divLineSBy2;
+				yPos += yStep + m_proxy->divLineSBy2();
 				left = beginLine->next()->length();
 				painter->drawLine(
 				  xBegin + left * xStep + toAdd, yPos,
@@ -322,11 +325,11 @@ void Drawing::drawContent(QPainter * painter) {
 	painter->setFont(m_chars->text.font);
 
 	auto * itLine = m_firstVisible;
-	int    yStep  = m_style->m_fullLineH;
-	int    yPos   = m_style->m_divLineSBy2 +
-			   (m_style->m_charH - itLine->getCache()->size().height()) / 2;
+	int    yStep  = m_proxy->fullLineH();
+	int    yPos   = m_proxy->divLineSBy2() +
+			   (m_proxy->charH() - itLine->getCache()->size().height()) / 2;
 	int xBegin = scissorsArea.left();
-	int xStep  = m_style->m_charW;
+	int xStep  = m_proxy->charW();
 
 	while (itLine != nullptr && itLine->visible()) {
 		auto * itFrag = itLine->first();
