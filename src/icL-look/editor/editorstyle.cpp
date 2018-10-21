@@ -33,6 +33,14 @@ int EditorStyle::lineS() const {
 	return m_lineS;
 }
 
+int EditorStyle::tabSize() const {
+	return m_tabSize;
+}
+
+bool EditorStyle::saveTabs() const {
+	return m_saveTabs;
+}
+
 int EditorStyle::divLineSBy2() const {
 	return m_divLineSBy2;
 }
@@ -86,6 +94,22 @@ void EditorStyle::setLineS(int lineS) {
 	emit lineSChanged(m_lineS);
 }
 
+void EditorStyle::setTabSize(int tabSize) {
+	if (m_tabSize == tabSize)
+		return;
+
+	m_tabSize = tabSize;
+	emit tabSizeChanged(m_tabSize);
+}
+
+void EditorStyle::setSaveTabs(bool saveTabs) {
+	if (m_saveTabs == saveTabs)
+		return;
+
+	m_saveTabs = saveTabs;
+	emit saveTabsChanged(m_saveTabs);
+}
+
 void EditorStyle::fixFont() {
 	QFontMetricsF fmetrics(m_font);
 
@@ -98,7 +122,7 @@ void EditorStyle::fixFont() {
 	m_font.setLetterSpacing(QFont::AbsoluteSpacing, neededSpacing);
 
 	setCharH(std::ceil(fmetrics.height()));
-//	setLineS(std::ceil(fmetrics.leading()));
+	//	setLineS(std::ceil(fmetrics.leading()));
 }
 
-}  // namespace icL::editor
+}  // namespace icL::look

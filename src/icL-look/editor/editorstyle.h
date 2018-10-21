@@ -22,10 +22,15 @@ class EditorStyle : public QObject
 {
 	Q_OBJECT
 
+	// clang-format off
 	Q_PROPERTY(int charW READ charW WRITE setCharW NOTIFY charWChanged)
 	Q_PROPERTY(int charH READ charH WRITE setCharH NOTIFY charHChanged)
 	Q_PROPERTY(int fontS READ fontS WRITE setFontS NOTIFY fontSChanged)
 	Q_PROPERTY(int lineS READ lineS WRITE setLineS NOTIFY lineSChanged)
+
+	Q_PROPERTY(int   tabSize READ tabSize  WRITE setTabSize  NOTIFY tabSizeChanged)
+	Q_PROPERTY(bool saveTabs READ saveTabs WRITE setSaveTabs NOTIFY saveTabsChanged)
+	// clang-format on
 
 public:
 	/**
@@ -59,6 +64,18 @@ public:
 	int lineS() const;
 
 	/**
+	 * @brief tabSize is the size of tab in spaces
+	 * @return the size of tab in spaces
+	 */
+	int tabSize() const;
+
+	/**
+	 * @brief saveTabs decides to save tabs or spaces
+	 * @return true if need to save tabs, otherwise false
+	 */
+	bool saveTabs() const;
+
+	/**
 	 * @brief divLineSBy2 is the line spacing divided by 2
 	 * @return the line spacing divided by 2
 	 */
@@ -81,6 +98,8 @@ signals:
 	void charHChanged(int charH);
 	void fontSChanged(int fontS);
 	void lineSChanged(int lineS);
+	void tabSizeChanged(int tabSize);
+	void saveTabsChanged(bool saveTabs);
 
 public slots:
 	/**
@@ -107,6 +126,18 @@ public slots:
 	 */
 	void setLineS(int lineS);
 
+	/**
+	 * @brief setTabSize changes the size of tabs
+	 * @param tabSize is the new size of tab in spaces
+	 */
+	void setTabSize(int tabSize);
+
+	/**
+	 * @brief setSaveTabs changes the save mode
+	 * @param saveTabs if true the spaces will be repalced with tabs
+	 */
+	void setSaveTabs(bool saveTabs);
+
 	// Get the private properties without getters
 	// This fixes dependency beetwen QML plugins
 	// Never change the values, just read
@@ -124,6 +155,9 @@ private:
 	int m_fontS = 1;
 	int m_lineS = 1;
 
+	int  m_tabSize  = 3;
+	bool m_saveTabs = true;
+
 	// fields
 
 	/// @brief m_divLineSBy2 is the line spacing divided by 2
@@ -136,6 +170,6 @@ private:
 	QFont m_font;
 };
 
-}  // namespace icL::editor
+}  // namespace icL::look
 
 #endif  // icL_look_EditorStyle
