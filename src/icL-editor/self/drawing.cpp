@@ -16,10 +16,14 @@ namespace icL::editor {
 
 Drawing::Drawing(QQuickItem * parent)
 	: Logic(parent) {
+	setRenderTarget(QQuickPaintedItem::FramebufferObject);
+
 	connect(
 	  this, &Logic::widthChanged, this, &Drawing::updateBackgroundGeometry);
 	connect(
 	  this, &Logic::heightChanged, this, &Drawing::updateBackgroundGeometry);
+
+	cursorTimer.start();
 }
 
 look::EditorStyle * Drawing::style() const {
@@ -53,7 +57,10 @@ void Drawing::paint(QPainter * painter) {
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
-	qDebug() << "render time" << timer.elapsed();
+	drawCursor(painter);
+
+	//	qDebug() << "render time" << timer.elapsed();
+	update();
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
@@ -282,8 +289,7 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 		if (endLine->visible()) {
 			painter->drawRect(
-			  xBegin, yPos, selection->end()->getPosInLine() * xStep,
-			  yStep);
+			  xBegin, yPos, selection->end()->getPosInLine() * xStep, yStep);
 		}
 
 		if (beginLine->visible()) {
@@ -338,6 +344,60 @@ void Drawing::drawContent(QPainter * painter) {
 
 		yPos += yStep;
 		itLine = itLine->next();
+	}
+}
+
+qreal Drawing::transition(qreal x) {
+	// x = (e^(x*e) - 1) / (e^e - 1) for x {0, 1}, max error 0.0015 = 0.15%
+	return x * (x * (x * (x * 0.6755328851108425f - 0.3190423664446824f) +
+					 0.47886115389358097f) +
+				0.1646483274402586f);
+}
+
+void Drawing::drawCursor(QPainter * painter) {
+	auto * itSelection = m_main;
+	int    xBegin      = scissorsArea.left();
+	int    elapsed     = cursorTimer.elapsed();
+	qreal  alpha       = static_cast<qreal>(elapsed) / 1000.f;
+
+	if (cursorIsHidding) {
+		alpha = 1.f - transition(alpha);
+	}
+	else {
+		alpha = transition(alpha);
+	}
+
+	if (alpha > 1.f || alpha < 0) {
+		alpha = alpha > 1.f ? 1.f : 0.f;
+		cursorTimer.start();
+		cursorIsHidding = !cursorIsHidding;
+	}
+
+	painter->setOpacity(alpha);
+
+	while (itSelection != nullptr) {
+		Cursor * cursor;
+
+		if (itSelection->rtl()) {
+			cursor = itSelection->begin();
+		}
+		else {
+			cursor = itSelection->end();
+		}
+
+		auto * line = cursor->fragment()->line();
+
+		if (line->visible()) {
+			int yPos = (line->lineNumber() - m_firstVisible->lineNumber()) *
+					   m_style->m_fullLineH;
+			int xPos = xBegin + cursor->getPosInLine() * m_style->m_charW;
+
+			painter->setPen(m_chars->text.text);
+
+			painter->drawLine(xPos, yPos, xPos, yPos + m_style->m_fullLineH);
+		}
+
+		itSelection = itSelection->next();
 	}
 }
 

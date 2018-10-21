@@ -3,6 +3,7 @@
 
 #include "logic.h"
 
+#include <QDateTime>
 #include <QObject>
 #include <QPolygon>
 
@@ -127,6 +128,18 @@ private:
 	 */
 	void drawContent(QPainter *painter);
 
+	/**
+	 * @brief transition make a special transition for opacity of cursor
+	 * @param x - is the linear interpoleted value
+	 * @return the smooth interpolated fixed value
+	 */
+	qreal transition(qreal x);
+
+	/**
+	 * @brief drawCursor draws the text cursor
+	 */
+	void drawCursor(QPainter *painter);
+
 protected:
 	// properties
 	look::EditorStyle * m_style = nullptr;
@@ -152,6 +165,12 @@ protected:
 
 	/// @brief used to highlight current line
 	QRect lineRect;
+
+	/// @brief timer for create the cursor blinding
+	QTime cursorTimer;
+
+	/// @brief the current animation direction
+	bool cursorIsHidding = false;
 };
 
 }  // namespace icL::editor
