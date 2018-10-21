@@ -27,7 +27,8 @@ HEADERS += \
     self/logic.h \
     self/drawing.h \
     self/history.h \
-    self/keyboard.h
+    self/keyboard.h \
+    self/mouse.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -38,4 +39,5 @@ SOURCES += \
     self/logic.cpp \
     self/drawing.cpp \
     self/history.cpp \
-    self/keyboard.cpp
+    self/keyboard.cpp \
+    self/mouse.cpp
