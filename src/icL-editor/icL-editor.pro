@@ -25,7 +25,8 @@ HEADERS += \
     private/cursor.h \
     private/selection.h \
     self/logic.h \
-    self/drawing.h
+    self/drawing.h \
+    self/history.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -34,4 +35,5 @@ SOURCES += \
     private/cursor.cpp \
     private/selection.cpp \
     self/logic.cpp \
-    self/drawing.cpp
+    self/drawing.cpp \
+    self/history.cpp
