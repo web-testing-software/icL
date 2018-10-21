@@ -1,5 +1,5 @@
-#ifndef EDITORDRAWING_H
-#define EDITORDRAWING_H
+#ifndef icL_editor_Drawing
+#define icL_editor_Drawing
 
 #include "logic.h"
 
@@ -14,6 +14,9 @@ struct LineFormat;
 
 namespace icL::editor {
 
+/**
+ * @brief The Drawing class draws the content of editor
+ */
 class Drawing : public Logic
 {
 	Q_OBJECT
@@ -153,4 +156,4 @@ protected:
 
 }  // namespace icL::editor
 
-#endif  // EDITORDRAWING_H
+#endif  // icL_editor_Drawing

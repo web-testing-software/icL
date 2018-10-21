@@ -2,7 +2,7 @@
 
 namespace icL::editor {
 
-Keyboard::Keyboard(QObject * parent)
+Keyboard::Keyboard(QQuickItem *parent)
 	: History (parent) {}
 
 }  // namespace icL::editor

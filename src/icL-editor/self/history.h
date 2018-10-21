@@ -1,19 +1,22 @@
-#ifndef HISTORY_H
-#define HISTORY_H
+#ifndef icL_editor_History
+#define icL_editor_History
 
 #include "drawing.h"
 
 
 namespace icL::editor {
 
+/**
+ * @brief The History class contains the history of document
+ */
 class History : public Drawing
 {
 	Q_OBJECT
 
 public:
-	History();
+	explicit History(QQuickItem * parent = nullptr);
 };
 
 }  // namespace icL::editor
 
-#endif  // HISTORY_H
+#endif  // icL_editor_History

@@ -1,15 +1,19 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#ifndef icL_editor_Keyboard
+#define icL_editor_Keyboard
 
 #include "history.h"
 
 namespace icL::editor {
 
+/**
+ * @brief The Keyboard class releases the interaction beetwen editor and
+ * keyboard
+ */
 class Keyboard : public History
 {
 	Q_OBJECT
 public:
-	explicit Keyboard(QObject * parent = nullptr);
+	explicit Keyboard(QQuickItem * parent = nullptr);
 
 signals:
 
@@ -18,4 +22,4 @@ public slots:
 
 }  // namespace icL::editor
 
-#endif  // KEYBOARD_H
+#endif  // icL_editor_Keyboard

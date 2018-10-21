@@ -1,17 +1,21 @@
-#ifndef ADVANCED_H
-#define ADVANCED_H
+#ifndef icL_editor_Advanced
+#define icL_editor_Advanced
 
 #include "mouse.h"
 
-#include <QObject>
-
 namespace icL::editor {
 
+/**
+ * @brief The Advanced class contians the advanced functional
+ *
+ * This class contains the functional which cannot be attached to any of parent
+ * classes
+ */
 class Advanced : public Mouse
 {
 	Q_OBJECT
 public:
-	explicit Advanced(QObject * parent = nullptr);
+	explicit Advanced(QQuickItem * parent = nullptr);
 
 signals:
 
@@ -20,4 +24,4 @@ public slots:
 
 }  // namespace icL::editor
 
-#endif  // ADVANCED_H
+#endif  // icL_editor_Advanced

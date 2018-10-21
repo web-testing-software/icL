@@ -1,5 +1,5 @@
-#ifndef icL_editor_Editor
-#define icL_editor_Editor
+#ifndef icL_editor_Logic
+#define icL_editor_Logic
 
 #include <QQuickPaintedItem>
 
@@ -12,6 +12,9 @@ namespace icL::editor {
 class Selection;
 class Line;
 
+/**
+ * @brief The Logic class contains the internal logic of editor
+ */
 class Logic : public QQuickPaintedItem
 {
 	Q_OBJECT
@@ -144,4 +147,4 @@ protected:
 
 }  // namespace icL::editor
 
-#endif  // icL_editor_Editor
+#endif  // icL_editor_Logic
