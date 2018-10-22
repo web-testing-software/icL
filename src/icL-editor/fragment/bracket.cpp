@@ -5,4 +5,51 @@ namespace icL::editor {
 Bracket::Bracket(Line * parent)
 	: Fragment(parent) {}
 
+bool Bracket::isBracket() {
+	return true;
+}
+
+bool Bracket::isOpenBracket() {
+	return content == QStringLiteral("{") || content == QStringLiteral("[") ||
+		   content == QStringLiteral("(");
+}
+
+Fragment * Bracket::insertInSpaces(int pos, const QString & text) {
+	m_spaces -= pos;
+
+	return m_prev->insert(m_prev->length(), QString(' ', pos) + text);
+}
+
+Fragment * Bracket::insertAfterSpaces(const QString & text) {
+	auto * ret =
+	  m_prev->insert(m_prev->length(), QString(' ', m_spaces) + text);
+
+	m_spaces = 0;
+	return ret;
+}
+
+Fragment * Bracket::insertInGlyphs(int pos, const QString & text) {
+	// This function must be not called ever
+	Q_ASSERT(false);
+}
+
+Fragment * Bracket::insertAfterGlyphs(const QString & text) {
+	return makeNewFragment(text, false);
+}
+
+Fragment * Bracket::dropHead(int, int) {
+	// This function must be not called ever
+	Q_ASSERT(false);
+}
+
+Fragment * Bracket::dropContent(int, int) {
+	// This function must be not called ever
+	Q_ASSERT(false);
+}
+
+Fragment * Bracket::dropTail(int, int) {
+	// This function must be not called ever
+	Q_ASSERT(false);
+}
+
 }  // namespace icL::editor
