@@ -257,7 +257,7 @@ protected:
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment * dropAllContent(int p1, int p2);
+	virtual Fragment * dropAllContent(int p1);
 
 private:
 	/**

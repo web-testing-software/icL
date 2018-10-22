@@ -109,7 +109,7 @@ Fragment * Fragment::drop(int begin, int end) {
 	}
 
 	if (end >= length()) {
-		return dropAllContent(begin, end);
+		return dropAllContent(begin);
 	}
 
 	return dropHead(begin, end);
@@ -253,6 +253,47 @@ Fragment * Fragment::insertAfterGlyphs(int pos, const QString & text) {
 	}
 
 	return makeNewFragment(pg.toInsertInNext, pg.onNextLine);
+}
+
+Fragment * Fragment::dropSpaces(int p1, int p2) {
+	m_spaces -= p2 - p1;
+	return this;
+}
+
+Fragment * Fragment::dropHead(int p1, int p2) {
+	m_spaces -= m_spaces - p1;
+	content.remove(0, p2 - m_spaces);
+	m_glyphs = content.length();
+	return this;
+}
+
+Fragment * Fragment::dropContent(int p1, int p2) {
+	content.remove(p1 - m_spaces, p2 - p1);
+	m_glyphs = content.length();
+	return this;
+}
+
+Fragment * Fragment::dropTail(int p1, int p2) {
+	return dropContent(p1, p2);
+}
+
+Fragment * Fragment::dropAllContent(int p1) {
+	auto * newFrag = new Fragment(m_line);
+
+	newFrag->m_spaces = m_spaces - p1;
+	newFrag->m_prev   = m_prev;
+	newFrag->m_next   = m_next;
+
+	if (m_prev != nullptr) {
+		m_prev->m_next = newFrag;
+	}
+
+	if (m_next != nullptr) {
+		m_next->m_prev = newFrag;
+	}
+
+	delete this;
+	return newFrag;
 }
 
 Fragment * Fragment::makeNewFragment(const QString & text, bool onNewLine) {
