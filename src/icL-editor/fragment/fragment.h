@@ -266,7 +266,7 @@ protected:
 	 */
 	virtual Fragment * dropAllContent(int p1);
 
-private:
+protected:
 	/**
 	 * @brief makeNewFragment creates a new fragment of text in editor
 	 * @param text is the text of the new fragment
@@ -283,7 +283,7 @@ private:
 	 */
 	Fragment * makeFragmentNow(FragmentTypes type, bool onNewLine);
 
-private:
+protected:
 	// Properties
 	Fragment * m_prev = nullptr;
 	Fragment * m_next = nullptr;
