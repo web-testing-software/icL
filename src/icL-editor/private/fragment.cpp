@@ -242,6 +242,19 @@ Fragment * Fragment::insertInGlyphs(int pos, const QString & text) {
 	return newFrag;
 }
 
+Fragment * Fragment::insertAfterGlyphs(int pos, const QString & text) {
+	auto pg = processGlyphs(text);
+
+	content.append(pg.toInsertHere);
+	m_glyphs += pg.toInsertHere.length();
+
+	if (pg.toInsertInNext.isEmpty()) {
+		return this;
+	}
+
+	return makeNewFragment(pg.toInsertInNext, pg.onNextLine);
+}
+
 Fragment * Fragment::makeNewFragment(const QString & text, bool onNewLine) {
 	int tabSize = getEditor()->proxy()->tabSize();
 	int spaces  = 0;
