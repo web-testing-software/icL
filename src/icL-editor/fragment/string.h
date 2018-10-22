@@ -14,6 +14,16 @@ public:
 signals:
 
 public slots:
+
+	// Fragment interface
+protected:
+	ProcessedGlyphs processGlyphs(const QString & text) override;
+
+	Fragment * insertInSpaces(int pos, const QString & text) override;
+	Fragment * insertAfterSpaces(const QString & text) override;
+	Fragment * insertAfterGlyphs(const QString & text) override;
+	Fragment * dropHead(int p1, int p2) override;
+	Fragment * dropTail(int p1, int p2) override;
 };
 
 }  // namespace icL::editor
