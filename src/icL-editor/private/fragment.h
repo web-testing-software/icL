@@ -10,6 +10,7 @@ class QStaticText;
 namespace icL::editor {
 
 class Line;
+class Advanced;
 
 class Fragment : public QObject
 {
@@ -21,8 +22,8 @@ class Fragment : public QObject
 	Q_PROPERTY(icL::editor::Line*     line READ line WRITE setLine NOTIFY lineChanged)
 
 	Q_PROPERTY(uint8_t length READ length NOTIFY lengthChanged)
-	Q_PROPERTY(int8_t  spaces READ spaces NOTIFY spacesChanged)
-	Q_PROPERTY(int8_t  glyphs READ glyphs NOTIFY glyphsChanged)
+	Q_PROPERTY(uint8_t spaces READ spaces NOTIFY spacesChanged)
+	Q_PROPERTY(uint8_t glyphs READ glyphs NOTIFY glyphsChanged)
 	// clang-format on
 
 public:
@@ -56,13 +57,13 @@ public:
 	 * @brief spaces is the number of spaces before glyphs
 	 * @return the number of spaces before glyphs
 	 */
-	int8_t spaces() const;
+	uint8_t spaces() const;
 
 	/**
 	 * @brief glyphs is the number of glyphs
 	 * @return the number of glyphs
 	 */
-	int8_t glyphs() const;
+	uint8_t glyphs() const;
 
 	/**
 	 * @brief displayText gets the text to display
@@ -109,14 +110,14 @@ public:
 	 * @param begin the begin position
 	 * @param end the end position
 	 */
-	void drop(int begin = 0, int end = -1);
+	Fragment* drop(int begin = 0, int end = -1);
 
 	/**
 	 * @brief insert inserts a text to needed position
 	 * @param pos is the position to insert in
 	 * @param text is the text to insert
 	 */
-	virtual void insert(int pos, const QString & text);
+	Fragment* insert(int pos, const QString & text);
 
 	/**
 	 * @brief replace repalces a fragment of the be a new one
@@ -124,7 +125,7 @@ public:
 	 * @param p2 is the end of interval
 	 * @param after is the new text
 	 */
-	virtual void replace(int p1, int p2, const QString & after);
+	Fragment* replace(int p1, int p2, const QString & after);
 
 signals:
 	void prevChanged(Fragment * prev);
@@ -153,15 +154,84 @@ public slots:
 	 */
 	void setLine(Line * line);
 
+protected:
+	/**
+	 * @brief getEditor returns the editor of fragment
+	 * @return the editor of fragment
+	 */
+	Advanced * getEditor();
+
+	/**
+	 * @brief insertInSpaces insert glyphs beetwen fragment spaces
+	 * @param pos is the position of insertion
+	 * @param text is the text to insert
+	 */
+	virtual Fragment* insertInSpaces(int pos, const QString & text);
+
+	/**
+	 * @brief insertAfterSpaces prepends glyphs to content
+	 * @param pos is the position of insertion
+	 * @param text is the text to insert
+	 */
+	virtual Fragment* insertAfterSpaces(int pos, const QString & text);
+
+	/**
+	 * @brief insertInGlyphs inserts glyphs in content
+	 * @param pos is the position of insertion
+	 * @param text is the text to insert
+	 */
+	virtual Fragment* insertInGlyphs(int pos, const QString & text);
+
+	/**
+	 * @brief insertAfterGlyphs appends glyphs after content
+	 * @param pos is the position of insertion
+	 * @param text is the text to insert
+	 */
+	virtual Fragment* insertAfterGlyphs(int pos, const QString & text);
+
+	/**
+	 * @brief dropSpaces removes spaces
+	 * @param p1 is the index of first selected character
+	 * @param p2 is the index of last selected character
+	 */
+	virtual Fragment* dropSpaces(int p1, int p2);
+
+	/**
+	 * @brief dropHead removes spaces and content glyphs
+	 * @param p1 is the index of first selected character
+	 * @param p2 is the index of last selected character
+	 */
+	virtual Fragment* dropHead(int p1, int p2);
+
+	/**
+	 * @brief dropContent removes content fragment
+	 * @param p1 is the index of first selected character
+	 * @param p2 is the index of last selected character
+	 */
+	virtual Fragment* dropContent(int p1, int p2);
+
+	/**
+	 * @brief dropTail removes the end of content
+	 * @param p1 is the index of first selected character
+	 * @param p2 is the index of last selected character
+	 */
+	virtual Fragment* dropTail(int p1, int p2);
+
+	/**
+	 * @brief dropAllContent removes all content of the fragment
+	 * @param p1 is the index of first selected character
+	 * @param p2 is the index of last selected character
+	 */
+	virtual Fragment* dropAllContent(int p1, int p2);
+
 private:
 	// Properties
 	Fragment * m_prev = nullptr;
 	Fragment * m_next = nullptr;
 	Line *     m_line = nullptr;
 
-	uint8_t m_length = 0;
-	int8_t  m_spaces = 0;
-	int8_t  m_glyphs = 0;
+	uint8_t  m_spaces = 0;
+	uint8_t  m_glyphs = 0;
 
 	// fields
 	QStaticText * cache = nullptr;

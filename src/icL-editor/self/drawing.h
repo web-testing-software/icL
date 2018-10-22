@@ -39,6 +39,12 @@ public:
 	look::EditorStyle * style() const;
 
 	/**
+	 * @brief proxy is the proxy of style data over QML Plugins
+	 * @return the proxy to access data from Look QML Plugin
+	 */
+	StyleProxy * proxy();
+
+	/**
 	 * @brief chars is the look of chars in editor
 	 * @return the style for chars in editor
 	 */

@@ -1,6 +1,6 @@
 #include "plugin.h"
 
-#include "../self/drawing.h"
+#include "../self/advanced.h"
 
 EditorPlugin::EditorPlugin(QObject * parent)
 	: QQmlExtensionPlugin(parent) {}
@@ -8,7 +8,7 @@ EditorPlugin::EditorPlugin(QObject * parent)
 void EditorPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Editor"));
 
-	qmlRegisterType<icL::editor::Drawing>(uri, 1, 0, "Editor");
+	qmlRegisterType<icL::editor::Advanced>(uri, 1, 0, "Editor");
 
 	qDebug() << uri << "loaded";
 }

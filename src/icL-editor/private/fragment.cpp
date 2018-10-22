@@ -1,6 +1,10 @@
 #include "fragment.h"
 
+#include "../self/advanced.h"
 #include "line.h"
+#include "styleproxy.h"
+
+#include <icL-look/editor/editorstyle.h>
 
 #include <QStaticText>
 
@@ -24,14 +28,14 @@ Line * Fragment::line() const {
 }
 
 uint8_t Fragment::length() const {
-	return m_length;
+	return m_spaces + m_glyphs;
 }
 
-int8_t Fragment::spaces() const {
+uint8_t Fragment::spaces() const {
 	return m_spaces;
 }
 
-int8_t Fragment::glyphs() const {
+uint8_t Fragment::glyphs() const {
 	return m_glyphs;
 }
 
@@ -90,20 +94,47 @@ const QStaticText * Fragment::getCache() {
 	return cache;
 }
 
-void Fragment::drop(int begin, int end) {
-	content.remove(begin, end - begin);
-	m_line->makeChanged();
+Fragment * Fragment::drop(int begin, int end) {
+	if (end <= m_spaces) {
+		return dropSpaces(begin, end);
+	}
+
+	if (begin > m_spaces) {
+		if (end >= length()) {
+			return dropTail(begin, end);
+		}
+
+		return dropContent(begin, end);
+	}
+
+	if (end >= length()) {
+		return dropAllContent(begin, end);
+	}
+
+	return dropHead(begin, end);
 }
 
-void Fragment::insert(int pos, const QString & text) {
-	content.insert(pos, text);
-	m_length += text.length();
-	m_line->makeChanged();
+Fragment * Fragment::insert(int pos, const QString & text) {
+	if (pos < m_spaces) {
+		return insertInSpaces(pos, text);
+	}
+
+	if (pos == m_spaces) {
+		return insertAfterSpaces(pos, text);
+	}
+
+	if (pos == length()) {
+		return insertAfterGlyphs(pos, text);
+	}
+
+	return insertInGlyphs(pos, text);
 }
 
-void Fragment::replace(int p1, int p2, const QString & after) {
-	content.replace(p1, p2, after);
-	m_line->makeChanged();
+Fragment * Fragment::replace(int p1, int p2, const QString & after) {
+	// On drop the this fragment may repaced by another
+	auto * frag = drop(p1, p2);
+
+	return frag->insert(p1, after);
 }
 
 void Fragment::setPrev(Fragment * prev) {
@@ -128,6 +159,10 @@ void Fragment::setLine(Line * line) {
 
 	m_line = line;
 	emit lineChanged(m_line);
+}
+
+Advanced * Fragment::getEditor() {
+	return dynamic_cast<Advanced *>(m_line->parent());
 }
 
 }  // namespace icL::editor

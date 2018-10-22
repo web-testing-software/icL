@@ -33,6 +33,10 @@ look::EditorStyle * Drawing::style() const {
 	return m_proxy->style();
 }
 
+StyleProxy * Drawing::proxy() {
+	return m_proxy;
+}
+
 look::Chars * Drawing::chars() const {
 	return m_chars;
 }
@@ -44,7 +48,7 @@ void Drawing::paint(QPainter * painter) {
 	QTime timer;
 	timer.start();
 
-	painter->setRenderHint(QPainter::Antialiasing);
+	painter->setRenderHint(QPainter::HighQualityAntialiasing);
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(m_chars->cline.lineNumber.background);
@@ -392,12 +396,12 @@ void Drawing::drawCursor(QPainter * painter) {
 
 		if (line->visible()) {
 			int yPos = (line->lineNumber() - m_firstVisible->lineNumber()) *
-					   m_style->m_fullLineH;
-			int xPos = xBegin + cursor->getPosInLine() * m_style->m_charW;
+					   m_proxy->fullLineH();
+			int xPos = xBegin + cursor->getPosInLine() * m_proxy->charW();
 
 			painter->setPen(m_chars->text.text);
 
-			painter->drawLine(xPos, yPos, xPos, yPos + m_style->m_fullLineH);
+			painter->drawLine(xPos, yPos, xPos, yPos + m_proxy->fullLineH());
 		}
 
 		itSelection = itSelection->next();
