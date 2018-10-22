@@ -165,4 +165,86 @@ Advanced * Fragment::getEditor() {
 	return dynamic_cast<Advanced *>(m_line->parent());
 }
 
+Fragment * Fragment::makeNewFragment(const QString & text, bool onNewLine) {
+	int tabSize = getEditor()->proxy()->tabSize();
+	int spaces  = 0;
+	int i       = 0;
+
+	while (i < text.length() && text[i].isSpace()) {
+		if (text[i] == '\t') {
+			spaces += tabSize;
+		}
+		else if (text[i] == '\n') {
+			auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, true);
+
+			newFrag->m_spaces = spaces;
+			return newFrag->makeNewFragment(text.mid(i), true);
+		}
+		else {
+			spaces++;
+		}
+	}
+
+	if (i == text.length()) {
+		auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, onNewLine);
+
+		newFrag->m_spaces = spaces;
+		return newFrag;
+	}
+
+	Fragment * ret;
+
+	switch (text[i].toLatin1()) {
+	case '{':
+	case '}':
+	case '(':
+	case ')':
+	case '[':
+	case ']':
+		ret = makeFragmentNow(FragmentTypes::Bracket, false);
+		break;
+
+	default:
+		ret = makeFragmentNow(FragmentTypes::Fragment, onNewLine);
+		break;
+	}
+
+	ret->m_spaces = spaces;
+	ret->insert(spaces, text.mid(spaces));
+
+	return ret;
+}
+
+Fragment * Fragment::makeFragmentNow(FragmentTypes type, bool onNewLine) {
+	Fragment * ret    = nullptr;
+	Line *     parent = nullptr;
+
+	if (onNewLine) {
+		parent = new Line(m_line->parent());
+		getEditor()->addNewLine(parent);
+	}
+	else {
+		parent = m_line;
+	}
+
+	switch (type) {
+	case FragmentTypes::Fragment:
+		ret = new Fragment(parent);
+		break;
+
+		//	default:
+		// TODO: Write it later
+	}
+
+	if (onNewLine) {
+		parent->setFirst(ret);
+	}
+	else {
+		ret->m_prev = this;
+		m_next      = ret;
+	}
+
+	return ret;
+}
+
 }  // namespace icL::editor

@@ -12,6 +12,34 @@ namespace icL::editor {
 class Line;
 class Advanced;
 
+/**
+ * @brief The ProcessedGlyphs struct describes a processed glyphs result
+ */
+struct ProcessedGlyphs
+{
+	/**
+	 * @brief toInsertHere are the glyphs to insert in current fragment
+	 */
+	QString toInsertHere;
+
+	/**
+	 * @brief toInsertInNext are the glyphs to insert in a new fragment
+	 */
+	QString toInsertInNext;
+
+	/**
+	 * @brief onNextLine the new fragment must be on new line
+	 */
+	bool onNextLine;
+};
+
+enum class FragmentTypes {
+	Fragment,
+	Word,
+	String,
+	Bracket
+};
+
 class Fragment : public QObject
 {
 	Q_OBJECT
@@ -27,7 +55,7 @@ class Fragment : public QObject
 	// clang-format on
 
 public:
-	explicit Fragment(Line *parent = nullptr);
+	explicit Fragment(Line * parent = nullptr);
 
 	/**
 	 * @brief prev is the previous sibling
@@ -110,14 +138,14 @@ public:
 	 * @param begin the begin position
 	 * @param end the end position
 	 */
-	Fragment* drop(int begin = 0, int end = -1);
+	Fragment * drop(int begin = 0, int end = -1);
 
 	/**
 	 * @brief insert inserts a text to needed position
 	 * @param pos is the position to insert in
 	 * @param text is the text to insert
 	 */
-	Fragment* insert(int pos, const QString & text);
+	Fragment * insert(int pos, const QString & text);
 
 	/**
 	 * @brief replace repalces a fragment of the be a new one
@@ -125,7 +153,7 @@ public:
 	 * @param p2 is the end of interval
 	 * @param after is the new text
 	 */
-	Fragment* replace(int p1, int p2, const QString & after);
+	Fragment * replace(int p1, int p2, const QString & after);
 
 signals:
 	void prevChanged(Fragment * prev);
@@ -162,67 +190,91 @@ protected:
 	Advanced * getEditor();
 
 	/**
+	 * @brief processGlyphs process the glyphs which must be inserted
+	 * @param text is the glyphs itself
+	 * @return the glyphs which will be inserted here and in the next fragment
+	 */
+	virtual ProcessedGlyphs processGlyphs(const QString & text);
+
+	/**
 	 * @brief insertInSpaces insert glyphs beetwen fragment spaces
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment* insertInSpaces(int pos, const QString & text);
+	virtual Fragment * insertInSpaces(int pos, const QString & text);
 
 	/**
 	 * @brief insertAfterSpaces prepends glyphs to content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment* insertAfterSpaces(int pos, const QString & text);
+	virtual Fragment * insertAfterSpaces(int pos, const QString & text);
 
 	/**
 	 * @brief insertInGlyphs inserts glyphs in content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment* insertInGlyphs(int pos, const QString & text);
+	virtual Fragment * insertInGlyphs(int pos, const QString & text);
 
 	/**
 	 * @brief insertAfterGlyphs appends glyphs after content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment* insertAfterGlyphs(int pos, const QString & text);
+	virtual Fragment * insertAfterGlyphs(int pos, const QString & text);
 
 	/**
 	 * @brief dropSpaces removes spaces
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment* dropSpaces(int p1, int p2);
+	virtual Fragment * dropSpaces(int p1, int p2);
 
 	/**
 	 * @brief dropHead removes spaces and content glyphs
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment* dropHead(int p1, int p2);
+	virtual Fragment * dropHead(int p1, int p2);
 
 	/**
 	 * @brief dropContent removes content fragment
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment* dropContent(int p1, int p2);
+	virtual Fragment * dropContent(int p1, int p2);
 
 	/**
 	 * @brief dropTail removes the end of content
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment* dropTail(int p1, int p2);
+	virtual Fragment * dropTail(int p1, int p2);
 
 	/**
 	 * @brief dropAllContent removes all content of the fragment
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment* dropAllContent(int p1, int p2);
+	virtual Fragment * dropAllContent(int p1, int p2);
+
+private:
+	/**
+	 * @brief makeNewFragment creates a new fragment of text in editor
+	 * @param text is the text of the new fragment
+	 * @param onNewLine if true creates the fragment on a new line
+	 * @return the new created fragment
+	 */
+	Fragment * makeNewFragment(const QString & text, bool onNewLine);
+
+	/**
+	 * @brief makeFragmentNow creates a new fragment without text processing
+	 * @param type is the type of needed fragment
+	 * @param onNewLine if true creates the fragment on a new line
+	 * @return the new created fragment
+	 */
+	Fragment * makeFragmentNow(FragmentTypes type, bool onNewLine);
 
 private:
 	// Properties
@@ -230,8 +282,8 @@ private:
 	Fragment * m_next = nullptr;
 	Line *     m_line = nullptr;
 
-	uint8_t  m_spaces = 0;
-	uint8_t  m_glyphs = 0;
+	uint8_t m_spaces = 0;
+	uint8_t m_glyphs = 0;
 
 	// fields
 	QStaticText * cache = nullptr;

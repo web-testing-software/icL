@@ -110,13 +110,13 @@ public slots:
 	 */
 	void setLastVisible(Line * lastVisible);
 
-protected:
 	/**
 	 * @brief addNewLine inserts a new line after the current
 	 * @param line is the line to add
 	 */
 	void addNewLine(Line * line, bool focus = true);
 
+protected:
 	/**
 	 * @brief changeNumberOfLines changes the numbers of lines
 	 * @param newValue is the number of lines
