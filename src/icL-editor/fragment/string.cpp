@@ -72,7 +72,6 @@ Fragment * String::dropHead(int p1, int p2) {
 }
 
 Fragment * String::dropTail(int p1, int p2) {
-	auto *  prev = m_prev;
 	auto *  it   = m_next;
 	QString text;
 
@@ -85,7 +84,7 @@ Fragment * String::dropTail(int p1, int p2) {
 	}
 
 	m_next = nullptr;
-	insertAfterGlyphs(text);
+	replace(p1, p2, text);
 
 	return this;
 }
