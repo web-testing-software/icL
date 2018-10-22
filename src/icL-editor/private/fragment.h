@@ -208,7 +208,7 @@ protected:
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertAfterSpaces(int pos, const QString & text);
+	virtual Fragment * insertAfterSpaces(const QString & text);
 
 	/**
 	 * @brief insertInGlyphs inserts glyphs in content
@@ -222,7 +222,7 @@ protected:
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertAfterGlyphs(int pos, const QString & text);
+	virtual Fragment * insertAfterGlyphs(const QString & text);
 
 	/**
 	 * @brief dropSpaces removes spaces

@@ -121,18 +121,18 @@ Fragment * Fragment::insert(int pos, const QString & text) {
 	}
 
 	if (pos == m_spaces) {
-		return insertAfterSpaces(pos, text);
+		return insertAfterSpaces(text);
 	}
 
 	if (pos == length()) {
-		return insertAfterGlyphs(pos, text);
+		return insertAfterGlyphs(text);
 	}
 
 	return insertInGlyphs(pos, text);
 }
 
 Fragment * Fragment::replace(int p1, int p2, const QString & after) {
-	// On drop the this fragment may repaced by another
+	// On drop this fragment may repaced by another
 	auto * frag = drop(p1, p2);
 
 	return frag->insert(p1, after);
@@ -204,7 +204,7 @@ Fragment * Fragment::insertInSpaces(int pos, const QString & text) {
 	return newFrag;
 }
 
-Fragment * Fragment::insertAfterSpaces(int pos, const QString & text) {
+Fragment * Fragment::insertAfterSpaces(const QString & text) {
 	auto pg = processGlyphs(text);
 
 	if (pg.toInsertInNext.isEmpty()) {
@@ -242,7 +242,7 @@ Fragment * Fragment::insertInGlyphs(int pos, const QString & text) {
 	return newFrag;
 }
 
-Fragment * Fragment::insertAfterGlyphs(int pos, const QString & text) {
+Fragment * Fragment::insertAfterGlyphs(const QString & text) {
 	auto pg = processGlyphs(text);
 
 	content.append(pg.toInsertHere);
