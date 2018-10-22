@@ -21,7 +21,7 @@ DISTFILES += \
 HEADERS += \
     export/plugin.h \
     private/line.h \
-    private/fragment.h \
+    fragment/fragment.h \
     private/cursor.h \
     private/selection.h \
     self/logic.h \
@@ -35,7 +35,7 @@ HEADERS += \
 SOURCES += \
     export/plugin.cpp \
     private/line.cpp \
-    private/fragment.cpp \
+    fragment/fragment.cpp \
     private/cursor.cpp \
     private/selection.cpp \
     self/logic.cpp \

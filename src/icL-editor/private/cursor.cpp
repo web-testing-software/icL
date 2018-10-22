@@ -1,6 +1,6 @@
 #include "cursor.h"
 
-#include "fragment.h"
+#include "../fragment/fragment.h"
 #include "line.h"
 
 namespace icL::editor {

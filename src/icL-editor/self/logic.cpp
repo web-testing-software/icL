@@ -1,7 +1,7 @@
 #include "logic.h"
 
+#include "../fragment/fragment.h"
 #include "../private/cursor.h"
-#include "../private/fragment.h"
 #include "../private/line.h"
 #include "../private/selection.h"
 

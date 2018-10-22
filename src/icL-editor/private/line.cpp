@@ -1,7 +1,7 @@
 #include "line.h"
 
+#include "../fragment/fragment.h"
 #include "../self/logic.h"
-#include "fragment.h"
 
 #include <QStaticText>
 #include <QTextStream>
@@ -85,7 +85,7 @@ void Line::setFirst(Fragment * first) {
 	if (m_first == first)
 		return;
 
-	m_first = first;
+	m_first  = first;
 	m_length = first->length();
 	emit firstChanged(m_first);
 }
