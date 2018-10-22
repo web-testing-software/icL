@@ -7,7 +7,7 @@
 #include <icL-look/editor/editorstyle.h>
 
 #include <QStaticText>
-#include <QStringBuilder>u
+#include <QStringBuilder>
 
 namespace icL::editor {
 
@@ -218,6 +218,26 @@ Fragment * Fragment::insertAfterSpaces(int pos, const QString & text) {
 
 	content  = pg.toInsertHere;
 	m_glyphs = pg.toInsertHere.length();
+
+	return newFrag;
+}
+
+Fragment * Fragment::insertInGlyphs(int pos, const QString & text) {
+	auto pg           = processGlyphs(text);
+	int  posInContent = pos - m_spaces;
+
+	if (pg.toInsertInNext.isEmpty()) {
+		content.insert(posInContent, pg.toInsertHere);
+		m_glyphs += pg.toInsertHere.length();
+		return this;
+	}
+
+	auto * newFrag = makeNewFragment(
+	  pg.toInsertInNext + content.mid(posInContent), pg.onNextLine);
+
+	content.replace(
+	  posInContent, content.length() - posInContent, pg.toInsertHere);
+	m_glyphs = content.length();
 
 	return newFrag;
 }
