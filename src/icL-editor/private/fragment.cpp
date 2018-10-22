@@ -165,6 +165,23 @@ Advanced * Fragment::getEditor() {
 	return dynamic_cast<Advanced *>(m_line->parent());
 }
 
+ProcessedGlyphs Fragment::processGlyphs(const QString & text) {
+	ProcessedGlyphs pg;
+	int             i = 0;
+
+	while (i < text.length() && text[i] != '\n') {
+		pg.toInsertHere.append(text[i]);
+		i++;
+	}
+
+	if (i != text.length()) {
+		pg.onNextLine     = true;
+		pg.toInsertInNext = text.mid(i);
+	}
+
+	return pg;
+}
+
 Fragment * Fragment::makeNewFragment(const QString & text, bool onNewLine) {
 	int tabSize = getEditor()->proxy()->tabSize();
 	int spaces  = 0;
