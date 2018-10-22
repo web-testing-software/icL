@@ -1,10 +1,8 @@
 #include "fragment.h"
 
+#include "../private/line.h"
+#include "../private/styleproxy.h"
 #include "../self/advanced.h"
-#include "line.h"
-#include "styleproxy.h"
-
-#include <icL-look/editor/editorstyle.h>
 
 #include <QStaticText>
 #include <QStringBuilder>
@@ -136,6 +134,14 @@ Fragment * Fragment::replace(int p1, int p2, const QString & after) {
 	auto * frag = drop(p1, p2);
 
 	return frag->insert(p1, after);
+}
+
+bool Fragment::isBracket() {
+	return false;
+}
+
+bool Fragment::isOpenBracket() {
+	return false;
 }
 
 void Fragment::setPrev(Fragment * prev) {

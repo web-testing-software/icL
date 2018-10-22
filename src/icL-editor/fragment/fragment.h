@@ -33,12 +33,7 @@ struct ProcessedGlyphs
 	bool onNextLine;
 };
 
-enum class FragmentTypes {
-	Fragment,
-	Word,
-	String,
-	Bracket
-};
+enum class FragmentTypes { Fragment, Word, String, Bracket };
 
 class Fragment : public QObject
 {
@@ -154,6 +149,18 @@ public:
 	 * @param after is the new text
 	 */
 	Fragment * replace(int p1, int p2, const QString & after);
+
+	/**
+	 * @brief isBracket detects if this fragment is a bracket
+	 * @return true if this fragment is a bracket, otherwise false
+	 */
+	virtual bool isBracket();
+
+	/**
+	 * @brief isOpenBracket detects if this fragment is a open bracket
+	 * @return true if this fragment is a open bracket, otherwise false
+	 */
+	virtual bool isOpenBracket();
 
 signals:
 	void prevChanged(Fragment * prev);

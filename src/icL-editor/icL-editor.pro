@@ -30,7 +30,10 @@ HEADERS += \
     self/keyboard.h \
     self/mouse.h \
     self/advanced.h \
-    private/styleproxy.h
+    private/styleproxy.h \
+    fragment/word.h \
+    fragment/string.h \
+    fragment/bracket.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -44,4 +47,7 @@ SOURCES += \
     self/keyboard.cpp \
     self/mouse.cpp \
     self/advanced.cpp \
-    private/styleproxy.cpp
+    private/styleproxy.cpp \
+    fragment/word.cpp \
+    fragment/string.cpp \
+    fragment/bracket.cpp
