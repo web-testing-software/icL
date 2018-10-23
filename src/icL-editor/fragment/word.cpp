@@ -27,7 +27,7 @@ Fragment * Word::insertInSpaces(int pos, const QString & text) {
 	m_spaces -= pos;
 
 	return m_prev->insert(
-	  m_prev->length(), QString(' ', m_spaces - pos) + text);
+	  m_prev->length(), QString(m_spaces - pos, ' ') + text);
 }
 
 }  // namespace icL::editor

@@ -3,6 +3,9 @@
 #include "../private/line.h"
 #include "../private/styleproxy.h"
 #include "../self/advanced.h"
+#include "bracket.h"
+#include "string.h"
+#include "word.h"
 
 #include <QStaticText>
 #include <QStringBuilder>
@@ -118,12 +121,12 @@ Fragment * Fragment::insert(int pos, const QString & text) {
 		return insertInSpaces(pos, text);
 	}
 
-	if (pos == m_spaces) {
-		return insertAfterSpaces(text);
-	}
-
 	if (pos == length()) {
 		return insertAfterGlyphs(text);
+	}
+
+	if (pos == m_spaces) {
+		return insertAfterSpaces(text);
 	}
 
 	return insertInGlyphs(pos, text);
@@ -176,7 +179,9 @@ ProcessedGlyphs Fragment::processGlyphs(const QString & text) {
 	ProcessedGlyphs pg;
 	int             i = 0;
 
-	while (i < text.length() && text[i] != '\n') {
+	while (i < text.length() && text[i] != '\n' && text[i] != '{' &&
+		   text[i] != '}' && text[i] != '[' && text[i] != ']' &&
+		   text[i] != '(' && text[i] != ')') {
 		pg.toInsertHere.append(text[i]);
 		i++;
 	}
@@ -193,14 +198,14 @@ Fragment * Fragment::insertInSpaces(int pos, const QString & text) {
 	auto pg = processGlyphs(text);
 
 	if (pg.toInsertInNext.isEmpty()) {
-		content.prepend(pg.toInsertHere + QString(' ', m_spaces - pos));
+		content.prepend(pg.toInsertHere + QString(m_spaces - pos, ' '));
 		m_spaces = pos;
 		m_glyphs = content.length();
 		return this;
 	}
 
 	auto * newFrag = makeNewFragment(
-	  pg.toInsertInNext % QString(' ', m_spaces - pos) % content,
+	  pg.toInsertInNext % QString(m_spaces - pos, ' ') % content,
 	  pg.onNextLine);
 
 	content  = pg.toInsertHere;
@@ -320,6 +325,8 @@ Fragment * Fragment::makeNewFragment(const QString & text, bool onNewLine) {
 		else {
 			spaces++;
 		}
+
+		i++;
 	}
 
 	if (i == text.length()) {
@@ -369,8 +376,17 @@ Fragment * Fragment::makeFragmentNow(FragmentTypes type, bool onNewLine) {
 		ret = new Fragment(parent);
 		break;
 
-		//	default:
-		// TODO: Write it later
+	case FragmentTypes::Bracket:
+		ret = new Bracket(parent);
+		break;
+
+	case FragmentTypes::String:
+		ret = new String(parent);
+		break;
+
+	case FragmentTypes::Word:
+		ret = new Word(parent);
+		break;
 	}
 
 	if (onNewLine) {

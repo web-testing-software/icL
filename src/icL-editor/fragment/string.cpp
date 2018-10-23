@@ -39,12 +39,12 @@ ProcessedGlyphs String::processGlyphs(const QString & text) {
 Fragment * String::insertInSpaces(int pos, const QString & text) {
 	m_spaces -= pos;
 
-	return m_prev->insert(m_prev->length(), QString(' ', pos) + text);
+	return m_prev->insert(m_prev->length(), QString(pos, ' ') + text);
 }
 
 Fragment * String::insertAfterSpaces(const QString & text) {
 	auto * ret =
-	  m_prev->insert(m_prev->length(), QString(' ', m_spaces) + text);
+	  m_prev->insert(m_prev->length(), QString(m_spaces, ' ') + text);
 
 	m_spaces = 0;
 	return ret;
@@ -65,7 +65,7 @@ Fragment * String::dropHead(int p1, int p2) {
 		m_prev->setNext(m_next);
 	}
 
-	auto * ret = m_prev->insert(m_prev->length(), QString(' ', p1) + text);
+	auto * ret = m_prev->insert(m_prev->length(), QString(p1, ' ') + text);
 
 	delete this;
 	return ret;
@@ -76,7 +76,7 @@ Fragment * String::dropTail(int p1, int p2) {
 	QString text;
 
 	while (it != nullptr) {
-		text += QString(' ', it->spaces()) + it->displayText();
+		text += QString(it->spaces(), ' ') + it->displayText();
 
 		auto * nextIt = it->next();
 		delete it;

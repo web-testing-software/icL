@@ -17,23 +17,32 @@ bool Bracket::isOpenBracket() {
 Fragment * Bracket::insertInSpaces(int pos, const QString & text) {
 	m_spaces -= pos;
 
-	return m_prev->insert(m_prev->length(), QString(' ', pos) + text);
+	return m_prev->insert(m_prev->length(), QString(pos, ' ') + text);
 }
 
 Fragment * Bracket::insertAfterSpaces(const QString & text) {
 	auto * ret =
-	  m_prev->insert(m_prev->length(), QString(' ', m_spaces) + text);
+	  m_prev->insert(m_prev->length(), QString(m_spaces, ' ') + text);
 
 	m_spaces = 0;
 	return ret;
 }
 
-Fragment * Bracket::insertInGlyphs(int pos, const QString & text) {
+Fragment * Bracket::insertInGlyphs(int, const QString &) {
 	// This function must be not called ever
 	Q_ASSERT(false);
 }
 
 Fragment * Bracket::insertAfterGlyphs(const QString & text) {
+	if (content.isEmpty()) {
+		if (text.length() == 1) {
+			content = text;
+			return this;
+		}
+
+		return makeNewFragment(text.mid(1), false);
+	}
+
 	return makeNewFragment(text, false);
 }
 

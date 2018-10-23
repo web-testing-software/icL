@@ -1,7 +1,8 @@
 #include "line.h"
 
 #include "../fragment/fragment.h"
-#include "../self/logic.h"
+#include "../self/drawing.h"
+#include "styleproxy.h"
 
 #include <QStaticText>
 #include <QTextStream>
@@ -46,18 +47,20 @@ const QString & Line::getText() {
 		return content;
 	}
 
+	int tabSize = dynamic_cast<Drawing *>(m_parent)->proxy()->tabSize();
+
 	auto * it = m_first;
 
 	content.clear();
 	content.reserve(m_length);
 
-	content += QString('\t', it->spaces() / 4);
-	content += QString(' ', it->spaces() % 4);
+	content += QString(it->spaces() / tabSize, '\t');
+	content += QString(it->spaces() % tabSize, ' ');
 	content += it->displayText();
 	it = it->next();
 
 	while (it != nullptr) {
-		content += QString(' ', it->spaces());
+		content += QString(it->spaces(), ' ');
 		content += it->displayText();
 	}
 
