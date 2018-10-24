@@ -3,7 +3,9 @@
 
 #include <QObject>
 
-
+namespace icL::look {
+struct TextCharFormat;
+}
 
 class QStaticText;
 
@@ -161,6 +163,12 @@ public:
 	 * @return true if this fragment is a open bracket, otherwise false
 	 */
 	virtual bool isOpenBracket();
+
+	/**
+	 * @brief format returns the format to draw this text fragment
+	 * @return the format to draw this text fragment
+	 */
+	virtual const look::TextCharFormat & format();
 
 signals:
 	void prevChanged(Fragment * prev);

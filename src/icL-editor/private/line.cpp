@@ -89,10 +89,11 @@ void Line::setFirst(Fragment * first) {
 		return;
 
 	m_first  = first;
-	m_length = first->length();
 
+	// Needs to update the length of line
 	auto * it = first->next();
 
+	m_length = first->length();
 	while (it != nullptr) {
 		m_length += it->length();
 		it = it->next();

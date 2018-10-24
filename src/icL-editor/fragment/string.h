@@ -16,6 +16,9 @@ signals:
 public slots:
 
 	// Fragment interface
+public:
+	const look::TextCharFormat & format() override;
+
 protected:
 	ProcessedGlyphs processGlyphs(const QString & text) override;
 

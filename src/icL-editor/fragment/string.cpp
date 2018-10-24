@@ -1,9 +1,17 @@
 #include "string.h"
 
+#include "../self/advanced.h"
+
+#include <icL-look/export/chars.h>
+
 namespace icL::editor {
 
 String::String(Line * parent)
 	: Fragment(parent) {}
+
+const look::TextCharFormat & String::format() {
+	return getEditor()->chars()->string;
+}
 
 ProcessedGlyphs String::processGlyphs(const QString & text) {
 	ProcessedGlyphs pg;
@@ -18,8 +26,26 @@ ProcessedGlyphs String::processGlyphs(const QString & text) {
 		else if (ch == '\t') {
 			pg.toInsertHere.append("\\t");
 		}
+		else if (ch == '\\') {
+			if (content.isEmpty()) {
+				pg.toInsertHere.append('\\');
+			}
+			else {
+				pg.toInsertHere.append("\\\\");
+			}
+		}
 		else if (ch == '"') {
-			pg.toInsertHere.append("\\\"");
+			if (content.isEmpty()) {
+				pg.toInsertHere.append("\"");
+
+				if (pg.toInsertHere.length() > 1) {
+					i++;
+					break;
+				}
+			}
+			else {
+				pg.toInsertHere.append("\\\"");
+			}
 		}
 		else {
 			pg.toInsertHere.append(ch);
@@ -29,7 +55,7 @@ ProcessedGlyphs String::processGlyphs(const QString & text) {
 	}
 
 	if (i != text.length()) {
-		pg.onNextLine     = true;
+		pg.onNextLine     = false;
 		pg.toInsertInNext = text.mid(i);
 	}
 
@@ -51,6 +77,19 @@ Fragment * String::insertAfterSpaces(const QString & text) {
 }
 
 Fragment * String::insertAfterGlyphs(const QString & text) {
+	if (m_glyphs == 0) {
+		auto pg = processGlyphs(text);
+
+		content  = pg.toInsertHere;
+		m_glyphs = content.length();
+
+		if (!pg.toInsertInNext.isEmpty()) {
+			return makeNewFragment(pg.toInsertInNext, pg.onNextLine);
+		}
+
+		return this;
+	}
+
 	return makeNewFragment(text, false);
 }
 
@@ -72,7 +111,7 @@ Fragment * String::dropHead(int p1, int p2) {
 }
 
 Fragment * String::dropTail(int p1, int p2) {
-	auto *  it   = m_next;
+	auto *  it = m_next;
 	QString text;
 
 	while (it != nullptr) {

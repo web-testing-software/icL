@@ -7,6 +7,8 @@
 #include "string.h"
 #include "word.h"
 
+#include <icL-look/export/chars.h>
+
 #include <QStaticText>
 #include <QStringBuilder>
 
@@ -147,6 +149,10 @@ bool Fragment::isOpenBracket() {
 	return false;
 }
 
+const look::TextCharFormat & Fragment::format() {
+	return getEditor()->chars()->text;
+}
+
 void Fragment::setPrev(Fragment * prev) {
 	if (m_prev == prev)
 		return;
@@ -177,11 +183,11 @@ Advanced * Fragment::getEditor() {
 
 ProcessedGlyphs Fragment::processGlyphs(const QString & text) {
 	ProcessedGlyphs pg;
-	int             i = 0;
+	const QString   restrictedChars = "\n{}[]()\"";
 
-	while (i < text.length() && text[i] != '\n' && text[i] != '{' &&
-		   text[i] != '}' && text[i] != '[' && text[i] != ']' &&
-		   text[i] != '(' && text[i] != ')') {
+	int i = 0;
+
+	while (i < text.length() && !restrictedChars.contains(text[i])) {
 		pg.toInsertHere.append(text[i]);
 		i++;
 	}
@@ -346,6 +352,10 @@ Fragment * Fragment::makeNewFragment(const QString & text, bool onNewLine) {
 	case '[':
 	case ']':
 		ret = makeFragmentNow(FragmentTypes::Bracket, false);
+		break;
+
+	case '"':
+		ret = makeFragmentNow(FragmentTypes::String, false);
 		break;
 
 	default:

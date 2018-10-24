@@ -6,7 +6,6 @@
 #include "../private/selection.h"
 #include "../private/styleproxy.h"
 
-#include <icL-look/editor/editorstyle.h>
 #include <icL-look/export/chars.h>
 
 #include <QDateTime>
@@ -66,7 +65,7 @@ void Drawing::paint(QPainter * painter) {
 
 	drawCursor(painter);
 
-	//	qDebug() << "render time" << timer.elapsed();
+	// qDebug() << "render time" << timer.elapsed();
 	update();
 }
 
@@ -325,8 +324,6 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 void Drawing::drawContent(QPainter * painter) {
 	painter->setBrush(Qt::NoBrush);
-	painter->setPen(m_chars->text.text);
-	painter->setFont(m_chars->text.font);
 
 	auto * itLine = m_firstVisible;
 	int    yStep  = m_proxy->fullLineH();
@@ -341,6 +338,9 @@ void Drawing::drawContent(QPainter * painter) {
 
 		while (itFrag != nullptr && xPos < width()) {
 			auto * stext = itFrag->getCache();
+
+			painter->setPen(itFrag->format().text);
+			painter->setFont(itFrag->format().font);
 
 			xPos += itFrag->spaces() * xStep;
 			painter->drawStaticText(xPos, yPos, *stext);
