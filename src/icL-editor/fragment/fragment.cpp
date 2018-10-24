@@ -4,11 +4,10 @@
 #include "../private/styleproxy.h"
 #include "../self/advanced.h"
 #include "bracket.h"
+#include "string.h"
 #include "word.h"
 
 #include <icL-look/export/chars.h>
-
-#include <cstring>
 
 #include <QStaticText>
 #include <QStringBuilder>
@@ -52,12 +51,12 @@ Fragment * Fragment::nextFragment() {
 	if (m_next != nullptr) {
 		return m_next;
 	}
+
 	if (m_line->next() != nullptr) {
 		return m_line->next()->first();
 	}
-	else {
-		return nullptr;
-	}
+
+	return nullptr;
 }
 
 Fragment * Fragment::prevFragment() {
@@ -73,9 +72,8 @@ Fragment * Fragment::prevFragment() {
 
 		return it;
 	}
-	else {
-		return nullptr;
-	}
+
+	return nullptr;
 }
 
 bool Fragment::isCached() {

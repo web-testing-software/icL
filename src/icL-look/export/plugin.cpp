@@ -56,6 +56,4 @@ void LookPlugin::registerTypes(const char * uri) {
 	qmlRegisterType<icL::look::EditorStyle>();
 	qmlRegisterType<icL::look::Chars>();
 	qmlRegisterType<icL::look::Look>(uri, 1, 0, "Look");
-
-	qDebug() << uri << "loaded";
 }

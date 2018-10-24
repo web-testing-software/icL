@@ -173,8 +173,10 @@
 //}
 
 // memory::StepType::Value VirtualMachine::prepareNext(context::Context * next)
-// { 	if (next == nullptr) { 		if (last_context == nullptr) { 			finish(); 			if
-//(code_begin != 0) { 				il.vms->setSColor(memory::SelectionColor::Destroying);
+// { 	if (next == nullptr) { 		if (last_context == nullptr) { 			finish();
+// if
+//(code_begin != 0) {
+//il.vms->setSColor(memory::SelectionColor::Destroying);
 //				il.vms->highlight(code_begin - 1, code_end + 1);
 //			}
 //			return memory::StepType::None;

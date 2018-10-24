@@ -153,8 +153,6 @@ void Line::setLineNumber(int16_t lineNumber) {
 		m_charsNumberInLineNumber = 5;
 	}
 
-	qDebug() << lineNumber << m_charsNumberInLineNumber;
-
 	emit lineNumberChanged(m_lineNumber);
 }
 

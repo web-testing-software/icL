@@ -1,8 +1,8 @@
+#include "string.h"
+
 #include "../self/advanced.h"
 
 #include <icL-look/export/chars.h>
-
-#include <cstring>
 
 namespace icL::editor {
 

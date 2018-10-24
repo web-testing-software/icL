@@ -67,7 +67,7 @@ DISTFILES += \
     standard/moldavian/*.tex \ \
     README.md \
     standard/README.md \
-    clang-format \
+    .clang-format \
     graduation/README.md \
     graduation/bachelor/README.md \
     standart/README.md \

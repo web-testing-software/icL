@@ -101,7 +101,7 @@ void Value::setValue(const QVariant & value) {
 		container->setValue(varName, value);
 	}
 	else { /* this.value == Value.Js */
-		   //		il->server->runJS(setter.arg(varToJsString(value)));
+		//		il->server->runJS(setter.arg(varToJsString(value)));
 	}
 }
 

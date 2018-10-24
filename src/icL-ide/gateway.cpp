@@ -28,7 +28,6 @@ void GateWay::aboutQt() {
 }
 
 void GateWay::setUserInterfaceScale(qreal userInterfaceScale) {
-	qWarning("Floating point comparison needs context sanity check");
 	if (qFuzzyCompare(m_userInterfaceScale, userInterfaceScale))
 		return;
 

@@ -100,20 +100,18 @@ void Drawing::updateBackgroundGeometry() {
 
 	lineNumberArea.setLeft(0);
 	lineNumberArea.setTop(0);
-	lineNumberArea.setBottom(width());
+	lineNumberArea.setBottom(static_cast<int>(width()));
 	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
 	contentArea.setLeft(lineNumberArea.right());
 	contentArea.setTop(0);
-	contentArea.setBottom(height());
-	contentArea.setRight(width());
+	contentArea.setBottom(static_cast<int>(height()));
+	contentArea.setRight(static_cast<int>(width()));
 
 	scissorsArea.setLeft(contentArea.left() + m_proxy->fullLineH() / 2);
 	scissorsArea.setTop(0);
-	scissorsArea.setRight(width());
-	scissorsArea.setBottom(height());
-
-	QList<QPoint> lnArea = {};
+	scissorsArea.setRight(static_cast<int>(width()));
+	scissorsArea.setBottom(static_cast<int>(height()));
 
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
@@ -133,8 +131,10 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 
 	auto * it    = m_firstVisible;
 	int    yStep = m_proxy->fullLineH();
-	int    yPos  = m_proxy->divLineSBy2() +
-	           (m_proxy->charH() - it->getCache()->size().height()) / 2;
+	int    yPos =
+	  m_proxy->divLineSBy2() +
+	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
+	    2;
 
 	while (it != nullptr && it->visible()) {
 		auto * stext = it->getCache();
@@ -186,9 +186,11 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 	}
 
 	// Init for third drawing
-	it   = m_firstVisible;
-	yPos = m_proxy->divLineSBy2() +
-	       (m_proxy->charH() - it->getCache()->size().height()) / 2;
+	it = m_firstVisible;
+	yPos =
+	  m_proxy->divLineSBy2() +
+	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
+	    2;
 	painter->setBrush(Qt::NoBrush);
 	painter->setPen(m_chars->breakpoint.lineNumber.text);
 	painter->setFont(m_chars->breakpoint.lineNumber.font);
@@ -237,7 +239,9 @@ void Drawing::drawLine(
 	painter->drawStaticText(
 	  lineNumberRight - m_proxy->charW() * line->charsNumberInLineNumber(),
 	  yPos + m_proxy->divLineSBy2() +
-	    (m_proxy->charH() - line->getCache()->size().height()) / 2,
+	    (m_proxy->charH() -
+	     static_cast<int>(line->getCache()->size().height())) /
+	      2,
 	  *line->getCache());
 }
 
@@ -335,7 +339,9 @@ void Drawing::drawContent(QPainter * painter) {
 	auto * itLine = m_firstVisible;
 	int    yStep  = m_proxy->fullLineH();
 	int    yPos   = m_proxy->divLineSBy2() +
-	           (m_proxy->charH() - itLine->getCache()->size().height()) / 2;
+	           (m_proxy->charH() -
+	            static_cast<int>(itLine->getCache()->size().height())) /
+	             2;
 	int xBegin = scissorsArea.left();
 	int xStep  = m_proxy->charW();
 

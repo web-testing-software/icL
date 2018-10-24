@@ -9,6 +9,4 @@ void EditorPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Editor"));
 
 	qmlRegisterType<icL::editor::Advanced>(uri, 1, 0, "Editor");
-
-	qDebug() << uri << "loaded";
 }
