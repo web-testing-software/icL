@@ -324,10 +324,13 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 				painter->setPen(m_chars->selection.border);
 
 				yPos += yStep + m_proxy->divLineSBy2();
-				left = beginLine->next()->length();
+				left = beginLine->next() != endLine
+				         ? beginLine->next()->length()
+				         : selection->end()->getPosInLine();
 				painter->drawLine(
-				  xBegin + left * xStep + toAdd, yPos,
-				  xBegin + right * xStep + toAdd, yPos);
+				  xBegin + left * xStep +
+				    (beginLine->next() == endLine ? 0 : toAdd),
+				  yPos, xBegin + right * xStep + toAdd, yPos);
 			}
 		}
 	}
