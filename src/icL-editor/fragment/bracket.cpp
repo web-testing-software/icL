@@ -34,12 +34,15 @@ Fragment * Bracket::insertInGlyphs(int, const QString &) {
 }
 
 Fragment * Bracket::insertAfterGlyphs(const QString & text) {
-	if (content.isEmpty()) {
+	if (m_glyphs == 0) {
+		m_glyphs = 1;
+
 		if (text.length() == 1) {
 			content = text;
 			return this;
 		}
 
+		content = text.left(1);
 		return makeNewFragment(text.mid(1), false);
 	}
 

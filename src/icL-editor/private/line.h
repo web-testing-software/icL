@@ -89,7 +89,7 @@ public:
 	 * @brief getText gets the text of line by concatenation all fragments
 	 * @return the text of line
 	 */
-	const QString & getText();
+	const QString & getText(bool force = false);
 
 	/**
 	 * @brief isChanged gets the changed state

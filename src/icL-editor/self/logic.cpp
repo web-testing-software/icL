@@ -74,7 +74,7 @@ bool Logic::loadFile(const QString & path) {
 
 		fragment->insert(0, str);
 		line->setFirst(fragment);
-		line->getText();
+		line->getText(true);
 		addNewLine(line);
 	}
 

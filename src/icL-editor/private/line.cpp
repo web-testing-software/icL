@@ -42,8 +42,8 @@ bool Line::visible() const {
 	return m_visible;
 }
 
-const QString & Line::getText() {
-	if (!m_isChanged) {
+const QString & Line::getText(bool force) {
+	if (!m_isChanged || force) {
 		return content;
 	}
 
@@ -90,6 +90,14 @@ void Line::setFirst(Fragment * first) {
 
 	m_first  = first;
 	m_length = first->length();
+
+	auto * it = first->next();
+
+	while (it != nullptr) {
+		m_length += it->length();
+		it = it->next();
+	}
+
 	emit firstChanged(m_first);
 }
 

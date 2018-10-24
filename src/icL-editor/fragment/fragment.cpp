@@ -187,7 +187,7 @@ ProcessedGlyphs Fragment::processGlyphs(const QString & text) {
 	}
 
 	if (i != text.length()) {
-		pg.onNextLine     = true;
+		pg.onNextLine     = text[i] == '\n';
 		pg.toInsertInNext = text.mid(i);
 	}
 
