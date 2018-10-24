@@ -1,6 +1,3 @@
 #include "exists.h"
 
-Exists::Exists()
-{
-
-}
+Exists::Exists() {}

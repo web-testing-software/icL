@@ -7,12 +7,12 @@
 namespace icL::look {
 
 LinkAdv::LinkAdv(QObject * parent)
-	: Link(parent) {
+    : Link(parent) {
 	m_activeHover = new TextLook(this);
 }
 
 LinkAdv::~LinkAdv() {
-	icL_dropField(m_activeHover);
+	delete m_activeHover;
 }
 
 TextLook * LinkAdv::activeHover() const {
@@ -33,4 +33,4 @@ QJsonObject LinkAdv::getUp() {
 	return obj;
 }
 
-}
+}  // namespace icL::look

@@ -3,7 +3,7 @@
 namespace icL::look {
 
 Chars::Chars(QObject * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	if (instance == nullptr) {
 		instance = this;
 	}

@@ -10,7 +10,7 @@
 #include <QQmlEngine>
 
 ToolkitPlugin::ToolkitPlugin(QObject * parent)
-	: QQmlExtensionPlugin(parent) {}
+    : QQmlExtensionPlugin(parent) {}
 
 void ToolkitPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Toolkit"));

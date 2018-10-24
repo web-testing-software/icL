@@ -9,7 +9,7 @@
 namespace icL::look {
 
 Floating::Floating(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_error = m_warn = m_console = m_bg = QColor(Qt::transparent);
 
 	m_header = new TextLook(this);
@@ -19,10 +19,10 @@ Floating::Floating(QObject * parent)
 }
 
 Floating::~Floating() {
-	icL_dropField(m_header);
-	icL_dropField(m_input);
-	icL_dropField(m_stack);
-	icL_dropField(m_state);
+	delete m_header;
+	delete m_input;
+	delete m_stack;
+	delete m_state;
 }
 
 TextLook * Floating::header() const {
@@ -76,12 +76,12 @@ void Floating::setUp(const QJsonObject & obj) {
 
 QJsonObject Floating::getUp() {
 	return {{"header", m_header->getUp()},      {"stack", m_stack->getUp()},
-			{"state", m_state->getUp()},        {"input", m_input->getUp()},
-			{"error", colorToObj(m_error)},     {"warn", colorToObj(m_warn)},
-			{"console", colorToObj(m_console)}, {"bg", colorToObj(m_bg)}};
+	        {"state", m_state->getUp()},        {"input", m_input->getUp()},
+	        {"error", colorToObj(m_error)},     {"warn", colorToObj(m_warn)},
+	        {"console", colorToObj(m_console)}, {"bg", colorToObj(m_bg)}};
 }
 
-void Floating::setError(QColor error) {
+void Floating::setError(const QColor & error) {
 	if (m_error == error)
 		return;
 
@@ -89,7 +89,7 @@ void Floating::setError(QColor error) {
 	emit errorChanged(m_error);
 }
 
-void Floating::setWarn(QColor warn) {
+void Floating::setWarn(const QColor & warn) {
 	if (m_warn == warn)
 		return;
 
@@ -97,7 +97,7 @@ void Floating::setWarn(QColor warn) {
 	emit warnChanged(m_warn);
 }
 
-void Floating::setConsole(QColor console) {
+void Floating::setConsole(const QColor & console) {
 	if (m_console == console)
 		return;
 
@@ -105,7 +105,7 @@ void Floating::setConsole(QColor console) {
 	emit consoleChanged(m_console);
 }
 
-void Floating::setBg(QColor bg) {
+void Floating::setBg(const QColor & bg) {
 	if (m_bg == bg)
 		return;
 
@@ -113,4 +113,4 @@ void Floating::setBg(QColor bg) {
 	emit bgChanged(m_bg);
 }
 
-}
+}  // namespace icL::look

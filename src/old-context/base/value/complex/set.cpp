@@ -15,10 +15,10 @@ namespace icL::context::value {
 Set::Set(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Value(il, container, varName) {}
+    : Value(il, container, varName) {}
 
 Set::Set(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Value(il, rvalue, readonly) {}
+    : Value(il, rvalue, readonly) {}
 
 const QHash<QString, void (Set::*)()> Set::properties = Set::initProperties();
 
@@ -31,15 +31,15 @@ const QHash<QString, void (Set::*)()> Set::initProperties() {
 
 const QHash<QString, void (Set::*)(memory::ArgList &)> Set::initMethods() {
 	return {{{"applicate", &Set::runApplicate},
-			 {"insertField", &Set::runInsertField},
-			 {"removeField", &Set::runRemoveField},
-			 {"concatLists", &Set::runConcatLists},
-			 {"insert", &Set::runInsert},
-			 {"merge", &Set::runMerge},
-			 {"remove", &Set::runRemove},
-			 {"removeAt", &Set::runRemoveAt},
-			 {"clear", &Set::runClear},
-			 {"at", &Set::runAt}}};
+	         {"insertField", &Set::runInsertField},
+	         {"removeField", &Set::runRemoveField},
+	         {"concatLists", &Set::runConcatLists},
+	         {"insert", &Set::runInsert},
+	         {"merge", &Set::runMerge},
+	         {"remove", &Set::runRemove},
+	         {"removeAt", &Set::runRemoveAt},
+	         {"clear", &Set::runClear},
+	         {"at", &Set::runAt}}};
 }
 
 int Set::length() {
@@ -123,7 +123,7 @@ void Set::appplicate(const QList<QStringList> & list) {
 
 			case memory::Type::List:
 				res = {value.isEmpty() ? QStringList{} : QStringList{} << value,
-					   true};
+				       true};
 				break;
 
 			default:
@@ -131,7 +131,7 @@ void Set::appplicate(const QList<QStringList> & list) {
 				  {-1213,
 				   "SetObj can contains values of type bool, Int, Double, "
 				   "String, List. But given " +
-					 memory::typeToString((*set.header)[j].type)});
+				     memory::typeToString((*set.header)[j].type)});
 			}
 
 			if (res.second) {
@@ -226,7 +226,7 @@ void Set::concatLists(const QString & name, const QString & separator) {
 	if ((*old_set.header)[index].type != memory::Type::List) {
 		il->vm->exception(
 		  {-1216, "The field type must be List, given " %
-					memory::typeToString((*old_set.header)[index].type) % '.'});
+		            memory::typeToString((*old_set.header)[index].type) % '.'});
 		return;
 	}
 
@@ -479,10 +479,10 @@ bool Set::checkRow(const memory::SetPtr & set, const QVariantList & row) {
 			il->vm->exception(
 			  {-1208,
 			   "Wrong set value (the field " % params[i].name %
-				 " has the type " % memory::typeToString(params[i].type) %
-				 ", but the assigned value has the type " %
-				 memory::typeToString(memory::variantTypeToType(row[i])) %
-				 ")"});
+			     " has the type " % memory::typeToString(params[i].type) %
+			     ", but the assigned value has the type " %
+			     memory::typeToString(memory::variantTypeToType(row[i])) %
+			     ")"});
 			return false;
 		}
 	}
@@ -515,9 +515,9 @@ bool Set::isSetType(memory::Type type) {
 	}
 
 	il->vm->exception({-1213,
-					   "<set> can contains values of type <bool>, <int>, "
-					   "<double>, <string> and <list>. But given " %
-						 memory::typeToString(type)});
+	                   "<set> can contains values of type <bool>, <int>, "
+	                   "<double>, <string> and <list>. But given " %
+	                     memory::typeToString(type)});
 	return false;
 }
 

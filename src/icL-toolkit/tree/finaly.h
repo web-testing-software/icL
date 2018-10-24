@@ -24,7 +24,7 @@ public:
 	Item * child(int row) override;
 	int    childCount() override;
 
-    protected:
+protected:
 	bool checkIfFileExist(const QString & path, QString & fname);
 };
 

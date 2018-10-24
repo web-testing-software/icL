@@ -59,7 +59,7 @@ protected:
 	void run() override;
 
 private:
-	bool   m_tracking;
+	bool   m_tracking{};
 	QPoint m_position;
 };
 

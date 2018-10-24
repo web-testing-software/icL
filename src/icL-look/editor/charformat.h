@@ -57,7 +57,7 @@ public slots:
 	 * @brief setUndercolor changes the coor of underline
 	 * @param undercolor is the new color for underline
 	 */
-	void setUndercolor(QColor undercolor);
+	void setUndercolor(const QColor & undercolor);
 
 private:
 	int    m_underline;

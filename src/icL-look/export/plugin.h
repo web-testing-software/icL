@@ -21,7 +21,7 @@ public slots:
 
 	// QQmlTypesExtensionInterface interface
 public:
-	void registerTypes(const char *uri) override;
+	void registerTypes(const char * uri) override;
 };
 
 #endif  // icL_look_Plugin

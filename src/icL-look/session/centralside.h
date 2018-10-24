@@ -115,19 +115,19 @@ public slots:
 	 * @brief setCommand shanges the color of commands in console
 	 * @param command is the new color for comands in console
 	 */
-	void setCommand(QColor command);
+	void setCommand(const QColor & command);
 
 	/**
 	 * @brief setErrorResult changes the color of errors in console
 	 * @param errorResult is the new color for errors in console
 	 */
-	void setErrorResult(QColor errorResult);
+	void setErrorResult(const QColor & errorResult);
 
 	/**
 	 * @brief setOkResult changes the color of results in console
 	 * @param okResult is the nre color for results in console
 	 */
-	void setOkResult(QColor okResult);
+	void setOkResult(const QColor & okResult);
 
 private:
 	TextLook * m_header     = nullptr;

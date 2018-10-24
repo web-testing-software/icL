@@ -1,6 +1,3 @@
 #include "equal.h"
 
-Equal::Equal()
-{
-
-}
+Equal::Equal() {}

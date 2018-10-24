@@ -7,12 +7,12 @@
 namespace icL::look {
 
 ListItem::ListItem(QObject * parent)
-	: Link(parent) {
+    : Link(parent) {
 	m_border = new Effect(this);
 }
 
 ListItem::~ListItem() {
-	icL_dropField(m_border);
+	delete m_border;
 }
 
 Effect * ListItem::border() const {
@@ -33,4 +33,4 @@ QJsonObject ListItem::getUp() {
 	return obj;
 }
 
-}
+}  // namespace icL::look

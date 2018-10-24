@@ -5,9 +5,9 @@
 //#include <icl-context/base/object/value.h>
 
 
-//namespace icL {
+// namespace icL {
 
-//VirtualMachine::VirtualMachine(
+// VirtualMachine::VirtualMachine(
 //  VMStack * vms, VirtualMachine * parent, QString * source)
 //	: interpreter(&il)
 //	, parent(parent)
@@ -33,11 +33,11 @@
 //	il.vm    = this;
 //}
 
-//VirtualMachine * VirtualMachine::getParent() const {
+// VirtualMachine * VirtualMachine::getParent() const {
 //	return parent;
 //}
 
-//memory::StepType::Value VirtualMachine::step() {
+// memory::StepType::Value VirtualMachine::step() {
 //	if (!running) {
 //		finish();
 //		return memory::StepType::None;
@@ -78,16 +78,16 @@
 //	return value;
 //}
 
-//void VirtualMachine::setOnStop(std::function<void(memory::Return &)> feedback) {
-//	onStop = feedback;
+// void VirtualMachine::setOnStop(std::function<void(memory::Return &)>
+// feedback) { 	onStop = feedback;
 //}
 
-//void VirtualMachine::reset() {
+// void VirtualMachine::reset() {
 //	r_result.exception = {0, {}};
 //	running            = true;
 //}
 
-//void VirtualMachine::fullReset() {
+// void VirtualMachine::fullReset() {
 //	auto it = last_context;
 
 //	while (it->prev() != nullptr) {
@@ -108,7 +108,7 @@
 //	reset();
 //}
 
-//void VirtualMachine::setFragLimits(int left, int right) {
+// void VirtualMachine::setFragLimits(int left, int right) {
 //	if (left < 0) {
 //		left = interpreter.getFlayer().getPosition();
 //	}
@@ -118,7 +118,7 @@
 //	code_end   = right;
 //}
 
-//void VirtualMachine::exception(const memory::Exception & exc) {
+// void VirtualMachine::exception(const memory::Exception & exc) {
 //	r_result.exception = exc;
 //	running            = false;
 
@@ -127,15 +127,15 @@
 //	}
 //}
 
-//QString * VirtualMachine::source() {
+// QString * VirtualMachine::source() {
 //	return m_source;
 //}
 
-//QVariant VirtualMachine::getConsoleValue() {
+// QVariant VirtualMachine::getConsoleValue() {
 //	return r_result.consoleValue;
 //}
 
-//void VirtualMachine::finish() {
+// void VirtualMachine::finish() {
 //	r_result.returnValue = il.mem->stackIt().stack()->getValue("stack");
 //	il.mem->stackIt().closeStack();
 
@@ -147,7 +147,7 @@
 //	}
 //}
 
-//context::Context * VirtualMachine::findExecutable() {
+// context::Context * VirtualMachine::findExecutable() {
 //	context::Context * ret = nullptr;
 //	context::Context * it  = last_context;
 
@@ -172,12 +172,9 @@
 //	return ret;
 //}
 
-//memory::StepType::Value VirtualMachine::prepareNext(context::Context * next) {
-//	if (next == nullptr) {
-//		if (last_context == nullptr) {
-//			finish();
-//			if (code_begin != 0) {
-//				il.vms->setSColor(memory::SelectionColor::Destroying);
+// memory::StepType::Value VirtualMachine::prepareNext(context::Context * next)
+// { 	if (next == nullptr) { 		if (last_context == nullptr) { 			finish(); 			if
+//(code_begin != 0) { 				il.vms->setSColor(memory::SelectionColor::Destroying);
 //				il.vms->highlight(code_begin - 1, code_end + 1);
 //			}
 //			return memory::StepType::None;
@@ -220,7 +217,7 @@
 //	return memory::StepType::MiniStep;
 //}
 
-//memory::StepType::Value VirtualMachine::prepareExecutable(
+// memory::StepType::Value VirtualMachine::prepareExecutable(
 //  context::Context * executable) {
 //	if (executable == nullptr) {
 //		if (
@@ -274,7 +271,7 @@
 //	//	return memory::StepType::MiniStep;
 //}
 
-//void VirtualMachine::destroy(context::Context * executable) {
+// void VirtualMachine::destroy(context::Context * executable) {
 //	auto * begin      = executable->getBeginContext();
 //	auto * new_       = executable->getNewContext();
 //	auto * end        = executable->getEndContext();

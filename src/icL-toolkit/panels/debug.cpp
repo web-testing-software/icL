@@ -5,7 +5,7 @@
 namespace icL::toolkit::panels {
 
 Debug::Debug(QObject * parent)
-	: BasePanels(parent) {}
+    : BasePanels(parent) {}
 
 bool Debug::stack() const {
 	return m_stack;

@@ -4,10 +4,11 @@
 #include "../private/styleproxy.h"
 #include "../self/advanced.h"
 #include "bracket.h"
-#include "string.h"
 #include "word.h"
 
 #include <icL-look/export/chars.h>
+
+#include <cstring>
 
 #include <QStaticText>
 #include <QStringBuilder>
@@ -15,7 +16,7 @@
 namespace icL::editor {
 
 Fragment::Fragment(Line * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	m_line = parent;
 }
 
@@ -51,7 +52,7 @@ Fragment * Fragment::nextFragment() {
 	if (m_next != nullptr) {
 		return m_next;
 	}
-	else if (m_line->next() != nullptr) {
+	if (m_line->next() != nullptr) {
 		return m_line->next()->first();
 	}
 	else {
@@ -63,7 +64,7 @@ Fragment * Fragment::prevFragment() {
 	if (m_prev != nullptr) {
 		return m_prev;
 	}
-	else if (m_line->prev() != nullptr) {
+	if (m_line->prev() != nullptr) {
 		auto * it = m_line->prev()->first();
 
 		while (it->next() != nullptr) {

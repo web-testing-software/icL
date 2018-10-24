@@ -8,7 +8,7 @@
 namespace icL::editor {
 
 Logic::Logic(QQuickItem * parent)
-	: QQuickPaintedItem(parent) {
+    : QQuickPaintedItem(parent) {
 	m_main = new Selection(this);
 }
 

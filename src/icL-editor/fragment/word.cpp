@@ -3,14 +3,14 @@
 namespace icL::editor {
 
 Word::Word(Line * parent)
-	: Fragment(parent) {}
+    : Fragment(parent) {}
 
 ProcessedGlyphs Word::processGlyphs(const QString & text) {
 	ProcessedGlyphs pg;
 	int             i = 0;
 
 	while (i < text.length() &&
-		   (text[i].isLetter() || text[i].isDigit() || text[i] == '-')) {
+	       (text[i].isLetter() || text[i].isDigit() || text[i] == '-')) {
 		pg.toInsertHere.append(text[i]);
 		i++;
 	}

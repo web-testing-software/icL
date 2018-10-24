@@ -1,6 +1,3 @@
 #include "any.h"
 
-Any::Any()
-{
-
-}
+Any::Any() {}

@@ -8,7 +8,7 @@
 namespace icL::toolkit::session {
 
 Resources::Resources(Item * parent)
-	: Folder(parent) {}
+    : Folder(parent) {}
 
 bool Resources::setResourceList(
   const QString & path, const QVariantList & files) {
@@ -33,9 +33,8 @@ QVariant Resources::data(int column) {
 	if (column == 0) {
 		return {QObject::tr("Resources")};
 	}
-	else {
-		return {};
-	}
+
+	return {};
 }
 
 QString Resources::getIcon() {

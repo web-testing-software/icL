@@ -8,7 +8,7 @@
 namespace icL::look {
 
 StartWindow::StartWindow(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_header    = new TextLook(this);
 	m_left      = new Side(this);
 	m_right     = new Side(this);
@@ -16,10 +16,10 @@ StartWindow::StartWindow(QObject * parent)
 }
 
 StartWindow::~StartWindow() {
-	icL_dropField(m_header);
-	icL_dropField(m_left);
-	icL_dropField(m_right);
-	icL_dropField(m_underline);
+	delete m_header;
+	delete m_left;
+	delete m_right;
+	delete m_underline;
 }
 
 TextLook * StartWindow::header() const {
@@ -47,9 +47,9 @@ void StartWindow::setUp(const QJsonObject & obj) {
 
 QJsonObject StartWindow::getUp() {
 	return {{"header", m_header->getUp()},
-			{"left", m_left->getUp()},
-			{"right", m_right->getUp()},
-			{"underline", m_underline->getUp()}};
+	        {"left", m_left->getUp()},
+	        {"right", m_right->getUp()},
+	        {"underline", m_underline->getUp()}};
 }
 
-}
+}  // namespace icL::look

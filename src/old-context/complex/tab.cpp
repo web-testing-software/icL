@@ -6,7 +6,7 @@
 namespace icL::context::complex {
 
 Tab::Tab(memory::InterLevel * il)
-	: Complex(il) {}
+    : Complex(il) {}
 
 bool Tab::get(const QString & url) {
 	newValue = il->server->get(url);

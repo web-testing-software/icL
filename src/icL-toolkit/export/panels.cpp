@@ -12,7 +12,7 @@
 namespace icL::toolkit::panels {
 
 Panels::Panels(QObject * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	m_browser = new Browser(this);
 	m_code    = new Code(this);
 	m_debug   = new Debug(this);
@@ -48,9 +48,9 @@ bool Panels::loadConf(const QString & path) {
 	if (!file.open(QFile::ReadOnly)) {
 		return false;
 	}
-	else {
-		m_path = path;
-	}
+
+	m_path = path;
+
 
 	QString content = stream.readAll();
 	doc             = QJsonDocument::fromJson(content.toUtf8());
@@ -81,9 +81,9 @@ bool Panels::saveConf() {
 	}
 
 	QJsonObject obj = {{"browser", m_browser->getUp()},
-					   {"code", m_code->getUp()},
-					   {"debug", m_debug->getUp()},
-					   {"projects-or-files", m_projectsOrFiles}};
+	                   {"code", m_code->getUp()},
+	                   {"debug", m_debug->getUp()},
+	                   {"projects-or-files", m_projectsOrFiles}};
 
 	doc.setObject(obj);
 

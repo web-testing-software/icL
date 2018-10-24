@@ -53,12 +53,12 @@ public slots:
 	 * @brief setBackground changes the color of background
 	 * @param background is the new color for background
 	 */
-	void setBackground(QColor background);
+	void setBackground(const QColor & background);
 	/**
 	 * @brief setBorder changes the color of border
 	 * @param border is the new color for border
 	 */
-	void setBorder(QColor border);
+	void setBorder(const QColor & border);
 
 private:
 	QColor m_background;

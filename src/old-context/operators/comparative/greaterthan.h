@@ -8,4 +8,4 @@ public:
 	GreaterThan();
 };
 
-#endif // GREATERTHAN_H
+#endif  // GREATERTHAN_H

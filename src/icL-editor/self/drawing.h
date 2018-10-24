@@ -90,14 +90,14 @@ private:
 	 *
 	 * It draws the line number of left side for each visible line.
 	 */
-	void drawLineNumbers(QPainter *painter);
+	void drawLineNumbers(QPainter * painter);
 
 	/**
 	 * @brief drawBreakPoints is the 2nd step of drawing
 	 *
 	 * Draw each visible breakpoint over the existing line numbers.
 	 */
-	void drawBreakPoints(QPainter *painter);
+	void drawBreakPoints(QPainter * painter);
 
 	/**
 	 * @brief drawLine draws a line with a specified format
@@ -105,7 +105,7 @@ private:
 	 * @param line is the line to draw
 	 * @param format is the format to use
 	 */
-	void drawLine(QPainter *painter, Line * line, look::LineFormat & format);
+	void drawLine(QPainter * painter, Line * line, look::LineFormat & format);
 
 	/**
 	 * @brief drawCurrentLine is the 3rd step of drawing
@@ -113,33 +113,33 @@ private:
 	 * Draw the current line number and background over the existing
 	 * lines numbers and breakpoints
 	 */
-	void drawCurrentLine(QPainter *painter);
+	void drawCurrentLine(QPainter * painter);
 
 	/**
 	 * @brief drawDebugLine is the 4th step of drawing
 	 *
 	 * Draw the debug line over all existing content.
 	 */
-	void drawDebugLine(QPainter *painter);
+	void drawDebugLine(QPainter * painter);
 
 	/**
 	 * @brief setUpClipArea restricts drawing on line number area
 	 */
-	void setUpClipArea(QPainter *painter);
+	void setUpClipArea(QPainter * painter);
 
 	/**
 	 * @brief drawSelection is the 5th step of drawing
 	 *
 	 * Draws the selection over the all line hightlights.
 	 */
-	void drawSelection(QPainter *painter, Selection *selection);
+	void drawSelection(QPainter * painter, Selection * selection);
 
 	/**
 	 * @brief drawContent is the 6th step of drawing
 	 *
 	 * Draw the text of editor itself, over all selection all line hightlights.
 	 */
-	void drawContent(QPainter *painter);
+	void drawContent(QPainter * painter);
 
 	/**
 	 * @brief transition make a special transition for opacity of cursor
@@ -151,11 +151,11 @@ private:
 	/**
 	 * @brief drawCursor draws the text cursor
 	 */
-	void drawCursor(QPainter *painter);
+	void drawCursor(QPainter * painter);
 
 protected:
 	// properties
-	look::Chars *       m_chars = nullptr;
+	look::Chars * m_chars = nullptr;
 
 
 	// fields
@@ -167,13 +167,13 @@ protected:
 	StyleProxy * m_proxy;
 
 	/// @brief The right line for line numbers align
-	int lineNumberRight;
+	int lineNumberRight{};
 
 	/// @brief number of visible chars in line
-	int visibleChars;
+	int visibleChars{};
 
 	/// @brief number of visible lines in editor
-	int visibleLines;
+	int visibleLines{};
 
 	/// @brief the arrow for hightlight current line
 	QPolygon leftArrow;

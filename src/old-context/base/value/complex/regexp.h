@@ -8,4 +8,4 @@ public:
 	RegExp();
 };
 
-#endif // REGEXP_H
+#endif  // REGEXP_H

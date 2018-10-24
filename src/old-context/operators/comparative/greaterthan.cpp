@@ -1,6 +1,3 @@
 #include "greaterthan.h"
 
-GreaterThan::GreaterThan()
-{
-
-}
+GreaterThan::GreaterThan() {}

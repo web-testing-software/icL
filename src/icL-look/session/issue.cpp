@@ -8,12 +8,12 @@
 namespace icL::look {
 
 Issue::Issue(QObject * parent)
-	: LinkAdv(parent) {
+    : LinkAdv(parent) {
 	m_effect = new Effect(this);
 }
 
 Issue::~Issue() {
-	icL_dropField(m_effect);
+	delete m_effect;
 }
 
 Effect * Issue::effect() const {
@@ -34,4 +34,4 @@ QJsonObject Issue::getUp() {
 	return obj;
 }
 
-}
+}  // namespace icL::look

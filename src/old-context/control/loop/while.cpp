@@ -1,6 +1,3 @@
 #include "while.h"
 
-While::While()
-{
-
-}
+While::While() {}

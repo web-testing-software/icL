@@ -61,19 +61,19 @@ public slots:
 	 * @brief setNormal changes the default effect color
 	 * @param normal is the new default effect color
 	 */
-	void setNormal(QColor normal);
+	void setNormal(const QColor & normal);
 
 	/**
 	 * @brief setHover changes the effect color for hover state
 	 * @param hover is the new effect color for hover state
 	 */
-	void setHover(QColor hover);
+	void setHover(const QColor & hover);
 
 	/**
 	 * @brief setActive changes the effect color for active state
 	 * @param active is the new effect color for active state
 	 */
-	void setActive(QColor active);
+	void setActive(const QColor & active);
 
 private:
 	QColor m_normal;

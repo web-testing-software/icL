@@ -105,25 +105,25 @@ public slots:
 	 * @brief setError changes the color of errors in console
 	 * @param error is the new color for errors in console
 	 */
-	void setError(QColor error);
+	void setError(const QColor & error);
 
 	/**
 	 * @brief setWarn changes the color of warnings in console
 	 * @param warn is the new color for warnings in console
 	 */
-	void setWarn(QColor warn);
+	void setWarn(const QColor & warn);
 
 	/**
 	 * @brief setConsole changes the color of text in console
 	 * @param console is the new color for text in console
 	 */
-	void setConsole(QColor console);
+	void setConsole(const QColor & console);
 
 	/**
 	 * @brief setBg changes the color of background
 	 * @param bg is the new color for background
 	 */
-	void setBg(QColor bg);
+	void setBg(const QColor & bg);
 
 private:
 	TextLook * m_header = nullptr;

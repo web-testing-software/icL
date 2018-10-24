@@ -9,8 +9,7 @@
 
 namespace icL::context::value {
 
-class SetObject
-	: public Value
+class SetObject : public Value
 {
 public:
 	SetObject(memory::InterLevel * il, memory::SetObjPtr data);

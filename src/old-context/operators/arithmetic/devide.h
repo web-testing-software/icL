@@ -8,4 +8,4 @@ public:
 	Devide();
 };
 
-#endif // DEVIDE_H
+#endif  // DEVIDE_H

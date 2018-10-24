@@ -7,7 +7,7 @@
 namespace icL::editor {
 
 Selection::Selection(QObject * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	m_begin = new Cursor(this);
 	m_end   = new Cursor(this);
 }

@@ -11,7 +11,7 @@
 namespace icL::toolkit::session {
 
 Session::Session()
-	: Folder(nullptr) {}
+    : Folder(nullptr) {}
 
 bool Session::loadSession(const QJsonObject & obj) {
 	if (!obj["icL-session"].isString()) {

@@ -5,7 +5,7 @@
 namespace icL::look {
 
 TextLook::TextLook(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_background = m_foreground = QColor(Qt::transparent);
 }
 
@@ -27,10 +27,10 @@ void TextLook::setUp(const QJsonObject & obj) {
 
 QJsonObject TextLook::getUp() {
 	return {{"background", colorToObj(m_background)},
-			{"foreground", colorToObj(m_foreground)}};
+	        {"foreground", colorToObj(m_foreground)}};
 }
 
-void TextLook::setBackground(QColor background) {
+void TextLook::setBackground(const QColor & background) {
 	if (m_background == background)
 		return;
 
@@ -38,7 +38,7 @@ void TextLook::setBackground(QColor background) {
 	emit backgroundChanged(m_background);
 }
 
-void TextLook::setForeground(QColor foreground) {
+void TextLook::setForeground(const QColor & foreground) {
 	if (m_foreground == foreground)
 		return;
 
@@ -46,4 +46,4 @@ void TextLook::setForeground(QColor foreground) {
 	emit foregroundChanged(m_foreground);
 }
 
-}
+}  // namespace icL::look

@@ -59,13 +59,13 @@ public:
 	 * @param path is the path to the JSON file
 	 * @return true, if so file exists, otherwise false
 	 */
-	Q_INVOKABLE bool loadConf (const QString & path);
+	Q_INVOKABLE bool loadConf(const QString & path);
 
 	/**
 	 * @brief saveConf saves the configuration in loaded JSON file
 	 * @return true, if file is writtable, otherwise false
 	 */
-	Q_INVOKABLE bool saveConf ();
+	Q_INVOKABLE bool saveConf();
 
 signals:
 	void browserChanged(Browser * browser);

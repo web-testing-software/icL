@@ -3,7 +3,7 @@
 namespace icL::editor {
 
 Bracket::Bracket(Line * parent)
-	: Fragment(parent) {}
+    : Fragment(parent) {}
 
 bool Bracket::isBracket() {
 	return true;
@@ -11,7 +11,7 @@ bool Bracket::isBracket() {
 
 bool Bracket::isOpenBracket() {
 	return content == QStringLiteral("{") || content == QStringLiteral("[") ||
-		   content == QStringLiteral("(");
+	       content == QStringLiteral("(");
 }
 
 Fragment * Bracket::insertInSpaces(int pos, const QString & text) {

@@ -7,14 +7,14 @@
 namespace icL::look {
 
 Tree::Tree(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_parent = new Link(this);
 	m_child  = new Link(this);
 }
 
 Tree::~Tree() {
-	icL_dropField(m_parent);
-	icL_dropField(m_child);
+	delete m_parent;
+	delete m_child;
 }
 
 Link * Tree::parent() const {
@@ -34,4 +34,4 @@ QJsonObject Tree::getUp() {
 	return {{"parent", m_parent->getUp()}, {"child", m_child->getUp()}};
 }
 
-}
+}  // namespace icL::look

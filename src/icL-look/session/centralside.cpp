@@ -9,7 +9,7 @@
 namespace icL::look {
 
 CentralSide::CentralSide(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
 
 	m_error      = new Issue(this);
@@ -21,12 +21,12 @@ CentralSide::CentralSide(QObject * parent)
 }
 
 CentralSide::~CentralSide() {
-	icL_dropField(m_error);
-	icL_dropField(m_header);
-	icL_dropField(m_input);
-	icL_dropField(m_underdigit);
-	icL_dropField(m_undertext);
-	icL_dropField(m_warn);
+	delete m_error;
+	delete m_header;
+	delete m_input;
+	delete m_underdigit;
+	delete m_undertext;
+	delete m_warn;
 }
 
 TextLook * CentralSide::header() const {
@@ -84,17 +84,17 @@ void CentralSide::setUp(const QJsonObject & obj) {
 
 QJsonObject CentralSide::getUp() {
 	return {{"header", m_header->getUp()},
-			{"warn", m_warn->getUp()},
-			{"error", m_error->getUp()},
-			{"undertext", m_undertext->getUp()},
-			{"underdigit", m_underdigit->getUp()},
-			{"input", m_input->getUp()},
-			{"command", colorToObj(m_command)},
-			{"error-result", colorToObj(m_errorResult)},
-			{"ok-result", colorToObj(m_okResult)}};
+	        {"warn", m_warn->getUp()},
+	        {"error", m_error->getUp()},
+	        {"undertext", m_undertext->getUp()},
+	        {"underdigit", m_underdigit->getUp()},
+	        {"input", m_input->getUp()},
+	        {"command", colorToObj(m_command)},
+	        {"error-result", colorToObj(m_errorResult)},
+	        {"ok-result", colorToObj(m_okResult)}};
 }
 
-void CentralSide::setCommand(QColor command) {
+void CentralSide::setCommand(const QColor & command) {
 	if (m_command == command)
 		return;
 
@@ -102,7 +102,7 @@ void CentralSide::setCommand(QColor command) {
 	emit commandChanged(m_command);
 }
 
-void CentralSide::setErrorResult(QColor errorResult) {
+void CentralSide::setErrorResult(const QColor & errorResult) {
 	if (m_errorResult == errorResult)
 		return;
 
@@ -110,7 +110,7 @@ void CentralSide::setErrorResult(QColor errorResult) {
 	emit errorResultChanged(m_errorResult);
 }
 
-void CentralSide::setOkResult(QColor okResult) {
+void CentralSide::setOkResult(const QColor & okResult) {
 	if (m_okResult == okResult)
 		return;
 
@@ -118,4 +118,4 @@ void CentralSide::setOkResult(QColor okResult) {
 	emit okResultChanged(m_okResult);
 }
 
-}
+}  // namespace icL::look

@@ -9,7 +9,7 @@
 namespace icL::editor {
 
 Cursor::Cursor(QObject * parent)
-	: QObject(parent) {}
+    : QObject(parent) {}
 
 Fragment * Cursor::fragment() const {
 	return m_fragment;

@@ -8,7 +8,7 @@
 namespace icL::look {
 
 Static::Static(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_menuItem      = new LinkAdv(this);
 	m_submenuItem   = new LinkAdv(this);
 	m_submenuBorder = new EffectAdv(this);
@@ -69,15 +69,15 @@ void Static::setUp(const QJsonObject & obj) {
 
 QJsonObject Static::getUp() {
 	return {{"menu-item", m_menuItem->getUp()},
-			{"submenu-item", m_submenuItem->getUp()},
-			{"submenu-border", m_submenuBorder->getUp()},
-			{"button", m_button->getUp()},
-			{"background", colorToObj(m_background)},
-			{"handle", colorToObj(m_handle)},
-			{"handle-visible", colorToObj(m_handleVisible)},
-			{"handle-hidden", colorToObj(m_handleHidden)},
-			{"menu-shadow", colorToObj(m_menuShadow)},
-			{"submenu-shadow", colorToObj(m_submenuShadow)}};
+	        {"submenu-item", m_submenuItem->getUp()},
+	        {"submenu-border", m_submenuBorder->getUp()},
+	        {"button", m_button->getUp()},
+	        {"background", colorToObj(m_background)},
+	        {"handle", colorToObj(m_handle)},
+	        {"handle-visible", colorToObj(m_handleVisible)},
+	        {"handle-hidden", colorToObj(m_handleHidden)},
+	        {"menu-shadow", colorToObj(m_menuShadow)},
+	        {"submenu-shadow", colorToObj(m_submenuShadow)}};
 }
 
 QColor Static::menuShadow() const {
@@ -88,7 +88,7 @@ QColor Static::submenuShadow() const {
 	return m_submenuShadow;
 }
 
-void Static::setBackground(QColor background) {
+void Static::setBackground(const QColor & background) {
 	if (m_background == background)
 		return;
 
@@ -96,7 +96,7 @@ void Static::setBackground(QColor background) {
 	emit backgroundChanged(m_background);
 }
 
-void Static::setHandle(QColor handle) {
+void Static::setHandle(const QColor & handle) {
 	if (m_handle == handle)
 		return;
 
@@ -104,7 +104,7 @@ void Static::setHandle(QColor handle) {
 	emit handleChanged(m_handle);
 }
 
-void Static::setHandleVisible(QColor handleVisible) {
+void Static::setHandleVisible(const QColor & handleVisible) {
 	if (m_handleVisible == handleVisible)
 		return;
 
@@ -112,7 +112,7 @@ void Static::setHandleVisible(QColor handleVisible) {
 	emit handleVisibleChanged(m_handleVisible);
 }
 
-void Static::setHandleHidden(QColor handleHidden) {
+void Static::setHandleHidden(const QColor & handleHidden) {
 	if (m_handleHidden == handleHidden)
 		return;
 
@@ -120,7 +120,7 @@ void Static::setHandleHidden(QColor handleHidden) {
 	emit handleHiddenChanged(m_handleHidden);
 }
 
-void Static::setMenuShadow(QColor menuShadow) {
+void Static::setMenuShadow(const QColor & menuShadow) {
 	if (m_menuShadow == menuShadow)
 		return;
 
@@ -128,7 +128,7 @@ void Static::setMenuShadow(QColor menuShadow) {
 	emit menuShadowChanged(m_menuShadow);
 }
 
-void Static::setSubmenuShadow(QColor submenuShadow) {
+void Static::setSubmenuShadow(const QColor & submenuShadow) {
 	if (m_submenuShadow == submenuShadow)
 		return;
 

@@ -86,7 +86,7 @@ public slots:
 	 * @brief setPath changes the path to images folder
 	 * @param path is the new path tp images folder
 	 */
-	void setPath(QString path);
+	void setPath(const QString & path);
 
 signals:
 	void startChanged(StartWindow * start);

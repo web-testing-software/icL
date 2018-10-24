@@ -5,7 +5,7 @@
 namespace icL::toolkit::utils {
 
 MouseTracker::MouseTracker(QObject * parent)
-	: QThread(parent) {}
+    : QThread(parent) {}
 
 bool MouseTracker::tracking() const {
 	return m_tracking;

@@ -5,10 +5,6 @@
 
 
 
-#define icL_dropField(x) \
-	if (x != nullptr)    \
-	delete x
-
 /**
  * @brief The icL.look namespace contains a icL theme
  */

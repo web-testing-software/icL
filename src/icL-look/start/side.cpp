@@ -9,7 +9,7 @@
 namespace icL::look {
 
 Side::Side(QObject * parent)
-	: ListItem(parent) {
+    : ListItem(parent) {
 	m_background = QColor(Qt::transparent);
 	m_header     = new TextLook(this);
 	m_input      = new Input(this);
@@ -17,9 +17,9 @@ Side::Side(QObject * parent)
 }
 
 Side::~Side() {
-	icL_dropField(m_header);
-	icL_dropField(m_input);
-	icL_dropField(m_button);
+	delete m_header;
+	delete m_input;
+	delete m_button;
 }
 
 TextLook * Side::header() const {
@@ -61,7 +61,7 @@ QJsonObject Side::getUp() {
 	return obj;
 }
 
-void Side::setBackground(QColor background) {
+void Side::setBackground(const QColor & background) {
 	if (m_background == background)
 		return;
 
@@ -69,4 +69,4 @@ void Side::setBackground(QColor background) {
 	emit backgroundChanged(m_background);
 }
 
-}
+}  // namespace icL::look

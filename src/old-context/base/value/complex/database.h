@@ -8,4 +8,4 @@ public:
 	DataBase();
 };
 
-#endif // DATABASE_H
+#endif  // DATABASE_H

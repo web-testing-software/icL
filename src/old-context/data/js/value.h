@@ -12,14 +12,14 @@ class Value : public Js
 public:
 	Value(memory::InterLevel * il);
 
-	QString getCode ();
+	QString getCode();
 
 	// Context interface
 public:
-	bool checkPrev(const Context *context) const override;
-	Context *getBeginContext() override;
-	Context *getEndContext() override;
-	bool isResultative() const override;
+	bool      checkPrev(const Context * context) const override;
+	Context * getBeginContext() override;
+	Context * getEndContext() override;
+	bool      isResultative() const override;
 };
 
 }  // namespace icL::context::data::js

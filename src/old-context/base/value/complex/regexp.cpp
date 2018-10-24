@@ -1,6 +1,3 @@
 #include "regexp.h"
 
-RegExp::RegExp()
-{
-
-}
+RegExp::RegExp() {}

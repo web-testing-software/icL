@@ -4,7 +4,7 @@
 ///**
 // * The namespace errors contains errors' codes.
 // */
-//namespace icL::errors {
+// namespace icL::errors {
 
 ///**
 //  \~english
@@ -12,7 +12,7 @@
 // *
 // * For more information plase see the Standard for language icL
 // */
-//enum Errors {
+// enum Errors {
 //	OutOfBounds
 //};
 

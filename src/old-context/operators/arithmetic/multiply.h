@@ -8,4 +8,4 @@ public:
 	Multiply();
 };
 
-#endif // MULTIPLY_H
+#endif  // MULTIPLY_H

@@ -21,13 +21,13 @@
 // *  |  '- rich
 // *  '- memory
 // */
-//namespace icL {
+// namespace icL {
 
-//class VMStack;
+// class VMStack;
 
-//class VirtualMachine : public memory::VirtualMachine
+// class VirtualMachine : public memory::VirtualMachine
 //{
-//public:
+// public:
 //	VirtualMachine(VMStack * vms, VirtualMachine * parent, QString * source);
 //	virtual ~VirtualMachine() = default;
 
@@ -46,7 +46,7 @@
 //	QString * source() override;
 //	QVariant getConsoleValue() override;
 
-//protected:
+// protected:
 //	void finish();
 
 //	context::Context * findExecutable();
@@ -57,7 +57,7 @@
 
 //	void destroy(context::Context * executable);
 
-//private:
+// private:
 //	memory::InterLevel il;
 //	inter::Interpreter interpreter;
 

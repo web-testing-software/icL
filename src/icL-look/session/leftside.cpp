@@ -8,16 +8,16 @@
 namespace icL::look {
 
 LeftSide::LeftSide(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_files    = new ListItem(this);
 	m_projects = new Tree(this);
 	m_switcher = new Link(this);
 }
 
 LeftSide::~LeftSide() {
-	icL_dropField(m_files);
-	icL_dropField(m_projects);
-	icL_dropField(m_switcher);
+	delete m_files;
+	delete m_projects;
+	delete m_switcher;
 }
 
 Link * LeftSide::switcher() const {
@@ -40,8 +40,8 @@ void LeftSide::setUp(const QJsonObject & obj) {
 
 QJsonObject LeftSide::getUp() {
 	return {{"switcher", m_switcher->getUp()},
-			{"projects", m_projects->getUp()},
-			{"files", m_files->getUp()}};
+	        {"projects", m_projects->getUp()},
+	        {"files", m_files->getUp()}};
 }
 
-}
+}  // namespace icL::look

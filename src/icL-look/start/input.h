@@ -62,7 +62,7 @@ public slots:
 	 * @brief setCursor changes the color of text cursor
 	 * @param cursor is the new color for text cursors
 	 */
-	void setCursor(QColor cursor);
+	void setCursor(const QColor & cursor);
 
 private:
 	TextLook * m_inactive  = nullptr;

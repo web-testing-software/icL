@@ -9,7 +9,7 @@
 namespace icL::toolkit::session {
 
 Libs::Libs(Item * parent)
-	: Folder(parent) {}
+    : Folder(parent) {}
 
 bool Libs::setLibsList(const QString & path, const QVariantList & libs) {
 	clear();
@@ -33,9 +33,8 @@ QVariant Libs::data(int column) {
 	if (column == 0) {
 		return {QObject::tr("Libs")};
 	}
-	else {
-		return {};
-	}
+
+	return {};
 }
 
 QString Libs::getIcon() {

@@ -41,7 +41,7 @@ public slots:
 	 * @brief setActiveHover changes the link color for active and hover state
 	 * @param activeHover is the new link color for active and hover state
 	 */
-	void setActiveHover(QColor activeHover);
+	void setActiveHover(const QColor & activeHover);
 
 private:
 	QColor m_activeHover;

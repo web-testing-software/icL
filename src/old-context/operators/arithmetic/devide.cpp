@@ -1,6 +1,3 @@
 #include "devide.h"
 
-Devide::Devide()
-{
-
-}
+Devide::Devide() {}

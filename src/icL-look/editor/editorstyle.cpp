@@ -1,6 +1,6 @@
 #include "editorstyle.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <QFontMetrics>
 #include <QtDebug>
@@ -8,7 +8,7 @@
 namespace icL::look {
 
 EditorStyle::EditorStyle(QObject * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 
 	m_font.setFixedPitch(true);
 	m_font.setPixelSize(m_fontS);

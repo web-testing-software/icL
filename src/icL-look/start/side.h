@@ -74,7 +74,7 @@ public slots:
 	 * @brief setBackground changes the background color
 	 * @param background is the new background color
 	 */
-	void setBackground(QColor background);
+	void setBackground(const QColor & background);
 
 private:
 	TextLook * m_header = nullptr;

@@ -9,7 +9,7 @@
 namespace icL::toolkit::session {
 
 Lib::Lib(Item * parent)
-	: Finaly(parent) {}
+    : Finaly(parent) {}
 
 bool Lib::setPath(const QString & path) {
 	return checkIfFileExist(path, libname);
@@ -23,9 +23,8 @@ QVariant Lib::data(int column) {
 	if (column == 0) {
 		return {libname};
 	}
-	else {
-		return {};
-	}
+
+	return {};
 }
 
 int Lib::selfIndex() {
@@ -41,8 +40,8 @@ enum Actions { Rename = 0, Delete = 1 };
 const utils::Actions & Lib::getActionsList() {
 	static utils::Actions actions = {
 	  new utils::RemoteCall(
-		Actions::Rename, QObject::tr("Rename"),
-		{new utils::RemoteArg(QObject::tr("New name"))}),
+	    Actions::Rename, QObject::tr("Rename"),
+	    {new utils::RemoteArg(QObject::tr("New name"))}),
 	  new utils::RemoteCall(Actions::Delete, QObject::tr("Delete"), {})};
 
 	return actions;

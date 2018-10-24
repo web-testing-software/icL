@@ -11,7 +11,7 @@
 namespace icL::look {
 
 SessionWindow::SessionWindow(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_center   = new CentralSide(this);
 	m_floating = new Floating(this);
 	m_left     = new LeftSide(this);
@@ -20,11 +20,11 @@ SessionWindow::SessionWindow(QObject * parent)
 }
 
 SessionWindow::~SessionWindow() {
-	icL_dropField(m_center);
-	icL_dropField(m_floating);
-	icL_dropField(m_left);
-	icL_dropField(m_top);
-	icL_dropField(m_main);
+	delete m_center;
+	delete m_floating;
+	delete m_left;
+	delete m_top;
+	delete m_main;
 }
 
 CentralSide * SessionWindow::center() const {
@@ -53,14 +53,14 @@ void SessionWindow::setUp(const QJsonObject & obj) {
 
 QJsonObject SessionWindow::getUp() {
 	return {{"center", m_center->getUp()},
-			{"floating", m_floating->getUp()},
-			{"left", m_left->getUp()},
-			{"top", m_top->getUp()},
-			{"main", m_main->getUp()}};
+	        {"floating", m_floating->getUp()},
+	        {"left", m_left->getUp()},
+	        {"top", m_top->getUp()},
+	        {"main", m_main->getUp()}};
 }
 
 Static * SessionWindow::main() const {
 	return m_main;
 }
 
-}
+}  // namespace icL::look

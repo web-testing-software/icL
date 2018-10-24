@@ -7,7 +7,7 @@
 namespace icL::look {
 
 Input::Input(QObject * parent)
-	: Link(parent) {
+    : Link(parent) {
 	m_cursor = QColor(Qt::transparent);
 
 	m_inactive  = new TextLook(this);
@@ -15,8 +15,8 @@ Input::Input(QObject * parent)
 }
 
 Input::~Input() {
-	icL_dropField(m_inactive);
-	icL_dropField(m_selection);
+	delete m_inactive;
+	delete m_selection;
 }
 
 TextLook * Input::inactive() const {
@@ -52,7 +52,7 @@ QJsonObject Input::getUp() {
 	return obj;
 }
 
-void Input::setCursor(QColor cursor) {
+void Input::setCursor(const QColor & cursor) {
 	if (m_cursor == cursor) {
 		return;
 	}
@@ -61,4 +61,4 @@ void Input::setCursor(QColor cursor) {
 	emit cursorChanged(m_cursor);
 }
 
-}
+}  // namespace icL::look

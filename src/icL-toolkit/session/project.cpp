@@ -15,7 +15,7 @@
 namespace icL::toolkit::session {
 
 Project::Project(Item * parent)
-	: Item(parent) {}
+    : Item(parent) {}
 
 Project::~Project() {
 	delete script;
@@ -47,7 +47,7 @@ bool Project::loadProject(const QString & path) {
 
 	res = res && script->setPath(path % '/' % obj["script"].toString());
 	res = res && resources->setResourceList(
-				   path, obj["resources"].toArray().toVariantList());
+	               path, obj["resources"].toArray().toVariantList());
 	res = res && libs->setLibsList(path, obj["libs"].toArray().toVariantList());
 
 	return res;
@@ -103,9 +103,8 @@ QVariant Project::data(int column) {
 	if (column == 0) {
 		return {m_name};
 	}
-	else {
-		return {};
-	}
+
+	return {};
 }
 
 QString Project::getIcon() {
@@ -117,10 +116,10 @@ enum Actions { NewLib = 0, NewResource = 1 };
 const utils::Actions & Project::getActionsList() {
 	static utils::Actions actions = {
 	  new utils::RemoteCall(
-		Actions::NewLib, QObject::tr("New library"),
-		{new utils::RemoteArg(QObject::tr("Library name"))}),
+	    Actions::NewLib, QObject::tr("New library"),
+	    {new utils::RemoteArg(QObject::tr("Library name"))}),
 	  new utils::RemoteCall(
-		Actions::NewResource, QObject::tr("New resource"), {})};
+	    Actions::NewResource, QObject::tr("New resource"), {})};
 
 	return actions;
 }

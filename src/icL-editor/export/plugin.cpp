@@ -3,7 +3,7 @@
 #include "../self/advanced.h"
 
 EditorPlugin::EditorPlugin(QObject * parent)
-	: QQmlExtensionPlugin(parent) {}
+    : QQmlExtensionPlugin(parent) {}
 
 void EditorPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Editor"));

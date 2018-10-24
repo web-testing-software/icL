@@ -5,8 +5,8 @@
 namespace icL::context::code {
 
 Code::Code(memory::InterLevel * il, const memory::CodeFragment & source)
-	: Context(il)
-	, m_source(source) {
+    : Context(il)
+    , m_source(source) {
 	m_role = Role::Code;
 }
 
@@ -16,12 +16,12 @@ const memory::CodeFragment & Code::source() const {
 
 bool Code::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   (context->role() == Role::If || context->role() == Role::Else ||
-			context->role() == Role::Slot ||
-			context->role() == Role::Argument ||
-			(context->role() == Role::Assign && context->prev() != nullptr &&
-			 context->prev()->role() == Role::Function) ||
-			context->isResultative());
+	       (context->role() == Role::If || context->role() == Role::Else ||
+	        context->role() == Role::Slot ||
+	        context->role() == Role::Argument ||
+	        (context->role() == Role::Assign && context->prev() != nullptr &&
+	         context->prev()->role() == Role::Function) ||
+	        context->isResultative());
 }
 
 bool Code::isRightToLeft() const {

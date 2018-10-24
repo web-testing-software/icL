@@ -192,8 +192,8 @@ private:
 	Line *     m_prev  = nullptr;
 
 	uint8_t m_length = 0;
-	int32_t m_beginPos;
-	int16_t m_lineNumber;
+	int32_t m_beginPos{};
+	int16_t m_lineNumber{};
 	bool    m_visible = false;
 
 	// fields
@@ -205,7 +205,7 @@ private:
 	QStaticText * cache = nullptr;
 
 	int  m_charsNumberInLineNumber = 0;
-	bool m_hasBreakPoint = false;
+	bool m_hasBreakPoint           = false;
 };
 
 }  // namespace icL::editor

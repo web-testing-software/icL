@@ -4,7 +4,7 @@
 
 namespace icL::editor {
 
-StyleProxy::StyleProxy() {}
+StyleProxy::StyleProxy() = default;
 
 look::EditorStyle * StyleProxy::style() {
 	return m_style;

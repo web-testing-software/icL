@@ -1,6 +1,3 @@
 #include "containstemplate.h"
 
-ContainsTemplate::ContainsTemplate()
-{
-
-}
+ContainsTemplate::ContainsTemplate() {}

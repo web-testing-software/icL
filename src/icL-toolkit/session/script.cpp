@@ -8,7 +8,7 @@
 namespace icL::toolkit::session {
 
 Script::Script(Item * parent)
-	: Finaly(parent) {}
+    : Finaly(parent) {}
 
 bool Script::setPath(const QString & path) {
 	return checkIfFileExist(path, name);
@@ -18,7 +18,7 @@ int Script::columnCount() {
 	return 1;
 }
 
-QVariant Script::data(int column) {
+QVariant Script::data(int /*column*/) {
 	return {name};
 }
 
@@ -35,10 +35,10 @@ enum Actions { Rename = 0, MakeLib = 1 };
 const utils::Actions & Script::getActionsList() {
 	static utils::Actions actions = {
 	  new utils::RemoteCall(
-		Actions::Rename, QObject::tr("Rename"),
-		{new utils::RemoteArg(QObject::tr("New name"))}),
+	    Actions::Rename, QObject::tr("Rename"),
+	    {new utils::RemoteArg(QObject::tr("New name"))}),
 	  new utils::RemoteCall(
-		Actions::MakeLib, QObject::tr("Make library from script"), {})};
+	    Actions::MakeLib, QObject::tr("Make library from script"), {})};
 
 	return actions;
 }

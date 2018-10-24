@@ -15,7 +15,7 @@
 namespace icL::editor {
 
 Drawing::Drawing(QQuickItem * parent)
-	: Logic(parent) {
+    : Logic(parent) {
 	setRenderTarget(QQuickPaintedItem::FramebufferObject);
 
 	connect(
@@ -117,10 +117,10 @@ void Drawing::updateBackgroundGeometry() {
 
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
-					   {lineNumberArea.right(), 0},
-					   {scissorsArea.left(), m_proxy->fullLineH() / 2},
-					   {lineNumberArea.right(), m_proxy->fullLineH()},
-					   {0, m_proxy->fullLineH()}})};
+	                   {lineNumberArea.right(), 0},
+	                   {scissorsArea.left(), m_proxy->fullLineH() / 2},
+	                   {lineNumberArea.right(), m_proxy->fullLineH()},
+	                   {0, m_proxy->fullLineH()}})};
 
 	lineRect = contentArea;
 	lineRect.setBottom(m_proxy->fullLineH());
@@ -134,7 +134,7 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	auto * it    = m_firstVisible;
 	int    yStep = m_proxy->fullLineH();
 	int    yPos  = m_proxy->divLineSBy2() +
-			   (m_proxy->charH() - it->getCache()->size().height()) / 2;
+	           (m_proxy->charH() - it->getCache()->size().height()) / 2;
 
 	while (it != nullptr && it->visible()) {
 		auto * stext = it->getCache();
@@ -188,7 +188,7 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 	// Init for third drawing
 	it   = m_firstVisible;
 	yPos = m_proxy->divLineSBy2() +
-		   (m_proxy->charH() - it->getCache()->size().height()) / 2;
+	       (m_proxy->charH() - it->getCache()->size().height()) / 2;
 	painter->setBrush(Qt::NoBrush);
 	painter->setPen(m_chars->breakpoint.lineNumber.text);
 	painter->setFont(m_chars->breakpoint.lineNumber.font);
@@ -200,7 +200,7 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 
 			painter->drawStaticText(
 			  lineNumberRight -
-				m_proxy->charW() * it->charsNumberInLineNumber(),
+			    m_proxy->charW() * it->charsNumberInLineNumber(),
 			  yPos, *stext);
 		}
 
@@ -237,7 +237,7 @@ void Drawing::drawLine(
 	painter->drawStaticText(
 	  lineNumberRight - m_proxy->charW() * line->charsNumberInLineNumber(),
 	  yPos + m_proxy->divLineSBy2() +
-		(m_proxy->charH() - line->getCache()->size().height()) / 2,
+	    (m_proxy->charH() - line->getCache()->size().height()) / 2,
 	  *line->getCache());
 }
 
@@ -335,7 +335,7 @@ void Drawing::drawContent(QPainter * painter) {
 	auto * itLine = m_firstVisible;
 	int    yStep  = m_proxy->fullLineH();
 	int    yPos   = m_proxy->divLineSBy2() +
-			   (m_proxy->charH() - itLine->getCache()->size().height()) / 2;
+	           (m_proxy->charH() - itLine->getCache()->size().height()) / 2;
 	int xBegin = scissorsArea.left();
 	int xStep  = m_proxy->charW();
 
@@ -364,8 +364,8 @@ void Drawing::drawContent(QPainter * painter) {
 qreal Drawing::transition(qreal x) {
 	// x = (e^(x*e) - 1) / (e^e - 1) for x {0, 1}, max error 0.0015 = 0.15%
 	return x * (x * (x * (x * 0.6755328851108425f - 0.3190423664446824f) +
-					 0.47886115389358097f) +
-				0.1646483274402586f);
+	                 0.47886115389358097f) +
+	            0.1646483274402586f);
 }
 
 void Drawing::drawCursor(QPainter * painter) {
@@ -403,7 +403,7 @@ void Drawing::drawCursor(QPainter * painter) {
 
 		if (line->visible()) {
 			int yPos = (line->lineNumber() - m_firstVisible->lineNumber()) *
-					   m_proxy->fullLineH();
+			           m_proxy->fullLineH();
 			int xPos = xBegin + cursor->getPosInLine() * m_proxy->charW();
 
 			painter->setPen(cursor->fragment()->format().text);

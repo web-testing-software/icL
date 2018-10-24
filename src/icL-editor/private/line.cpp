@@ -10,7 +10,7 @@
 namespace icL::editor {
 
 Line::Line(Logic * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	m_parent = parent;
 }
 
@@ -88,7 +88,7 @@ void Line::setFirst(Fragment * first) {
 	if (m_first == first)
 		return;
 
-	m_first  = first;
+	m_first = first;
 
 	// Needs to update the length of line
 	auto * it = first->next();

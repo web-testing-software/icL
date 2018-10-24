@@ -5,9 +5,9 @@
 namespace icL::toolkit::tree {
 
 Finaly::Finaly(Item * parent)
-	: Item(parent) {}
+    : Item(parent) {}
 
-Item * Finaly::child(int row) {
+Item * Finaly::child(int /*row*/) {
 	return nullptr;
 }
 

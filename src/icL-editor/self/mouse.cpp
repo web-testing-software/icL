@@ -2,7 +2,7 @@
 
 namespace icL::editor {
 
-Mouse::Mouse(QQuickItem *parent)
-	: Keyboard(parent) {}
+Mouse::Mouse(QQuickItem * parent)
+    : Keyboard(parent) {}
 
 }  // namespace icL::editor

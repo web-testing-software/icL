@@ -42,7 +42,7 @@ public:
 	 */
 	Selection * next() const;
 
-	void moveSelect(int step, Cursor *begin, Cursor *end);
+	void moveSelect(int step, Cursor * begin, Cursor * end);
 
 	/**
 	 * @brief move moves the cursor to left/right be needed chars
@@ -94,7 +94,7 @@ private:
 	Cursor *    m_begin = nullptr;
 	Cursor *    m_end   = nullptr;
 	Selection * m_next  = nullptr;
-	bool        m_rtl;
+	bool        m_rtl{};
 };
 
 }  // namespace icL::editor

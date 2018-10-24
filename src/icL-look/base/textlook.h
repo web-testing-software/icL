@@ -49,13 +49,13 @@ public slots:
 	 * @brief setBackground changes the background color
 	 * @param background is the new backgtound color
 	 */
-	void setBackground(QColor background);
+	void setBackground(const QColor & background);
 
 	/**
 	 * @brief setForeground changes the foreground color
 	 * @param foreground is the new foreground color
 	 */
-	void setForeground(QColor foreground);
+	void setForeground(const QColor & foreground);
 
 private:
 	QColor m_background;

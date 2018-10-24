@@ -76,7 +76,7 @@ public:
 	int fullLineH() const;
 
 private:
-	look::EditorStyle * m_style;
+	look::EditorStyle * m_style{};
 };
 
 }  // namespace icL::editor

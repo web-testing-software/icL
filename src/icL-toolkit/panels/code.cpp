@@ -5,7 +5,7 @@
 namespace icL::toolkit::panels {
 
 Code::Code(QObject * parent)
-	: BasePanels(parent) {}
+    : BasePanels(parent) {}
 
 bool Code::leftPanel() const {
 	return m_leftPanel;

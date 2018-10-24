@@ -120,37 +120,37 @@ public slots:
 	 * @brief setBackground changes the color of background
 	 * @param background is the new color for background
 	 */
-	void setBackground(QColor background);
+	void setBackground(const QColor & background);
 
 	/**
 	 * @brief setHandle changes the color of central handler
 	 * @param handle is the new color for central handler
 	 */
-	void setHandle(QColor handle);
+	void setHandle(const QColor & handle);
 
 	/**
 	 * @brief setHandleVisible changes the color of an active handler
 	 * @param handleVisible is the color for an active handler
 	 */
-	void setHandleVisible(QColor handleVisible);
+	void setHandleVisible(const QColor & handleVisible);
 
 	/**
 	 * @brief setHandleHidden changes the color of an inactive handler
 	 * @param handleHidden is the color for inactive handler
 	 */
-	void setHandleHidden(QColor handleHidden);
+	void setHandleHidden(const QColor & handleHidden);
 
 	/**
 	 * @brief setMenuShadow changes the color of main menu shadow
 	 * @param menuShadow is the color for main menu shadow
 	 */
-	void setMenuShadow(QColor menuShadow);
+	void setMenuShadow(const QColor & menuShadow);
 
 	/**
 	 * @brief setSubmenuShadow changes the color of submenu shadow
 	 * @param submenuShadow is the new color for submenu shadow
 	 */
-	void setSubmenuShadow(QColor submenuShadow);
+	void setSubmenuShadow(const QColor & submenuShadow);
 
 private:
 	LinkAdv *   m_menuItem      = nullptr;

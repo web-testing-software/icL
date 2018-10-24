@@ -7,13 +7,13 @@
 namespace icL::look {
 
 Line::Line(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_lineBg     = QColor(Qt::transparent);
 	m_lineNumber = new CharFormatBase(this);
 }
 
 Line::~Line() {
-	icL_dropField(m_lineNumber);
+	delete m_lineNumber;
 }
 
 QColor Line::lineBg() const {
@@ -33,10 +33,10 @@ void Line::setUp(const QJsonObject & obj) {
 
 QJsonObject Line::getUp() {
 	return {{"line-number", m_lineNumber->getUp()},
-			{"line-bg", colorToObj(m_lineBg)}};
+	        {"line-bg", colorToObj(m_lineBg)}};
 }
 
-void Line::setLineBg(QColor lineBg) {
+void Line::setLineBg(const QColor & lineBg) {
 	if (m_lineBg == lineBg)
 		return;
 
@@ -45,7 +45,7 @@ void Line::setLineBg(QColor lineBg) {
 }
 
 CLine::CLine(QObject * parent)
-	: Line(parent) {}
+    : Line(parent) {}
 
 QColor CLine::edited() const {
 	return m_edited;
@@ -55,7 +55,7 @@ QColor CLine::saved() const {
 	return m_saved;
 }
 
-void CLine::setEdited(QColor edited) {
+void CLine::setEdited(const QColor & edited) {
 	if (m_edited == edited)
 		return;
 
@@ -63,7 +63,7 @@ void CLine::setEdited(QColor edited) {
 	emit editedChanged(m_edited);
 }
 
-void CLine::setSaved(QColor saved) {
+void CLine::setSaved(const QColor & saved) {
 	if (m_saved == saved)
 		return;
 

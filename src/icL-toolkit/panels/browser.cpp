@@ -5,7 +5,7 @@
 namespace icL::toolkit::panels {
 
 Browser::Browser(QObject * parent)
-	: BasePanels(parent) {}
+    : BasePanels(parent) {}
 
 bool Browser::leftPanel() const {
 	return m_leftPanel;

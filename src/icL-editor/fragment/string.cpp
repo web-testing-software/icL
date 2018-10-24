@@ -1,13 +1,13 @@
-#include "string.h"
-
 #include "../self/advanced.h"
 
 #include <icL-look/export/chars.h>
 
+#include <cstring>
+
 namespace icL::editor {
 
 String::String(Line * parent)
-	: Fragment(parent) {}
+    : Fragment(parent) {}
 
 const look::TextCharFormat & String::format() {
 	return getEditor()->chars()->string;

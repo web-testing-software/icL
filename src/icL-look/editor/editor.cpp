@@ -12,7 +12,7 @@
 namespace icL::look {
 
 Editor::Editor(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 
 	m_style      = new EditorStyle(this);
 	m_chars      = new Chars(this);
@@ -44,27 +44,27 @@ Editor::Editor(QObject * parent)
 }
 
 Editor::~Editor() {
-	icL_dropField(m_style);
-	icL_dropField(m_breakpoint);
-	icL_dropField(m_comment);
-	icL_dropField(m_cline);
-	icL_dropField(m_current);
-	icL_dropField(m_debug);
-	icL_dropField(m_error);
-	icL_dropField(m_function);
-	icL_dropField(m_global);
-	icL_dropField(m_keyword);
-	icL_dropField(m_local);
-	icL_dropField(m_method);
-	icL_dropField(m_number);
-	icL_dropField(m_occurrence);
-	icL_dropField(m_property);
-	icL_dropField(m_selection);
-	icL_dropField(m_string);
-	icL_dropField(m_system);
-	icL_dropField(m_text);
-	icL_dropField(m_type);
-	icL_dropField(m_warning);
+	delete m_style;
+	delete m_breakpoint;
+	delete m_comment;
+	delete m_cline;
+	delete m_current;
+	delete m_debug;
+	delete m_error;
+	delete m_function;
+	delete m_global;
+	delete m_keyword;
+	delete m_local;
+	delete m_method;
+	delete m_number;
+	delete m_occurrence;
+	delete m_property;
+	delete m_selection;
+	delete m_string;
+	delete m_system;
+	delete m_text;
+	delete m_type;
+	delete m_warning;
 }
 
 EditorStyle * Editor::style() {
@@ -182,25 +182,25 @@ void Editor::setUp(const QJsonObject & obj) {
 
 QJsonObject Editor::getUp() {
 	return {{"text", m_text->getUp()},
-			{"number", m_number->getUp()},
-			{"string", m_string->getUp()},
-			{"type", m_type->getUp()},
-			{"local", m_local->getUp()},
-			{"global", m_global->getUp()},
-			{"property", m_property->getUp()},
-			{"method", m_method->getUp()},
-			{"function", m_function->getUp()},
-			{"keyword", m_keyword->getUp()},
-			{"comment", m_comment->getUp()},
-			{"system", m_system->getUp()},
-			{"error", m_error->getUp()},
-			{"warning", m_warning->getUp()},
-			{"occurrence", m_occurrence->getUp()},
-			{"selection", m_selection->getUp()},
-			{"current", m_current->getUp()},
-			{"debug", m_debug->getUp()},
-			{"breakpoint", m_breakpoint->getUp()},
-			{"cline", m_cline->getUp()}};
+	        {"number", m_number->getUp()},
+	        {"string", m_string->getUp()},
+	        {"type", m_type->getUp()},
+	        {"local", m_local->getUp()},
+	        {"global", m_global->getUp()},
+	        {"property", m_property->getUp()},
+	        {"method", m_method->getUp()},
+	        {"function", m_function->getUp()},
+	        {"keyword", m_keyword->getUp()},
+	        {"comment", m_comment->getUp()},
+	        {"system", m_system->getUp()},
+	        {"error", m_error->getUp()},
+	        {"warning", m_warning->getUp()},
+	        {"occurrence", m_occurrence->getUp()},
+	        {"selection", m_selection->getUp()},
+	        {"current", m_current->getUp()},
+	        {"debug", m_debug->getUp()},
+	        {"breakpoint", m_breakpoint->getUp()},
+	        {"cline", m_cline->getUp()}};
 }
 
 void Editor::updateOccurrence() {
@@ -215,8 +215,7 @@ void Editor::updateSelection() {
 	m_chars->selection.border.setWidth(m_style->lineS());
 }
 
-void Editor::updateText()
-{
+void Editor::updateText() {
 	updateStyle(m_chars->text, m_text);
 }
 

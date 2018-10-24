@@ -10,7 +10,7 @@
 namespace icL::toolkit::session {
 
 Resource::Resource(Item * parent)
-	: Finaly(parent) {}
+    : Finaly(parent) {}
 
 bool Resource::setPath(const QString & path) {
 	return checkIfFileExist(path, resourceName);
@@ -24,18 +24,16 @@ QVariant Resource::data(int column) {
 	if (column == 0) {
 		return {resourceName};
 	}
-	else {
-		return {};
-	}
+
+	return {};
 }
 
 int Resource::selfIndex() {
 	if (dynamic_cast<Project *>(m_parent)->hasLibs()) {
 		return 2;
 	}
-	else {
-		return 1;
-	}
+
+	return 1;
 }
 
 QString Resource::getIcon() {

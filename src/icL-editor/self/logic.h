@@ -142,7 +142,7 @@ protected:
 	int numberOfDigits = 0;
 
 	/// @brief the line in which currently is placed the debug cursor
-	Line * debugLine;
+	Line * debugLine{};
 };
 
 }  // namespace icL::editor

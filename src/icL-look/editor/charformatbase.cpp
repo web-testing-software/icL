@@ -5,7 +5,7 @@
 namespace icL::look {
 
 CharFormatBase::CharFormatBase(QObject * parent)
-	: TextLook(parent) {
+    : TextLook(parent) {
 	m_bold = m_italic = false;
 }
 
@@ -49,4 +49,4 @@ void CharFormatBase::setItalic(bool italic) {
 	emit italicChanged(m_italic);
 }
 
-}
+}  // namespace icL::look

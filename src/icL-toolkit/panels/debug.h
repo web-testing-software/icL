@@ -49,7 +49,7 @@ public:
 	bool browser() const;
 
 	// BasePanels interface
-	void setUp(const QJsonObject &obj) override;
+	void        setUp(const QJsonObject & obj) override;
 	QJsonObject getUp() override;
 
 signals:

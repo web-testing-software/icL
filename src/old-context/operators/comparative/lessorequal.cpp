@@ -1,6 +1,3 @@
 #include "lessorequal.h"
 
-LessOrEqual::LessOrEqual()
-{
-
-}
+LessOrEqual::LessOrEqual() {}

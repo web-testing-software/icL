@@ -1,6 +1,3 @@
 #include "requestresult.h"
 
-RequestResult::RequestResult()
-{
-
-}
+RequestResult::RequestResult() {}

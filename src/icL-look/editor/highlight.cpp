@@ -5,7 +5,7 @@
 namespace icL::look {
 
 Highlight::Highlight(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_background = m_border = QColor(Qt::transparent);
 }
 
@@ -27,10 +27,10 @@ void Highlight::setUp(const QJsonObject & obj) {
 
 QJsonObject Highlight::getUp() {
 	return {{"background", colorToObj(m_background)},
-			{"border", colorToObj(m_border)}};
+	        {"border", colorToObj(m_border)}};
 }
 
-void Highlight::setBackground(QColor background) {
+void Highlight::setBackground(const QColor & background) {
 	if (m_background == background)
 		return;
 
@@ -38,7 +38,7 @@ void Highlight::setBackground(QColor background) {
 	emit backgroundChanged(m_background);
 }
 
-void Highlight::setBorder(QColor border) {
+void Highlight::setBorder(const QColor & border) {
 	if (m_border == border)
 		return;
 
@@ -46,4 +46,4 @@ void Highlight::setBorder(QColor border) {
 	emit borderChanged(m_border);
 }
 
-}
+}  // namespace icL::look

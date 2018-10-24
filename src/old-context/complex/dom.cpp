@@ -10,17 +10,17 @@
 namespace icL::context::complex {
 
 Dom::Dom(memory::InterLevel * il)
-	: Complex(il) {}
+    : Complex(il) {}
 
 memory::WebElement Dom::query(const QString & selector) {
 	QString            newId = object::Element::getNewId();
 	memory::WebElement web;
 
 	web.count = il->server
-				  ->runJS(
-					newId % R"( = nm(")" % selector %
-					R"(", false); )" % newId % ".length")
-				  .toInt();
+	              ->runJS(
+	                newId % R"( = nm(")" % selector % R"(", false); )" % newId %
+	                ".length")
+	              .toInt();
 	web.selector = selector;
 	web.variable = newId;
 
@@ -38,9 +38,9 @@ memory::WebElement Dom::queryAll(const QStringList & selectors) {
 
 	web.count =
 	  il->server
-		->runJS(
-		  newId % R"( = nm(")" % selector % R"(", true); )" % newId % ".length")
-		.toInt();
+	    ->runJS(
+	      newId % R"( = nm(")" % selector % R"(", true); )" % newId % ".length")
+	    .toInt();
 	web.selector = selector2;
 	web.variable = newId;
 
@@ -91,7 +91,7 @@ void Dom::runQueryAll(memory::ArgList & args) {
 
 bool Dom::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
-		   (context->role() != Role::Exists && context->isResultative());
+	       (context->role() != Role::Exists && context->isResultative());
 }
 
 bool Dom::canBeAtEnd() const {

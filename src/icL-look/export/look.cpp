@@ -12,7 +12,7 @@
 namespace icL::look {
 
 Look::Look(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_editor  = new Editor(this);
 	m_session = new SessionWindow(this);
 	m_start   = new StartWindow(this);
@@ -20,9 +20,9 @@ Look::Look(QObject * parent)
 
 Look::~Look() {
 	if (source == nullptr) {
-		icL_dropField(m_editor);
-		icL_dropField(m_session);
-		icL_dropField(m_start);
+		delete m_editor;
+		delete m_session;
+		delete m_start;
 	}
 }
 
@@ -43,10 +43,10 @@ QString Look::path() const {
 }
 
 void Look::clone(Look * look) {
-	auto* old_path = m_path;
-	auto* old_editor = m_editor;
-	auto* old_session = session();
-	auto* old_start = m_start;
+	auto * old_path    = m_path;
+	auto * old_editor  = m_editor;
+	auto * old_session = session();
+	auto * old_start   = m_start;
 
 	m_path    = look->m_path;
 	m_editor  = look->m_editor;
@@ -78,9 +78,9 @@ bool Look::loadConf(const QString & path, bool editorOnly) {
 	if (!file.open(QFile::ReadOnly)) {
 		return false;
 	}
-	else {
-		editorOnly ? editorConfFilePath : confFilePath = path;
-	}
+
+	editorOnly ? editorConfFilePath : confFilePath = path;
+
 
 	QString content = stream.readAll();
 	doc             = QJsonDocument::fromJson(content.toUtf8());
@@ -147,11 +147,11 @@ void Look::setUp(const QJsonObject & obj) {
 
 QJsonObject Look::getUp() {
 	return {{"editor", m_editor->getUp()},
-			{"session", m_session->getUp()},
-			{"start", m_start->getUp()}};
+	        {"session", m_session->getUp()},
+	        {"start", m_start->getUp()}};
 }
 
-void Look::setPath(QString path) {
+void Look::setPath(const QString & path) {
 	if (*m_path == path)
 		return;
 

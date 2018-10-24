@@ -5,7 +5,7 @@
 namespace icL::look {
 
 Effect::Effect(QObject * parent)
-	: BaseLook(parent) {
+    : BaseLook(parent) {
 	m_active = m_hover = m_normal = QColor(Qt::transparent);
 }
 
@@ -33,11 +33,11 @@ void Effect::setUp(const QJsonObject & obj) {
 
 QJsonObject Effect::getUp() {
 	return {{"normal", colorToObj(m_normal)},
-			{"hover", colorToObj(m_hover)},
-			{"active", colorToObj(m_active)}};
+	        {"hover", colorToObj(m_hover)},
+	        {"active", colorToObj(m_active)}};
 }
 
-void Effect::setNormal(QColor normal) {
+void Effect::setNormal(const QColor & normal) {
 	if (m_normal == normal)
 		return;
 
@@ -45,7 +45,7 @@ void Effect::setNormal(QColor normal) {
 	emit normalChanged(m_normal);
 }
 
-void Effect::setHover(QColor hover) {
+void Effect::setHover(const QColor & hover) {
 	if (m_hover == hover)
 		return;
 
@@ -53,7 +53,7 @@ void Effect::setHover(QColor hover) {
 	emit hoverChanged(m_hover);
 }
 
-void Effect::setActive(QColor active) {
+void Effect::setActive(const QColor & active) {
 	if (m_active == active)
 		return;
 
@@ -61,4 +61,4 @@ void Effect::setActive(QColor active) {
 	emit activeChanged(m_active);
 }
 
-}
+}  // namespace icL::look

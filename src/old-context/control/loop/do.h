@@ -8,4 +8,4 @@ public:
 	Do();
 };
 
-#endif // DO_H
+#endif  // DO_H

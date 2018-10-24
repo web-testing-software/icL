@@ -5,7 +5,7 @@
 namespace icL::look {
 
 EffectAdv::EffectAdv(QObject * parent)
-	: Effect(parent) {
+    : Effect(parent) {
 	m_activeHover = QColor(Qt::transparent);
 }
 
@@ -29,7 +29,7 @@ QJsonObject EffectAdv::getUp() {
 	return obj;
 }
 
-void EffectAdv::setActiveHover(QColor activeHover) {
+void EffectAdv::setActiveHover(const QColor & activeHover) {
 	if (m_activeHover == activeHover)
 		return;
 
@@ -37,4 +37,4 @@ void EffectAdv::setActiveHover(QColor activeHover) {
 	emit activeHoverChanged(m_activeHover);
 }
 
-}
+}  // namespace icL::look

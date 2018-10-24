@@ -48,7 +48,7 @@ public slots:
 	 * @brief setValue set up the value of argument
 	 * @param value is the new argument value
 	 */
-	void setValue(QVariant value);
+	void setValue(const QVariant & value);
 
 private:
 	QString  m_name;
@@ -82,7 +82,7 @@ public:
 	 * @brief id is the id of function
 	 * @return the id of function
 	 */
-	int     id() const;
+	int id() const;
 
 	/**
 	 * @brief name is the display name of function
@@ -110,7 +110,7 @@ private:
 	QList<RemoteArg *> m_args;
 };
 
-using Actions = QList<RemoteCall*>;
+using Actions = QList<RemoteCall *>;
 
 }  // namespace icL::toolkit::utils
 

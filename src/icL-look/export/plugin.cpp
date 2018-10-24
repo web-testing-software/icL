@@ -26,7 +26,7 @@
 #include <QtDebug>
 
 LookPlugin::LookPlugin(QObject * parent)
-	: QQmlExtensionPlugin(parent) {}
+    : QQmlExtensionPlugin(parent) {}
 
 void LookPlugin::registerTypes(const char * uri) {
 	Q_ASSERT(uri == QLatin1String("icL.Look"));

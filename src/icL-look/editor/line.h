@@ -57,14 +57,15 @@ public slots:
 	 * @brief setLineBg changes the background of the highlighted line
 	 * @param lineBg is the new background color for highlighted line
 	 */
-	void setLineBg(QColor lineBg);
+	void setLineBg(const QColor & lineBg);
 
 private:
 	QColor           m_lineBg;
 	CharFormatBase * m_lineNumber;
 };
 
-class CLine : public Line {
+class CLine : public Line
+{
 	Q_OBJECT
 
 	// clang-format off
@@ -96,17 +97,17 @@ public slots:
 	 * @brief setEdited changes the color for edited lines
 	 * @param edited is the new color to edited edited lines
 	 */
-	void setEdited(QColor edited);
+	void setEdited(const QColor & edited);
 
 	/**
 	 * @brief setSaved changes the color for saved lines
 	 * @param saved is the new color for saved lines
 	 */
-	void setSaved(QColor saved);
+	void setSaved(const QColor & saved);
 
 	// BaseLook interface
 public:
-	void setUp(const QJsonObject &obj) override;
+	void        setUp(const QJsonObject & obj) override;
 	QJsonObject getUp() override;
 
 private:

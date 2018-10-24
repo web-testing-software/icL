@@ -8,4 +8,4 @@ public:
 	LessOrEqual();
 };
 
-#endif // LESSOREQUAL_H
+#endif  // LESSOREQUAL_H

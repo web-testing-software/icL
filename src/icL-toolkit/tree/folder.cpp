@@ -3,7 +3,7 @@
 namespace icL::toolkit::tree {
 
 Folder::Folder(Item * parent)
-	: Item(parent) {}
+    : Item(parent) {}
 
 Folder::~Folder() {
 	clear();

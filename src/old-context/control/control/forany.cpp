@@ -1,6 +1,3 @@
 #include "forany.h"
 
-ForAny::ForAny()
-{
-
-}
+ForAny::ForAny() {}

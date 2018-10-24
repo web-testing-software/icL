@@ -5,7 +5,7 @@
 namespace icL::toolkit::panels {
 
 BasePanels::BasePanels(QObject * parent)
-	: QObject(parent) {}
+    : QObject(parent) {}
 
 bool BasePanels::navigationBar() const {
 	return m_navigationBar;
@@ -25,7 +25,7 @@ void BasePanels::setUp(const QJsonObject & obj) {
 
 QJsonObject BasePanels::getUp() {
 	return {{"navigation-bar", m_navigationBar},
-			{"orientation-h", m_orientationH}};
+	        {"orientation-h", m_orientationH}};
 }
 
 void BasePanels::setNavigationBar(bool navigationBar) {

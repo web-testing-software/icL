@@ -5,7 +5,7 @@
 namespace icL::context::code::control::catch0 {
 
 Slot::Slot(memory::InterLevel * il)
-	: Catch(il, memory::CodeFragment()) {
+    : Catch(il, memory::CodeFragment()) {
 	m_role = Role::Slot;
 }
 
@@ -19,10 +19,10 @@ bool Slot::giveSignal(int code) {
 
 bool Slot::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   ((context->role() == Role::Exists && context->prev() == nullptr &&
-			 dynamic_cast<const Exists *>(context)->getIsEmiter()) ||
-			(context->role() == Role::Code && context->prev() != nullptr &&
-			 context->prev()->role() == Role::Slot));
+	       ((context->role() == Role::Exists && context->prev() == nullptr &&
+	         dynamic_cast<const Exists *>(context)->getIsEmiter()) ||
+	        (context->role() == Role::Code && context->prev() != nullptr &&
+	         context->prev()->role() == Role::Slot));
 }
 
 bool Slot::isExecutable() const {

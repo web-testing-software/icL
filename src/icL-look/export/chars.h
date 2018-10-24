@@ -40,7 +40,8 @@ struct TextCharFormat
 /**
  * @brief The LineFormat struct defines the format for line numbers and bg color
  */
-struct LineFormat {
+struct LineFormat
+{
 	/// @brief the format for line number
 	TextCharFormat lineNumber;
 
@@ -51,7 +52,8 @@ struct LineFormat {
 /**
  * @brief The CLineFormat struct defines the format for all lines
  */
-struct CLineFormat : public LineFormat {
+struct CLineFormat : public LineFormat
+{
 	/// The color for changed line number
 	QPen changed;
 

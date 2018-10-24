@@ -5,7 +5,7 @@
 namespace icL::ide {
 
 GateWay::GateWay(QObject * parent)
-	: QObject(parent) {}
+    : QObject(parent) {}
 
 qreal GateWay::userInterfaceScale() const {
 	return m_userInterfaceScale;

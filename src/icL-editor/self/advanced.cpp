@@ -2,7 +2,7 @@
 
 namespace icL::editor {
 
-Advanced::Advanced(QQuickItem *parent)
-	: Mouse(parent) {}
+Advanced::Advanced(QQuickItem * parent)
+    : Mouse(parent) {}
 
 }  // namespace icL::editor

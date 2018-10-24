@@ -91,7 +91,7 @@ public slots:
 	 * @brief setCursor changes the color of text cursor
 	 * @param cursor is the new color for text cursor
 	 */
-	void setCursor(QColor cursor);
+	void setCursor(const QColor & cursor);
 
 private:
 	LinkAdv *   m_tab    = nullptr;
