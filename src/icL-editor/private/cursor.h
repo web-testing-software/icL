@@ -6,6 +6,7 @@
 namespace icL::editor {
 
 class Fragment;
+class Advanced;
 
 class Cursor : public QObject
 {
@@ -50,6 +51,44 @@ public:
 	 * @return the position of cursor in file
 	 */
 	int getPosInFile();
+
+	/**
+	 * @brief stepForward moves the cursor forward
+	 * @param number is the number of chars to skip
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepForward(int number, Cursor * block);
+
+	/**
+	 * @brief stepBack moves the cursor back
+	 * @param number is the number of chars to skip
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepBack(int number, Cursor * block);
+
+	/**
+	 * @brief stepWordForward step the next word
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepWordForward(Cursor * block);
+
+	/**
+	 * @brief stepWordBack step the prev word
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepWordBack(Cursor * block);
+
+	/**
+	 * @brief syncWith syncronize the position of cursors
+	 * @param cursor is the cursor to sync with
+	 */
+	void syncWith(Cursor * cursor);
+
+	Advanced * getEditor();
 
 signals:
 	void fragmentChanged(Fragment * fragment);

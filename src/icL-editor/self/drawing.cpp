@@ -40,6 +40,11 @@ look::Chars * Drawing::chars() const {
 	return m_chars;
 }
 
+void Drawing::makeCursorOpaque() {
+	cursorIsHidding = true;
+	cursorTimer.start();
+}
+
 void Drawing::paint(QPainter * painter) {
 	if (!m_chars)
 		return;
@@ -274,9 +279,11 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 		int beginChar = selection->begin()->getPosInLine();
 		int endChar   = selection->end()->getPosInLine();
 
-		painter->drawRect(
-		  xBegin + xStep * beginChar, yPos,
-		  (endChar - beginChar) * xStep + toAdd, yStep);
+		if (beginChar != endChar) {
+			painter->drawRect(
+			  xBegin + xStep * beginChar, yPos - yStep,
+			  (endChar - beginChar) * xStep, yStep);
+		}
 	}
 	else {
 		auto * it = beginLine->next();
@@ -399,7 +406,7 @@ void Drawing::drawCursor(QPainter * painter) {
 					   m_proxy->fullLineH();
 			int xPos = xBegin + cursor->getPosInLine() * m_proxy->charW();
 
-			painter->setPen(m_chars->text.text);
+			painter->setPen(cursor->fragment()->format().text);
 
 			painter->drawLine(xPos, yPos, xPos, yPos + m_proxy->fullLineH());
 		}

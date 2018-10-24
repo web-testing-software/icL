@@ -42,6 +42,8 @@ public:
 	 */
 	Selection * next() const;
 
+	void moveSelect(int step, Cursor *begin, Cursor *end);
+
 	/**
 	 * @brief move moves the cursor to left/right be needed chars
 	 * @param step is the number of chars

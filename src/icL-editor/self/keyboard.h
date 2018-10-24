@@ -18,6 +18,11 @@ public:
 signals:
 
 public slots:
+
+	// QQuickItem interface
+protected:
+	void keyPressEvent(QKeyEvent *event) override;
+	void keyReleaseEvent(QKeyEvent *event) override;
 };
 
 }  // namespace icL::editor

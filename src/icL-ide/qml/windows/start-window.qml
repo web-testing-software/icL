@@ -82,6 +82,7 @@ Window {
 
 		Component.onCompleted: {
 			loadFile("test.txt")
+			forceActiveFocus()
 		}
 	}
 }

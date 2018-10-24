@@ -50,6 +50,11 @@ public:
 	 */
 	look::Chars * chars() const;
 
+	/**
+	 * @brief makeCursorOpaque set the opacity of cursor to 1
+	 */
+	void makeCursorOpaque();
+
 	// QQuickPaintedItem interface
 public:
 	void paint(QPainter * painter) override;
