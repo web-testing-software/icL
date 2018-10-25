@@ -42,8 +42,6 @@ public:
 	 */
 	Selection * next() const;
 
-	void moveSelect(int step, Cursor * begin, Cursor * end);
-
 	/**
 	 * @brief move moves the cursor to left/right be needed chars
 	 * @param step is the number of chars
@@ -89,6 +87,35 @@ public slots:
 	 * @param rtl if true use left, otherwise use right
 	 */
 	void setRtl(bool rtl);
+
+private:
+	/**
+	 * @brief moveSelect moves the selection cursor
+	 * @param step is the number of chars to skip
+	 * @param begin is the cursor which mark the begin of selection
+	 * @param end is the cursor which mark the end of selection
+	 */
+	void moveSelect(int step, Cursor * begin, Cursor * end);
+
+	/**
+	 * @brief moveSelectOverWords moves the selection cursor over words
+	 * @param words is the number of words to skip
+	 * @param begin is the cursor which mark the begin of selection
+	 * @param end is the cursor which mark the end of selection
+	 */
+	void moveSelectOverWords(int words, Cursor * begin, Cursor * end);
+
+	/**
+	 * @brief unifyCursors place both cursors in one place
+	 */
+	void unifyCursors();
+
+	/**
+	 * @brief setRtlByStep set the rtl to true of false in depedent by step
+	 * value
+	 * @param step is a negative or positive number (not zero)
+	 */
+	void setRtlByStep(int step);
 
 private:
 	Cursor *    m_begin = nullptr;

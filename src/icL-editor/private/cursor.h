@@ -66,7 +66,7 @@ public:
 	 * @param block blocks the moving of cursor movies over it
 	 * @return true if moved successful, otherwise false
 	 */
-	bool stepBack(int number, Cursor * block);
+	bool stepBackward(int number, Cursor * block);
 
 	/**
 	 * @brief stepWordForward step the next word
@@ -80,7 +80,23 @@ public:
 	 * @param block blocks the moving of cursor movies over it
 	 * @return true if moved successful, otherwise false
 	 */
-	bool stepWordBack(Cursor * block);
+	bool stepWordBackward(Cursor * block);
+
+	/**
+	 * @brief stepWordsForward runs stepWordForward n times
+	 * @param words is the count of runs
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepWordsForward(int words, Cursor * block);
+
+	/**
+	 * @brief stepWordsBackward runs stepWordBackward n times
+	 * @param words is the count of runs
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepWordsBackward(int words, Cursor * block);
 
 	/**
 	 * @brief syncWith syncronize the position of cursors
@@ -88,7 +104,18 @@ public:
 	 */
 	void syncWith(Cursor * cursor);
 
+	/**
+	 * @brief getEditor gets the pointer to editor
+	 * @return the pointer to editor
+	 */
 	Advanced * getEditor();
+
+	/**
+	 * @brief operator == compare position of cursors
+	 * @param other is the cursor to compare with
+	 * @return true if both are place in on place, otherwise false
+	 */
+	bool operator==(const Cursor & other) const;
 
 signals:
 	void fragmentChanged(Fragment * fragment);

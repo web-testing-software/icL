@@ -10,10 +10,20 @@ Keyboard::Keyboard(QQuickItem * parent)
 
 void Keyboard::keyPressEvent(QKeyEvent * event) {
 	if (event->key() == Qt::Key_Left) {
-		m_main->move(-1, event->modifiers().testFlag(Qt::ShiftModifier));
+		if (event->modifiers().testFlag(Qt::ControlModifier)) {
+			m_main->moveOverWords(
+			  -1, event->modifiers().testFlag(Qt::ShiftModifier));
+		}
+		else
+			m_main->move(-1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
 	else if (event->key() == Qt::Key_Right) {
-		m_main->move(1, event->modifiers().testFlag(Qt::ShiftModifier));
+		if (event->modifiers().testFlag(Qt::ControlModifier)) {
+			m_main->moveOverWords(
+			  1, event->modifiers().testFlag(Qt::ShiftModifier));
+		}
+		else
+			m_main->move(1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
 }
 

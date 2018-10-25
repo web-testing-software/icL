@@ -73,7 +73,7 @@ bool Cursor::stepForward(int number, Cursor * block) {
 	return true;
 }
 
-bool Cursor::stepBack(int number, Cursor * block) {
+bool Cursor::stepBackward(int number, Cursor * block) {
 	if (m_position > number) {
 		bool realtivePos = m_position <= block->m_position;
 
@@ -97,7 +97,7 @@ bool Cursor::stepBack(int number, Cursor * block) {
 		m_position = prevFrag->length();
 		m_fragment = prevFrag;
 
-		stepBack(number - oldPosition, block);
+		stepBackward(number - oldPosition, block);
 	}
 
 	return true;
@@ -116,6 +116,10 @@ bool Cursor::stepWordForward(Cursor * block) {
 		return stepWordForward(block);
 	}
 
+	if (m_position < m_fragment->spaces()) {
+		m_position = m_fragment->spaces();
+	}
+
 	const QString & text = m_fragment->displayText();
 
 	int i = std::min(
@@ -128,13 +132,24 @@ bool Cursor::stepWordForward(Cursor * block) {
 		  (text[i - 1].isLower() && text[i].isUpper())) {
 			break;
 		}
+		i++;
 	}
 
-	m_position = i + m_fragment->spaces();
+	bool realtivePos = m_position >= block->m_position;
+
+	m_position =
+	  i > text.length() ? m_fragment->length() : i + m_fragment->spaces();
+
+	if (
+	  m_fragment == block->m_fragment &&
+	  (m_position >= block->m_position) != realtivePos) {
+		m_position = block->m_position;
+	}
+
 	return true;
 }
 
-bool Cursor::stepWordBack(Cursor * block) {
+bool Cursor::stepWordBackward(Cursor * block) {
 	if (m_position <= m_fragment->spaces()) {
 		auto * prevFrag = m_fragment->prevFragment();
 
@@ -144,7 +159,11 @@ bool Cursor::stepWordBack(Cursor * block) {
 
 		m_fragment = prevFrag;
 		m_position = prevFrag->length();
-		return stepWordBack(block);
+		return stepWordBackward(block);
+	}
+
+	if (m_position < m_fragment->spaces()) {
+		m_position = m_fragment->spaces();
 	}
 
 	const QString & text = m_fragment->displayText();
@@ -157,10 +176,38 @@ bool Cursor::stepWordBack(Cursor * block) {
 		  (text[i].isLower() && text[i + 1].isUpper())) {
 			break;
 		}
+		i--;
 	}
 
-	m_position = i + m_fragment->spaces();
+	bool realtivePos = m_position <= block->m_position;
+
+	m_position = i > 0 ? i + m_fragment->spaces() : 0;
+
+	if (
+	  m_fragment == block->m_fragment &&
+	  (m_position <= block->m_position) != realtivePos) {
+		m_position = block->m_position;
+	}
+
 	return true;
+}
+
+bool Cursor::stepWordsForward(int words, Cursor * block) {
+	int i = 0;
+
+	while (i < words && stepWordForward(block))
+		i++;
+
+	return i == words;
+}
+
+bool Cursor::stepWordsBackward(int words, Cursor * block) {
+	int i = 0;
+
+	while (i < words && stepWordBackward(block))
+		i++;
+
+	return i == words;
 }
 
 void Cursor::syncWith(Cursor * cursor) {
@@ -170,6 +217,10 @@ void Cursor::syncWith(Cursor * cursor) {
 
 Advanced * Cursor::getEditor() {
 	return dynamic_cast<Advanced *>(m_fragment->line()->parent());
+}
+
+bool Cursor::operator==(const Cursor & other) const {
+	return m_fragment == other.m_fragment && m_position == other.m_position;
 }
 
 void Cursor::setFragment(Fragment * fragment) {
