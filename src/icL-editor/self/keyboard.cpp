@@ -31,6 +31,12 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	else if (event->key() == Qt::Key_Down) {
 		m_main->moveUpDown(1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
+	else if (event->key() == Qt::Key_Backspace) {
+		qDebug() << m_main->backspace();
+	}
+	else if (event->key() == Qt::Key_Delete) {
+		qDebug() << m_main->delete1();
+	}
 }
 
 void Keyboard::keyReleaseEvent(QKeyEvent * event) {}

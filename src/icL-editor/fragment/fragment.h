@@ -97,6 +97,14 @@ public:
 	virtual const QString & displayText();
 
 	/**
+	 * @brief getText gets the text of the fragment
+	 * @param begin is the begin position of interval
+	 * @param end is the end position of interval
+	 * @return the reference to needed text fragment
+	 */
+	const QString getText(int begin = 0, int end = -1);
+
+	/**
 	 * @brief nextFragment gets the next fragment, from current or next line
 	 * @return the next text fragment (is not always a sibling)
 	 */
@@ -145,14 +153,6 @@ public:
 	Fragment * insert(int pos, const QString & text);
 
 	/**
-	 * @brief replace repalces a fragment of the be a new one
-	 * @param p1 is the begin of interval
-	 * @param p2 is the end of interval
-	 * @param after is the new text
-	 */
-	Fragment * replace(int p1, int p2, const QString & after);
-
-	/**
 	 * @brief isBracket detects if this fragment is a bracket
 	 * @return true if this fragment is a bracket, otherwise false
 	 */
@@ -169,6 +169,18 @@ public:
 	 * @return the format to draw this text fragment
 	 */
 	virtual const look::TextCharFormat & format();
+
+	/**
+	 * @brief isReadOnly protects to edit this text fragment
+	 * @return true if the protection is activated, otherwise false
+	 */
+	bool isReadOnly();
+
+	/**
+	 * @brief setReadOnly activates/deactivated fragment protection
+	 * @param value true - activates, false - deactivates
+	 */
+	void setReadOnly(bool value);
 
 signals:
 	void prevChanged(Fragment * prev);
@@ -303,6 +315,9 @@ protected:
 	// fields
 	QStaticText * cache = nullptr;
 	QString       content;
+
+	/// @brief readOnly protects this field
+	bool readOnly = false;
 };
 
 

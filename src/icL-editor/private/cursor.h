@@ -146,6 +146,13 @@ public:
 	 */
 	bool operator==(const Cursor & other) const;
 
+	/**
+	 * @brief operator != compare position of cursors
+	 * @param other is the cursor to compare with
+	 * @return false if both are place in on place, otherwise true
+	 */
+	bool operator!=(const Cursor & other) const;
+
 signals:
 	void fragmentChanged(Fragment * fragment);
 	void positionChanged(int8_t position);

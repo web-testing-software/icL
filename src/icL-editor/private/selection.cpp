@@ -34,6 +34,34 @@ bool Selection::rtl() const {
 	return m_rtl;
 }
 
+QString Selection::getText() {
+	auto * beginFrag = m_begin->fragment();
+	auto * endFrag   = m_end->fragment();
+
+	if (beginFrag == endFrag) {
+		return m_begin->fragment()->getText(
+		  m_begin->position(), m_end->position());
+	}
+
+	QString ret = beginFrag->getText(m_begin->position());
+
+	auto * it = beginFrag;
+
+	while (it != endFrag) {
+		ret += it->getText();
+
+		if (it->next() == nullptr) {
+			ret += '\n';
+		}
+
+		it = it->nextFragment();
+	}
+
+	ret += endFrag->getText(m_end->position());
+
+	return ret;
+}
+
 void Selection::move(int step, bool select) {
 	if (select) {
 		setRtlByStep(step);
@@ -117,6 +145,135 @@ void Selection::moveUpDown(int lines, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
+}
+
+QString Selection::drop() {
+	bool notEditable = m_begin->fragment()->isReadOnly();
+
+	// If cursor on end of fragment move to the begin of the next
+
+	if (
+	  m_begin->position() == m_begin->fragment()->length() &&
+	  m_begin->fragment()->next() != nullptr) {
+		m_begin->setFragment(m_begin->fragment()->next());
+		m_begin->setPosition(0);
+	}
+
+	// Test if is editable first
+
+	auto * it = m_begin->fragment();
+
+	while (it != m_end->fragment()) {
+		notEditable = notEditable || it->isReadOnly();
+		it          = it->nextFragment();
+	}
+
+	if (notEditable) {
+		return {};
+	}
+
+	// The content is editable
+
+	QString retAfter = getText();
+
+	// Drop frgment from begin line
+
+	auto * beginFrag = m_begin->fragment();
+	auto * endFrag   = m_begin->fragment();
+
+	if (beginFrag != endFrag) {
+		beginFrag->drop(m_begin->position());
+		endFrag->drop(0, m_end->position());
+
+		while (beginFrag->next() != nullptr) {
+			auto * tmp = beginFrag->next()->next();
+
+			delete beginFrag->next();
+			beginFrag->setNext(tmp);
+		}
+	}
+	else {
+		beginFrag->drop(m_begin->position(), m_end->position());
+	}
+
+	// Drop lines beetwen begin line and end line
+
+	auto * beginLine = beginFrag->line();
+
+	if (beginLine != endFrag->line()) {
+		while (beginLine->next() != endFrag->line()) {
+			auto * tmp = beginLine->next()->next();
+
+			delete beginLine->next();
+			beginLine->setNext(tmp);
+		}
+
+		// Drop fragment from end line
+
+		while (endFrag->prev() != nullptr) {
+			auto * tmp = endFrag->prev()->prev();
+
+			delete endFrag->next();
+			endFrag->setNext(tmp);
+		}
+
+		// Merge begin and end line
+
+		beginFrag->setNext(endFrag);
+		endFrag->setPrev(beginFrag);
+
+		endFrag->line()->setFirst(nullptr);
+		beginLine->setNext(endFrag->line()->next());
+
+		auto * endLine = endFrag->line();
+		auto * itFrag  = endFrag;
+
+		while (itFrag != nullptr) {
+			itFrag->setLine(beginLine);
+			itFrag = itFrag->next();
+		}
+
+		delete endLine;
+	}
+
+	m_end->syncWith(m_begin);
+
+	return retAfter;
+}
+
+QString Selection::backspace() {
+	if (*m_begin != *m_end) {
+		return drop();
+	}
+
+	m_begin->stepBackward(1, m_end);
+	setRtl(true);
+	return drop();
+}
+
+QString Selection::delete1() {
+	if (*m_begin != *m_end) {
+		return drop();
+	}
+
+	m_end->stepForward(1, m_begin);
+	setRtl(false);
+	return drop();
+}
+
+QString Selection::insert(const QString & text) {
+	if (*m_begin != *m_end) {
+		return {};
+	}
+
+	m_end->fragment()->insert(m_end->position(), text);
+
+	QString retAfter = getText();
+
+	m_end->updatePreffered();
+	m_begin->syncWith(m_end);
+
+	return retAfter;
 }
 
 void Selection::setNext(Selection * next) {

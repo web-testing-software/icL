@@ -49,6 +49,12 @@ public:
 	bool rtl() const;
 
 	/**
+	 * @brief getText returns the selected text
+	 * @return the selected text
+	 */
+	QString getText();
+
+	/**
 	 * @brief move moves the cursor to left/right be needed chars
 	 * @param step is the number of chars
 	 * @param select is the selection mode flag
@@ -68,6 +74,31 @@ public:
 	 * @param select is the selection mode flag
 	 */
 	void moveUpDown(int lines, bool select = false);
+
+	/**
+	 * @brief drop drops all selected text (fragment by fragment)
+	 * @return the deleted text
+	 */
+	QString drop();
+
+	/**
+	 * @brief backspace remove the symbol on the left of cursor
+	 * @return the deleted text
+	 */
+	QString backspace();
+
+	/**
+	 * @brief delete1 remove the symbol on the right of cursor
+	 * @return the deleted text
+	 */
+	QString delete1();
+
+	/**
+	 * @brief insert inserts text be replacing the selected text
+	 * @param text is the text to insert
+	 * @return the inserted text
+	 */
+	QString insert(const QString & text);
 
 signals:
 	void beginChanged(Cursor * begin);

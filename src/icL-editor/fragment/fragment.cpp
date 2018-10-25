@@ -47,6 +47,24 @@ const QString & Fragment::displayText() {
 	return content;
 }
 
+const QString Fragment::getText(int begin, int end) {
+	if (end < 0) {
+		end = length();
+	}
+
+	QString ret;
+
+	if (begin < m_spaces) {
+		ret += QString(m_spaces - begin, ' ');
+		ret += content.mid(0, end - m_spaces);
+	}
+	else {
+		ret += content.mid(begin - m_spaces, end - begin);
+	}
+
+	return ret;
+}
+
 Fragment * Fragment::nextFragment() {
 	if (m_next != nullptr) {
 		return m_next;
@@ -98,46 +116,58 @@ const QStaticText * Fragment::getCache() {
 }
 
 Fragment * Fragment::drop(int begin, int end) {
+	Fragment * ret;
+
+	if (end < 0) {
+		end = length();
+	}
+
 	if (end <= m_spaces) {
-		return dropSpaces(begin, end);
+		ret = dropSpaces(begin, end);
 	}
-
-	if (begin > m_spaces) {
+	else if (begin > m_spaces) {
 		if (end >= length()) {
-			return dropTail(begin, end);
+			ret = dropTail(begin, end);
 		}
-
-		return dropContent(begin, end);
+		else {
+			ret = dropContent(begin, end);
+		}
+	}
+	else if (end >= length()) {
+		ret = dropAllContent(begin);
+	}
+	else {
+		ret = dropHead(begin, end);
 	}
 
-	if (end >= length()) {
-		return dropAllContent(begin);
+	if (cache != nullptr) {
+		cache->setText(content);
 	}
 
-	return dropHead(begin, end);
+	return ret;
 }
 
 Fragment * Fragment::insert(int pos, const QString & text) {
+	Fragment * ret;
+
 	if (pos < m_spaces) {
-		return insertInSpaces(pos, text);
+		ret = insertInSpaces(pos, text);
+	}
+	else if (pos == length()) {
+		ret = insertAfterGlyphs(text);
+	}
+	else if (pos == m_spaces) {
+		ret = insertAfterSpaces(text);
+	}
+	else {
+		ret = insertInGlyphs(pos, text);
 	}
 
-	if (pos == length()) {
-		return insertAfterGlyphs(text);
+	if (cache != nullptr) {
+		cache->setText(content);
 	}
 
-	if (pos == m_spaces) {
-		return insertAfterSpaces(text);
-	}
-
-	return insertInGlyphs(pos, text);
-}
-
-Fragment * Fragment::replace(int p1, int p2, const QString & after) {
-	// On drop this fragment may repaced by another
-	auto * frag = drop(p1, p2);
-
-	return frag->insert(p1, after);
+	return ret;
 }
 
 bool Fragment::isBracket() {
@@ -150,6 +180,14 @@ bool Fragment::isOpenBracket() {
 
 const look::TextCharFormat & Fragment::format() {
 	return getEditor()->chars()->text;
+}
+
+bool Fragment::isReadOnly() {
+	return readOnly;
+}
+
+void Fragment::setReadOnly(bool value) {
+	readOnly = value;
 }
 
 void Fragment::setPrev(Fragment * prev) {

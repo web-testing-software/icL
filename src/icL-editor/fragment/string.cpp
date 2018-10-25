@@ -123,7 +123,8 @@ Fragment * String::dropTail(int p1, int p2) {
 	}
 
 	m_next = nullptr;
-	replace(p1, p2, text);
+	drop(p1, p2);
+	insert(p1, text);
 
 	return this;
 }

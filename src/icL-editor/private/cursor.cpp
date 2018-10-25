@@ -307,6 +307,10 @@ bool Cursor::operator==(const Cursor & other) const {
 	return m_fragment == other.m_fragment && m_position == other.m_position;
 }
 
+bool Cursor::operator!=(const Cursor & other) const {
+	return m_fragment != other.m_fragment || m_position != other.m_position;
+}
+
 void Cursor::setFragment(Fragment * fragment) {
 	if (m_fragment == fragment)
 		return;
