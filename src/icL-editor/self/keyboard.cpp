@@ -25,6 +25,12 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 		else
 			m_main->move(1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
+	else if (event->key() == Qt::Key_Up) {
+		m_main->moveUpDown(-1, event->modifiers().testFlag(Qt::ShiftModifier));
+	}
+	else if (event->key() == Qt::Key_Down) {
+		m_main->moveUpDown(1, event->modifiers().testFlag(Qt::ShiftModifier));
+	}
 }
 
 void Keyboard::keyReleaseEvent(QKeyEvent * event) {}

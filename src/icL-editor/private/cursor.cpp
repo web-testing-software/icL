@@ -210,9 +210,93 @@ bool Cursor::stepWordsBackward(int words, Cursor * block) {
 	return i == words;
 }
 
+void Cursor::moveToLine(Line * line) {
+	auto * itFrag    = line->first();
+	int    posInLine = 0;
+
+	if (m_preffered == 0) {
+		setFragment(itFrag);
+		setPosition(0);
+		return;
+	}
+
+	while (itFrag->next() != nullptr && posInLine < m_preffered) {
+		posInLine += itFrag->length();
+		itFrag = itFrag->next();
+	}
+
+	if (posInLine < m_preffered) {
+		setFragment(itFrag);
+		if (m_preffered < itFrag->length()) {
+			setPosition(m_preffered);
+		}
+		else {
+			setPosition(itFrag->length());
+		}
+	}
+	else {
+		setFragment(itFrag->prev());
+		setPosition(itFrag->prev()->length() - (posInLine - m_preffered));
+	}
+}
+
+bool Cursor::stepLinesUp(int lines, Cursor * block) {
+	int i = 0;
+
+	auto * itLine      = m_fragment->line();
+	auto * blockLine   = block->fragment()->line();
+	bool   relativePos = itLine->lineNumber() <= blockLine->lineNumber();
+
+	while (i < lines && itLine->prev() != nullptr) {
+		itLine = itLine->prev();
+		i++;
+	}
+
+	if (itLine->lineNumber() <= blockLine->lineNumber() != relativePos) {
+		this->syncWith(block);
+	}
+	else {
+		moveToLine(itLine);
+	}
+
+	return i == lines;
+}
+
+bool Cursor::stepLinesDown(int lines, Cursor * block) {
+	int i = 0;
+
+	auto * itLine      = m_fragment->line();
+	auto * blockLine   = block->fragment()->line();
+	bool   relativePos = itLine->lineNumber() >= blockLine->lineNumber();
+
+	while (i < lines && itLine->next() != nullptr) {
+		itLine = itLine->next();
+		i++;
+	}
+
+	if (itLine->lineNumber() >= blockLine->lineNumber() != relativePos) {
+		this->syncWith(block);
+	}
+	else {
+		moveToLine(itLine);
+	}
+
+	return i == lines;
+}
+
 void Cursor::syncWith(Cursor * cursor) {
-	m_position = cursor->m_position;
-	m_fragment = cursor->m_fragment;
+	m_position  = cursor->m_position;
+	m_fragment  = cursor->m_fragment;
+	m_preffered = cursor->m_preffered;
+}
+
+void Cursor::updatePreffered(int delta) {
+	if (delta == 0) {
+		m_preffered = getPosInLine();
+	}
+	else {
+		m_preffered += delta;
+	}
 }
 
 Advanced * Cursor::getEditor() {

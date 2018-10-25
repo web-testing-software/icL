@@ -30,6 +30,10 @@ Selection * Selection::next() const {
 	return m_next;
 }
 
+bool Selection::rtl() const {
+	return m_rtl;
+}
+
 void Selection::move(int step, bool select) {
 	if (select) {
 		setRtlByStep(step);
@@ -46,10 +50,12 @@ void Selection::move(int step, bool select) {
 
 		if (step < 0) {
 			m_begin->stepBackward(-step, m_begin);
+			m_begin->updatePreffered();
 			m_end->syncWith(m_begin);
 		}
 		else {
 			m_end->stepForward(step, m_end);
+			m_end->updatePreffered();
 			m_begin->syncWith(m_end);
 		}
 	}
@@ -73,10 +79,12 @@ void Selection::moveOverWords(int words, bool select) {
 
 		if (words < 0) {
 			m_begin->stepWordsBackward(-words, m_begin);
+			m_begin->updatePreffered();
 			m_end->syncWith(m_begin);
 		}
 		else {
 			m_end->stepWordsForward(words, m_end);
+			m_end->updatePreffered();
 			m_begin->syncWith(m_end);
 		}
 	}
@@ -84,8 +92,31 @@ void Selection::moveOverWords(int words, bool select) {
 	m_begin->getEditor()->makeCursorOpaque();
 }
 
-bool Selection::rtl() const {
-	return m_rtl;
+void Selection::moveUpDown(int lines, bool select) {
+	if (select) {
+		setRtlByStep(lines);
+
+		if (m_rtl) {
+			moveSelectOverLines(lines, m_begin, m_end);
+		}
+		else {
+			moveSelectOverLines(lines, m_end, m_begin);
+		}
+	}
+	else {
+		unifyCursors();
+
+		if (lines < 0) {
+			m_begin->stepLinesUp(-lines, m_begin);
+			m_end->syncWith(m_begin);
+		}
+		else {
+			m_end->stepLinesDown(lines, m_end);
+			m_begin->syncWith(m_end);
+		}
+	}
+
+	m_begin->getEditor()->makeCursorOpaque();
 }
 
 void Selection::setNext(Selection * next) {
@@ -111,6 +142,8 @@ void Selection::moveSelect(int step, Cursor * begin, Cursor * end) {
 	else {
 		begin->stepForward(step, end);
 	}
+
+	begin->updatePreffered();
 }
 
 void Selection::moveSelectOverWords(int words, Cursor * begin, Cursor * end) {
@@ -119,6 +152,17 @@ void Selection::moveSelectOverWords(int words, Cursor * begin, Cursor * end) {
 	}
 	else {
 		begin->stepWordsForward(words, end);
+	}
+
+	begin->updatePreffered();
+}
+
+void Selection::moveSelectOverLines(int lines, Cursor * begin, Cursor * end) {
+	if (lines < 0) {
+		begin->stepLinesUp(-lines, end);
+	}
+	else {
+		begin->stepLinesDown(lines, end);
 	}
 }
 

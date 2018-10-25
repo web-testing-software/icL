@@ -43,6 +43,12 @@ public:
 	Selection * next() const;
 
 	/**
+	 * @brief rtl is the direction of selection
+	 * @return the direction of selection
+	 */
+	bool rtl() const;
+
+	/**
 	 * @brief move moves the cursor to left/right be needed chars
 	 * @param step is the number of chars
 	 * @param select is the selection mode flag
@@ -62,12 +68,6 @@ public:
 	 * @param select is the selection mode flag
 	 */
 	void moveUpDown(int lines, bool select = false);
-
-	/**
-	 * @brief rtl is the direction of selection
-	 * @return the direction of selection
-	 */
-	bool rtl() const;
 
 signals:
 	void beginChanged(Cursor * begin);
@@ -104,6 +104,14 @@ private:
 	 * @param end is the cursor which mark the end of selection
 	 */
 	void moveSelectOverWords(int words, Cursor * begin, Cursor * end);
+
+	/**
+	 * @brief moveSelectOverLines moves the selection cursor over lines
+	 * @param lines is the number of lines to skip
+	 * @param begin is the cursor which mark the begin of selection
+	 * @param end is the cursor which mark the end of selection
+	 */
+	void moveSelectOverLines(int lines, Cursor * begin, Cursor * end);
 
 	/**
 	 * @brief unifyCursors place both cursors in one place

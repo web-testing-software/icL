@@ -7,6 +7,7 @@ namespace icL::editor {
 
 class Fragment;
 class Advanced;
+class Line;
 
 class Cursor : public QObject
 {
@@ -99,10 +100,38 @@ public:
 	bool stepWordsBackward(int words, Cursor * block);
 
 	/**
+	 * @brief moveToLine moves to cursor to needed line
+	 * @param line is the lien to move in
+	 */
+	void moveToLine(Line * line);
+
+	/**
+	 * @brief stepLinesUp moves the cursor up skipping n lines
+	 * @param lines is the count of lines
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepLinesUp(int lines, Cursor * block);
+
+	/**
+	 * @brief stepLinesDown moves the cursor down skipping n lines
+	 * @param lines is the count of lines
+	 * @param block blocks the moving of cursor movies over it
+	 * @return true if moved successful, otherwise false
+	 */
+	bool stepLinesDown(int lines, Cursor * block);
+
+	/**
 	 * @brief syncWith syncronize the position of cursors
 	 * @param cursor is the cursor to sync with
 	 */
 	void syncWith(Cursor * cursor);
+
+	/**
+	 * @brief updatePreffered update the preffered position in line
+	 * @param delta if 0 autoupdate, otherwise move be specified delta
+	 */
+	void updatePreffered(int delta = 0);
 
 	/**
 	 * @brief getEditor gets the pointer to editor

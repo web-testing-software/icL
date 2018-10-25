@@ -101,6 +101,8 @@ bool Logic::loadFile(const QString & path) {
 	m_main->end()->setFragment(m_current->first());
 	m_main->begin()->setPosition(16);
 	m_main->end()->setPosition(2);
+	m_main->begin()->updatePreffered();
+	m_main->end()->updatePreffered();
 
 	return true;
 }
