@@ -184,10 +184,16 @@ ProcessedGlyphs Fragment::processGlyphs(const QString & text) {
 	ProcessedGlyphs pg;
 	const QString   restrictedChars = "\n{}[]()\"";
 
-	int i = 0;
+	int i       = 0;
+	int tabSize = getEditor()->proxy()->tabSize();
 
 	while (i < text.length() && !restrictedChars.contains(text[i])) {
-		pg.toInsertHere.append(text[i]);
+		if (text[i] == '\t') {
+			pg.toInsertHere.append(QString(tabSize, ' '));
+		}
+		else {
+			pg.toInsertHere.append(text[i]);
+		}
 		i++;
 	}
 
@@ -261,8 +267,21 @@ Fragment * Fragment::insertInGlyphs(int pos, const QString & text) {
 Fragment * Fragment::insertAfterGlyphs(const QString & text) {
 	auto pg = processGlyphs(text);
 
-	content.append(pg.toInsertHere);
-	m_glyphs += pg.toInsertHere.length();
+	if (content.isEmpty()) {
+		int i = 0;
+
+		while (pg.toInsertHere[i].isSpace()) {
+			i++;
+		}
+
+		m_spaces += i;
+		content.append(pg.toInsertHere.midRef(i));
+		m_glyphs += pg.toInsertHere.length() - i;
+	}
+	else {
+		content.append(pg.toInsertHere);
+		m_glyphs += pg.toInsertHere.length();
+	}
 
 	if (pg.toInsertInNext.isEmpty()) {
 		return this;

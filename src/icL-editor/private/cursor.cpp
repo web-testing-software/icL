@@ -150,7 +150,7 @@ bool Cursor::stepWordForward(Cursor * block) {
 }
 
 bool Cursor::stepWordBackward(Cursor * block) {
-	if (m_position <= m_fragment->spaces()) {
+	if (m_position <= m_fragment->spaces() || m_fragment->glyphs() == 0) {
 		auto * prevFrag = m_fragment->prevFragment();
 
 		if (prevFrag == nullptr) {
