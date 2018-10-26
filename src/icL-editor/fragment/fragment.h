@@ -13,6 +13,7 @@ namespace icL::editor {
 
 class Line;
 class Advanced;
+class Cursor;
 
 /**
  * @brief The ProcessedGlyphs struct describes a processed glyphs result
@@ -143,14 +144,14 @@ public:
 	 * @param begin the begin position
 	 * @param end the end position
 	 */
-	Fragment * drop(int begin = 0, int end = -1);
+	Fragment * drop(Cursor * cursor, int begin = 0, int end = -1);
 
 	/**
 	 * @brief insert inserts a text to needed position
 	 * @param pos is the position to insert in
 	 * @param text is the text to insert
 	 */
-	Fragment * insert(int pos, const QString & text);
+	Fragment * insert(Cursor * cursor, int pos, const QString & text);
 
 	/**
 	 * @brief isBracket detects if this fragment is a bracket
@@ -228,63 +229,65 @@ protected:
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertInSpaces(int pos, const QString & text);
+	virtual Fragment * insertInSpaces(
+	  Cursor * cursor, int pos, const QString & text);
 
 	/**
 	 * @brief insertAfterSpaces prepends glyphs to content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertAfterSpaces(const QString & text);
+	virtual Fragment * insertAfterSpaces(Cursor * cursor, const QString & text);
 
 	/**
 	 * @brief insertInGlyphs inserts glyphs in content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertInGlyphs(int pos, const QString & text);
+	virtual Fragment * insertInGlyphs(
+	  Cursor * cursor, int pos, const QString & text);
 
 	/**
 	 * @brief insertAfterGlyphs appends glyphs after content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertAfterGlyphs(const QString & text);
+	virtual Fragment * insertAfterGlyphs(Cursor * cursor, const QString & text);
 
 	/**
 	 * @brief dropSpaces removes spaces
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment * dropSpaces(int p1, int p2);
+	virtual Fragment * dropSpaces(Cursor * cursor, int p1, int p2);
 
 	/**
 	 * @brief dropHead removes spaces and content glyphs
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment * dropHead(int p1, int p2);
+	virtual Fragment * dropHead(Cursor * cursor, int p1, int p2);
 
 	/**
 	 * @brief dropContent removes content fragment
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment * dropContent(int p1, int p2);
+	virtual Fragment * dropContent(Cursor * cursor, int p1, int p2);
 
 	/**
 	 * @brief dropTail removes the end of content
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment * dropTail(int p1, int p2);
+	virtual Fragment * dropTail(Cursor * cursor, int p1, int p2);
 
 	/**
 	 * @brief dropAllContent removes all content of the fragment
 	 * @param p1 is the index of first selected character
 	 * @param p2 is the index of last selected character
 	 */
-	virtual Fragment * dropAllContent(int p1);
+	virtual Fragment * dropAllContent(Cursor * cursor, int p1);
 
 protected:
 	/**
@@ -293,7 +296,8 @@ protected:
 	 * @param onNewLine if true creates the fragment on a new line
 	 * @return the new created fragment
 	 */
-	Fragment * makeNewFragment(const QString & text, bool onNewLine);
+	Fragment * makeNewFragment(
+	  Cursor * cursor, const QString & text, bool onNewLine);
 
 	/**
 	 * @brief makeFragmentNow creates a new fragment without text processing
@@ -302,6 +306,20 @@ protected:
 	 * @return the new created fragment
 	 */
 	Fragment * makeFragmentNow(FragmentTypes type, bool onNewLine);
+
+	/**
+	 * @brief countSpaceAtBegin counts the spaces at the begin of text
+	 * @param text is the text to analize
+	 * @return the count of spaces at the begin
+	 */
+	static int countSpacesAtBegin(const QString & text);
+
+	/**
+	 * @brief countSpacesAtEnd counts the spaces at the end of text
+	 * @param text is the text to analize
+	 * @return the count of spaces at the end
+	 */
+	static int countSpacesAtEnd(const QString & text);
 
 protected:
 	// Properties

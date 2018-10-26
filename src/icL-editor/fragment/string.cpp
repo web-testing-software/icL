@@ -62,21 +62,22 @@ ProcessedGlyphs String::processGlyphs(const QString & text) {
 	return pg;
 }
 
-Fragment * String::insertInSpaces(int pos, const QString & text) {
+Fragment * String::insertInSpaces(
+  Cursor * cursor, int pos, const QString & text) {
 	m_spaces -= pos;
 
-	return m_prev->insert(m_prev->length(), QString(pos, ' ') + text);
+	return m_prev->insert(cursor, m_prev->length(), QString(pos, ' ') + text);
 }
 
-Fragment * String::insertAfterSpaces(const QString & text) {
+Fragment * String::insertAfterSpaces(Cursor * cursor, const QString & text) {
 	auto * ret =
-	  m_prev->insert(m_prev->length(), QString(m_spaces, ' ') + text);
+	  m_prev->insert(cursor, m_prev->length(), QString(m_spaces, ' ') + text);
 
 	m_spaces = 0;
 	return ret;
 }
 
-Fragment * String::insertAfterGlyphs(const QString & text) {
+Fragment * String::insertAfterGlyphs(Cursor * cursor, const QString & text) {
 	if (m_glyphs == 0) {
 		auto pg = processGlyphs(text);
 
@@ -84,16 +85,16 @@ Fragment * String::insertAfterGlyphs(const QString & text) {
 		m_glyphs = content.length();
 
 		if (!pg.toInsertInNext.isEmpty()) {
-			return makeNewFragment(pg.toInsertInNext, pg.onNextLine);
+			return makeNewFragment(cursor, pg.toInsertInNext, pg.onNextLine);
 		}
 
 		return this;
 	}
 
-	return makeNewFragment(text, false);
+	return makeNewFragment(cursor, text, false);
 }
 
-Fragment * String::dropHead(int p1, int p2) {
+Fragment * String::dropHead(Cursor * cursor, int p1, int p2) {
 	QString text = content.mid(p2 - m_spaces);
 
 	if (m_next != nullptr) {
@@ -104,13 +105,14 @@ Fragment * String::dropHead(int p1, int p2) {
 		m_prev->setNext(m_next);
 	}
 
-	auto * ret = m_prev->insert(m_prev->length(), QString(p1, ' ') + text);
+	auto * ret =
+	  m_prev->insert(cursor, m_prev->length(), QString(p1, ' ') + text);
 
 	delete this;
 	return ret;
 }
 
-Fragment * String::dropTail(int p1, int p2) {
+Fragment * String::dropTail(Cursor * cursor, int p1, int p2) {
 	auto *  it = m_next;
 	QString text;
 
@@ -123,8 +125,8 @@ Fragment * String::dropTail(int p1, int p2) {
 	}
 
 	m_next = nullptr;
-	drop(p1, p2);
-	insert(p1, text);
+	drop(cursor, p1, p2);
+	insert(cursor, p1, text);
 
 	return this;
 }

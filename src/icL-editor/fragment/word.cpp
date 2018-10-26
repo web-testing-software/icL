@@ -23,11 +23,12 @@ ProcessedGlyphs Word::processGlyphs(const QString & text) {
 	return pg;
 }
 
-Fragment * Word::insertInSpaces(int pos, const QString & text) {
+Fragment * Word::insertInSpaces(
+  Cursor * cursor, int pos, const QString & text) {
 	m_spaces -= pos;
 
 	return m_prev->insert(
-	  m_prev->length(), QString(m_spaces - pos, ' ') + text);
+	  cursor, m_prev->length(), QString(m_spaces - pos, ' ') + text);
 }
 
 }  // namespace icL::editor

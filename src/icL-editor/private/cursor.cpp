@@ -67,14 +67,14 @@ bool Cursor::stepForward(int number, Cursor * block) {
 		m_position = 0;
 		m_fragment = nextFrag;
 
-		stepForward(number - (oldFrag->length() - oldPosition), block);
+		stepForward(number - (oldFrag->length() - oldPosition) - 1, block);
 	}
 
 	return true;
 }
 
 bool Cursor::stepBackward(int number, Cursor * block) {
-	if (m_position > number) {
+	if (m_position >= number) {
 		bool realtivePos = m_position <= block->m_position;
 
 		m_position -= number;
@@ -97,7 +97,7 @@ bool Cursor::stepBackward(int number, Cursor * block) {
 		m_position = prevFrag->length();
 		m_fragment = prevFrag;
 
-		stepBackward(number - oldPosition, block);
+		stepBackward(number - oldPosition - 1, block);
 	}
 
 	return true;

@@ -45,7 +45,11 @@ QString Selection::getText() {
 
 	QString ret = beginFrag->getText(m_begin->position());
 
-	auto * it = beginFrag;
+	if (beginFrag->next() == nullptr) {
+		ret += '\n';
+	}
+
+	auto * it = beginFrag->nextFragment();
 
 	while (it != endFrag) {
 		ret += it->getText();
@@ -57,7 +61,7 @@ QString Selection::getText() {
 		it = it->nextFragment();
 	}
 
-	ret += endFrag->getText(m_end->position());
+	ret += endFrag->getText(0, m_end->position());
 
 	return ret;
 }
@@ -150,15 +154,6 @@ void Selection::moveUpDown(int lines, bool select) {
 QString Selection::drop() {
 	bool notEditable = m_begin->fragment()->isReadOnly();
 
-	// If cursor on end of fragment move to the begin of the next
-
-	if (
-	  m_begin->position() == m_begin->fragment()->length() &&
-	  m_begin->fragment()->next() != nullptr) {
-		m_begin->setFragment(m_begin->fragment()->next());
-		m_begin->setPosition(0);
-	}
-
 	// Test if is editable first
 
 	auto * it = m_begin->fragment();
@@ -179,11 +174,11 @@ QString Selection::drop() {
 	// Drop frgment from begin line
 
 	auto * beginFrag = m_begin->fragment();
-	auto * endFrag   = m_begin->fragment();
+	auto * endFrag   = m_end->fragment();
 
 	if (beginFrag != endFrag) {
-		beginFrag->drop(m_begin->position());
-		endFrag->drop(0, m_end->position());
+		beginFrag->drop(m_begin, m_begin->position());
+		endFrag->drop(m_end, 0, m_end->position());
 
 		while (beginFrag->next() != nullptr) {
 			auto * tmp = beginFrag->next()->next();
@@ -193,7 +188,7 @@ QString Selection::drop() {
 		}
 	}
 	else {
-		beginFrag->drop(m_begin->position(), m_end->position());
+		beginFrag->drop(m_begin, m_begin->position(), m_end->position());
 	}
 
 	// Drop lines beetwen begin line and end line
@@ -219,11 +214,8 @@ QString Selection::drop() {
 
 		// Merge begin and end line
 
-		beginFrag->setNext(endFrag);
-		endFrag->setPrev(beginFrag);
-
-		endFrag->line()->setFirst(nullptr);
 		beginLine->setNext(endFrag->line()->next());
+		endFrag->line()->next()->setPrev(beginLine);
 
 		auto * endLine = endFrag->line();
 		auto * itFrag  = endFrag;
@@ -232,6 +224,9 @@ QString Selection::drop() {
 			itFrag->setLine(beginLine);
 			itFrag = itFrag->next();
 		}
+
+		beginFrag->setNext(endFrag);
+		endFrag->setPrev(beginFrag);
 
 		delete endLine;
 	}
@@ -248,7 +243,8 @@ QString Selection::backspace() {
 
 	m_begin->stepBackward(1, m_end);
 	setRtl(true);
-	return drop();
+	//	return drop()
+	return {};
 }
 
 QString Selection::delete1() {
@@ -266,7 +262,7 @@ QString Selection::insert(const QString & text) {
 		return {};
 	}
 
-	m_end->fragment()->insert(m_end->position(), text);
+	m_end->fragment()->insert(m_begin, m_end->position(), text);
 
 	QString retAfter = getText();
 

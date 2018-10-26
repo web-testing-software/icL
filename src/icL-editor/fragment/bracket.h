@@ -21,13 +21,17 @@ public:
 	bool isOpenBracket() override;
 
 protected:
-	Fragment * insertInSpaces(int pos, const QString & text) override;
-	Fragment * insertAfterSpaces(const QString & text) override;
-	Fragment * insertInGlyphs(int pos, const QString & text) override;
-	Fragment * insertAfterGlyphs(const QString & text) override;
-	Fragment * dropHead(int p1, int p2) override;
-	Fragment * dropContent(int p1, int p2) override;
-	Fragment * dropTail(int p1, int p2) override;
+	Fragment * insertInSpaces(
+	  Cursor * cursor, int pos, const QString & text) override;
+	Fragment * insertAfterSpaces(
+	  Cursor * cursor, const QString & text) override;
+	Fragment * insertInGlyphs(
+	  Cursor * cursor, int pos, const QString & text) override;
+	Fragment * insertAfterGlyphs(
+	  Cursor * cursor, const QString & text) override;
+	Fragment * dropHead(Cursor * cursor, int p1, int p2) override;
+	Fragment * dropContent(Cursor * cursor, int p1, int p2) override;
+	Fragment * dropTail(Cursor * cursor, int p1, int p2) override;
 };
 
 }  // namespace icL::editor
