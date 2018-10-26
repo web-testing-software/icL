@@ -1,5 +1,7 @@
 #include "bracket.h"
 
+#include "../private/cursor.h"
+
 namespace icL::editor {
 
 Bracket::Bracket(Line * parent)
@@ -16,8 +18,17 @@ bool Bracket::isOpenBracket() {
 
 Fragment * Bracket::insertInSpaces(
   Cursor * cursor, int pos, const QString & text) {
-	m_spaces -= pos;
+	int spaces = countSpacesAtBegin(text);
 
+	if (spaces == text.length()) {
+		m_spaces += spaces;
+
+		cursor->setPosition(pos + spaces);
+		cursor->setFragment(this);
+		return this;
+	}
+
+	m_spaces -= pos;
 	return m_prev->insert(cursor, m_prev->length(), QString(pos, ' ') + text);
 }
 

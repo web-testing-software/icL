@@ -116,6 +116,11 @@ public slots:
 	 */
 	void addNewLine(Line * line, bool focus = true);
 
+	/**
+	 * @brief updateCurrentLine update the pointer to the current line
+	 */
+	void updateCurrentLine();
+
 protected:
 	/**
 	 * @brief changeNumberOfLines changes the numbers of lines

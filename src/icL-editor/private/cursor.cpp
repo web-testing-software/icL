@@ -43,6 +43,10 @@ int Cursor::getPosInFile() {
 }
 
 bool Cursor::stepForward(int number, Cursor * block) {
+	if (number <= 0) {
+		return true;
+	}
+
 	if (m_position + number <= m_fragment->length()) {
 		bool realtivePos = m_position >= block->m_position;
 
@@ -64,16 +68,24 @@ bool Cursor::stepForward(int number, Cursor * block) {
 			return false;
 		}
 
+		if (m_fragment->next() == nullptr) {
+			number--;
+		}
+
 		m_position = 0;
 		m_fragment = nextFrag;
 
-		stepForward(number - (oldFrag->length() - oldPosition) - 1, block);
+		stepForward(number - (oldFrag->length() - oldPosition), block);
 	}
 
 	return true;
 }
 
 bool Cursor::stepBackward(int number, Cursor * block) {
+	if (number <= 0) {
+		return true;
+	}
+
 	if (m_position >= number) {
 		bool realtivePos = m_position <= block->m_position;
 
@@ -94,10 +106,14 @@ bool Cursor::stepBackward(int number, Cursor * block) {
 			return false;
 		}
 
+		if (m_fragment->prev() == nullptr) {
+			number--;
+		}
+
 		m_position = prevFrag->length();
 		m_fragment = prevFrag;
 
-		stepBackward(number - oldPosition - 1, block);
+		stepBackward(number - oldPosition, block);
 	}
 
 	return true;

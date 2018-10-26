@@ -10,6 +10,13 @@ namespace icL::editor {
 Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
 	m_main = new Selection(this);
+
+	//	connect(
+	//	  m_main->begin(), &Cursor::fragmentChanged, this,
+	//	  &Logic::updateCurrentLine);
+	//	connect(
+	//	  m_main->end(), &Cursor::fragmentChanged, this,
+	//&Logic::updateCurrentLine);
 }
 
 Logic::~Logic() {
@@ -162,6 +169,21 @@ void Logic::addNewLine(Line * line, bool focus) {
 	}
 
 	changeNumberOfLines(numberOfLines + 1);
+}
+
+void Logic::updateCurrentLine() {
+	Fragment * fragment;
+
+	if (m_main->rtl()) {
+		fragment = m_main->begin()->fragment();
+	}
+	else {
+		fragment = m_main->end()->fragment();
+	}
+
+	if (fragment != nullptr) {
+		setCurrent(fragment->line());
+	}
 }
 
 void Logic::changeNumberOfLines(int newValue) {

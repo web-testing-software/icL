@@ -93,6 +93,7 @@ void Selection::move(int step, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
+	m_begin->getEditor()->updateCurrentLine();
 }
 
 void Selection::moveOverWords(int words, bool select) {
@@ -122,6 +123,7 @@ void Selection::moveOverWords(int words, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
+	m_begin->getEditor()->updateCurrentLine();
 }
 
 void Selection::moveUpDown(int lines, bool select) {
@@ -149,6 +151,7 @@ void Selection::moveUpDown(int lines, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
+	m_begin->getEditor()->updateCurrentLine();
 }
 
 QString Selection::drop() {
@@ -214,11 +217,13 @@ QString Selection::drop() {
 
 		// Merge begin and end line
 
-		beginLine->setNext(endFrag->line()->next());
-		endFrag->line()->next()->setPrev(beginLine);
-
 		auto * endLine = endFrag->line();
 		auto * itFrag  = endFrag;
+
+		beginLine->setNext(endFrag->line()->next());
+		if (endLine->next() != nullptr) {
+			endLine->next()->setPrev(beginLine);
+		}
 
 		while (itFrag != nullptr) {
 			itFrag->setLine(beginLine);
@@ -232,6 +237,7 @@ QString Selection::drop() {
 	}
 
 	m_end->syncWith(m_begin);
+	m_begin->getEditor()->updateCurrentLine();
 
 	return retAfter;
 }
@@ -243,8 +249,7 @@ QString Selection::backspace() {
 
 	m_begin->stepBackward(1, m_end);
 	setRtl(true);
-	//	return drop()
-	return {};
+	return drop();
 }
 
 QString Selection::delete1() {
@@ -268,6 +273,7 @@ QString Selection::insert(const QString & text) {
 
 	m_end->updatePreffered();
 	m_begin->syncWith(m_end);
+	m_begin->getEditor()->updateCurrentLine();
 
 	return retAfter;
 }

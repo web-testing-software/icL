@@ -1,5 +1,6 @@
 #include "string.h"
 
+#include "../private/cursor.h"
 #include "../self/advanced.h"
 
 #include <icL-look/export/chars.h>
@@ -64,8 +65,17 @@ ProcessedGlyphs String::processGlyphs(const QString & text) {
 
 Fragment * String::insertInSpaces(
   Cursor * cursor, int pos, const QString & text) {
-	m_spaces -= pos;
+	int spaces = countSpacesAtBegin(text);
 
+	if (spaces == text.length()) {
+		m_spaces += spaces;
+
+		cursor->setPosition(pos + spaces);
+		cursor->setFragment(this);
+		return this;
+	}
+
+	m_spaces -= pos;
 	return m_prev->insert(cursor, m_prev->length(), QString(pos, ' ') + text);
 }
 
@@ -79,15 +89,19 @@ Fragment * String::insertAfterSpaces(Cursor * cursor, const QString & text) {
 
 Fragment * String::insertAfterGlyphs(Cursor * cursor, const QString & text) {
 	if (m_glyphs == 0) {
-		auto pg = processGlyphs(text);
+		auto pg     = processGlyphs(text);
+		int  spaces = countSpacesAtBegin(pg.toInsertHere);
 
-		content  = pg.toInsertHere;
+		content  = pg.toInsertHere.mid(spaces);
 		m_glyphs = content.length();
+		m_spaces = spaces;
 
 		if (!pg.toInsertInNext.isEmpty()) {
 			return makeNewFragment(cursor, pg.toInsertInNext, pg.onNextLine);
 		}
 
+		cursor->setPosition(m_spaces + m_glyphs);
+		cursor->setFragment(this);
 		return this;
 	}
 
@@ -110,25 +124,6 @@ Fragment * String::dropHead(Cursor * cursor, int p1, int p2) {
 
 	delete this;
 	return ret;
-}
-
-Fragment * String::dropTail(Cursor * cursor, int p1, int p2) {
-	auto *  it = m_next;
-	QString text;
-
-	while (it != nullptr) {
-		text += QString(it->spaces(), ' ') + it->displayText();
-
-		auto * nextIt = it->next();
-		delete it;
-		it = nextIt;
-	}
-
-	m_next = nullptr;
-	drop(cursor, p1, p2);
-	insert(cursor, p1, text);
-
-	return this;
 }
 
 }  // namespace icL::editor

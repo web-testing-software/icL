@@ -17,6 +17,7 @@ namespace icL::editor {
 Drawing::Drawing(QQuickItem * parent)
     : Logic(parent) {
 	setRenderTarget(QQuickPaintedItem::FramebufferObject);
+	setAntialiasing(true);
 
 	connect(
 	  this, &Logic::widthChanged, this, &Drawing::updateBackgroundGeometry);
@@ -52,7 +53,7 @@ void Drawing::paint(QPainter * painter) {
 	QTime timer;
 	timer.start();
 
-	painter->setRenderHint(QPainter::HighQualityAntialiasing);
+	//	painter->setRenderHint(QPainter::Antialiasing);
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(m_chars->cline.lineNumber.background);
@@ -230,7 +231,11 @@ void Drawing::drawLine(
 
 	if (line->hasBreakPoint()) {
 		painter->setBrush(m_chars->breakpoint.lineNumber.background);
-		painter->drawRect(0, yPos, m_proxy->fullLineH(), m_proxy->fullLineH());
+		//		painter->drawRect(0, yPos, m_proxy->fullLineH(),
+		// m_proxy->fullLineH());
+		int padding = m_proxy->lineS() * 2;
+		int size    = m_proxy->fullLineH() - padding * 2;
+		painter->drawEllipse(padding, yPos + padding, size, size);
 	}
 
 	painter->setBrush(Qt::NoBrush);

@@ -61,7 +61,7 @@ const QString Fragment::getText(int begin, int end) {
 			ret += content.mid(0, end - m_spaces);
 		}
 		else {
-			ret += QString(begin - end, ' ');
+			ret += QString(end - begin, ' ');
 		}
 	}
 	else {
@@ -128,7 +128,11 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 		end = length();
 	}
 
-	if (end <= m_spaces) {
+	if (begin == end) {
+		return this;
+	}
+
+	if (end <= m_spaces && m_glyphs > 0) {
 		ret = dropSpaces(cursor, begin, end);
 	}
 	else if (begin > m_spaces) {
@@ -155,6 +159,10 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 
 Fragment * Fragment::insert(Cursor * cursor, int pos, const QString & text) {
 	Fragment * ret;
+
+	if (text.isEmpty()) {
+		return this;
+	}
 
 	if (pos < m_spaces) {
 		ret = insertInSpaces(cursor, pos, text);
@@ -257,6 +265,14 @@ Fragment * Fragment::insertInSpaces(
 	if (pg.toInsertInNext.isEmpty()) {
 		int spaces = countSpacesAtBegin(pg.toInsertHere);
 
+		if (spaces == pg.toInsertHere.length()) {
+			m_spaces += spaces;
+
+			cursor->setPosition(pos + spaces);
+			cursor->setFragment(this);
+			return this;
+		}
+
 		content.prepend(QString(m_spaces - pos, ' '));
 		content.prepend(pg.toInsertHere.midRef(spaces));
 
@@ -272,10 +288,11 @@ Fragment * Fragment::insertInSpaces(
 	auto * newFrag = makeNewFragment(
 	  cursor, pg.toInsertInNext % QString(m_spaces - pos, ' ') % content,
 	  pg.onNextLine);
+	int spaces = countSpacesAtBegin(pg.toInsertHere);
 
-	content  = pg.toInsertHere;
-	m_glyphs = pg.toInsertHere.length();
-	m_spaces = pos;
+	content  = pg.toInsertHere.mid(spaces);
+	m_glyphs = pg.toInsertHere.length() - spaces;
+	m_spaces = pos + spaces;
 
 	return newFrag;
 }
@@ -423,7 +440,9 @@ Fragment * Fragment::dropAllContent(Cursor * cursor, int p1) {
 
 		// This fragment has a previous fragment
 
-		m_next->m_prev = m_prev;
+		if (m_next != nullptr) {
+			m_next->m_prev = m_prev;
+		}
 		m_prev->m_next = m_next;
 
 		cursor->setFragment(m_prev);
@@ -445,6 +464,9 @@ Fragment * Fragment::dropAllContent(Cursor * cursor, int p1) {
 	if (m_prev != nullptr) {
 		m_prev->m_next = newFrag;
 	}
+	else {
+		m_line->setFirst(newFrag);
+	}
 
 	if (m_next != nullptr) {
 		m_next->m_prev = newFrag;
@@ -453,7 +475,6 @@ Fragment * Fragment::dropAllContent(Cursor * cursor, int p1) {
 	if (m_line->visible()) {
 		newFrag->cacheNow();
 	}
-	m_line->setFirst(newFrag);
 
 	delete this;
 
