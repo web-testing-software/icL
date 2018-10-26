@@ -155,7 +155,7 @@ void Selection::moveUpDown(int lines, bool select) {
 }
 
 QString Selection::drop() {
-	bool notEditable = m_begin->fragment()->isReadOnly();
+	bool notEditable = false;
 
 	// Test if is editable first
 
@@ -233,6 +233,35 @@ QString Selection::drop() {
 		beginFrag->setNext(endFrag);
 		endFrag->setPrev(beginFrag);
 
+		// Delete first frag if empty
+
+		if (beginFrag->spaces() == 0 && beginFrag->glyphs() == 0) {
+			endFrag->setPrev(beginFrag->prev());
+
+			if (beginFrag->line()->first() == beginFrag) {
+				beginFrag->line()->setFirst(endFrag);
+			}
+		}
+
+		if (
+		  endFrag->spaces() == 0 && endFrag->glyphs() == 0 &&
+		  (endFrag->prev() != nullptr || endFrag->next() != nullptr)) {
+
+			if (endFrag->next() != nullptr) {
+				endFrag->next()->setNext(endFrag->prev());
+			}
+
+			if (endFrag->prev() != nullptr) {
+				endFrag->prev()->setNext(endFrag->next());
+			}
+
+			if (endFrag->line()->first() == endFrag) {
+				endFrag->line()->setFirst(endFrag->next());
+			}
+
+			delete endFrag;
+		}
+
 		delete endLine;
 	}
 
@@ -259,7 +288,8 @@ QString Selection::delete1() {
 
 	m_end->stepForward(1, m_begin);
 	setRtl(false);
-	return drop();
+	//	return drop();
+	return {};
 }
 
 QString Selection::insert(const QString & text) {

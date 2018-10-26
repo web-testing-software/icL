@@ -154,6 +154,8 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 		cache->setText(content);
 	}
 
+	qDebug() << m_glyphs;
+
 	return ret;
 }
 
@@ -417,6 +419,7 @@ Fragment * Fragment::dropAllContent(Cursor * cursor, int p1) {
 		// This fragment has no neighbords
 		if (m_next == nullptr && m_prev == nullptr) {
 			m_spaces = 0;
+			m_glyphs = 0;
 			content.clear();
 
 			cursor->setFragment(this);

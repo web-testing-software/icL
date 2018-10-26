@@ -109,21 +109,18 @@ Fragment * String::insertAfterGlyphs(Cursor * cursor, const QString & text) {
 }
 
 Fragment * String::dropHead(Cursor * cursor, int p1, int p2) {
-	QString text = content.mid(p2 - m_spaces);
 
-	if (m_next != nullptr) {
-		m_next->setPrev(m_prev);
+	content.remove(0, p2 - m_spaces);
+	m_glyphs = content.length();
+
+	if (p1 < m_spaces) {
+		m_spaces = p1;
 	}
 
-	if (m_prev != nullptr) {
-		m_prev->setNext(m_next);
-	}
+	cursor->setPosition(p1);
+	cursor->setFragment(this);
 
-	auto * ret =
-	  m_prev->insert(cursor, m_prev->length(), QString(p1, ' ') + text);
-
-	delete this;
-	return ret;
+	return this;
 }
 
 }  // namespace icL::editor
