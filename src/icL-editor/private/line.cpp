@@ -84,21 +84,21 @@ QStaticText * Line::getCache() {
 	return cache;
 }
 
+void Line::updateLength() {
+	auto * it = m_first->next();
+
+	m_length = m_first->length();
+	while (it != nullptr) {
+		m_length += it->length();
+		it = it->next();
+	}
+}
+
 void Line::setFirst(Fragment * first) {
 	if (m_first == first)
 		return;
 
 	m_first = first;
-
-	// Needs to update the length of line
-	auto * it = first->next();
-
-	m_length = first->length();
-	while (it != nullptr) {
-		m_length += it->length();
-		it = it->next();
-	}
-
 	emit firstChanged(m_first);
 }
 

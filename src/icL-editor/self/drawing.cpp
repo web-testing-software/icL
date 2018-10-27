@@ -71,7 +71,7 @@ void Drawing::paint(QPainter * painter) {
 
 	drawCursor(painter);
 
-	// qDebug() << "render time" << timer.elapsed();
+	//	qDebug() << "render time" << timer.elapsed();
 	update();
 }
 

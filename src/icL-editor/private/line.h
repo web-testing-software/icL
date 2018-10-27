@@ -115,6 +115,11 @@ public:
 	 */
 	QStaticText * getCache();
 
+	/**
+	 * @brief updateLength recalc the length of line
+	 */
+	void updateLength();
+
 signals:
 	void firstChanged(Fragment * first);
 	void lengthChanged(uint8_t length);

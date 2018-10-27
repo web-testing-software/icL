@@ -278,6 +278,7 @@ QString Selection::drop() {
 	}
 
 	m_end->syncWith(m_begin);
+	m_begin->fragment()->line()->updateLength();
 	m_begin->getEditor()->updateCurrentLine();
 
 	return retAfter;
@@ -300,7 +301,7 @@ QString Selection::delete1() {
 
 	m_end->stepForward(1, m_begin);
 	setRtl(true);
-	//	return drop();
+	return drop();
 	return {};
 }
 
@@ -312,6 +313,14 @@ QString Selection::insert(const QString & text) {
 	m_end->fragment()->insert(m_begin, m_end->position(), text);
 
 	QString retAfter = getText();
+
+	// Update the length of edited lines
+	auto * it = m_begin->fragment()->line();
+
+	do {
+		it->updateLength();
+		it = it->next();
+	} while (it != m_end->fragment()->line()->next());
 
 	m_end->updatePreffered();
 	m_begin->syncWith(m_end);
