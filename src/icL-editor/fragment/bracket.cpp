@@ -33,6 +33,16 @@ Fragment * Bracket::insertInSpaces(
 }
 
 Fragment * Bracket::insertAfterSpaces(Cursor * cursor, const QString & text) {
+	int spaces = countSpacesAtBegin(text);
+
+	if (spaces == text.length()) {
+		m_spaces += spaces;
+
+		cursor->setPosition(m_spaces);
+		cursor->setFragment(this);
+		return this;
+	}
+
 	auto * ret =
 	  m_prev->insert(cursor, m_prev->length(), QString(m_spaces, ' ') + text);
 
@@ -40,7 +50,7 @@ Fragment * Bracket::insertAfterSpaces(Cursor * cursor, const QString & text) {
 	return ret;
 }
 
-Fragment * Bracket::insertInGlyphs(Cursor * cursor, int, const QString &) {
+Fragment * Bracket::insertInGlyphs(Cursor *, int, const QString &) {
 	// This function must be not called ever
 	Q_ASSERT(false);
 }
@@ -61,17 +71,17 @@ Fragment * Bracket::insertAfterGlyphs(Cursor * cursor, const QString & text) {
 	return makeNewFragment(cursor, text, false);
 }
 
-Fragment * Bracket::dropHead(Cursor * cursor, int, int) {
+Fragment * Bracket::dropHead(Cursor *, int, int) {
 	// This function must be not called ever
 	Q_ASSERT(false);
 }
 
-Fragment * Bracket::dropContent(Cursor * cursor, int, int) {
+Fragment * Bracket::dropContent(Cursor *, int, int) {
 	// This function must be not called ever
 	Q_ASSERT(false);
 }
 
-Fragment * Bracket::dropTail(Cursor * cursor, int, int) {
+Fragment * Bracket::dropTail(Cursor *, int, int) {
 	// This function must be not called ever
 	Q_ASSERT(false);
 }

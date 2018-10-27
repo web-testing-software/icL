@@ -58,14 +58,14 @@ const QString Fragment::getText(int begin, int end) {
 	if (begin < m_spaces) {
 		if (end > m_spaces) {
 			ret += QString(m_spaces - begin, ' ');
-			ret += content.mid(0, end - m_spaces);
+			ret += content.midRef(0, end - m_spaces);
 		}
 		else {
 			ret += QString(end - begin, ' ');
 		}
 	}
 	else {
-		ret += content.mid(begin - m_spaces, end - begin);
+		ret += content.midRef(begin - m_spaces, end - begin);
 	}
 
 	return ret;
@@ -387,6 +387,15 @@ Fragment * Fragment::dropSpaces(Cursor * cursor, int p1, int p2) {
 }
 
 Fragment * Fragment::dropHead(Cursor * cursor, int p1, int p2) {
+	if (p2 <= m_spaces) {
+		m_spaces -= p2 - p1;
+
+		cursor->setPosition(p1);
+		cursor->setFragment(this);
+
+		return this;
+	}
+
 	m_spaces -= m_spaces - p1;
 	content.remove(0, p2 - m_spaces);
 	m_glyphs = content.length();

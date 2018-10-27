@@ -241,6 +241,13 @@ QString Selection::drop() {
 			if (beginFrag->line()->first() == beginFrag) {
 				beginFrag->line()->setFirst(endFrag);
 			}
+
+			endFrag->setPrev(nullptr);
+
+			if (m_begin->fragment() == beginFrag) {
+				m_begin->setFragment(endFrag);
+				m_begin->setPosition(0);
+			}
 		}
 
 		if (
@@ -248,7 +255,7 @@ QString Selection::drop() {
 		  (endFrag->prev() != nullptr || endFrag->next() != nullptr)) {
 
 			if (endFrag->next() != nullptr) {
-				endFrag->next()->setNext(endFrag->prev());
+				endFrag->next()->setPrev(endFrag->prev());
 			}
 
 			if (endFrag->prev() != nullptr) {
@@ -257,6 +264,11 @@ QString Selection::drop() {
 
 			if (endFrag->line()->first() == endFrag) {
 				endFrag->line()->setFirst(endFrag->next());
+			}
+
+			if (m_begin->fragment() == endFrag) {
+				m_begin->setFragment(endFrag->next());
+				m_begin->setPosition(0);
 			}
 
 			delete endFrag;
@@ -287,7 +299,7 @@ QString Selection::delete1() {
 	}
 
 	m_end->stepForward(1, m_begin);
-	setRtl(false);
+	setRtl(true);
 	//	return drop();
 	return {};
 }
