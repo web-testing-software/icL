@@ -154,7 +154,7 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 		cache->setText(content);
 	}
 
-	qDebug() << m_glyphs;
+	//	qDebug() << m_glyphs;
 
 	return ret;
 }
@@ -396,8 +396,8 @@ Fragment * Fragment::dropHead(Cursor * cursor, int p1, int p2) {
 		return this;
 	}
 
-	m_spaces -= m_spaces - p1;
 	content.remove(0, p2 - m_spaces);
+	m_spaces -= m_spaces - p1;
 	m_glyphs = content.length();
 
 	cursor->setPosition(p1);

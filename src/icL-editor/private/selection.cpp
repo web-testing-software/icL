@@ -183,6 +183,10 @@ QString Selection::drop() {
 		beginFrag->drop(m_begin, m_begin->position());
 		endFrag->drop(m_end, 0, m_end->position());
 
+		// beginFrag and can be deleted on content drop
+		beginFrag = m_begin->fragment();
+		endFrag   = m_end->fragment();
+
 		while (beginFrag->next() != nullptr) {
 			auto * tmp = beginFrag->next()->next();
 
