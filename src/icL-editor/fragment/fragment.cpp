@@ -264,7 +264,7 @@ Fragment * Fragment::insertInSpaces(
   Cursor * begin, Cursor * end, int pos, const QString & text) {
 	auto pg = processGlyphs(text);
 
-	if (pg.toInsertInNext.isEmpty()) {
+	if (pg.toInsertInNext.isEmpty() && !pg.onNextLine) {
 		int spaces = countSpacesAtBegin(pg.toInsertHere);
 
 		if (spaces == pg.toInsertHere.length()) {
@@ -292,6 +292,8 @@ Fragment * Fragment::insertInSpaces(
 	  pg.onNextLine);
 	int spaces = countSpacesAtBegin(pg.toInsertHere);
 
+	end->stepBackward(m_spaces - pos + content.length(), end);
+
 	content  = pg.toInsertHere.mid(spaces);
 	m_glyphs = pg.toInsertHere.length() - spaces;
 	m_spaces = pos + spaces;
@@ -303,7 +305,7 @@ Fragment * Fragment::insertAfterSpaces(
   Cursor * begin, Cursor * end, const QString & text) {
 	auto pg = processGlyphs(text);
 
-	if (pg.toInsertInNext.isEmpty()) {
+	if (pg.toInsertInNext.isEmpty() && !pg.onNextLine) {
 		int spaces = countSpacesAtBegin(pg.toInsertHere);
 
 		end->setPosition(m_spaces + pg.toInsertHere.length());
@@ -319,6 +321,8 @@ Fragment * Fragment::insertAfterSpaces(
 
 	auto * newFrag =
 	  makeNewFragment(begin, end, pg.toInsertInNext + content, pg.onNextLine);
+
+	end->stepBackward(content.length(), end);
 
 	content  = pg.toInsertHere;
 	m_glyphs = pg.toInsertHere.length();
