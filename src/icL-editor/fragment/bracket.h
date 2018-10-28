@@ -7,13 +7,8 @@ namespace icL::editor {
 
 class Bracket : public Fragment
 {
-	Q_OBJECT
 public:
 	explicit Bracket(Line * parent = nullptr);
-
-signals:
-
-public slots:
 
 	// Fragment interface
 public:
@@ -22,13 +17,13 @@ public:
 
 protected:
 	Fragment * insertInSpaces(
-	  Cursor * cursor, int pos, const QString & text) override;
+	  Cursor * begin, Cursor * end, int pos, const QString & text) override;
 	Fragment * insertAfterSpaces(
-	  Cursor * cursor, const QString & text) override;
+	  Cursor * begin, Cursor * end, const QString & text) override;
 	Fragment * insertInGlyphs(
-	  Cursor * cursor, int pos, const QString & text) override;
+	  Cursor * begin, Cursor * end, int pos, const QString & text) override;
 	Fragment * insertAfterGlyphs(
-	  Cursor * cursor, const QString & text) override;
+	  Cursor * begin, Cursor * end, const QString & text) override;
 	Fragment * dropHead(Cursor * cursor, int p1, int p2) override;
 	Fragment * dropContent(Cursor * cursor, int p1, int p2) override;
 	Fragment * dropTail(Cursor * cursor, int p1, int p2) override;

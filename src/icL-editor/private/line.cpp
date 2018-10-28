@@ -99,7 +99,6 @@ void Line::setFirst(Fragment * first) {
 		return;
 
 	m_first = first;
-	emit firstChanged(m_first);
 }
 
 void Line::setNext(Line * next) {
@@ -107,7 +106,6 @@ void Line::setNext(Line * next) {
 		return;
 
 	m_next = next;
-	emit nextChanged(m_next);
 }
 
 void Line::setPrev(Line * prev) {
@@ -115,7 +113,6 @@ void Line::setPrev(Line * prev) {
 		return;
 
 	m_prev = prev;
-	emit prevChanged(m_prev);
 }
 
 void Line::setBeginPos(int32_t beginPos) {
@@ -123,7 +120,6 @@ void Line::setBeginPos(int32_t beginPos) {
 		return;
 
 	m_beginPos = beginPos;
-	emit beginPosChanged(m_beginPos);
 }
 
 void Line::setLineNumber(int16_t lineNumber) {
@@ -152,8 +148,6 @@ void Line::setLineNumber(int16_t lineNumber) {
 	else {
 		m_charsNumberInLineNumber = 5;
 	}
-
-	emit lineNumberChanged(m_lineNumber);
 }
 
 void Line::setVisible(bool visible) {
@@ -181,7 +175,13 @@ void Line::setVisible(bool visible) {
 	}
 
 	m_visible = visible;
-	emit visibleChanged(m_visible);
+}
+
+void Line::setHasBreakPoint(bool hasBreakPoint) {
+	if (m_hasBreakPoint == hasBreakPoint)
+		return;
+
+	m_hasBreakPoint = hasBreakPoint;
 }
 
 void Line::makeChanged() {
@@ -189,7 +189,7 @@ void Line::makeChanged() {
 	m_isChanged = true;
 }
 
-int Line::charsNumberInLineNumber() {
+int8_t Line::charsNumberInLineNumber() {
 	return m_charsNumberInLineNumber;
 }
 

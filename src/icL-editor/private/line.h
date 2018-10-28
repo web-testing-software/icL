@@ -16,22 +16,6 @@ class Logic;
 
 class Line : public QObject
 {
-	Q_OBJECT
-
-	// clang-format off
-	Q_PROPERTY(icL::editor::Fragment* first READ first  WRITE setFirst NOTIFY firstChanged)
-	Q_PROPERTY(icL::editor::Line*      next READ next   WRITE setNext  NOTIFY nextChanged)
-	Q_PROPERTY(icL::editor::Line*      prev READ prev   WRITE setPrev  NOTIFY prevChanged)
-	Q_PROPERTY(icL::editor::Logic*  parent READ parent NOTIFY parentChanged)
-
-	Q_PROPERTY(uint8_t     length READ length     NOTIFY lengthChanged)
-	Q_PROPERTY(int32_t   beginPos READ beginPos   WRITE setBeginPos   NOTIFY beginPosChanged)
-	Q_PROPERTY(int16_t lineNumber READ lineNumber WRITE setLineNumber NOTIFY lineNumberChanged)
-	Q_PROPERTY(bool       visible READ visible    WRITE setVisible    NOTIFY visibleChanged)
-
-	Q_PROPERTY(bool hasBreakPoint READ hasBreakPoint WRITE setHasBreakPoint NOTIFY hasBreakPointChanged)
-	// clang-format on
-
 public:
 	explicit Line(Logic * parent = nullptr);
 
@@ -120,18 +104,7 @@ public:
 	 */
 	void updateLength();
 
-signals:
-	void firstChanged(Fragment * first);
-	void lengthChanged(uint8_t length);
-	void beginPosChanged(int32_t beginPos);
-	void lineNumberChanged(int16_t lineNumber);
-	void visibleChanged(bool visible);
-	void nextChanged(Line * next);
-	void prevChanged(Line * prev);
-	void parentChanged(Logic * parent);
-	void hasBreakPointChanged(bool hasBreakPoint);
-
-public slots:
+public:
 	/**
 	 * @brief setFirst sets the first fragment of line
 	 * @param first is the new first fragment
@@ -172,13 +145,7 @@ public slots:
 	 * @brief setHasBreakPoint changes the break necesity
 	 * @param hasBreakPoint is true if need to break, otherwise false
 	 */
-	void setHasBreakPoint(bool hasBreakPoint) {
-		if (m_hasBreakPoint == hasBreakPoint)
-			return;
-
-		m_hasBreakPoint = hasBreakPoint;
-		emit hasBreakPointChanged(m_hasBreakPoint);
-	}
+	void setHasBreakPoint(bool hasBreakPoint);
 
 	/**
 	 * @brief makeChanged sets up the changed state
@@ -189,9 +156,10 @@ public slots:
 	 * @brief charsNumberInLineNumber helps to align to right line number
 	 * @return return the number of charaters in line number
 	 */
-	int charsNumberInLineNumber();
+	int8_t charsNumberInLineNumber();
 
 private:
+	// Properties
 	Fragment * m_first = nullptr;
 	Line *     m_next  = nullptr;
 	Line *     m_prev  = nullptr;
@@ -202,15 +170,24 @@ private:
 	bool    m_visible = false;
 
 	// fields
-	bool    m_isChanged = false;
+
+	/// @brief The line has unsaved chaghes
+	bool m_isChanged = false;
+
+	/// @brief Text content of the line
 	QString content;
+
+	/// @brief The editor which contains this line
 	Logic * m_parent;
 
 	/// @brief cache is the geometry of line number
 	QStaticText * cache = nullptr;
 
-	int  m_charsNumberInLineNumber = 0;
-	bool m_hasBreakPoint           = false;
+	/// @brief The number of chars in line number
+	int8_t m_charsNumberInLineNumber = 0;
+
+	/// @brief This line has a break point
+	bool m_hasBreakPoint = false;
 };
 
 }  // namespace icL::editor

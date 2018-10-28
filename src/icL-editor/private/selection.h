@@ -7,20 +7,10 @@ namespace icL::editor {
 
 class Cursor;
 
-class Selection : public QObject
+class Selection
 {
-	Q_OBJECT
-
-	// clang-format off
-	Q_PROPERTY(icL::editor::Cursor*   begin READ begin NOTIFY beginChanged)
-	Q_PROPERTY(icL::editor::Cursor*     end READ end   NOTIFY endChanged)
-	Q_PROPERTY(icL::editor::Selection* next READ next  WRITE setNext  NOTIFY nextChanged)
-
-	Q_PROPERTY(bool rtl READ rtl WRITE setRtl NOTIFY rtlChanged)
-	// clang-format on
-
 public:
-	explicit Selection(QObject * parent = nullptr);
+	explicit Selection();
 
 	~Selection();
 
@@ -100,12 +90,6 @@ public:
 	 */
 	QString insert(const QString & text);
 
-signals:
-	void beginChanged(Cursor * begin);
-	void endChanged(Cursor * end);
-	void nextChanged(Selection * next);
-	void rtlChanged(bool rtl);
-
 public slots:
 	/**
 	 * @brief setNext add a new selection to collection
@@ -160,7 +144,7 @@ private:
 	Cursor *    m_begin = nullptr;
 	Cursor *    m_end   = nullptr;
 	Selection * m_next  = nullptr;
-	bool        m_rtl{};
+	bool        m_rtl   = false;
 };
 
 }  // namespace icL::editor

@@ -64,30 +64,43 @@ ProcessedGlyphs String::processGlyphs(const QString & text) {
 }
 
 Fragment * String::insertInSpaces(
-  Cursor * cursor, int pos, const QString & text) {
+  Cursor * begin, Cursor * end, int pos, const QString & text) {
 	int spaces = countSpacesAtBegin(text);
 
 	if (spaces == text.length()) {
 		m_spaces += spaces;
 
-		cursor->setPosition(pos + spaces);
-		cursor->setFragment(this);
+		end->setPosition(pos + spaces);
+		end->setFragment(this);
 		return this;
 	}
 
+	ensurePrev();
+	begin->setFragment(m_prev);
+	begin->setPosition(m_prev->length());
+
 	m_spaces -= pos;
-	return m_prev->insert(cursor, m_prev->length(), QString(pos, ' ') + text);
+	return m_prev->insert(
+	  begin, end, m_prev->length(), QString(pos, ' ') + text);
 }
 
-Fragment * String::insertAfterSpaces(Cursor * cursor, const QString & text) {
-	auto * ret =
-	  m_prev->insert(cursor, m_prev->length(), QString(m_spaces, ' ') + text);
+Fragment * String::insertAfterSpaces(
+  Cursor * begin, Cursor * end, const QString & text) {
+
+	ensurePrev();
+	begin->setFragment(m_prev);
+	begin->setPosition(m_prev->length());
+
+	auto * ret = m_prev->insert(
+	  begin, end, m_prev->length(), QString(m_spaces, ' ') + text);
 
 	m_spaces = 0;
+	end->setPosition(0);
 	return ret;
 }
 
-Fragment * String::insertAfterGlyphs(Cursor * cursor, const QString & text) {
+Fragment * String::insertAfterGlyphs(
+  Cursor * begin, Cursor * end, const QString & text) {
 	if (m_glyphs == 0) {
 		auto pg     = processGlyphs(text);
 		int  spaces = countSpacesAtBegin(pg.toInsertHere);
@@ -97,15 +110,16 @@ Fragment * String::insertAfterGlyphs(Cursor * cursor, const QString & text) {
 		m_spaces = spaces;
 
 		if (!pg.toInsertInNext.isEmpty()) {
-			return makeNewFragment(cursor, pg.toInsertInNext, pg.onNextLine);
+			return makeNewFragment(
+			  begin, end, pg.toInsertInNext, pg.onNextLine);
 		}
 
-		cursor->setPosition(m_spaces + m_glyphs);
-		cursor->setFragment(this);
+		end->setPosition(m_spaces + m_glyphs);
+		end->setFragment(this);
 		return this;
 	}
 
-	return makeNewFragment(cursor, text, false);
+	return makeNewFragment(begin, end, text, false);
 }
 
 Fragment * String::dropHead(Cursor * cursor, int p1, int p2) {

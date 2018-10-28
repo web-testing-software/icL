@@ -8,8 +8,7 @@
 
 namespace icL::editor {
 
-Cursor::Cursor(QObject * parent)
-    : QObject(parent) {}
+Cursor::Cursor() {}
 
 Fragment * Cursor::fragment() const {
 	return m_fragment;
@@ -332,7 +331,6 @@ void Cursor::setFragment(Fragment * fragment) {
 		return;
 
 	m_fragment = fragment;
-	emit fragmentChanged(m_fragment);
 }
 
 void Cursor::setPosition(int8_t position) {
@@ -340,7 +338,6 @@ void Cursor::setPosition(int8_t position) {
 		return;
 
 	m_position = position;
-	emit positionChanged(m_position);
 }
 
 void Cursor::setPreffered(uint8_t preffered) {
@@ -348,7 +345,6 @@ void Cursor::setPreffered(uint8_t preffered) {
 		return;
 
 	m_preffered = preffered;
-	emit prefferedChanged(m_preffered);
 }
 
 }  // namespace icL::editor

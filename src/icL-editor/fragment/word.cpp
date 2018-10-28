@@ -26,22 +26,25 @@ ProcessedGlyphs Word::processGlyphs(const QString & text) {
 }
 
 Fragment * Word::insertInSpaces(
-  Cursor * cursor, int pos, const QString & text) {
+  Cursor * begin, Cursor * end, int pos, const QString & text) {
 
 	int spaces = countSpacesAtBegin(text);
 
 	if (spaces == text.length()) {
 		m_spaces += spaces;
 
-		cursor->setPosition(pos + spaces);
-		cursor->setFragment(this);
+		begin->setPosition(pos + spaces);
+		begin->setFragment(this);
 		return this;
 	}
 
+	ensurePrev();
+	begin->setFragment(m_prev);
+	begin->setPosition(m_prev->length());
 
 	m_spaces -= pos;
 	return m_prev->insert(
-	  cursor, m_prev->length(), QString(m_spaces - pos, ' ') + text);
+	  begin, end, m_prev->length(), QString(m_spaces - pos, ' ') + text);
 }
 
 }  // namespace icL::editor

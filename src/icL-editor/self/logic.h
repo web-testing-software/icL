@@ -19,14 +19,6 @@ class Logic : public QQuickPaintedItem
 {
 	Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(icL::editor::Selection*    main READ main         NOTIFY mainChanged)
-	Q_PROPERTY(icL::editor::Line*        first READ first        WRITE setFirst        NOTIFY firstChanged)
-	Q_PROPERTY(icL::editor::Line*      current READ current      WRITE setCurrent      NOTIFY currentChanged)
-	Q_PROPERTY(icL::editor::Line* firstVisible READ firstVisible WRITE setFirstVisible NOTIFY firstVisibleChanged)
-	Q_PROPERTY(icL::editor::Line*  lastVisible READ lastVisible  WRITE setLastVisible  NOTIFY lastVisibleChanged)
-	// clang-format on
-
 public:
 	Logic(QQuickItem * parent);
 
@@ -77,13 +69,6 @@ public:
 	 * @param path is the path of file
 	 */
 	Q_INVOKABLE bool loadFile(const QString & path);
-
-signals:
-	void mainChanged(Selection * main);
-	void firstChanged(Line * first);
-	void currentChanged(Line * current);
-	void firstVisibleChanged(Line * firstVisible);
-	void lastVisibleChanged(Line * lastVisible);
 
 public slots:
 	/**

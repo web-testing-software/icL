@@ -37,6 +37,12 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	else if (event->key() == Qt::Key_Delete) {
 		qDebug() << m_main->delete1();
 	}
+	else if (event->key() == Qt::Key_A) {
+		qDebug() << m_main->insert(event->text());
+	}
+	else if (event->key() == Qt::Key_Enter) {
+		qDebug() << m_main->insert("\n");
+	}
 }
 
 void Keyboard::keyReleaseEvent(QKeyEvent * event) {}

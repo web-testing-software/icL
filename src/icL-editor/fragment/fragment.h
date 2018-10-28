@@ -38,22 +38,12 @@ struct ProcessedGlyphs
 
 enum class FragmentTypes { Fragment, Word, String, Bracket };
 
-class Fragment : public QObject
+class Fragment
 {
-	Q_OBJECT
-
-	// clang-format off
-	Q_PROPERTY(icL::editor::Fragment* prev READ prev WRITE setPrev NOTIFY prevChanged)
-	Q_PROPERTY(icL::editor::Fragment* next READ next WRITE setNext NOTIFY nextChanged)
-	Q_PROPERTY(icL::editor::Line*     line READ line WRITE setLine NOTIFY lineChanged)
-
-	Q_PROPERTY(uint8_t length READ length NOTIFY lengthChanged)
-	Q_PROPERTY(uint8_t spaces READ spaces NOTIFY spacesChanged)
-	Q_PROPERTY(uint8_t glyphs READ glyphs NOTIFY glyphsChanged)
-	// clang-format on
-
 public:
 	explicit Fragment(Line * parent = nullptr);
+
+	virtual ~Fragment() = default;
 
 	/**
 	 * @brief prev is the previous sibling
@@ -151,7 +141,8 @@ public:
 	 * @param pos is the position to insert in
 	 * @param text is the text to insert
 	 */
-	Fragment * insert(Cursor * cursor, int pos, const QString & text);
+	Fragment * insert(
+	  Cursor * begin, Cursor * end, int pos, const QString & text);
 
 	/**
 	 * @brief isBracket detects if this fragment is a bracket
@@ -183,15 +174,7 @@ public:
 	 */
 	void setReadOnly(bool value);
 
-signals:
-	void prevChanged(Fragment * prev);
-	void nextChanged(Fragment * next);
-	void lineChanged(Line * line);
-	void lengthChanged(uint8_t length);
-	void spacesChanged(int8_t spaces);
-	void glyphsChanged(int8_t glyphs);
-
-public slots:
+public:
 	/**
 	 * @brief setPrev changes the previous sibling fragment
 	 * @param prev is the new previous sibling fragment
@@ -230,14 +213,15 @@ protected:
 	 * @param text is the text to insert
 	 */
 	virtual Fragment * insertInSpaces(
-	  Cursor * cursor, int pos, const QString & text);
+	  Cursor * begin, Cursor * end, int pos, const QString & text);
 
 	/**
 	 * @brief insertAfterSpaces prepends glyphs to content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertAfterSpaces(Cursor * cursor, const QString & text);
+	virtual Fragment * insertAfterSpaces(
+	  Cursor * begin, Cursor * end, const QString & text);
 
 	/**
 	 * @brief insertInGlyphs inserts glyphs in content
@@ -245,14 +229,15 @@ protected:
 	 * @param text is the text to insert
 	 */
 	virtual Fragment * insertInGlyphs(
-	  Cursor * cursor, int pos, const QString & text);
+	  Cursor * begin, Cursor * end, int pos, const QString & text);
 
 	/**
 	 * @brief insertAfterGlyphs appends glyphs after content
 	 * @param pos is the position of insertion
 	 * @param text is the text to insert
 	 */
-	virtual Fragment * insertAfterGlyphs(Cursor * cursor, const QString & text);
+	virtual Fragment * insertAfterGlyphs(
+	  Cursor * begin, Cursor * end, const QString & text);
 
 	/**
 	 * @brief dropSpaces removes spaces
@@ -297,7 +282,7 @@ protected:
 	 * @return the new created fragment
 	 */
 	Fragment * makeNewFragment(
-	  Cursor * cursor, const QString & text, bool onNewLine);
+	  Cursor * begin, Cursor * end, const QString & text, bool onNewLine);
 
 	/**
 	 * @brief makeFragmentNow creates a new fragment without text processing
@@ -306,6 +291,11 @@ protected:
 	 * @return the new created fragment
 	 */
 	Fragment * makeFragmentNow(FragmentTypes type, bool onNewLine);
+
+	/**
+	 * @brief ensurePrev ensure that this fragment has a previous fragment
+	 */
+	void ensurePrev();
 
 	/**
 	 * @brief countSpaceAtBegin counts the spaces at the begin of text

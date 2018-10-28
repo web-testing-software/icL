@@ -9,19 +9,10 @@ class Fragment;
 class Advanced;
 class Line;
 
-class Cursor : public QObject
+class Cursor
 {
-	Q_OBJECT
-
-	// clang-format off
-	Q_PROPERTY(icL::editor::Fragment* fragment READ fragment WRITE setFragment NOTIFY fragmentChanged)
-
-	Q_PROPERTY(int8_t   position READ position  WRITE setPosition  NOTIFY positionChanged)
-	Q_PROPERTY(uint8_t preffered READ preffered WRITE setPreffered NOTIFY prefferedChanged)
-	// clang-format on
-
 public:
-	explicit Cursor(QObject * parent = nullptr);
+	explicit Cursor();
 
 	/**
 	 * @brief fragment gets the fragment of cursor
@@ -153,12 +144,7 @@ public:
 	 */
 	bool operator!=(const Cursor & other) const;
 
-signals:
-	void fragmentChanged(Fragment * fragment);
-	void positionChanged(int8_t position);
-	void prefferedChanged(uint8_t preffered);
-
-public slots:
+public:
 	/**
 	 * @brief setFragment sets the text fragment
 	 * @param fragment is the new text fragment (it cannot be null)

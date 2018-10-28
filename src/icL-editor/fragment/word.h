@@ -7,19 +7,14 @@ namespace icL::editor {
 
 class Word : public Fragment
 {
-	Q_OBJECT
 public:
 	explicit Word(Line * parent = nullptr);
-
-signals:
-
-public slots:
 
 	// Fragment interface
 protected:
 	ProcessedGlyphs processGlyphs(const QString & text) override;
 	Fragment *      insertInSpaces(
-		   Cursor * cursor, int pos, const QString & text) override;
+		   Cursor * begin, Cursor * end, int pos, const QString & text) override;
 };
 
 }  // namespace icL::editor

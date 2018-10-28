@@ -15,9 +15,12 @@
 
 namespace icL::editor {
 
-Fragment::Fragment(Line * parent)
-    : QObject(parent) {
+Fragment::Fragment(Line * parent) {
 	m_line = parent;
+
+	if (m_line->visible()) {
+		cacheNow();
+	}
 }
 
 Fragment * Fragment::prev() const {
@@ -159,7 +162,8 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 	return ret;
 }
 
-Fragment * Fragment::insert(Cursor * cursor, int pos, const QString & text) {
+Fragment * Fragment::insert(
+  Cursor * begin, Cursor * end, int pos, const QString & text) {
 	Fragment * ret;
 
 	if (text.isEmpty()) {
@@ -167,16 +171,16 @@ Fragment * Fragment::insert(Cursor * cursor, int pos, const QString & text) {
 	}
 
 	if (pos < m_spaces) {
-		ret = insertInSpaces(cursor, pos, text);
+		ret = insertInSpaces(begin, end, pos, text);
 	}
 	else if (pos == length()) {
-		ret = insertAfterGlyphs(cursor, text);
+		ret = insertAfterGlyphs(begin, end, text);
 	}
 	else if (pos == m_spaces) {
-		ret = insertAfterSpaces(cursor, text);
+		ret = insertAfterSpaces(begin, end, text);
 	}
 	else {
-		ret = insertInGlyphs(cursor, pos, text);
+		ret = insertInGlyphs(begin, end, pos, text);
 	}
 
 	if (cache != nullptr) {
@@ -211,7 +215,6 @@ void Fragment::setPrev(Fragment * prev) {
 		return;
 
 	m_prev = prev;
-	emit prevChanged(m_prev);
 }
 
 void Fragment::setNext(Fragment * next) {
@@ -219,7 +222,6 @@ void Fragment::setNext(Fragment * next) {
 		return;
 
 	m_next = next;
-	emit nextChanged(m_next);
 }
 
 void Fragment::setLine(Line * line) {
@@ -227,8 +229,6 @@ void Fragment::setLine(Line * line) {
 		return;
 
 	m_line = line;
-	setParent(line);
-	emit lineChanged(m_line);
 }
 
 Advanced * Fragment::getEditor() {
@@ -254,14 +254,14 @@ ProcessedGlyphs Fragment::processGlyphs(const QString & text) {
 
 	if (i != text.length()) {
 		pg.onNextLine     = text[i] == '\n';
-		pg.toInsertInNext = text.mid(i);
+		pg.toInsertInNext = text.mid(pg.onNextLine ? i + 1 : i);
 	}
 
 	return pg;
 }
 
 Fragment * Fragment::insertInSpaces(
-  Cursor * cursor, int pos, const QString & text) {
+  Cursor * begin, Cursor * end, int pos, const QString & text) {
 	auto pg = processGlyphs(text);
 
 	if (pg.toInsertInNext.isEmpty()) {
@@ -270,8 +270,8 @@ Fragment * Fragment::insertInSpaces(
 		if (spaces == pg.toInsertHere.length()) {
 			m_spaces += spaces;
 
-			cursor->setPosition(pos + spaces);
-			cursor->setFragment(this);
+			end->setPosition(pos + spaces);
+			end->setFragment(this);
 			return this;
 		}
 
@@ -281,14 +281,14 @@ Fragment * Fragment::insertInSpaces(
 		m_spaces = pos + spaces;
 		m_glyphs = content.length();
 
-		cursor->setPosition(m_spaces + pg.toInsertHere.length());
-		cursor->setFragment(this);
+		end->setPosition(m_spaces + pg.toInsertHere.length());
+		end->setFragment(this);
 
 		return this;
 	}
 
 	auto * newFrag = makeNewFragment(
-	  cursor, pg.toInsertInNext % QString(m_spaces - pos, ' ') % content,
+	  begin, end, pg.toInsertInNext % QString(m_spaces - pos, ' ') % content,
 	  pg.onNextLine);
 	int spaces = countSpacesAtBegin(pg.toInsertHere);
 
@@ -299,14 +299,15 @@ Fragment * Fragment::insertInSpaces(
 	return newFrag;
 }
 
-Fragment * Fragment::insertAfterSpaces(Cursor * cursor, const QString & text) {
+Fragment * Fragment::insertAfterSpaces(
+  Cursor * begin, Cursor * end, const QString & text) {
 	auto pg = processGlyphs(text);
 
 	if (pg.toInsertInNext.isEmpty()) {
 		int spaces = countSpacesAtBegin(pg.toInsertHere);
 
-		cursor->setPosition(m_spaces + pg.toInsertHere.length());
-		cursor->setFragment(this);
+		end->setPosition(m_spaces + pg.toInsertHere.length());
+		end->setFragment(this);
 
 		content.prepend(pg.toInsertHere.midRef(spaces));
 
@@ -317,7 +318,7 @@ Fragment * Fragment::insertAfterSpaces(Cursor * cursor, const QString & text) {
 	}
 
 	auto * newFrag =
-	  makeNewFragment(cursor, pg.toInsertInNext + content, pg.onNextLine);
+	  makeNewFragment(begin, end, pg.toInsertInNext + content, pg.onNextLine);
 
 	content  = pg.toInsertHere;
 	m_glyphs = pg.toInsertHere.length();
@@ -326,7 +327,7 @@ Fragment * Fragment::insertAfterSpaces(Cursor * cursor, const QString & text) {
 }
 
 Fragment * Fragment::insertInGlyphs(
-  Cursor * cursor, int pos, const QString & text) {
+  Cursor * begin, Cursor * end, int pos, const QString & text) {
 
 	auto pg           = processGlyphs(text);
 	int  posInContent = pos - m_spaces;
@@ -335,14 +336,14 @@ Fragment * Fragment::insertInGlyphs(
 		content.insert(posInContent, pg.toInsertHere);
 		m_glyphs += pg.toInsertHere.length();
 
-		cursor->setPosition(pos + pg.toInsertHere.length());
-		cursor->setFragment(this);
+		end->setPosition(pos + pg.toInsertHere.length());
+		end->setFragment(this);
 
 		return this;
 	}
 
 	auto * newFrag = makeNewFragment(
-	  cursor, pg.toInsertInNext + content.mid(posInContent), pg.onNextLine);
+	  begin, end, pg.toInsertInNext + content.mid(posInContent), pg.onNextLine);
 
 	content.replace(
 	  posInContent, content.length() - posInContent, pg.toInsertHere);
@@ -351,7 +352,8 @@ Fragment * Fragment::insertInGlyphs(
 	return newFrag;
 }
 
-Fragment * Fragment::insertAfterGlyphs(Cursor * cursor, const QString & text) {
+Fragment * Fragment::insertAfterGlyphs(
+  Cursor * begin, Cursor * end, const QString & text) {
 	auto pg = processGlyphs(text);
 
 	if (content.isEmpty()) {
@@ -367,14 +369,14 @@ Fragment * Fragment::insertAfterGlyphs(Cursor * cursor, const QString & text) {
 		m_glyphs += pg.toInsertHere.length();
 	}
 
-	if (pg.toInsertInNext.isEmpty()) {
-		cursor->setPosition(m_glyphs + m_spaces);
-		cursor->setFragment(this);
+	if (pg.toInsertInNext.isEmpty() && !pg.onNextLine) {
+		end->setPosition(m_glyphs + m_spaces);
+		end->setFragment(this);
 
 		return this;
 	}
 
-	return makeNewFragment(cursor, pg.toInsertInNext, pg.onNextLine);
+	return makeNewFragment(begin, end, pg.toInsertInNext, pg.onNextLine);
 }
 
 Fragment * Fragment::dropSpaces(Cursor * cursor, int p1, int p2) {
@@ -497,7 +499,7 @@ Fragment * Fragment::dropAllContent(Cursor * cursor, int p1) {
 }
 
 Fragment * Fragment::makeNewFragment(
-  Cursor * cursor, const QString & text, bool onNewLine) {
+  Cursor * begin, Cursor * end, const QString & text, bool onNewLine) {
 	int tabSize = getEditor()->proxy()->tabSize();
 	int spaces  = 0;
 	int i       = 0;
@@ -510,7 +512,7 @@ Fragment * Fragment::makeNewFragment(
 			auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, true);
 
 			newFrag->m_spaces = spaces;
-			return newFrag->makeNewFragment(cursor, text.mid(i), true);
+			return newFrag->makeNewFragment(begin, end, text.mid(i), true);
 		}
 		else {
 			spaces++;
@@ -523,6 +525,8 @@ Fragment * Fragment::makeNewFragment(
 		auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, onNewLine);
 
 		newFrag->m_spaces = spaces;
+		begin->setFragment(newFrag);
+		begin->setPosition(spaces);
 		return newFrag;
 	}
 
@@ -548,7 +552,7 @@ Fragment * Fragment::makeNewFragment(
 	}
 
 	ret->m_spaces = spaces;
-	ret->insert(cursor, spaces, text.mid(spaces));
+	ret->insert(begin, end, spaces, text.mid(spaces));
 
 	return ret;
 }
@@ -587,11 +591,25 @@ Fragment * Fragment::makeFragmentNow(FragmentTypes type, bool onNewLine) {
 		parent->setFirst(ret);
 	}
 	else {
+		if (m_next != nullptr) {
+			m_next->m_prev = ret;
+		}
+
+		ret->m_next = m_next;
 		ret->m_prev = this;
 		m_next      = ret;
 	}
 
 	return ret;
+}
+
+void Fragment::ensurePrev() {
+	if (m_prev == nullptr) {
+		m_prev = new Fragment(m_line);
+
+		m_prev->m_next = this;
+		m_line->setFirst(m_prev);
+	}
 }
 
 int Fragment::countSpacesAtBegin(const QString & text) {

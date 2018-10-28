@@ -9,7 +9,7 @@ namespace icL::editor {
 
 Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
-	m_main = new Selection(this);
+	m_main = new Selection();
 
 	//	connect(
 	//	  m_main->begin(), &Cursor::fragmentChanged, this,
@@ -79,7 +79,7 @@ bool Logic::loadFile(const QString & path) {
 		auto * line     = new Line(this);
 		auto * fragment = new Fragment(line);
 
-		fragment->insert(m_main->begin(), 0, str);
+		fragment->insert(m_main->begin(), m_main->end(), 0, str);
 		line->setFirst(fragment);
 		line->getText(true);
 		line->updateLength();
@@ -120,7 +120,6 @@ void Logic::setFirst(Line * first) {
 		return;
 
 	m_first = first;
-	emit firstChanged(m_first);
 }
 
 void Logic::setCurrent(Line * current) {
@@ -128,7 +127,6 @@ void Logic::setCurrent(Line * current) {
 		return;
 
 	m_current = current;
-	emit currentChanged(m_current);
 }
 
 void Logic::setFirstVisible(Line * firstVisible) {
@@ -136,7 +134,6 @@ void Logic::setFirstVisible(Line * firstVisible) {
 		return;
 
 	m_firstVisible = firstVisible;
-	emit firstVisibleChanged(m_firstVisible);
 }
 
 void Logic::setLastVisible(Line * lastVisible) {
@@ -144,7 +141,6 @@ void Logic::setLastVisible(Line * lastVisible) {
 		return;
 
 	m_lastVisible = lastVisible;
-	emit lastVisibleChanged(m_lastVisible);
 }
 
 void Logic::addNewLine(Line * line, bool focus) {
@@ -155,11 +151,12 @@ void Logic::addNewLine(Line * line, bool focus) {
 	else {
 		if (m_current->next() != nullptr) {
 			m_current->next()->setPrev(line);
-			line->setNext(m_current->next());
 		}
+		line->setNext(m_current->next());
 		m_current->setNext(line);
 		line->setPrev(m_current);
 		line->setLineNumber(m_current->lineNumber() + 1);
+		line->setVisible(m_current->visible());
 
 		if (m_lastVisible == m_current && focus) {
 			m_firstVisible = m_firstVisible->next();

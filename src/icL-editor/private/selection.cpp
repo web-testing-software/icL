@@ -7,10 +7,9 @@
 
 namespace icL::editor {
 
-Selection::Selection(QObject * parent)
-    : QObject(parent) {
-	m_begin = new Cursor(this);
-	m_end   = new Cursor(this);
+Selection::Selection() {
+	m_begin = new Cursor();
+	m_end   = new Cursor();
 }
 
 Selection::~Selection() {
@@ -155,6 +154,11 @@ void Selection::moveUpDown(int lines, bool select) {
 }
 
 QString Selection::drop() {
+	// If the selection is empty
+	if (*m_begin == *m_end) {
+		return {};
+	}
+
 	bool notEditable = false;
 
 	// Test if is editable first
@@ -304,17 +308,18 @@ QString Selection::delete1() {
 	}
 
 	m_end->stepForward(1, m_begin);
-	setRtl(true);
+	setRtl(false);
 	return drop();
 	return {};
 }
 
 QString Selection::insert(const QString & text) {
+	// If the selection is not empty
 	if (*m_begin != *m_end) {
 		return {};
 	}
 
-	m_end->fragment()->insert(m_begin, m_end->position(), text);
+	m_end->fragment()->insert(m_begin, m_end, m_end->position(), text);
 
 	QString retAfter = getText();
 
@@ -338,7 +343,6 @@ void Selection::setNext(Selection * next) {
 		return;
 
 	m_next = next;
-	emit nextChanged(m_next);
 }
 
 void Selection::setRtl(bool rtl) {
@@ -346,7 +350,6 @@ void Selection::setRtl(bool rtl) {
 		return;
 
 	m_rtl = rtl;
-	emit rtlChanged(m_rtl);
 }
 
 void Selection::moveSelect(int step, Cursor * begin, Cursor * end) {
