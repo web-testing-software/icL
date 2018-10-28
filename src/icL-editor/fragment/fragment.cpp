@@ -525,8 +525,8 @@ Fragment * Fragment::makeNewFragment(
 		auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, onNewLine);
 
 		newFrag->m_spaces = spaces;
-		begin->setFragment(newFrag);
-		begin->setPosition(spaces);
+		end->setFragment(newFrag);
+		end->setPosition(spaces);
 		return newFrag;
 	}
 
