@@ -2,6 +2,7 @@
 
 #include "../fragment/fragment.h"
 #include "../self/drawing.h"
+#include "fixer.h"
 #include "styleproxy.h"
 
 #include <QStaticText>
@@ -9,8 +10,7 @@
 
 namespace icL::editor {
 
-Line::Line(Logic * parent)
-    : QObject(parent) {
+Line::Line(Logic * parent) {
 	m_parent = parent;
 }
 
@@ -187,6 +187,10 @@ void Line::setHasBreakPoint(bool hasBreakPoint) {
 void Line::makeChanged() {
 	m_parent->makeChanged();
 	m_isChanged = true;
+}
+
+void Line::fixLines() {
+	m_parent->fixer()->fix(this);
 }
 
 int8_t Line::charsNumberInLineNumber() {

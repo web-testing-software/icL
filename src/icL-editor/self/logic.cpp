@@ -2,6 +2,7 @@
 
 #include "../fragment/fragment.h"
 #include "../private/cursor.h"
+#include "../private/fixer.h"
 #include "../private/line.h"
 #include "../private/selection.h"
 
@@ -9,7 +10,8 @@ namespace icL::editor {
 
 Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
-	m_main = new Selection();
+	m_main  = new Selection();
+	m_fixer = new Fixer();
 
 	//	connect(
 	//	  m_main->begin(), &Cursor::fragmentChanged, this,
@@ -21,6 +23,7 @@ Logic::Logic(QQuickItem * parent)
 
 Logic::~Logic() {
 	delete m_main;
+	delete m_fixer;
 }
 
 Selection * Logic::main() const {
@@ -41,6 +44,10 @@ Line * Logic::firstVisible() const {
 
 Line * Logic::lastVisible() const {
 	return m_lastVisible;
+}
+
+Fixer * Logic::fixer() {
+	return m_fixer;
 }
 
 void Logic::makeChanged() {
@@ -111,6 +118,8 @@ bool Logic::loadFile(const QString & path) {
 	m_main->end()->setPosition(2);
 	m_main->begin()->updatePreffered();
 	m_main->end()->updatePreffered();
+
+	m_fixer->fixNow(m_first);
 
 	return true;
 }

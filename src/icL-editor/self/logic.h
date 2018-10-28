@@ -11,6 +11,7 @@ namespace icL::editor {
 
 class Selection;
 class Line;
+class Fixer;
 
 /**
  * @brief The Logic class contains the internal logic of editor
@@ -53,6 +54,12 @@ public:
 	 * @return th elast visible line
 	 */
 	Line * lastVisible() const;
+
+	/**
+	 * @brief fixer gets the fixer of editor
+	 * @return the fixer of this editor
+	 */
+	Fixer * fixer();
 
 	/**
 	 * @brief makeChanged set up the changed state of editor
@@ -133,6 +140,9 @@ protected:
 
 	/// @brief the line in which currently is placed the debug cursor
 	Line * debugLine{};
+
+	/// @brief the fixer to fix line numbers
+	Fixer * m_fixer;
 };
 
 }  // namespace icL::editor

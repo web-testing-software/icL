@@ -1,7 +1,8 @@
 #ifndef icL_editor_Fragment
 #define icL_editor_Fragment
 
-#include <QObject>
+#include <QString>
+
 
 namespace icL::look {
 struct TextCharFormat;

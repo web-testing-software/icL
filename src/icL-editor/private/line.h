@@ -14,7 +14,7 @@ namespace icL::editor {
 class Fragment;
 class Logic;
 
-class Line : public QObject
+class Line
 {
 public:
 	explicit Line(Logic * parent = nullptr);
@@ -151,6 +151,11 @@ public:
 	 * @brief makeChanged sets up the changed state
 	 */
 	void makeChanged();
+
+	/**
+	 * @brief fixLine fixes lines from this to last
+	 */
+	void fixLines();
 
 	/**
 	 * @brief charsNumberInLineNumber helps to align to right line number

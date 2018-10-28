@@ -1,7 +1,8 @@
 #ifndef icL_editor_Selection
 #define icL_editor_Selection
 
-#include <QObject>
+#include <QString>
+
 
 namespace icL::editor {
 
@@ -90,7 +91,7 @@ public:
 	 */
 	QString insert(const QString & text);
 
-public slots:
+public:
 	/**
 	 * @brief setNext add a new selection to collection
 	 * @param next is the new selection in collection

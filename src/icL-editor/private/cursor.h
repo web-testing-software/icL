@@ -1,7 +1,7 @@
 #ifndef icL_editor_Cursor
 #define icL_editor_Cursor
 
-#include <QObject>
+#include <stdint.h>
 
 namespace icL::editor {
 

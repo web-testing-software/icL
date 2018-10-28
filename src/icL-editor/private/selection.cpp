@@ -288,6 +288,7 @@ QString Selection::drop() {
 	m_end->syncWith(m_begin);
 	m_begin->fragment()->line()->updateLength();
 	m_begin->getEditor()->updateCurrentLine();
+	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
 }
@@ -334,6 +335,7 @@ QString Selection::insert(const QString & text) {
 	m_end->updatePreffered();
 	m_begin->syncWith(m_end);
 	m_begin->getEditor()->updateCurrentLine();
+	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
 }

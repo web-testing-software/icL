@@ -33,7 +33,8 @@ HEADERS += \
     private/styleproxy.h \
     fragment/word.h \
     fragment/string.h \
-    fragment/bracket.h
+    fragment/bracket.h \
+    private/fixer.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -50,4 +51,5 @@ SOURCES += \
     private/styleproxy.cpp \
     fragment/word.cpp \
     fragment/string.cpp \
-    fragment/bracket.cpp
+    fragment/bracket.cpp \
+    private/fixer.cpp
