@@ -332,7 +332,7 @@ Fragment * Fragment::insertInGlyphs(
 	auto pg           = processGlyphs(text);
 	int  posInContent = pos - m_spaces;
 
-	if (pg.toInsertInNext.isEmpty()) {
+	if (pg.toInsertInNext.isEmpty() && !pg.onNextLine) {
 		content.insert(posInContent, pg.toInsertHere);
 		m_glyphs += pg.toInsertHere.length();
 
@@ -344,6 +344,8 @@ Fragment * Fragment::insertInGlyphs(
 
 	auto * newFrag = makeNewFragment(
 	  begin, end, pg.toInsertInNext + content.mid(posInContent), pg.onNextLine);
+
+	end->stepBackward(content.length() - posInContent, end);
 
 	content.replace(
 	  posInContent, content.length() - posInContent, pg.toInsertHere);
@@ -509,10 +511,10 @@ Fragment * Fragment::makeNewFragment(
 			spaces += tabSize;
 		}
 		else if (text[i] == '\n') {
-			auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, true);
+			auto * newFrag = makeFragmentNow(FragmentTypes::Fragment, false);
 
 			newFrag->m_spaces = spaces;
-			return newFrag->makeNewFragment(begin, end, text.mid(i), true);
+			return newFrag->makeNewFragment(begin, end, text.mid(i + 1), true);
 		}
 		else {
 			spaces++;
@@ -600,6 +602,10 @@ Fragment * Fragment::makeFragmentNow(FragmentTypes type, bool onNewLine) {
 		m_next      = ret;
 	}
 
+	if (onNewLine) {
+		moveNextBlockAfter(ret);
+	}
+
 	return ret;
 }
 
@@ -610,6 +616,21 @@ void Fragment::ensurePrev() {
 		m_prev->m_next = this;
 		m_line->setFirst(m_prev);
 	}
+}
+
+void Fragment::moveNextBlockAfter(Fragment * after) {
+	auto * it = m_next;
+
+	while (it != nullptr) {
+		it->setLine(after->m_line);
+		it = it->m_next;
+	}
+
+	if (m_next != nullptr) {
+		after->m_next  = m_next;
+		m_next->m_prev = after;
+	}
+	m_next = nullptr;
 }
 
 int Fragment::countSpacesAtBegin(const QString & text) {

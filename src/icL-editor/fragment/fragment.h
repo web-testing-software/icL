@@ -298,6 +298,12 @@ protected:
 	void ensurePrev();
 
 	/**
+	 * @brief moveNextBlockAfter move the next block from line
+	 * @param after the fragment in insert after it
+	 */
+	void moveNextBlockAfter(Fragment * after);
+
+	/**
 	 * @brief countSpaceAtBegin counts the spaces at the begin of text
 	 * @param text is the text to analize
 	 * @return the count of spaces at the begin
