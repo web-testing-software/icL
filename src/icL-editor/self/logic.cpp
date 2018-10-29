@@ -143,6 +143,7 @@ void Logic::setFirstVisible(Line * firstVisible) {
 		return;
 
 	m_firstVisible = firstVisible;
+	firstVisible->setVisible(true);
 }
 
 void Logic::setLastVisible(Line * lastVisible) {

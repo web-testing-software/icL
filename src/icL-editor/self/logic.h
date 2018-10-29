@@ -142,7 +142,7 @@ protected:
 	Line * debugLine{};
 
 	/// @brief the fixer to fix line numbers
-	Fixer * m_fixer;
+	Fixer * m_fixer = nullptr;
 };
 
 }  // namespace icL::editor

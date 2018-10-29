@@ -186,6 +186,9 @@ protected:
 
 	/// @brief the current animation direction
 	bool cursorIsHidding = false;
+
+	/// @brief the current x scroll position
+	uint8_t xScroll = 0;
 };
 
 }  // namespace icL::editor

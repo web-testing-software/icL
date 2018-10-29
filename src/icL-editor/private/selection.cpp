@@ -182,6 +182,7 @@ QString Selection::drop() {
 
 	auto * beginFrag = m_begin->fragment();
 	auto * endFrag   = m_end->fragment();
+	auto * editor    = beginFrag->line()->parent();
 
 	if (beginFrag != endFrag) {
 		beginFrag->drop(m_begin, m_begin->position());
@@ -209,6 +210,10 @@ QString Selection::drop() {
 	if (beginLine != endFrag->line()) {
 		while (beginLine->next() != endFrag->line()) {
 			auto * tmp = beginLine->next()->next();
+
+			if (beginLine->next() == editor->firstVisible()) {
+				editor->setFirstVisible(beginLine);
+			}
 
 			delete beginLine->next();
 			beginLine->setNext(tmp);
@@ -280,6 +285,10 @@ QString Selection::drop() {
 			}
 
 			delete endFrag;
+		}
+
+		if (endLine == editor->firstVisible()) {
+			editor->setFirstVisible(beginLine);
 		}
 
 		delete endLine;

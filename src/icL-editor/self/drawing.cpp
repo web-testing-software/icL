@@ -53,8 +53,6 @@ void Drawing::paint(QPainter * painter) {
 	QTime timer;
 	timer.start();
 
-	//	painter->setRenderHint(QPainter::Antialiasing);
-
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(m_chars->cline.lineNumber.background);
 	painter->drawRect(lineNumberArea);
@@ -66,12 +64,13 @@ void Drawing::paint(QPainter * painter) {
 	drawBreakPoints(painter);
 	drawCurrentLine(painter);
 	//	drawDebugLine(painter);
+	setUpClipArea(painter);
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
 	drawCursor(painter);
 
-	//	qDebug() << "render time" << timer.elapsed();
+	qDebug() << "render time" << timer.elapsed();
 	update();
 }
 
@@ -109,7 +108,8 @@ void Drawing::updateBackgroundGeometry() {
 	contentArea.setBottom(static_cast<int>(height()));
 	contentArea.setRight(static_cast<int>(width()));
 
-	scissorsArea.setLeft(contentArea.left() + m_proxy->fullLineH() / 2);
+	scissorsArea.setLeft(
+	  contentArea.left() + m_proxy->fullLineH() / 2 - m_proxy->divLineSBy2());
 	scissorsArea.setTop(0);
 	scissorsArea.setRight(static_cast<int>(width()));
 	scissorsArea.setBottom(static_cast<int>(height()));
@@ -138,7 +138,9 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
 		2;
 
-	while (it != nullptr && it->visible()) {
+	while (it != nullptr && yPos < width()) {
+		it->setVisible(true);
+
 		auto * stext = it->getCache();
 
 		painter->drawStaticText(
@@ -147,6 +149,11 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 
 		it->setLastY(yPos);
 		yPos += yStep;
+		it = it->next();
+	}
+
+	while (it != nullptr && it->visible()) {
+		it->setVisible(false);
 		it = it->next();
 	}
 }
@@ -248,7 +255,9 @@ void Drawing::drawLine(
 }
 
 void Drawing::drawCurrentLine(QPainter * painter) {
-	drawLine(painter, m_current, m_chars->current);
+	if (m_current->visible()) {
+		drawLine(painter, m_current, m_chars->current);
+	}
 }
 
 void Drawing::drawDebugLine(QPainter * painter) {
@@ -271,7 +280,7 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 		return;
 	}
 
-	int xBegin = scissorsArea.left();
+	int xBegin = scissorsArea.left() - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 	int toAdd  = xStep / 2;  // Add extra space after lines
 	int yStep  = m_proxy->fullLineH();
@@ -343,7 +352,7 @@ void Drawing::drawContent(QPainter * painter) {
 				 (m_proxy->charH() -
 				  static_cast<int>(itLine->getCache()->size().height())) /
 				   2;
-	int xBegin = scissorsArea.left();
+	int xBegin = scissorsArea.left() - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 
 	while (itLine != nullptr && itLine->visible()) {
@@ -379,6 +388,8 @@ void Drawing::drawCursor(QPainter * painter) {
 	int    xBegin      = scissorsArea.left();
 	int    elapsed     = cursorTimer.elapsed();
 	qreal  alpha       = static_cast<qreal>(elapsed) / 1000.f;
+
+	painter->setClipping(false);
 
 	if (cursorIsHidding) {
 		alpha = 1.f - transition(alpha);
