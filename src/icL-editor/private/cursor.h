@@ -12,7 +12,7 @@ class Line;
 class Cursor
 {
 public:
-	explicit Cursor();
+	Cursor() = default;
 
 	/**
 	 * @brief fragment gets the fragment of cursor

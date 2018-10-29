@@ -8,8 +8,6 @@
 
 namespace icL::editor {
 
-Cursor::Cursor() {}
-
 Fragment * Cursor::fragment() const {
 	return m_fragment;
 }
@@ -37,8 +35,17 @@ int Cursor::getPosInLine() {
 }
 
 int Cursor::getPosInFile() {
-	//	m_fragment->line()->
-	// TODO: Write it later
+	int    pos = 0;
+	auto * it  = m_fragment->line()->first();
+
+	while (it != m_fragment) {
+		pos += it->length();
+		it = it->next();
+	}
+
+	pos += m_position;
+
+	return pos;
 }
 
 bool Cursor::stepForward(int number, Cursor * block) {

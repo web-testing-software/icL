@@ -59,7 +59,7 @@ Window {
 	}
 
 	Component.onCompleted: {
-		flags = flags | Qt.FramelessWindowHint
+//		flags = flags | Qt.FramelessWindowHint
 	}
 
 	// This timer fix bug for maximised window

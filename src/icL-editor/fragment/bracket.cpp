@@ -61,7 +61,7 @@ Fragment * Bracket::insertAfterSpaces(
 }
 
 Fragment * Bracket::insertInGlyphs(
-  Cursor * begin, Cursor * end, int, const QString &) {
+  Cursor * /*begin*/, Cursor * /*end*/, int, const QString &) {
 	// This function must be not called ever
 	Q_ASSERT(false);
 }

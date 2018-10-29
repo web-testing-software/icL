@@ -100,7 +100,7 @@ void Drawing::updateBackgroundGeometry() {
 
 	lineNumberArea.setLeft(0);
 	lineNumberArea.setTop(0);
-	lineNumberArea.setBottom(static_cast<int>(width()));
+	lineNumberArea.setBottom(static_cast<int>(height()));
 	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
 	contentArea.setLeft(lineNumberArea.right());
@@ -138,7 +138,7 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
 		2;
 
-	while (it != nullptr && yPos < width()) {
+	while (it != nullptr && yPos < height()) {
 		it->setVisible(true);
 
 		auto * stext = it->getCache();

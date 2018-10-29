@@ -34,7 +34,7 @@ struct ProcessedGlyphs
 	/**
 	 * @brief onNextLine the new fragment must be on new line
 	 */
-	bool onNextLine;
+	bool onNextLine = false;
 };
 
 enum class FragmentTypes { Fragment, Word, String, Bracket };
