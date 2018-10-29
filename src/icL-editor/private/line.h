@@ -65,9 +65,7 @@ public:
 	 * @brief hasBreakPoint gets the breaking property of line
 	 * @return true if need to break, otherwise false
 	 */
-	bool hasBreakPoint() const {
-		return m_hasBreakPoint;
-	}
+	bool hasBreakPoint() const;
 
 	/**
 	 * @brief getText gets the text of line by concatenation all fragments
@@ -94,17 +92,41 @@ public:
 	Logic * parent() const;
 
 	/**
-	 * @brief getCache return the cache of line number
+	 * @brief getCache returns the cache of line number
 	 * @return the pointer to cache of line number
 	 */
 	QStaticText * getCache();
 
 	/**
+	 * @brief isNow defines if this line is a new line
+	 * @return true if this is a new line, otherwise false
+	 */
+	bool isNow();
+
+	/**
+	 * @brief hasPhantoms defines if this line contains phantoms lines
+	 * @return true if this line has some phantoms, otherwise false
+	 */
+	bool hasPhantoms();
+
+	/**
+	 * @brief getLastPhantom gets the last phantom of this line
+	 * @return the last phantom of this line
+	 */
+	Line * getLastPhantom();
+
+	/**
+	 * @brief lastY get the cached y coord
+	 * @return the last y coord of line drawing
+	 */
+	int lastY();
+
+public:
+	/**
 	 * @brief updateLength recalc the length of line
 	 */
 	void updateLength();
 
-public:
 	/**
 	 * @brief setFirst sets the first fragment of line
 	 * @param first is the new first fragment
@@ -148,6 +170,12 @@ public:
 	void setHasBreakPoint(bool hasBreakPoint);
 
 	/**
+	 * @brief setLastY set the y coord of drawing
+	 * @param lastY is the value to cache
+	 */
+	void setLastY(int lastY);
+
+	/**
 	 * @brief makeChanged sets up the changed state
 	 */
 	void makeChanged();
@@ -162,6 +190,26 @@ public:
 	 * @return return the number of charaters in line number
 	 */
 	int8_t charsNumberInLineNumber();
+
+	/**
+	 * @brief makePhantom makes this line phantom
+	 */
+	void makePhantom();
+
+	/**
+	 * @brief restorePhantom restores this line to normal state
+	 */
+	void restorePhantom();
+
+	/**
+	 * @brief dropPhantom removes the line definitely
+	 */
+	void dropPhantom();
+
+	/**
+	 * @brief showPhantoms enables/disamles the show of phantoms to screen
+	 */
+	void showPhantoms(bool show = true);
 
 private:
 	// Properties
@@ -179,6 +227,18 @@ private:
 	/// @brief The line has unsaved chaghes
 	bool m_isChanged = false;
 
+	/// @brief The line was added in edit time
+	bool m_isNew = false;
+
+	/// @brief Shows the phantom lines after this line
+	bool m_showPhantom = false;
+
+	/// @brief This line is a phontom line
+	bool m_isPhantom = false;
+
+	/// @brief The first phontom line after this line
+	Line * phantom = nullptr;
+
 	/// @brief Text content of the line
 	QString content;
 
@@ -190,6 +250,9 @@ private:
 
 	/// @brief The number of chars in line number
 	int8_t m_charsNumberInLineNumber = 0;
+
+	/// @brief lastY is used for mouse interaction
+	int m_lastY = 0;
 
 	/// @brief This line has a break point
 	bool m_hasBreakPoint = false;

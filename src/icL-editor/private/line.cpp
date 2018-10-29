@@ -42,6 +42,10 @@ bool Line::visible() const {
 	return m_visible;
 }
 
+bool Line::hasBreakPoint() const {
+	return m_hasBreakPoint;
+}
+
 const QString & Line::getText(bool force) {
 	if (!m_isChanged || force) {
 		return content;
@@ -82,6 +86,32 @@ Logic * Line::parent() const {
 
 QStaticText * Line::getCache() {
 	return cache;
+}
+
+bool Line::isNow() {
+	return m_isNew;
+}
+
+bool Line::hasPhantoms() {
+	return phantom != nullptr;
+}
+
+Line * Line::getLastPhantom() {
+	auto * it = phantom;
+
+	if (it == nullptr) {
+		return nullptr;
+	}
+
+	while (it->next() != nullptr) {
+		it = it->next();
+	}
+
+	return it;
+}
+
+int Line::lastY() {
+	return m_lastY;
 }
 
 void Line::updateLength() {
@@ -184,6 +214,10 @@ void Line::setHasBreakPoint(bool hasBreakPoint) {
 	m_hasBreakPoint = hasBreakPoint;
 }
 
+void Line::setLastY(int lastY) {
+	m_lastY = lastY;
+}
+
 void Line::makeChanged() {
 	m_parent->makeChanged();
 	m_isChanged = true;
@@ -195,6 +229,103 @@ void Line::fixLines() {
 
 int8_t Line::charsNumberInLineNumber() {
 	return m_charsNumberInLineNumber;
+}
+
+void Line::makePhantom() {
+	if (m_isPhantom) {
+		return;
+	}
+
+	m_prev->m_next = m_next;
+
+	Line * prevLineLastPhantom = m_prev->getLastPhantom();
+
+	if (prevLineLastPhantom != nullptr) {
+		m_next = prevLineLastPhantom->m_next;
+		m_prev = prevLineLastPhantom;
+
+		prevLineLastPhantom->m_next = this;
+	}
+
+	if (phantom != nullptr) {
+		Line * lastPhantom = getLastPhantom();
+
+		phantom->m_prev     = this;
+		lastPhantom->m_next = m_next;
+
+		m_next = phantom;
+	}
+
+	if (!m_prev->m_showPhantom) {
+		setVisible(false);
+	}
+
+	phantom     = nullptr;
+	m_isPhantom = true;
+}
+
+void Line::restorePhantom() {
+	if (!m_isPhantom) {
+		return;
+	}
+
+	if (m_prev->m_isPhantom) {
+		m_prev->m_next = m_next;
+	}
+	else {
+		m_prev->phantom = m_next->m_isPhantom ? m_next : nullptr;
+	}
+
+	if (m_next->m_isPhantom) {
+		m_next->m_prev = m_prev;
+	}
+
+	Line * noPhantom = m_prev;
+
+	while (noPhantom->m_isPhantom) {
+		noPhantom = noPhantom->prev();
+	}
+
+	if (noPhantom->m_next != nullptr) {
+		noPhantom->m_next->m_prev = this;
+	}
+
+	m_next = noPhantom->m_next;
+	m_prev = noPhantom;
+
+	noPhantom->m_next = this;
+}
+
+void Line::dropPhantom() {
+	if (!m_isPhantom) {
+		return;
+	}
+
+	if (m_prev->m_isPhantom) {
+		m_prev->m_next = m_next;
+	}
+	else {
+		m_prev->phantom = m_next->m_isPhantom ? m_next : nullptr;
+	}
+
+	if (m_next->m_isPhantom) {
+		m_next->m_prev = m_prev;
+	}
+
+	delete this;
+}
+
+void Line::showPhantoms(bool show) {
+	m_showPhantom = show;
+
+	if (show) {
+		Line * it = phantom;
+
+		while (it != nullptr && it->m_isPhantom) {
+			it->setVisible(true);
+			it = it->next();
+		}
+	}
 }
 
 }  // namespace icL::editor

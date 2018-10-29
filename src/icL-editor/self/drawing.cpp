@@ -132,18 +132,20 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 
 	auto * it    = m_firstVisible;
 	int    yStep = m_proxy->fullLineH();
-	int    yPos =
+	int    yPos  = 0;
+	int    yDelta =
 	  m_proxy->divLineSBy2() +
 	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
-	    2;
+		2;
 
 	while (it != nullptr && it->visible()) {
 		auto * stext = it->getCache();
 
 		painter->drawStaticText(
 		  lineNumberRight - m_proxy->charW() * it->charsNumberInLineNumber(),
-		  yPos, *stext);
+		  yPos + yDelta, *stext);
 
+		it->setLastY(yPos);
 		yPos += yStep;
 		it = it->next();
 	}
@@ -151,9 +153,7 @@ void Drawing::drawLineNumbers(QPainter * painter) {
 
 void Drawing::drawBreakPoints(QPainter * painter) {
 
-	int    yStep = m_proxy->fullLineH();
-	int    yPos  = 0;
-	auto * it    = m_firstVisible;
+	auto * it = m_firstVisible;
 
 	painter->setPen(Qt::NoPen);
 
@@ -163,39 +163,38 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 		while (it != nullptr && it->visible()) {
 
 			if (it->hasBreakPoint()) {
-				painter->drawRect(lineRect.translated(0, yPos));
+				painter->drawRect(lineRect.translated(0, it->lastY()));
 			}
 
-			yPos += yStep;
 			it = it->next();
 		}
 	}
 
 	// Init for second drawing
-	it   = m_firstVisible;
-	yPos = 0;
+	it = m_firstVisible;
 	painter->setBrush(m_chars->breakpoint.lineNumber.background);
 
 	while (it != nullptr && it->visible()) {
 
 		if (it->hasBreakPoint()) {
-			painter->drawConvexPolygon(leftArrow.translated(0, yPos));
+			painter->drawConvexPolygon(leftArrow.translated(0, it->lastY()));
 		}
 
-		yPos += yStep;
 		it = it->next();
 	}
 
 	// Init for third drawing
-	it = m_firstVisible;
-	yPos =
+	int yDelta =
 	  m_proxy->divLineSBy2() +
-	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
+	  (m_proxy->charH() -
+	   static_cast<int>(m_firstVisible->getCache()->size().height())) /
 	    2;
+
 	painter->setBrush(Qt::NoBrush);
 	painter->setPen(m_chars->breakpoint.lineNumber.text);
 	painter->setFont(m_chars->breakpoint.lineNumber.font);
 
+	it = m_firstVisible;
 	while (it != nullptr && it->visible()) {
 
 		if (it->hasBreakPoint()) {
@@ -204,10 +203,9 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 			painter->drawStaticText(
 			  lineNumberRight -
 			    m_proxy->charW() * it->charsNumberInLineNumber(),
-			  yPos, *stext);
+			  it->lastY() + yDelta, *stext);
 		}
 
-		yPos += yStep;
 		it = it->next();
 	}
 }
@@ -218,8 +216,7 @@ void Drawing::drawLine(
 		return;
 	}
 
-	int visibleLineNumber = line->lineNumber() - m_firstVisible->lineNumber();
-	int yPos              = visibleLineNumber * m_proxy->fullLineH();
+	int yPos = line->lastY();
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(format.background);
@@ -278,8 +275,6 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 	int xStep  = m_proxy->charW();
 	int toAdd  = xStep / 2;  // Add extra space after lines
 	int yStep  = m_proxy->fullLineH();
-	int yPos =
-	  (beginLine->lineNumber() - m_firstVisible->lineNumber() + 1) * yStep;
 
 	painter->setPen(Qt::NoPen);
 	painter->setBrush(m_chars->selection.background);
@@ -290,7 +285,8 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 		if (beginChar != endChar) {
 			painter->drawRect(
-			  xBegin + xStep * beginChar, yPos - yStep,
+			  xBegin + xStep * beginChar,
+			  selection->begin()->fragment()->line()->lastY(),
 			  (endChar - beginChar) * xStep, yStep);
 		}
 	}
@@ -299,36 +295,34 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 		while (!it->visible()) {
 			it = it->next();
-			yPos += yStep;
 		}
 
 		while (it->visible() && it != endLine) {
 			painter->drawRect(
-			  xBegin, yPos, it->length() * xStep + toAdd, yStep);
+			  xBegin, it->lastY(), it->length() * xStep + toAdd, yStep);
 			it = it->next();
-			yPos += yStep;
 		}
 
 		if (endLine->visible()) {
 			painter->drawRect(
-			  xBegin, yPos, selection->end()->getPosInLine() * xStep, yStep);
+			  xBegin, endLine->lastY(),
+			  selection->end()->getPosInLine() * xStep, yStep);
 		}
 
 		if (beginLine->visible()) {
 			int left  = selection->begin()->getPosInLine();
 			int right = beginLine->length();
 
-			yPos =
-			  (beginLine->lineNumber() - m_firstVisible->lineNumber()) * yStep;
 			painter->drawRect(
-			  xBegin + left * xStep, yPos, (right - left) * xStep + toAdd,
-			  yStep);
+			  xBegin + left * xStep, beginLine->lastY(),
+			  (right - left) * xStep + toAdd, yStep);
 
 			if (beginLine->next()->length() < left) {
 				painter->setBrush(Qt::NoBrush);
 				painter->setPen(m_chars->selection.border);
 
-				yPos += yStep + m_proxy->divLineSBy2();
+				int yPos = beginLine->lastY() + yStep + m_proxy->divLineSBy2();
+
 				left = beginLine->next() != endLine
 				         ? beginLine->next()->length()
 				         : selection->end()->getPosInLine();
@@ -345,11 +339,10 @@ void Drawing::drawContent(QPainter * painter) {
 	painter->setBrush(Qt::NoBrush);
 
 	auto * itLine = m_firstVisible;
-	int    yStep  = m_proxy->fullLineH();
-	int    yPos   = m_proxy->divLineSBy2() +
-	           (m_proxy->charH() -
-	            static_cast<int>(itLine->getCache()->size().height())) /
-	             2;
+	int    yDelta = m_proxy->divLineSBy2() +
+				 (m_proxy->charH() -
+				  static_cast<int>(itLine->getCache()->size().height())) /
+				   2;
 	int xBegin = scissorsArea.left();
 	int xStep  = m_proxy->charW();
 
@@ -364,13 +357,12 @@ void Drawing::drawContent(QPainter * painter) {
 			painter->setFont(itFrag->format().font);
 
 			xPos += itFrag->spaces() * xStep;
-			painter->drawStaticText(xPos, yPos, *stext);
+			painter->drawStaticText(xPos, itLine->lastY() + yDelta, *stext);
 
 			xPos += itFrag->glyphs() * xStep;
 			itFrag = itFrag->next();
 		}
 
-		yPos += yStep;
 		itLine = itLine->next();
 	}
 }
