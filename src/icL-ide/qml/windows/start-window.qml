@@ -81,8 +81,8 @@ Window {
 		chars: look.editor.chars
 
 		Component.onCompleted: {
-			loadFile("test.txt")
-			forceActiveFocus()
+			intern.loadFile("test.txt")
+			updateNow()
 		}
 	}
 }

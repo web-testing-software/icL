@@ -12,11 +12,20 @@ uri = icL.Editor
 QML_TYPES = editor.qmltypes
 include($$ICL_ROOT/pri_files/qmlplugin.pri)
 
+copy_editor_qml.target = $$DESTDIR/Editor.qml
+copy_editor_qml.depends = $$_PRO_FILE_PWD_/Editor.qml
+copy_editor_qml.commands = $(COPY_FILE) \"$$replace(copy_editor_qml.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_editor_qml.target, /, $$QMAKE_DIR_SEP)\"
+
+QMAKE_EXTRA_TARGETS += copy_editor_qml
+PRE_TARGETDEPS += $$copy_editor_qml.target
+
+
 DISTFILES += \
     README.md \
     qmldir \
     editor.qmltypes \
-    models/*.*uml
+    models/*.*uml \
+    Editor.qml
 
 HEADERS += \
     export/plugin.h \
@@ -34,7 +43,10 @@ HEADERS += \
     fragment/word.h \
     fragment/string.h \
     fragment/bracket.h \
-    private/fixer.h
+    private/fixer.h \
+    self/linenumbers.h \
+    private/alpha.h \
+    self/opacitymask.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -52,4 +64,7 @@ SOURCES += \
     fragment/word.cpp \
     fragment/string.cpp \
     fragment/bracket.cpp \
-    private/fixer.cpp
+    private/fixer.cpp \
+    self/linenumbers.cpp \
+    private/alpha.cpp \
+    self/opacitymask.cpp

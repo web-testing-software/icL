@@ -1,7 +1,9 @@
 #include "keyboard.h"
 
 #include "../private/cursor.h"
+#include "../private/line.h"
 #include "../private/selection.h"
+#include "linenumbers.h"
 
 namespace icL::editor {
 
@@ -42,6 +44,12 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	}
 	else if (event->key() == Qt::Key_Enter) {
 		qDebug() << m_main->insert("\n");
+	}
+	else if (event->key() == Qt::Key_1) {
+		qDebug() << "pressed";
+		m_firstVisible->next()->next()->setHasBreakPoint(
+		  !m_firstVisible->next()->next()->hasBreakPoint());
+		m_lineN->update();
 	}
 }
 

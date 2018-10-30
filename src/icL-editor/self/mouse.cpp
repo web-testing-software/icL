@@ -2,6 +2,7 @@
 
 #include "../private/line.h"
 #include "../private/styleproxy.h"
+#include "linenumbers.h"
 
 #include <QDebug>
 
@@ -83,6 +84,9 @@ void Mouse::moveUp(int by) {
 		m_firstVisible->setVisible(true);
 		i++;
 	}
+
+	m_lineN->update();
+	update();
 }
 
 void Mouse::moveDown(int by) {
@@ -93,6 +97,9 @@ void Mouse::moveDown(int by) {
 		m_firstVisible = m_firstVisible->next();
 		i++;
 	}
+
+	m_lineN->update();
+	update();
 }
 
 }  // namespace icL::editor

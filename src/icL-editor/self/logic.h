@@ -12,6 +12,7 @@ namespace icL::editor {
 class Selection;
 class Line;
 class Fixer;
+class LineNumbers;
 
 /**
  * @brief The Logic class contains the internal logic of editor
@@ -121,7 +122,8 @@ protected:
 	void changeNumberOfLines(int newValue);
 
 	// properties
-	Selection * m_main = nullptr;
+	Selection *   m_main  = nullptr;
+	LineNumbers * m_lineN = nullptr;  //< From Drawing
 
 	Line * m_first        = nullptr;
 	Line * m_current      = nullptr;

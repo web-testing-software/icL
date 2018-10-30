@@ -5,10 +5,12 @@
 #include "../private/line.h"
 #include "../private/selection.h"
 #include "../private/styleproxy.h"
+#include "linenumbers.h"
 
 #include <icL-look/export/chars.h>
 
 #include <QDateTime>
+#include <QOpenGLFunctions>
 #include <QPainter>
 #include <QStaticText>
 
@@ -37,6 +39,10 @@ StyleProxy * Drawing::proxy() {
 	return m_proxy;
 }
 
+LineNumbers * Drawing::lineN() const {
+	return m_lineN;
+}
+
 look::Chars * Drawing::chars() const {
 	return m_chars;
 }
@@ -47,30 +53,49 @@ void Drawing::makeCursorOpaque() {
 }
 
 void Drawing::paint(QPainter * painter) {
+
 	if (!m_chars)
 		return;
 
 	QTime timer;
 	timer.start();
 
-	painter->setPen(Qt::NoPen);
-	painter->setBrush(m_chars->cline.lineNumber.background);
-	painter->drawRect(lineNumberArea);
+	const QColor & bg = m_chars->cline.background.color();
 
-	painter->setBrush(m_chars->cline.background);
-	painter->drawRect(contentArea);
+	painter->beginNativePainting();
 
-	drawLineNumbers(painter);
-	drawBreakPoints(painter);
-	drawCurrentLine(painter);
+	static QOpenGLFunctions gl;
+
+	gl.initializeOpenGLFunctions();
+
+	gl.glClearColor(bg.redF(), bg.greenF(), bg.blueF(), bg.alphaF());
+	gl.glClear(GL_COLOR_BUFFER_BIT);
+
+	painter->endNativePainting();
+
+	//	painter->setCompositionMode(QPainter::CompositionMode_Source);
+
+	//	painter->setPen(Qt::NoPen);
+	//	painter->setBrush(m_chars->cline.lineNumber.background);
+	//	painter->drawRect(lineNumberArea);
+
+	//	painter->setBrush();
+	//	painter->drawRect(contentArea);
+
+	//	drawLineNumbers(painter);
+	//	drawBreakPoints(painter);
+	//	drawCurrentLine(painter);
 	//	drawDebugLine(painter);
+
+	painter->setCompositionMode(QPainter::CompositionMode_SourceOver);
+
 	setUpClipArea(painter);
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
 	drawCursor(painter);
 
-	qDebug() << "render time" << timer.elapsed();
+	//	qDebug() << "render time" << timer.elapsed();
 	update();
 }
 
@@ -88,8 +113,19 @@ void Drawing::setChars(look::Chars * chars) {
 		return;
 
 	m_chars = chars;
+
+	setFillColor(chars->cline.background.color());
+
 	update();
 	emit charsChanged(m_chars);
+}
+
+void Drawing::setLineN(LineNumbers * lineN) {
+	if (m_lineN == lineN)
+		return;
+
+	m_lineN = lineN;
+	emit lineNChanged(m_lineN);
 }
 
 void Drawing::updateBackgroundGeometry() {
@@ -108,21 +144,24 @@ void Drawing::updateBackgroundGeometry() {
 	contentArea.setBottom(static_cast<int>(height()));
 	contentArea.setRight(static_cast<int>(width()));
 
-	scissorsArea.setLeft(
-	  contentArea.left() + m_proxy->fullLineH() / 2 - m_proxy->divLineSBy2());
-	scissorsArea.setTop(0);
-	scissorsArea.setRight(static_cast<int>(width()));
-	scissorsArea.setBottom(static_cast<int>(height()));
+	leftPadding = contentArea.left() + m_proxy->fullLineH() / 2 -
+				  m_proxy->divLineSBy2() + 1;
 
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
-	                   {lineNumberArea.right(), 0},
-	                   {scissorsArea.left(), m_proxy->fullLineH() / 2},
-	                   {lineNumberArea.right(), m_proxy->fullLineH()},
+					   {lineNumberArea.right() + 1, 0},
+					   {leftPadding, m_proxy->fullLineH() / 2},
+					   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
 	                   {0, m_proxy->fullLineH()}})};
 
 	lineRect = contentArea;
 	lineRect.setBottom(m_proxy->fullLineH());
+
+	if (m_lineN != nullptr) {
+		m_lineN->setWidth(leftPadding);
+	}
+
+	emit lnWidthChanged(lineNumberArea.width());
 }
 
 void Drawing::drawLineNumbers(QPainter * painter) {
@@ -265,7 +304,7 @@ void Drawing::drawDebugLine(QPainter * painter) {
 }
 
 void Drawing::setUpClipArea(QPainter * painter) {
-	painter->setClipRect(scissorsArea);
+	//	painter->setClipRect(leftPadding);
 }
 
 void Drawing::drawSelection(QPainter * painter, Selection * selection) {
@@ -280,7 +319,7 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 		return;
 	}
 
-	int xBegin = scissorsArea.left() - xScroll * m_proxy->charW();
+	int xBegin = leftPadding - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 	int toAdd  = xStep / 2;  // Add extra space after lines
 	int yStep  = m_proxy->fullLineH();
@@ -352,7 +391,7 @@ void Drawing::drawContent(QPainter * painter) {
 				 (m_proxy->charH() -
 				  static_cast<int>(itLine->getCache()->size().height())) /
 				   2;
-	int xBegin = scissorsArea.left() - xScroll * m_proxy->charW();
+	int xBegin = leftPadding - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 
 	while (itLine != nullptr && itLine->visible()) {
@@ -385,7 +424,7 @@ qreal Drawing::transition(qreal x) {
 
 void Drawing::drawCursor(QPainter * painter) {
 	auto * itSelection = m_main;
-	int    xBegin      = scissorsArea.left();
+	int    xBegin      = leftPadding;
 	int    elapsed     = cursorTimer.elapsed();
 	qreal  alpha       = static_cast<qreal>(elapsed) / 1000.f;
 

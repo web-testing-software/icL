@@ -13,6 +13,7 @@ namespace icL::editor {
 
 class Fragment;
 class Logic;
+class Alpha;
 
 class Line
 {

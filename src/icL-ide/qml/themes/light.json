@@ -6,7 +6,7 @@
 			},
 			"line-number": {
 				"background": {
-					"hex": "#b3d7e2"
+					"hex": "#a64092ac"
 				},
 				"bold": false,
 				"foreground": {
@@ -24,7 +24,7 @@
 			},
 			"line-number": {
 				"background": {
-					"hex": "#dddddd"
+					"hex": "#a5d3d3d3"
 				},
 				"bold": false,
 				"foreground": {
@@ -59,7 +59,7 @@
 			},
 			"line-number": {
 				"background": {
-					"hex": "#b1b3b4"
+					"hex": "#a6b6b7b8"
 				},
 				"bold": false,
 				"foreground": {

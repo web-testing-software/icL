@@ -16,6 +16,7 @@ struct LineFormat;
 namespace icL::editor {
 
 class StyleProxy;
+class OpacityMask;
 
 /**
  * @brief The Drawing class draws the content of editor
@@ -25,8 +26,11 @@ class Drawing : public Logic
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(icL::look::EditorStyle* style READ style WRITE setStyle NOTIFY styleChanged)
-	Q_PROPERTY(icL::look::Chars*       chars READ chars WRITE setChars NOTIFY charsChanged)
+	Q_PROPERTY(icL::look::EditorStyle*   style READ style WRITE setStyle NOTIFY styleChanged)
+	Q_PROPERTY(icL::look::Chars*         chars READ chars WRITE setChars NOTIFY charsChanged)
+	Q_PROPERTY(icL::editor::LineNumbers* lineN READ lineN WRITE setLineN NOTIFY lineNChanged)
+
+	Q_PROPERTY(int lnWidth READ lnWidth NOTIFY lnWidthChanged)
 	// clang-format on
 
 public:
@@ -45,15 +49,35 @@ public:
 	StyleProxy * proxy();
 
 	/**
+	 * @brief lineN is the lines numbers area widget
+	 * @return the lines numbers area widget
+	 */
+	LineNumbers * lineN() const;
+
+	/**
 	 * @brief chars is the look of chars in editor
 	 * @return the style for chars in editor
 	 */
 	look::Chars * chars() const;
 
 	/**
+	 * @brief lnWidth is the width of line number bar
+	 * @return
+	 */
+	int lnWidth() const {
+		return lineNumberArea.width();
+	}
+
+	/**
 	 * @brief makeCursorOpaque set the opacity of cursor to 1
 	 */
 	void makeCursorOpaque();
+
+	/**
+	 * The drawing of line number was a part of Drawing class, now it's extern
+	 */
+	friend class icL::editor::LineNumbers;
+	friend class icL::editor::OpacityMask;
 
 	// QQuickPaintedItem interface
 public:
@@ -61,8 +85,9 @@ public:
 
 signals:
 	void styleChanged(look::EditorStyle * style);
-
 	void charsChanged(look::Chars * chars);
+	void lineNChanged(LineNumbers * lineN);
+	void lnWidthChanged(int lnWidth);
 
 public slots:
 	/**
@@ -76,6 +101,12 @@ public slots:
 	 * @param chars is the new look for chars
 	 */
 	void setChars(look::Chars * chars);
+
+	/**
+	 * @brief setLineN sets the lines numbers widget
+	 * @param lineN is the lines numbers widget
+	 */
+	void setLineN(LineNumbers * lineN);
 
 private slots:
 	/**
@@ -157,11 +188,10 @@ protected:
 	// properties
 	look::Chars * m_chars = nullptr;
 
-
 	// fields
 	QRect lineNumberArea;
 	QRect contentArea;
-	QRect scissorsArea;
+	int   leftPadding;
 
 	/// @brief The proxy to style value from Look QML plugin
 	StyleProxy * m_proxy;

@@ -5,6 +5,7 @@
 #include "../private/fixer.h"
 #include "../private/line.h"
 #include "../private/selection.h"
+#include "linenumbers.h"
 
 namespace icL::editor {
 
@@ -182,6 +183,8 @@ void Logic::addNewLine(Line * line, bool focus) {
 void Logic::updateCurrentLine() {
 	Fragment * fragment;
 
+	auto * lastCurrent = m_current;
+
 	if (m_main->rtl()) {
 		fragment = m_main->begin()->fragment();
 	}
@@ -191,6 +194,8 @@ void Logic::updateCurrentLine() {
 
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
+
+		m_lineN->update();
 	}
 }
 
