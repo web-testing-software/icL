@@ -88,6 +88,7 @@ signals:
 	void charsChanged(look::Chars * chars);
 	void lineNChanged(LineNumbers * lineN);
 	void lnWidthChanged(int lnWidth);
+	void requestRepaint();
 
 public slots:
 	/**

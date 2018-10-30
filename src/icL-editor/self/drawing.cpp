@@ -96,7 +96,9 @@ void Drawing::paint(QPainter * painter) {
 	drawCursor(painter);
 
 	//	qDebug() << "render time" << timer.elapsed();
-	update();
+
+	qDebug() << "Editor";
+	//	update();
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
@@ -116,7 +118,7 @@ void Drawing::setChars(look::Chars * chars) {
 
 	setFillColor(chars->cline.background.color());
 
-	update();
+	emit requestRepaint();
 	emit charsChanged(m_chars);
 }
 

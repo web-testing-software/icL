@@ -53,7 +53,6 @@ Fixer * Logic::fixer() {
 
 void Logic::makeChanged() {
 	changed = true;
-	update();
 }
 
 void Logic::clear() {

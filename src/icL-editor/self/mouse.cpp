@@ -74,6 +74,8 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 			}
 		}
 	}
+
+	emit requestRepaint();
 }
 
 void Mouse::moveUp(int by) {
@@ -84,9 +86,6 @@ void Mouse::moveUp(int by) {
 		m_firstVisible->setVisible(true);
 		i++;
 	}
-
-	m_lineN->update();
-	update();
 }
 
 void Mouse::moveDown(int by) {
@@ -97,9 +96,6 @@ void Mouse::moveDown(int by) {
 		m_firstVisible = m_firstVisible->next();
 		i++;
 	}
-
-	m_lineN->update();
-	update();
 }
 
 }  // namespace icL::editor

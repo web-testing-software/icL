@@ -26,15 +26,30 @@ Item {
 			bottom: editorIntern.bottom
 		}
 		visible: false
+		z: -2
+	}
+
+	EditorOpacityMask {
+		id: opacityMask
+
+		editor: editorIntern
+
+		anchors.fill: ln
+		visible: false
+		z: -1
 	}
 
 	EditorInternal {
 		id: editorIntern
 
 		lineN: ln
-
 		anchors.fill: parent
-//		z: -1
+
+		onRequestRepaint: {
+			update();
+			opacityMask.update();
+			ln.update();
+		}
 
 		Component.onCompleted: forceActiveFocus();
 	}
@@ -58,15 +73,6 @@ Item {
 		radius: rd(rq * 28)
 
 		anchors.fill: editorSource
-		visible: false
-	}
-
-	EditorOpacityMask {
-		id: opacityMask
-
-		editor: editorIntern
-
-		anchors.fill: ln
 		visible: false
 	}
 

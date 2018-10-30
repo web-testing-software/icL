@@ -51,6 +51,8 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 		  !m_firstVisible->next()->next()->hasBreakPoint());
 		m_lineN->update();
 	}
+
+	emit requestRepaint();
 }
 
 void Keyboard::keyReleaseEvent(QKeyEvent * event) {}
