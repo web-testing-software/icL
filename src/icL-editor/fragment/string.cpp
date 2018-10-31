@@ -1,7 +1,7 @@
 #include "string.h"
 
 #include "../private/cursor.h"
-#include "../self/advanced.h"
+#include "../self/editorinternal.h"
 
 #include <icL-look/export/chars.h>
 

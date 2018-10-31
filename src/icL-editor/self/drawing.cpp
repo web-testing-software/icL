@@ -47,6 +47,10 @@ look::Chars * Drawing::chars() const {
 	return m_chars;
 }
 
+int Drawing::lnWidth() const {
+	return lineNumberArea.width();
+}
+
 void Drawing::makeCursorOpaque() {
 	cursorIsHidding = true;
 	cursorTimer.start();

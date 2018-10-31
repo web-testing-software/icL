@@ -1,7 +1,7 @@
 #include "selection.h"
 
 #include "../fragment/fragment.h"
-#include "../self/advanced.h"
+#include "../self/editorinternal.h"
 #include "cursor.h"
 #include "line.h"
 

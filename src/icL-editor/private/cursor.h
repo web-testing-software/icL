@@ -6,7 +6,7 @@
 namespace icL::editor {
 
 class Fragment;
-class Advanced;
+class EditorInternal;
 class Line;
 
 class Cursor
@@ -128,7 +128,7 @@ public:
 	 * @brief getEditor gets the pointer to editor
 	 * @return the pointer to editor
 	 */
-	Advanced * getEditor();
+	EditorInternal * getEditor();
 
 	/**
 	 * @brief operator == compare position of cursors

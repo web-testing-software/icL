@@ -2,7 +2,7 @@
 
 #include "../private/line.h"
 #include "../private/styleproxy.h"
-#include "drawing.h"
+#include "editorinternal.h"
 
 #include <icL-look/export/chars.h>
 
@@ -18,18 +18,13 @@ LineNumbers::LineNumbers(QQuickItem * parent)
 	setAntialiasing(true);
 }
 
-Drawing * LineNumbers::editor() const {
-	return m_editor;
-}
-
-void LineNumbers::setEditor(Drawing * editor) {
+void LineNumbers::setEditor(EditorInternal * editor) {
 	if (m_editor == editor)
 		return;
 
 	m_editor = editor;
 	setWidth(editor->leftPadding);
 	update();
-	emit editorChanged(m_editor);
 }
 
 void LineNumbers::paint(QPainter * painter) {

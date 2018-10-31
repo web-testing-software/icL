@@ -1,7 +1,7 @@
 #include "cursor.h"
 
 #include "../fragment/fragment.h"
-#include "../self/advanced.h"
+#include "../self/editorinternal.h"
 #include "line.h"
 
 #include <algorithm>
@@ -321,8 +321,8 @@ void Cursor::updatePreffered(int delta) {
 	}
 }
 
-Advanced * Cursor::getEditor() {
-	return dynamic_cast<Advanced *>(m_fragment->line()->parent());
+EditorInternal * Cursor::getEditor() {
+	return dynamic_cast<EditorInternal *>(m_fragment->line()->parent());
 }
 
 bool Cursor::operator==(const Cursor & other) const {

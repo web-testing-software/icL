@@ -38,7 +38,6 @@ HEADERS += \
     self/history.h \
     self/keyboard.h \
     self/mouse.h \
-    self/advanced.h \
     private/styleproxy.h \
     fragment/word.h \
     fragment/string.h \
@@ -46,7 +45,8 @@ HEADERS += \
     private/fixer.h \
     self/linenumbers.h \
     private/alpha.h \
-    self/opacitymask.h
+    self/opacitymask.h \
+    self/editorinternal.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -59,7 +59,6 @@ SOURCES += \
     self/history.cpp \
     self/keyboard.cpp \
     self/mouse.cpp \
-    self/advanced.cpp \
     private/styleproxy.cpp \
     fragment/word.cpp \
     fragment/string.cpp \
@@ -67,4 +66,5 @@ SOURCES += \
     private/fixer.cpp \
     self/linenumbers.cpp \
     private/alpha.cpp \
-    self/opacitymask.cpp
+    self/opacitymask.cpp \
+    self/editorinternal.cpp

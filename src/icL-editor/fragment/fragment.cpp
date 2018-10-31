@@ -3,7 +3,7 @@
 #include "../private/cursor.h"
 #include "../private/line.h"
 #include "../private/styleproxy.h"
-#include "../self/advanced.h"
+#include "../self/editorinternal.h"
 #include "bracket.h"
 #include "string.h"
 #include "word.h"
@@ -231,8 +231,8 @@ void Fragment::setLine(Line * line) {
 	m_line = line;
 }
 
-Advanced * Fragment::getEditor() {
-	return dynamic_cast<Advanced *>(m_line->parent());
+EditorInternal * Fragment::getEditor() {
+	return dynamic_cast<EditorInternal *>(m_line->parent());
 }
 
 ProcessedGlyphs Fragment::processGlyphs(const QString & text) {

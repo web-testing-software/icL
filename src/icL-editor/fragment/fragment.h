@@ -13,7 +13,7 @@ class QStaticText;
 namespace icL::editor {
 
 class Line;
-class Advanced;
+class EditorInternal;
 class Cursor;
 
 /**
@@ -199,7 +199,7 @@ protected:
 	 * @brief getEditor returns the editor of fragment
 	 * @return the editor of fragment
 	 */
-	Advanced * getEditor();
+	EditorInternal * getEditor();
 
 	/**
 	 * @brief processGlyphs process the glyphs which must be inserted

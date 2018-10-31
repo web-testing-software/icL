@@ -64,9 +64,7 @@ public:
 	 * @brief lnWidth is the width of line number bar
 	 * @return
 	 */
-	int lnWidth() const {
-		return lineNumberArea.width();
-	}
+	int lnWidth() const;
 
 	/**
 	 * @brief makeCursorOpaque set the opacity of cursor to 1

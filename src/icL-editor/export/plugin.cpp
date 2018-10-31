@@ -1,6 +1,6 @@
 #include "plugin.h"
 
-#include "../self/advanced.h"
+#include "../self/editorinternal.h"
 #include "../self/linenumbers.h"
 #include "../self/opacitymask.h"
 
@@ -15,7 +15,7 @@ void EditorPlugin::registerTypes(const char * uri) {
 	qmlRegisterType<icL::editor::History>();
 	qmlRegisterType<icL::editor::Keyboard>();
 	qmlRegisterType<icL::editor::Mouse>();
-	qmlRegisterType<icL::editor::Advanced>(uri, 1, 0, "EditorInternal");
+	qmlRegisterType<icL::editor::EditorInternal>(uri, 1, 0, "EditorInternal");
 	qmlRegisterType<icL::editor::LineNumbers>(uri, 1, 0, "LineNumbers");
 	qmlRegisterType<icL::editor::OpacityMask>(uri, 1, 0, "EditorOpacityMask");
 }

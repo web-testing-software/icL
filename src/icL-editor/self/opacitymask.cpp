@@ -1,7 +1,7 @@
 #include "opacitymask.h"
 
 #include "../private/line.h"
-#include "drawing.h"
+#include "editorinternal.h"
 
 #include <QOpenGLFunctions>
 #include <QPainter>
@@ -12,10 +12,6 @@ OpacityMask::OpacityMask(QQuickItem * parent)
 	: QQuickPaintedItem(parent) {
 	setRenderTarget(QQuickPaintedItem::FramebufferObject);
 	setAntialiasing(true);
-}
-
-Drawing * OpacityMask::editor() const {
-	return m_editor;
 }
 
 void OpacityMask::paint(QPainter * painter) {
@@ -58,12 +54,11 @@ void OpacityMask::paint(QPainter * painter) {
 	qDebug() << "Mask";
 }
 
-void OpacityMask::setEditor(Drawing * editor) {
+void OpacityMask::setEditor(EditorInternal * editor) {
 	if (m_editor == editor)
 		return;
 
 	m_editor = editor;
-	emit editorChanged(m_editor);
 }
 
 }  // namespace icL::editor

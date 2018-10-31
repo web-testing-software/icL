@@ -55,6 +55,4 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	emit requestRepaint();
 }
 
-void Keyboard::keyReleaseEvent(QKeyEvent * event) {}
-
 }  // namespace icL::editor

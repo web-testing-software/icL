@@ -5,34 +5,23 @@
 
 namespace icL::editor {
 
-class Drawing;
+class EditorInternal;
 
 class LineNumbers : public QQuickPaintedItem
 {
 	Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(icL::editor::Drawing * editor READ editor WRITE setEditor NOTIFY editorChanged)
-	// clang-format on
-
 public:
 	explicit LineNumbers(QQuickItem * parent = nullptr);
 
-	/**
-	 * @brief editor is the editor for which we generate lines numbers panel
-	 * @return the editor of lines numbers panel
-	 */
-	Drawing * editor() const;
-
 signals:
-	void editorChanged(Drawing * editor);
 
 public slots:
 	/**
 	 * @brief setEditor set up the line panel
 	 * @param editor is the editor of lines number panel
 	 */
-	void setEditor(Drawing * editor);
+	void setEditor(EditorInternal * editor);
 
 	// QQuickPaintedItem interface
 public:
@@ -53,7 +42,7 @@ private:
 
 private:
 	// Properties
-	Drawing * m_editor;
+	EditorInternal * m_editor;
 };
 
 }  // namespace icL::editor

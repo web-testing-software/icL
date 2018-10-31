@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import icL.Look 1.0
-import icL.Editor 1.0
+//import icL.Editor 1.0
 import QtGraphicalEffects 1.0
 
 Item {
@@ -18,25 +18,23 @@ Item {
 	LineNumbers {
 		id: ln
 
-		editor: editorIntern
-
+		visible: false
 		anchors {
 			left: editorIntern.left
 			top: editorIntern.top
 			bottom: editorIntern.bottom
 		}
-		visible: false
-		z: -2
+
+		Component.onCompleted: setEditor(editorIntern);
 	}
 
 	EditorOpacityMask {
 		id: opacityMask
 
-		editor: editorIntern
-
-		anchors.fill: ln
 		visible: false
-		z: -1
+		anchors.fill: ln
+
+		Component.onCompleted: setEditor(editorIntern);
 	}
 
 	EditorInternal {
@@ -46,6 +44,8 @@ Item {
 		anchors.fill: parent
 
 		onRequestRepaint: {
+			// Don't change this order
+			// That will case drawing artefacts
 			update();
 			opacityMask.update();
 			ln.update();

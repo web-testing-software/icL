@@ -11,11 +11,11 @@ namespace icL::editor {
  * This class contains the functional which cannot be attached to any of parent
  * classes
  */
-class Advanced : public Mouse
+class EditorInternal : public Mouse
 {
 	Q_OBJECT
 public:
-	explicit Advanced(QQuickItem * parent = nullptr);
+	explicit EditorInternal(QQuickItem * parent = nullptr);
 
 signals:
 
