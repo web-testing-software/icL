@@ -92,4 +92,17 @@ Item {
 		anchors.fill: ln
 		live: true
 	}
+
+	CursorsArea {
+		id: cursors;
+
+		anchors {
+			top: parent.top
+			left: ln.right
+			right: parent.right
+			bottom: parent.bottom
+		}
+
+		Component.onCompleted: setEditor(editorIntern)
+	}
 }

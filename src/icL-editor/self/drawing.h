@@ -19,6 +19,7 @@ namespace icL::editor {
 
 class StyleProxy;
 class OpacityMask;
+class CursorsArea;
 
 /**
  * @brief The Drawing class draws the content of editor
@@ -78,6 +79,7 @@ public:
 	 */
 	friend class icL::editor::LineNumbers;
 	friend class icL::editor::OpacityMask;
+	friend class icL::editor::CursorsArea;
 
 	// QQuickPaintedItem interface
 public:

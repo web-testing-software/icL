@@ -30,7 +30,7 @@ public slots:
 	 * @brief setEditor sets the editor pointer
 	 * @param editor will be used to extract drawing data
 	 */
-	void setEditor(EditorInternal * editor);
+	void setEditor(icL::editor::EditorInternal * editor);
 
 private:
 	/// @brief is the pointer to text editor

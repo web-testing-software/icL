@@ -1,5 +1,6 @@
 #include "plugin.h"
 
+//#include "../self/cursorsarea.h"
 #include "../self/editorinternal.h"
 #include "../self/linenumbers.h"
 #include "../self/opacitymask.h"
@@ -18,4 +19,5 @@ void EditorPlugin::registerTypes(const char * uri) {
 	qmlRegisterType<icL::editor::EditorInternal>(uri, 1, 0, "EditorInternal");
 	qmlRegisterType<icL::editor::LineNumbers>(uri, 1, 0, "LineNumbers");
 	qmlRegisterType<icL::editor::OpacityMask>(uri, 1, 0, "EditorOpacityMask");
+	//	qmlRegisterType<icL::editor::CursorsArea>(uri, 1, 0, "CursorsArea");
 }

@@ -26,7 +26,7 @@ public slots:
 	 * @brief setEditor set up the line panel
 	 * @param editor is the editor of lines number panel
 	 */
-	void setEditor(EditorInternal * editor);
+	void setEditor(icL::editor::EditorInternal * editor);
 
 	// QQuickPaintedItem interface
 public:

@@ -46,7 +46,8 @@ HEADERS += \
     self/linenumbers.h \
     private/alpha.h \
     self/opacitymask.h \
-    self/editorinternal.h
+    self/editorinternal.h \
+    self/cursorsarea.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -67,4 +68,5 @@ SOURCES += \
     self/linenumbers.cpp \
     private/alpha.cpp \
     self/opacitymask.cpp \
-    self/editorinternal.cpp
+    self/editorinternal.cpp \
+    self/cursorsarea.cpp

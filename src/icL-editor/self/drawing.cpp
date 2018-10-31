@@ -77,23 +77,9 @@ void Drawing::paint(QPainter * painter) {
 
 	painter->endNativePainting();
 
-	//	painter->setCompositionMode(QPainter::CompositionMode_Source);
+	drawBreakPoints(painter);
+	drawCurrentLine(painter);
 
-	//	painter->setPen(Qt::NoPen);
-	//	painter->setBrush(m_chars->cline.lineNumber.background);
-	//	painter->drawRect(lineNumberArea);
-
-	//	painter->setBrush();
-	//	painter->drawRect(contentArea);
-
-	//	drawLineNumbers(painter);
-	//	drawBreakPoints(painter);
-	//	drawCurrentLine(painter);
-	//	drawDebugLine(painter);
-
-	painter->setCompositionMode(QPainter::CompositionMode_SourceOver);
-
-	setUpClipArea(painter);
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
@@ -102,7 +88,7 @@ void Drawing::paint(QPainter * painter) {
 	//	qDebug() << "render time" << timer.elapsed();
 
 	qDebug() << "Editor";
-	//	update();
+	update();
 }
 
 void Drawing::setStyle(look::EditorStyle * style) {
@@ -158,7 +144,7 @@ void Drawing::updateBackgroundGeometry() {
 	lineRect.setLeft(0);
 	lineRect.setRight(static_cast<int>(width()));
 	lineRect.setTop(0);
-	lineRect.setBottom(m_proxy->fullLineH());
+	lineRect.setBottom(m_proxy->fullLineH() - 1);
 
 	if (m_lineN != nullptr) {
 		m_lineN->setWidth(leftPadding);
@@ -218,45 +204,6 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 			it = it->next();
 		}
 	}
-
-	// Init for second drawing
-	it = m_firstVisible;
-	painter->setBrush(m_chars->breakpoint.lineNumber.background);
-
-	while (it != nullptr && it->visible()) {
-
-		if (it->hasBreakPoint()) {
-			painter->drawConvexPolygon(leftArrow.translated(0, it->lastY()));
-		}
-
-		it = it->next();
-	}
-
-	// Init for third drawing
-	int yDelta =
-	  m_proxy->divLineSBy2() +
-	  (m_proxy->charH() -
-	   static_cast<int>(m_firstVisible->getCache()->size().height())) /
-	    2;
-
-	painter->setBrush(Qt::NoBrush);
-	painter->setPen(m_chars->breakpoint.lineNumber.text);
-	painter->setFont(m_chars->breakpoint.lineNumber.font);
-
-	it = m_firstVisible;
-	while (it != nullptr && it->visible()) {
-
-		if (it->hasBreakPoint()) {
-			auto * stext = it->getCache();
-
-			painter->drawStaticText(
-			  lineNumberRight -
-			    m_proxy->charW() * it->charsNumberInLineNumber(),
-			  it->lastY() + yDelta, *stext);
-		}
-
-		it = it->next();
-	}
 }
 
 void Drawing::drawLine(
@@ -298,7 +245,10 @@ void Drawing::drawLine(
 
 void Drawing::drawCurrentLine(QPainter * painter) {
 	if (m_current->visible()) {
-		drawLine(painter, m_current, m_chars->current);
+		painter->setPen(Qt::NoPen);
+		painter->setBrush(m_chars->current.background);
+
+		painter->drawRect(lineRect.translated(0, m_current->lastY()));
 	}
 }
 
@@ -429,7 +379,7 @@ qreal Drawing::transition(qreal x) {
 
 void Drawing::drawCursor(QPainter * painter) {
 	auto * itSelection = m_main;
-	int    xBegin      = leftPadding;
+	int    xBegin      = leftPadding - xScroll * m_proxy->charW();
 	int    elapsed     = cursorTimer.elapsed();
 	qreal  alpha       = static_cast<qreal>(elapsed) / 1000.f;
 
