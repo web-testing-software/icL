@@ -317,7 +317,9 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 	auto * endLine   = endFrag->line();
 
 	if (
-	  beginLine->lineNumber() > m_lastVisible->lineNumber() ||
+	  beginLine->lineNumber() >
+		m_firstVisible->lineNumber() + 1 +
+		  static_cast<int>(height()) / m_proxy->fullLineH() ||
 	  endLine->lineNumber() < m_firstVisible->lineNumber()) {
 		return;
 	}

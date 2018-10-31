@@ -155,11 +155,6 @@ void Logic::addNewLine(Line * line, bool focus) {
 		line->setLineNumber(m_current->lineNumber() + 1);
 		line->setVisible(m_current->visible());
 
-		if (m_lastVisible == m_current && focus) {
-			m_firstVisible = m_firstVisible->next();
-			m_lastVisible  = line;
-		}
-
 		setCurrent(line);
 	}
 
