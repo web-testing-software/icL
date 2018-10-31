@@ -7,6 +7,8 @@
 #include <QObject>
 #include <QPolygon>
 
+
+
 namespace icL::look {
 class EditorStyle;
 class Chars;
@@ -82,11 +84,14 @@ public:
 	void paint(QPainter * painter) override;
 
 signals:
+	/// @brief elude QML warning
 	void styleChanged(look::EditorStyle * style);
+	/// @brief elude QML warning
 	void charsChanged(look::Chars * chars);
+	/// @brief elude QML warning
 	void lineNChanged(LineNumbers * lineN);
+	/// @brief elude QML warning
 	void lnWidthChanged(int lnWidth);
-	void requestRepaint();
 
 public slots:
 	/**
@@ -185,12 +190,18 @@ private:
 
 protected:
 	// properties
+	/// @brief the pointer to look of editor characters
 	look::Chars * m_chars = nullptr;
 
+	/// @brief the pointer to line numbers widget (set width on geometry update)
+	LineNumbers * m_lineN = nullptr;
+
 	// fields
+	/// @brief the rect of line numbers widget
 	QRect lineNumberArea;
-	QRect contentArea;
-	int   leftPadding;
+
+	/// @brief is the padding of left side (exclude area under line numbers)
+	int leftPadding;
 
 	/// @brief The proxy to style value from Look QML plugin
 	StyleProxy * m_proxy;

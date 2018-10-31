@@ -49,7 +49,6 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 		qDebug() << "pressed";
 		m_firstVisible->next()->next()->setHasBreakPoint(
 		  !m_firstVisible->next()->next()->hasBreakPoint());
-		m_lineN->update();
 	}
 
 	emit requestRepaint();

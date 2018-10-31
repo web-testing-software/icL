@@ -4,6 +4,7 @@
 #include <QString>
 
 
+
 namespace icL::look {
 struct TextCharFormat;
 }
@@ -37,8 +38,14 @@ struct ProcessedGlyphs
 	bool onNextLine = false;
 };
 
+/**
+ * @brief The FragmentTypes enum describes the posible fragment types
+ */
 enum class FragmentTypes { Fragment, Word, String, Bracket };
 
+/**
+ * @brief The Fragment class decribes any fragment of text
+ */
 class Fragment
 {
 public:
@@ -320,16 +327,29 @@ protected:
 
 protected:
 	// Properties
-	Fragment * m_prev = nullptr;
-	Fragment * m_next = nullptr;
-	Line *     m_line = nullptr;
 
+	/// @brief m_prev is the prevoius fragment is the same line
+	Fragment * m_prev = nullptr;
+
+	/// @brief m_next is the next fragment is the same line
+	Fragment * m_next = nullptr;
+
+	/// @brief m_line is the parent of fragment (a line of text)
+	Line * m_line = nullptr;
+
+	/// @brief m_spaces is the count of spaces before text
 	uint8_t m_spaces = 0;
+
+	/// @brief m_glyphs is the number of chars in text of fragment
 	uint8_t m_glyphs = 0;
 
 	// fields
+
+	/// @brief cache is a pointer to the cached text geometry
 	QStaticText * cache = nullptr;
-	QString       content;
+
+	/// @brief text of this fragment
+	QString content;
 
 	/// @brief readOnly protects this field
 	bool readOnly = false;

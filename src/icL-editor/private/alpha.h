@@ -7,6 +7,9 @@
 
 namespace icL::editor {
 
+/**
+ * @brief The Alpha class permits to animate a float property
+ */
 class Alpha
 {
 public:
@@ -63,14 +66,23 @@ private:
 
 
 private:
+	/// @brief is the last alpha value
 	float lastAlpha;
+
+	/// @brief is the next alpha value (value to transition to)
 	float nextAlpha;
 
-	QTime last_time;
-	int   interval_in_ms = 0;
+	/// @brief is the time of last value change request
+	QTime lastTime;
 
-	bool speed_up_fadein = true;
-	bool need_update     = false;
+	/// @brief is the interval of transition in ms
+	int intervalInMs = 0;
+
+	/// @brief speeds up the increasing of value
+	bool speedUpFadein = true;
+
+	/// @brief confirms that is necessary an update now
+	bool needUpdate = false;
 };
 
 }  // namespace icL::editor

@@ -43,10 +43,6 @@ Line * Logic::firstVisible() const {
 	return m_firstVisible;
 }
 
-Line * Logic::lastVisible() const {
-	return m_lastVisible;
-}
-
 Fixer * Logic::fixer() {
 	return m_fixer;
 }
@@ -67,7 +63,6 @@ void Logic::clear() {
 
 	m_first        = nullptr;
 	m_firstVisible = nullptr;
-	m_lastVisible  = nullptr;
 	m_current      = nullptr;
 	numberOfLines  = 0;
 }
@@ -96,8 +91,7 @@ bool Logic::loadFile(const QString & path) {
 	auto * it = m_firstVisible = m_first;
 	for (int i = 0; i < numberOfLines && it != nullptr; i++) {
 		it->setVisible(true);
-		m_lastVisible = it;
-		it            = it->next();
+		it = it->next();
 	}
 
 	// Testing data
@@ -146,13 +140,6 @@ void Logic::setFirstVisible(Line * firstVisible) {
 	firstVisible->setVisible(true);
 }
 
-void Logic::setLastVisible(Line * lastVisible) {
-	if (m_lastVisible == lastVisible)
-		return;
-
-	m_lastVisible = lastVisible;
-}
-
 void Logic::addNewLine(Line * line, bool focus) {
 	if (m_current == nullptr) {
 		m_first = m_current = line;
@@ -194,7 +181,7 @@ void Logic::updateCurrentLine() {
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
 
-		m_lineN->update();
+		emit requestRepaint();
 	}
 }
 

@@ -7,6 +7,10 @@
 
 class QStaticText;
 
+/**
+ * @brief The icL.editor namespace contains all needed component to create a
+ * modern and powerfull text editor
+ */
 namespace icL::editor {
 
 class Selection;
@@ -51,12 +55,6 @@ public:
 	Line * firstVisible() const;
 
 	/**
-	 * @brief lastVisible is the last visible line
-	 * @return th elast visible line
-	 */
-	Line * lastVisible() const;
-
-	/**
 	 * @brief fixer gets the fixer of editor
 	 * @return the fixer of this editor
 	 */
@@ -78,6 +76,11 @@ public:
 	 */
 	Q_INVOKABLE bool loadFile(const QString & path);
 
+signals:
+	/// @brief this signal is emited to redraw mask, line numbers and editor
+	void requestRepaint();
+
+
 public slots:
 	/**
 	 * @brief setFirst changes the pointer to the first line
@@ -98,12 +101,6 @@ public slots:
 	void setFirstVisible(Line * firstVisible);
 
 	/**
-	 * @brief setLastVisible changes the pointer to the last visible line
-	 * @param lastVisible is the new last visible line
-	 */
-	void setLastVisible(Line * lastVisible);
-
-	/**
 	 * @brief addNewLine inserts a new line after the current
 	 * @param line is the line to add
 	 */
@@ -122,13 +119,17 @@ protected:
 	void changeNumberOfLines(int newValue);
 
 	// properties
-	Selection *   m_main  = nullptr;
-	LineNumbers * m_lineN = nullptr;  //< From Drawing
+	/// @brief the main selection (never deleted)
+	Selection * m_main = nullptr;
 
-	Line * m_first        = nullptr;
-	Line * m_current      = nullptr;
+	/// @brief the first line of text
+	Line * m_first = nullptr;
+
+	/// @brief the current line of text
+	Line * m_current = nullptr;
+
+	/// @brief the first visible line of text
 	Line * m_firstVisible = nullptr;
-	Line * m_lastVisible  = nullptr;
 
 	// fields
 	/// @brief changed confirm that the document was changed or not

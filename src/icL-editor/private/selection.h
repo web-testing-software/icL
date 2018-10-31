@@ -4,10 +4,14 @@
 #include <QString>
 
 
+
 namespace icL::editor {
 
 class Cursor;
 
+/**
+ * @brief The Selection class describes a selection of text
+ */
 class Selection
 {
 public:
@@ -142,10 +146,19 @@ private:
 	void setRtlByStep(int step);
 
 private:
-	Cursor *    m_begin = nullptr;
-	Cursor *    m_end   = nullptr;
-	Selection * m_next  = nullptr;
-	bool        m_rtl   = false;
+	/// @brief m_begin is the cursor which describes the begin of seletion
+	Cursor * m_begin = nullptr;
+
+	/// @brief m_end is the cursor which descrines the end of selection
+	Cursor * m_end = nullptr;
+
+	/// @brief m_next id the active selection in document
+	Selection * m_next = nullptr;
+
+	/// @brief when rtl = false, the main cursor is the end, otherwise to begin
+	///
+	/// rtl means Right-To-Left
+	bool m_rtl = false;
 };
 
 }  // namespace icL::editor

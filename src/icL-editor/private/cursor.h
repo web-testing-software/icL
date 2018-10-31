@@ -3,12 +3,17 @@
 
 #include <stdint.h>
 
+
+
 namespace icL::editor {
 
 class Fragment;
 class EditorInternal;
 class Line;
 
+/**
+ * @brief The Cursor class describes a cursor in editor
+ */
 class Cursor
 {
 public:
@@ -165,9 +170,15 @@ public:
 
 private:
 	// Properties
+
+	/// @brief fragment of text in which the cursor in placed
 	Fragment * m_fragment = nullptr;
-	int8_t     m_position{};
-	uint8_t    m_preffered{};
+
+	/// @brief the relative position to fragment begin
+	int8_t m_position = 0;
+
+	/// @brief the preffered postiotion relative to line (!fragment) begin
+	uint8_t m_preffered = 0;
 };
 
 }  // namespace icL::editor

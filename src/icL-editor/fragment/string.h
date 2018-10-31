@@ -3,8 +3,13 @@
 
 #include "fragment.h"
 
+
+
 namespace icL::editor {
 
+/**
+ * @brief The String class describes a fragment of text which contains a string
+ */
 class String : public Fragment
 {
 public:

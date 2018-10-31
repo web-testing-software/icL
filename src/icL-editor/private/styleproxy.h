@@ -1,6 +1,8 @@
 #ifndef icL_editor_StyleProxy
 #define icL_editor_StyleProxy
 
+
+
 namespace icL::look {
 class EditorStyle;
 }
@@ -76,7 +78,9 @@ public:
 	int fullLineH() const;
 
 private:
-	look::EditorStyle * m_style{};
+	/// @brief is the pointer to editor style look object, all data will be
+	/// extracted from it
+	look::EditorStyle * m_style = nullptr;
 };
 
 }  // namespace icL::editor

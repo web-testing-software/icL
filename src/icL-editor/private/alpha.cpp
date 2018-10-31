@@ -17,52 +17,52 @@ void Alpha::setCurrentAlpha(float value) {
 	nextAlpha = value;
 	lastAlpha = currentAlpha;
 
-	last_time.start();
+	lastTime.start();
 
-	need_update = true;
+	needUpdate = true;
 }
 
 void Alpha::forceSetCurrentAlpha(float value) {
-	last_time.start();
+	lastTime.start();
 	currentAlpha = nextAlpha = lastAlpha = value;
 }
 
 void Alpha::setInterval(int interval) {
-	interval_in_ms = interval;
+	intervalInMs = interval;
 }
 
 void Alpha::setSpeedUpOnFadeIn(bool value) {
-	speed_up_fadein = value;
+	speedUpFadein = value;
 }
 
 bool Alpha::update() {
-	if (!need_update) {
+	if (!needUpdate) {
 		return false;
 	}
 
 	bool ret     = false;
-	int  elapsed = last_time.elapsed();
+	int  elapsed = lastTime.elapsed();
 
-	if (speed_up_fadein && nextAlpha > lastAlpha) {
+	if (speedUpFadein && nextAlpha > lastAlpha) {
 		elapsed *= 2;
 	}
 
-	if (elapsed > interval_in_ms) {
+	if (elapsed > intervalInMs) {
 		if (nextAlpha != currentAlpha) {
 			currentAlpha = nextAlpha;
 			ret          = true;
 		}
-		need_update = false;
+		needUpdate = false;
 	}
 	else {
 		float alpha =
-		  static_cast<float>(elapsed) / static_cast<float>(interval_in_ms);
+		  static_cast<float>(elapsed) / static_cast<float>(intervalInMs);
 
 		alpha = transition(alpha);
 
 		currentAlpha = lastAlpha + (nextAlpha - lastAlpha) * alpha;
 		ret          = true;
-		need_update  = true;
+		needUpdate  = true;
 	}
 
 	if (currentAlpha != 0) {

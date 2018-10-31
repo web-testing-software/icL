@@ -145,12 +145,7 @@ void Drawing::updateBackgroundGeometry() {
 	lineNumberArea.setBottom(static_cast<int>(height()));
 	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
-	contentArea.setLeft(lineNumberArea.right());
-	contentArea.setTop(0);
-	contentArea.setBottom(static_cast<int>(height()));
-	contentArea.setRight(static_cast<int>(width()));
-
-	leftPadding = contentArea.left() + m_proxy->fullLineH() / 2 -
+	leftPadding = lineNumberArea.right() + m_proxy->fullLineH() / 2 -
 				  m_proxy->divLineSBy2() + 1;
 
 	leftArrow = {
@@ -160,7 +155,9 @@ void Drawing::updateBackgroundGeometry() {
 					   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
 	                   {0, m_proxy->fullLineH()}})};
 
-	lineRect = contentArea;
+	lineRect.setLeft(0);
+	lineRect.setRight(static_cast<int>(width()));
+	lineRect.setTop(0);
 	lineRect.setBottom(m_proxy->fullLineH());
 
 	if (m_lineN != nullptr) {
@@ -295,7 +292,7 @@ void Drawing::drawLine(
 	  yPos + m_proxy->divLineSBy2() +
 	    (m_proxy->charH() -
 	     static_cast<int>(line->getCache()->size().height())) /
-	      2,
+		  2,
 	  *line->getCache());
 }
 

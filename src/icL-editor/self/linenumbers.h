@@ -3,10 +3,15 @@
 
 #include <QQuickPaintedItem>
 
+
+
 namespace icL::editor {
 
 class EditorInternal;
 
+/**
+ * @brief The LineNumbers class is a widget which displays the numbers of lines
+ */
 class LineNumbers : public QQuickPaintedItem
 {
 	Q_OBJECT

@@ -3,8 +3,14 @@
 
 #include "fragment.h"
 
+
+
 namespace icL::editor {
 
+/**
+ * @brief The Word class describes a fragment of text which cannot contain
+ * spaces
+ */
 class Word : public Fragment
 {
 public:
@@ -13,8 +19,9 @@ public:
 	// Fragment interface
 protected:
 	ProcessedGlyphs processGlyphs(const QString & text) override;
-	Fragment *      insertInSpaces(
-		   Cursor * begin, Cursor * end, int pos, const QString & text) override;
+
+	Fragment * insertInSpaces(
+	  Cursor * begin, Cursor * end, int pos, const QString & text) override;
 };
 
 }  // namespace icL::editor

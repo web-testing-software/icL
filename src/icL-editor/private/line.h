@@ -15,6 +15,9 @@ class Fragment;
 class Logic;
 class Alpha;
 
+/**
+ * @brief The Line class describes a line of text
+ */
 class Line
 {
 public:
@@ -214,14 +217,27 @@ public:
 
 private:
 	// Properties
-	Fragment * m_first = nullptr;
-	Line *     m_next  = nullptr;
-	Line *     m_prev  = nullptr;
 
+	/// @brief m_first is the first fragment in this line
+	Fragment * m_first = nullptr;
+
+	/// @brief m_next is the next line of text
+	Line * m_next = nullptr;
+
+	/// @brief m_prev is the previos line of text
+	Line * m_prev = nullptr;
+
+	/// @brief m_length is the number of symbols in this line
 	uint8_t m_length = 0;
-	int32_t m_beginPos{};
-	int16_t m_lineNumber{};
-	bool    m_visible = false;
+
+	/// @brief the absolute position of line begin in document
+	int32_t m_beginPos = 0;
+
+	/// @brief the number of line in document
+	int16_t m_lineNumber = 0;
+
+	/// @brief the visibility of line in editor
+	bool m_visible = false;
 
 	// fields
 

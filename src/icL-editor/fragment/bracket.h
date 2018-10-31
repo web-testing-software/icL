@@ -3,8 +3,13 @@
 
 #include "fragment.h"
 
+
+
 namespace icL::editor {
 
+/**
+ * @brief The Bracket class describes a bracket in text editor
+ */
 class Bracket : public Fragment
 {
 public:

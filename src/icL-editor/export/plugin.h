@@ -4,8 +4,10 @@
 #include <QObject>
 #include <QQmlExtensionPlugin>
 
+
+
 /**
- * @brief The LookPlugin class export the C++ look classes to QML
+ * @brief Export editor C++ classes to QML.
  */
 class EditorPlugin : public QQmlExtensionPlugin
 {
