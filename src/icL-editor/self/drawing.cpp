@@ -153,39 +153,6 @@ void Drawing::updateBackgroundGeometry() {
 	emit lnWidthChanged(lineNumberArea.width());
 }
 
-void Drawing::drawLineNumbers(QPainter * painter) {
-	painter->setFont(m_chars->cline.lineNumber.font);
-	painter->setPen(m_chars->cline.lineNumber.text);
-	painter->setBrush(Qt::NoBrush);
-
-	auto * it    = m_firstVisible;
-	int    yStep = m_proxy->fullLineH();
-	int    yPos  = 0;
-	int    yDelta =
-	  m_proxy->divLineSBy2() +
-	  (m_proxy->charH() - static_cast<int>(it->getCache()->size().height())) /
-		2;
-
-	while (it != nullptr && yPos < height()) {
-		it->setVisible(true);
-
-		auto * stext = it->getCache();
-
-		painter->drawStaticText(
-		  lineNumberRight - m_proxy->charW() * it->charsNumberInLineNumber(),
-		  yPos + yDelta, *stext);
-
-		it->setLastY(yPos);
-		yPos += yStep;
-		it = it->next();
-	}
-
-	while (it != nullptr && it->visible()) {
-		it->setVisible(false);
-		it = it->next();
-	}
-}
-
 void Drawing::drawBreakPoints(QPainter * painter) {
 
 	auto * it = m_firstVisible;
@@ -206,43 +173,6 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 	}
 }
 
-void Drawing::drawLine(
-  QPainter * painter, Line * line, look::LineFormat & format) {
-	if (!line->visible()) {
-		return;
-	}
-
-	int yPos = line->lastY();
-
-	painter->setPen(Qt::NoPen);
-	painter->setBrush(format.background);
-	painter->drawRect(lineRect.translated(0, yPos));
-
-	painter->setBrush(format.lineNumber.background);
-	painter->drawConvexPolygon(leftArrow.translated(0, yPos));
-
-
-	if (line->hasBreakPoint()) {
-		painter->setBrush(m_chars->breakpoint.lineNumber.background);
-		//		painter->drawRect(0, yPos, m_proxy->fullLineH(),
-		// m_proxy->fullLineH());
-		int padding = m_proxy->lineS() * 2;
-		int size    = m_proxy->fullLineH() - padding * 2;
-		painter->drawEllipse(padding, yPos + padding, size, size);
-	}
-
-	painter->setBrush(Qt::NoBrush);
-	painter->setPen(format.lineNumber.text);
-	painter->setFont(format.lineNumber.font);
-	painter->drawStaticText(
-	  lineNumberRight - m_proxy->charW() * line->charsNumberInLineNumber(),
-	  yPos + m_proxy->divLineSBy2() +
-	    (m_proxy->charH() -
-	     static_cast<int>(line->getCache()->size().height())) /
-		  2,
-	  *line->getCache());
-}
-
 void Drawing::drawCurrentLine(QPainter * painter) {
 	if (m_current->visible()) {
 		painter->setPen(Qt::NoPen);
@@ -250,14 +180,6 @@ void Drawing::drawCurrentLine(QPainter * painter) {
 
 		painter->drawRect(lineRect.translated(0, m_current->lastY()));
 	}
-}
-
-void Drawing::drawDebugLine(QPainter * painter) {
-	drawLine(painter, debugLine, m_chars->debug);
-}
-
-void Drawing::setUpClipArea(QPainter * painter) {
-	//	painter->setClipRect(leftPadding);
 }
 
 void Drawing::drawSelection(QPainter * painter, Selection * selection) {
@@ -367,62 +289,6 @@ void Drawing::drawContent(QPainter * painter) {
 		}
 
 		itLine = itLine->next();
-	}
-}
-
-qreal Drawing::transition(qreal x) {
-	// x = (e^(x*e) - 1) / (e^e - 1) for x {0, 1}, max error 0.0015 = 0.15%
-	return x * (x * (x * (x * 0.6755328851108425f - 0.3190423664446824f) +
-	                 0.47886115389358097f) +
-	            0.1646483274402586f);
-}
-
-void Drawing::drawCursor(QPainter * painter) {
-	auto * itSelection = m_main;
-	int    xBegin      = leftPadding - xScroll * m_proxy->charW();
-	int    elapsed     = cursorTimer.elapsed();
-	qreal  alpha       = static_cast<qreal>(elapsed) / 1000.f;
-
-	painter->setClipping(false);
-
-	if (cursorIsHidding) {
-		alpha = 1.f - transition(alpha);
-	}
-	else {
-		alpha = transition(alpha);
-	}
-
-	if (alpha > 1.f || alpha < 0) {
-		alpha = alpha > 1.f ? 1.f : 0.f;
-		cursorTimer.start();
-		cursorIsHidding = !cursorIsHidding;
-	}
-
-	painter->setOpacity(alpha);
-
-	while (itSelection != nullptr) {
-		Cursor * cursor;
-
-		if (itSelection->rtl()) {
-			cursor = itSelection->begin();
-		}
-		else {
-			cursor = itSelection->end();
-		}
-
-		auto * line = cursor->fragment()->line();
-
-		if (line->visible()) {
-			int yPos = (line->lineNumber() - m_firstVisible->lineNumber()) *
-			           m_proxy->fullLineH();
-			int xPos = xBegin + cursor->getPosInLine() * m_proxy->charW();
-
-			painter->setPen(cursor->fragment()->format().text);
-
-			painter->drawLine(xPos, yPos, xPos, yPos + m_proxy->fullLineH());
-		}
-
-		itSelection = itSelection->next();
 	}
 }
 

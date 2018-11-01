@@ -123,26 +123,11 @@ private slots:
 
 private:
 	/**
-	 * @brief drawLineNumbers is the 1st step of drawing (after display clear)
-	 *
-	 * It draws the line number of left side for each visible line.
-	 */
-	void drawLineNumbers(QPainter * painter);
-
-	/**
 	 * @brief drawBreakPoints is the 2nd step of drawing
 	 *
 	 * Draw each visible breakpoint over the existing line numbers.
 	 */
 	void drawBreakPoints(QPainter * painter);
-
-	/**
-	 * @brief drawLine draws a line with a specified format
-	 * @param painter is the painter to use
-	 * @param line is the line to draw
-	 * @param format is the format to use
-	 */
-	void drawLine(QPainter * painter, Line * line, look::LineFormat & format);
 
 	/**
 	 * @brief drawCurrentLine is the 3rd step of drawing
@@ -151,18 +136,6 @@ private:
 	 * lines numbers and breakpoints
 	 */
 	void drawCurrentLine(QPainter * painter);
-
-	/**
-	 * @brief drawDebugLine is the 4th step of drawing
-	 *
-	 * Draw the debug line over all existing content.
-	 */
-	void drawDebugLine(QPainter * painter);
-
-	/**
-	 * @brief setUpClipArea restricts drawing on line number area
-	 */
-	void setUpClipArea(QPainter * painter);
 
 	/**
 	 * @brief drawSelection is the 5th step of drawing
@@ -177,18 +150,6 @@ private:
 	 * Draw the text of editor itself, over all selection all line hightlights.
 	 */
 	void drawContent(QPainter * painter);
-
-	/**
-	 * @brief transition make a special transition for opacity of cursor
-	 * @param x - is the linear interpoleted value
-	 * @return the smooth interpolated fixed value
-	 */
-	qreal transition(qreal x);
-
-	/**
-	 * @brief drawCursor draws the text cursor
-	 */
-	void drawCursor(QPainter * painter);
 
 protected:
 	// properties
