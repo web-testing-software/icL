@@ -109,15 +109,19 @@ QSGNode * CursorsArea::updatePaintNode(
 		vertices[0].set(xPos, yPos);
 		vertices[1].set(xPos, yPos + editor->m_proxy->fullLineH());
 
-		//		mainNode->setFlag(QSGNode::OwnsGeometry);
+		mainNode->setFlag(QSGNode::OwnsGeometry);
 		node->markDirty(QSGNode::DirtyGeometry);
+	}
+	else {
+		vertices[0].set(0.f, 0.f);
+		vertices[1].set(0.f, 0.f);
 	}
 
 	if (mainNode->material() == nullptr) {
 		QSGFlatColorMaterial * material = new QSGFlatColorMaterial;
 		material->setColor(cursor->fragment()->format().text.color());
 		mainNode->setMaterial(material);
-		//		mainNode->setFlag(QSGNode::OwnsMaterial);
+		mainNode->setFlag(QSGNode::OwnsMaterial);
 	}
 
 	node->setOpacity(alpha.currentAlpha);

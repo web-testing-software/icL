@@ -83,7 +83,7 @@ void Drawing::paint(QPainter * painter) {
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
-	//	qDebug() << "render time" << timer.elapsed();
+	qDebug() << "render time" << timer.elapsed();
 
 	//	update();
 }
@@ -260,6 +260,8 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 void Drawing::drawContent(QPainter * painter) {
 	painter->setBrush(Qt::NoBrush);
 
+	int fragments = 0;
+
 	auto * itLine = m_firstVisible;
 	int    yDelta = m_proxy->divLineSBy2() +
 				 (m_proxy->charH() -
@@ -272,6 +274,11 @@ void Drawing::drawContent(QPainter * painter) {
 		auto * itFrag = itLine->first();
 		int    xPos   = xBegin;
 
+		while (itFrag != nullptr && xPos + itFrag->length() * xStep < 0) {
+			xPos += itFrag->length() * xStep;
+			itFrag = itFrag->next();
+		}
+
 		while (itFrag != nullptr && xPos < width()) {
 			auto * stext = itFrag->getCache();
 
@@ -283,10 +290,13 @@ void Drawing::drawContent(QPainter * painter) {
 
 			xPos += itFrag->glyphs() * xStep;
 			itFrag = itFrag->next();
+			fragments++;
 		}
 
 		itLine = itLine->next();
 	}
+
+	qDebug() << "drawed fragments" << fragments;
 }
 
 }  // namespace icL::editor
