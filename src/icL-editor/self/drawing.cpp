@@ -26,8 +26,6 @@ Drawing::Drawing(QQuickItem * parent)
 	connect(
 	  this, &Logic::heightChanged, this, &Drawing::updateBackgroundGeometry);
 
-	cursorTimer.start();
-
 	m_proxy = new StyleProxy();
 }
 
@@ -49,11 +47,6 @@ look::Chars * Drawing::chars() const {
 
 int Drawing::lnWidth() const {
 	return lineNumberArea.width();
-}
-
-void Drawing::makeCursorOpaque() {
-	cursorIsHidding = true;
-	cursorTimer.start();
 }
 
 void Drawing::paint(QPainter * painter) {
@@ -83,7 +76,7 @@ void Drawing::paint(QPainter * painter) {
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
-	qDebug() << "render time" << timer.elapsed();
+	//	qDebug() << "render time" << timer.elapsed();
 
 	//	update();
 }
@@ -296,7 +289,7 @@ void Drawing::drawContent(QPainter * painter) {
 		itLine = itLine->next();
 	}
 
-	qDebug() << "drawed fragments" << fragments;
+	//	qDebug() << "drawed fragments" << fragments;
 }
 
 }  // namespace icL::editor

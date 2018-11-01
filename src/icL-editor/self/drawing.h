@@ -70,11 +70,6 @@ public:
 	int lnWidth() const;
 
 	/**
-	 * @brief makeCursorOpaque set the opacity of cursor to 1
-	 */
-	void makeCursorOpaque();
-
-	/**
 	 * The drawing of line number was a part of Drawing class, now it's extern
 	 */
 	friend class icL::editor::LineNumbers;
@@ -94,6 +89,11 @@ signals:
 	void lineNChanged(LineNumbers * lineN);
 	/// @brief elude QML warning
 	void lnWidthChanged(int lnWidth);
+
+	/**
+	 * @brief makeCursorOpaque set the opacity of cursor to 1
+	 */
+	void makeCursorOpaque();
 
 public slots:
 	/**
@@ -183,12 +183,6 @@ protected:
 
 	/// @brief used to highlight current line
 	QRect lineRect;
-
-	/// @brief timer for create the cursor blinding
-	QTime cursorTimer;
-
-	/// @brief the current animation direction
-	bool cursorIsHidding = false;
 
 	/// @brief the current x scroll position
 	uint8_t xScroll = 0;

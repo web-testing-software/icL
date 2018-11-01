@@ -32,6 +32,10 @@ int CursorsArea::cursorW() const {
 	return m_cursorW;
 }
 
+void CursorsArea::makeCursorsOpaque() {
+	alpha.forceSetCurrentAlpha(1.0);
+}
+
 void CursorsArea::setEditor(EditorInternal * editor) {
 	if (this->editor == editor) {
 		return;
@@ -99,23 +103,36 @@ QSGNode * CursorsArea::updatePaintNode(
 
 	auto * line = cursor->fragment()->line();
 
-	int yPos = line->lastY();
+	int yPos   = line->lastY();
+	int halfW  = m_cursorW / 2;
+	int xBegin = -editor->xScroll * editor->m_proxy->charW() + halfW;
+	int xPos   = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
+	int hLen   = m_cursorW * 2;
 
-	if (line->visible()) {
-		int xBegin =
-		  -editor->xScroll * editor->m_proxy->charW() + m_cursorW / 2;
-		int xPos = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
-
-		vertices[0].set(xPos, yPos);
-		vertices[1].set(xPos, yPos + editor->m_proxy->fullLineH());
-
-		mainNode->setFlag(QSGNode::OwnsGeometry);
-		node->markDirty(QSGNode::DirtyGeometry);
+	if (xPos < 0) {
+		xPos = halfW;
 	}
-	else {
-		vertices[0].set(0.f, 0.f);
-		vertices[1].set(0.f, 0.f);
+	else if (xPos >= width()) {
+		xPos = width() - halfW;
 	}
+	else if (line->visible()) {
+		hLen = editor->m_proxy->fullLineH();
+	}
+
+	if (!line->visible()) {
+		if (line->lineNumber() < editor->m_firstVisible->lineNumber()) {
+			yPos = 0;
+		}
+		else {
+			yPos = height() - hLen;
+		}
+	}
+
+	vertices[0].set(xPos, yPos);
+	vertices[1].set(xPos, yPos + hLen);
+
+	mainNode->setFlag(QSGNode::OwnsGeometry);
+	mainNode->markDirty(QSGNode::DirtyGeometry);
 
 	if (mainNode->material() == nullptr) {
 		QSGFlatColorMaterial * material = new QSGFlatColorMaterial;

@@ -57,6 +57,10 @@ Item {
 			ln.update()
 		}
 
+		onMakeCursorOpaque: {
+			cursors.makeCursorsOpaque()
+		}
+
 		Component.onCompleted: forceActiveFocus()
 	}
 

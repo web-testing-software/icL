@@ -28,6 +28,11 @@ public:
 	 */
 	int cursorW() const;
 
+	/**
+	 * @brief makeCursorsOpaque setThe opacity of cursors to 1
+	 */
+	Q_INVOKABLE void makeCursorsOpaque();
+
 signals:
 	/// @brief Edude QML warm
 	void cursorWChanged(int cursorW);
