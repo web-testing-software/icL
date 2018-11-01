@@ -83,11 +83,8 @@ void Drawing::paint(QPainter * painter) {
 	drawSelection(painter, m_main);
 	drawContent(painter);
 
-	//	drawCursor(painter);
-
 	//	qDebug() << "render time" << timer.elapsed();
 
-	qDebug() << "Editor";
 	//	update();
 }
 

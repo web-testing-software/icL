@@ -50,8 +50,6 @@ void OpacityMask::paint(QPainter * painter) {
 
 		it = it->next();
 	}
-
-	qDebug() << "Mask";
 }
 
 void OpacityMask::setEditor(EditorInternal * editor) {

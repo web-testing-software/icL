@@ -47,8 +47,6 @@ void LineNumbers::paint(QPainter * painter) {
 
 	drawText(painter);
 
-	qDebug() << "Line numbers";
-
 	//	qDebug() << "render time of line numbers" << timer.elapsed();
 }
 

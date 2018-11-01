@@ -23,8 +23,6 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 		delta.setY(delta.y() * m_proxy->fullLineH());
 	}
 
-	qDebug() << event->angleDelta();
-
 	if (delta.x() != 0) {
 		int step = delta.x() / (m_proxy->tabSize() * m_proxy->charW());
 
