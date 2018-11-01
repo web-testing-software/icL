@@ -43,6 +43,12 @@ Item {
 		lineN: ln
 		anchors.fill: parent
 
+		onActiveFocusChanged: {
+			if (activeFocus) {
+				cursors.update()
+			}
+		}
+
 		onRequestRepaint: {
 			// Don't change this order
 			// That will case drawing artefacts

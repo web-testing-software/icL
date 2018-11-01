@@ -122,7 +122,9 @@ QSGNode * CursorsArea::updatePaintNode(
 
 	node->setOpacity(alpha.currentAlpha);
 
-	update();
+	if (editor->hasActiveFocus()) {
+		update();
+	}
 
 	return node;
 }
