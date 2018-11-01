@@ -23,6 +23,15 @@ CursorsArea::CursorsArea(QQuickItem * parent)
 	alpha.setCurrentAlpha(1.0);
 }
 
+CursorsArea::~CursorsArea() {
+	node->removeAllChildNodes();
+	qDebug() << "Cursor area crashed!";
+}
+
+int CursorsArea::cursorW() const {
+	return m_cursorW;
+}
+
 void CursorsArea::setEditor(EditorInternal * editor) {
 	if (this->editor == editor) {
 		return;
@@ -32,9 +41,20 @@ void CursorsArea::setEditor(EditorInternal * editor) {
 	update();
 }
 
+void CursorsArea::setCursorW(int cursorW) {
+	if (m_cursorW == cursorW)
+		return;
+
+	m_cursorW = cursorW;
+	emit cursorWChanged(m_cursorW);
+}
+
 QSGNode * CursorsArea::updatePaintNode(
-  QSGNode * oldNode, QQuickItem::UpdatePaintNodeData *) {
-	QSGOpacityNode * node = nullptr;
+  QSGNode *, QQuickItem::UpdatePaintNodeData *) {
+
+	if (node == nullptr) {
+		node = new QSGOpacityNode;
+	}
 
 	if (!alpha.update()) {
 		if (alpha.currentAlpha >= 1.0) {
@@ -45,32 +65,25 @@ QSGNode * CursorsArea::updatePaintNode(
 		}
 	}
 
-	if (!oldNode) {
-		node = new QSGOpacityNode();
-	}
-	else {
-		node = dynamic_cast<QSGOpacityNode *>(oldNode);
-	}
-
-	if (editor == nullptr) {
-		return node;
-	}
-
 	if (node->childCount() == 0) {
 		auto * geometryNode = new QSGGeometryNode;
 		auto * geometry =
 		  new QSGGeometry{QSGGeometry::defaultAttributes_Point2D(), 2};
 
-		geometry->setLineWidth(editor->m_proxy->lineS());
+		geometry->setLineWidth(m_cursorW);
 		geometry->setDrawingMode(QSGGeometry::DrawLines);
 		geometryNode->setGeometry(geometry);
 
 		node->appendChildNode(geometryNode);
 	}
 
-	int xBegin = -editor->xScroll * editor->m_proxy->charW();
+	if (editor == nullptr) {
+		return node;
+	}
 
-	auto * mainNode = dynamic_cast<QSGGeometryNode *>(node->childAtIndex(1));
+	//	qDebug() << node << node->firstChild();
+
+	auto * mainNode = dynamic_cast<QSGGeometryNode *>(node->childAtIndex(0));
 	auto * mainGeometry = mainNode->geometry();
 
 	QSGGeometry::Point2D * vertices = mainGeometry->vertexDataAsPoint2D();
@@ -86,22 +99,30 @@ QSGNode * CursorsArea::updatePaintNode(
 
 	auto * line = cursor->fragment()->line();
 
+	int yPos = line->lastY();
+
 	if (line->visible()) {
-		int yPos = line->lastY();
+		int xBegin =
+		  -editor->xScroll * editor->m_proxy->charW() + m_cursorW / 2;
 		int xPos = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
 
 		vertices[0].set(xPos, yPos);
-		vertices[1].set(xPos, editor->m_proxy->fullLineH());
+		vertices[1].set(xPos, yPos + editor->m_proxy->fullLineH());
+
+		//		mainNode->setFlag(QSGNode::OwnsGeometry);
+		node->markDirty(QSGNode::DirtyGeometry);
 	}
 
-	QSGFlatColorMaterial * material = new QSGFlatColorMaterial;
-	material->setColor(cursor->fragment()->format().text.color());
-	mainNode->setMaterial(material);
-	mainNode->setFlag(QSGNode::OwnsMaterial);
-	mainNode->setFlag(QSGNode::OwnsGeometry);
+	if (mainNode->material() == nullptr) {
+		QSGFlatColorMaterial * material = new QSGFlatColorMaterial;
+		material->setColor(cursor->fragment()->format().text.color());
+		mainNode->setMaterial(material);
+		//		mainNode->setFlag(QSGNode::OwnsMaterial);
+	}
 
-	node->markDirty(QSGNode::DirtyGeometry);
 	node->setOpacity(alpha.currentAlpha);
+
+	update();
 
 	return node;
 }

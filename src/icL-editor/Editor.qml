@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import icL.Look 1.0
-//import icL.Editor 1.0
+import icL.Editor 1.0
 import QtGraphicalEffects 1.0
 
 Item {
@@ -11,8 +11,8 @@ Item {
 	property alias intern: editorIntern
 
 	function updateNow() {
-		ln.update();
-		editorIntern.update();
+		ln.update()
+		editorIntern.update()
 	}
 
 	LineNumbers {
@@ -25,7 +25,7 @@ Item {
 			bottom: editorIntern.bottom
 		}
 
-		Component.onCompleted: setEditor(editorIntern);
+		Component.onCompleted: setEditor(editorIntern)
 	}
 
 	EditorOpacityMask {
@@ -34,7 +34,7 @@ Item {
 		visible: false
 		anchors.fill: ln
 
-		Component.onCompleted: setEditor(editorIntern);
+		Component.onCompleted: setEditor(editorIntern)
 	}
 
 	EditorInternal {
@@ -46,12 +46,12 @@ Item {
 		onRequestRepaint: {
 			// Don't change this order
 			// That will case drawing artefacts
-			update();
-			opacityMask.update();
-			ln.update();
+			update()
+			opacityMask.update()
+			ln.update()
 		}
 
-		Component.onCompleted: forceActiveFocus();
+		Component.onCompleted: forceActiveFocus()
 	}
 
 	ShaderEffectSource {
@@ -61,7 +61,7 @@ Item {
 		live: true
 
 		sourceItem: editorIntern
-		sourceRect: Qt.rect(0, 0, width, height);
+		sourceRect: Qt.rect(0, 0, width, height)
 		visible: false
 	}
 
@@ -94,11 +94,15 @@ Item {
 	}
 
 	CursorsArea {
-		id: cursors;
+		id: cursors
+
+		clip: true
+		cursorW: rd(rq * 2)
 
 		anchors {
 			top: parent.top
 			left: ln.right
+			leftMargin: -cursorW / 2
 			right: parent.right
 			bottom: parent.bottom
 		}

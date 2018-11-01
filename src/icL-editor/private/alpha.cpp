@@ -62,11 +62,7 @@ bool Alpha::update() {
 
 		currentAlpha = lastAlpha + (nextAlpha - lastAlpha) * alpha;
 		ret          = true;
-		needUpdate  = true;
-	}
-
-	if (currentAlpha != 0) {
-		qDebug() << currentAlpha << lastAlpha << nextAlpha;
+		needUpdate   = true;
 	}
 
 	return ret;
