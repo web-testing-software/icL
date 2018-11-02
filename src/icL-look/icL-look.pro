@@ -45,7 +45,8 @@ HEADERS += \
     base/textlook.h \
     session/static.h \
     export/chars.h \
-    editor/editorstyle.h
+    editor/editorstyle.h \
+    editor/scrollbar.h
 
 SOURCES += \
     base/link.cpp \
@@ -74,4 +75,5 @@ SOURCES += \
     base/textlook.cpp \
     session/static.cpp \
     export/chars.cpp \
-    editor/editorstyle.cpp
+    editor/editorstyle.cpp \
+    editor/scrollbar.cpp
