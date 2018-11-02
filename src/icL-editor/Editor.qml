@@ -69,8 +69,8 @@ Item {
 		Component.onCompleted: forceActiveFocus()
 	}
 
-
 	// Scroll bars design
+
 	Item {
 		id: yScrollContainer
 
@@ -112,15 +112,14 @@ Item {
 
 				color: scrollBar.bar
 
-				property real lines: intern.linesCount + intern.visbileLines - 1
-				property real aPos: intern.firstLineNr / lines
+				property real lines: intern.linesCount - 1
+				property real aPos: (intern.firstLineNr - 1) / lines
 				property real aHeight: intern.visbileLines / lines
 				property real pHeight: parent.height * aHeight
 
-				y: (parent.height - height) * aPos
+				y: (parent.height - height - rd(rq * 6)) * aPos + rd(rq * 3)
 				height: pHeight > rd(rq * 10) ? pHeight : rd(rq * 10)
 
-				onHeightChanged: console.log(height)
 				width: rd(rq * 6)
 				radius: width * 0.5
 
@@ -177,7 +176,9 @@ Item {
 				property real aWidth: intern.charsInLine / chars
 				property real pWidth: parent.width * aWidth
 
-				x: (parent.width - width) * aPos
+				x: (parent.width - width - rd(
+						rq * 6) - style.charH / 2) * aPos + rd(
+					   rq * 3) + style.charH / 2
 				width: pWidth > rd(rq * 10) ? pWidth : rd(rq * 10)
 
 				height: rd(rq * 6)
