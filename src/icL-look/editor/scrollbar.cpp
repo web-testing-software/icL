@@ -1,5 +1,7 @@
 #include "scrollbar.h"
 
+#include <QJsonObject>
+
 namespace icL::look {
 
 ScrollBar::ScrollBar(QObject * parent)
@@ -42,7 +44,15 @@ void ScrollBar::setBarHover(QColor barHover) {
 }
 
 void ScrollBar::setUp(const QJsonObject & obj) {
-	//	m_
+	m_background = objToColor(obj.value("background").toObject());
+	m_bar        = objToColor(obj.value("bar").toObject());
+	m_barHover   = objToColor(obj.value("bar-hover").toObject());
+}
+
+QJsonObject ScrollBar::getUp() {
+	return {{"background", colorToObj(m_background)},
+			{"bar", colorToObj(m_bar)},
+			{"bar-hover", colorToObj(m_barHover)}};
 }
 
 }  // namespace icL::look
