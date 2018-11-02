@@ -4,9 +4,9 @@ namespace icL::context::data {
 
 Parameter::Parameter(
   memory::InterLevel * il, const QString & name, memory::Type type)
-	: Data(il)
-	, m_name(name)
-	, m_type(type) {
+    : Data(il)
+    , m_name(name)
+    , m_type(type) {
 	m_role = Role::Argument;
 }
 
@@ -22,9 +22,9 @@ const QString & Parameter::name() const {
 
 bool Parameter::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   (context->role() == Role::Argument ||
-			(context->role() == Role::Assign && context->prev() != nullptr &&
-			 context->prev()->role() == Role::Function));
+	       (context->role() == Role::Argument ||
+	        (context->role() == Role::Assign && context->prev() != nullptr &&
+	         context->prev()->role() == Role::Function));
 }
 
 }  // namespace icL::context::data

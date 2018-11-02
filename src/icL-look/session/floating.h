@@ -1,45 +1,33 @@
-#ifndef icL_look_session_Floating
-#define icL_look_session_Floating
+#ifndef icL_look_Floating
+#define icL_look_Floating
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 #include <QColor>
 
-// clang-format off
-namespace icL::look::base  { class Text; }
-namespace icL::look::start { class Input; }
-// clang-format on
+namespace icL::look {
 
-namespace icL::look::session {
-
+class TextLook;
+class Input;
 class Tree;
 
 /**
  * @brief The Floating class describes the look for the floating panel
  */
-class Floating : public base::Base
+class Floating : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*  header READ header)
-	Q_PROPERTY(Tree*         stack READ stack)
-	Q_PROPERTY(Tree*         state READ state)
-	Q_PROPERTY(start::Input* input READ input)
-	Q_PROPERTY(QColor        error READ error   WRITE setError   NOTIFY errorChanged)
-	Q_PROPERTY(QColor         warn READ warn    WRITE setWarn    NOTIFY warnChanged)
-	Q_PROPERTY(QColor      console READ console WRITE setConsole NOTIFY consoleChanged)
-	Q_PROPERTY(QColor           bg READ bg      WRITE setBg      NOTIFY bgChanged)
+	Q_PROPERTY(icL::look::TextLook* header READ header NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Tree*      stack READ stack  NOTIFY stackChanged)
+	Q_PROPERTY(icL::look::Tree*      state READ state  NOTIFY stateChanged)
+	Q_PROPERTY(icL::look::Input*     input READ input  NOTIFY inputChanged)
+	Q_PROPERTY(QColor   error READ error   WRITE setError   NOTIFY errorChanged)
+	Q_PROPERTY(QColor    warn READ warn    WRITE setWarn    NOTIFY warnChanged)
+	Q_PROPERTY(QColor console READ console WRITE setConsole NOTIFY consoleChanged)
+	Q_PROPERTY(QColor      bg READ bg      WRITE setBg      NOTIFY bgChanged)
 	// clang-format on
-
-	base::Text *   m_header = nullptr;
-	Tree *         m_stack  = nullptr;
-	Tree *         m_state  = nullptr;
-	start::Input * m_input  = nullptr;
-	QColor         m_error;
-	QColor         m_warn;
-	QColor         m_console;
-	QColor         m_bg;
 
 public:
 	/**
@@ -54,7 +42,7 @@ public:
 	 * @brief header is the look of headers
 	 * @return the look for headers
 	 */
-	base::Text * header() const;
+	TextLook * header() const;
 
 	/**
 	 * @brief stack is the look of stack view
@@ -90,7 +78,7 @@ public:
 	 * @brief input is the look of command input of console
 	 * @return the look for command input of console
 	 */
-	start::Input * input() const;
+	Input * input() const;
 
 	/**
 	 * @brief bg is the color of background
@@ -107,33 +95,47 @@ signals:
 	void warnChanged(QColor warn);
 	void consoleChanged(QColor console);
 	void bgChanged(QColor bg);
+	void headerChanged(TextLook * header);
+	void stackChanged(Tree * stack);
+	void stateChanged(Tree * state);
+	void inputChanged(Input * input);
 
 public slots:
 	/**
 	 * @brief setError changes the color of errors in console
 	 * @param error is the new color for errors in console
 	 */
-	void setError(QColor error);
+	void setError(const QColor & error);
 
 	/**
 	 * @brief setWarn changes the color of warnings in console
 	 * @param warn is the new color for warnings in console
 	 */
-	void setWarn(QColor warn);
+	void setWarn(const QColor & warn);
 
 	/**
 	 * @brief setConsole changes the color of text in console
 	 * @param console is the new color for text in console
 	 */
-	void setConsole(QColor console);
+	void setConsole(const QColor & console);
 
 	/**
 	 * @brief setBg changes the color of background
 	 * @param bg is the new color for background
 	 */
-	void setBg(QColor bg);
+	void setBg(const QColor & bg);
+
+private:
+	TextLook * m_header = nullptr;
+	Tree *     m_stack  = nullptr;
+	Tree *     m_state  = nullptr;
+	Input *    m_input  = nullptr;
+	QColor     m_error;
+	QColor     m_warn;
+	QColor     m_console;
+	QColor     m_bg;
 };
 
-}  // namespace icL::look::session
+}  // namespace icL::look
 
-#endif  // icL_look_session_Floating
+#endif  // icL_look_Floating

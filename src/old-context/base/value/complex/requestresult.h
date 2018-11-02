@@ -8,4 +8,4 @@ public:
 	RequestResult();
 };
 
-#endif // REQUESTRESULT_H
+#endif  // REQUESTRESULT_H

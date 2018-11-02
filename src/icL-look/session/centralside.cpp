@@ -1,35 +1,35 @@
 #include "centralside.h"
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 #include "../start/input.h"
 #include "issue.h"
 
 #include <QJsonObject>
 
-namespace icL::look::session {
+namespace icL::look {
 
 CentralSide::CentralSide(QObject * parent)
-	: Base(parent) {
+    : BaseLook(parent) {
 	m_command = m_errorResult = m_okResult = QColor(Qt::transparent);
 
 	m_error      = new Issue(this);
 	m_warn       = new Issue(this);
-	m_header     = new base::Text(this);
-	m_input      = new start::Input(this);
-	m_underdigit = new base::LinkAdv(this);
-	m_undertext  = new base::LinkAdv(this);
+	m_header     = new TextLook(this);
+	m_input      = new Input(this);
+	m_underdigit = new LinkAdv(this);
+	m_undertext  = new LinkAdv(this);
 }
 
 CentralSide::~CentralSide() {
-	icL_dropField(m_error);
-	icL_dropField(m_header);
-	icL_dropField(m_input);
-	icL_dropField(m_underdigit);
-	icL_dropField(m_undertext);
-	icL_dropField(m_warn);
+	delete m_error;
+	delete m_header;
+	delete m_input;
+	delete m_underdigit;
+	delete m_undertext;
+	delete m_warn;
 }
 
-base::Text * session::CentralSide::header() const {
+TextLook * CentralSide::header() const {
 	return m_header;
 }
 
@@ -41,11 +41,11 @@ Issue * CentralSide::error() const {
 	return m_error;
 }
 
-base::LinkAdv * CentralSide::undertext() const {
+LinkAdv * CentralSide::undertext() const {
 	return m_undertext;
 }
 
-base::LinkAdv * CentralSide::underdigit() const {
+LinkAdv * CentralSide::underdigit() const {
 	return m_underdigit;
 }
 
@@ -61,7 +61,7 @@ QColor CentralSide::okResult() const {
 	return m_okResult;
 }
 
-start::Input * CentralSide::input() const {
+Input * CentralSide::input() const {
 	return m_input;
 }
 
@@ -84,17 +84,17 @@ void CentralSide::setUp(const QJsonObject & obj) {
 
 QJsonObject CentralSide::getUp() {
 	return {{"header", m_header->getUp()},
-			{"warn", m_warn->getUp()},
-			{"error", m_error->getUp()},
-			{"undertext", m_undertext->getUp()},
-			{"underdigit", m_underdigit->getUp()},
-			{"input", m_input->getUp()},
-			{"command", colorToObj(m_command)},
-			{"error-result", colorToObj(m_errorResult)},
-			{"ok-result", colorToObj(m_okResult)}};
+	        {"warn", m_warn->getUp()},
+	        {"error", m_error->getUp()},
+	        {"undertext", m_undertext->getUp()},
+	        {"underdigit", m_underdigit->getUp()},
+	        {"input", m_input->getUp()},
+	        {"command", colorToObj(m_command)},
+	        {"error-result", colorToObj(m_errorResult)},
+	        {"ok-result", colorToObj(m_okResult)}};
 }
 
-void CentralSide::setCommand(QColor command) {
+void CentralSide::setCommand(const QColor & command) {
 	if (m_command == command)
 		return;
 
@@ -102,7 +102,7 @@ void CentralSide::setCommand(QColor command) {
 	emit commandChanged(m_command);
 }
 
-void CentralSide::setErrorResult(QColor errorResult) {
+void CentralSide::setErrorResult(const QColor & errorResult) {
 	if (m_errorResult == errorResult)
 		return;
 
@@ -110,7 +110,7 @@ void CentralSide::setErrorResult(QColor errorResult) {
 	emit errorResultChanged(m_errorResult);
 }
 
-void CentralSide::setOkResult(QColor okResult) {
+void CentralSide::setOkResult(const QColor & okResult) {
 	if (m_okResult == okResult)
 		return;
 
@@ -118,4 +118,4 @@ void CentralSide::setOkResult(QColor okResult) {
 	emit okResultChanged(m_okResult);
 }
 
-}  // namespace icL::look::session
+}  // namespace icL::look

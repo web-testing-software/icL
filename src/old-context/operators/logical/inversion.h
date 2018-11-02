@@ -8,4 +8,4 @@ public:
 	Inversion();
 };
 
-#endif // INVERSION_H
+#endif  // INVERSION_H

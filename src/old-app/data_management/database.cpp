@@ -10,7 +10,7 @@
 namespace icL::app {
 
 DataBase::DataBase(QObject * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	QSqlError err = init();
 
 	if (err.type() != QSqlError::NoError) {

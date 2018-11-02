@@ -8,4 +8,4 @@ public:
 	Equivalence();
 };
 
-#endif // EQUIVALENCE_H
+#endif  // EQUIVALENCE_H

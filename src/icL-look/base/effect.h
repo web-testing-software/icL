@@ -1,18 +1,18 @@
-#ifndef EFFECT_H
-#define EFFECT_H
+#ifndef icL_look_Effect
+#define icL_look_Effect
 
-#include "base.h"
+#include "baselook.h"
 
 #include <QColor>
 
 
 
-namespace icL::look::base {
+namespace icL::look {
 
 /**
  * @brief The Effect class decribes a look for an effect
  */
-class Effect : public base::Base
+class Effect : public BaseLook
 {
 	Q_OBJECT
 
@@ -21,10 +21,6 @@ class Effect : public base::Base
 	Q_PROPERTY(QColor  hover READ hover  WRITE setHover  NOTIFY hoverChanged)
 	Q_PROPERTY(QColor active READ active WRITE setActive NOTIFY activeChanged)
 	// clang-format on
-
-	QColor m_normal;
-	QColor m_hover;
-	QColor m_active;
 
 public:
 	/**
@@ -65,21 +61,26 @@ public slots:
 	 * @brief setNormal changes the default effect color
 	 * @param normal is the new default effect color
 	 */
-	void setNormal(QColor normal);
+	void setNormal(const QColor & normal);
 
 	/**
 	 * @brief setHover changes the effect color for hover state
 	 * @param hover is the new effect color for hover state
 	 */
-	void setHover(QColor hover);
+	void setHover(const QColor & hover);
 
 	/**
 	 * @brief setActive changes the effect color for active state
 	 * @param active is the new effect color for active state
 	 */
-	void setActive(QColor active);
+	void setActive(const QColor & active);
+
+private:
+	QColor m_normal;
+	QColor m_hover;
+	QColor m_active;
 };
 
-}  // namespace icL::look::base
+}  // namespace icL::look
 
-#endif  // EFFECT_H
+#endif  // icL_look_Effect

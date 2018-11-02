@@ -1,30 +1,25 @@
-#ifndef icL_look_session_Tree
-#define icL_look_session_Tree
+#ifndef icL_look_Tree
+#define icL_look_Tree
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 
 
-// clang-format off
-namespace icL::look::base  { class Link; }
-// clang-format on
+namespace icL::look {
 
-namespace icL::look::session {
+class Link;
 
 /**
  * @brief The Tree class describes a look for a tree widget
  */
-class Tree : public base::Base
+class Tree : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Link* parent READ parent)
-	Q_PROPERTY(base::Link*  child READ child)
+	Q_PROPERTY(icL::look::Link* parent READ parent NOTIFY parentChanged)
+	Q_PROPERTY(icL::look::Link*  child READ child  NOTIFY childChanged)
 	// clang-format on
-
-	base::Link * m_parent = nullptr;
-	base::Link * m_child  = nullptr;
 
 public:
 	/**
@@ -39,19 +34,27 @@ public:
 	 * @brief parent is the look for parent (root) item
 	 * @return the look for parent item
 	 */
-	base::Link * parent() const;
+	Link * parent() const;
 
 	/**
 	 * @brief child is the look for child item
 	 * @return the look for child item
 	 */
-	base::Link * child() const;
+	Link * child() const;
 
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
+
+signals:
+	void parentChanged(Link * parent);
+	void childChanged(Link * child);
+
+private:
+	Link * m_parent = nullptr;
+	Link * m_child  = nullptr;
 };
 
-}  // namespace icL::look::session
+}  // namespace icL::look
 
-#endif  // icL_look_session_Tree
+#endif  // icL_look_Tree

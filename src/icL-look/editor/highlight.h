@@ -1,18 +1,18 @@
-#ifndef icL_look_editor_Highlight
-#define icL_look_editor_Highlight
+#ifndef icL_look_Highlight
+#define icL_look_Highlight
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 #include <QColor>
 
 
 
-namespace icL::look::editor {
+namespace icL::look {
 
 /**
  * @brief The Highlight class describes a look for highlighting fragment of text
  */
-class Highlight : public base::Base
+class Highlight : public BaseLook
 {
 	Q_OBJECT
 
@@ -20,9 +20,6 @@ class Highlight : public base::Base
 	Q_PROPERTY(QColor background READ background WRITE setBackground NOTIFY backgroundChanged)
 	Q_PROPERTY(QColor     border READ border     WRITE setBorder     NOTIFY borderChanged)
 	// clang-format on
-
-	QColor m_background;
-	QColor m_border;
 
 public:
 	/**
@@ -56,14 +53,18 @@ public slots:
 	 * @brief setBackground changes the color of background
 	 * @param background is the new color for background
 	 */
-	void setBackground(QColor background);
+	void setBackground(const QColor & background);
 	/**
 	 * @brief setBorder changes the color of border
 	 * @param border is the new color for border
 	 */
-	void setBorder(QColor border);
+	void setBorder(const QColor & border);
+
+private:
+	QColor m_background;
+	QColor m_border;
 };
 
-}  // namespace icL::look::editor
+}  // namespace icL::look
 
-#endif  // icL_look_editor_Highlight
+#endif  // icL_look_Highlight

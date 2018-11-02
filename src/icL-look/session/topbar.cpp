@@ -2,47 +2,47 @@
 
 #include "../base/effectadv.h"
 #include "../base/linkadv.h"
-#include "../base/text.h"
+#include "../base/textlook.h"
 
 #include <QJsonObject>
 
-namespace icL::look::session {
+namespace icL::look {
 
 TopBar::TopBar(QObject * parent)
-	: Base(parent) {
+    : BaseLook(parent) {
 	m_cursor = QColor(Qt::transparent);
-	m_button = new base::EffectAdv(this);
-	m_input  = new base::Text(this);
-	m_tab    = new base::LinkAdv(this);
-	m_tool   = new base::EffectAdv(this);
-	m_url    = new base::LinkAdv(this);
+	m_button = new EffectAdv(this);
+	m_input  = new TextLook(this);
+	m_tab    = new LinkAdv(this);
+	m_tool   = new EffectAdv(this);
+	m_url    = new LinkAdv(this);
 }
 
 TopBar::~TopBar() {
-	icL_dropField(m_button);
-	icL_dropField(m_input);
-	icL_dropField(m_tab);
-	icL_dropField(m_tool);
-	icL_dropField(m_url);
+	delete m_button;
+	delete m_input;
+	delete m_tab;
+	delete m_tool;
+	delete m_url;
 }
 
-base::LinkAdv * TopBar::tab() const {
+LinkAdv * TopBar::tab() const {
 	return m_tab;
 }
 
-base::LinkAdv * TopBar::url() const {
+LinkAdv * TopBar::url() const {
 	return m_url;
 }
 
-base::EffectAdv * TopBar::button() const {
+EffectAdv * TopBar::button() const {
 	return m_button;
 }
 
-base::EffectAdv * TopBar::tool() const {
+EffectAdv * TopBar::tool() const {
 	return m_tool;
 }
 
-base::Text * TopBar::input() const {
+TextLook * TopBar::input() const {
 	return m_input;
 }
 
@@ -64,13 +64,13 @@ void TopBar::setUp(const QJsonObject & obj) {
 
 QJsonObject TopBar::getUp() {
 	return {{"tab", m_tab->getUp()},
-			{"url", m_url->getUp()},
-			{"button", m_button->getUp()},
-			{"tool", m_tool->getUp()},
-			{"input", m_input->getUp()}};
+	        {"url", m_url->getUp()},
+	        {"button", m_button->getUp()},
+	        {"tool", m_tool->getUp()},
+	        {"input", m_input->getUp()}};
 }
 
-void TopBar::setCursor(QColor cursor) {
+void TopBar::setCursor(const QColor & cursor) {
 	if (m_cursor == cursor)
 		return;
 
@@ -78,4 +78,4 @@ void TopBar::setCursor(QColor cursor) {
 	emit cursorChanged(m_cursor);
 }
 
-}  // namespace icL::look::session
+}  // namespace icL::look

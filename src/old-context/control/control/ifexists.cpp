@@ -1,6 +1,3 @@
 #include "ifexists.h"
 
-IfExists::IfExists()
-{
-
-}
+IfExists::IfExists() {}

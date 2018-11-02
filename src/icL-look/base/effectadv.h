@@ -1,11 +1,9 @@
-#ifndef EFFECTADV_H
-#define EFFECTADV_H
+#ifndef icL_look_EffectAdv
+#define icL_look_EffectAdv
 
 #include "effect.h"
 
-
-
-namespace icL::look::base {
+namespace icL::look {
 
 /**
  * @brief The EffectAdv class
@@ -17,8 +15,6 @@ class EffectAdv : public Effect
 	// clang-format off
 	Q_PROPERTY(QColor activeHover READ activeHover WRITE setActiveHover NOTIFY activeHoverChanged)
 	// clang-format on
-
-	QColor m_activeHover;
 
 public:
 	/**
@@ -45,9 +41,12 @@ public slots:
 	 * @brief setActiveHover changes the link color for active and hover state
 	 * @param activeHover is the new link color for active and hover state
 	 */
-	void setActiveHover(QColor activeHover);
+	void setActiveHover(const QColor & activeHover);
+
+private:
+	QColor m_activeHover;
 };
 
-}  // namespace icL::look::base
+}  // namespace icL::look
 
-#endif  // EFFECTADV_H
+#endif  // icL_look_EffectAdv

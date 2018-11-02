@@ -1,21 +1,24 @@
 # look - personalize look of programs
 
-TARGET = -icL-look
+TARGET = icLlookPlugin
 TEMPLATE = lib
+CONFIG += plugin
 
-QT = core gui
-CONFIG -= app_bundle
+QT = core gui qml
 
 ICL_ROOT = $$PWD/../..
 
-include($$ICL_ROOT/pri_files/lib.pri)
-
+uri = icL.Look
+QML_TYPES = look.qmltypes
+include($$ICL_ROOT/pri_files/qmlplugin.pri)
 
 DISTFILES += \
-    README.md
+    README.md \
+    qmldir \
+    look.qmltypes \
+    models/*.*uml
 
 HEADERS += \
-    base/text.h \
     base/link.h \
     base/linkadv.h \
     base/effect.h \
@@ -37,10 +40,14 @@ HEADERS += \
     editor/charformat.h \
     editor/editor.h \
     export/look.h \
-    base/base.h
+    export/plugin.h \
+    base/baselook.h \
+    base/textlook.h \
+    session/static.h \
+    export/chars.h \
+    editor/editorstyle.h
 
 SOURCES += \
-    base/text.cpp \
     base/link.cpp \
     base/linkadv.cpp \
     base/effect.cpp \
@@ -62,5 +69,9 @@ SOURCES += \
     editor/charformat.cpp \
     editor/editor.cpp \
     export/look.cpp \
-    base/base.cpp
-
+    export/plugin.cpp \
+    base/baselook.cpp \
+    base/textlook.cpp \
+    session/static.cpp \
+    export/chars.cpp \
+    editor/editorstyle.cpp

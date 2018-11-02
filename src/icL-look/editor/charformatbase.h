@@ -1,13 +1,16 @@
-#ifndef icL_look_editor_CharFormatBase
-#define icL_look_editor_CharFormatBase
+#ifndef icL_look_CharFormatBase
+#define icL_look_CharFormatBase
 
-#include "../base/text.h"
+#include "../base/textlook.h"
 
 
 
-namespace icL::look::editor {
+namespace icL::look {
 
-class CharFormatBase : public base::Text
+/**
+ * @brief The CharFormatBase class represents a minimal char format
+ */
+class CharFormatBase : public TextLook
 {
 	Q_OBJECT
 
@@ -15,9 +18,6 @@ class CharFormatBase : public base::Text
 	Q_PROPERTY(bool   bold READ bold   WRITE setBold   NOTIFY boldChanged)
 	Q_PROPERTY(bool italic READ italic WRITE setItalic NOTIFY italicChanged)
 	// clang-format on
-
-	bool m_bold;
-	bool m_italic;
 
 public:
 	/**
@@ -58,8 +58,12 @@ public slots:
 	 * @param italic is the new angle for text
 	 */
 	void setItalic(bool italic);
+
+private:
+	bool m_bold;
+	bool m_italic;
 };
 
-}  // namespace icL::look::editor
+}  // namespace icL::look
 
-#endif  // icL_look_editor_CharFormatBase
+#endif  // icL_look_CharFormatBase

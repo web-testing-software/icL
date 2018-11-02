@@ -5,8 +5,8 @@
 #include "object/element.h"
 #include "object/int.h"
 #include "object/list.h"
-#include "object/value.h"
 #include "object/string.h"
+#include "object/value.h"
 #include "object/void.h"
 
 #include <icl-memory/structures/webelement.h>
@@ -21,7 +21,7 @@
 namespace icL::context {
 
 Context::Context(memory::InterLevel * il)
-	: memory::Node(il){};
+    : memory::Node(il){};
 
 Context * Context::getNewContext() const {
 	return newContext;
@@ -85,7 +85,7 @@ value::Value * Context::fromValue(const QVariant & value) {
 value::Value * Context::fromValue(
   memory::InterLevel * il, const QVariant & value) {
 	value::Value * ret;
-	memory::Type     type = memory::variantTypeToType(value.type());
+	memory::Type   type = memory::variantTypeToType(value.type());
 
 	switch (type) {
 	case memory::Type::Bool:
@@ -123,7 +123,7 @@ value::Value * Context::fromValue(
 value::Value * Context::fromValue(
   memory::InterLevel * il, memory::DataState * ds, const QString & name) {
 	value::Value * ret;
-	memory::Type     type = ds->getType(name);
+	memory::Type   type = ds->getType(name);
 
 	switch (type) {
 	case memory::Type::Bool:
@@ -200,7 +200,7 @@ void Context::sendWrongArglist(
 	}
 
 	il->vm->exception({-203, "Wrong arglist: <" % types.join(", ") %
-							   ">, expected " % expected});
+	                           ">, expected " % expected});
 }
 
 QString Context::varToJsString(const QVariant & var) {
@@ -271,7 +271,7 @@ void Context::link(Context * context) {
 	}
 
 	qDebug() << static_cast<int>(role()) << context
-			 << static_cast<int>(context->role());
+	         << static_cast<int>(context->role());
 }
 
 void Context::link(Context * c0, Context * c1, Context * c2) {

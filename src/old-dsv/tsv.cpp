@@ -1,6 +1,3 @@
 #include "tsv.h"
 
-TSV::TSV()
-{
-
-}
+TSV::TSV() {}

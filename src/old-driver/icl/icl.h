@@ -8,8 +8,8 @@
 namespace icL::driver::icl {
 
 class Icl
-	: public memory::Node
-	, public memory::Server
+    : public memory::Node
+    , public memory::Server
 {
 public:
 	Icl();

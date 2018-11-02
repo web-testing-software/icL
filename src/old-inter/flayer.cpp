@@ -4,7 +4,7 @@ namespace icL::inter {
 
 
 Flayer::Flayer(memory::InterLevel * il)
-	: memory::Node(il) {
+    : memory::Node(il) {
 
 	source = nullptr;
 }
@@ -60,9 +60,9 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 	int    ret_int;
 	double ret_double;
 	bool   is_int;
-	bool   point_catched = false;
+	bool   point_catched  = false;
 	int    point_position = position;
-	QChar  ch = source->at(position);
+	QChar  ch             = source->at(position);
 
 	start = position;
 
@@ -71,7 +71,7 @@ std::tuple<int, double, bool> Flayer::flyNumber() {
 	}
 
 	while ((ch.isDigit() || (!point_catched && ch == '.')) &&
-		   position < end - 1) {
+	       position < end - 1) {
 		if (ch == '.') {
 			point_position = position;
 			point_catched  = true;
@@ -150,7 +150,7 @@ std::pair<context::Prefix, QString> Flayer::flyProperty() {
 			}
 		}
 	} while ((ch.isLetter() || (ch == '-' && !prefix_catched)) &&
-			 ++position < end);
+	         ++position < end);
 
 	name = source->mid(start, position - start);
 
@@ -279,7 +279,7 @@ bool Flayer::flyComment() {
 			il->vm->exception(
 			  {-306,
 			   QStringLiteral("Unexpected token %1, expected `")
-				 .arg(position == source->length() ? "EOF" : QString(ch))});
+			     .arg(position == source->length() ? "EOF" : QString(ch))});
 
 			highlightError();
 
@@ -303,7 +303,7 @@ bool Flayer::flyComment() {
 		position += 2;
 
 		while (position < end - 4 &&
-			   !(ch == '`' && ch_next == '`' && ch_next_next == '`')) {
+		       !(ch == '`' && ch_next == '`' && ch_next_next == '`')) {
 			ch = source->at(++position);
 
 			if (ch == '`') {
@@ -318,8 +318,8 @@ bool Flayer::flyComment() {
 			il->vm->exception(
 			  {-306,
 			   QStringLiteral("Unexpected token %1, expected ```")
-				 .arg(
-				   end == source->length() ? "EOF" : source->mid(end - 1, 1))});
+			     .arg(
+			       end == source->length() ? "EOF" : source->mid(end - 1, 1))});
 
 			highlightError();
 
@@ -426,7 +426,7 @@ void Flayer::sendWrongBrackerPair(QString & brackets, const QChar & ch) {
 		}
 		else {
 			il->vm->exception({-300, QStringLiteral("Wrong bracket pair %1 %2")
-									   .arg(brackets.right(1), QString(ch))});
+			                           .arg(brackets.right(1), QString(ch))});
 		}
 	}
 

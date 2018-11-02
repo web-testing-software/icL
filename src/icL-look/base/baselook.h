@@ -1,25 +1,24 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef icL_look_BaseLook
+#define icL_look_BaseLook
 
 #include <QObject>
 
 
 
-#define icL_dropField(x) \
-	if (x != nullptr)    \
-	delete x
-
-namespace icL::look::base {
+/**
+ * @brief The icL.look namespace contains a icL theme
+ */
+namespace icL::look {
 
 /**
  * @brief The Base class shares some functionality to all classes in project
  */
-class Base : public QObject
+class BaseLook : public QObject
 {
 	Q_OBJECT
 
 public:
-	Base(QObject * parent = nullptr);
+	BaseLook(QObject * parent = nullptr);
 
 	/**
 	 * @brief setUp set up the state from JSON object
@@ -49,6 +48,6 @@ protected:
 	QJsonObject colorToObj(const QColor & color);
 };
 
-}  // namespace icL::look::base
+}  // namespace icL::look
 
-#endif  // BASE_H
+#endif  // icL_look_BaseLook

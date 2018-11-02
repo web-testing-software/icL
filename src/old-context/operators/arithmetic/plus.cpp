@@ -1,6 +1,3 @@
 #include "plus.h"
 
-Plus::Plus()
-{
-
-}
+Plus::Plus() {}

@@ -14,32 +14,32 @@ namespace icL::context::value {
 Value::Value(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Context(il)
-	, container(container)
-	, varName(varName)
-	, valuetype(ValueType::L) {
+    : Context(il)
+    , container(container)
+    , varName(varName)
+    , valuetype(ValueType::L) {
 	m_role = Role::Object;
 }
 
 Value::Value(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Context(il)
-	, rvalue(rvalue)
-	, readonly(readonly)
-	, valuetype(ValueType::R) {
+    : Context(il)
+    , rvalue(rvalue)
+    , readonly(readonly)
+    , valuetype(ValueType::R) {
 	m_role = Role::Object;
 }
 
 Value::Value(
   memory::InterLevel * il, const QString & getter, const QString & setter)
-	: Context(il)
-	, setter(setter)
-	, getter(getter)
-	, valuetype(ValueType::Js) {
+    : Context(il)
+    , setter(setter)
+    , getter(getter)
+    , valuetype(ValueType::Js) {
 	m_role = Role::Object;
 }
 
 Value::Value(memory::InterLevel * il, const Value * const object)
-	: Context(il) {
+    : Context(il) {
 	if (object->valuetype == ValueType::L) {
 		container = object->container;
 		varName   = object->varName;
@@ -53,20 +53,19 @@ Value::Value(memory::InterLevel * il, const Value * const object)
 		setter = object->setter;
 	}
 
-	valuetype  = object->valuetype;
-	m_role = Role::Object;
+	valuetype = object->valuetype;
+	m_role    = Role::Object;
 }
 
 const QHash<QString, void (Value::*)(memory::ArgList &)> Value::methods =
   Value::initMethods();
 
-const QHash<QString, void (Value::*)(memory::ArgList &)>
-Value::initMethods() {
+const QHash<QString, void (Value::*)(memory::ArgList &)> Value::initMethods() {
 	return {{{"IsRValue", &Value::runIsRValue},
-			 {"IsReadOnly", &Value::runIsReadOnly},
-			 {"IsLValue", &Value::runisLValue},
-			 {"IsLink", &Value::runIsLink},
-			 {"EnsureRValue", &Value::runEnsureRValue}}};
+	         {"IsReadOnly", &Value::runIsReadOnly},
+	         {"IsLValue", &Value::runisLValue},
+	         {"IsLink", &Value::runIsLink},
+	         {"EnsureRValue", &Value::runEnsureRValue}}};
 }
 
 
@@ -83,7 +82,7 @@ QVariant Value::getValue() {
 		return container->getValue(varName);
 	}
 	else { /* value == Value::Js */
-//		newValue = il->server->runJS(getter);
+		   //		newValue = il->server->runJS(getter);
 
 		return newValue;
 	}
@@ -102,7 +101,7 @@ void Value::setValue(const QVariant & value) {
 		container->setValue(varName, value);
 	}
 	else { /* this.value == Value.Js */
-//		il->server->runJS(setter.arg(varToJsString(value)));
+		il->server->runJS(setter.arg(varToJsString(value)));
 	}
 }
 
@@ -301,12 +300,12 @@ void Value::runToList(memory::ArgList & args) {
 
 void Value::sendWrongCast(const QString & to) {
 	il->vm->exception({-1, "Type " % memory::typeToString(type()) %
-							 " can not be casted to " % to});
+	                         " can not be casted to " % to});
 }
 
 void Value::sendCastFailed(const QString & value, const QString & type) {
-	il->vm->exception({-3, R"(The string ")" % value %
-							 R"(" cannot be casted to )" % type});
+	il->vm->exception(
+	  {-3, R"(The string ")" % value % R"(" cannot be casted to )" % type});
 }
 
 void Value::runCast(const QString & name, memory::ArgList & args) {
@@ -379,7 +378,7 @@ std::pair<double, bool> Value::parseToDouble(const QString & str) {
 
 bool Value::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
-		   (context->role() != Role::Exists && context->isResultative());
+	       (context->role() != Role::Exists && context->isResultative());
 }
 
 bool Value::canBeAtEnd() const {

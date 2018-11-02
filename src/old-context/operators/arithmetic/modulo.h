@@ -8,4 +8,4 @@ public:
 	Modulo();
 };
 
-#endif // MODULO_H
+#endif  // MODULO_H

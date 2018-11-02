@@ -1,49 +1,36 @@
-#ifndef icL_look_session_CentralSide
-#define icL_look_session_CentralSide
+#ifndef icL_look_CentralSide
+#define icL_look_CentralSide
 
-#include "../base/base.h"
+#include "../base/baselook.h"
 
 #include <QColor>
 
 
+namespace icL::look {
 
-// clang-format off
-namespace icL::look::base  { class Text; class LinkAdv; }
-namespace icL::look::start { class Input; }
-// clang-format on
-
-namespace icL::look::session {
-
+class TextLook;
+class LinkAdv;
+class Input;
 class Issue;
 
 /**
  * @brief The CentralSide class decribes a look for the central widget
  */
-class CentralSide : public base::Base
+class CentralSide : public BaseLook
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text*        header READ header)
-	Q_PROPERTY(Issue*               warn READ warn)
-	Q_PROPERTY(Issue*              error READ error)
-	Q_PROPERTY(base::LinkAdv*  undertext READ undertext)
-	Q_PROPERTY(base::LinkAdv* underdigit READ underdigit)
-	Q_PROPERTY(QColor            command READ command     WRITE setCommand     NOTIFY commandChanged)
-	Q_PROPERTY(QColor        errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
-	Q_PROPERTY(QColor           okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
-	Q_PROPERTY(start::Input*       input READ input)
+	Q_PROPERTY(icL::look::TextLook*    header READ header     NOTIFY headerChanged)
+	Q_PROPERTY(icL::look::Issue*         warn READ warn       NOTIFY warnChanged)
+	Q_PROPERTY(icL::look::Issue*        error READ error      NOTIFY errorChanged)
+	Q_PROPERTY(icL::look::LinkAdv*  undertext READ undertext  NOTIFY undertextChanged)
+	Q_PROPERTY(icL::look::LinkAdv* underdigit READ underdigit NOTIFY underdigitChanged)
+	Q_PROPERTY(icL::look::Input*        input READ input      NOTIFY inputChanged)
+	Q_PROPERTY(QColor      command READ command     WRITE setCommand     NOTIFY commandChanged)
+	Q_PROPERTY(QColor  errorResult READ errorResult WRITE setErrorResult NOTIFY errorResultChanged)
+	Q_PROPERTY(QColor     okResult READ okResult    WRITE setOkResult    NOTIFY okResultChanged)
 	// clang-format on
-
-	base::Text *    m_header     = nullptr;
-	Issue *         m_warn       = nullptr;
-	Issue *         m_error      = nullptr;
-	base::LinkAdv * m_undertext  = nullptr;
-	base::LinkAdv * m_underdigit = nullptr;
-	start::Input *  m_input      = nullptr;
-	QColor          m_command;
-	QColor          m_errorResult;
-	QColor          m_okResult;
 
 public:
 	/**
@@ -58,7 +45,7 @@ public:
 	 * @brief header is the look of editor header
 	 * @return the look for editor header
 	 */
-	base::Text * header() const;
+	TextLook * header() const;
 
 	/**
 	 * @brief warn is the look of a warning
@@ -76,13 +63,13 @@ public:
 	 * @brief undertext is the look for the text in state bar
 	 * @return the look for the text in the state bar
 	 */
-	base::LinkAdv * undertext() const;
+	LinkAdv * undertext() const;
 
 	/**
 	 * @brief underdigit is the look for digits in the state bar
 	 * @return the look for digits in the state bar
 	 */
-	base::LinkAdv * underdigit() const;
+	LinkAdv * underdigit() const;
 
 	/**
 	 * @brief command is the color of commands in console
@@ -106,7 +93,7 @@ public:
 	 * @brief input is the look for command input
 	 * @return the look for commad input
 	 */
-	start::Input * input() const;
+	Input * input() const;
 
 	void setUp(const QJsonObject & obj) override;
 
@@ -116,27 +103,44 @@ signals:
 	void commandChanged(QColor command);
 	void errorResultChanged(QColor errorResult);
 	void okResultChanged(QColor okResult);
+	void headerChanged(TextLook * header);
+	void warnChanged(Issue * warn);
+	void errorChanged(Issue * error);
+	void undertextChanged(LinkAdv * undertext);
+	void underdigitChanged(LinkAdv * underdigit);
+	void inputChanged(Input * input);
 
 public slots:
 	/**
 	 * @brief setCommand shanges the color of commands in console
 	 * @param command is the new color for comands in console
 	 */
-	void setCommand(QColor command);
+	void setCommand(const QColor & command);
 
 	/**
 	 * @brief setErrorResult changes the color of errors in console
 	 * @param errorResult is the new color for errors in console
 	 */
-	void setErrorResult(QColor errorResult);
+	void setErrorResult(const QColor & errorResult);
 
 	/**
 	 * @brief setOkResult changes the color of results in console
 	 * @param okResult is the nre color for results in console
 	 */
-	void setOkResult(QColor okResult);
+	void setOkResult(const QColor & okResult);
+
+private:
+	TextLook * m_header     = nullptr;
+	Issue *    m_warn       = nullptr;
+	Issue *    m_error      = nullptr;
+	LinkAdv *  m_undertext  = nullptr;
+	LinkAdv *  m_underdigit = nullptr;
+	Input *    m_input      = nullptr;
+	QColor     m_command;
+	QColor     m_errorResult;
+	QColor     m_okResult;
 };
 
-}  // namespace icL::look::session
+}  // namespace icL::look
 
-#endif  // icL_look_session_CentralSide
+#endif  // icL_look_CentralSide

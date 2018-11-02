@@ -13,8 +13,8 @@ namespace icL::logic::rich {
 class Double : public Rich
 {
 public:
-	Double(memory::InterLevel *il, OperationType otype);
-	Double(memory::InterLevel *il, Rich * block);
+	Double(memory::InterLevel * il, OperationType otype);
+	Double(memory::InterLevel * il, Rich * block);
 
 	//	static bool check (const QString &value);
 

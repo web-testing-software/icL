@@ -4,18 +4,18 @@
 
 #include <QJsonObject>
 
-namespace icL::look::start {
+namespace icL::look {
 
 ListItem::ListItem(QObject * parent)
-	: Link(parent) {
-	m_border = new base::Effect(this);
+    : Link(parent) {
+	m_border = new Effect(this);
 }
 
 ListItem::~ListItem() {
-	icL_dropField(m_border);
+	delete m_border;
 }
 
-base::Effect * ListItem::border() const {
+Effect * ListItem::border() const {
 	return m_border;
 }
 
@@ -33,4 +33,4 @@ QJsonObject ListItem::getUp() {
 	return obj;
 }
 
-}  // namespace icL::look::start
+}  // namespace icL::look

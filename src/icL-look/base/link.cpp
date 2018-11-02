@@ -1,33 +1,33 @@
 #include "link.h"
 
-#include "text.h"
+#include "textlook.h"
 
 #include <QJsonObject>
 
-namespace icL::look::base {
+namespace icL::look {
 
 Link::Link(QObject * parent)
-	: Base(parent) {
-	m_active = new Text(this);
-	m_hover  = new Text(this);
-	m_normal = new Text(this);
+    : BaseLook(parent) {
+	m_active = new TextLook(this);
+	m_hover  = new TextLook(this);
+	m_normal = new TextLook(this);
 }
 
 Link::~Link() {
-	icL_dropField(m_normal);
-	icL_dropField(m_hover);
-	icL_dropField(m_active);
+	delete m_normal;
+	delete m_hover;
+	delete m_active;
 }
 
-Text * Link::normal() const {
+TextLook * Link::normal() const {
 	return m_normal;
 }
 
-Text * Link::hover() const {
+TextLook * Link::hover() const {
 	return m_hover;
 }
 
-Text * Link::active() const {
+TextLook * Link::active() const {
 	return m_active;
 }
 
@@ -39,8 +39,8 @@ void Link::setUp(const QJsonObject & obj) {
 
 QJsonObject Link::getUp() {
 	return {{"active", m_active->getUp()},
-			{"hover", m_hover->getUp()},
-			{"normal", m_normal->getUp()}};
+	        {"hover", m_hover->getUp()},
+	        {"normal", m_normal->getUp()}};
 }
 
-}  // namespace icL::look::base
+}  // namespace icL::look

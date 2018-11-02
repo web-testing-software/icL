@@ -8,4 +8,4 @@ public:
 	ForAny();
 };
 
-#endif // FORANY_H
+#endif  // FORANY_H

@@ -1,6 +1,3 @@
 #include "multiply.h"
 
-Multiply::Multiply()
-{
-
-}
+Multiply::Multiply() {}

@@ -3,7 +3,7 @@
 namespace icL::logic::cross {
 
 Cross::Cross(memory::InterLevel * il)
-	: Logic(il){};
+    : Logic(il){};
 
 /**
  * @brief Cross::canAcceptBlock - the block can accept a child if the first
@@ -123,4 +123,4 @@ bool Cross::calcResult() {
 	return false;
 }
 
-}  // namespace icL::logic
+}  // namespace icL::logic::cross

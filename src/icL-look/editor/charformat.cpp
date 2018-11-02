@@ -2,10 +2,10 @@
 
 #include <QJsonObject>
 
-namespace icL::look::editor {
+namespace icL::look {
 
 CharFormat::CharFormat(QObject * parent)
-	: CharFormatBase(parent) {
+    : CharFormatBase(parent) {
 	m_undercolor = QColor(Qt::transparent);
 	m_underline  = 0;
 }
@@ -42,7 +42,7 @@ void CharFormat::setUnderline(int underline) {
 	emit underlineChanged(m_underline);
 }
 
-void CharFormat::setUndercolor(QColor undercolor) {
+void CharFormat::setUndercolor(const QColor & undercolor) {
 	if (m_undercolor == undercolor)
 		return;
 
@@ -50,4 +50,4 @@ void CharFormat::setUndercolor(QColor undercolor) {
 	emit undercolorChanged(m_undercolor);
 }
 
-}  // namespace icL::look::editor
+}  // namespace icL::look

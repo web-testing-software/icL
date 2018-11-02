@@ -1,21 +1,21 @@
 #include "linkadv.h"
 
-#include "text.h"
+#include "textlook.h"
 
 #include <QJsonObject>
 
-namespace icL::look::base {
+namespace icL::look {
 
 LinkAdv::LinkAdv(QObject * parent)
-	: Link(parent) {
-	m_activeHover = new Text(this);
+    : Link(parent) {
+	m_activeHover = new TextLook(this);
 }
 
 LinkAdv::~LinkAdv() {
-	icL_dropField(m_activeHover);
+	delete m_activeHover;
 }
 
-Text * LinkAdv::activeHover() const {
+TextLook * LinkAdv::activeHover() const {
 	return m_activeHover;
 }
 
@@ -33,4 +33,4 @@ QJsonObject LinkAdv::getUp() {
 	return obj;
 }
 
-}  // namespace icL::look::base
+}  // namespace icL::look

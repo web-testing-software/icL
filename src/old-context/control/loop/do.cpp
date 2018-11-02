@@ -1,6 +1,3 @@
 #include "do.h"
 
-Do::Do()
-{
-
-}
+Do::Do() {}

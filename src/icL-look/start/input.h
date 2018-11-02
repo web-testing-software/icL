@@ -1,5 +1,5 @@
-#ifndef icL_look_start_Input
-#define icL_look_start_Input
+#ifndef icL_look_Input
+#define icL_look_Input
 
 #include "../base/link.h"
 
@@ -7,24 +7,20 @@
 
 
 
-namespace icL::look::start {
+namespace icL::look {
 
 /**
  * @brief The Input class describes a text input look
  */
-class Input : public base::Link
+class Input : public Link
 {
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(base::Text *  inactive READ inactive)
-	Q_PROPERTY(base::Text * selection READ selection)
-	Q_PROPERTY(QColor          cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
+	Q_PROPERTY(icL::look::TextLook *  inactive READ inactive  NOTIFY inactiveChanged)
+	Q_PROPERTY(icL::look::TextLook * selection READ selection NOTIFY selectionChanged)
+	Q_PROPERTY(QColor cursor READ cursor WRITE setCursor NOTIFY cursorChanged)
 	// clang-format on
-
-	base::Text * m_inactive  = nullptr;
-	base::Text * m_selection = nullptr;
-	QColor       m_cursor;
 
 public:
 	/**
@@ -38,13 +34,13 @@ public:
 	 * @brief inactive is the look for an inactive input
 	 * @return the look for an inactive input
 	 */
-	base::Text * inactive() const;
+	TextLook * inactive() const;
 
 	/**
 	 * @brief selection is the look for an selection
 	 * @return the for an selection
 	 */
-	base::Text * selection() const;
+	TextLook * selection() const;
 
 	/**
 	 * @brief cursor is the color for the text cursor
@@ -58,14 +54,22 @@ public:
 
 signals:
 	void cursorChanged(QColor cursor);
+	void inactiveChanged(TextLook * inactive);
+	void selectionChanged(TextLook * selection);
 
 public slots:
 	/**
 	 * @brief setCursor changes the color of text cursor
 	 * @param cursor is the new color for text cursors
 	 */
-	void setCursor(QColor cursor);
+	void setCursor(const QColor & cursor);
+
+private:
+	TextLook * m_inactive  = nullptr;
+	TextLook * m_selection = nullptr;
+	QColor     m_cursor;
 };
 
-}  // namespace icL::look::start
-#endif  // icL_look_start_Input
+}  // namespace icL::look
+
+#endif  // icL_look_Input

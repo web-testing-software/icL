@@ -5,22 +5,22 @@
 
 #include <QJsonObject>
 
-namespace icL::look::session {
+namespace icL::look {
 
 LeftSide::LeftSide(QObject * parent)
-	: Base(parent) {
-	m_files    = new start::ListItem(this);
+    : BaseLook(parent) {
+	m_files    = new ListItem(this);
 	m_projects = new Tree(this);
-	m_switcher = new base::Link(this);
+	m_switcher = new Link(this);
 }
 
 LeftSide::~LeftSide() {
-	icL_dropField(m_files);
-	icL_dropField(m_projects);
-	icL_dropField(m_switcher);
+	delete m_files;
+	delete m_projects;
+	delete m_switcher;
 }
 
-base::Link * LeftSide::switcher() const {
+Link * LeftSide::switcher() const {
 	return m_switcher;
 }
 
@@ -28,7 +28,7 @@ Tree * LeftSide::projects() const {
 	return m_projects;
 }
 
-start::ListItem * LeftSide::files() const {
+ListItem * LeftSide::files() const {
 	return m_files;
 }
 
@@ -40,8 +40,8 @@ void LeftSide::setUp(const QJsonObject & obj) {
 
 QJsonObject LeftSide::getUp() {
 	return {{"switcher", m_switcher->getUp()},
-			{"projects", m_projects->getUp()},
-			{"files", m_files->getUp()}};
+	        {"projects", m_projects->getUp()},
+	        {"files", m_files->getUp()}};
 }
 
-}  // namespace icL::look::session
+}  // namespace icL::look

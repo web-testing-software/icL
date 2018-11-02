@@ -1,23 +1,23 @@
-#include "text.h"
+#include "textlook.h"
 
 #include <QJsonObject>
 
-namespace icL::look::base {
+namespace icL::look {
 
-Text::Text(QObject * parent)
-	: Base(parent) {
+TextLook::TextLook(QObject * parent)
+    : BaseLook(parent) {
 	m_background = m_foreground = QColor(Qt::transparent);
 }
 
-QColor Text::background() const {
+QColor TextLook::background() const {
 	return m_background;
 }
 
-QColor Text::foreground() const {
+QColor TextLook::foreground() const {
 	return m_foreground;
 }
 
-void Text::setUp(const QJsonObject & obj) {
+void TextLook::setUp(const QJsonObject & obj) {
 	m_background = objToColor(obj.value("background").toObject());
 	m_foreground = objToColor(obj.value("foreground").toObject());
 
@@ -25,12 +25,12 @@ void Text::setUp(const QJsonObject & obj) {
 	emit foregroundChanged(m_foreground);
 }
 
-QJsonObject Text::getUp() {
+QJsonObject TextLook::getUp() {
 	return {{"background", colorToObj(m_background)},
-			{"foreground", colorToObj(m_foreground)}};
+	        {"foreground", colorToObj(m_foreground)}};
 }
 
-void Text::setBackground(QColor background) {
+void TextLook::setBackground(const QColor & background) {
 	if (m_background == background)
 		return;
 
@@ -38,7 +38,7 @@ void Text::setBackground(QColor background) {
 	emit backgroundChanged(m_background);
 }
 
-void Text::setForeground(QColor foreground) {
+void TextLook::setForeground(const QColor & foreground) {
 	if (m_foreground == foreground)
 		return;
 
@@ -46,4 +46,4 @@ void Text::setForeground(QColor foreground) {
 	emit foregroundChanged(m_foreground);
 }
 
-}  // namespace icL::look::base
+}  // namespace icL::look

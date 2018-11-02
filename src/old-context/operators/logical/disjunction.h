@@ -8,4 +8,4 @@ public:
 	Disjunction();
 };
 
-#endif // DISJUNCTION_H
+#endif  // DISJUNCTION_H

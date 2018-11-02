@@ -8,4 +8,4 @@ public:
 	If();
 };
 
-#endif // IF_H
+#endif  // IF_H

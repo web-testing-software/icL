@@ -61,9 +61,9 @@ protected:
 	logic::Logic * parseOnce(memory::CodeFragment & fn);
 
 	void makeRank3(Operator & op, OperatorType type, int i);
-	void processNots(Operator & op, const QChar & next, int &i);
-	void processEquals(Operator & op, const QChar & next, int &i);
-	void processContains(Operator & op, const QChar & next, int &i);
+	void processNots(Operator & op, const QChar & next, int & i);
+	void processEquals(Operator & op, const QChar & next, int & i);
+	void processContains(Operator & op, const QChar & next, int & i);
 
 
 	/**
