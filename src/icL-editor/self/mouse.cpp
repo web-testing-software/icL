@@ -114,7 +114,7 @@ void Mouse::moveDown(int by) {
 	int    i  = 0;
 	auto * it = m_firstVisible;
 
-	while (m_firstVisible->next() != nullptr && i < by) {
+	while (it->next() != nullptr && i < by) {
 		it->setVisible(false);
 		it = it->next();
 		i++;

@@ -25,6 +25,12 @@ public:
 	 */
 	Q_INVOKABLE void scrollX(qreal ratio);
 
+	/**
+	 * @brief scrollY
+	 * @param ratio
+	 */
+	Q_INVOKABLE void scrollY(qreal ratio);
+
 signals:
 
 public slots:

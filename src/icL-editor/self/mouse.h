@@ -28,7 +28,7 @@ protected:
 	void mouseReleaseEvent(QMouseEvent * event) override;
 	void hoverMoveEvent(QHoverEvent * event) override;
 
-private:
+protected:
 	/**
 	 * @brief moveUp move first visible line up by n lines
 	 * @param by is the number of lines

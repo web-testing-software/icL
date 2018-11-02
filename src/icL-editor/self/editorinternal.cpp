@@ -1,5 +1,7 @@
 #include "editorinternal.h"
 
+#include "../private/line.h"
+
 namespace icL::editor {
 
 EditorInternal::EditorInternal(QQuickItem * parent)
@@ -20,6 +22,19 @@ void EditorInternal::scrollX(qreal ratio) {
 		emit firstCharNrChanged(newPos);
 		update();
 	}
+}
+
+void EditorInternal::scrollY(qreal ratio) {
+	int16_t line = ratio * numberOfLines - m_firstVisible->lineNumber();
+
+	if (line < 0) {
+		moveUp(-line);
+	}
+	else {
+		moveDown(line);
+	}
+
+	emit requestRepaint();
 }
 
 }  // namespace icL::editor
