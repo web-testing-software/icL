@@ -79,6 +79,7 @@ Window {
 
 		style: look.editor.style
 		chars: look.editor.chars
+		scrollBar: look.editor.scrollBar
 
 		Component.onCompleted: {
 			intern.loadFile("test.txt")

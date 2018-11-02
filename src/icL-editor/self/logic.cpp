@@ -187,6 +187,7 @@ void Logic::changeNumberOfLines(int newValue) {
 		numberOfDigits++;
 	}
 
+	emit linesCountChanged();
 	updateBackgroundGeometry();
 }
 

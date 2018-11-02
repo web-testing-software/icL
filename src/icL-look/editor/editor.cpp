@@ -307,7 +307,6 @@ void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
 	cf.font.setBold(format->bold());
 
 	cf.text = format->foreground();
-	cf.text.setWidth(m_style->lineS());
 
 	if (format->background().alpha() != 0) {
 		cf.background = format->background();

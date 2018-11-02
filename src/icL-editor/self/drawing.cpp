@@ -53,6 +53,10 @@ int Drawing::lnWidth() const {
 	return lineNumberArea.width();
 }
 
+int Drawing::linesCount() const {
+	return numberOfLines;
+}
+
 int Drawing::charsInLine() const {
 	return m_visibleChars;
 }
@@ -62,6 +66,10 @@ int Drawing::visbileLines() const {
 }
 
 int Drawing::firstLineNr() const {
+	if (m_firstVisible == nullptr) {
+		return 1;
+	}
+
 	return m_firstVisible->lineNumber();
 }
 

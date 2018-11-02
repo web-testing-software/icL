@@ -35,11 +35,12 @@ class Drawing : public Logic
 	Q_PROPERTY(icL::look::ScrollBar* scrollBar READ scrollBar WRITE setScrollBar NOTIFY scrollBarChanged)
 	Q_PROPERTY(icL::editor::LineNumbers* lineN READ lineN     WRITE setLineN     NOTIFY lineNChanged)
 
-	Q_PROPERTY(int lnWidth READ lnWidth NOTIFY lnWidthChanged)
+	Q_PROPERTY(int    lnWidth READ lnWidth    NOTIFY lnWidthChanged)
+	Q_PROPERTY(int linesCount READ linesCount NOTIFY linesCountChanged)
 
 	Q_PROPERTY(int  charsInLine READ charsInLine  WRITE setCharsInLine  NOTIFY charsInLineChanged)
 	Q_PROPERTY(int visbileLines READ visbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
-	Q_PROPERTY(int  firstLineNr READ firstLineNr  WRITE setFirstLineNr  NOTIFY firstLineNrChanged)
+	Q_PROPERTY(int  firstLineNr READ firstLineNr  NOTIFY firstLineNrChanged)
 	// clang-format on
 
 public:
@@ -80,6 +81,12 @@ public:
 	 * @return the width of lines numbers area
 	 */
 	int lnWidth() const;
+
+	/**
+	 * @brief linesCount gets the number of lines
+	 * @return the number of lines in editor
+	 */
+	int linesCount() const;
 
 	/**
 	 * @brief charsInLine is the number of visible chars in line

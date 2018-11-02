@@ -82,6 +82,8 @@ signals:
 
 	/// @brief elude QML warning
 	void firstLineNrChanged();
+	/// @brief elude QML warning
+	void linesCountChanged();
 
 
 public slots:
