@@ -119,7 +119,7 @@ private slots:
 	 * @brief updateBackgroundGeometry updatates the background geometry, which
 	 * consist from 2 rectangles (line number area and content area)
 	 */
-	void updateBackgroundGeometry();
+	void updateBackgroundGeometry() override;
 
 private:
 	/**

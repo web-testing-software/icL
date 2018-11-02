@@ -157,14 +157,10 @@ void Logic::addNewLine(Line * line, bool focus) {
 
 		setCurrent(line);
 	}
-
-	changeNumberOfLines(numberOfLines + 1);
 }
 
 void Logic::updateCurrentLine() {
 	Fragment * fragment;
-
-	auto * lastCurrent = m_current;
 
 	if (m_main->rtl()) {
 		fragment = m_main->begin()->fragment();
@@ -188,6 +184,8 @@ void Logic::changeNumberOfLines(int newValue) {
 		newValue /= 10;
 		numberOfDigits++;
 	}
+
+	updateBackgroundGeometry();
 }
 
 }  // namespace icL::editor

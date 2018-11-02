@@ -24,8 +24,9 @@ CursorsArea::CursorsArea(QQuickItem * parent)
 }
 
 CursorsArea::~CursorsArea() {
-	node->removeAllChildNodes();
-	qDebug() << "Cursor area crashed!";
+	if (node != nullptr) {
+		node->removeAllChildNodes();
+	}
 }
 
 int CursorsArea::cursorW() const {

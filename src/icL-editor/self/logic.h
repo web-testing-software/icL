@@ -111,13 +111,16 @@ public slots:
 	 */
 	void updateCurrentLine();
 
-protected:
 	/**
 	 * @brief changeNumberOfLines changes the numbers of lines
 	 * @param newValue is the number of lines
 	 */
 	void changeNumberOfLines(int newValue);
 
+	/// @brief will be defined in Drawing class
+	virtual void updateBackgroundGeometry() = 0;
+
+protected:
 	// properties
 	/// @brief the main selection (never deleted)
 	Selection * m_main = nullptr;

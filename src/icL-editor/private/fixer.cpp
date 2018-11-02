@@ -1,5 +1,6 @@
 #include "fixer.h"
 
+#include "../self/logic.h"
 #include "line.h"
 
 namespace icL::editor {
@@ -23,18 +24,26 @@ void Fixer::fix(Line * line) {
 void Fixer::fixNow(Line * line) {
 	auto * it = line;
 
-	while (it != nullptr) {
+	while (it->next() != nullptr) {
 		fixOne(it);
 		it = it->next();
 	}
+
+	fixOne(it);
+	line->parent()->changeNumberOfLines(it->lineNumber());
 }
 
 void Fixer::run() {
-	while (linePtr.load() != nullptr) {
+	while (linePtr.load()->next() != nullptr) {
 		fixOne(linePtr.load());
 
 		linePtr.store(linePtr.load()->next());
 	}
+
+	auto * line = linePtr.load();
+
+	fixOne(line);
+	line->parent()->changeNumberOfLines(line->lineNumber());
 }
 
 void Fixer::fixOne(Line * line) {
