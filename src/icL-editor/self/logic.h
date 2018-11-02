@@ -80,6 +80,9 @@ signals:
 	/// @brief this signal is emited to redraw mask, line numbers and editor
 	void requestRepaint();
 
+	/// @brief elude QML warning
+	void firstLineNrChanged();
+
 
 public slots:
 	/**

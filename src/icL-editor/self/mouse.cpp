@@ -77,23 +77,29 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 }
 
 void Mouse::moveUp(int by) {
-	int i = 0;
+	int    i  = 0;
+	auto * it = m_firstVisible;
 
-	while (m_firstVisible->prev() != nullptr && i < by) {
-		m_firstVisible = m_firstVisible->prev();
-		m_firstVisible->setVisible(true);
+	while (it->prev() != nullptr && i < by) {
+		it = it->prev();
+		it->setVisible(true);
 		i++;
 	}
+
+	setFirstVisible(it);
 }
 
 void Mouse::moveDown(int by) {
-	int i = 0;
+	int    i  = 0;
+	auto * it = m_firstVisible;
 
 	while (m_firstVisible->next() != nullptr && i < by) {
-		m_firstVisible->setVisible(false);
-		m_firstVisible = m_firstVisible->next();
+		it->setVisible(false);
+		it = it->next();
 		i++;
 	}
+
+	setFirstVisible(it);
 }
 
 }  // namespace icL::editor

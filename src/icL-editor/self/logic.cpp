@@ -138,6 +138,8 @@ void Logic::setFirstVisible(Line * firstVisible) {
 
 	m_firstVisible = firstVisible;
 	firstVisible->setVisible(true);
+
+	emit firstLineNrChanged();
 }
 
 void Logic::addNewLine(Line * line, bool focus) {

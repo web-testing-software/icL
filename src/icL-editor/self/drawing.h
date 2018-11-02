@@ -13,6 +13,7 @@ namespace icL::look {
 class EditorStyle;
 class Chars;
 struct LineFormat;
+class ScrollBar;
 }  // namespace icL::look
 
 namespace icL::editor {
@@ -29,11 +30,16 @@ class Drawing : public Logic
 	Q_OBJECT
 
 	// clang-format off
-	Q_PROPERTY(icL::look::EditorStyle*   style READ style WRITE setStyle NOTIFY styleChanged)
-	Q_PROPERTY(icL::look::Chars*         chars READ chars WRITE setChars NOTIFY charsChanged)
-	Q_PROPERTY(icL::editor::LineNumbers* lineN READ lineN WRITE setLineN NOTIFY lineNChanged)
+	Q_PROPERTY(icL::look::EditorStyle*   style READ style     WRITE setStyle     NOTIFY styleChanged)
+	Q_PROPERTY(icL::look::Chars*         chars READ chars     WRITE setChars     NOTIFY charsChanged)
+	Q_PROPERTY(icL::look::ScrollBar* scrollBar READ scrollBar WRITE setScrollBar NOTIFY scrollBarChanged)
+	Q_PROPERTY(icL::editor::LineNumbers* lineN READ lineN     WRITE setLineN     NOTIFY lineNChanged)
 
 	Q_PROPERTY(int lnWidth READ lnWidth NOTIFY lnWidthChanged)
+
+	Q_PROPERTY(int  charsInLine READ charsInLine  WRITE setCharsInLine  NOTIFY charsInLineChanged)
+	Q_PROPERTY(int visbileLines READ visbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
+	Q_PROPERTY(int  firstLineNr READ firstLineNr  WRITE setFirstLineNr  NOTIFY firstLineNrChanged)
 	// clang-format on
 
 public:
@@ -64,10 +70,34 @@ public:
 	look::Chars * chars() const;
 
 	/**
+	 * @brief scrollBar is the look of scroll bars
+	 * @return the look for scroll bars
+	 */
+	icL::look::ScrollBar * scrollBar() const;
+
+	/**
 	 * @brief lnWidth is the width of line number bar
-	 * @return
+	 * @return the width of lines numbers area
 	 */
 	int lnWidth() const;
+
+	/**
+	 * @brief charsInLine is the number of visible chars in line
+	 * @return the number of  visible chars in line
+	 */
+	int charsInLine() const;
+
+	/**
+	 * @brief visbileLines is the number of visible lines
+	 * @return the number of visible lines
+	 */
+	int visbileLines() const;
+
+	/**
+	 * @brief firstLineNr is the first visible line number
+	 * @return the number of first visible line
+	 */
+	int firstLineNr() const;
 
 	/**
 	 * The drawing of line number was a part of Drawing class, now it's extern
@@ -86,9 +116,17 @@ signals:
 	/// @brief elude QML warning
 	void charsChanged(look::Chars * chars);
 	/// @brief elude QML warning
+	void scrollBarChanged(icL::look::ScrollBar * scrollBar);
+	/// @brief elude QML warning
 	void lineNChanged(LineNumbers * lineN);
 	/// @brief elude QML warning
 	void lnWidthChanged(int lnWidth);
+	/// @brief elude QML warning
+	void leftPaddingChanged(int leftPadding);
+	/// @brief elude QML warning
+	void charsInLineChanged(int charsInLine);
+	/// @brief elude QML warning
+	void visbileLinesChanged(int visbileLines);
 
 	/**
 	 * @brief makeCursorOpaque set the opacity of cursor to 1
@@ -109,10 +147,28 @@ public slots:
 	void setChars(look::Chars * chars);
 
 	/**
+	 * @brief setScrollBar changes the look of scroll bars
+	 * @param scrollBar is the new look for scroll bars
+	 */
+	void setScrollBar(icL::look::ScrollBar * scrollBar);
+
+	/**
 	 * @brief setLineN sets the lines numbers widget
 	 * @param lineN is the lines numbers widget
 	 */
 	void setLineN(LineNumbers * lineN);
+
+	/**
+	 * @brief setCharsInLine sets the number of visible chars in line
+	 * @param charsInLine the number of chars calculated in QML
+	 */
+	void setCharsInLine(int charsInLine);
+
+	/**
+	 * @brief setVisbileLines sets the number of visible lines
+	 * @param visbileLines the number of lines calculated in QML
+	 */
+	void setVisbileLines(int visbileLines);
 
 private slots:
 	/**
@@ -156,6 +212,9 @@ protected:
 	/// @brief the pointer to look of editor characters
 	look::Chars * m_chars = nullptr;
 
+	/// @brief the pointer to look of scroll bars
+	icL::look::ScrollBar * m_scrollBar = nullptr;
+
 	/// @brief the pointer to line numbers widget (set width on geometry update)
 	LineNumbers * m_lineN = nullptr;
 
@@ -164,19 +223,19 @@ protected:
 	QRect lineNumberArea;
 
 	/// @brief is the padding of left side (exclude area under line numbers)
-	int leftPadding;
+	int m_leftPadding = 0;
 
 	/// @brief The proxy to style value from Look QML plugin
 	StyleProxy * m_proxy;
 
 	/// @brief The right line for line numbers align
-	int lineNumberRight{};
+	int lineNumberRight = 0;
 
 	/// @brief number of visible chars in line
-	int visibleChars{};
+	int m_visibleChars = 0;
 
 	/// @brief number of visible lines in editor
-	int visibleLines{};
+	int m_visibleLines = 0;
 
 	/// @brief the arrow for hightlight current line
 	QPolygon leftArrow;
