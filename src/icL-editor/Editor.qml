@@ -48,10 +48,6 @@ Item {
 		charsInLine: (width - ln.width - yScroll.width) / style.charW
 		visbileLines: (height) / (style.charH + style.lineS)
 
-		onCharsInLineChanged: console.log("charsInLine", charsInLine)
-		onVisbileLinesChanged: console.log("visbileLines", visbileLines)
-		onLinesCountChanged: console.log("linesCount", linesCount)
-
 		onActiveFocusChanged: {
 			if (activeFocus) {
 				cursors.update()
@@ -73,12 +69,10 @@ Item {
 		Component.onCompleted: forceActiveFocus()
 	}
 
-	// Scroll bars design
-	Rectangle {
-		id: yScroll
 
-		color: scrollBar.background
-		layer.enabled: true
+	// Scroll bars design
+	Item {
+		id: yScrollContainer
 
 		width: rd(rq * 12)
 		anchors {
@@ -86,31 +80,52 @@ Item {
 			bottom: parent.bottom
 			right: parent.right
 		}
-//		opacity: 0.65;
+
+		ShaderEffectSource {
+			id: yScrollBackground
+
+			anchors.fill: yScrollContainer
+			sourceItem: intern
+			sourceRect: Qt.rect(yScrollContainer.x, 0, width, height)
+			visible: false
+		}
+
+		FastBlur {
+			id: yScrollBlur
+
+			anchors.fill: yScrollContainer
+			source: yScrollBackground
+			radius: rd(rq * 28)
+		}
 
 		Rectangle {
-			id: yScrollBar
+			id: yScroll
 
-			color: scrollBar.bar
+			anchors.fill: parent
+			color: scrollBar.background
+			layer.enabled: true
 
-			property real lines: intern.linesCount + intern.visbileLines - 1
-			property real aPos: intern.firstLineNr / lines
-			property real aHeight: intern.linesCount / lines
-			property real pHeight: parent.height * aHeight
+			opacity: 0.65
 
-			onLinesChanged: console.log("lines", lines)
-			onAPosChanged: console.log("apos", aPos)
-			onAHeightChanged: console.log("aheight", aHeight)
-			onPHeightChanged: console.log("pheight", pHeight)
+			Rectangle {
+				id: yScrollBar
 
-			y: (parent.height - height) * aPos
-			height: pHeight > rd(rq * 10) ? pHeight : rd(rq * 10)
+				color: scrollBar.bar
 
-			onHeightChanged: console.log(height);
-			width: rd(rq * 6)
-			radius: width * 0.5
+				property real lines: intern.linesCount + intern.visbileLines - 1
+				property real aPos: intern.firstLineNr / lines
+				property real aHeight: intern.visbileLines / lines
+				property real pHeight: parent.height * aHeight
 
-			anchors.horizontalCenter: parent.horizontalCenter
+				y: (parent.height - height) * aPos
+				height: pHeight > rd(rq * 10) ? pHeight : rd(rq * 10)
+
+				onHeightChanged: console.log(height)
+				width: rd(rq * 6)
+				radius: width * 0.5
+
+				anchors.horizontalCenter: parent.horizontalCenter
+			}
 		}
 	}
 
