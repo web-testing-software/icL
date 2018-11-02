@@ -178,9 +178,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="464.62463"
-     inkscape:cy="194.13962"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="677.99534"
+     inkscape:cy="165.96737"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -312,7 +312,7 @@
        inkscape:label=""
        inkscape:color="rgb(0,0,255)" />
     <sodipodi:guide
-       position="99.257224,81.449596"
+       position="368.56467,81.570658"
        orientation="0,1"
        id="guide5338"
        inkscape:locked="false"
@@ -327,6 +327,63 @@
        position="99.786279,82.162573"
        orientation="1,0"
        id="guide5342"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="115.09375,6.4161432"
+       orientation="1,0"
+       id="guide1656"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="99.257223,6.614599"
+       orientation="0,1"
+       id="guide1658"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="359.83331,173.30208"
+       orientation="1,0"
+       id="guide1660"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="356.65832,172.11146"
+       orientation="1,0"
+       id="guide1662"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="357.45207,167.84505"
+       orientation="1,0"
+       id="guide1664"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="359.03957,166.29062"
+       orientation="1,0"
+       id="guide1666"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="355.53862,9.7895831"
+       orientation="0,1"
+       id="guide1668"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="353.94836,8.9958331"
+       orientation="0,1"
+       id="guide1670"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="354.67333,7.4083331"
+       orientation="0,1"
+       id="guide1672"
        inkscape:locked="false"
        inkscape:label=""
        inkscape:color="rgb(0,0,255)" />
@@ -4213,14 +4270,14 @@
        y="209.79233" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#cc0000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
-       x="357.77448"
+       style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#cc0000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="356.71613"
        y="160.64998"
        id="text5146-6"><tspan
          sodipodi:role="line"
-         x="357.77448"
+         x="356.71613"
          y="160.64998"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Mono';-inkscape-font-specification:'Noto Mono';text-align:end;text-anchor:end;stroke-width:0.26458332;fill:#cc0000;fill-opacity:1;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Mono';-inkscape-font-specification:'Noto Mono';text-align:end;text-anchor:end;fill:#cc0000;fill-opacity:1;stroke-width:0.26458332"
          id="tspan5212-1">No such method &quot;open&quot;</tspan></text>
     <circle
        style="opacity:1;fill:none;fill-opacity:1;stroke:#cc0000;stroke-width:0.52916664;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -4263,13 +4320,13 @@
     <text
        id="text7924"
        y="209.39001"
-       x="357.77448"
+       x="356.71613"
        style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ef5c00;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          id="tspan7922"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Mono';-inkscape-font-specification:'Noto Mono';text-align:end;text-anchor:end;fill:#ef5c00;fill-opacity:1;stroke-width:0.26458332"
          y="209.39001"
-         x="357.77448"
+         x="356.71613"
          sodipodi:role="line">Possible to try to assign void</tspan></text>
     <path
        sodipodi:type="star"
@@ -4596,10 +4653,10 @@
        x="99.257225"
        y="189.32353" />
     <rect
-       style="opacity:1;fill:#d3d3d3;fill-opacity:0.65098041;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#d3d3d3;fill-opacity:0.65098039;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1641"
-       width="15.874997"
-       height="21.16667"
+       width="15.875"
+       height="20.968201"
        x="99.21875"
        y="269.41718" />
     <path
@@ -4615,5 +4672,35 @@
        width="0.52905399"
        id="rect1656"
        style="opacity:1;fill:#f10000;fill-opacity:1;stroke:none;stroke-width:0.30570081;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.65098041;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1674"
+       width="3.1749849"
+       height="166.68747"
+       x="356.65833"
+       y="123.6979" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.65098039;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1676"
+       width="241.56458"
+       height="3.1749878"
+       x="115.09375"
+       y="287.21039" />
+    <rect
+       style="opacity:1;fill:#8d8d8d;fill-opacity:0.65098039;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1678"
+       width="1.5875131"
+       height="14.586432"
+       x="357.45206"
+       y="211.25381"
+       ry="0.79375565" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.65098041;stroke:none;stroke-width:0.37041664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1680"
+       width="170.79314"
+       height="1.5874914"
+       x="140.43343"
+       y="288.00415"
+       ry="0.66145527" />
   </g>
 </svg>

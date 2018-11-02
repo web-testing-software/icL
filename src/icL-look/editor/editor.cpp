@@ -36,6 +36,7 @@ Editor::Editor(QObject * parent)
 	m_text       = new CharFormat(this);
 	m_type       = new CharFormat(this);
 	m_warning    = new CharFormat(this);
+	m_scrollBar  = new ScrollBar(this);
 
 	bindHighlights();
 	bindChars();
@@ -65,6 +66,7 @@ Editor::~Editor() {
 	delete m_text;
 	delete m_type;
 	delete m_warning;
+	delete m_scrollBar;
 }
 
 EditorStyle * Editor::style() {
@@ -155,6 +157,10 @@ CLine * Editor::cline() const {
 	return m_cline;
 }
 
+ScrollBar * Editor::scrollBar() const {
+	return m_scrollBar;
+}
+
 void Editor::setUp(const QJsonObject & obj) {
 	m_text->setUp(obj.value("text").toObject());
 	m_number->setUp(obj.value("number").toObject());
@@ -178,6 +184,8 @@ void Editor::setUp(const QJsonObject & obj) {
 	m_debug->setUp(obj.value("debug").toObject());
 	m_breakpoint->setUp(obj.value("breakpoint").toObject());
 	m_cline->setUp(obj.value("cline").toObject());
+
+	m_scrollBar->setUp(obj.value("scroll-bar").toObject());
 }
 
 QJsonObject Editor::getUp() {
@@ -200,7 +208,8 @@ QJsonObject Editor::getUp() {
 	        {"current", m_current->getUp()},
 	        {"debug", m_debug->getUp()},
 	        {"breakpoint", m_breakpoint->getUp()},
-	        {"cline", m_cline->getUp()}};
+			{"cline", m_cline->getUp()},
+			{"scroll-bar", m_scrollBar->getUp()}};
 }
 
 void Editor::updateOccurrence() {

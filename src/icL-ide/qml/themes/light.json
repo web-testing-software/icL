@@ -227,6 +227,17 @@
 			},
 			"underline": 0
 		},
+		"scroll-bar": {
+			"background": {
+				"hex": "#ffffff"
+			},
+			"bar": {
+				"hex": "#b1b1b1"
+			},
+			"bar-hover": {
+				"hex": "#595959"
+			}
+		},
 		"selection": {
 			"background": {
 				"a": 31
