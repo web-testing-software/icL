@@ -73,6 +73,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 		}
 	}
 
+	emit firstCharNrChanged(xScroll);
 	emit requestRepaint();
 }
 

@@ -73,6 +73,10 @@ int Drawing::firstLineNr() const {
 	return m_firstVisible->lineNumber();
 }
 
+int Drawing::firstCharNr() const {
+	return xScroll;
+}
+
 void Drawing::paint(QPainter * painter) {
 
 	if (!m_chars)

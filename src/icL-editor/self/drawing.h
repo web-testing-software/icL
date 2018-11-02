@@ -41,6 +41,7 @@ class Drawing : public Logic
 	Q_PROPERTY(int  charsInLine READ charsInLine  WRITE setCharsInLine  NOTIFY charsInLineChanged)
 	Q_PROPERTY(int visbileLines READ visbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
 	Q_PROPERTY(int  firstLineNr READ firstLineNr  NOTIFY firstLineNrChanged)
+	Q_PROPERTY(int  firstCharNr READ firstCharNr  NOTIFY firstCharNrChanged)
 	// clang-format on
 
 public:
@@ -107,6 +108,12 @@ public:
 	int firstLineNr() const;
 
 	/**
+	 * @brief firstCharNr is the number of first visible char
+	 * @return the number of first visible char
+	 */
+	int firstCharNr() const;
+
+	/**
 	 * The drawing of line number was a part of Drawing class, now it's extern
 	 */
 	friend class icL::editor::LineNumbers;
@@ -129,7 +136,7 @@ signals:
 	/// @brief elude QML warning
 	void lnWidthChanged(int lnWidth);
 	/// @brief elude QML warning
-	void leftPaddingChanged(int leftPadding);
+	void firstCharNrChanged(int firstCharNr);
 	/// @brief elude QML warning
 	void charsInLineChanged(int charsInLine);
 	/// @brief elude QML warning

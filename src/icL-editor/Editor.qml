@@ -129,6 +129,65 @@ Item {
 		}
 	}
 
+	Item {
+		id: xScrollContainer
+
+		height: rd(rq * 12)
+		anchors {
+			bottom: parent.bottom
+			right: yScrollContainer.left
+			left: parent.left
+			leftMargin: intern.lnWidth
+		}
+
+		ShaderEffectSource {
+			id: xScrollBackground
+
+			anchors.fill: xScrollContainer
+			sourceItem: intern
+			sourceRect: Qt.rect(xScrollContainer.x, xScrollContainer.y,
+								width, height)
+			visible: false
+		}
+
+		FastBlur {
+			id: xScrollBlur
+
+			anchors.fill: xScrollContainer
+			source: xScrollBackground
+			radius: rd(rq * 28)
+		}
+
+		Rectangle {
+			id: xScroll
+
+			anchors.fill: parent
+			color: scrollBar.background
+			layer.enabled: true
+
+			opacity: 0.65
+
+			Rectangle {
+				id: xScrollBar
+
+				color: scrollBar.bar
+
+				property real chars: 160 - intern.charsInLine
+				property real aPos: intern.firstCharNr / chars
+				property real aWidth: intern.charsInLine / chars
+				property real pWidth: parent.width * aWidth
+
+				x: (parent.width - width) * aPos
+				width: pWidth > rd(rq * 10) ? pWidth : rd(rq * 10)
+
+				height: rd(rq * 6)
+				radius: height * 0.5
+
+				anchors.verticalCenter: parent.verticalCenter
+			}
+		}
+	}
+
 	// Lines numbers area design
 	ShaderEffectSource {
 		id: editorSource
