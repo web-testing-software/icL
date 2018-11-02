@@ -9,7 +9,11 @@
 namespace icL::editor {
 
 Mouse::Mouse(QQuickItem * parent)
-	: Keyboard(parent) {}
+	: Keyboard(parent) {
+	setAcceptedMouseButtons(
+	  Qt::LeftButton | Qt::MiddleButton | Qt::RightButton);
+	setAcceptHoverEvents(true);
+}
 
 void Mouse::wheelEvent(QWheelEvent * event) {
 	QPoint delta = event->pixelDelta();
@@ -75,6 +79,22 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 
 	emit firstCharNrChanged(xScroll);
 	emit requestRepaint();
+}
+
+void Mouse::mousePressEvent(QMouseEvent * event) {
+	//	qDebug() << "is pressed";
+}
+
+void Mouse::mouseMoveEvent(QMouseEvent * event) {
+	//	qDebug() << "is moving";
+}
+
+void Mouse::mouseReleaseEvent(QMouseEvent * event) {
+	//	qDebug() << "is released";
+}
+
+void Mouse::hoverMoveEvent(QHoverEvent * event) {
+	//	qDebug() << "hover move";
 }
 
 void Mouse::moveUp(int by) {
