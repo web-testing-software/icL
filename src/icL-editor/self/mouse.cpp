@@ -17,7 +17,7 @@ Mouse::Mouse(QQuickItem * parent)
 
 void Mouse::wheelEvent(QWheelEvent * event) {
 	QPoint delta = event->pixelDelta();
-	int    maxX  = 160 - static_cast<int>(width()) / m_proxy->charH();
+	int    maxX  = 160 - m_visibleChars;
 
 	if (delta.isNull()) {
 		delta = event->angleDelta() / 60;

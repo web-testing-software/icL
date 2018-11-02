@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import icL.Look 1.0
 import icL.Editor 1.0
+import icL.Toolkit 1.0
 import QtGraphicalEffects 1.0
 
 Item {
@@ -70,7 +71,6 @@ Item {
 	}
 
 	// Scroll bars design
-
 	Item {
 		id: yScrollContainer
 
@@ -185,6 +185,38 @@ Item {
 				radius: height * 0.5
 
 				anchors.verticalCenter: parent.verticalCenter
+
+				MouseArea {
+					id: yBarArea
+					anchors.fill: parent
+
+					property real beginAlpha: 0
+					property int beginX: 0
+					property real beginPos: 0
+
+					MouseTrack {
+						id: ytrack
+						onPositionChanged: move(position)
+					}
+
+					function move(pos) {
+						var newX = beginPos + beginX - pos.x
+						// x = (parent.width - width - rd( rq * 6) - style.charH / 2) * aPos + rd(rq * 3) + style.charH / 2
+						var alpha = (newX - rd(rq * 3) - style.charH / 2) / (parent.width - width - rd( rq * 6) - style.charH / 2)
+						//var alpha = (newX - rd(
+//										 rq * 3)) / (parent.height - height - rd(
+//														 rq * 6))
+
+						intern.scrollX(alpha)
+					}
+
+					onPressed: {
+						beginPos = yScrollBar.x
+						beginX = ytrack.startTracking().x
+					}
+
+					onReleased: move(ytrack.stopTracking())
+				}
 			}
 		}
 	}
