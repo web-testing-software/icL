@@ -2,6 +2,7 @@
 #define icL_look_Editor
 
 #include "../base/baselook.h"
+#include "scrollbar.h"
 
 
 class QTextCharFormat;
@@ -47,6 +48,7 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::Line*           debug READ debug      NOTIFY debugChanged)
 	Q_PROPERTY(icL::look::Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
 	Q_PROPERTY(icL::look::CLine*          cline READ cline      NOTIFY clineChanged)
+	Q_PROPERTY(icL::look::ScrollBar*  scrollBar READ scrollBar  NOTIFY scrollBarChanged)
 	// clang-format on
 
 public:
@@ -190,6 +192,13 @@ public:
 	 */
 	CLine * cline() const;
 
+	/**
+	 * @brief scrollBar is the look of scrollbars
+	 * @return the look for scrollbars
+	 */
+	icL::look::ScrollBar * scrollBar() const;
+
+	// BaseLook Interface
 	void setUp(const QJsonObject & obj) override;
 
 	QJsonObject getUp() override;
@@ -217,6 +226,7 @@ signals:
 	void debugChanged(Line * debug);
 	void breakpointChanged(Line * breakpoint);
 	void clineChanged(CLine * cline);
+	void scrollBarChanged(icL::look::ScrollBar * scrollBar);
 
 public slots:
 	void updateOccurrence();
@@ -267,12 +277,13 @@ private:
 	CharFormat *  m_system     = nullptr;
 	CharFormat *  m_error      = nullptr;
 	CharFormat *  m_warning    = nullptr;
+	ScrollBar *   m_scrollBar  = nullptr;
 
 	Line *  m_current    = nullptr;
 	Line *  m_debug      = nullptr;
 	Line *  m_breakpoint = nullptr;
 	CLine * m_cline      = nullptr;
-	Chars * m_chars;
+	Chars * m_chars      = nullptr;
 };
 
 }  // namespace icL::look
