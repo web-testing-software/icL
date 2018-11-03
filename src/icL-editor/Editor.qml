@@ -107,6 +107,20 @@ Item {
 
 			opacity: 0.65
 
+			MouseArea {
+				id: yScrollArea
+
+				anchors.fill: parent
+
+				onClicked: {
+					if (mouseY < yScrollBar.y) {
+						intern.scrollY(yScrollBar.aPos - yScrollBar.aHeight)
+					} else {
+						intern.scrollY(yScrollBar.aPos + yScrollBar.aHeight)
+					}
+				}
+			}
+
 			Rectangle {
 				id: yScrollBar
 
@@ -124,6 +138,36 @@ Item {
 				radius: width * 0.5
 
 				anchors.horizontalCenter: parent.horizontalCenter
+
+				MouseArea {
+					id: yBarArea
+					anchors.fill: parent
+
+					property real beginAlpha: 0
+					property int beginY: 0
+					property real beginPos: 0
+
+					MouseTrack {
+						id: ytrack
+						onPositionChanged: yBarArea.move(position)
+					}
+
+					function move(pos) {
+						var newY = beginPos - beginY + pos.y
+						var alpha = (newY - rd(
+										 rq * 3)) / (yScroll.height - height - rd(
+														 rq * 6))
+
+						intern.scrollY(alpha)
+					}
+
+					onPressed: {
+						beginPos = yScrollBar.y
+						beginY = ytrack.startTracking().y
+					}
+
+					onReleased: move(ytrack.stopTracking())
+				}
 			}
 		}
 	}
@@ -166,6 +210,20 @@ Item {
 
 			opacity: 0.65
 
+			MouseArea {
+				id: xScrollArea
+
+				anchors.fill: parent
+
+				onClicked: {
+					if (mouseX < xScrollBar.x) {
+						intern.scrollX(xScrollBar.aPos - xScrollBar.aWidth)
+					} else {
+						intern.scrollX(xScrollBar.aPos + xScrollBar.aWidth)
+					}
+				}
+			}
+
 			Rectangle {
 				id: xScrollBar
 
@@ -187,7 +245,7 @@ Item {
 				anchors.verticalCenter: parent.verticalCenter
 
 				MouseArea {
-					id: yBarArea
+					id: xBarArea
 					anchors.fill: parent
 
 					property real beginAlpha: 0
@@ -195,27 +253,25 @@ Item {
 					property real beginPos: 0
 
 					MouseTrack {
-						id: ytrack
-						onPositionChanged: move(position)
+						id: xtrack
+						onPositionChanged: xBarArea.move(position)
 					}
 
 					function move(pos) {
-						var newX = beginPos + beginX - pos.x
-						// x = (parent.width - width - rd( rq * 6) - style.charH / 2) * aPos + rd(rq * 3) + style.charH / 2
-						var alpha = (newX - rd(rq * 3) - style.charH / 2) / (parent.width - width - rd( rq * 6) - style.charH / 2)
-						//var alpha = (newX - rd(
-//										 rq * 3)) / (parent.height - height - rd(
-//														 rq * 6))
+						var newX = beginPos - beginX + pos.x
+						var alpha = (newX - rd(rq * 3) - style.charH / 2)
+								/ (xScroll.width - width - rd(
+									   rq * 6) - style.charH / 2)
 
 						intern.scrollX(alpha)
 					}
 
 					onPressed: {
-						beginPos = yScrollBar.x
-						beginX = ytrack.startTracking().x
+						beginPos = xScrollBar.x
+						beginX = xtrack.startTracking().x
 					}
 
-					onReleased: move(ytrack.stopTracking())
+					onReleased: move(xtrack.stopTracking())
 				}
 			}
 		}
@@ -265,7 +321,7 @@ Item {
 	CursorsArea {
 		id: cursors
 
-		clip: false
+		clip: true
 		cursorW: rd(rq * 2)
 
 		anchors {
