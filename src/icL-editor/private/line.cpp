@@ -10,8 +10,9 @@
 
 namespace icL::editor {
 
-Line::Line(Logic * parent) {
+Line::Line(Logic * parent, bool isNew) {
 	m_parent = parent;
+	m_isNew  = isNew;
 }
 
 Fragment * Line::first() const {

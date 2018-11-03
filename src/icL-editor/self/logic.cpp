@@ -71,7 +71,7 @@ bool Logic::loadFile(const QString & path) {
 	while (!stream.atEnd()) {
 		QString str = stream.readLine(160);
 
-		auto * line     = new Line(this);
+		auto * line     = new Line(this, false);
 		auto * fragment = new Fragment(line);
 
 		fragment->insert(m_main->begin(), m_main->end(), 0, str);
