@@ -131,5 +131,35 @@ void LineNumbers::drawText(QPainter * painter) {
 	}
 }
 
+void LineNumbers::drawChanges(QPainter * painter) {
+	auto * proxy = m_editor->m_proxy;
+
+	if (proxy->hasChangeChanges()) {
+		updateGeometry();
+	}
+
+	// Need some look changes to continue
+}
+
+void LineNumbers::updateGeometry() {
+	auto * proxy = m_editor->m_proxy;
+
+	change.setTop(proxy->changePadding());
+	change.setHeight(proxy->fullLineH() - proxy->changePadding() * 2);
+	change.setRight(proxy->changeWidth());
+
+	newLine.setTop(proxy->newLinePadding());
+	newLine.setHeight(proxy->fullLineH() - proxy->newLinePadding() * 2);
+	newLine.setRight(proxy->changeWidth());
+
+	phantom.setTop(proxy->fullLineH() - proxy->phanthomHeight() / 2);
+	phantom.setHeight(proxy->phanthomHeight());
+	phantom.setWidth(proxy->changeWidth());
+
+	phantomLine.setTop(0);
+	phantomLine.setRight(proxy->changeWidth());
+	phantomLine.setBottom(proxy->fullLineH());
+}
+
 
 }  // namespace icL::editor

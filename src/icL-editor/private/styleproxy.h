@@ -77,6 +77,36 @@ public:
 	 */
 	int fullLineH() const;
 
+	/**
+	 * @brief changePadding is the padding of changes indecators
+	 * @return the padding of changes indecators
+	 */
+	int changePadding();
+
+	/**
+	 * @brief newLinePadding is the padding of new lines indicators
+	 * @return the padding of new lines indicators
+	 */
+	int newLinePadding();
+
+	/**
+	 * @brief changeWidth is the width of change indicator
+	 * @return the width of change indicator
+	 */
+	int changeWidth();
+
+	/**
+	 * @brief phanthomHeight is the height of phantom indicators
+	 * @return the height of phantom indicators
+	 */
+	int phanthomHeight();
+
+	/**
+	 * @brief hasChangeChanges the geometry needs update
+	 * @return bool if geometry needs update
+	 */
+	bool hasChangeChanges();
+
 private:
 	/// @brief is the pointer to editor style look object, all data will be
 	/// extracted from it
