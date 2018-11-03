@@ -46,4 +46,29 @@ int StyleProxy::fullLineH() const {
 	return m_style->m_fullLineH;
 }
 
+int StyleProxy::changePadding() {
+	return m_style->m_changePadding;
+}
+
+int StyleProxy::newLinePadding() {
+	return m_style->m_newLinePadding;
+}
+
+int StyleProxy::changeWidth() {
+	return m_style->m_changeWidth;
+}
+
+int StyleProxy::phanthomHeight() {
+	return m_style->m_phanthomHeight;
+}
+
+bool StyleProxy::hasChangeChanges() {
+	if (m_style->hasChangeChanges) {
+		m_style->hasChangeChanges = false;
+		return true;
+	}
+
+	return false;
+}
+
 }  // namespace icL::editor
