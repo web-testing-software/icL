@@ -111,7 +111,7 @@ QSGNode * CursorsArea::updatePaintNode(
 	int hLen   = m_cursorW * 2;
 
 	if (xPos < 0) {
-		xPos = halfW;
+		xPos = halfW - editor->proxy()->charH() / 2;
 	}
 	else if (xPos >= width()) {
 		xPos = width() - halfW;

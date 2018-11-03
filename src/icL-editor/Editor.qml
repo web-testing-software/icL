@@ -265,7 +265,7 @@ Item {
 	CursorsArea {
 		id: cursors
 
-		clip: true
+		clip: false
 		cursorW: rd(rq * 2)
 
 		anchors {
