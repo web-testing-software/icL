@@ -53,19 +53,19 @@ public slots:
 	 * @brief setBackground sets the background color
 	 * @param background is the new background color
 	 */
-	void setBackground(QColor background);
+	void setBackground(const QColor & background);
 
 	/**
 	 * @brief setBar sets the bar color
 	 * @param bar is the new color for bar
 	 */
-	void setBar(QColor bar);
+	void setBar(const QColor & bar);
 
 	/**
 	 * @brief setBarHover sets the bar of hovered bar
 	 * @param barHover is the new color for hovered bar
 	 */
-	void setBarHover(QColor barHover);
+	void setBarHover(const QColor & barHover);
 
 	// BaseLook interface
 public:

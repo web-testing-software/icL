@@ -20,7 +20,7 @@ QColor ScrollBar::barHover() const {
 	return m_barHover;
 }
 
-void ScrollBar::setBackground(QColor background) {
+void ScrollBar::setBackground(const QColor & background) {
 	if (m_background == background)
 		return;
 
@@ -28,7 +28,7 @@ void ScrollBar::setBackground(QColor background) {
 	emit backgroundChanged(m_background);
 }
 
-void ScrollBar::setBar(QColor bar) {
+void ScrollBar::setBar(const QColor & bar) {
 	if (m_bar == bar)
 		return;
 
@@ -36,7 +36,7 @@ void ScrollBar::setBar(QColor bar) {
 	emit barChanged(m_bar);
 }
 
-void ScrollBar::setBarHover(QColor barHover) {
+void ScrollBar::setBarHover(const QColor & barHover) {
 	if (m_barHover == barHover)
 		return;
 

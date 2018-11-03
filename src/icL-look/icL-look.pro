@@ -46,7 +46,8 @@ HEADERS += \
     session/static.h \
     export/chars.h \
     editor/editorstyle.h \
-    editor/scrollbar.h
+    editor/scrollbar.h \
+    editor/change.h
 
 SOURCES += \
     base/link.cpp \
@@ -76,4 +77,5 @@ SOURCES += \
     session/static.cpp \
     export/chars.cpp \
     editor/editorstyle.cpp \
-    editor/scrollbar.cpp
+    editor/scrollbar.cpp \
+    editor/change.cpp

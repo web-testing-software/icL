@@ -30,6 +30,11 @@ class EditorStyle : public QObject
 
 	Q_PROPERTY(int   tabSize READ tabSize  WRITE setTabSize  NOTIFY tabSizeChanged)
 	Q_PROPERTY(bool saveTabs READ saveTabs WRITE setSaveTabs NOTIFY saveTabsChanged)
+
+	Q_PROPERTY(int  changePadding READ changePadding  WRITE setChangePadding  NOTIFY changePaddingChanged)
+	Q_PROPERTY(int newLinePadding READ newLinePadding WRITE setNewLinePadding NOTIFY newLinePaddingChanged)
+	Q_PROPERTY(int    changeWidth READ changeWidth    WRITE setChangeWidth    NOTIFY changeWidthChanged)
+	Q_PROPERTY(int phanthomHeight READ phanthomHeight WRITE setPhanthomHeight NOTIFY phanthomHeightChanged)
 	// clang-format on
 
 public:
@@ -81,6 +86,30 @@ public:
 	 */
 	const QFont & font();
 
+	/**
+	 * @brief changePadding padding for change lines
+	 * @return the padding for change lines
+	 */
+	int changePadding() const;
+
+	/**
+	 * @brief newLinePadding the padding of new lines
+	 * @return the padding for new lines
+	 */
+	int newLinePadding() const;
+
+	/**
+	 * @brief changeWidth the width of change indicator
+	 * @return the width for change indicator
+	 */
+	int changeWidth() const;
+
+	/**
+	 * @brief phanthomHeight the height of phantom lines
+	 * @return the height for phantom lines
+	 */
+	int phanthomHeight() const;
+
 signals:
 	void charWChanged(int charW);
 	void charHChanged(int charH);
@@ -88,6 +117,10 @@ signals:
 	void lineSChanged(int lineS);
 	void tabSizeChanged(int tabSize);
 	void saveTabsChanged(bool saveTabs);
+	void changePaddingChanged(int changePadding);
+	void newLinePaddingChanged(int newLinePadding);
+	void changeWidthChanged(int changeWidth);
+	void phanthomHeightChanged(int phanthomHeight);
 
 public slots:
 	/**
@@ -126,6 +159,30 @@ public slots:
 	 */
 	void setSaveTabs(bool saveTabs);
 
+	/**
+	 * @brief setChangePadding sets the padding of changes indicators
+	 * @param changePadding is the new padding for changes indicators
+	 */
+	void setChangePadding(int changePadding);
+
+	/**
+	 * @brief setNewLinePadding sets the padding of new lines indicators
+	 * @param newLinePadding is the padding for new lines indicators
+	 */
+	void setNewLinePadding(int newLinePadding);
+
+	/**
+	 * @brief setChangeWidth sets the width of change indicators
+	 * @param changeWidth is the new width for change indicators
+	 */
+	void setChangeWidth(int changeWidth);
+
+	/**
+	 * @brief setPhanthomHeight sets the height of phantom indicators
+	 * @param phanthomHeight is the new height for phantom indicators
+	 */
+	void setPhanthomHeight(int phanthomHeight);
+
 	// Get the private properties without getters
 	// This fixes dependency beetwen QML plugins
 	// Never change the values, just read
@@ -143,10 +200,18 @@ private:
 	int m_fontS = 1;
 	int m_lineS = 1;
 
+	int m_changePadding  = 0;
+	int m_newLinePadding = 0;
+	int m_changeWidth    = 0;
+	int m_phanthomHeight = 0;
+
 	int  m_tabSize  = 3;
 	bool m_saveTabs = true;
 
 	// fields
+
+	/// @brief the style has changes of change indicators
+	bool hasChangeChanges = true;
 
 	/// @brief m_divLineSBy2 is the line spacing divided by 2
 	int m_divLineSBy2 = 1;
