@@ -47,6 +47,10 @@ void Change::setUp(const QJsonObject & obj) {
 	m_changed = objToColor(obj["changed"].toObject());
 	m_saved   = objToColor(obj["saved"].toObject());
 	m_phantom = objToColor(obj["phantom"].toObject());
+
+	emit changedChanged(m_changed);
+	emit savedChanged(m_saved);
+	emit phantomChanged(m_phantom);
 }
 
 QJsonObject Change::getUp() {

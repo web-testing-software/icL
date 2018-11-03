@@ -157,6 +157,7 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 		cache->setText(content);
 	}
 
+	m_line->makeChanged();
 	//	qDebug() << m_glyphs;
 
 	return ret;
@@ -185,6 +186,10 @@ Fragment * Fragment::insert(
 
 	if (cache != nullptr) {
 		cache->setText(content);
+	}
+
+	if (dynamic_cast<Drawing *>(m_line->parent())->linesCount() > 0) {
+		m_line->makeChanged();
 	}
 
 	return ret;

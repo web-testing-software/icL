@@ -79,9 +79,15 @@ public:
 
 	/**
 	 * @brief isChanged gets the changed state
-	 * @return true id is changed, otherwise false
+	 * @return true if is changed, otherwise false
 	 */
 	bool isChanged();
+
+	/**
+	 * @brief wasChanged gets the edited state
+	 * @return true if line was changed and saved, otherwise false
+	 */
+	bool wasChanged();
 
 	/**
 	 * @brief save saves the line content to file
@@ -102,10 +108,10 @@ public:
 	QStaticText * getCache();
 
 	/**
-	 * @brief isNow defines if this line is a new line
+	 * @brief isNew defines if this line is a new line
 	 * @return true if this is a new line, otherwise false
 	 */
-	bool isNow();
+	bool isNew();
 
 	/**
 	 * @brief hasPhantoms defines if this line contains phantoms lines
@@ -243,6 +249,9 @@ private:
 
 	/// @brief The line has unsaved chaghes
 	bool m_isChanged = false;
+
+	/// @brief the line was changed and saved
+	bool m_wasChanged = false;
 
 	/// @brief The line was added in edit time
 	bool m_isNew = false;

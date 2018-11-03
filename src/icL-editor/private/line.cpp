@@ -76,9 +76,14 @@ bool Line::isChanged() {
 	return m_isChanged;
 }
 
+bool Line::wasChanged() {
+	return m_wasChanged;
+}
+
 void Line::save(QTextStream * stream) {
 	(*stream) << getText();
-	m_isChanged = false;
+	m_wasChanged = m_isChanged;
+	m_isChanged  = false;
 }
 
 Logic * Line::parent() const {
@@ -89,7 +94,7 @@ QStaticText * Line::getCache() {
 	return cache;
 }
 
-bool Line::isNow() {
+bool Line::isNew() {
 	return m_isNew;
 }
 
@@ -221,7 +226,8 @@ void Line::setLastY(int lastY) {
 
 void Line::makeChanged() {
 	m_parent->makeChanged();
-	m_isChanged = true;
+	m_isChanged  = true;
+	m_wasChanged = false;
 }
 
 void Line::fixLines() {
