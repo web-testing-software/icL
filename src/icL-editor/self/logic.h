@@ -80,6 +80,11 @@ signals:
 	/// @brief this signal is emited to redraw mask, line numbers and editor
 	void requestRepaint();
 
+	/// @brief elude QML warning
+	void firstLineNrChanged();
+	/// @brief elude QML warning
+	void linesCountChanged();
+
 
 public slots:
 	/**
@@ -104,7 +109,7 @@ public slots:
 	 * @brief addNewLine inserts a new line after the current
 	 * @param line is the line to add
 	 */
-	void addNewLine(Line * line, bool focus = true);
+	void addNewLine(Line * line);
 
 	/**
 	 * @brief updateCurrentLine update the pointer to the current line
@@ -118,7 +123,15 @@ public slots:
 	void changeNumberOfLines(int newValue);
 
 	/// @brief will be defined in Drawing class
+	virtual int visbileLines() const = 0;
+	/// @brief will be defined in Drawing class
 	virtual void updateBackgroundGeometry() = 0;
+
+protected:
+	/// @brief will be defined in Scroll class
+	virtual void scrollUpBy(int by) = 0;
+	/// @brief will be defined in Scroll class
+	virtual void scrollDownBy(int by) = 0;
 
 protected:
 	// properties

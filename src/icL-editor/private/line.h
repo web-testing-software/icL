@@ -21,7 +21,7 @@ class Alpha;
 class Line
 {
 public:
-	explicit Line(Logic * parent = nullptr);
+	explicit Line(Logic * parent = nullptr, bool isNew = true);
 
 	/**
 	 * @brief first gets the first fragment in the line

@@ -1,19 +1,26 @@
 #include "mouse.h"
 
 #include "../private/line.h"
+#include "../private/selection.h"
 #include "../private/styleproxy.h"
 #include "linenumbers.h"
 
+#include <QCursor>
 #include <QDebug>
 
 namespace icL::editor {
 
 Mouse::Mouse(QQuickItem * parent)
-	: Keyboard(parent) {}
+	: Keyboard(parent) {
+	setAcceptedMouseButtons(
+	  Qt::LeftButton | Qt::MiddleButton | Qt::RightButton);
+	setAcceptHoverEvents(true);
+	setCursor({Qt::IBeamCursor});
+}
 
 void Mouse::wheelEvent(QWheelEvent * event) {
 	QPoint delta = event->pixelDelta();
-	int    maxX  = 160 - static_cast<int>(width()) / m_proxy->charH();
+	int    maxX  = 160 - m_visibleChars;
 
 	if (delta.isNull()) {
 		delta = event->angleDelta() / 60;
@@ -55,7 +62,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				moveDown(-delta.y() / m_proxy->fullLineH());
+				scrollDownBy(-delta.y() / m_proxy->fullLineH());
 			}
 		}
 		else /* delta.y > 0 */ {
@@ -68,32 +75,43 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				moveUp(delta.y() / m_proxy->fullLineH());
+				scrollUpBy(delta.y() / m_proxy->fullLineH());
 			}
 		}
 	}
 
+	emit firstCharNrChanged(xScroll);
 	emit requestRepaint();
 }
 
-void Mouse::moveUp(int by) {
-	int i = 0;
+void Mouse::mousePressEvent(QMouseEvent * event) {
+	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
+	int ch   = qRound(
+			   static_cast<float>(event->x() - m_leftPadding) /
+			   static_cast<float>(m_proxy->charW())) +
+			 xScroll;
 
-	while (m_firstVisible->prev() != nullptr && i < by) {
-		m_firstVisible = m_firstVisible->prev();
-		m_firstVisible->setVisible(true);
-		i++;
-	}
+	m_main->beginSelection(line, ch);
+	updateCurrentLine();
 }
 
-void Mouse::moveDown(int by) {
-	int i = 0;
+void Mouse::mouseMoveEvent(QMouseEvent * event) {
+	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
+	int ch   = qRound(
+			   static_cast<float>(event->x() - m_leftPadding) /
+			   static_cast<float>(m_proxy->charW())) +
+			 xScroll;
 
-	while (m_firstVisible->next() != nullptr && i < by) {
-		m_firstVisible->setVisible(false);
-		m_firstVisible = m_firstVisible->next();
-		i++;
-	}
+	m_main->selectTo(line, ch);
+	updateCurrentLine();
+}
+
+void Mouse::mouseReleaseEvent(QMouseEvent * event) {
+	//	qDebug() << "is released";
+}
+
+void Mouse::hoverMoveEvent(QHoverEvent * event) {
+	//	qDebug() << "hover move";
 }
 
 }  // namespace icL::editor

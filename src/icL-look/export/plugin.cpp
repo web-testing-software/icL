@@ -55,5 +55,6 @@ void LookPlugin::registerTypes(const char * uri) {
 	qmlRegisterType<icL::look::Static>();
 	qmlRegisterType<icL::look::EditorStyle>();
 	qmlRegisterType<icL::look::Chars>();
+	qmlRegisterType<icL::look::ScrollBar>();
 	qmlRegisterType<icL::look::Look>(uri, 1, 0, "Look");
 }

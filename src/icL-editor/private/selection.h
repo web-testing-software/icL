@@ -32,6 +32,12 @@ public:
 	Cursor * end() const;
 
 	/**
+	 * @brief next is prev linked selection
+	 * @return the prev linked selection
+	 */
+	Selection * prev() const;
+
+	/**
 	 * @brief next is next linked selection
 	 * @return the next linked selection
 	 */
@@ -108,6 +114,28 @@ public:
 	 */
 	void setRtl(bool rtl);
 
+	/**
+	 * @brief beginSelection begin selection by mouse
+	 * @param line is the line number to position the cursors
+	 * @param ch is the character number to position the cursors
+	 */
+	void beginSelection(int line, int ch);
+
+	/**
+	 * @brief selectTo selects text from fixed begin to new position
+	 * @param line is the line number for end cursor
+	 * @param ch is the character number to position the cursors
+	 */
+	void selectTo(int line, int ch);
+
+	/**
+	 * @brief finishSelection finish the selection process
+	 *
+	 * This selection may be merged and deleted, also this function may delete
+	 * other selection if this is the main. Please be careful.
+	 */
+	void finishSelection();
+
 private:
 	/**
 	 * @brief moveSelect moves the selection cursor
@@ -145,6 +173,23 @@ private:
 	 */
 	void setRtlByStep(int step);
 
+	/**
+	 * @brief moveCursorToLine moves cursor to begin in nth line
+	 * @param line is the line numbers
+	 * @param cursor is the cursor which need move
+	 * @return true if so line was found, otherwise false
+	 */
+	bool moveCursorToLine(int line, Cursor * cursor);
+
+	/**
+	 * @brief isAfter if the cursor is after the position described by line/ch
+	 * @param cursor the cursor to compare
+	 * @param line the line number of new position
+	 * @param ch the charanter number of position
+	 * @return true if is (line, ch) is after cursor, otherwise false
+	 */
+	bool isAfter(Cursor * cursor, int line, int ch);
+
 private:
 	/// @brief m_begin is the cursor which describes the begin of seletion
 	Cursor * m_begin = nullptr;
@@ -152,7 +197,10 @@ private:
 	/// @brief m_end is the cursor which descrines the end of selection
 	Cursor * m_end = nullptr;
 
-	/// @brief m_next id the active selection in document
+	/// @brief m_prev is the previous active selection in document
+	Selection * m_prev = nullptr;
+
+	/// @brief m_next is the next active selection in document
 	Selection * m_next = nullptr;
 
 	/// @brief when rtl = false, the main cursor is the end, otherwise to begin

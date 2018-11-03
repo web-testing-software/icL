@@ -45,8 +45,36 @@ look::Chars * Drawing::chars() const {
 	return m_chars;
 }
 
+look::ScrollBar * Drawing::scrollBar() const {
+	return m_scrollBar;
+}
+
 int Drawing::lnWidth() const {
 	return lineNumberArea.width();
+}
+
+int Drawing::linesCount() const {
+	return numberOfLines;
+}
+
+int Drawing::charsInLine() const {
+	return m_visibleChars;
+}
+
+int Drawing::visbileLines() const {
+	return m_visibleLines;
+}
+
+int Drawing::firstLineNr() const {
+	if (m_firstVisible == nullptr) {
+		return 1;
+	}
+
+	return m_firstVisible->lineNumber();
+}
+
+int Drawing::firstCharNr() const {
+	return xScroll;
 }
 
 void Drawing::paint(QPainter * painter) {
@@ -102,12 +130,36 @@ void Drawing::setChars(look::Chars * chars) {
 	emit charsChanged(m_chars);
 }
 
+void Drawing::setScrollBar(look::ScrollBar * scrollBar) {
+	if (m_scrollBar == scrollBar)
+		return;
+
+	m_scrollBar = scrollBar;
+	emit scrollBarChanged(m_scrollBar);
+}
+
 void Drawing::setLineN(LineNumbers * lineN) {
 	if (m_lineN == lineN)
 		return;
 
 	m_lineN = lineN;
 	emit lineNChanged(m_lineN);
+}
+
+void Drawing::setCharsInLine(int charsInLine) {
+	if (m_visibleChars == charsInLine)
+		return;
+
+	m_visibleChars = charsInLine;
+	emit charsInLineChanged(m_visibleChars);
+}
+
+void Drawing::setVisbileLines(int visbileLines) {
+	if (m_visibleLines == visbileLines)
+		return;
+
+	m_visibleLines = visbileLines;
+	emit visbileLinesChanged(m_visibleLines);
 }
 
 void Drawing::updateBackgroundGeometry() {
@@ -121,13 +173,13 @@ void Drawing::updateBackgroundGeometry() {
 	lineNumberArea.setBottom(static_cast<int>(height()));
 	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
-	leftPadding = lineNumberArea.right() + m_proxy->fullLineH() / 2 -
-				  m_proxy->divLineSBy2() + 1;
+	m_leftPadding = lineNumberArea.right() + m_proxy->fullLineH() / 2 -
+					m_proxy->divLineSBy2() + 1;
 
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
 					   {lineNumberArea.right() + 1, 0},
-					   {leftPadding, m_proxy->fullLineH() / 2},
+					   {m_leftPadding, m_proxy->fullLineH() / 2},
 					   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
 	                   {0, m_proxy->fullLineH()}})};
 
@@ -137,7 +189,7 @@ void Drawing::updateBackgroundGeometry() {
 	lineRect.setBottom(m_proxy->fullLineH() - 1);
 
 	if (m_lineN != nullptr) {
-		m_lineN->setWidth(leftPadding);
+		m_lineN->setWidth(m_leftPadding);
 	}
 
 	emit lnWidthChanged(lineNumberArea.width());
@@ -186,7 +238,7 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 		return;
 	}
 
-	int xBegin = leftPadding - xScroll * m_proxy->charW();
+	int xBegin = m_leftPadding - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 	int toAdd  = xStep / 2;  // Add extra space after lines
 	int yStep  = m_proxy->fullLineH();
@@ -260,7 +312,7 @@ void Drawing::drawContent(QPainter * painter) {
 				 (m_proxy->charH() -
 				  static_cast<int>(itLine->getCache()->size().height())) /
 				   2;
-	int xBegin = leftPadding - xScroll * m_proxy->charW();
+	int xBegin = m_leftPadding - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 
 	while (itLine != nullptr && itLine->visible()) {

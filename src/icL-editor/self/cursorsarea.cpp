@@ -111,7 +111,7 @@ QSGNode * CursorsArea::updatePaintNode(
 	int hLen   = m_cursorW * 2;
 
 	if (xPos < 0) {
-		xPos = halfW;
+		xPos = halfW - editor->proxy()->charH() / 2;
 	}
 	else if (xPos >= width()) {
 		xPos = width() - halfW;
@@ -135,12 +135,17 @@ QSGNode * CursorsArea::updatePaintNode(
 	mainNode->setFlag(QSGNode::OwnsGeometry);
 	mainNode->markDirty(QSGNode::DirtyGeometry);
 
+	QSGFlatColorMaterial * material;
 	if (mainNode->material() == nullptr) {
-		QSGFlatColorMaterial * material = new QSGFlatColorMaterial;
-		material->setColor(cursor->fragment()->format().text.color());
-		mainNode->setMaterial(material);
+		material = new QSGFlatColorMaterial;
 		mainNode->setFlag(QSGNode::OwnsMaterial);
 	}
+	else {
+		material = dynamic_cast<QSGFlatColorMaterial *>(mainNode->material());
+	}
+
+	material->setColor(cursor->fragment()->format().text.color());
+	mainNode->setMaterial(material);
 
 	node->setOpacity(alpha.currentAlpha);
 

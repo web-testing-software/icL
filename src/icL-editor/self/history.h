@@ -1,7 +1,7 @@
 #ifndef icL_editor_History
 #define icL_editor_History
 
-#include "drawing.h"
+#include "scroll.h"
 
 
 
@@ -10,7 +10,7 @@ namespace icL::editor {
 /**
  * @brief The History class contains the history of document
  */
-class History : public Drawing
+class History : public Scroll
 {
 	Q_OBJECT
 

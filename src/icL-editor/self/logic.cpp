@@ -13,13 +13,6 @@ Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
 	m_main  = new Selection();
 	m_fixer = new Fixer();
-
-	//	connect(
-	//	  m_main->begin(), &Cursor::fragmentChanged, this,
-	//	  &Logic::updateCurrentLine);
-	//	connect(
-	//	  m_main->end(), &Cursor::fragmentChanged, this,
-	//&Logic::updateCurrentLine);
 }
 
 Logic::~Logic() {
@@ -78,7 +71,7 @@ bool Logic::loadFile(const QString & path) {
 	while (!stream.atEnd()) {
 		QString str = stream.readLine(160);
 
-		auto * line     = new Line(this);
+		auto * line     = new Line(this, false);
 		auto * fragment = new Fragment(line);
 
 		fragment->insert(m_main->begin(), m_main->end(), 0, str);
@@ -138,9 +131,11 @@ void Logic::setFirstVisible(Line * firstVisible) {
 
 	m_firstVisible = firstVisible;
 	firstVisible->setVisible(true);
+
+	emit firstLineNrChanged();
 }
 
-void Logic::addNewLine(Line * line, bool focus) {
+void Logic::addNewLine(Line * line) {
 	if (m_current == nullptr) {
 		m_first = m_current = line;
 		line->setLineNumber(1);
@@ -172,6 +167,18 @@ void Logic::updateCurrentLine() {
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
 
+		if (!m_current->visible()) {
+			if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
+				scrollUpBy(
+				  m_firstVisible->lineNumber() - m_current->lineNumber());
+			}
+			else {
+				scrollDownBy(
+				  m_current->lineNumber() - m_firstVisible->lineNumber() -
+				  visbileLines() + 1);
+			}
+		}
+
 		emit requestRepaint();
 	}
 }
@@ -185,6 +192,7 @@ void Logic::changeNumberOfLines(int newValue) {
 		numberOfDigits++;
 	}
 
+	emit linesCountChanged();
 	updateBackgroundGeometry();
 }
 

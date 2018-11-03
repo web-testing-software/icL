@@ -233,33 +233,8 @@ bool Cursor::stepWordsBackward(int words, Cursor * block) {
 }
 
 void Cursor::moveToLine(Line * line) {
-	auto * itFrag    = line->first();
-	int    posInLine = 0;
-
-	if (m_preffered == 0) {
-		setFragment(itFrag);
-		setPosition(0);
-		return;
-	}
-
-	while (itFrag->next() != nullptr && posInLine < m_preffered) {
-		posInLine += itFrag->length();
-		itFrag = itFrag->next();
-	}
-
-	if (posInLine < m_preffered) {
-		setFragment(itFrag);
-		if (m_preffered < itFrag->length()) {
-			setPosition(m_preffered);
-		}
-		else {
-			setPosition(itFrag->length());
-		}
-	}
-	else {
-		setFragment(itFrag->prev());
-		setPosition(itFrag->prev()->length() - (posInLine - m_preffered));
-	}
+	m_fragment = line->first();
+	matchPreffered();
 }
 
 bool Cursor::stepLinesUp(int lines, Cursor * block) {
@@ -318,6 +293,36 @@ void Cursor::updatePreffered(int delta) {
 	}
 	else {
 		m_preffered += delta;
+	}
+}
+
+void Cursor::matchPreffered() {
+	auto * itFrag    = m_fragment->line()->first();
+	int    posInLine = 0;
+
+	if (m_preffered == 0) {
+		setFragment(itFrag);
+		setPosition(0);
+		return;
+	}
+
+	while (itFrag->next() != nullptr && posInLine < m_preffered) {
+		posInLine += itFrag->length();
+		itFrag = itFrag->next();
+	}
+
+	if (posInLine < m_preffered) {
+		setFragment(itFrag);
+		if (m_preffered - posInLine < itFrag->length()) {
+			setPosition(m_preffered - posInLine);
+		}
+		else {
+			setPosition(itFrag->length());
+		}
+	}
+	else {
+		setFragment(itFrag->prev());
+		setPosition(itFrag->prev()->length() - (posInLine - m_preffered));
 	}
 }
 

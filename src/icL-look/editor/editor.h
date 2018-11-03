@@ -196,7 +196,7 @@ public:
 	 * @brief scrollBar is the look of scrollbars
 	 * @return the look for scrollbars
 	 */
-	icL::look::ScrollBar * scrollBar() const;
+	ScrollBar * scrollBar() const;
 
 	// BaseLook Interface
 	void setUp(const QJsonObject & obj) override;

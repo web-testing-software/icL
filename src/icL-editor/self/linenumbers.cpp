@@ -23,7 +23,7 @@ void LineNumbers::setEditor(EditorInternal * editor) {
 		return;
 
 	m_editor = editor;
-	setWidth(editor->leftPadding);
+	setWidth(editor->m_leftPadding);
 	update();
 }
 

@@ -114,7 +114,7 @@ void EditorStyle::fixFont() {
 	m_font.setLetterSpacing(QFont::AbsoluteSpacing, neededSpacing);
 
 	setCharH(std::ceil(fmetrics.height()));
-	//	setLineS(std::ceil(fmetrics.leading()));
+	m_fullLineH = m_charH + m_lineS;
 }
 
 }  // namespace icL::look
