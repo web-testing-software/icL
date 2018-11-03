@@ -13,6 +13,7 @@ class CharFormat;
 class Highlight;
 class Line;
 class CLine;
+class Change;
 class EditorStyle;
 class Chars;
 struct TextCharFormat;
@@ -49,6 +50,7 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
 	Q_PROPERTY(icL::look::CLine*          cline READ cline      NOTIFY clineChanged)
 	Q_PROPERTY(icL::look::ScrollBar*  scrollBar READ scrollBar  NOTIFY scrollBarChanged)
+	Q_PROPERTY(icL::look::Change*       changes READ changes    NOTIFY changesChanged)
 	// clang-format on
 
 public:
@@ -198,6 +200,12 @@ public:
 	 */
 	ScrollBar * scrollBar() const;
 
+	/**
+	 * @brief changes is the look of changes indicators
+	 * @return the look for changes indicators
+	 */
+	Change * changes() const;
+
 	// BaseLook Interface
 	void setUp(const QJsonObject & obj) override;
 
@@ -227,6 +235,7 @@ signals:
 	void breakpointChanged(Line * breakpoint);
 	void clineChanged(CLine * cline);
 	void scrollBarChanged(icL::look::ScrollBar * scrollBar);
+	void changesChanged(icL::look::Change * changes);
 
 public slots:
 	void updateOccurrence();
@@ -278,6 +287,7 @@ private:
 	CharFormat *  m_error      = nullptr;
 	CharFormat *  m_warning    = nullptr;
 	ScrollBar *   m_scrollBar  = nullptr;
+	Change *      m_changes    = nullptr;
 
 	Line *  m_current    = nullptr;
 	Line *  m_debug      = nullptr;

@@ -1,6 +1,7 @@
 #include "editor.h"
 
 #include "../export/chars.h"
+#include "change.h"
 #include "charformat.h"
 #include "editorstyle.h"
 #include "highlight.h"
@@ -37,6 +38,7 @@ Editor::Editor(QObject * parent)
 	m_type       = new CharFormat(this);
 	m_warning    = new CharFormat(this);
 	m_scrollBar  = new ScrollBar(this);
+	m_changes    = new Change(this);
 
 	bindHighlights();
 	bindChars();
@@ -67,6 +69,7 @@ Editor::~Editor() {
 	delete m_type;
 	delete m_warning;
 	delete m_scrollBar;
+	delete m_changes;
 }
 
 EditorStyle * Editor::style() {
@@ -161,6 +164,10 @@ ScrollBar * Editor::scrollBar() const {
 	return m_scrollBar;
 }
 
+Change * Editor::changes() const {
+	return m_changes;
+}
+
 void Editor::setUp(const QJsonObject & obj) {
 	m_text->setUp(obj.value("text").toObject());
 	m_number->setUp(obj.value("number").toObject());
@@ -186,6 +193,7 @@ void Editor::setUp(const QJsonObject & obj) {
 	m_cline->setUp(obj.value("cline").toObject());
 
 	m_scrollBar->setUp(obj.value("scroll-bar").toObject());
+	m_changes->setUp(obj.value("changes").toObject());
 }
 
 QJsonObject Editor::getUp() {
@@ -209,7 +217,8 @@ QJsonObject Editor::getUp() {
 	        {"debug", m_debug->getUp()},
 	        {"breakpoint", m_breakpoint->getUp()},
 			{"cline", m_cline->getUp()},
-			{"scroll-bar", m_scrollBar->getUp()}};
+			{"scroll-bar", m_scrollBar->getUp()},
+			{"changes", m_changes->getUp()}};
 }
 
 void Editor::updateOccurrence() {
