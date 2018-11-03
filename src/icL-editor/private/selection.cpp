@@ -25,6 +25,10 @@ Cursor * Selection::end() const {
 	return m_end;
 }
 
+Selection * Selection::prev() const {
+	return m_prev;
+}
+
 Selection * Selection::next() const {
 	return m_next;
 }
@@ -363,6 +367,69 @@ void Selection::setRtl(bool rtl) {
 	m_rtl = rtl;
 }
 
+void Selection::beginSelection(int line, int ch) {
+	moveCursorToLine(line, m_begin);
+	m_begin->setPreffered(ch);
+	m_begin->matchPreffered();
+
+	m_end->syncWith(m_begin);
+}
+
+void Selection::selectTo(int line, int ch) {
+	// Nothing selected yet
+	Cursor * toMove;
+	if (*m_begin == *m_end) {
+		if (isAfter(m_begin, line, ch)) {
+			toMove = m_end;
+			setRtl(false);
+		}
+		else {
+			toMove = m_begin;
+			setRtl(true);
+		}
+	}
+	// Current selection is RTL
+	else if (m_rtl) {
+		// If the selection gets wrong
+		if (isAfter(m_end, line, ch)) {
+			m_begin->syncWith(m_end);
+			toMove = m_end;
+			setRtl(false);
+		}
+		// If is all ok
+		else {
+			toMove = m_begin;
+		}
+	}
+	// Current selection mode is !RTL
+	else {
+		// If the selection gets wrong
+		if (!isAfter(m_begin, line, ch)) {
+			m_end->syncWith(m_begin);
+			toMove = m_begin;
+			setRtl(true);
+		}
+		// If all is ok
+		else {
+			toMove = m_end;
+		}
+	}
+
+	// Move needed cursor
+	if (!moveCursorToLine(line, toMove)) {
+		if (line < 1) {
+			ch = 0;
+		}
+		else {
+			ch = toMove->fragment()->line()->length();
+		}
+	}
+	toMove->setPreffered(ch);
+	toMove->matchPreffered();
+}
+
+void Selection::finishSelection() {}
+
 void Selection::moveSelect(int step, Cursor * begin, Cursor * end) {
 	if (step < 0) {
 		begin->stepBackward(-step, end);
@@ -412,6 +479,48 @@ void Selection::setRtlByStep(int step) {
 			setRtl(true);
 		}
 	}
+}
+
+bool Selection::moveCursorToLine(int line, Cursor * cursor) {
+	auto * lineIt        = cursor->fragment()->line();
+	int    currentLineNr = lineIt->lineNumber();
+
+	bool ret = true;
+
+	// Fix line values
+	int maxValue = dynamic_cast<Drawing *>(lineIt->parent())->linesCount();
+
+	if (line < 1) {
+		line = 1;
+		ret  = false;
+	}
+	else if (line > maxValue) {
+		line = maxValue;
+		ret  = false;
+	}
+
+	if (currentLineNr > line) {
+		while (lineIt->lineNumber() != line) {
+			lineIt = lineIt->prev();
+		}
+	}
+	else {
+		while (lineIt->lineNumber() != line) {
+			lineIt = lineIt->next();
+		}
+	}
+
+	cursor->setFragment(lineIt->first());
+	cursor->setPosition(0);
+
+	return ret;
+}
+
+bool Selection::isAfter(Cursor * cursor, int line, int ch) {
+	int cursorLine = cursor->fragment()->line()->lineNumber();
+
+	return line > cursorLine ||
+		   (line == cursorLine && ch > cursor->getPosInLine());
 }
 
 }  // namespace icL::editor

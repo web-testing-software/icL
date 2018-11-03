@@ -130,6 +130,11 @@ public:
 	void updatePreffered(int delta = 0);
 
 	/**
+	 * @brief matchPreffered try to move cursor to prefered position
+	 */
+	void matchPreffered();
+
+	/**
 	 * @brief getEditor gets the pointer to editor
 	 * @return the pointer to editor
 	 */

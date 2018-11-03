@@ -1,9 +1,11 @@
 #include "mouse.h"
 
 #include "../private/line.h"
+#include "../private/selection.h"
 #include "../private/styleproxy.h"
 #include "linenumbers.h"
 
+#include <QCursor>
 #include <QDebug>
 
 namespace icL::editor {
@@ -13,6 +15,7 @@ Mouse::Mouse(QQuickItem * parent)
 	setAcceptedMouseButtons(
 	  Qt::LeftButton | Qt::MiddleButton | Qt::RightButton);
 	setAcceptHoverEvents(true);
+	setCursor({Qt::IBeamCursor});
 }
 
 void Mouse::wheelEvent(QWheelEvent * event) {
@@ -82,11 +85,25 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 }
 
 void Mouse::mousePressEvent(QMouseEvent * event) {
-	//	qDebug() << "is pressed";
+	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
+	int ch   = qRound(
+			   static_cast<float>(event->x() - m_leftPadding) /
+			   static_cast<float>(m_proxy->charW())) +
+			 xScroll;
+
+	m_main->beginSelection(line, ch);
+	updateCurrentLine();
 }
 
 void Mouse::mouseMoveEvent(QMouseEvent * event) {
-	//	qDebug() << "is moving";
+	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
+	int ch   = qRound(
+			   static_cast<float>(event->x() - m_leftPadding) /
+			   static_cast<float>(m_proxy->charW())) +
+			 xScroll;
+
+	m_main->selectTo(line, ch);
+	updateCurrentLine();
 }
 
 void Mouse::mouseReleaseEvent(QMouseEvent * event) {

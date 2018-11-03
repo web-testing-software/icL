@@ -123,7 +123,15 @@ public slots:
 	void changeNumberOfLines(int newValue);
 
 	/// @brief will be defined in Drawing class
+	virtual int visbileLines() const = 0;
+	/// @brief will be defined in Drawing class
 	virtual void updateBackgroundGeometry() = 0;
+
+protected:
+	/// @brief will be defined in Mouse class
+	virtual void moveUp(int by) = 0;
+	/// @brief will be defined in Mouse class
+	virtual void moveDown(int by) = 0;
 
 protected:
 	// properties

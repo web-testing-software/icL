@@ -13,13 +13,6 @@ Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
 	m_main  = new Selection();
 	m_fixer = new Fixer();
-
-	//	connect(
-	//	  m_main->begin(), &Cursor::fragmentChanged, this,
-	//	  &Logic::updateCurrentLine);
-	//	connect(
-	//	  m_main->end(), &Cursor::fragmentChanged, this,
-	//&Logic::updateCurrentLine);
 }
 
 Logic::~Logic() {
@@ -173,6 +166,17 @@ void Logic::updateCurrentLine() {
 
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
+
+		if (!m_current->visible()) {
+			if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
+				moveUp(m_firstVisible->lineNumber() - m_current->lineNumber());
+			}
+			else {
+				moveDown(
+				  m_current->lineNumber() - m_firstVisible->lineNumber() -
+				  visbileLines() + 1);
+			}
+		}
 
 		emit requestRepaint();
 	}
