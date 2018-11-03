@@ -99,7 +99,7 @@ public:
 	 * @brief visbileLines is the number of visible lines
 	 * @return the number of visible lines
 	 */
-	int visbileLines() const;
+	int visbileLines() const override;
 
 	/**
 	 * @brief firstLineNr is the first visible line number

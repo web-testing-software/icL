@@ -3,6 +3,6 @@
 namespace icL::editor {
 
 History::History(QQuickItem * parent)
-    : Drawing(parent) {}
+	: Scroll(parent) {}
 
 }  // namespace icL::editor

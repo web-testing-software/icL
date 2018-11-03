@@ -109,7 +109,7 @@ public slots:
 	 * @brief addNewLine inserts a new line after the current
 	 * @param line is the line to add
 	 */
-	void addNewLine(Line * line, bool focus = true);
+	void addNewLine(Line * line);
 
 	/**
 	 * @brief updateCurrentLine update the pointer to the current line

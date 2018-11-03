@@ -135,7 +135,7 @@ void Logic::setFirstVisible(Line * firstVisible) {
 	emit firstLineNrChanged();
 }
 
-void Logic::addNewLine(Line * line, bool focus) {
+void Logic::addNewLine(Line * line) {
 	if (m_current == nullptr) {
 		m_first = m_current = line;
 		line->setLineNumber(1);
