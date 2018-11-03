@@ -128,10 +128,10 @@ public slots:
 	virtual void updateBackgroundGeometry() = 0;
 
 protected:
-	/// @brief will be defined in Mouse class
-	virtual void moveUp(int by) = 0;
-	/// @brief will be defined in Mouse class
-	virtual void moveDown(int by) = 0;
+	/// @brief will be defined in Scroll class
+	virtual void scrollUpBy(int by) = 0;
+	/// @brief will be defined in Scroll class
+	virtual void scrollDownBy(int by) = 0;
 
 protected:
 	// properties

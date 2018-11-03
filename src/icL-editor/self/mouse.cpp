@@ -62,7 +62,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				moveDown(-delta.y() / m_proxy->fullLineH());
+				scrollDownBy(-delta.y() / m_proxy->fullLineH());
 			}
 		}
 		else /* delta.y > 0 */ {
@@ -75,7 +75,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				moveUp(delta.y() / m_proxy->fullLineH());
+				scrollUpBy(delta.y() / m_proxy->fullLineH());
 			}
 		}
 	}
@@ -112,32 +112,6 @@ void Mouse::mouseReleaseEvent(QMouseEvent * event) {
 
 void Mouse::hoverMoveEvent(QHoverEvent * event) {
 	//	qDebug() << "hover move";
-}
-
-void Mouse::moveUp(int by) {
-	int    i  = 0;
-	auto * it = m_firstVisible;
-
-	while (it->prev() != nullptr && i < by) {
-		it = it->prev();
-		it->setVisible(true);
-		i++;
-	}
-
-	setFirstVisible(it);
-}
-
-void Mouse::moveDown(int by) {
-	int    i  = 0;
-	auto * it = m_firstVisible;
-
-	while (it->next() != nullptr && i < by) {
-		it->setVisible(false);
-		it = it->next();
-		i++;
-	}
-
-	setFirstVisible(it);
 }
 
 }  // namespace icL::editor

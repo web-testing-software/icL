@@ -169,10 +169,11 @@ void Logic::updateCurrentLine() {
 
 		if (!m_current->visible()) {
 			if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
-				moveUp(m_firstVisible->lineNumber() - m_current->lineNumber());
+				scrollUpBy(
+				  m_firstVisible->lineNumber() - m_current->lineNumber());
 			}
 			else {
-				moveDown(
+				scrollDownBy(
 				  m_current->lineNumber() - m_firstVisible->lineNumber() -
 				  visbileLines() + 1);
 			}
