@@ -54,11 +54,23 @@ struct LineFormat
  */
 struct CLineFormat : public LineFormat
 {
-	/// The color for changed line number
+	/// @brief The color for changed line number
 	QPen changed;
 
-	/// The color for saved line number
+	/// @brief The color for saved line number
 	QPen saved;
+};
+
+struct ChangesFormat
+{
+	/// @brief the color for changed lines
+	QBrush changed;
+
+	/// @brief the color for saved changed lines
+	QBrush saved;
+
+	/// @brief the color for phantoms lines
+	QBrush phantom;
 };
 
 /**
@@ -130,11 +142,14 @@ public:
 	/// @brief breakpoint is the format for breakpointed line
 	LineFormat breakpoint;
 
+	/// @brief changes is the format for changes indicators
+	ChangesFormat changes;
+
 	/// @brief send signal to QML to rehighlight editor
 	void update();
 
 signals:
-	/// request rehiglight of code
+	/// @brief request rehiglight of code
 	void highlight();
 
 public slots:

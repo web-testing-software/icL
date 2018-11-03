@@ -44,6 +44,7 @@ Editor::Editor(QObject * parent)
 	bindChars();
 	bindMessages();
 	bindLines();
+	bindChanges();
 }
 
 Editor::~Editor() {
@@ -307,6 +308,12 @@ void Editor::updateCLine() {
 	updateStyle(m_chars->cline, m_cline);
 }
 
+void Editor::updateChanges() {
+	m_chars->changes.changed = m_changes->changed();
+	m_chars->changes.saved   = m_changes->saved();
+	m_chars->changes.phantom = m_changes->phantom();
+}
+
 void Editor::updateStyle(TextCharFormat & chars, const CharFormat * format) {
 	TextCharFormat cf;
 
@@ -526,6 +533,14 @@ void Editor::bindLines() {
 	connect(m_cline,               &Line::lineBgChanged,           this, &Editor::updateCLine);
 	connect(m_cline,               &CLine::editedChanged,          this, &Editor::updateCLine);
 	connect(m_cline,               &CLine::savedChanged,           this, &Editor::updateCLine);
+	// clang-format on
+}
+
+void Editor::bindChanges() {
+	// clang-format off
+	connect(m_changes, &Change::savedChanged,   this, &Editor::updateChanges);
+	connect(m_changes, &Change::changedChanged, this, &Editor::updateChanges);
+	connect(m_changes, &Change::phantomChanged, this, &Editor::updateChanges);
 	// clang-format on
 }
 

@@ -258,6 +258,7 @@ public slots:
 	void updateDebug();
 	void updateBreakpoint();
 	void updateCLine();
+	void updateChanges();
 
 private:
 	void updateStyle(TextCharFormat & chars, const CharFormat * format);
@@ -268,6 +269,7 @@ private:
 	void bindHighlights();
 	void bindMessages();
 	void bindLines();
+	void bindChanges();
 
 	Highlight *   m_occurrence = nullptr;
 	Highlight *   m_selection  = nullptr;
