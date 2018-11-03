@@ -45,9 +45,33 @@ private:
 	 */
 	void drawText(QPainter * painter);
 
+	/**
+	 * @brief drawChanges draws changes indicators
+	 * @param painter is the painter to draw with
+	 */
+	void drawChanges(QPainter * painter);
+
+	/**
+	 * @brief drawChanges draws changes indicators
+	 * @param painter is the painter to draw with
+	 */
+	void updateGeometry();
+
 private:
 	// Properties
 	EditorInternal * m_editor;
+
+	/// @brief the geometry of change indicator
+	QRect change;
+
+	/// @brief the geometry of new line indicator
+	QRect newLine;
+
+	/// @brief the geomtry of phantom indicator
+	QRect phantom;
+
+	/// @brief the geomtry of phantom line indicator
+	QRect phantomLine;
 };
 
 }  // namespace icL::editor
