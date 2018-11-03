@@ -15,6 +15,17 @@
 				"italic": false
 			}
 		},
+		"changes" :{
+			"changed": {
+				"hex": "#1300b3"
+			},
+			"saved": {
+				"hex": "#5a5a5a"
+			},
+			"phantom": {
+				"hex": "#000000"
+			}
+		},
 		"cline": {
 			"edited": {
 				"hex": "#c5450e"
