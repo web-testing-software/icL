@@ -1,5 +1,7 @@
 #include "change.h"
 
+#include <QJsonObject>
+
 namespace icL::look {
 
 Change::Change(QObject * parent)
@@ -39,6 +41,18 @@ void Change::setPhantom(const QColor & phantom) {
 
 	m_phantom = phantom;
 	emit phantomChanged(m_phantom);
+}
+
+void Change::setUp(const QJsonObject & obj) {
+	m_changed = objToColor(obj["changed"].toObject());
+	m_saved   = objToColor(obj["saved"].toObject());
+	m_phantom = objToColor(obj["phantom"].toObject());
+}
+
+QJsonObject Change::getUp() {
+	return {{"changed", colorToObj(m_changed)},
+			{"saved", colorToObj(m_saved)},
+			{"phantom", colorToObj(m_phantom)}};
 }
 
 }  // namespace icL::look

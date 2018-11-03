@@ -62,6 +62,12 @@ public slots:
 	 */
 	void setPhantom(const QColor & phantom);
 
+	// BaseLook interface
+public:
+	void setUp(const QJsonObject & obj) override;
+
+	QJsonObject getUp() override;
+
 private:
 	QColor m_changed;
 	QColor m_saved;
