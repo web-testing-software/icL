@@ -318,6 +318,14 @@ void Editor::updateBreakpoint() {
 	updateStyle(m_chars->breakpoint, m_breakpoint);
 }
 
+void Editor::updatePhantom() {
+	updateStyle(m_chars->phantom, m_phantom);
+}
+
+void Editor::updatePhantomS() {
+	updateStyle(m_chars->phantomSelected, m_phantomS);
+}
+
 void Editor::updateCLine() {
 	m_chars->cline.changed = m_cline->edited();
 	m_chars->cline.saved   = m_cline->saved();
@@ -541,6 +549,18 @@ void Editor::bindLines() {
 	connect(m_breakpoint->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateBreakpoint);
 	connect(m_breakpoint->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateBreakpoint);
 	connect(m_breakpoint,               &Line::lineBgChanged,           this, &Editor::updateBreakpoint);
+
+	connect(m_phantom->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updatePhantom);
+	connect(m_phantom->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updatePhantom);
+	connect(m_phantom->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updatePhantom);
+	connect(m_phantom->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updatePhantom);
+	connect(m_phantom,               &Line::lineBgChanged,           this, &Editor::updatePhantom);
+
+	connect(m_phantomS->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updatePhantomS);
+	connect(m_phantomS->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updatePhantomS);
+	connect(m_phantomS->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updatePhantomS);
+	connect(m_phantomS->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updatePhantomS);
+	connect(m_phantomS,               &Line::lineBgChanged,           this, &Editor::updatePhantomS);
 
 	connect(m_cline->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateCLine);
 	connect(m_cline->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateCLine);

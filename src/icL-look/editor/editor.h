@@ -273,6 +273,8 @@ public slots:
 	void updateCurrent();
 	void updateDebug();
 	void updateBreakpoint();
+	void updatePhantom();
+	void updatePhantomS();
 	void updateCLine();
 	void updateChanges();
 
