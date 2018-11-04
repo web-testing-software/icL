@@ -18,6 +18,7 @@ Editor::Editor(QObject * parent)
 	m_style      = new EditorStyle(this);
 	m_chars      = new Chars(this);
 	m_breakpoint = new Line(this);
+	m_changes    = new Change(this);
 	m_cline      = new CLine(this);
 	m_comment    = new CharFormat(this);
 	m_current    = new Line(this);
@@ -30,15 +31,15 @@ Editor::Editor(QObject * parent)
 	m_method     = new CharFormat(this);
 	m_number     = new CharFormat(this);
 	m_occurrence = new Highlight(this);
+	m_phantom    = new Line(this);
 	m_property   = new CharFormat(this);
+	m_scrollBar  = new ScrollBar(this);
 	m_selection  = new Highlight(this);
 	m_string     = new CharFormat(this);
 	m_system     = new CharFormat(this);
 	m_text       = new CharFormat(this);
 	m_type       = new CharFormat(this);
 	m_warning    = new CharFormat(this);
-	m_scrollBar  = new ScrollBar(this);
-	m_changes    = new Change(this);
 
 	bindHighlights();
 	bindChars();
@@ -51,6 +52,7 @@ Editor::~Editor() {
 	delete m_style;
 	delete m_breakpoint;
 	delete m_comment;
+	delete m_changes;
 	delete m_cline;
 	delete m_current;
 	delete m_debug;
@@ -62,15 +64,15 @@ Editor::~Editor() {
 	delete m_method;
 	delete m_number;
 	delete m_occurrence;
+	delete m_phantom;
 	delete m_property;
+	delete m_scrollBar;
 	delete m_selection;
 	delete m_string;
 	delete m_system;
 	delete m_text;
 	delete m_type;
 	delete m_warning;
-	delete m_scrollBar;
-	delete m_changes;
 }
 
 EditorStyle * Editor::style() {
@@ -157,6 +159,10 @@ Line * Editor::breakpoint() const {
 	return m_breakpoint;
 }
 
+Line * Editor::phantom() const {
+	return m_phantom;
+}
+
 CLine * Editor::cline() const {
 	return m_cline;
 }
@@ -191,6 +197,7 @@ void Editor::setUp(const QJsonObject & obj) {
 	m_current->setUp(obj.value("current").toObject());
 	m_debug->setUp(obj.value("debug").toObject());
 	m_breakpoint->setUp(obj.value("breakpoint").toObject());
+	m_phantom->setUp(obj.value("phantom").toObject());
 	m_cline->setUp(obj.value("cline").toObject());
 
 	m_scrollBar->setUp(obj.value("scroll-bar").toObject());
@@ -219,7 +226,8 @@ QJsonObject Editor::getUp() {
 	        {"breakpoint", m_breakpoint->getUp()},
 			{"cline", m_cline->getUp()},
 			{"scroll-bar", m_scrollBar->getUp()},
-			{"changes", m_changes->getUp()}};
+			{"changes", m_changes->getUp()},
+			{"phantom", m_phantom->getUp()}};
 }
 
 void Editor::updateOccurrence() {

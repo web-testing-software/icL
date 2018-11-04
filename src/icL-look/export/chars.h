@@ -142,6 +142,9 @@ public:
 	/// @brief breakpoint is the format for breakpointed line
 	LineFormat breakpoint;
 
+	/// @brief phantom is format fot phantom lines
+	LineFormat phantom;
+
 	/// @brief changes is the format for changes indicators
 	ChangesFormat changes;
 

@@ -48,6 +48,7 @@ class Editor : public BaseLook
 	Q_PROPERTY(icL::look::Line*         current READ current    NOTIFY currentChanged)
 	Q_PROPERTY(icL::look::Line*           debug READ debug      NOTIFY debugChanged)
 	Q_PROPERTY(icL::look::Line*      breakpoint READ breakpoint NOTIFY breakpointChanged)
+	Q_PROPERTY(icL::look::Line*         phantom READ phantom    NOTIFY phantomChanged)
 	Q_PROPERTY(icL::look::CLine*          cline READ cline      NOTIFY clineChanged)
 	Q_PROPERTY(icL::look::ScrollBar*  scrollBar READ scrollBar  NOTIFY scrollBarChanged)
 	Q_PROPERTY(icL::look::Change*       changes READ changes    NOTIFY changesChanged)
@@ -189,6 +190,12 @@ public:
 	Line * breakpoint() const;
 
 	/**
+	 * @brief phantom is the look for phantom lines
+	 * @return the look for phantom lines
+	 */
+	Line * phantom() const;
+
+	/**
 	 * @brief cline is the look of line numbers
 	 * @return the look for all lines numbers
 	 */
@@ -233,6 +240,7 @@ signals:
 	void currentChanged(Line * current);
 	void debugChanged(Line * debug);
 	void breakpointChanged(Line * breakpoint);
+	void phantomChanged(icL::look::Line * phantom);
 	void clineChanged(CLine * cline);
 	void scrollBarChanged(icL::look::ScrollBar * scrollBar);
 	void changesChanged(icL::look::Change * changes);
@@ -271,6 +279,7 @@ private:
 	void bindLines();
 	void bindChanges();
 
+private:
 	Highlight *   m_occurrence = nullptr;
 	Highlight *   m_selection  = nullptr;
 	EditorStyle * m_style      = nullptr;
@@ -294,6 +303,7 @@ private:
 	Line *  m_current    = nullptr;
 	Line *  m_debug      = nullptr;
 	Line *  m_breakpoint = nullptr;
+	Line *  m_phantom    = nullptr;
 	CLine * m_cline      = nullptr;
 	Chars * m_chars      = nullptr;
 };
