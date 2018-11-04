@@ -83,7 +83,7 @@ void LineNumbers::drawBackground(QPainter * painter) {
 		it->setVisible(true);
 		it->setLastY(yPos);
 		yPos += yStep;
-		it = it->next();
+		it = it->nextDisplay();
 	}
 
 	while (it != nullptr && it->visible()) {
@@ -129,7 +129,7 @@ void LineNumbers::drawText(QPainter * painter) {
 			proxy->charW() * it->charsNumberInLineNumber(),
 		  it->lastY() + yDelta, *stext);
 
-		it = it->next();
+		it = it->nextDisplay();
 	}
 }
 

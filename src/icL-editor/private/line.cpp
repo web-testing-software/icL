@@ -23,6 +23,14 @@ Line * Line::next() const {
 	return m_next;
 }
 
+Line * Line::nextDisplay() const {
+	if (phantom != nullptr && m_showPhantom) {
+		return phantom;
+	}
+
+	return m_next;
+}
+
 Line * Line::prev() const {
 	return m_prev;
 }
@@ -329,6 +337,10 @@ void Line::dropPhantom() {
 }
 
 void Line::showPhantoms(bool show) {
+	if (show && phantom == nullptr) {
+		return;
+	}
+
 	m_showPhantom = show;
 
 	if (show) {

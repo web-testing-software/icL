@@ -36,6 +36,12 @@ public:
 	Line * next() const;
 
 	/**
+	 * @brief nextDisplay gets next line to draw on display
+	 * @return the next line to display
+	 */
+	Line * nextDisplay() const;
+
+	/**
 	 * @brief prev gets the previous line
 	 * @return the previous line
 	 */
