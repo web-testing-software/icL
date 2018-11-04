@@ -45,6 +45,11 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	else if (event->key() == Qt::Key_Enter) {
 		qDebug() << m_main->insert("\n");
 	}
+	else if (
+	  event->key() == Qt::Key_H &&
+	  event->modifiers().testFlag(Qt::ControlModifier)) {
+		m_current->showPhantoms(true);
+	}
 	else if (event->key() == Qt::Key_1) {
 		qDebug() << "pressed";
 		m_firstVisible->next()->next()->setHasBreakPoint(

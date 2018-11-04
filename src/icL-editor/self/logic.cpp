@@ -50,7 +50,7 @@ void Logic::clear() {
 	while (it != nullptr) {
 		auto * tmp = it;
 
-		it = it->next();
+		it = it->nextDisplay();
 		delete tmp;
 	}
 

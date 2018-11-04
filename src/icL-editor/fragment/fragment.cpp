@@ -157,6 +157,7 @@ Fragment * Fragment::drop(Cursor * cursor, int begin, int end) {
 		cache->setText(content);
 	}
 
+	m_line->makeChanged();
 	//	qDebug() << m_glyphs;
 
 	return ret;
@@ -185,6 +186,17 @@ Fragment * Fragment::insert(
 
 	if (cache != nullptr) {
 		cache->setText(content);
+	}
+
+	bool isLoadingFile =
+	  dynamic_cast<Drawing *>(m_line->parent())->linesCount() == 0;
+	bool isEndOfLine = pos == length() && m_next == nullptr && text[0] == '\n';
+
+	if (!isLoadingFile && !isEndOfLine) {
+		m_line->makeChanged();
+	}
+	if (isEndOfLine) {
+		m_line->next()->makeChanged();
 	}
 
 	return ret;

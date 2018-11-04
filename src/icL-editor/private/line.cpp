@@ -23,6 +23,14 @@ Line * Line::next() const {
 	return m_next;
 }
 
+Line * Line::nextDisplay() const {
+	if (phantom != nullptr && m_showPhantom) {
+		return phantom;
+	}
+
+	return m_next;
+}
+
 Line * Line::prev() const {
 	return m_prev;
 }
@@ -76,9 +84,14 @@ bool Line::isChanged() {
 	return m_isChanged;
 }
 
+bool Line::wasChanged() {
+	return m_wasChanged;
+}
+
 void Line::save(QTextStream * stream) {
 	(*stream) << getText();
-	m_isChanged = false;
+	m_wasChanged = m_isChanged;
+	m_isChanged  = false;
 }
 
 Logic * Line::parent() const {
@@ -89,7 +102,7 @@ QStaticText * Line::getCache() {
 	return cache;
 }
 
-bool Line::isNow() {
+bool Line::isNew() {
 	return m_isNew;
 }
 
@@ -104,8 +117,8 @@ Line * Line::getLastPhantom() {
 		return nullptr;
 	}
 
-	while (it->next() != nullptr) {
-		it = it->next();
+	while (it->m_next != nullptr && it->m_next->m_isPhantom) {
+		it = it->m_next;
 	}
 
 	return it;
@@ -221,7 +234,8 @@ void Line::setLastY(int lastY) {
 
 void Line::makeChanged() {
 	m_parent->makeChanged();
-	m_isChanged = true;
+	m_isChanged  = true;
+	m_wasChanged = false;
 }
 
 void Line::fixLines() {
@@ -239,13 +253,19 @@ void Line::makePhantom() {
 
 	m_prev->m_next = m_next;
 
+	if (m_next != nullptr) {
+		m_next->m_prev = m_prev;
+	}
+
 	Line * prevLineLastPhantom = m_prev->getLastPhantom();
 
 	if (prevLineLastPhantom != nullptr) {
-		m_next = prevLineLastPhantom->m_next;
 		m_prev = prevLineLastPhantom;
 
 		prevLineLastPhantom->m_next = this;
+	}
+	else {
+		m_prev->phantom = this;
 	}
 
 	if (phantom != nullptr) {
@@ -317,6 +337,10 @@ void Line::dropPhantom() {
 }
 
 void Line::showPhantoms(bool show) {
+	if (show && phantom == nullptr) {
+		return;
+	}
+
 	m_showPhantom = show;
 
 	if (show) {

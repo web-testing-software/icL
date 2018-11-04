@@ -47,6 +47,8 @@ void LineNumbers::paint(QPainter * painter) {
 
 	drawText(painter);
 
+	drawChanges(painter);
+
 	//	qDebug() << "render time of line numbers" << timer.elapsed();
 }
 
@@ -81,7 +83,7 @@ void LineNumbers::drawBackground(QPainter * painter) {
 		it->setVisible(true);
 		it->setLastY(yPos);
 		yPos += yStep;
-		it = it->next();
+		it = it->nextDisplay();
 	}
 
 	while (it != nullptr && it->visible()) {
@@ -127,18 +129,60 @@ void LineNumbers::drawText(QPainter * painter) {
 			proxy->charW() * it->charsNumberInLineNumber(),
 		  it->lastY() + yDelta, *stext);
 
-		it = it->next();
+		it = it->nextDisplay();
 	}
 }
 
 void LineNumbers::drawChanges(QPainter * painter) {
 	auto * proxy = m_editor->m_proxy;
+	auto * chars = m_editor->m_chars;
 
 	if (proxy->hasChangeChanges()) {
 		updateGeometry();
 	}
 
-	// Need some look changes to continue
+	// draw unsaved lines
+	auto * it = m_editor->m_firstVisible;
+
+	painter->setPen(Qt::NoPen);
+	painter->setBrush(chars->changes.changed);
+	while (it->visible()) {
+		if (it->isChanged()) {
+			if (it->isNew()) {
+				painter->drawRect(newLine.translated(0, it->lastY()));
+			}
+			else {
+				painter->drawRect(change.translated(0, it->lastY()));
+			}
+		}
+		it = it->next();
+	}
+
+	// draw saved lines
+	it = m_editor->m_firstVisible;
+
+	painter->setBrush(chars->changes.saved);
+	while (it->visible()) {
+		if (it->wasChanged()) {
+			if (it->isNew()) {
+				painter->drawRect(newLine.translated(0, it->lastY()));
+			}
+			else {
+				painter->drawRect(change.translated(0, it->lastY()));
+			}
+		}
+		it = it->next();
+	}
+
+	// draw lines with phantoms
+	it = m_editor->m_firstVisible;
+
+	while (it->visible()) {
+		if (it->hasPhantoms()) {
+			painter->drawRect(phantom.translated(0, it->lastY()));
+		}
+		it = it->next();
+	}
 }
 
 void LineNumbers::updateGeometry() {
@@ -146,18 +190,18 @@ void LineNumbers::updateGeometry() {
 
 	change.setTop(proxy->changePadding());
 	change.setHeight(proxy->fullLineH() - proxy->changePadding() * 2);
-	change.setRight(proxy->changeWidth());
+	change.setRight(proxy->changeWidth() - 1);
 
 	newLine.setTop(proxy->newLinePadding());
 	newLine.setHeight(proxy->fullLineH() - proxy->newLinePadding() * 2);
-	newLine.setRight(proxy->changeWidth());
+	newLine.setRight(proxy->changeWidth() - 1);
 
 	phantom.setTop(proxy->fullLineH() - proxy->phanthomHeight() / 2);
 	phantom.setHeight(proxy->phanthomHeight());
 	phantom.setWidth(proxy->changeWidth());
 
 	phantomLine.setTop(0);
-	phantomLine.setRight(proxy->changeWidth());
+	phantomLine.setRight(proxy->changeWidth() - 1);
 	phantomLine.setBottom(proxy->fullLineH());
 }
 

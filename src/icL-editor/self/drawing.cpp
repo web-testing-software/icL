@@ -210,7 +210,7 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 				painter->drawRect(lineRect.translated(0, it->lastY()));
 			}
 
-			it = it->next();
+			it = it->nextDisplay();
 		}
 	}
 }
@@ -321,7 +321,7 @@ void Drawing::drawContent(QPainter * painter) {
 
 		while (itFrag != nullptr && xPos + itFrag->length() * xStep < 0) {
 			xPos += itFrag->length() * xStep;
-			itFrag = itFrag->next();
+			itFrag = itFrag->nextFragment();
 		}
 
 		while (itFrag != nullptr && xPos < width()) {
@@ -338,7 +338,7 @@ void Drawing::drawContent(QPainter * painter) {
 			fragments++;
 		}
 
-		itLine = itLine->next();
+		itLine = itLine->nextDisplay();
 	}
 
 	//	qDebug() << "drawed fragments" << fragments;

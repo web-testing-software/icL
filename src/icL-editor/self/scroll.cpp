@@ -24,9 +24,9 @@ void Scroll::scrollDownBy(int by) {
 	int    i  = 0;
 	auto * it = m_firstVisible;
 
-	while (it->next() != nullptr && i < by) {
+	while (it->nextDisplay() != nullptr && i < by) {
 		it->setVisible(false);
-		it = it->next();
+		it = it->nextDisplay();
 		i++;
 	}
 

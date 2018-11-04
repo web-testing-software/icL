@@ -189,10 +189,44 @@ QString Selection::drop() {
 	auto * editor    = beginFrag->line()->parent();
 
 	if (beginFrag != endFrag) {
-		beginFrag->drop(m_begin, m_begin->position());
-		endFrag->drop(m_end, 0, m_end->position());
 
-		// beginFrag and can be deleted on content drop
+		// make begin line phantom if is removed completly
+		if (beginFrag->prev() == nullptr && m_begin->position() == 0) {
+			auto * beginLine = beginFrag->line();
+			auto * prevLine  = beginLine->prev();
+			auto * nextLine  = beginLine->next();
+
+			auto * newLine = new Line(beginLine->parent(), beginLine->isNew());
+			auto * newFrag = new Fragment(newLine);
+
+			beginLine->makePhantom();
+
+			newLine->setFirst(newFrag);
+
+			if (prevLine != nullptr) {
+				prevLine->setNext(newLine);
+				newLine->setPrev(prevLine);
+			}
+			if (nextLine != nullptr) {
+				nextLine->setPrev(newLine);
+				newLine->setNext(nextLine);
+			}
+
+			m_begin->setFragment(newFrag);
+			m_begin->setPosition(0);
+		}
+		// Remove a fragment of line
+		else if (m_begin->position() != beginFrag->length()) {
+			beginFrag->drop(m_begin, m_begin->position());
+			beginFrag->line()->makeChanged();
+		}
+
+		if (m_end->position() != 0) {
+			endFrag->drop(m_end, 0, m_end->position());
+			endFrag->line()->makeChanged();
+		}
+
+		// beginFrag and end fragments can be deleted on content drop
 		beginFrag = m_begin->fragment();
 		endFrag   = m_end->fragment();
 
@@ -213,89 +247,97 @@ QString Selection::drop() {
 
 	if (beginLine != endFrag->line()) {
 		while (beginLine->next() != endFrag->line()) {
-			auto * tmp = beginLine->next()->next();
+			auto * next = beginLine->next();
 
-			if (beginLine->next() == editor->firstVisible()) {
+			beginLine->makePhantom();
+			beginLine = next;
+		}
+
+		auto * endLine = endFrag->line();
+
+		// If we are deleting all end line
+		if (
+		  m_end->position() == endFrag->length() &&
+		  endFrag->next() == nullptr) {
+			endLine->makePhantom();
+		}
+
+		// If you are deleting a part of end line
+		else {
+
+			// Drop fragment from end line
+
+			while (endFrag->prev() != nullptr) {
+				auto * tmp = endFrag->prev()->prev();
+
+				delete endFrag->next();
+				endFrag->setNext(tmp);
+			}
+
+			// Merge begin and end line
+
+			auto * itFrag = endFrag;
+
+			beginLine->setNext(endFrag->line()->next());
+			if (endLine->next() != nullptr) {
+				endLine->next()->setPrev(beginLine);
+			}
+
+			while (itFrag != nullptr) {
+				itFrag->setLine(beginLine);
+				itFrag = itFrag->next();
+			}
+
+			beginFrag->setNext(endFrag);
+			endFrag->setPrev(beginFrag);
+
+			// Delete first frag if empty
+
+			if (beginFrag->spaces() == 0 && beginFrag->glyphs() == 0) {
+				endFrag->setPrev(beginFrag->prev());
+
+				if (beginFrag->line()->first() == beginFrag) {
+					beginFrag->line()->setFirst(endFrag);
+				}
+
+				endFrag->setPrev(nullptr);
+
+				if (m_begin->fragment() == beginFrag) {
+					m_begin->setFragment(endFrag);
+					m_begin->setPosition(0);
+				}
+			}
+
+			if (
+			  endFrag->spaces() == 0 && endFrag->glyphs() == 0 &&
+			  (endFrag->prev() != nullptr || endFrag->next() != nullptr)) {
+
+				if (endFrag->next() != nullptr) {
+					endFrag->next()->setPrev(endFrag->prev());
+				}
+
+				if (endFrag->prev() != nullptr) {
+					endFrag->prev()->setNext(endFrag->next());
+				}
+
+				if (endFrag->line()->first() == endFrag) {
+					endFrag->line()->setFirst(endFrag->next());
+				}
+
+				if (m_begin->fragment() == endFrag) {
+					m_begin->setFragment(endFrag->next());
+					m_begin->setPosition(0);
+				}
+
+				delete endFrag;
+			}
+
+			if (endLine == editor->firstVisible()) {
 				editor->setFirstVisible(beginLine);
 			}
 
-			delete beginLine->next();
-			beginLine->setNext(tmp);
+			delete endLine;
 		}
-
-		// Drop fragment from end line
-
-		while (endFrag->prev() != nullptr) {
-			auto * tmp = endFrag->prev()->prev();
-
-			delete endFrag->next();
-			endFrag->setNext(tmp);
-		}
-
-		// Merge begin and end line
-
-		auto * endLine = endFrag->line();
-		auto * itFrag  = endFrag;
-
-		beginLine->setNext(endFrag->line()->next());
-		if (endLine->next() != nullptr) {
-			endLine->next()->setPrev(beginLine);
-		}
-
-		while (itFrag != nullptr) {
-			itFrag->setLine(beginLine);
-			itFrag = itFrag->next();
-		}
-
-		beginFrag->setNext(endFrag);
-		endFrag->setPrev(beginFrag);
-
-		// Delete first frag if empty
-
-		if (beginFrag->spaces() == 0 && beginFrag->glyphs() == 0) {
-			endFrag->setPrev(beginFrag->prev());
-
-			if (beginFrag->line()->first() == beginFrag) {
-				beginFrag->line()->setFirst(endFrag);
-			}
-
-			endFrag->setPrev(nullptr);
-
-			if (m_begin->fragment() == beginFrag) {
-				m_begin->setFragment(endFrag);
-				m_begin->setPosition(0);
-			}
-		}
-
-		if (
-		  endFrag->spaces() == 0 && endFrag->glyphs() == 0 &&
-		  (endFrag->prev() != nullptr || endFrag->next() != nullptr)) {
-
-			if (endFrag->next() != nullptr) {
-				endFrag->next()->setPrev(endFrag->prev());
-			}
-
-			if (endFrag->prev() != nullptr) {
-				endFrag->prev()->setNext(endFrag->next());
-			}
-
-			if (endFrag->line()->first() == endFrag) {
-				endFrag->line()->setFirst(endFrag->next());
-			}
-
-			if (m_begin->fragment() == endFrag) {
-				m_begin->setFragment(endFrag->next());
-				m_begin->setPosition(0);
-			}
-
-			delete endFrag;
-		}
-
-		if (endLine == editor->firstVisible()) {
-			editor->setFirstVisible(beginLine);
-		}
-
-		delete endLine;
 	}
 
 	m_end->syncWith(m_begin);
