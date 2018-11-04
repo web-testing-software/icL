@@ -17,13 +17,13 @@
 		},
 		"changes" :{
 			"changed": {
-				"hex": "#1300b3"
+				"hex": "#f10000"
 			},
 			"saved": {
-				"hex": "#5a5a5a"
+				"hex": "#179100"
 			},
 			"phantom": {
-				"hex": "#000000"
+				"hex": "#100600"
 			}
 		},
 		"cline": {
@@ -219,6 +219,36 @@
 			},
 			"border": {
 				"hex": "#7574f6"
+			}
+		},
+		"phantom": {
+			"line-bg": {
+				"hex": "#d4d4d4"
+			},
+			"line-number": {
+				"background": {
+					"hex": "#a6b2b2b2"
+				},
+				"bold": false,
+				"foreground": {
+					"hex": "#2d2d2d"
+				},
+				"italic": true
+			}
+		},
+		"phantom-selected": {
+			"line-bg": {
+				"hex": "#dddddd"
+			},
+			"line-number": {
+				"background": {
+					"hex": "#a6c3c3c3"
+				},
+				"bold": true,
+				"foreground": {
+					"hex": "#141414"
+				},
+				"italic": true
 			}
 		},
 		"property": {
