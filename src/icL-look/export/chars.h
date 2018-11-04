@@ -145,6 +145,9 @@ public:
 	/// @brief phantom is format fot phantom lines
 	LineFormat phantom;
 
+	/// @brief phantomSelected is the format for selected phantom lines
+	LineFormat phantomSelected;
+
 	/// @brief changes is the format for changes indicators
 	ChangesFormat changes;
 
