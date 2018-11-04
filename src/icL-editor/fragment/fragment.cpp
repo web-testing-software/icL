@@ -188,7 +188,11 @@ Fragment * Fragment::insert(
 		cache->setText(content);
 	}
 
-	if (dynamic_cast<Drawing *>(m_line->parent())->linesCount() > 0) {
+	bool isLoadingFile =
+	  dynamic_cast<Drawing *>(m_line->parent())->linesCount() == 0;
+	bool isEndOfLine = pos == length() && m_next == nullptr && text[0] == '\n';
+
+	if (!isLoadingFile && !isEndOfLine) {
 		m_line->makeChanged();
 	}
 
