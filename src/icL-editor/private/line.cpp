@@ -109,8 +109,8 @@ Line * Line::getLastPhantom() {
 		return nullptr;
 	}
 
-	while (it->next() != nullptr) {
-		it = it->next();
+	while (it->m_next != nullptr && it->m_next->m_isPhantom) {
+		it = it->m_next;
 	}
 
 	return it;
@@ -245,13 +245,19 @@ void Line::makePhantom() {
 
 	m_prev->m_next = m_next;
 
+	if (m_next != nullptr) {
+		m_next->m_prev = m_prev;
+	}
+
 	Line * prevLineLastPhantom = m_prev->getLastPhantom();
 
 	if (prevLineLastPhantom != nullptr) {
-		m_next = prevLineLastPhantom->m_next;
 		m_prev = prevLineLastPhantom;
 
 		prevLineLastPhantom->m_next = this;
+	}
+	else {
+		m_prev->phantom = this;
 	}
 
 	if (phantom != nullptr) {

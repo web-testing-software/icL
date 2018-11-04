@@ -198,7 +198,7 @@ void LineNumbers::updateGeometry() {
 
 	phantom.setTop(proxy->fullLineH() - proxy->phanthomHeight() / 2);
 	phantom.setHeight(proxy->phanthomHeight());
-	phantom.setWidth(proxy->changeWidth() - 1);
+	phantom.setWidth(proxy->changeWidth());
 
 	phantomLine.setTop(0);
 	phantomLine.setRight(proxy->changeWidth() - 1);

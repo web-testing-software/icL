@@ -195,6 +195,9 @@ Fragment * Fragment::insert(
 	if (!isLoadingFile && !isEndOfLine) {
 		m_line->makeChanged();
 	}
+	if (isEndOfLine) {
+		m_line->next()->makeChanged();
+	}
 
 	return ret;
 }
