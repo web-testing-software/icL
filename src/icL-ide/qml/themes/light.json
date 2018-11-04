@@ -221,6 +221,36 @@
 				"hex": "#7574f6"
 			}
 		},
+		"phantom": {
+			"line-bg": {
+				"hex": "#f8e2e2"
+			},
+			"line-number": {
+				"background": {
+					"hex": "#a6ff3939"
+				},
+				"bold": false,
+				"foreground": {
+					"hex": "#700000"
+				},
+				"italic": true
+			}
+		},
+		"phantom-selected": {
+			"line-bg": {
+				"hex": "#f9eded"
+			},
+			"line-number": {
+				"background": {
+					"hex": "#a6ff6e6e"
+				},
+				"bold": true,
+				"foreground": {
+					"hex": "#000000"
+				},
+				"italic": true
+			}
+		},
 		"property": {
 			"background": {
 				"a": 0,
