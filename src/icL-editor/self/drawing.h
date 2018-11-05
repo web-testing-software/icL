@@ -202,10 +202,17 @@ private:
 	/**
 	 * @brief drawCurrentLine is the 3rd step of drawing
 	 *
-	 * Draw the current line number and background over the existing
+	 * Draws the current line number and background over the existing
 	 * lines numbers and breakpoints
 	 */
 	void drawCurrentLine(QPainter * painter);
+
+	/**
+	 * @brief drawPhantoms is the 4th step of drawing
+	 *
+	 * Draws the background of phantom lines
+	 */
+	void drawPhantoms(QPainter * painter);
 
 	/**
 	 * @brief drawSelection is the 5th step of drawing

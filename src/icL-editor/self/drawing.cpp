@@ -99,6 +99,7 @@ void Drawing::paint(QPainter * painter) {
 	painter->endNativePainting();
 
 	drawBreakPoints(painter);
+	drawPhantoms(painter);
 	drawCurrentLine(painter);
 
 	drawSelection(painter, m_main);
@@ -224,6 +225,36 @@ void Drawing::drawCurrentLine(QPainter * painter) {
 		painter->setBrush(m_chars->current.background);
 
 		painter->drawRect(lineRect.translated(0, m_current->lastY()));
+	}
+}
+
+void Drawing::drawPhantoms(QPainter * painter) {
+	int    state = -1;
+	auto * it    = m_firstVisible;
+
+	painter->setPen(Qt::NoPen);
+
+
+	while (it != nullptr && it->visible()) {
+
+		if (it->isPhantom()) {
+			if (it->isSelected()) {
+				if (state != 1) {
+					painter->setBrush(m_chars->phantomSelected.background);
+					state = 1;
+				}
+			}
+			else {
+				if (state != 2) {
+					painter->setBrush(m_chars->phantom.background);
+					state = 2;
+				}
+			}
+
+			painter->drawRect(lineRect.translated(0, it->lastY()));
+		}
+
+		it = it->nextDisplay();
 	}
 }
 

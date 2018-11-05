@@ -81,10 +81,10 @@ void LineNumbers::drawBackground(QPainter * painter) {
 		}
 		else if (it->isPhantom()) {
 			if (it->isSelected()) {
-				painter->setBrush(chars->phantomSelected.background);
+				painter->setBrush(chars->phantomSelected.lineNumber.background);
 			}
 			else {
-				painter->setBrush(chars->phantom.background);
+				painter->setBrush(chars->phantom.lineNumber.background);
 			}
 			painter->drawRect(m_editor->leftRect.translated(0, yPos));
 		}
