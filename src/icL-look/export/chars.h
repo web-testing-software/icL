@@ -64,13 +64,13 @@ struct CLineFormat : public LineFormat
 struct ChangesFormat
 {
 	/// @brief the color for changed lines
-	QBrush changed;
+	QPen changed;
 
 	/// @brief the color for saved changed lines
-	QBrush saved;
+	QPen saved;
 
 	/// @brief the color for phantoms lines
-	QBrush phantom;
+	QPen phantom;
 };
 
 /**
