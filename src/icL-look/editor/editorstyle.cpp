@@ -68,7 +68,6 @@ void EditorStyle::setFontS(int fontS) {
 	m_fontS = fontS;
 	m_font.setPixelSize(m_fontS);
 	fixFont();
-	hasChangeChanges = true;
 	emit fontSChanged(m_fontS);
 }
 
@@ -85,7 +84,6 @@ void EditorStyle::setLineS(int lineS) {
 	m_divLineSBy2 = lineS / 2;
 	m_fullLineH   = m_charH + lineS;
 
-	hasChangeChanges = true;
 	emit lineSChanged(m_lineS);
 }
 

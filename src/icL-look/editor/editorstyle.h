@@ -148,9 +148,6 @@ private:
 
 	// fields
 
-	/// @brief the style has changes of change indicators
-	bool hasChangeChanges = true;
-
 	/// @brief m_divLineSBy2 is the line spacing divided by 2
 	int m_divLineSBy2 = 1;
 
