@@ -167,17 +167,7 @@ void Logic::updateCurrentLine() {
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
 
-		if (!m_current->visible()) {
-			if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
-				scrollUpBy(
-				  m_firstVisible->lineNumber() - m_current->lineNumber());
-			}
-			else {
-				scrollDownBy(
-				  m_current->lineNumber() - m_firstVisible->lineNumber() -
-				  visbileLines() + 1);
-			}
-		}
+		autoScrollToCurrent();
 
 		emit requestRepaint();
 	}

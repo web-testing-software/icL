@@ -132,6 +132,8 @@ protected:
 	virtual void scrollUpBy(int by) = 0;
 	/// @brief will be defined in Scroll class
 	virtual void scrollDownBy(int by) = 0;
+	/// @brief will be defined in Scroll class
+	virtual void autoScrollToCurrent() = 0;
 
 protected:
 	// properties

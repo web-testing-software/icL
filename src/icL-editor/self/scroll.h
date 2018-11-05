@@ -39,6 +39,11 @@ protected:
 	 * @param by is the number of lines
 	 */
 	void scrollDownBy(int by) override;
+
+	/**
+	 * @brief autoScrollToCurrent scroll to current line
+	 */
+	void autoScrollToCurrent() override;
 };
 
 }  // namespace icL::editor

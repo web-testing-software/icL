@@ -1,6 +1,7 @@
 #include "scroll.h"
 
 #include "../private/line.h"
+#include "../private/styleproxy.h"
 
 namespace icL::editor {
 
@@ -31,6 +32,42 @@ void Scroll::scrollDownBy(int by) {
 	}
 
 	setFirstVisible(it);
+}
+
+void Scroll::autoScrollToCurrent() {
+	if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
+		Line * it = m_firstVisible;
+		int    i  = 0;
+
+		while (it != m_current) {
+			i++;
+			it = it->prevDisplay();
+		}
+
+		scrollUpBy(i);
+	}
+	else {
+		bool   visible = false;
+		int    y       = 0;
+		Line * it      = m_firstVisible;
+
+		while (y < height() - m_proxy->fullLineH() && it != nullptr) {
+			visible = visible || it == m_current;
+			it      = it->nextDisplay();
+			y += m_proxy->fullLineH();
+		}
+
+		if (!visible) {
+			int i = 1;
+
+			while (it != m_current && it->next() != nullptr) {
+				i++;
+				it = it->nextDisplay();
+			}
+
+			scrollDownBy(i);
+		}
+	}
 }
 
 void Scroll::scrollX(qreal ratio) {
