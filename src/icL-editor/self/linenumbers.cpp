@@ -108,27 +108,54 @@ void LineNumbers::drawText(QPainter * painter) {
 	int    yDelta =
 	  proxy->divLineSBy2() +
 	  (proxy->charH() - static_cast<int>(it->getCache()->size().height())) / 2;
+	int xDelta = (proxy->fullLineH() - newLine.size().width()) / 2;
 
 	painter->setBrush(Qt::NoBrush);
+
+	QStaticText * additional = nullptr;
 
 	int type = -1;
 
 	while (it != nullptr && it->visible()) {
 
-		if (it == m_editor->current() && type != 1) {
-			painter->setPen(chars->current.lineNumber.text);
-			painter->setFont(chars->current.lineNumber.font);
-			type = 1;
+		if (it == m_editor->current()) {
+			if (type != 1) {
+				painter->setPen(chars->current.lineNumber.text);
+				painter->setFont(chars->current.lineNumber.font);
+				type = 1;
+			}
 		}
-		else if (it->hasBreakPoint() && type != 2) {
-			painter->setPen(chars->breakpoint.lineNumber.text);
-			painter->setFont(chars->breakpoint.lineNumber.font);
-			type = 2;
+		else if (it->hasBreakPoint()) {
+			if (type != 2) {
+				painter->setPen(chars->breakpoint.lineNumber.text);
+				painter->setFont(chars->breakpoint.lineNumber.font);
+				type = 2;
+			}
 		}
-		else if (type != 3) {
-			painter->setPen(chars->cline.lineNumber.text);
-			painter->setFont(chars->cline.lineNumber.font);
-			type = 3;
+		else if (it->isPhantom()) {
+			if (it->isSelected()) {
+				if (type != 3) {
+					painter->setPen(chars->phantomSelected.lineNumber.text);
+					painter->setFont(chars->phantomSelected.lineNumber.font);
+					type = 3;
+				}
+				additional = &phantomS;
+			}
+			else {
+				if (type != 4) {
+					painter->setPen(chars->phantom.lineNumber.text);
+					painter->setFont(chars->phantom.lineNumber.font);
+					type = 4;
+				}
+				additional = &phantom;
+			}
+		}
+		else {
+			if (type != 5) {
+				painter->setPen(chars->cline.lineNumber.text);
+				painter->setFont(chars->cline.lineNumber.font);
+				type = 5;
+			}
 		}
 
 		auto * stext = it->getCache();
@@ -137,6 +164,25 @@ void LineNumbers::drawText(QPainter * painter) {
 		  m_editor->lineNumberRight -
 			proxy->charW() * it->charsNumberInLineNumber(),
 		  it->lastY() + yDelta, *stext);
+
+		if (additional == nullptr) {
+			if (it->isNew()) {
+				additional = &newLine;
+			}
+			else if (it->wasChanged()) {
+				additional = &edited;
+			}
+			else if (it->isChanged()) {
+				additional = &edited;
+			}
+		}
+
+		if (additional != nullptr) {
+			painter->drawStaticText(
+			  m_editor->lineNumberRight + xDelta, it->lastY() + yDelta,
+			  *additional);
+			additional = nullptr;
+		}
 
 		it = it->nextDisplay();
 	}
