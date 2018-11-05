@@ -409,7 +409,7 @@ void Selection::setRtl(bool rtl) {
 	m_rtl = rtl;
 }
 
-void Selection::beginSelection(int line, int ch) {
+void Selection::beginSelection(Line * line, int ch) {
 	moveCursorToLine(line, m_begin);
 	m_begin->setPreffered(ch);
 	m_begin->matchPreffered();
@@ -417,7 +417,7 @@ void Selection::beginSelection(int line, int ch) {
 	m_end->syncWith(m_begin);
 }
 
-void Selection::selectTo(int line, int ch) {
+void Selection::selectTo(Line * line, int ch) {
 	// Nothing selected yet
 	Cursor * toMove;
 	if (*m_begin == *m_end) {
@@ -458,14 +458,8 @@ void Selection::selectTo(int line, int ch) {
 	}
 
 	// Move needed cursor
-	if (!moveCursorToLine(line, toMove)) {
-		if (line < 1) {
-			ch = 0;
-		}
-		else {
-			ch = toMove->fragment()->line()->length();
-		}
-	}
+	moveCursorToLine(line, toMove);
+
 	toMove->setPreffered(ch);
 	toMove->matchPreffered();
 }
@@ -523,46 +517,22 @@ void Selection::setRtlByStep(int step) {
 	}
 }
 
-bool Selection::moveCursorToLine(int line, Cursor * cursor) {
-	auto * lineIt        = cursor->fragment()->line();
-	int    currentLineNr = lineIt->lineNumber();
-
-	bool ret = true;
-
-	// Fix line values
-	int maxValue = dynamic_cast<Drawing *>(lineIt->parent())->linesCount();
-
-	if (line < 1) {
-		line = 1;
-		ret  = false;
-	}
-	else if (line > maxValue) {
-		line = maxValue;
-		ret  = false;
+bool Selection::moveCursorToLine(Line * line, Cursor * cursor) {
+	if (line == nullptr) {
+		return false;
 	}
 
-	if (currentLineNr > line) {
-		while (lineIt->lineNumber() != line) {
-			lineIt = lineIt->prev();
-		}
-	}
-	else {
-		while (lineIt->lineNumber() != line) {
-			lineIt = lineIt->next();
-		}
-	}
-
-	cursor->setFragment(lineIt->first());
+	cursor->setFragment(line->first());
 	cursor->setPosition(0);
 
-	return ret;
+	return true;
 }
 
-bool Selection::isAfter(Cursor * cursor, int line, int ch) {
+bool Selection::isAfter(Cursor * cursor, Line * line, int ch) {
 	int cursorLine = cursor->fragment()->line()->lineNumber();
 
-	return line > cursorLine ||
-		   (line == cursorLine && ch > cursor->getPosInLine());
+	return line->lineNumber() > cursorLine ||
+		   (line->lineNumber() == cursorLine && ch > cursor->getPosInLine());
 }
 
 }  // namespace icL::editor

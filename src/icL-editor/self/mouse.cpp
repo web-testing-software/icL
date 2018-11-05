@@ -106,18 +106,38 @@ void Mouse::hoverMoveEvent(QHoverEvent * event) {
 	//	qDebug() << "hover move";
 }
 
-std::pair<int, int> Mouse::getLineCh(QMouseEvent * event) {
-	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
-	int ch   = qRound(
+std::pair<Line *, int> Mouse::getLineCh(QMouseEvent * event) {
+	int y  = event->y();
+	int ch = qRound(
 			   static_cast<float>(event->x() - m_leftPadding) /
 			   static_cast<float>(m_proxy->charW())) +
 			 xScroll;
+
+	Line * it = m_firstVisible;
+
+	if (y > height()) {
+		y = height();
+	}
+
+	while (it->lastY() < y - m_proxy->fullLineH() && it->next() != nullptr) {
+		it = it->next();
+	}
+
+	if (y < 0) {
+		if (m_firstVisible->prev() != nullptr) {
+			it = m_firstVisible->prev();
+		}
+		ch = 0;
+	}
+	else if (y > it->lastY() + m_proxy->fullLineH()) {
+		ch = it->length();
+	}
 
 	if (ch < 0) {
 		ch = 0;
 	}
 
-	return {line, ch};
+	return {it, ch};
 }
 
 }  // namespace icL::editor

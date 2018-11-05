@@ -34,7 +34,7 @@ private:
 	 * @param event is the event to extract mouse position
 	 * @return the line number and character number
 	 */
-	std::pair<int, int> getLineCh(QMouseEvent * event);
+	std::pair<Line *, int> getLineCh(QMouseEvent * event);
 };
 
 }  // namespace icL::editor

@@ -8,6 +8,7 @@
 namespace icL::editor {
 
 class Cursor;
+class Line;
 
 /**
  * @brief The Selection class describes a selection of text
@@ -119,14 +120,14 @@ public:
 	 * @param line is the line number to position the cursors
 	 * @param ch is the character number to position the cursors
 	 */
-	void beginSelection(int line, int ch);
+	void beginSelection(Line * line, int ch);
 
 	/**
 	 * @brief selectTo selects text from fixed begin to new position
 	 * @param line is the line number for end cursor
 	 * @param ch is the character number to position the cursors
 	 */
-	void selectTo(int line, int ch);
+	void selectTo(Line * line, int ch);
 
 	/**
 	 * @brief finishSelection finish the selection process
@@ -179,7 +180,7 @@ private:
 	 * @param cursor is the cursor which need move
 	 * @return true if so line was found, otherwise false
 	 */
-	bool moveCursorToLine(int line, Cursor * cursor);
+	bool moveCursorToLine(Line * line, Cursor * cursor);
 
 	/**
 	 * @brief isAfter if the cursor is after the position described by line/ch
@@ -188,7 +189,7 @@ private:
 	 * @param ch the charanter number of position
 	 * @return true if is (line, ch) is after cursor, otherwise false
 	 */
-	bool isAfter(Cursor * cursor, int line, int ch);
+	bool isAfter(Cursor * cursor, Line * line, int ch);
 
 private:
 	/// @brief m_begin is the cursor which describes the begin of seletion
