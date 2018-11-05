@@ -181,7 +181,10 @@ void Drawing::updateBackgroundGeometry() {
 					   {lineNumberArea.right() + 1, 0},
 					   {m_leftPadding, m_proxy->fullLineH() / 2},
 					   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
-	                   {0, m_proxy->fullLineH()}})};
+					   {0, m_proxy->fullLineH()}})};
+
+	leftRect.setRight(lineNumberArea.right());
+	leftRect.setBottom(m_proxy->fullLineH() - 1);
 
 	lineRect.setLeft(0);
 	lineRect.setRight(static_cast<int>(width()));

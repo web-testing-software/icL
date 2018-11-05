@@ -79,6 +79,15 @@ void LineNumbers::drawBackground(QPainter * painter) {
 			painter->setBrush(chars->breakpoint.lineNumber.background);
 			painter->drawPolygon(m_editor->leftArrow.translated(0, yPos));
 		}
+		else if (it->isPhantom()) {
+			if (it->isSelected()) {
+				painter->setBrush(chars->phantomSelected.background);
+			}
+			else {
+				painter->setBrush(chars->phantom.background);
+			}
+			painter->drawRect(m_editor->leftRect.translated(0, yPos));
+		}
 
 		it->setVisible(true);
 		it->setLastY(yPos);
@@ -134,75 +143,75 @@ void LineNumbers::drawText(QPainter * painter) {
 }
 
 void LineNumbers::drawChanges(QPainter * painter) {
-	auto * proxy = m_editor->m_proxy;
-	auto * chars = m_editor->m_chars;
+	//	auto * proxy = m_editor->m_proxy;
+	//	auto * chars = m_editor->m_chars;
 
-	if (proxy->hasChangeChanges()) {
-		updateGeometry();
-	}
+	//	if (proxy->hasChangeChanges()) {
+	//		updateGeometry();
+	//	}
 
-	// draw unsaved lines
-	auto * it = m_editor->m_firstVisible;
+	//	// draw unsaved lines
+	//	auto * it = m_editor->m_firstVisible;
 
-	painter->setPen(Qt::NoPen);
-	painter->setBrush(chars->changes.changed);
-	while (it->visible()) {
-		if (it->isChanged()) {
-			if (it->isNew()) {
-				painter->drawRect(newLine.translated(0, it->lastY()));
-			}
-			else {
-				painter->drawRect(change.translated(0, it->lastY()));
-			}
-		}
-		it = it->next();
-	}
+	//	painter->setPen(Qt::NoPen);
+	//	painter->setBrush(chars->changes.changed);
+	//	while (it->visible()) {
+	//		if (it->isChanged()) {
+	//			if (it->isNew()) {
+	//				painter->drawRect(newLine.translated(0, it->lastY()));
+	//			}
+	//			else {
+	//				painter->drawRect(change.translated(0, it->lastY()));
+	//			}
+	//		}
+	//		it = it->next();
+	//	}
 
-	// draw saved lines
-	it = m_editor->m_firstVisible;
+	//	// draw saved lines
+	//	it = m_editor->m_firstVisible;
 
-	painter->setBrush(chars->changes.saved);
-	while (it->visible()) {
-		if (it->wasChanged()) {
-			if (it->isNew()) {
-				painter->drawRect(newLine.translated(0, it->lastY()));
-			}
-			else {
-				painter->drawRect(change.translated(0, it->lastY()));
-			}
-		}
-		it = it->next();
-	}
+	//	painter->setBrush(chars->changes.saved);
+	//	while (it->visible()) {
+	//		if (it->wasChanged()) {
+	//			if (it->isNew()) {
+	//				painter->drawRect(newLine.translated(0, it->lastY()));
+	//			}
+	//			else {
+	//				painter->drawRect(change.translated(0, it->lastY()));
+	//			}
+	//		}
+	//		it = it->next();
+	//	}
 
-	// draw lines with phantoms
-	it = m_editor->m_firstVisible;
+	//	// draw lines with phantoms
+	//	it = m_editor->m_firstVisible;
 
-	while (it->visible()) {
-		if (it->hasPhantoms()) {
-			painter->drawRect(phantom.translated(0, it->lastY()));
-		}
-		it = it->next();
-	}
+	//	while (it->visible()) {
+	//		if (it->hasPhantoms()) {
+	//			painter->drawRect(phantom.translated(0, it->lastY()));
+	//		}
+	//		it = it->next();
+	//	}
 }
 
 void LineNumbers::updateGeometry() {
 	auto * proxy = m_editor->m_proxy;
 
-	change.setTop(proxy->changePadding());
-	change.setHeight(proxy->fullLineH() - proxy->changePadding() * 2);
-	change.setRight(proxy->changeWidth() - 1);
+	//	change.setTop(proxy->changePadding());
+	//	change.setHeight(proxy->fullLineH() - proxy->changePadding() * 2);
+	//	change.setRight(proxy->changeWidth() - 1);
 
-	newLine.setTop(proxy->newLinePadding());
-	newLine.setHeight(proxy->fullLineH() - proxy->newLinePadding() * 2);
-	newLine.setRight(proxy->changeWidth() - 1);
+	//	newLine.setTop(proxy->newLinePadding());
+	//	newLine.setHeight(proxy->fullLineH() - proxy->newLinePadding() * 2);
+	//	newLine.setRight(proxy->changeWidth() - 1);
 
-	phantom.setTop(proxy->fullLineH() - proxy->phanthomHeight() / 2);
-	phantom.setHeight(proxy->phanthomHeight());
-	phantom.setWidth(proxy->changeWidth());
+	//	phantom.setTop(proxy->fullLineH() - proxy->phanthomHeight() / 2);
+	//	phantom.setHeight(proxy->phanthomHeight());
+	//	phantom.setWidth(proxy->changeWidth());
 
-	phantomLine.setTop(0);
-	phantomLine.setRight(proxy->changeWidth() - 1);
-	phantomLine.setBottom(proxy->fullLineH());
+	//	phantomLine.setTop(0);
+	//	phantomLine.setRight(proxy->changeWidth() - 1);
+	//	phantomLine.setBottom(proxy->fullLineH());
 }
 
 

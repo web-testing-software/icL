@@ -120,6 +120,18 @@ public:
 	bool isNew();
 
 	/**
+	 * @brief isPhantom defines if this line is a phantom line
+	 * @return true if this is a phantom line, otherwise false
+	 */
+	bool isPhantom();
+
+	/**
+	 * @brief isSelected defines if this line is phantom selected line
+	 * @return true if this line is phantom and selected, otherwise false
+	 */
+	bool isSelected();
+
+	/**
 	 * @brief hasPhantoms defines if this line contains phantoms lines
 	 * @return true if this line has some phantoms, otherwise false
 	 */
@@ -267,6 +279,9 @@ private:
 
 	/// @brief This line is a phontom line
 	bool m_isPhantom = false;
+
+	/// @brief this line is a phantom selected line
+	bool m_isSelected = false;
 
 	/// @brief The first phontom line after this line
 	Line * phantom = nullptr;

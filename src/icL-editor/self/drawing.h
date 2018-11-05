@@ -254,6 +254,9 @@ protected:
 	/// @brief the arrow for hightlight current line
 	QPolygon leftArrow;
 
+	/// @brief the rect to highlight phantom lines
+	QRect leftRect;
+
 	/// @brief used to highlight current line
 	QRect lineRect;
 
