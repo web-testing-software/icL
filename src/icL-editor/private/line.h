@@ -48,6 +48,12 @@ public:
 	Line * prev() const;
 
 	/**
+	 * @brief prevDisplay gets previous line to draw on display
+	 * @return the previous line to display
+	 */
+	Line * prevDisplay() const;
+
+	/**
 	 * @brief length gets the length of the line
 	 * @return the lenght of the line
 	 */

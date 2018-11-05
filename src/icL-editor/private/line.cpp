@@ -35,6 +35,14 @@ Line * Line::prev() const {
 	return m_prev;
 }
 
+Line * Line::prevDisplay() const {
+	if (m_prev != nullptr && m_prev->hasPhantoms() && m_prev->phantom != this) {
+		return m_prev->getLastPhantom();
+	}
+
+	return m_prev;
+}
+
 uint8_t Line::length() const {
 	return m_length;
 }

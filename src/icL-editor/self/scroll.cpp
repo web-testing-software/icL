@@ -12,7 +12,7 @@ void Scroll::scrollUpBy(int by) {
 	auto * it = m_firstVisible;
 
 	while (it->prev() != nullptr && i < by) {
-		it = it->prev();
+		it = it->prevDisplay();
 		it->setVisible(true);
 		i++;
 	}
