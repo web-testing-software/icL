@@ -89,7 +89,8 @@ bool Line::wasChanged() {
 }
 
 void Line::save(QTextStream * stream) {
-	(*stream) << getText();
+	if (stream->device() != nullptr)
+		(*stream) << getText();
 	m_wasChanged = m_isChanged;
 	m_isChanged  = false;
 }

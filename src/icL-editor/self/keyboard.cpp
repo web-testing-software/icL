@@ -42,6 +42,17 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	else if (event->key() == Qt::Key_A) {
 		qDebug() << m_main->insert(event->text());
 	}
+	else if (event->key() == Qt::Key_S) {
+		auto *      it = m_first;
+		QTextStream st;
+
+		while (it != nullptr) {
+			it->save(&st);
+			it = it->next();
+		}
+
+		requestRepaint();
+	}
 	else if (event->key() == Qt::Key_Enter) {
 		qDebug() << m_main->insert("\n");
 	}
