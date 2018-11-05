@@ -85,22 +85,14 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 }
 
 void Mouse::mousePressEvent(QMouseEvent * event) {
-	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
-	int ch   = qRound(
-			   static_cast<float>(event->x() - m_leftPadding) /
-			   static_cast<float>(m_proxy->charW())) +
-			 xScroll;
+	auto [line, ch] = getLineCh(event);
 
 	m_main->beginSelection(line, ch);
 	updateCurrentLine();
 }
 
 void Mouse::mouseMoveEvent(QMouseEvent * event) {
-	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
-	int ch   = qRound(
-			   static_cast<float>(event->x() - m_leftPadding) /
-			   static_cast<float>(m_proxy->charW())) +
-			 xScroll;
+	auto [line, ch] = getLineCh(event);
 
 	m_main->selectTo(line, ch);
 	updateCurrentLine();
@@ -112,6 +104,20 @@ void Mouse::mouseReleaseEvent(QMouseEvent * event) {
 
 void Mouse::hoverMoveEvent(QHoverEvent * event) {
 	//	qDebug() << "hover move";
+}
+
+std::pair<int, int> Mouse::getLineCh(QMouseEvent * event) {
+	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
+	int ch   = qRound(
+			   static_cast<float>(event->x() - m_leftPadding) /
+			   static_cast<float>(m_proxy->charW())) +
+			 xScroll;
+
+	if (ch < 0) {
+		ch = 0;
+	}
+
+	return {line, ch};
 }
 
 }  // namespace icL::editor
