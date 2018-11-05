@@ -106,6 +106,14 @@ bool Line::isNew() {
 	return m_isNew;
 }
 
+bool Line::isPhantom() {
+	return m_isPhantom;
+}
+
+bool Line::isSelected() {
+	return m_isSelected;
+}
+
 bool Line::hasPhantoms() {
 	return phantom != nullptr;
 }
@@ -281,8 +289,9 @@ void Line::makePhantom() {
 		setVisible(false);
 	}
 
-	phantom     = nullptr;
-	m_isPhantom = true;
+	phantom         = nullptr;
+	m_isPhantom     = true;
+	m_hasBreakPoint = false;
 }
 
 void Line::restorePhantom() {

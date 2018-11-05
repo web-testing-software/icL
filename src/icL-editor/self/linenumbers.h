@@ -2,6 +2,7 @@
 #define LINENUMBERS_H
 
 #include <QQuickPaintedItem>
+#include <QStaticText>
 
 
 
@@ -61,17 +62,17 @@ private:
 	// Properties
 	EditorInternal * m_editor;
 
-	/// @brief the geometry of change indicator
-	QRect change;
+	/// @brief symbol used to mark edited lines
+	QStaticText edited{"*"};
 
-	/// @brief the geometry of new line indicator
-	QRect newLine;
+	/// @brief symbol used to mark new lines
+	QStaticText newLine{"+"};
 
-	/// @brief the geomtry of phantom indicator
-	QRect phantom;
+	/// @brief symbol used to mark phantom lines
+	QStaticText phantom{"-"};
 
-	/// @brief the geomtry of phantom line indicator
-	QRect phantomLine;
+	/// @brief symbol used to mark phantom selected lines
+	QStaticText phantomS{"#"};
 };
 
 }  // namespace icL::editor
