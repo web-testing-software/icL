@@ -120,7 +120,7 @@ public:
 	 * @param line is the line number to position the cursors
 	 * @param ch is the character number to position the cursors
 	 */
-	void beginSelection(Line * line, int ch);
+	bool beginSelection(Line * line, int ch);
 
 	/**
 	 * @brief selectTo selects text from fixed begin to new position

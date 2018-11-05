@@ -35,6 +35,9 @@ private:
 	 * @return the line number and character number
 	 */
 	std::pair<Line *, int> getLineCh(QMouseEvent * event);
+
+	/// @brief is the editor is now in selection mode
+	bool selectionMode = false;
 };
 
 }  // namespace icL::editor

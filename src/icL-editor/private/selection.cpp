@@ -409,15 +409,25 @@ void Selection::setRtl(bool rtl) {
 	m_rtl = rtl;
 }
 
-void Selection::beginSelection(Line * line, int ch) {
+bool Selection::beginSelection(Line * line, int ch) {
+	if (line == nullptr) {
+		return false;
+	}
+
 	moveCursorToLine(line, m_begin);
 	m_begin->setPreffered(ch);
 	m_begin->matchPreffered();
 
 	m_end->syncWith(m_begin);
+
+	return true;
 }
 
 void Selection::selectTo(Line * line, int ch) {
+	if (line == nullptr) {
+		return;
+	}
+
 	// Nothing selected yet
 	Cursor * toMove;
 	if (*m_begin == *m_end) {

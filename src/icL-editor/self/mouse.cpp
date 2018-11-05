@@ -87,11 +87,15 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 void Mouse::mousePressEvent(QMouseEvent * event) {
 	auto [line, ch] = getLineCh(event);
 
-	m_main->beginSelection(line, ch);
+	selectionMode = m_main->beginSelection(line, ch);
 	updateCurrentLine();
 }
 
 void Mouse::mouseMoveEvent(QMouseEvent * event) {
+	if (!selectionMode) {
+		return;
+	}
+
 	auto [line, ch] = getLineCh(event);
 
 	m_main->selectTo(line, ch);
@@ -123,14 +127,20 @@ std::pair<Line *, int> Mouse::getLineCh(QMouseEvent * event) {
 		it = it->next();
 	}
 
-	if (y < 0) {
-		if (m_firstVisible->prev() != nullptr) {
-			it = m_firstVisible->prev();
-		}
-		ch = 0;
+	if (it->lastY() > y && y > 0) {
+		// Selected line is a phantom line
+		it = nullptr;
 	}
-	else if (y > it->lastY() + m_proxy->fullLineH()) {
-		ch = it->length();
+	else {
+		if (y < 0) {
+			if (m_firstVisible->prev() != nullptr) {
+				it = m_firstVisible->prev();
+			}
+			ch = 0;
+		}
+		else if (y > it->lastY() + m_proxy->fullLineH()) {
+			ch = it->length();
+		}
 	}
 
 	if (ch < 0) {
