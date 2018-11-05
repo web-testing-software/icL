@@ -40,11 +40,6 @@ Window {
 		editor.style{
 			fontS: rd(rq * 16.5)
 			lineS: rd(rq * 2)
-
-			changePadding: rd(rq * 6)
-			newLinePadding: rd(rq * 2)
-			changeWidth: rd(rq * 2)
-			phanthomHeight: rd(rq * 2)
 		}
 
 		Component.onCompleted: {
