@@ -318,7 +318,9 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 			  xBegin + left * xStep, beginLine->lastY(),
 			  (right - left) * xStep + toAdd, yStep);
 
-			if (beginLine->next()->length() < left) {
+			if (
+			  beginLine->next()->length() < left &&
+			  !beginLine->nextDisplay()->isPhantom()) {
 				painter->setBrush(Qt::NoBrush);
 				painter->setPen(m_chars->selection.border);
 
