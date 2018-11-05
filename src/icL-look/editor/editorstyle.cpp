@@ -45,22 +45,6 @@ const QFont & EditorStyle::font() {
 	return m_font;
 }
 
-int EditorStyle::changePadding() const {
-	return m_changePadding;
-}
-
-int EditorStyle::newLinePadding() const {
-	return m_newLinePadding;
-}
-
-int EditorStyle::changeWidth() const {
-	return m_changeWidth;
-}
-
-int EditorStyle::phanthomHeight() const {
-	return m_phanthomHeight;
-}
-
 void EditorStyle::setCharW(int charW) {
 	if (m_charW == charW)
 		return;
@@ -119,42 +103,6 @@ void EditorStyle::setSaveTabs(bool saveTabs) {
 
 	m_saveTabs = saveTabs;
 	emit saveTabsChanged(m_saveTabs);
-}
-
-void EditorStyle::setChangePadding(int changePadding) {
-	if (m_changePadding == changePadding)
-		return;
-
-	m_changePadding  = changePadding;
-	hasChangeChanges = true;
-	emit changePaddingChanged(m_changePadding);
-}
-
-void EditorStyle::setNewLinePadding(int newLinePadding) {
-	if (m_newLinePadding == newLinePadding)
-		return;
-
-	m_newLinePadding = newLinePadding;
-	hasChangeChanges = true;
-	emit newLinePaddingChanged(m_newLinePadding);
-}
-
-void EditorStyle::setChangeWidth(int changeWidth) {
-	if (m_changeWidth == changeWidth)
-		return;
-
-	m_changeWidth    = changeWidth;
-	hasChangeChanges = true;
-	emit changeWidthChanged(m_changeWidth);
-}
-
-void EditorStyle::setPhanthomHeight(int phanthomHeight) {
-	if (m_phanthomHeight == phanthomHeight)
-		return;
-
-	m_phanthomHeight = phanthomHeight;
-	hasChangeChanges = true;
-	emit phanthomHeightChanged(m_phanthomHeight);
 }
 
 void EditorStyle::fixFont() {
