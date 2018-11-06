@@ -357,7 +357,7 @@ void Drawing::drawContent(QPainter * painter) {
 
 		while (itFrag != nullptr && xPos + itFrag->length() * xStep < 0) {
 			xPos += itFrag->length() * xStep;
-			itFrag = itFrag->nextFragment();
+			itFrag = itFrag->next();
 		}
 
 		while (itFrag != nullptr && xPos < width()) {
