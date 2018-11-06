@@ -188,6 +188,9 @@ QString Selection::drop() {
 	auto * endFrag   = m_end->fragment();
 	auto * editor    = beginFrag->line()->parent();
 
+	bool endLineIsSelectedCompletly =
+	  m_end->position() == endFrag->length() && endFrag->next() == nullptr;
+
 	if (beginFrag != endFrag) {
 
 		// make begin line phantom if is removed completly
@@ -221,7 +224,7 @@ QString Selection::drop() {
 			beginFrag->line()->makeChanged();
 		}
 
-		if (m_end->position() != 0) {
+		if (m_end->position() != 0 && !endLineIsSelectedCompletly) {
 			endFrag->drop(m_end, 0, m_end->position());
 			endFrag->line()->makeChanged();
 		}
@@ -256,9 +259,7 @@ QString Selection::drop() {
 		auto * endLine = endFrag->line();
 
 		// If we are deleting all end line
-		if (
-		  m_end->position() == endFrag->length() &&
-		  endFrag->next() == nullptr) {
+		if (endLineIsSelectedCompletly) {
 			endLine->makePhantom();
 		}
 
