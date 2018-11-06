@@ -41,9 +41,14 @@ protected:
 	void scrollDownBy(int by) override;
 
 	/**
-	 * @brief autoScrollToCurrent scroll to current line
+	 * @brief autoScrollToCurrent scrolls to current line
 	 */
 	void autoScrollToCurrent() override;
+
+	/**
+	 * @brief fixXScrollPosition fixes the x scroll postion
+	 */
+	void fixXScrollPosition();
 };
 
 }  // namespace icL::editor

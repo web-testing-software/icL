@@ -1,6 +1,8 @@
 #include "scroll.h"
 
+#include "../private/cursor.h"
 #include "../private/line.h"
+#include "../private/selection.h"
 #include "../private/styleproxy.h"
 
 namespace icL::editor {
@@ -67,6 +69,28 @@ void Scroll::autoScrollToCurrent() {
 
 			scrollDownBy(i);
 		}
+	}
+
+	fixXScrollPosition();
+}
+
+void Scroll::fixXScrollPosition() {
+	Cursor * cursor;
+
+	if (m_main->rtl()) {
+		cursor = m_main->begin();
+	}
+	else {
+		cursor = m_main->end();
+	}
+
+	int pos = cursor->getPosInLine();
+
+	if (pos < xScroll) {
+		xScroll = cursor->preffered();
+	}
+	else if (pos > xScroll + charsInLine()) {
+		xScroll = cursor->preffered() - charsInLine();
 	}
 }
 
