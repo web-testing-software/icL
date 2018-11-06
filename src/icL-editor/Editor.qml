@@ -47,7 +47,7 @@ Item {
 		anchors.fill: parent
 
 		charsInLine: (width - ln.width - yScroll.width) / style.charW
-		visbileLines: (height) / (style.charH + style.lineS)
+		visbileLines: height / (style.charH + style.lineS)
 
 		onActiveFocusChanged: {
 			if (activeFocus) {
@@ -141,7 +141,12 @@ Item {
 
 				MouseArea {
 					id: yBarArea
-					anchors.fill: parent
+
+					anchors {
+						fill: parent
+						leftMargin: -rd(rq * 3)
+						rightMargin: -rd(rq * 3)
+					}
 
 					property real beginAlpha: 0
 					property int beginY: 0
@@ -246,7 +251,12 @@ Item {
 
 				MouseArea {
 					id: xBarArea
-					anchors.fill: parent
+
+					anchors {
+						fill: parent
+						topMargin: -rd(rq * 3)
+						bottomMargin: -rd(rq * 3)
+					}
 
 					property real beginAlpha: 0
 					property int beginX: 0
