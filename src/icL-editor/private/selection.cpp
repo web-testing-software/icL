@@ -232,23 +232,24 @@ QString Selection::drop() {
 		// beginFrag and end fragments can be deleted on content drop
 		beginFrag = m_begin->fragment();
 		endFrag   = m_end->fragment();
+	}
+	else {
+		beginFrag->drop(m_begin, m_begin->position(), m_end->position());
+	}
 
+	auto * beginLine = beginFrag->line();
+
+	if (beginLine != endFrag->line()) {
+
+		// Drop content from begin frag to end of line
 		while (beginFrag->next() != nullptr) {
 			auto * tmp = beginFrag->next()->next();
 
 			delete beginFrag->next();
 			beginFrag->setNext(tmp);
 		}
-	}
-	else {
-		beginFrag->drop(m_begin, m_begin->position(), m_end->position());
-	}
 
-	// Drop lines beetwen begin line and end line
-
-	auto * beginLine = beginFrag->line();
-
-	if (beginLine != endFrag->line()) {
+		// Make phantoms lines beetwen begin line and end line
 		while (beginLine->next() != endFrag->line()) {
 			auto * next = beginLine->next();
 
