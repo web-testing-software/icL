@@ -36,7 +36,7 @@ Line * Line::prev() const {
 }
 
 Line * Line::prevDisplay() const {
-	if (m_prev != nullptr && m_prev->hasPhantoms() && m_prev->phantom != this) {
+	if (m_prev != nullptr && m_prev->m_showPhantom && m_prev->phantom != this) {
 		return m_prev->getLastPhantom();
 	}
 
@@ -52,6 +52,10 @@ int32_t Line::beginPos() const {
 }
 
 int16_t Line::lineNumber() const {
+	if (m_isPhantom) {
+		return m_prev->lineNumber();
+	}
+
 	return m_lineNumber;
 }
 

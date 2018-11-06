@@ -35,11 +35,11 @@ void Scroll::scrollDownBy(int by) {
 }
 
 void Scroll::autoScrollToCurrent() {
-	if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
+	if (m_current->lineNumber() <= m_firstVisible->lineNumber()) {
 		Line * it = m_firstVisible;
 		int    i  = 0;
 
-		while (it != m_current) {
+		while (it != m_current && it->prevDisplay() != nullptr) {
 			i++;
 			it = it->prevDisplay();
 		}

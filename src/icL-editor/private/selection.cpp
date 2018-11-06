@@ -202,9 +202,8 @@ QString Selection::drop() {
 			auto * newLine = new Line(beginLine->parent(), beginLine->isNew());
 			auto * newFrag = new Fragment(newLine);
 
-			beginLine->makePhantom();
-
 			newLine->setFirst(newFrag);
+			newLine->setLineNumber(beginLine->lineNumber());
 
 			if (prevLine != nullptr) {
 				prevLine->setNext(newLine);
@@ -214,6 +213,9 @@ QString Selection::drop() {
 				nextLine->setPrev(newLine);
 				newLine->setNext(nextLine);
 			}
+
+			beginLine->setPrev(newLine);
+			beginLine->makePhantom();
 
 			m_begin->setFragment(newFrag);
 			m_begin->setPosition(0);
@@ -250,11 +252,12 @@ QString Selection::drop() {
 		}
 
 		// Make phantoms lines beetwen begin line and end line
-		while (beginLine->next() != endFrag->line()) {
-			auto * next = beginLine->next();
+		beginLine = beginLine->next();
+		while (beginLine != endFrag->line()) {
+			auto * tmp = beginLine->next();
 
 			beginLine->makePhantom();
-			beginLine = next;
+			beginLine = tmp;
 		}
 
 		auto * endLine = endFrag->line();
