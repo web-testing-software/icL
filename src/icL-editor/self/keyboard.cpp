@@ -28,10 +28,26 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 			m_main->move(1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
 	else if (event->key() == Qt::Key_Up) {
-		m_main->moveUpDown(-1, event->modifiers().testFlag(Qt::ShiftModifier));
+		const auto & mods = event->modifiers();
+
+		if (
+		  mods.testFlag(Qt::ShiftModifier) && mods.testFlag(Qt::AltModifier)) {
+			addCursorOnPrevLine();
+		}
+		else
+			m_main->moveUpDown(
+			  -1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
 	else if (event->key() == Qt::Key_Down) {
-		m_main->moveUpDown(1, event->modifiers().testFlag(Qt::ShiftModifier));
+		const auto & mods = event->modifiers();
+
+		if (
+		  mods.testFlag(Qt::ShiftModifier) && mods.testFlag(Qt::AltModifier)) {
+			addCursorOnNextLine();
+		}
+		else
+			m_main->moveUpDown(
+			  1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
 	else if (event->key() == Qt::Key_Backspace) {
 		qDebug() << m_main->backspace();

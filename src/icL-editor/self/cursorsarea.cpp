@@ -93,16 +93,8 @@ QSGNode * CursorsArea::updatePaintNode(
 
 	QSGGeometry::Point2D * vertices = mainGeometry->vertexDataAsPoint2D();
 
-	Cursor * cursor;
-
-	if (editor->m_main->rtl()) {
-		cursor = editor->m_main->begin();
-	}
-	else {
-		cursor = editor->m_main->end();
-	}
-
-	auto * line = cursor->fragment()->line();
+	Cursor * cursor = editor->m_main->main();
+	auto *   line   = cursor->fragment()->line();
 
 	int yPos   = line->lastY();
 	int halfW  = m_cursorW / 2;

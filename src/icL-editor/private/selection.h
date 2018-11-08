@@ -33,6 +33,12 @@ public:
 	Cursor * end() const;
 
 	/**
+	 * @brief main returns the main cursor of selection
+	 * @return m_begin if rtl == true, otherwise m_end
+	 */
+	Cursor * main() const;
+
+	/**
 	 * @brief next is prev linked selection
 	 * @return the prev linked selection
 	 */
@@ -101,6 +107,29 @@ public:
 	 * @return the inserted text
 	 */
 	QString insert(const QString & text);
+
+	/**
+	 * @brief linkAfter links a new selection after this
+	 * @param selection is the selection to link
+	 */
+	void linkAfter(Selection * selection);
+
+	/**
+	 * @brief linkBefore links a new selection before this
+	 * @param selection is the selection to link
+	 */
+	void linkBefore(Selection * selection);
+
+	/**
+	 * @brief remove removes this selection from linked list
+	 */
+	void remove();
+
+	/**
+	 * @brief syncWith syncs this selection with selection
+	 * @param selection is the selection to sync with
+	 */
+	void syncWith(Selection * selection);
 
 public:
 	/**

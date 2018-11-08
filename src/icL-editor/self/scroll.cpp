@@ -75,16 +75,8 @@ void Scroll::autoScrollToCurrent() {
 }
 
 void Scroll::fixXScrollPosition() {
-	Cursor * cursor;
-
-	if (m_main->rtl()) {
-		cursor = m_main->begin();
-	}
-	else {
-		cursor = m_main->end();
-	}
-
-	int pos = cursor->getPosInLine();
+	Cursor * cursor = m_main->main();
+	int      pos    = cursor->getPosInLine();
 
 	if (pos < xScroll) {
 		xScroll = cursor->preffered();

@@ -25,6 +25,14 @@ Cursor * Selection::end() const {
 	return m_end;
 }
 
+Cursor * Selection::main() const {
+	if (m_rtl) {
+		return m_begin;
+	}
+
+	return m_end;
+}
+
 Selection * Selection::prev() const {
 	return m_prev;
 }
@@ -398,6 +406,43 @@ QString Selection::insert(const QString & text) {
 	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
+}
+
+void Selection::linkAfter(Selection * selection) {
+	if (m_next != nullptr) {
+		m_next->m_prev    = selection;
+		selection->m_next = m_next;
+	}
+
+	selection->m_prev = this;
+	this->m_next      = selection;
+}
+
+void Selection::linkBefore(Selection * selection) {
+	if (m_prev != nullptr) {
+		m_prev->m_next    = selection;
+		selection->m_prev = m_prev;
+	}
+
+	selection->m_next = this;
+	this->m_prev      = selection;
+}
+
+void Selection::remove() {
+	if (m_next != nullptr) {
+		m_next->m_prev = m_prev;
+	}
+
+	if (m_prev != nullptr) {
+		m_prev->m_next = m_next;
+	}
+
+	delete this;
+}
+
+void Selection::syncWith(Selection * selection) {
+	m_begin->syncWith(selection->m_begin);
+	m_end->syncWith(selection->m_end);
 }
 
 void Selection::setNext(Selection * next) {
