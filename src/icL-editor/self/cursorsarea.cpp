@@ -70,74 +70,95 @@ QSGNode * CursorsArea::updatePaintNode(
 		}
 	}
 
-	if (node->childCount() == 0) {
-		auto * geometryNode = new QSGGeometryNode;
-		auto * geometry =
-		  new QSGGeometry{QSGGeometry::defaultAttributes_Point2D(), 2};
-
-		geometry->setLineWidth(m_cursorW);
-		geometry->setDrawingMode(QSGGeometry::DrawLines);
-		geometryNode->setGeometry(geometry);
-
-		node->appendChildNode(geometryNode);
-	}
-
 	if (editor == nullptr) {
 		return node;
 	}
 
+	if (node->childCount() != editor->selectionsCount()) {
+
+		// remove the old node
+		if (node->parent() != nullptr) {
+			node->parent()->removeChildNode(node);
+		}
+
+		node = new QSGOpacityNode;
+
+
+		for (int i = 0; i < editor->selectionsCount(); i++) {
+			auto * geometryNode = new QSGGeometryNode;
+			auto * geometry =
+			  new QSGGeometry{QSGGeometry::defaultAttributes_Point2D(), 2};
+
+			geometry->setLineWidth(m_cursorW);
+			geometry->setDrawingMode(QSGGeometry::DrawLines);
+			geometryNode->setGeometry(geometry);
+			geometryNode->setFlag(QSGNode::OwnsGeometry);
+			node->prependChildNode(geometryNode);
+		}
+
+		qDebug() << "node updated";
+	}
+
 	//	qDebug() << node << node->firstChild();
 
-	auto * mainNode = dynamic_cast<QSGGeometryNode *>(node->childAtIndex(0));
-	auto * mainGeometry = mainNode->geometry();
+	auto * selection = editor->getFirstSelection();
+	auto * cNode     = dynamic_cast<QSGGeometryNode *>(node->firstChild());
 
-	QSGGeometry::Point2D * vertices = mainGeometry->vertexDataAsPoint2D();
+	while (cNode != nullptr) {
 
-	Cursor * cursor = editor->m_main->main();
-	auto *   line   = cursor->fragment()->line();
+		auto * cGeometry = cNode->geometry();
 
-	int yPos   = line->lastY();
-	int halfW  = m_cursorW / 2;
-	int xBegin = -editor->xScroll * editor->m_proxy->charW() + halfW;
-	int xPos   = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
-	int hLen   = m_cursorW * 2;
+		QSGGeometry::Point2D * vertices = cGeometry->vertexDataAsPoint2D();
 
-	if (xPos < 0) {
-		xPos = halfW - editor->proxy()->charH() / 2;
-	}
-	else if (xPos >= width()) {
-		xPos = width() - halfW;
-	}
-	else if (line->visible()) {
-		hLen = editor->m_proxy->fullLineH();
-	}
+		Cursor * cursor = selection->main();
+		auto *   line   = cursor->fragment()->line();
 
-	if (!line->visible()) {
-		if (line->lineNumber() < editor->m_firstVisible->lineNumber()) {
-			yPos = 0;
+		int yPos   = line->lastY();
+		int halfW  = m_cursorW / 2;
+		int xBegin = -editor->xScroll * editor->m_proxy->charW() + halfW;
+		int xPos   = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
+		int hLen   = m_cursorW * 2;
+
+		if (xPos < 0) {
+			xPos = halfW - editor->proxy()->charH() / 2;
+		}
+		else if (xPos >= width()) {
+			xPos = width() - halfW;
+		}
+		else if (line->visible()) {
+			hLen = editor->m_proxy->fullLineH();
+		}
+
+		if (!line->visible()) {
+			if (line->lineNumber() <= editor->m_firstVisible->lineNumber()) {
+				yPos = 0;
+			}
+			else {
+				yPos = height() - hLen;
+			}
+		}
+
+		vertices[0].set(xPos, yPos);
+		vertices[1].set(xPos, yPos + hLen);
+
+		cNode->setFlag(QSGNode::OwnsGeometry);
+		cNode->markDirty(QSGNode::DirtyGeometry);
+
+		QSGFlatColorMaterial * material;
+		if (cNode->material() == nullptr) {
+			material = new QSGFlatColorMaterial;
+			cNode->setFlag(QSGNode::OwnsMaterial);
 		}
 		else {
-			yPos = height() - hLen;
+			material = dynamic_cast<QSGFlatColorMaterial *>(cNode->material());
 		}
+
+		material->setColor(cursor->fragment()->format().text.color());
+		cNode->setMaterial(material);
+
+		selection = selection->next();
+		cNode     = dynamic_cast<QSGGeometryNode *>(cNode->nextSibling());
 	}
-
-	vertices[0].set(xPos, yPos);
-	vertices[1].set(xPos, yPos + hLen);
-
-	mainNode->setFlag(QSGNode::OwnsGeometry);
-	mainNode->markDirty(QSGNode::DirtyGeometry);
-
-	QSGFlatColorMaterial * material;
-	if (mainNode->material() == nullptr) {
-		material = new QSGFlatColorMaterial;
-		mainNode->setFlag(QSGNode::OwnsMaterial);
-	}
-	else {
-		material = dynamic_cast<QSGFlatColorMaterial *>(mainNode->material());
-	}
-
-	material->setColor(cursor->fragment()->format().text.color());
-	mainNode->setMaterial(material);
 
 	node->setOpacity(alpha.currentAlpha);
 

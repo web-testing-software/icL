@@ -17,6 +17,24 @@ class History : public Scroll
 public:
 	explicit History(QQuickItem * parent = nullptr);
 
+	/**
+	 * @brief getFirstSelection gets first selection from linked list
+	 * @return the first selection from linked list
+	 */
+	Selection * getFirstSelection();
+
+	/**
+	 * @brief getLastSelection gets last selection from linked list
+	 * @return the last selection from linked list
+	 */
+	Selection * getLastSelection();
+
+	/**
+	 * @brief selectionsCount gets the number of selections
+	 * @return the number of selections
+	 */
+	int selectionsCount();
+
 protected:
 	/**
 	 * @brief addCursorOnPrevLine adds a new cursor on previous line
@@ -40,7 +58,7 @@ protected:
 	/**
 	 * @brief numberOfCursors is the number of cursors in the text editor
 	 */
-	int numberOfCursors = 0;
+	int numberOfCursors = 1;
 };
 
 }  // namespace icL::editor

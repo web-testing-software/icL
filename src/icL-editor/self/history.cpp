@@ -10,6 +10,30 @@ namespace icL::editor {
 History::History(QQuickItem * parent)
 	: Scroll(parent) {}
 
+Selection * History::getFirstSelection() {
+	auto * it = m_main;
+
+	while (it->prev() != nullptr) {
+		it = it->prev();
+	}
+
+	return it;
+}
+
+Selection * History::getLastSelection() {
+	auto * it = m_main;
+
+	while (it->next() != nullptr) {
+		it = it->next();
+	}
+
+	return it;
+}
+
+int History::selectionsCount() {
+	return numberOfCursors;
+}
+
 void History::addCursorOnPrevLine() {
 	if (*m_main->begin() != *m_main->end() || m_current->prev() == nullptr) {
 		return;
@@ -23,9 +47,12 @@ void History::addCursorOnPrevLine() {
 		auto * nSelection = new Selection();
 
 		nSelection->syncWith(m_main);
+		m_main->linkAfter(nSelection);
+		numberOfCursors++;
 	}
 	else {
 		m_main->prev()->remove();
+		numberOfCursors--;
 	}
 
 	m_main->moveUpDown(-1);
@@ -44,9 +71,12 @@ void History::addCursorOnNextLine() {
 		auto * nSelection = new Selection();
 
 		nSelection->syncWith(m_main);
+		m_main->linkBefore(nSelection);
+		numberOfCursors++;
 	}
 	else {
 		m_main->next()->remove();
+		numberOfCursors--;
 	}
 
 	m_main->moveUpDown(1);
