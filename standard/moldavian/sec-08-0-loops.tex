@@ -21,7 +21,7 @@ Poate să apară necesitatea de a folosi unul și același grup de comenzi de ma
 \end{icItems}
 
 
-\subsubsection{\lstinline`for` - ciclu universal}
+\subsubsection{\lstinline|for| - ciclu universal}
 
 {\bf Ciclul universal} permite a controla fiecare delatiu al executării. El conține:
 
@@ -51,7 +51,7 @@ for (@i = 0, i < 5, @i = @i + 1) {
 };
 \end{lstlisting}
 
-\subsubsection{\lstinline`while` - repetare condiționată a codului}
+\subsubsection{\lstinline|while| - repetare condiționată a codului}
 
 {\bf Repetarea condiționată a codului} va executa codul pînă cînd condiția nu va deveni falsă. Condiția se verifică înainte de a executa ciclul, dacă este inițial falsă, ciclul nu va fi executat niciodată.
 
@@ -72,7 +72,7 @@ while (@number <= 5) {
 };
 \end{lstlisting}
 
-\subsubsection{\lstinline`do-while` - ciclu cu condiție posterioară}
+\subsubsection{\lstinline|do-while| - ciclu cu condiție posterioară}
 
 {\bf Ciclu cu condiție posterioară} nu tare se doasebește de \code{while}, dar el garantează că grupul de comenzi va fi executat cel puțin o dată. De asemenea condiția se declară după grupul de comenzi, arătînd la ceea că ea va fi verificată după prima iterație. Sintaxă -
 \begin{lstlisting}[numbers=none]
@@ -91,7 +91,7 @@ do {
 } while (@number < 5);
 \end{lstlisting}
 
-\subsubsection{\lstinline`for` - răsfoirea colecție}
+\subsubsection{\lstinline|for| - răsfoirea colecție}
 
 {Colecția} este un obiect, care conține mai multe valori. Cel mai simplu exemplu de colecție este lista, ea conține mai multe șiruri de caractere. De exemplu, trebuie de executat o anumită operație cu fiecare șir de caractere din listă. Se poate de folosit ciclul universal (foaia \ref{colluniloop}) sau de {\bf răsfoit colecția} (foaia \ref{collsimple}). Sub numele de colecție se unesc următoarele tipuri de date \code{list}, \code{set} și \code{element}.
 \begin{lstlisting}[caption=Răsfoirea colecție prin ciclu universal, label=colluniloop]
@@ -110,7 +110,7 @@ for (@list) {
 }
 \end{lstlisting}
 
-\subsubsection{\lstinline`filter` - răsfoirea selectivă a colecție}
+\subsubsection{\lstinline|filter| - răsfoirea selectivă a colecție}
 
 {\bf Construcția \code{filter}} permite a condiționa, pentru care elemente se va executa ciclu, pentru care nu.
 
@@ -133,7 +133,7 @@ filter (@list, @ << "a") {
 }
 \end{lstlisting}
 
-\subsubsection{\lstinline`range` - răsfoirea selectivă a colecției}
+\subsubsection{\lstinline|range| - răsfoirea selectivă a colecției}
 
 {\bf Răsfoirea selectivă} permite a executa codul pentru un fragment de colecție. Intervalul de definește pe bază de o valoare sau două. Prima condiție se folosește pentru a defini începutul fragmentului, pe cînd a doua pentru sfîrșit, dacă a doua lipsește va fi folosită prima. În lipsă de un interval corespunzător, ciclul nu va fi executat. Pentru a selecta primul sau ultimul element (în cauză de destinația condiției), folosiți expresia \true{}.
 

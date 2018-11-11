@@ -155,11 +155,11 @@ Operatorul aplică operația "negație logică" asupra variabilei a. Dependența
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a == <bool>b : bool`}
+\subsubsection{\lstinline|<bool>a == <bool>b : bool|}
 
 Returnează \true{} dacă a este egal cu b, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<bool>a != <bool>b : bool`}
+\subsubsection{\lstinline|<bool>a != <bool>b : bool|}
 
 Returnează \true{} dacă a ne este egal b, în caz contrar \false{}.
 
@@ -225,7 +225,7 @@ Pentru numere sunt disponibili operatori:
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{numberopex}.
 
-{\bf Atenție:} indiferent de faptul că spațiile in icL se ignoră, ele influențează la procesul de interpretare al comenzilor, \code{-23-4} va fi interpretată ca \lstinline`(-23) (-4)` și nu ca \lstinline`(-23) - (4)`. Neînțelegerea între om și calculator poate fi rezolvată adăugînd spații \lstinline`-23  - 4`.
+{\bf Atenție:} indiferent de faptul că spațiile in icL se ignoră, ele influențează la procesul de interpretare al comenzilor, \code{-23-4} va fi interpretată ca \lstinline|(-23) (-4)| și nu ca \lstinline|(-23) - (4)|. Neînțelegerea între om și calculator poate fi rezolvată adăugînd spații \lstinline|-23  - 4|.
 
 \subsubsection{\lstinline|<int>a == <int>b : bool|}
 
@@ -451,7 +451,7 @@ Returnează \true{} dacă \code{s1} și \code{s2} conțin același număr de car
 
 Returnează \true{} dacă \code{l1} și \code{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), în caz contrar \false{}.
 
-\subsubsection{\lstinline`<string>s1 != <string>s2 : bool`}
+\subsubsection{\lstinline|<string>s1 != <string>s2 : bool|}
 
 Returnează \false{} dacă \code{s1} și \code{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, în caz contrar \true{}.
 
@@ -489,7 +489,7 @@ Returnează \true{}, dacă șirul de caractere \code{str} conține subșirul \co
 
 Returnează \true{}, dacă lista \code{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
-{\bf Șablonul} este un și de caractere, el conține date și un caracter special \lstinline`*`, care \lstinline`*` orice succesiune de simboluri. Cercetăm următorul șablon \lstinline|"Have a * day!"|, exemple de șiruri de caracter care se potrivesc: \lstinline|"Have a nice day!"|, \lstinline|"Have a amazing day!"|. Exemplu de șir care nu se potrivește \lstinline|"Have a good day"| (lipsește semnul exclamării).
+{\bf Șablonul} este un și de caractere, el conține date și un caracter special \lstinline|*|, care \lstinline|*| orice succesiune de simboluri. Cercetăm următorul șablon \lstinline|"Have a * day!"|, exemple de șiruri de caracter care se potrivesc: \lstinline|"Have a nice day!"|, \lstinline|"Have a amazing day!"|. Exemplu de șir care nu se potrivește \lstinline|"Have a good day"| (lipsește semnul exclamării).
 
 \subsubsection{\lstinline|<string>s1 + <string>s2 : string|}
 
@@ -523,7 +523,7 @@ Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șa
 
 Returnează coeficientul de echivalență primit prin comparare șirului \code{s1} cu \code{s2}.
 
-{\bf Echivalența} este nivelul de asemănare al șirurilor. \lstinline`"Hi! Robert, how do you do?"` în comparație cu \lstinline`"Robert! Hi! How do you do?"` are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \lstinline`"Rich! Hi! How are you?"` coeficientul scade pînă la 0,64.
+{\bf Echivalența} este nivelul de asemănare al șirurilor. \lstinline|"Hi! Robert, how do you do?"| în comparație cu \lstinline|"Robert! Hi! How do you do?"| are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \lstinline|"Rich! Hi! How are you?"| coeficientul scade pînă la 0,64.
 
 \subsubsection{\lstinline|<list>l1 ** <list>l2 : double|}
 
@@ -558,9 +558,9 @@ Pentru obiecte și liste sunt disponibili operatori:
 		de rangul 5:
 		\begin{icItems}
 		\item
-			diferență \lstinline`set \ set : set`;
+			diferență \lstinline|set \ set : set|;
 		\item
-			intersecție \lstinline`set * set : set`.
+			intersecție \lstinline|set * set : set|.
 		\end{icItems}
 	\item
 		de rangul 6$^+$: se intersectează \lstinline|set ** set : bool|.
@@ -568,7 +568,7 @@ Pentru obiecte și liste sunt disponibili operatori:
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \ref{setobjopex}.
 
-\subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
+\subsubsection{\lstinline|<object>obj1 == <object>obj2 : bool|}
 
 Returnează \true{} dacă \code{obj1} și \code{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \code{obj1} sunt egale cu valori cîmpurilor obiectului \code{obj2}, în caz contrar \false{}.
 

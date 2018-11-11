@@ -35,13 +35,13 @@ Programa în icL conține diferite \textbf{semne} (literale, construcții semant
 Semnele prezente:
 \begin{icItems}
 \item
-	\lstinline`Log` - identificator de obiect;
+	\lstinline|Log| - identificator de obiect;
 \item
-	\lstinline`.info` - identificator de metodă;
+	\lstinline|.info| - identificator de metodă;
 \item
-	\lstinline`"Hello world!"` - literal, sir de caracter;
+	\lstinline|"Hello world!"| - literal, sir de caracter;
 \item
-	\lstinline`;` - delimitator, sfîrșit de comandă.
+	\lstinline|;| - delimitator, sfîrșit de comandă.
 \end{icItems}
 
 \subsection{Comentarii}
@@ -72,7 +72,7 @@ No comment
 
 \subsection{Identificatori}
 
-\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\lstinline`@`, \lstinline`#`, \lstinline`!`, \lstinline`_`, \lstinline`.` или \lstinline`'`), după care merg de la 1 la 32 de caracter: litere latine, diacritice și cifre.
+\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\lstinline|@|, \lstinline|#|, \lstinline|!|, \lstinline|_|, \lstinline|.| или \lstinline|'|), după care merg de la 1 la 32 de caracter: litere latine, diacritice și cifre.
 
 icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
 
@@ -83,7 +83,7 @@ icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@
 
 \subsection{Cuvinte cheie}
 
-În icL \textbf{cuvintele cheie} nu sunt rezervate. Ele sunt doar 15: \lstinline`if`, \lstinline|else| \lstinline`for`, \lstinline`filter`, \lstinline`range`, \lstinline`exists`, \lstinline`while`, \lstinline`do`, \lstinline`any`, \lstinline`emit`, \lstinline`emiter`, \lstinline`slot`, \lstinline|jammer|, \lstinline|reverse| и \lstinline|assert|. În acest document ele sunt accentuate folosind culoarea albastră.
+În icL \textbf{cuvintele cheie} nu sunt rezervate. Ele sunt doar 15: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|reverse| и \lstinline|assert|. În acest document ele sunt accentuate folosind culoarea albastră.
 
 \subsection{Spații si delimitatori}
 
@@ -93,7 +93,7 @@ icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@
 if(Tab.get"mai.ru"){(Doc.query"button").click;}else{Log.error"The site mai.ru is unaviable";};
 \end{lstlisting}
 
-În icL este prezent doar un singur delimitator - \textbf{delimitatorul de comenzi} \lstinline`;`. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \lstinline`Tab.get "URL"`, închide tabul - \lstinline`Tab.close`.
+În icL este prezent doar un singur delimitator - \textbf{delimitatorul de comenzi} \lstinline|;|. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \lstinline|Tab.get "URL"|, închide tabul - \lstinline|Tab.close|.
 
 În descrierea succesiunii de acțiuni, acțiunile trebuie despărțite. De exemplu succesiunea din comenzile precedente se descrie în felul următor -
 \begin{lstlisting}[numbers=none]
