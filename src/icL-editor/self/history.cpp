@@ -42,7 +42,7 @@ void History::addCursorOnPrevLine() {
 	if (
 	  m_main->prev() == nullptr ||
 	  (m_main->prev()->main()->fragment()->line() !=
-	   m_main->main()->fragment()->line())) {
+	   m_main->main()->fragment()->line()->prev())) {
 
 		auto * nSelection = new Selection();
 
@@ -66,7 +66,7 @@ void History::addCursorOnNextLine() {
 	if (
 	  m_main->next() == nullptr ||
 	  (m_main->next()->main()->fragment()->line() !=
-	   m_main->main()->fragment()->line())) {
+	   m_main->main()->fragment()->line()->next())) {
 
 		auto * nSelection = new Selection();
 

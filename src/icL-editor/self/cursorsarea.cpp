@@ -96,13 +96,13 @@ QSGNode * CursorsArea::updatePaintNode(
 			node->prependChildNode(geometryNode);
 		}
 
-		qDebug() << "node updated";
+		//		qDebug() << "node updated";
 	}
-
-	//	qDebug() << node << node->firstChild();
 
 	auto * selection = editor->getFirstSelection();
 	auto * cNode     = dynamic_cast<QSGGeometryNode *>(node->firstChild());
+
+	//	QList<int> lns;
 
 	while (cNode != nullptr) {
 
@@ -112,6 +112,8 @@ QSGNode * CursorsArea::updatePaintNode(
 
 		Cursor * cursor = selection->main();
 		auto *   line   = cursor->fragment()->line();
+
+		//		lns << cursor->fragment()->line()->lineNumber();
 
 		int yPos   = line->lastY();
 		int halfW  = m_cursorW / 2;
@@ -159,6 +161,8 @@ QSGNode * CursorsArea::updatePaintNode(
 		selection = selection->next();
 		cNode     = dynamic_cast<QSGGeometryNode *>(cNode->nextSibling());
 	}
+
+	//	qDebug() << lns;
 
 	node->setOpacity(alpha.currentAlpha);
 
