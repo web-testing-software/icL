@@ -93,3 +93,4 @@ __07.10.2018__
    * [!] value.anyMethod **~** : **void**
    * [?] value.anyMethod(**~**, **~**, **...**) : **void**
  * [!] Replace , by ; in controls and loops
+ * [!] Add switch-case control
