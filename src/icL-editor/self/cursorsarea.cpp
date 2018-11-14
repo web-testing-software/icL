@@ -93,6 +93,11 @@ QSGNode * CursorsArea::updatePaintNode(
 			geometry->setDrawingMode(QSGGeometry::DrawLines);
 			geometryNode->setGeometry(geometry);
 			geometryNode->setFlag(QSGNode::OwnsGeometry);
+
+			QSGFlatColorMaterial * material;
+			material = new QSGFlatColorMaterial;
+
+			geometryNode->setMaterial(material);
 			node->prependChildNode(geometryNode);
 		}
 
@@ -147,16 +152,9 @@ QSGNode * CursorsArea::updatePaintNode(
 		cNode->markDirty(QSGNode::DirtyGeometry);
 
 		QSGFlatColorMaterial * material;
-		if (cNode->material() == nullptr) {
-			material = new QSGFlatColorMaterial;
-			cNode->setFlag(QSGNode::OwnsMaterial);
-		}
-		else {
-			material = dynamic_cast<QSGFlatColorMaterial *>(cNode->material());
-		}
+		material = dynamic_cast<QSGFlatColorMaterial *>(cNode->material());
 
 		material->setColor(cursor->fragment()->format().text.color());
-		cNode->setMaterial(material);
 
 		selection = selection->next();
 		cNode     = dynamic_cast<QSGGeometryNode *>(cNode->nextSibling());

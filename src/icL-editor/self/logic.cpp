@@ -65,8 +65,11 @@ bool Logic::loadFile(const QString & path) {
 	QTextStream stream(&file);
 
 	if (!file.open(QFile::ReadOnly)) {
+        qDebug() << "File not found" << file.fileName();
 		return false;
 	}
+
+    qDebug() << "File found" << file.fileName();
 
 	while (!stream.atEnd()) {
 		QString str = stream.readLine(160);
