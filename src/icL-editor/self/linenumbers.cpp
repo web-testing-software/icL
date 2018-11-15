@@ -105,12 +105,13 @@ void LineNumbers::drawText(QPainter * painter) {
 	auto * it    = m_editor->m_firstVisible;
 	auto * proxy = m_editor->m_proxy;
 	auto * chars = m_editor->m_chars;
-	int    yDelta =
-	  proxy->divLineSBy2() +
-	  (proxy->charH() - static_cast<int>(it->getCache()->size().height())) / 2;
+
+	int    yDelta = proxy->divLineSBy2() + yBegin;
 	int xDelta = (proxy->fullLineH() - newLine.size().width()) / 2;
 
 	painter->setBrush(Qt::NoBrush);
+
+	qDebug() << m_editor->firstVisible() << it->getCache()->size();
 
 	QStaticText * additional = nullptr;
 
@@ -192,6 +193,13 @@ void LineNumbers::drawText(QPainter * painter) {
 
 		it = it->nextDisplay();
 	}
+
+	if (yBegin == -1995) {
+		update();
+	}
+
+	// Fixes rendering bug on Windows
+	yBegin = (proxy->charH() - static_cast<int>(m_editor->m_firstVisible->getCache()->size().height())) / 2;
 }
 
 void LineNumbers::drawChanges(QPainter * painter) {

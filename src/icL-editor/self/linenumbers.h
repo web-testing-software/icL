@@ -73,6 +73,9 @@ private:
 
 	/// @brief symbol used to mark phantom selected lines
 	QStaticText phantomS{"#"};
+
+	/// @brief yBegin caches the last y begin postion
+	int yBegin = -1995;
 };
 
 }  // namespace icL::editor
