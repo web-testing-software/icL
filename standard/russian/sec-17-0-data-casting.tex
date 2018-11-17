@@ -23,7 +23,7 @@
 
 \lstinline|(value...) : (type...)| - преобразует каждое запакованное значение в нужном типа данных, количество значений в обоих пакетов должна совпадать. Возвращает также запакованное значения.
 
-Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|data :: type : bool|}
 
@@ -95,11 +95,11 @@
 
 \subsubsection{\lstinline|void : set|}
 
-Возвращает пустое множество.
+Возвращает \lstinline|[:]|.
 
 \subsubsection{\lstinline|void : element|}
 
-Возвращает \lstinline|[:]|.
+Возвращает пустую коллекцию.
 
 \subsubsection{\lstinline|bool : bool|}
 
@@ -157,13 +157,13 @@
 
 Возвращает целое число, являющейся результат парсинга строки \str.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|string : double|}
 
 Возвращает вещественное число, являющейся результат парсинга строки \str. Целая часть от дробной делить надо точкой, а не запятой.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|string : string|}
 
@@ -177,13 +177,13 @@
 
 Возвращает объект, являющийся результат парсинга JSON-строки \str. JSON-объект должен иметь поля только следующих типов: \bool, \integer, \double, \str{} и \listtype.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|string : set|}
 
 Возвращает множество, являющийся результат парсинга JSON-строки \str, которая должна содержать массив объект, а каждый объект должен соответствовать критерия оператора \lstinline|string : object|.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|list : bool|}
 
@@ -193,7 +193,7 @@
 
 Возвращает первую строку списка, если список состоит только из одной строки, иначе генерирует исключение.
 
-Возможные исключения: \ferror{EmptyList} и \ferror{MultiList}.
+Возможные исключения: \ferror{EmptyList} и \ferror{MultiList} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|list : list|}
 
@@ -227,7 +227,7 @@
 
 Возвращает единственный объект, если множество содержит только один объект, иначе генерирует исключение.
 
-Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet}.
+Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|set : list|}
 

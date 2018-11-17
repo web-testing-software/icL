@@ -1,4 +1,6 @@
 % !TeX spellcheck = ru_RU
+\input{part-03-0-developers}
+
 \section{Типы данных}
 
 В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \code{value}.
@@ -187,21 +189,17 @@ class set extends value {
     [r/o] set'capacity : int;
     [r/o] set'empty    : bool;
 
-    set.applicate         list...       : set;
-    set.clear                           : set;
-    set.clone                           : set;
-    set.getField          string        : list;
-    set.hasField          string        : bool;
-    set.insert            value...      : set;
-    set.insert            object        : set;
-    set.insertBoolField   string   list : set;
-    set.insertDoubleField string   list : set;
-    set.insertIntField    string   list : set;
-    set.insertListField   string   list : set;
-    set.insertStringField string   list : set;
-    set.remove            value...      : set;
-    set.remove            object        : set;
-    set.removeField       string        : set;
+    set.applicate         list...            : set;
+    set.clear                                : set;
+    set.clone                                : set;
+    set.getField          string             : list;
+    set.hasField          string             : bool;
+    set.insert            value...           : set;
+    set.insert            object             : set;
+    set.insertField       string   list type : set;
+    set.remove            value...           : set;
+    set.remove            object             : set;
+    set.removeField       string             : set;
 }
 \end{lstlisting}
 

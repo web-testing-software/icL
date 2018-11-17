@@ -99,3 +99,5 @@ __07.10.2018__
  * [+] Add force input methods
  * [+] Add DB client connection
  * [+] Expand reverse keyword
+ * [+] Replace insertBoolField, insertIntField, insertDoubleField,
+   insertStringField and insertListField by insertField method

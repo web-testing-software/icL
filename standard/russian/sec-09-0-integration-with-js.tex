@@ -42,7 +42,7 @@ $run { window.a = @{var} }
 $run @var { window.a = arguments[0] }
 \end{lstlisting}
 
-Возможные исключения: \ferror{JavascriptError}, \ferror{ScriptTimeout}.
+Возможные исключения: \ferror{JavascriptError}, \ferror{ScriptTimeout} (см. таб. \ref{errors}).
 
 \subsection{Выполнения файлов}
 
@@ -53,7 +53,7 @@ $run @var { window.a = arguments[0] }
 $file "path/to/file.js";
 \end{lstlisting}
 
-Возможные исключения: \ferror{FileNotFound}, \ferror{JavascriptError}.
+Возможные исключения: \ferror{FileNotFound}, \ferror{JavascriptError} (см. таб. \ref{errors}).
 
 \subsection{Пользовательские скрипты}
 
@@ -65,6 +65,6 @@ $user "path/to/file.js";
 $always "path/to/file.js";
 \end{lstlisting}
 
-Возможные исключения: \ferror{FileNotFound}.
+Возможные исключения: \ferror{FileNotFound} (см. таб. \ref{errors}).
 
 %\newpage

@@ -1,4 +1,6 @@
 % !TeX spellcheck = ru_RU
+\input{part-02-0-programmers}
+
 \section{Дополнительные возможности}
 
 {\bf Дополнительные возможности} присутствуют в icL для полного перекрытия стандарта W3C WebDriver и для решения определённых проблем, которые могут появиться при написании скриптов.
@@ -30,7 +32,7 @@
 
 Возвращает \code{i}-ю сессию.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Sessions.closeAll () : void|}
 
@@ -40,17 +42,17 @@
 
 Возвращает \code{i}-ю сессию.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Sessions.new () : Session|}
 
 Отрывает новую сессию.
 
-Возможные исключения: \ferror{SessionNotCreated}.
+Возможные исключения: \ferror{SessionNotCreated} (см. таб. \ref{errors}).
 
 \subsection{{\color{orange} Session}}
 
-Команда \session{} возвращает указатель на текущей сессии.
+Команда \session{} возвращает указатель на текущую сессию.
 
 Объект \session{} имеет следующие свойства:
 \begin{icItems}
@@ -76,73 +78,73 @@
 
 Время ожидания в миллисекундах нахождения элемента и перехода элемента в состоянии доступности для взаимодействий с ним. По умолчанию равна нулю.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (значение для установки меньше нуля или больше максимальной безопасной целей значений).
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (значение для установки меньше нуля или больше максимальной безопасной целей значений) см. таб. \ref{errors}.
 
 \subsubsection{\lstinline|[r/w] Session'pageLoadTimeout : int|}
 
 Время ожидания загрузке страницы. По умолчанию 300 000 миллисекунд.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Session'scriptTimeout : int|}
 
 Время ожидания синхронией выполнения кода на языке Javascript. По умолчанию 30 000 миллисекунд.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument}.
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArgument} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Session'source : string|}
 
 Исходный код страницы.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Session'title : string|}
 
 Название страницы.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Session'url : string|}
 
 Адрес текущей странице.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Session.back () : Session|}
 
 Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Session.close () : void|}
 
 Прекращает сессию. Все вкладки будут закрыты.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Session.forward () : Session|}
 
 Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Session.refresh () : Session|}
 
 Перезагружает страницу.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Session.screenshot () : string|}
 
 Возвращает скриншот, изображение кодируется в строке base64.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Session.switchTo () : Session|}
 
 Переключает активную сессию.
 
-Возможные исключения: \ferror{NoSuchSession}.
+Возможные исключения: \ferror{NoSuchSession} (см. таб. \ref{errors}).
 
 %\subsubsection{}
 
@@ -160,19 +162,19 @@
 
 Возвращает количество окон в текущей сессии.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Windows'(i : int) : Window|}
 
 Возвращает \code{i}-е окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Windows.get (i : int) : Window|}
 
 Возвращает \code{i}-е окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Возможные исключения: \ferror{NoSessions}, \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsection{{\color{orange} Window}}
 
@@ -202,85 +204,85 @@
 
 Высота текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Window'width : int|}
 
 Ширина текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Window'x : int|}
 
 Координата $x$ текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Window'y : int|}
 
 Координата $y$ текущей окно в пикселях.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.close () : void|}
 
 Закрывает окну, если она последняя закрывается и сессию.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.focus () : Window|}
 
-Делает окну активной.
+Делает окно активным.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.fullscreen () : Window|}
 
 Переключает режим отображения окна на полный экран.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.maximize () : Window|}
 
 Распахнет окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.minimize () : Window|}
 
 Свернёт окно.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.restore () : Window|}
 
 Восстановит окно в нормальном режиме.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToDefault () : Window|}
 
 Переключает фокус на главный frame.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToFrame (i : int) : Window|}
 
 Переключает фокус на frame с индексом \code{i}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToFrame (el : element) : Window|}
 
 Переключает фокус на frame элемента \code{el}. Элемент должен быть обязательно тэгом frame или iframe.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToParent () : Window|}
 
 Переключает фокус на родительский frame.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsection{{\color{orange} Cookies}}
 
@@ -296,17 +298,17 @@
 
 Возвращает \cookie{} с нужным названием.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Cookies.deleteAll () : void|}
 
-Удаляет всеx существующих cookie.
+Удаляет все существующие cookie.
 
 \subsubsection{\lstinline|Cookies.get (name : string) : Cookie|}
 
 Возвращает \cookie{} с нужным названием.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (см. таб. \ref{errors}).
 
 \subsection{{\color{orange} Cookie}}
 
@@ -365,7 +367,7 @@
 
 Загружает данные о cookie с браузера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Cookie.resetTime () : Cookie|}
 
@@ -375,7 +377,7 @@
 
 Сохраняет изменения в браузере.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (см. таб. \ref{errors}).
 
 \subsubsection{Создать новый cookie}
 
@@ -407,25 +409,25 @@ for any Cookie {
 
 Возвращает текст предупреждений.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Alert.accept () : void|}
 
 Принимает предупреждению.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Alert.dismiss () : void|}
 
 Отменяет предупреждению.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Alert.sendKeys (keys : string) : void|}
 
 Заполняет форму текстом \code{keys} и подтверждает ввод.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable} (см. таб. \ref{errors}).
 
 % \subsection{Возможности icL}
 
@@ -465,37 +467,37 @@ for any Cookie {
 
 Текущая вкладка.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'first : Tab|}
 
 Первая вкладка.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'last : Tab|}
 
 Последняя вкладка.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'length : int|}
 
 Количество вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'next : Tab|}
 
 Следующая вкладка.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'previous : Tab|}
 
 Предыдущая вкладка.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchTab} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'(i : int) : Tab|}
 
@@ -507,67 +509,67 @@ for any Cookie {
 
 Закрывает все вкладки, у которых URL подходит по шаблону. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.close (url : regex) : int|}
 
 Закрывает все вкладки, имеющее URL подходящий по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeByTitle (template : string) : int|}
 
 Закрывает все вкладки, у которых название подходит по шаблону. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeByTitle (title : regex) : int|}
 
 Закрывает все вкладки, имеющее название подходяще по регулярному выражению \code{url}. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeOthers () : int|}
 
 Закрывает все вкладки кроме текущей. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeToLeft () : int|}
 
 Закрывает все вкладки которые находится с лева от текущей. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeToRight () : int|}
 
 Закрывает все вкладки которые находится с права от текущей. Возвращает количество закрытых вкладок.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.find (template : string) : Tab|}
 
 Возвращает первая вкладка, у которой URL подходит по шаблону.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.find (url : regex) : Tab|}
 
 Возвращает первая вкладка, у которой URL подходит по регулярному выражению.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.findByTitle (template : string) : Tab|}
 
 Возвращает первая вкладка, у которой название подходит по шаблону.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.findByTitle (title : regex) : Tab|}
 
 Возвращает первая вкладка, у которой название подходит по регулярному выражению.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsection{{\color{orange} Tab}}
 
@@ -602,49 +604,49 @@ for any Cookie {
 
 Возвращает скриншот вкладки, кодирован в base64.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tab'source : string|}
 
 Исходник страницы, открытой в указанной вкладке.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/*] Tab'title|}
 
 Название страницы, открытой в указанной вкладке.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Tab'url|}
 
 URL страницы, открытой в указанной вкладке.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.back () : void|}
 
 Переходит на предыдущую страницу, как при нажатии на кнопке браузера "Назад".
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.close () : void|}
 
 Закрывает окну, если она последняя закрывается и сессию.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.focus () : void|}
 
 Переключает фокус на вкладку. Фокус можно менять только внутри активной сессии.
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.forward () : void|}
 
 Вернётся на следующую страницу, как при нажатии на кнопке браузера "Вперёд".
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.get (url : string) : bool|}
 
@@ -654,7 +656,7 @@ URL страницы, открытой в указанной вкладке.
 
 Загружает страницу, URL должен быть абсолютным. При неудаче генерирует ошибку.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (см. таб. \ref{errors}).
 
 \subsection{{\color{orange} Doc}}
 
@@ -676,13 +678,13 @@ URL страницы, открытой в указанной вкладке.
 
 Принимает то же самые параметры, как и \lstinline|element.query|, только поиск ведётся по всему документу.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{Timeout}.
+Возможные исключения: \ferror{NoSessions}, \ferror{Timeout} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Doc.queryAll (by = By'cssSelector, selecor : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.queryAll|, только поиск ведётся по всему документу. 
 
-Возможные исключения: \ferror{NoSessions}.
+Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Doc.queryAll (cssSelector : string) : lement|}
 
@@ -734,19 +736,19 @@ URL страницы, открытой в указанной вкладке.
 
 Открывает файл.
 
-Возможные исключения: \ferror{FileNotFound}.
+Возможные исключения: \ferror{FileNotFound} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Files.create (path : string) : File|}
 
 Открывает файл, если он не существует, он создаётся.
 
-Возможные исключения: \ferror{FolderNotFound}.
+Возможные исключения: \ferror{FolderNotFound} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Files.createDir (path : string) : void|}
 
 Создаёт папку, папка в которым она создаётся должна уже существовать.
 
-Возможные исключения: \ferror{FolderNotFound}.
+Возможные исключения: \ferror{FolderNotFound} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Files.createPath (path : string) : void|}
 
@@ -821,7 +823,7 @@ URL страницы, открытой в указанной вкладке.
 
 Парсит целое число в виде строки в нужном базисе.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|Make.list (s : set) : list|}
 

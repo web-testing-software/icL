@@ -3,7 +3,7 @@
 
 Модуль баз данных определяет следующее глобальные объекты: \lstinline|DBManager| - менеджер баз данных, \lstinline|DB| - последняя открытая база данных, \lstinline|Query| - последний запрос.
 
-Модуль баз данных обеспечивает следующий набор возможности:
+Модуль баз данных обеспечивает следующий набор возможностей:
 \begin{icItems}
     \item \lstinline|DBManager.openSQLite (path : string) : DB|;
     \item \lstinline|DBManager.connect (server : string, user : string, password : string) : DB|;
@@ -13,7 +13,7 @@
 	\item \lstinline|[w/o] Query'(name : string) : any|;
 	\item \lstinline|Query.set (field : string, value : any) : void|;
 	\item \lstinline|Query.exec () : bool|;
-	\item Доступны после выполнение:
+	\item Доступны после выполнения:
 	\begin{icItems}
 	    \item \lstinline|[r/o] Query'(name : string) : any|;
 		\item \lstinline|Query.getRowsAffected () : int|;
@@ -46,7 +46,7 @@
 
 \subsubsection{\lstinline|DB.close () : void|}
 
-Закрывает подключение к базу данных.
+Закрывает подключение к базе данных.
 
 \subsubsection{\lstinline|[w/o] Query'(name : string) : any|}
 

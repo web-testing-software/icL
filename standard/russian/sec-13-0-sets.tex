@@ -38,11 +38,8 @@
 \item \lstinline|set.hasField (name : string) : bool|;
 \item \lstinline|set.insert (data : any ...) : set|;
 \item \lstinline|set.insert (obj : object) : set|;
-\item \lstinline|set.insertBoolField (name : string, values : list) : set|;
-\item \lstinline|set.insertDoubleField (name : string, values : list) : set|;
-\item \lstinline|set.insertIntField (name : string, values : list) : set|;
-\item \lstinline|set.insertListField (name : string, value : list) : set|;
-\item \lstinline|set.insertStringField (name : string, values : list) : set|;
+\item \lstinline|set.inserField (name : string, value : list, type = list)|;
+\item \lstinline|set.insertField (name : string, value : any, type = void)|;
 \item \lstinline|set.remove (data : any ...) : set|;
 \item \lstinline|set.remove (obj : object) : set|;
 \item \lstinline|set.removeField (name : string) : set|.
@@ -82,7 +79,7 @@
 	[age = 19, name = "Sofia",    sex = "f"]
 	] ```
 
-@set.insertStringField ("parity", ["odd", "even"]);
+@set.insertField ("parity", ["odd", "even"], string);
 ``` set = [
     [age = 23, name = "Basil",    sex = "m", parity = "odd"]
 	[age = 45, name = "Nataly",   sex = "f", parity = "even"]
@@ -120,7 +117,7 @@
 
 Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \code{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
 
-Возможные исключения: \ferror{IncompatibleData}.
+Возможные исключения: \ferror{IncompatibleData} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|set.clear () : set|}
 
@@ -134,7 +131,7 @@
 
 Возвращает список значений поле \code{name} всех объектов.
 
-Возможные исключения: \ferror{FieldNotFound}.
+Возможные исключения: \ferror{FieldNotFound} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|set.hasField (name : string) : bool|}
 
@@ -144,43 +141,25 @@
 
 Вставит новый объект, значения полей (массив \code{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
 
-Возможные исключения: \ferror{IncompatibleData}.
+Возможные исключения: \ferror{IncompatibleData} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|set.insert (obj : object) : set|}
 
 Вставит новый объект, поля объекта \code{obj} должна быть совместимы полностью с заголовком множество.
 
-Возможные исключения: \ferror{IncompatibleObject}.
+Возможные исключения: \ferror{IncompatibleObject} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.insertBoolField (name : string, values : list) : set|}
+\subsubsection{\lstinline|set.inserField (name : string, value : list, type = list)|}
 
-Создаёт новое поле типа \bool. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+Создаёт новое поле типа \code{type}. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.insertDoubleField (name : string, values : list) : set|}
+\subsubsection{\lstinline|set.insertField (name : string, value : any, type = void)|}
 
-Создаёт новое поле типа \double. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
+Создаёт новое поле типа \code{type}. Если \code{type == void} то тип будет определён автоматически, но лучше указать его явно для исключения возможных проблем.
 
-Возможные исключения: \ferror{FieldAlreadyExists}.
-
-\subsubsection{\lstinline|set.insertIntField (name : string, values : list) : set|}
-
-Создаёт новое поле типа \integer. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
-
-Возможные исключения: \ferror{FieldAlreadyExists}.
-
-\subsubsection{\lstinline|set.insertListField (name : string, value : list) : set|}
-
-Создаёт новое поле типа \bool. Все объекты множеству получат новое поле со значением \code{value}.
-
-Возможные исключения: \ferror{FieldAlreadyExists}.
-
-\subsubsection{\lstinline|set.insertStringField (name : string, values : list) : set|}
-
-Создаёт новое поле типа \str. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
-
-Возможные исключения: \ferror{FieldAlreadyExists}.
+Возможные исключения: \ferror{FieldAlreadyExists} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|set.remove (data : any ...) : set|}
 
@@ -194,6 +173,6 @@
 
 Удаляет поле \code{name} с заголовка.
 
-Возможные исключения: \ferror{FieldNotFound}.
+Возможные исключения: \ferror{FieldNotFound} (см. таб. \ref{errors}).
 
 %\newpage

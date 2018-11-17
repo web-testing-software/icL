@@ -29,7 +29,7 @@
 
 \code{[icL]} Возвращает JS-значение для запрашиваемого атрибута.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/*] element'css-* : string|}
 
@@ -37,7 +37,7 @@
 
 \code{[icL]} Возвращает JS-значение для запрашиваемой свойства CSS.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'empty : bool|}
 
@@ -47,7 +47,7 @@
 
 Возвращает \false, если элемент является элементом формы и он отключен, иначе \true. 
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'length : int|}
 
@@ -63,7 +63,7 @@
 @var:string = element'prop-userdefined;
 \end{lstlisting}
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'rect : obj|}
 
@@ -77,13 +77,13 @@
 
 \code{[icL]} Возвращает \set, в случае коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'selected : bool|}
 
 Возвращает \true, если элемент является включённым чекбоксом, отмеченной радио кнопкой или выбранной опцией, иначе \false.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'tag : string|}
 
@@ -91,7 +91,7 @@
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'text : string|}
 
@@ -99,13 +99,13 @@
 
 \code{[icL]} Возвращает \listtype, в случае коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement} и \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] element'(<int> n) : element|}
 
 Возвращает новую единый элемент содержащий n-й элемент.
 
-Возможные исключения: \ferror{OutOfBounds}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{OutOfBounds}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsection{Операторы}
 
@@ -163,7 +163,7 @@
 
 \code{[icL]} Очищены будут все элементы контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState}.
+Возможные исключения: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.click () : element|}
 
@@ -171,7 +171,7 @@
 
 \code{[icL]} Клик будет симулирован на все элементы контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.query (by = By'cssSelector, selector : string) : element|}
 
@@ -190,7 +190,7 @@
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.queryAll (by = By'cssSelector, selector : string) : element|}
 
@@ -198,7 +198,7 @@
 
 \code{[icL]} Поиск ведётся во всех элементов контейнера.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.queryAllByXPath (xpath : string) : element|}
 
@@ -236,7 +236,7 @@
 
 Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \lstinline|Make.image (base64 : string, path : string) : void|.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.sendKeys (modifiers : int, text : string) : element|}
 
@@ -249,7 +249,7 @@
 
 Параметр \code{text} получает текст, будущим напечатанным на клавиатуре.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} и \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsection{Расширенные методы}
 
@@ -273,60 +273,61 @@
 
 Добавит все элементы коллекции \code{other}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.child (i : int) : element|}
 
 Возвращает новый элемент, содержащая \code{i}-й дочерний элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.closest (cssSelector : string) : element|}
 
 Возвращает новый элемент, содержащая ближайший родительский элемент, который подходит по селектору \code{cssSelector}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.contains (text : string, asFragment = false) : element|}
 
 Возвращает новая коллекция, содержащая все элементы, которые содержат текст/фрагмент \code{text}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.copy () : element|}
 
 Возвращает новая коллекция, содержащая все элементы текущей коллекций.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.get (i : int) : element|}
 
 Возвращает i-й элемент коллекции.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.filter (cssSelector : string) : element|}
 
 Возвращает новая коллекция, содержащая все элементы, которые подходят по селектору \code{cssSelector}.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
+
 \subsubsection{\lstinline|element.next () : element|}
 
 Возвращает новый элемент, содержащая следующий дочерний элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.prev () : element|}
 
 Возвращает новый элемент, содержащая предыдущий дочерний элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsubsection{\lstinline|element.parent () : element|}
 
 Возвращает новый элемент, содержащая родительский элемент.
 
-Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
 \subsection{Предопределённый набор свойств}
 \label{elements:predefined:properties}
