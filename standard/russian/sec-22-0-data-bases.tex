@@ -1,3 +1,4 @@
+% !TeX spellcheck = ru_RU
 \section{Базы данных}
 
 Модуль баз данных определяет следующее глобальные объекты: \lstinline|DBManager| - менеджер баз данных, \lstinline|DB| - последняя открытая база данных, \lstinline|Query| - последний запрос.
@@ -5,6 +6,8 @@
 Модуль баз данных обеспечивает следующий набор возможности:
 \begin{icItems}
     \item \lstinline|DBManager.openSQLite (path : string) : DB|;
+    \item \lstinline|DBManager.connect (server : string, user : string, password : string) : DB|;
+    \item \lstinline|DBManager.connect (server : string|;
 	\item \lstinline|DB.query (q : Code) : Query|;
 	\item \lstinline|DB.close () : void|;
 	\item \lstinline|[w/o] Query'(name : string) : any|;
@@ -28,6 +31,14 @@
 \subsubsection{\lstinline|DBManager.openSQLite (path : string) : DB|}
 
 Открывает новое подключение. \code{path} - путь к файлу базы данных.
+
+\subsubsection{\lstinline|DBManager.connect (server : string, user : string, password : string) : DB|}
+
+Создаёт соединение к icL DB Client через WebSockets, клиентов можно писать на любые языки программирование, для написания собсвенных клиентов познакомитесь с \textit{icL DataBase Share over WebSockets}, описан в \textit{icL Wire Protocol}.
+
+\subsubsection{\lstinline|DBManager.connect (server : string)|}
+
+Создаёт соединение к icL DB Client через HTTP, клиентов можно писать на любые языки программирование, для написания собсвенных клиентов познакомитесь с \textit{icL DataBase Share over HTTP}, описан в \textit{icL Wire Protocol}.
 
 \subsubsection{\lstinline|DB.query (q : Code) : Query|}
 

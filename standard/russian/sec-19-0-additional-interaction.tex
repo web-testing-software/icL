@@ -1,61 +1,33 @@
+% !TeX spellcheck = ru_RU
 \section{Дополнительное взаимодействие}
 
 Данные возможности доступны только в режиме автоматизации.
 
 \subsection{Ожидание}
 
-Для ожиданий предусмотрены следующие функций:
+Для ожиданий предусмотрены следующие конструкции:
 \begin{icItems}
-	\item \lstinline|Wait.title (data : object) : bool|;
-	\item \lstinline|Wait.url (data : object) : bool|;
-	\item \lstinline|Wait.for (el : element, data : object) : bool|;
-	\item \lstinline|Wait.ajax (data : object) : bool|.
+	\item \lstinline|wait { condition }|;
+	\item \lstinline|wait:Xs { condition }|;
+	\item \lstinline|wait:Xms { condition }|;
+	\item \lstinline|wait:ajax { condition }|.
 \end{icItems}
 
-\subsubsection{\lstinline|Wait.title (data : object) : bool|}
+\subsubsection{\lstinline|wait|}
 
-Объект \code{data} может иметь следующие поля:
-\begin{icItems}
-	\item \lstinline|[r/w] @data'template : string| - шаблон нужней имени;
-	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая ножное имя (имеет приоритет над шаблоном);
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
-\end{icItems}
+Ожидает пока условие не станет истинной. Время ожидании: \code{Session'im\- plicitTimeout} миллисекунды. 
 
-\subsubsection{\lstinline|Wait.url (data : object) : bool|}
+\subsubsection{\lstinline|wait:Xs|}
 
-Объект \code{data} может иметь следующие поля:
-\begin{icItems}
-	\item \lstinline|[r/w] @data'template : string| - шаблон нужного URL;
-	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая нужный URL;
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
-\end{icItems}
+Ожидает пока условие не станет истинной. Время ожидании: \code{X} секунды. 
 
-\subsubsection{\lstinline|Wait.for (el : element, data : object) : bool|}
+\subsubsection{\lstinline|wait:Xms|}
 
-Объект \code{data} может иметь следующие поля:
-\begin{icItems}
-	\item \lstinline|[r/w] @data'count : int| - количество нужных элементов в коллекции. По умолчанию 1;
-	\item \lstinline|[r/w] @data'toBe : int| - нужное состояние для достижений. Предлагается одно из следующих значения:
-	\begin{icItems}
-		\item \lstinline|[r/o] Wait'present : 1|;
-		\item \lstinline|[r/o] Wait'visible : 2|;
-		\item \lstinline|[r/o] Wait'hidden : 3|;
-		\item \lstinline|[r/o] Wait'interactable : 4|;
-		\item \lstinline|[r/o] Wait'selected : 5|.
-	\end{icItems}
-	По умолчанию \lstinline|Wait'present|;
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
-\end{icItems}
+Ожидает пока условие не станет истинной. Время ожидании: \code{X} миллисекунды. 
 
-\subsubsection{\lstinline|Wait.ajax (data : object) : bool|}
+\subsubsection{\lstinline|wait:ajax|}
 
-Объект \code{data} может иметь следующие поля:
-\begin{icItems}
-	\item \lstinline|[r/w] @data'count : int| - количество максимальных допустимых активных запросов, по умолчанию 0;
-	\item \lstinline|[r/w] @data'template : string| - шаблон нужного URL;
-	\item \lstinline|[r/w] @data'expression : regex| - регулярное выражение описывающая нужный URL;
-	\item \lstinline|[r/w] @data'timeout : int| - сколько миллисекунд ждать, по умолчанию 300 000.
-\end{icItems}
+Ожидает пока условие не станет истинной. Время ожидания: \code{Session'implicit\- Timeout} миллисекунды. В сравнении с обычным \code{wait}, тут будет передано следующие данные: \code{@opened} - URL новой подключения, \code{@finished} - URL завершенного запроса и \code{@count} - количество активных запросов.
 
 \subsection{Клавиатура}
 
@@ -66,6 +38,8 @@
 	\item \lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|;
 	\item \lstinline|element.fastType (text : string) : element|;
 	\item \lstinline|element.paste (text : string) : element|.
+	\item \lstinline|element.forceType (text : string) : element|.
+	\item \lstinline|Doc.type (text : string) : Doc|.
 \end{icItems}
 
 \subsubsection{\lstinline|element.keyDown (modifiers : int, keys : text) : element|}
@@ -88,15 +62,28 @@
 
 Копирует текст в буфер обмена, фокусирует элемент и вставит текст.
 
+\subsubsection{\lstinline|element.forceType (text : string) : element|}
+
+Вставит значения в текстовом поле с помощью фрагмента кода на языке JavaScript.
+
+\subsubsection{\lstinline|Doc.type (text : string) : element|}
+
+Симулирует процесс печати без фокусировки какого-то либо элемента.
+
 \subsection{Мышка}
 \label{mouse}
 
 Для работы с мышкой предусмотрены следующие функций:
 \begin{icItems}
 	\item \lstinline|element.click (data : object) : element|;
+	\item \lstinline|element.forceClick (data : object) : element|;
 	\item \lstinline|element.mouseDown (data : object) : element|;
 	\item \lstinline|element.mouseUp (data : object) : element|;
 	\item \lstinline|element.hover (data : object) : element|.
+	\item \lstinline|Doc.click (data : object) : Doc|.
+	\item \lstinline|Doc.mouseDown (data : object) : Doc|;
+	\item \lstinline|Doc.mouseUp (data : object) : Doc|;
+	\item \lstinline|Doc.hover (data : object) : Doc|.
 \end{icItems}
 
 В следующих функциях объект \code{data} может иметь следующие поля:
@@ -121,6 +108,10 @@
 	\item \lstinline|[r/w] @data'delay : int| - задержка между нажатием и отпускании кнопке;
 	\item \lstinline|[r/w] @data'count : int| - количество симулированных кликов.
 \end{icItems}
+
+\subsubsection{\lstinline|element.forceClick (data : object) : element|}
+
+Симулирует клик на элемент без проверки его доступности.
 
 \subsubsection{\lstinline|element.mouseDown (data : object) : element|}
 
@@ -149,6 +140,22 @@
 	\item \lstinline|[r/w] @data'p2x : double| - Координата $x$ второй точке.
 	\item \lstinline|[r/w] @data'p2y : double| - Координата $y$ второй точке.
 \end{icItems}
+
+\subsubsection{\lstinline|Doc.click (data : object) : Doc|}
+
+Симулирует клик без привязанности к элементу.
+
+\subsubsection{\lstinline|Doc.mouseDown (data : object) : Doc|}
+
+Симулирует нажатие клавиши мышки без привязанности к элементу.
+
+\subsubsection{\lstinline|Doc.mouseUp (data : object) : Doc|}
+
+Симулирует отпускание клавиши мышки без привязанности к элементу.
+
+\subsubsection{\lstinline|Doc.hover (data : object) : Doc|}
+
+Симулирует движение курсора без привязанности к элементу.
 
 \subsection{Тонкая настройка}
 

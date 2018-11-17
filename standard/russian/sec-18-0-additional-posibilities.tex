@@ -1129,23 +1129,21 @@ URL страницы, открытой в указанной вкладке.
 
 Выполняет файл в текущем контексте.
 
-\subsection{Модификатор {\color{blue2} reverse}}
+\subsection{Модификаторы управления}
 
-Ключевое слово \code{reverse} позволяет изменить ход выполнения некоторых конструкций языка.
+Модификаторы управления позволяют изменить ход выполнения некоторых конструкций языка.
 
-\subsubsection{\lstinline|reverse if|}
+\subsubsection{\lstinline|if:not|}
 
-\lstinline|reverse if (@var == true)| эквивалентно \lstinline|if (!(@var == true))|, в этом случае уменьшения количестве скобок упрощает чтения кода. 
+\lstinline|if:not (@var == true)| эквивалентно \lstinline|if (!(@var == true))|, в этом случае уменьшения количестве скобок упрощает чтения кода. 
 
-Внимание: \lstinline|reverse if| не принимает \lstinline|else|.
+\subsubsection{\lstinline|if:not exists|}
 
-\subsubsection{\lstinline|reverse if exists|}
+\lstinline|if exists| хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \lstinline|if:not exists|. В сравнении с \lstinline|if exists|, никакие данные не будут переданы в блоке команд.
 
-\lstinline|if exists| хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \lstinline|reverse if exists|. В сравнении с \lstinline|if exists|, никакие данные не будут переданы в блоке команд.
+\subsubsection{\lstinline|for:alt| - альтернативный параметрический цикл}
 
-\subsubsection{\lstinline|reverse for| - универсальный цикл}
-
-В универсальном цикле меняется порядок выполнения действий. \lstinline|reverse for| гарантирует выполнение блока команд в минимум один раз.
+В параметрическом цикле меняется порядок выполнения действий. \lstinline|for:alt| гарантирует выполнение блока команд в минимум один раз.
 
 Порядок действий конструкций \lstinline|for|:
 \begin{icEnum}
@@ -1155,7 +1153,7 @@ URL страницы, открытой в указанной вкладке.
 	\item выполнения команды перехода на следующую итерацию.
 \end{icEnum}
 
-Порядок действий конструкций \lstinline|reverse for|:
+Порядок действий конструкций \lstinline|for:alt|:
 \begin{icEnum}
 	\item инициализация;
 	\item выполнения блока команд;
@@ -1163,24 +1161,24 @@ URL страницы, открытой в указанной вкладке.
 	\item проверка условий.
 \end{icEnum}
 
-\subsubsection{\lstinline|reverse while| - условное повторение кода}
+\subsubsection{\lstinline|while:not| - условное повторение кода}
 
-\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной.
+\lstinline|while:not| будет выполнить блок команд, пока условие остаётся ложной.
 
-\subsubsection{\lstinline|do reverse while| - цикл с постусловий}
+\subsubsection{\lstinline|do while:not| - цикл с постусловий}
 
-\lstinline|reverse while| будет выполнить блок команд, пока условие остаётся ложной. Так же как и \lstinline|do while| гарантирует что тело цикла будет выполнена минимум 1 раз.
+\lstinline|do while:not| будет выполнить блок команд, пока условие остаётся ложной. Так же как и \lstinline|do while| гарантирует что тело цикла будет выполнена минимум 1 раз.
 
-\subsubsection{\lstinline|reverse for| - прохождение коллекций}
+\subsubsection{\lstinline|for:reverse| - прохождение коллекций}
 
-\lstinline|reverse for| будет пройти коллекцию в обратном порядке.
+\lstinline|for::reverse| будет пройти коллекцию в обратном порядке.
 
-\subsubsection{\lstinline|reverse filter| - выборочное прохождение коллекций}
+\subsubsection{\lstinline|filter:reverse| - выборочное прохождение коллекций}
 
-\lstinline|reverse filter| будет пройти коллекцию в обратном порядке.
+\lstinline|filter:reverse| будет пройти коллекцию в обратном порядке.
 
-\subsubsection{\lstinline|reverse range| - частичное прохождение коллекций}
+\subsubsection{\lstinline|range::reverse| - частичное прохождение коллекций}
 
-\lstinline|reverse filter| будет пройти интервал в обратном порядке.
+\lstinline|filter:reverse| будет пройти интервал в обратном порядке.
 
 %\newpage

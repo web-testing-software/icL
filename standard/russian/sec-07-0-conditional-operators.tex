@@ -1,9 +1,9 @@
 % !TeX spellcheck = ru_RU
-\section{Условные операторы}
+\section{Операторы управления}
 
-Условные структуры имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значения условии.
+Операторы управления имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значения условии.
 
-В icL приличествуют следующее условные операторы:
+В icL приличествуют следующее операторы управления:
 \begin{icItems}
 	\item \code{if};
 	\item \code{if else};
@@ -61,7 +61,7 @@ if (condition1) {
 };
 \end{lstlisting}
 
-\subsection{\lstinline|switch case|}
+\subsubsection{\lstinline|switch case|}
 
 \code{switch case} позволяет выбирать между n блоков команд, но для это нужно предъявить n условии.
 
@@ -84,7 +84,7 @@ switch (value) {
 Разбираем на примере все возможность \code{switch case}, пример представлен на листинге \ref{switchcaseex}.
 
 \begin{lstlisting}[caption=Использование switch case, label=switchcaseex]
-if (@v <> (0, 6)) { Stack.return }
+@v = 0 | 1 | 2 | 3 | 4 | 5;
 
 switch (@v) {
 	case (0) { ```code1``` }

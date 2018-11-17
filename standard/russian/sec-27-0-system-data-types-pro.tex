@@ -86,7 +86,9 @@ class DB {
 \noindent Описание класса \code{DBManager} -
 \begin{lstlisting}[numbers=none]
 class DBManager {
-    DBManager.openSQLite string : DB;
+    DBManager.openSQLite string               : DB;
+    DBManager.connect    string string string : DB;
+    DBManager.connect    string               : DB;
 }
 \end{lstlisting}
 
@@ -95,6 +97,10 @@ class DBManager {
 \noindent Описание класса \code{Doc} -
 \begin{lstlisting}[numbers=none]
 class Doc {
+	Doc.click           object        : Doc;
+	Doc.hover           object        : Doc;
+	Doc.mouseDown       object        : Doc;
+	Doc.mouseUp         object        : Doc;
     Doc.query           int    string : element;
 	Doc.query           string        : element;
 	Doc.queryAll        int    string : element;
@@ -105,6 +111,7 @@ class Doc {
 	Doc.queryLinks      string        : element;
 	Doc.queryTag        string        : element;
 	Doc.queryTags       string        : element;
+	Doc.type            string        : Doc;
 }
 \end{lstlisting}
 
@@ -492,18 +499,6 @@ class Types {
 	[r/o] Types'wait      : 39;
 	[r/o] Types'window    : 40;
 	[r/o] Types'windows   : 41;
-}
-\end{lstlisting}
-
-\subsection{{\color{orange} Wait}}
-
-\noindent Описание класса \code{Wait} -
-\begin{lstlisting}[numbers=none]
-class Wait {
-    Wait.ajax  object         : bool;
-	Wait.for   element object : bool;
-	Wait.title object         : bool;
-	Wait.url   object         : bool;
 }
 \end{lstlisting}
 
