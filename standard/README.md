@@ -1,7 +1,7 @@
 # About standards
 
-I have planned to write the standard for language icL in 3 languages:
-engish, russian and moldavian.
+I have planned to write the standard for language icL in 2 languages:
+engish and russian.
 
 # Requests
 

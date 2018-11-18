@@ -51,7 +51,6 @@ DISTFILES += \
     bin/release/linux/extra/icL.svg \
     standard/standard_for_icl_1.0.0_draft.tex \
     standard/russian/*.tex \
-    standard/moldavian/*.tex \
     README.md \
     standard/README.md \
     clang-format \
