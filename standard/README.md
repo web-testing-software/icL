@@ -85,7 +85,7 @@ All approved changes will be applicated in Standard for icL RC 3.
 __07.10.2018__
 
  * [!] Add new cast operator *:!* **cast now** with rang 7
- * [!] Add new cast operator *:?* **maybe cast** with rang 7, cast the value if
+ * [+] Add new cast operator *:?* **maybe cast** with rang 7, cast the value if
    posible, otherwise return void
  * [.] Add errorless programing section, with the next errorless constructions
    * [!] **~**.anyMethod (any args) : **void**

@@ -1,11 +1,12 @@
 % !TeX spellcheck = ru_RU
 \section{Преобразование типов}
 
-Для преобразования данных в icL присутствуют 3 операторы первого ранга:
+Для преобразования данных в icL присутствуют 4 операторы первого ранга:
 \begin{icItems}
 	\item \lstinline|data : type : type|;
 	\item \lstinline|data :: type : bool|;
 	\item \lstinline|data :* type : bool|;
+	\item \lstinline|data :? type : bool|;
 \end{icItems}
 
 \subsubsection{\lstinline|data : type|}
@@ -42,6 +43,10 @@
 	\item \lstinline|(value...) :* type|;
 	\item \lstinline|(value...) :* (type...)|;
 \end{icItems}
+
+\subsubsection{\lstinline|data :? type : bool|}
+
+Преобразует данные в нужном тип данных. Особенность данного оператора, то что он не генерирует исключений, а возвращает \void при неудаче.
 
 \subsection{Возможные преобразования}
 
