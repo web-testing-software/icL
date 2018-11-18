@@ -6,8 +6,10 @@
 	\item \lstinline|data : type : type|;
 	\item \lstinline|data :: type : bool|;
 	\item \lstinline|data :* type : bool|;
-	\item \lstinline|data :? type : bool|;
+	\item \lstinline|data :? type : type|;
 \end{icItems}
+
+И 1 оператор 7-ого ранга \lstinline|date :! type : type|.
 
 \subsubsection{\lstinline|data : type|}
 
@@ -44,9 +46,13 @@
 	\item \lstinline|(value...) :* (type...)|;
 \end{icItems}
 
-\subsubsection{\lstinline|data :? type : bool|}
+\subsubsection{\lstinline|data :? type : type|}
 
-Преобразует данные в нужном тип данных. Особенность данного оператора, то что он не генерирует исключений, а возвращает \void при неудаче.
+Преобразует данные в нужном тип данных. Особенность данного оператора, то что он не генерирует исключений, а возвращает \void{} при неудаче.
+
+\subsubsection{\lstinline|data :! type : type|}
+
+\lstinline|data :! type : type| отличается от \lstinline|data : type : type| только рангом, обычное преобразование имеет ранг 1 и она выполняется в последнюю очередь, а этот оператор гарантирует немедленное преобразование.
 
 \subsection{Возможные преобразования}
 
