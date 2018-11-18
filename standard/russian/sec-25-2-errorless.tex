@@ -1,0 +1,303 @@
+% !TeX spellcheck = ru_RU
+
+\section{Подход errorless}
+
+\label{errorless-sec}
+
+Подход к программированию, который получил название \textit{errorless} является частью философии icL. Согласно ей код должен быть устойчив к ошибкам, в этом главе будут описаны средства улучшений устойчивости кода.
+
+Если вы работаете в команде, согласуйте со своими коллегами, какие возможности будите использовать, а какие нет.
+
+\subsection{Переменные}
+
+Переменные в icL, сами по себе никогда не провоцируют исключений. Исключения является результатом их неправильного использования. Глобальные переменные можно объявить из настроек теста при запуске, при использовании таких переменных проверяете сначала имеет ли она значение. Но лучше всего определить им значение по умолчанию - \lstinline`#server = #server | "192.168.7.12"` (см. параграф \ref{void-operators}).
+
+Если переменная имеет значение \void, то можно читать любое свойства и вызвать любой метод относительно её. Это не генерирует исключения.
+
+Если вызываем метод или функцию с помощью акронима и передаём \void, то метод или функция не будут вызваны, а команда будет возвращать \void. Использовать данную возможность не рекомендуется, она присутствует в стандарте для реализации полноценности подхода.
+
+\subsection{{\color{lightblue}void} операторы}
+
+\label{void-operators}
+
+\void{} операторы это возможность, которую я могу смело рекомендовать, они не усложняют понимание кода, а наоборот облегчают. Только не ставьте рядом 2-х таких операторов, используете их по отдельность.
+
+Все \void{} операторы делят данных на 2 типа \void{} и не \void{}. Второй тип в дальнейшем будет отмечен как \code{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}. \void{} операторы перечислены в таблице \ref{voidops}.
+
+\stablethree{1.0cm}{7.0cm}{6.0cm}
+{voidops}{Операции над объектами и множеств}
+{Ранг}{Операция}{Оператор}
+{
+	2 & альтернативный выбор & \lstinline`void | void : void`       \\ \hline
+	2 & альтернативный выбор & \lstinline`void | any : any`         \\ \hline
+	2 & альтернативный выбор & \lstinline`any | void : any`         \\ \hline
+	2 & альтернативный выбор & \lstinline`any | any : any`          \\ \hline
+	2 & первичный выбор      & \lstinline|void \& void : void|      \\ \hline
+	2 & первичный выбор      & \lstinline|any \& void : void|       \\ \hline
+	2 & первичный выбор      & \lstinline|void \& any : void|       \\ \hline
+	2 & первичный выбор      & \lstinline|any \& any : any|         \\ \hline
+	2 & вторичный выбор      & \lstinline|void ~ void : void|       \\ \hline
+	2 & вторичный выбор      & \lstinline|void ~ any : void|        \\ \hline
+	2 & вторичный выбор      & \lstinline|any ~ void : void|        \\ \hline
+	2 & вторичный выбор      & \lstinline|any ~ any : any|          \\ \hline
+	2 & исключающий выбор    & \lstinline|void \^ void : void|      \\ \hline
+	2 & исключающий выбор    & \lstinline|void \^ any : any|        \\ \hline
+	2 & исключающий выбор    & \lstinline|any \^ void : any|        \\ \hline
+	2 & исключающий выбор    & \lstinline|any \^ any : void|        \\ \hline
+	2 & коллекционный выбор  & \lstinline|void \% void : void|      \\ \hline
+	2 & коллекционный выбор  & \lstinline|void \% any : any|        \\ \hline
+	2 & коллекционный выбор  & \lstinline|any \% void : any|        \\ \hline
+	2 & коллекционный выбор  & \lstinline|int \% int : int|         \\ \hline
+	2 & коллекционный выбор  & \lstinline|double \% double : double|\\ \hline
+	2 & коллекционный выбор  & \lstinline|string \% string : list|  \\ \hline
+	2 & коллекционный выбор  & \lstinline|list \% string : list|    \\ \hline
+	2 & коллекционный выбор  & \lstinline|list \% list : list|      \\ \hline
+	2 & коллекционный выбор  & \lstinline|object \% object : set|   \\ \hline
+	2 & коллекционный выбор  & \lstinline|set \% object : set|      \\ \hline
+	2 & коллекционный выбор  & \lstinline|set \% set : set|         \\ \hline
+}
+
+\subsubsection{\lstinline`(arg1 : void or any) | (arg2 : void or any) : (void or any)`}
+
+Возвращаемый результат оператором альтернативного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{orhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор альтернативный выбор}
+	\label{orhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \| arg2} \\ \hline
+		\void{}     & \void{}     & \void{}  			\\ \hline
+		\void{}     & \code{any}  & \code{arg2}  		\\ \hline
+		\code{any}  & \void{}     & \code{arg1}  		\\ \hline
+		\code{any}  & \code{any}  & \code{arg1}  		\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\lstinline|(void or any) \& (void or any) : (void or any)|}
+
+Возвращаемый результат оператором первичного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{andhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор первичный выбор}
+	\label{andhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \& arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \code{any}  & \void{}   			\\ \hline
+		\code{any}  & \void{}     & \void{}   			\\ \hline
+		\code{any}  & \code{any}  & \code{arg1}   		\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\lstinline|(void or any) ~ (void or any) : void or any|}
+
+Возвращаемый результат оператором вторичного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{eqhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор вторичный выбор}
+	\label{eqhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \~ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \code{any}  & \void{}   			\\ \hline
+		\code{any}  & \void{}     & \void{}   			\\ \hline
+		\code{any}  & \code{any}  & \code{arg2}   		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\lstinline|(void or any) ^ (void or any) : (void or any)|}
+
+Возвращаемый результат оператором исключающего выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{xorhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор исключающий выбор}
+	\label{xorhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \^ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \code{any}  & \code{arg2}   		\\ \hline
+		\code{any}  & \void{}     & \code{arg1}   		\\ \hline
+		\code{any}  & \code{any}  & \void{}   			\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\lstinline|(void or any) \% (void or any) : (void or any)|}
+
+Возвращаемый результат оператором исключающего выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{centhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор коллекционный выбор}
+	\label{centhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \% arg2}			\\ \hline
+		\void{}     & \void{}     & \void{}						\\ \hline
+		\void{}     & \code{any}  & \code{arg2}					\\ \hline
+		\code{any}  & \void{}     & \code{arg1}					\\ \hline
+		\integer{}  & \integer{}  & \integer{}					\\ \hline
+		\double{}   & \double{}   & \double{}					\\ \hline
+		\str{}      & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \listtype{} & \code{list - [arg1 arg2]}	\\ \hline
+		\object{}   & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \set{}      & \code{set - [arg1 arg2]}	\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+Для аргументов типов \integer{} и \double{}, вызывается функция \code{Numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \code{Numbers.setProcess} с одни из следующих аргументов: \code{Numbers'sum} - сумма, \code{Numbers'product} - произведение, \code{Numbers'max} - максимум, \code{Numbers'min} - минимум. После использования оператора, вызываете \code{Numbers.restoreProcess} чтобы восстановить исходные настройки.
+
+\subsection{Операторы управления}
+
+Чтобы избегать ошибки также предлагается специальные операторы управления:
+\begin{icItems}
+	\item \code{exists};
+	\item \code{if exists};
+	\item \code{for any}.
+\end{icItems}
+
+\subsubsection{\lstinline|exists|}
+
+\code{exists} позволяет условно возвращать данные, если они подходят под определённому критерия.
+
+Условия по умолчанию:
+\begin{icItems}
+	\item
+	для \bool{} - \code{# == true};
+	\item
+	для \integer{} - \code{# != 0};
+	\item
+	для \double{} - \code{# != 0.0};
+	\item
+	для \str{} - \code{!#'empty};
+	\item
+	для \listtype{} - \code{!#'empty};
+	\item
+	для \set{} - \code{!#'empty};
+	\item
+	для \element{} - \code{#'empty}.
+\end{icItems}
+
+Если использовать условию по умолчанию, используется следующий синтаксис - \lstinline|exists(expression)|.
+При необходимости задать своё условие, синтаксис чуть изменяется - \lstinline|exists(expression; condition)|.
+
+\subsubsection{\lstinline|if exists|}
+
+Конструкция \code{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \code{exists}. Также повторно использовать значения выражения. В случае когда условие конструкции \code{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \code{exists} под именем \code{@}.
+Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
+
+\begin{lstlisting}[caption=Использование if exist, label=ifexistsex]
+if exists(23 + 3; # > 20) {
+	Log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline|for any|}
+
+Часто придётся найти и использовать дважды или трижды один веб-элемент, и чем придумать название для такой переменной гораздо проще копировать и вставить запрос \code{Doc.query}, но когда приходит время изменить код это приводит к ошибкам. \code{for any} позволяет повторно использовать любое значение без создания ненужных переменных и избегает ошибки при редактировании. Пример использования представлен на листинге \ref{foranyex}.
+
+\begin{lstlisting}[caption=Использование for any, label=foranyex]
+for any(Doc.query "#id") {
+	Log.out "@ = " @; `` @ = div\#id.class
+};
+\end{lstlisting}
+
+\subsection{Преобразование типов}
+
+В icL только один оператор позволяет преобразовать данные безопасно - \lstinline|data :? type : bool|.
+Он преобразует данные в нужном тип данных и имеет первый ранг, как и обычный оператор преобразования. Особенность данного оператора, то что он не генерирует исключений, а возвращает \void{} при неудаче.
+
+\subsection{Модификаторы управления}
+
+Модификаторы управления тоже могут быть использованы для исключения ошибок. Напомню что модификатор имеет следующий синтаксис - \lstinline|control:modifier|. А также модификаторы могут быть несколько, синтаксис - \lstinline|control:[mod1,mod2]|. Написания нескольких между собой не совместимых модификаторов приводит к немедленной остановке программы.
+
+Дополнительные модификаторы управления:
+\begin{icItems}
+	\item \lstinline|if:not exists|;
+	\item \lstinline|for:Xtimes|;
+	\item \lstinline|for:ever|;
+	\item \lstinline|while:minX|;
+	\item \lstinline|while:maxX|;
+\end{icItems}
+
+\subsubsection{\lstinline|if:not exists|}
+
+\lstinline|if exists| хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \lstinline|if:not exists|. В сравнении с \lstinline|if exists|, никакие данные не будут переданы в блоке команд.
+
+\subsubsection{\lstinline|for:Xtimes|}
+
+Самый простой способ выполнить блок команд \code{X} раз. Пример кода использующий \code{for:Xtimes} представлен на листинге \ref{forxtimes}. Единица и ноль не подходят для определения количестве повторении.
+
+\begin{lstlisting}[caption=Использование for:Xtimes, label=forxtimes]
+for:5times () {
+	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
+};
+`` replaces
+for (@i = 0; @i < 5; @i = @i + 1) {
+	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
+}
+\end{lstlisting}
+
+\subsubsection{\lstinline|for:ever|}
+
+\lstinline|for:ever| является бесконечным циклом, его можно использовать для выполнения блока команд \code{X} раз, но количество итераций не фиксируемая, а определена переменной. Пример кода представлен на листинге \ref{foreverloop}.
+
+\begin{lstlisting}[caption=Использование for:ever, label=forxtimes]
+@times = 5;
+
+for:ever (@ < @times) {
+	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
+};
+`` replaces
+for (@i = 0; @i < @times; @i = @i + 1) {
+	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
+}
+\end{lstlisting}
+
+\subsubsection{\lstinline|while:minX|}
+
+Модификатор \code{min} позволяет установить минимальное количество похождений циклов \code{while} и \code{do while}. Внутри цикла будет передана логическое значение, под именем \code{@}, истинно означает что условие цикла была проверена, т.е. минимальное количество циклов достигнута.
+
+\subsubsection{\lstinline|while:maxX|}
+
+Модификатор \code{max} защищает вас от бесконечных циклов, можно указать для тестирования большое число, если что-то пойдёт не так, сценарии не зацикливается. Данный модификатор также доступен для оператора \code{for} - прохождение коллекций, \code{filter} и \code{range}. Также пригодится для вставки ограничений сверху, например излечи из страницы только первых 10 записи, когда их там может быть и тысячи (см. листинг \ref{maxlimitsheet}).
+
+\begin{lstlisting}[caption=Использование for:maxX, label=maxlimitsheet]
+for:max10 (Doc.query "#my-table tr") {
+	@; `` just first 10 elements
+}
+\end{lstlisting}
+
+\subsection{Веб-элементы}
+
+Стандарт \textit{WebDriver} преложен \textit{World Wide Web Consortium} описывает огромное количество исключений при работе с веб-элементами. Всех игнорировать нельзя, а только одну \ferror{NoSuchElement}. Она игнорируется в режиме автоматизации, если элемент не найден возвращается пустая коллекция. На первый взгляд мало, но применении на практике найдутся много, в комбинации с другими возможностями, смотрите листинг \ref{maxlimitsheet}.
+
+\begin{lstlisting}[caption=Использование веб-элементов, label=maxlimitsheet]
+`` example 1
+
+@a = exists(Doc.query "#el")'text | "";
+`` replaces
+@a = "";
+if (Doc.queryAll("#el")'length > 0) { @a = Doc.query("#el")'text; }
+
+`` example 2
+
+@links = Doc.queryAll "a";
+
+@links.add(Doc.query "#special");
+`` replaces
+if (!Doc.queryAll("#special")'empty) { @links.add(Doc.query "#special"); }
+`` or
+if exists(Doc.query "#special") { @links.add(@); }
+\end{lstlisting}
+
+

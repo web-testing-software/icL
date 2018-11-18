@@ -87,11 +87,6 @@ __07.10.2018__
  * [+] Add new cast operator *:!* **cast now** with rang 7
  * [+] Add new cast operator *:?* **maybe cast** with rang 7, cast the value if
    posible, otherwise return void
- * [.] Add errorless programing section, with the next errorless constructions
-   * [!] **~**.anyMethod (any args) : **void**
-   * [!] **~**'anyProperty : **void**
-   * [!] value.anyMethod **~** : **void**
-   * [?] value.anyMethod(**~**, **~**, **...**) : **void**
  * [+] Replace , by ; in controls and loops
  * [+] Add switch-case control
  * [+] Improve wait mechanism
@@ -101,5 +96,9 @@ __07.10.2018__
  * [+] Expand reverse keyword
  * [+] Replace insertBoolField, insertIntField, insertDoubleField,
    insertStringField and insertListField by insertField method
+ * [+] Add errorless programing section, with the next errorless constructions
+   * [+] **~**.anyMethod (any args) : **void**
+   * [+] **~**'anyProperty : **void**
+   * [+] value.anyMethod **~** : **void**
 
 All approved changes will be applicated in Standard for icL RC 4.

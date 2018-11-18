@@ -9,9 +9,6 @@
 	\item \code{if else};
 	\item каскадное \code{if else};
 	\item \code{switch case};
-	\item \code{exists};
-	\item \code{if exists};
-	\item \code{for any}.
 \end{icItems}
 
 \subsubsection{\lstinline|if|}
@@ -107,51 +104,5 @@ switch (@v) {
 	\item 5 - будет выполнен \code{code5};
 	\item 6 - будет выполнен \code{code5}.
 \end{icItems}
-
-\subsubsection{\lstinline|exists|}
-
-\code{exists} позволяет условно возвращать данные, если они подходят под определённому критерия.
-
-Условия по умолчанию:
-\begin{icItems}
-\item
-	для \bool{} - \code{# == true};
-\item
-	для \integer{} - \code{# != 0};
-\item
-	для \double{} - \code{# != 0.0};
-\item
-	для \str{} - \code{!#'empty};
-\item
-	для \listtype{} - \code{!#'empty};
-\item
-	для \set{} - \code{!#'empty};
-\item
-	для \element{} - \code{#'empty}.
-\end{icItems}
-
-Если использовать условию по умолчанию, используется следующий синтаксис - \lstinline|exists(expression)|.
-При необходимости задать своё условие, синтаксис чуть изменяется -\lstinline|exists(expression; condition)|.
-
-\subsubsection{\lstinline|if exists|}
-
-Конструкция \code{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \code{exists}. Также повторно использовать значения выражения. В случае когда условие конструкции \code{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \code{exists} под именем \code{@}.
-Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
-
-\begin{lstlisting}[caption=Использование if exist, label=ifexistsex]
-if exists(23 + 3; # > 20) {
-	Log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
-
-\subsubsection{\lstinline|for any|}
-
-\code{for any} позволяет повторно использовать любое значение. Пример использования представлен на листинге \ref{foranyex}.
-
-\begin{lstlisting}[caption=Использование for any, label=foranyex]
-for any(23 + 3) {
-	Log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
 
 %\newpage
