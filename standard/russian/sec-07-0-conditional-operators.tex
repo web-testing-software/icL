@@ -131,7 +131,7 @@ switch (@v) {
 \end{icItems}
 
 Если использовать условию по умолчанию, используется следующий синтаксис - \lstinline|exists(expression)|.
-При необходимости задать своё условие, синтаксис чуть изменяется -\lstinline|exists(expression, condition)|.
+При необходимости задать своё условие, синтаксис чуть изменяется -\lstinline|exists(expression; condition)|.
 
 \subsubsection{\lstinline|if exists|}
 
@@ -139,7 +139,7 @@ switch (@v) {
 Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
 
 \begin{lstlisting}[caption=Использование if exist, label=ifexistsex]
-if exists(23 + 3, # > 20) {
+if exists(23 + 3; # > 20) {
 	Log.out "@ = " @; `` @ = 26
 };
 \end{lstlisting}

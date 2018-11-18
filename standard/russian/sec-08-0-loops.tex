@@ -38,7 +38,7 @@
 
 Универсальный цикл имеет следующий синтаксис -
 \begin{lstlisting}[numbers=none]
-for (initialization, condition, step) {
+for (initialization; condition; step) {
 	commands
 };
 \end{lstlisting}
@@ -46,7 +46,7 @@ for (initialization, condition, step) {
 На листинге \ref{uniloopex} показан пример использование цикла \code{for}, цикл будет выводить числа от нуля до четырёх.
 
 \begin{lstlisting}[caption=Параметрический цикл, label=uniloopex]
-for (@i = 0, i < 5, @i = @i + 1) {
+for (@i = 0; i < 5; @i = @i + 1) {
 	Log.out @i;
 };
 \end{lstlisting}
@@ -97,7 +97,7 @@ do {
 \begin{lstlisting}[caption=Прохождение коллекций с помощью параметрического цикла, label=colluniloop]
 @list = ["apple", "banana", "fruit"];
 
-for (@i = 0, @i < @list'length, @i = @i + 1) {
+for (@i = 0; @i < @list'length; @i = @i + 1) {
 	@list.at @i; `` get i-th value
 }
 \end{lstlisting}
@@ -118,7 +118,7 @@ for (@list) {
 
 Фильтр имеет следующий синтаксис -
 \begin{lstlisting}[numbers=none]
-filter (collection, condition) {
+filter (collection; condition) {
 	commands
 };
 \end{lstlisting}
@@ -128,7 +128,7 @@ filter (collection, condition) {
 \begin{lstlisting}[caption=Фильтрование по данных, label=filterdataex]
 @list = ["apple", "banana", "fruit"];
 
-filter (@list, @ << "a") {
+filter (@list; @ << "a") {
 	@; `` apple, banana
 }
 \end{lstlisting}
@@ -139,14 +139,14 @@ filter (@list, @ << "a") {
 
 Синтаксис для интервала с одним условием -
 \begin{lstlisting}[numbers=none]
-range (collection, condition) {
+range (collection; condition) {
 	commands
 };
 \end{lstlisting}
 
 Синтаксис для интервала с отдельным условием для начало и конца -
 \begin{lstlisting}[numbers=none]
-range (collection, condition_for_begin, condition_for_end) {
+range (collection; condition_for_begin; condition_for_end) {
 	commands
 };
 \end{lstlisting}
@@ -154,7 +154,7 @@ range (collection, condition_for_begin, condition_for_end) {
 \begin{lstlisting}[caption=Фильтрование по индексам, label=filterindexex]
 @list = ["apple", "banana", "fruit"];
 
-filter (@list, # \ 2 == 0) {
+filter (@list; # \ 2 == 0) {
 @; `` apple, fruit
 }
 \end{lstlisting}
@@ -164,7 +164,7 @@ filter (@list, # \ 2 == 0) {
 \begin{lstlisting}[caption=Интервал: от banana до kiwi, label=bananakiwiex]
 @list = ["apple", "banana", "fruit", "kiwi"];
 
-range (@list, @ == "banana", @ == "kiwi") {
+range (@list; @ == "banana"; @ == "kiwi") {
 	@; `` banana, fruit, kiwi
 }
 \end{lstlisting}
@@ -172,7 +172,7 @@ range (@list, @ == "banana", @ == "kiwi") {
 \begin{lstlisting}[caption=Интервал: от второго до последнего, label=seclastex]
 @list = ["apple", "banana", "fruit", "kiwi"];
 
-range (@list, # == 2, true) {
+range (@list; # == 2; true) {
 	@; `` fruit, kiwi
 }
 \end{lstlisting}

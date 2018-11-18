@@ -5,41 +5,36 @@
 
 \noindent Перечень операторов 0$^+$-ого ранга -
 \begin{lstlisting}[numbers=none]
-bool    = bool;
-double  = double;
-element = element;
-int     = int;
-list    = list;
-object  = object;
-regex   = regex;
-set     = set;
-string  = string;
-void    = bool;
-void    = double;
-void    = element;
-void    = int;
-void    = list;
-void    = object;
-void    = regex;
-void    = set;
-void    = string;
-void    = Cookie;
-void    = DB;
-void    = File;
-void    = Query;
-void    = Session;
-void    = Stack;
-void    = Tab;
-void    = Window;
+bool     = bool;
+double   = double;
+element  = element;
+int      = int;
+list     = list;
+object   = object;
+regex    = regex;
+set      = set;
+string   = string;
+datetime = datetime;
+void     = bool;
+void     = double;
+void     = element;
+void     = int;
+void     = list;
+void     = object;
+void     = regex;
+void     = set;
+void     = string;
+void     = Cookie;
+void     = DB;
+void     = File;
+void     = Query;
+void     = Session;
+void     = Stack;
+void     = Tab;
+void     = Window;
 \end{lstlisting}
 
 \subsection{1-ого и 1$^+$-ого ранга}
-Имеет следующие вариации:
-\begin{icItems}
-	\item \lstinline|value :: type|;
-	\item \lstinline|(value...) :: type|;
-	\item \lstinline|(value...) :: (type...)|;
-\end{icItems}
 \noindent Перечень операторов 1-ого ранга -
 \begin{lstlisting}[numbers=none]
 data.method (args...) : any;

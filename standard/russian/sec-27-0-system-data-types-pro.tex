@@ -121,8 +121,8 @@ class Doc {
 \begin{lstlisting}[numbers=none]
 class DSV {
     DSV.load    string File  : set;
-	DSV.loadCSV string        : set;
-	DSV.loadTSV string        : set;
+	DSV.loadCSV string       : set;
+	DSV.loadTSV string       : set;
 	DSV.write   File  set    : File;
 	DSV.append  File  set    : File;
 	DSV.append  File  object : File;
@@ -336,7 +336,7 @@ class Session {
 	Session.close      : void;
 	Session.forward    : Session;
 	Session.refresh    : Session;
-	Session.screenshot () : string;
+	Session.screenshot : string;
 	Session.switchTo   : Session;
 }
 \end{lstlisting}
@@ -372,10 +372,10 @@ class Stack {
     [r/w] Stack : value;
     Stacks.root : Stack;
 	
-    Stack.clear             : void;
-	Stack.continue          : void;
-	Stack.break             : void;
-	Stack.return value : any : void;
+    Stack.clear      : void;
+	Stack.continue   : void;
+	Stack.break      : void;
+	Stack.return any : void;
 }
 \end{lstlisting}
 
@@ -396,7 +396,7 @@ class States {
     States.clear    : void;
 	States.delete   : void;
 	States.new      : void;
-	States.newAtEnd () : void;
+	States.newAtEnd : void;
 	States.toFirst  : void;
 	States.toLast   : void;
 	States.toNext   : void;
@@ -462,6 +462,7 @@ class Types {
 	[r/o] Types'by        : 11;
 	[r/o] Types'cookie    : 12;
 	[r/o] Types'cookies   : 13;
+	[r/o] Types'datetime  : 42;
 	[r/o] Types'db        : 14;
 	[r/o] Types'dbManager : 15;
 	[r/o] Types'dom       : 16;
@@ -496,7 +497,6 @@ class Types {
 	[r/o] Types'tabs      : 37;
 	[r/o] Types'types     : 38;
 	[r/o] Types'value     : 0;
-	[r/o] Types'wait      : 39;
 	[r/o] Types'window    : 40;
 	[r/o] Types'windows   : 41;
 }

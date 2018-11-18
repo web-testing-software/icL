@@ -92,7 +92,7 @@ __07.10.2018__
    * [!] **~**'anyProperty : **void**
    * [!] value.anyMethod **~** : **void**
    * [?] value.anyMethod(**~**, **~**, **...**) : **void**
- * [!] Replace , by ; in controls and loops
+ * [+] Replace , by ; in controls and loops
  * [+] Add switch-case control
  * [+] Improve wait mechanism
  * [+] Add element less input simulation
@@ -101,3 +101,5 @@ __07.10.2018__
  * [+] Expand reverse keyword
  * [+] Replace insertBoolField, insertIntField, insertDoubleField,
    insertStringField and insertListField by insertField method
+
+All approved changes will be applicated in Standard for icL RC 4.

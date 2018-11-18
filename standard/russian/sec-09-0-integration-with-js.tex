@@ -8,7 +8,7 @@
 
 Каждое JS-Значение имеет геттер, но только переменные доступны для записи и чтения имеют сеттер. Геттеры и сеттеры являются фрагментами кода на языке JavaScript. В сеттере установленное значение передаётся следующим кодом \code{@\{value\}} Синтаксис JS-Значений:
 \begin{lstlisting}[numbers=none]
-$value {getter, setter};
+$value {getter; setter};
 \end{lstlisting}
 
 Упрощённый синтаксис JS-Значений:
@@ -19,7 +19,7 @@ $value {getter};
 В качестве JS-Значений может объявить любое переменное, на пример название страницы (см. листинг \ref{jsvalueex}), она остаётся доступной даже после перехода на другой странице.
 
 \begin{lstlisting}[caption=Использование JS-Значений, label=jsvalueex]
-@title = $value {document.title, document.title = @{value}};
+@title = $value {document.title; document.title = @{value}};
 Log.out @title;
 @title = "Yet another title.";
 \end{lstlisting}
