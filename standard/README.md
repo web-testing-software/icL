@@ -96,6 +96,10 @@ __07.10.2018__
  * [+] Expand reverse keyword
  * [+] Replace insertBoolField, insertIntField, insertDoubleField,
    insertStringField and insertListField by insertField method
+ * [!] Remove Stacks.root method.
+ * [!] Add Stack.return, Stack.continue and Stack.break compatible stack search
+ * [!] Add Stack.makeTest and Stack.makeStep
+ * [!] Fix include policy
  * [+] Add errorless programing section, with the next errorless constructions
    * [+] **~**.anyMethod (any args) : **void**
    * [+] **~**'anyProperty : **void**
