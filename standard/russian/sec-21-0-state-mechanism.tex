@@ -12,11 +12,13 @@
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
 	\item \lstinline|[r/o] Stacks'(name : string) : Stack|;
-	\item \lstinline|Stacks.root() : Stack|;
 	\item \lstinline|Stack.clear () : void|;
 	\item \lstinline|Stack.continue () : void|;
 	\item \lstinline|Stack.break () : void|;
-	\item \lstinline|Stack.return (value : any) : void|.
+	\item \lstinline|Stack.return (value : any) : void|;
+	\item \lstinline|Stack.markTest (name : string) : Stack|;
+	\item \lstinline|Stack.markStep (name : string) : Stack|.
+	\item \lstinline|Stack.addDescription (description : string) : void|;
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] Stacks'(name : string) : Stack|}

@@ -370,12 +370,14 @@ class Signal {
 \begin{lstlisting}[numbers=none]
 class Stack {
     [r/w] Stack : value;
-    Stacks.root : Stack;
 	
-    Stack.clear      : void;
-	Stack.continue   : void;
-	Stack.break      : void;
-	Stack.return any : void;
+    Stack.clear                 : void;
+	Stack.continue              : void;
+	Stack.break                 : void;
+	Stack.return         any    : void;
+	Stack.markTest       string : Stack;
+	Stack.markStep       string : Stack;
+	Stack.addDescription string : void;
 }
 \end{lstlisting}
 
