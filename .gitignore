@@ -14,10 +14,12 @@ doc/html/*
 layouts/*/*/*.png
 layouts/*/icons/*
 layouts/pdf/*
-layouts/pdf/*
 standard/*/*html/*
 standard/standard*.pdf
 standard/moldavian/*.pdf
 standard/russian/*.pdf
+philosophy/standard*.pdf
+philosophy/moldavian/*.pdf
+philosophy/russian/*.pdf
 src/*/models/*.png
 *.db
