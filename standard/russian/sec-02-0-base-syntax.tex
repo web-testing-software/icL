@@ -21,13 +21,13 @@ Test!
 
 \begin{icItems}
 \item
-	\lstinline|Import.none "path/to/file.iclib"| - выполнить код, который содержится в файле, ничего не импортировать.
+	\lstinline|Import.none "project/lib.icL"| - выполнить код, который содержится в файле, ничего не импортировать.
 \item
-	\lstinline|Import.functions "path/to/file.iclib"| - выполнить код и импортировать функции; {\color{red}Важно:} импортированные функции не должны использовать глобальные переменные.
+	\lstinline|Import.functions "project/lib.icL"| - выполнить код и импортировать функции; {\color{red}Важно:} импортированные функции не должны использовать глобальные переменные.
 \item
-	\lstinline|Import.all "path/to/file.iclib"| -  выполнить код, импортировать функции и глобальные переменные;
+	\lstinline|Import.all "project/lib.icL"| -  выполнить код, импортировать функции и глобальные переменные;
 \item
-	\lstinline|Import.run "path/to/file.iclib"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
+	\lstinline|Import.run "project/lib.icL"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
 \end{icItems}
 
 \subsection{Токены в icL}
