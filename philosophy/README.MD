@@ -1,6 +1,6 @@
 ### Editing
 
-This file is not aviable for editing.
+The philosophy is not aviable for editing.
 
 ### Contibuting
 
