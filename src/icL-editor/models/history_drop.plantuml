@@ -1,7 +1,5 @@
 @startuml
 
-skinparam monochrome reverse
-
 !include "uml_style.iuml"
 
 title History.drop()
