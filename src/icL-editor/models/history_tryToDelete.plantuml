@@ -1,0 +1,22 @@
+@startuml
+
+!include "uml_style.iuml"
+
+title History.tryToDelete()
+
+start
+
+:needDrop = false;
+:it = getFirstSelection()|
+
+while (it != nullptr && !needDrop)
+    :needDrop = needDrop || it.begin == it.end;
+endwhile
+
+if (needDrop) then (true)
+    : drop()|
+endif
+
+stop
+
+@enduml

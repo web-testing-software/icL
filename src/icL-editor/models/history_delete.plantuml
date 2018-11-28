@@ -1,0 +1,27 @@
+@startuml
+
+!include "uml_style.iuml"
+
+title History.delete()
+
+start
+
+:selectToRight(1);
+
+note right
+    The postion of
+    Cursor.history
+    must not get
+    updated
+end note
+
+note left
+    The selection
+    must be rtl
+end note
+
+:drop()|
+
+stop
+
+@enduml

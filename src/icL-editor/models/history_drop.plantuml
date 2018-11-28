@@ -1,0 +1,29 @@
+@startuml
+
+skinparam monochrome reverse
+
+!include "uml_style.iuml"
+
+title History.drop()
+
+start
+
+:it = getLastSelection()|
+
+while (it != nullptr)
+    :droped = it.drop()|
+
+    if (droped.isEmpty) then (false)
+        if (it.rtl) then (true)
+            :it.history.droped\n.append(droped);
+        else (false)
+            :it.history.droped\n.prepend(droped);
+        endif
+    endif
+
+    :it = it.prev;
+endwhile
+
+stop
+
+@enduml

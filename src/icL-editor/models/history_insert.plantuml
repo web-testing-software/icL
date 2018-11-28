@@ -1,0 +1,28 @@
+@startuml
+
+!include "uml_style.iuml"
+
+title History.insert(text : string)
+
+start
+
+:tryToDelete()|
+
+:it = getFirstSelection()|
+
+while (it != nullptr)
+    :inserted = it.insert(text)|
+    if (inserted.isEmpty()) then (false)
+        :it.history.inserted\n.append(inserted);
+    else
+        end
+    endif
+
+    :it = it.next;
+endwhile
+
+:return true;
+
+stop
+
+@enduml
