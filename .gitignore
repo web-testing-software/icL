@@ -21,3 +21,4 @@ standard/moldavian/*.pdf
 standard/russian/*.pdf
 src/*/models/*.png
 *.db
+settings.json
