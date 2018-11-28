@@ -11,79 +11,140 @@ Keyboard::Keyboard(QQuickItem * parent)
     : History(parent) {}
 
 void Keyboard::keyPressEvent(QKeyEvent * event) {
-	if (event->key() == Qt::Key_Left) {
-		if (event->modifiers().testFlag(Qt::ControlModifier)) {
-			m_main->moveOverWords(
-			  -1, event->modifiers().testFlag(Qt::ShiftModifier));
-		}
-		else
-			m_main->move(-1, event->modifiers().testFlag(Qt::ShiftModifier));
-	}
-	else if (event->key() == Qt::Key_Right) {
-		if (event->modifiers().testFlag(Qt::ControlModifier)) {
-			m_main->moveOverWords(
-			  1, event->modifiers().testFlag(Qt::ShiftModifier));
-		}
-		else
-			m_main->move(1, event->modifiers().testFlag(Qt::ShiftModifier));
-	}
-	else if (event->key() == Qt::Key_Up) {
-		const auto & mods = event->modifiers();
+	auto mods = event->modifiers();
 
-		if (
-		  mods.testFlag(Qt::ShiftModifier) && mods.testFlag(Qt::AltModifier)) {
-			addCursorOnPrevLine();
+	if (event->key() >= Qt::Key_F1 && event->key() <= Qt::Key_F12) {
+		if (mods.testFlag(Qt::ShiftModifier)) {
+			if (mods.testFlag(Qt::ControlModifier)) {
+				if (mods.testFlag(Qt::AltModifier)) {
+					functionCtrlAltShiftKey(event);
+				}
+				else {
+					functionShiftCtrlKey(event);
+				}
+			}
+			else {
+				if (mods.testFlag(Qt::AltModifier)) {
+					functionShiftAltKey(event);
+				}
+				else {
+					functionShiftKey(event);
+				}
+			}
 		}
-		else
-			m_main->moveUpDown(
-			  -1, event->modifiers().testFlag(Qt::ShiftModifier));
-	}
-	else if (event->key() == Qt::Key_Down) {
-		const auto & mods = event->modifiers();
-
-		if (
-		  mods.testFlag(Qt::ShiftModifier) && mods.testFlag(Qt::AltModifier)) {
-			addCursorOnNextLine();
+		else {
+			if (mods.testFlag(Qt::ControlModifier)) {
+				if (mods.testFlag(Qt::AltModifier)) {
+					functionCtrlAltKey(event);
+				}
+				else {
+					functionCtrlKey(event);
+				}
+			}
+			else {
+				if (mods.testFlag(Qt::AltModifier)) {
+					functionAltKey(event);
+				}
+				else {
+					functionKey(event);
+				}
+			}
 		}
-		else
-			m_main->moveUpDown(
-			  1, event->modifiers().testFlag(Qt::ShiftModifier));
 	}
-	else if (event->key() == Qt::Key_Backspace) {
-		qDebug() << m_main->backspace();
-	}
-	else if (event->key() == Qt::Key_Delete) {
-		qDebug() << m_main->delete1();
-	}
-	else if (event->key() == Qt::Key_A) {
-		qDebug() << m_main->insert(event->text());
-	}
-	else if (event->key() == Qt::Key_S) {
-		auto *      it = m_first;
-		QTextStream st;
-
-		while (it != nullptr) {
-			it->save(&st);
-			it = it->next();
+	else {
+		if (mods.testFlag(Qt::ShiftModifier)) {
+			if (mods.testFlag(Qt::ControlModifier)) {
+				if (mods.testFlag(Qt::AltModifier)) {
+					anyCtrlAltShiftKey(event);
+				}
+				else {
+					anyShiftCtrlKey(event);
+				}
+			}
+			else {
+				if (mods.testFlag(Qt::AltModifier)) {
+					anyShiftAltKey(event);
+				}
+				else {
+					anyShiftKey(event);
+				}
+			}
 		}
-
-		requestRepaint();
-	}
-	else if (event->key() == Qt::Key_Enter) {
-		qDebug() << m_main->insert("\n");
-	}
-	else if (
-	  event->key() == Qt::Key_H &&
-	  event->modifiers().testFlag(Qt::ControlModifier)) {
-		m_current->showPhantoms(true);
-	}
-	else if (event->key() == Qt::Key_1) {
-		qDebug() << "pressed";
-		m_firstVisible->next()->next()->setHasBreakPoint(
-		  !m_firstVisible->next()->next()->hasBreakPoint());
+		else {
+			if (mods.testFlag(Qt::ControlModifier)) {
+				if (mods.testFlag(Qt::AltModifier)) {
+					anyCtrlAltKey(event);
+				}
+				else {
+					anyCtrlKey(event);
+				}
+			}
+			else {
+				if (mods.testFlag(Qt::AltModifier)) {
+					anyAltKey(event);
+				}
+				else {
+					anyKey(event);
+				}
+			}
+		}
 	}
 
 	emit requestRepaint();
 }
+
+void Keyboard::functionKey(QKeyEvent *event) {}
+
+void Keyboard::functionShiftKey(QKeyEvent *event) {}
+
+void Keyboard::functionCtrlKey(QKeyEvent *event) {}
+
+void Keyboard::functionAltKey(QKeyEvent *event) {}
+
+void Keyboard::functionShiftCtrlKey(QKeyEvent *event) {}
+
+void Keyboard::functionShiftAltKey(QKeyEvent *event) {}
+
+void Keyboard::functionCtrlAltKey(QKeyEvent *event) {}
+
+void Keyboard::functionCtrlAltShiftKey(QKeyEvent *event) {}
+
+void Keyboard::anyKey(QKeyEvent *event) {
+	switch (event->key()) {
+	case Qt::Key_Left:
+		moveCursorToPrevChar();
+		break;
+
+	case Qt::Key_Right:
+		moveCursorToNextChar();
+		break;
+
+	default:
+		if (!event->text().isEmpty()) {
+			m_main->insert(event->text());
+		}
+	}
+}
+
+void Keyboard::anyShiftKey(QKeyEvent *event) {
+	switch (event->key()) {
+	default:
+		if (!event->text().isEmpty()) {
+			m_main->insert(event->text());
+		}
+	}
+}
+
+void Keyboard::anyCtrlKey(QKeyEvent *event) {}
+
+void Keyboard::anyAltKey(QKeyEvent *event) {}
+
+void Keyboard::anyShiftCtrlKey(QKeyEvent *event) {}
+
+void Keyboard::anyShiftAltKey(QKeyEvent *event) {}
+
+void Keyboard::anyCtrlAltKey(QKeyEvent *event) {}
+
+void Keyboard::anyCtrlAltShiftKey(QKeyEvent *event) {}
 
 }  // namespace icL::editor

@@ -54,6 +54,30 @@ protected:
 	 */
 	void addCursorOnNextLine();
 
+    /**
+     * @brief moveCursorToNextChar moves the cursor to next character
+     *
+     * The position of cursor must be tracked
+     */
+    void moveCursorToNextChar();
+
+    /**
+     * @brief moveCursorToPrevChar moves the cursor to next character
+     *
+     * The postion of cursor must be tracked
+     */
+    void moveCursorToPrevChar();
+
+    /**
+     * @brief moveCursorToNextWord moves the cursor over a word to end
+     */
+    void moveCursorToNextWord();
+
+    /**
+     * @brief moveCursorToPrevWord moves the cursor over a word to begin
+     */
+    void moveCursorToPrevWord();
+
 protected:
 	/**
 	 * @brief numberOfCursors is the number of cursors in the text editor
