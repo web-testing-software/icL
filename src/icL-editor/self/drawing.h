@@ -38,10 +38,10 @@ class Drawing : public Logic
 	Q_PROPERTY(int    lnWidth READ lnWidth    NOTIFY lnWidthChanged)
 	Q_PROPERTY(int linesCount READ linesCount NOTIFY linesCountChanged)
 
-	Q_PROPERTY(int  charsInLine READ charsInLine  WRITE setCharsInLine  NOTIFY charsInLineChanged)
-	Q_PROPERTY(int dVisbileLines READ dVisbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
-	Q_PROPERTY(int  dFirstLineNr READ dFirstLineNr  NOTIFY firstLineNrChanged)
-	Q_PROPERTY(int  dFirstCharNr READ dFirstCharNr  NOTIFY firstCharNrChanged)
+	Q_PROPERTY(int  charsInLine READ charsInLine   WRITE setCharsInLine  NOTIFY charsInLineChanged)
+	Q_PROPERTY(int visbileLines READ dVisbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
+	Q_PROPERTY(int  firstLineNr READ dFirstLineNr  NOTIFY firstLineNrChanged)
+	Q_PROPERTY(int  firstCharNr READ dFirstCharNr  NOTIFY firstCharNrChanged)
 	// clang-format on
 
 public:
@@ -145,7 +145,7 @@ signals:
 	/**
 	 * @brief makeCursorOpaque set the opacity of cursor to 1
 	 */
-	void dMakeCursorOpaque();
+	void makeCursorOpaque();
 
 public slots:
 	/**

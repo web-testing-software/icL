@@ -103,7 +103,7 @@ void Selection::move(int step, bool select) {
 		}
 	}
 
-	m_begin->getEditor()->dMakeCursorOpaque();
+	m_begin->getEditor()->makeCursorOpaque();
 	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
@@ -133,7 +133,7 @@ void Selection::moveOverWords(int words, bool select) {
 		}
 	}
 
-	m_begin->getEditor()->dMakeCursorOpaque();
+	m_begin->getEditor()->makeCursorOpaque();
 	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
@@ -161,7 +161,7 @@ void Selection::moveUpDown(int lines, bool select) {
 		}
 	}
 
-	m_begin->getEditor()->dMakeCursorOpaque();
+	m_begin->getEditor()->makeCursorOpaque();
 	m_begin->getEditor()->lUpdateCurrentLine();
 }
 

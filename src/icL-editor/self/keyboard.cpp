@@ -122,11 +122,11 @@ void Keyboard::anyKey(QKeyEvent * event) {
 		break;
 
 	case Qt::Key_Left:
-		hMoveCursorToPrevChar();
+		hMoveCursorChar(-1);
 		break;
 
 	case Qt::Key_Right:
-		hMoveCursorToNextChar();
+		hMoveCursorChar(+1);
 		break;
 
 	default:
