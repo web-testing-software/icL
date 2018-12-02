@@ -93,23 +93,23 @@ void Keyboard::keyPressEvent(QKeyEvent * event) {
 	emit requestRepaint();
 }
 
-void Keyboard::functionKey(QKeyEvent *event) {}
+void Keyboard::functionKey(QKeyEvent * event) {}
 
-void Keyboard::functionShiftKey(QKeyEvent *event) {}
+void Keyboard::functionShiftKey(QKeyEvent * event) {}
 
-void Keyboard::functionCtrlKey(QKeyEvent *event) {}
+void Keyboard::functionCtrlKey(QKeyEvent * event) {}
 
-void Keyboard::functionAltKey(QKeyEvent *event) {}
+void Keyboard::functionAltKey(QKeyEvent * event) {}
 
-void Keyboard::functionShiftCtrlKey(QKeyEvent *event) {}
+void Keyboard::functionShiftCtrlKey(QKeyEvent * event) {}
 
-void Keyboard::functionShiftAltKey(QKeyEvent *event) {}
+void Keyboard::functionShiftAltKey(QKeyEvent * event) {}
 
-void Keyboard::functionCtrlAltKey(QKeyEvent *event) {}
+void Keyboard::functionCtrlAltKey(QKeyEvent * event) {}
 
-void Keyboard::functionCtrlAltShiftKey(QKeyEvent *event) {}
+void Keyboard::functionCtrlAltShiftKey(QKeyEvent * event) {}
 
-void Keyboard::anyKey(QKeyEvent *event) {
+void Keyboard::anyKey(QKeyEvent * event) {
 	switch (event->key()) {
 	case Qt::Key_Left:
 		moveCursorToPrevChar();
@@ -119,6 +119,12 @@ void Keyboard::anyKey(QKeyEvent *event) {
 		moveCursorToNextChar();
 		break;
 
+	case Qt::Key_Delete:
+		break;
+
+	case Qt::Key_Backspace:
+		break;
+
 	default:
 		if (!event->text().isEmpty()) {
 			m_main->insert(event->text());
@@ -126,7 +132,7 @@ void Keyboard::anyKey(QKeyEvent *event) {
 	}
 }
 
-void Keyboard::anyShiftKey(QKeyEvent *event) {
+void Keyboard::anyShiftKey(QKeyEvent * event) {
 	switch (event->key()) {
 	default:
 		if (!event->text().isEmpty()) {
@@ -135,16 +141,16 @@ void Keyboard::anyShiftKey(QKeyEvent *event) {
 	}
 }
 
-void Keyboard::anyCtrlKey(QKeyEvent *event) {}
+void Keyboard::anyCtrlKey(QKeyEvent * event) {}
 
-void Keyboard::anyAltKey(QKeyEvent *event) {}
+void Keyboard::anyAltKey(QKeyEvent * event) {}
 
-void Keyboard::anyShiftCtrlKey(QKeyEvent *event) {}
+void Keyboard::anyShiftCtrlKey(QKeyEvent * event) {}
 
-void Keyboard::anyShiftAltKey(QKeyEvent *event) {}
+void Keyboard::anyShiftAltKey(QKeyEvent * event) {}
 
-void Keyboard::anyCtrlAltKey(QKeyEvent *event) {}
+void Keyboard::anyCtrlAltKey(QKeyEvent * event) {}
 
-void Keyboard::anyCtrlAltShiftKey(QKeyEvent *event) {}
+void Keyboard::anyCtrlAltShiftKey(QKeyEvent * event) {}
 
 }  // namespace icL::editor

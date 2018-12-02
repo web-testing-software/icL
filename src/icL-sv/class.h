@@ -5,7 +5,7 @@
 class Class
 {
 public:
-    Class();
+	Class();
 };
 
-#endif // CLASS_H
+#endif  // CLASS_H

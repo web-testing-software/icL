@@ -125,7 +125,7 @@ const utils::Actions & Project::getActionsList() {
 }
 
 bool Project::runAction(utils::RemoteCall * call) {
-    return false;
+	return false;
 }
 
 }  // namespace icL::toolkit::session

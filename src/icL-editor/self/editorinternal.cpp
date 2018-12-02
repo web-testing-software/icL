@@ -5,6 +5,6 @@
 namespace icL::editor {
 
 EditorInternal::EditorInternal(QQuickItem * parent)
-	: Mouse(parent) {}
+    : Mouse(parent) {}
 
 }  // namespace icL::editor

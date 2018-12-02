@@ -15,7 +15,7 @@
 namespace icL::editor {
 
 CursorsArea::CursorsArea(QQuickItem * parent)
-	: QQuickItem(parent) {
+    : QQuickItem(parent) {
 	setFlag(ItemHasContents, true);
 
 	alpha.setInterval(1000);

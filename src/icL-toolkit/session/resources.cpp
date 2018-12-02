@@ -51,7 +51,7 @@ const utils::Actions & Resources::getActionsList() {
 }
 
 bool Resources::runAction(utils::RemoteCall * call) {
-    return false;
+	return false;
 }
 
 }  // namespace icL::toolkit::session

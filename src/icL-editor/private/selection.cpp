@@ -592,7 +592,7 @@ bool Selection::isAfter(Cursor * cursor, Line * line, int ch) {
 	int cursorLine = cursor->fragment()->line()->lineNumber();
 
 	return line->lineNumber() > cursorLine ||
-		   (line->lineNumber() == cursorLine && ch > cursor->getPosInLine());
+	       (line->lineNumber() == cursorLine && ch > cursor->getPosInLine());
 }
 
 }  // namespace icL::editor

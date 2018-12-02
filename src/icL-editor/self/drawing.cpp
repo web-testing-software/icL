@@ -175,14 +175,14 @@ void Drawing::updateBackgroundGeometry() {
 	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
 	m_leftPadding = lineNumberArea.right() + m_proxy->fullLineH() / 2 -
-					m_proxy->divLineSBy2() + 1;
+	                m_proxy->divLineSBy2() + 1;
 
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
-					   {lineNumberArea.right() + 1, 0},
-					   {m_leftPadding, m_proxy->fullLineH() / 2},
-					   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
-					   {0, m_proxy->fullLineH()}})};
+	                   {lineNumberArea.right() + 1, 0},
+	                   {m_leftPadding, m_proxy->fullLineH() / 2},
+	                   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
+	                   {0, m_proxy->fullLineH()}})};
 
 	leftRect.setRight(lineNumberArea.right());
 	leftRect.setBottom(m_proxy->fullLineH() - 1);
@@ -266,8 +266,8 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 	if (
 	  beginLine->lineNumber() >
-		m_firstVisible->lineNumber() + 1 +
-		  static_cast<int>(height()) / m_proxy->fullLineH() ||
+	    m_firstVisible->lineNumber() + 1 +
+	      static_cast<int>(height()) / m_proxy->fullLineH() ||
 	  endLine->lineNumber() < m_firstVisible->lineNumber()) {
 		return;
 	}
@@ -345,9 +345,9 @@ void Drawing::drawContent(QPainter * painter) {
 
 	auto * itLine = m_firstVisible;
 	int    yDelta = m_proxy->divLineSBy2() +
-				 (m_proxy->charH() -
-				  static_cast<int>(itLine->getCache()->size().height())) /
-				   2;
+	             (m_proxy->charH() -
+	              static_cast<int>(itLine->getCache()->size().height())) /
+	               2;
 	int xBegin = m_leftPadding - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 

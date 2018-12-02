@@ -8,7 +8,7 @@
 namespace icL::editor {
 
 History::History(QQuickItem * parent)
-	: Scroll(parent) {}
+    : Scroll(parent) {}
 
 Selection * History::getFirstSelection() {
 	auto * it = m_main;
@@ -79,43 +79,43 @@ void History::addCursorOnNextLine() {
 		numberOfCursors--;
 	}
 
-    m_main->moveUpDown(1);
+	m_main->moveUpDown(1);
 }
 
 void History::moveCursorToNextChar() {
-    auto * it = getFirstSelection();
+	auto * it = getFirstSelection();
 
-    while (it != nullptr) {
-        it->move(1);
-        it = it->next();
-    }
+	while (it != nullptr) {
+		it->move(1);
+		it = it->next();
+	}
 }
 
 void History::moveCursorToPrevChar() {
-    auto * it = getFirstSelection();
+	auto * it = getFirstSelection();
 
-    while (it != nullptr) {
-        it->move(-1);
-        it = it->next();
-    }
+	while (it != nullptr) {
+		it->move(-1);
+		it = it->next();
+	}
 }
 
 void History::moveCursorToNextWord() {
-    auto * it = getFirstSelection();
+	auto * it = getFirstSelection();
 
-    while (it != nullptr) {
-        it->moveOverWords(1);
-        it = it->next();
-    }
+	while (it != nullptr) {
+		it->moveOverWords(1);
+		it = it->next();
+	}
 }
 
 void History::moveCursorToPrevWord() {
-    auto * it = getFirstSelection();
+	auto * it = getFirstSelection();
 
-    while (it != nullptr) {
-        it->moveOverWords(-1);
-        it = it->next();
-    }
+	while (it != nullptr) {
+		it->moveOverWords(-1);
+		it = it->next();
+	}
 }
 
 }  // namespace icL::editor

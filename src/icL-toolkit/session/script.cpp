@@ -44,7 +44,7 @@ const utils::Actions & Script::getActionsList() {
 }
 
 bool Script::runAction(utils::RemoteCall * call) {
-    return false;
+	return false;
 }
 
 }  // namespace icL::toolkit::session

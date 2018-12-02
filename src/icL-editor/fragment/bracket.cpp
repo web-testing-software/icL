@@ -64,7 +64,7 @@ Fragment * Bracket::insertInGlyphs(
   Cursor * /*begin*/, Cursor * /*end*/, int, const QString &) {
 	// This function must be not called ever
 	Q_ASSERT(false);
-    return nullptr;
+	return nullptr;
 }
 
 Fragment * Bracket::insertAfterGlyphs(
@@ -87,19 +87,19 @@ Fragment * Bracket::insertAfterGlyphs(
 Fragment * Bracket::dropHead(Cursor *, int, int) {
 	// This function must be not called ever
 	Q_ASSERT(false);
-    return nullptr;
+	return nullptr;
 }
 
 Fragment * Bracket::dropContent(Cursor *, int, int) {
 	// This function must be not called ever
 	Q_ASSERT(false);
-    return nullptr;
+	return nullptr;
 }
 
 Fragment * Bracket::dropTail(Cursor *, int, int) {
 	// This function must be not called ever
 	Q_ASSERT(false);
-    return nullptr;
+	return nullptr;
 }
 
 }  // namespace icL::editor

@@ -11,7 +11,7 @@
 namespace icL::editor {
 
 Mouse::Mouse(QQuickItem * parent)
-	: Keyboard(parent) {
+    : Keyboard(parent) {
 	setAcceptedMouseButtons(
 	  Qt::LeftButton | Qt::MiddleButton | Qt::RightButton);
 	setAcceptHoverEvents(true);
@@ -113,9 +113,9 @@ void Mouse::hoverMoveEvent(QHoverEvent * event) {
 std::pair<Line *, int> Mouse::getLineCh(QMouseEvent * event) {
 	int y  = event->y();
 	int ch = qRound(
-			   static_cast<float>(event->x() - m_leftPadding) /
-			   static_cast<float>(m_proxy->charW())) +
-			 xScroll;
+	           static_cast<float>(event->x() - m_leftPadding) /
+	           static_cast<float>(m_proxy->charW())) +
+	         xScroll;
 
 	Line * it = m_firstVisible;
 

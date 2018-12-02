@@ -52,7 +52,7 @@ const utils::Actions & Libs::getActionsList() {
 }
 
 bool Libs::runAction(utils::RemoteCall * call) {
-    return false;
+	return false;
 }
 
 }  // namespace icL::toolkit::session

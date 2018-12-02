@@ -13,7 +13,7 @@
 namespace icL::editor {
 
 LineNumbers::LineNumbers(QQuickItem * parent)
-	: QQuickPaintedItem(parent) {
+    : QQuickPaintedItem(parent) {
 	setRenderTarget(QQuickPaintedItem::FramebufferObject);
 	setAntialiasing(true);
 }
@@ -106,7 +106,7 @@ void LineNumbers::drawText(QPainter * painter) {
 	auto * proxy = m_editor->m_proxy;
 	auto * chars = m_editor->m_chars;
 
-	int    yDelta = proxy->divLineSBy2() + yBegin;
+	int yDelta = proxy->divLineSBy2() + yBegin;
 	int xDelta = (proxy->fullLineH() - newLine.size().width()) / 2;
 
 	painter->setBrush(Qt::NoBrush);
@@ -163,7 +163,7 @@ void LineNumbers::drawText(QPainter * painter) {
 
 		painter->drawStaticText(
 		  m_editor->lineNumberRight -
-			proxy->charW() * it->charsNumberInLineNumber(),
+		    proxy->charW() * it->charsNumberInLineNumber(),
 		  it->lastY() + yDelta, *stext);
 
 		if (additional == nullptr) {
@@ -199,7 +199,10 @@ void LineNumbers::drawText(QPainter * painter) {
 	}
 
 	// Fixes rendering bug on Windows
-	yBegin = (proxy->charH() - static_cast<int>(m_editor->m_firstVisible->getCache()->size().height())) / 2;
+	yBegin = (proxy->charH() -
+	          static_cast<int>(
+	            m_editor->m_firstVisible->getCache()->size().height())) /
+	         2;
 }
 
 void LineNumbers::drawChanges(QPainter * painter) {

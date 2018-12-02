@@ -9,7 +9,7 @@
 namespace icL::editor {
 
 OpacityMask::OpacityMask(QQuickItem * parent)
-	: QQuickPaintedItem(parent) {
+    : QQuickPaintedItem(parent) {
 	setRenderTarget(QQuickPaintedItem::FramebufferObject);
 	setAntialiasing(true);
 }

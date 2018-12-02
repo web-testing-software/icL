@@ -8,7 +8,7 @@
 namespace icL::editor {
 
 Scroll::Scroll(QQuickItem * parent)
-	: Drawing(parent) {}
+    : Drawing(parent) {}
 
 void Scroll::scrollUpBy(int by) {
 	int    i  = 0;
