@@ -62,4 +62,5 @@ DISTFILES += \
     layouts/light/*.svg \
     layouts/structure/*.svg \
     layouts/models/*.svg \
-    images/*.png
+    images/*.png \
+    technologies/README.md
