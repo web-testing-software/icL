@@ -6,19 +6,16 @@ title History.delete()
 
 start
 
-:selectToRight(1);
+if (hasSelection()) then (false)
+    :selectToRight(1);
 
-note right
-    The postion of
-    Cursor.history
-    must not get
-    updated
-end note
-
-note left
-    The selection
-    must be rtl
-end note
+    note left
+        The postion of
+        Cursor.history
+        must not get
+        updated
+    end note
+endif
 
 :drop()|
 

@@ -1,0 +1,20 @@
+@startuml hasSelection
+
+!include uml_style.iuml
+
+title History.hasSelection
+
+start
+
+:needDrop = false;
+:it = getFirstSelection()|
+
+while (it != nullptr && !needDrop)
+    :needDrop = needDrop || it.begin == it.end;
+endwhile
+
+:return needDrop/
+
+stop
+
+@enduml
