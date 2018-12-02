@@ -39,9 +39,9 @@ class Drawing : public Logic
 	Q_PROPERTY(int linesCount READ linesCount NOTIFY linesCountChanged)
 
 	Q_PROPERTY(int  charsInLine READ charsInLine  WRITE setCharsInLine  NOTIFY charsInLineChanged)
-	Q_PROPERTY(int visbileLines READ visbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
-	Q_PROPERTY(int  firstLineNr READ firstLineNr  NOTIFY firstLineNrChanged)
-	Q_PROPERTY(int  firstCharNr READ firstCharNr  NOTIFY firstCharNrChanged)
+	Q_PROPERTY(int dVisbileLines READ dVisbileLines WRITE setVisbileLines NOTIFY visbileLinesChanged)
+	Q_PROPERTY(int  dFirstLineNr READ dFirstLineNr  NOTIFY firstLineNrChanged)
+	Q_PROPERTY(int  dFirstCharNr READ dFirstCharNr  NOTIFY firstCharNrChanged)
 	// clang-format on
 
 public:
@@ -99,19 +99,19 @@ public:
 	 * @brief visbileLines is the number of visible lines
 	 * @return the number of visible lines
 	 */
-	int visbileLines() const override;
+	int dVisbileLines() const override;
 
 	/**
 	 * @brief firstLineNr is the first visible line number
 	 * @return the number of first visible line
 	 */
-	int firstLineNr() const;
+	int dFirstLineNr() const;
 
 	/**
 	 * @brief firstCharNr is the number of first visible char
 	 * @return the number of first visible char
 	 */
-	int firstCharNr() const;
+	int dFirstCharNr() const;
 
 	/**
 	 * The drawing of line number was a part of Drawing class, now it's extern
@@ -136,16 +136,16 @@ signals:
 	/// @brief elude QML warning
 	void lnWidthChanged(int lnWidth);
 	/// @brief elude QML warning
-	void firstCharNrChanged(int firstCharNr);
+	void firstCharNrChanged(int dFirstCharNr);
 	/// @brief elude QML warning
 	void charsInLineChanged(int charsInLine);
 	/// @brief elude QML warning
-	void visbileLinesChanged(int visbileLines);
+	void visbileLinesChanged(int dVisbileLines);
 
 	/**
 	 * @brief makeCursorOpaque set the opacity of cursor to 1
 	 */
-	void makeCursorOpaque();
+	void dMakeCursorOpaque();
 
 public slots:
 	/**
@@ -182,14 +182,14 @@ public slots:
 	 * @brief setVisbileLines sets the number of visible lines
 	 * @param visbileLines the number of lines calculated in QML
 	 */
-	void setVisbileLines(int visbileLines);
+	void setVisbileLines(int dVisbileLines);
 
 private slots:
 	/**
 	 * @brief updateBackgroundGeometry updatates the background geometry, which
 	 * consist from 2 rectangles (line number area and content area)
 	 */
-	void updateBackgroundGeometry() override;
+	void dUpdateBackgroundGeometry() override;
 
 private:
 	/**

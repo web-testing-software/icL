@@ -22,9 +22,9 @@ Drawing::Drawing(QQuickItem * parent)
 	setAntialiasing(true);
 
 	connect(
-	  this, &Logic::widthChanged, this, &Drawing::updateBackgroundGeometry);
+	  this, &Logic::widthChanged, this, &Drawing::dUpdateBackgroundGeometry);
 	connect(
-	  this, &Logic::heightChanged, this, &Drawing::updateBackgroundGeometry);
+	  this, &Logic::heightChanged, this, &Drawing::dUpdateBackgroundGeometry);
 
 	m_proxy = new StyleProxy();
 }
@@ -61,11 +61,11 @@ int Drawing::charsInLine() const {
 	return m_visibleChars;
 }
 
-int Drawing::visbileLines() const {
+int Drawing::dVisbileLines() const {
 	return m_visibleLines;
 }
 
-int Drawing::firstLineNr() const {
+int Drawing::dFirstLineNr() const {
 	if (m_firstVisible == nullptr) {
 		return 1;
 	}
@@ -73,7 +73,7 @@ int Drawing::firstLineNr() const {
 	return m_firstVisible->lineNumber();
 }
 
-int Drawing::firstCharNr() const {
+int Drawing::dFirstCharNr() const {
 	return xScroll;
 }
 
@@ -115,7 +115,7 @@ void Drawing::setStyle(look::EditorStyle * style) {
 		return;
 
 	m_proxy->setStyle(style);
-	updateBackgroundGeometry();
+	dUpdateBackgroundGeometry();
 	emit styleChanged(style);
 }
 
@@ -163,7 +163,7 @@ void Drawing::setVisbileLines(int visbileLines) {
 	emit visbileLinesChanged(m_visibleLines);
 }
 
-void Drawing::updateBackgroundGeometry() {
+void Drawing::dUpdateBackgroundGeometry() {
 	if (m_proxy->style() == nullptr)
 		return;
 

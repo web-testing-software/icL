@@ -10,7 +10,7 @@ namespace icL::editor {
 History::History(QQuickItem * parent)
     : Scroll(parent) {}
 
-Selection * History::getFirstSelection() {
+Selection * History::hGetFirstSelection() {
 	auto * it = m_main;
 
 	while (it->prev() != nullptr) {
@@ -20,7 +20,7 @@ Selection * History::getFirstSelection() {
 	return it;
 }
 
-Selection * History::getLastSelection() {
+Selection * History::hGetLastSelection() {
 	auto * it = m_main;
 
 	while (it->next() != nullptr) {
@@ -30,11 +30,11 @@ Selection * History::getLastSelection() {
 	return it;
 }
 
-int History::selectionsCount() {
+int History::hSelectionsCount() {
 	return numberOfCursors;
 }
 
-void History::addCursorOnPrevLine() {
+void History::hAddCursorOnPrevLine() {
 	if (*m_main->begin() != *m_main->end() || m_current->prev() == nullptr) {
 		return;
 	}
@@ -58,7 +58,7 @@ void History::addCursorOnPrevLine() {
 	m_main->moveUpDown(-1);
 }
 
-void History::addCursorOnNextLine() {
+void History::hAddCursorOnNextLine() {
 	if (*m_main->begin() != *m_main->end() || m_current->next() == nullptr) {
 		return;
 	}
@@ -82,40 +82,86 @@ void History::addCursorOnNextLine() {
 	m_main->moveUpDown(1);
 }
 
-void History::moveCursorToNextChar() {
-	auto * it = getFirstSelection();
+void History::hMoveCursorChar(int step) {
+
+	auto * it = hGetFirstSelection();
 
 	while (it != nullptr) {
-		it->move(1);
+		it->move(step);
 		it = it->next();
 	}
 }
 
-void History::moveCursorToPrevChar() {
-	auto * it = getFirstSelection();
+void History::hMoveCursorWord(int step) {
+
+	auto * it = hGetFirstSelection();
 
 	while (it != nullptr) {
-		it->move(-1);
+		it->moveOverWords(step);
 		it = it->next();
 	}
 }
 
-void History::moveCursorToNextWord() {
-	auto * it = getFirstSelection();
+void History::hMoveCursorLine(int step) {
+
+	auto * it = hGetFirstSelection();
 
 	while (it != nullptr) {
-		it->moveOverWords(1);
+		it->moveUpDown(step);
 		it = it->next();
 	}
 }
 
-void History::moveCursorToPrevWord() {
-	auto * it = getFirstSelection();
+void History::hSelectChar(int step) {
+
+	auto * it = hGetFirstSelection();
 
 	while (it != nullptr) {
-		it->moveOverWords(-1);
+		it->move(1, true);
 		it = it->next();
 	}
 }
+
+void History::hSelectWord(int step) {
+
+	auto * it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		it->moveOverWords(step, true);
+		it = it->next();
+	}
+}
+
+void History::hSelectLine(int step) {
+
+	auto * it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		it->moveUpDown(step, true);
+		it = it->next();
+	}
+}
+
+void History::hBackspace() {}
+
+void History::hDelete() {}
+
+void History::hDrop() {}
+
+void History::hInsert() {}
+
+void History::hUndo() {}
+
+void History::hRedo() {}
+
+void History::hTryToDelete() {}
+
+bool History::hHasSelection() {
+	return false;
+}
+
+void History::hUpdateHistories() {}
+
+void History::hFixSelections() {}
 
 }  // namespace icL::editor

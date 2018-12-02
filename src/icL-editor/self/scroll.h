@@ -32,23 +32,23 @@ protected:
 	 * @brief moveUp move first visible line up by n lines
 	 * @param by is the number of lines
 	 */
-	void scrollUpBy(int by) override;
+	void sScrollUpBy(int by) override;
 
 	/**
 	 * @brief moveDown move first visible down by n lines
 	 * @param by is the number of lines
 	 */
-	void scrollDownBy(int by) override;
+	void sScrollDownBy(int by) override;
 
 	/**
 	 * @brief autoScrollToCurrent scrolls to current line
 	 */
-	void autoScrollToCurrent() override;
+	void sAutoScrollToCurrent() override;
 
 	/**
 	 * @brief fixXScrollPosition fixes the x scroll postion
 	 */
-	void fixXScrollPosition();
+	void sFixXScrollPosition();
 };
 
 }  // namespace icL::editor

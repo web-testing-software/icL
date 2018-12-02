@@ -40,11 +40,11 @@ Fixer * Logic::fixer() {
 	return m_fixer;
 }
 
-void Logic::makeChanged() {
+void Logic::lMakeChanged() {
 	changed = true;
 }
 
-void Logic::clear() {
+void Logic::lClear() {
 	auto * it = m_first;
 
 	while (it != nullptr) {
@@ -81,7 +81,7 @@ bool Logic::loadFile(const QString & path) {
 		line->setFirst(fragment);
 		line->getText(true);
 		line->updateLength();
-		addNewLine(line);
+		lAddNewLine(line);
 	}
 
 	auto * it = m_firstVisible = m_first;
@@ -138,7 +138,7 @@ void Logic::setFirstVisible(Line * firstVisible) {
 	emit firstLineNrChanged();
 }
 
-void Logic::addNewLine(Line * line) {
+void Logic::lAddNewLine(Line * line) {
 	if (m_current == nullptr) {
 		m_first = m_current = line;
 		line->setLineNumber(1);
@@ -157,7 +157,7 @@ void Logic::addNewLine(Line * line) {
 	}
 }
 
-void Logic::updateCurrentLine() {
+void Logic::lUpdateCurrentLine() {
 	Fragment * fragment;
 
 	if (m_main->rtl()) {
@@ -170,13 +170,13 @@ void Logic::updateCurrentLine() {
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
 
-		autoScrollToCurrent();
+		sAutoScrollToCurrent();
 
 		emit requestRepaint();
 	}
 }
 
-void Logic::changeNumberOfLines(int newValue) {
+void Logic::lChangeNumberOfLines(int newValue) {
 	numberOfLines  = newValue;
 	numberOfDigits = 0;
 
@@ -186,7 +186,7 @@ void Logic::changeNumberOfLines(int newValue) {
 	}
 
 	emit linesCountChanged();
-	updateBackgroundGeometry();
+	dUpdateBackgroundGeometry();
 }
 
 }  // namespace icL::editor

@@ -1,5 +1,5 @@
-#ifndef icL_editor_Advanced
-#define icL_editor_Advanced
+#ifndef icL_editor_Internal
+#define icL_editor_Internal
 
 #include "mouse.h"
 
@@ -8,7 +8,7 @@
 namespace icL::editor {
 
 /**
- * @brief The Advanced class contians the advanced functional
+ * @brief The Advanced class contains the advanced functional
  *
  * This class contains the functional which cannot be attached to any of parent
  * classes
@@ -26,4 +26,4 @@ public slots:
 
 }  // namespace icL::editor
 
-#endif  // icL_editor_Advanced
+#endif  // icL_editor_Internal

@@ -21,19 +21,19 @@ public:
 	 * @brief getFirstSelection gets first selection from linked list
 	 * @return the first selection from linked list
 	 */
-	Selection * getFirstSelection();
+	Selection * hGetFirstSelection();
 
 	/**
 	 * @brief getLastSelection gets last selection from linked list
 	 * @return the last selection from linked list
 	 */
-	Selection * getLastSelection();
+	Selection * hGetLastSelection();
 
 	/**
 	 * @brief selectionsCount gets the number of selections
 	 * @return the number of selections
 	 */
-	int selectionsCount();
+	int hSelectionsCount();
 
 protected:
 	/**
@@ -43,7 +43,7 @@ protected:
 	 * the previous line has no a cursor yet. Otherwise it removes the cursor
 	 * from prev line and moves the main to it.
 	 */
-	void addCursorOnPrevLine();
+	void hAddCursorOnPrevLine();
 
 	/**
 	 * @brief addCursorOnNextLine adds a new cursor to next line
@@ -52,31 +52,90 @@ protected:
 	 * next line has no a cursor yet. Otherwise it removes the cursor from next
 	 * line and moves the main to it.
 	 */
-	void addCursorOnNextLine();
+	void hAddCursorOnNextLine();
 
 	/**
-	 * @brief moveCursorToNextChar moves the cursor to next character
+	 * @brief moveCursorToNextChar moves the cursors over `step` charactera
 	 *
 	 * The position of cursor must be tracked
 	 */
-	void moveCursorToNextChar();
+	void hMoveCursorChar(int step);
 
 	/**
-	 * @brief moveCursorToPrevChar moves the cursor to next character
-	 *
-	 * The postion of cursor must be tracked
+	 * @brief moveCursorToNextWord moves the cursors over `step` words
 	 */
-	void moveCursorToPrevChar();
+	void hMoveCursorWord(int step);
 
 	/**
-	 * @brief moveCursorToNextWord moves the cursor over a word to end
+	 * @brief hMoveCursorLine moves the cursors over `step` lines
 	 */
-	void moveCursorToNextWord();
+	void hMoveCursorLine(int step);
 
 	/**
-	 * @brief moveCursorToPrevWord moves the cursor over a word to begin
+	 * @brief hSelectChar moves the cursor over `step` chars selecting text
 	 */
-	void moveCursorToPrevWord();
+	void hSelectChar(int step);
+
+	/**
+	 * @brief hSelectWord moves the cursor over `step` words selecting text
+	 */
+	void hSelectWord(int step);
+
+	/**
+	 * @brief hSelectLine moves the cursor over `step` lines selecting text
+	 */
+	void hSelectLine(int step);
+
+	/**
+	 * @brief hBackspace removes the left character
+	 */
+	void hBackspace();
+
+	/**
+	 * @brief hDelete removes the right character
+	 */
+	void hDelete();
+
+	/**
+	 * @brief hDrop removes the selected text
+	 */
+	void hDrop();
+
+	/**
+	 * @brief hInsert insert the text to editor
+	 */
+	void hInsert();
+
+	/**
+	 * @brief hUndo cancel the last change
+	 */
+	void hUndo();
+
+	/**
+	 * @brief hRedo repeat the last change
+	 */
+	void hRedo();
+
+	/**
+	 * @brief tryToDelete delete selections if they are not empty
+	 */
+	void hTryToDelete();
+
+	/**
+	 * @brief hasSelection return true if there is a non empty selections
+	 * @return true if there is a non empty selection, otherwise false
+	 */
+	bool hHasSelection();
+
+	/**
+	 * @brief hUpdateHistories update the shadows of cursors in history
+	 */
+	void hUpdateHistories();
+
+	/**
+	 * @brief hFixSelections removes useless selections and unite intersections
+	 */
+	void hFixSelections();
 
 protected:
 	/**

@@ -30,7 +30,7 @@ void Fixer::fixNow(Line * line) {
 	}
 
 	fixOne(it);
-	line->parent()->changeNumberOfLines(it->lineNumber());
+	line->parent()->lChangeNumberOfLines(it->lineNumber());
 }
 
 void Fixer::run() {
@@ -43,7 +43,7 @@ void Fixer::run() {
 	auto * line = linePtr.load();
 
 	fixOne(line);
-	line->parent()->changeNumberOfLines(line->lineNumber());
+	line->parent()->lChangeNumberOfLines(line->lineNumber());
 }
 
 void Fixer::fixOne(Line * line) {

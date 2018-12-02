@@ -10,7 +10,7 @@ namespace icL::editor {
 Scroll::Scroll(QQuickItem * parent)
     : Drawing(parent) {}
 
-void Scroll::scrollUpBy(int by) {
+void Scroll::sScrollUpBy(int by) {
 	int    i  = 0;
 	auto * it = m_firstVisible;
 
@@ -23,7 +23,7 @@ void Scroll::scrollUpBy(int by) {
 	setFirstVisible(it);
 }
 
-void Scroll::scrollDownBy(int by) {
+void Scroll::sScrollDownBy(int by) {
 	int    i  = 0;
 	auto * it = m_firstVisible;
 
@@ -36,7 +36,7 @@ void Scroll::scrollDownBy(int by) {
 	setFirstVisible(it);
 }
 
-void Scroll::autoScrollToCurrent() {
+void Scroll::sAutoScrollToCurrent() {
 	if (m_current->lineNumber() <= m_firstVisible->lineNumber()) {
 		Line * it = m_firstVisible;
 		int    i  = 0;
@@ -46,7 +46,7 @@ void Scroll::autoScrollToCurrent() {
 			it = it->prevDisplay();
 		}
 
-		scrollUpBy(i);
+		sScrollUpBy(i);
 	}
 	else {
 		bool   visible = false;
@@ -67,14 +67,14 @@ void Scroll::autoScrollToCurrent() {
 				it = it->nextDisplay();
 			}
 
-			scrollDownBy(i);
+			sScrollDownBy(i);
 		}
 	}
 
-	fixXScrollPosition();
+	sFixXScrollPosition();
 }
 
-void Scroll::fixXScrollPosition() {
+void Scroll::sFixXScrollPosition() {
 	Cursor * cursor = m_main->main();
 	int      pos    = cursor->getPosInLine();
 
@@ -107,10 +107,10 @@ void Scroll::scrollY(qreal ratio) {
 	int16_t line = ratio * numberOfLines - m_firstVisible->lineNumber();
 
 	if (line < 0) {
-		scrollUpBy(-line);
+		sScrollUpBy(-line);
 	}
 	else {
-		scrollDownBy(line);
+		sScrollDownBy(line);
 	}
 
 	emit requestRepaint();

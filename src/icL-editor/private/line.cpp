@@ -254,7 +254,7 @@ void Line::setLastY(int lastY) {
 }
 
 void Line::makeChanged() {
-	m_parent->makeChanged();
+	m_parent->lMakeChanged();
 	m_isChanged  = true;
 	m_wasChanged = false;
 }

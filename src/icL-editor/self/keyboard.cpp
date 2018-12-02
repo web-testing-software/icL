@@ -111,18 +111,22 @@ void Keyboard::functionCtrlAltShiftKey(QKeyEvent * event) {}
 
 void Keyboard::anyKey(QKeyEvent * event) {
 	switch (event->key()) {
-	case Qt::Key_Left:
-		moveCursorToPrevChar();
-		break;
 
-	case Qt::Key_Right:
-		moveCursorToNextChar();
+	case Qt::Key_Escape:
 		break;
 
 	case Qt::Key_Delete:
 		break;
 
 	case Qt::Key_Backspace:
+		break;
+
+	case Qt::Key_Left:
+		hMoveCursorToPrevChar();
+		break;
+
+	case Qt::Key_Right:
+		hMoveCursorToNextChar();
 		break;
 
 	default:

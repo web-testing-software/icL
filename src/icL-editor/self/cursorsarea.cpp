@@ -74,7 +74,7 @@ QSGNode * CursorsArea::updatePaintNode(
 		return node;
 	}
 
-	if (node->childCount() != editor->selectionsCount()) {
+	if (node->childCount() != editor->hSelectionsCount()) {
 
 		// remove the old node
 		if (node->parent() != nullptr) {
@@ -84,7 +84,7 @@ QSGNode * CursorsArea::updatePaintNode(
 		node = new QSGOpacityNode;
 
 
-		for (int i = 0; i < editor->selectionsCount(); i++) {
+		for (int i = 0; i < editor->hSelectionsCount(); i++) {
 			auto * geometryNode = new QSGGeometryNode;
 			auto * geometry =
 			  new QSGGeometry{QSGGeometry::defaultAttributes_Point2D(), 2};
@@ -104,7 +104,7 @@ QSGNode * CursorsArea::updatePaintNode(
 		//		qDebug() << "node updated";
 	}
 
-	auto * selection = editor->getFirstSelection();
+	auto * selection = editor->hGetFirstSelection();
 	auto * cNode     = dynamic_cast<QSGGeometryNode *>(node->firstChild());
 
 	//	QList<int> lns;

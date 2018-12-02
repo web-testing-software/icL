@@ -581,7 +581,7 @@ Fragment * Fragment::makeFragmentNow(FragmentTypes type, bool onNewLine) {
 
 	if (onNewLine) {
 		parent = new Line(m_line->parent());
-		getEditor()->addNewLine(parent);
+		getEditor()->lAddNewLine(parent);
 	}
 	else {
 		parent = m_line;

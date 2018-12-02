@@ -103,8 +103,8 @@ void Selection::move(int step, bool select) {
 		}
 	}
 
-	m_begin->getEditor()->makeCursorOpaque();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->dMakeCursorOpaque();
+	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
 void Selection::moveOverWords(int words, bool select) {
@@ -133,8 +133,8 @@ void Selection::moveOverWords(int words, bool select) {
 		}
 	}
 
-	m_begin->getEditor()->makeCursorOpaque();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->dMakeCursorOpaque();
+	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
 void Selection::moveUpDown(int lines, bool select) {
@@ -161,8 +161,8 @@ void Selection::moveUpDown(int lines, bool select) {
 		}
 	}
 
-	m_begin->getEditor()->makeCursorOpaque();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->dMakeCursorOpaque();
+	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
 QString Selection::drop() {
@@ -355,7 +355,7 @@ QString Selection::drop() {
 
 	m_end->syncWith(m_begin);
 	m_begin->fragment()->line()->updateLength();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
@@ -402,7 +402,7 @@ QString Selection::insert(const QString & text) {
 
 	m_end->updatePreffered();
 	m_begin->syncWith(m_end);
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;

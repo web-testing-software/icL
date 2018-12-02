@@ -62,7 +62,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				scrollDownBy(-delta.y() / m_proxy->fullLineH());
+				sScrollDownBy(-delta.y() / m_proxy->fullLineH());
 			}
 		}
 		else /* delta.y > 0 */ {
@@ -75,7 +75,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				scrollUpBy(delta.y() / m_proxy->fullLineH());
+				sScrollUpBy(delta.y() / m_proxy->fullLineH());
 			}
 		}
 	}
@@ -88,7 +88,7 @@ void Mouse::mousePressEvent(QMouseEvent * event) {
 	auto [line, ch] = getLineCh(event);
 
 	selectionMode = m_main->beginSelection(line, ch);
-	updateCurrentLine();
+	lUpdateCurrentLine();
 }
 
 void Mouse::mouseMoveEvent(QMouseEvent * event) {
@@ -99,7 +99,7 @@ void Mouse::mouseMoveEvent(QMouseEvent * event) {
 	auto [line, ch] = getLineCh(event);
 
 	m_main->selectTo(line, ch);
-	updateCurrentLine();
+	lUpdateCurrentLine();
 }
 
 void Mouse::mouseReleaseEvent(QMouseEvent * event) {
