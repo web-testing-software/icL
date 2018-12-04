@@ -1,0 +1,16 @@
+% !TeX spellcheck = ru_RU
+\section{Синхронизация}
+
+icL не ограничивается на синхронизаций с процессами загрузке и выполнений скриптов в веб-странице. icL может быть синхронизирован со северной части приложений с помощью технологии \textit{icL-Sync}. Список технологии \textit{icL} доступен по ссылке: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
+
+Чтобы улавливать сообщения придётся создать слушатель, имеющий следующий синтаксис:
+\begin{lstlisting}
+listen (server address) {
+	`` code
+	`` @type	- the categrory of message
+	`` @source	- the component which has generated the message
+	`` @message	- the message itself
+}
+\end{lstlisting}
+
+
