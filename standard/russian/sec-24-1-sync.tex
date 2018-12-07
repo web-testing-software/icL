@@ -1,16 +1,20 @@
 % !TeX spellcheck = ru_RU
 \section{Синхронизация}
 
-icL не ограничивается на синхронизаций с процессами загрузке и выполнений скриптов в веб-странице. icL может быть синхронизирован со северной части приложений с помощью технологии \textit{icL-Sync}. Список технологии \textit{icL} доступен по ссылке: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
+icL не ограничивается на синхронизаций с процессами загрузке и выполнения скриптов в веб-странице. icL может быть синхронизирован со северной части приложений с помощью технологии \textit{icL-Sync}. Список технологии \textit{icL} доступен по ссылке: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
 
 Чтобы улавливать сообщения придётся создать слушатель, имеющий следующий синтаксис:
 \begin{lstlisting}
-listen (server address) {
+listen serverAddress : (parameters) {
 	`` code
-	`` @type	- the categrory of message
-	`` @source	- the component which has generated the message
-	`` @message	- the message itself
 }
 \end{lstlisting}
 
+Где \code{serverAddress} - URL сервиса синхронизаций, \code{parameters} список аргументов, все сигналы которые имеют неподходящий список аргументов будут проигнорированы. Таким образом можно описать несколько слушателей для одно узла синхронизации, если параметр имеет значения по умолчанию он будет захватывать только те сигналы, где значения аргумента будет совпадать со значением по умолчанию. На листинге \ref{errorcatch} представлен пример кода который захватывает только сообщения об ошибках.
 
+
+\begin{lstlisting}[caption=Захват ошибок, label=errorcatch]
+listen "ws://127.0.0.1:8989" : (@type = "error", @message : string) {
+	Log.out "error: " + @message;
+}
+\end{lstlisting}
