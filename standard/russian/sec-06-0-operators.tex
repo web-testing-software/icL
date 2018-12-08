@@ -161,8 +161,12 @@ Log.out "false != true = " (false != true);	`` false != true = true
 3     & меньше или равно               & \lstinline|double <= double : bool|    \\ \hline
 3     & меньше или больше              & \lstinline|int <> (int, int)|          \\ \hline
 3     & меньше или больше              & \lstinline|double <> (double, double)| \\ \hline
+3     & меньше, больше или равно       & \lstinline|int <=> (int, int)|         \\ \hline
+3     & меньше, больше или равно       & \lstinline|double <=> (double, double)|\\ \hline
 3     & больше и меньше                & \lstinline|int >< (int, int)|          \\ \hline
 3     & больше и меньше                & \lstinline|double >< (double, double)| \\ \hline
+3     & больше и меньше (или равно)    & \lstinline|int >=< (int, int)|         \\ \hline
+3     & больше и меньше (или равно)    & \lstinline|double >=< (double, double)|\\ \hline
 4     & сложение                       & \lstinline|int + int : int|            \\ \hline
 4     & сложение                       & \lstinline|double + double : double|   \\ \hline
 4     & вычитание                      & \lstinline|int - int : int|            \\ \hline
@@ -288,13 +292,29 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 
 Возвращает \true{} если дробное число \code{a} меньше \code{b} или больше \code{c}, иначе \false{}.
 
+\subsubsection{\lstinline|(a : int) <=> (b : double, c : double) : bool|}
+
+Возвращает \true{} если целое число \code{a} меньше или равно \code{b} или больше или равно \code{c}, иначе \false{}.
+
+\subsubsection{\lstinline|(a : double) <=> (b : double, c : doubleuble) : bool|}
+
+Возвращает \true{} если дробное число \code{a} меньше или равно \code{b} или больше или равно \code{c}, иначе \false{}.
+
 \subsubsection{\lstinline|(a : int) >< (b : double, c : double) : bool|}
 
 Возвращает \true{} если целое число \code{a} больше \code{b} и меньше \code{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) <> (b : double, c : doubleuble) : bool|}
+\subsubsection{\lstinline|(a : double) >< (b : double, c : doubleuble) : bool|}
 
 Возвращает \true{} если дробное число \code{a} больше \code{b} и меньше \code{c}, иначе \false{}.
+
+\subsubsection{\lstinline|(a : int) >=< (b : double, c : double) : bool|}
+
+Возвращает \true{} если целое число \code{a} больше или равно \code{b} и меньше или равно \code{c}, иначе \false{}.
+
+\subsubsection{\lstinline|(a : double) >=< (b : double, c : doubleuble) : bool|}
+
+Возвращает \true{} если дробное число \code{a} больше или равно \code{b} и меньше или равно \code{c}, иначе \false{}.
 
 
 \subsubsection{\lstinline|(a : int) + (b : int) : int|}

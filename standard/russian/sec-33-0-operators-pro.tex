@@ -141,6 +141,15 @@ int    >= int    : bool;
 double <  double : bool;
 int    <  int    : bool;
 
+double <>  (double, double) : bool;
+int    <>  (int,    int)    : bool;
+double <=> (double, double) : bool;
+int    <=> (int,    int)    : bool;
+double ><  (double, double) : bool;
+int    ><  (int,    int)    : bool;
+double >=< (double, double) : bool;
+int    >=< (int,    int)    : bool;
+
 list   << string : bool;
 set    << object : bool;
 set    << set    : bool;

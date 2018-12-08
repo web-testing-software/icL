@@ -140,7 +140,7 @@ DB.query {
 	SELECT country
 	FROM artists
 };
-Query.exec;
+Query.exec();
 
 while (Query.next) {
     doSomething Query'country;
@@ -171,7 +171,7 @@ DB.query {
 Query'id = 1001;
 Query'forname = "Bart";
 Query'name = "Simpson";
-Query.exec;
+Query.exec();
 \end{lstlisting}
 
 %\newpage
