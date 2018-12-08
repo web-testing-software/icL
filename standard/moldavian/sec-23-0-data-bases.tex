@@ -1,0 +1,140 @@
+% !TeX spellcheck = ro_RO
+\section{Baze de date}
+
+Modulul definește următoarele obiecte globale: \lstinline|_dbManager| este managerul de baze de date, \lstinline|_db| este ultima bază de date deschisă, \lstinline|_query| este ultimul query.
+
+Modulul \textit{Baze de date} definește următoarele posibilități:
+\begin{icItems}
+	\item \lstinline|_dbManager.openSQLite <string>path : _db|;
+	\item \lstinline|_db.query <_code>q : _query|;
+	\item \lstinline|_db.close : void|;
+	\item \lstinline|[w/o] _query'(<string>name) : any|;
+	\item \lstinline|_query.set <string>field <any>value : void|;
+	\item \lstinline|_query.exec : bool|;
+	\item Disponibile după executarea query-ului:
+	\begin{icItems}
+		\item \lstinline|[r/o] _query'(<string>name) : any|;
+		\item \lstinline|_query.getRowsAffected : int|;
+		\item \lstinline|_query.getError : bool|;
+		\item \lstinline|_query.getLength : int|;
+		\item \lstinline|_query.get <string>field : any|;
+		\item \lstinline|_query.next : bool|;
+		\item \lstinline|_query.previous : bool|;
+		\item \lstinline|_query.first : bool|;
+		\item \lstinline|_query.last : bool|;
+		\item \lstinline|_query.seek <int>i <bool>relative = false : bool|;
+	\end{icItems}
+\end{icItems}
+
+\subsubsection{\lstinline|_dbManager.openSQLite <string>path : _db|}
+
+Deschide o nouă conexiune. \code{path} e calea spre fișierul bazei de date.
+
+\subsubsection{\lstinline|_db.query <_code>q : _query|}
+
+Creează un query, pe bază de comandă SQL izolată în acolade.
+
+\subsubsection{\lstinline|_db.close : void|}
+
+Închide conexiunea cu baza de date.
+
+\subsubsection{\lstinline|[w/o] _query'(<string>name) : any|}
+
+Întoarce o valoare, care permite a schimba valoarea înlocuitorului prin atribuire. Înlocuitorul are următoarea sintaxă \lstinline|:name|.
+
+\subsubsection{\lstinline|_query.set <string>field <any>value : void|}
+
+Atribuie valoarea înlocuitorului \code{field}.
+
+\subsubsection{\lstinline|_query.exec : bool|}
+
+Returnează \true, dacă query-ului a fost executată cu succes, în caz contrar \false.
+
+\subsubsection{\lstinline|_query.getError : string|}
+
+Returnează textul erorii, dacă la executarea query-ului a apărut o eroare.
+
+\subsubsection{\lstinline|[r/o] _query'(<string>name) : any|}
+
+După executarea \lstinline|_query.exec| proprietățile vor returna valoarea cîmpurilor necesare. Dacă așa cîmp nu există, va fi returnat \void.
+
+\subsubsection{\lstinline|_query.getRowsAffected : int|}
+
+Numărul de rînduri afectate/adăugate în baza de date.
+
+\subsubsection{\lstinline|_query.getLength : int|}
+
+Numărul de rezultate primit în rezultatul executării comenzii \code{SELECT}.
+
+\subsubsection{\lstinline|_query.get <string>field : any|}
+
+Returnează valoarea cîmpului \code{field} sau \void{} dacă așa cîmp nu există.
+
+\subsubsection{\lstinline|_query.next : bool|}
+
+Returnează \true, dacă s-a primit să treacă la următorul rînd, în caz contrar \false.
+
+\subsubsection{\lstinline|_query.previous : bool|}
+
+Returnează \true, dacă s-a primit să treacă la rîndul precedent, în caz contrar \false.
+
+\subsubsection{\lstinline|_query.first : bool|}
+
+Returnează \true, dacă s-a primit să treacă la primul rînd, în caz contrar \false.
+
+\subsubsection{\lstinline|_query.last : bool|}
+
+Returnează \true, dacă s-a primit să treacă la ultimul rînd, în caz contrar \false.
+
+\subsubsection{\lstinline|_query.seek <int>i <bool>relative = false : bool|}
+
+Returnează \true, dacă s-a primit să treacă la al \code{i}-lea rînd sau să mute cursorul cu \code{i} rînduri (cu condiția că \code{@relative == true}), în caz contrar \false.
+
+\subsubsection{Exemplu}
+
+Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului Javascript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \code{@:name}, dar variabilele globale - \code{\#:name}.
+
+\newpage
+\begin{lstlisting}[caption=Exemplu de cod care folosește baze de date, label=dbexample]
+_dbManager.openSQLite "db.sqlite";
+
+`` simple query
+_db.query {
+	SELECT country
+	FROM artists
+};
+_query.exec;
+
+while (_query.next) {
+	!doSomething _query'country;
+};
+
+`` query with parameters
+_db.query {
+	SELECT name
+	FROM programmers
+	WHERE country = :country
+	LIMIT 1
+};
+_query'country = "Moldova";
+`` is equivalent to
+@md = "Moldova";
+_db.query {
+	SELECT name
+	FROM programmers
+	WHERE country = @:md
+	LIMIT 1
+};
+
+`` insert query
+_db.query {
+	INSERT INTO person (id, forname, name)
+	VALUE (:id, :forname, :name)
+};
+_query'id = 1001;
+_query'forname = "Bart";
+_query'name = "Simpson";
+_query.exec;
+\end{lstlisting}
+
+%\newpage

@@ -1,0 +1,44 @@
+% !TeX spellcheck = ro_RO
+\section{Schimbul de date cu pagina web}
+\label{dataexchange}
+
+\subsubsection{Titlul paginii}
+
+Titlu pagini poate fi obținut cu ajutorul \lstinline|[r/*] _tab'title : string|.
+
+\subsubsection{Codul sursă}
+
+Codul sursă al paginii poate \lstinline|[r/o] _tab'source : string|.
+
+\subsubsection{Captură de ecran}
+
+Captura de ecran, codată în base64, poate fi obținută cu ajutorul \lstinline|[r/o] _tab'screenshot : string|.
+
+\subsubsection{URL}
+
+Adresa URL este disponibilă prin proprietatea \lstinline|[r/w] _tab'url : string|.
+
+\subsubsection{Navigare}
+
+\lstinline|_tab.back : void| permite a se întoarce la pagina precedentă.
+
+\lstinline|_tab.forward : void| permite a se întoarce la pagina următoare.
+
+\lstinline|_tab.refresh : void|  permite a reîncărca pagina.
+
+\lstinline|[icL] [r/o] _tab'canGoBack : bool| - informează dacă se poate de se întors la pagina precedentă.
+
+\lstinline|[icL] [r/o] _tab'canGoForward : bool| - informează dacă se poate de se întors la pagina următoare.
+
+
+\subsubsection{Avertizări}
+
+\lstinline|[r/o] _alert'text : string| este textul avertizării
+
+\lstinline|_alert.accept : void| închide avertizarea cu răspuns pozitiv.
+
+\lstinline|_alert.dismiss : void| închide avertizarea cu răspuns negativ.
+
+\lstinline|_alert.sendKeys <string>str : void| răspunde cu textul \code{str}.
+
+%\newpage

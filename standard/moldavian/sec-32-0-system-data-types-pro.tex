@@ -1,0 +1,542 @@
+% !TeX spellcheck = ro_RO
+\section{Tipuri de date de sistem}
+
+În acest capitol sunt prezentate tipurile de date de sistem. Care nu pot fi create cu ajutorul literalelor, nu suportă conversii și pot doar valori de stînga.
+
+\subsection{{\color{orange} \_alert}}
+
+\noindent Descrierea clasei \code{\_alert} -
+\begin{lstlisting}[numbers=none]
+class _alert {
+	[r/o] _alert'text : string;
+	
+	_alert.accept          : void;
+	_alert.dismiss         : void;
+	_alert.sendKeys string : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_by}}
+
+\noindent Descrierea clasei \code{\_by} -
+\begin{lstlisting}[numbers=none]
+class _by {
+	[r/o] _by'cssSelector     : 1;
+	[r/o] _by'linkText        : 2;
+	[r/o] _by'partialLinkText : 3;
+	[r/o] _by'tagName         : 4;
+	[r/o] _by'xPath           : 5;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_cookie}}
+
+\noindent Descrierea clasei \code{\_cookie} -
+\begin{lstlisting}[numbers=none]
+class _cookie {
+	[r/w] _cookie'domain   : string;
+	[r/w] _cookie'expiry   : int;
+	[r/w] _cookie'httpOnly : bool;
+	[r/w] _cookie'name     : string;
+	[r/w] _cookie'path     : string;
+	[r/w] _cookie'secure   : bool;
+	[r/w] _cookie'value    : string;
+	
+	_cookie.add int int int [int] [int] [int] : _cookie;
+	_cookie.load                              : _cookie;
+	_cookie.resetTime                         : _cookie;
+	_cookie.save                              : _cookie;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_cookies}}
+
+\noindent Descrierea clasei \code{\_cookies} -
+\begin{lstlisting}[numbers=none]
+class _cookies {
+	[r/o] _cookies'string : _cookie;
+
+	_cookies.deleteAll        : void;
+	_cookies.get       string : _cookie;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_db}}
+
+\noindent Descrierea clasei \code{\_db} -
+\begin{lstlisting}[numbers=none]
+class _db {
+_db.query _code : _query;
+_db.close       : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_dbManager}}
+
+\noindent Descrierea clasei \code{\_dbManager} -
+\begin{lstlisting}[numbers=none]
+class _dbManager {
+	_dbManager.openSQLite string : _db;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_dom}}
+
+\noindent Descrierea clasei \code{\_dom} -
+\begin{lstlisting}[numbers=none]
+class _dom {
+	_dom.query           int    string : element;
+	_dom.query           string        : element;
+	_dom.queryAll        int    string : element;
+	_dom.queryAll        string        : element;
+	_dom.queryAllByXPath string        : element;
+	_dom.queryByXPath    string        : element;
+	_dom.queryLink       string        : element;
+	_dom.queryLinks      string        : element;
+	_dom.queryTag        string        : element;
+	_dom.queryTags       string        : element;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_dsv}}
+
+\noindent Descrierea clasei \code{\_dsv} -
+\begin{lstlisting}[numbers=none]
+class _dsv {
+	_dsv.load    string _file  : set;
+	_dsv.loadCSV string        : set;
+	_dsv.loadTSV string        : set;
+	_dsv.write   _file  set    : _file;
+	_dsv.append  _file  set    : _file;
+	_dsv.append  _file  object : _file;
+	_dsv.sync    _file  set    : set;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_file}}
+
+\noindent Descrierea clasei \code{\_file} -
+\begin{lstlisting}[numbers=none]
+class _file {
+	[r/o] _file'csv    : 1;
+	[r/o] _file'format : int;
+	[r/o] _file'none   : 0;
+	[r/o] _file'tsv    : 2;
+	[r/o] _file'valid  : bool;
+	
+	_file.close  : void;
+	_file.delete : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_files}}
+
+\noindent Descrierea clasei \code{\_files} -
+\begin{lstlisting}[numbers=none]
+class _files {
+	_file.open       string : _file;
+	_file.create     string : _file;
+	_file.createDir  string : void;
+	_file.createPath string : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_icL}}
+
+\noindent Descrierea clasei \code{\_icL} -
+\begin{lstlisting}[numbers=none]
+class _icL {
+	[r/w] _icL'clickTime : int;
+	[r/w] _icL'pressTime : int;
+	[r/w] _icL'moveTime  : int;
+	[r/w] _icL'flashMode : int;
+	[r/w] _icL'humanMode : int;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_import}}
+
+\noindent Descrierea clasei \code{\_import} -
+\begin{lstlisting}[numbers=none]
+class _import {
+	_import.none      [object] string : void;
+	_import.functions [object] string : void;
+	_import.all       [object] string : void;
+	_import.run       string          : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_key}}
+
+\noindent Descrierea clasei \code{\_key} -
+\begin{lstlisting}[numbers=none]
+class _key {
+	_key'alt   : 3;
+	_key'ctrl  : 1;
+	_key'shift : 2;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_log}}
+
+\noindent Descrierea clasei \code{\_log} -
+\begin{lstlisting}[numbers=none]
+class _log {
+	_log.error string   : void;
+	_log.info  string   : void;
+	_log.out   value... : void;
+	_log.stack value    : void;
+	_log.state value    : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_make}}
+
+\noindent Descrierea clasei \code{\_make} -
+\begin{lstlisting}[numbers=none]
+class _make {
+	_make.image  string string : void;
+	_make.int    string int    : int;
+	_make.list   set           : list;
+	_make.object string        : object;
+	_make.regex  string        : regex;
+	_make.string bool          : string;
+	_make.string double        : string;
+	_make.string int    int    : string;
+	_make.string object        : string;
+	_make.string set           : string;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_math}}
+
+\noindent Descrierea clasei \code{\_math} -
+\begin{lstlisting}[numbers=none]
+class _math {
+	[r/o] _math'1divPi     : double;
+	[r/o] _math'1divSqrt2  : double;
+	[r/o] _math'2divPi     : double;
+	[r/o] _math'2divSqrtPi : double;
+	[r/o] _math'e          : double;
+	[r/o] _math'ln2        : double;
+	[r/o] _math'ln10       : double;
+	[r/o] _math'log2e      : double;
+	[r/o] _math'log10e     : double;
+	[r/o] _math'pi         : double;
+	[r/o] _math'piDiv2     : double;
+	[r/o] _math'piDiv4     : double;
+	[r/o] _math'sqrt2      : double;
+	
+	_math.acos             double    : double;
+	_math.asin             double    : double;
+	_math.atan             double    : double;
+	_math.ceil             double    : double;
+	_math.degreesToRadians double    : double;
+	_math.exp              double    : double;
+	_math.floor            double    : int;
+	_math.ln               double    : double;
+	_math.min              int...    : double;
+	_math.min              double... : double;
+	_math.max              int...    : double;
+	_math.max              double... : double;
+	_math.radiansToDegrees double    : double;
+	_math.round            double    : double;
+	_math.sin              double    : double;
+	_math.tan              double    : double;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_mouse}}
+
+\noindent Descrierea clasei \code{\_mouse} -
+\begin{lstlisting}[numbers=none]
+class _mouse {
+	[r/o] _mouse'left   : 1;
+	[r/o] _mouse'middle : 2;
+	[r/o] _mouse'right  : 3;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_move}}
+
+\noindent Descrierea clasei \code{\_move} -
+\begin{lstlisting}[numbers=none]
+class _move {
+	[r/o] _move'bezier    : 5;
+	[r/o] _move'cubic     : 4;
+	[r/o] _move'linear    : 2;
+	[r/o] _move'quadratic : 3;
+	[r/o] _move'teleport  : 1;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_numbers}}
+
+\noindent Descrierea clasei \code{\_numbers} -
+\begin{lstlisting}[numbers=none]
+	[r/o] _numbers'max     : 4;
+	[r/o] _numbers'min     : 3;
+	[r/o] _numbers'product : 2;
+	[r/o] _numbers'process : int;
+	[r/o] _numbers'sum     : 1;
+\end{lstlisting}
+
+\subsection{{\color{orange} \_query}}
+
+\noindent Descrierea clasei \code{\_query} -
+\begin{lstlisting}[numbers=none]
+class _query {
+	[w/o] _query'string : value;
+	[r/o] _query'string : value;
+	
+	_query.exec                          : bool;
+	_query.first                         : bool;
+	_query.getRowsAffected               : int;
+	_query.getError                      : bool;
+	_query.getLength                     : int;
+	_query.get string                    : value;
+	_query.last                          : bool;
+	_query.next                          : bool;
+	_query.previous                      : bool;
+	_query.seek            int    [bool] : bool;
+	_query.set             string value  : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_session}}
+
+\noindent Descrierea clasei \code{\_session} -
+\begin{lstlisting}[numbers=none]
+class _session {
+	[r/w] _session'implicitTimeout : int;
+	[r/w] _session'pageLoadTimeout : int;
+	[r/w] _session'scriptTimeout   : int;
+	[r/w] _session'source          : string;
+	[r/w] _session'title           : string;
+	[r/w] _session'url             : string;
+	
+	_session.back       : _session;
+	_session.close      : void;
+	_session.forward    : _session;
+	_session.refresh    : _session;
+	_session.screenshot : string;
+	_session.switchTo   : _session;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_sessions}}
+
+\noindent Descrierea clasei \code{\_sessions} -
+\begin{lstlisting}[numbers=none]
+class _sessions {
+	[r/o] _sessions'length : int;
+	[r/o] _sessions'int    : _session;
+	
+	_sessions.closeAll     : void;
+	_sessions.get      int : _session;
+	_sessions.new          : _session;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_signal}}
+
+\noindent Descrierea clasei \code{\_signal} -
+\begin{lstlisting}[numbers=none]
+class _signal {
+	_signal.add string : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_stack}}
+
+\noindent Descrierea clasei \code{\_stack} -
+\begin{lstlisting}[numbers=none]
+class _stack {
+	[r/w] _stack : value;
+	
+	_stack.clear    : void;
+	_stack.continue : void;
+	_stack.break    : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_stacks}}
+
+\noindent Descrierea clasei \code{\_stacks} -
+\begin{lstlisting}[numbers=none]
+class _stacks {
+	[r/o] _stacks'int    : _stack;
+	[r/w] _stacks'string : _stack;
+	
+	_stacks.if       [int] : _stack;
+	_stacks.ifexists [int] : _stack;
+	_stacks.loop     [int] : _stack;
+	_stacks.while    [int] : _stack;
+	_stacks.dowhile  [int] : _stack;
+	_stacks.for      [int] : _stack;
+	_stacks.forany   [int] : _stack;
+	_stacks.range    [int] : _stack;
+	_stacks.filter   [int] : _stack;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_states}}
+
+\noindent Descrierea clasei \code{\_states} -
+\begin{lstlisting}[numbers=none]
+class _states {
+	_states.clear    : void;
+	_states.delete   : void;
+	_states.new      : void;
+	_states.newAtEnd : void;
+	_states.toFirst  : void;
+	_states.toLast   : void;
+	_states.toNext   : void;
+	_states.toPrev   : void;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_tab}}
+
+\noindent Descrierea clasei \code{\_tab} -
+\begin{lstlisting}[numbers=none]
+class _tab {
+	[icL] [r/o] _tab'canGoBack    : bool;
+	[icL] [r/o] _tab'canGoForward : bool;
+	      [r/o] _tab'screenshot   : string;
+	      [r/o] _tab'source       : string;
+	      [r/*] _tab'title        : string;
+	      [r/w] _tab'url          : string;
+
+	_tab.back           : void;
+	_tab.close          : void;
+	_tab.focus          : void;
+	_tab.forward        : void;
+	_tab.get     string : bool;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_tabs}}
+
+\noindent Descrierea clasei \code{\_tabs} -
+\begin{lstlisting}[numbers=none]
+class _tabs {
+	[r/o] _tabs'current  : _tab;
+	[r/o] _tabs'first    : _tab;
+	[r/o] _tabs'last     : _tab;
+	[r/o] _tabs'length   : _tab;
+	[r/o] _tabs'next     : _tab;
+	[r/o] _tabs'previous : _tab;
+	[r/o] _tabs'int      : _tab;
+	
+	_tabs.close        regex  : int;
+	_tabs.close        string : int;
+	_tabs.closeByTitle regex  : int;
+	_tabs.closeByTitle string : int;
+	_tabs.closeOthers         : int;
+	_tabs.closeToLeft         : int;
+	_tabs.closeToRight        : int;
+	_tabs.find regex          : _tab;
+	_tabs.find string         : _tab;
+	_tabs.findByTitle  regex  : _tab;
+	_tabs.findByTitle  string : _tab;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_types}}
+
+\noindent Descrierea clasei \code{\_types} -
+\begin{lstlisting}[numbers=none]
+class _types {
+	[r/o] _types'alert     : 10;
+	[r/o] _types'bool      : 1;
+	[r/o] _types'by        : 11;
+	[r/o] _types'cookie    : 12;
+	[r/o] _types'cookies   : 13;
+	[r/o] _types'db        : 14;
+	[r/o] _types'dbManager : 15;
+	[r/o] _types'dom       : 16;
+	[r/o] _types'double    : 2;
+	[r/o] _types'dsv       : 17;
+	[r/o] _types'element   : 3;
+	[r/o] _types'file      : 18;
+	[r/o] _types'files     : 19;
+	[r/o] _types'icL       : 20;
+	[r/o] _types'import    : 21;
+	[r/o] _types'int       : 4;
+	[r/o] _types'key       : 22;
+	[r/o] _types'list      : 5;
+	[r/o] _types'log       : 23;
+	[r/o] _types'make      : 24;
+	[r/o] _types'math      : 25;
+	[r/o] _types'mouse     : 26;
+	[r/o] _types'move      : 27;
+	[r/o] _types'numbers   : 28;
+	[r/o] _types'object    : 6;
+	[r/o] _types'query     : 29;
+	[r/o] _types'regex     : 7;
+	[r/o] _types'session   : 30;
+	[r/o] _types'sessions  : 31;
+	[r/o] _types'set       : 8;
+	[r/o] _types'signal    : 32;
+	[r/o] _types'stack     : 33;
+	[r/o] _types'stacks    : 34;
+	[r/o] _types'states    : 35;
+	[r/o] _types'string    : 9;
+	[r/o] _types'tab       : 36;
+	[r/o] _types'tabs      : 37;
+	[r/o] _types'types     : 38;
+	[r/o] _types'value     : 0;
+	[r/o] _types'wait      : 39;
+	[r/o] _types'window    : 40;
+	[r/o] _types'windows   : 41;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_wait}}
+
+\noindent Descrierea clasei \code{\_wait} -
+\begin{lstlisting}[numbers=none]
+class _wait {
+	_wait.ajax  object         : bool;
+	_wait.for   element object : bool;
+	_wait.title object         : bool;
+	_wait.url   object         : bool;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_window}}
+
+\noindent Descrierea clasei \code{\_window} -
+\begin{lstlisting}[numbers=none]
+class _window {
+	[r/w] _window'height : int;
+	[r/w] _window'width  : int;
+	[r/w] _window'x      : int;
+	[r/w] _window'y      : int;
+	
+	_window.close                   : void;
+	_window.focus                   : _window;
+	_window.fullscreen              : _window;
+	_window.maximize                : _window;
+	_window.restore                 : _window;
+	_window.switchToDefault         : _window;
+	_window.switchToFrame   element : _window;
+	_window.switchToFrame   int     : _window;
+	_window.switchToParent          : _window;
+}
+\end{lstlisting}
+
+\subsection{{\color{orange} \_windows}}
+
+\noindent Descrierea clasei \code{\_windows} -
+\begin{lstlisting}[numbers=none]
+class _windows {
+	[r/o] _window'length : int;
+	[r/o] _window'int    : _window;
+	
+	_windows.get int : _window;
+}
+\end{lstlisting}
+
+

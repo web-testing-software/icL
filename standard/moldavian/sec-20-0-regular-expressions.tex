@@ -1,0 +1,162 @@
+% !TeX spellcheck = ro_RO
+\section{Expresii regulare}
+\label{regex}
+
+Pentru definirea {\bf expresiilor regulare} se folosește literalul \lstinline|//pattern//mods|, unde \code{pattern} este paternul expresii, \code{mods} sunt modificatorii. În patern grupele pot avea nume, gupa anonimă are următoarea sintaxă \lstinline|(content)|, grupa cu nume - \lstinline|(?<name>content)|.
+
+Simbolul intern poate fi nu numai \code{/}, dar și oricare alt simbol, în afară de apostrof (\lstinline|'|) el intră în conflict cu operatorul {\it rădăcină} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| și \lstinline|!|. De exemplu  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
+
+Ca să capturezi începutul șirului de caractere se poate de folosit \lstinline|^| și \lstinline|\A|, dar pentru sfîrșit - \lstinline|$| și \lstinline|\z|. Primul variant necătînd la popularitatea lui poate funcționa incorect, pentru ca ele capturează începutul și sfîrșitul liniilor în context de text în mai multe linii.
+
+\subsection{Modificatori}
+
+În limbajul icL sunt prezenți următorii modificatori: \code{/i}, \code{/s}, \code{/m}, \code{/x}, \code{/u} и \code{/f}. Modificatorii pot fi combinați, de exemplu \code{/xi}.
+
+\subsubsection{Modificator \code{/i}}
+
+Diferența între majuscule și minuscule va fi ignorată. 
+
+\subsubsection{Modificator \code{/s}}
+
+Punctul va însemna orice simbol, inclusiv și simbolul {\it rînd nou}.
+
+\subsubsection{Modificator \code{/m}}
+
+Meta-simbolurile \lstinline|^| și \lstinline|$| vor captura nu numai începutul și sfîrșitul șirului, dar și al liniilor de text.
+
+\subsubsection{Modificator \code{/x}}
+
+Toate spațiile vor fi ignorate, simbolul \lstinline|#| va însemna începutul comentariului, care se termină cu simbolul {\it rînd nou}.
+
+\subsubsection{Modificator \code{/u}}
+
+Clasele de simboluri \lstinline|\w|, \lstinline|\d| ș.a.m.d. și inversiile lor \lstinline|\W|, \lstinline|\D| ș.a.m.d. vor captura nu numai literele latine, dar și literele alfabetelor naționale.
+
+\subsubsection{Modificator \code{/f}}
+
+Se inventează zgîrcirea cuantificatorilor \lstinline|*|, \lstinline|+|, \lstinline|?| ș.a.m.d. și ei devin leneși. Dar versiunile lor leneșe \lstinline|*?|, \lstinline|+?|, \lstinline|??| ș.a.m.d. devin zgîrite.
+
+{\bf Cuantificatorul zgîrgit} capturează cantitatea maximă de simboluri, dar {\bf cuantificatorul leneș} - minimală.
+
+\subsection{Operatori}
+
+Pentru expresiile regulare sunt disponibili următorii operatori:
+\begin{icItems}
+\item
+	de rangul 3:
+	\begin{icItems}
+	\item
+		\lstinline|string << regex : bool|;
+	\item
+		\lstinline|string <* regex : list|.
+	\end{icItems}
+
+\item 
+	de rangul 6$^+$: \lstinline|string ** regex : object|.
+\end{icItems}
+
+Exemple de folosire a operatorilor sunt prezenți pe foaia \ref{regexpopsex}.
+
+\begin{lstlisting}[caption=Operații cu expresii regulare, label=regexpopsex]
+"string" << //s.r//;            `` true
+"string" <* //s(.)r//;          `` ["str" "t"]
+"string" ** //s(?<letter>.)r//; `` [<"t">letter]
+\end{lstlisting}
+
+\subsubsection{\lstinline|string << regex : bool|}
+
+Returnează \true{}, dacă șirul conține subșir care convine după expresia regulară, în caz contrar \false{}.
+
+\subsubsection{\lstinline|string <* regex : list|}
+
+Returnează lista de șiruri capturate, dacă șirul conține subșir care convine după expresia regulară, în caz contrar o listă deșartă.
+
+\subsubsection{\lstinline|string ** regex : object|}
+
+Returnează un obiect, care conține toate valorilor grupelor cu nume, dacă șirul conține subșir care convine după expresia regulară, în caz contrar o obiect deșert.
+
+% \subsubsection{}
+
+\subsection{Metode}
+
+Metodele clasei \str{} și \listtype, care primesc parametri de tipul \regex{}:
+\begin{icItems}
+\item
+	\lstinline|string.count <regex>re : int|;
+\item
+	\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|;
+\item
+	\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|;
+\item
+	\lstinline|string.remove <regex>re : string|;
+\item 
+	\lstinline|string.replace <regex>re <string>after : string|;
+\item
+	\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|.
+\item
+	\lstinline|list.filter <regex>re : list|;
+\item
+	\lstinline|list.indexOf <regex>re <int>start : int|;
+\item
+	\lstinline|list.lastIndexOf <regex>re <int>start : int|;
+\end{icItems}
+
+Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{regexplikearg}.
+
+\begin{lstlisting}[caption=Expresii regulare în calitate de argumente, label=regexplikearg]
+@str = "Hello world, collaborators!";
+
+@str.count //\wo//;       `` 5
+@str.indexOf //\w{6}//;   `` 13
+@str.lastIndexOf //l+o//; `` 2
+@str.remove //\w{2}o//;   `` "He world, collrrs!"
+@str.split //,?\s//;      `` ["He" "world" "collrrs!"]
+
+@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+
+@fonts.filter //^[ac]//i;    `` ["Arial" "Courier"]
+@fonts.indexOf //e.//;       `` 1
+@fonts.indexOf //e.// 2;     `` 2
+@fonts.lastIndexOf //e.//;   `` 3
+@fonts.lastIndexOf //e.// 2; `` 2
+\end{lstlisting}
+
+\subsubsection{\lstinline|string.count <regex>re : int|}
+
+Numără cîte subșiruri convin expresii regulare \code{re}.
+
+\subsubsection{\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|}
+
+Returnează indexul primului subșir care convine expresii regulare \code{re}, căutînd înainte de pe poziția code{startPos}. Dacă așa subșir nu a fost găsit, returnează -1.
+
+\subsubsection{\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|}
+
+Returnează primului subșir care convine expresii regulare \code{re}, căutînd înapoi de pe poziția \code{startPos}; dacă așa subșir nu a fost găsit, returnează -1.
+
+\subsubsection{\lstinline|string.remove <regex>re : string|}
+
+Șterge din șir toate subșirurile care convin expresii regulare \code{re}.
+
+\subsubsection{\lstinline|string.replace <regex>re <string>after : string|}
+
+Înlocuiește subșirurile care convin expresii regulare \code{re}, cu șirul \code{after}.
+
+\subsubsection{\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|}
+
+Împarte șirul în subșiruri, la fiecare găsire a subșirului care convine expresii regulare \code{re} și strînge subșirurile în listă. Dacă \code{keepEmptyParts == false} șirurile deșarte se ignoră.
+
+\subsubsection{\lstinline|list.filter <regex>re : list|}
+
+Returnează o listă nouă, care conține doar șirurile acestei liste, care convin expresii regulare \code{re}.
+
+\subsubsection{\lstinline|list.indexOf <regex>re <int>start = 0 : int|}
+
+Returnează indexul primului șir, care convine expresii regulare \code{re}, căutînd înainte de pe poziția \code{start}, dacă așa șir nu a fost găsit returnează -1.
+
+\subsubsection{\lstinline|list.lastIndexOf <regex>re <int>start = -1 : int|}
+
+Returnează indexul primului șir, care convine expresii regulare \code{re}, căutînd înapoi de pe poziția \code{start}, dacă așa șir nu a fost găsit returnează -1.
+
+% \subsubsection{}
+
+%\newpage

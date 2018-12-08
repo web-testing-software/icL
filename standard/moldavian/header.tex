@@ -1,0 +1,259 @@
+% !TeX spellcheck = ro_RO
+ %\renewcommand{\rmdefault}{ftm}
+\counterwithin{lstlisting}{section}
+\counterwithin{table}{section}
+
+\renewcommand{\lstlistingname}{Foaia}
+
+\setlength\abovecaptionskip{2pt}
+\setlength\belowcaptionskip{1pt}
+
+\pagestyle{fancy}
+\fancyhead[]{}
+\fancyhead[L]{\textmd{Candidat pentru lansare}}
+\fancyhead[C]{}
+\fancyhead[R]{Pagina \textmd{\thepage{}-a din \pageref{LastPage}}}
+\fancyfoot[]{}
+\renewcommand{\headrulewidth}{0pt}
+
+\lstset{
+	language=icL,
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	showtabs=false,
+	numbers=left,
+	stepnumber=1,
+	tabsize=4,
+	breaklines=true,
+	breakatwhitespace=true,
+	backgroundcolor=\color{codebg},
+	style=framed,
+	lineskip=0pt,
+	aboveskip=0pt,
+	autogobble=true,
+	frame=l,
+	framesep=6mm,
+	framexleftmargin=2.5mm,
+	fillcolor=\color{codeheaderbg},
+	rulecolor=\color{blue}
+}
+
+\setlength{\LTleft}{0pt}
+\onehalfspacing
+
+\newcommand{\greycell}[1]{\cellcolor{lightgray}\centering\textbf{#1}}
+
+\newcommand{\code}[1]{ \lstinline|#1| }
+\newcommand{\true}{\lstinline|true|}
+\newcommand{\false}{\lstinline|false|}
+\newcommand{\bool}{\lstinline|bool|}
+\newcommand{\integer}{\lstinline|int|}
+\newcommand{\double}{\lstinline|double|}
+\newcommand{\str}{\lstinline|string|}
+\newcommand{\listtype}{\lstinline|list|}
+\newcommand{\element}{\lstinline|element|}
+\newcommand{\set}{\lstinline|set|}
+\newcommand{\setitem}{\lstinline|item|}
+\newcommand{\object}{\lstinline|object|}
+\newcommand{\function}{\lstinline|function|}
+\newcommand{\void}{\lstinline|void|}
+\newcommand{\request}{\lstinline|request|}
+\newcommand{\chartype}{\lstinline|char|}
+\newcommand{\regex}{\lstinline|regex|}
+% \newcommand{}{ \lstinline|| }
+
+\newcommand{\sessions}{\lstinline|_sessions|}
+\newcommand{\session}{\lstinline|_session|}
+\newcommand{\windows}{\lstinline|_windows|}
+\newcommand{\window}{\lstinline|_window|}
+\newcommand{\cookies}{\lstinline|_cookies|}
+\newcommand{\cookie}{\lstinline|_cookie|}
+\newcommand{\alert}{\lstinline|_alert|}
+\newcommand{\tabs}{\lstinline|_tabs|}
+\newcommand{\tab}{\lstinline|_tab|}
+\newcommand{\dom}{\lstinline|_dom|}
+\newcommand{\files}{\lstinline|_files|}
+\newcommand{\file}{\lstinline|_file|}
+\newcommand{\make}{\lstinline|_make|}
+\newcommand{\logtype}{\lstinline|_log|}
+\newcommand{\numbers}{\lstinline|_numbers|}
+
+% row1 width, row2 width, label, name,
+% row1 name, row2 name, body
+\newcommand{\tabletwo}[7]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|}
+	\caption*{Tabela \thetable{}: #4} \label{#3} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{2}{l}%
+	{{Continuarea tabelei \thetable{}: #4}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#7
+	\end{longtable}
+}
+
+% row1 width, row2 width, label, name,
+% row1 name, row2 name, body
+\newcommand{\stabletwo}[7]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|}
+	\caption*{Tabela \thetable{}: #4} \label{#3} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{2}{l}%
+	{{Continuarea tabelei \thetable{}: #4}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#7
+	\end{longtable}
+}
+
+% row1 width, row2 width, row3 width, label, name,
+% row1 name, row2 name, row3 name, body
+\newcommand{\tablethree}[9]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
+	\caption*{Tabela \thetable{}: #5} \label{#4} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} &
+	\multicolumn{1}{p{#3}|}{\greycell{3}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Continuarea tabelei \thetable{}: #5}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} &
+	\multicolumn{1}{p{#3}|}{\greycell{3}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#9
+	\end{longtable}
+}
+
+% row1 width, row2 width, row3 width, label, name,
+% row1 name, row2 name, row3 name, body
+\newcommand{\stablethree}[9]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
+	\caption*{Tabela \thetable{}: #5} \label{#4} \\
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Continuarea tabelei \thetable{}: #5}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#9
+	\end{longtable}
+}
+
+% rows, header, repeated, label, name, body
+\newcommand{\tableuni}[6]{
+	\begin{longtable}[h]{#1}
+	\caption*{Tabela \thetable{}: #5} \label{#4} \\
+
+	\hline
+	#2
+	#3
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Continuarea tabelei \thetable{}: #5}} \\
+	#3
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#6
+	\end{longtable}
+}
+
+% rows, header, repeated, label, name, body
+\newcommand{\stableuni}[6]{
+	\begin{longtable}[h]{#1}
+	\caption*{Tabela \thetable{}: #4} \label{#3} \\
+
+	\hline
+	#2
+	\hline
+	\endfirsthead
+
+	\multicolumn{3}{l}%
+	{{Continuarea tabelei \thetable{}: #4}} \\
+	\hline
+	#2
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#5
+	\end{longtable}
+}
+

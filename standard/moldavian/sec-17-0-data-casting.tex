@@ -1,0 +1,229 @@
+% !TeX spellcheck = ro_RO
+\section{Conversia datelor}
+
+De conversia datelor în icL răspund 3 operatori de rangul 1:
+\begin{icItems}
+	\item \lstinline|data : type : type|;
+	\item \lstinline|data :: type : bool|;
+	\item \lstinline|data :* type : bool|;
+\end{icItems}
+
+\subsubsection{\lstinline|data : type : type|}
+
+Conversează datele în tipul necesar.
+
+Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+
+\subsubsection{\lstinline|data :: type : bool|}
+
+Returnează \true, datele dețin tipul indicat, în caz contrar \false.
+
+\subsubsection{\lstinline|data :* type : bool|}
+
+Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false.
+
+\subsection{Conversii posibile}
+
+În tabela \ref{castingtable} este prezentată compatibilitatea conversiei datelor. Cu minus sunt însemnate conversiile imposibile, ele mereu generează excepția \ferror{UnrealCast}. Cu plus sunt însemnate conversiile care mereu sunt posibile. Cu steluță sunt însemnate conversiile care pot eșua, ele la fel pot genera excepții. În numele coloanelor este indicat tipul de date curent, în numele rîndurilor - tipul de date necesar.
+
+\begin{table}[htb]
+	\caption{Conversii}
+	\label{castingtable}
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+		\hline
+		          & \void & \bool & \integer & \double & \str & \listtype & \object & \set & \element \\ \hline
+		\void     & +     & -     & -        & -       & -    & -         & -       & -    & -        \\ \hline
+		\bool     & +     & +     & +        & +       & +    & +         & +       & +    & +        \\ \hline
+		\integer  & +     & +     & +        & +       & *    & -         & -       & -    & -        \\ \hline
+		\double   & +     & +     & +        & +       & *    & -         & -       & -    & -        \\ \hline
+		\str      & +     & +     & +        & +       & +    & *         & +       & +    & +        \\ \hline
+		\listtype & +     & -     & -        & -       & +    & +         & -       & +    & -        \\ \hline
+		\object   & +     & -     & -        & -       & *    & -         & +       & *    & -        \\ \hline
+		\set      & +     & -     & -        & -       & *    & *         & -       & +    & -        \\ \hline
+		\element  & +     & -     & -        & -       & -    & -         & -       & -    & +        \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{\lstinline|void : void|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|void : bool|}
+
+Returnează \false.
+
+\subsubsection{\lstinline|void : int|}
+
+Returnează \lstinline|0|.
+
+\subsubsection{\lstinline|void : double|}
+
+Returnează \lstinline|0.0|.
+
+\subsubsection{\lstinline|void : string|}
+
+Returnează \lstinline|""|.
+
+\subsubsection{\lstinline|void : list|}
+
+Returnează \lstinline|[]|.
+
+\subsubsection{\lstinline|void : object|}
+
+Returnează \lstinline|[<>]|.
+
+\subsubsection{\lstinline|void : set|}
+
+Returnează mulțime vidă.
+
+\subsubsection{\lstinline|void : element|}
+
+Returnează colecție deșartă.
+
+\subsubsection{\lstinline|bool : bool|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|bool : int|}
+
+Returnează \lstinline|1|, dacă valoare booleană e adevărată, în caz contrar \lstinline|0|.
+
+\subsubsection{\lstinline|bool : double|}
+
+Returnează \lstinline|1.0|, dacă valoare booleană e adevărată, în caz contrar \lstinline|0.0|.
+
+\subsubsection{\lstinline|bool : string|}
+
+Returnează \lstinline|"true"|, dacă valoare booleană e adevărată, în caz contrar \lstinline|"false"|.
+
+\subsubsection{\lstinline|int : bool|}
+
+Returnează valoarea expresiei \lstinline|int != 0|.
+
+\subsubsection{\lstinline|int : int|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|int : double|}
+
+Returnează număr decimal, cu partea întreagă egală cu  \integer, dar decimală egală cu 0.
+
+\subsubsection{\lstinline|int : string|}
+
+Returnează un șir de caractere, care conține descrierea numărului \integer{} în sistemul decimal.
+
+\subsubsection{\lstinline|double : bool|}
+
+Returnează valoarea expresiei \lstinline|double != 0.0|.
+
+\subsubsection{\lstinline|double : int|}
+
+Returnează un număr întreg egal cu partea întreagă a \double. Partea decimală se omite.
+
+\subsubsection{\lstinline|double : double|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|double : string|}
+
+Returnează un șir de caractere, care conține reprezentarea în caractere a numărului \double.
+
+\subsubsection{\lstinline|string : bool|}
+
+Returnează valoarea expresiei \lstinline|!string'empty|.
+
+\subsubsection{\lstinline|string : int|}
+
+Returnează număr întreg, care este rezultatul parsing-ului șirului \str.
+
+Excepții posibile: \ferror{ParsingFailed}.
+
+\subsubsection{\lstinline|string : double|}
+
+Returnează număr decimal, care este rezultatul parsing-ului șirului \str. Partea întreagă de decimală se desparte prin punct, nu prin virgulă.
+
+Excepții posibile: \ferror{ParsingFailed}.
+
+\subsubsection{\lstinline|string : string|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|string : list|}
+
+Returnează \lstinline|[string]|.
+
+\subsubsection{\lstinline|string : object|}
+
+Returnează obiect, care este rezultatul parsing-ului șirului JSON \str. Obiectul JSON trebuie să conțină numai cîmpuri de următoarele tipuri: \bool, \integer, \double, \str{} și \listtype.
+
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+
+\subsubsection{\lstinline|string : set|}
+
+Returnează o mulțime, care este rezultatul parsing-ului șirului JSON \str, care trebuie să conțină un masiv de obiecte și fiecare obiect trebuie să corespundă criteriilor operatorului \lstinline|string : object|.
+
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+
+\subsubsection{\lstinline|list : bool|}
+
+Returnează valoarea expresiei \lstinline|!list'empty|.
+
+\subsubsection{\lstinline|list : string|}
+
+Returnează primul șir al listei, dacă lista constă dintr-un singur șir, în caz contrar generează excepție.
+
+Excepții posibile: \ferror{EmptyList} și \ferror{MultiList}.
+
+\subsubsection{\lstinline|list : list|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|list : set|}
+
+Fiecare șir de caractere din listă va fi convertit în obiect prin \lstinline|string : object|, obiectele generate for fi grupate în mulțime, mulțimea generată va fi returnata de operator.
+
+\subsubsection{\lstinline|object : bool|}
+
+Returnează \true, dacă obiectul conține cel puțin o variabilă, în caz contrar \false.
+
+\subsubsection{\lstinline|object : string|}
+
+Returnează un șir JSON, care descrie obiectul.
+
+\subsubsection{\lstinline|object : object|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|set : bool|}
+
+Returnează valoarea expresiei \lstinline|!set'empty|.
+
+\subsubsection{\lstinline|set : string|}
+
+Returnează un șir JSON, care descrie mulțimea.
+
+\subsubsection{\lstinline|set : object|}
+
+Returnează singurul obiect, dacă mulțimea conține doar un singur obiect, în caz contrar generează o excepție.
+
+Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet}.
+
+\subsubsection{\lstinline|set : list|}
+
+Returnează o listă de șiruri JSON, unde fiecare șir descrie un obiect din mulțime.
+
+\subsubsection{\lstinline|set : set|}
+
+Returnează datele primite.
+
+\subsubsection{\lstinline|element : bool|}
+
+Returnează valoarea expresiei \lstinline|!element'empty|.
+
+\subsubsection{\lstinline|element : string|}
+
+Returnează un șir care descrie, descrie ordinea de acțiuni necesare, ca să primești colecția dată.
+
+\subsubsection{\lstinline|element : element|}
+
+Returnează datele primite.

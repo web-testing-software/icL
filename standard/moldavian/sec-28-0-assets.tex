@@ -1,0 +1,15 @@
+% !TeX spellcheck = ro_RO
+\section{Confirmații}
+
+{\bf Confirmațiile} permit a aprecia cît de bine au se execută testele. Confirmațiile în icL sunt de 2 tipuri: \lstinline|assert (condition)| și \lstinline|assert (condition, message)|. În primul este prezentă doar condiție \code{condition}, dacă ea este egală cu \false{} sau \void, atunci icL atunci icL va confirma că este o problemă în aplicația testată, trimițînd mesajul \code{message}, dacă el lipsește se va trimite condiția în calitate de mesaj. Cum să trimiți corect același mesaj pentru cîteva condiții este demonstrat pe foaia \ref{assertexample}.
+
+\begin{lstlisting}[caption=Exemple de folosire a confirmațiilor, label=assertexample]
+`` wrong
+assert (@val != 2 || @val != 4 || @val != 127, "Message");
+
+`` correct
+@message = "Message";
+assert (@val != 2,   @message);
+assert (@val != 4,   @message);
+assert (@val != 127, @message);
+\end{lstlisting}

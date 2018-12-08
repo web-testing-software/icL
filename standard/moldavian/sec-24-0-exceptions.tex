@@ -1,0 +1,103 @@
+% !TeX spellcheck = ro_RO
+\section{Tratarea excepțiilor}
+
+Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în consolă denumire și descrierea erorii curente e destul să apelezi \lstinline|_log.error ""|. Excepțiile posibile care pot fi generate la apelarea funcțiilor diferite sunt enumerate la sfîrșitul descrierei . Ca să înregistrezi eroare personalizată e destul să apelezi \lstinline|_signal.add <string>name|.
+
+\subsection{Generarea excepțiilor}
+
+Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \lstinline|emiter {```code```}|. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \lstinline|slot:exception {```code```}|,
+unde \code{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \lstinline|slot:Any|. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
+
+\begin{lstlisting}[caption=Prelucrarea excepțiilor, label=sighandling]
+_signal.add "NumberTooBig";
+_signal.add "NumberTooSmall";
+
+@i = 3;
+
+emiter {
+if (@i < 2) {
+emit:NumberTooSmall (@i:string) + " is smaller then 2.";
+}
+
+if (@i > 5) {
+emit:NumberTooBig (@i:string) + " is bigger then 5."
+}
+
+`` @i >= 2 \& @i <= 5
+}
+slot:NumberTooBig {
+_log.error "Oooops...";
+}
+slot:NumberTooSmall {
+_log.error "Nope! O_O";
+};
+\end{lstlisting}
+
+Pentru a genera semnale proprii folosiți comanda \lstinline|emit:exception <string>description|, unde \code{exception} e numele semnalului, dar \code{description} e descrierea.
+
+Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \lstinline|jammer {```code```}|. Semnalele erorilor semantice și de sintaxă, și \lstinline|emit:Exit| de asemenea, nu pot fi oprite de jammer.
+
+\subsection{Semnale implicite}
+
+{\bf Excepțiile implicite} este enumerate în tabela \ref{errors}. În acest document la descrierea posibilităților, sunt prezente liste de semnale care pot fi emise la folosirea posibilităților concrete. Semnale pot fi generate ca rezultat al datelor de intrare incorecte, la fel și atunci cînd posibilitățile nu sunt disponibile în contextul curent. Semnalul \ferror{Exit} poate fi generat numai de utilizator, dacă apare necesitatea de a opri programul imediat.
+
+\tabletwo{5cm}{12.1cm}{errors}{Semnale implicite}%
+{Класс}{Описание}%
+{
+	\ferror{Exit}                    & Oprirea imediată a programei.                \\ \hline
+	
+	\ferror{NoSessions}              & Nici o sesie nu e deschisă.                  \\ \hline
+	\ferror{NoSuchWindow}            & Fereastra necesară a fost închisă.           \\ \hline
+	\ferror{NoSuchElement}           & Elementul necesar nu a fost găsit.           \\ \hline
+	\ferror{NoSuchFrame}             & Nu-i așa frame.                              \\ \hline
+	\ferror{NoSuchCookie}            & Nu-i așa cookie.                             \\ \hline
+	\ferror{NoSuchAlert}             & Nu există avertizare.                        \\ \hline
+	\ferror{NoSuchTab}               & Tabul necesar a fost închis.                 \\ \hline
+	\ferror{StaleElementReference}   & Linkul la element este invalid.              \\ \hline
+	\ferror{FolderNotFound}          & Folderul nu a fost găsit.                    \\ \hline
+	\ferror{FileNotFound}            & Fișierul nu a fost găsit.                    \\ \hline
+	\ferror{FieldNotFound}           & Cîmpul nu a fost găsit.                      \\ \hline
+	\ferror{FieldAlreadyExists}      & Cîmpul deja există.                          \\ \hline
+	\ferror{OutOfBounds}             & Ieșire în afara colecției.                   \\ \hline
+	\ferror{UnsupportedOperation}    & Operația nu este suportată de web driver.    \\ \hline
+	
+	\ferror{EmptyString}             & Șir deșert.                                  \\ \hline
+	\ferror{EmptyList}               & Listă deșartă.                               \\ \hline
+	\ferror{MultiList}               & Listă din cîteva șiruri.                     \\ \hline
+	\ferror{EmptyElement}            & Element invalid / colecție vidă.             \\ \hline
+	\ferror{MultiElement}            & Colecție din cîteva elemente.                \\ \hline
+	\ferror{EmptySet}                & Mulțime vidă.                                \\ \hline
+	\ferror{MultiSet}                & Mulțime din cîteva elemente.                 \\ \hline
+	
+	\ferror{InvalidArgument}         & Argument incorect.                           \\ \hline
+	\ferror{InvalidSelector}         & Selector incorect.                           \\ \hline
+	\ferror{InvalidElementState}     & Starea elementului e nesatisfăcătoare.       \\ \hline
+	\ferror{InvalidElement}          & Operația nu este disponibilă pentru element. \\ \hline
+	\ferror{IncompatibleRoot}        & Rădăcină incorectă a șirului JSON.           \\ \hline
+	\ferror{IncompatibleData}        & Date incorecte.                              \\ \hline
+	\ferror{IncompatibleObject}      & Obiect necorespunzător.                      \\ \hline
+	\ferror{InvalidSessionId}        & Sesia e deja închisă.                        \\ \hline
+	\ferror{InvalidCookieDomain}     & Domeniu incorect pentru cookie.              \\ \hline
+	\ferror{InsecureCertificate}     & Certificat nesecurizat.                      \\ \hline
+	\ferror{UnexpectedAlertOpen}     & Alertă neașteptată.                          \\ \hline
+	
+	\ferror{UnrealCast}              & Conversație imposibilă.                      \\ \hline
+	\ferror{ParsingFailed}           & Parsing-ul a eșuat.                          \\ \hline
+	\ferror{WrongDelimiter}          & Delimitator incorect.                        \\ \hline
+	\ferror{ComplexField}            & Conversia din JSON în icL a eșuat.           \\ \hline
+	\ferror{ElementNotInteractable}  & Elementul nu este interactiv.                \\ \hline
+	\ferror{ElementClickIntercepted} & Alt element încărcă a face clic.             \\ \hline
+	\ferror{MoveTargetOutOfBounds}   & Coordinatele mouse-ului în afara ecranului.  \\ \hline
+	\ferror{UnableToSetCookie}       & Nu se poate de creat cookie.                 \\ \hline
+	\ferror{UnableToCaptureScreen}   & Nu se poate de capturat ecranul.             \\ \hline
+	\ferror{JavascriptError}         & Codul Javascript a dat eroare.               \\ \hline
+	\ferror{ScriptTimeout}           & Timpul de executare a scriptului a expirat.  \\ \hline
+	\ferror{Timeout}                 & Timpul a expirat.                            \\ \hline
+	\ferror{SessionNotCreated}       & Nu este posibil de creat sesie.              \\ \hline
+	
+	\ferror{UnknownCommand}          & \code{[w3c]} Comandă necunoscută.            \\ \hline
+	\ferror{UnknownError}            & \code{[w3c]} Eroare necunoscută.             \\ \hline
+	\ferror{UnknownMethod}           & \code{[w3c]} Metodă HTTP necunoscută.        \\
+}
+
+%\newpage

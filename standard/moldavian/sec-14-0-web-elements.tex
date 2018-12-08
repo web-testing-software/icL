@@ -1,0 +1,641 @@
+% !TeX spellcheck = ro_RO
+\section{Elemente web}
+\label{webelments}
+
+{\bf Elementele web} (tipul de date \element) sunt linkuri la taguri HTML din pagina web.
+
+Elementul se numește unic dacă este creat de funcția \lstinline|_dom.query| sau \lstinline|element.query|. Elementul se numește colecție dacă este creat de funcția \lstinline|_dom.queryAll| sau \lstinline|element.queryAll|. Extragerea elementului după index returnează element unic. 
+
+\subsection{Свойства}
+
+Elementele web au următoarele proprietăți:
+\begin{icItems}
+\item \lstinline|[r/*] element'attr-* : string|;
+\item \lstinline|[r/*] element'css-* : string|;
+\item \lstinline|[r/o] element'empty : bool|;
+\item \lstinline|[r/o] element'enabled : bool|;
+\item \lstinline|[r/o] element'length : int|;
+\item \lstinline|[*/*] element'prop-* : any|;
+\item \lstinline|[r/o] element'rect : object|;
+\item \lstinline|[r/o] element'selected : bool|;
+\item \lstinline|[r/o] element'tag : string|;
+\item \lstinline|[r/o] element'text : string|;
+\item \lstinline|[r/o] element'(<int> n) : element|;
+\end{icItems} 
+
+\subsubsection{\lstinline|[r/*] element'attr-* : string|}
+
+\code{[w3c]} Returnează valoarea atributului \code{*}.
+
+\code{[icL]} Returnează o valoare JS pentru atributul necesar.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/*] element'css-* : string|}
+
+\code{[w3c]} Returnează valoarea proprietății CSS \code{*}.
+
+\code{[icL]} Returnează o valoare JS pentru proprietatea CSS necesară.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'empty : bool|}
+
+Returnează \true, dacă colecția nu conține nici un element, în caz contrar \false.
+
+\subsubsection{\lstinline|[r/o] element'enabled : bool|}
+
+Returnează \false, dacă elementul este un formular și el este închis, în caz contrar \true.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'length : int|}
+
+Returnează numărul de elemente în colecție.
+
+\subsubsection{\lstinline|[*/*] element'prop-* : string|}
+
+\code{[w3c]} Returnează valoare proprietății \code{*}.
+
+\code{[icL]}  Returnează o valoare JS pentru proprietatea necesară. Tipul valorii JS este nedefinit, asta poate conduce la erori în analizarea dinamică a codului. Cînd folosiți proprietăți nedefinite în paragraful \ref{elements:predefined:properties}, folosiți conversia pentru a indica tipul rezultatului. Dacă variabila este deja inițializată, probleme nu vor fi. Variabilele noi inițializați în felul următor -
+\begin{lstlisting}[numbers=none]
+@var = element'prop-userdefined : string;
+@var:string = element'prop-userdefined;
+\end{lstlisting}
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'rect : obj|}
+
+Returnează poziția și mărimea elementului pe ecran in pixeli CSS, dar mai exact un obiect cu următoarele cîmpuri:
+\begin{icItems}
+	\item \code{x : double} - coordinata x relativ la marginea stîngă a ecranului;
+	\item \code{y : double} - coordinata y relativ la marginea de sus a ecranului;
+	\item \code{width : double} - lungimea;
+	\item \code{height : double} - înălțimea;
+\end{icItems}
+
+\code{[icL]} Returnează \set, în caz ca elementul este o colecție.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'selected : bool|}
+
+Returnează \true, dacă elementul este o casetă bifată, radio buton selectat sau o opțiune selectată, în caz contrar \false.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'tag : string|}
+
+Returnează numele tagului.
+
+\code{[icL]} Returnează \listtype, dacă elementul este o colecție.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'text : string|}
+
+Returnează textul elementului vizibil pe ecran. 
+
+\code{[icL]} Returnează \listtype, dacă elementul este o colecție.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement} și \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|[r/o] element'(<int> n) : element|}
+
+Returnează element unic care conține al n-lea element.
+
+Excepții posibile: \ferror{OutOfBounds}, \ferror{StaleElementReference}.
+
+\subsection{Operatori}
+
+În contextul elementelor web apar operatori noi:
+\begin{icItems}
+	\item \lstinline|void % element : element|;
+	\item \lstinline|element % void : element|;
+	\item \lstinline|element % element : element|;
+	\item \lstinline|[element ...] : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|void \% element : element|}
+
+Returnează elementul primit.
+
+\subsubsection{\lstinline|element \% void : element|}
+
+Returnează elementul primit.
+
+\subsubsection{\lstinline|element \% element : element|}
+
+Returnează o colecție nouă, care conține elementele din ambele argumente.
+
+\subsubsection{\lstinline|[element ...] : element|}
+
+Returnează o colecție nouă, care conține toate elementele indicate.
+
+\subsection{Metode}
+
+{\bf Metodele} clasei \code{element} se împart în 2 categorii: de bază și adiționale. Metodele de bază sunt definite pe baza de standardul W3C WebDriver. Metodele adiționale sunt definite de standardul icL și pot fi modificate în versiunile succesive ale limbajului.
+
+\subsection{Metode de bază}
+
+Lista metodelor de bază:
+\begin{icItems}
+	\item \lstinline|element.clear : element|;
+	\item \lstinline|element.click : element|;
+	\item \lstinline|element.query <string>cssSelector : element|;
+	\item \lstinline|element.query <int>by <string>selector : element|;
+	\item \lstinline|element.queryAll <string>cssSelector : element|;
+	\item \lstinline|element.queryAll <int>by <string>selector : element|;
+	\item \lstinline|element.queryAllByXPath <string>xpath : element|;
+	\item \lstinline|element.queryByXPath <string>xpath : element|;
+	\item \lstinline|element.queryLink <string>name <bool>isFragment = false : element|;
+	\item \lstinline|element.queryLinks <string>name <bool>isFragment = false : element|;
+	\item \lstinline|element.queryTag <string>name : element|;
+	\item \lstinline|element.queryTags <string>name : element|;
+	\item \lstinline|element.screenshot : string|;
+	\item \lstinline|element.sendKeys <int>modifiers <string>text : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|element.clear : element|}
+
+Dacă elementul este un cîmp de inserarea a datelor, atunci valoarea lui se anulează. Dacă este un element editabil, atunci proprietății lui \code{innerHtml} se atribuie un șir deșert.
+
+\code{[icL]} Se vor curăți toate elementele colecției.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState}.
+
+\subsubsection{\lstinline|element.click : element|}
+
+Simulează un clic pe centrul elementului, și așteaptă încărcarea paginii.
+
+\code{[icL]} Clicul va fi simulat pentru fiecare element al colecției.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.query <string>cssSelector : element|}
+
+Acronim pentru \lstinline|element.query _by'cssSelector @cssSelector|; 
+
+\subsubsection{\lstinline|element.query <int>by <string>selector : element|}
+
+Parametrul \code{by} primește una din următoarele valori:
+\begin{icItems}
+	\item \lstinline|[r/o] _by'cssSelector : 1| - selector CSS;
+	\item \lstinline|[r/o] _by'linkText : 2| - textul linkului;
+	\item \lstinline|[r/o] _by'partialLinkText : 3| - fragment al textului linkului;
+	\item \lstinline|[r/o] _by'tagName : 4| - denumirea tagului;
+	\item \lstinline|[r/o] _by'xPath : 5| - XPath.
+\end{icItems}
+
+Parametru \code{selector} primește un selector CSS, un text al linkului, un fragment de text al linkului, un nume de tag sau un XPath, în dependență de valoarea primului argument.
+
+Metoda returnează un element nou care conține primul element, găsit după criteriul necesar în elementul current.
+
+\code{[icL]} Cătarea se realizează în toate elementele colecției.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.queryAll <string>cssSelector : element|}
+
+Acronim pentru \lstinline|element.queryAll _by'cssSelector @cssSelector|;
+
+\subsubsection{\lstinline|element.queryAll <int>by <string>selector : element|}
+
+Primește aceiași parametri ca și \code{element.query}, numai că metoda dată returnează o colecție din elementele găsite, sau o colecție deșartă dacă nimic nu o fost găsit.
+
+\code{[icL]} Căutarea se realizează în toate elementele colecției.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.queryAllByXPath <string>xpath : element|}
+
+Acronim pentru \lstinline|element.queryAll _by'xPath @xpath|;
+
+\subsubsection{\lstinline|element.queryByXPath <string>xpath : element|}
+
+Acronim pentru \lstinline|element.query _by'xPath @xpath|;
+
+\subsubsection{\lstinline|element.queryLink <string>name <bool>isFragment = false : element|}
+
+Acronim pentru:
+\begin{icItems}
+	\item \lstinline|element.query _by'linkText @name|;
+	\item \lstinline|element.query _by'partialLinkText @name|.
+\end{icItems}
+
+\subsubsection{\lstinline|element.queryLinks <string>name <bool>isFragment = false : element|}
+
+Acronim pentru:
+\begin{icItems}
+	\item \lstinline|element.queryAll _by'linkText @name|;
+	\item \lstinline|element.queryAll _by'partialLinkText @name|.
+\end{icItems}
+
+\subsubsection{\lstinline|element.queryTag <string>name : element|}
+
+Acronim pentru \lstinline|element.query _by'tagName @name|;
+
+\subsubsection{\lstinline|element.queryTags <string>name : element|}
+
+Acronim pentru \lstinline|element.queryAll _by'tagName @name|;
+
+\subsubsection{\lstinline|element.screenshot : string|}
+
+Returnează un șir de caractere, care conține captura elementului, codată în base64. Captura poate fi salvată ca imagine cu \lstinline|_make.image <string>base64 <string>path : void|.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.sendKeys <int>modifiers <string>text : element|}
+
+Parametrul \code{modifiers} primește una din valorile următoare (sau suma din cîteva dintre ele):
+\begin{icItems}
+	\item \lstinline|[r/o] _key'ctrl : 1| - Control;
+	\item \lstinline|[r/o] _key'shift : 2| - Shift;
+	\item \lstinline|[r/o] _key'alt : 3| - Alt;
+\end{icItems}
+
+Parametrul \code{text} primește textul, care va fi tastat tastatură.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} și \ferror{StaleElementReference}.
+
+\subsection{Metode adiționale}
+
+Metodele adiționale pot lucra încet în regimul de testare la folosirea browserului extern. În cazul colecției, operațiile vor fi aplicate pentru fiecare element, și vor fi returnate colecții, nu elemente unice. 
+
+Lista metodelor adiționale:
+\begin{icItems}
+	\item \lstinline|element.add <element>other : element|;
+	\item \lstinline|element.child <int>index : element|;
+	\item \lstinline|element.closest <string>cssSelector : element|;
+	\item \lstinline|element.contains <string>text <bool>asFragment = false : element|;
+	\item \lstinline|element.copy : element|;
+	\item \lstinline|element.get <int>i : element|;
+	\item \lstinline|element.filter <string>cssSelector : element|;
+	\item \lstinline|element.next : element|;
+	\item \lstinline|element.prev : element|;
+	\item \lstinline|element.parent : element|;
+\end{icItems}
+
+\subsubsection{\lstinline|element.add <element>other : element|}
+
+Adăugă toate elementele colecției \code{other}.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.child <int>i : element|}
+
+Returnează un element nou, care conține al \code{i}-lea succesor.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|element.closest <string>cssSelector : element|}
+
+Returnează un element nou, care conține cel mai apropiat predecesor, care este compatibil cu selectorul CSS \code{cssSelector}.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.contains <string>text <bool>asFragment = false : element|}
+
+Returnează o colecție nouă, care conține toate elementele, care conțin textul (ca fragment sau ca text întreg) \code{text}.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.copy : element|}
+
+Returnează o colecție nouă, care conține toate elementele colecției curente.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.get <int>i : element|}
+
+Returnează al i-lea element al colecției.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds}.
+
+\subsubsection{\lstinline|element.filter <string>cssSelector : element|}
+
+Returnează o colecție nouă, care conține doar elementele care sunt compatibile cu selectorul CSS \code{cssSelector}.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+\subsubsection{\lstinline|element.next : element|}
+
+Returnează un element nou, care conține următorul nod.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.prev : element|}
+
+Returnează un element nou, care conține nodul precedent.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsubsection{\lstinline|element.parent : element|}
+
+Returnează ul element nou, care conține nodul ascensor.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}.
+
+\subsection{Lista proprietăților prestabilite}
+\label{elements:predefined:properties}
+
+În icL sunt prestabilite doar proprietățile ce au tipuri de date compatibile cu tipurile de date prezente în icL:
+\begin{icItems}
+	\item Node:	
+	\begin{icItems}
+		\item \lstinline|[r/o] element'prop-childNodes : element [c]|;
+		\item \lstinline|[r/o] element'prop-firstChild : element [i]|;
+		\item \lstinline|[r/o] element'prop-innerText : string|;
+		\item \lstinline|[r/o] element'prop-isConnected : bool|;
+		\item \lstinline|[r/o] element'prop-lastChild : element [i]|;
+		\item \lstinline|[r/o] element'prop-nodeName : string|;
+		\item \lstinline|[r/o] element'prop-nodeType : int|;
+		\item \lstinline|[r/*] element'prop-nodeValue : string|;
+		\item \lstinline|[r/o] element'prop-parentElement : element [i]|;
+		\item \lstinline|[r/o] element'prop-textContent : string|;
+	\end{icItems}
+	
+	\item Element:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-className : string|;
+		\item \lstinline|[r/o] element'prop-clientHeight : double|;
+		\item \lstinline|[r/o] element'prop-clientLeft : double|;
+		\item \lstinline|[r/o] element'prop-clientTop : double|;
+		\item \lstinline|[r/o] element'prop-clientWidth : double|;
+		\item \lstinline|[r/o] element'prop-computedName : string|;
+		\item \lstinline|[r/o] element'prop-computedRole : string|;
+		\item \lstinline|[r/*] element'prop-id : string|;
+		\item \lstinline|[r/*] element'prop-innerHTML : string|;
+		\item \lstinline|[r/o] element'prop-localName : string|;
+		\item \lstinline|[r/o] element'prop-nextElementSibling : element [i]|;
+		\item \lstinline|[r/*] element'prop-outerHTML : string|;
+		\item \lstinline|[r/o] element'prop-prefix : string|;
+		\item \lstinline|[r/o] element'prop-previousElementSibling : element [i]|;
+		\item \lstinline|[r/*] element'prop-scrollHeight : double|;
+		\item \lstinline|[r/*] element'prop-scrollLeft : double|;
+		\item \lstinline|[r/*] element'prop-scrollTop : double|;
+		\item \lstinline|[r/*] element'prop-scrollWidth : double|;
+		\item \lstinline|[r/o] element'prop-tagName : string|;
+		\item \lstinline|[r/o] element'prop-baseURI : string|;
+	\end{icItems}
+	
+	\item HTMLElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-accessKey : string|;
+		\item \lstinline|[r/o] element'prop-accessKeyLabel : string|;
+		\item \lstinline|[r/*] element'prop-contentEditable : string|;
+		\item \lstinline|[r/o] element'prop-isContentEditable : bool|;
+		\item \lstinline|[r/o] element'prop-dataset : object|;
+		\item \lstinline|[r/*] element'prop-dir : string|;
+		\item \lstinline|[r/*] element'prop-draggable : bool|;
+		\item \lstinline|[r/*] element'prop-hidden : bool|;
+		\item \lstinline|[r/*] element'prop-inert : bool|;
+		\item \lstinline|[r/*] element'prop-lang : string|;
+		\item \lstinline|[r/o] element'prop-offsetHeight : double|;
+		\item \lstinline|[r/o] element'prop-offsetLeft : double|;
+		\item \lstinline|[r/o] element'prop-offsetParent : element [i]|;
+		\item \lstinline|[r/o] element'prop-offsetTop : double|;
+		\item \lstinline|[r/o] element'prop-offsetWidth : double|;
+		\item \lstinline|[r/*] element'prop-spellcheck : double|;
+		\item \lstinline|[r/*] element'prop-title : string|;
+	\end{icItems}
+	
+	\item HTMLAnchorElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-download : string|;
+		\item \lstinline|[r/*] element'prop-hash : string|;
+		\item \lstinline|[r/*] element'prop-host : string|;
+		\item \lstinline|[r/*] element'prop-hostname : string|;
+		\item \lstinline|[r/*] element'prop-href : string|;
+		\item \lstinline|[r/*] element'prop-hreflang : string|;
+		\item \lstinline|[r/*] element'prop-media : string|;
+		\item \lstinline|[r/*] element'prop-password : string|;
+		\item \lstinline|[r/o] element'prop-origin : string|;
+		\item \lstinline|[r/*] element'prop-pathname : string|;
+		\item \lstinline|[r/*] element'prop-port : string|;
+		\item \lstinline|[r/*] element'prop-protocol : string|;
+		\item \lstinline|[r/*] element'prop-rel : string|;
+		\item \lstinline|[r/*] element'prop-search : string|;
+		\item \lstinline|[r/*] element'prop-target : string|;
+		\item \lstinline|[r/*] element'prop-text : string|;
+		\item \lstinline|[r/*] element'prop-type : string|;
+		\item \lstinline|[r/*] element'prop-username : string|;
+	\end{icItems}
+	
+	\item HTMLAreaElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-alt : string|;
+		\item \lstinline|[r/*] element'prop-coords : string|;
+	\end{icItems}
+	
+	\item HTMLButtonElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-autofocus : bool|;
+		\item \lstinline|[r/*] element'prop-disabled : bool|;
+		\item \lstinline|[r/o] element'prop-form : element [i]|;
+		\item \lstinline|[r/*] element'prop-formAction : string|;
+		\item \lstinline|[r/*] element'prop-formEnctype : string|;
+		\item \lstinline|[r/*] element'prop-formMethod : string|;
+		\item \lstinline|[r/*] element'prop-formNoValidate : bool|;
+		\item \lstinline|[r/*] element'prop-formTarget : string|;
+		\item \lstinline|[r/o] element'prop-labels : element [c]|;
+		\item \lstinline|[r/*] element'prop-name : string|;
+		\item \lstinline|[r/*] element'prop-value : string|;
+		\item \lstinline|[r/o] element'prop-willValidate  : bool|;
+	\end{icItems}
+	
+	\item HTMLCanvasElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-height : int|;
+		\item \lstinline|[r/*] element'prop-width : int|;
+	\end{icItems}
+	
+	\item HTMLDataListElement: \lstinline|[r/o] element'prop-options : element [c]|;
+	
+	\item HTMLFormElement:
+	\begin{icItems}
+		\item \lstinline|[r/o] element'prop-elements : element [c]|;
+		\item \lstinline|[r/o] element'prop-length : int|;
+		\item \lstinline|[r/*] element'prop-action : string|;
+		\item \lstinline|[r/*] element'prop-encoding : string|;
+		\item \lstinline|[r/*] element'prop-enctype : string|;
+		\item \lstinline|[r/*] element'prop-acceptCharset : string|;
+		\item \lstinline|[r/*] element'prop-autocomplete : string|;
+		\item \lstinline|[r/*] element'prop-noValidate : string|;
+	\end{icItems}
+	
+	\item HTMLIFrameElement: \lstinline|[r/*] element'prop-allowPaymentRequest|;
+	
+	\item HTMLImageElement:
+	\begin{icItems}
+		\item \lstinline|[r/o] element'prop-complete : bool|;
+		\item \lstinline|[r/o] element'prop-crossOrigin : string|;
+		\item \lstinline|[r/o] element'prop-isMap : bool|;
+		\item \lstinline|[r/o] element'prop-naturalHeight : int|;
+		\item \lstinline|[r/o] element'prop-naturalWidth : int|;
+		\item \lstinline|[r/*] element'prop-src : string|;
+		\item \lstinline|[r/*] element'prop-useMap : string|;
+	\end{icItems}
+	
+	\item HTMLInputElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-accept : string|;
+		\item \lstinline|[r/*] element'prop-checked : bool|;
+		\item \lstinline|[r/*] element'prop-defaultChecked : bool|;
+		\item \lstinline|[r/*] element'prop-defaultValue : string|;
+		\item \lstinline|[r/*] element'prop-dirName : string|;
+		\item \lstinline|[r/*] element'prop-indeterminate : bool|;
+		\item \lstinline|[r/*] element'prop-list : element [i]|;
+		\item \lstinline|[r/*] element'prop-min : string|;
+		\item \lstinline|[r/*] element'prop-max : string|;
+		\item \lstinline|[r/*] element'prop-maxLength : int|;
+		\item \lstinline|[r/*] element'prop-multiple : bool|;
+		\item \lstinline|[r/*] element'prop-pattern : string|;
+		\item \lstinline|[r/*] element'prop-placeholder : string|;
+		\item \lstinline|[r/*] element'prop-readOnly : bool|;
+		\item \lstinline|[r/*] element'prop-required : bool|;
+		\item \lstinline|[r/*] element'prop-selectionStart : int|;
+		\item \lstinline|[r/*] element'prop-selectionEnd : int|;
+		\item \lstinline|[r/*] element'prop-selectionDirection : string|;
+		\item \lstinline|[r/*] element'prop-size : int|;
+		\item \lstinline|[r/*] element'prop-step : string|;
+		\item \lstinline|[r/o] element'prop-validity : bool|;
+		\item \lstinline|[r/o] element'prop-validationMessage : string|;
+		\item \lstinline|[r/*] element'prop-valueAsNumber : double|;
+	\end{icItems}
+	
+	\item HTMLLabelElement:
+	\begin{icItems}
+		\item \lstinline|[r/o] element'prop-control : element [i]|;
+		\item \lstinline|[r/*] element'prop-htmlFor : string|;
+	\end{icItems}
+	
+	\item HTMLLinkElement: \lstinline|[r/*] element'prop-as : string|;
+	\item HTMLMapElement: \lstinline|[r/o] element'prop-areas : element [c]|;
+	
+	\item HTMLMediaElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-autoplay : bool|;
+		\item \lstinline|[r/*] element'prop-controls : bool|;
+		\item \lstinline|[r/o] element'prop-currentSrc : string|;
+		\item \lstinline|[r/*] element'prop-currentTime : double|;
+		\item \lstinline|[r/*] element'prop-defaultMuted : bool|;
+		\item \lstinline|[r/*] element'prop-defaultPlaybackRate : bool|;
+		\item \lstinline|[r/*] element'prop-disableRemotePlayback : bool|;
+		\item \lstinline|[r/o] element'prop-duration : double|;
+		\item \lstinline|[r/o] element'prop-ended : bool|;
+		\item \lstinline|[r/*] element'prop-loop : bool|;
+		\item \lstinline|[r/*] element'prop-mediaGroup : string|;
+		\item \lstinline|[r/*] element'prop-muted : bool|;
+		\item \lstinline|[r/o] element'prop-networkState : int|;
+		\item \lstinline|[r/o] element'prop-paused : bool|;
+		\item \lstinline|[r/*] element'prop-playbackRate : double|;
+		\item \lstinline|[r/*] element'prop-preload : string|;
+		\item \lstinline|[r/o] element'prop-readyState : int|;
+		\item \lstinline|[r/o] element'prop-seeking : bool|;
+		\item \lstinline|[r/*] element'prop-volume : double|;
+	\end{icItems}
+	
+	\item HTMLMetaElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-content : string|;
+		\item \lstinline|[r/*] element'prop-httpEquiv : string|;
+	\end{icItems}
+	
+	\item HTMLMeterElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-high : double|;
+		\item \lstinline|[r/*] element'prop-low : double|;
+	\end{icItems}
+	
+	\item HTMLModElement: \lstinline|[r/*] element'prop-cite : string|;
+	
+	\item HTMLOListElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-reversed : bool|;
+		\item \lstinline|[r/*] element'prop-start : int|;
+	\end{icItems}
+	
+	\item HTMLOptionElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-defaultSelected : bool|;
+		\item \lstinline|[r/o] element'prop-index : int|;
+		\item \lstinline|[r/*] element'prop-label : string|;
+		\item \lstinline|[r/*] element'prop-selected : bool|;
+	\end{icItems}
+	
+	\item HTMLProgressElement: \lstinline|[r/o] element'prop-position : double|;
+	
+	\item HTMLScriptElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-charset : string|;
+		\item \lstinline|[r/*] element'prop-async : bool|;
+		\item \lstinline|[r/*] element'prop-defer : bool|;
+		\item \lstinline|[r/*] element'prop-noModule : bool|;
+	\end{icItems}
+	
+	\item HTMLSelectElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-selectedIndex : int|;
+		\item \lstinline|[r/o] element'prop-selectedOptions : element [c]|;
+	\end{icItems}
+	
+	\item HTMLTableCellElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-abbr : string|;
+		\item \lstinline|[r/o] element'prop-cellIndex : int|;
+		\item \lstinline|[r/*] element'prop-colSpan : int|;
+		\item \lstinline|[r/*] element'prop-rowSpan : int|;
+		\item \lstinline|[r/*] element'prop-scope : string|;
+	\end{icItems}
+	
+	\item HTMLTableColElement: \lstinline|[r/*] element'prop-span : int|;
+	
+	\item HTMLTableElement:
+	\begin{icItems}
+		\item \lstinline|[r/o] element'prop-caption : element [i]|;
+		\item \lstinline|[r/o] element'prop-tBodies : element [c]|;
+		\item \lstinline|[r/o] element'prop-tHead : element [i]|;
+		\item \lstinline|[r/o] element'prop-tFoot : element [i]|;
+	\end{icItems}
+	
+	\item HTMLTableRowElement:
+	\begin{icItems}
+		\item \lstinline|[r/o] element'prop-cells : element [c]|;
+		\item \lstinline|[r/o] element'prop-rowIndex : int|;
+	\end{icItems}
+	
+	\item HTMLTextAreaElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-cols : int|;
+		\item \lstinline|[r/o] element'prop-textLength : int|;
+		\item \lstinline|[r/*] element'prop-wrap : string|;
+	\end{icItems}
+	
+	\item HTMLTimeElement: \lstinline|[r/*] element'prop-dateTime : string|;
+	
+	\item HTMLTrackElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-kind : string|;
+		\item \lstinline|[r/*] element'prop-srclang : string|;
+		\item \lstinline|[r/*] element'prop-label : string|;
+		\item \lstinline|[r/*] element'prop-default : bool|;
+	\end{icItems}
+	
+	\item HTMLVideoElement:
+	\begin{icItems}
+		\item \lstinline|[r/*] element'prop-poster : string|;
+		\item \lstinline|[r/*] element'prop-videoHeight : int|;
+		\item \lstinline|[r/*] element'prop-videoWidth : int|;
+	\end{icItems}
+	
+	% \item \lstinline|[r/w] element'prop-|;
+\end{icItems}
+
+\code{element [c]} întotdeauna va fi o colecție, \code{element [i]} - variază în dependența de subiect, dacă subiectul este un element unic, atunci rezultatul va vi un element unic, dacă subiectul este o colecție, atunci rezultatul va fi de asemenea colecție. 
+
+Amintim că standardul W3C WebDriver privește numai citirea proprietăților numai pentru elemente unice, și în regim de testare proprietățile var fi disponibile numai pentru citire.
+
+Proprietatea \code{rows} nu este prezent în lista dată, pentru că tipul ei de date se diferențiază de la element la element.
+
+%\newpage

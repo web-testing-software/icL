@@ -1,0 +1,105 @@
+% !TeX spellcheck = ro_RO
+\section{Operatorii condiționali}
+
+Construcțiile condiționale dețin condiții, valoarea cărora trebuie socotită, și grupuri de comenzi, execuția cărora depinde de condiție.
+
+În icL sunt prezenți următorii operatori logici:
+\begin{icItems}
+	\item \code{if};
+	\item \code{if-else};
+	\item \code{if-else} în cascadă;
+	\item \code{exists};
+	\item \code{if-exists};
+	\item \code{for-any}.
+\end{icItems}
+
+\subsubsection{\lstinline|if|}
+
+\code{if} permite să condiționezi executarea grupei de comenzi. Sintaxa lui -
+\begin{lstlisting}[numbers=none]
+if (condition) {
+	commands
+};
+\end{lstlisting}
+unde \code{condition} orice expresie care returnează valoare \bool{} și \code{commands} orice succesiune de comenzi.
+
+De asemenea se permite de exclus parantezele rotunde dacă expresia este simplă, sintaxă -
+\begin{lstlisting}[numbers=none]
+if true  { commands };
+if @var  { commands };
+\end{lstlisting}
+
+\subsubsection{\lstinline|if-else|}
+
+\code{if-else} permite a alege dintre 2 grupe de comenzi, în cazul în care condiția este adevărată se execută prima, în caz contrar a doua.
+
+Sintaxa \code{if-else}-ului -
+\begin{lstlisting}[numbers=none]
+if (condition) {
+	commands1
+}
+else {
+	commands2
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline|if-else| în cascadă}
+
+\code{if-else} în cascadă permite a alege dintre n grupe de comenzi, numai că necesită n-1 condiții.
+
+Sintaxa \code{if-else}-ului în cascadă -
+\begin{lstlisting}[numbers=none]
+if (condition1) {
+	commands1
+} else if (condition2) {
+	commands2
+} else {
+	commands3
+};
+\end{lstlisting}
+
+\subsubsection{\lstinline|exists|}
+
+\code{exists} permite a returna date condițional, filtrînd informația după criteriile dorite.
+
+Condiții implicite:
+\begin{icItems}
+\item
+	pentru \bool{} - \code{# == true};
+\item
+	pentru \integer{} - \code{# != 0};
+\item
+	pentru \double{} - \code{# != 0.0};
+\item
+	pentru \str{} - \code{!#'empty};
+\item
+	pentru \listtype{} - \code{!#'empty};
+\item
+	pentru \set{} - \code{!#'empty};
+\item
+	pentru \element{} - \code{#'empty}.
+\end{icItems}
+
+În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \lstinline|exists(expression)|.
+Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă -\lstinline|exists(expression, condition)|.
+
+\subsubsection{\lstinline|if-exists|}
+
+Construcția \code{if-exists} permite a execută o grupă de comenzi în condiție de rezultatul \code{exists}-ului și de a folosi valoarea repetat. În cazul în care condiția \code{exists}-ului e adevărată, se execută grupa de comenzi și se transmitwe valoare returnată de \code{exists} sub numele \code{@}.
+Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
+
+\subsubsection{\lstinline|for-any|}
+
+\code{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
+
+\begin{lstlisting}[caption=Folosirea if-exist-ului, label=ifexistsex]
+if exists(23 + 3, # > 20) {
+_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Folosirea for-any-ului, label=foranyex]
+for any(23 + 3) {
+	_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
