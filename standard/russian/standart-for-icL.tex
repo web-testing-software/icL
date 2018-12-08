@@ -43,7 +43,7 @@
 	\fancyhead[R]{\textmd{\thepage{}}}
 }{}
 
-\title{Стандарт языка описания сценариев icL v1.0.0 Предварительная версия}
+\title{Стандарт языка описания сценариев icL v1.0.0 Предварительная версия 4}
 \author{Лелицак Василе}
 
 \maketitle
@@ -58,14 +58,12 @@
 
 \ifthenelse{\boolean{compress}}{
 	% compresed mode 
-	\newpage
 	\input{sec-01-0-introduction}
 	
 	\newpage
-	\input{part-01-0-advanced-users}
 	\input{sec-02-0-base-syntax}
-	\input{sec-04-0-data-types}
-	\input{sec-03-0-variables}
+	\input{sec-03-0-data-types}
+	\input{sec-04-0-variables}
 	\input{sec-05-0-literals}
 	\input{sec-06-0-operators}
 	\input{sec-07-0-conditional-operators}
@@ -81,21 +79,25 @@
 	\input{sec-17-0-data-casting}
 	
 	\newpage
-	\input{part-02-0-programmers}
 	\input{sec-18-0-additional-posibilities}
 	\input{sec-19-0-additional-interaction}
 	\input{sec-20-0-regular-expressions}
-	\input{sec-21-0-state-mechanism}
-	\input{sec-22-0-data-bases}
-	\input{sec-23-0-exceptions}
-	\input{sec-24-0-crossfire-js}
-	\input{sec-25-0-assets}
+	\input{sec-21-0-datetime}
+	\input{sec-22-0-state-mechanism}
+	\input{sec-23-0-data-bases}
+	\input{sec-24-0-exceptions}
+	\input{sec-25-0-crossfire-js}
+	\input{sec-26-0-sync}
+	\input{sec-27-0-modifiers}
+	\input{sec-28-0-assets}
+	\input{sec-29-0-autofinish}
+	\input{sec-30-0-errorless}
 	
 	\newpage
-	\input{part-03-0-developers}
-	\input{sec-26-0-data-types-pro}
-	\input{sec-27-0-system-data-types-pro}
-	\input{sec-28-0-operators-pro}
+	\input{sec-31-0-data-types-pro}
+	\input{sec-32-0-system-data-types-pro}
+	\input{sec-33-0-operators-pro}
+	\input{sec-34-0-last-examples}
 }{
 	% extended mode
 	\include{sec-01-0-introduction}
