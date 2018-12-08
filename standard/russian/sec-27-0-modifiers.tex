@@ -53,3 +53,7 @@
 В списке технологий \textit{icL} присутствует технология \textit{icL ALive}. Она позволяет восстановить работоспособность командного процессора после сбоя, но если исключение захватывается через \code{emiter slot}, то она будет обработано им. Если нужно чтобы исключение обработалась через \textit{icL ALive} когда это доступно, укажите явно через данный модификатор.
 
 Список технологии \textit{icL} доступен по ссылке: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
+
+\subsubsection{\lstinline|listen:ignore| - режим не беспокоить}
+
+Конструкция \lstinline|listen| является частью технологий \textit{icL-Sync}, \lstinline|listen:ignore| позволяет создать узел, который не будет начать слушать при создании, а будет ожидать вызов метода \lstinline|Stack.listen()|. Больше информации можете найти в главе \ref{sync}. 

@@ -8,6 +8,7 @@
 Состояние представляет собой двусвязный список контейнеров, они не привязываются к коду и доступны глобально. По умолчанию создаётся лишь один контейнер, но новые могут быть созданы пользователем.
 
 \subsection{Управление стеками}
+\label{stack:control}
 
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
@@ -18,7 +19,10 @@
 	\item \lstinline|Stack.return (value : any) : void|;
 	\item \lstinline|Stack.markTest (name : string) : Stack|;
 	\item \lstinline|Stack.markStep (name : string) : Stack|;
-	\item \lstinline|Stack.addDescription (description : string) : void|.
+	\item \lstinline|Stack.addDescription (description : string) : void|;
+	\item \lstinline|Stack.destroy () : void|;
+	\item \lstinline|Stack.ignore () : Stack|;
+	\item \lstinline|Stack.listen () : Stack|.
 \end{icItems}
 
 \subsubsection{\lstinline|[r/o] Stacks'(name : string) : Stack|}
@@ -72,6 +76,24 @@
 \subsubsection{\lstinline|Stack.addDescription (description : string) : void|}
 
 Добавляет текстовое описание шага или теста. В сравнения с названием, при осмотре результатов теста описание спрятано и показывается только при необходимости.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\lstinline|Stack.destroy () : void|}
+
+Полностью удаляет с памяти слой типа \lstinline|listen|.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\lstinline|Stack.ignore () : Stack|}
+
+Переводит слой типа \lstinline|listen| в режиме "Не беспокоить".
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\lstinline|Stack.listen () : Stack|}
+
+Переводит слой типа \lstinline|listen| в активном режиме.
 
 Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
 
