@@ -86,7 +86,7 @@ icL - чувствительный к регистру язык. Таким об
 
 \subsection{Ключевые слова}
 
-В icL \textbf{ключевые слова} зарезервированные. Их всего 15: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|listen| и \lstinline|assert|. В данном документе они выделены синим цветом.
+В icL \textbf{ключевые слова} зарезервированные. Их всего 16: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|listen|, \lstinline|wait| и \lstinline|assert|. В данном документе они выделены синим цветом.
 
 \subsection{Пробельные символы и разделители}
 
@@ -100,7 +100,7 @@ if(Tab.get"mai.ru"){Doc.query("button").click();}else{Log.error"The site mai.ru 
 
 При описании последовательности действий, их надо разделить, например последовательность вышеперечисленных команд описывается так:
 \begin{lstlisting}[numbers=none]
-Tab.get "URL"; Tab.close
+Tab.get "URL"; Tab.close()
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
@@ -110,7 +110,7 @@ Tab.get "URL"; Tab.close
 if (Tab.get "mai.ru") {
 	`` site loaded successfull
 	`` click the button
-	Doc.query("button").click;
+	Doc.query("button").click();
 }
 else {
 	`` try again later

@@ -13,6 +13,7 @@
 Для управления стеками, используется следующий набор функций и свойств:
 \begin{icItems}
 	\item \lstinline|[r/o] Stacks'(name : string) : Stack|;
+	\item \lstinline|[r/w] Stack'(name : string) : any|;
 	\item \lstinline|Stack.clear () : void|;
 	\item \lstinline|Stack.continue () : void|;
 	\item \lstinline|Stack.break () : void|;
@@ -35,7 +36,7 @@
 \end{lstlisting}
 Могут быть именованными только блоки команд (код ограничен фигурными скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт слой имеющий названием функций.
 
-\subsubsection{\lstinline|Stack'(name : string) : any|}
+\subsubsection{\lstinline|[r/w] Stack'(name : string) : any|}
 
 Возвращает переменную, находящаяся именно в этот слой. Например: уже существует переменная \code{i} в верхнем слой, нужно определить переменная с таким же именем в текущем слой. Проблема решается следующим образом: \lstinline|Stack'i = 0| вместо \lstinline|@i = 0|.
 
@@ -105,8 +106,8 @@
 	\item \lstinline|States'prev : object|;
 	\item \lstinline|States'next : object|;
 	\item \lstinline|States'last : object|;
-	\item \lstinline|States.new () : void|;
-	\item \lstinline|States.newAtEnd () : void|;
+	\item \lstinline|States.new (data = [=]) : void|;
+	\item \lstinline|States.newAtEnd (data = [=]) : void|;
 	\item \lstinline|States.toNext () : void|;
 	\item \lstinline|States.toPrev () : void|;
 	\item \lstinline|States.clear () : void|;

@@ -294,7 +294,7 @@
 	\item \lstinline|Cookies.get (name : string) : Cookie|.
 \end{icItems}
 
-\subsubsection{\lstinline|[r/o] Cookies'name : string : Cookie|}
+\subsubsection{\lstinline|[r/o] Cookies'(name : string) : Cookie|}
 
 Возвращает \cookie{} с нужным названием.
 
@@ -325,7 +325,7 @@
 
 И следующие методы:
 \begin{icItems}
-	\item \lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0|\\*, \lstinline|seconds = 0) : Cookie|;
+	\item \lstinline|Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,|\\* \lstinline|seconds = 0) : Cookie|;
 	\item \lstinline|Cookie.load () : Cookie|;
 	\item \lstinline|Cookie.resetTime () : Cookie|;
 	\item \lstinline|Cookie.save () : Cookie|.
@@ -589,7 +589,8 @@ for any Cookie {
 	\item \lstinline|Tab.close () : void|;
 	\item \lstinline|Tab.focus () : void|;
 	\item \lstinline|Tab.forward () : void|;
-	\item \lstinline|Tab.get (url : string) : bool|.
+	\item \lstinline|Tab.get (url : string) : bool|;
+	\item \lstinline|Tab.load (url : string) : bool|.
 \end{icItems}
 
 \subsubsection{\lstinline|[icL] [r/o] Tab'canGoBack : bool|}
@@ -662,10 +663,8 @@ URL страницы, открытой в указанной вкладке.
 
 Объект \dom{} имеет следующие методы:
 \begin{icItems}
-	\item \lstinline|Doc.query (by : int, selector : string) : element|;
-	\item \lstinline|Doc.query (cssSelector : string) : element|;
-	\item \lstinline|Doc.queryAll (by : int, selecor : string) : element|;
-	\item \lstinline|Doc.queryAll (cssSelector : string) : lement|;
+	\item \lstinline|Doc.query (by = By'cssSelector, selector : string) : element|;
+	\item \lstinline|Doc.queryAll (by = By'cssSelector, selector : string) : element|;
 	\item \lstinline|Doc.queryAllByXPath (xpath : string) : element|;
 	\item \lstinline|Doc.queryByXPath (xpath : string) : element|;
 	\item \lstinline|Doc.queryLink (name : string, isFragment = false) : element|;
@@ -680,15 +679,11 @@ URL страницы, открытой в указанной вкладке.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{Timeout} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Doc.queryAll (by = By'cssSelector, selecor : string) : element|}
+\subsubsection{\lstinline|Doc.queryAll (by = By'cssSelector, selector : string) : element|}
 
 Принимает то же самые параметры, как и \lstinline|element.queryAll|, только поиск ведётся по всему документу. 
 
 Возможные исключения: \ferror{NoSessions} (см. таб. \ref{errors}).
-
-\subsubsection{\lstinline|Doc.queryAll (cssSelector : string) : lement|}
-
-Акроним для \lstinline|Doc.queryAll (By'cssSelector, @cssSelector)|.
 
 \subsubsection{\lstinline|Doc.queryAllByXPath (xpath : string) : element|}
 
@@ -801,61 +796,11 @@ URL страницы, открытой в указанной вкладке.
 
 \subsection{{\color{orange} Make}}
 
-Объект \make{} имеет следующие методы:
-\begin{icItems}
-	\item \lstinline|Make.image (base64 : string, path : string) : void|;
-	\item \lstinline|Make.int (str : string, base : int) : int|;
-	\item \lstinline|Make.list (s : set) : list|;
-	\item \lstinline|Make.object (json : string) : object|;
-	\item \lstinline|Make.regex (pattern : string) : regex|;
-	\item \lstinline|Make.string (b : bool) : string|;
-	\item \lstinline|Make.string (d : double) : string|;
-	\item \lstinline|Make.string (number : int, base : int) : string|;
-	\item \lstinline|Make.string (obj : object) : string|;
-	\item \lstinline|Make.string (s : set) : string|.
-\end{icItems}
+Объект \make{} имеет следующие метод: \lstinline|Make.image (base64 : string, path : string)|.
 
 \subsubsection{\lstinline|Make.image (base64 : string, path : string) : void|}
 
 Сохраняет скриншот на жёстком диске.
-
-\subsubsection{\lstinline|Make.int (str : string, base : int) : int|}
-
-Парсит целое число в виде строки в нужном базисе.
-
-Возможные исключения: \ferror{ParsingFailed} (см. таб. \ref{errors}).
-
-\subsubsection{\lstinline|Make.list (s : set) : list|}
-
-Акроним для \lstinline|set : list|.
-
-\subsubsection{\lstinline|Make.object (json : string) : object|}
-
-Акроним для \lstinline|object : string|.
-
-\subsubsection{\lstinline|Make.regex (pattern : string) : regex|}
-
-Создаёт регулярное выражение на основе паттерна.
-
-\subsubsection{\lstinline|Make.string (b : bool) : string|}
-
-Возвращает \lstinline|"true"|, если \lstinline|b == true|, иначе \lstinline|"false"|.
-
-\subsubsection{\lstinline|Make.string (d : double) : string|}
-
-Акроним для \lstinline|double : string|.
-
-\subsubsection{\lstinline|Make.string (number : int, base : int) : string|}
-
-Возвращает представления числа в заданном базисе.
-
-\subsubsection{\lstinline|Make.string (obj : object) : string|}
-
-Акроним для \lstinline|object : string|.
-
-\subsubsection{\lstinline|Make.string (s : set) : string|}
-
-Акроним для \lstinline|set : string|.
 
 \subsection{{\color{orange} Log}}
 
