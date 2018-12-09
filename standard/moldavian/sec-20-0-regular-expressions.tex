@@ -59,8 +59,8 @@ Exemple de folosire a operatorilor sunt prezenți pe foaia \ref{regexpopsex}.
 
 \begin{lstlisting}[caption=Operații cu expresii regulare, label=regexpopsex]
 "string" << //s.r//;            `` true
-"string" <* //s(.)r//;          `` ["str" "t"]
-"string" ** //s(?<letter>.)r//; `` [<"t">letter]
+"string" <* //s(.)r//;          `` ["str", "t"]
+"string" ** //s(?<letter>.)r//; `` [letter = "t"]
 \end{lstlisting}
 
 \subsubsection{\lstinline|string << regex : bool|}
@@ -82,23 +82,23 @@ Returnează un obiect, care conține toate valorilor grupelor cu nume, dacă și
 Metodele clasei \str{} și \listtype, care primesc parametri de tipul \regex{}:
 \begin{icItems}
 \item
-	\lstinline|string.count <regex>re : int|;
+\lstinline|string.count (re : regex) : int|;
 \item
-	\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|;
+\lstinline|string.indexOf (re : regex, startPos = -1) : int|;
 \item
-	\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|;
+\lstinline|string.lastIndexOf (re : regex, startPos = -1) : int|;
 \item
-	\lstinline|string.remove <regex>re : string|;
+\lstinline|string.remove (re : regex) : string|;
 \item 
-	\lstinline|string.replace <regex>re <string>after : string|;
+\lstinline|string.replace (re : regex, after : string) : string|;
 \item
-	\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|.
+\lstinline|string.split (re : regex, keepEmptyParts = true) : list|.
 \item
-	\lstinline|list.filter <regex>re : list|;
+\lstinline|list.filter (re : regex) : list|;
 \item
-	\lstinline|list.indexOf <regex>re <int>start : int|;
+\lstinline|list.indexOf (re : regex, start : int) : int|;
 \item
-	\lstinline|list.lastIndexOf <regex>re <int>start : int|;
+\lstinline|list.lastIndexOf (re : regex, start : int) : int|;
 \end{icItems}
 
 Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{regexplikearg}.
@@ -110,50 +110,50 @@ Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{re
 @str.indexOf //\w{6}//;   `` 13
 @str.lastIndexOf //l+o//; `` 2
 @str.remove //\w{2}o//;   `` "He world, collrrs!"
-@str.split //,?\s//;      `` ["He" "world" "collrrs!"]
+@str.split //,?\s//;      `` ["He", "world", "collrrs!"]
 
-@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+@fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
-@fonts.filter //^[ac]//i;    `` ["Arial" "Courier"]
+@fonts.filter //^[ac]//i;    `` ["Arial", "Courier"]
 @fonts.indexOf //e.//;       `` 1
 @fonts.indexOf //e.// 2;     `` 2
 @fonts.lastIndexOf //e.//;   `` 3
 @fonts.lastIndexOf //e.// 2; `` 2
 \end{lstlisting}
 
-\subsubsection{\lstinline|string.count <regex>re : int|}
+\subsubsection{\lstinline|string.count (re : regex) : int|}
 
 Numără cîte subșiruri convin expresii regulare \code{re}.
 
-\subsubsection{\lstinline|string.indexOf <regex>re <int>startPos = -1 : int|}
+\subsubsection{\lstinline|string.indexOf (re : regex, startPos = -1) : int|}
 
 Returnează indexul primului subșir care convine expresii regulare \code{re}, căutînd înainte de pe poziția code{startPos}. Dacă așa subșir nu a fost găsit, returnează -1.
 
-\subsubsection{\lstinline|string.lastIndexOf <regex>re <int>startPos = -1 : int|}
+\subsubsection{\lstinline|string.lastIndexOf (re : regex, startPos = -1) : int|}
 
 Returnează primului subșir care convine expresii regulare \code{re}, căutînd înapoi de pe poziția \code{startPos}; dacă așa subșir nu a fost găsit, returnează -1.
 
-\subsubsection{\lstinline|string.remove <regex>re : string|}
+\subsubsection{\lstinline|string.remove (re : regex) : string|}
 
 Șterge din șir toate subșirurile care convin expresii regulare \code{re}.
 
-\subsubsection{\lstinline|string.replace <regex>re <string>after : string|}
+\subsubsection{\lstinline|string.replace (re : regex, after : string) : string|}
 
 Înlocuiește subșirurile care convin expresii regulare \code{re}, cu șirul \code{after}.
 
-\subsubsection{\lstinline|string.split <regex>re <bool>keepEmptyParts = true : list|}
+\subsubsection{\lstinline|string.split (re : regex, keepEmptyParts = true) : list|}
 
 Împarte șirul în subșiruri, la fiecare găsire a subșirului care convine expresii regulare \code{re} și strînge subșirurile în listă. Dacă \code{keepEmptyParts == false} șirurile deșarte se ignoră.
 
-\subsubsection{\lstinline|list.filter <regex>re : list|}
+\subsubsection{\lstinline|list.filter (re : regex) : list|}
 
 Returnează o listă nouă, care conține doar șirurile acestei liste, care convin expresii regulare \code{re}.
 
-\subsubsection{\lstinline|list.indexOf <regex>re <int>start = 0 : int|}
+\subsubsection{\lstinline|list.indexOf (re : regex, start = 0) : int|}
 
 Returnează indexul primului șir, care convine expresii regulare \code{re}, căutînd înainte de pe poziția \code{start}, dacă așa șir nu a fost găsit returnează -1.
 
-\subsubsection{\lstinline|list.lastIndexOf <regex>re <int>start = -1 : int|}
+\subsubsection{\lstinline|list.lastIndexOf (re : regex, start = -1) : int|}
 
 Returnează indexul primului șir, care convine expresii regulare \code{re}, căutînd înapoi de pe poziția \code{start}, dacă așa șir nu a fost găsit returnează -1.
 

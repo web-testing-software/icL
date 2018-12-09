@@ -1,7 +1,7 @@
 % !TeX spellcheck = ro_RO
 \section{Confirmații}
 
-{\bf Confirmațiile} permit a aprecia cît de bine au se execută testele. Confirmațiile în icL sunt de 2 tipuri: \lstinline|assert (condition)| și \lstinline|assert (condition, message)|. În primul este prezentă doar condiție \code{condition}, dacă ea este egală cu \false{} sau \void, atunci icL atunci icL va confirma că este o problemă în aplicația testată, trimițînd mesajul \code{message}, dacă el lipsește se va trimite condiția în calitate de mesaj. Cum să trimiți corect același mesaj pentru cîteva condiții este demonstrat pe foaia \ref{assertexample}.
+{\bf Confirmațiile} permit a aprecia cît de bine au se execută testele. Confirmațiile în icL sunt de 2 tipuri: \lstinline|assert (condition)| și \lstinline|assert (condition, message)|. În primul este prezentă doar condiție \code{condition}, dacă ea este egală cu \false{} sau \void, atunci icL atunci icL va confirma că este o problemă în aplicația testată, trimițînd mesajul \code{message}, dacă el lipsește se va trimite condiția în calitate de mesaj. Cum să trimiți corect același mesaj pentru cîteva condiții este demonstrat pe foaia \ref{assertexample}. Rezultatul confirmației va fi salvat numai dacă confirmația se execută în pas din test. Dacă afirmația e falsă, programa se oprește imediat.
 
 \begin{lstlisting}[caption=Exemple de folosire a confirmațiilor, label=assertexample]
 `` wrong
@@ -12,4 +12,11 @@ assert (@val != 2 || @val != 4 || @val != 127, "Message");
 assert (@val != 2,   @message);
 assert (@val != 4,   @message);
 assert (@val != 127, @message);
+
+`` without using a variable
+for any ("Message") {
+	assert (@val != 2,   @);
+	assert (@val != 4,   @);
+	assert (@val != 127, @);
+}
 \end{lstlisting}
