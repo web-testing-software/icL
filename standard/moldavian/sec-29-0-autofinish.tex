@@ -1,0 +1,33 @@
+% !TeX spellcheck = ro_RO
+\section{Auto-finisarea comenzilor}
+
+\textbf{Delimitatorul de comenzi} în icL poate fi omis, dar nu se recomandă. Dar pentru a face codul mai clar e mai bine de omis delimitatorul de comenzi după \code{if}, \code{else}, \code{while}, \code{do while}, \code{for}, \code{filter}, \code{range}. Diferența o puteți vedea comparînd foaia \ref{nodelimiterskipping} cu  \ref{delimiterskipping}.
+
+\begin{lstlisting}[caption=Făra delimitatori omiși, label=nodelimiterskipping]
+fun = () : int { @ = 23; };
+
+if (fun() == 12) { Log.out 12345678; } 
+else             { Log.out 87654321; };
+
+emiter { func(@x); }
+slot:Error1 { @x = 45; };
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Cu delimitatori omiși, label=delimiterskipping]
+fun = () : int { @ = 23 }
+
+if (fun() == 12) { Log.out 12345678 } 
+else             { Log.out 87654321 }
+
+emiter { func(@x) }
+slot:Error1 { @x = 45 }
+\end{lstlisting}
+
+Comanda poate fi finisată automat după următoarele construcții semantice:
+\begin{icItems}
+	\item literal;
+	\item valoare;
+	\item proprietate;
+	\item pachet de valori;
+	\item grup de comenzi.
+\end{icItems}

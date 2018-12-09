@@ -1,0 +1,27 @@
+% !TeX spellcheck = ro_RO
+\section{Sincronizare}
+\label{sync}
+
+icL nu se limitează la sincronizarea cu procesele de încărcare și executarea script-urilor în pagina web. icL poate fi sincronizat cu back-end-ul cu ajutorul tehnologiei \textit{icL-Sync}. Lista tehnologiilor icL este disponibilă pe adresa \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
+
+\subsubsection{Conectare}
+
+Ca să captezi mesaje trebuie de creat spion, care are sintaxa următoare:
+\begin{lstlisting}
+listen serverAddress : (parameters) {
+	`` code
+}
+\end{lstlisting}
+
+Unde \code{serverAddress} e URL serviciului de sincronizare, iar \code{parameters} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
+
+
+\begin{lstlisting}[caption=Captura erorilor, label=errorcatch]
+listen "ws://127.0.0.1:8989" : (@type = "error", @message : string) {
+	Log.out "error: " + @message;
+}
+\end{lstlisting}
+
+\subsubsection{Deconectare}
+
+Pentru a opri captura mesajelor folosiți metodele: \lstinline|Stack.ignore()| sau \lstinline|Stack.destroy()|. Mai multe date puteți găsi în paragraful \ref{stack:control}.

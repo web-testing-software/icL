@@ -1,0 +1,286 @@
+% !TeX spellcheck = ro_RO
+
+\section{Metodologia errorless}
+
+\label{errorless-sec}
+
+Metodologia de programare, care a primit numele \textit{errorless} este o parte a filosofiei icL. În acord cu ea codul trebuie să fie rezistent la eșecuri, în acest capitol for fi descrise metode de a îmbunătăți rezistența.
+
+Dacă lucrați în comandă, acordați cu colegii care posibilități veți folosi, care nu.
+
+\subsection{Variabile}
+
+Variabilele în icL, de sine stătător nu generează excepții. Excepțiile sunt generate de folosirea incorectă a lor. Variabilele globale pot primi valori din setările proiectului, dar înainte de a folosi așa variabile verificați dacă conțin ele valori, dar în cel mai bun caz dați lor valori implicite - \lstinline`#server = #server | "192.168.7.12"` (pr. paragraful \ref{void-operators}).
+
+Dacă variabilă are valoare \void, puteți citi orice proprietate a ei, și apela orice metodă. Asta nu va genera excepții.
+
+Dacă apelați o metodă prin acronim și trimiteți valoare \void, metoda nu va fi apelată, iar comanda va returna \void. Folosirea acestei posibilități ne se recomandă, ea este prezentă pentru ca metodologia să fie completă.
+
+\subsection{Operatori {\color{lightblue}void}}
+
+\label{void-operators}
+
+Operatori \void{} sunt opțiuni pe care eu le pot recomanda cu încredere. Ei nu complică înțelegerea codului, dar o simplifică. Numai nu folosiți în serie mai mulți de 2 operatori.
+
+Toți operatorii \void{} sunt de rangul 2. Acești operatori împart datele în 2 tipuri \void{} și nu \void{}. Al doilea tip mai departe va fi numit \code{any}, el poate înlocui unul din tipurile următoare: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
+
+Lista operatorilor \void{}:
+
+\begin{icItems}
+	\item
+	alegere alternativă \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` și \lstinline`any | any : any`;
+	\item
+	alegere primară \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| și \lstinline|any & any : any|;
+	\item
+	alegere secundară \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| și \lstinline|any ~ any : any|;
+	\item
+	alegere exclusivă \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| și \lstinline|any ^ any : void|;
+	\item
+	alegere selecționistă \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Încă un operator va fi descris în capitolul \ref{webelments}.
+\end{icItems}
+
+\subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
+
+Dependența alegerii alternative de datele de intrare este demonstrată în tabela \ref{orhacktable}.
+
+\subsubsection{\lstinline|<void or any> \& <void or any> : void or any|}
+
+Dependența alegerii primare de datele de intrare este demonstrată în tabela \ref{andhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea alternativă"}
+	\label{orhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \| arg2} \\ \hline
+		\void{}     & \void{}     & \void{}  			\\ \hline
+		\void{}     & \code{any}  & \code{arg2}  		\\ \hline
+		\code{any}  & \void{}     & \code{arg1}  		\\ \hline
+		\code{any}  & \code{any}  & \code{arg1}  		\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea primară"}
+	\label{andhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \& arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \code{any}  & \void{}   			\\ \hline
+		\code{any}  & \void{}     & \void{}   			\\ \hline
+		\code{any}  & \code{any}  & \code{arg1}   		\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\lstinline|<void or any> ~ <void or any> : void or any|}
+
+Dependența alegerii secundare de datele de intrare este demonstrată în tabela \ref{eqhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea secundară"}
+	\label{eqhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \~ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \code{any}  & \void{}   			\\ \hline
+		\code{any}  & \void{}     & \void{}   			\\ \hline
+		\code{any}  & \code{any}  & \code{arg2}   		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\lstinline|<void or any> ^ <void or any> : void or any|}
+
+Dependența alegerii exclusive de datele de intrare este demonstrată în tabela \ref{xorhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea exclusivă"}
+	\label{xorhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \^ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \code{any}  & \code{arg2}   		\\ \hline
+		\code{any}  & \void{}     & \code{arg1}   		\\ \hline
+		\code{any}  & \code{any}  & \void{}   			\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\lstinline|<void or any> \% <void or any> : void or any|}
+
+Dependența alegerii selective de datele de intrare este demonstrată în tabela \ref{centhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea selectivă"}
+	\label{centhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\code{arg1} & \code{arg2} & \code{arg1 \% arg2}			\\ \hline
+		\void{}     & \void{}     & \void{}						\\ \hline
+		\void{}     & \code{any}  & \code{arg2}					\\ \hline
+		\code{any}  & \void{}     & \code{arg1}					\\ \hline
+		\integer{}  & \integer{}  & \integer{}					\\ \hline
+		\double{}   & \double{}   & \double{}					\\ \hline
+		\str{}      & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \listtype{} & \code{list - [arg1 arg2]}	\\ \hline
+		\object{}   & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \set{}      & \code{set - [arg1 arg2]}	\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+Pentru argumentele \integer{} și \double{}, se apelează funcția \code{Numbers.process}, înainte de folosire indicați care funcție doriți să folosiți, folosind funcția \code{Numbers.setProcess} cu una din următoarele argumente: \code{Numbers'sum} - suma, \code{Numbers'product} - produs, \code{Numbers'max} - maximum, \code{Numbers'min} - minimum. După folosirea operatorului, apelați \code{Numbers .restoreProcess} ca să restaurați setările.
+
+\subsection{Operatorii de control}
+
+Pentru a exclude excepții sunt operatori de control speciali:
+\begin{icItems}
+	\item \code{exists};
+	\item \code{if-exists};
+	\item \code{for-any}.
+\end{icItems}
+
+\subsubsection{\lstinline|exists|}
+
+\code{exists} permite a returna date condițional, filtrînd informația după criteriile dorite.
+
+Condiții implicite:
+\begin{icItems}
+	\item
+	pentru \bool{} - \code{# == true};
+	\item
+	pentru \integer{} - \code{# != 0};
+	\item
+	pentru \double{} - \code{# != 0.0};
+	\item
+	pentru \str{} - \code{!#'empty};
+	\item
+	pentru \listtype{} - \code{!#'empty};
+	\item
+	pentru \set{} - \code{!#'empty};
+	\item
+	pentru \element{} - \code{#'empty}.
+\end{icItems}
+
+În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \lstinline|exists(expression)|.
+Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă \lstinline|exists(expression, condition)|.
+
+\subsubsection{\lstinline|if-exists|}
+
+Construcția \code{if-exists} permite a execută o grupă de comenzi în condiție de rezultatul \code{exists}-ului și de a folosi valoarea repetat. În cazul în care condiția \code{exists}-ului e adevărată, se execută grupa de comenzi și se transmitwe valoare returnată de \code{exists} sub numele \code{@}.
+Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
+
+\subsubsection{\lstinline|for-any|}
+
+\code{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
+
+\begin{lstlisting}[caption=Folosirea if-exist-ului, label=ifexistsex]
+if exists(23 + 3, # > 20) {
+_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Folosirea for-any-ului, label=foranyex]
+for any(23 + 3) {
+_log.out "@ = " @; `` @ = 26
+};
+\end{lstlisting}
+
+
+\subsection{Conversia datelor}
+
+În icL numai un operator permite a converti date și nu generează excepții - \lstinline|data :? type : bool|.
+El conversează datele în tipul de date necesar, ca oricare altul. Numai că în caz de eșec va returna \void.
+
+\subsection{Modificatorii de control}
+
+Modificatorii de control pot fi folosiți pentru a exclude eșecuri.
+Amintesc că modificatorii se descriu prin următoarea sintaxă - \lstinline|control:modifier|. De asemenea modificatorii pot fi mai mulți, sintaxă - \lstinline|control:[mod1,mod2]|. Folosirea în pereche a modificatorilor incompatibili va opri imediat programul.
+
+Modificatori de control adiționali:
+\begin{icItems}
+	\item \lstinline|if:not exists|;
+	\item \lstinline|for:Xtimes|;
+	\item \lstinline|for:ever|;
+	\item \lstinline|while:minX|;
+	\item \lstinline|while:maxX|;
+\end{icItems}
+
+\subsubsection{\lstinline|if:not exists|}
+
+\lstinline|if-exists| este util prin ceea că permite de a executa cod cînd sunt prezente datele necesare. Dar dacă este necesar de generat excepție ca datele necesare lipsesc? Aceasta problemă este rezolvată de \lstinline|if:not-exists|. În comparație cu \lstinline|if-exists|, el nu va trimite date în grupa de comenzi.
+
+\subsubsection{\lstinline|for:Xtimes|}
+
+Cea mai simplă metoda de a executa codul de \code{X} ori. Exemplu de cod care folosește \code{for:Xtimes} este prezent pe foaia \ref{forxtimes}. Zero și unu nu vor fi acceptați ca argument corect.
+
+\begin{lstlisting}[caption=Folosirea for:Xtimes, label=forxtimes]
+for:5times () {
+	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
+};
+`` replaces
+for (@i = 0; @i < 5; @i = @i + 1) {
+	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
+}
+\end{lstlisting}
+
+\subsubsection{\lstinline|for:ever|}
+
+\lstinline|for:ever| este un ciclu infinit, el poate fi folosit pentru a îndeplini codul de \code{X} ori, unde \code{X} este a valoare variabilă. Exemplu de cod este demonstrat pe foaia \ref{foreverloop}.
+
+\begin{lstlisting}[caption=Folosirea for:ever, label=foreverloop]
+@times = 5;
+
+for:ever (@ < @times) {
+	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
+};
+`` replaces
+for (@i = 0; @i < @times; @i = @i + 1) {
+	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
+}
+\end{lstlisting}
+
+\subsubsection{\lstinline|while:minX|}
+
+Modificatorul \code{min} permite a instala numărul minim de îndeplinire a ciclurilor \code{while} și \code{do-while}. În cilu ca fi transmisă o variabilă booleană, cu numele \code{@}, \true{} înseamnă că condiția a fost controlată, adică numărul minim de cicluri a fost îndeplinit.
+
+\subsubsection{\lstinline|while:maxX|}
+
+Modificatorul \code{max} apără de cicluri infinite, se poate de indicat un număr mare, dacă ceva va fi incorect, scenariul nu se va ori pe loc. Acest modificator este disponibil și pentru \code{for} - răsfoirea colecției, \code{filter} și \code{range}. La fel el este util pentru a stabili limită de sus, de exemplu pentru a extrage din pagina primele 10 articole, cînd ele pot fi mii (pr. foaia \ref{maxlimitsheet}).
+
+\begin{lstlisting}[caption=Folosirea for:maxX, label=maxlimitsheet]
+for:max10 (Doc.query "#my-table tr") {
+	@; `` just first 10 elements
+}
+\end{lstlisting}
+
+\subsection{Elemente Web}
+
+Standardul \textit{WebDriver} propus de \textit{World Wide Web Consortium} descrie un număr enorm de excepții în lucrul cu elementele. Toate nu pot fi ignorate, numai una \ferror{NoSuchElement}. Ea este ignorată în regim de automatizare, dacă elementul nu a fost găsit se returnează o colecție deșartă. La prima vedere e puțin, dar aplicații la practică se găsesc multe, în combinație cu alte posibilități, priviți foaia \ref{maxlimitsheet}.
+
+\begin{lstlisting}[caption=Folosirea elementelor web, label=maxlimitsheet]
+`` example 1
+
+@a = exists(Doc.query "#el")'text | "";
+`` replaces
+@a = "";
+if (Doc.queryAll("#el")'length > 0) { @a = Doc.query("#el")'text; }
+
+`` example 2
+
+@links = Doc.queryAll "a";
+
+@links.add(Doc.query "#special");
+`` replaces
+if (!Doc.queryAll("#special")'empty) { @links.add(Doc.query "#special"); }
+`` or
+if exists(Doc.query "#special") { @links.add(@); }
+\end{lstlisting}
+
