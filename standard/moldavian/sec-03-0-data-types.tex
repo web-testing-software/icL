@@ -10,12 +10,12 @@
 	De bază     & Tipurile de date descrise în capitolul precedent: \bool{} - boolean, \integer{} - numere întregi, \double{} - numere decimale. \\ \hline
 	Complexe    & Tipuri de date care conțin cîteva valori în container, exemple: șiruri de caractere, liste, mulțimi. \\ \hline
 	De sistem   & Tipuri de date pe care nu pot fi create direct de programator, accesul la ele este asigurat de obiecte de sistem. Exemple: browser, tab, istoria browserului, fereastră \\ \hline
-	Tip \void{} & Tip de date care înseamnă lipsa informației.
+	Tip \void{} & Tip de date care înseamnă lipsa valorii.
 }
 
 \subsection{Tipuri de bază}
 
-{\bf Tipuri de bază} se folosesc în realizarea operațiilor logice și aritmetice. Operațiile logice sunt conjuncția, disjuncția, disjuncție exclusivă, echivalență și negație logică. Operațiile aritmetice sunt adunarea, scăderea, înmulțirea, împărțirea, extragerea rădăcinii și ridicarea la putere.
+{\bf Tipuri de bază} se folosesc în realizarea operațiilor logice și aritmetice. De asemenea aceste valori pot fi comparate. Operațiile logice sunt conjuncția, disjuncția, disjuncție exclusivă, echivalență și negație logică. Operațiile aritmetice sunt adunarea, scăderea, înmulțirea, împărțirea, extragerea rădăcinii și ridicarea la putere.
 
 \subsection{Tipuri complexe}
 
@@ -27,7 +27,7 @@
 
 \subsection{Tip {\color{lightblue} void}}
 
-{\bf Tipul \void{}} indică la lipsa informației, el poate fi folosit în cele mai diferite scopuri:
+{\bf Tipul \void{}} indică la lipsa valorii, el poate fi folosit în cele mai diferite scopuri:
 
 \begin{icItems}
 \item
@@ -38,8 +38,6 @@
 	a alege sursa de date;
 \item
 	a filtra datele;
-\item
-	a șterge variabile globale;
 \item
 	și multe altele.
 \end{icItems}
@@ -79,7 +77,7 @@ Exemplu de folosire a metodei \code{any.ensureRValue} este demonstrat pe foaia \
 
 @int'typeName == @string;		 `` true
 @int'typeId == @double'typeId ;	 `` false
-@string'typeId == _types'string; `` true
+@string'typeId == Types'string; `` true
 
 @int'rValue; `` false
 1234'rValue; `` true
@@ -103,31 +101,4 @@ Exemplu de folosire a metodei \code{any.ensureRValue} este demonstrat pe foaia \
 @int.ensureRValue;
 @int'rValue;   `` true
 @int'readOnly; `` false
-\end{lstlisting}
-
-\subsection{Conversia datelor}
-
-În mod implicit, icL nu conversează datele. De exemplu a aduna \integer{} cu \double{} nu se poate, astfel de operator nu este definit. În acest caz se poate de conversat \integer{} în \double{} sau \double{} în \integer{}, în funcție de rezultatul necesar.
-
-Sintaxa conversie este foarte simplă \code{data : type}, unde \code{data} e orice date, dar \code{type} numele tipului de date necesar. Exemple de conversie sunt prezente pe foaia \ref{conversionexample}.
-
-\
-
-\
-
-\
-
-\begin{lstlisting}[caption=Exemple de conversie, label=conversionexample]
-@a = 2 + 2.3; `` error
-@a = (2 : double) + 2.3; `` 4.3
-@a = 2 + (2.3 : int); `` 4
-
-@b = 12 + " utils"; `` error
-@b = (12 : string) + " utils"; `` "12 utils"
-
-@c = "55" - 12; `` error
-@c = ("55" : int) - 12; `` 43
-
-@d = 23 + 12 : double; `` @d = 35.0
-@e = 234.0 / 5.0 : int; `` @e = 46
 \end{lstlisting}

@@ -1,26 +1,54 @@
 % !TeX spellcheck = ro_RO
 \section{Conversia datelor}
 
-De conversia datelor în icL răspund 3 operatori de rangul 1:
+De conversia datelor în icL răspund 4 operatori de rangul 1:
 \begin{icItems}
 	\item \lstinline|data : type : type|;
 	\item \lstinline|data :: type : bool|;
 	\item \lstinline|data :* type : bool|;
+	\item \lstinline|data :? type : bool|;
 \end{icItems}
+
+Și un operator de rangul 7 - \lstinline|date :! type : type|.
 
 \subsubsection{\lstinline|data : type : type|}
 
-Conversează datele în tipul necesar.
+Conversează datele în tipul necesar. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \lstinline|value : type|;
+	\item \lstinline|(value...) : type|;
+	\item \lstinline|(value...) : (type...)|;
+\end{icItems}
+
+\lstinline|value : type| conversează valoarea în tipul necesar.
+
+\lstinline|(value...) : type| conversează valorile împachetate în tipul necesar. Returnează pachet de valori (valori împachetate). Ele pot fi folosite pentru a apela o funcție, de exemplu \lstinline|func ((2.0, 3.2) : int)|.
+
+\lstinline|(value...) : (type...)| conversează fiecare valoare în tipul trebuit, ambele pachete ar trebui să dețină același număr de elemente. Returnează valori împachetate.
 
 Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
 
 \subsubsection{\lstinline|data :: type : bool|}
 
-Returnează \true, datele dețin tipul indicat, în caz contrar \false.
+Returnează \true, datele dețin tipul indicat, în caz contrar \false. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \lstinline|value :: type|;
+	\item \lstinline|(value...) :: type|;
+	\item \lstinline|(value...) :: (type...)|;
+\end{icItems}
 
 \subsubsection{\lstinline|data :* type : bool|}
 
-Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false.
+Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \lstinline|value :* type|;
+	\item \lstinline|(value...) :* type|;
+	\item \lstinline|(value...) :* (type...)|;
+\end{icItems}
+
+\subsubsection{\lstinline|data :! type : type|}
+
+\lstinline|data :! type : type| se deosebește de \lstinline|data : type : type| numai prin rang, conversia obișnuită are rangul 1 și se execută în ultimul  rînd, acest operator are rangul 7 și se execută în primul rînd.
 
 \subsection{Conversii posibile}
 
@@ -70,7 +98,7 @@ Returnează \lstinline|[]|.
 
 \subsubsection{\lstinline|void : object|}
 
-Returnează \lstinline|[<>]|.
+Returnează \lstinline|[=]|.
 
 \subsubsection{\lstinline|void : set|}
 

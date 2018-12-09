@@ -61,7 +61,7 @@ Pentru definirea {\bf numerelor întregi} se folosesc succesiuni de cifre, înai
 
 \subsubsection{Liste}
 
-{\bf Literalul listei} este o succesiune de șiruri de caractere, limitată în paranteze pătrate.
+{\bf Literalul listei} este o succesiune de șiruri de caractere (despărțite prin virgulă), limitată în paranteze pătrate.
 
 \noindent Exemple -
 \begin{lstlisting}[numbers=none]
@@ -71,24 +71,35 @@ Pentru definirea {\bf numerelor întregi} se folosesc succesiuni de cifre, înai
 
 \subsubsection{Obiecte}
 
-{\bf Obiectul} este o uniune din cîteva variabile sub un nume, variabila definită în obiect se numește {\it cîmp}. Literalul {\it cîmpului} are sintaxa următoare \lstinline|<value>name|, unde  {\it value} e o valoare și {\it name} e numele variabilei. În icL cîmpurile neinițializate, ca și variabilele neinițializate, nu se poate de definit.
+{\bf Obiectul} este o uniune din cîteva variabile sub un nume, variabila definită în obiect se numește {\it cîmp}. Literalul {\it cîmpului} are sintaxa următoare \lstinline|name = value|, unde  {\it value} e o valoare și {\it name} e numele variabilei. În icL cîmpurile neinițializate, ca și variabilele neinițializate, nu se poate de definit.
+
+De asemenea cîmpul poate fi descris în formă prescurtată \lstinline|@var|, unde \lstinline|@var| poate fi orice variabilă, în acest caz cîmpul primește numele și valoarea variabilei. Dacă cîmpuri sunt cîteva, și nici unul nu este descris clar, șirul semantic \lstinline|[@var1, @var2]| va fi interpretat ca operator de combinare. Ca să declarați clar că acesta este un obiect, adăugați un cîmp fără nume și valoare pe primul loc - \lstinline|[=, @var1, @var2]|.
 
 \noindent Exemple -
 \begin{lstlisting}[numbers=none]
-@quotation = [<"author">author <"text">text];
-@child = [<4>age <true>hasBrothers <true>hasParents];
-@file = [<false>isEmpty <25220>size <true>readOnly];
+@quotation = [author = "author", text = "text"];
+@child = [age = 4, hasBrothers = true, hasParents = true];
+@file = [isEmpty = false, size = 25220, readOnly = true];
+
+@text = "la la la"; @file = "song.mp3";
+@object = [=, @text, @file]; `` [text = @text, file = @file];
+
+@empty = [=];
 \end{lstlisting}
 
 \subsubsection{Mulțimi}
 
-Numai {\bf mulțimile vide} pot fi definite cu literal, literalul este foarte asemănător cu literalul obiectelor, numai că în loc de date se indică tipuri de date.
+Numai {\bf mulțimile vide} pot fi definite cu literal, literalul este foarte asemănător cu literalul obiectelor, numai că în loc de cîmpuri se indică coloane, care au următoarea sintaxă - \lstinline|name : type|, unde  {\it name} e numele coloanei și {\it type} e un tip de date.
+
+Coloana de asemenea poate fi descrisă în formă scurtă, folosind sintaxa \lstinline|type|, unde \lstinline|type| este un tip de date, în acest caz coloana primește numele tipului de date. În comparație cu obiectele aici lipsesc conflictele semantice.
 
 \noindent Exemple -
 \begin{lstlisting}[numbers=none]
-@quotations = [<string>author <string>text];
-@children = [<int>age <bool>hasBrothers <bool>hasParents];
-@files = [<bool>isEmpty <int>size <bool>readOnly];
+@quotations = [author : string, text : string];
+@children = [age : int, hasBrothers : bool, hasParents : bool];
+@files = [isEmpty : bool, size : int, readOnly : bool];
+
+@empty = [:];
 \end{lstlisting}
 
 %\newpage

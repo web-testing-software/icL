@@ -1,16 +1,14 @@
 % !TeX spellcheck = ro_RO
-\section{Operatorii condiționali}
+\section{Operatori condiționali}
 
-Construcțiile condiționale dețin condiții, valoarea cărora trebuie socotită, și grupuri de comenzi, execuția cărora depinde de condiție.
+Operatorii condiționali dețin condiții (valoarea cărora trebuie socotită) și grupuri de comenzi, execuția cărora depinde de condiție.
 
 În icL sunt prezenți următorii operatori logici:
 \begin{icItems}
 	\item \code{if};
 	\item \code{if-else};
 	\item \code{if-else} în cascadă;
-	\item \code{exists};
-	\item \code{if-exists};
-	\item \code{for-any}.
+	\item \code{switch-case};
 \end{icItems}
 
 \subsubsection{\lstinline|if|}
@@ -26,7 +24,9 @@ unde \code{condition} orice expresie care returnează valoare \bool{} și \code{
 De asemenea se permite de exclus parantezele rotunde dacă expresia este simplă, sintaxă -
 \begin{lstlisting}[numbers=none]
 if true  { commands };
+if !true { commands };
 if @var  { commands };
+if !@var { commands };
 \end{lstlisting}
 
 \subsubsection{\lstinline|if-else|}
@@ -58,48 +58,51 @@ if (condition1) {
 };
 \end{lstlisting}
 
-\subsubsection{\lstinline|exists|}
+\subsubsection{\lstinline|switch-case|}
 
-\code{exists} permite a returna date condițional, filtrînd informația după criteriile dorite.
+\code{switch case} permite a alege între n blocuri de comenzi, pe bază de n condiții.
 
-Condiții implicite:
+Синтаксис -
+\begin{lstlisting}[numbers=none]
+switch (value) {
+	case (caseValue) { ```code``` }
+	`` more cases
+}
+\end{lstlisting}
+
+\code{switch} primește valoarea \code{value}, ea poate avea orice tip în arară de \bool. Mai departe în \code{switch} se definesc cîteva \code{case}-uri. Dacă valoarea \code{case}-ului - \code{caseValue} coincide cu \code{value}, arunci \code{case} va fi executat.
+
+\code{case} poate deține mai multe valori despărțite prin virgulă.
+
+El poate primi valoare \void, în felul următor \lstinline|case (~) { ```code``` }|, acest tip de \code{case} va fi executat numai dacă nici unul din \code{case}-urile precedente nu a fost executat.
+
+Este a valoare specială - \code{#}, prin ea se desemnează ca \code{case}-ul trebuie executat dacă precedentul a fost executat.
+
+Descurcăm prin exemplu toate posibilitățile \code{switch-case}-ului, exemplu este prezent pe foaia \ref{switchcaseex}.
+
+\begin{lstlisting}[caption=Folosirea switch-case-ului, label=switchcaseex]
+@v = 0 | 1 | 2 | 3 | 4 | 5;
+
+switch (@v) {
+	case (0) { ```code1``` }
+	case (1, 2) { ```code2``` }
+	case (#, 3) { ```code3``` }
+	case (4) { ```code4``` }
+	case (~) { ```code5``` }
+}
+\end{lstlisting}
+
+Variabila \code{@v} primește valori in intervalul [0, 6].
+
+Descurcăm care grupuri de comenzi vor fi executate pentru fiecare valoare posibilă:
 \begin{icItems}
-\item
-	pentru \bool{} - \code{# == true};
-\item
-	pentru \integer{} - \code{# != 0};
-\item
-	pentru \double{} - \code{# != 0.0};
-\item
-	pentru \str{} - \code{!#'empty};
-\item
-	pentru \listtype{} - \code{!#'empty};
-\item
-	pentru \set{} - \code{!#'empty};
-\item
-	pentru \element{} - \code{#'empty}.
+	\item 0 - va fi executat grupul \code{code1};
+	\item 1 - vor fi executate grupurile \code{code2} și \code{code3};
+	\item 2 - vor fi executate grupurile \code{code2} și \code{code3};
+	\item 3 - va fi executat grupul \code{code3};
+	\item 4 - va fi executat grupul \code{code4};
+	\item 5 - va fi executat grupul \code{code5};
+	\item 6 - va fi executat grupul \code{code5}.
 \end{icItems}
 
-În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \lstinline|exists(expression)|.
-Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă -\lstinline|exists(expression, condition)|.
 
-\subsubsection{\lstinline|if-exists|}
-
-Construcția \code{if-exists} permite a execută o grupă de comenzi în condiție de rezultatul \code{exists}-ului și de a folosi valoarea repetat. În cazul în care condiția \code{exists}-ului e adevărată, se execută grupa de comenzi și se transmitwe valoare returnată de \code{exists} sub numele \code{@}.
-Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
-
-\subsubsection{\lstinline|for-any|}
-
-\code{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
-
-\begin{lstlisting}[caption=Folosirea if-exist-ului, label=ifexistsex]
-if exists(23 + 3, # > 20) {
-_log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Folosirea for-any-ului, label=foranyex]
-for any(23 + 3) {
-	_log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}

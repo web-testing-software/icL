@@ -38,7 +38,7 @@ Poate să apară necesitatea de a folosi unul și același grup de comenzi de ma
 
 Ciclul universal are următoarea sintaxă -
 \begin{lstlisting}[numbers=none]
-for (initialization, condition, step) {
+for (initialization; condition; step) {
 	commands
 };
 \end{lstlisting}
@@ -46,8 +46,8 @@ for (initialization, condition, step) {
 Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \code{for}, ciclu va printa în consolă numere de la zero la patru.
 
 \begin{lstlisting}[caption=Ciclu universal, label=uniloopex]
-for (@i = 0, i < 5, @i = @i + 1) {
-	_log.out @i;
+for (@i = 0; i < 5; @i = @i + 1) {
+	Log.out @i;
 };
 \end{lstlisting}
 
@@ -55,7 +55,7 @@ for (@i = 0, i < 5, @i = @i + 1) {
 
 {\bf Repetarea condiționată a codului} va executa codul pînă cînd condiția nu va deveni falsă. Condiția se verifică înainte de a executa ciclul, dacă este inițial falsă, ciclul nu va fi executat niciodată.
 
-Avantajul lui principal este simplitatea. În comparație cu ciclul universal el nu are inițializare și trece la următoarea iterație. El are doar condiție și grup de comenzi -
+Avantajul lui principal este simplitatea. În comparație cu ciclul universal el nu are inițializare și trece la următoarea iterație. El are doar condiție și grup de comenzi, sintaxă -
 \begin{lstlisting}[numbers=none]
 while (condition) {
 	commands
@@ -95,15 +95,15 @@ do {
 
 {Colecția} este un obiect, care conține mai multe valori. Cel mai simplu exemplu de colecție este lista, ea conține mai multe șiruri de caractere. De exemplu, trebuie de executat o anumită operație cu fiecare șir de caractere din listă. Se poate de folosit ciclul universal (foaia \ref{colluniloop}) sau de {\bf răsfoit colecția} (foaia \ref{collsimple}). Sub numele de colecție se unesc următoarele tipuri de date \code{list}, \code{set} și \code{element}.
 \begin{lstlisting}[caption=Răsfoirea colecție prin ciclu universal, label=colluniloop]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
-for (@i = 0, @i < @list'length, @i = @i + 1) {
-	@list.at @i; `` get i-th value
+for (@i = 0; @i < @list'length; @i = @i + 1) {
+@list.at @i; `` get i-th value
 }
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Răsfoirea simplificată a colecției, label=collsimple]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
 for (@list) {
 	@; `` get i-th value
@@ -118,7 +118,7 @@ for (@list) {
 
 Filtrul are următoarea sintaxă -
 \begin{lstlisting}[numbers=none]
-filter (collection, condition) {
+filter (collection; condition) {
 	commands
 };
 \end{lstlisting}
@@ -126,10 +126,18 @@ filter (collection, condition) {
 A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se filtreză cele care conțin litera a) sau după index (foaia \ref{filterindexex}, se aleg elementele pare a listei).
 
 \begin{lstlisting}[caption=Filtrare pe bază de valoare, label=filterdataex]
-@list = ["apple" "banana" "fruit"];
+@list = ["apple", "banana", "fruit"];
 
-filter (@list, @ << "a") {
+filter (@list; @ << "a") {
 	@; `` apple, banana
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Filtare după index, label=filterindexex]
+@list = ["apple", "banana", "fruit"];
+
+filter (@list; # \ 2 == 0) {
+@; `` apple, fruit
 }
 \end{lstlisting}
 
@@ -139,40 +147,32 @@ filter (@list, @ << "a") {
 
 Sintaxă cu o singură condiție -
 \begin{lstlisting}[numbers=none]
-range (collection, condition) {
+range (collection; condition) {
 	commands
 };
 \end{lstlisting}
 
 Sintaxă cu două condiții (pentru început și sfîrșit de o parte) -
 \begin{lstlisting}[numbers=none]
-range (collection, condition_for_begin, condition_for_end) {
+range (collection; condition_for_begin; condition_for_end) {
 	commands
 };
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Filtare după index, label=filterindexex]
-@list = ["apple" "banana" "fruit"];
-
-filter (@list, # \ 2 == 0) {
-	@; `` apple, fruit
-}
 \end{lstlisting}
 
 A alege intervalul se poate după valoare (foaia \ref{bananakiwiex}, interval de la \code{banana} pînă la \code{kiwi}) sau după index (foaia \ref{seclastex}, de la a doilea pînă la ultimul).
 
 \begin{lstlisting}[caption=Interval: de la banana pîna la kiwi, label=bananakiwiex]
-@list = ["apple" "banana" "fruit" "kiwi"];
+@list = ["apple", "banana", "fruit", "kiwi"];
 
-range (@list, @ == "banana", @ == "kiwi") {
+range (@list; @ == "banana"; @ == "kiwi") {
 	@; `` banana, fruit, kiwi
 }
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Interval: de la al doilea pînă la ultimul, label=seclastex]
-@list = ["apple" "banana" "fruit" "kiwi"];
+@list = ["apple", "banana", "fruit", "kiwi"];
 
-range (@list, # == 2, true) {
+range (@list; # == 2; true) {
 	@; `` fruit, kiwi
 }
 \end{lstlisting}

@@ -9,6 +9,8 @@ Obiectul conține variabile, fiecare variabilă în obiect are tip și nume. Acc
 
 Cîmpurile obiectelor din mulțime se descriu în header-ul mulțimii.
 
+Valoarea de tipul \object{} este un link, ca să primești o copie a obiectului, el trebuie copiat folosind metoda \lstinline|object.clone () : object|.
+
 \subsection{Proprietăți}
 
 Mulțimile dețin următoarele proprietăți:
@@ -29,161 +31,145 @@ Mulțimea se socoate vidă, dacă nu conține nici un obiect.
 
 Mulțimile dețin următoarele metode:
 \begin{icItems}
-\item \lstinline|set.applicate <list ...>data : set|;
-\item \lstinline|set.clear : set|;
-\item \lstinline|set.getField <string>name : list|;
-\item \lstinline|set.hasField <string>name : bool|;
-\item \lstinline|set.insert <any ...>data : set|;
-\item \lstinline|set.insert <object>obj : set|;
-\item \lstinline|set.insertBoolField <string>name <list>values : set|;
-\item \lstinline|set.insertDoubleField <string>name <list>values : set|;
-\item \lstinline|set.insertIntField <string>name <list>values : set|;
-\item \lstinline|set.insertListField <string>name <list>value : set|;
-\item \lstinline|set.insertStringField <string>name <list>values : set|;
-\item \lstinline|set.remove <any ...>data : set|;
-\item \lstinline|set.remove <object>obj : set|;
-\item \lstinline|set.removeField <string>name : set|.
+\item \lstinline|set.applicate (data : list ...) : set|;
+\item \lstinline|set.clear () : set|;
+\item \lstinline|set.clone () : set|;
+\item \lstinline|set.getField (name : string) : list|;
+\item \lstinline|set.hasField (name : string) : bool|;
+\item \lstinline|set.insert (data : any ...) : set|;
+\item \lstinline|set.insert (obj : object) : set|;
+\item \lstinline|set.insertField (name : string, value : list, type = list)|;
+\item \lstinline|set.insertField (name : string, value : any, type = void)|;
+\item \lstinline|set.remove (data : any ...) : set|;
+\item \lstinline|set.remove (obj : object) : set|;
+\item \lstinline|set.removeField (name : string) : set|.
 \end{icItems}
 
 Exemple de folosire al metodelor descrise mai sus, sunt prezentate pe foaia \ref{setmethods};
 
 \begin{lstlisting}[caption=Metodele clasei set, label=setmethods]
-@set = [<int>age <string>name <string>sex]
+@set = [age : int, name : string, sex : string]
 
-@set.applicate 
-	["23"    "45"     "67"]
-	["Basil" "Nataly" "Siri"]
-	["m"     "f"      "f"];
+@set.applicate (
+	["23",    "45",     "67"],
+	["Basil", "Nataly", "Siri"],
+	["m",     "f",      "f"]);
 ``` set = [
-	[<23>age <"Basil">name  <"m">sex]
-	[<45>age <"Nataly">name <"f">sex]
-	[<67>age <"Siri">name   <"f">sex]
-	] ```
+	[age = 23, name = "Basil",  sex = "m"]
+	[age = 45, name = "Nataly", sex = "f"]
+	[age = 67, name = "Siri",   sex = "f"]
+] ```
 
-@set.getField "name"; `` ["Basil" "Nataly" "Siri"]
+@set.getField "name"; `` ["Basil", "Nataly", "Siri"]
 
-@set.insert 34 "Critiano" "m";
+@set.insert (34, "Critiano", "m");
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex]
-	[<45>age <"Nataly">name   <"f">sex]
-	[<67>age <"Siri">name     <"f">sex]
-	[<34>age <"Cristiano"name <"m">sex]
-	] ```
+	[age = 23, name = "Basil",     sex = "m"]
+	[age = 45, name = "Nataly",    sex = "f"]
+	[age = 67, name = "Siri",      sex = "f"]
+	[age = 34, name = "Cristiano", sex = "m"]
+] ```
 
-@set.insert [<"f">sex <"Sofia">name <19>age];
+@set.insert [sex = "f", name = "Sofia", age = 19];
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex]
-	[<45>age <"Nataly">name   <"f">sex]
-	[<67>age <"Siri">name     <"f">sex]
-	[<34>age <"Cristiano"name <"m">sex]
-	[<19>age <"Sofia">name    <"f">sex]
-	] ```
+	[age = 23, name = "Basil",    sex = "m"]
+	[age = 45, name = "Nataly",   sex = "f"]
+	[age = 67, name = "Siri",     sex = "f"]
+	[age = 34, name = "Cristiano" sex = "m"]
+	[age = 19, name = "Sofia",    sex = "f"]
+] ```
 
-@set.insertStringField "parity" ["odd" "even"];
+@set.insertField ("parity", ["odd", "even"], string);
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex <"odd">parity]
-	[<45>age <"Nataly">name   <"f">sex <"even">parity]
-	[<67>age <"Siri">name     <"f">sex <"odd">parity]
-	[<34>age <"Cristiano"name <"m">sex <"even">parity]
-	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
-	] ```
+	[age = 23, name = "Basil",    sex = "m", parity = "odd"]
+	[age = 45, name = "Nataly",   sex = "f", parity = "even"]
+	[age = 67, name = "Siri",     sex = "f", parity = "odd"]
+	[age = 34, name = "Cristiano" sex = "m", parity = "even"]
+	[age = 19, name = "Sofia",    sex = "f", parity = "odd"]
+] ```
 
-@set.remove 45 "Nataly" "f" "even";
+@set.remove (45, "Nataly", "f", "even");
 ``` set = [
-	[<23>age <"Basil">name    <"m">sex <"odd">parity]
-	[<67>age <"Siri">name     <"f">sex <"odd">parity]
-	[<34>age <"Cristiano"name <"m">sex <"even">parity]
-	[<19>age <"Sofia">name    <"f">sex <"odd">parity]
-	] ```
+	[age = 23, name = "Basil",    sex = "m", parity = "odd"]
+	[age = 67, name = "Siri",     sex = "f", parity = "odd"]
+	[age = 34, name = "Cristiano" sex = "m", parity = "even"]
+	[age = 19, name = "Sofia",    sex = "f", parity = "odd"]
+] ```
 
-@set.remove [<34>age <"Cristiano"name <"m">sex <"even">parity];
+@set.remove [age = 34, name = "Cristiano", sex = "m", parity = "even"];
 ``` set = [
-	[<23>age <"Basil">name <"m">sex <"odd">parity]
-	[<67>age <"Siri">name  <"f">sex <"odd">parity]
-	[<19>age <"Sofia">name <"f">sex <"odd">parity]
-	] ```
+	[age = 23, name = "Basil", sex = "m", parity = "odd"]
+	[age = 67, name = "Siri",  sex = "f", parity = "odd"]
+	[age = 19, name = "Sofia", sex = "f", parity = "odd"]
+] ```
 
 @set.removeField "parity";
 ``` set = [
-	[<23>age <"Basil">name <"m">sex]
-	[<67>age <"Siri">name  <"f">sex]
-	[<19>age <"Sofia">name <"f">sex]
-	] ```
+	[age = 23, name = "Basil", sex = "m"]
+	[age = 67, name = "Siri",  sex = "f"]
+	[age = 19, name = "Sofia", sex = "f"]
+] ```
 
 @set.clear; `` set = []
 \end{lstlisting}
 
-\subsubsection{\lstinline|set.applicate <list ...>data : set|}
+\subsubsection{\lstinline|set.applicate (data : list ...) : set|}
 
 Numărul de argumente, trebuie să fie egal cu numărul de cîmpuri în header. Numărul de obiecte adăugate este egal cu lungimea celei mai lungi liste din \code{data}. Din listele mai scurte elementele vor fi adăugate repetat.
 
 Excepții posibile: \ferror{IncompatibleData}.
 
-\subsubsection{\lstinline|set.clear : set|}
+\subsubsection{\lstinline|set.clear () : set|}
 
 Curăță mulțimea.
 
-\subsubsection{\lstinline|set.getField <string>name : list|}
+\subsubsection{\lstinline|set.clone () : set|}
+
+Creează o copie, prin copierea datelor în alt container.
+
+\subsubsection{\lstinline|set.getField (name : string) : list|}
 
 Întoarce lista de valori al cîmpului \code{name}, acumulînd informație din toate obiectele mulțimii.
 
 Excepții posibile: \ferror{FieldNotFound}.
 
-\subsubsection{\lstinline|set.hasField <string>name : bool|}
+\subsubsection{\lstinline|set.hasField (name : string) : bool|}
 
 Returnează \true, dacă header-ul mulțimii conține cîmpul \code{name}, în caz contrar \false.
 
-\subsubsection{\lstinline|set.insert <any ...>data : set|}
+\subsubsection{\lstinline|set.insert (data : any ...) : set|}
 
 Inserează un obiect nou, vectorul \code{data} trebuie numaidecît să fie compatibil complet cu header-ul mulțimii;
 
 Excepții posibile: \ferror{IncompatibleData}.
 
-\subsubsection{\lstinline|set.insert <object>obj : set|}
+\subsubsection{\lstinline|set.insert (obj : object) : set|}
 
 Inserează un obiect nou, obiectul \code{obj} trebuie numaidecît să fie compatibil cu header-ul mulțimii.
 
 Excepții posibile: \ferror{IncompatibleObject}.
 
-\subsubsection{\lstinline|set.insertBoolField <string>name <list>values : set|}
+\subsubsection{\lstinline|set.inserField (name : string, value : list, type = list)|}
 
-Creează un cîmp nou de tip \bool. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
-
-Excepții posibile: \ferror{FieldAlreadyExists}.
-
-\subsubsection{\lstinline|set.insertDoubleField <string>name <list>values : set|}
-
-Creează un cîmp nou de tip \double. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
+Creează un cîmp nou de tip \code{type}. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
 
 Excepții posibile: \ferror{FieldAlreadyExists}.
 
-\subsubsection{\lstinline|set.insertIntField <string>name <list>values : set|}
+\subsubsection{\lstinline|set.insertField (name : string, value : any, type = void)|}
 
-Creează un cîmp nou de tip \integer. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
-
-Excepții posibile: \ferror{FieldAlreadyExists}.
-
-\subsubsection{\lstinline|set.insertListField <string>name <list>value : set|}
-
-Creează un cîmp nou de tip \bool. Cîmpul \code{name} în toate obiectele va primi valoarea \code{value}.
+Creează un cîmp nou de tip \code{type}. Dacă \code{type == void} tipul va fi depistat automat, dar e mai bine de în indicat manual, poate exclude unele probleme în viitor.
 
 Excepții posibile: \ferror{FieldAlreadyExists}.
 
-\subsubsection{\lstinline|set.insertStringField <string>name <list>values : set|}
-
-Creează un cîmp nou de tip \str. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
-
-Excepții posibile: \ferror{FieldAlreadyExists}.
-
-\subsubsection{\lstinline|set.remove <any ...>data : set|}
+\subsubsection{\lstinline|set.remove (data : any ...) : set|}
 
 Șterge obiectul, care este compatibil cu descrierea \code{data}.
 
-\subsubsection{\lstinline|set.remove <object>obj : set|}
+\subsubsection{\lstinline|set.remove (obj : object) : set|}
 
 Șterge obiectul \code{obj} din mulțime.
 
-\subsubsection{\lstinline|set.removeField <string>name : set|}
+\subsubsection{\lstinline|set.removeField (name : string) : set|}
 
 Șterge cîmpul \code{name} din header-ul mulțimii.
 

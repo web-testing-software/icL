@@ -1,73 +1,49 @@
 % !TeX spellcheck = ro_RO
 \section{Operatori}
 
-{\bf Operatorul} este un semn, care desemnează o anumită manipulare de date. Operatori predefiniți în icL sunt foarte mulți, din cauza aceasta ei vor fi repartizați pe tipuri de date în ordinea următoare:
+{\bf Operatorul} este un semn, care desemnează o anumită manipulare de date. Operatori predefiniți în icL sunt foarte mulți, din cauza aceasta ei vor fi repartizați pe tipuri de date:
 
-\begin{icEnum}
-	\item \bool{};
-	\item \integer{};
-	\item \double{};
-	\item \str{};
-	\item \listtype{};
-	\item \object{};
-	\item \set{};
-	\item \void{}.
-\end{icEnum}
-
-Fiecare operator are rang, operatorii care au cel mai mare rang se execut primii, dar cei cu cel mai mic - ultimii. Operatori care au asociativitate dreaptă se execută înainte de operatorii cu asociativitate stîngă. Ei sunt însemnați cu un plus în partea dreaptă, de exemplu 7$^+$.
+Ordinea de executare a operatorilor este definită de rang, operatorii care au cel mai mare rang se execut primii, dar cei cu cel mai mic - ultimii. Operatori care au asociativitate dreaptă se execută înainte de operatorii cu asociativitate stîngă. Ei sunt însemnați cu un plus în partea dreaptă, de exemplu 7$^+$.
 
 {\bf Operatorul de atribuire} are rang 0 și asociativitate dreaptă.
 
-\subsection{\color{lightblue}bool}
+{\bf Parantezele pătrate} în icL este operator de rangul 1 și cu asociativitate stîngă.
 
-Dacă nu aveți cunoștințe în algebră booleană, vă rugăm să citați o carte pe această temă.
+În descrierea operatorilor se folosește noțiunea de {\bf operație} și {\bf operator}. Sub operație se subînțelege cazuri comune (de exemplu {\it adunarea}). Sub operator se subînțelege cazuri concrete (de exemplu {\it adunarea numerelor întregi}). Operatorul devine operație la prima oportunitate de realizare, de exemplu în expresia \lstinline|1 + 2 * 3|, operatorul Operator \lstinline|+| devine operație numai după ce realizează operația de înmulțire.
 
-Pentru tipul de date \bool{}, sunt disponibile:
+\subsection{Operații logice}
 
-\begin{icItems}
-	\item
-		operatori de algebră booleană (care dețin rangul 2):
-	\begin{icItems}
-		\item
-			conjuncție - \lstinline|bool & bool : bool|;
-		\item
-			disjuncție - \lstinline`bool | bool : bool`;
-		\item
-			echivalență logică - \lstinline|bool ~ bool : bool|;
-		\item
-			disjuncție exclusivă - \lstinline|bool ^ bool : bool|;
-		\item
-			negație booleană (care deține rangul 7$^+$) - \lstinline|! bool : bool|;
-	\end{icItems}
+Dacă nu aveți cunoștințe în algebră booleană, vă rugăm să citați o carte pe această temă. Operațiile logice sunt enumerate în tabla \ref{logicops}.
 
-	\item
-		operatori de comparare (care dețin rangul 3):
-	\begin{icItems}
-		\item
-			egal - \lstinline|bool == bool : bool|;
-		\item
-			inegal - \lstinline|bool != bool : bool|;
-	\end{icItems}
-\end{icItems}
+\stablethree{1.0cm}{5.0cm}{5.0cm}
+{logicops}{Operații logice}
+{Rang}{Operație}{Operator}
+{
+	2     & conjuncție           & \lstinline|bool \& bool : bool| \\ \hline
+	2     & disjuncție           & \lstinline`bool | bool : bool`  \\ \hline
+	2     & echivalență logică   & \lstinline|bool ~ bool : bool|  \\ \hline
+	2     & disjuncție exclusivă & \lstinline|bool ^ bool : bool|  \\ \hline
+	7$^+$ & negație booleană     & \lstinline|! bool : bool|       \\ \hline
+	3     & egal                 & \lstinline|bool == bool : bool| \\ \hline
+	3     & inegal               & \lstinline|bool != bool : bool| \\
+}
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{boolopex}.
 
-\
-
 \begin{lstlisting}[caption=Exemple de folosite a operatorilor asupra tipului bool, label=boolopex]
-_log.out "true & false = " (true & false);		`` true \& false = false
-_log.out "false | true =  " (false | true);		`` false | true = true
-_log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
-_log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
+Log.out "true & false = " (true & false);		`` true \& false = false
+Log.out "false | true =  " (false | true);		`` false | true = true
+Log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
+Log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
 
-_log.out "!true = " !true;						`` !true = false
-_log.out "!false = " !false;					`` !false = true
+Log.out "!true = " !true;						`` !true = false
+Log.out "!false = " !false;					`` !false = true
 
-_log.out "true == false = " (true == false);	`` true == false = false
-_log.out "false != true = " (false != true);	`` false != true = true
+Log.out "true == false = " (true == false);	`` true == false = false
+Log.out "false != true = " (false != true);	`` false != true = true
 \end{lstlisting}
 
-\subsubsection{\lstinline|<bool>a & <bool>b : bool|}
+\subsubsection{\lstinline|(a : bool) & (b : bool) : bool|}
 
 Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{conjtable}.
 
@@ -85,7 +61,7 @@ Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența r
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a | <bool>b : bool`}
+\subsubsection{\lstinline`(a : bool) | (b : bool) : bool`}
 
 Operatorul aplică operația "disjuncție logică" asupra variabilelor a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela  \ref{distable}.
 
@@ -103,7 +79,7 @@ Operatorul aplică operația "disjuncție logică" asupra variabilelor a și b. 
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline|<bool>a ~ <bool>b : bool|}
+\subsubsection{\lstinline|(a : bool) ~ (b : bool) : bool|}
 
 Operatorul aplică operația "echivalență logică" asupra variabilelor a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{logeqtable}.
 
@@ -121,7 +97,7 @@ Operatorul aplică operația "echivalență logică" asupra variabilelor a și b
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline|<bool>a ^ <bool>b : bool|}
+\subsubsection{\lstinline|(a : bool) ^ (b : bool) : bool|}
 
 Operatorul aplică operația "disjuncție exclusivă" asupra variabilelor a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{logdifftable}.
 
@@ -139,7 +115,7 @@ Operatorul aplică operația "disjuncție exclusivă" asupra variabilelor a și 
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline|! <bool>a : bool|}
+\subsubsection{\lstinline|! (a : bool) : bool|}
 
 Operatorul aplică operația "negație logică" asupra variabilei a. Dependența rezultatului de datele de intrare este demonstrată în tabela  \ref{invtable}.
 
@@ -149,335 +125,355 @@ Operatorul aplică operația "negație logică" asupra variabilei a. Dependența
 	\begin{tabular}{|c|c|}
 		\hline
 		\code{a} & \code{!a} \\ \hline
-		\false{} & \true{} 	 \\ \hline
+		\false{} &  \true{}  \\ \hline
 		\true{}  & \false{}  \\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`<bool>a == <bool>b : bool`}
+\subsubsection{\lstinline|(a : bool) == (b : bool) : bool|}
 
 Returnează \true{} dacă a este egal cu b, în caz contrar \false{}.
 
-\subsubsection{\lstinline`<bool>a != <bool>b : bool`}
+\subsubsection{\lstinline|(a : bool) != (b : bool) : bool|}
 
 Returnează \true{} dacă a ne este egal b, în caz contrar \false{}.
 
-\subsection{{\color{lightblue}int} și {\color{lightblue}double}}
+\subsection{Operații cu cifre}
 
-Pentru numere sunt disponibili operatori:
-\begin{icItems}
-	\item
-		de rangul 3:
-		\begin{icItems}
-			\item
-				egal \lstinline|int == int : bool| și \lstinline|double == double : bool|;
-			\item
-				inegal \lstinline|int != int : bool| și \lstinline|double != double : bool|;
-			\item
-				mai mare \lstinline|int >> int : bool| și \lstinline|double >> double : bool|;
-			\item
-				mai mare sau egal \lstinline|int >= int : bool| și \lstinline|double >= double : bool|;
-			\item
-				mai mic \lstinline|int << int : bool| și \lstinline|double << double : bool|;
-			\item
-				mai mic sau egal \lstinline|int <= int : bool| și \lstinline|double <= double : bool|.
-		\end{icItems}
-	\item
-		de rangul 4:
-		\begin{icItems}
-			\item
-				adunare \lstinline|int + int : int| și \lstinline|double + double : double|;
-			\item
-				scădere \lstinline|int -    int : int| și \lstinline|double -    double : double|.
-		\end{icItems}
-	\item
-		de rangul 5:
-		\begin{icItems}
-			\item
-				înmulțire \lstinline|int * int : int| și \lstinline|double * double : double|;
-			\item
-				împărțire \lstinline|int / int : int| și \lstinline|double / double : double|;
-			\item
-				restul împărțirii \lstinline|int \ int : int|.
-		\end{icItems}
-	\item
-		de rangul 6$^+$:
-		\begin{icItems}
-			\item
-				ridicare la puterea a doua \lstinline|int** : int| și \lstinline|double** : double|;
-			\item
-				ridicare la putere \lstinline|int ** int : int| și \lstinline|double ** double : double|;
-			\item
-				radical \lstinline|/'int : int| și \lstinline|/'double : double|;
-			\item
-				extragere rădăcinii \lstinline|int/'int : int|, \lstinline|int/'double : double| și \lstinline|double/'double : double|.
-		\end{icItems}
-	\item
-		de rangul 7$^+$:
-		\begin{icItems}
-			\item
-				negație \lstinline|-int : int| și \lstinline|-double : double|;
-			\item
-				valoare absolută \lstinline|+int : int| și \lstinline|+double : double|.
-		\end{icItems}
-\end{icItems}
+Operațiile cu cifre sunt enumerate în tabela \ref{numbersops}.
+\stablethree{1.0cm}{7.0cm}{6.0cm}
+{numbersops}{Operații cu cifre}
+{Rang}{Operație}{Operator}
+{
+	3     & egal                           & \lstinline|int == int : bool|          \\ \hline
+	3     & egal                           & \lstinline|double == double : bool|    \\ \hline
+	3     & inegal                         & \lstinline|int != int : bool|          \\ \hline
+	3     & inegal                         & \lstinline|double != double : bool|    \\ \hline
+	3     & mai mare                       & \lstinline|int > int : bool|           \\ \hline
+	3     & mai mare                       & \lstinline|double > double : bool|     \\ \hline
+	3     & mai mare sau egal              & \lstinline|int >= int : bool|          \\ \hline
+	3     & mai mare sau egal              & \lstinline|double >= double : bool|    \\ \hline
+	3     & mai mic                        & \lstinline|int < int : bool|           \\ \hline
+	3     & mai mic                        & \lstinline|double < double : bool|     \\ \hline
+	3     & mai mic sau egal               & \lstinline|int <= int : bool|          \\ \hline
+	3     & mai mic sau egal               & \lstinline|double <= double : bool|    \\ \hline
+	3     & mai mic sau mai mare           & \lstinline|int <> (int, int)|          \\ \hline
+	3     & mai mic sau mai mare           & \lstinline|double <> (double, double)| \\ \hline
+	3     & mai mic, mai mare sau egal     & \lstinline|int <=> (int, int)|         \\ \hline
+	3     & mai mic, mai mare sau egal     & \lstinline|double <=> (double, double)|\\ \hline
+	3     & mai mare și mai mic            & \lstinline|int >< (int, int)|          \\ \hline
+	3     & mai mare și mai mic            & \lstinline|double >< (double, double)| \\ \hline
+	3     & mai mare și mai mic (sau egal) & \lstinline|int >=< (int, int)|         \\ \hline
+	3     & mai mare și mai mic (sau egal) & \lstinline|double >=< (double, double)|\\ \hline
+	4     & adunare                        & \lstinline|int + int : int|            \\ \hline
+	4     & adunare                        & \lstinline|double + double : double|   \\ \hline
+	4     & scădere                        & \lstinline|int - int : int|            \\ \hline
+	4     & scădere                        & \lstinline|double - double : double|   \\ \hline
+	5     & înmulțire                      & \lstinline|int * int : int|            \\ \hline
+	5     & înmulțire                      & \lstinline|double * double : double|   \\ \hline
+	5     & împărțire                      & \lstinline|int / int : int|            \\ \hline
+	5     & împărțire                      & \lstinline|double / double : double|   \\ \hline
+	5     & restul împărțirii              & \lstinline|int \ int : int|            \\ \hline
+	6$^+$ & ridicare la pătrat             & \lstinline|int** : int|                \\ \hline
+	6$^+$ & ridicare la pătrat             & \lstinline|double** : double|          \\ \hline
+	6$^+$ & ridicarea la putere            & \lstinline|int ** int : int|           \\ \hline
+	6$^+$ & ridicarea la putere            & \lstinline|double ** double : double|  \\ \hline
+	6$^+$ & radical                        & \lstinline|/'int : int|                \\ \hline
+	6$^+$ & radical                        & \lstinline|/'double : double|          \\ \hline
+	6$^+$ & extragerea rădăcinii           & \lstinline|int/'int : int|             \\ \hline
+	6$^+$ & extragerea rădăcinii           & \lstinline|int/'double : double|       \\ \hline
+	6$^+$ & extragerea rădăcinii           & \lstinline|double/'double : double|    \\ \hline
+	7$^+$ & inversia semnului              & \lstinline|-int : int|                 \\ \hline
+	7$^+$ & inversia semnului              & \lstinline|-double : double|           \\ \hline
+	7$^+$ & valoarea absolută              & \lstinline|+int : int|                 \\ \hline
+	7$^+$ & valoarea absolută              & \lstinline|+double : double|           \\
+}
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{numberopex}.
 
-{\bf Atenție:} indiferent de faptul că spațiile in icL se ignoră, ele influențează la procesul de interpretare al comenzilor, \code{-23-4} va fi interpretată ca \lstinline`(-23) (-4)` și nu ca \lstinline`(-23) - (4)`. Neînțelegerea între om și calculator poate fi rezolvată adăugînd spații \lstinline`-23  - 4`.
-
-\subsubsection{\lstinline|<int>a == <int>b : bool|}
+\subsubsection{\lstinline|(a : int) == (b : int) : bool|}
 
 Returnează \true{} dacă \code{a} și \code{b} conțin aceeași valoare, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<double>a == <double>b : bool|}
+\subsubsection{\lstinline|(a : double) == (b : double) : bool|}
 
 Returnează \true{} dacă \code{a} și \code{b} au aproximativ aceeași valoare, în caz contrar \false{}.
 
 \begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului int și double, label=numberopex]
 `` 3rd rank
-_log.out "2 == 3 = "		2 == 3;		`` 2 = 3 = false
-_log.out "2.5 == 2.5 = "	2.5 == 2.5;	`` 2.5 = 2.5 = true
-_log.out "1 != 2 = "		1 != 2;		`` 1 $\neq$ 2 = true
-_log.out "2.1 != 2.1 = "	2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
-_log.out "3 >> 2 = "		3 >> 2;		`` 3 > 2 = true
-_log.out "1.1 >> 2.1 = "	1.1 >> 2.1;	`` 1.1 > 2.1 = false
-_log.out "5 >= 2 = "		5 >= 2;		`` 5 $\geq$ 2 = true
-_log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
-_log.out "3 << 9 = "		3 << 9;		`` 3 < 9 = true
-_log.out "6.1 << 6.2 = "	6.1 << 6.2;	`` 6.1 < 6.2 = true
-_log.out "4 <= 5 = "		4 <= 5;		`` 4 $\leq$ 5 = true
-_log.out "5.6 <= 6.5 = "	5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
+Log.out "2 == 3 = "			2 == 3;		`` 2 = 3 = false
+Log.out "2.5 == 2.5 = "		2.5 == 2.5;	`` 2.5 = 2.5 = true
+Log.out "1 != 2 = "			1 != 2;		`` 1 $\neq$ 2 = true
+Log.out "2.1 != 2.1 = "		2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
+Log.out "3 > 2 = "			3 > 2;		`` 3 > 2 = true
+Log.out "1.1 > 2.1 = "		1.1 > 2.1;	`` 1.1 > 2.1 = false
+Log.out "5 >= 2 = "			5 >= 2;		`` 5 $\geq$ 2 = true
+Log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
+Log.out "3 < 9 = "			3 < 9;		`` 3 < 9 = true
+Log.out "6.1 < 6.2 = "		6.1 < 6.2;	`` 6.1 < 6.2 = true
+Log.out "4 <= 5 = "			4 <= 5;		`` 4 $\leq$ 5 = true
+Log.out "5.6 <= 6.5 = "		5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
+Log.out "1 <> (2, 3) = "	1 <> (2,3); `` 1 < 2 | 1 > 3 = true
+Log.out "1 >< (2, 3) = "	1 >< (2,3); `` 2 < 1 < 3 = false
 `` 4th rank
-_log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
-_log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
-_log.out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
-_log.out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
+Log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
+Log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
+Log.out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
+Log.out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
 `` 5th rank
-_log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
-_log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
-_log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
-_log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
-_log.out "45 \ 8 = "		45 \ 8;		`` 45 \textbackslash 8 = 5
+Log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
+Log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
+Log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
+Log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
+Log.out "45 \ 8 = "			45 \ 8;		`` 45 \textbackslash 8 = 5
 `` 6+th rank
-_log.out "25** = "			25**;		`` $25^2$ = 625
-_log.out "25.1** = "		25.1**;		`` $25.1^2$ = 630,01
-_log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
-_log.out "2.0 ** 1.5 = "	2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
-_log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
-_log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
-_log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
-_log.out "5.0/'125.5 = "	5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
+Log.out "25** = "			25**;		`` $25^2$ = 625
+Log.out "25.1** = "			25.1**;		`` $25.1^2$ = 630,01
+Log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
+Log.out "2.0 ** 1.5 = "		2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
+Log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
+Log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
+Log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
+Log.out "5.0/'125.5 = "		5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
 `` 7+th rank
-_log.out "- 35 = "			- 35;		`` - 35 = -35
-_log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
-_log.out "+ -100 = "		+ -100;		`` + -100 = 100
-_log.out "+ 89.7 = "		+ 89.7;		`` + 89.7 = 89.7
+Log.out "- 35 = "			- 35;		`` - 35 = -35
+Log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
+Log.out "+ -100 = "			+ -100;		`` + -100 = 100
+Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 \end{lstlisting}
 
-\subsubsection{\lstinline|<int>a != <int>b : bool|}
+\subsubsection{\lstinline|(a : int) != (b : int) : bool|}
 
 Returnează \true{} dacă \code{a} și \code{b} conțin valori diferite, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<double>a != <double>b : bool|}
+\subsubsection{\lstinline|(a : double) != (b : double) : bool|}
 
 Returnează \true{} dacă \code{a} și \code{b} conțin valori diferite, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<int>a >> <int>b : bool|}
+\subsubsection{\lstinline|(a : int) >> (b : int) : bool|}
 
 Returnează \true{} dacă numărul întreg \code{a} este mai mare decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<double>a >> <double>b : bool|}
+\subsubsection{\lstinline|(a : double) >> (b : double) : bool|}
 
 Returnează \true{} dacă numărul decimal \code{a} este mai mare decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<int>a >= <int>b : bool|}
+\subsubsection{\lstinline|(a : int) >= (b : int) : bool|}
 
 Returnează \true{} dacă numărul întreg \code{a} este mai mare sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<double>a >= <double>b : bool|}
+\subsubsection{\lstinline|(a : double) >= (b : double) : bool|}
 
 Returnează \true{} dacă numărul decimal \code{a} este mai mare sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<int>a << <int>b : bool|}
+\subsubsection{\lstinline|(a : int) << (b : int) : bool|}
 
 Returnează \true{} dacă numărul întreg \code{a} este mai mic decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<double>a << <double>b : bool|}
+\subsubsection{\lstinline|(a : double) << (b : double) : bool|}
 
 Returnează \true{} dacă numărul decimal \code{a} este mai mic decît \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<int>a <= <int>b : bool|}
+\subsubsection{\lstinline|(a : int) <= (b : int) : bool|}
 
 Returnează \true{} dacă numărul întreg \code{a} este mai mic sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<double>a <= <double>b : bool|}
+\subsubsection{\lstinline|(a : double) <= (b : double) : bool|}
 
 Returnează \true{} dacă numărul decimal \code{a} este mai mic sau egal cu \code{b}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<int>a + <int>b : int|}
+\subsubsection{\lstinline|(a : int) <> (b : int, c : int) : bool|}
+
+Returnează \true{} dacă numărul întreg \code{a} este mai mic decît \code{b} sau mai mare decît \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : double) <> (b : double, c : double) : bool|}
+
+Returnează \true{} dacă numărul decimal \code{a} este mai mic decît \code{b} sau mai mare decît \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : int) <=> (b : int, c : int) : bool|}
+
+Returnează \true{} dacă numărul întreg \code{a} este mai mic sau egal cu \code{b} ori mai mare sau egal \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : double) <=> (b : double, c : double) : bool|}
+
+Returnează \true{} dacă numărul decimal \code{a} este mai mic sau egal cu \code{b} ori mai mare sau egal \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : int) >< (b : int, c : int) : bool|}
+
+Returnează \true{} dacă numărul întreg \code{a} este mai mare decît \code{b} și mai mic decît \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : double) >< (b : double, c : double) : bool|}
+
+Returnează \true{} dacă numărul decimal \code{a} este mai mare decît \code{b} și mai mic decît \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : int) >=< (b : int, c : int) : bool|}
+
+Returnează \true{} dacă numărul întreg \code{a} este mai mare sau egal cu \code{b} și mai mic sau egal cu \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : double) >=< (b : double, c : double) : bool|}
+
+Returnează \true{} dacă numărul decimal \code{a} este mai mare sau egal cu \code{b} și mai mic sau egal cu \code{c}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(a : int) + (b : int) : int|}
 
 Returnează suma numerelor întregi \code{a} și \code{b}.
 
-\subsubsection{\lstinline|<double>a + <double>b : double|}
+\subsubsection{\lstinline|(a : double) + (b : double) : double|}
 
 Returnează suma numerelor decimale \code{a} și \code{b}.
 
-\subsubsection{\lstinline|<int>a - <int>b : int|}
+\subsubsection{\lstinline|(a : int) - (b : int) : int|}
 
 Returnează diferența dintre numerele întregi \code{a} și \code{b}.
 
-\subsubsection{\lstinline|<double>a - <double>b : double|}
+\subsubsection{\lstinline|(a : double) - (b : double) : double|}
 
 Returnează diferența dintre numerele decimale \code{a} și \code{b}.
 
-\subsubsection{\lstinline|<int>a * <int>b : int|}
+\subsubsection{\lstinline|(a : int) * (b : int) : int|}
 
 Returnează produsul numerelor întregi \code{a} și \code{b}.
 
-\subsubsection{\lstinline|<double>a * <double>b : double|}
+\subsubsection{\lstinline|(a : double) * (b : double) : double|}
 
 Returnează produsul numerelor decimale \code{a} și \code{b}.
 
-\subsubsection{\lstinline|<int>a / <int>b : int|}
+\subsubsection{\lstinline|(a : int) / (b : int) : int|}
 
 Returnează cîtul împărțirii \code{a} la \code{b}, restul se exclude.
 
-\subsubsection{\lstinline|<double>a / <double>b : double|}
+\subsubsection{\lstinline|(a : double) / (b : double) : double|}
 
 Returnează cîtul împărțirii \code{a} la \code{b}.
 
-\subsubsection{\lstinline|<int>a \ <int>b : int|}
+\subsubsection{\lstinline|(a : int) \ (b : int) : int|}
 
 Returnează restul împărțirii \code{a} la \code{b}.
 
 
-\subsubsection{\lstinline|<int>a ** : int|}
+\subsubsection{\lstinline|(a : int) ** : int|}
 
 Returnează pătratul numărului întreg \code{a} (a$^2$);
 
-\subsubsection{\lstinline|<double>a ** : double|}
+\subsubsection{\lstinline|(a : double) ** : double|}
 
 Returnează pătratul numărului decimal \code{a} (a$^2$);
 
-\subsubsection{\lstinline|<int>a ** <int>b : int|}
+\subsubsection{\lstinline|(a : int) ** (b : int) : int|}
 
 Returnează \code{a} la puterea \code{b} (a$^b$).
 
-\subsubsection{\lstinline|<double>a ** <double>b : double|}
+\subsubsection{\lstinline|(a : double) ** (b : double) : double|}
 
 Returnează \code{a} la puterea \code{b} (a$^b$).
 
-\subsubsection{\lstinline|/' <int>a : int|}
+\subsubsection{\lstinline|/' (a : int) : int|}
 
 Returnează rădăcina pătrată numărului întreg \code{a} ($\sqrt{a}$).
 
-\subsubsection{\lstinline|/' <double>a : double|}
+\subsubsection{\lstinline|/' (a : double) : double|}
 
 Returnează rădăcina pătrată numărului decimal \code{a} ($\sqrt{a}$).
 
-\subsubsection{\lstinline|<int>n /' <int>a : int|}
+\subsubsection{\lstinline|<int>n /' (a : int) : int|}
 
 Returnează radical de ordinul \code{n} din \code{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\lstinline|<int>n /' <double>a : double|}
+\subsubsection{\lstinline|<int>n /' (a : double) : double|}
 
 Returnează radical de ordinul \code{n} din \code{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\lstinline|<double>n /' <double>a : double|}
+\subsubsection{\lstinline|<double>n /' (a : double) : double|}
 
 Returnează radical de ordinul \code{n} din \code{a} ($\sqrt[n]{a}$).
 
 
-\subsubsection{\lstinline|- <int>a : int|}
+\subsubsection{\lstinline|- (a : int) : int|}
 
 Returnează \lstinline|0 - a|;
 
-\subsubsection{\lstinline|- <double>b : double|}
+\subsubsection{\lstinline|- (b : double) : double|}
 
 Returnează \lstinline|0.0 - a|;
 
-\subsubsection{\lstinline|+ <int>a : int|}
+\subsubsection{\lstinline|+ (a : int) : int|}
 
 Returnează valoare absolută a numărului întreg \code{a}.
 
-\subsubsection{\lstinline|+ <double>a : double|}
+\subsubsection{\lstinline|+ (a : double) : double|}
 
 Returnează valoare absolută a numărului decimal \code{a}.
 
-\subsection{{\color{lightblue}string} și {\color{lightblue}list}}
+\subsection{Operații cu șiruri de caractere și liste}
 
-Pentru șiruri de caractere și liste sunt disponibili operatori:
-\begin{icItems}
-	\item
-		de rangul 3:
-		\begin{icItems}
-		\item
-			egal \lstinline|string == string : bool| și \lstinline|list == list : bool|;
-		\item
-			inegal \lstinline|string != string : bool| și \lstinline|list != list : bool|;
-		\item
-			includere \lstinline|list << string : bool| și \lstinline|string << string : bool|;
-		\item
-			includere de șablon \lstinline|list <* string : bool|.
-		\end{icItems}
-	\item
-		de rangul 4:
-		\begin{icItems}
-		\item
-			concatenare \lstinline|string + string : string|;
-		\item
-			inserare \lstinline|string + list : list|, \lstinline|list + string : list| și \lstinline|list + list : list|.
-		\end{icItems}
-	\item
-		de rangul 5: comparare cu șablon \lstinline|string * string : bool|, \lstinline|list * string : bool| și \lstinline|list * list : bool|;
-	\item
-		de rangul 6$^+$: echivalență \lstinline|string ** string : double|.
-\end{icItems}
+Operațiile cu șiruri de caractere și liste sunt enumerate în tabela \ref{stringops}.
+\stablethree{1.0cm}{6.0cm}{7.0cm}
+{stringops}{Operații cu șiruri de caractere și liste}
+{Rang}{Operație}{Operator}
+{
+	3     & egal                & \lstinline|string == string : bool|   \\ \hline
+	3     & egal                & \lstinline|list == list : bool|       \\ \hline
+	3     & inegal              & \lstinline|string != string : bool|   \\ \hline
+	3     & inegal              & \lstinline|list != list : bool|       \\ \hline
+	3     & includere           & \lstinline|list << string : bool|     \\ \hline
+	3     & includere           & \lstinline|string << string : bool|   \\ \hline
+	3     & excludere           & \lstinline|list !< string : bool|     \\ \hline
+	3     & excludere           & \lstinline|string !< string : bool|   \\ \hline
+	3     & includere de șablon & \lstinline|list <* string : bool|     \\ \hline
+	3     & excludere de șablon & \lstinline|list !* string : bool|     \\ \hline
+	4     & concatenare         & \lstinline|string + string : string|  \\ \hline
+	4     & inserare            & \lstinline|string + list : list|      \\ \hline
+	4     & inserare            & \lstinline|list + string : list|      \\ \hline
+	4     & inserare            & \lstinline|list + list : list|        \\ \hline
+	5     & comparare cu șablon & \lstinline|string * string : bool|    \\ \hline
+	5     & comparare cu șablon & \lstinline|list * string : bool|      \\ \hline
+	5     & comparare cu șablon & \lstinline|list * list : bool|        \\ \hline
+	6$^+$ & echivalență         & \lstinline|string ** string : double| \\
+}
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{stringlistopex}.
 
 Pentru a uni cîteva șiruri de caractere în listă, no se recomandă de folosit concatenarea, dar următorul literal:
 \begin{lstlisting}[numbers=none]
-[@str1 @str2 "Const string" (!func) (37.1 : string) (@bool : string) @list.Join]
+[@str1, @str2, "Const string", func, 37.1 : string, @bool : string, @list.Join]
 \end{lstlisting}
 
-\subsubsection{\lstinline|<string>s1 == <string>s2 : bool|}
+\subsubsection{\lstinline|(s1 : string) == (s2 : string) : bool|}
 
 Returnează \true{} dacă \code{s1} și \code{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<list>l1 == <list>l2 : bool|}
+\subsubsection{\lstinline|(l1 : list) == (l2 : list) : bool|}
 
 Returnează \true{} dacă \code{l1} și \code{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), în caz contrar \false{}.
 
-\subsubsection{\lstinline`<string>s1 != <string>s2 : bool`}
+\subsubsection{\lstinline`(s1 : string) != (s2 : string) : bool`}
 
 Returnează \false{} dacă \code{s1} și \code{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, în caz contrar \true{}.
 
 \begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului string și list, label=stringlistopex]
-"String1" == "String2";					`` false
-["a" "b"] == ["a" "b"];					`` true
-["a" "b"] == ["b" "a"];					`` true
-["a" "b"] << "c";						`` false
-"abc" << "c";							`` true
-"ab" + "c";								`` "abc"
-"ab" + ["c"];							`` ["ac" "c"]
-["a" "b"] + "c";						`` ["a" "b" "c"]
-["a" "b"] + ["c" "d"];					`` ["a" "b" "c" "d"]
-"abc" * "*c";							`` true
-["ac" "bc"] * "*c";						`` true
-["ac" "bc"] * "a*";						`` false
-["ad" "ac" "bd" "cc"] * ["*d" "*c"];	`` true
-["ad" "ac" "bc" "cd"] * ["*d" "*c"];	`` false
-"Tom is a cat" ** "Tom is not a cat";	`` 0.875
+"String1" == "String2";					 `` false
+["a", "b"] == ["a", "b"];				 `` true
+["a", "b"] == ["b", "a"];				 `` true
+["a", "b"] << "c";						 `` false
+"abc" << "c";							 `` true
+"ab" + "c";								 `` "abc"
+"ab" + ["c"];							 `` ["ac", "c"]
+["a", "b"] + "c";						 `` ["a", "b", "c"]
+["a", "b"] + ["c", "d"];				 `` ["a", "b", "c", "d"]
+"abc" * "*c";							 `` true
+["ac", "bc"] * "*c";					 `` true
+["ac", "bc"] * "a*";					 `` false
+["ad", "ac", "bd", "cc"] * ["*d", "*c"]; `` true
+["ad", "ac", "bc", "cd"] * ["*d", "*c"]; `` false
+"Tom is a cat" ** "Tom is not a cat";	 `` 0.875
 \end{lstlisting}
 
-\subsubsection{\lstinline|<list>l1 != <list>l2 : bool|}
+\subsubsection{\lstinline|(l1 : list) != (l2 : list) : bool|}
 
 Returnează \false{} dacă \code{l1} și \code{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), în caz contrar \true{}.
 
-\subsubsection{\lstinline|<list>l << <string>str : bool|}
+\subsubsection{\lstinline|(l : list) << <string>str : bool|}
 
 Returnează \true{}, dacă lista \code{l} conține șirurl de caractere \code{str}, în caz contrar \false{}.
 
@@ -485,25 +481,35 @@ Returnează \true{}, dacă lista \code{l} conține șirurl de caractere \code{st
 
 Returnează \true{}, dacă șirul de caractere \code{str} conține subșirul \code{substr}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<list>l <* <string>template : bool|}
+Returnează \true{}, dacă lista \code{l} nu conține șirul \code{str}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(str : string) !< (substr : string) : bool|}
+
+Returnează \true{}, dacă șirul de caractere \code{str} nu conține subșirul \code{substr}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(l : list) <* <string>template : bool|}
 
 Returnează \true{}, dacă lista \code{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
 {\bf Șablonul} este un și de caractere, el conține date și un caracter special \lstinline`*`, care \lstinline`*` orice succesiune de simboluri. Cercetăm următorul șablon \lstinline|"Have a * day!"|, exemple de șiruri de caracter care se potrivesc: \lstinline|"Have a nice day!"|, \lstinline|"Have a amazing day!"|. Exemplu de șir care nu se potrivește \lstinline|"Have a good day"| (lipsește semnul exclamării).
 
-\subsubsection{\lstinline|<string>s1 + <string>s2 : string|}
+\subsubsection{\lstinline|(l : list) !* (template : string) : bool|}
+
+Returnează \true{}, dacă lista \code{l} dacă lista nu conține cel puțin un șir, care se potrivește cu șablonul \code{template}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(s1 : string) + (s2 : string) : string|}
 
 Returnează un nou șir de caractere, care conține toate caracterele șirelor de caracter \code{s1} și \code{s2}. Șirul obținut va avea lungimea egală cu suma lungimilor șirurilor componente.
 
-\subsubsection{\lstinline|<string>str + <list>l : list|}
+\subsubsection{\lstinline|<string>str + (l : list) : list|}
 
 Returnează o listă nouă, primită în rezultatul adăugării șirului \code{str} la începutul listei \code{l}.
 
-\subsubsection{\lstinline|<list>l + <string>str : list|}
+\subsubsection{\lstinline|(l : list) + <string>str : list|}
 
 Returnează o listă nouă, primită în rezultatul adăugării șirului \code{str} la sfîrșitul listei \code{l}.
 
-\subsubsection{\lstinline|<list>l1 + <list>l2 : list|}
+\subsubsection{\lstinline|(l1 : list) + (l2 : list) : list|}
 
 Returnează o listă nouă, care conține toate șirurile listelor \code{l1} și \code{l2}.
 
@@ -511,60 +517,51 @@ Returnează o listă nouă, care conține toate șirurile listelor \code{l1} și
 
 Returnează \true{}, dacă șirul de caractere \code{str} se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<list>l * <string>template : bool|}
+\subsubsection{\lstinline|(l : list) * <string>template : bool|}
 
 Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șablonul \code{template}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<list>l * <list>templates : bool|}
+\subsubsection{\lstinline|(l : list) * <list>templates : bool|}
 
 Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șablonul cuvenit din lista \code{templates}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<string>s1 ** <string>s2 : double|}
+\subsubsection{\lstinline|(s1 : string) ** (s2 : string) : double|}
 
 Returnează coeficientul de echivalență primit prin comparare șirului \code{s1} cu \code{s2}.
 
-{\bf Echivalența} este nivelul de asemănare al șirurilor. \lstinline`"Hi! Robert, how do you do?"` în comparație cu \lstinline`"Robert! Hi! How do you do?"` are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \lstinline`"Rich! Hi! How are you?"` coeficientul scade pînă la 0,64.
+{\bf Echivalența} este nivelul de asemănare al șirurilor. \lstinline|"Hi! Robert, how do you do?"| în comparație cu \lstinline|"Robert! Hi! How do you do?"| are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \lstinline|"Rich! Hi! How are you?"| coeficientul scade pînă la 0,64.
 
-\subsubsection{\lstinline|<list>l1 ** <list>l2 : double|}
+\subsubsection{\lstinline|(l1 : list) ** (l2 : list) : double|}
 
 Returnează primit prin compararea șirurilor din lista \code{l1} cu șirurile din lista \code{l2}.
 Pentru a primi un rezultat corecte, șirurile de caractere trebuie să dețină un singur cuvînt.
 
-\subsection{{\color{lightblue}object} și {\color{lightblue}set}}
+\subsection{Operații cu obiecte și mulțimi}
 
-Pentru obiecte și liste sunt disponibili operatori:
-\begin{icItems}
-	\item
-		de rangul 3:
-		\begin{icItems}
-		\item
-			egal \lstinline|object == object : bool| și \lstinline|set == set : bool|;
-		\item
-			inegal \lstinline|object != object : bool| și \lstinline|set != set : bool|;
-		\item
-			includere \lstinline|set << object : bool| și \lstinline|set << set : bool|;
-		\item
-			includere de șablon \lstinline|set <* object : bool| și \lstinline|object <* object : bool|.
-		\end{icItems}
-	\item
-		de rangul 4:
-		\begin{icItems}
-		\item
-			reuniune \lstinline|set + set : set|;
-		\item
-			diferență simetrică \lstinline|set - set : set|.
-		\end{icItems}
-	\item
-		de rangul 5:
-		\begin{icItems}
-		\item
-			diferență \lstinline`set \ set : set`;
-		\item
-			intersecție \lstinline`set * set : set`.
-		\end{icItems}
-	\item
-		de rangul 6$^+$: se intersectează \lstinline|set ** set : bool|.
-\end{icItems}
+Operațiile cu obiecte și mulțimi sunt enumerate în tabela \ref{objectops}.
+
+\stablethree{1.0cm}{7.0cm}{6.0cm}
+{objectops}{Operații cu obiecte și mulțimi}
+{Rang}{Operație}{Operator}
+{
+	3     & egal                & \lstinline|object == object : bool| \\ \hline
+	3     & egal                & \lstinline|set == set : bool|       \\ \hline
+	3     & inegal              & \lstinline|object != object : bool| \\ \hline
+	3     & inegal              & \lstinline|set != set : bool|       \\ \hline
+	3     & includere           & \lstinline|set << object : bool|    \\ \hline
+	3     & includere           & \lstinline|set << set : bool|       \\ \hline
+	3     & includere           & \lstinline|set !< object : bool|    \\ \hline
+	3     & includere           & \lstinline|set !< set : bool|       \\ \hline
+	3     & includere de șablon & \lstinline|set <* object : bool|    \\ \hline
+	3     & includere de șablon & \lstinline|object <* object : bool| \\ \hline
+	3     & excludere de șablon & \lstinline|set !* object : bool|    \\ \hline
+	3     & excludere de șablon & \lstinline|object !* object : bool| \\ \hline
+	4     & reuniune            & \lstinline|set + set : set|         \\ \hline
+	4     & diferență simetrică & \lstinline|set -   set : set|       \\ \hline
+	5     & diferență           & \lstinline|set \\ set : set|        \\ \hline
+	5     & intersecție         & \lstinline|set * set : set|         \\ \hline
+	6$^+$ & se intersectează    & \lstinline|set ** set : bool|       \\
+}
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \ref{setobjopex}.
 
@@ -576,20 +573,16 @@ Returnează \true{} dacă \code{obj1} și \code{obj2} conțin aceleași cîmpuri
 
 Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate obiectele din mulțimea \code{set1} sunt prezente în mulțimea \code{set2} și invers, în caz contrar \false{}.
 
-\
-
-\
-
 \begin{lstlisting}[caption=Exemple de folosire al operatorilor asupra tipului object și set, label=setobjopex]
 `` init
-@set1 = [<int>age <string>name];
-@set2 = [<int>age <string>name];
-@set3 = [<int>age <string>name];
+@set1 = [age : int, name : string];
+@set2 = [age : int, name : string];
+@set3 = [age : int, name : string];
 
-@obj1 = [<24>age <"User1">name];
-@obj2 = [<23>age <"User2">name];
-@obj3 = [<26>age <"User3">name];
-@obj4 = [<24>age <80>length <40>height <1>arc];
+@obj1 = [age = 24, name = "User1"];
+@obj2 = [age = 23, name = "User2"];
+@obj3 = [age = 26, name = "User3"];
+@obj4 = [age = 24, length = 80, height = 40, arc = 1];
 
 @set1.insert @obj1;
 @set1.insert @obj2;
@@ -599,23 +592,23 @@ Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate 
 @set3.insert @obj1;
 
 `` operators
-@set1 == @set2;				`` false
-@set1 == @set3;				`` true
-@obj1 == @obj2;				`` false
-@set2 != @set3;				`` true
-@obj2 != @obj3;				`` true
+@set1 == @set2;					`` false
+@set1 == @set3;					`` true
+@obj1 == @obj2;					`` false
+@set2 != @set3;					`` true
+@obj2 != @obj3;					`` true
 
-@set1 << @obj2;				`` false
-@set1 << @set2;				`` false
-@set1 <* [<23>age];			`` true
-@obj4 <* [<24>age <1>arc];	`` true
+@set1 << @obj2;					`` false
+@set1 << @set2;					`` false
+@set1 <* [age = 23];			`` true
+@obj4 <* [age = 24, arc = 1];	`` true
 
-@set1 + @set2;				`` [@obj1 @obj2 @obj3]
-@set1 - @set2;				`` [@obj1 @obj3]
-@set1 \ @set2;				`` [@obj1]
-@set1 * @set2;				`` [@obj2]
+@set1 + @set2;					`` [@obj1 @obj2 @obj3]
+@set1 - @set2;					`` [@obj1 @obj3]
+@set1 \ @set2;					`` [@obj1]
+@set1 * @set2;					`` [@obj2]
 
-@set1 ** @set2;				`` true
+@set1 ** @set2;	
 \end{lstlisting}
 
 \subsubsection{\lstinline|<object>obj1 != <object>obj2 : bool|}
@@ -634,6 +627,14 @@ Returnează \true{}, dacă mulțimea \code{s} conține obiectul \code{obj}, în 
 
 Returnează \true, dacă mulțimea \code{set1} conține toate obiectele mulțimii \code{set2}, în caz contrar \false.
 
+\subsubsection{\lstinline|(s : set) !< (obj : object) : bool|}
+
+Returnează \true{}, dacă mulțimea \code{s} nu conține obiectul \code{obj}, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(set1 : set) !< (set2 : set) : bool|}
+
+Returnează \true, dacă mulțimea \code{set1} nu conține sub obiectul \code{set2}, în caz contrar \false.
+
 \subsubsection{\lstinline|<set>s <* <object>subobj : bool|}
 
 Returnează \true{}, dacă mulțimea \code{s} conține fragmentul de obiect \code{subobj}, în caz contrar \false{}.
@@ -641,6 +642,14 @@ Returnează \true{}, dacă mulțimea \code{s} conține fragmentul de obiect \cod
 \subsubsection{\lstinline|<object>obj <* <object>subobj : bool|}
 
 Returnează \true{} dacă fiecare cîmp al obiectului \code{subobj} se conține in obiectul \code{obj} și dețin aceleași valori, în caz contrar \false{}.
+
+\subsubsection{\lstinline|(s : set) !* (subobj : object) : bool|}
+
+Returnează \false{}, dacă mulțimea \code{s} conține fragmentul de obiect \code{subobj}, în caz contrar \true{}.
+
+\subsubsection{\lstinline|(obj : object) !* (subobj : object) : bool|}
+
+Returnează \false{} dacă fiecare cîmp al obiectului \code{subobj} se conține in obiectul \code{obj} și dețin aceleași valori, în caz contrar \true{}.
 
 \subsubsection{\lstinline|<set>set1 + <set>set2 : set|}
 
@@ -662,141 +671,21 @@ Returnează o mulțime nouă, ce conține toate obiectele ce se conțin în mul�
 
 Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulțimile \code{set1} și \code{set2} concomitent, în caz contrar \false.
 
-\subsection{\color{lightblue}void}
+\subsection{Operatorul de combinare}
 
-Toți operatorii \void{} sunt de rangul 2. Acești operatori împart datele în 2 tipuri \void{} și nu \void{}. Al doilea tip mai departe va fi numit \code{any}, el poate înlocui unul din tipurile următoare: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
-
-Lista operatorilor \void{}:
-
-\begin{icItems}
-\item
-	alegere alternativă \lstinline`void | void : void`, \lstinline`void | any : any`, \lstinline`any | void : any` și \lstinline`any | any : any`;
-\item
-	alegere primară \lstinline|void & void : void|, \lstinline|any & void : void|, \lstinline|void & any : void| și \lstinline|any & any : any|;
-\item
-	alegere secundară \lstinline|void ~ void : void|, \lstinline|void ~ any : void|, \lstinline|any ~ void : void| și \lstinline|any ~ any : any|;
-\item
-	alegere exclusivă \lstinline|void ^ void : void|, \lstinline|void ^ any : any|, \lstinline|any ^ void : any| și \lstinline|any ^ any : void|;
-\item
-	alegere selecționistă \lstinline|void % void : void|, \lstinline|void % any : any|, \lstinline|any % void : any|, \lstinline|int % int : int|, \lstinline|double % double : double|, \lstinline|string % string : list|, \lstinline|list % string : list|, \lstinline|list % list : list|, \lstinline|object % object : set|, \lstinline|set % object : set|, \lstinline|set % set : set|. Încă un operator va fi descris în capitolul \ref{webelments}.
-\end{icItems}
-
-\subsubsection{\lstinline`<void or any>arg1 | <void or any>arg2 : void or any`}
-
-Dependența alegerii alternative de datele de intrare este demonstrată în tabela \ref{orhacktable}.
-
-\subsubsection{\lstinline|<void or any> \& <void or any> : void or any|}
-
-Dependența alegerii primare de datele de intrare este demonstrată în tabela \ref{andhacktable}.
-
-\begin{table}[htb]
-	\caption{Operatorul "alegerea alternativă"}
-	\label{orhacktable}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\code{arg1} & \code{arg2} & \code{arg1 \| arg2} \\ \hline
-		\void{}     & \void{}     & \void{}  			\\ \hline
-		\void{}     & \code{any}  & \code{arg2}  		\\ \hline
-		\code{any}  & \void{}     & \code{arg1}  		\\ \hline
-		\code{any}  & \code{any}  & \code{arg1}  		\\ \hline
-	\end{tabular}
-	\vspace{0em}
-\end{table}
-
-\begin{table}[htb]
-	\caption{Operatorul "alegerea primară"}
-	\label{andhacktable}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\code{arg1} & \code{arg2} & \code{arg1 \& arg2} \\ \hline
-		\void{}     & \void{}     & \void{}   			\\ \hline
-		\void{}     & \code{any}  & \void{}   			\\ \hline
-		\code{any}  & \void{}     & \void{}   			\\ \hline
-		\code{any}  & \code{any}  & \code{arg1}   		\\ \hline
-	\end{tabular}
-	\vspace{0em}
-\end{table}
-
-\subsubsection{\lstinline|<void or any> ~ <void or any> : void or any|}
-
-Dependența alegerii secundare de datele de intrare este demonstrată în tabela \ref{eqhacktable}.
-
-\begin{table}[htb]
-	\caption{Operatorul "alegerea secundară"}
-	\label{eqhacktable}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\code{arg1} & \code{arg2} & \code{arg1 \~ arg2} \\ \hline
-		\void{}     & \void{}     & \void{}   			\\ \hline
-		\void{}     & \code{any}  & \void{}   			\\ \hline
-		\code{any}  & \void{}     & \void{}   			\\ \hline
-		\code{any}  & \code{any}  & \code{arg2}   		\\ \hline
-	\end{tabular}
-	\vspace{-2em}
-\end{table}
-
-\subsubsection{\lstinline|<void or any> ^ <void or any> : void or any|}
-
-Dependența alegerii exclusive de datele de intrare este demonstrată în tabela \ref{xorhacktable}.
-
-\begin{table}[htb]
-	\caption{Operatorul "alegerea exclusivă"}
-	\label{xorhacktable}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\code{arg1} & \code{arg2} & \code{arg1 \^ arg2} \\ \hline
-		\void{}     & \void{}     & \void{}   			\\ \hline
-		\void{}     & \code{any}  & \code{arg2}   		\\ \hline
-		\code{any}  & \void{}     & \code{arg1}   		\\ \hline
-		\code{any}  & \code{any}  & \void{}   			\\ \hline
-	\end{tabular}
-	\vspace{0em}
-\end{table}
-
-\subsubsection{\lstinline|<void or any> \% <void or any> : void or any|}
-
-	Dependența alegerii selective de datele de intrare este demonstrată în tabela \ref{centhacktable}.
-	
-\begin{table}[htb]
-	\caption{Operatorul "alegerea selectivă"}
-	\label{centhacktable}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\code{arg1} & \code{arg2} & \code{arg1 \% arg2}			\\ \hline
-		\void{}     & \void{}     & \void{}						\\ \hline
-		\void{}     & \code{any}  & \code{arg2}					\\ \hline
-		\code{any}  & \void{}     & \code{arg1}					\\ \hline
-		\integer{}  & \integer{}  & \integer{}					\\ \hline
-		\double{}   & \double{}   & \double{}					\\ \hline
-		\str{}      & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
-		\listtype{} & \str{}      & \code{list - [arg1 arg2]}	\\ \hline
-		\listtype{} & \listtype{} & \code{list - [arg1 arg2]}	\\ \hline
-		\object{}   & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
-		\set{}      & \object{}   & \code{set - [arg1 arg2]}	\\ \hline
-		\set{}      & \set{}      & \code{set - [arg1 arg2]}	\\ \hline
-	\end{tabular}
-	\vspace{0em}
-\end{table}
-
-Pentru argumentele \integer{} și \double{}, se apelează funcția \code{_numbers.process}, înainte de folosire indicați care funcție doriți să folosiți, folosind funcția \code{_numbers.setProcess} cu una din următoarele argumente: \code{_numbers'sum} - suma, \code{_numbers'product} - produs, \code{_numbers'max} - maximum, \code{_numbers'min} - minimum. După folosirea operatorului, apelați \code{_numbers .restoreProcess} ca să restaurați setările.
-
-\subsection{Operatori suplimentari}
-
-{\bf Parantezele pătrate} sau {\bf operatorul de grupare a datelor} permite a crea obiecte de tipurile următoare \listtype{}, \set{} și \object{}.
+{\bf Parantezele pătrate} sau {\bf operatorul de combinare} permite a crea obiecte de tipurile următoare \listtype{}, \set{} și \object{}.
 
 \code{[] : list} creează o lită goală.
 
-\code{[string ...] : list} creează o listă din șiruri de caractere variabile și constante, de asemenea se permite apeluri la funcții care returnează șiruri de caractere.
+\code{[string ...] : list} creează o listă din șiruri de caractere variabile și constante, de asemenea se permite apeluri la funcții care returnează șiruri de caractere. Exemplu: \code{["a", "b", "c"]}.
 
 \code{[list ...] : list} unește mai multe liste în una.
 
 \code{[string or list ...] : list} unește șirurile de caractere și listele într-o listă.
 
-\code{[<>] : object} creează un obiect nul.
+\code{[arg ...] : object} creează un obiect cu cîmpuri (fiecare cîmp se descrie ca argument), argumentele se descriu prin următoarea sintaxă \code{name = value}, unde \code{value} este o valoare, \code{name} - numele argumentului. Exemplu \code{[number = 2, str = "str"]}.
 
-\code{[arg ...] : object} creează un obiect cu cîmpuri (fiecare cîmp se descrie ca argument), argumentele se descriu prin următoarea sintaxă \code{<value>name}, unde \code{value} este o valoare, \code{name} - numele argumentului. Exemplu \code{[<2>number <"str">str]}.
-
-\code{[param ...] : set} creează o mulțime cu header-ul dorit, fiecare coloană se descrie ca un parametru, parametrul se descrie prin următoarea sintaxă \code{<type>name}, unde \code{type} este un tip de date, \code{name} - numele parametrului. Nu se poate de creat mulțime fără header. Exemplu \code{[<int>number <string>str]}.
+\code{[param ...] : set} creează o mulțime cu header-ul dorit, fiecare coloană se descrie ca un parametru, parametrul se descrie prin următoarea sintaxă \code{name : type}, unde \code{type} este un tip de date, \code{name} - numele parametrului. Nu se poate de creat mulțime fără header. Exemplu \code{[number : int, str : string]}.
 
 \code{[object ...] : set} creează o mulțime din mai multe obiecte.
 

@@ -1,7 +1,7 @@
 % !TeX spellcheck = ro_RO
 \section{Funcții}
 
-{\bf Funcțiile} în icL permit a folosi repetat fragmente de cod și a structura codul. Toate funcțiile în icL sunt globale.
+{\bf Funcțiile} în icL permit a folosi repetat fragmente de cod și a structura codul. Toate funcțiile în icL sunt globale. Funcțiile se deosebesc de metodă prin ceea că ele sunt desemnate de utilizator, iar metodele sunt predefinite.
 
 \subsubsection{Definirea funcțiilor}
 
@@ -9,7 +9,7 @@
 
 \noindent Sintaxă -
 \begin{lstlisting}[numbers=none]
-!name = parameters : return_type {
+name = (parameters) : return_type {
 	commands
 }
 \end{lstlisting}
@@ -21,26 +21,32 @@ Descrierea parților funcției:
 \item
 	\code{parameters} - {\bf lista parametrilor}. La chemarea funcției fiecare parametru primește o valoare. Lista parametrilor definește tipul, cantitatea și ordinea parametrilor. Lista nu este obligatorie (vezi foile \ref{fullfunc} și \ref{noargsfunc});
 \item
-	\code{return_type} - {\bf tipul de datelor} returnate de funcție. Dacă funcția nimic nu întoarce se tipul poate fi omis sau indicat clar - \void{}. Pentru a întoarce date se folosește comanda \code{@ = value} (vezi foile \ref{fullfunc}, \ref{notypefunc} și \ref{minfunc});
+	\code{return_type} - {\bf tipul de datelor} returnate de funcție. Dacă funcția nimic nu întoarce se tipul poate fi omis sau indicat clar - \void{}. Pentru a întoarce date se folosește comanda \code{@ = value} sau \lstinline|Stack.return value| (vezi foile \ref{fullfunc}, \ref{notypefunc} și \ref{minfunc});
 \item
 	\code{commands} - {\bf corpul} conține comenzi, care definesc acțiunile executate de funcție.
 \end{icItems}
 
+Parametrii se despart prin virgulă. Chiar dacă funcția deține doar on parametru, parantezele rotunde nu pot fi omise.
+
+Parametrul se descriere prin următoarea sintaxă \lstinline|@name : type|, unde \lstinline|@name| este numele, iar \lstinline|type| e un tip de date. Se poate de descris numai tipul (fără doua puncte), în acest caz parametrul ca avea același nume ca și tipul de date.
+
+Parametrul cu valoare implicită se descrie cu următoarea sintaxă \lstinline|@name = value|, unde \lstinline|@name| este numele, iar \lstinline|value| e valoarea implicită, ea pate fi o constantă, o variabilă sau o expresie. Valoarea expresiei va fi calculată numai o dată, la definirea funcției. Valoare predefinită pot avea orice parametri, nu numai ultimii.
+
 \begin{lstlisting}[caption=Funcție completă, label=fullfunc]
-!sum = <int>a <int>b : int {
+sum = (@a : int, @b : int) : int {
 	@ = @a + @b;
 };
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Funcție fără argumente, label=noargsfunc]
-!pi = double {
+pi = () : double {
 	@ = 3.14;
 };
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Funcție făra tip de date, label=notypefunc]
-!out = <int>a <int>b {
-	_log.out @a @b;
+out = (@a : int, @b : int) {
+	Log.out @a @b;
 };
 \end{lstlisting}
 
@@ -48,24 +54,52 @@ Descrierea parților funcției:
 
 Puteți să apelați funcția în felul următor -
 \begin{lstlisting}[numbers=none]
-!name arguments;
+name (arguments);
 \end{lstlisting}
 unde \code{name} este {\bf numele funcției}, \code{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
 
 \begin{lstlisting}[caption=Funcție fără argumente și tip de date, label=minfunc]
-!do = {
-	_log.out "It's work!";
+out = (@a : int, @b : int) {
+	Log.out @a @b;
 };
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Apeluri de funcții, label=callfunc]
-!sum 2 3; 	`` returns 5
-!pi; 		`` returns 3.14
-!out 4 5; 	`` returns void
-!do; 		`` returns void
+Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\lstinline|~|). De exemplu avem funcția \lstinline|func = (@var1 = 3, @var2 : int) {}|, ea poate fi apelată în felul următor \lstinline|fun (~, 3)|. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
 
-!sum (!sum 1 2) 3;	`` returns 6
-!out 1 (!sum 4 5);	`` returns void
+Funcțiile care dețin doar un parametru fără valoare implicită, pot fi apelate folosind acronimul \lstinline|name arg| sau \lstinline|name (arg)|. Poziția argumentului nu are importanță (la început, la mijloc sau la sfîrșit).
+
+\begin{lstlisting}[caption=Apeluri de funcții, label=callfunc]
+sum (2, 3); 	`` returns 5
+pi();			`` returns 3.14
+out (4, 5); 	`` returns void
+do();			`` returns void
+
+sum (sum (1, 2), 3);	`` returns 6
+out (1, sum (4, 5));	`` returns void
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Valori predefinite, label=defaultparametrs]
+fun = (@a = 21, @b = 23) {}
+
+`` the line 
+fun(exists(@a, # > 3), exists(@b, # < 5));
+`` replace the next code
+if (@a > 3) {
+	if (@b < 5) {
+		fun (@a, @b);
+	}
+	else {
+		fun (@a, 23);
+	}
+}
+else {
+	if (@b < 5) {
+		fun (21, @b);
+	}
+	else {
+		fun (21, 23);
+	}
+}
 \end{lstlisting}
 
 %\newpage

@@ -14,7 +14,7 @@ Listele dețin următoarele proprietăți adiționale:
 \item
 	\lstinline|[r/o] list'last : string|;
 \item
-	\lstinline|[r/o] list'(<int>n) : string|.
+	\lstinline|[r/o] list'(n : int) : string|.
 \end{icItems}
 
 Pe foaia \ref{listprop} este prezentat cod, care folosește proprietățile enumerate mai sus.
@@ -50,7 +50,7 @@ Ultimul șir din listă, echivalent \lstinline|list'at (list'length - 1)|.
 
 Excepții posibile: \ferror{EmptyList}.
 
-\subsubsection{\lstinline|[r/o] list'(<int>n) : string|}
+\subsubsection{\lstinline|[r/o] list'(n : int) : string|}
 
 Al n-lea șir, n trebuie să fie un literal întreg.
 
@@ -60,158 +60,158 @@ Excepții posibile: \ferror{OutOfBounds}.
 
 Listele dețin următoarele metode adiționale:
 \begin{icItems}
-\item \lstinline|list.append <string>str : list|;
-\item \lstinline|list.at <int>i : string|;
-\item \lstinline|list.contains <string>str <bool>caseSensitive = true : bool|;
-\item \lstinline|list.clear : list|;
-\item \lstinline|list.count <string>what : int|;
-\item \lstinline|list.filter <string>str <bool>caseSensitive = true : bool|;
-\item \lstinline|list.indexOf <string>str <int>start = 0 : int|;
-\item \lstinline|list.insert <int>index <string>str : list|;
-\item \lstinline|list.join <string>separator : string|;
-\item \lstinline|list.lastIndexOf <string>str <int>start = -1 : int|;
-\item \lstinline|list.mid <int>pos <int>n = -1 : list|;
-\item \lstinline|list.prepend <string>str : list|;
-\item \lstinline|list.move <int>from <int>to : list|;
-\item \lstinline|list.removeAll <string>str : list|;
-\item \lstinline|list.removeAt <int>i : list|;
-\item \lstinline|list.removeDuplicates : list|;
-\item \lstinline|list.removeFirst : list|;
-\item \lstinline|list.removeLast : list|;
-\item \lstinline|list.removeOne <string>str : bool|;
-\item \lstinline|list.replaceInStrings <string>before <string>after : list|;
-\item \lstinline|list.sort <bool>caseSensitive = true : list|.
+\item \lstinline|list.append (str : string) : list|;
+\item \lstinline|list.at (i : int) : string|;
+\item \lstinline|list.contains (str : string, caseSensitive = true) : bool|;
+\item \lstinline|list.clear () : list|;
+\item \lstinline|list.count (what : string) : int|;
+\item \lstinline|list.filter (str : string, caseSensitive = true) : bool|;
+\item \lstinline|list.indexOf (str : string, start = 0) : int|;
+\item \lstinline|list.insert (index : int, str : string) : list|;
+\item \lstinline|list.join (separator : string) : string|;
+\item \lstinline|list.lastIndexOf (str : string, start = -1) : int|;
+\item \lstinline|list.mid (pos : int, n = -1) : list|;
+\item \lstinline|list.prepend (str : string) : list|;
+\item \lstinline|list.move (from : int, to : int) : list|;
+\item \lstinline|list.removeAll (str : string) : list|;
+\item \lstinline|list.removeAt (i : int) : list|;
+\item \lstinline|list.removeDuplicates () : list|;
+\item \lstinline|list.removeFirst () : list|;
+\item \lstinline|list.removeLast () : list|;
+\item \lstinline|list.removeOne (str : string) : bool|;
+\item \lstinline|list.replaceInStrings (before : string, after : string) : list|;
+\item \lstinline|list.sort (caseSensitive = true) : list|.
 \end{icItems}
 
 Unele metode au fost omise, ele for fi enumerate în capitulul \ref{regex}. Exemplu de cod, care folosește metodele enumerate mai sus, este prezentat pe foaia \ref{listmethods}. 
 
 \begin{lstlisting}[caption=Metodele clasei list, label=listmethods]
 @empty = [];
-@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+@fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
-@empty.append "";              `` [""]
-@fonts.at 2;                   `` "Times"
-@fonts.contains "arial";       `` false
-@fonts.contains "arial" false; `` true
-@empty.clear;                  `` []
-@fonts.count "Arial";          `` 1
+@empty.append "";                 `` [""]
+@fonts.at 2;                      `` "Times"
+@fonts.contains "arial";          `` false
+@fonts.contains ("arial", false); `` true
+@empty.clear;                     `` []
+@fonts.count "Arial";             `` 1
 
-@fonts.filter "e";          `` ["Helvetica" "Times" "Courier"]
-@fonts.indexOf "Times";     `` 2
-@fonts.insert 1 "DejaVu";   `` ["Arial" "DejaVu" "Helvetica" "Times" "Courier"]
-@fonts.join ", ";           `` "Arial, DejaVu, Helvetica, Times, Courier"
-@fonts.lastIndexOf "Arial"; `` 0
+@fonts.filter "e";           `` ["Helvetica", "Times", "Courier"]
+@fonts.indexOf "Times";      `` 2
+@fonts.insert (1, "DejaVu"); `` ["Arial", "DejaVu", "Helvetica", "Times", "Courier"]
+@fonts.join ", ";            `` "Arial, DejaVu, Helvetica, Times, Courier"
+@fonts.lastIndexOf "Arial";  `` 0
 
-@fonts.mid 2 2;          `` ["Times" "Courier"]
-@fonts.prepend "DejaVu"; `` ["DejaVu" "Arial" "DejaVu" .. "Courier"]
-@fonts.move 1 2;         `` ["DejaVu" "DejaVu" "Arial" "Helvetica" ..]
+@fonts.mid (2, 2);       `` ["Times", "Courier"]
+@fonts.prepend "DejaVu"; `` ["DejaVu", "Arial", "DejaVu" .. "Courier"]
+@fonts.move (1, 2);      `` ["DejaVu", "DejaVu", "Arial", "Helvetica" ..]
 
-@fonts.removeAll "Helvetica"; `` ["DejaVu" "DejaVu" "Arial" "Times" "Courier"]
-@fonts.removeAt 3;            `` ["DejaVu" "DejaVu" "Arial" "Courier"]
-@fonts.removeDuplicates;      `` ["DejaVu" "Arial" "Courier"]
-@fonts.removeFirst;           `` ["Arial" "Courier"]
+@fonts.removeAll "Helvetica"; `` ["DejaVu", "DejaVu", "Arial", "Times", "Courier"]
+@fonts.removeAt 3;            `` ["DejaVu", "DejaVu", "Arial", "Courier"]
+@fonts.removeDuplicates;      `` ["DejaVu", "Arial", "Courier"]
+@fonts.removeFirst;           `` ["Arial", "Courier"]
 @fonts.removeLast;            `` ["Arial"]
 @fonts.removeOne "Arial";     `` []
 
-@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+@fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
-@fonts.replaceInStrings "e" "-"; `` ["Arial" "H-lv-tica" "Tim-s" "Couri-r"];
-@fonts.sort;                     `` ["Arial" "Couri-r" "H-lv-tica" "Tim-s"];
+@fonts.replaceInStrings ("e", "-"); `` ["Arial", "H-lv-tica", "Tim-s", "Couri-r"];
+@fonts.sort;                        `` ["Arial", "Couri-r", "H-lv-tica", "Tim-s"];
 \end{lstlisting}
 
-Parametrul \code{caseSensitive} în toate funcție răspunde de diferențierea majusculelor și minusculelor. Dacă el va primi valoarea \false, diferența dintre majuscule și minuscule va fi ignorată.
+Parametrul \code{caseSensitive} în toate funcțiile răspunde de diferențierea majusculelor și minusculelor. Dacă el va primi valoarea \false, diferența dintre majuscule și minuscule va fi ignorată.
 
-\subsubsection{\lstinline|list.append <string>str : list|}
+\subsubsection{\lstinline|list.append (str : string) : list|}
 
 Inserează șirul \code{str} la sfîrșitul listei.
 
-\subsubsection{\lstinline|list.at <int>i : string|}
+\subsubsection{\lstinline|list.at (i : int) : string|}
 
 Returnează al \code{i}-lea șir.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|list.contains <string>str <bool>caseSensitive = true : bool|}
+\subsubsection{\lstinline|list.contains (str : string, caseSensitive = true) : bool|}
 
 Returnează \true, dacă lista conține șir egal cu \code{str}, în caz contrar \false.
 
-\subsubsection{\lstinline|list.clear : list|}
+\subsubsection{\lstinline|list.clear () : list|}
 
 Curăță lista.
 
-\subsubsection{\lstinline|list.count <string>what : int|}
+\subsubsection{\lstinline|list.count (what : string) : int|}
 
 Returnează de cîte ori șirul \code{what} se repetă în listă.
 
-\subsubsection{\lstinline|list.filter <string>str <bool>caseSensitive = true : bool|}
+\subsubsection{\lstinline|list.filter (str : string, caseSensitive = true) : bool|}
 
 Returnează o nouă listă de șiruri, care conține numai șirurile, care conțin subșirul \code{str}. 
 
-\subsubsection{\lstinline|list.indexOf <string>str <int>start = 0 : int|}
+\subsubsection{\lstinline|list.indexOf (str : string, start = 0) : int|}
 
 Returnează indexul primii includeri al șirului \code{str} în listă, căutînd înainte de pe poziția \code{start}, dacă lista nu conține așa șir se returnează -1.
 
-\subsubsection{\lstinline|list.insert <int>index <string>str : list|}
+\subsubsection{\lstinline|list.insert (index : int, str : string) : list|}
 
 Inserează șirul \code{str} pe poziția \code{index}, dacă \code{index <= 0} șirul se înserează la începutul listei, dacă \code{index >= list'length} șirul se inserează la sfîrșitul listei.
 
-\subsubsection{\lstinline|list.join <string>separator : string|}
+\subsubsection{\lstinline|list.join (separator : string) : string|}
 
 Creează un șir nou, din șirurile listei, prin concatenarea lor, între șiruri se inserează șirul \code{separator}, el poate fi un sir deșert.
 
-\subsubsection{\lstinline|list.lastIndexOf <string>str <int>start = -1 : int|}
+\subsubsection{\lstinline|list.lastIndexOf (str : string, start = -1) : int|}
 
 Returnează indexul primii includeri al șirului \code{str} în listă, căutînd înapoi de pe poziția \code{start}, dacă lista nu conține așa șir se returnează -1.
 
-\subsubsection{\lstinline|list.mid <int>pos <int>n = -1 : list|}
+\subsubsection{\lstinline|list.mid (pos : int, n = -1) : list|}
 
 Returnează o listă nouă, care conține \code{n} șiruri din listă, începînd cu poziția \code{pos}. Dacă \code{n} are valoarea \code{-1} vor fi adăugate toate șirurile pînă la sfîrșitul listei.
 
-\subsubsection{\lstinline|list.prepend <string>str : list|}
+\subsubsection{\lstinline|list.prepend (str : string) : list|}
 
 Inserează șirul \code{str} la începutul listei.
 
-\subsubsection{\lstinline|list.move <int>from <int>to : list|}
+\subsubsection{\lstinline|list.move (from : int, to : int) : list|}
 
 Mută șirul de pe poziția \code{from} pe poziția \code{to}.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|list.removeAll <string>str : list|}
+\subsubsection{\lstinline|list.removeAll (str : string) : list|}
 
 Șterge toate șirurile egale cu \code{str}.
 
-\subsubsection{\lstinline|list.removeAt <int>i : list|}
+\subsubsection{\lstinline|list.removeAt (i : int) : list|}
 
 Șterge al \code{i}-lea șir.
 
 Excepții posibile: \ferror{OutOfBounds}.
 
-\subsubsection{\lstinline|list.removeDuplicates : list|}
+\subsubsection{\lstinline|list.removeDuplicates () : list|}
 
 Șterge șirurile care se repetă.
 
-\subsubsection{\lstinline|list.removeFirst : list|}
+\subsubsection{\lstinline|list.removeFirst () : list|}
 
 Șterge primul șir.
 
 Excepții posibile: \ferror{EmptyList}.
 
-\subsubsection{\lstinline|list.removeLast : list|}
+\subsubsection{\lstinline|list.removeLast () : list|}
 
 Șterge ultimul șir.
 
 Excepții posibile: \ferror{EmptyList}.
 
-\subsubsection{\lstinline|list.removeOne <string>str : bool|}
+\subsubsection{\lstinline|list.removeOne (str : string) : bool|}
 
 Șterge primul șir egal cu \code{str}. Returnează \true, dacă așa șir a fost găsit, în caz contrar \false.
 
-\subsubsection{\lstinline|list.replaceInStrings <string>before <string>after : list|}
+\subsubsection{\lstinline|list.replaceInStrings (before : string, after : string) : list|}
 
 Înlocuiește subșirul \code{before} cu subșirul \code{after} în fiecare șir din listă.
 
-\subsubsection{\lstinline|list.sort <bool>caseSensitive = true : list|}
+\subsubsection{\lstinline|list.sort (caseSensitive = true) : list|}
 
 Sortează șirurile în ordine alfabetică.
 
