@@ -114,11 +114,11 @@ Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{re
 
 @fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
-@fonts.filter //^[ac]//i;    `` ["Arial", "Courier"]
-@fonts.indexOf //e.//;       `` 1
-@fonts.indexOf //e.// 2;     `` 2
-@fonts.lastIndexOf //e.//;   `` 3
-@fonts.lastIndexOf //e.// 2; `` 2
+@fonts.filter //^[ac]//i;       `` ["Arial", "Courier"]
+@fonts.indexOf //e.//;          `` 1
+@fonts.indexOf (//e.//, 2);     `` 2
+@fonts.lastIndexOf //e.//;      `` 3
+@fonts.lastIndexOf (//e.//, 2); `` 2
 \end{lstlisting}
 
 \subsubsection{\lstinline|string.count (re : regex) : int|}

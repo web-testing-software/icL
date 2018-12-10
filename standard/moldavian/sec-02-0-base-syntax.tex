@@ -1,13 +1,13 @@
 % !TeX spellcheck = ro_RO
 \section{Sintaxă de bază}
 
-icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icl}.
+icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icL}.
 
 \begin{lstlisting}[caption=Prima programă, label=first]
 Log.info "Test!";
 \end{lstlisting}
 
-În consolă ar trebui să apară următorul \textbf{text}: \lstinline|Test!|.
+În consolă ar trebui să apară următorul \textbf{text}:
 
 \begin{lstlisting}[numbers=none]
 Test!
@@ -15,17 +15,17 @@ Test!
 
 \subsection{Import în icL}
 
-Toate \textbf{bibliotecile standarde} sunt include in limbaj, dar se poate de inclus biblioteci \textbf{personalizate} folosind:
+Toate \textbf{bibliotecile standarde} sunt include în limbaj, dar se poate de inclus biblioteci \textbf{personalizate} folosind:
 
 \begin{icItems}
 \item
-	\lstinline|_import.none "project/lib.icL"| - execută codul care se află în fișier, nu importă nimic;
+	\lstinline|Import.none "project/lib.icL"| - execută codul care se află în fișier, nu importă nimic;
 \item
-	\lstinline|_import.functions "project/lib.icL"| - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
+	\lstinline|Import.functions "project/lib.icL"| - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
 \item
-	\lstinline|_import.all "project/lib.icL"| -  execută codul, importa funcțiile și variabilele globale;
+	\lstinline|Import.all "project/lib.icL"| -  execută codul, importa funcțiile și variabilele globale;
 \item
-	\lstinline|_import.run "project/lib.icL"| - execută codul în contextul curent, toate funcțiile si variabilele globale se importă și exportă.
+	\lstinline|Import.run "project/lib.icL"| - execută codul în contextul curent, toate funcțiile și variabilele globale se importă și exportă.
 \end{icItems}
 
 \subsection{Semne în icL}
@@ -39,7 +39,7 @@ Semnele prezente:
 \item
 	\lstinline|.info| - identificator de metodă;
 \item
-	\lstinline|"Hello world!"| - literal, sir de caracter;
+	\lstinline|"Hello world!"| - literal, șir de caracter;
 \item
 	\lstinline|;| - delimitator, sfîrșit de comandă.
 \end{icItems}
@@ -83,7 +83,7 @@ icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@
 
 \subsection{Cuvinte cheie}
 
-În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 16: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|listen|, \lstinline|wait| și \lstinline|assert|. În acest document ele sunt accentuate folosind culoarea albastră.
+În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 18: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|listen|, \lstinline|wait|, \lstinline|switch|, \lstinline|case| și \lstinline|assert|. În acest document ele sunt accentuate folosind culoarea albastră.
 
 \subsection{Spații si delimitatori}
 

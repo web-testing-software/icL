@@ -30,7 +30,7 @@ Returnează numărul de sesiuni deschise.
 
 Returnează a \code{i}-a sesiune.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Sessions.closeAll () : void|}
 
@@ -40,13 +40,13 @@ Excepții posibile: \ferror{OutOfBounds}.
 
 Returnează a \code{i}-a sesie.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Sessions.new () : Session|}
 
 Deschide o sesiune nouă.
 
-Excepții posibile: \ferror{SessionNotCreated}.
+Excepții posibile: \ferror{SessionNotCreated} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Session}}
 
@@ -76,73 +76,73 @@ Obiectul \session{} are următoarele proprietăți:
 
 Tipul în milisecunde de așteptare a găsirii elementului sau al trecerii în stare interactivă. Implicit egal cu 0.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi).
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi) (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Session'pageLoadTimeout : int|}
 
 Timpul de așteptare al încărcării paginii web. Implicit 300 000 de milisecunde.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument}.
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Session'scriptTimeout : int|}
 
 Timpul de așteptare al executării codului Javascript. Implicit 30 000 de milisecunde.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument}.
+Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Session'source : string|}
 
 Codul sursă al paginii.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Session'title : string|}
 
 Titlu paginii.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Session'url : string|}
 
 Adresa URL a pagini curente.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Session.back () : Session|}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înapoi} în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Session.close () : void|}
 
 Închide sesia. Toate taburile vor fi închise.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Session.forward () : Session|}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înainte} în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Session.refresh () : Session|}
 
 Reîncarcă pagina.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Session.screenshot () : string|}
 
 Returnează un șir de caracter, care reprezintă captură de ecran codată în base64.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Session.switchTo () : Session|}
 
 Schimbă focusul la altă sesie.
 
-Excepții posibile: \ferror{NoSuchSession}.
+Excepții posibile: \ferror{NoSuchSession} (pr. tab. \ref{errors}).
 
 %\subsubsection{}
 
@@ -160,19 +160,19 @@ Obiectul \windows{} are următoarele proprietăți:
 
 Returnează numărul de ferestre în sesiunea curentă.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Windows'(i : int) : Window|}
 
 Returnează a \code{i}-a fereastră.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Windows.get (i : int) : Window|}
 
 Returnează a \code{i}-a fereastră.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Window}}
 
@@ -202,85 +202,85 @@ Obiectul \window{} are următoarele proprietăți:
 
 Înălțimea ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Window'width : int|}
 
 Lățimea ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Window'x : int|}
 
 Coordonata $x$ a ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Window'y : int|}
 
 Coordinata $y$ a ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.close () : void|}
 
 Închide fereastra curentă, dacă ea este ultima se închide și sesia.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.focus () : Window|}
 
 Schimbă focusul la fereastra aceasta.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.fullscreen () : Window|}
 
 Schimbă regimul de afișare a ferestrei browserului la \textit{ecran complet}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.maximize () : Window|}
 
 Maximizează fereastra browserului.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.minimize () : Window|}
 
 Minimizează fereastra browserului.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.restore () : Window|}
 
 Restaurează fereastra în regim normal.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToDefault () : Window|}
 
 Schimbă focusul la frame-ul principal.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToFrame (i : int) : Window|}
 
 Schimbă focusul la frame-ul cu indexul \code{i}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToFrame (el : element) : Window|}
 
 Schimbă focusul la frame-ul elementului \code{el}. Elementul trebuie să fir numaidecît tag frame sau iframe.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Window.switchToParent () : Window|}
 
 Schimbă focusul la frame-ul ascensor.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Cookies}}
 
@@ -296,7 +296,7 @@ Obiectul \cookies{} are următoarea proprietate: \lstinline|[r/o] Cookies'name :
 
 Returnează \cookie{} cu numele \code{name}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Cookies.deleteAll : void|}
 
@@ -306,7 +306,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCo
 
 Returnează \cookie{} cu numele \code{name}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Cookie}}
 
@@ -363,19 +363,19 @@ Adaugă la timpul de expirare numărul necesar de ani, luni, zile, ore, minute �
 
 \subsubsection{\lstinline|Cookie.load () : Cookie|}
 
-Încarcă datele despre \cookie din browser.
+Încarcă datele despre \cookie{} din browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Cookie.resetTime () : Cookie|}
 
-Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să expire peste un an se folosește comanda următoare: \lstinline|Cookie.resetTime.add 1 0 0|.
+Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să expire peste un an se folosește comanda următoare: \lstinline|Cookie.resetTime().add(1, 0, 0)|.
 
 \subsubsection{\lstinline|Cookie.save () : Cookie|}
 
 Transmite schimbările fișierului cookie în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (pr. tab. \ref{errors}).
 
 \subsubsection{Crearea noilor fișiere cookie}
 
@@ -407,25 +407,25 @@ Obiectul \alert{} are următoarea proprietate: \lstinline|[r/o] Alert'text : str
 
 Returnează textul avertizării.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Alert.accept () : void|}
 
 Acceptă avertizarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Alert.dismiss () : void|}
 
 Refuză avertizarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Alert.sendKeys (keys : string) : void|}
 
 Completează formularul cu textul \code{keys} și confirmă inserarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Tabs}}
 
@@ -463,109 +463,109 @@ Obiectul \tabs{} are următoarele proprietăți:
 
 Tabul curent.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'first : Tab|}
 
 Primul tab.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'last : Tab|}
 
 Ultimul tab.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'length : int|}
 
 Numărul de taburi în sesie.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'next : Tab|}
 
 Următorul tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'previous : Tab|}
 
 Tabul precedent.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tabs'(i : int) : Tab|}
 
 Al \code{i}-lea tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds}.
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.close (url : regex) : int|}
 
 Închide toate taburile, la care adresa URL convine șablonului. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.close (url : regex) : int|}
 
 Închide toate taburile, la care adresa URL convine expresii regulare \code{url}. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeByTitle (template : string) : int|}
 
 Închide toate taburile, la care titlul convine șablonului. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeByTitle (title : regex) : int|}
 
 Închide toate taburile, la care titlul convine expresii regulare \code{url}. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeOthers () : int|}
 
 Închide toate taburile în afară de tabul curent. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeToLeft () : int|}
 
 Închide toate taburile care se află la stînga de tabul curent. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.closeToRight () : int|}
 
 Închide toate taburile care se află la dreapta de tabul curent. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.find (template : string) : Tab|}
 
 Returnează primul tab, la care adresa URL convine șablonului.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.find (url : regex) : Tab|}
 
 Returnează primul tab, la care adresa URL convine expresii regulare.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.findByTitle (template : string) : Tab|}
 
 Returnează primul tab, la care titlul convine șablonului.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tabs.findByTitle (title : regex) : Tab|}
 
 Returnează primul tab, la care titlul convine expresii regulare.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Tab}}
 
@@ -601,50 +601,50 @@ Returnează \true, dacă butonul \textit{Înainte} e disponibil, în caz contrar
 
 Returnează captura tabului, codată în base64.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] Tab'source : string|}
 
 Codul sursă al paginii deschise în tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/*] Tab'title|}
 
 Titlu paginii deschise în tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/w] Tab'url|}
 
 Adresa URL a paginii deschise în tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.back () : void|}
 
 Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înapoi} în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.close () : void|}
 
 Închide tabul, dacă e ultimul închide și sesia.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.focus () : void|}
 
 Schimbă focusul la tab. Focusul se schimbă între taburile din sesiune.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.forward () : void|}
 
 Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înainte} în browser.
 
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Tab.get (url : string) : bool|}
 
@@ -654,7 +654,7 @@ Trece la pagină, URL trebuie să fie absolut. Returnează \true{} dacă pagina 
 
 Trece la pagină, URL trebuie să fie absolut. În caz de eroare generează excepție.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate}.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Doc}}
 
@@ -674,13 +674,13 @@ Obiectul \dom{} are următoarele metode:
 
 Primește aceiași parametri ca și  \lstinline|element.query|, numai că această funcție va căuta în tot documentul.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{Timeout}.
+Excepții posibile: \ferror{NoSessions}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Doc.queryAll (by = By'cssSelector, selecor : string) : element|}
 
 Primește aceiași parametri ca și \lstinline|element.queryAll|, numai că această funcție va căuta în tot documentul.
 
-Excepții posibile: \ferror{NoSessions}.
+Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Doc.queryAllByXPath (xpath : string) : element|}
 
@@ -728,19 +728,19 @@ Obiectul \files{} are următoarele metode:
 
 Deschide fișierul.
 
-Excepții posibile: \ferror{FileNotFound}.
+Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Files.create (path : string) : File|}
 
 Deschide fișierul, dacă el nu există se creează.
 
-Excepții posibile: \ferror{FolderNotFound}.
+Excepții posibile: \ferror{FolderNotFound} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Files.createDir (path : string) : void|}
 
 Creează folder, folderul ascendent trebuie să existe deja.
 
-Excepții posibile: \ferror{FolderNotFound}.
+Excepții posibile: \ferror{FolderNotFound} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Files.createPath (path : string) : void|}
 

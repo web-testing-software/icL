@@ -15,7 +15,7 @@ Pentru așteptare se propun următoarele funcții:
 
 \subsubsection{\lstinline|wait|}
 
-Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{Session'im\- plicitTimeout} milisecunde. 
+Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{Session'implicit\- Timeout} milisecunde. 
 
 \subsubsection{\lstinline|wait:Xs|}
 
@@ -27,7 +27,7 @@ Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{
 
 \subsubsection{\lstinline|wait:ajax|}
 
-Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{Session'implicitTimeout} milisecunde. În comparație cu \code{wait}-ul obișnuit, aici vor fi transmise următoarele date: \code{@response} - datele răspunsului serverului și \code{@count} - numărul de request-uri active.
+Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{Session'implicit\- Timeout} milisecunde. În comparație cu \code{wait}-ul obișnuit, aici vor fi transmise următoarele date: \code{@response} - datele răspunsului serverului și \code{@count} - numărul de request-uri active.
 
 \subsection{Claviatură}
 
@@ -88,11 +88,11 @@ Pentru a lucra cu mouse-ul se propun următoarele funcții:
 
 În aceste funcții obiectul \code{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'button : int| e butonul mouse-lui (una din următoarele valori):
+    \item \lstinline|[r/w] @data'button : int| - butonul mouse-lui (una din următoarele valori):
 	\begin{icItems}
-		\item \lstinline|[r/o] Mouse'left : 1| e butonul sțing;
-		\item \lstinline|[r/o] Mouse'middle : 2| e butonul mijlociu;
-		\item \lstinline|[r/o] Mouse'right : 3| e butonul drept.
+	    \item \lstinline|[r/o] Mouse'left : 1| - butonul stîng;
+		\item \lstinline|[r/o] Mouse'middle : 2| - butonul mijlociu;
+		\item \lstinline|[r/o] Mouse'right : 3| - butonul drept.
 	\end{icItems}
 	Implicit \lstinline|Mouse'left|;
 	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;

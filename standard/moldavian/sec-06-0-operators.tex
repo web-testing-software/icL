@@ -1,7 +1,7 @@
 % !TeX spellcheck = ro_RO
 \section{Operatori}
 
-{\bf Operatorul} este un semn, care desemnează o anumită manipulare de date. Operatori predefiniți în icL sunt foarte mulți, din cauza aceasta ei vor fi repartizați pe tipuri de date:
+{\bf Operatorul} este un semn, care desemnează o anumită manipulare de date. Operatori predefiniți în icL sunt foarte mulți, din cauza aceasta ei vor fi repartizați pe tipuri de date.
 
 Ordinea de executare a operatorilor este definită de rang, operatorii care au cel mai mare rang se execut primii, dar cei cu cel mai mic - ultimii. Operatori care au asociativitate dreaptă se execută înainte de operatorii cu asociativitate stîngă. Ei sunt însemnați cu un plus în partea dreaptă, de exemplu 7$^+$.
 
@@ -30,19 +30,6 @@ Dacă nu aveți cunoștințe în algebră booleană, vă rugăm să citați o ca
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{boolopex}.
 
-\begin{lstlisting}[caption=Exemple de folosite a operatorilor asupra tipului bool, label=boolopex]
-Log.out "true & false = " (true & false);		`` true \& false = false
-Log.out "false | true =  " (false | true);		`` false | true = true
-Log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
-Log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
-
-Log.out "!true = " !true;						`` !true = false
-Log.out "!false = " !false;					`` !false = true
-
-Log.out "true == false = " (true == false);	`` true == false = false
-Log.out "false != true = " (false != true);	`` false != true = true
-\end{lstlisting}
-
 \subsubsection{\lstinline|(a : bool) & (b : bool) : bool|}
 
 Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența rezultatului de datele de intrare este demonstrată în tabela \ref{conjtable}.
@@ -58,8 +45,25 @@ Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența r
 		\true{}  & \false{} & \false{}  	\\ \hline
 		\true{}  & \true{}  & \true{}   	\\ \hline
 	\end{tabular}
-	\vspace{-2em}
+	\vspace{0em}
 \end{table}
+
+\
+
+\
+
+\begin{lstlisting}[caption=Exemple de folosite a operatorilor asupra tipului bool, label=boolopex]
+Log.out "true & false = " (true & false);		`` true \& false = false
+Log.out "false | true =  " (false | true);		`` false | true = true
+Log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
+Log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
+
+Log.out "!true = " !true;						`` !true = false
+Log.out "!false = " !false;				  		`` !false = true
+
+Log.out "true == false = " (true == false);		`` true == false = false
+Log.out "false != true = " (false != true);		`` false != true = true
+\end{lstlisting}
 
 \subsubsection{\lstinline`(a : bool) | (b : bool) : bool`}
 
@@ -94,7 +98,7 @@ Operatorul aplică operația "echivalență logică" asupra variabilelor a și b
 		\true{}  & \false{} & \false{}  	\\ \hline
 		\true{}  & \true{}  & \true{}   	\\ \hline
 	\end{tabular}
-	\vspace{0em}
+	\vspace{-2em}
 \end{table}
 
 \subsubsection{\lstinline|(a : bool) ^ (b : bool) : bool|}
@@ -112,7 +116,7 @@ Operatorul aplică operația "disjuncție exclusivă" asupra variabilelor a și 
 		\true{}  & \false{} & \true{}  		\\ \hline
 		\true{}  & \true{}  & \false{}  	\\ \hline
 	\end{tabular}
-	\vspace{-2em}
+	\vspace{0em}
 \end{table}
 
 \subsubsection{\lstinline|! (a : bool) : bool|}
@@ -473,11 +477,11 @@ Returnează \false{} dacă \code{s1} și \code{s2} conțin același număr de ca
 
 Returnează \false{} dacă \code{l1} și \code{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), în caz contrar \true{}.
 
-\subsubsection{\lstinline|(l : list) << <string>str : bool|}
+\subsubsection{\lstinline|(l : list) << (str : string) : bool|}
 
 Returnează \true{}, dacă lista \code{l} conține șirurl de caractere \code{str}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<string>str << <string>substr : bool|}
+\subsubsection{\lstinline|(str : string) << (substr : string) : bool|}
 
 Returnează \true{}, dacă șirul de caractere \code{str} conține subșirul \code{substr}, în caz contrar \false{}.
 
@@ -487,7 +491,7 @@ Returnează \true{}, dacă lista \code{l} nu conține șirul \code{str}, în caz
 
 Returnează \true{}, dacă șirul de caractere \code{str} nu conține subșirul \code{substr}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|(l : list) <* <string>template : bool|}
+\subsubsection{\lstinline|(l : list) <* (template : string) : bool|}
 
 Returnează \true{}, dacă lista \code{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
@@ -501,11 +505,11 @@ Returnează \true{}, dacă lista \code{l} dacă lista nu conține cel puțin un 
 
 Returnează un nou șir de caractere, care conține toate caracterele șirelor de caracter \code{s1} și \code{s2}. Șirul obținut va avea lungimea egală cu suma lungimilor șirurilor componente.
 
-\subsubsection{\lstinline|<string>str + (l : list) : list|}
+\subsubsection{\lstinline|(str : string) + (l : list) : list|}
 
 Returnează o listă nouă, primită în rezultatul adăugării șirului \code{str} la începutul listei \code{l}.
 
-\subsubsection{\lstinline|(l : list) + <string>str : list|}
+\subsubsection{\lstinline|(l : list) + (str : string) : list|}
 
 Returnează o listă nouă, primită în rezultatul adăugării șirului \code{str} la sfîrșitul listei \code{l}.
 
@@ -513,15 +517,15 @@ Returnează o listă nouă, primită în rezultatul adăugării șirului \code{s
 
 Returnează o listă nouă, care conține toate șirurile listelor \code{l1} și \code{l2}.
 
-\subsubsection{\lstinline|<string>str * <string>template : bool|}
+\subsubsection{\lstinline|(str : string) * (template : string) : bool|}
 
 Returnează \true{}, dacă șirul de caractere \code{str} se potrivește cu șablonul \code{template}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|(l : list) * <string>template : bool|}
+\subsubsection{\lstinline|(l : list) * (template : string) : bool|}
 
 Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șablonul \code{template}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|(l : list) * <list>templates : bool|}
+\subsubsection{\lstinline|(l : list) * (templates : list) : bool|}
 
 Returnează \true{} dacă toate șirurile din lista \code{l} se potrivesc cu șablonul cuvenit din lista \code{templates}, în caz contrar \false{}.
 
@@ -565,11 +569,11 @@ Operațiile cu obiecte și mulțimi sunt enumerate în tabela \ref{objectops}.
 
 Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \ref{setobjopex}.
 
-\subsubsection{\lstinline`<object>obj1 == <object>obj2 : bool`}
+\subsubsection{\lstinline`(obj1 : object) == (obj2 : object) : bool`}
 
 Returnează \true{} dacă \code{obj1} și \code{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \code{obj1} sunt egale cu valori cîmpurilor obiectului \code{obj2}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<set>set1 == <set>set2 : bool|}
+\subsubsection{\lstinline|(set1 : set) == (set2 : set) : bool|}
 
 Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate obiectele din mulțimea \code{set1} sunt prezente în mulțimea \code{set2} și invers, în caz contrar \false{}.
 
@@ -611,19 +615,19 @@ Returnează \true{} dacă \code{set1} și \code{set2} au același header, toate 
 @set1 ** @set2;	
 \end{lstlisting}
 
-\subsubsection{\lstinline|<object>obj1 != <object>obj2 : bool|}
+\subsubsection{\lstinline|(obj1 : object) != (obj2 : object) : bool|}
 
 Returnează \true{} unul din obiecte are un cîmp care lipsește în celălalt sau valoarea unui cîmp al unui obiect se deosebește de valoarea cu aceeași denumire al celuilalt obiect, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<set>set1 != <set>set2 : bool|}
+\subsubsection{\lstinline|(set1 : set) != (set2 : set) : bool|}
 
 Returnează \true{} dacă mulțimile conțin număr diferit de obiecte sau există un obiect care se conține într-o mulțime, dar lipsește în cealaltă, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<set>s << <object>obj : bool|}
+\subsubsection{\lstinline|(s : set) << (obj : object) : bool|}
 
 Returnează \true{}, dacă mulțimea \code{s} conține obiectul \code{obj}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<set>set1 << <set>set2 : bool|}
+\subsubsection{\lstinline|(set1 : set) << (set2 : set) : bool|}
 
 Returnează \true, dacă mulțimea \code{set1} conține toate obiectele mulțimii \code{set2}, în caz contrar \false.
 
@@ -635,11 +639,11 @@ Returnează \true{}, dacă mulțimea \code{s} nu conține obiectul \code{obj}, �
 
 Returnează \true, dacă mulțimea \code{set1} nu conține sub obiectul \code{set2}, în caz contrar \false.
 
-\subsubsection{\lstinline|<set>s <* <object>subobj : bool|}
+\subsubsection{\lstinline|(s : set) <* (subobj : object) : bool|}
 
 Returnează \true{}, dacă mulțimea \code{s} conține fragmentul de obiect \code{subobj}, în caz contrar \false{}.
 
-\subsubsection{\lstinline|<object>obj <* <object>subobj : bool|}
+\subsubsection{\lstinline|(obj : object) <* (subobj : object) : bool|}
 
 Returnează \true{} dacă fiecare cîmp al obiectului \code{subobj} se conține in obiectul \code{obj} și dețin aceleași valori, în caz contrar \false{}.
 
@@ -651,23 +655,23 @@ Returnează \false{}, dacă mulțimea \code{s} conține fragmentul de obiect \co
 
 Returnează \false{} dacă fiecare cîmp al obiectului \code{subobj} se conține in obiectul \code{obj} și dețin aceleași valori, în caz contrar \true{}.
 
-\subsubsection{\lstinline|<set>set1 + <set>set2 : set|}
+\subsubsection{\lstinline|(set1 : set) + (set2 : set) : set|}
 
 Returnează o mulțime nouă, ce conține toate obiectele din mulțimile \code{set1} și \code{set2}.
 
-\subsubsection{\lstinline|<set>set1 - <set>set2 : set|}
+\subsubsection{\lstinline|(set1 : set) - (set2 : set) : set|}
 
 Returnează o mulțime nouă, ce conține toate obiectele mulțimii \code{set1}, care lipsesc în mulțimea \code{set2}, și obiectele mulțimii \code{set2}, ce lipsesc în \code{set1}.
 
-\subsubsection{\lstinline|<set>set1 \\ <set>set2 : set|}
+\subsubsection{\lstinline|(set1 : set) \\ (set2 : set) : set|}
 
 Returnează o mulțime nouă, ce conține toate obiectele mulțimii \code{set1}, care lipsesc în \code{set2}.
 
-\subsubsection{\lstinline|<set>set1 * <set>set2 : set|}
+\subsubsection{\lstinline|(set1 : set) * (set2 : set) : set|}
 
 Returnează o mulțime nouă, ce conține toate obiectele ce se conțin în mulțimile \code{set1} și \code{set2} concomitent.
 
-\subsubsection{\lstinline|<set>set1 ** <set>set2 : bool|}
+\subsubsection{\lstinline|(set1 : set) ** (set2 : set) : bool|}
 
 Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulțimile \code{set1} și \code{set2} concomitent, în caz contrar \false.
 

@@ -48,13 +48,13 @@ Lungimea listei este egală cu numărul de șiruri în ea.
 
 Ultimul șir din listă, echivalent \lstinline|list'at (list'length - 1)|.
 
-Excepții posibile: \ferror{EmptyList}.
+Excepții posibile: \ferror{EmptyList} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] list'(n : int) : string|}
 
 Al n-lea șir, n trebuie să fie un literal întreg.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsection{Metode}
 
@@ -85,6 +85,13 @@ Listele dețin următoarele metode adiționale:
 
 Unele metode au fost omise, ele for fi enumerate în capitulul \ref{regex}. Exemplu de cod, care folosește metodele enumerate mai sus, este prezentat pe foaia \ref{listmethods}. 
 
+Parametrul \code{caseSensitive} în toate funcțiile răspunde de diferențierea majusculelor și minusculelor. Dacă el va primi valoarea \false, diferența dintre majuscule și minuscule va fi ignorată.
+
+\subsubsection{\lstinline|list.append (str : string) : list|}
+
+Inserează șirul \code{str} la sfîrșitul listei.
+
+\newpage
 \begin{lstlisting}[caption=Metodele clasei list, label=listmethods]
 @empty = [];
 @fonts = ["Arial", "Helvetica", "Times", "Courier"];
@@ -119,17 +126,11 @@ Unele metode au fost omise, ele for fi enumerate în capitulul \ref{regex}. Exem
 @fonts.sort;                        `` ["Arial", "Couri-r", "H-lv-tica", "Tim-s"];
 \end{lstlisting}
 
-Parametrul \code{caseSensitive} în toate funcțiile răspunde de diferențierea majusculelor și minusculelor. Dacă el va primi valoarea \false, diferența dintre majuscule și minuscule va fi ignorată.
-
-\subsubsection{\lstinline|list.append (str : string) : list|}
-
-Inserează șirul \code{str} la sfîrșitul listei.
-
 \subsubsection{\lstinline|list.at (i : int) : string|}
 
 Returnează al \code{i}-lea șir.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list.contains (str : string, caseSensitive = true) : bool|}
 
@@ -175,7 +176,7 @@ Inserează șirul \code{str} la începutul listei.
 
 Mută șirul de pe poziția \code{from} pe poziția \code{to}.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list.removeAll (str : string) : list|}
 
@@ -185,7 +186,7 @@ Excepții posibile: \ferror{OutOfBounds}.
 
 Șterge al \code{i}-lea șir.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list.removeDuplicates () : list|}
 
@@ -195,13 +196,13 @@ Excepții posibile: \ferror{OutOfBounds}.
 
 Șterge primul șir.
 
-Excepții posibile: \ferror{EmptyList}.
+Excepții posibile: \ferror{EmptyList} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list.removeLast () : list|}
 
 Șterge ultimul șir.
 
-Excepții posibile: \ferror{EmptyList}.
+Excepții posibile: \ferror{EmptyList} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list.removeOne (str : string) : bool|}
 

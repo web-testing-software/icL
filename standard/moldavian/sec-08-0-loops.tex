@@ -94,21 +94,6 @@ do {
 \subsubsection{\lstinline`for` - răsfoirea colecție}
 
 {Colecția} este un obiect, care conține mai multe valori. Cel mai simplu exemplu de colecție este lista, ea conține mai multe șiruri de caractere. De exemplu, trebuie de executat o anumită operație cu fiecare șir de caractere din listă. Se poate de folosit ciclul universal (foaia \ref{colluniloop}) sau de {\bf răsfoit colecția} (foaia \ref{collsimple}). Sub numele de colecție se unesc următoarele tipuri de date \code{list}, \code{set} și \code{element}.
-\begin{lstlisting}[caption=Răsfoirea colecție prin ciclu universal, label=colluniloop]
-@list = ["apple", "banana", "fruit"];
-
-for (@i = 0; @i < @list'length; @i = @i + 1) {
-@list.at @i; `` get i-th value
-}
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Răsfoirea simplificată a colecției, label=collsimple]
-@list = ["apple", "banana", "fruit"];
-
-for (@list) {
-	@; `` get i-th value
-}
-\end{lstlisting}
 
 \subsubsection{\lstinline`filter` - răsfoirea selectivă a colecție}
 
@@ -124,6 +109,22 @@ filter (collection; condition) {
 \end{lstlisting}
 
 A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se filtreză cele care conțin litera a) sau după index (foaia \ref{filterindexex}, se aleg elementele pare a listei).
+
+\begin{lstlisting}[caption=Răsfoirea colecție prin ciclu universal, label=colluniloop]
+@list = ["apple", "banana", "fruit"];
+
+for (@i = 0; @i < @list'length; @i = @i + 1) {
+	@list.at @i; `` get i-th value
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Răsfoirea simplificată a colecției, label=collsimple]
+@list = ["apple", "banana", "fruit"];
+
+for (@list) {
+	@; `` get i-th value
+}
+\end{lstlisting}
 
 \begin{lstlisting}[caption=Filtrare pe bază de valoare, label=filterdataex]
 @list = ["apple", "banana", "fruit"];

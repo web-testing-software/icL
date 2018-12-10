@@ -27,6 +27,13 @@ Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și ini
 {\bf Identificatorii} variabilelor locale se încep cu simbolul \lstinline|@|.
 
 Pe foaia \ref{localvars} se demonstrează domeniul de vizibilitate al variabilei \lstinline|@var|, în punctele de declarare al variabilelor \lstinline|@test1|, \lstinline|@test2| și \lstinline|@test6| ea nu este vizibilă, dar în punctele de declarare ale variabilelor \lstinline|@test3|, \lstinline|@test4| și \lstinline|@test5| - da.
+
+\subsection{Variabile globale}
+
+\textbf{Variabilele globale} au cel mai larg domeniu de vizibilitate, ele sunt vizibile în orice punct al programei după declarare. Nu se recomandă a folosi variabile globale, pentru că ele pot să provoace erori serioase.
+
+{\bf Identificatorii} variabilelor globale se încep cu caracterul {\color{blue2}\lstinline|#|}. Mai multe variabile locale pot avea același nume, dar variabilele globale au nume unic, care nu poate fi repetat.
+
 \begin{lstlisting}[caption=Domeniul de vizibilitate al variabilei locale, label=localvars]
 `` error
 @test1 = @var;
@@ -48,17 +55,33 @@ if (@) {
 @test6 = @var;
 \end{lstlisting}
 
-\subsection{Variabile globale}
-
-\textbf{Variabilele globale} au cel mai larg domeniu de vizibilitate, ele sunt vizibile în orice punct al programei după declarare. Nu se recomandă a folosi variabile globale, pentru că ele pot să provoace erori serioase.
-
-{\bf Identificatorii} variabilelor globale se încep cu caracterul {\color{blue2}\lstinline|#|}. Mai multe variabile locale pot avea același nume, dar variabilele globale au nume unic, care nu poate fi repetat.
-
 Pe foaia \ref{globalvars}, este demonstrat domeniul de vizibilitate al variabilei \lstinline|@var|, ea nu este vizibilă în punctele de declarare ale variabilelor \lstinline|@test1|, \lstinline|@test2| și \lstinline|@test3|, dar este vizibilă în punctele de declarare ale variabilelor \lstinline|@test4|, \lstinline|@test5| și \lstinline|@test6|.
 
-\
+\subsection{Valori de stînga și dreapta în icL}
 
-\
+În icL sunt 3 tipuri de valori:
+
+\begin{icEnum}
+\item
+	valori de stînga ({\it lvalue}) - variabile;
+\item
+	valori de dreapta ({\it rvalue}) - variabile și constante;
+\item
+	valori javascript ({\it jsvalue}) - vor fi descrise mai tîrziu.
+\end{icEnum}
+
+Valorile de stînga se pot afla în ambele părți ale operație {\it de atribuire}, dar valorile de dreapta - numai în partea dreaptă. Exemple de folosire corectă și incorectă sunt demonstrate pe foaia \ref{rlvalues};
+
+\subsection{Valori împachetate}
+
+{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \lstinline|(@a, @b) = (@b.ensureRValue, @a.ensureRValue)|. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
+
+\subsection{Variabilele @ și \#}
+
+{Variabila @} este un acronim pentru @stack și Stack'stack. Variabilă de sistem care permite a importa/exporta valori în/din stivă. 
+
+{Variabila \#} este un acronim pentru @console, rezultatul comenzii este salvat în această variabilă, apoi printat în consolă sau transmis comenzii următoare.
+
 
 \begin{lstlisting}[caption=Domeniu de vizibilitate al variabilei globale, label=globalvars]
 `` error
@@ -81,35 +104,10 @@ if (@) {
 @test6 = @var;
 \end{lstlisting}
 
-\subsection{Valori de stînga și dreapta în icL}
-
-În icL sunt 3 tipuri de valori:
-
-\begin{icEnum}
-\item
-	valori de stînga ({\it lvalue}) - variabile;
-\item
-	valori de dreapta ({\it rvalue}) - variabile și constante;
-\item
-	valori javascript ({\it jsvalue}) - vor fi descrise mai tîrziu.
-\end{icEnum}
-
-Valorile de stînga se pot afla în ambele părți ale operație {\it de atribuire}, dar valorile de dreapta - numai în partea dreaptă. Exemple de folosire corectă și incorectă sunt demonstrate pe foaia \ref{rlvalues};
-
 \begin{lstlisting}[caption=Valori de stînga și dreapta, label=rlvalues]
 @a1 = @a2; @a3 = 123; `` ok
 123 = @a1; 125 = 456; `` error
 \end{lstlisting}
-
-\subsection{Valori împachetate}
-
-{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \lstinline|(@a, @b) = (@b.ensureRValue, @a.ensureRValue)|. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
-
-\subsection{Variabilele @ și \#}
-
-{Variabila @} este un acronim pentru @stack și Stack'stack. Variabilă de sistem care permite a importa/exporta valori în/din stivă. 
-
-{Variabila \#} este un acronim pentru @console, rezultatul comenzii este salvat în această variabilă, apoi printat în consolă sau transmis comenzii următoare.
 
 \subsection{Concluzii}
 

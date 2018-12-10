@@ -8,6 +8,7 @@ Stiva reprezintă containere grupate în stivă, fiecare container este strict l
 Starea reprezintă o listă dublă de containere, ele nu sunt legate de cod și sunt disponibile global. Implicit se creează un singur container, dar containere noi sunt create de utilizator.
 
 \subsection{Controlul stivelor}
+\label{stack:control}
 
 Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
 \begin{icItems}
@@ -48,13 +49,13 @@ Returnează variabila, care se află anume în acest container. De exemplu: deja
 
 Trece la următoarea iterație, disponibil doar pentru cicluri.
 
-Excepții posibile: \ferror{InvalidArgument}.
+Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Stack.break () : void|}
 
 Întrerupe imediat ciclul sau executarea funcției. Disponibil doar pentru cicluri și funcții.
 
-Excepții posibile: \ferror{InvalidArgument}.
+Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|Stack.return (value : any) : void|}
 

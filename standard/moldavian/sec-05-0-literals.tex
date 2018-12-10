@@ -54,6 +54,8 @@ Pentru definirea {\bf numerelor întregi} se folosesc succesiuni de cifre, înai
 
 {\bf Șirul de caractere} este o succesiune de caractere, limitată din ambele părți cu ghilimele \lstinline|"|. Pentru a adăuga ghilimele \lstinline|"| în șir se folosește succesiunea \lstinline|\"|. Alte simboluri de asemenea se scriu ca succesiuni din altele două: simbolul de tabulare - \lstinline|\t|, simbolul {\it linie nouă} - \lstinline|\n|, simbolul {\it pas în urmă} - \lstinline|\b|, \textbackslash \ - \lstinline|\\|.
 
+\
+
 \noindent Exemple -
 \begin{lstlisting}[numbers=none]
 "Hello \"to\" you!"; "Line1\nLine2"; "Tag1\n\bTag2\n\b"; "text"; "\\ \\ \n \\ \\";
@@ -65,8 +67,8 @@ Pentru definirea {\bf numerelor întregi} se folosesc succesiuni de cifre, înai
 
 \noindent Exemple -
 \begin{lstlisting}[numbers=none]
-@fruits = ["Apple" "Mango" "Banana" "Lime" "Lemon" "Olive"];
-@vegetables = ["Cress" "Mustard" "Guar" "Soybean" "Leek" "Ahipa"];
+@fruits = ["Apple", "Mango", "Banana", "Lime", "Lemon", "Olive"];
+@vegetables = ["Cress", "Mustard", "Guar", "Soybean", "Leek", "Ahipa"];
 \end{lstlisting}
 
 \subsubsection{Obiecte}
@@ -92,6 +94,10 @@ De asemenea cîmpul poate fi descris în formă prescurtată \lstinline|@var|, u
 Numai {\bf mulțimile vide} pot fi definite cu literal, literalul este foarte asemănător cu literalul obiectelor, numai că în loc de cîmpuri se indică coloane, care au următoarea sintaxă - \lstinline|name : type|, unde  {\it name} e numele coloanei și {\it type} e un tip de date.
 
 Coloana de asemenea poate fi descrisă în formă scurtă, folosind sintaxa \lstinline|type|, unde \lstinline|type| este un tip de date, în acest caz coloana primește numele tipului de date. În comparație cu obiectele aici lipsesc conflictele semantice.
+
+\
+
+\
 
 \noindent Exemple -
 \begin{lstlisting}[numbers=none]

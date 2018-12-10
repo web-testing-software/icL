@@ -52,13 +52,13 @@ Lungimea șirului este egală cu numărul de caractere;
 
 Ultimul caracter al șirului \lstinline|string.at (string'length - 1)|.
 
-Excepții posibile: \ferror{EmptyString}.
+Excepții posibile: \ferror{EmptyString} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|[r/o] string'(<int> n) : string|}
 
 Al n-lea caracter. n trebuie sa fie literal întreg, exemple: \lstinline|@str'0; @string'2|.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsection{Metode}
 
@@ -111,6 +111,8 @@ Excepții posibile: \ferror{OutOfBounds}.
 \end{icItems}
 
 Unele metode sunt ignorate, ele vor fi enumerate în capitolul \ref{regex}; Exemplu de cod, care folosește metodele enumerate este prezent pe foaia \ref{stringmethods}.
+
+\
 
 \begin{lstlisting}[caption=Metodele clasei string, label=stringmethods]
 @empty = "";
@@ -183,7 +185,7 @@ Inserează șirul \code{str} la sfîrșitul listei.
 
 Returnează al \code{i}-lea simbol.
 
-Excepții posibile: \ferror{OutOfBounds}.
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|string.beginsWith (str : string) : bool|}
 

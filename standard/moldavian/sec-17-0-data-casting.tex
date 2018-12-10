@@ -26,7 +26,7 @@ Conversează datele în tipul necesar. Disponibil în variațiile următoare:
 
 \lstinline|(value...) : (type...)| conversează fiecare valoare în tipul trebuit, ambele pachete ar trebui să dețină același număr de elemente. Returnează valori împachetate.
 
-Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|data :: type : bool|}
 
@@ -164,13 +164,13 @@ Returnează valoarea expresiei \lstinline|!string'empty|.
 
 Returnează număr întreg, care este rezultatul parsing-ului șirului \str.
 
-Excepții posibile: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|string : double|}
 
 Returnează număr decimal, care este rezultatul parsing-ului șirului \str. Partea întreagă de decimală se desparte prin punct, nu prin virgulă.
 
-Excepții posibile: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|string : string|}
 
@@ -184,13 +184,13 @@ Returnează \lstinline|[string]|.
 
 Returnează obiect, care este rezultatul parsing-ului șirului JSON \str. Obiectul JSON trebuie să conțină numai cîmpuri de următoarele tipuri: \bool, \integer, \double, \str{} și \listtype.
 
-Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|string : set|}
 
 Returnează o mulțime, care este rezultatul parsing-ului șirului JSON \str, care trebuie să conțină un masiv de obiecte și fiecare obiect trebuie să corespundă criteriilor operatorului \lstinline|string : object|.
 
-Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list : bool|}
 
@@ -200,7 +200,7 @@ Returnează valoarea expresiei \lstinline|!list'empty|.
 
 Returnează primul șir al listei, dacă lista constă dintr-un singur șir, în caz contrar generează excepție.
 
-Excepții posibile: \ferror{EmptyList} și \ferror{MultiList}.
+Excepții posibile: \ferror{EmptyList} și \ferror{MultiList} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|list : list|}
 
@@ -234,7 +234,7 @@ Returnează un șir JSON, care descrie mulțimea.
 
 Returnează singurul obiect, dacă mulțimea conține doar un singur obiect, în caz contrar generează o excepție.
 
-Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet}.
+Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set : list|}
 

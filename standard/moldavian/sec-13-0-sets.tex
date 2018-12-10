@@ -117,7 +117,7 @@ Exemple de folosire al metodelor descrise mai sus, sunt prezentate pe foaia \ref
 
 Numărul de argumente, trebuie să fie egal cu numărul de cîmpuri în header. Numărul de obiecte adăugate este egal cu lungimea celei mai lungi liste din \code{data}. Din listele mai scurte elementele vor fi adăugate repetat.
 
-Excepții posibile: \ferror{IncompatibleData}.
+Excepții posibile: \ferror{IncompatibleData} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set.clear () : set|}
 
@@ -131,7 +131,7 @@ Creează o copie, prin copierea datelor în alt container.
 
 Întoarce lista de valori al cîmpului \code{name}, acumulînd informație din toate obiectele mulțimii.
 
-Excepții posibile: \ferror{FieldNotFound}.
+Excepții posibile: \ferror{FieldNotFound} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set.hasField (name : string) : bool|}
 
@@ -141,25 +141,25 @@ Returnează \true, dacă header-ul mulțimii conține cîmpul \code{name}, în c
 
 Inserează un obiect nou, vectorul \code{data} trebuie numaidecît să fie compatibil complet cu header-ul mulțimii;
 
-Excepții posibile: \ferror{IncompatibleData}.
+Excepții posibile: \ferror{IncompatibleData} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set.insert (obj : object) : set|}
 
 Inserează un obiect nou, obiectul \code{obj} trebuie numaidecît să fie compatibil cu header-ul mulțimii.
 
-Excepții posibile: \ferror{IncompatibleObject}.
+Excepții posibile: \ferror{IncompatibleObject} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set.inserField (name : string, value : list, type = list)|}
 
 Creează un cîmp nou de tip \code{type}. \code{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \code{set.applicate}.
 
-Excepții posibile: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set.insertField (name : string, value : any, type = void)|}
 
 Creează un cîmp nou de tip \code{type}. Dacă \code{type == void} tipul va fi depistat automat, dar e mai bine de în indicat manual, poate exclude unele probleme în viitor.
 
-Excepții posibile: \ferror{FieldAlreadyExists}.
+Excepții posibile: \ferror{FieldAlreadyExists} (pr. tab. \ref{errors}).
 
 \subsubsection{\lstinline|set.remove (data : any ...) : set|}
 
@@ -173,6 +173,6 @@ Excepții posibile: \ferror{FieldAlreadyExists}.
 
 Șterge cîmpul \code{name} din header-ul mulțimii.
 
-Excepții posibile: \ferror{FieldNotFound}.
+Excepții posibile: \ferror{FieldNotFound} (pr. tab. \ref{errors}).
 
 %\newpage
