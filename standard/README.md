@@ -12,4 +12,16 @@ engish and russian.
 __24.12.2018__
 
 * [?] Add literal for dates ./date./.format/.
-* [?] Add literal for web elements #[#element], @[.class]
+* [?] Add literal for web elements:
+  * [?] #[#element]
+  * [?] @[.class]
+  * [?] css[el]
+  * [?] css+[els]
+  * [?] xpath[el]
+  * [?] xpath+[els]
+  * [?] link[]
+  * [?] link*[]
+  * [?] links[]
+  * [?] links*[]
+  * [?] tag[]
+  * [?] tags[]
