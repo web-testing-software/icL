@@ -116,6 +116,11 @@ public:
 	void rawInsert(const QString & text);
 
 	/**
+	 * @brief rawDrop drops the selected text
+	 */
+	void rawDrop();
+
+	/**
 	 * @brief linkAfter links a new selection after this
 	 * @param selection is the selection to link
 	 */

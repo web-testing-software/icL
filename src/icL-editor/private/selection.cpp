@@ -414,6 +414,34 @@ void Selection::rawInsert(const QString & text) {
 	m_begin->syncWith(m_end);
 }
 
+void Selection::rawDrop() {
+	auto beginFrag = m_begin->fragment(), endFrag = m_end->fragment();
+	auto beginLine = beginFrag->line(), endLine = endFrag->line();
+
+	if (beginLine == endLine) {
+		if (beginFrag == endFrag) {
+			beginFrag->rawDrop(m_begin->position(), m_end->position());
+		}
+		else {
+			endFrag->rawDrop(0, m_end->position());
+			beginFrag->rawDrop(m_begin->position());
+			m_end->syncWith(m_begin);
+
+			while (beginFrag->next() != endFrag) {
+				auto nextnext = beginFrag->next()->next();
+
+				delete beginFrag->next();
+				beginFrag->setNext(nextnext);
+			}
+		}
+	}
+	else {
+		while (beginLine->next() != endLine) {
+			beginLine->next()->deleteNow();
+		}
+	}
+}
+
 void Selection::linkAfter(Selection * selection) {
 	if (m_next != nullptr) {
 		m_next->m_prev    = selection;
