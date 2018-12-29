@@ -128,6 +128,22 @@ public slots:
 	/// @brief will be defined in Drawing class
 	virtual void dUpdateBackgroundGeometry() = 0;
 
+	/**
+	 * @brief lBackUpSelections save the positions of cursors
+	 */
+	void lBackUpSelections();
+
+	/**
+	 * @brief lRestoreSeletions restore the positions of cursors
+	 */
+	void lRestoreSeletions();
+
+	/**
+	 * @brief lOptimizeSelections join the selections, which intersercts each
+	 * other
+	 */
+	void lOptimizeSelections();
+
 protected:
 	/// @brief will be defined in Scroll class
 	virtual void sScrollUpBy(int by) = 0;
