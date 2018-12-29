@@ -2,6 +2,7 @@
 
 #include "../fragment/fragment.h"
 #include "../private/cursor.h"
+#include "../private/fixer.h"
 #include "../private/line.h"
 #include "../private/selection.h"
 #include "../self/logic.h"
@@ -46,6 +47,8 @@ void ExternalChanges::restoreFrom(Logic * logic, QLinkedList<QString> & list) {
 
 	logic->lRestoreSeletions();
 	logic->lOptimizeSelections();
+
+	logic->fixer()->fix(logic->first());
 }
 
 }  // namespace icL::editor
