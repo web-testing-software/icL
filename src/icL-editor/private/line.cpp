@@ -397,12 +397,21 @@ void Line::deleteNow() {
 		delete m_first;
 	}
 
-	if (phantom != nullptr) {
-		while (phantom->isPhantom()) {
-			auto next = phantom->next();
+	while (phantom != nullptr) {
+		phantom->deleteNow();
+	}
 
-			phantom->deleteNow();
-			phantom = next;
+	if (m_prev != nullptr) {
+		if (m_isPhantom) {
+			if (m_next->isPhantom()) {
+				m_prev->phantom = m_next;
+			}
+			else {
+				m_prev->phantom = nullptr;
+			}
+		}
+		else {
+			m_prev->m_next = m_next;
 		}
 	}
 
