@@ -245,6 +245,17 @@ public:
 	 */
 	void showPhantoms(bool show = true);
 
+	/**
+	 * @brief replaceContents replaces the content of line
+	 * @param content is the new content of line
+	 */
+	void replaceContents(const QString & content);
+
+	/**
+	 * @brief deleteNow deletes the lines now
+	 */
+	void deleteNow();
+
 private:
 	// Properties
 

@@ -102,11 +102,18 @@ public:
 	QString delete1();
 
 	/**
-	 * @brief insert inserts text be replacing the selected text
+	 * @brief insert inserts text
 	 * @param text is the text to insert
 	 * @return the inserted text
 	 */
 	QString insert(const QString & text);
+
+	/**
+	 * @brief rawInsert inserts text
+	 * @param text is the text to insert
+	 * @note the text will be inserted as is, without modifications
+	 */
+	void rawInsert(const QString & text);
 
 	/**
 	 * @brief linkAfter links a new selection after this

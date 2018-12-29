@@ -384,9 +384,7 @@ QString Selection::delete1() {
 
 QString Selection::insert(const QString & text) {
 	// If the selection is not empty
-	if (*m_begin != *m_end) {
-		return {};
-	}
+	Q_ASSERT(*m_begin == *m_end);
 
 	m_end->fragment()->insert(m_begin, m_end, m_end->position(), text);
 
@@ -406,6 +404,14 @@ QString Selection::insert(const QString & text) {
 	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
+}
+
+void Selection::rawInsert(const QString & text) {
+	// If the selection is not empty
+	Q_ASSERT(*m_begin == *m_end);
+
+	m_end->fragment()->rawInsert(m_end, m_end->position(), text);
+	m_begin->syncWith(m_end);
 }
 
 void Selection::linkAfter(Selection * selection) {

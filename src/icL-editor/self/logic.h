@@ -8,7 +8,7 @@
 class QStaticText;
 
 /**
- * @brief The icL.editor namespace contains all needed component to create a
+ * @brief The icL.editor namespace contains all needed components to create a
  * modern and powerfull text editor
  */
 namespace icL::editor {

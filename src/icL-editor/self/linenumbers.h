@@ -1,5 +1,5 @@
-#ifndef LINENUMBERS_H
-#define LINENUMBERS_H
+#ifndef icL_editor_LineNumbers
+#define icL_editor_LineNumbers
 
 #include <QQuickPaintedItem>
 #include <QStaticText>
@@ -80,4 +80,4 @@ private:
 
 }  // namespace icL::editor
 
-#endif  // LINENUMBERS_H
+#endif  // icL_editor_LineNumbers

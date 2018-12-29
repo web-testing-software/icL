@@ -51,7 +51,7 @@ class Fragment
 public:
 	explicit Fragment(Line * parent = nullptr);
 
-	virtual ~Fragment() = default;
+	virtual ~Fragment();
 
 	/**
 	 * @brief prev is the previous sibling
@@ -181,6 +181,28 @@ public:
 	 * @param value true - activates, false - deactivates
 	 */
 	void setReadOnly(bool value);
+
+	/**
+	 * @brief replaceContent replace all the content of this line
+	 * @param content is the new content of fragment
+	 */
+	void replaceContent(const QString & content);
+
+	/**
+	 * @brief rawInsert inserts data in fragment without modifications
+	 * @param cursor is the cursor which need to be updated
+	 * @param pos is the position of insertion
+	 * @param text is the text to insert
+	 */
+	void rawInsert(Cursor * cursor, int pos, const QString & text);
+
+	/**
+	 * @brief rawDrop removes the data in fragment
+	 * @param cursor is the cursor which need to be updated
+	 * @param begin is the begin position
+	 * @param end is the last cursor
+	 */
+	void rawDrop(Cursor * cursor, int begin = 0, int end = -1);
 
 public:
 	/**
@@ -316,7 +338,7 @@ protected:
 	 * @param text is the text to analize
 	 * @return the count of spaces at the begin
 	 */
-	static int countSpacesAtBegin(const QString & text);
+	int countSpacesAtBegin(const QString & text);
 
 	/**
 	 * @brief countSpacesAtEnd counts the spaces at the end of text

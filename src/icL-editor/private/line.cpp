@@ -375,4 +375,27 @@ void Line::showPhantoms(bool show) {
 	}
 }
 
+void Line::replaceContents(const QString & content) {
+	while (m_first->next() != nullptr) {
+		auto * next = m_first->next();
+
+		m_first->setNext(m_first->next()->next());
+		delete next;
+	}
+
+	m_first->replaceContent(content);
+
+	m_isNew     = false;
+	m_isChanged = true;
+}
+
+void Line::deleteNow() {
+	while (m_first != nullptr) {
+		auto * next = m_first->next();
+
+		m_first = next->next();
+		delete m_first;
+	}
+}
+
 }  // namespace icL::editor

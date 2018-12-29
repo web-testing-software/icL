@@ -1,5 +1,5 @@
-#ifndef CURSORSAREA_H
-#define CURSORSAREA_H
+#ifndef icL_editor_CursorsArea
+#define icL_editor_CursorsArea
 
 #include "../private/alpha.h"
 
@@ -63,4 +63,4 @@ private:
 
 }  // namespace icL::editor
 
-#endif  // CURSORSAREA_H
+#endif  // icL_editor_CursorsArea

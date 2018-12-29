@@ -158,6 +158,8 @@ QSGNode * CursorsArea::updatePaintNode(
 
 		selection = selection->next();
 		cNode     = dynamic_cast<QSGGeometryNode *>(cNode->nextSibling());
+
+		qDebug() << vertices[0].x << vertices[0].y;
 	}
 
 	//	qDebug() << lns;

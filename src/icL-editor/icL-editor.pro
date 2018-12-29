@@ -48,7 +48,9 @@ HEADERS += \
     self/opacitymask.h \
     self/editorinternal.h \
     self/cursorsarea.h \
-    self/scroll.h
+    self/scroll.h \
+    history/revision.h \
+    history/externalchanges.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -71,4 +73,5 @@ SOURCES += \
     self/opacitymask.cpp \
     self/editorinternal.cpp \
     self/cursorsarea.cpp \
-    self/scroll.cpp
+    self/scroll.cpp \
+    history/externalchanges.cpp

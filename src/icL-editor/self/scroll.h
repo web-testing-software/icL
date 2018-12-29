@@ -1,5 +1,5 @@
-#ifndef SCROLL_H
-#define SCROLL_H
+#ifndef icL_editor_ScrollBar
+#define icL_editor_ScrollBar
 
 #include "drawing.h"
 
@@ -53,4 +53,4 @@ protected:
 
 }  // namespace icL::editor
 
-#endif  // SCROLL_H
+#endif  // icL_editor_ScrollBar
