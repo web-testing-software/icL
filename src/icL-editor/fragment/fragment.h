@@ -202,7 +202,7 @@ public:
 	 * @param begin is the begin position
 	 * @param end is the last cursor
 	 */
-	void rawDrop(Cursor * cursor, int begin = 0, int end = -1);
+	void rawDrop(int begin = 0, int end = -1);
 
 public:
 	/**

@@ -396,6 +396,52 @@ void Line::deleteNow() {
 		m_first = next->next();
 		delete m_first;
 	}
+
+	if (phantom != nullptr) {
+		while (phantom->isPhantom()) {
+			auto next = phantom->next();
+
+			phantom->deleteNow();
+			phantom = next;
+		}
+	}
+
+	delete this;
+}
+
+void Line::rawDropBegin(int pos) {
+	int accumulatedPos = 0;
+
+	while (m_first->length() + accumulatedPos < pos) {
+		auto next = m_first->next();
+
+		accumulatedPos += m_first->length();
+
+		delete m_first;
+		m_first = next;
+	}
+
+	m_first->rawDrop(0, pos - accumulatedPos);
+}
+
+void Line::rawDropEnd(int pos) {
+	int accumulatedPos = 0;
+
+	auto it = m_first;
+
+	while (it->length() + accumulatedPos <= pos) {
+		accumulatedPos += it->length();
+		it = it->next();
+	}
+
+	while (it->next() != nullptr) {
+		auto nextnext = it->next()->next();
+
+		delete it->next();
+		it->setNext(nextnext);
+	}
+
+	it->rawDrop(pos - accumulatedPos);
 }
 
 }  // namespace icL::editor

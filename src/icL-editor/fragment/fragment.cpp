@@ -254,10 +254,7 @@ void Fragment::rawInsert(Cursor * cursor, int pos, const QString & text) {
 	}
 }
 
-void Fragment::rawDrop(Cursor * cursor, int begin, int end) {
-	cursor->setFragment(this);
-	cursor->setPosition(begin);
-
+void Fragment::rawDrop(int begin, int end) {
 	QString content = QString(m_spaces, ' ') + this->content;
 
 	content.remove(begin, end - begin);

@@ -256,6 +256,19 @@ public:
 	 */
 	void deleteNow();
 
+	/**
+	 * @brief rawDropBegin drop drop the symbols on left of the 'pos'th char
+	 * @param pos the position of first undeleted char
+	 */
+	void rawDropBegin(int pos);
+
+	/**
+	 * @brief rawDropEnd drop the symbols on right of the 'pos'th character
+	 * inluding it
+	 * @param pos the position of first deleted symbol
+	 */
+	void rawDropEnd(int pos);
+
 private:
 	// Properties
 
