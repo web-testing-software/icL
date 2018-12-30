@@ -103,7 +103,7 @@ void Mouse::mouseMoveEvent(QMouseEvent * event) {
 }
 
 void Mouse::mouseReleaseEvent(QMouseEvent * event) {
-	//	qDebug() << "is released";
+	lOptimizeSelections();
 }
 
 void Mouse::hoverMoveEvent(QHoverEvent * event) {

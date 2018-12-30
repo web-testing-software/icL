@@ -141,6 +141,16 @@ public:
 	EditorInternal * getEditor();
 
 	/**
+	 * @brief backUp saves the line number to restore the position after
+	 */
+	void backUp();
+
+	/**
+	 * @brief restore restores the valide state of cursor
+	 */
+	void restore();
+
+	/**
 	 * @brief operator == compare position of cursors
 	 * @param other is the cursor to compare with
 	 * @return true if both are place in on place, otherwise false
@@ -176,14 +186,18 @@ public:
 private:
 	// Properties
 
-	/// @brief fragment of text in which the cursor in placed
+	/// \brief fragment of text in which the cursor in placed
 	Fragment * m_fragment = nullptr;
 
-	/// @brief the relative position to fragment begin
+	/// \brief the relative position to fragment begin
 	int8_t m_position = 0;
 
-	/// @brief the preffered postiotion relative to line (!fragment) begin
+	/// \brief the preffered position relative to line (!fragment) begin
 	uint8_t m_preffered = 0;
+
+	/// \brief m_lineNumber line number, used to restore position after document
+	/// update
+	int16_t m_lineNumber = 0;
 };
 
 }  // namespace icL::editor

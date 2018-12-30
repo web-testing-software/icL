@@ -45,10 +45,12 @@ void ExternalChanges::restoreFrom(Logic * logic, QLinkedList<QString> & list) {
 		  logic->main()->end(), line->first()->length(), toPaste);
 	}
 
-	logic->lRestoreSeletions();
+	// restore the valid state of selectionsa
+	logic->lRestoreSelections();
+	// fix the lines numbers and begin positions
+	logic->fixer()->fixNow(logic->first());
+	// remove useless selection
 	logic->lOptimizeSelections();
-
-	logic->fixer()->fix(logic->first());
 }
 
 }  // namespace icL::editor

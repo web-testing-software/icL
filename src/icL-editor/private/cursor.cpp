@@ -35,17 +35,7 @@ int Cursor::getPosInLine() {
 }
 
 int Cursor::getPosInFile() {
-	int    pos = 0;
-	auto * it  = m_fragment->line()->first();
-
-	while (it != m_fragment) {
-		pos += it->length();
-		it = it->next();
-	}
-
-	pos += m_position;
-
-	return pos;
+	return m_fragment->line()->beginPos() + getPosInLine();
 }
 
 bool Cursor::stepForward(int number, Cursor * block) {
@@ -328,6 +318,15 @@ void Cursor::matchPreffered() {
 
 EditorInternal * Cursor::getEditor() {
 	return dynamic_cast<EditorInternal *>(m_fragment->line()->parent());
+}
+
+void Cursor::backUp() {
+	m_lineNumber = m_fragment->line()->lineNumber();
+}
+
+void Cursor::restore() {
+	m_fragment = getEditor()->getLineByNumber(m_lineNumber)->first();
+	matchPreffered();
 }
 
 bool Cursor::operator==(const Cursor & other) const {

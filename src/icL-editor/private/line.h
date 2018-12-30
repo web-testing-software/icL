@@ -60,7 +60,7 @@ public:
 	uint8_t length() const;
 
 	/**
-	 * @brief beginPos is the begin pselectionosition of the line
+	 * @brief beginPos is the begin position of the line
 	 * @return the begin position of text fragment
 	 */
 	int32_t beginPos() const;

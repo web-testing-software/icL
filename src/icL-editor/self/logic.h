@@ -76,6 +76,13 @@ public:
 	 */
 	Q_INVOKABLE bool loadFile(const QString & path);
 
+	/**
+	 * @brief getLineByNumber get the n^th line
+	 * @param number is the number of line
+	 * @return a pointer to a line with number <= n
+	 */
+	Line * getLineByNumber(int16_t n);
+
 signals:
 	/// @brief this signal is emited to redraw mask, line numbers and editor
 	void requestRepaint();
@@ -123,10 +130,12 @@ public slots:
 	 */
 	void lChangeNumberOfLines(int newValue);
 
-	/// @brief will be defined in Drawing class
+	/// \brief will be defined in Drawing class
 	virtual int dVisbileLines() const = 0;
-	/// @brief will be defined in Drawing class
+	/// \brief will be defined in Drawing class
 	virtual void dUpdateBackgroundGeometry() = 0;
+	/// \brief will be defined in History class
+	virtual Selection * hGetFirstSelection() = 0;
 
 	/**
 	 * @brief lBackUpSelections save the positions of cursors

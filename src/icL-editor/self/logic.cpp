@@ -114,6 +114,18 @@ bool Logic::loadFile(const QString & path) {
 	return true;
 }
 
+Line * Logic::getLineByNumber(int16_t n) {
+	auto * it = m_first;
+	int    i  = 0;
+
+	while (it->next() != nullptr && i < n) {
+		it = it->next();
+		i++;
+	}
+
+	return it;
+}
+
 void Logic::setFirst(Line * first) {
 	if (m_first == first)
 		return;
@@ -187,6 +199,38 @@ void Logic::lChangeNumberOfLines(int newValue) {
 
 	emit linesCountChanged();
 	dUpdateBackgroundGeometry();
+}
+
+void Logic::lBackUpSelections() {
+	auto it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		it->begin()->backUp();
+		it->end()->backUp();
+	}
+}
+
+void Logic::lRestoreSelections() {
+	auto it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		it->begin()->restore();
+		it->end()->restore();
+	}
+}
+
+void Logic::lOptimizeSelections() {
+	auto it = hGetFirstSelection();
+
+	while (it->next() != nullptr) {
+		if (it->next()->begin()->getPosInFile() <= it->end()->getPosInFile()) {
+			it->end()->syncWith(it->next()->end());
+			it->next()->remove();
+		}
+		else {
+			it = it->next();
+		}
+	}
 }
 
 }  // namespace icL::editor
