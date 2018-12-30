@@ -172,16 +172,22 @@ public:
 	void setFragment(Fragment * fragment);
 
 	/**
-	 * @brief setPosition set the position in fragment
+	 * @brief setPosition sets the position in fragment
 	 * @param position is the new position in fragment
 	 */
 	void setPosition(int8_t position);
 
 	/**
-	 * @brief setPreffered set the preffered absolute position
+	 * @brief setPreffered sets the preffered absolute position
 	 * @param preffered is the new preffered position
 	 */
 	void setPreffered(uint8_t preffered);
+
+	/**
+	 * @brief setLineNumber set the line number
+	 * @param lineNumber is the new line number for cursor
+	 */
+	void setLineNumber(int16_t lineNumber);
 
 private:
 	// Properties

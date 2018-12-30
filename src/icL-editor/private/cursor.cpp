@@ -358,4 +358,11 @@ void Cursor::setPreffered(uint8_t preffered) {
 	m_preffered = preffered;
 }
 
+void Cursor::setLineNumber(int16_t lineNumber) {
+	if (m_lineNumber == lineNumber)
+		return;
+
+	m_lineNumber = lineNumber;
+}
+
 }  // namespace icL::editor

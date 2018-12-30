@@ -145,10 +145,16 @@ public:
 
 public:
 	/**
-	 * @brief setNext add a new selection to collection
-	 * @param next is the new selection in collection
+	 * @brief setNext sets the next selection in collection
+	 * @param next is the new next selection in collection
 	 */
 	void setNext(Selection * next);
+
+	/**
+	 * @brief setPrev sets the prev selection is collection
+	 * @param prev is the new previous selection in collection
+	 */
+	void setPrev(Selection * prev);
 
 	/**
 	 * @brief setRtl change the main cursor

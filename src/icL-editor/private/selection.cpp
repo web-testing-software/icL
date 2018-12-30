@@ -415,6 +415,10 @@ void Selection::rawInsert(const QString & text) {
 }
 
 void Selection::rawDrop() {
+	if (*m_begin == *m_end) {
+		return;
+	}
+
 	auto beginFrag = m_begin->fragment(), endFrag = m_end->fragment();
 	auto beginLine = beginFrag->line(), endLine = endFrag->line();
 
@@ -484,6 +488,13 @@ void Selection::setNext(Selection * next) {
 		return;
 
 	m_next = next;
+}
+
+void Selection::setPrev(Selection * prev) {
+	if (m_prev == prev)
+		return;
+
+	m_prev = prev;
 }
 
 void Selection::setRtl(bool rtl) {

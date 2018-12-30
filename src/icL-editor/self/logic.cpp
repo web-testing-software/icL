@@ -1,6 +1,7 @@
 #include "logic.h"
 
 #include "../fragment/fragment.h"
+#include "../history/internalchange.h"
 #include "../private/cursor.h"
 #include "../private/fixer.h"
 #include "../private/line.h"
@@ -230,6 +231,54 @@ void Logic::lOptimizeSelections() {
 		else {
 			it = it->next();
 		}
+	}
+}
+
+void Logic::lSyncSelecionsWith(InternalChange * internalChange) {
+	while (m_main->prev()) {
+		m_main->prev()->remove();
+	}
+
+	while (m_main->next()) {
+		m_main->next()->remove();
+	}
+
+	// The main seletion was found
+	Selection * lastSelectionAfterMain = nullptr;
+
+	for (auto * change : internalChange->getChanges()) {
+		Selection * current;
+
+		if (change->isMain) {
+			current                = m_main;
+			lastSelectionAfterMain = m_main;
+		}
+		else {
+			current = new Selection();
+
+			if (lastSelectionAfterMain == nullptr) {
+
+				if (m_main->prev() != nullptr) {
+					m_main->prev()->setNext(current);
+				}
+
+				current->setPrev(m_main->prev());
+				current->setNext(m_main);
+				m_main->setPrev(current);
+			}
+			else {
+				lastSelectionAfterMain->setNext(current);
+				current->setPrev(lastSelectionAfterMain);
+
+				lastSelectionAfterMain = current;
+			}
+		}
+
+		current->begin()->setLineNumber(change->line);
+		current->begin()->setPreffered(change->column);
+
+		current->begin()->restore();
+		current->end()->syncWith(current->begin());
 	}
 }
 

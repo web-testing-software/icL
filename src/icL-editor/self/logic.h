@@ -17,6 +17,7 @@ class Selection;
 class Line;
 class Fixer;
 class LineNumbers;
+class InternalChange;
 
 /**
  * @brief The Logic class contains the internal logic of editor
@@ -136,6 +137,8 @@ public slots:
 	virtual void dUpdateBackgroundGeometry() = 0;
 	/// \brief will be defined in History class
 	virtual Selection * hGetFirstSelection() = 0;
+	/// \brief will be defined in History class
+	virtual Selection * hGetLastSelection() = 0;
 
 	/**
 	 * @brief lBackUpSelections save the positions of cursors
@@ -145,13 +148,19 @@ public slots:
 	/**
 	 * @brief lRestoreSeletions restore the positions of cursors
 	 */
-	void lRestoreSeletions();
+	void lRestoreSelections();
 
 	/**
 	 * @brief lOptimizeSelections join the selections, which intersercts each
 	 * other
 	 */
 	void lOptimizeSelections();
+
+	/**
+	 * @brief syncSelecionsWith
+	 * @param change
+	 */
+	void lSyncSelectionsWith(InternalChange * change);
 
 protected:
 	/// @brief will be defined in Scroll class
