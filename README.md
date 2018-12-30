@@ -5,7 +5,7 @@ project please read the standard for language icL. Now the standard is in
 developement. Please wait for details. 
 
 The documentation of icL code can be found 
-[here](https://lixcode.gitlab.io/icL-docs/docs).
+[here](https://web.testing.gitlab.io/icL-docs/docs/).
 
 # Look
 
