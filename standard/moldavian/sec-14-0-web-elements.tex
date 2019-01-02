@@ -6,7 +6,36 @@
 
 Elementul se numește unic dacă este creat de funcția \lstinline|Doc.query| sau \lstinline|element.query|. Elementul se numește colecție dacă este creat de funcția \lstinline|Doc.queryAll| sau \lstinline|element.queryAll|. Extragerea elementului după index returnează element unic. 
 
-\subsection{Свойства}
+\subsection{Literal}
+
+Elementele web pot fi declarate prin literalul \lstinline|method@target[selector]|, unde \lstinline|method| e unul din următoarele cuvinte: \lstinline|css|, \lstinline|xpath|, \lstinline|link|, \lstinline|links|, \lstinline|tag|, \lstinline|tags|. \lstinline|@target| e o variabilă locală, care conține un element web. \lstinline|selector| e un selector, un șir de caractere, după care se definește, care elemente vor fi capturate, fiecare metodă trebuiește un selector aparte.
+
+Metoda \lstinline|css| primește în calitate de selector un selector CSS. Acestă metodă va returna primul element compatibil. Pentru a obține toate elemente folosiți \lstinline|css:all|, unde \lstinline|all| este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+
+Metoda \lstinline|xpath| primește în calitate de selector o cale XPath. Acestă metodă va returna primul element compatibil. Pentru a obține toate elemente folosiți \lstinline|xpath:all|, unde \lstinline|all| este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+
+Metoda \lstinline|link| primește în calitate de selector textul linkului și returnează linkul corespunzător. Pentru a indica un fragment de text folosiți \lstinline|link:fragment|, unde \lstinline|fragment| este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+
+Metoda \lstinline|links| primește în calitate de selector un text și returnează toate linkurile, care conțin exact acest text. Pentru a indica un fragment de text folosiți \lstinline|link:fragment|, unde \lstinline|fragment| este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+
+Metoda \lstinline|tag| primește în calitate de selector un nume de tag și returnează primul element al tagului corespunzător.
+
+Metoda \lstinline|tags| primește în calitate de selector un nume de tag și returnează toate elemente tag-ului corespunzător.
+
+Exemple de literale -
+\begin{lstlisting}[numbers=none]
+@div = tag[div];
+@a = tag@div[a];
+`` @a == css[div a]
+`` @a != css[div > a]
+
+css[#content > div:nth-of-type(3)]
+css[header ul > li:nth-child(even)]
+\end{lstlisting}
+
+\
+
+\subsection{Proprietăți}
 
 Elementele web au următoarele proprietăți:
 \begin{icItems}
@@ -109,25 +138,7 @@ Excepții posibile: \ferror{OutOfBounds}, \ferror{StaleElementReference} (pr. ta
 
 \subsection{Operatori}
 
-În contextul elementelor web apar operatori noi:
-\begin{icItems}
-	\item \lstinline|void % element : element|;
-	\item \lstinline|element % void : element|;
-	\item \lstinline|element % element : element|;
-	\item \lstinline|[element ...] : element|;
-\end{icItems}
-
-\subsubsection{\lstinline|void \% element : element|}
-
-Returnează elementul primit.
-
-\subsubsection{\lstinline|element \% void : element|}
-
-Returnează elementul primit.
-
-\subsubsection{\lstinline|element \% element : element|}
-
-Returnează o colecție nouă, care conține elementele din ambele argumente.
+În contextul elementelor web apare un operator nou: \lstinline|[element ...] : element|;
 
 \subsubsection{\lstinline|[element ...] : element|}
 
