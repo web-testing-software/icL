@@ -6,6 +6,34 @@
 
 Элемент считается единственным если он получен с помощью функций \lstinline|Doc.query| или \lstinline|element.query|. Элемент считается коллекцией если он получен с помощью функций \lstinline|Doc.queryAll| или \lstinline|element.queryAll|. При получении элемента по индексу, результат также будет единственным.
 
+\subsection{Литерал}
+
+Веб-элементы могут быть описаны литералом \lstinline|method@target[selector]|, где \lstinline|method| - одно из следующих фиксируемых слов: \lstinline|css|, \lstinline|xpath|, \lstinline|link|, \lstinline|links|, \lstinline|tag|, \lstinline|tags|. \lstinline|@target| - локальная переменная содержащая веб-элемент. \lstinline|selector| - селектор, набор последовательных символов, по которому определяется какие элементы будут выбраны, для каждого метода нужен специфический селектор.
+
+Метод \lstinline|css| получает в качестве селектора - селектор CSS. Данный метод будет возвращать первый подходящий элемент. Чтобы получить все используете \lstinline|css:all|, где \lstinline|all| - модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
+
+Метод \lstinline|xpath| получает в качестве селектора - путь XPath. Данный метод будет возвращать первый подходящий элемент. Чтобы получить все используете \lstinline|xpath:all|, где \lstinline|all| - модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
+
+Метод \lstinline|link| получает в качестве селектора текст ссылки и возвращает соответствующую ссылку.
+
+Метод \lstinline|links| получает в качестве селектора текст ссылки и возвращает все подходящие ссылки.
+
+Метод \lstinline|tag| получает в качестве селектора название тега и возвращает первый элемент соответствующего тега.
+
+Метод \lstinline|tags| получает в качестве селектора название тега и возвращает все элементы соответствующего тега.
+
+Примеры литералов -
+\begin{lstlisting}[numbers=none]
+@div = tag[div];
+@a = tag@div[a];
+`` @a == css[div a]
+`` @a != css[div > a]
+
+css[#content > div:nth-of-type(3)]
+css[header ul > li:nth-child(even)]
+\end{lstlisting}
+
+ 
 \subsection{Свойства}
 
 Веб-элементы имеют следующее свойства:
@@ -109,25 +137,7 @@
 
 \subsection{Операторы}
 
-В контексте веб-элементов появляются новые операторы:
-\begin{icItems}
-	\item \lstinline|void % element : element|;
-	\item \lstinline|element % void : element|;
-	\item \lstinline|element % element : element|;
-	\item \lstinline|[element ...] : element|;
-\end{icItems}
-
-\subsubsection{\lstinline|void \% element : element|}
-
-Возвращает полученный элемент.
-
-\subsubsection{\lstinline|element \% void : element|}
-
-Возвращает полученный элемент.
-
-\subsubsection{\lstinline|element \% element : element|}
-
-Возвращает новую коллекцию, содержащая обоих элементов.
+В контексте веб-элементов появляются новый оператор \lstinline|[element ...] : element|.
 
 \subsubsection{\lstinline|[element ...] : element|}
 
