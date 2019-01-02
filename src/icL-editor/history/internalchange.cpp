@@ -13,6 +13,20 @@ ChangeEntity::ChangeEntity(int line, int column, bool isMain)
 	, column(column)
 	, isMain(isMain) {}
 
+InternalChange::~InternalChange() {
+	for (auto * ptr : changes) {
+		delete ptr;
+	}
+}
+
+bool InternalChange::hasInsert() {
+	return m_hasInsert;
+}
+
+void InternalChange::markInsert() {
+	m_hasInsert = true;
+}
+
 void InternalChange::undo(Logic * logic) {
 	logic->lSyncSelectionsWith(this);
 
@@ -32,6 +46,10 @@ void InternalChange::undo(Logic * logic) {
 	}
 }
 
+const QLinkedList<ChangeEntity *> InternalChange::getChanges() {
+	return changes;
+}
+
 void InternalChange::redo(Logic * logic) {
 	logic->lSyncSelectionsWith(this);
 
@@ -46,10 +64,6 @@ void InternalChange::redo(Logic * logic) {
 		itSelection = itSelection->prev();
 		itChange--;
 	}
-}
-
-const QLinkedList<ChangeEntity *> InternalChange::getChanges() {
-	return changes;
 }
 
 }  // namespace icL::editor

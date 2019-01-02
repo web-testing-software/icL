@@ -137,11 +137,30 @@ protected:
 	 */
 	void hFixSelections();
 
-protected:
 	/**
-	 * @brief numberOfCursors is the number of cursors in the text editor
+	 * @brief getCurrent returns or create a new change entity
+	 * @param forDelete true if it is need for deletion, false - for insertion
+	 * @return a new or existent changes entity
 	 */
+	InternalChange * hGetCurrentChangeEntity(bool forDelete);
+
+	/**
+	 * @brief getNewChangeEntity return a new inited change entity
+	 * @return a new inited change entity
+	 */
+	InternalChange * hGetNewChangeEntity();
+
+protected:
+	/// \brief numberOfCursors is the number of cursors in the text editor
 	int numberOfCursors = 1;
+
+private:
+	/// \brief m_currentChange is the pointer to current change
+	InternalChange * m_currentChange = nullptr;
+
+	/// \brief cursorWasMoved detect if the cursor was moved, it means that the
+	/// change entity must be updated
+	bool cursorWasMoved = false;
 };
 
 }  // namespace icL::editor

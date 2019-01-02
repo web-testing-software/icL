@@ -38,16 +38,43 @@ class InternalChange : public Revision
 {
 public:
 	InternalChange();
+	~InternalChange();
+
+	/**
+	 * @brief hasInsert returns true if chages has some insertions
+	 * @return true if chages has some insertions
+	 */
+	bool hasInsert();
+
+	/**
+	 * @brief markInsert marks that the changes has insertions now
+	 */
+	void markInsert();
+
+	void addChange(int line, int column, bool isMain);
+
+	void dropChange(int line, int column, bool isMain);
+
+	/**
+	 * @brief getChanges returns the list of changes
+	 * @return the list of changes
+	 */
+	const QLinkedList<ChangeEntity *> getChanges();
 
 	// Revision interface
 public:
 	void undo(Logic * logic) override;
 	void redo(Logic * logic) override;
 
-	const QLinkedList<ChangeEntity *> getChanges();
-
 private:
+	/// \brief changes is the list of changes in project
 	QLinkedList<ChangeEntity *> changes;
+
+	/// \brief droppedChanges is the list of changes of dropped cursors
+	QLinkedList<ChangeEntity *> droppedChanges;
+
+	/// \brief m_hasInsert defines if the changes has some inserted text
+	bool m_hasInsert = false;
 };
 
 }  // namespace icL::editor

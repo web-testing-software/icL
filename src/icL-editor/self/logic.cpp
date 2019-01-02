@@ -234,7 +234,7 @@ void Logic::lOptimizeSelections() {
 	}
 }
 
-void Logic::lSyncSelecionsWith(InternalChange * internalChange) {
+void Logic::lSyncSelectionsWith(InternalChange * internalChange) {
 	while (m_main->prev()) {
 		m_main->prev()->remove();
 	}

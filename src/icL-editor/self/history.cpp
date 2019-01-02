@@ -1,6 +1,7 @@
 #include "history.h"
 
 #include "../fragment/fragment.h"
+#include "../history/internalchange.h"
 #include "../private/cursor.h"
 #include "../private/line.h"
 #include "../private/selection.h"
@@ -163,5 +164,34 @@ bool History::hHasSelection() {
 void History::hUpdateHistories() {}
 
 void History::hFixSelections() {}
+
+InternalChange * History::hGetCurrentChangeEntity(bool forDelete) {
+
+	if (cursorWasMoved || m_currentChange == nullptr) {
+		return hGetNewChangeEntity();
+	}
+
+	if (m_currentChange->hasInsert() && forDelete) {
+		return hGetNewChangeEntity();
+	}
+
+	return m_currentChange;
+}
+
+InternalChange * History::hGetNewChangeEntity() {
+	InternalChange * ret = new InternalChange();
+
+	auto * it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		ret->addChange(
+		  it->begin()->fragment()->line()->lineNumber(),
+		  it->begin()->getPosInLine(), it == m_main);
+
+		it = it->next();
+	}
+
+	return ret;
+}
 
 }  // namespace icL::editor
