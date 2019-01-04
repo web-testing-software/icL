@@ -26,6 +26,8 @@ struct ChangeEntity
 	int line;
 	/// \brief column is the column of cursor
 	int column;
+	/// \brief stepBack is the number of chars deleted to left
+	int stepBack;
 	/// \brief isMain is true for main cursor, otherwise false
 	bool isMain;
 	/// \brief selection is the selection to undo/redo changes
@@ -51,8 +53,22 @@ public:
 	 */
 	void markInsert();
 
-	void addChange(int line, int column, bool isMain);
+	/**
+	 * @brief addChange add a new change to group
+	 * @param line is the line number of text cursor
+	 * @param column is the char number in line of text cursor
+	 * @param isMain is true if this is the main cursor, otherwise is false
+	 * @return a new change entity or a restored change from droppedChanges or
+	 * nullptr if exists a change with the same line but different column
+	 */
+	ChangeEntity * addChange(int line, int column, bool isMain);
 
+	/**
+	 * @brief dropChange delete a change from group
+	 * @param line is line number of text cursor
+	 * @param column is the char number in line of text cursor
+	 * @param isMain is true if this is main cursor, otherwise is false
+	 */
 	void dropChange(int line, int column, bool isMain);
 
 	/**
