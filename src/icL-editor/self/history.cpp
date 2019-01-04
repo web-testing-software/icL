@@ -106,63 +106,50 @@ void History::hAddCursorOnNextLine() {
 }
 
 void History::hMoveCursorChar(int step) {
+	cursorWasMoved = true;
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		it->move(step);
-		it = it->next();
-	}
+	hForEachForward([step](Selection * selection) { selection->move(step); });
+	hFixSelections();
 }
 
 void History::hMoveCursorWord(int step) {
+	cursorWasMoved = true;
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		it->moveOverWords(step);
-		it = it->next();
-	}
+	hForEachBackward(
+	  [step](Selection * selection) { selection->moveOverWords(step); });
+	hFixSelections();
 }
 
 void History::hMoveCursorLine(int step) {
+	cursorWasMoved = true;
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		it->moveUpDown(step);
-		it = it->next();
-	}
+	hForEachForward(
+	  [step](Selection * selection) { selection->moveUpDown(step); });
+	hFixSelections();
 }
 
 void History::hSelectChar(int step) {
+	cursorWasMoved = true;
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		it->move(1, true);
-		it = it->next();
-	}
+	hForEachForward(
+	  [step](Selection * selection) { selection->move(step, true); });
+	hFixSelections();
 }
 
 void History::hSelectWord(int step) {
+	cursorWasMoved = true;
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		it->moveOverWords(step, true);
-		it = it->next();
-	}
+	hForEachBackward(
+	  [step](Selection * selection) { selection->moveOverWords(step, true); });
+	hFixSelections();
 }
 
 void History::hSelectLine(int step) {
+	cursorWasMoved = true;
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		it->moveUpDown(step, true);
-		it = it->next();
-	}
+	hForEachForward(
+	  [step](Selection * selection) { selection->moveUpDown(step, true); });
+	hFixSelections();
 }
 
 void History::hBackspace() {}
@@ -184,6 +171,39 @@ bool History::hHasSelection() {
 }
 
 void History::hFixSelections() {
+	auto * begin = hGetFirstSelection();
+	auto * end   = hGetLastSelection();
+
+	// Sort list using bubble sort
+	while (end != nullptr) {
+		auto * it = begin;
+
+		while (it != end) {
+			if (
+			  it->begin()->getPosInFile() >
+			  it->next()->begin()->getPosInFile()) {
+				auto * next = it->next();
+
+				if (it->prev() != nullptr) {
+					it->prev()->setNext(next);
+				}
+
+				if (next->next() != nullptr) {
+					it->next()->setPrev(it);
+				}
+
+				next->setPrev(it->prev());
+				it->setNext(next->next());
+				it->setPrev(next);
+				next->setNext(it);
+			}
+			else {
+				it = it->next();
+			}
+		}
+	}
+
+
 	lOptimizeSelections();
 }
 
