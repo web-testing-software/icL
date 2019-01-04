@@ -87,7 +87,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 void Mouse::mousePressEvent(QMouseEvent * event) {
 	auto [line, ch] = getLineCh(event);
 
-	selectionMode = m_main->beginSelection(line, ch);
+	selectionMode = m_mainSelection->beginSelection(line, ch);
 	lUpdateCurrentLine();
 }
 
@@ -98,7 +98,7 @@ void Mouse::mouseMoveEvent(QMouseEvent * event) {
 
 	auto [line, ch] = getLineCh(event);
 
-	m_main->selectTo(line, ch);
+	m_mainSelection->selectTo(line, ch);
 	lUpdateCurrentLine();
 }
 

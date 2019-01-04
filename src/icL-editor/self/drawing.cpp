@@ -102,7 +102,7 @@ void Drawing::paint(QPainter * painter) {
 	drawPhantoms(painter);
 	drawCurrentLine(painter);
 
-	drawSelection(painter, m_main);
+	drawSelection(painter, m_mainSelection);
 	drawContent(painter);
 
 	//	qDebug() << "render time" << timer.elapsed();
@@ -220,11 +220,11 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 }
 
 void Drawing::drawCurrentLine(QPainter * painter) {
-	if (m_current->visible()) {
+	if (m_currentLine->visible()) {
 		painter->setPen(Qt::NoPen);
 		painter->setBrush(m_chars->current.background);
 
-		painter->drawRect(lineRect.translated(0, m_current->lastY()));
+		painter->drawRect(lineRect.translated(0, m_currentLine->lastY()));
 	}
 }
 

@@ -36,11 +36,11 @@ struct ChangeEntity
 	ChangeEntity(int line, int column, bool isMain);
 };
 
-class InternalChange : public Revision
+class ChangesEntity : public Revision
 {
 public:
-	InternalChange();
-	~InternalChange();
+	ChangesEntity();
+	~ChangesEntity();
 
 	/**
 	 * @brief hasInsert returns true if chages has some insertions
@@ -62,6 +62,11 @@ public:
 	 * nullptr if exists a change with the same line but different column
 	 */
 	ChangeEntity * addChange(int line, int column, bool isMain);
+
+	/**
+	 * @brief optimize delete empty changes
+	 */
+	void optimize();
 
 	/**
 	 * @brief getChanges returns the list of changes

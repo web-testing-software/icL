@@ -51,7 +51,7 @@ HEADERS += \
     self/scroll.h \
     history/revision.h \
     history/externalchanges.h \
-    history/internalchange.h
+    history/changesentity.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -76,4 +76,4 @@ SOURCES += \
     self/cursorsarea.cpp \
     self/scroll.cpp \
     history/externalchanges.cpp \
-    history/internalchange.cpp
+    history/changesentity.cpp

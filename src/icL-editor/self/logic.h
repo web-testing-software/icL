@@ -17,7 +17,7 @@ class Selection;
 class Line;
 class Fixer;
 class LineNumbers;
-class InternalChange;
+class ChangesEntity;
 
 /**
  * @brief The Logic class contains the internal logic of editor
@@ -160,7 +160,7 @@ public slots:
 	 * @brief syncSelecionsWith
 	 * @param change
 	 */
-	void lSyncSelectionsWith(InternalChange * change);
+	void lSyncSelectionsWith(ChangesEntity * change);
 
 protected:
 	/// @brief will be defined in Scroll class
@@ -173,13 +173,13 @@ protected:
 protected:
 	// properties
 	/// @brief the main selection (never deleted)
-	Selection * m_main = nullptr;
+	Selection * m_mainSelection = nullptr;
 
 	/// @brief the first line of text
 	Line * m_first = nullptr;
 
 	/// @brief the current line of text
-	Line * m_current = nullptr;
+	Line * m_currentLine = nullptr;
 
 	/// @brief the first visible line of text
 	Line * m_firstVisible = nullptr;

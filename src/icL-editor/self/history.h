@@ -7,6 +7,8 @@
 
 namespace icL::editor {
 
+struct ChangeEntity;
+
 /**
  * @brief The History class contains the history of document
  */
@@ -137,13 +139,13 @@ protected:
 	 * @param forDelete true if it is need for deletion, false - for insertion
 	 * @return a new or existent changes entity
 	 */
-	InternalChange * hGetCurrentChangeEntity(bool forDelete);
+	ChangesEntity * hGetCurrentChangesEntity(bool forDelete);
 
 	/**
 	 * @brief getNewChangeEntity return a new inited change entity
 	 * @return a new inited change entity
 	 */
-	InternalChange * hGetNewChangeEntity();
+	ChangesEntity * hGetNewChangesEntity();
 
 private:
 	/**
@@ -151,14 +153,22 @@ private:
 	 * to end)
 	 * @param func is the function to execute
 	 */
-	void forEachForward(std::function<void(Selection *)> func);
+	void hForEachForward(std::function<void(Selection *)> func);
 
 	/**
 	 * @brief forEachBackward executes a function for each selection (from end
 	 * to begin)
 	 * @param func is the function to execute
 	 */
-	void forEachBackward(std::function<void(Selection *)> func);
+	void hForEachBackward(std::function<void(Selection *)> func);
+
+	/**
+	 * @brief hGetChangeEntityFor gets the change entity for selection
+	 * @param selection is the selection to get data (line, column, isMain)
+	 * @return the entity returned by InternalChange.addChange
+	 */
+	void hAutoSetChangeEntityFor(
+	  Selection * selection, ChangesEntity * changesEntity);
 
 protected:
 	/// \brief numberOfCursors is the number of cursors in the text editor
@@ -166,7 +176,7 @@ protected:
 
 private:
 	/// \brief m_currentChange is the pointer to current change
-	InternalChange * m_currentChange = nullptr;
+	ChangesEntity * m_currentChange = nullptr;
 
 	/// \brief cursorWasMoved detect if the cursor was moved, it means that the
 	/// change entity must be updated

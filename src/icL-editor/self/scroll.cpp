@@ -37,11 +37,11 @@ void Scroll::sScrollDownBy(int by) {
 }
 
 void Scroll::sAutoScrollToCurrent() {
-	if (m_current->lineNumber() <= m_firstVisible->lineNumber()) {
+	if (m_currentLine->lineNumber() <= m_firstVisible->lineNumber()) {
 		Line * it = m_firstVisible;
 		int    i  = 0;
 
-		while (it != m_current && it->prevDisplay() != nullptr) {
+		while (it != m_currentLine && it->prevDisplay() != nullptr) {
 			i++;
 			it = it->prevDisplay();
 		}
@@ -54,7 +54,7 @@ void Scroll::sAutoScrollToCurrent() {
 		Line * it      = m_firstVisible;
 
 		while (y < height() - m_proxy->fullLineH() && it != nullptr) {
-			visible = visible || it == m_current;
+			visible = visible || it == m_currentLine;
 			it      = it->nextDisplay();
 			y += m_proxy->fullLineH();
 		}
@@ -62,7 +62,7 @@ void Scroll::sAutoScrollToCurrent() {
 		if (!visible) {
 			int i = 1;
 
-			while (it != m_current && it->next() != nullptr) {
+			while (it != m_currentLine && it->next() != nullptr) {
 				i++;
 				it = it->nextDisplay();
 			}
@@ -75,7 +75,7 @@ void Scroll::sAutoScrollToCurrent() {
 }
 
 void Scroll::sFixXScrollPosition() {
-	Cursor * cursor = m_main->main();
+	Cursor * cursor = m_mainSelection->main();
 	int      pos    = cursor->getPosInLine();
 
 	if (pos < xScroll) {

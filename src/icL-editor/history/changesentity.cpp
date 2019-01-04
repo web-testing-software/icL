@@ -1,4 +1,4 @@
-#include "internalchange.h"
+#include "changesentity.h"
 
 #include "../private/cursor.h"
 #include "../private/selection.h"
@@ -13,21 +13,21 @@ ChangeEntity::ChangeEntity(int line, int column, bool isMain)
 	, column(column)
 	, isMain(isMain) {}
 
-InternalChange::~InternalChange() {
+ChangesEntity::~ChangesEntity() {
 	for (auto * ptr : changes) {
 		delete ptr;
 	}
 }
 
-bool InternalChange::hasInsert() {
+bool ChangesEntity::hasInsert() {
 	return m_hasInsert;
 }
 
-void InternalChange::markInsert() {
+void ChangesEntity::markInsert() {
 	m_hasInsert = true;
 }
 
-ChangeEntity * InternalChange::addChange(int line, int column, bool isMain) {
+ChangeEntity * ChangesEntity::addChange(int line, int column, bool isMain) {
 	ChangeEntity * ret = nullptr;
 
 	// Switch to true if you have found a cursor in nedded line
@@ -54,7 +54,18 @@ ChangeEntity * InternalChange::addChange(int line, int column, bool isMain) {
 	return ret;
 }
 
-void InternalChange::undo(Logic * logic) {
+void ChangesEntity::optimize() {
+	for (auto it = changes.begin(); it != changes.end();) {
+		if ((*it)->inserted.length() == 0 && (*it)->deleted.length() == 0) {
+			it = changes.erase(it);
+		}
+		else {
+			it++;
+		}
+	}
+}
+
+void ChangesEntity::undo(Logic * logic) {
 	logic->lSyncSelectionsWith(this);
 
 	auto * itSelection = logic->hGetFirstSelection();
@@ -73,11 +84,11 @@ void InternalChange::undo(Logic * logic) {
 	}
 }
 
-const QLinkedList<ChangeEntity *> InternalChange::getChanges() {
+const QLinkedList<ChangeEntity *> ChangesEntity::getChanges() {
 	return changes;
 }
 
-void InternalChange::redo(Logic * logic) {
+void ChangesEntity::redo(Logic * logic) {
 	logic->lSyncSelectionsWith(this);
 
 	auto * itSelection = logic->hGetLastSelection();

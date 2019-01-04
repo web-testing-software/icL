@@ -1,7 +1,7 @@
 #include "history.h"
 
 #include "../fragment/fragment.h"
-#include "../history/internalchange.h"
+#include "../history/changesentity.h"
 #include "../private/cursor.h"
 #include "../private/line.h"
 #include "../private/selection.h"
@@ -12,7 +12,7 @@ History::History(QQuickItem * parent)
     : Scroll(parent) {}
 
 Selection * History::hGetFirstSelection() {
-	auto * it = m_main;
+	auto * it = m_mainSelection;
 
 	while (it->prev() != nullptr) {
 		it = it->prev();
@@ -22,7 +22,7 @@ Selection * History::hGetFirstSelection() {
 }
 
 Selection * History::hGetLastSelection() {
-	auto * it = m_main;
+	auto * it = m_mainSelection;
 
 	while (it->next() != nullptr) {
 		it = it->next();
@@ -36,51 +36,73 @@ int History::hSelectionsCount() {
 }
 
 void History::hAddCursorOnPrevLine() {
-	if (*m_main->begin() != *m_main->end() || m_current->prev() == nullptr) {
+	if (
+	  *m_mainSelection->begin() != *m_mainSelection->end() ||
+	  m_currentLine->prev() == nullptr) {
 		return;
 	}
 
 	if (
-	  m_main->prev() == nullptr ||
-	  (m_main->prev()->main()->fragment()->line() !=
-	   m_main->main()->fragment()->line()->prev())) {
+	  m_mainSelection->prev() == nullptr ||
+	  (m_mainSelection->prev()->main()->fragment()->line() !=
+	   m_mainSelection->main()->fragment()->line()->prev())) {
 
-		auto * nSelection = new Selection();
+		auto * nSelection    = new Selection();
+		auto * changesEntity = hGetCurrentChangesEntity(false);
 
-		nSelection->syncWith(m_main);
-		m_main->linkAfter(nSelection);
+		nSelection->syncWith(m_mainSelection);
+		m_mainSelection->linkAfter(nSelection);
 		numberOfCursors++;
+
+		m_mainSelection->moveUpDown(-1);
+
+		nSelection->setChangeEntity(m_mainSelection->getChangeEntity());
+		hAutoSetChangeEntityFor(nSelection, changesEntity);
 	}
 	else {
-		m_main->prev()->remove();
-		numberOfCursors--;
-	}
+		m_mainSelection->setChangeEntity(
+		  m_mainSelection->prev()->getChangeEntity());
 
-	m_main->moveUpDown(-1);
+		m_mainSelection->prev()->remove();
+		numberOfCursors--;
+
+		m_mainSelection->moveUpDown(-1);
+	}
 }
 
 void History::hAddCursorOnNextLine() {
-	if (*m_main->begin() != *m_main->end() || m_current->next() == nullptr) {
+	if (
+	  *m_mainSelection->begin() != *m_mainSelection->end() ||
+	  m_currentLine->next() == nullptr) {
 		return;
 	}
 
 	if (
-	  m_main->next() == nullptr ||
-	  (m_main->next()->main()->fragment()->line() !=
-	   m_main->main()->fragment()->line()->next())) {
+	  m_mainSelection->next() == nullptr ||
+	  (m_mainSelection->next()->main()->fragment()->line() !=
+	   m_mainSelection->main()->fragment()->line()->next())) {
 
-		auto * nSelection = new Selection();
+		auto * nSelection    = new Selection();
+		auto * changesEntity = hGetCurrentChangesEntity(false);
 
-		nSelection->syncWith(m_main);
-		m_main->linkBefore(nSelection);
+		nSelection->syncWith(m_mainSelection);
+		m_mainSelection->linkBefore(nSelection);
 		numberOfCursors++;
+
+		m_mainSelection->moveUpDown(1);
+
+		nSelection->setChangeEntity(m_mainSelection->getChangeEntity());
+		hAutoSetChangeEntityFor(m_mainSelection, changesEntity);
 	}
 	else {
-		m_main->next()->remove();
-		numberOfCursors--;
-	}
+		m_mainSelection->setChangeEntity(
+		  m_mainSelection->next()->getChangeEntity());
 
-	m_main->moveUpDown(1);
+		m_mainSelection->next()->remove();
+		numberOfCursors--;
+
+		m_mainSelection->moveUpDown(1);
+	}
 }
 
 void History::hMoveCursorChar(int step) {
@@ -165,36 +187,30 @@ void History::hFixSelections() {
 	lOptimizeSelections();
 }
 
-InternalChange * History::hGetCurrentChangeEntity(bool forDelete) {
+ChangesEntity * History::hGetCurrentChangesEntity(bool forDelete) {
 
 	if (cursorWasMoved || m_currentChange == nullptr) {
-		return hGetNewChangeEntity();
+		return hGetNewChangesEntity();
 	}
 
 	if (m_currentChange->hasInsert() && forDelete) {
-		return hGetNewChangeEntity();
+		return hGetNewChangesEntity();
 	}
 
 	return m_currentChange;
 }
 
-InternalChange * History::hGetNewChangeEntity() {
-	InternalChange * ret = new InternalChange();
+ChangesEntity * History::hGetNewChangesEntity() {
+	ChangesEntity * ret = new ChangesEntity();
 
-	auto * it = hGetFirstSelection();
-
-	while (it != nullptr) {
-		ret->addChange(
-		  it->begin()->fragment()->line()->lineNumber(),
-		  it->begin()->getPosInLine(), it == m_main);
-
-		it = it->next();
-	}
+	hForEachForward([ret, this](Selection * selection) {
+		hAutoSetChangeEntityFor(selection, ret);
+	});
 
 	return ret;
 }
 
-void History::forEachForward(std::function<void(Selection *)> func) {
+void History::hForEachForward(std::function<void(Selection *)> func) {
 	auto * it = hGetFirstSelection();
 
 	while (it != nullptr) {
@@ -203,13 +219,23 @@ void History::forEachForward(std::function<void(Selection *)> func) {
 	}
 }
 
-void History::forEachBackward(std::function<void(Selection *)> func) {
+void History::hForEachBackward(std::function<void(Selection *)> func) {
 	auto * it = hGetLastSelection();
 
 	while (it != nullptr) {
 		func(it);
 		it = it->prev();
 	}
+}
+
+void History::hAutoSetChangeEntityFor(
+  Selection * selection, ChangesEntity * changesEntity) {
+
+	auto * changeEntity = changesEntity->addChange(
+	  selection->begin()->fragment()->line()->lineNumber(),
+	  selection->begin()->getPosInLine(), selection == m_mainSelection);
+
+	selection->setChangeEntity(changeEntity);
 }
 
 }  // namespace icL::editor

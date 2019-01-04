@@ -131,7 +131,7 @@ void Keyboard::anyKey(QKeyEvent * event) {
 
 	default:
 		if (!event->text().isEmpty()) {
-			m_main->insert(event->text());
+			m_mainSelection->insert(event->text());
 		}
 	}
 }
@@ -140,7 +140,7 @@ void Keyboard::anyShiftKey(QKeyEvent * event) {
 	switch (event->key()) {
 	default:
 		if (!event->text().isEmpty()) {
-			m_main->insert(event->text());
+			m_mainSelection->insert(event->text());
 		}
 	}
 }

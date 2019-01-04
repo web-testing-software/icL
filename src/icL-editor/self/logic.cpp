@@ -1,7 +1,7 @@
 #include "logic.h"
 
 #include "../fragment/fragment.h"
-#include "../history/internalchange.h"
+#include "../history/changesentity.h"
 #include "../private/cursor.h"
 #include "../private/fixer.h"
 #include "../private/line.h"
@@ -12,17 +12,17 @@ namespace icL::editor {
 
 Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
-	m_main  = new Selection();
-	m_fixer = new Fixer();
+	m_mainSelection = new Selection();
+	m_fixer         = new Fixer();
 }
 
 Logic::~Logic() {
-	delete m_main;
+	delete m_mainSelection;
 	delete m_fixer;
 }
 
 Selection * Logic::main() const {
-	return m_main;
+	return m_mainSelection;
 }
 
 Line * Logic::first() const {
@@ -30,7 +30,7 @@ Line * Logic::first() const {
 }
 
 Line * Logic::current() const {
-	return m_current;
+	return m_currentLine;
 }
 
 Line * Logic::firstVisible() const {
@@ -57,7 +57,7 @@ void Logic::lClear() {
 
 	m_first        = nullptr;
 	m_firstVisible = nullptr;
-	m_current      = nullptr;
+	m_currentLine  = nullptr;
 	numberOfLines  = 0;
 }
 
@@ -78,7 +78,8 @@ bool Logic::loadFile(const QString & path) {
 		auto * line     = new Line(this, false);
 		auto * fragment = new Fragment(line);
 
-		fragment->insert(m_main->begin(), m_main->end(), 0, str);
+		fragment->insert(
+		  m_mainSelection->begin(), m_mainSelection->end(), 0, str);
 		line->setFirst(fragment);
 		line->getText(true);
 		line->updateLength();
@@ -100,15 +101,15 @@ bool Logic::loadFile(const QString & path) {
 	  true);
 
 	ptr->setHasBreakPoint(true);
-	debugLine = m_current = ptr->prev();
+	debugLine = m_currentLine = ptr->prev();
 
 	auto * sixth = m_first->next()->next()->next()->next()->next();
-	m_main->begin()->setFragment(sixth->first());
-	m_main->end()->setFragment(m_current->first());
-	m_main->begin()->setPosition(16);
-	m_main->end()->setPosition(2);
-	m_main->begin()->updatePreffered();
-	m_main->end()->updatePreffered();
+	m_mainSelection->begin()->setFragment(sixth->first());
+	m_mainSelection->end()->setFragment(m_currentLine->first());
+	m_mainSelection->begin()->setPosition(16);
+	m_mainSelection->end()->setPosition(2);
+	m_mainSelection->begin()->updatePreffered();
+	m_mainSelection->end()->updatePreffered();
 
 	m_fixer->fixNow(m_first);
 
@@ -135,10 +136,10 @@ void Logic::setFirst(Line * first) {
 }
 
 void Logic::setCurrent(Line * current) {
-	if (m_current == current)
+	if (m_currentLine == current)
 		return;
 
-	m_current = current;
+	m_currentLine = current;
 }
 
 void Logic::setFirstVisible(Line * firstVisible) {
@@ -152,19 +153,19 @@ void Logic::setFirstVisible(Line * firstVisible) {
 }
 
 void Logic::lAddNewLine(Line * line) {
-	if (m_current == nullptr) {
-		m_first = m_current = line;
+	if (m_currentLine == nullptr) {
+		m_first = m_currentLine = line;
 		line->setLineNumber(1);
 	}
 	else {
-		if (m_current->next() != nullptr) {
-			m_current->next()->setPrev(line);
+		if (m_currentLine->next() != nullptr) {
+			m_currentLine->next()->setPrev(line);
 		}
-		line->setNext(m_current->next());
-		m_current->setNext(line);
-		line->setPrev(m_current);
-		line->setLineNumber(m_current->lineNumber() + 1);
-		line->setVisible(m_current->visible());
+		line->setNext(m_currentLine->next());
+		m_currentLine->setNext(line);
+		line->setPrev(m_currentLine);
+		line->setLineNumber(m_currentLine->lineNumber() + 1);
+		line->setVisible(m_currentLine->visible());
 
 		setCurrent(line);
 	}
@@ -173,11 +174,11 @@ void Logic::lAddNewLine(Line * line) {
 void Logic::lUpdateCurrentLine() {
 	Fragment * fragment;
 
-	if (m_main->rtl()) {
-		fragment = m_main->begin()->fragment();
+	if (m_mainSelection->rtl()) {
+		fragment = m_mainSelection->begin()->fragment();
 	}
 	else {
-		fragment = m_main->end()->fragment();
+		fragment = m_mainSelection->end()->fragment();
 	}
 
 	if (fragment != nullptr) {
@@ -234,13 +235,13 @@ void Logic::lOptimizeSelections() {
 	}
 }
 
-void Logic::lSyncSelectionsWith(InternalChange * internalChange) {
-	while (m_main->prev()) {
-		m_main->prev()->remove();
+void Logic::lSyncSelectionsWith(ChangesEntity * internalChange) {
+	while (m_mainSelection->prev()) {
+		m_mainSelection->prev()->remove();
 	}
 
-	while (m_main->next()) {
-		m_main->next()->remove();
+	while (m_mainSelection->next()) {
+		m_mainSelection->next()->remove();
 	}
 
 	// The main seletion was found
@@ -250,21 +251,21 @@ void Logic::lSyncSelectionsWith(InternalChange * internalChange) {
 		Selection * current;
 
 		if (change->isMain) {
-			current                = m_main;
-			lastSelectionAfterMain = m_main;
+			current                = m_mainSelection;
+			lastSelectionAfterMain = m_mainSelection;
 		}
 		else {
 			current = new Selection();
 
 			if (lastSelectionAfterMain == nullptr) {
 
-				if (m_main->prev() != nullptr) {
-					m_main->prev()->setNext(current);
+				if (m_mainSelection->prev() != nullptr) {
+					m_mainSelection->prev()->setNext(current);
 				}
 
-				current->setPrev(m_main->prev());
-				current->setNext(m_main);
-				m_main->setPrev(current);
+				current->setPrev(m_mainSelection->prev());
+				current->setNext(m_mainSelection);
+				m_mainSelection->setPrev(current);
 			}
 			else {
 				lastSelectionAfterMain->setNext(current);
