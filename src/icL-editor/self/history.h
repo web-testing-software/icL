@@ -145,6 +145,21 @@ protected:
 	 */
 	InternalChange * hGetNewChangeEntity();
 
+private:
+	/**
+	 * @brief forEachForward executes a function for each selection (from begin
+	 * to end)
+	 * @param func is the function to execute
+	 */
+	void forEachForward(std::function<void(Selection *)> func);
+
+	/**
+	 * @brief forEachBackward executes a function for each selection (from end
+	 * to begin)
+	 * @param func is the function to execute
+	 */
+	void forEachBackward(std::function<void(Selection *)> func);
+
 protected:
 	/// \brief numberOfCursors is the number of cursors in the text editor
 	int numberOfCursors = 1;

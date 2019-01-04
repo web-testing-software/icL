@@ -161,7 +161,9 @@ bool History::hHasSelection() {
 	return false;
 }
 
-void History::hFixSelections() {}
+void History::hFixSelections() {
+	lOptimizeSelections();
+}
 
 InternalChange * History::hGetCurrentChangeEntity(bool forDelete) {
 
@@ -190,6 +192,24 @@ InternalChange * History::hGetNewChangeEntity() {
 	}
 
 	return ret;
+}
+
+void History::forEachForward(std::function<void(Selection *)> func) {
+	auto * it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		func(it);
+		it = it->next();
+	}
+}
+
+void History::forEachBackward(std::function<void(Selection *)> func) {
+	auto * it = hGetLastSelection();
+
+	while (it != nullptr) {
+		func(it);
+		it = it->prev();
+	}
 }
 
 }  // namespace icL::editor
