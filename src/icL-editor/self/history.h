@@ -128,11 +128,6 @@ protected:
 	bool hHasSelection();
 
 	/**
-	 * @brief hUpdateHistories update the shadows of cursors in history
-	 */
-	void hUpdateHistories();
-
-	/**
 	 * @brief hFixSelections removes useless selections and unite intersections
 	 */
 	void hFixSelections();

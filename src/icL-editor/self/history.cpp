@@ -161,8 +161,6 @@ bool History::hHasSelection() {
 	return false;
 }
 
-void History::hUpdateHistories() {}
-
 void History::hFixSelections() {}
 
 InternalChange * History::hGetCurrentChangeEntity(bool forDelete) {

@@ -58,18 +58,10 @@ public:
 	 * @param line is the line number of text cursor
 	 * @param column is the char number in line of text cursor
 	 * @param isMain is true if this is the main cursor, otherwise is false
-	 * @return a new change entity or a restored change from droppedChanges or
+	 * @return a new change entity or a an existing change from changes or
 	 * nullptr if exists a change with the same line but different column
 	 */
 	ChangeEntity * addChange(int line, int column, bool isMain);
-
-	/**
-	 * @brief dropChange delete a change from group
-	 * @param line is line number of text cursor
-	 * @param column is the char number in line of text cursor
-	 * @param isMain is true if this is main cursor, otherwise is false
-	 */
-	void dropChange(int line, int column, bool isMain);
 
 	/**
 	 * @brief getChanges returns the list of changes

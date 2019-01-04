@@ -10,6 +10,8 @@ namespace icL::editor {
 class Cursor;
 class Line;
 
+struct ChangeEntity;
+
 /**
  * @brief The Selection class describes a selection of text
  */
@@ -61,6 +63,13 @@ public:
 	 * @return the selected text
 	 */
 	QString getText();
+
+	/**
+	 * @brief getChangeEntity gets the change entity
+	 * @return the change entity of this selection
+	 * @note strong use just from History class
+	 */
+	ChangeEntity * getChangeEntity();
 
 	/**
 	 * @brief move moves the cursor to left/right be needed chars
@@ -163,6 +172,13 @@ public:
 	void setRtl(bool rtl);
 
 	/**
+	 * @brief setChangeEntity sets the change entity from History class
+	 * @param changeEntity is the new change entity
+	 * @note strong use just from History class
+	 */
+	void setChangeEntity(ChangeEntity * changeEntity);
+
+	/**
 	 * @brief beginSelection begin selection by mouse
 	 * @param line is the line number to position the cursors
 	 * @param ch is the character number to position the cursors
@@ -255,6 +271,9 @@ private:
 	///
 	/// rtl means Right-To-Left
 	bool m_rtl = false;
+
+	/// \brief changeEntity will be used by History class
+	ChangeEntity * changeEntity;
 };
 
 }  // namespace icL::editor

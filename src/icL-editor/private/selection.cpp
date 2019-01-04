@@ -77,6 +77,10 @@ QString Selection::getText() {
 	return ret;
 }
 
+ChangeEntity * Selection::getChangeEntity() {
+	return changeEntity;
+}
+
 void Selection::move(int step, bool select) {
 	if (select) {
 		setRtlByStep(step);
@@ -502,6 +506,10 @@ void Selection::setRtl(bool rtl) {
 		return;
 
 	m_rtl = rtl;
+}
+
+void Selection::setChangeEntity(ChangeEntity * changeEntity) {
+	this->changeEntity = changeEntity;
 }
 
 bool Selection::beginSelection(Line * line, int ch) {
