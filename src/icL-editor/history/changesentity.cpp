@@ -6,12 +6,12 @@
 
 namespace icL::editor {
 
-InternalChange::InternalChange() = default;
-
 ChangeEntity::ChangeEntity(int line, int column, bool isMain)
 	: line(line)
 	, column(column)
 	, isMain(isMain) {}
+
+ChangesEntity::ChangesEntity() = default;
 
 ChangesEntity::~ChangesEntity() {
 	for (auto * ptr : changes) {
