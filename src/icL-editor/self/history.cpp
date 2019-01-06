@@ -9,7 +9,9 @@
 namespace icL::editor {
 
 History::History(QQuickItem * parent)
-    : Scroll(parent) {}
+	: Scroll(parent) {
+	m_firstRevision = new ChangesEntity();
+}
 
 Selection * History::hGetFirstSelection() {
 	auto * it = m_mainSelection;
@@ -152,15 +154,58 @@ void History::hSelectLine(int step) {
 	hFixSelections();
 }
 
-void History::hBackspace() {}
+void History::hBackspace() {
+	/*auto * changesEntity =*/
+	hGetCurrentChangesEntity(true);  // update or reuse current changes entity
 
-void History::hDelete() {}
+	hForEachBackward([](Selection * selection) {
+		QString deleted      = selection->backspace();
+		auto *  changeEntity = selection->getChangeEntity();
 
-void History::hDrop() {}
+		changeEntity->deleted.prepend(deleted);
+		changeEntity->stepBack += deleted.length();
+	});
+}
 
-void History::hInsert() {}
+void History::hDelete() {
+	/*auto * changesEntity =*/
+	hGetCurrentChangesEntity(true);  // update or reuse current changes entity
 
-void History::hUndo() {}
+	hForEachBackward([](Selection * selection) {
+		QString deleted      = selection->delete1();
+		auto *  changeEntity = selection->getChangeEntity();
+
+		changeEntity->deleted.append(deleted);
+	});
+}
+
+void History::hDrop() {
+	/*auto * changesEntity =*/
+	hGetCurrentChangesEntity(true);  // update or reuse current changes entity
+
+	hForEachBackward([](Selection * selection) {
+		QString deleted      = selection->drop();
+		auto *  changeEntity = selection->getChangeEntity();
+
+		changeEntity->deleted.append(deleted);
+	});
+}
+
+void History::hInsert(const QString & text) {
+	/*auto * changesEntity =*/
+	hGetCurrentChangesEntity(false);  // update or reuse current changes entity
+
+	hForEachBackward([&text](Selection * selection) {
+		QString inserted     = selection->insert(text);
+		auto *  changeEntity = selection->getChangeEntity();
+
+		changeEntity->inserted.append(inserted);
+	});
+}
+
+void History::hUndo() {
+	//
+}
 
 void History::hRedo() {}
 
@@ -209,18 +254,55 @@ void History::hFixSelections() {
 
 ChangesEntity * History::hGetCurrentChangesEntity(bool forDelete) {
 
-	if (cursorWasMoved || m_currentChange == nullptr) {
+	if (cursorWasMoved || m_currentChanges == nullptr) {
 		return hGetNewChangesEntity();
 	}
 
-	if (m_currentChange->hasInsert() && forDelete) {
+	if (m_currentChanges->hasInsert() && forDelete) {
 		return hGetNewChangesEntity();
 	}
 
-	return m_currentChange;
+	return m_currentChanges;
 }
 
 ChangesEntity * History::hGetNewChangesEntity() {
+
+	// Finish current
+
+	if (m_currentChanges != nullptr) {
+		m_currentChanges->optimize();
+
+		if (m_currentChanges->getChanges().empty()) {
+			delete m_currentChanges;
+		}
+
+		m_currentChanges = nullptr;
+	}
+
+	if (m_currentChanges) {
+		m_currentChanges->setPrev(m_currentRevision->prev());
+
+		if (m_currentRevision != nullptr) {
+
+			while (m_currentRevision->next() != nullptr) {
+				auto * nextnext = m_currentRevision->next()->next();
+
+				delete m_currentRevision->next();
+				m_currentRevision->setNext(nextnext);
+			}
+
+			m_currentRevision->setNext(m_currentChanges);
+		}
+
+		m_currentRevision = m_currentChanges;
+
+		if (m_firstRevision == nullptr) {
+			m_firstRevision = m_currentRevision;
+		}
+	}
+
+	// Create new
+
 	ChangesEntity * ret = new ChangesEntity();
 
 	hForEachForward([ret, this](Selection * selection) {

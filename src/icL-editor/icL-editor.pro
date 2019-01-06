@@ -76,4 +76,5 @@ SOURCES += \
     self/cursorsarea.cpp \
     self/scroll.cpp \
     history/externalchanges.cpp \
-    history/changesentity.cpp
+    history/changesentity.cpp \
+    history/revision.cpp

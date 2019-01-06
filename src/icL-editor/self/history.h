@@ -9,6 +9,8 @@ namespace icL::editor {
 
 struct ChangeEntity;
 
+class Revision;
+
 /**
  * @brief The History class contains the history of document
  */
@@ -106,7 +108,7 @@ protected:
 	/**
 	 * @brief hInsert insert the text to editor
 	 */
-	void hInsert();
+	void hInsert(const QString & text);
 
 	/**
 	 * @brief hUndo cancel the last change
@@ -176,7 +178,13 @@ protected:
 
 private:
 	/// \brief m_currentChange is the pointer to current change
-	ChangesEntity * m_currentChange = nullptr;
+	ChangesEntity * m_currentChanges = nullptr;
+
+	/// \brief m_currentRevision is the pointer to current revision
+	Revision * m_currentRevision = nullptr;
+
+	/// \brief m_firstRevision is the pointer to first revision
+	Revision * m_firstRevision = nullptr;
 
 	/// \brief cursorWasMoved detect if the cursor was moved, it means that the
 	/// change entity must be updated
