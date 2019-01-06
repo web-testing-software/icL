@@ -1,1 +1,24 @@
- 
+% !TeX spellcheck = ru_RU
+\documentclass[a4paper, 14pt]{extarticle}
+
+\input{header} 
+
+\begin{document}
+
+\title{Протокол общения icL v1.0.0}
+\author{Лелицак Василе\thanks{Руководитель проекта: Молчанова Светлана Ивановна}}
+
+\clearpage\maketitle
+\thispagestyle{empty}
+
+\newpage
+\renewcommand{\contentsname}{\textsf{Оглавление}}\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{2.6em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{4.0em}{3.6em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{7.4em}{4.5em}}
+\makeatother
+\tableofcontents
+
+\include{common}
+
+\end{document}
