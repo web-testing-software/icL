@@ -50,5 +50,24 @@
 
 \onehalfspacing
 
+\usepackage{enumitem}
+
+\newenvironment{icItems}
+{ \begin{itemize}  [noitemsep,nolistsep] }
+	{ \end{itemize} }
+
 \usepackage{minted}
 \usemintedstyle{pastie}
+
+\setminted{fontsize=\footnotesize,baselinestretch=1}
+
+\newmintinline{js}{}
+\newminted{js}{linenos,tabsize=4,obeytabs}
+
+\makeatletter
+\@ifundefined{jscode}{
+	\newenvironment{jscode}{}{}
+}{}
+\makeatother
+
+\providecommand{\jsinline}[1]{\mintinline{js}{#1}}

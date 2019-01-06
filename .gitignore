@@ -8,6 +8,8 @@
 *.synctex.gz
 *.bak
 *.out
+*.pygtex
+*.pygstyle
 bin/debug/*
 bin/release/*
 doc/html/*
