@@ -7,66 +7,66 @@ Aceste posibilități sunt disponibile numai în regim de automatizare.
 
 Pentru așteptare se propun următoarele funcții:
 \begin{icItems}
-	\item \lstinline|wait { condition }|;
-	\item \lstinline|wait:Xs { condition }|;
-	\item \lstinline|wait:Xms { condition }|;
-	\item \lstinline|wait:ajax { condition }|.
+	\item \mintinline{icl}{wait { condition }};
+	\item \mintinline{icl}{wait:Xs { condition }};
+	\item \mintinline{icl}{wait:Xms { condition }};
+	\item \mintinline{icl}{wait:ajax { condition }}.
 \end{icItems}
 
-\subsubsection{\lstinline|wait|}
+\subsubsection{\mintinline{icl}{wait}}
 
-Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{Session'implicit\- Timeout} milisecunde. 
+Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \mintinline{icl}{Session'implicit\- Timeout} milisecunde. 
 
-\subsubsection{\lstinline|wait:Xs|}
+\subsubsection{\mintinline{icl}{wait:Xs}}
 
-Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{X} secunde. 
+Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \mintinline{icl}{X} secunde. 
 
-\subsubsection{\lstinline|wait:Xms|}
+\subsubsection{\mintinline{icl}{wait:Xms}}
 
-Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{X} milisecunde. 
+Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \mintinline{icl}{X} milisecunde. 
 
-\subsubsection{\lstinline|wait:ajax|}
+\subsubsection{\mintinline{icl}{wait:ajax}}
 
-Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \code{Session'implicit\- Timeout} milisecunde. În comparație cu \code{wait}-ul obișnuit, aici vor fi transmise următoarele date: \code{@response} - datele răspunsului serverului și \code{@count} - numărul de request-uri active.
+Așteaptă pînă cînd condiția va returna \true. Timpul de așteptare: \mintinline{icl}{Session'implicit\- Timeout} milisecunde. În comparație cu \mintinline{icl}{wait}-ul obișnuit, aici vor fi transmise următoarele date: \mintinline{icl}{@response} - datele răspunsului serverului și \mintinline{icl}{@count} - numărul de request-uri active.
 
 \subsection{Claviatură}
 
 Pentru a lucra cu claviatura se propun următoarele funcții:
 \begin{icItems}
-	\item \lstinline|element.keyDown (modifiers : int, key : string) : element|;
-	\item \lstinline|element.keyUp (modifiers : int, key : string) : element|;
-	\item \lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|;
-	\item \lstinline|element.fastType (text : string) : element|;
-	\item \lstinline|element.paste (text : string) : element|.
-	\item \lstinline|element.forceType (text : string) : element|.
-	\item \lstinline|Doc.type (text : string) : Doc|.
+	\item \mintinline{icl}{element.keyDown (modifiers : int, key : string) : element};
+	\item \mintinline{icl}{element.keyUp (modifiers : int, key : string) : element};
+	\item \mintinline{icl}{element.keyPress (modifiers : int, delay : int, keys : string) : element};
+	\item \mintinline{icl}{element.fastType (text : string) : element};
+	\item \mintinline{icl}{element.paste (text : string) : element}.
+	\item \mintinline{icl}{element.forceType (text : string) : element}.
+	\item \mintinline{icl}{Doc.type (text : string) : Doc}.
 \end{icItems}
 
-\subsubsection{\lstinline|element.keyDown (modifiers : int, keys : text) : element|}
+\subsubsection{\mintinline{icl}{element.keyDown (modifiers : int, keys : text) : element}}
 
 Simulează apăsarea butonului.
 
-\subsubsection{\lstinline|element.keyUp (modifiers : int, <text>) : element|}
+\subsubsection{\mintinline{icl}{element.keyUp (modifiers : int, <text>) : element}}
 
 Simulează eliberarea butonului.
 
-\subsubsection{\lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|}
+\subsubsection{\mintinline{icl}{element.keyPress (modifiers : int, delay : int, keys : string) : element}}
 
-Simulează procesul de culegere a textului cu intervalul \code{delay}.
+Simulează procesul de culegere a textului cu intervalul \mintinline{icl}{delay}.
 
-\subsubsection{\lstinline|element.fastType (text : string) : element|}
+\subsubsection{\mintinline{icl}{element.fastType (text : string) : element}}
 
 Simulează procesul de culegere a textului pe claviatură cu viteză maximală.
 
-\subsubsection{\lstinline|element.paste (text : string) : element|}
+\subsubsection{\mintinline{icl}{element.paste (text : string) : element}}
 
 Copiază textul în clipboard, 
 
-\subsubsection{\lstinline|element.forceType (text : string) : element|}
+\subsubsection{\mintinline{icl}{element.forceType (text : string) : element}}
 
 Adăugă valoare prin JavaScript.
 
-\subsubsection{\lstinline|Doc.type (text : string) : element|}
+\subsubsection{\mintinline{icl}{Doc.type (text : string) : element}}
 
 Simulează procesul de culegere al textului fără a schimba focosul.
 
@@ -75,85 +75,85 @@ Simulează procesul de culegere al textului fără a schimba focosul.
 
 Pentru a lucra cu mouse-ul se propun următoarele funcții:
 \begin{icItems}
-	\item \lstinline|element.click (data : object) : element|;
-	\item \lstinline|element.forceClick (data : object) : element|;
-	\item \lstinline|element.mouseDown (data : object) : element|;
-	\item \lstinline|element.mouseUp (data : object) : element|;
-	\item \lstinline|element.hover (data : object) : element|.
-	\item \lstinline|Doc.click (data : object) : Doc|.
-	\item \lstinline|Doc.mouseDown (data : object) : Doc|;
-	\item \lstinline|Doc.mouseUp (data : object) : Doc|;
-	\item \lstinline|Doc.hover (data : object) : Doc|.
+	\item \mintinline{icl}{element.click (data : object) : element};
+	\item \mintinline{icl}{element.forceClick (data : object) : element};
+	\item \mintinline{icl}{element.mouseDown (data : object) : element};
+	\item \mintinline{icl}{element.mouseUp (data : object) : element};
+	\item \mintinline{icl}{element.hover (data : object) : element}.
+	\item \mintinline{icl}{Doc.click (data : object) : Doc}.
+	\item \mintinline{icl}{Doc.mouseDown (data : object) : Doc};
+	\item \mintinline{icl}{Doc.mouseUp (data : object) : Doc};
+	\item \mintinline{icl}{Doc.hover (data : object) : Doc}.
 \end{icItems}
 
-În aceste funcții obiectul \code{data} poate avea următoarele cîmpuri:
+În aceste funcții obiectul \mintinline{icl}{data} poate avea următoarele cîmpuri:
 \begin{icItems}
-    \item \lstinline|[r/w] @data'button : int| - butonul mouse-lui (una din următoarele valori):
+    \item \mintinline{icl}{[r/w] @data'button : int} - butonul mouse-lui (una din următoarele valori):
 	\begin{icItems}
-	    \item \lstinline|[r/o] Mouse'left : 1| - butonul stîng;
-		\item \lstinline|[r/o] Mouse'middle : 2| - butonul mijlociu;
-		\item \lstinline|[r/o] Mouse'right : 3| - butonul drept.
+	    \item \mintinline{icl}{[r/o] Mouse'left : 1} - butonul stîng;
+		\item \mintinline{icl}{[r/o] Mouse'middle : 2} - butonul mijlociu;
+		\item \mintinline{icl}{[r/o] Mouse'right : 3} - butonul drept.
 	\end{icItems}
-	Implicit \lstinline|Mouse'left|;
-	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;
-	\item \lstinline|[r/w] @data'ry : double| - \lstinline|ay = rx * height|;
-	\item \lstinline|[r/w] @data'ax : int| - coordonata x relativă la marginea stîngă a elementului;
-	\item \lstinline|[r/w] @data'ay : int| - coordonata y relativă la marginea de sus a elementului.
+	Implicit \mintinline{icl}{Mouse'left};
+	\item \mintinline{icl}{[r/w] @data'rx : double} - \mintinline{icl}{ax = rx * width};
+	\item \mintinline{icl}{[r/w] @data'ry : double} - \mintinline{icl}{ay = rx * height};
+	\item \mintinline{icl}{[r/w] @data'ax : int} - coordonata x relativă la marginea stîngă a elementului;
+	\item \mintinline{icl}{[r/w] @data'ay : int} - coordonata y relativă la marginea de sus a elementului.
 \end{icItems}
 
-\subsubsection{\lstinline|element.click (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.click (data : object) : element}}
 
-Simulează un clic. Obiectul \code{data} deține următoarele proprietăți adiționale
+Simulează un clic. Obiectul \mintinline{icl}{data} deține următoarele proprietăți adiționale
 \begin{icItems}
-	\item \lstinline|[r/w] @data'delay : int| e intervalul între apăsarea și eliberarea butonului;
-	\item \lstinline|[r/w] @data'count : int| e numărul de clicuri consecutive simulate.
+	\item \mintinline{icl}{[r/w] @data'delay : int} e intervalul între apăsarea și eliberarea butonului;
+	\item \mintinline{icl}{[r/w] @data'count : int} e numărul de clicuri consecutive simulate.
 \end{icItems}
 
-\subsubsection{\lstinline|element.forceClick (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.forceClick (data : object) : element}}
 
 Simulează un click fără a controla dacă elementul este disponibil.
 
-\subsubsection{\lstinline|element.mouseDown (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.mouseDown (data : object) : element}}
 
 Simulează apăsarea butonului mouse-ului.
 
-\subsubsection{\lstinline|element.mouseUp (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.mouseUp (data : object) : element}}
 
 Simulează eliberarea butonului mouse-ului.
 
-\subsubsection{\lstinline|element.hover (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.hover (data : object) : element}}
 
-Mută mouse-ul deasupra elementului. \code{data} are următoarele proprietăți adiționale:
+Mută mouse-ul deasupra elementului. \mintinline{icl}{data} are următoarele proprietăți adiționale:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'time : int| e timpul mediu în care cursorul se mută la distanța de 100 de pixeli;
-	\item \lstinline|[r/w] @data'func : int| e funcția care descrie mișcarea cursorului. Primește una din următoarele valori:
+	\item \mintinline{icl}{[r/w] @data'time : int} e timpul mediu în care cursorul se mută la distanța de 100 de pixeli;
+	\item \mintinline{icl}{[r/w] @data'func : int} e funcția care descrie mișcarea cursorului. Primește una din următoarele valori:
 	\begin{icItems}
-		\item \lstinline|[r/o] Move'teleport : 1| e mișcare simultană;
-		\item \lstinline|[r/o] Move'linear : 2| e mișcare pe linie dreaptă;
-		\item \lstinline|[r/o] Move'quadratic : 3| e mișcare pe curbă de ordinul 2;
-		\item \lstinline|[r/o] Move'cubic : 4| e mișcare pe curbă de ordinul 3;
-		\item \lstinline|[r/o] Move'bezier : 5| e mișcare pe curba Bezie de ordinul 3. Folosește următoarele proprietăți adiționale \code{p1x}, \code{p1y}, \code{p2x} și \code{p2y}. Dacă ele nu sunt indicate vor primi valori aleatorii din intervalul [0,0; 1,0].
+		\item \mintinline{icl}{[r/o] Move'teleport : 1} e mișcare simultană;
+		\item \mintinline{icl}{[r/o] Move'linear : 2} e mișcare pe linie dreaptă;
+		\item \mintinline{icl}{[r/o] Move'quadratic : 3} e mișcare pe curbă de ordinul 2;
+		\item \mintinline{icl}{[r/o] Move'cubic : 4} e mișcare pe curbă de ordinul 3;
+		\item \mintinline{icl}{[r/o] Move'bezier : 5} e mișcare pe curba Bezie de ordinul 3. Folosește următoarele proprietăți adiționale \mintinline{icl}{p1x}, \mintinline{icl}{p1y}, \mintinline{icl}{p2x} și \mintinline{icl}{p2y}. Dacă ele nu sunt indicate vor primi valori aleatorii din intervalul [0,0; 1,0].
 	\end{icItems}
-	Implicit \lstinline|Move'teleport|.
-	\item \lstinline|[r/w] @data'p1x : double| - Coordinata $x$ primului punct.
-	\item \lstinline|[r/w] @data'p1y : double| - Coordinata $y$ primului punct.
-	\item \lstinline|[r/w] @data'p2x : double| - Coordinata $x$ punctului secundar.
-	\item \lstinline|[r/w] @data'p2y : double| - Coordinata $y$ punctului secundar.
+	Implicit \mintinline{icl}{Move'teleport}.
+	\item \mintinline{icl}{[r/w] @data'p1x : double} - Coordinata $x$ primului punct.
+	\item \mintinline{icl}{[r/w] @data'p1y : double} - Coordinata $y$ primului punct.
+	\item \mintinline{icl}{[r/w] @data'p2x : double} - Coordinata $x$ punctului secundar.
+	\item \mintinline{icl}{[r/w] @data'p2y : double} - Coordinata $y$ punctului secundar.
 \end{icItems}
 
-\subsubsection{\lstinline|Doc.click (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.click (data : object) : Doc}}
 
 Simulează un click pe document.
 
-\subsubsection{\lstinline|Doc.mouseDown (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.mouseDown (data : object) : Doc}}
 
 Simulează apăsarea butonului mouse-ului pe document.
 
-\subsubsection{\lstinline|Doc.mouseUp (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.mouseUp (data : object) : Doc}}
 
 Simulează eliberarea butonului mouse-ului pe document.
 
-\subsubsection{\lstinline|Doc.hover (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.hover (data : object) : Doc}}
 
 Simulează mutarea mouse-ului pe document.
 
@@ -161,31 +161,31 @@ Simulează mutarea mouse-ului pe document.
 
 Pot fi setați următorii parametri:
 \begin{icItems}
-	\item \lstinline|[r/w] icL'clickTime : int|;
-	\item \lstinline|[r/w] icL'pressTime : int|;
-	\item \lstinline|[r/w] icL'moveTime : int|;
-	\item \lstinline|[r/w] icL'flashMode : bool|;
-	\item \lstinline|[r/w] icL'humanMode : bool|.
+	\item \mintinline{icl}{[r/w] icL'clickTime : int};
+	\item \mintinline{icl}{[r/w] icL'pressTime : int};
+	\item \mintinline{icl}{[r/w] icL'moveTime : int};
+	\item \mintinline{icl}{[r/w] icL'flashMode : bool};
+	\item \mintinline{icl}{[r/w] icL'humanMode : bool}.
 \end{icItems}
 
-\subsubsection{\lstinline|icL'clickTime : int|}
+\subsubsection{\mintinline{icl}{icL'clickTime : int}}
 
 Intervalul clicului, implicit 300.
 
-\subsubsection{\lstinline|icL'pressTime : int|}
+\subsubsection{\mintinline{icl}{icL'pressTime : int}}
 
 Intervalul apăsării butonului pe claviatură, implicit 60.
 
-\subsubsection{\lstinline|icL'moveTime : int|}
+\subsubsection{\mintinline{icl}{icL'moveTime : int}}
 
 Timpul mediu în milisecunde în care cursorul se mută la distanța de 100 de pixeli, implicit 32.
 
-\subsubsection{\lstinline|icL'flashMode : bool|}
+\subsubsection{\mintinline{icl}{icL'flashMode : bool}}
 
-Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \lstinline|icL'humanMode|. Implicit închis. \lstinline|element.sendKeys| și \lstinline|element.fastType| vor lucra la fel de rapid ca \lstinline|element.paste|, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
+Regim "Flash", toate operațiile vor fi executate maximum de rapid. Anulează \mintinline{icl}{icL'humanMode}. Implicit închis. \mintinline{icl}{element.sendKeys} și \mintinline{icl}{element.fastType} vor lucra la fel de rapid ca \mintinline{icl}{element.paste}, schimbarea conținutului clipboard-ului poate încurca la experiența de utilizare a calculatorului.
 
-\subsubsection{\lstinline|icL'humanMode : bool|}
+\subsubsection{\mintinline{icl}{icL'humanMode : bool}}
 
-Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \lstinline|icL'flashMode|. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
+Regim "Om", toate operațiile for fi executate încet, cît mai asemănător cu comportarea omului. Anulează \mintinline{icl}{icL'flashMode}. Pe ecran va fi adăugat cursor, care va arăta poziția curentă a cursorului virtual. Implicit acest regim este închis.
 
 %\newpage

@@ -6,15 +6,15 @@
 
 Modificatorii de control permit a schimba calea de îndeplinire a unor construcții.
 
-\subsubsection{\lstinline|if:not|}
+\subsubsection{\mintinline{icl}{if:not}}
 
-\lstinline|if:not (@var == true)| este echivalent cu \lstinline|if (!(@var == true))|, doar în acest caz se micșorează numărul de paranteze și codul arată mai simplu.
+\mintinline{icl}{if:not (@var == true)} este echivalent cu \mintinline{icl}{if (!(@var == true))}, doar în acest caz se micșorează numărul de paranteze și codul arată mai simplu.
 
-\subsubsection{\lstinline|for:alt| - ciclu universal alternativ}
+\subsubsection{\mintinline{icl}{for:alt} - ciclu universal alternativ}
 
-În ciclul universal se schimbă ordinea de îndeplinire al operațiilor. \lstinline|for:alt| garantează ca grupa de comenzi va fi executat cel puțin o dată.
+În ciclul universal se schimbă ordinea de îndeplinire al operațiilor. \mintinline{icl}{for:alt} garantează ca grupa de comenzi va fi executat cel puțin o dată.
 
-Ordinea acțiunilor pentru \lstinline|for|:
+Ordinea acțiunilor pentru \mintinline{icl}{for}:
 \begin{icEnum}
     \item inițializare;
 	\item controlul condiției;
@@ -22,7 +22,7 @@ Ordinea acțiunilor pentru \lstinline|for|:
 	\item trecerea la următoarea iterație.
 \end{icEnum}
 
-Ordinea acțiunilor pentru \lstinline|for:alt|:
+Ordinea acțiunilor pentru \mintinline{icl}{for:alt}:
 \begin{icEnum}
     \item inițializare;
 	\item executarea grupei de comenzi;
@@ -30,32 +30,32 @@ Ordinea acțiunilor pentru \lstinline|for:alt|:
 	\item controlul condiției.
 \end{icEnum}
 
-\subsubsection{\lstinline|while:not| - executare condiționată repetată}
+\subsubsection{\mintinline{icl}{while:not} - executare condiționată repetată}
 
-\lstinline|while:not| va executa drupa de comenzi atît timp, cît condiția va rămîne falsă.
+\mintinline{icl}{while:not} va executa drupa de comenzi atît timp, cît condiția va rămîne falsă.
 
-\subsubsection{\lstinline|do while:not| - ciclu cu condiție posterioară}
+\subsubsection{\mintinline{icl}{do while:not} - ciclu cu condiție posterioară}
 
-\lstinline|do-while:not| va executa drupa de comenzi atît timp, cît condiția va rămîne falsă. La fel ca \lstinline|do-while| garantează că grupa de comenzi va fi executată minimum o dată.
+\mintinline{icl}{do-while:not} va executa drupa de comenzi atît timp, cît condiția va rămîne falsă. La fel ca \mintinline{icl}{do-while} garantează că grupa de comenzi va fi executată minimum o dată.
 
-\subsubsection{\lstinline|for:reverse| - răsfoirea colecție}
+\subsubsection{\mintinline{icl}{for:reverse} - răsfoirea colecție}
 
-\lstinline|for:reverse| va răsfoi colecția de la sfîrșit la început.
+\mintinline{icl}{for:reverse} va răsfoi colecția de la sfîrșit la început.
 
-\subsubsection{\lstinline|filter:reverse| - răsfoirea selectivă a colecției}
+\subsubsection{\mintinline{icl}{filter:reverse} - răsfoirea selectivă a colecției}
 
-\lstinline|filter:reverse| va răsfoi colecția de la sfîrșit la început.
+\mintinline{icl}{filter:reverse} va răsfoi colecția de la sfîrșit la început.
 
-\subsubsection{\lstinline|range:reverse| - răsfoirea parțială a colecției}
+\subsubsection{\mintinline{icl}{range:reverse} - răsfoirea parțială a colecției}
 
-\lstinline|filter:reverse| va răsfoi colecția de la sfîrșit la început.
+\mintinline{icl}{filter:reverse} va răsfoi colecția de la sfîrșit la început.
 
-\subsubsection{\lstinline|emiter:alive| - a doua răsuflare}
+\subsubsection{\mintinline{icl}{emiter:alive} - a doua răsuflare}
 
-În lista tehnologiilor \textit{icL} este prezentă tehnologia \textit{icL ALive}. Ea permite a restaura abilitatea de lucra a procesorului de comenzi după eșec, dar dacă excepția este prinsă de construcția \code{emiter-slot}, excepția va fi prelucrată de ea. Dacă este necesar ca excepția să fie prelucrată de \textit{icL ALive} atunci cînd este posibil, folosiți modificatorul \lstinline|emiter:alive|.
+În lista tehnologiilor \textit{icL} este prezentă tehnologia \textit{icL ALive}. Ea permite a restaura abilitatea de lucra a procesorului de comenzi după eșec, dar dacă excepția este prinsă de construcția \mintinline{icl}{emiter-slot}, excepția va fi prelucrată de ea. Dacă este necesar ca excepția să fie prelucrată de \textit{icL ALive} atunci cînd este posibil, folosiți modificatorul \mintinline{icl}{emiter:alive}.
 
 Lista tehnologiilor \textit{icL} este disponibilă pe linkul: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
 
-\subsubsection{\lstinline|listen:ignore| - regim "offline"}
+\subsubsection{\mintinline{icl}{listen:ignore} - regim "offline"}
 
-Construcția \lstinline|listen| este o parte a tehnologiei \textit{icL-Sync}, \lstinline|listen:ignore| permite a crea spion, care nu va spiona de la inițializare, dar va aștepta apelul metodei \lstinline|Stack.listen()|. Mai multă informație poate fi găsită in capitolul \ref{sync}.
+Construcția \mintinline{icl}{listen} este o parte a tehnologiei \textit{icL-Sync}, \mintinline{icl}{listen:ignore} permite a crea spion, care nu va spiona de la inițializare, dar va aștepta apelul metodei \mintinline{icl}{Stack.listen()}. Mai multă informație poate fi găsită in capitolul \ref{sync}.

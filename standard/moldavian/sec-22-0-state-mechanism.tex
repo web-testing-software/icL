@@ -12,90 +12,90 @@ Starea reprezintă o listă dublă de containere, ele nu sunt legate de cod și 
 
 Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
 \begin{icItems}
-	\item \lstinline|[r/o] Stacks'(name : string) : Stack|;
-	\item \lstinline|[r/w] Stack'(name : string) : any|;
-	\item \lstinline|Stack.clear () : void|;
-	\item \lstinline|Stack.continue () : void|;
-	\item \lstinline|Stack.break () : void|;
-	\item \lstinline|Stack.return (value : any) : void|;
-	\item \lstinline|Stack.markTest (name : string) : Stack|;
-	\item \lstinline|Stack.markStep (name : string) : Stack|;
-	\item \lstinline|Stack.addDescription (description : string) : void|;
-	\item \lstinline|Stack.destroy () : void|;
-	\item \lstinline|Stack.ignore () : Stack|;
-	\item \lstinline|Stack.listen () : Stack|.
+	\item \mintinline{icl}{[r/o] Stacks'(name : string) : Stack};
+	\item \mintinline{icl}{[r/w] Stack'(name : string) : any};
+	\item \mintinline{icl}{Stack.clear () : void};
+	\item \mintinline{icl}{Stack.continue () : void};
+	\item \mintinline{icl}{Stack.break () : void};
+	\item \mintinline{icl}{Stack.return (value : any) : void};
+	\item \mintinline{icl}{Stack.markTest (name : string) : Stack};
+	\item \mintinline{icl}{Stack.markStep (name : string) : Stack};
+	\item \mintinline{icl}{Stack.addDescription (description : string) : void};
+	\item \mintinline{icl}{Stack.destroy () : void};
+	\item \mintinline{icl}{Stack.ignore () : Stack};
+	\item \mintinline{icl}{Stack.listen () : Stack}.
 \end{icItems}
 
-\subsubsection{[r/o] \lstinline|Stacks'(name : string) : Stack|}
+\subsubsection{[r/o] \mintinline{icl}{Stacks'(name : string) : Stack}}
 
-Returnează containerul cu numele \code{name}. A numi containerul se poate în felul următor -
-\begin{lstlisting}[numbers=none]
+Returnează containerul cu numele \mintinline{icl}{name}. A numi containerul se poate în felul următor -
+\begin{minted}{icl}
 {:name
 	`` content
 }
-\end{lstlisting}
+\end{minted}
 Pot avea nume numai grupurile de comenzi (cod în acolade). Kodul în paranteze rotunde nu poate avea nume. Apelul funcții creează un container numele funcției.
 
 
-\subsubsection{\lstinline|Stack'(name : string) : any|}
+\subsubsection{\mintinline{icl}{Stack'(name : string) : any}}
 
-Returnează variabila, care se află anume în acest container. De exemplu: deja există o variabilă cu numele \code{i} în containerul ascendent, trebui de definit o variabilă cu același nume în containerul curent. Problema se rezolvă în felul următor: \lstinline|Stack'i = 0| în loc de \lstinline|@i = 0|.
+Returnează variabila, care se află anume în acest container. De exemplu: deja există o variabilă cu numele \mintinline{icl}{i} în containerul ascendent, trebui de definit o variabilă cu același nume în containerul curent. Problema se rezolvă în felul următor: \mintinline{icl}{Stack'i = 0} în loc de \mintinline{icl}{@i = 0}.
 
-\subsubsection{\lstinline|Stack.clear () : void|}
+\subsubsection{\mintinline{icl}{Stack.clear () : void}}
 
 Șterge toate variabilele din container.
 
-\subsubsection{\lstinline|Stack.continue () : void|}
+\subsubsection{\mintinline{icl}{Stack.continue () : void}}
 
 Trece la următoarea iterație, disponibil doar pentru cicluri.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Stack.break () : void|}
+\subsubsection{\mintinline{icl}{Stack.break () : void}}
 
 Întrerupe imediat ciclul sau executarea funcției. Disponibil doar pentru cicluri și funcții.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Stack.return (value : any) : void|}
+\subsubsection{\mintinline{icl}{Stack.return (value : any) : void}}
 
 Returnează rezultatul executării funcției. Dacă stratul curent nu este o funcție, va căuta cea mai apropiată funcție.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Stack.markTest (name : string) : Stack|}
+\subsubsection{\mintinline{icl}{Stack.markTest (name : string) : Stack}}
 
-Înseamnă stratul curent ca test cu numele \code{name}, a include un test în alt test nu se permite.
-
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
-
-\subsubsection{\lstinline|Stack.markStep (name : string) : Stack|}
-
-Înseamnă stratul curent ca pas cu numele \code{name}. Pasul poate fi definit în test sau în alt pas.
+Înseamnă stratul curent ca test cu numele \mintinline{icl}{name}, a include un test în alt test nu se permite.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Stack.addDescription (description : string) : void|}
+\subsubsection{\mintinline{icl}{Stack.markStep (name : string) : Stack}}
+
+Înseamnă stratul curent ca pas cu numele \mintinline{icl}{name}. Pasul poate fi definit în test sau în alt pas.
+
+Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.addDescription (description : string) : void}}
 
 Adaugă descrierea pasului sau testului.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Stack.destroy () : void|}
+\subsubsection{\mintinline{icl}{Stack.destroy () : void}}
 
-Șterge din memorie stratul \lstinline|listen|.
-
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
-
-\subsubsection{\lstinline|Stack.ignore () : Stack|}
-
-Activează regimul "offline" pentru stratul de tip \lstinline|listen|.
+Șterge din memorie stratul \mintinline{icl}{listen}.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Stack.listen () : Stack|}
+\subsubsection{\mintinline{icl}{Stack.ignore () : Stack}}
 
-Deactivează regimul "offline" pentru stratul de tip \lstinline|listen|.
+Activează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
+
+Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.listen () : Stack}}
+
+Deactivează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
@@ -103,71 +103,71 @@ Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
 Pentru a controla stările, se folosesc următoarele metode și proprietăți:
 \begin{icItems}
-	\item \lstinline|States'first : object|;
-	\item \lstinline|States'prev : object|;
-	\item \lstinline|States'next : object|;
-	\item \lstinline|States'last : object|;
-	\item \lstinline|States.new (data = [=]) : void|;
-	\item \lstinline|States.newAtEnd (data = [=]) : void|;
-	\item \lstinline|States.toNext () : void|;
-	\item \lstinline|States.toPrev () : void|;
-	\item \lstinline|States.clear () : void|;
-	\item \lstinline|States.delete () : void|;
-	\item \lstinline|States.toFirst () : void|;
-	\item \lstinline|States.toLast () : void|.
+	\item \mintinline{icl}{States'first : object};
+	\item \mintinline{icl}{States'prev : object};
+	\item \mintinline{icl}{States'next : object};
+	\item \mintinline{icl}{States'last : object};
+	\item \mintinline{icl}{States.new (data = [=]) : void};
+	\item \mintinline{icl}{States.newAtEnd (data = [=]) : void};
+	\item \mintinline{icl}{States.toNext () : void};
+	\item \mintinline{icl}{States.toPrev () : void};
+	\item \mintinline{icl}{States.clear () : void};
+	\item \mintinline{icl}{States.delete () : void};
+	\item \mintinline{icl}{States.toFirst () : void};
+	\item \mintinline{icl}{States.toLast () : void}.
 \end{icItems}
 
-Obiectul \lstinline|States| este o colecție, înseamnă că ea poate fi răsfoită prin \lstinline|for (States) {}|. Suportul pentru alte cicluri lipsește.
+Obiectul \mintinline{icl}{States} este o colecție, înseamnă că ea poate fi răsfoită prin \mintinline{icl}{for (States) {}}. Suportul pentru alte cicluri lipsește.
 
-\subsubsection{\lstinline|States'first : object|}
+\subsubsection{\mintinline{icl}{States'first : object}}
 
 Returnează prima stare ca obiect.
 
-\subsubsection{\lstinline|States'prev : object|}
+\subsubsection{\mintinline{icl}{States'prev : object}}
 
 Returnează starea precedentă ca obiect.
 
-\subsubsection{\lstinline|States'next : object|}
+\subsubsection{\mintinline{icl}{States'next : object}}
 
 Returnează starea următoare ca obiect.
 
-\subsubsection{\lstinline|States'last : object|}
+\subsubsection{\mintinline{icl}{States'last : object}}
 
 Returnează ultima stare ca obiect.
 
-\subsubsection{\lstinline|States.new (data = [=]) : void|}
+\subsubsection{\mintinline{icl}{States.new (data = [=]) : void}}
 
-Creează o nouă stare după starea curentă și schimbă focusul la ea. Toate datele obiectului \code{data} se adaugă în containerul nou.
+Creează o nouă stare după starea curentă și schimbă focusul la ea. Toate datele obiectului \mintinline{icl}{data} se adaugă în containerul nou.
 
-\subsubsection{\lstinline|States.newAtEnd (data = [=]) : void|}
+\subsubsection{\mintinline{icl}{States.newAtEnd (data = [=]) : void}}
 
-Creează o nouă stare la sfîrșit, care nu va fi primi focus.  Toate datele obiectului \code{data} se adaugă în containerul nou.
+Creează o nouă stare la sfîrșit, care nu va fi primi focus.  Toate datele obiectului \mintinline{icl}{data} se adaugă în containerul nou.
 
-\subsubsection{\lstinline|States.toNext () : bool|}
+\subsubsection{\mintinline{icl}{States.toNext () : bool}}
 
 Returnează \true, dacă există o stare următoare și focusul a fost schimbat la ea, în caz contrar \false.
 
-\subsubsection{\lstinline|States.toPrev () : bool|}
+\subsubsection{\mintinline{icl}{States.toPrev () : bool}}
 
 Returnează \true, dacă există o stare precedentă și focusul a fost schimbat la ea, în caz contrar \false.
 
-\subsubsection{\lstinline|States.clear () : void|}
+\subsubsection{\mintinline{icl}{States.clear () : void}}
 
 Șterge toate variabilele din stare.
 
-\subsubsection{\lstinline|States.delete () : void|}
+\subsubsection{\mintinline{icl}{States.delete () : void}}
 
 Șterge starea, dacă există o stare următoare focusul trece la ea, în caz contrar dacă există o stare precedentă focusul trece la ea, iar dacă această este ultima, ea este doar curățită.
 
-\subsubsection{\lstinline|States.toFirst () : void|}
+\subsubsection{\mintinline{icl}{States.toFirst () : void}}
 
 Schimbă focusul la prima stare.
 
-\subsubsection{\lstinline|States.toLast () : void|}
+\subsubsection{\mintinline{icl}{States.toLast () : void}}
 
 Schimbă focusul la ultima stare.
 
-\subsubsection{\lstinline|for (States) \{\}|}
+\subsubsection{\mintinline{icl}{for (States) \{\}}}
 
 Îndeplinește ciclul pentru fiecare stare în parte.
 

@@ -1,14 +1,17 @@
 % !TeX spellcheck = ro_RO
 \section{Tratarea excepțiilor}
 
-Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în consolă denumire și descrierea erorii curente e destul să apelezi \lstinline|Log.error ""|. Excepțiile posibile care pot fi generate la apelarea funcțiilor diferite sunt enumerate la sfîrșitul descrierei . Ca să înregistrezi eroare personalizată e destul să apelezi \lstinline|Signal.add (name : string)|.
+Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în consolă denumire și descrierea erorii curente e destul să apelezi \mintinline{icl}{Log.error ""}. Excepțiile posibile care pot fi generate la apelarea funcțiilor diferite sunt enumerate la sfîrșitul descrierei . Ca să înregistrezi eroare personalizată e destul să apelezi \mintinline{icl}{Signal.add (name : string)}.
 
 \subsection{Generarea excepțiilor}
 
-Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \lstinline|emiter {```code```}|. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \lstinline|slot:exception {```code```}|,
-unde \code{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \lstinline|slot:Any|. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
+Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {```code```}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception {```code```}},
+unde \mintinline{icl}{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \mintinline{icl}{slot:Any}. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
 
-\begin{lstlisting}[caption=Prelucrarea excepțiilor, label=sighandling]
+\begin{sourcecode}
+\captionof{listing}{Prelucrarea excepțiilor}
+\label{sighandling}
+\begin{minted}[linenos]{icl}
 Signal.add "NumberTooBig";
 Signal.add "NumberTooSmall";
 
@@ -31,11 +34,12 @@ slot:NumberTooBig {
 slot:NumberTooSmall {
 	Log.error "Nope! O_O";
 };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-Pentru a genera semnale proprii folosiți comanda \lstinline|emit:exception (description : string)|, unde \code{exception} e numele semnalului, dar \code{description} e descrierea.
+Pentru a genera semnale proprii folosiți comanda \mintinline{icl}{emit:exception (description : string)}, unde \mintinline{icl}{exception} e numele semnalului, dar \mintinline{icl}{description} e descrierea.
 
-Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \lstinline|jammer {```code```}|. Semnalele erorilor semantice și de sintaxă, și \lstinline|emit:Exit| de asemenea, nu pot fi oprite de jammer.
+Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \mintinline{icl}{jammer {```code```}}. Semnalele erorilor semantice și de sintaxă, și \mintinline{icl}{emit:Exit} de asemenea, nu pot fi oprite de jammer.
 
 \subsection{Semnale implicite}
 
@@ -99,9 +103,9 @@ Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă
 	\ferror{SessionNotCreated}       & Nu este posibil de creat sesie.              \\ \hline
 	\ferror{QueryNotExecutedYet}     & SQL request nu a fost executat.              \\ \hline
 	
-	\ferror{UnknownCommand}          & \code{[w3c]} Comandă necunoscută.            \\ \hline
-	\ferror{UnknownError}            & \code{[w3c]} Eroare necunoscută.             \\ \hline
-	\ferror{UnknownMethod}           & \code{[w3c]} Metodă HTTP necunoscută.        \\
+	\ferror{UnknownCommand}          & \mintinline{icl}{[w3c]} Comandă necunoscută.            \\ \hline
+	\ferror{UnknownError}            & \mintinline{icl}{[w3c]} Eroare necunoscută.             \\ \hline
+	\ferror{UnknownMethod}           & \mintinline{icl}{[w3c]} Metodă HTTP necunoscută.        \\
 }
 
 %\newpage

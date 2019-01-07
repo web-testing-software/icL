@@ -49,29 +49,32 @@ Unele tipuri de date au proprietăți. Proprietățile permit a citi caracterist
 
 \begin{icItems}
 \item
-	\code{any'typeName : string} e numele tipului de date conținut de obiect;
+	\mintinline{icl}{any'typeName : string} e numele tipului de date conținut de obiect;
 \item
-	\code{any'typeId : int} e identificatorul tipului de date conținut de obiect;
+	\mintinline{icl}{any'typeId : int} e identificatorul tipului de date conținut de obiect;
 \item
-	\code{any'rValue : bool} e egal cu \true{} dacă obiectul este o valoare de dreapta, în caz contrar \false{};
+	\mintinline{icl}{any'rValue : bool} e egal cu \true{} dacă obiectul este o valoare de dreapta, în caz contrar \false{};
 \item
-	\code{any'readOnly : bool} e egal cu \true{} dacă obiectul este disponibil doar pentru citire, în caz contrar \false{};
+	\mintinline{icl}{any'readOnly : bool} e egal cu \true{} dacă obiectul este disponibil doar pentru citire, în caz contrar \false{};
 \item
-	\code{any'lValue : bool} e egal cu \true{} dacă obiectul este disponibil pentru citire și scriere, în caz contrar \false{};
+	\mintinline{icl}{any'lValue : bool} e egal cu \true{} dacă obiectul este disponibil pentru citire și scriere, în caz contrar \false{};
 \item
-	\code{any'link : bool} e egal cu \true{} dacă valoare sa află într-un container extern și schimbarea valorii va schimba valoarea în mediu extern, în caz contrar \false{}.
+	\mintinline{icl}{any'link : bool} e egal cu \true{} dacă valoare sa află într-un container extern și schimbarea valorii va schimba valoarea în mediu extern, în caz contrar \false{}.
 \end{icItems}
 
 Exemple de folosire a proprietăților sunt prezente pe foaia \ref{propertiesmain}.
 
 \subsection{Metode}
 
-Metodele permit a schimba starea obiectului. Toate tipurile de date au doar o singură metodă comună \code{any.ensureRValue}, care garantează că schimbarea valorii obiectului nu va schimba date în mediul extern.
+Metodele permit a schimba starea obiectului. Toate tipurile de date au doar o singură metodă comună \mintinline{icl}{any.ensureRValue}, care garantează că schimbarea valorii obiectului nu va schimba date în mediul extern.
 
-Exemplu de folosire a metodei \code{any.ensureRValue} este demonstrat pe foaia \ref{anyensureRValue}.
+Exemplu de folosire a metodei \mintinline{icl}{any.ensureRValue} este demonstrat pe foaia \ref{anyensureRValue}.
 
 \newpage
-\begin{lstlisting}[caption=Proprietăți, label=propertiesmain]
+\begin{sourcecode}
+\captionof{listing}{Proprietăți}
+\label{propertiesmain}
+\begin{minted}[linenos]{icl}
 @int = 2;
 @double = 3;
 @string = "int";
@@ -91,10 +94,14 @@ Exemplu de folosire a metodei \code{any.ensureRValue} este demonstrat pe foaia \
 
 @int'link; `` true
 1234'link; `` false
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 
-\begin{lstlisting}[caption=Metoda any.ensureRValue, label=anyensureRValue]
+\begin{sourcecode}
+\captionof{listing}{Metoda any.ensureRValue}
+\label{anyensureRValue}
+\begin{minted}[linenos]{icl}
 @int = 123;
 
 @int'rValue;   `` false
@@ -102,4 +109,5 @@ Exemplu de folosire a metodei \code{any.ensureRValue} este demonstrat pe foaia \
 @int.ensureRValue;
 @int'rValue;   `` true
 @int'readOnly; `` false
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}

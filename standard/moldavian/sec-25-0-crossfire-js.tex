@@ -3,26 +3,30 @@
 
 Tehnologia {\bf crossfire.js} permite a apela funcții icL din pagina web. Funcția va fi executată asincron.
 
-A insera funcții icL în JavaScript se poate cu următorul înlocuitor \lstinline|!{name}|. La apelul funcției icL, parametri trebuie să fie compatibili, în caz contrar va fi generat un semnal care va opri executarea funcției, în urma căruia executarea scriptului va fi oprită. Pentru a garanta înțelegerea corectă a datelor se recomadă de folosit următoarele funcții JavaScript:
+A insera funcții icL în JavaScript se poate cu următorul înlocuitor \mintinline{icl}{!{name}}. La apelul funcției icL, parametri trebuie să fie compatibili, în caz contrar va fi generat un semnal care va opri executarea funcției, în urma căruia executarea scriptului va fi oprită. Pentru a garanta înțelegerea corectă a datelor se recomadă de folosit următoarele funcții JavaScript:
 \begin{icItems}
-	\item \lstinline|crossfire.bool(arg)|;
-	\item \lstinline|crossfire.int(arg)|;
-	\item \lstinline|crossfire.double(arg)|;
-	\item \lstinline|crossfire.string(arg)|;
-	\item \lstinline|crossfire.list(arg)|;
-	\item \lstinline|crossfire.object(arg)|;
-	\item \lstinline|crossfire.set(arg)|;
-	\item \lstinline|crossfire.element(arg)|;
+	\item \mintinline{icl}{crossfire.bool(arg)};
+	\item \mintinline{icl}{crossfire.int(arg)};
+	\item \mintinline{icl}{crossfire.double(arg)};
+	\item \mintinline{icl}{crossfire.string(arg)};
+	\item \mintinline{icl}{crossfire.list(arg)};
+	\item \mintinline{icl}{crossfire.object(arg)};
+	\item \mintinline{icl}{crossfire.set(arg)};
+	\item \mintinline{icl}{crossfire.element(arg)};
 \end{icItems}
 
-Exemplu elementar de apelare corectă a funcției icL este prezentat pe foaia \ref{crossfireexample}. Funcția \code{onclick} primește un parametru, dar \code{func} - nu. În cauză trebuie interface, cel mai simplu mod este de a defini o funcție anonimă.
+Exemplu elementar de apelare corectă a funcției icL este prezentat pe foaia \ref{crossfireexample}. Funcția \mintinline{icl}{onclick} primește un parametru, dar \mintinline{icl}{func} - nu. În cauză trebuie interface, cel mai simplu mod este de a defini o funcție anonimă.
 
-\begin{lstlisting}[caption=Exemplu de apelare a funcției icL, label=crossfireexample]
+\begin{sourcecode}
+\captionof{listing}{Exemplu de apelare a funcției icL}
+\label{crossfireexample}
+\begin{minted}[linenos]{icl}
 @el = Doc.query "button";
 !func = { Log.info "It's working!" };
 
 $run {
 	@{el}[0].onlick = function (ev) { !{func}() }
 };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 

@@ -3,38 +3,45 @@
 
 \textbf{Variabila} este o pereche "nume" - "valoare". Fiecare variabilă în icL are domeniu de vizibilitate (fragment de cod unde ea poate fi folosită) și tip, care hotărăște metoda de distribuire a memoriei și domeniul de valori.
 
-Numele variabilei este identificator, care se începe cu \lstinline|@| sau {\color{blue2}\lstinline|#|}. 
+Numele variabilei este identificator, care se începe cu \mintinline{icl}{@} sau {\color{blue2}\mintinline{icl}{#}}. 
 
 \subsection{Definire și inițializare a variabilelor}
 
-\textbf{Definirea și inițializarea} se realizează prin definirea perechilor "nume" - "valoare", numele de valoare se desparte prin semnul \lstinline|=| și are următoarea sintaxă \lstinline|var = value|, unde \lstinline|var| este numele, iar \lstinline|value| e valoarea.
+\textbf{Definirea și inițializarea} se realizează prin definirea perechilor "nume" - "valoare", numele de valoare se desparte prin semnul \mintinline{icl}{=} și are următoarea sintaxă \mintinline{icl}{var = value}, unde \mintinline{icl}{var} este numele, iar \mintinline{icl}{value} e valoarea.
 
 Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și inițializare. Atrageți atenția la aceea că numerele reale se scriu prin punct (.), nu prin virgulă (,), așa cum este primit în Europa și Republica Moldova.
 
-\begin{lstlisting}[caption=Exemplu de declarare și inițializare al variabilelor,label=initexample]
+\begin{sourcecode}
+\captionof{listing}{Exemplu de declarare și inițializare al variabilelor}
+\label{initexample}
+\begin{minted}[linenos]{icl}
 @bool = false;
 @catched = true;
 @int = 234;
 @double = 23.4;
 #pi = 3.14;
 #negative = -100.0;
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsection{Variabile locale}
 
 \textbf{Variabilele locale} au un domeniu îngust de vizibilitate, limitat de acoladele care le înconjoară și numai după declarare.
 
-{\bf Identificatorii} variabilelor locale se încep cu simbolul \lstinline|@|.
+{\bf Identificatorii} variabilelor locale se încep cu simbolul \mintinline{icl}{@}.
 
-Pe foaia \ref{localvars} se demonstrează domeniul de vizibilitate al variabilei \lstinline|@var|, în punctele de declarare al variabilelor \lstinline|@test1|, \lstinline|@test2| și \lstinline|@test6| ea nu este vizibilă, dar în punctele de declarare ale variabilelor \lstinline|@test3|, \lstinline|@test4| și \lstinline|@test5| - da.
+Pe foaia \ref{localvars} se demonstrează domeniul de vizibilitate al variabilei \mintinline{icl}{@var}, în punctele de declarare al variabilelor \mintinline{icl}{@test1}, \mintinline{icl}{@test2} și \mintinline{icl}{@test6} ea nu este vizibilă, dar în punctele de declarare ale variabilelor \mintinline{icl}{@test3}, \mintinline{icl}{@test4} și \mintinline{icl}{@test5} - da.
 
 \subsection{Variabile globale}
 
 \textbf{Variabilele globale} au cel mai larg domeniu de vizibilitate, ele sunt vizibile în orice punct al programei după declarare. Nu se recomandă a folosi variabile globale, pentru că ele pot să provoace erori serioase.
 
-{\bf Identificatorii} variabilelor globale se încep cu caracterul {\color{blue2}\lstinline|#|}. Mai multe variabile locale pot avea același nume, dar variabilele globale au nume unic, care nu poate fi repetat.
+{\bf Identificatorii} variabilelor globale se încep cu caracterul {\color{blue2}\mintinline{icl}{#}}. Mai multe variabile locale pot avea același nume, dar variabilele globale au nume unic, care nu poate fi repetat.
 
-\begin{lstlisting}[caption=Domeniul de vizibilitate al variabilei locale, label=localvars]
+\begin{sourcecode}
+\captionof{listing}{Domeniul de vizibilitate al variabilei locale}
+\label{localvars}
+\begin{minted}[linenos]{icl}
 `` error
 @test1 = @var;
 if (@) {
@@ -53,9 +60,10 @@ if (@) {
 }
 `` error
 @test6 = @var;
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-Pe foaia \ref{globalvars}, este demonstrat domeniul de vizibilitate al variabilei \lstinline|@var|, ea nu este vizibilă în punctele de declarare ale variabilelor \lstinline|@test1|, \lstinline|@test2| și \lstinline|@test3|, dar este vizibilă în punctele de declarare ale variabilelor \lstinline|@test4|, \lstinline|@test5| și \lstinline|@test6|.
+Pe foaia \ref{globalvars}, este demonstrat domeniul de vizibilitate al variabilei \mintinline{icl}{@var}, ea nu este vizibilă în punctele de declarare ale variabilelor \mintinline{icl}{@test1}, \mintinline{icl}{@test2} și \mintinline{icl}{@test3}, dar este vizibilă în punctele de declarare ale variabilelor \mintinline{icl}{@test4}, \mintinline{icl}{@test5} și \mintinline{icl}{@test6}.
 
 \subsection{Valori de stînga și dreapta în icL}
 
@@ -74,7 +82,7 @@ Valorile de stînga se pot afla în ambele părți ale operație {\it de atribui
 
 \subsection{Valori împachetate}
 
-{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \lstinline|(@a, @b) = (@b.ensureRValue, @a.ensureRValue)|. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
+{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \mintinline{icl}{(@a, @b) = (@b.ensureRValue, @a.ensureRValue)}. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
 
 \subsection{Variabilele @ și \#}
 
@@ -83,7 +91,10 @@ Valorile de stînga se pot afla în ambele părți ale operație {\it de atribui
 {Variabila \#} este un acronim pentru @console, rezultatul comenzii este salvat în această variabilă, apoi printat în consolă sau transmis comenzii următoare.
 
 
-\begin{lstlisting}[caption=Domeniu de vizibilitate al variabilei globale, label=globalvars]
+\begin{sourcecode}
+\captionof{listing}{Domeniu de vizibilitate al variabilei globale}
+\label{globalvars}
+\begin{minted}[linenos]{icl}
 `` error
 @test1 = @var;
 if (@) {
@@ -102,12 +113,17 @@ if (@) {
 }
 `` ok
 @test6 = @var;
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Valori de stînga și dreapta, label=rlvalues]
+\begin{sourcecode}
+\captionof{listing}{Valori de stînga și dreapta}
+\label{rlvalues}
+\begin{minted}[linenos]{icl}
 @a1 = @a2; @a3 = 123; `` ok
 123 = @a1; 125 = 456; `` error
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsection{Concluzii}
 

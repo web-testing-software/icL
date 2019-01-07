@@ -3,15 +3,19 @@
 
 icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icL}.
 
-\begin{lstlisting}[caption=Prima programă, label=first]
+\begin{sourcecode}
+\captionof{listing}{Prima programă}
+\label{first}
+\begin{minted}[linenos]{icl}
 Log.info "Test!";
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 În consolă ar trebui să apară următorul \textbf{text}:
 
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 Test!
-\end{lstlisting}
+\end{minted}
 
 \subsection{Import în icL}
 
@@ -19,29 +23,29 @@ Toate \textbf{bibliotecile standarde} sunt include în limbaj, dar se poate de i
 
 \begin{icItems}
 \item
-	\lstinline|Import.none "project/lib.icL"| - execută codul care se află în fișier, nu importă nimic;
+	\mintinline{icl}{Import.none "project/lib.icL"} - execută codul care se află în fișier, nu importă nimic;
 \item
-	\lstinline|Import.functions "project/lib.icL"| - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
+	\mintinline{icl}{Import.functions "project/lib.icL"} - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
 \item
-	\lstinline|Import.all "project/lib.icL"| -  execută codul, importa funcțiile și variabilele globale;
+	\mintinline{icl}{Import.all "project/lib.icL"} -  execută codul, importa funcțiile și variabilele globale;
 \item
-	\lstinline|Import.run "project/lib.icL"| - execută codul în contextul curent, toate funcțiile și variabilele globale se importă și exportă.
+	\mintinline{icl}{Import.run "project/lib.icL"} - execută codul în contextul curent, toate funcțiile și variabilele globale se importă și exportă.
 \end{icItems}
 
 \subsection{Semne în icL}
 
-Programa în icL conține diferite \textbf{semne} (literale, construcții semantice, operatori, delimitatori, cuvinte cheie). Semnul poate fi cuvînt cheie, identificator, constantă ori caracter. De exemple comanda următoare conține 4 semne: \lstinline|Log.info "Hello world!";|.
+Programa în icL conține diferite \textbf{semne} (literale, construcții semantice, operatori, delimitatori, cuvinte cheie). Semnul poate fi cuvînt cheie, identificator, constantă ori caracter. De exemple comanda următoare conține 4 semne: \mintinline{icl}{Log.info "Hello world!";}.
 
 Semnele prezente:
 \begin{icItems}
 \item
-	\lstinline|Log| - identificator de obiect;
+	\mintinline{icl}{Log} - identificator de obiect;
 \item
-	\lstinline|.info| - identificator de metodă;
+	\mintinline{icl}{.info} - identificator de metodă;
 \item
-	\lstinline|"Hello world!"| - literal, șir de caracter;
+	\mintinline{icl}{"Hello world!"} - literal, șir de caracter;
 \item
-	\lstinline|;| - delimitator, sfîrșit de comandă.
+	\mintinline{icl}{;} - delimitator, sfîrșit de comandă.
 \end{icItems}
 
 \subsection{Comentarii}
@@ -50,57 +54,76 @@ Semnele prezente:
 
 \textbf{Comentariu în linie} (\textit{inline}) este un fragment de text limitat cu caractere speciale \texttt{`}, cum este arătat pe foaia \ref{inlinecomment}.
 
-\begin{lstlisting}[caption=Comentariu în linie,label=inlinecomment]
+\begin{sourcecode}
+\captionof{listing}{Comentariu în linie}
+\label{inlinecomment}
+\begin{minted}[linenos]{icl}
 No comment `comment` no comment
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \textbf{Comentariu al liniei} este desemnat de \texttt{``}, cum este prezentat pe foaia \ref{linecomment}.
 
-\begin{lstlisting}[caption=Comentariu al liniei,label=linecomment]
+\begin{sourcecode}
+\captionof{listing}{Comentariu al liniei}
+\label{linecomment}
+\begin{minted}[linenos]{icl}
 No comment `` comment
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \textbf{Comentariu în cîteva linii} se începe și se termină cu \texttt{```}, exemplu de acest comentariu este prezent pe foaia \ref{multilinecomment}.
 
-\begin{lstlisting}[caption=Comentariu în cîteva linii,label=multilinecomment]
+\begin{sourcecode}
+\captionof{listing}{Comentariu în cîteva linii}
+\label{multilinecomment}
+\begin{minted}[linenos]{icl}
 No comment
 ``` comment 1
 	comment 2
 	comment 3
 ``` No comment
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsection{Identificatori}
 
-\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\lstinline|@|, \lstinline|#|, \lstinline|.|, \lstinline|'| sau literă, după care merg de la 1 la 32 de caractere: litere latine, diacritice, sublinia și cifre.
+\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{.}, \mintinline{icl}{'} sau literă, după care merg de la 1 la 32 de caractere: litere latine, diacritice, sublinia și cifre.
 
 icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
 
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 #loop		Tab	    	.append		'length	Doc 	@i	 	@VAR
 @variable	sumPoints	#global		.merge	.get	#01		sin
-\end{lstlisting}
+\end{minted}
 
 \subsection{Cuvinte cheie}
 
-În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 18: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|listen|, \lstinline|wait|, \lstinline|switch|, \lstinline|case| și \lstinline|assert|. În acest document ele sunt accentuate folosind culoarea albastră.
+În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 18: \mintinline{icl}{if}, \mintinline{icl}{else} \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}, \mintinline{icl}{exists}, \mintinline{icl}{while}, \mintinline{icl}{do}, \mintinline{icl}{any}, \mintinline{icl}{emit}, \mintinline{icl}{emiter}, \mintinline{icl}{slot}, \mintinline{icl}{jammer}, \mintinline{icl}{listen}, \mintinline{icl}{wait}, \mintinline{icl}{switch}, \mintinline{icl}{case} și \mintinline{icl}{assert}. În acest document ele sunt accentuate folosind culoarea albastră.
 
 \subsection{Spații si delimitatori}
 
 \textbf{Spațiu} (\textit{whitespace}) - este un termen, folosit în icL, pentru a însemna caracterul "spațiu", caracterul de tabulare, caracterul "rînd nou" și comentariu. Spațiile nu sunt obligatorii, ele sunt folosite pentru a face codul mai citabil. Pe foia \ref{unreadable} este prezent un exemplu de cod fără spații, dar pe foia \ref{readable} cu spații.
 
-\begin{lstlisting}[caption=Cod fără spații,label=unreadable]
+\begin{sourcecode}
+\captionof{listing}{Cod fără spații}
+\label{unreadable}
+\begin{minted}[linenos]{icl}
 if(Tab.get"mai.ru"){Doc.query("button").click();}else{Log.error"[..]";};
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-În icL este prezent \textbf{delimitatorul de comenzi} \lstinline|;|, el poate fi ignorat, dar nu se recomandă. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \lstinline|Tab.get "URL"|, închide tabul - \lstinline|Tab.close()|.
+În icL este prezent \textbf{delimitatorul de comenzi} \mintinline{icl}{;}, el poate fi ignorat, dar nu se recomandă. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \mintinline{icl}{Tab.get "URL"}, închide tabul - \mintinline{icl}{Tab.close()}.
 
 În descrierea succesiunii de acțiuni, acțiunile trebuie despărțite. De exemplu succesiunea din comenzile precedente se descrie în felul următor -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 Tab.get "URL"; Tab.close()
-\end{lstlisting}
+\end{minted}
 
-\begin{lstlisting}[caption=Cod cu spații,label=readable]
+\begin{sourcecode}
+\captionof{listing}{Cod cu spații}
+\label{readable}
+\begin{minted}[linenos]{icl}
 `` the begin of program
 
 `` try to go to mai.ru
@@ -116,4 +139,5 @@ else {
 };
 
 `` end of the program
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}

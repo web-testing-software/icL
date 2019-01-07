@@ -5,8 +5,8 @@
 
 \subsection{{\color{orange} \_alert}}
 
-\noindent Descrierea clasei \code{\_alert} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_alert} -
+\begin{minted}{icl}
 class _alert {
 	[r/o] _alert'text : string;
 	
@@ -14,12 +14,12 @@ class _alert {
 	_alert.dismiss         : void;
 	_alert.sendKeys string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_by}}
 
-\noindent Descrierea clasei \code{\_by} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_by} -
+\begin{minted}{icl}
 class _by {
 	[r/o] _by'cssSelector     : 1;
 	[r/o] _by'linkText        : 2;
@@ -27,12 +27,12 @@ class _by {
 	[r/o] _by'tagName         : 4;
 	[r/o] _by'xPath           : 5;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_cookie}}
 
-\noindent Descrierea clasei \code{\_cookie} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_cookie} -
+\begin{minted}{icl}
 class _cookie {
 	[r/w] _cookie'domain   : string;
 	[r/w] _cookie'expiry   : int;
@@ -47,43 +47,43 @@ class _cookie {
 	_cookie.resetTime                         : _cookie;
 	_cookie.save                              : _cookie;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_cookies}}
 
-\noindent Descrierea clasei \code{\_cookies} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_cookies} -
+\begin{minted}{icl}
 class _cookies {
 	[r/o] _cookies'string : _cookie;
 
 	_cookies.deleteAll        : void;
 	_cookies.get       string : _cookie;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_db}}
 
-\noindent Descrierea clasei \code{\_db} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_db} -
+\begin{minted}{icl}
 class _db {
 _db.query _code : _query;
 _db.close       : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_dbManager}}
 
-\noindent Descrierea clasei \code{\_dbManager} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_dbManager} -
+\begin{minted}{icl}
 class _dbManager {
 	_dbManager.openSQLite string : _db;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_dom}}
 
-\noindent Descrierea clasei \code{\_dom} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_dom} -
+\begin{minted}{icl}
 class _dom {
 	_dom.query           int    string : element;
 	_dom.query           string        : element;
@@ -96,12 +96,12 @@ class _dom {
 	_dom.queryTag        string        : element;
 	_dom.queryTags       string        : element;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_dsv}}
 
-\noindent Descrierea clasei \code{\_dsv} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_dsv} -
+\begin{minted}{icl}
 class _dsv {
 	_dsv.load    string _file  : set;
 	_dsv.loadCSV string        : set;
@@ -111,12 +111,12 @@ class _dsv {
 	_dsv.append  _file  object : _file;
 	_dsv.sync    _file  set    : set;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_file}}
 
-\noindent Descrierea clasei \code{\_file} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_file} -
+\begin{minted}{icl}
 class _file {
 	[r/o] _file'csv    : 1;
 	[r/o] _file'format : int;
@@ -127,24 +127,24 @@ class _file {
 	_file.close  : void;
 	_file.delete : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_files}}
 
-\noindent Descrierea clasei \code{\_files} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_files} -
+\begin{minted}{icl}
 class _files {
 	_file.open       string : _file;
 	_file.create     string : _file;
 	_file.createDir  string : void;
 	_file.createPath string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_icL}}
 
-\noindent Descrierea clasei \code{\_icL} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_icL} -
+\begin{minted}{icl}
 class _icL {
 	[r/w] _icL'clickTime : int;
 	[r/w] _icL'pressTime : int;
@@ -152,35 +152,35 @@ class _icL {
 	[r/w] _icL'flashMode : int;
 	[r/w] _icL'humanMode : int;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_import}}
 
-\noindent Descrierea clasei \code{\_import} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_import} -
+\begin{minted}{icl}
 class _import {
 	_import.none      [object] string : void;
 	_import.functions [object] string : void;
 	_import.all       [object] string : void;
 	_import.run       string          : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_key}}
 
-\noindent Descrierea clasei \code{\_key} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_key} -
+\begin{minted}{icl}
 class _key {
 	_key'alt   : 3;
 	_key'ctrl  : 1;
 	_key'shift : 2;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_log}}
 
-\noindent Descrierea clasei \code{\_log} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_log} -
+\begin{minted}{icl}
 class _log {
 	_log.error string   : void;
 	_log.info  string   : void;
@@ -188,12 +188,12 @@ class _log {
 	_log.stack value    : void;
 	_log.state value    : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_make}}
 
-\noindent Descrierea clasei \code{\_make} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_make} -
+\begin{minted}{icl}
 class _make {
 	_make.image  string string : void;
 	_make.int    string int    : int;
@@ -206,12 +206,12 @@ class _make {
 	_make.string object        : string;
 	_make.string set           : string;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_math}}
 
-\noindent Descrierea clasei \code{\_math} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_math} -
+\begin{minted}{icl}
 class _math {
 	[r/o] _math'1divPi     : double;
 	[r/o] _math'1divSqrt2  : double;
@@ -244,23 +244,23 @@ class _math {
 	_math.sin              double    : double;
 	_math.tan              double    : double;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_mouse}}
 
-\noindent Descrierea clasei \code{\_mouse} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_mouse} -
+\begin{minted}{icl}
 class _mouse {
 	[r/o] _mouse'left   : 1;
 	[r/o] _mouse'middle : 2;
 	[r/o] _mouse'right  : 3;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_move}}
 
-\noindent Descrierea clasei \code{\_move} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_move} -
+\begin{minted}{icl}
 class _move {
 	[r/o] _move'bezier    : 5;
 	[r/o] _move'cubic     : 4;
@@ -268,23 +268,23 @@ class _move {
 	[r/o] _move'quadratic : 3;
 	[r/o] _move'teleport  : 1;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_numbers}}
 
-\noindent Descrierea clasei \code{\_numbers} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_numbers} -
+\begin{minted}{icl}
 	[r/o] _numbers'max     : 4;
 	[r/o] _numbers'min     : 3;
 	[r/o] _numbers'product : 2;
 	[r/o] _numbers'process : int;
 	[r/o] _numbers'sum     : 1;
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_query}}
 
-\noindent Descrierea clasei \code{\_query} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_query} -
+\begin{minted}{icl}
 class _query {
 	[w/o] _query'string : value;
 	[r/o] _query'string : value;
@@ -301,12 +301,12 @@ class _query {
 	_query.seek            int    [bool] : bool;
 	_query.set             string value  : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_session}}
 
-\noindent Descrierea clasei \code{\_session} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_session} -
+\begin{minted}{icl}
 class _session {
 	[r/w] _session'implicitTimeout : int;
 	[r/w] _session'pageLoadTimeout : int;
@@ -322,12 +322,12 @@ class _session {
 	_session.screenshot : string;
 	_session.switchTo   : _session;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_sessions}}
 
-\noindent Descrierea clasei \code{\_sessions} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_sessions} -
+\begin{minted}{icl}
 class _sessions {
 	[r/o] _sessions'length : int;
 	[r/o] _sessions'int    : _session;
@@ -336,21 +336,21 @@ class _sessions {
 	_sessions.get      int : _session;
 	_sessions.new          : _session;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_signal}}
 
-\noindent Descrierea clasei \code{\_signal} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_signal} -
+\begin{minted}{icl}
 class _signal {
 	_signal.add string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_stack}}
 
-\noindent Descrierea clasei \code{\_stack} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_stack} -
+\begin{minted}{icl}
 class _stack {
 	[r/w] _stack : value;
 	
@@ -358,12 +358,12 @@ class _stack {
 	_stack.continue : void;
 	_stack.break    : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_stacks}}
 
-\noindent Descrierea clasei \code{\_stacks} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_stacks} -
+\begin{minted}{icl}
 class _stacks {
 	[r/o] _stacks'int    : _stack;
 	[r/w] _stacks'string : _stack;
@@ -378,12 +378,12 @@ class _stacks {
 	_stacks.range    [int] : _stack;
 	_stacks.filter   [int] : _stack;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_states}}
 
-\noindent Descrierea clasei \code{\_states} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_states} -
+\begin{minted}{icl}
 class _states {
 	_states.clear    : void;
 	_states.delete   : void;
@@ -394,12 +394,12 @@ class _states {
 	_states.toNext   : void;
 	_states.toPrev   : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_tab}}
 
-\noindent Descrierea clasei \code{\_tab} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_tab} -
+\begin{minted}{icl}
 class _tab {
 	[icL] [r/o] _tab'canGoBack    : bool;
 	[icL] [r/o] _tab'canGoForward : bool;
@@ -414,12 +414,12 @@ class _tab {
 	_tab.forward        : void;
 	_tab.get     string : bool;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_tabs}}
 
-\noindent Descrierea clasei \code{\_tabs} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_tabs} -
+\begin{minted}{icl}
 class _tabs {
 	[r/o] _tabs'current  : _tab;
 	[r/o] _tabs'first    : _tab;
@@ -441,12 +441,12 @@ class _tabs {
 	_tabs.findByTitle  regex  : _tab;
 	_tabs.findByTitle  string : _tab;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_types}}
 
-\noindent Descrierea clasei \code{\_types} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_types} -
+\begin{minted}{icl}
 class _types {
 	[r/o] _types'alert     : 10;
 	[r/o] _types'bool      : 1;
@@ -491,24 +491,24 @@ class _types {
 	[r/o] _types'window    : 40;
 	[r/o] _types'windows   : 41;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_wait}}
 
-\noindent Descrierea clasei \code{\_wait} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_wait} -
+\begin{minted}{icl}
 class _wait {
 	_wait.ajax  object         : bool;
 	_wait.for   element object : bool;
 	_wait.title object         : bool;
 	_wait.url   object         : bool;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_window}}
 
-\noindent Descrierea clasei \code{\_window} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_window} -
+\begin{minted}{icl}
 class _window {
 	[r/w] _window'height : int;
 	[r/w] _window'width  : int;
@@ -525,18 +525,18 @@ class _window {
 	_window.switchToFrame   int     : _window;
 	_window.switchToParent          : _window;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} \_windows}}
 
-\noindent Descrierea clasei \code{\_windows} -
-\begin{lstlisting}[numbers=none]
+\noindent Descrierea clasei \mintinline{icl}{\_windows} -
+\begin{minted}{icl}
 class _windows {
 	[r/o] _window'length : int;
 	[r/o] _window'int    : _window;
 	
 	_windows.get int : _window;
 }
-\end{lstlisting}
+\end{minted}
 
 

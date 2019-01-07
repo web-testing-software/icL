@@ -1,131 +1,134 @@
 % !TeX spellcheck = ro_RO
 \section{Baze de date}
 
-Modulul definește următoarele obiecte globale: \lstinline|DBManager| este managerul de baze de date, \lstinline|DB| este ultima bază de date deschisă, \lstinline|Query| este ultimul query.
+Modulul definește următoarele obiecte globale: \mintinline{icl}{DBManager} este managerul de baze de date, \mintinline{icl}{DB} este ultima bază de date deschisă, \mintinline{icl}{Query} este ultimul query.
 
 Modulul \textit{Baze de date} definește următoarele posibilități:
 \begin{icItems}
-	\item \lstinline|DBManager.openSQLite (path : string) : DB|;
-	\item \lstinline|DBManager.connect (server : string, user : string, password : string) : DB|;
-	\item \lstinline|DBManager.connect (server : string) : DB|;
-	\item \lstinline|DB.query (q : Code) : Query|;
-	\item \lstinline|DB.close () : void|;
-	\item \lstinline|[w/o] Query'(name : string) : any|;
-	\item \lstinline|Query.set (field : string, value : any) : void|;
-	\item \lstinline|Query.exec () : bool|;
+	\item \mintinline{icl}{DBManager.openSQLite (path : string) : DB};
+	\item \mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB};
+	\item \mintinline{icl}{DBManager.connect (server : string) : DB};
+	\item \mintinline{icl}{DB.query (q : Code) : Query};
+	\item \mintinline{icl}{DB.close () : void};
+	\item \mintinline{icl}{[w/o] Query'(name : string) : any};
+	\item \mintinline{icl}{Query.set (field : string, value : any) : void};
+	\item \mintinline{icl}{Query.exec () : bool};
 	\item Disponibile după executare:
 	\begin{icItems}
-		\item \lstinline|[r/o] Query'(name : string) : any|;
-		\item \lstinline|Query.getRowsAffected () : int|;
-		\item \lstinline|Query.getError () : bool|;
-		\item \lstinline|Query.getLength () : int|;
-		\item \lstinline|Query.get (field : string) : any|;
-		\item \lstinline|Query.next () : bool|;
-		\item \lstinline|Query.previous () : bool|;
-		\item \lstinline|Query.first () : bool|;
-		\item \lstinline|Query.last () : bool|;
-		\item \lstinline|Query.seek (i : int, relative = false) : bool|;
+		\item \mintinline{icl}{[r/o] Query'(name : string) : any};
+		\item \mintinline{icl}{Query.getRowsAffected () : int};
+		\item \mintinline{icl}{Query.getError () : bool};
+		\item \mintinline{icl}{Query.getLength () : int};
+		\item \mintinline{icl}{Query.get (field : string) : any};
+		\item \mintinline{icl}{Query.next () : bool};
+		\item \mintinline{icl}{Query.previous () : bool};
+		\item \mintinline{icl}{Query.first () : bool};
+		\item \mintinline{icl}{Query.last () : bool};
+		\item \mintinline{icl}{Query.seek (i : int, relative = false) : bool};
 	\end{icItems}
 \end{icItems}
 
-\subsubsection{\lstinline|DBManager.openSQLite (path : string) : DB|}
+\subsubsection{\mintinline{icl}{DBManager.openSQLite (path : string) : DB}}
 
-Deschide o nouă conexiune. \code{path} e calea spre fișierul bazei de date.
+Deschide o nouă conexiune. \mintinline{icl}{path} e calea spre fișierul bazei de date.
 
-\subsubsection{\lstinline|DBManager.connect (server : string, user : string, password : string) : DB|}
+\subsubsection{\mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB}}
 
 Se conectează la icL DB Client prin WebSockets, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over WebSockets}, descris în \textit{icL Wire Protocol}.
 
 Excepții posibile: \ferror{NoSuchServer} și \ferror{WrongUserPassword} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|DBManager.connect (server : string) : DB|}
+\subsubsection{\mintinline{icl}{DBManager.connect (server : string) : DB}}
 
 Se conectează la icL DB Client prin HTTP, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over HTTP}, descris în \textit{icL Wire Protocol}.
 
 Excepții posibile: \ferror{NoSuchServer} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|DB.query (q : Code) : Query|}
+\subsubsection{\mintinline{icl}{DB.query (q : Code) : Query}}
 
 Creează un query, pe bază de comandă SQL izolată în acolade.
 
-\subsubsection{\lstinline|DB.close () : void|}
+\subsubsection{\mintinline{icl}{DB.close () : void}}
 
 Închide conexiunea cu baza de date.
 
-\subsubsection{\lstinline|[w/o] Query'(name : string) : any|}
+\subsubsection{\mintinline{icl}{[w/o] Query'(name : string) : any}}
 
-Întoarce o valoare, care permite a schimba valoarea înlocuitorului prin atribuire. Înlocuitorul are următoarea sintaxă \lstinline|:name|.
+Întoarce o valoare, care permite a schimba valoarea înlocuitorului prin atribuire. Înlocuitorul are următoarea sintaxă \mintinline{icl}{:name}.
 
-\subsubsection{\lstinline|Query.set (field : string, value : any) : void|}
+\subsubsection{\mintinline{icl}{Query.set (field : string, value : any) : void}}
 
-Atribuie valoarea înlocuitorului \code{field}.
+Atribuie valoarea înlocuitorului \mintinline{icl}{field}.
 
-\subsubsection{\lstinline|Query.exec () : bool|}
+\subsubsection{\mintinline{icl}{Query.exec () : bool}}
 
 Returnează \true, dacă query-ului a fost executată cu succes, în caz contrar \false.
 
-\subsubsection{\lstinline|Query.getError () : string|}
+\subsubsection{\mintinline{icl}{Query.getError () : string}}
 
 Returnează textul erorii, dacă la executarea query-ului a apărut o eroare.
 
-\subsubsection{\lstinline|[r/o] Query'(name : string) : any|}
+\subsubsection{\mintinline{icl}{[r/o] Query'(name : string) : any}}
 
-După executarea \lstinline|Query.exec| proprietățile vor returna valoarea cîmpurilor necesare. Dacă așa cîmp nu există, va fi returnat \void.
+După executarea \mintinline{icl}{Query.exec} proprietățile vor returna valoarea cîmpurilor necesare. Dacă așa cîmp nu există, va fi returnat \void.
 
-\subsubsection{\lstinline|Query.getRowsAffected () : int|}
+\subsubsection{\mintinline{icl}{Query.getRowsAffected () : int}}
 
 Numărul de rînduri afectate/adăugate în baza de date.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Query.getLength () : int|}
+\subsubsection{\mintinline{icl}{Query.getLength () : int}}
 
-Numărul de rezultate primit în rezultatul executării comenzii \code{SELECT}.
-
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
-
-\subsubsection{\lstinline|Query.get (field : string) : any|}
-
-Returnează valoarea cîmpului \code{field} sau \void{} dacă așa cîmp nu există.
+Numărul de rezultate primit în rezultatul executării comenzii \mintinline{icl}{SELECT}.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Query.next () : bool|}
+\subsubsection{\mintinline{icl}{Query.get (field : string) : any}}
+
+Returnează valoarea cîmpului \mintinline{icl}{field} sau \void{} dacă așa cîmp nu există.
+
+Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.next () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la următorul rînd, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Query.previous () : bool|}
+\subsubsection{\mintinline{icl}{Query.previous () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la rîndul precedent, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Query.first () : bool|}
+\subsubsection{\mintinline{icl}{Query.first () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la primul rînd, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Query.last () : bool|}
+\subsubsection{\mintinline{icl}{Query.last () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la ultimul rînd, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|Query.seek (i : int, relative = false) : bool|}
+\subsubsection{\mintinline{icl}{Query.seek (i : int, relative = false) : bool}}
 
-Returnează \true, dacă s-a primit să treacă la al \code{i}-lea rînd sau să mute cursorul cu \code{i} rînduri (cu condiția că \code{@relative == true}), în caz contrar \false.
+Returnează \true, dacă s-a primit să treacă la al \mintinline{icl}{i}-lea rînd sau să mute cursorul cu \mintinline{icl}{i} rînduri (cu condiția că \mintinline{icl}{@relative == true}), în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
 \subsubsection{Exemplu}
 
-Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului Javascript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \code{@:name}, dar variabilele globale - \code{\#:name}.
+Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului Javascript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \mintinline{icl}{@:name}, dar variabilele globale - \mintinline{icl}{\#:name}.
 
 \newpage
-\begin{lstlisting}[caption=Exemplu de cod care folosește baze de date, label=dbexample]
+\begin{sourcecode}
+\captionof{listing}{Exemplu de cod care folosește baze de date}
+\label{dbexample}
+\begin{minted}[linenos]{icl}
 DBManager.openSQLite "db.sqlite";
 
 `` simple query
@@ -165,6 +168,7 @@ Query'id = 1001;
 Query'forname = "Bart";
 Query'name = "Simpson";
 Query.exec;
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 %\newpage

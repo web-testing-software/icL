@@ -4,7 +4,7 @@
 \subsection{De rangul 0$^+$}
 
 \noindent Lista operatorilor de rangul 0$^+$ -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 bool    = bool;
 double  = double;
 element = element;
@@ -31,21 +31,21 @@ void    = _session;
 void    = _stack;
 void    = _tab;
 void    = _window;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 1 și 1$^+$}
 
 \noindent Lista operatorilor de rangul 1 -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 data.method args... : any;
 
 data :  type;
 data :: type;
 data :* type;
-\end{lstlisting}
+\end{minted}
 
 \noindent Lista operatorilor de rangul 1$^+$ -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 !func args...        : any;
 [arg ...]            : object;
 [element ...]        : element;
@@ -56,12 +56,12 @@ data :* type;
 [set ...]            : set;
 [string ...]         : list;
 [string or list ...] : list;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 2}
 
 \noindent Lista operatorilor de rangul 2 -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 bool  & bool  : bool;
 value & value : value;
 value & void  : void;
@@ -98,12 +98,12 @@ string  % string  : list;
 value   % void    : value;
 void    % value   : value;
 void    % void    : void;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 3}
 
 \noindent Lista operatorilor de rangul 3 -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 bool   == bool   : bool;
 double == double : bool;
 int    == int    : bool;
@@ -141,12 +141,12 @@ list   <* string : bool;
 object <* object : bool;
 set    <* object : bool;
 string <* regex  : list;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 4}
 
 \noindent Lista operatorilor de rangul 4 -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 double + double : double;
 int    + int    : int;
 list   + list   : list;
@@ -158,12 +158,12 @@ string + string : string;
 double - double : double;
 int    - int    : int;
 set    - set    : set;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 5}
 
 \noindent Lista operatorilor de rangul 5 -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 double * double : double;
 int    * int    : int;
 list   * list   : bool;
@@ -176,12 +176,12 @@ int    / int    : int;
 
 int \ int : int;
 set \ set : set;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 6$^+$}
 
 \noindent Lista operatorilor de rangul 6$^+$ -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 double **        : double;
 double ** double : double;
 int    **        : int;
@@ -195,17 +195,17 @@ string ** regex  : object;
 double /'double : double;
 int    /'double : double;
 int    /'int    : int;
-\end{lstlisting}
+\end{minted}
 
 \subsection{De rangul 7 și 7$^+$}
 
 \noindent Lista operatorilor de rangul 7 -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 data'property;
-\end{lstlisting}
+\end{minted}
 
 \noindent Lista operatorilor de rangul 7$^+$ -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 !bool : bool
 
 -double : double;
@@ -213,5 +213,5 @@ data'property;
 
 +double : double;
 +int    : int;
-\end{lstlisting}
+\end{minted}
 

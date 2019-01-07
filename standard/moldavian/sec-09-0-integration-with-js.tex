@@ -1,70 +1,82 @@
 % !TeX spellcheck = ro_RO
 \section{Integrația cu JavaScript}
 
-În limbajul icL {\bf integrația cu JavaScript} se diferențiază în funcție de regimul de lucru. {\bf Regimuri de lucru} sunt de tot 2: testare și automatizare. Următoarele paragrafe for fi însemnate în modul următor: paragrafele însemnate cu \code{[icL]} se referă la automatizare și funcții adiționale icL, dar paragrafele cu \code{[w3c]} la testare și standardul WebDriver, propus de World Wide Web Consortium.
+În limbajul icL {\bf integrația cu JavaScript} se diferențiază în funcție de regimul de lucru. {\bf Regimuri de lucru} sunt de tot 2: testare și automatizare. Următoarele paragrafe for fi însemnate în modul următor: paragrafele însemnate cu \mintinline{icl}{[icL]} se referă la automatizare și funcții adiționale icL, dar paragrafele cu \mintinline{icl}{[w3c]} la testare și standardul WebDriver, propus de World Wide Web Consortium.
 
 \subsection{Valori JS}
 
 {\bf Valorile JS} - principala inovare în integrația cu JavaScript. Ea permite a folosi variabile JavaScript, comod ca și variabilele icL. Ele de asemenea pot fi disponibile pentru citire și scriere sau doar pentru citire.
 
-Fiecare valoare JS are getter, numai variabilele disponibile pentru scriere au setter. Getterii și setterii sunt fragmente de cod JavaScript. În setter valoare pentru instalare se descrie în felul următor \code{@\{value\}} Sintaxa valorii JS:
-\begin{lstlisting}[numbers=none]
+Fiecare valoare JS are getter, numai variabilele disponibile pentru scriere au setter. Getterii și setterii sunt fragmente de cod JavaScript. În setter valoare pentru instalare se descrie în felul următor \mintinline{icl}{@\{value\}} Sintaxa valorii JS:
+\begin{minted}{icl}
 $value {getter; setter};
-\end{lstlisting}
+\end{minted}
 
 Sintaxa simplificată a valorii JS:
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 $value {getter};
-\end{lstlisting}
+\end{minted}
 
 În calitate de valoare JS poate fi folosită orice variabilă, de exemplu titlu paginii (foaia \ref{jsvalueex}), ea rămîne disponibilă și după trecerea la altă pagină.
 
-\begin{lstlisting}[caption=Folosirea valorii JS, label=jsvalueex]
+\begin{sourcecode}
+\captionof{listing}{Folosirea valorii JS}
+\label{jsvalueex}
+\begin{minted}[linenos]{icl}
 @title = $value {document.title; document.title = @{value}};
 Log.out @title;
 @title = "Yet another title.";
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsection{Executarea codului JavaScript}
 
-Comanda \lstinline|$run| permite a executa {\bf cod în limbajul JavaScript}.
+Comanda \mintinline{icl}{$run} permite a executa {\bf cod în limbajul JavaScript}.
 
-\code{[icL]} Comanda \lstinline|$run| primește numai un argument - cod, în cod pot fi prezente variabile icL. Variabilele globale pot fi transmise în modul următor \lstinline|#{name}|, localele - \lstinline|@{name}|. Exemplu de transmitere al valorilor în JavaScript este demonstrat pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \lstinline|$runAsync|.
+\mintinline{icl}{[icL]} Comanda \mintinline{icl}{$run} primește numai un argument - cod, în cod pot fi prezente variabile icL. Variabilele globale pot fi transmise în modul următor \mintinline{icl}{#{name}}, localele - \mintinline{icl}{@{name}}. Exemplu de transmitere al valorilor în JavaScript este demonstrat pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
 
-\begin{lstlisting}[caption=Executarea codului în limbajul JavaScript (icL), label=jsrunex1]
+\begin{sourcecode}
+\captionof{listing}{Executarea codului în limbajul JavaScript (icL)}
+\label{jsrunex1}
+\begin{minted}[linenos]{icl}
 @var = 2;
 $run { window.a = @{var} }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\code{[w3c]} Comanda \lstinline|$run| primește un număr variabil de argumente. Ei se transmit în JavaScript sub formă de argumente ai funcției. Accesul la ele se realizează prin variabila \code{arguments}. Cod care folosește această metodă este prezentat pe foaia \ref{jsrunex2}, se poate de-l comparat cu codul de pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \lstinline|$runAsync|.
+\mintinline{icl}{[w3c]} Comanda \mintinline{icl}{$run} primește un număr variabil de argumente. Ei se transmit în JavaScript sub formă de argumente ai funcției. Accesul la ele se realizează prin variabila \mintinline{icl}{arguments}. Cod care folosește această metodă este prezentat pe foaia \ref{jsrunex2}, se poate de-l comparat cu codul de pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
 
-\begin{lstlisting}[caption=Executarea codului în limbajul JavaScript (w3c), label=jsrunex2]
+\begin{sourcecode}
+\captionof{listing}{Executarea codului în limbajul JavaScript (w3c)}
+\label{jsrunex2}
+\begin{minted}[linenos]{icl}
 @var = 2;
 $run @var { window.a = arguments[0] }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
 
 \subsection{Executarea fișierelor}
 
-Comanda \lstinline|$file| {\bf execută fișiere} JavaScript (.js). Pentru aceasta este destul de transmis calea spre fișier ca argument.
+Comanda \mintinline{icl}{$file} {\bf execută fișiere} JavaScript (.js). Pentru aceasta este destul de transmis calea spre fișier ca argument.
 
 Sintaxă -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 $file "path/to/file.js";
-\end{lstlisting}
+\end{minted}
 
 Excepții posibile: \ferror{FileNotFound}, \ferror{JavascriptError} (pr. tab. \ref{errors}).
 
 \subsection{Scripturi personale}
 
-\lstinline|[icL]| {\bf Scripturile personale} se execută pînă la încărcarea paginii, la trecerea la o nouă pagină. Scriptul poate fi fixat la tabul curent (\lstinline|$user|) sau la toate taburile din sesie (\lstinline|$always|).
+\mintinline{icl}{[icL]} {\bf Scripturile personale} se execută pînă la încărcarea paginii, la trecerea la o nouă pagină. Scriptul poate fi fixat la tabul curent (\mintinline{icl}{$user}) sau la toate taburile din sesie (\mintinline{icl}{$always}).
 
-\lstinline|[icL]| Sintaxă -
-\begin{lstlisting}[numbers=none]
+\mintinline{icl}{[icL]} Sintaxă -
+\begin{minted}{icl}
 $user "path/to/file.js";
 $always "path/to/file.js";
-\end{lstlisting}
+\end{minted}
 
 Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
 

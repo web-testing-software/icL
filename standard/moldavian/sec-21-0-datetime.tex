@@ -1,51 +1,51 @@
 % !TeX spellcheck = ro_RO
 \section{Timp}
 
-Marca de timp (tipul \code{datetime}) nu poate fi descrisă prin literal, dar poate fi creată din șir de caracter cu format specific.
+Marca de timp (tipul \mintinline{icl}{datetime}) nu poate fi descrisă prin literal, dar poate fi creată din șir de caracter cu format specific.
 
 \subsection{Operatori}
 
 Pentru mărci de date sunt disponibili următorii operatori de rangul 1:
 \begin{icItems}
-	\item \lstinline|string : datetime|;
-	\item \lstinline|(dt : string) : (datetime, format : string)|;
-	\item \lstinline|datetime : string|;
-	\item \lstinline|datetime : (string, format : string)|;
+	\item \mintinline{icl}{string : datetime};
+	\item \mintinline{icl}{(dt : string) : (datetime, format : string)};
+	\item \mintinline{icl}{datetime : string};
+	\item \mintinline{icl}{datetime : (string, format : string)};
 \end{icItems}
 
-\subsubsection{\lstinline|string : datetime|}
+\subsubsection{\mintinline{icl}{string : datetime}}
 
-Conversează șirul de caractere în \code{datetime}, folosind formatul \\* \lstinline`yyyy-MM-ddTHH:mm:ss[Z|[+|-]HH:mm]`.
+Conversează șirul de caractere în \mintinline{icl}{datetime}, folosind formatul \\* \mintinline{icl}{yyyy-MM-ddTHH:mm:ss[Z|[+|-]HH:mm]}.
 
-\subsubsection{\lstinline|(dt : string) : (datetime, format : string)|}
+\subsubsection{\mintinline{icl}{(dt : string) : (datetime, format : string)}}
 
-Conversează șirul de caractere \code{dt} în \code{datetime}, folosind formatul indicat, exemplu: \lstinline|"21.01.2019" : (datetime, "dd.MM.yyyy")|. Lista placeholder-elor disponibile:
+Conversează șirul de caractere \mintinline{icl}{dt} în \mintinline{icl}{datetime}, folosind formatul indicat, exemplu: \mintinline{icl}{"21.01.2019" : (datetime, "dd.MM.yyyy")}. Lista placeholder-elor disponibile:
 \begin{icItems}
-	\item \code{d} - data;
-	\item \code{dd} - data cu zero înainte;
-	\item \code{ddd} - prescurtarea denumirii zilei;
-	\item \code{dddd} - denumirea completă a zilei;
-	\item \code{M} - luna;
-	\item \code{MM} - luna cu zero înainte;
-	\item \code{MMM} - prescurtarea denumirii lunii;
-	\item \code{MMMM} - denumirea completă a lunii;
-	\item \code{yy} - anul în 2 cifre;
-	\item \code{yyyy} - anul în 4 cifre;
-	\item \code{h} - ora;
-	\item \code{hh} - ora cu zero înainte;
-	\item \code{m} - minuta;
-	\item \code{mm} - minuta cu zero înainte;
-	\item \code{s} - secunda;
-	\item \code{ss} - secunda cu zero înainte;
-	\item \code{ap} - am ori pm;
-	\item \code{AP} - AP ori PM;
+	\item \mintinline{icl}{d} - data;
+	\item \mintinline{icl}{dd} - data cu zero înainte;
+	\item \mintinline{icl}{ddd} - prescurtarea denumirii zilei;
+	\item \mintinline{icl}{dddd} - denumirea completă a zilei;
+	\item \mintinline{icl}{M} - luna;
+	\item \mintinline{icl}{MM} - luna cu zero înainte;
+	\item \mintinline{icl}{MMM} - prescurtarea denumirii lunii;
+	\item \mintinline{icl}{MMMM} - denumirea completă a lunii;
+	\item \mintinline{icl}{yy} - anul în 2 cifre;
+	\item \mintinline{icl}{yyyy} - anul în 4 cifre;
+	\item \mintinline{icl}{h} - ora;
+	\item \mintinline{icl}{hh} - ora cu zero înainte;
+	\item \mintinline{icl}{m} - minuta;
+	\item \mintinline{icl}{mm} - minuta cu zero înainte;
+	\item \mintinline{icl}{s} - secunda;
+	\item \mintinline{icl}{ss} - secunda cu zero înainte;
+	\item \mintinline{icl}{ap} - am ori pm;
+	\item \mintinline{icl}{AP} - AP ori PM;
 \end{icItems}
 
-\subsubsection{\lstinline|datetime : string|}
+\subsubsection{\mintinline{icl}{datetime : string}}
 
-Conversează marca de timp în șir de caractere cu formatul \lstinline`yyyy-MM-ddTHH:mm:ss[Z|[+|-]HH:mm]`.
+Conversează marca de timp în șir de caractere cu formatul \mintinline{icl}{yyyy-MM-ddTHH:mm:ss[Z|[+|-]HH:mm]}.
 
-\subsubsection{\lstinline|datetime : (string, format : string)|}
+\subsubsection{\mintinline{icl}{datetime : (string, format : string)}}
 
 Conversează marca de timp în format indicat.
 
@@ -53,40 +53,40 @@ Conversează marca de timp în format indicat.
 
 Marca de timp are următoarele proprietăți:
 \begin{icItems}
-	\item \lstinline|[r/w] datetime'year : int|;
-	\item \lstinline|[r/w] datetime'month : int|;
-	\item \lstinline|[r/w] datetime'day : int|;
-	\item \lstinline|[r/w] datetime'hour : int|;
-	\item \lstinline|[r/w] datetime'minute : int|;
-	\item \lstinline|[r/w] datetime'second : int|;
-	\item \lstinline|[r/o] datetime'valid : bool|.
+	\item \mintinline{icl}{[r/w] datetime'year : int};
+	\item \mintinline{icl}{[r/w] datetime'month : int};
+	\item \mintinline{icl}{[r/w] datetime'day : int};
+	\item \mintinline{icl}{[r/w] datetime'hour : int};
+	\item \mintinline{icl}{[r/w] datetime'minute : int};
+	\item \mintinline{icl}{[r/w] datetime'second : int};
+	\item \mintinline{icl}{[r/o] datetime'valid : bool}.
 \end{icItems}
 
-\subsubsection{\lstinline|[r/w] datetime'year : int|}
+\subsubsection{\mintinline{icl}{[r/w] datetime'year : int}}
 
 Anul.
 
-\subsubsection{\lstinline|[r/w] datetime'month : int|}
+\subsubsection{\mintinline{icl}{[r/w] datetime'month : int}}
 
 Luna.
 
-\subsubsection{\lstinline|[r/w] datetime'day : int|}
+\subsubsection{\mintinline{icl}{[r/w] datetime'day : int}}
 
 Data.
 
-\subsubsection{\lstinline|[r/w] datetime'hour : int|}
+\subsubsection{\mintinline{icl}{[r/w] datetime'hour : int}}
 
 Ora.
 
-\subsubsection{\lstinline|[r/w] datetime'minute : int|}
+\subsubsection{\mintinline{icl}{[r/w] datetime'minute : int}}
 
 Minuta.
 
-\subsubsection{\lstinline|[r/w] datetime'second : int|}
+\subsubsection{\mintinline{icl}{[r/w] datetime'second : int}}
 
 Secunda.
 
-\subsubsection{\lstinline|[r/o] datetime'valid : bool|}
+\subsubsection{\mintinline{icl}{[r/o] datetime'valid : bool}}
 
 \true, dacă marca de timp e corectă, în caz contrar \false.
 
@@ -94,45 +94,45 @@ Secunda.
 
 Marca de timp are următoarele metode:
 \begin{icItems}
-	\item \lstinline|datetime.addSecs (secs : int) : datetime|;
-	\item \lstinline|datetime.addDays (days : int) : datetime|;
-	\item \lstinline|datetime.addMonths (months : int) : datetime|;
-	\item \lstinline|datetime.addYears (months : int) : datetime|;
-	\item \lstinline|datetime.secsTo (dt : datetime) : int|;
-	\item \lstinline|datetime.daysTo (dt : datetime) : int|;
-	\item \lstinline|datetime.toUTC () : datetime|;
-	\item \lstinline|datetime.toTimeZone (hours : int, minutes : int) : datetime|.
+	\item \mintinline{icl}{datetime.addSecs (secs : int) : datetime};
+	\item \mintinline{icl}{datetime.addDays (days : int) : datetime};
+	\item \mintinline{icl}{datetime.addMonths (months : int) : datetime};
+	\item \mintinline{icl}{datetime.addYears (months : int) : datetime};
+	\item \mintinline{icl}{datetime.secsTo (dt : datetime) : int};
+	\item \mintinline{icl}{datetime.daysTo (dt : datetime) : int};
+	\item \mintinline{icl}{datetime.toUTC () : datetime};
+	\item \mintinline{icl}{datetime.toTimeZone (hours : int, minutes : int) : datetime}.
 \end{icItems}
 
-\subsubsection{\lstinline|datetime.addSecs (secs : int) : datetime|}
+\subsubsection{\mintinline{icl}{datetime.addSecs (secs : int) : datetime}}
 
 Adaugă numărul necesar de secunde.
 
-\subsubsection{\lstinline|datetime.addDays (days : int) : datetime|}
+\subsubsection{\mintinline{icl}{datetime.addDays (days : int) : datetime}}
 
 Adaugă numărul necesar de zile.
 
-\subsubsection{\lstinline|datetime.addMonths (months : int) : datetime|}
+\subsubsection{\mintinline{icl}{datetime.addMonths (months : int) : datetime}}
 
 Adaugă numărul necesar de luni.
 
-\subsubsection{\lstinline|datetime.addYears (months : int) : datetime|}
+\subsubsection{\mintinline{icl}{datetime.addYears (months : int) : datetime}}
 
 Adaugă numărul necesar de ani.
 
-\subsubsection{\lstinline|datetime.secsTo (dt : datetime) : int|}
+\subsubsection{\mintinline{icl}{datetime.secsTo (dt : datetime) : int}}
 
 Calculează diferența de timp în secunde.
 
-\subsubsection{\lstinline|datetime.daysTo (dt : datetime) : int|}
+\subsubsection{\mintinline{icl}{datetime.daysTo (dt : datetime) : int}}
 
 Calculează diferența de timp în zile.
 
-\subsubsection{\lstinline|datetime.toUTC () : datetime|}
+\subsubsection{\mintinline{icl}{datetime.toUTC () : datetime}}
 
 Returnează o nouă marcă de timp, care conține timpul UTC.
 
-\subsubsection{\lstinline|datetime.toTimeZone (hours : int, minutes : int) : datetime|}
+\subsubsection{\mintinline{icl}{datetime.toTimeZone (hours : int, minutes : int) : datetime}}
 
 Returnează o nouă marcă de timp, care conține timpul în fusul orar cerut.
 
@@ -140,14 +140,14 @@ Returnează o nouă marcă de timp, care conține timpul în fusul orar cerut.
 
 Sunt disponibile următoarele metode de a primi timpul curent:
 \begin{icItems}
-	\item \lstinline|Datetime.current () : datetime|;
-	\item \lstinline|Datetime.currentUTC () : datetime|.
+	\item \mintinline{icl}{Datetime.current () : datetime};
+	\item \mintinline{icl}{Datetime.currentUTC () : datetime}.
 \end{icItems}
 
-\subsubsection{\lstinline|Datetime.current () : datetime|}
+\subsubsection{\mintinline{icl}{Datetime.current () : datetime}}
 
 Timpul curent local.
 
-\subsubsection{\lstinline|Datetime.currentUTC () : datetime|}
+\subsubsection{\mintinline{icl}{Datetime.currentUTC () : datetime}}
 
 Timpul curent UTC.

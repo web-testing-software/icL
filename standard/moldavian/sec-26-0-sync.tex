@@ -13,15 +13,19 @@ listen serverAddress : (parameters) {
 }
 \end{lstlisting}
 
-Unde \code{serverAddress} e URL serviciului de sincronizare, iar \code{parameters} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
+Unde \mintinline{icl}{serverAddress} e URL serviciului de sincronizare, iar \mintinline{icl}{parameters} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
 
 
-\begin{lstlisting}[caption=Captura erorilor, label=errorcatch]
+\begin{sourcecode}
+\captionof{listing}{Captura erorilor}
+\label{errorcatch}
+\begin{minted}[linenos]{icl}
 listen "ws://127.0.0.1:8989" : (@type = "error", @message : string) {
 	Log.out "error: " + @message;
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsubsection{Deconectare}
 
-Pentru a opri captura mesajelor folosiți metodele: \lstinline|Stack.ignore()| sau \lstinline|Stack.destroy()|. Mai multe date puteți găsi în paragraful \ref{stack:control}.
+Pentru a opri captura mesajelor folosiți metodele: \mintinline{icl}{Stack.ignore()} sau \mintinline{icl}{Stack.destroy()}. Mai multe date puteți găsi în paragraful \ref{stack:control}.
