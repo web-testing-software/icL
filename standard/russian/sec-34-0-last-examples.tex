@@ -1,4 +1,4 @@
-\begin{lstlisting}
+\begin{minted}{icl}
 ```
 	Life Sport v. 1.3.0
 	release day 15.09.2016
@@ -8,7 +8,7 @@ init = {
 	#old = [
 		datetime, 
 		state : string, 
-		competition : string, 
+		competition : string,
 		title : string
 	];
 	#new = @old.clone();
@@ -25,23 +25,23 @@ parse_bat = {
 		})()
 	}
 
-	@ls = Doc.queryAll ".lshpanel";
+	@ls = css:all[.lshpanel];
 
 	for (@ls) {
 		@obj = [=];
 
-		@datetime_str = @.query(".riginal_time")'attr-innerText;
+		@datetime_str = css@[.riginal_time]'attr-innerText;
 		@obj'datetime = @datetime_str : (datetime, "SSXE");
 
 		
 		@obj'country = parse_bat_country @;
 
-		@competition = @.query(".category")'attr-innerText;
+		@competition = css@[.category]'attr-innerText;
 		@regex = //\s\-\s([\w\s]+)//
 		
 		@obj'competition = exists(@competition <* @regx)'0 | @competition;
 
-		@obj'title = @.query(".lshevent")'attr-innerText;
+		@obj'title = css@[.lshevent]'attr-innerText;
 
 		@new.insert @obj;
 	}
@@ -55,7 +55,7 @@ parse_bat = {
 @xx = ["ae", "af", "ai", "al", "ar", "at", "au", "az", "bg", "bo", "ba", "be", "bh", "by", "ca", "ch", "br", "cl", "cr", "cn", "co", "cy", "cz", "de", "dk", "ee", "dz", "ec", "eg", "es", "eu", "fi", "fr", "gb", "gr", "hk", "gh", "gt", "hn", "hu", "id", "ie", "il", "in", "ir", "is", "hr", "ig", "it", "ix", "jp", "kp", "kr", "lk", "lt", "lv", "kw", "ly", "me", "mk", "nc", "nl", "no", "nz", "om", "ma", "mn", "mx", "pl", "pt", "qa", "ro", "rs", "ru", "s2", "my", "np", "sa", "se", "sg", "si", "sk", "tr", "ua", "us", "sv", "tn", "wa", "za", "w"];
 
 parse_bat_country = (element) : string {
-	@country_str = @element.query("tr > td:first-child")'attr-style;
+	@country_str = css@element[tr > td:first-child]'attr-style;
 	@country = (@country_str <* //(\w+).png//)'0 | "";
 
 	     if (@eu << @country) { @country = "eu" }
@@ -77,17 +77,17 @@ parse_source = {
 		})()
 	}
 
-	@trs = Doc.queryAll ".HomeTable tr:not(:first-child)";
+	@trs = css:all[.HomeTable tr:not(:first-child)];
 
 	for (@trs) {
 		@obj = [=];
 
-		@date_str = @.query("td:nth-child(2)")'attr-innerText;
-		@time_str = @.query("td:nth-child(3)")'attr-innerText;
+		@date_str = css@[td:nth-child(2)]'attr-innerText;
+		@time_str = css@[td:nth-child(3)]'attr-innerText;
 
 		@obj'datetime = parse_date (@date_str, @time_str);
-		@obj'country = @.query(".country-icon")'attr-innerText;
-		@obj'competition = @.query("td:nth-child(5")'attr-innerText;
+		@obj'country = css@[.country-icon]'attr-innerText;
+		@obj'competition = css@[td:nth-child(5)]'attr-innerText;
 
 		#new.insert @obj;
 	}
@@ -129,37 +129,33 @@ parse_date (date : string, time : string) : datetime = {
 	Stack.return @dt;
 }
 
-css = (@selector : string) : element {
-	@ = Doc.query @selector;
-}
-
 add_data = {
 	Tab.get "../admin.php";
 
-	css("input[name=username]").sendKeys "user....";
-	css("input[name=password]").sendKeys "pass....";
+	css[input[name=username]].sendKeys "user....";
+	css[input[name=password]].sendKeys "pass....";
 
 	for (#toAdd) {
 		Tab.get "../admin.php?mod=addnews&action=addnews";
 
-		css(".icon-tasks").click();
-		css("#autodescr").sendKeys "WO " + @'title + "Keywords";
-		css(".icon-home").click();
-		css("#title").sendKeys @'title;
-		css("#allow_date").click();
-		css("input[name=newdate]").sendKeys(@.datetime : (string, "yyyy-MM-dd hh:mm:ss"));
-		css("#title").click();
-		css("#xf_liga").sendKeys @'country;
-		css("#xf_com").sendKeys @'competition;
-		css("#xf_duration").sendKeys "4";
-		css(".btn-green").click();
+		css[.icon-tasks].click();
+		css[#autodescr].sendKeys "WO " + @'title + "Keywords";
+		css[.icon-home].click();
+		css[#title].sendKeys @'title;
+		css[#allow_date].click();
+		css[input[name=newdate]].sendKeys(@.datetime : (string, "yyyy-MM-dd hh:mm:ss"));
+		css[#title].click();
+		css[#xf_liga].sendKeys @'country;
+		css[#xf_com].sendKeys @'competition;
+		css[#xf_duration].sendKeys "4";
+		css[.btn-green].click();
 
 		#added.insert @;
 	}
 }
 
 main = {
-	@id = css("#id")'text;
+	@id = css[#id]'text;
 
 	@source1 = [
 		bb = "baseball-live-streaming",
@@ -179,11 +175,11 @@ main = {
 
 	@source = "";
 
-	if (css("#source1")'selected) {
+	if (css[#source1]'selected) {
 		@source = "http://../" + (@source1.get @id);
 		parse_source();
 	}
-	else if (css("#source2")) {
+	else if (css[#source2]'selected) {
 		@source = "http://../" + (@source2.get @id);
 		parse_bat();
 	}
@@ -207,4 +203,4 @@ $run {
 		!{main}()
 	}
 }
-\end{lstlisting}
+\end{minted}

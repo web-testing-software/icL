@@ -22,7 +22,7 @@ class IclStyle(Style):
 
         Operator.Word:          '#232323',
 
-        Keyword:                '#1300b6',
+        Keyword:                '#f60000',
         Keyword.Pseudo:         '#1300b6',
         Keyword.Type:           '#0055ee',
 
@@ -32,13 +32,13 @@ class IclStyle(Style):
         Name.Property:          '#45816b',
         Name.Namespace:         '#45816b',
         Name.Builtin:           '#03945e',
-        Name.Variable:          '#5c5d83',
+        Name.Variable:          '#131560',
         Name.Variable.Class:    '#5c5d83',
         Name.Variable.Instance: '#5c5d83',
-        Name.Variable.Global:   '#74835c',
+        Name.Variable.Global:   '#446c03',
         Name.Constant:          '#5c5d83',
-        Name.Tag:               '#5c5d83',
-        Name.Attribute:         '#5c5d83',
+        Name.Tag:               '#0e84b5',
+        Name.Attribute:         '#ac3333',
         Name.Decorator:         '#5c5d83',
         Name.Label:             'bold #ac3333',
 

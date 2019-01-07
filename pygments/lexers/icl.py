@@ -1,10 +1,16 @@
-from pygments.lexer import RegexLexer
+import re
+
+from pygments.lexer import RegexLexer, bygroups
 from pygments.token import *
+
+__all__ = ['IclLexer']
 
 class IclLexer(RegexLexer):
     name = 'icL'
     aliases = ['icl']
     filenames = ['*.icL']
+    
+    flags = re.MULTILINE | re.DOTALL
 
     tokens = {
         'root': [
@@ -15,9 +21,11 @@ class IclLexer(RegexLexer):
             (r'\'[\w\-\*]+', Name.Property),
             (r'\.\w+', Name.Function),
             (r'\b(Exit|NoSessions|NoSuchWindow|NoSuchElement|NoSuchFrame|NoSuchCookie|NoSuchAlert|NoSuchPlaceholder|NoSuchDatabase|NoSuchServer|WrongUserPassword|StaleElementReference|FolderNotFound|FileNotFound|FieldNotFound|FieldAlreadyExists|OutOfBounds|UnsupportedOperation|EmptyString|EmptyList|MultiList|EmptyElement|MultiElement|EmptySet|MultiSet|InvalidArgument|InvalidSelector|InvalidElementState|InvalidElement|IncompatibleRoot|IncompatibleData|IncompatibleObject|InvalidSessionId|InvalidCookieDomain|InsecureCertificate|UnexpectedAlertOpen|UnrealCast|ParsingFailed|WrongDelimiter|ComplexField|ElementNotInteractable|ElementClickIntercepted|MoveTargetOutOfBounds|UnableToSetCookie|UnableToCaptureScreen|JavascriptError|ScriptTimeout|Timeout|SessionNotCreated|QueryNotExecutedYet|UnknownCommand|UnknownError|UnknownMethod)\b', Name.Exception),
-            (r'".*"', String),
-            (r'/(/.*/|:.*:|\$.*\$)/\w*', String.Regex),
-            (r'`(``.*```|`.*$|.*`)', Comment),
+            (r'".*?"', String),
+            (r'\b(css(:all)?|xpath(:all)?|links?(:fragment)?|tags?)(@\w*)?\[.*?\]', Name.Tag),
+            (r'/(/.*?/|:.*?:|\$.*?\$)/\w*', String.Regex),
+            (r'`(``.*?```|`.*?$|.*?`)', Comment),
+            (r'\$(value|run|runAsync|user|file|always)', Name.Attribute),
             (r'@(\{\w+\}|:\w+|\w*)', Name.Variable),
             (r'#(\{\w+\}|:\w+|\w+)', Name.Variable.Global),
             (r'#|~', Name.Variable),

@@ -119,3 +119,47 @@
 	{ \end{enumerate} }
 
  
+
+\usepackage{minted}
+\usemintedstyle{icl}
+
+\setminted{
+	fontfamily=tt,
+	fontsize=\footnotesize,
+	%	baselinestretch=1,
+	bgcolor=codebg,
+	mathescape=true,
+	autogobble=true,
+	breaklines=true,
+	breakanywhere=true
+	encoding=utf8,
+	frame=leftline,
+	framesep=4pt,
+	framerule=1pt,
+	highlightcolor=codeheaderbg,
+	labelposition=topline,
+	numbers=left,
+	numberblanklines=true,
+	numbersep=2pt,
+	resetmargins=true,
+	rulecolor=blue2,
+	%	samepage=true,
+	xleftmargin=\parindent
+}
+
+\newmintinline{icl}{}
+\newminted{icl}{linenos,tabsize=4,obeytabs}
+
+\definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
+\definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
+\definecolor{blue2}{RGB}{15, 92, 198}
+
+\makeatletter
+\@ifundefined{iclcode}{
+	\newenvironment{iclcode}{}{}
+}{}
+\makeatother
+
+\providecommand{\iclinline}[1]{\mintinline{js}{#1}}
+
+\renewcommand{\theFancyVerbLine}{\textcolor[RGB]{15, 92, 198}{\footnotesize \texttt{\arabic{FancyVerbLine}}}}
