@@ -1,8 +1,9 @@
  %\renewcommand{\rmdefault}{ftm}
 \counterwithin{lstlisting}{section}
+\counterwithin{listing}{section}
 \counterwithin{table}{section}
 
-\renewcommand{\lstlistingname}{Листинг}
+\SetupFloatingEnvironment{listing}{name=Листинг}
 
 \setlength\abovecaptionskip{2pt}
 \setlength\belowcaptionskip{1pt}
@@ -14,31 +15,6 @@
 \fancyhead[R]{\textmd{Страница \thepage{}-я из \pageref{LastPage}}}
 \fancyfoot[]{}
 \renewcommand{\headrulewidth}{0pt}
-
-\lstset{
-	language=icL,
-	extendedchars=true,
-	basicstyle=\footnotesize\ttfamily,
-	showstringspaces=false,
-	showspaces=false,
-	showtabs=false,
-	keepspaces=true,
-	numbers=left,
-	stepnumber=1,
-	tabsize=4,
-	breaklines=true,
-	breakatwhitespace=true,
-	backgroundcolor=\color{codebg},
-	style=framed,
-	lineskip=0pt,
-	aboveskip=0pt,
-	autogobble=true,
-	frame=l,
-	framesep=6mm,
-	framexleftmargin=2.5mm,
-	fillcolor=\color{codeheaderbg},
-	rulecolor=\color{blue}
-}
 
 \setlength{\LTleft}{0pt}
 \onehalfspacing

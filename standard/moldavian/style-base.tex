@@ -32,32 +32,10 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 
-\usepackage[singlelinecheck=false]{caption}
+\usepackage[singlelinecheck=false,font=singlespacing,labelsep=endash,position=above]{caption}
 \usepackage{listings, lstautogobble}
 
-\usepackage{caption}
-\DeclareCaptionFont{black}{\color{black}}
-%\DeclareCaptionFormat{listing}{\colorbox{codeheaderbg}
-%	{\parbox{\textwidth}{#1#2#3}}}
-\DeclareCaptionFormat{listing}{#1#2#3}
-\captionsetup[lstlisting]
-{format=listing,labelfont=black,textfont=black}
-
 \usepackage{enumitem}
-
-\lstdefinestyle{framed}
-{
-	frame=none,
-	belowcaptionskip=2pt,
-	xleftmargin=8pt,
-	framexleftmargin=7pt,
-	framexrightmargin=5pt,
-	framextopmargin=10pt,
-	framexbottommargin=5pt,
-	framesep=0pt,
-	rulesep=0pt,
-	texcl=true
-}
 
 \usepackage{soul}
 
@@ -67,40 +45,6 @@
 
 \newcommand{\cerror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{red!75!blue}{\textcolor{white}{#1}}}}
 
-\newcommand{\icLkeyword}{}
-\newcommand{\icLtype}{}
-\newcommand{\icLglobal}{}
-\newcommand{\icLfunction}{}
-\newcommand{\icLindentifier}{}
-\newcommand{\icLwwwc}{}
-\newcommand{\icLcomment}{}
-\newcommand{\icLtring}{}
-
-\lstdefinelanguage{icL}{
-	keywords={if, else, for, filter, range, exists, while, do, any, emit, emiter, slot, assert, listen, @, \#, class, extends, wait,  jammer, switch, case, SELECT, FROM, WHERE, LIMIT, INSERT, INTO, VALUE},
-	keywordstyle=\icLkeyword,
-	keywords=[2]{bool, int, double, string, list, element, set, item, object, function, void, request, char, regex, datetime},
-	keywordstyle=[2]\icLtype,
-	classoffset=3,
-	morekeywords={icL, Log, Tab, Doc, Import, true, false, Numbers, Types, Key, Alert, By, DSV, Sessions, Session, Windows, Window, Cookies, Cookie, Tabs, Tab, Files, File, Make, Math, Wait, Mouse, Move, Stacks, Stack, States, DB, Query, DBManager, Code, Signal, Datetime},
-	keywordstyle=\icLglobal,
-	classoffset=4,
-	morekeywords={info, warm, error, signal, return, at, query, queryAll, null, prepend, append, insert, merge, popFront, popBack, remove, removeOnce, removeAll, get, indexOf, lastIndexOf, join, sumUp, max, min, logicAnd, logicOr, length, text, html, width, height, click, scrollTo, sendKeys, isValid, copy, add, filter, query, queryAll, visible, clickable, next, prev, parent, child, closest, addClass, hasClass, removeClass, all, functions, none, run, close, process, setProcess, restoreProcess, product, sum, min, max, empty, out, typeName, typeId, rValue, lValue, readOnly, link, last, ensureRValue, split, right, replace, mid, leftJustified, rightJustified, left, right, endsWith, beginsWith, count, compare, substring, trim, contains, clear, move, removeAt, removeDuplicates, removeFirst, removeLast, removeOne, replaceInStrings, sort, capacity, applicate, getField, insertBoolField, insertIntField, insertDoubleField, insertListField, insertStringField, removeField, attr, css, enabled, prop, rect, selected, tag, queryAllByXPath, queryByXPath, queryLink, queryLinks, queryTags, queryTag, screenshot, ctrl, shift, alt, title, source, url, back, forward, refresh, canGoBack, canGoForward, accept, dismiss, childNodes, firstChild, innerText, isConnected, lastChild, nodeName, nodeType, nodeValue, parentElement, textContent, className, clientHeight, clientLeft,  clientTop, clientWidth, computedName, computedRole, id, innerHTML, localName, nextElementSibling, outerHTML, prefix, previousElementSibling, scrollHeight, scrollLeft, scrollTop, scrollWidth, tagName, baseURI, accessKey, accessKeyLabel, contentEditable, isContentEditable, dataset, dir, draggable, hidden, inert, lang, offsetHeight, offsetLeft, offsetParent, offsetTop, offsetWidth, spellcheck, download, hash, host, hostname, href, hreflang, media, password, origin, pathname, port, protocol, rel, search, target, type, username, coords, autofocus, disabled, form, formAction, formEnctype, formMethod, formNoValidate, formTarget, labels, name, value, willValidate, options, elements, action, encoding, enctype, acceptCharset, autocomplete, noValidate, allowPaymentRequest, complete, crossOrigin, isMap, naturalHeight, naturalWidth, src, useMap, checked, defaultChecked, defaultValue, dirName, indeterminate, maxLength, multiple, pattern, placeholder, required, selectionStart, selectionEnd, selectionDirection, size, step, validity, validationMessage, valueAsNumber, control, htmlFor, as, areas, autoplay, controls, currentSrc, currentTime, defaultMuted, defaultPlaybackRate, disableRemotePlayback, duration, ended, loop, mediaGroup, muted, networkState, paused, playbackRate, preload, readyState, seeking, volume, content, httpEquiv, high, low, cite, reversed, start, defaultSelected, index, label, position, charset, async, defer, noModule, selectedIndex, selectedOptions, abbr, cellIndex, colSpan, rowSpan, scope, span, caption, tBodies, tHead, tFoot, cells, rowIndex, cols, textLength, wrap, dateTime, kind, srclang, label, default, poster, videoHeight, videoWidth, cssSelector, linkText, partialLinkText, xPath, load, loadCSV, loadTSV, write, sync, closeAll, new, implicitTimeout, pageLoadTimeout, scriptTimeout, switchTo, x, y, focus, fullscreen, maximize, minimize, switchToDefault, switchToFrame, switchToParent, deleteAll, domain, expiry, httpOnly, path, secure, save, current, first, previous, closeByTitle, closeToLeft, closeToRight, closeOthers, open, create, createDir, createPath, csv, tsv, format, valid, delete, image, stack, state, divPi, divSqrtPi, e, ln2, ln10, log2e, log10e, pi, piDiv2, piDiv4, sqrt2, degreesToRadians, radiansToDegrees, acos, asin, atan, ceil, cos, exp, floor, ln, round, sin, tan, restore, resetTime, ajax, template, expression, timeout, toBe, present, interactable, keyDown, keyUp, keyPress, paste, fastType, mouseDown, mouseUp, hover, middle, rx, ry, ax, ay, delay, time, func, teleport, linear, quadratic, cubic, bezier, p1x, p1y, p2x, p2y, clickTime, pressTime, moveTime, flashMode, humanMode, ifexists, dowhile, forany, continue, break, newAtEnd, toNext, toPrev, toFirst, toLast, find, findByTitle, openSQLite, exec, getRowsAffected, getError, getLength, seek, forname, programmers, country, person, artists, hasField, alert, by, cookie, cookies, db, dbManager, dom, dsv, file, files, import, key, log, make, math, mouse, numbers, session, sessions, stacks, states, tab, tabs, types, wait, window, windows, year, month, day, hour, minute, second, addSecs, addDays, addMonths, secsTo, toUTC, toTimeZone, forceClick, forceType, clone, insertField, currentUTC, divSqrt2, markTest, markStep, addDescription, destroy, ignore, CSV, TSV, connect, Xs, Xms, addYears, daysTo, not, Xtimes, ever, minX, maxX, reverse, alive, xpath, links, tags, fragment},
-	keywordstyle=\icLfunction,
-	classoffset=5,
-	morekeywords={icL, w3c},
-	keywordstyle=\icLwwwc,
-	classoffset=0,
-	identifierstyle=\icLindentifier,
-	sensitive=true,
-	comment=[l]{``},
-	morecomment=[s]{```}{```},
-	morecomment=[s]{`c}{t`},
-	commentstyle=\icLcomment,
-	stringstyle=\icLtring,
-	morestring=[b]",
-	morestring=[b]//
-}
 
 \let\counterwithout\relax
 \let\counterwithin\relax
@@ -118,4 +62,56 @@
 { \begin{enumerate}[noitemsep,nolistsep] }
 	{ \end{enumerate} }
 
- 
+
+
+\usepackage[newfloat]{minted}
+\usemintedstyle{icl}
+
+\newenvironment{sourcecode}{
+	\captionsetup{type=listing,margin={1.25cm,0pt}}
+	\vspace{1.5em}
+}{\vspace{-1em}}
+
+\setminted{
+	fontfamily=tt,
+	fontsize=\footnotesize,
+	%	baselinestretch=1,
+	bgcolor=codebg,
+	mathescape=true,
+	autogobble=true,
+	breaklines=true,
+	breakanywhere=true
+	encoding=utf8,
+	frame=leftline,
+	framesep=4pt,
+	framerule=1pt,
+	highlightcolor=codeheaderbg,
+	labelposition=topline,
+	numbers=left,
+	numberblanklines=true,
+	numbersep=2pt,
+	resetmargins=true,
+	rulecolor=blue2,
+	%	samepage=true,
+	xleftmargin=1.25cm,
+	tabsize=4,
+	obeytabs=true,
+	linenos=false
+}
+
+\newmintinline{icl}{}
+\newminted{icl}{linenos=true}
+
+\definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
+\definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
+\definecolor{blue2}{RGB}{15, 92, 198}
+
+\makeatletter
+\@ifundefined{iclcode}{
+	\newenvironment{iclcode}{}{}
+}{}
+\makeatother
+
+\providecommand{\iclinline}[1]{\mintinline{js}{#1}}
+
+\renewcommand{\theFancyVerbLine}{\textcolor[RGB]{15, 92, 198}{\footnotesize \texttt{\arabic{FancyVerbLine}}}}
