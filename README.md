@@ -7,7 +7,7 @@ developement. Please wait for details.
 The documentation of icL code can be found 
 [here](https://web.testing.gitlab.io/icL-docs/docs/).
 
-# Look
+## Look
 
 The application will have the next look -
 ![Light theme icL](images/light.png)
@@ -17,7 +17,7 @@ Already will be avialble a dark theme
 
 For more images see [here](layouts/).
 
-# icL vs Selenium
+## icL vs Selenium
 
 icL is not an alternative for Selenium, but for a stack : Selenium + Selenium 
 Grid + Ranorex Studio + Ranorex Selocity. 
@@ -42,6 +42,18 @@ Comparation between icL share and Selenium Grid -
 |extern IDE needed     |yes          |no         |
 |safe password storange|no           |yes        |
 
-# Contributing
+## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+![GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)
+
+This program is licensed under GNU General Public License, Version 3.
+
+## Third Parts
+
+File graduation/src2pdf.sh was copied from 
+[src2pdf](https://github.com/arosspope/src2pdf.git) project and modified. It
+is distributed under MIT license.
