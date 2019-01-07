@@ -194,8 +194,39 @@
 
 Принимает параметр \jsinline{id} (целое число) - идентификатор сессии.
 
+\jsinline{payload} ответа имеет поле \jsinline{projects} - список числе, где каждое число является идентификатором проекта.
+
 \subsubsection{\jsinline{confirm-remove}}
 
 Подтверждает удаление проекта.
 
 Принимает параметр \jsinline{id} (целое число) - идентификатор проекта.
+
+\subsection{Backwards}
+
+Список запросов от сервера:
+
+\begin{icItems}
+	\item \jsinline{mark};
+	\item \jsinline{canceled};
+	\item \jsinline{finished}.
+\end{icItems}
+
+\subsubsection{\jsinline{mark-result}}
+
+Сервер указывает отметить результат прохождения теста, запрос содержит следующее полезные данные:
+
+\begin{icItems}
+	\item \jsinline{result} (строка) - результат: \jsinline{"successful"} - пройден удачно, \jsinline{"test-failed"} - тест упал из-за ошибки в коде, \jsinline{"assert-failed"} - тест упал при проверке утверждений, \jsinline{"unknown"} - неизвестный результат;
+	\item \jsinline{session} (целое число) - идентификатор сессии;
+	\item \jsinline{test} (целое число) - идентификатор теста;
+	\item \jsinline{browser} (строка) - идентификатор браузера: \jsinline{"icL"}, \jsinline{"chrome"}, \jsinline{"firefox"}, \jsinline{"edge"} или \jsinline{"safari"}.
+\end{icItems}
+
+\subsubsection{\jsinline{canceled}}
+
+Сервер указывает что выполнения тестов было отменено менеджером.
+
+\subsubsection{\jsinline{finished}}
+
+Сервер указывает что выполнения тестов завершилось естественным путём.
