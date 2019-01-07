@@ -10,6 +10,7 @@
 *.out
 *.pygtex
 *.pygstyle
+*.listing
 bin/debug/*
 bin/release/*
 doc/html/*

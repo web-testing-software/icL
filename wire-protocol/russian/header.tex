@@ -21,6 +21,9 @@
 \newfontfamily\cyrillicfontsans{Liberation Sans}
 %\newfontfamily\cyrillicfonttt{Liberation Mono}
 \newfontfamily\cyrillicfontsf{Liberation Serif}
+%\newfontfamily\mymono{Noto Mono}
+
+%\renewcommand*{\ttdefault}{mymono}
 
 \usepackage{ragged2e}
 \setcounter{tocdepth}{2}
@@ -59,10 +62,36 @@
 \usepackage{minted}
 \usemintedstyle{pastie}
 
-\setminted{fontsize=\footnotesize,baselinestretch=1}
+\setminted{
+	fontfamily=tt,
+	fontsize=\footnotesize,
+%	baselinestretch=1,
+	bgcolor=codebg,
+	mathescape=true,
+	autogobble=true,
+	breaklines=true,
+	breakanywhere=true
+	encoding=utf8,
+	frame=leftline,
+	framesep=4pt,
+	framerule=1pt,
+	highlightcolor=codeheaderbg,
+	labelposition=topline,
+	numbers=left,
+	numberblanklines=true,
+	numbersep=2pt,
+	resetmargins=true,
+	rulecolor=blue2,
+%	samepage=true,
+	xleftmargin=\parindent
+}
 
 \newmintinline{js}{}
 \newminted{js}{linenos,tabsize=4,obeytabs}
+
+\definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
+\definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
+\definecolor{blue2}{RGB}{15, 92, 198}
 
 \makeatletter
 \@ifundefined{jscode}{
@@ -71,3 +100,5 @@
 \makeatother
 
 \providecommand{\jsinline}[1]{\mintinline{js}{#1}}
+
+\renewcommand{\theFancyVerbLine}{\textcolor[RGB]{15, 92, 198}{\footnotesize \texttt{\arabic{FancyVerbLine}}}}
