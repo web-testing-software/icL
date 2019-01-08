@@ -5,7 +5,7 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 class IclStyle(Style):
 
-    default_style = ''
+    default_style = '#232323'
 
     styles = {
         Whitespace:             '#000000',
@@ -34,12 +34,12 @@ class IclStyle(Style):
         Name.Builtin:           '#03945e',
         Name.Variable:          '#131560',
         Name.Variable.Class:    '#5c5d83',
-        Name.Variable.Instance: '#5c5d83',
+        Name.Variable.Instance: '#ca023a',
         Name.Variable.Global:   '#446c03',
         Name.Constant:          '#5c5d83',
         Name.Tag:               '#0e84b5',
         Name.Attribute:         '#ac3333',
-        Name.Decorator:         '#5c5d83',
+        Name.Decorator:         '#ca023a',
         Name.Label:             'bold #ac3333',
 
         Number:                 '#ac3333',
