@@ -428,8 +428,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="80.23031"
-     inkscape:cy="643.492"
+     inkscape:cx="406.11389"
+     inkscape:cy="511.74515"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -449,7 +449,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -490,7 +490,7 @@
          id="tspan1764"
          x="57.373894"
          y="256.32568"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif Light';fill:#ffffff;fill-opacity:1;stroke-width:1.59091759">icL 1.1.0</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif Light';fill:#ffffff;fill-opacity:1;stroke-width:1.59091759">icL 1.1.1</tspan></text>
     <g
        transform="matrix(21.947438,0,0,21.947438,17.919595,-6274.8897)"
        id="layer1-6"
