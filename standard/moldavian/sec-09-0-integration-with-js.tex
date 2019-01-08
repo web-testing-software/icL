@@ -22,11 +22,7 @@ $value {getter};
 \begin{sourcecode}
 \captionof{listing}{Folosirea valorii JS}
 \label{jsvalueex}
-\begin{minted}[linenos]{icl}
-@title = $value {document.title; document.title = @{value}};
-Log.out @title;
-@title = "Yet another title.";
-\end{minted}
+\inputminted[linenos]{icl}{../sources/jsvalueex.icL}
 \end{sourcecode}
 
 \subsection{Executarea codului JavaScript}
@@ -38,10 +34,7 @@ Comanda \mintinline{icl}{$run} permite a executa {\bf cod în limbajul JavaScrip
 \begin{sourcecode}
 \captionof{listing}{Executarea codului în limbajul JavaScript (icL)}
 \label{jsrunex1}
-\begin{minted}[linenos]{icl}
-@var = 2;
-$run { window.a = @{var} }
-\end{minted}
+\inputminted[linenos]{icl}{../sources/jsrunex1.icL}
 \end{sourcecode}
 
 \mintinline{icl}{[w3c]} Comanda \mintinline{icl}{$run} primește un număr variabil de argumente. Ei se transmit în JavaScript sub formă de argumente ai funcției. Accesul la ele se realizează prin variabila \mintinline{icl}{arguments}. Cod care folosește această metodă este prezentat pe foaia \ref{jsrunex2}, se poate de-l comparat cu codul de pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
@@ -49,10 +42,7 @@ $run { window.a = @{var} }
 \begin{sourcecode}
 \captionof{listing}{Executarea codului în limbajul JavaScript (w3c)}
 \label{jsrunex2}
-\begin{minted}[linenos]{icl}
-@var = 2;
-$run @var { window.a = arguments[0] }
-\end{minted}
+\inputminted[linenos]{icl}{../sources/jsrunex2.icL}
 \end{sourcecode}
 
 Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
@@ -63,7 +53,7 @@ Comanda \mintinline{icl}{$file} {\bf execută fișiere} JavaScript (.js). Pentru
 
 Sintaxă -
 \begin{minted}{icl}
-$file "path/to/file.js";
+$file "calea/spre/fișier.js";
 \end{minted}
 
 Excepții posibile: \ferror{FileNotFound}, \ferror{JavascriptError} (pr. tab. \ref{errors}).
@@ -74,8 +64,8 @@ Excepții posibile: \ferror{FileNotFound}, \ferror{JavascriptError} (pr. tab. \r
 
 \mintinline{icl}{[icL]} Sintaxă -
 \begin{minted}{icl}
-$user "path/to/file.js";
-$always "path/to/file.js";
+$user "calea/spre/fișier.js";
+$always "calea/spre/fișier.js";
 \end{minted}
 
 Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).

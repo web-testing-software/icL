@@ -14,14 +14,7 @@ Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și ini
 \begin{sourcecode}
 \captionof{listing}{Exemplu de declarare și inițializare al variabilelor}
 \label{initexample}
-\begin{minted}[linenos]{icl}
-@bool = false;
-@catched = true;
-@int = 234;
-@double = 23.4;
-#pi = 3.14;
-#negative = -100.0;
-\end{minted}
+\inputminted[linenos]{icl}{../sources/initexample.icL}
 \end{sourcecode}
 
 \subsection{Variabile locale}
@@ -41,26 +34,7 @@ Pe foaia \ref{localvars} se demonstrează domeniul de vizibilitate al variabilei
 \begin{sourcecode}
 \captionof{listing}{Domeniul de vizibilitate al variabilei locale}
 \label{localvars}
-\begin{minted}[linenos]{icl}
-`` error
-@test1 = @var;
-if (@) {
-	`` error
-	@test2 = @var;
-	`` initialization
-	@var = 0;
-	`` ok
-	@test3 = @var;
-	if (@) {
-		`` ok
-		@test4 = @var;
-	}
-	`` ok
-	@test5 = @var;
-}
-`` error
-@test6 = @var;
-\end{minted}
+\inputminted[linenos]{icl}{../sources/localvars.icL}
 \end{sourcecode}
 
 Pe foaia \ref{globalvars}, este demonstrat domeniul de vizibilitate al variabilei \mintinline{icl}{@var}, ea nu este vizibilă în punctele de declarare ale variabilelor \mintinline{icl}{@test1}, \mintinline{icl}{@test2} și \mintinline{icl}{@test3}, dar este vizibilă în punctele de declarare ale variabilelor \mintinline{icl}{@test4}, \mintinline{icl}{@test5} și \mintinline{icl}{@test6}.
@@ -94,35 +68,13 @@ Valorile de stînga se pot afla în ambele părți ale operație {\it de atribui
 \begin{sourcecode}
 \captionof{listing}{Domeniu de vizibilitate al variabilei globale}
 \label{globalvars}
-\begin{minted}[linenos]{icl}
-`` error
-@test1 = @var;
-if (@) {
-	`` error
-	@test2 = @var;
-	if (@) {
-		`` error
-		@test3 = @var;
-		`` initialization
-		@var = 0;
-		`` ok
-		@test4 = @var;
-	}
-	`` ok
-	@test5 = @var;
-}
-`` ok
-@test6 = @var;
-\end{minted}
+\inputminted[linenos]{icl}{../sources/globalvars.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Valori de stînga și dreapta}
 \label{rlvalues}
-\begin{minted}[linenos]{icl}
-@a1 = @a2; @a3 = 123; `` ok
-123 = @a1; 125 = 456; `` error
-\end{minted}
+\inputminted[linenos]{icl}{../sources/rlvalues.icL}
 \end{sourcecode}
 
 \subsection{Concluzii}

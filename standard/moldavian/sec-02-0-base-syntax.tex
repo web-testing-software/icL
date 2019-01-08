@@ -3,13 +3,13 @@
 
 icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icL}.
 
-\begin{sourcecode}
+\begin{listing}
 \captionof{listing}{Prima programă}
 \label{first}
 \begin{minted}[linenos]{icl}
 Log.info "Test!";
 \end{minted}
-\end{sourcecode}
+\end{listing}
 
 În consolă ar trebui să apară următorul \textbf{text}:
 
@@ -54,37 +54,27 @@ Semnele prezente:
 
 \textbf{Comentariu în linie} (\textit{inline}) este un fragment de text limitat cu caractere speciale \texttt{`}, cum este arătat pe foaia \ref{inlinecomment}.
 
-\begin{sourcecode}
+\begin{listing}
 \captionof{listing}{Comentariu în linie}
 \label{inlinecomment}
-\begin{minted}[linenos]{icl}
-No comment `comment` no comment
-\end{minted}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/inlinecomment.icL}
+\end{listing}
 
 \textbf{Comentariu al liniei} este desemnat de \texttt{``}, cum este prezentat pe foaia \ref{linecomment}.
 
-\begin{sourcecode}
+\begin{listing}
 \captionof{listing}{Comentariu al liniei}
 \label{linecomment}
-\begin{minted}[linenos]{icl}
-No comment `` comment
-\end{minted}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/linecomment.icL}
+\end{listing}
 
 \textbf{Comentariu în cîteva linii} se începe și se termină cu \texttt{```}, exemplu de acest comentariu este prezent pe foaia \ref{multilinecomment}.
 
-\begin{sourcecode}
+\begin{listing}
 \captionof{listing}{Comentariu în cîteva linii}
 \label{multilinecomment}
-\begin{minted}[linenos]{icl}
-No comment
-``` comment 1
-	comment 2
-	comment 3
-``` No comment
-\end{minted}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/multilinecomment.icL}
+\end{listing}
 
 \subsection{Identificatori}
 
@@ -93,8 +83,8 @@ No comment
 icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
 
 \begin{minted}{icl}
-#loop		Tab	    	.append		'length	Doc 	@i	 	@VAR
-@variable	sumPoints	#global		.merge	.get	#01		sin
+#loop      Tab        .append  'length  Doc   @i   @VAR
+@variable  sumPoints  #global  .merge   .get  #01  sin
 \end{minted}
 
 \subsection{Cuvinte cheie}
@@ -108,9 +98,7 @@ icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@
 \begin{sourcecode}
 \captionof{listing}{Cod fără spații}
 \label{unreadable}
-\begin{minted}[linenos]{icl}
-if(Tab.get"mai.ru"){Doc.query("button").click();}else{Log.error"[..]";};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/unreadable.icL}
 \end{sourcecode}
 
 În icL este prezent \textbf{delimitatorul de comenzi} \mintinline{icl}{;}, el poate fi ignorat, dar nu se recomandă. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \mintinline{icl}{Tab.get "URL"}, închide tabul - \mintinline{icl}{Tab.close()}.
@@ -123,21 +111,5 @@ Tab.get "URL"; Tab.close()
 \begin{sourcecode}
 \captionof{listing}{Cod cu spații}
 \label{readable}
-\begin{minted}[linenos]{icl}
-`` the begin of program
-
-`` try to go to mai.ru
-if (Tab.get "mai.ru") {
-	`` site loaded successfull
-	`` click the button
-	Doc.query("button").click();
-}
-else {
-	`` try again later
-	`` now log the error
-	Log.error "The site mai.ru is unaviable";
-};
-
-`` end of the program
-\end{minted}
+\inputminted[linenos]{icl}{../sources/readable.icL}
 \end{sourcecode}

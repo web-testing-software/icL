@@ -36,10 +36,10 @@ Lista operatorilor \void{}:
 	\item
 	alegere exclusivă \mintinline{icl}{void ^ void : void}, \mintinline{icl}{void ^ any : any}, \mintinline{icl}{any ^ void : any} și \mintinline{icl}{any ^ any : void};
 	\item
-	alegere selecționistă \mintinline{icl}{void % void : void}, \mintinline{icl}{void % any : any}, \mintinline{icl}{any % void : any}, \mintinline{icl}{int % int : int}, \mintinline{icl}{double % double : double}, \mintinline{icl}{string % string : list}, \mintinline{icl}{list % string : list}, \mintinline{icl}{list % list : list}, \mintinline{icl}{object % object : set}, \mintinline{icl}{set % object : set}, \mintinline{icl}{set % set : set}. Încă un operator va fi descris în capitolul \ref{webelments}.
+	alegere selecționistă \mintinline{icl}{void % void : void}, \mintinline{icl}{void % any : any}, \mintinline{icl}{any % void : any}, \mintinline{icl}{int % int : int}, \mintinline{icl}{double % double : double}, \mintinline{icl}{string % string : list}, \mintinline{icl}{list % string} \mintinline{icl}{: list}, \mintinline{icl}{list % list : list}, \mintinline{icl}{object % object : set}, \mintinline{icl}{set % object : set}, \mintinline{icl}{set % set}\\*\mintinline{icl}{: set} și \mintinline{icl}{element % element : element}. Încă un operator va fi descris în capitolul \ref{webelments}.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{<void or any>arg1 | <void or any>arg2 : void or any}}
+\subsubsection{\mintinline{icl}{(arg1 : void or any) | (arg2 : void or any) : void or any}}
 
 Dependența alegerii alternative de datele de intrare este demonstrată în tabela \ref{orhacktable}.
 
@@ -48,7 +48,7 @@ Dependența alegerii alternative de datele de intrare este demonstrată în tabe
 	\label{orhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \| arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 | arg2} \\ \hline
 		\void{}     & \void{}     & \void{}  			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}  		\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}  		\\ \hline
@@ -57,7 +57,7 @@ Dependența alegerii alternative de datele de intrare este demonstrată în tabe
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\mintinline{icl}{<void or any> \& <void or any> : void or any}}
+\subsubsection{\mintinline{icl}{(arg1 : void or any) & (arg2 : void or any) : void or any}}
 
 Dependența alegerii primare de datele de intrare este demonstrată în tabela \ref{andhacktable}.
 
@@ -66,7 +66,7 @@ Dependența alegerii primare de datele de intrare este demonstrată în tabela \
 	\label{andhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \& arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 & arg2} \\ \hline
 		\void{}     & \void{}     & \void{}   			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
@@ -75,7 +75,7 @@ Dependența alegerii primare de datele de intrare este demonstrată în tabela \
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\mintinline{icl}{<void or any> ~ <void or any> : void or any}}
+\subsubsection{\mintinline{icl}{(arg1 : void or any) ~ (arg2 : void or any) : void or any}}
 
 Dependența alegerii secundare de datele de intrare este demonstrată în tabela \ref{eqhacktable}.
 
@@ -84,7 +84,7 @@ Dependența alegerii secundare de datele de intrare este demonstrată în tabela
 	\label{eqhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \~ arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ~ arg2} \\ \hline
 		\void{}     & \void{}     & \void{}   			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
@@ -93,7 +93,7 @@ Dependența alegerii secundare de datele de intrare este demonstrată în tabela
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\mintinline{icl}{<void or any> ^ <void or any> : void or any}}
+\subsubsection{\mintinline{icl}{(arg1 : void or any) ^ (arg2 : void or any) : void or any}}
 
 Dependența alegerii exclusive de datele de intrare este demonstrată în tabela \ref{xorhacktable}.
 
@@ -102,7 +102,7 @@ Dependența alegerii exclusive de datele de intrare este demonstrată în tabela
 	\label{xorhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \^ arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ^ arg2} \\ \hline
 		\void{}     & \void{}     & \void{}   			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}   		\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}   		\\ \hline
@@ -111,7 +111,7 @@ Dependența alegerii exclusive de datele de intrare este demonstrată în tabela
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\mintinline{icl}{<void or any> \% <void or any> : void or any}}
+\subsubsection{\mintinline{icl}{(arg1 : void or any) \% (arg2 : void or any) : void or any}}
 
 Dependența alegerii selective de datele de intrare este demonstrată în tabela \ref{centhacktable}.
 
@@ -126,13 +126,13 @@ Dependența alegerii selective de datele de intrare este demonstrată în tabela
 		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}					\\ \hline
 		\integer{}  & \integer{}  & \integer{}					\\ \hline
 		\double{}   & \double{}   & \double{}					\\ \hline
-		\str{}      & \str{}      & \mintinline{icl}{list - [arg1 arg2]}	\\ \hline
-		\listtype{} & \str{}      & \mintinline{icl}{list - [arg1 arg2]}	\\ \hline
-		\listtype{} & \listtype{} & \mintinline{icl}{list - [arg1 arg2]}	\\ \hline
-		\object{}   & \object{}   & \mintinline{icl}{set - [arg1 arg2]}	\\ \hline
-		\set{}      & \object{}   & \mintinline{icl}{set - [arg1 arg2]}	\\ \hline
-		\set{}      & \set{}      & \mintinline{icl}{set - [arg1 arg2]}	\\ \hline
-		\element{}  & \element{}  & \mintinline{icl}{element - [arg1 arg2]}\\ \hline
+		\str{}      & \str{}      & \mintinline{icl}{list - [arg1, arg2]}	\\ \hline
+		\listtype{} & \str{}      & \mintinline{icl}{list - [arg1, arg2]}	\\ \hline
+		\listtype{} & \listtype{} & \mintinline{icl}{list - [arg1, arg2]}	\\ \hline
+		\object{}   & \object{}   & \mintinline{icl}{set - [arg1, arg2]}	\\ \hline
+		\set{}      & \object{}   & \mintinline{icl}{set - [arg1, arg2]}	\\ \hline
+		\set{}      & \set{}      & \mintinline{icl}{set - [arg1, arg2]}	\\ \hline
+		\element{}  & \element{}  & \mintinline{icl}{element - [arg1, arg2]}\\ \hline
 	\end{tabular}
 	\vspace{0em}
 \end{table}
@@ -185,21 +185,13 @@ Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
 \begin{sourcecode}
 \captionof{listing}{Folosirea if-exist-ului}
 \label{ifexistsex}
-\begin{minted}[linenos]{icl}
-if exists(23 + 3, # > 20) {
-_log.out "@ = " @; `` @ = 26
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/ifexistsex.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Folosirea for-any-ului}
 \label{foranyex}
-\begin{minted}[linenos]{icl}
-for any(23 + 3) {
-_log.out "@ = " @; `` @ = 26
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/foranyex.icL}
 \end{sourcecode}
 
 
@@ -233,15 +225,7 @@ Cea mai simplă metoda de a executa codul de \mintinline{icl}{X} ori. Exemplu de
 \begin{sourcecode}
 \captionof{listing}{Folosirea for:Xtimes}
 \label{forxtimes}
-\begin{minted}[linenos]{icl}
-for:5times () {
-	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
-};
-`` replaces
-for (@i = 0; @i < 5; @i = @i + 1) {
-	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/forxtimes.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for:ever}}
@@ -251,17 +235,7 @@ for (@i = 0; @i < 5; @i = @i + 1) {
 \begin{sourcecode}
 \captionof{listing}{Folosirea for:ever}
 \label{foreverloop}
-\begin{minted}[linenos]{icl}
-@times = 5;
-
-for:ever (@ < @times) {
-	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
-};
-`` replaces
-for (@i = 0; @i < @times; @i = @i + 1) {
-	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/foreverloop.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{while:minX}}
@@ -275,37 +249,16 @@ Modificatorul \mintinline{icl}{max} apără de cicluri infinite, se poate de ind
 \begin{sourcecode}
 \captionof{listing}{Folosirea for:maxX}
 \label{maxlimitsheet}
-\begin{minted}[linenos]{icl}
-for:max10 (Doc.query "#my-table tr") {
-	@; `` just first 10 elements
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
 \end{sourcecode}
 
 \subsection{Elemente Web}
 
-Standardul \textit{WebDriver} propus de \textit{World Wide Web Consortium} descrie un număr enorm de excepții în lucrul cu elementele. Toate nu pot fi ignorate, numai una \ferror{NoSuchElement}. Ea este ignorată în regim de automatizare, dacă elementul nu a fost găsit se returnează o colecție deșartă. La prima vedere e puțin, dar aplicații la practică se găsesc multe, în combinație cu alte posibilități, priviți foaia \ref{maxlimitsheet}.
+Standardul \textit{WebDriver} propus de \textit{World Wide Web Consortium} descrie un număr enorm de excepții în lucrul cu elementele. Toate nu pot fi ignorate, numai una \ferror{NoSuchElement}. Ea este ignorată în regim de automatizare, dacă elementul nu a fost găsit se returnează o colecție deșartă. La prima vedere e puțin, dar aplicații la practică se găsesc multe, în combinație cu alte posibilități, priviți foaia \ref{webelementsheet}.
 
 \begin{sourcecode}
 \captionof{listing}{Folosirea elementelor web}
-\label{maxlimitsheet}
-\begin{minted}[linenos]{icl}
-`` example 1
-
-@a = exists(Doc.query "#el")'text | "";
-`` replaces
-@a = "";
-if (Doc.queryAll("#el")'length > 0) { @a = Doc.query("#el")'text; }
-
-`` example 2
-
-@links = Doc.queryAll "a";
-
-@links.add(Doc.query "#special");
-`` replaces
-if (!Doc.queryAll("#special")'empty) { @links.add(Doc.query "#special"); }
-`` or
-if exists(Doc.query "#special") { @links.add(@); }
-\end{minted}
+\label{webelementsheet}
+\inputminted[linenos]{icl}{../sources/webelementsheet.icL}
 \end{sourcecode}
 

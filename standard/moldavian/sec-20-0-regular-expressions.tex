@@ -110,23 +110,7 @@ Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{re
 \begin{sourcecode}
 \captionof{listing}{Expresii regulare în calitate de argumente}
 \label{regexplikearg}
-\begin{minted}[linenos]{icl}
-@str = "Hello world, collaborators!";
-
-@str.count //\wo//;       `` 5
-@str.indexOf //\w{6}//;   `` 13
-@str.lastIndexOf //l+o//; `` 2
-@str.remove //\w{2}o//;   `` "He world, collrrs!"
-@str.split //,?\s//;      `` ["He", "world", "collrrs!"]
-
-@fonts = ["Arial", "Helvetica", "Times", "Courier"];
-
-@fonts.filter //^[ac]//i;       `` ["Arial", "Courier"]
-@fonts.indexOf //e.//;          `` 1
-@fonts.indexOf (//e.//, 2);     `` 2
-@fonts.lastIndexOf //e.//;      `` 3
-@fonts.lastIndexOf (//e.//, 2); `` 2
-\end{minted}
+\inputminted[linenos]{icl}{../sources/regexplikearg.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{string.count (re : regex) : int}}

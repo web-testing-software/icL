@@ -19,7 +19,7 @@ Dacă nu aveți cunoștințe în algebră booleană, vă rugăm să citați o ca
 {logicops}{Operații logice}
 {Rang}{Operație}{Operator}
 {
-	2     & conjuncție           & \mintinline{icl}{bool \& bool : bool} \\ \hline
+	2     & conjuncție           & \mintinline{icl}{bool & bool : bool} \\ \hline
 	2     & disjuncție           & \mintinline{icl}{bool | bool : bool}  \\ \hline
 	2     & echivalență logică   & \mintinline{icl}{bool ~ bool : bool}  \\ \hline
 	2     & disjuncție exclusivă & \mintinline{icl}{bool ^ bool : bool}  \\ \hline
@@ -39,7 +39,7 @@ Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența r
 	\label{conjtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \& b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a & b} \\ \hline
 		\false{} & \false{} & \false{}  	\\ \hline
 		\false{} & \true{}  & \false{}  	\\ \hline
 		\true{}  & \false{} & \false{}  	\\ \hline
@@ -48,25 +48,11 @@ Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența r
 	\vspace{0em}
 \end{table}
 
-\
-
-\
-
+\newpage
 \begin{sourcecode}
 \captionof{listing}{Exemple de folosite a operatorilor asupra tipului bool}
 \label{boolopex}
-\begin{minted}[linenos]{icl}
-Log.out "true & false = " (true & false);		`` true \& false = false
-Log.out "false | true =  " (false | true);		`` false | true = true
-Log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
-Log.out "false ^ true = " (false ^ true);		`` false \textasciicircum\ true = true`
-
-Log.out "!true = " !true;						`` !true = false
-Log.out "!false = " !false;				  		`` !false = true
-
-Log.out "true == false = " (true == false);		`` true == false = false
-Log.out "false != true = " (false != true);		`` false != true = true
-\end{minted}
+\inputminted[linenos]{icl}{../sources/boolopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(a : bool) | (b : bool) : bool}}
@@ -78,7 +64,7 @@ Operatorul aplică operația "disjuncție logică" asupra variabilelor a și b. 
 	\label{distable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \| b} 	\\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a | b} 	\\ \hline
 		\false{} & \false{} & \false{} 		\\ \hline
 		\false{} & \true{}  & \true{}  		\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -96,7 +82,7 @@ Operatorul aplică operația "echivalență logică" asupra variabilelor a și b
 	\label{logeqtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \~ b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a ~ b} \\ \hline
 		\false{} & \false{} & \true{}   	\\ \hline
 		\false{} & \true{}  & \false{}  	\\ \hline
 		\true{}  & \false{} & \false{}  	\\ \hline
@@ -114,7 +100,7 @@ Operatorul aplică operația "disjuncție exclusivă" asupra variabilelor a și 
 	\label{logdifftable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \^ b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a ^ b} \\ \hline
 		\false{} & \false{} & \false{}  	\\ \hline
 		\false{} & \true{}  & \true{}   	\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -187,11 +173,11 @@ Operațiile cu cifre sunt enumerate în tabela \ref{numbersops}.
 	6$^+$ & ridicare la pătrat             & \mintinline{icl}{double** : double}          \\ \hline
 	6$^+$ & ridicarea la putere            & \mintinline{icl}{int ** int : int}           \\ \hline
 	6$^+$ & ridicarea la putere            & \mintinline{icl}{double ** double : double}  \\ \hline
-	6$^+$ & radical                        & \mintinline{icl}{/'int : int}                \\ \hline
-	6$^+$ & radical                        & \mintinline{icl}{/'double : double}          \\ \hline
-	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{int/'int : int}             \\ \hline
-	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{int/'double : double}       \\ \hline
-	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{double/'double : double}    \\ \hline
+	6$^+$ & radical                        & \mintinline{icl}{/' int : int}                \\ \hline
+	6$^+$ & radical                        & \mintinline{icl}{/' double : double}          \\ \hline
+	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{int /' int : int}             \\ \hline
+	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{int /' double : double}       \\ \hline
+	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{double /' double : double}    \\ \hline
 	7$^+$ & inversia semnului              & \mintinline{icl}{-int : int}                 \\ \hline
 	7$^+$ & inversia semnului              & \mintinline{icl}{-double : double}           \\ \hline
 	7$^+$ & valoarea absolută              & \mintinline{icl}{+int : int}                 \\ \hline
@@ -211,48 +197,7 @@ Returnează \true{} dacă \mintinline{icl}{a} și \mintinline{icl}{b} au aproxim
 \begin{sourcecode}
 \captionof{listing}{Exemple de folosire al operatorilor asupra tipului int și double}
 \label{numberopex}
-\begin{minted}[linenos]{icl}
-`` 3rd rank
-Log.out "2 == 3 = "			2 == 3;		`` 2 = 3 = false
-Log.out "2.5 == 2.5 = "		2.5 == 2.5;	`` 2.5 = 2.5 = true
-Log.out "1 != 2 = "			1 != 2;		`` 1 $\neq$ 2 = true
-Log.out "2.1 != 2.1 = "		2.1 != 2.1;	`` 2.1 $\neq$ 2.1 = false
-Log.out "3 > 2 = "			3 > 2;		`` 3 > 2 = true
-Log.out "1.1 > 2.1 = "		1.1 > 2.1;	`` 1.1 > 2.1 = false
-Log.out "5 >= 2 = "			5 >= 2;		`` 5 $\geq$ 2 = true
-Log.out "5.1 >= 2 = "		5.1 >= 2;	`` 5.1 $\geq$ 2 = true
-Log.out "3 < 9 = "			3 < 9;		`` 3 < 9 = true
-Log.out "6.1 < 6.2 = "		6.1 < 6.2;	`` 6.1 < 6.2 = true
-Log.out "4 <= 5 = "			4 <= 5;		`` 4 $\leq$ 5 = true
-Log.out "5.6 <= 6.5 = "		5.6 <= 6.5;	`` 5.6 $\leq$ 6.5 = true
-Log.out "1 <> (2, 3) = "	1 <> (2,3); `` 1 < 2 | 1 > 3 = true
-Log.out "1 >< (2, 3) = "	1 >< (2,3); `` 2 < 1 < 3 = false
-`` 4th rank
-Log.out "2 + 3 = "			2 + 3;		`` 2 + 3 = 5
-Log.out "2.1 + 1.1 = "		2.1 + 1.1;	`` 2.1 + 1.1 = 3.2
-Log.out "4 - 5 = "			4 - 5;		`` 4 - 5 = -1
-Log.out "4.5 - 3.4 = "		4.5 - 3.4;	`` 4.5 - 3.4 = 1.1
-`` 5th rank
-Log.out "2 * 3 = "			2 * 3;		`` 2 $\cdot$ 3 = 6
-Log.out "2.1 * 5.7 = "		2.1 * 5.7;	`` 2.1 $\cdot$ 5.7 = 11.97
-Log.out "5 / 7 = "			5 / 7;		`` 5 $\div$ 7 = 0.7142857142857
-Log.out "5.0 / 7.1 = "		5.0 / 7.1;	`` 5.0 $\div$ 7.1 = 0.7042253521126
-Log.out "45 \ 8 = "			45 \ 8;		`` 45 \textbackslash 8 = 5
-`` 6+th rank
-Log.out "25** = "			25**;		`` $25^2$ = 625
-Log.out "25.1** = "			25.1**;		`` $25.1^2$ = 630,01
-Log.out "34 ** 3 = "		34 ** 3;	`` $34^3$ = 39304
-Log.out "2.0 ** 1.5 = "		2.0 ** 1.5;	`` $2.0^{1.5}$ = 2.8284271247461
-Log.out "/'25 = "			/'25;		`` $\sqrt{25}$ = 5
-Log.out "/'125.7 = "		/'125.7;	`` $\sqrt{125.7}$ = 11.211601134539
-Log.out "3/'27 = "			3/'27;		`` $\sqrt[3]{27}$ = 3
-Log.out "5.0/'125.5 = "		5.0/'125.5;	`` $\sqrt[5.0]{125.5}$ = 2.6286256727378
-`` 7+th rank
-Log.out "- 35 = "			- 35;		`` - 35 = -35
-Log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
-Log.out "+ -100 = "			+ -100;		`` + -100 = 100
-Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
-\end{minted}
+\inputminted[linenos]{icl}{../sources/numberopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(a : int) != (b : int) : bool}}
@@ -263,11 +208,11 @@ Returnează \true{} dacă \mintinline{icl}{a} și \mintinline{icl}{b} conțin va
 
 Returnează \true{} dacă \mintinline{icl}{a} și \mintinline{icl}{b} conțin valori diferite, în caz contrar \false{}.
 
-\subsubsection{\mintinline{icl}{(a : int) >> (b : int) : bool}}
+\subsubsection{\mintinline{icl}{(a : int) > (b : int) : bool}}
 
 Returnează \true{} dacă numărul întreg \mintinline{icl}{a} este mai mare decît \mintinline{icl}{b}, în caz contrar \false{}.
 
-\subsubsection{\mintinline{icl}{(a : double) >> (b : double) : bool}}
+\subsubsection{\mintinline{icl}{(a : double) > (b : double) : bool}}
 
 Returnează \true{} dacă numărul decimal \mintinline{icl}{a} este mai mare decît \mintinline{icl}{b}, în caz contrar \false{}.
 
@@ -279,11 +224,11 @@ Returnează \true{} dacă numărul întreg \mintinline{icl}{a} este mai mare sau
 
 Returnează \true{} dacă numărul decimal \mintinline{icl}{a} este mai mare sau egal cu \mintinline{icl}{b}, în caz contrar \false{}.
 
-\subsubsection{\mintinline{icl}{(a : int) << (b : int) : bool}}
+\subsubsection{\mintinline{icl}{(a : int) < (b : int) : bool}}
 
 Returnează \true{} dacă numărul întreg \mintinline{icl}{a} este mai mic decît \mintinline{icl}{b}, în caz contrar \false{}.
 
-\subsubsection{\mintinline{icl}{(a : double) << (b : double) : bool}}
+\subsubsection{\mintinline{icl}{(a : double) < (b : double) : bool}}
 
 Returnează \true{} dacă numărul decimal \mintinline{icl}{a} este mai mic decît \mintinline{icl}{b}, în caz contrar \false{}.
 
@@ -388,15 +333,15 @@ Returnează rădăcina pătrată numărului întreg \mintinline{icl}{a} ($\sqrt{
 
 Returnează rădăcina pătrată numărului decimal \mintinline{icl}{a} ($\sqrt{a}$).
 
-\subsubsection{\mintinline{icl}{<int>n /' (a : int) : int}}
+\subsubsection{\mintinline{icl}{(n : int) /' (a : int) : int}}
 
 Returnează radical de ordinul \mintinline{icl}{n} din \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\mintinline{icl}{<int>n /' (a : double) : double}}
+\subsubsection{\mintinline{icl}{(n : int) /' (a : double) : double}}
 
 Returnează radical de ordinul \mintinline{icl}{n} din \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\mintinline{icl}{<double>n /' (a : double) : double}}
+\subsubsection{\mintinline{icl}{(n : double) /' (a : double) : double}}
 
 Returnează radical de ordinul \mintinline{icl}{n} din \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
@@ -466,23 +411,7 @@ Returnează \false{} dacă \mintinline{icl}{s1} și \mintinline{icl}{s2} conțin
 \begin{sourcecode}
 \captionof{listing}{Exemple de folosire al operatorilor asupra tipului string și list}
 \label{stringlistopex}
-\begin{minted}[linenos]{icl}
-"String1" == "String2";					 `` false
-["a", "b"] == ["a", "b"];				 `` true
-["a", "b"] == ["b", "a"];				 `` true
-["a", "b"] << "c";						 `` false
-"abc" << "c";							 `` true
-"ab" + "c";								 `` "abc"
-"ab" + ["c"];							 `` ["ac", "c"]
-["a", "b"] + "c";						 `` ["a", "b", "c"]
-["a", "b"] + ["c", "d"];				 `` ["a", "b", "c", "d"]
-"abc" * "*c";							 `` true
-["ac", "bc"] * "*c";					 `` true
-["ac", "bc"] * "a*";					 `` false
-["ad", "ac", "bd", "cc"] * ["*d", "*c"]; `` true
-["ad", "ac", "bc", "cd"] * ["*d", "*c"]; `` false
-"Tom is a cat" ** "Tom is not a cat";	 `` 0.875
-\end{minted}
+\inputminted[linenos]{icl}{../sources/stringlistopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(l1 : list) != (l2 : list) : bool}}
@@ -507,7 +436,7 @@ Returnează \true{}, dacă șirul de caractere \mintinline{icl}{str} nu conține
 
 Returnează \true{}, dacă lista \mintinline{icl}{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \mintinline{icl}{template}, în caz contrar \false{}.
 
-{\bf Șablonul} este un și de caractere, el conține date și un caracter special \mintinline{icl}{*}, care \mintinline{icl}{*} orice succesiune de simboluri. Cercetăm următorul șablon \mintinline{icl}{"Have a * day!"}, exemple de șiruri de caracter care se potrivesc: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Exemplu de șir care nu se potrivește \mintinline{icl}{"Have a good day"} (lipsește semnul exclamării).
+{\bf Șablonul} este un și de caractere, el conține date și un caracter special \mintinline{icl}{*}, care înseamnă orice succesiune de simboluri. Cercetăm următorul șablon \mintinline{icl}{"Have a * day!"}, exemple de șiruri de caracter care se potrivesc: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Exemplu de șir care nu se potrivește \mintinline{icl}{"Have a good day"} (lipsește semnul exclamării).
 
 \subsubsection{\mintinline{icl}{(l : list) !* (template : string) : bool}}
 
@@ -545,7 +474,7 @@ Returnează \true{} dacă toate șirurile din lista \mintinline{icl}{l} se potri
 
 Returnează coeficientul de echivalență primit prin comparare șirului \mintinline{icl}{s1} cu \mintinline{icl}{s2}.
 
-{\bf Echivalența} este nivelul de asemănare al șirurilor. \mintinline{icl}{"Hi! Robert, how do you do?"} în comparație cu \mintinline{icl}{"Robert! Hi! How do you do?"} are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \mintinline{icl}{"Rich! Hi! How are you?"} coeficientul scade pînă la 0,64.
+{\bf Echivalența} este nivelul de asemănare al șirurilor. \mintinline{icl}{"Hi! Robert, how do you do?"} în comparație cu \mintinline{icl}{"Robert! Hi! How do you do?"} are coeficient de echivalență egal cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \mintinline{icl}{"Rich! Hi! How are}\\*\mintinline{icl}{ you?"} coeficientul scade pînă la 0,64.
 
 \subsubsection{\mintinline{icl}{(l1 : list) ** (l2 : list) : double}}
 
@@ -574,7 +503,7 @@ Operațiile cu obiecte și mulțimi sunt enumerate în tabela \ref{objectops}.
 	3     & excludere de șablon & \mintinline{icl}{object !* object : bool} \\ \hline
 	4     & reuniune            & \mintinline{icl}{set + set : set}         \\ \hline
 	4     & diferență simetrică & \mintinline{icl}{set -   set : set}       \\ \hline
-	5     & diferență           & \mintinline{icl}{set \\ set : set}        \\ \hline
+	5     & diferență           & \mintinline{icl}{set \ set : set}        \\ \hline
 	5     & intersecție         & \mintinline{icl}{set * set : set}         \\ \hline
 	6$^+$ & se intersectează    & \mintinline{icl}{set ** set : bool}       \\
 }
@@ -592,43 +521,7 @@ Returnează \true{} dacă \mintinline{icl}{set1} și \mintinline{icl}{set2} au a
 \begin{sourcecode}
 \captionof{listing}{Exemple de folosire al operatorilor asupra tipului object și set}
 \label{setobjopex}
-\begin{minted}[linenos]{icl}
-`` init
-@set1 = [age : int, name : string];
-@set2 = [age : int, name : string];
-@set3 = [age : int, name : string];
-
-@obj1 = [age = 24, name = "User1"];
-@obj2 = [age = 23, name = "User2"];
-@obj3 = [age = 26, name = "User3"];
-@obj4 = [age = 24, length = 80, height = 40, arc = 1];
-
-@set1.insert @obj1;
-@set1.insert @obj2;
-@set2.insert @obj3;
-@set2.insert @obj2;
-@set3.insert @obj2;
-@set3.insert @obj1;
-
-`` operators
-@set1 == @set2;					`` false
-@set1 == @set3;					`` true
-@obj1 == @obj2;					`` false
-@set2 != @set3;					`` true
-@obj2 != @obj3;					`` true
-
-@set1 << @obj2;					`` false
-@set1 << @set2;					`` false
-@set1 <* [age = 23];			`` true
-@obj4 <* [age = 24, arc = 1];	`` true
-
-@set1 + @set2;					`` [@obj1 @obj2 @obj3]
-@set1 - @set2;					`` [@obj1 @obj3]
-@set1 \ @set2;					`` [@obj1]
-@set1 * @set2;					`` [@obj2]
-
-@set1 ** @set2;	
-\end{minted}
+\inputminted[linenos]{icl}{../sources/setobjopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(obj1 : object) != (obj2 : object) : bool}}
@@ -679,7 +572,7 @@ Returnează o mulțime nouă, ce conține toate obiectele din mulțimile \mintin
 
 Returnează o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în mulțimea \mintinline{icl}{set2}, și obiectele mulțimii \mintinline{icl}{set2}, ce lipsesc în \mintinline{icl}{set1}.
 
-\subsubsection{\mintinline{icl}{(set1 : set) \\ (set2 : set) : set}}
+\subsubsection{\mintinline{icl}{(set1 : set) \ (set2 : set) : set}}
 
 Returnează o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în \mintinline{icl}{set2}.
 

@@ -48,11 +48,7 @@ Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \mint
 \begin{sourcecode}
 \captionof{listing}{Ciclu universal}
 \label{uniloopex}
-\begin{minted}[linenos]{icl}
-for (@i = 0; i < 5; @i = @i + 1) {
-	Log.out @i;
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/uniloopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{while} - repetare condiționată a codului}
@@ -71,13 +67,7 @@ Pe foaia \ref{whileex} este prezentat cod care folosește ciclu \mintinline{icl}
 \begin{sourcecode}
 \captionof{listing}{Ciclu while}
 \label{whileex}
-\begin{minted}[linenos]{icl}
-@number = 1;
-
-while (@number <= 5) {
-	@number = @number + 1;
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/whileex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{do-while} - ciclu cu condiție posterioară}
@@ -94,13 +84,7 @@ Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \mintinline{i
 \begin{sourcecode}
 \captionof{listing}{Ciclu do while}
 \label{dowhileex}
-\begin{minted}[linenos]{icl}
-@number = 6;
-
-do {
-	@number = @number + 1;
-} while (@number < 5);
-\end{minted}
+\inputminted[linenos]{icl}{../sources/dowhileex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for} - răsfoirea colecție}
@@ -125,49 +109,25 @@ A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se f
 \begin{sourcecode}
 \captionof{listing}{Răsfoirea colecție prin ciclu universal}
 \label{colluniloop}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-for (@i = 0; @i < @list'length; @i = @i + 1) {
-	@list.at @i; `` get i-th value
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/colluniloop.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Răsfoirea simplificată a colecției}
 \label{collsimple}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-for (@list) {
-	@; `` get i-th value
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/collsimple.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Filtrare pe bază de valoare}
 \label{filterdataex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-filter (@list; @ << "a") {
-	@; `` apple, banana
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/filterdataex.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Filtare după index}
 \label{filterindexex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-filter (@list; # \ 2 == 0) {
-@; `` apple, fruit
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/filterindexex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{range} - răsfoirea selectivă a colecției}
@@ -193,25 +153,12 @@ A alege intervalul se poate după valoare (foaia \ref{bananakiwiex}, interval de
 \begin{sourcecode}
 \captionof{listing}{Interval: de la banana pîna la kiwi}
 \label{bananakiwiex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit", "kiwi"];
-
-range (@list; @ == "banana"; @ == "kiwi") {
-	@; `` banana, fruit, kiwi
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
+\vspace{-2em}
 \captionof{listing}{Interval: de la al doilea pînă la ultimul}
 \label{seclastex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit", "kiwi"];
-
-range (@list; # == 2; true) {
-	@; `` fruit, kiwi
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/seclastex.icL}
 \end{sourcecode}
-
-%\newpage

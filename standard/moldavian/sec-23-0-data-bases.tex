@@ -122,53 +122,13 @@ Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
 \subsubsection{Exemplu}
 
-Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului Javascript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \mintinline{icl}{@:name}, dar variabilele globale - \mintinline{icl}{\#:name}.
+Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului Javascript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \mintinline{icl}{@:name}, dar variabilele globale - \mintinline{icl}{#:name}.
 
 \newpage
 \begin{sourcecode}
 \captionof{listing}{Exemplu de cod care folosește baze de date}
 \label{dbexample}
-\begin{minted}[linenos]{icl}
-DBManager.openSQLite "db.sqlite";
-
-`` simple query
-DB.query {
-	SELECT country
-	FROM artists
-};
-Query.exec;
-
-while (Query.next) {
-	!doSomething Query'country;
-};
-
-`` query with parameters
-DB.query {
-	SELECT name
-	FROM programmers
-	WHERE country = :country
-	LIMIT 1
-};
-Query'country = "Moldova";
-`` is equivalent to
-@md = "Moldova";
-DB.query {
-	SELECT name
-	FROM programmers
-	WHERE country = @:md
-	LIMIT 1
-};
-
-`` insert query
-DB.query {
-	INSERT INTO person (id, forname, name)
-	VALUE (:id, :forname, :name)
-};
-Query'id = 1001;
-Query'forname = "Bart";
-Query'name = "Simpson";
-Query.exec;
-\end{minted}
+\inputminted[linenos]{icl}{../sources/dbexample.icL}
 \end{sourcecode}
 
 %\newpage

@@ -5,41 +5,18 @@ Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în con
 
 \subsection{Generarea excepțiilor}
 
-Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {```code```}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception {```code```}},
+Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {`code`}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception {`code`}},
 unde \mintinline{icl}{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \mintinline{icl}{slot:Any}. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
 
 \begin{sourcecode}
 \captionof{listing}{Prelucrarea excepțiilor}
 \label{sighandling}
-\begin{minted}[linenos]{icl}
-Signal.add "NumberTooBig";
-Signal.add "NumberTooSmall";
-
-@i = 3;
-
-emiter {
-	if (@i < 2) {
-		emit:NumberTooSmall (@i:string) + " is smaller then 2.";
-	}
-
-	if (@i > 5) {
-		emit:NumberTooBig (@i:string) + " is bigger then 5."
-	}
-
-	`` @i >= 2 \& @i <= 5
-}
-slot:NumberTooBig {
-	Log.error "Oooops...";
-}
-slot:NumberTooSmall {
-	Log.error "Nope! O_O";
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/sighandling.icL}
 \end{sourcecode}
 
-Pentru a genera semnale proprii folosiți comanda \mintinline{icl}{emit:exception (description : string)}, unde \mintinline{icl}{exception} e numele semnalului, dar \mintinline{icl}{description} e descrierea.
+Pentru a genera semnale proprii folosiți comanda \mintinline{icl}{emit:exception (description :}\\*\mintinline{icl}{string)}, unde \mintinline{icl}{exception} e numele semnalului, dar \mintinline{icl}{description} e descrierea.
 
-Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \mintinline{icl}{jammer {```code```}}. Semnalele erorilor semantice și de sintaxă, și \mintinline{icl}{emit:Exit} de asemenea, nu pot fi oprite de jammer.
+Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \mintinline{icl}{jammer {`code`}}. Semnalele erorilor semantice și de sintaxă, și \mintinline{icl}{emit:Exit} de asemenea, nu pot fi oprite de jammer.
 
 \subsection{Semnale implicite}
 

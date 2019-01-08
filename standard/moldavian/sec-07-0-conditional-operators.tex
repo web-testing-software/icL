@@ -65,7 +65,7 @@ if (condition1) {
 Sintaxă -
 \begin{minted}{icl}
 switch (value) {
-	case (caseValue) { ```code``` }
+	case (caseValue) { `code` }
 	`` more cases
 }
 \end{minted}
@@ -83,17 +83,7 @@ Descurcăm prin exemplu toate posibilitățile \mintinline{icl}{switch-case}-ulu
 \begin{sourcecode}
 \captionof{listing}{Folosirea switch-case-ului}
 \label{switchcaseex}
-\begin{minted}[linenos]{icl}
-@v = 0 | 1 | 2 | 3 | 4 | 5;
-
-switch (@v) {
-	case (0) { ```code1``` }
-	case (1, 2) { ```code2``` }
-	case (#, 3) { ```code3``` }
-	case (4) { ```code4``` }
-	case (~) { ```code5``` }
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/switchcaseex.icL}
 \end{sourcecode}
 
 Variabila \mintinline{icl}{@v} primește valori in intervalul [0, 6].

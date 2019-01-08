@@ -284,7 +284,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{er
 
 \subsection{{\color{orange} Cookies}}
 
-Obiectul \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'name : string : Cookie}.
+Obiectul \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
 
 Și următoarele metode: 
 \begin{icItems}
@@ -384,15 +384,7 @@ Pe foaia \ref{newcookies}, este prezentată metoda corectă de a crea fișiere c
 \begin{sourcecode}
 \captionof{listing}{Crearea noilor fișiere cookie}
 \label{newcookies}
-\begin{minted}[linenos]{icl}
-for any Cookie {
-	@'name = "age";
-	@'domain = "example.org";
-	@'value = 23 : string;
-	@.resetTime().add(1, 0, 0);
-	@.save;
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/newcookies.icL}
 \end{sourcecode}
 
 
@@ -429,7 +421,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAl
 
 Completează formularul cu textul \mintinline{icl}{keys} și confirmă inserarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotIn\-teractable} (pr. tab. \ref{errors}).
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} Tabs}}
 
@@ -797,7 +789,7 @@ Returnează \true, dacă fișierul este inițializat, în caz contrar \false.
 
 \subsection{{\color{orange} Make}}
 
-Obiectul \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base64 : string, path : string) : void}.
+Obiectul \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base64 : string, path :}\\*\mintinline{icl}{string) : void}.
 
 \subsubsection{\mintinline{icl}{Make.image (base64 : string, path : string) : void}}
 
@@ -1070,7 +1062,7 @@ Creează context izolat în care se execută fișierul.
 
 \subsubsection{\mintinline{icl}{Import.none (path : string) : void}}
 
-Acronim pentru \mintinline{icl}{Import.none [<>] @path}.
+Acronim pentru \mintinline{icl}{Import.none([=], @path)}.
 
 \subsubsection{\mintinline{icl}{Import.functions (data : object, path : string) : void}}
 
@@ -1078,7 +1070,7 @@ Creează context izolat în care se execută fișierul, Apoi se importă funcți
 
 \subsubsection{\mintinline{icl}{Import.functions (path : string) : void}}
 
-Acronim pentru \mintinline{icl}{Import.functions [<>] @path}.
+Acronim pentru \mintinline{icl}{Import.functions ([=], @path)}.
 
 \subsubsection{\mintinline{icl}{Import.all (data : object, path : string) : void}}
 
@@ -1086,7 +1078,7 @@ Creează context izolat în care se execută fișierul, Apoi se importă funcți
 
 \subsubsection{\mintinline{icl}{Import.all (path : string) : void}}
 
-Acronim pentru \mintinline{icl}{Import.all [<>] @path}.
+Acronim pentru \mintinline{icl}{Import.all ([=], @path)}.
 
 \subsubsection{\mintinline{icl}{Import.run (path : string) : void}}
 

@@ -20,13 +20,6 @@ Exemplu elementar de apelare corectă a funcției icL este prezentat pe foaia \r
 \begin{sourcecode}
 \captionof{listing}{Exemplu de apelare a funcției icL}
 \label{crossfireexample}
-\begin{minted}[linenos]{icl}
-@el = Doc.query "button";
-!func = { Log.info "It's working!" };
-
-$run {
-	@{el}[0].onlick = function (ev) { !{func}() }
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/crossfireexample.icL}
 \end{sourcecode}
 

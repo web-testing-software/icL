@@ -44,9 +44,8 @@ class IclLexer(RegexLexer):
             (r'\b(Exit|NoSessions|NoSuchWindow|NoSuchElement|NoSuchFrame|NoSuchCookie|NoSuchAlert|NoSuchPlaceholder|NoSuchDatabase|NoSuchServer|WrongUserPassword|StaleElementReference|FolderNotFound|FileNotFound|FieldNotFound|FieldAlreadyExists|OutOfBounds|UnsupportedOperation|EmptyString|EmptyList|MultiList|EmptyElement|MultiElement|EmptySet|MultiSet|InvalidArgument|InvalidSelector|InvalidElementState|InvalidElement|IncompatibleRoot|IncompatibleData|IncompatibleObject|InvalidSessionId|InvalidCookieDomain|InsecureCertificate|UnexpectedAlertOpen|UnrealCast|ParsingFailed|WrongDelimiter|ComplexField|ElementNotInteractable|ElementClickIntercepted|MoveTargetOutOfBounds|UnableToSetCookie|UnableToCaptureScreen|JavascriptError|ScriptTimeout|Timeout|SessionNotCreated|QueryNotExecutedYet|UnknownCommand|UnknownError|UnknownMethod)\b', 
                 Name.Exception),
 
-            (r'\b(css(:all)?|xpath(:all)?|links?(:fragment)?|tags?)(@\w*)?(\[)', 
+            (r'\b(css|xpath|links?|tags?)(:)(all|fragment)(@\w*)?(\[)', 
                 bygroups(Name.Tag,
-                    Keyword.Pseudo,
                     Keyword.Pseudo,
                     Keyword.Pseudo,
                     Name.Variable,

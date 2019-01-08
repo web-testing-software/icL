@@ -6,29 +6,13 @@
 \begin{sourcecode}
 \captionof{listing}{Făra delimitatori omiși}
 \label{nodelimiterskipping}
-\begin{minted}[linenos]{icl}
-fun = () : int { @ = 23; };
-
-if (fun() == 12) { Log.out 12345678; } 
-else             { Log.out 87654321; };
-
-emiter { func(@x); }
-slot:Error1 { @x = 45; };
-\end{minted}
+\inputminted[linenos]{icl}{../sources/nodelimiterskipping.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Cu delimitatori omiși}
 \label{delimiterskipping}
-\begin{minted}[linenos]{icl}
-fun = () : int { @ = 23 }
-
-if (fun() == 12) { Log.out 12345678 } 
-else             { Log.out 87654321 }
-
-emiter { func(@x) }
-slot:Error1 { @x = 45 }
-\end{minted}
+\inputminted[linenos]{icl}{../sources/delimiterskipping.icL}
 \end{sourcecode}
 
 Comanda poate fi finisată automat după următoarele construcții semantice:

@@ -4,7 +4,7 @@
 
 {\bf Elementele web} (tipul de date \element) sunt linkuri la taguri HTML din pagina web.
 
-Elementul se numește unic dacă este creat de funcția \mintinline{icl}{Doc.query} sau \mintinline{icl}{element.query}. Elementul se numește colecție dacă este creat de funcția \mintinline{icl}{Doc.queryAll} sau \mintinline{icl}{element.queryAll}. Extragerea elementului după index returnează element unic. 
+Elementul se numește unic dacă este creat de funcția \mintinline{icl}{Doc.query} sau \mintinline{icl}{element.query}. Elementul se numește colecție dacă este creat de funcția \mintinline{icl}{Doc.queryAll} sau \mintinline{icl}{element}\\*\mintinline{icl}{.queryAll}. Extragerea elementului după index returnează element unic. 
 
 \subsection{Literal}
 
@@ -245,7 +245,7 @@ Acronim pentru \mintinline{icl}{element.queryAll (By'tagName, @name)};
 
 \subsubsection{\mintinline{icl}{element.screenshot () : string}}
 
-Returnează un șir de caractere, care conține captura elementului, codată în base64. Captura poate fi salvată ca imagine cu \mintinline{icl}{Make.image (base64 : string, path : string) : void}.
+Returnează un șir de caractere, care conține captura elementului, codată în base64. Captura poate fi salvată ca imagine cu \mintinline{icl}{Make.image (base64 : string, path : string) :}\\*\mintinline{icl}{void}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 

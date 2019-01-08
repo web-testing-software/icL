@@ -7,25 +7,21 @@ icL nu se limitează la sincronizarea cu procesele de încărcare și executarea
 \subsubsection{Conectare}
 
 Ca să captezi mesaje trebuie de creat spion, care are sintaxa următoare:
-\begin{lstlisting}
+\begin{iclcode}
 listen serverAddress : (parameters) {
 	`` code
 }
-\end{lstlisting}
+\end{iclcode}
 
 Unde \mintinline{icl}{serverAddress} e URL serviciului de sincronizare, iar \mintinline{icl}{parameters} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
 
 
 \begin{sourcecode}
-\captionof{listing}{Captura erorilor}
+\captionof{listing}{Capturarea erorilor}
 \label{errorcatch}
-\begin{minted}[linenos]{icl}
-listen "ws://127.0.0.1:8989" : (@type = "error", @message : string) {
-	Log.out "error: " + @message;
-}
-\end{minted}
+\inputminted[linenos]{icl}{../sources/errorcatch.icL}
 \end{sourcecode}
 
 \subsubsection{Deconectare}
 
-Pentru a opri captura mesajelor folosiți metodele: \mintinline{icl}{Stack.ignore()} sau \mintinline{icl}{Stack.destroy()}. Mai multe date puteți găsi în paragraful \ref{stack:control}.
+Pentru a opri captura mesajelor folosiți metodele: \mintinline{icl}{Stack}\\*\mintinline{icl}{.ignore()} sau \mintinline{icl}{Stack.destroy()}. Mai multe date puteți găsi în paragraful \ref{stack:control}.

@@ -35,31 +35,19 @@ Parametrul cu valoare implicită se descrie cu următoarea sintaxă \mintinline{
 \begin{sourcecode}
 \captionof{listing}{Funcție completă}
 \label{fullfunc}
-\begin{minted}[linenos]{icl}
-sum = (@a : int, @b : int) : int {
-	@ = @a + @b;
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/fullfunc.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Funcție fără argumente}
 \label{noargsfunc}
-\begin{minted}[linenos]{icl}
-pi = () : double {
-	@ = 3.14;
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
 \captionof{listing}{Funcție făra tip de date}
 \label{notypefunc}
-\begin{minted}[linenos]{icl}
-out = (@a : int, @b : int) {
-	Log.out @a @b;
-};
-\end{minted}
+\inputminted[linenos]{icl}{../sources/notypefunc.icL}
 \end{sourcecode}
 
 \subsubsection{Apelul funcției}
@@ -84,47 +72,16 @@ Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu va
 
 Funcțiile care dețin doar un parametru fără valoare implicită, pot fi apelate folosind acronimul \mintinline{icl}{name arg} sau \mintinline{icl}{name (arg)}. Poziția argumentului nu are importanță (la început, la mijloc sau la sfîrșit).
 
-\begin{sourcecode}
+\begin{listing}
 \captionof{listing}{Apeluri de funcții}
 \label{callfunc}
-\begin{minted}[linenos]{icl}
-sum (2, 3); 	`` returns 5
-pi();			`` returns 3.14
-out (4, 5); 	`` returns void
-do();			`` returns void
+\inputminted[linenos]{icl}{../sources/callfunc.icL}
+\end{listing}
 
-sum (sum (1, 2), 3);	`` returns 6
-out (1, sum (4, 5));	`` returns void
-\end{minted}
-\end{sourcecode}
-
-\newpage
-\begin{sourcecode}
+\begin{listing}
 \captionof{listing}{Valori predefinite}
 \label{defaultparametrs}
-\begin{minted}[linenos]{icl}
-fun = (@a = 21, @b = 23) {}
-
-`` the line 
-fun(exists(@a, # > 3), exists(@b, # < 5));
-`` replace the next code
-if (@a > 3) {
-	if (@b < 5) {
-		fun (@a, @b);
-	}
-	else {
-		fun (@a, 23);
-	}
-}
-else {
-	if (@b < 5) {
-		fun (21, @b);
-	}
-	else {
-		fun (21, 23);
-	}
-}
-\end{minted}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
+\end{listing}
 
 %\newpage
