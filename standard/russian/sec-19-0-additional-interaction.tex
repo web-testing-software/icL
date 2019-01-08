@@ -7,66 +7,66 @@
 
 Для ожиданий предусмотрены следующие конструкции:
 \begin{icItems}
-	\item \lstinline|wait { condition }|;
-	\item \lstinline|wait:Xs { condition }|;
-	\item \lstinline|wait:Xms { condition }|;
-	\item \lstinline|wait:ajax { condition }|.
+	\item \mintinline{icl}{wait { condition }};
+	\item \mintinline{icl}{wait:Xs { condition }};
+	\item \mintinline{icl}{wait:Xms { condition }};
+	\item \mintinline{icl}{wait:ajax { condition }}.
 \end{icItems}
 
-\subsubsection{\lstinline|wait|}
+\subsubsection{\mintinline{icl}{wait}}
 
-Ожидает пока условие не станет истинной. Время ожидании: \code{Session'im\- plicitTimeout} миллисекунды. 
+Ожидает пока условие не станет истинной. Время ожидании: \mintinline{icl}{Session'im\- plicitTimeout} миллисекунды. 
 
-\subsubsection{\lstinline|wait:Xs|}
+\subsubsection{\mintinline{icl}{wait:Xs}}
 
-Ожидает пока условие не станет истинной. Время ожидании: \code{X} секунды. 
+Ожидает пока условие не станет истинной. Время ожидании: \mintinline{icl}{X} секунды. 
 
-\subsubsection{\lstinline|wait:Xms|}
+\subsubsection{\mintinline{icl}{wait:Xms}}
 
-Ожидает пока условие не станет истинной. Время ожидании: \code{X} миллисекунды. 
+Ожидает пока условие не станет истинной. Время ожидании: \mintinline{icl}{X} миллисекунды. 
 
-\subsubsection{\lstinline|wait:ajax|}
+\subsubsection{\mintinline{icl}{wait:ajax}}
 
-Ожидает пока условие не станет истинной. Время ожидания: \code{Session'implicit\- Timeout} миллисекунды. В сравнении с обычным \code{wait}, тут будет передано следующие данные: \code{@response} - объект с данными о завершённом запросе и \code{@count} - количество активных запросов.
+Ожидает пока условие не станет истинной. Время ожидания: \mintinline{icl}{Session'implicit\- Timeout} миллисекунды. В сравнении с обычным \mintinline{icl}{wait}, тут будет передано следующие данные: \mintinline{icl}{@response} - объект с данными о завершённом запросе и \mintinline{icl}{@count} - количество активных запросов.
 
 \subsection{Клавиатура}
 
 Для работы с клавиатурой предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|element.keyDown (modifiers : int, key : string) : element|;
-	\item \lstinline|element.keyUp (modifiers : int, key : string) : element|;
-	\item \lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|;
-	\item \lstinline|element.fastType (text : string) : element|;
-	\item \lstinline|element.paste (text : string) : element|.
-	\item \lstinline|element.forceType (text : string) : element|.
-	\item \lstinline|Doc.type (text : string) : Doc|.
+	\item \mintinline{icl}{element.keyDown (modifiers : int, key : string) : element};
+	\item \mintinline{icl}{element.keyUp (modifiers : int, key : string) : element};
+	\item \mintinline{icl}{element.keyPress (modifiers : int, delay : int, keys : string) : element};
+	\item \mintinline{icl}{element.fastType (text : string) : element};
+	\item \mintinline{icl}{element.paste (text : string) : element}.
+	\item \mintinline{icl}{element.forceType (text : string) : element}.
+	\item \mintinline{icl}{Doc.type (text : string) : Doc}.
 \end{icItems}
 
-\subsubsection{\lstinline|element.keyDown (modifiers : int, keys : text) : element|}
+\subsubsection{\mintinline{icl}{element.keyDown (modifiers : int, keys : text) : element}}
 
 Симулирует нажатие кнопки.
 
-\subsubsection{\lstinline|element.keyUp (modifiers : int, <text>) : element|}
+\subsubsection{\mintinline{icl}{element.keyUp (modifiers : int, <text>) : element}}
 
 Симулирует отпускание кнопки.
 
-\subsubsection{\lstinline|element.keyPress (modifiers : int, delay : int, keys : string) : element|}
+\subsubsection{\mintinline{icl}{element.keyPress (modifiers : int, delay : int, keys : string) : element}}
 
 Симулирует процесс печати на клавиатуре с установленной задержкой.
 
-\subsubsection{\lstinline|element.fastType (text : string) : element|}
+\subsubsection{\mintinline{icl}{element.fastType (text : string) : element}}
 
 Симулирует процесс нажатие на клавиатуре с максимальной скоростью.
 
-\subsubsection{\lstinline|element.paste (text : string) : element|}
+\subsubsection{\mintinline{icl}{element.paste (text : string) : element}}
 
 Копирует текст в буфер обмена, фокусирует элемент и вставит текст.
 
-\subsubsection{\lstinline|element.forceType (text : string) : element|}
+\subsubsection{\mintinline{icl}{element.forceType (text : string) : element}}
 
 Вставит значения в текстовом поле с помощью фрагмента кода на языке JavaScript.
 
-\subsubsection{\lstinline|Doc.type (text : string) : element|}
+\subsubsection{\mintinline{icl}{Doc.type (text : string) : element}}
 
 Симулирует процесс печати без фокусировки какого-то либо элемента.
 
@@ -75,85 +75,85 @@
 
 Для работы с мышкой предусмотрены следующие функций:
 \begin{icItems}
-	\item \lstinline|element.click (data : object) : element|;
-	\item \lstinline|element.forceClick (data : object) : element|;
-	\item \lstinline|element.mouseDown (data : object) : element|;
-	\item \lstinline|element.mouseUp (data : object) : element|;
-	\item \lstinline|element.hover (data : object) : element|.
-	\item \lstinline|Doc.click (data : object) : Doc|.
-	\item \lstinline|Doc.mouseDown (data : object) : Doc|;
-	\item \lstinline|Doc.mouseUp (data : object) : Doc|;
-	\item \lstinline|Doc.hover (data : object) : Doc|.
+	\item \mintinline{icl}{element.click (data : object) : element};
+	\item \mintinline{icl}{element.forceClick (data : object) : element};
+	\item \mintinline{icl}{element.mouseDown (data : object) : element};
+	\item \mintinline{icl}{element.mouseUp (data : object) : element};
+	\item \mintinline{icl}{element.hover (data : object) : element}.
+	\item \mintinline{icl}{Doc.click (data : object) : Doc}.
+	\item \mintinline{icl}{Doc.mouseDown (data : object) : Doc};
+	\item \mintinline{icl}{Doc.mouseUp (data : object) : Doc};
+	\item \mintinline{icl}{Doc.hover (data : object) : Doc}.
 \end{icItems}
 
-В следующих функциях объект \code{data} может иметь следующие поля:
+В следующих функциях объект \mintinline{icl}{data} может иметь следующие поля:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'button : int| - кнопка мышки, принимает одно из следующих значений:
+	\item \mintinline{icl}{[r/w] @data'button : int} - кнопка мышки, принимает одно из следующих значений:
 	\begin{icItems}
-		\item \lstinline|[r/o] Mouse'left : 1| - левая кнопка;
-		\item \lstinline|[r/o] Mouse'middle : 2| - средняя кнопка;
-		\item \lstinline|[r/o] Mouse'right : 3| - правая кнопка.
+		\item \mintinline{icl}{[r/o] Mouse'left : 1} - левая кнопка;
+		\item \mintinline{icl}{[r/o] Mouse'middle : 2} - средняя кнопка;
+		\item \mintinline{icl}{[r/o] Mouse'right : 3} - правая кнопка.
 	\end{icItems}
-	По умолчанию \lstinline|Mouse'left|;
-	\item \lstinline|[r/w] @data'rx : double| - \lstinline|ax = rx * width|;
-	\item \lstinline|[r/w] @data'ry : double| - \lstinline|ay = rx * height|;
-	\item \lstinline|[r/w] @data'ax : int| - относительная координата от левого края элемента;
-	\item \lstinline|[r/w] @data'ay : int| - относительная координата от верхнего края элемента.
+	По умолчанию \mintinline{icl}{Mouse'left};
+	\item \mintinline{icl}{[r/w] @data'rx : double} - \mintinline{icl}{ax = rx * width};
+	\item \mintinline{icl}{[r/w] @data'ry : double} - \mintinline{icl}{ay = rx * height};
+	\item \mintinline{icl}{[r/w] @data'ax : int} - относительная координата от левого края элемента;
+	\item \mintinline{icl}{[r/w] @data'ay : int} - относительная координата от верхнего края элемента.
 \end{icItems}
 
-\subsubsection{\lstinline|element.click (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.click (data : object) : element}}
 
-Симулирует клик. Объект \code{data} имеет следующие дополнительные свойства:
+Симулирует клик. Объект \mintinline{icl}{data} имеет следующие дополнительные свойства:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'delay : int| - задержка между нажатием и отпускании кнопке;
-	\item \lstinline|[r/w] @data'count : int| - количество симулированных кликов.
+	\item \mintinline{icl}{[r/w] @data'delay : int} - задержка между нажатием и отпускании кнопке;
+	\item \mintinline{icl}{[r/w] @data'count : int} - количество симулированных кликов.
 \end{icItems}
 
-\subsubsection{\lstinline|element.forceClick (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.forceClick (data : object) : element}}
 
 Симулирует клик на элемент без проверки его доступности.
 
-\subsubsection{\lstinline|element.mouseDown (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.mouseDown (data : object) : element}}
 
 Симулирует нажатие кнопки мышки.
 
-\subsubsection{\lstinline|element.mouseUp (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.mouseUp (data : object) : element}}
 
 Симулирует отпускание кнопки мышки.
 
-\subsubsection{\lstinline|element.hover (data : object) : element|}
+\subsubsection{\mintinline{icl}{element.hover (data : object) : element}}
 
-Перемещает мышку над элементом. \code{data} имеет следующие дополнительные свойства:
+Перемещает мышку над элементом. \mintinline{icl}{data} имеет следующие дополнительные свойства:
 \begin{icItems}
-	\item \lstinline|[r/w] @data'time : int| - среднее время за которой курсор перемещается на 100 пикселей;
-	\item \lstinline|[r/w] @data'func : int| - функция описывающая движение курсора. Принимает одно из следующих значений:
+	\item \mintinline{icl}{[r/w] @data'time : int} - среднее время за которой курсор перемещается на 100 пикселей;
+	\item \mintinline{icl}{[r/w] @data'func : int} - функция описывающая движение курсора. Принимает одно из следующих значений:
 	\begin{icItems}
-		\item \lstinline|[r/o] Move'teleport : 1| - перемещает курсор немедленно;
-		\item \lstinline|[r/o] Move'linear : 2| - линейная интерполяция;
-		\item \lstinline|[r/o] Move'quadratic : 3| - квадратичная интерполяция;
-		\item \lstinline|[r/o] Move'cubic : 4| - кубическая интерполяция;
-		\item \lstinline|[r/o] Move'bezier : 5| - использовает кубическую кривую Безье. Использует дополнительные параметры \code{p1x}, \code{p1y}, \code{p2x} и \code{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
+		\item \mintinline{icl}{[r/o] Move'teleport : 1} - перемещает курсор немедленно;
+		\item \mintinline{icl}{[r/o] Move'linear : 2} - линейная интерполяция;
+		\item \mintinline{icl}{[r/o] Move'quadratic : 3} - квадратичная интерполяция;
+		\item \mintinline{icl}{[r/o] Move'cubic : 4} - кубическая интерполяция;
+		\item \mintinline{icl}{[r/o] Move'bezier : 5} - использовает кубическую кривую Безье. Использует дополнительные параметры \mintinline{icl}{p1x}, \mintinline{icl}{p1y}, \mintinline{icl}{p2x} и \mintinline{icl}{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
 	\end{icItems}
-	По умолчанию \lstinline|Move'teleport|.
-	\item \lstinline|[r/w] @data'p1x : double| - Координата $x$ первой точке.
-	\item \lstinline|[r/w] @data'p1y : double| - Координата $y$ первой точке.
-	\item \lstinline|[r/w] @data'p2x : double| - Координата $x$ второй точке.
-	\item \lstinline|[r/w] @data'p2y : double| - Координата $y$ второй точке.
+	По умолчанию \mintinline{icl}{Move'teleport}.
+	\item \mintinline{icl}{[r/w] @data'p1x : double} - Координата $x$ первой точке.
+	\item \mintinline{icl}{[r/w] @data'p1y : double} - Координата $y$ первой точке.
+	\item \mintinline{icl}{[r/w] @data'p2x : double} - Координата $x$ второй точке.
+	\item \mintinline{icl}{[r/w] @data'p2y : double} - Координата $y$ второй точке.
 \end{icItems}
 
-\subsubsection{\lstinline|Doc.click (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.click (data : object) : Doc}}
 
 Симулирует клик без привязанности к элементу.
 
-\subsubsection{\lstinline|Doc.mouseDown (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.mouseDown (data : object) : Doc}}
 
 Симулирует нажатие клавиши мышки без привязанности к элементу.
 
-\subsubsection{\lstinline|Doc.mouseUp (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.mouseUp (data : object) : Doc}}
 
 Симулирует отпускание клавиши мышки без привязанности к элементу.
 
-\subsubsection{\lstinline|Doc.hover (data : object) : Doc|}
+\subsubsection{\mintinline{icl}{Doc.hover (data : object) : Doc}}
 
 Симулирует движение курсора без привязанности к элементу.
 
@@ -161,31 +161,31 @@
 
 Настроить можно следующее параметры:
 \begin{icItems}
-	\item \lstinline|[r/w] icL'clickTime : int|;
-	\item \lstinline|[r/w] icL'pressTime : int|;
-	\item \lstinline|[r/w] icL'moveTime : int|;
-	\item \lstinline|[r/w] icL'flashMode : bool|;
-	\item \lstinline|[r/w] icL'humanMode : bool|.
+	\item \mintinline{icl}{[r/w] icL'clickTime : int};
+	\item \mintinline{icl}{[r/w] icL'pressTime : int};
+	\item \mintinline{icl}{[r/w] icL'moveTime : int};
+	\item \mintinline{icl}{[r/w] icL'flashMode : bool};
+	\item \mintinline{icl}{[r/w] icL'humanMode : bool}.
 \end{icItems}
 
-\subsubsection{\lstinline|icL'clickTime : int|}
+\subsubsection{\mintinline{icl}{icL'clickTime : int}}
 
 Время задержки клика, по умолчанию 300.
 
-\subsubsection{\lstinline|icL'pressTime : int|}
+\subsubsection{\mintinline{icl}{icL'pressTime : int}}
 
 Время задержки нажатий кнопки, по умолчанию 60.
 
-\subsubsection{\lstinline|icL'moveTime : int|}
+\subsubsection{\mintinline{icl}{icL'moveTime : int}}
 
 Среднее время в миллисекундах за которой курсор перемещается на 100 пикселей, по умолчанию 32.
 
-\subsubsection{\lstinline|icL'flashMode : bool|}
+\subsubsection{\mintinline{icl}{icL'flashMode : bool}}
 
-Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \lstinline|icL'humanMode|. По умолчанию выключен. \lstinline|element.sendKeys| и \lstinline|element.fastType| будут работать также быстро как и \lstinline|element.paste|, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
+Режим "Вспышки", все операции будут выполнены максимально быстро. Отменяет \mintinline{icl}{icL'humanMode}. По умолчанию выключен. \mintinline{icl}{element.sendKeys} и \mintinline{icl}{element.fastType} будут работать также быстро как и \mintinline{icl}{element.paste}, изменение содержимого буфера обмены может влиять отрицательно на опыт использования компьютера.
 
-\subsubsection{\lstinline|icL'humanMode : bool|}
+\subsubsection{\mintinline{icl}{icL'humanMode : bool}}
 
-Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \lstinline|icL'flashMode|. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
+Режим "Человека", все операции будут сделаны медленно и максимально человеко подобно. Отменяет \mintinline{icl}{icL'flashMode}. Также будет нарисован дополнительный курсор, указывающий положение симулировано курсора. По умолчанию данный режим выключен.
 
 %\newpage

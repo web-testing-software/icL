@@ -1,18 +1,21 @@
 % !TeX spellcheck = ru_RU
 \section{Обработка исключений}
 
-Все ошибки в icL имеют название и описание. Что бы выводить в консоль название и описание текущей ошибке, достаточно вызвать \lstinline|Log.error ""|. Возможные исключения при вызове разных функций и методов в данном стандарте указаны в конце описания. Что зарегистрировать пользовательскую исключение используете \lstinline|Signal.add (name : string)|.
+Все ошибки в icL имеют название и описание. Что бы выводить в консоль название и описание текущей ошибке, достаточно вызвать \mintinline{icl}{Log.error ""}. Возможные исключения при вызове разных функций и методов в данном стандарте указаны в конце описания. Что зарегистрировать пользовательскую исключение используете \mintinline{icl}{Signal.add (name : string)}.
 
 \subsection{Генератор сигналов}
 
-Код, который может генерировать сигнал об исключений называется эмиттер. И имеет следующий синтаксис \lstinline|emiter {```code```}|. Генерированный сигнал улавливает коллектор. Также коллекторов может быть несколько. Они имеют следующий синтаксис \lstinline|slot:exception {```code```}|,
-где \code{exception} - имя исключений, чтобы поймать все исключения можно использовать \lstinline|slot:Any|. Пример кода использующий эмиттер и коллектор представлен на листинге \ref{sighandling}.
+Код, который может генерировать сигнал об исключений называется эмиттер. И имеет следующий синтаксис \mintinline{icl}{emiter {```code```}}. Генерированный сигнал улавливает коллектор. Также коллекторов может быть несколько. Они имеют следующий синтаксис \mintinline{icl}{slot:exception {```code```}},
+где \mintinline{icl}{exception} - имя исключений, чтобы поймать все исключения можно использовать \mintinline{icl}{slot:Any}. Пример кода использующий эмиттер и коллектор представлен на листинге \ref{sighandling}.
 
-Для генерации собственных сигналов используется команда \lstinline|emit:exception (description : string),|, где \code{exception} - имя исключений, а \code{description} - её описание.
+Для генерации собственных сигналов используется команда \mintinline{icl}{emit:exception (description : string),}, где \mintinline{icl}{exception} - имя исключений, а \mintinline{icl}{description} - её описание.
 
-Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \lstinline|jammer {```code```}|. Сигналы об схематических и синтаксических ошибках, а также сигнал \lstinline|emit:Exit|, не могут быть остановлены подавителем.
+Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \mintinline{icl}{jammer {```code```}}. Сигналы об схематических и синтаксических ошибках, а также сигнал \mintinline{icl}{emit:Exit}, не могут быть остановлены подавителем.
 
-\begin{lstlisting}[caption=Обработка инключении, label=sighandling]
+\begin{sourcecode}
+\captionof{listing}{Обработка инключении}
+\label{sighandling}
+\begin{minted}[linenos]{icl}
 Signal.add "NumberTooBig";
 Signal.add "NumberTooSmall";
 
@@ -35,7 +38,8 @@ slot:NumberTooBig {
 slot:NumberTooSmall {
 	Log.error "Nope! O_O";
 };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsection{Предопределённые исключения}
 
@@ -101,9 +105,9 @@ slot:NumberTooSmall {
 	\ferror{SessionNotCreated}       & Нельзя создать сессию.                           \\ \hline
 	\ferror{QueryNotExecutedYet}     & SQL запрос не был выполнен ещё.                  \\ \hline
 	
-	\ferror{UnknownCommand}          & \code{[w3c]} Неизвестная команда.                \\ \hline
-	\ferror{UnknownError}            & \code{[w3c]} Неизвестная ошибка.                 \\ \hline
-	\ferror{UnknownMethod}           & \code{[w3c]} Неизвестный метод HTTP.             \\
+	\ferror{UnknownCommand}          & \mintinline{icl}{[w3c]} Неизвестная команда.                \\ \hline
+	\ferror{UnknownError}            & \mintinline{icl}{[w3c]} Неизвестная ошибка.                 \\ \hline
+	\ferror{UnknownMethod}           & \mintinline{icl}{[w3c]} Неизвестный метод HTTP.             \\
 }
 
 %\newpage

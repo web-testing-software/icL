@@ -3,14 +3,14 @@
 
 \section{Типы данных}
 
-В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \code{value}.
+В данном главе представлены типы данных, которые могут быть r-значениями, l-значениями и js-значениями. Все типы отсортированы в алфавитном порядке, только первое место занимает \mintinline{icl}{value}.
 
 \subsection{{\color{lightblue} value}}
 
-\code{value} предлагается в роли базового класса остальных типов описанных в данном главе.
+\mintinline{icl}{value} предлагается в роли базового класса остальных типов описанных в данном главе.
 
-\noindent Описание класса \code{value} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{value} -
+\begin{minted}{icl}
 class value {
     value'lValue   : bool;
     value'link     : bool;
@@ -21,18 +21,18 @@ class value {
 
     value.ensureRValue () : value;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} bool}}
 
 \noindent Описание класса \bool -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class bool extends value {}
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} datetime}}
 
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class datetime extends value {
 	[r/w] datetime'year : int;
 	[r/w] datetime'month : int;
@@ -49,19 +49,19 @@ class datetime extends value {
 	datetime.toUTC      datetime : datetime;
 	datetime.toTimeZone int int  : datetime;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} double}}
 
 \noindent Описание класса \double -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class double extends value {}
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} element}}
 
 \noindent Описание класса \element -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class element extends value {
     [r/*] element'attr-*   : string;
     [r/*] element'css-*    : string;
@@ -111,19 +111,19 @@ class element extends value {
     element.screenshot                            : string;
     element.sendKeys        int     string        : element;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} int}}
 
 \noindent Описание класса \integer -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class int extends value {}
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} list}}
 
 \noindent Описание класса \listtype -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class list extends value {
     [r/o] list'empty  : bool;
     [r/o] list'length : int;
@@ -154,23 +154,23 @@ class list extends value {
     list.replaceInStrings string string : list;
     list.sort             [bool]        : list;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} object}}
 
 \noindent Описание класса \object -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class object extends value {
     [r/w] object'string : value;
     
     object.clone () : object;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} regex}}
 
 \noindent Описание класса \regex -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class regex inherits value {
     /i
     /s
@@ -179,12 +179,12 @@ class regex inherits value {
     /u
     /f
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} set}}
 
 \noindent Описание класса \set -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class set extends value {
     [r/o] set'capacity : int;
     [r/o] set'empty    : bool;
@@ -202,12 +202,12 @@ class set extends value {
     set.remove            object             : set;
     set.removeField       string             : set;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{lightblue} string}}
 
 \noindent Описание класса \str -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 class string extends value {
     [r/o] string'empty  : bool;
     [r/o] string'length : int;
@@ -243,6 +243,6 @@ class string extends value {
     string.substring      int    int           : string;
     string.trim           [bool]               : string;
 }
-\end{lstlisting}
+\end{minted}
 
 

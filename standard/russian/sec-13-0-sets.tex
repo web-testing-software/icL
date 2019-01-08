@@ -9,21 +9,21 @@
 
 Поле объектов множества описаны в заголовке множества.
 
-Значение типа \object{} - ссылочное значение, чтобы получить копию объект недостаточно присвоить его другой переменной, нужно его копировать (клонировать) используя следующий метод - \lstinline|object.clone () : object|.
+Значение типа \object{} - ссылочное значение, чтобы получить копию объект недостаточно присвоить его другой переменной, нужно его копировать (клонировать) используя следующий метод - \mintinline{icl}{object.clone () : object}.
 
 \subsection{Свойства}
 
 Множества имеют следующие свойства:
 \begin{icItems}
-\item \lstinline|[r/o] set'capacity : int|;
-\item \lstinline|[r/o] set'empty : bool|;
+\item \mintinline{icl}{[r/o] set'capacity : int};
+\item \mintinline{icl}{[r/o] set'empty : bool};
 \end{icItems}
 
-\subsubsection{\lstinline|[r/o] set'capacity : int|}
+\subsubsection{\mintinline{icl}{[r/o] set'capacity : int}}
 
 Возвращает количество объектов которых можно хранить в память без дополнительных выделений.
 
-\subsubsection{\lstinline|[r/o] set'empty : bool|}
+\subsubsection{\mintinline{icl}{[r/o] set'empty : bool}}
 
 Множество считается пустой если оно не содержит ни один объект.
 
@@ -31,23 +31,26 @@
 
 Множество имеет следующие методы:
 \begin{icItems}
-\item \lstinline|set.applicate (data : list ...) : set|;
-\item \lstinline|set.clear () : set|;
-\item \lstinline|set.clone () : set|;
-\item \lstinline|set.getField (name : string) : list|;
-\item \lstinline|set.hasField (name : string) : bool|;
-\item \lstinline|set.insert (data : any ...) : set|;
-\item \lstinline|set.insert (obj : object) : set|;
-\item \lstinline|set.insertField (name : string, value : list, type = list)|;
-\item \lstinline|set.insertField (name : string, value : any, type = void)|;
-\item \lstinline|set.remove (data : any ...) : set|;
-\item \lstinline|set.remove (obj : object) : set|;
-\item \lstinline|set.removeField (name : string) : set|.
+\item \mintinline{icl}{set.applicate (data : list ...) : set};
+\item \mintinline{icl}{set.clear () : set};
+\item \mintinline{icl}{set.clone () : set};
+\item \mintinline{icl}{set.getField (name : string) : list};
+\item \mintinline{icl}{set.hasField (name : string) : bool};
+\item \mintinline{icl}{set.insert (data : any ...) : set};
+\item \mintinline{icl}{set.insert (obj : object) : set};
+\item \mintinline{icl}{set.insertField (name : string, value : list, type = list)};
+\item \mintinline{icl}{set.insertField (name : string, value : any, type = void)};
+\item \mintinline{icl}{set.remove (data : any ...) : set};
+\item \mintinline{icl}{set.remove (obj : object) : set};
+\item \mintinline{icl}{set.removeField (name : string) : set}.
 \end{icItems}
 
 Код использующий выше перечисленных методов представлен на листинге \ref{setmethods};
 
-\begin{lstlisting}[caption=Методы класса set, label=setmethods]
+\begin{sourcecode}
+\captionof{listing}{Методы класса set}
+\label{setmethods}
+\begin{minted}[linenos]{icl}
 @set = [age : int, name : string, sex : string]
 
 @set.applicate (
@@ -111,67 +114,68 @@
 	] ```
 
 @set.clear; `` set = []
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|set.applicate (data : list ...) : set|}
+\subsubsection{\mintinline{icl}{set.applicate (data : list ...) : set}}
 
-Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \code{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
+Количество полученных списков должна быть равна количеству полей объектов множества. Количество добавленных объектов будет ровна длине самого длинного списка из \mintinline{icl}{data}. Из списков в которых не хватает строк, элементы будут добавлены повторно.
 
 Возможные исключения: \ferror{IncompatibleData} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.clear () : set|}
+\subsubsection{\mintinline{icl}{set.clear () : set}}
 
 Очищает множество.
 
-\subsubsection{\lstinline|set.clone () : set|}
+\subsubsection{\mintinline{icl}{set.clone () : set}}
 
 Создаёт копию множества, путём копирования всех данных в другую область памяти.
 
-\subsubsection{\lstinline|set.getField (name : string) : list|}
+\subsubsection{\mintinline{icl}{set.getField (name : string) : list}}
 
-Возвращает список значений поле \code{name} всех объектов.
+Возвращает список значений поле \mintinline{icl}{name} всех объектов.
 
 Возможные исключения: \ferror{FieldNotFound} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.hasField (name : string) : bool|}
+\subsubsection{\mintinline{icl}{set.hasField (name : string) : bool}}
 
-Возвращает \true, если заголовок содержит поле \code{name}, иначе \false.
+Возвращает \true, если заголовок содержит поле \mintinline{icl}{name}, иначе \false.
 
-\subsubsection{\lstinline|set.insert (data : any ...) : set|}
+\subsubsection{\mintinline{icl}{set.insert (data : any ...) : set}}
 
-Вставит новый объект, значения полей (массив \code{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
+Вставит новый объект, значения полей (массив \mintinline{icl}{data}) должна полностью соблюдать порядок и тип данных, определён заголовком множество.
 
 Возможные исключения: \ferror{IncompatibleData} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.insert (obj : object) : set|}
+\subsubsection{\mintinline{icl}{set.insert (obj : object) : set}}
 
-Вставит новый объект, поля объекта \code{obj} должна быть совместимы полностью с заголовком множество.
+Вставит новый объект, поля объекта \mintinline{icl}{obj} должна быть совместимы полностью с заголовком множество.
 
 Возможные исключения: \ferror{IncompatibleObject} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.inserField (name : string, value : list, type = list)|}
+\subsubsection{\mintinline{icl}{set.inserField (name : string, value : list, type = list)}}
 
-Создаёт новое поле типа \code{type}. \code{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \code{set.applicate}.
-
-Возможные исключения: \ferror{FieldAlreadyExists} (см. таб. \ref{errors}).
-
-\subsubsection{\lstinline|set.insertField (name : string, value : any, type = void)|}
-
-Создаёт новое поле типа \code{type}. Если \code{type == void} то тип будет определён автоматически, но лучше указать его явно для исключения возможных проблем.
+Создаёт новое поле типа \mintinline{icl}{type}. \mintinline{icl}{values} может быть пустым списком только если множество пустая. Значений массива распределяется так же как и при использовании \mintinline{icl}{set.applicate}.
 
 Возможные исключения: \ferror{FieldAlreadyExists} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set.remove (data : any ...) : set|}
+\subsubsection{\mintinline{icl}{set.insertField (name : string, value : any, type = void)}}
 
-Удаляет объект, который подходит по описанию \code{data}.
+Создаёт новое поле типа \mintinline{icl}{type}. Если \mintinline{icl}{type == void} то тип будет определён автоматически, но лучше указать его явно для исключения возможных проблем.
 
-\subsubsection{\lstinline|set.remove (obj : object) : set|}
+Возможные исключения: \ferror{FieldAlreadyExists} (см. таб. \ref{errors}).
 
-Удаляет объект \code{obj} из множества.
+\subsubsection{\mintinline{icl}{set.remove (data : any ...) : set}}
 
-\subsubsection{\lstinline|set.removeField (name : string) : set|}
+Удаляет объект, который подходит по описанию \mintinline{icl}{data}.
 
-Удаляет поле \code{name} с заголовка.
+\subsubsection{\mintinline{icl}{set.remove (obj : object) : set}}
+
+Удаляет объект \mintinline{icl}{obj} из множества.
+
+\subsubsection{\mintinline{icl}{set.removeField (name : string) : set}}
+
+Удаляет поле \mintinline{icl}{name} с заголовка.
 
 Возможные исключения: \ferror{FieldNotFound} (см. таб. \ref{errors}).
 

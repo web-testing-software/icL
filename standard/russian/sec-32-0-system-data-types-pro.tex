@@ -4,8 +4,8 @@
 
 \subsection{{\color{orange} Alert}}
 
-\noindent Описание класса \code{Alert} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Alert} -
+\begin{minted}{icl}
 class Alert {
     [r/o] Alert'text : string;
 	
@@ -13,12 +13,12 @@ class Alert {
 	Alert.dismiss         : void;
 	Alert.sendKeys string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} By}}
 
-\noindent Описание класса \code{By} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{By} -
+\begin{minted}{icl}
 class By {
     [r/o] By'cssSelector     : 1;
 	[r/o] By'linkText        : 2;
@@ -26,12 +26,12 @@ class By {
 	[r/o] By'tagName         : 4;
 	[r/o] By'xPath           : 5;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Cookie}}
 
-\noindent Описание класса \code{Cookie} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Cookie} -
+\begin{minted}{icl}
 class Cookie {
     [r/w] Cookie'domain   : string;
 	[r/w] Cookie'expiry   : int;
@@ -47,55 +47,55 @@ class Cookie {
 	Cookie.resetTime             : Cookie;
 	Cookie.save                  : Cookie;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Cookies}}
 
-\noindent Описание класса \code{Cookies} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Cookies} -
+\begin{minted}{icl}
 class Cookies {
     [r/o] Cookies'string : Cookie;
 
     Cookies.deleteAll        : void;
 	Cookies.get       string : Cookie;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Datetime}}
 
-\noindent Описание класса \code{Datetime} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Datetime} -
+\begin{minted}{icl}
 class Datetime {
 	Datetime.current    : datetime;
 	Datetime.currentUTC : datetime;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} DB}}
 
-\noindent Описание класса \code{DB} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{DB} -
+\begin{minted}{icl}
 class DB {
 	DB.query Code : Query;
 	DB.close       : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} DBManager}}
 
-\noindent Описание класса \code{DBManager} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{DBManager} -
+\begin{minted}{icl}
 class DBManager {
     DBManager.openSQLite string               : DB;
     DBManager.connect    string string string : DB;
     DBManager.connect    string               : DB;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Doc}}
 
-\noindent Описание класса \code{Doc} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Doc} -
+\begin{minted}{icl}
 class Doc {
 	Doc.click           object        : Doc;
 	Doc.hover           object        : Doc;
@@ -113,12 +113,12 @@ class Doc {
 	Doc.queryTags       string        : element;
 	Doc.type            string        : Doc;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} DSV}}
 
-\noindent Описание класса \code{DSV} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{DSV} -
+\begin{minted}{icl}
 class DSV {
     DSV.load    string File  : set;
 	DSV.loadCSV string       : set;
@@ -128,12 +128,12 @@ class DSV {
 	DSV.append  File  object : File;
 	DSV.sync    File  set    : set;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} File}}
 
-\noindent Описание класса \code{File} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{File} -
+\begin{minted}{icl}
 class File {
     [r/o] File'CSV    : 1;
 	[r/o] File'format : int;
@@ -144,24 +144,24 @@ class File {
     File.close  : void;
 	File.delete () : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Files}}
 
-\noindent Описание класса \code{Files} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Files} -
+\begin{minted}{icl}
 class Files {
     File.open       string : File;
 	File.create     string : File;
 	File.createDir  string : void;
 	File.createPath string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} icL}}
 
-\noindent Описание класса \code{icL} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{icL} -
+\begin{minted}{icl}
 class icL {
     [r/w] icL'clickTime : int;
 	[r/w] icL'pressTime : int;
@@ -169,35 +169,35 @@ class icL {
 	[r/w] icL'flashMode : int;
 	[r/w] icL'humanMode : int;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Import}}
 
-\noindent Описание класса \code{Import} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Import} -
+\begin{minted}{icl}
 class Import {
     Import.none      [object] string : void;
 	Import.functions [object] string : void;
 	Import.all       [object] string : void;
 	Import.run       string          : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Key}}
 
-\noindent Описание класса \code{Key} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Key} -
+\begin{minted}{icl}
 class Key {
     Key'alt   : 3;
 	Key'ctrl  : 1;
 	Key'shift : 2;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Log}}
 
-\noindent Описание класса \code{Log} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Log} -
+\begin{minted}{icl}
 class Log {
     Log.error string   : void;
 	Log.info  string   : void;
@@ -205,12 +205,12 @@ class Log {
 	Log.stack value    : void;
 	Log.state value    : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Make}}
 
-\noindent Описание класса \code{Make} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Make} -
+\begin{minted}{icl}
 class Make {
     Make.image  string string : void;
 	Make.int    string int    : int;
@@ -223,12 +223,12 @@ class Make {
 	Make.string object        : string;
 	Make.string set           : string;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Math}}
 
-\noindent Описание класса \code{Math} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Math} -
+\begin{minted}{icl}
 class Math {
     [r/o] Math'1divPi     : double;
 	[r/o] Math'1divSqrt2  : double;
@@ -261,23 +261,23 @@ class Math {
 	Math.sin              double    : double;
 	Math.tan              double    : double;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Mouse}}
 
-\noindent Описание класса \code{Mouse} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Mouse} -
+\begin{minted}{icl}
 class Mouse {
     [r/o] Mouse'left   : 1;
 	[r/o] Mouse'middle : 2;
 	[r/o] Mouse'right  : 3;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Move}}
 
-\noindent Описание класса \code{Move} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Move} -
+\begin{minted}{icl}
 class Move {
     [r/o] Move'bezier    : 5;
 	[r/o] Move'cubic     : 4;
@@ -285,23 +285,23 @@ class Move {
 	[r/o] Move'quadratic : 3;
 	[r/o] Move'teleport  : 1;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Numbers}}
 
-\noindent Описание класса \code{Numbers} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Numbers} -
+\begin{minted}{icl}
     [r/o] Numbers'max     : 4;
 	[r/o] Numbers'min     : 3;
 	[r/o] Numbers'product : 2;
 	[r/o] Numbers'process : int;
 	[r/o] Numbers'sum     : 1;
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Query}}
 
-\noindent Описание класса \code{Query} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Query} -
+\begin{minted}{icl}
 class Query {
     [w/o] Query'string : value;
 	[r/o] Query'string : value;
@@ -318,12 +318,12 @@ class Query {
 	Query.seek            int    [bool] : bool;
 	Query.set             string value  : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Session}}
 
-\noindent Описание класса \code{Session} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Session} -
+\begin{minted}{icl}
 class Session {
     [r/w] Session'implicitTimeout : int;
 	[r/w] Session'pageLoadTimeout : int;
@@ -339,12 +339,12 @@ class Session {
 	Session.screenshot : string;
 	Session.switchTo   : Session;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Sessions}}
 
-\noindent Описание класса \code{Sessions} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Sessions} -
+\begin{minted}{icl}
 class Sessions {
     [r/o] Sessions'length : int;
 	[r/o] Sessions'int    : Session;
@@ -353,21 +353,21 @@ class Sessions {
 	Sessions.get      int : Session;
 	Sessions.new          : Session;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Signal}}
 
-\noindent Описание класса \code{Signal} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Signal} -
+\begin{minted}{icl}
 class Signal {
     Signal.add string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Stack}}
 
-\noindent Описание класса \code{Stack} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Stack} -
+\begin{minted}{icl}
 class Stack {
     [r/w] Stack : value;
 	
@@ -382,21 +382,21 @@ class Stack {
 	Stack.ignore                : Stack;
 	Stack.listen                : Stack;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Stacks}}
 
-\noindent Описание класса \code{Stacks} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Stacks} -
+\begin{minted}{icl}
 class Stacks {
     [r/w] Stacks'string : Stack;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} States}}
 
-\noindent Описание класса \code{States} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{States} -
+\begin{minted}{icl}
 class States {
     States.clear    : void;
 	States.delete   : void;
@@ -407,12 +407,12 @@ class States {
 	States.toNext   : void;
 	States.toPrev   : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Tab}}
 
-\noindent Описание класса \code{Tab} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Tab} -
+\begin{minted}{icl}
 class Tab {
     [icL] [r/o] Tab'canGoBack    : bool;
 	[icL] [r/o] Tab'canGoForward : bool;
@@ -428,12 +428,12 @@ class Tab {
 	Tab.get     string : bool;
 	Tab.load    string : void;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Tabs}}
 
-\noindent Описание класса \code{Tabs} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Tabs} -
+\begin{minted}{icl}
 class Tabs {
     [r/o] Tabs'current  : Tab;
 	[r/o] Tabs'first    : Tab;
@@ -455,12 +455,12 @@ class Tabs {
 	Tabs.findByTitle  regex  : Tab;
 	Tabs.findByTitle  string : Tab;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Types}}
 
-\noindent Описание класса \code{Types} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Types} -
+\begin{minted}{icl}
 class Types {
     [r/o] Types'alert     : 10;
 	[r/o] Types'bool      : 1;
@@ -505,12 +505,12 @@ class Types {
 	[r/o] Types'window    : 40;
 	[r/o] Types'windows   : 41;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Window}}
 
-\noindent Описание класса \code{Window} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Window} -
+\begin{minted}{icl}
 class Window {
     [r/w] Window'height : int;
 	[r/w] Window'width  : int;
@@ -527,18 +527,18 @@ class Window {
 	Window.switchToFrame   int     : Window;
 	Window.switchToParent          : Window;
 }
-\end{lstlisting}
+\end{minted}
 
 \subsection{{\color{orange} Windows}}
 
-\noindent Описание класса \code{Windows} -
-\begin{lstlisting}[numbers=none]
+\noindent Описание класса \mintinline{icl}{Windows} -
+\begin{minted}{icl}
 class Windows {
     [r/o] Window'length : int;
 	[r/o] Window'int    : Window;
 	
     Windows.get int : Window;
 }
-\end{lstlisting}
+\end{minted}
 
 

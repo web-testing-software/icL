@@ -1,39 +1,39 @@
 \section{Регулярные выражения}
 \label{regex}
 
-Для объявления {\bf регулярных выражения} используется литерал \lstinline|//pattern//ms|, где \code{pattern} - шаблон регулярней выражений, \code{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \lstinline|(content)|, именованная группа - \lstinline|(?<name>content)|.
+Для объявления {\bf регулярных выражения} используется литерал \mintinline{icl}{//pattern//ms}, где \mintinline{icl}{pattern} - шаблон регулярней выражений, \mintinline{icl}{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \mintinline{icl}{(content)}, именованная группа - \mintinline{icl}{(?<name>content)}.
 
-Внутренний символ может быть не только \code{/}, но и любой другой на свой вкус, кроме апострофа (\lstinline|'|) он конфликтует с оператором {\it корень} (\lstinline|/'|), \lstinline|@|, \lstinline|#|, \lstinline|-|, \lstinline|+| и \lstinline|!|. Например  \lstinline|/"pattern"/mods|, \lstinline|/:pattern:/mods|, \lstinline|/$pattern$/mods|.
+Внутренний символ может быть не только \mintinline{icl}{/}, но и любой другой на свой вкус, кроме апострофа (\mintinline{icl}{'}) он конфликтует с оператором {\it корень} (\mintinline{icl}{/'}), \mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{-}, \mintinline{icl}{+} и \mintinline{icl}{!}. Например  \mintinline{icl}{/"pattern"/mods}, \mintinline{icl}{/:pattern:/mods}, \mintinline{icl}{/$pattern$/mods}.
 
-Для того чтобы захватить начало строки можно использовать \lstinline|^| и \lstinline|\A|, а для конца строки - \lstinline|$| и \lstinline|\z|. Первый вариант несмотря на его популярность может срабатывать неправильно, так как им захватывается начало и конец строки в контексте многострочного текста.
+Для того чтобы захватить начало строки можно использовать \mintinline{icl}{^} и \mintinline{icl}{\A}, а для конца строки - \mintinline{icl}{$} и \mintinline{icl}{\z}. Первый вариант несмотря на его популярность может срабатывать неправильно, так как им захватывается начало и конец строки в контексте многострочного текста.
 
 \subsection{Модификаторы}
 
-В языке icL присутствуют следующее модификаторы: \code{/i}, \code{/s}, \code{/m}, \code{/x}, \code{/u} и \code{/f}. Модификаторы можно скомбинировать, например \code{/xi}.
+В языке icL присутствуют следующее модификаторы: \mintinline{icl}{/i}, \mintinline{icl}{/s}, \mintinline{icl}{/m}, \mintinline{icl}{/x}, \mintinline{icl}{/u} и \mintinline{icl}{/f}. Модификаторы можно скомбинировать, например \mintinline{icl}{/xi}.
 
-\subsubsection{Модификатор \code{/i}}
+\subsubsection{Модификатор \mintinline{icl}{/i}}
 
 Регистр букв будет проигнорирован. 
 
-\subsubsection{Модификатор \code{/s}}
+\subsubsection{Модификатор \mintinline{icl}{/s}}
 
 Точка будет означать любой символ, включая символа {\it новая строка}.
 
-\subsubsection{Модификатор \code{/m}}
+\subsubsection{Модификатор \mintinline{icl}{/m}}
 
-Метасимволы \lstinline|^| и \lstinline|$| будут означать начало и конец строки не только в общем смысле, но и в контексте многострочного текста.
+Метасимволы \mintinline{icl}{^} и \mintinline{icl}{$} будут означать начало и конец строки не только в общем смысле, но и в контексте многострочного текста.
 
-\subsubsection{Модификатор \code{/x}}
+\subsubsection{Модификатор \mintinline{icl}{/x}}
 
-Все пробельные символы будут проигнорированы, и символ \lstinline|#| будет означать начало комментария, который заканчивается символом {\it новая строка}.
+Все пробельные символы будут проигнорированы, и символ \mintinline{icl}{#} будет означать начало комментария, который заканчивается символом {\it новая строка}.
 
-\subsubsection{Модификатор \code{/u}}
+\subsubsection{Модификатор \mintinline{icl}{/u}}
 
-Классы символов \lstinline|\w|, \lstinline|\d| и т.д. и их отрицаний \lstinline|\W|, \lstinline|\D| и т.д. будут соответствовать не только английских символов, но и национальных.
+Классы символов \mintinline{icl}{\w}, \mintinline{icl}{\d} и т.д. и их отрицаний \mintinline{icl}{\W}, \mintinline{icl}{\D} и т.д. будут соответствовать не только английских символов, но и национальных.
 
-\subsubsection{Модификатор \code{/f}}
+\subsubsection{Модификатор \mintinline{icl}{/f}}
 
-Инвертирует жадность квантификаторов \lstinline|*|, \lstinline|+|, \lstinline|?| и т.д. и они становятся ленивыми. А их ленивые версии \lstinline|*?|, \lstinline|+?|, \lstinline|??| и т.д. становятся жадными.
+Инвертирует жадность квантификаторов \mintinline{icl}{*}, \mintinline{icl}{+}, \mintinline{icl}{?} и т.д. и они становятся ленивыми. А их ленивые версии \mintinline{icl}{*?}, \mintinline{icl}{+?}, \mintinline{icl}{??} и т.д. становятся жадными.
 
 {\bf Жадный квантификатор} захватывает максимальное количество символов. {\bf Ленивый квантификатор} - минимальное.
 
@@ -45,32 +45,36 @@
 	3-ого ранга:
 	\begin{icItems}
 	\item
-		\lstinline|string << regex : bool|;
+		\mintinline{icl}{string << regex : bool};
 	\item
-		\lstinline|string <* regex : list|.
+		\mintinline{icl}{string <* regex : list}.
 	\end{icItems}
 
 \item 
-	6$^+$-ого ранга: \lstinline|string ** regex : object|.
+	6$^+$-ого ранга: \mintinline{icl}{string ** regex : object}.
 \end{icItems}
 
 Примеры использования операторов приведены на листинге \ref{regexpopsex}.
 
-\begin{lstlisting}[caption=Операторы регулярных выражений, label=regexpopsex]
+\begin{sourcecode}
+\captionof{listing}{Операторы регулярных выражений}
+\label{regexpopsex}
+\begin{minted}[linenos]{icl}
 "string" << //s.r//;            `` true
 "string" <* //s(.)r//;          `` ["str", "t"]
 "string" ** //s(?<letter>.)r//; `` [letter = "t"]
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|string << regex : bool|}
+\subsubsection{\mintinline{icl}{string << regex : bool}}
 
 Возвращает \true{}, если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе \false{}.
 
-\subsubsection{\lstinline|string <* regex : list|}
+\subsubsection{\mintinline{icl}{string <* regex : list}}
 
 Возвращает список захваченных подстрок если строка содержит подстроку подходящая по шаблону регулярней выражений, иначе пустой список.
 
-\subsubsection{\lstinline|string ** regex : object|}
+\subsubsection{\mintinline{icl}{string ** regex : object}}
 
 Возвращает объект, содержащий значения всех именованных групп, если строка содержит подстроку подходящая по шаблону регулярней выражений и объявлены именованные группы, иначе пустой объект.
 
@@ -81,36 +85,39 @@
 Методы классы \str{} и \listtype, имеющие параметры типа \regex{}:
 \begin{icItems}
 \item
-	\lstinline|string.count (re : regex) : int|;
+	\mintinline{icl}{string.count (re : regex) : int};
 \item
-	\lstinline|string.indexOf (re : regex, startPos = -1) : int|;
+	\mintinline{icl}{string.indexOf (re : regex, startPos = -1) : int};
 \item
-	\lstinline|string.lastIndexOf (re : regex, startPos = -1) : int|;
+	\mintinline{icl}{string.lastIndexOf (re : regex, startPos = -1) : int};
 \item
-	\lstinline|string.remove (re : regex) : string|;
+	\mintinline{icl}{string.remove (re : regex) : string};
 \item 
-	\lstinline|string.replace (re : regex, after : string) : string|;
+	\mintinline{icl}{string.replace (re : regex, after : string) : string};
 \item
-	\lstinline|string.split (re : regex, keepEmptyParts = true) : list|.
+	\mintinline{icl}{string.split (re : regex, keepEmptyParts = true) : list}.
 \item
-	\lstinline|list.filter (re : regex) : list|;
+	\mintinline{icl}{list.filter (re : regex) : list};
 \item
-	\lstinline|list.indexOf (re : regex, start : int) : int|;
+	\mintinline{icl}{list.indexOf (re : regex, start : int) : int};
 \item
-	\lstinline|list.lastIndexOf (re : regex, start : int) : int|;
+	\mintinline{icl}{list.lastIndexOf (re : regex, start : int) : int};
 \end{icItems}
 
 Примеры использования выше перечисленных методов, представлены на листинге \ref{regexplikearg}.
 
-\subsubsection{\lstinline|string.count (re : regex) : int|}
+\subsubsection{\mintinline{icl}{string.count (re : regex) : int}}
 
-Считает количество подстрок подходящие по шаблону \code{re}.
+Считает количество подстрок подходящие по шаблону \mintinline{icl}{re}.
 
-\subsubsection{\lstinline|string.indexOf (re : regex, startPos = -1) : int|}
+\subsubsection{\mintinline{icl}{string.indexOf (re : regex, startPos = -1) : int}}
 
-Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища вперёд с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
+Возвращает индекс первой подстроки подходящей по шаблону \mintinline{icl}{re}, ища вперёд с позицией \mintinline{icl}{startPos}; если такая подстрока не нашлось, возвращает -1.
 
-\begin{lstlisting}[caption=Регулярные выражения в качестве аргумента, label=regexplikearg]
+\begin{sourcecode}
+\captionof{listing}{Регулярные выражения в качестве аргумента}
+\label{regexplikearg}
+\begin{minted}[linenos]{icl}
 @str = "Hello world, collaborators!";
 
 @str.count //\wo//;       `` 5
@@ -126,35 +133,36 @@
 @fonts.indexOf //e.// 2;     `` 2
 @fonts.lastIndexOf //e.//;   `` 3
 @fonts.lastIndexOf //e.// 2; `` 2
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|string.lastIndexOf (re : regex, startPos = -1) : int|}
+\subsubsection{\mintinline{icl}{string.lastIndexOf (re : regex, startPos = -1) : int}}
 
-Возвращает индекс первой подстроки подходящей по шаблону \code{re}, ища назад с позицией \code{startPos}; если такая подстрока не нашлось, возвращает -1.
+Возвращает индекс первой подстроки подходящей по шаблону \mintinline{icl}{re}, ища назад с позицией \mintinline{icl}{startPos}; если такая подстрока не нашлось, возвращает -1.
 
-\subsubsection{\lstinline|string.remove (re : regex) : string|}
+\subsubsection{\mintinline{icl}{string.remove (re : regex) : string}}
 
-Удаляет из строки все фрагменты подходящие по шаблону \code{re}.
+Удаляет из строки все фрагменты подходящие по шаблону \mintinline{icl}{re}.
 
-\subsubsection{\lstinline|string.replace (re : regex, after : string) : string|}
+\subsubsection{\mintinline{icl}{string.replace (re : regex, after : string) : string}}
 
-Заменяет каждый фрагмент, подходящий по шаблону \code{re}, строкой \code{after}.
+Заменяет каждый фрагмент, подходящий по шаблону \mintinline{icl}{re}, строкой \mintinline{icl}{after}.
 
-\subsubsection{\lstinline|string.split (re : regex, keepEmptyParts = true) : list|}
+\subsubsection{\mintinline{icl}{string.split (re : regex, keepEmptyParts = true) : list}}
 
-Разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \code{re} и собирает список этих строк; если \code{keepEmptyParts == false} то пустые строки пропускаются.
+Разрывает строку на подстроки при каждой встречи подстроки, подходящей по шаблону \mintinline{icl}{re} и собирает список этих строк; если \mintinline{icl}{keepEmptyParts == false} то пустые строки пропускаются.
 
-\subsubsection{\lstinline|list.filter (re : regex) : list|}
+\subsubsection{\mintinline{icl}{list.filter (re : regex) : list}}
 
-Возвращает новый список строк, содержащий только строки этого списка, подходящих по регулярней выражении \code{re}.
+Возвращает новый список строк, содержащий только строки этого списка, подходящих по регулярней выражении \mintinline{icl}{re}.
 
-\subsubsection{\lstinline|list.indexOf (re : regex, start = 0) : int|}
+\subsubsection{\mintinline{icl}{list.indexOf (re : regex, start = 0) : int}}
 
-Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища вперёд с позицией \code{start}, если такой строке не найдено возвращает -1.
+Возвращает индекс первой строки, подходящей по регулярней выражении \mintinline{icl}{re}, ища вперёд с позицией \mintinline{icl}{start}, если такой строке не найдено возвращает -1.
 
-\subsubsection{\lstinline|list.lastIndexOf (re : regex, start = -1) : int|}
+\subsubsection{\mintinline{icl}{list.lastIndexOf (re : regex, start = -1) : int}}
 
-Возвращает индекс первой строки, подходящей по регулярней выражении \code{re}, ища назад с позицией \code{start}, если такой строке не найдено возвращает -1.
+Возвращает индекс первой строки, подходящей по регулярней выражении \mintinline{icl}{re}, ища назад с позицией \mintinline{icl}{start}, если такой строке не найдено возвращает -1.
 
 % \subsubsection{}
 

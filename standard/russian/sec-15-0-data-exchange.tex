@@ -3,41 +3,41 @@
 
 \subsubsection{Название странице}
 
-Название страницы можно получить вызывая \lstinline|[r/*] Tab'title : string|.
+Название страницы можно получить вызывая \mintinline{icl}{[r/*] Tab'title : string}.
 
 \subsubsection{Исходный код}
 
-Исходный код страницы можно получить вызывая \lstinline|[r/o] Tab'source : string|.
+Исходный код страницы можно получить вызывая \mintinline{icl}{[r/o] Tab'source : string}.
 
 \subsubsection{Screenshot}
 
-Screenshot страницы в base64 можно получить вызывая \lstinline|[r/o] Tab'screenshot : string|.
+Screenshot страницы в base64 можно получить вызывая \mintinline{icl}{[r/o] Tab'screenshot : string}.
 
 \subsubsection{URL}
 
-Адрес доступен через свойство \lstinline|[r/w] Tab'url : string|.
+Адрес доступен через свойство \mintinline{icl}{[r/w] Tab'url : string}.
 
 \subsubsection{Навигация}
 
-\lstinline|Tab.back () : void| - позволяет возвращаться на предыдущую страницу.
+\mintinline{icl}{Tab.back () : void} - позволяет возвращаться на предыдущую страницу.
 
-\lstinline|Tab.forward () : void| - позволяет возвращаться на следующую страницу.
+\mintinline{icl}{Tab.forward () : void} - позволяет возвращаться на следующую страницу.
 
-\lstinline|Tab.refresh () : void| -  позволяет перезагрузить страницу.
+\mintinline{icl}{Tab.refresh () : void} -  позволяет перезагрузить страницу.
 
-\lstinline|[icL] [r/o] Tab'canGoBack : bool| - сообщает можно ли перейти на предыдущую страницу.
+\mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool} - сообщает можно ли перейти на предыдущую страницу.
 
-\lstinline|[icL] [r/o] Tab'canGoForward : bool| - сообщает можно ли перейти на следующую страницу.
+\mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool} - сообщает можно ли перейти на следующую страницу.
 
 
 \subsubsection{Предупреждения}
 
-\lstinline|[r/o] Alert'text : string| - текст предупреждений.
+\mintinline{icl}{[r/o] Alert'text : string} - текст предупреждений.
 
-\lstinline|Alert.accept () : void| - закрыть окно отвечая положительным ответом.
+\mintinline{icl}{Alert.accept () : void} - закрыть окно отвечая положительным ответом.
 
-\lstinline|Alert.dismiss () : void| - закрыть окно отвечая отрицательным ответом.
+\mintinline{icl}{Alert.dismiss () : void} - закрыть окно отвечая отрицательным ответом.
 
-\lstinline|Alert.sendKeys (str : string) : void| - ответить текстом \code{str}.
+\mintinline{icl}{Alert.sendKeys (str : string) : void} - ответить текстом \mintinline{icl}{str}.
 
 %\newpage

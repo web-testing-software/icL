@@ -4,7 +4,7 @@
 \subsection{0$^+$-ого ранга}
 
 \noindent Перечень операторов 0$^+$-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 bool     = bool;
 double   = double;
 element  = element;
@@ -32,11 +32,11 @@ void     = Session;
 void     = Stack;
 void     = Tab;
 void     = Window;
-\end{lstlisting}
+\end{minted}
 
 \subsection{1-ого и 1$^+$-ого ранга}
 \noindent Перечень операторов 1-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 data.method (args...) : any;
 
 data    :  type;
@@ -54,10 +54,10 @@ string   : datetime;
 string   : (datetime, string);
 datetime : string;
 datetime : (string, string);
-\end{lstlisting}
+\end{minted}
 
 \noindent Перечень операторов 1$^+$-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 func (args...)       : any;
 [arg ...]            : object;
 [element ...]        : element;
@@ -68,12 +68,12 @@ func (args...)       : any;
 [set ...]            : set;
 [string ...]         : list;
 [string or list ...] : list;
-\end{lstlisting}
+\end{minted}
 
 \subsection{2-ого ранга}
 
 \noindent Перечень операторов 2-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 bool  & bool  : bool;
 value & value : value;
 value & void  : void;
@@ -110,12 +110,12 @@ string  % string  : list;
 value   % void    : value;
 void    % value   : value;
 void    % void    : void;
-\end{lstlisting}
+\end{minted}
 
 \subsection{3-ого ранга}
 
 \noindent Перечень операторов 3-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 bool   == bool   : bool;
 double == double : bool;
 int    == int    : bool;
@@ -174,12 +174,12 @@ list   !* string : bool;
 object !* object : bool;
 set    !* object : bool;
 string !* regex  : list;
-\end{lstlisting}
+\end{minted}
 
 \subsection{4-ого ранга}
 
 \noindent Перечень операторов 4-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 double + double : double;
 
 list   <* string : bool;
@@ -195,12 +195,12 @@ string + string : string;
 double - double : double;
 int    - int    : int;
 set    - set    : set;
-\end{lstlisting}
+\end{minted}
 
 \subsection{5-ого ранга}
 
 \noindent Перечень операторов 5-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 double * double : double;
 int    * int    : int;
 list   * list   : bool;
@@ -213,12 +213,12 @@ int    / int    : int;
 
 int \ int : int;
 set \ set : set;
-\end{lstlisting}
+\end{minted}
 
 \subsection{6$^+$-ого ранга}
 
 \noindent Перечень операторов 6$^+$-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 double **        : double;
 double ** double : double;
 int    **        : int;
@@ -232,18 +232,18 @@ string ** regex  : object;
 double /'double : double;
 int    /'double : double;
 int    /'int    : int;
-\end{lstlisting}
+\end{minted}
 
 \subsection{7-ого и 7$^+$-ого ранга}
 
 \noindent Перечень операторов 7-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 data'property;
 data :! type;
-\end{lstlisting}
+\end{minted}
 
 \noindent Перечень операторов 7$^+$-ого ранга -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 !bool : bool
 
 -double : double;
@@ -251,5 +251,5 @@ data :! type;
 
 +double : double;
 +int    : int;
-\end{lstlisting}
+\end{minted}
 

@@ -1,9 +1,12 @@
 % !TeX spellcheck = ru_RU
 \section{Автозавершение команд}
 
-\textbf{Разделитель команд} в icL может быть пропущен, но пропускать его не рекомендуется. Для улучшения читабельности кода разделитель лучше пропустить после конструкции \code{if}, \code{else}, \code{while}, \code{do while}, \code{for}, \code{filter}, \code{range}. Для наглядности можете сравнить листинг \ref{nodelimiterskipping} с листингом \ref{delimiterskipping}.
+\textbf{Разделитель команд} в icL может быть пропущен, но пропускать его не рекомендуется. Для улучшения читабельности кода разделитель лучше пропустить после конструкции \mintinline{icl}{if}, \mintinline{icl}{else}, \mintinline{icl}{while}, \mintinline{icl}{do while}, \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}. Для наглядности можете сравнить листинг \ref{nodelimiterskipping} с листингом \ref{delimiterskipping}.
 
-\begin{lstlisting}[caption=Без пропущенных разделители, label=nodelimiterskipping]
+\begin{sourcecode}
+\captionof{listing}{Без пропущенных разделители}
+\label{nodelimiterskipping}
+\begin{minted}[linenos]{icl}
 fun = () : int { @ = 23; };
 
 if (fun() == 12) { Log.out 12345678; } 
@@ -11,9 +14,13 @@ else             { Log.out 87654321; };
 
 emiter { func(@x); }
 slot:Error1 { @x = 45; };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=С пропущенными разделителями, label=delimiterskipping]
+\begin{sourcecode}
+\captionof{listing}{С пропущенными разделителями}
+\label{delimiterskipping}
+\begin{minted}[linenos]{icl}
 fun = () : int { @ = 23 }
 
 if (fun() == 12) { Log.out 12345678 } 
@@ -21,7 +28,8 @@ else             { Log.out 87654321 }
 
 emiter { func(@x) }
 slot:Error1 { @x = 45 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 Команда может быть завершена автоматически после следующих семантических конструкции:
 \begin{icItems}

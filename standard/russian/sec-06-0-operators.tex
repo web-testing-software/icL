@@ -9,7 +9,7 @@
 
 {\bf Квадратные скобки} в языке icL, также являются операторами, имеющие ранг 1 и левая ассоциативность.
 
-При описании операторов используется понятие {\bf операции} и понятие {\bf оператора}. Под операций подразумевается общий случай (например {\it сложение}). Под оператором подразумевается частный случай (например {\it сложение целых чисел}). Оператор становится операцией при первой возможность его реализаций, например в выражения \lstinline|1 + 2 * 3|, оператор \lstinline|+| становится операцией только после выполнения операций умножения.
+При описании операторов используется понятие {\bf операции} и понятие {\bf оператора}. Под операций подразумевается общий случай (например {\it сложение}). Под оператором подразумевается частный случай (например {\it сложение целых чисел}). Оператор становится операцией при первой возможность его реализаций, например в выражения \mintinline{icl}{1 + 2 * 3}, оператор \mintinline{icl}{+} становится операцией только после выполнения операций умножения.
 
 \subsection{Логические операций}
 
@@ -19,18 +19,21 @@
 {logicops}{Логические операций}
 {Ранг}{Операция}{Оператор}
 {
-    2     & конъюнкция      & \lstinline|bool \& bool : bool| \\ \hline
-	2     & дизъюнкция      & \lstinline`bool | bool : bool`  \\ \hline
-	2     & эквивалентность & \lstinline|bool ~ bool : bool|  \\ \hline
-	2     & исключающий или & \lstinline|bool ^ bool : bool|  \\ \hline
-	7$^+$ & инверсия        & \lstinline|! bool : bool|       \\ \hline
-	3     & равно           & \lstinline|bool == bool : bool| \\ \hline
-	3     & не равно        & \lstinline|bool != bool : bool| \\
+    2     & конъюнкция      & \mintinline{icl}{bool \& bool : bool} \\ \hline
+	2     & дизъюнкция      & \mintinline{icl}{bool | bool : bool}  \\ \hline
+	2     & эквивалентность & \mintinline{icl}{bool ~ bool : bool}  \\ \hline
+	2     & исключающий или & \mintinline{icl}{bool ^ bool : bool}  \\ \hline
+	7$^+$ & инверсия        & \mintinline{icl}{! bool : bool}       \\ \hline
+	3     & равно           & \mintinline{icl}{bool == bool : bool} \\ \hline
+	3     & не равно        & \mintinline{icl}{bool != bool : bool} \\
 }
 
 Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{boolopex}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа bool, label=boolopex]
+\begin{sourcecode}
+\captionof{listing}{Примеры использования операторов над данными типа bool}
+\label{boolopex}
+\begin{minted}[linenos]{icl}
 Log.out "true & false = " (true & false);		`` true \& false = false
 Log.out "false | true =  " (false | true);		`` false | true = true
 Log.out "true ~ false = " (true ~ false);		`` true \textasciitilde\ false = false
@@ -41,9 +44,10 @@ Log.out "!false = " !false;					`` !false = true
 
 Log.out "true == false = " (true == false);	`` true == false = false
 Log.out "false != true = " (false != true);	`` false != true = true
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|(a : bool) & (b : bool) : bool|}
+\subsubsection{\mintinline{icl}{(a : bool) & (b : bool) : bool}}
 
 Оператор принимает логическую операцию "конъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{conjtable}.
 
@@ -52,7 +56,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\label{conjtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a} & \code{b} & \code{a \& b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \& b} \\ \hline
 		\false{} & \false{} & \false{}  	\\ \hline
 		\false{} & \true{}  & \false{}  	\\ \hline
 		\true{}  & \false{} & \false{}  	\\ \hline
@@ -61,7 +65,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline`(a : bool) | (b : bool) : bool`}
+\subsubsection{\mintinline{icl}{(a : bool) | (b : bool) : bool}}
 
 Оператор принимает логическую операцию "дизъюнкция" над переменными a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{distable}.
 
@@ -70,7 +74,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\label{distable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a} & \code{b} & \code{a \| b} 	\\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \| b} 	\\ \hline
 		\false{} & \false{} & \false{} 		\\ \hline
 		\false{} & \true{}  & \true{}  		\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -79,7 +83,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline|(a : bool) ~ (b : bool) : bool|}
+\subsubsection{\mintinline{icl}{(a : bool) ~ (b : bool) : bool}}
 
 Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logeqtable}.
 
@@ -88,7 +92,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\label{logeqtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a} & \code{b} & \code{a \~ b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \~ b} \\ \hline
 		\false{} & \false{} & \true{}   	\\ \hline
 		\false{} & \true{}  & \false{}  	\\ \hline
 		\true{}  & \false{} & \false{}  	\\ \hline
@@ -97,7 +101,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\lstinline|(a : bool) ^ (b : bool) : bool|}
+\subsubsection{\mintinline{icl}{(a : bool) ^ (b : bool) : bool}}
 
 Оператор сравнивает логические переменные a и b. Зависимость результата от исходных данных иллюстрирована в таблице \ref{logdifftable}.
 
@@ -106,7 +110,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\label{logdifftable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\code{a} & \code{b} & \code{a \^ b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \^ b} \\ \hline
 		\false{} & \false{} & \false{}  	\\ \hline
 		\false{} & \true{}  & \true{}   	\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -115,7 +119,7 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline|! (a : bool) : bool|}
+\subsubsection{\mintinline{icl}{! (a : bool) : bool}}
 
 Оператор принимает логическую операцию "инверсия" над переменной a. Зависимость результата от исходных данных иллюстрирована в таблице \ref{invtable}.
 
@@ -124,18 +128,18 @@ Log.out "false != true = " (false != true);	`` false != true = true
 	\label{invtable}
 	\begin{tabular}{|c|c|}
 		\hline
-		\code{a} & \code{!a} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{!a} \\ \hline
 		\false{} & \true{} 	 \\ \hline
 		\true{}  & \false{}  \\ \hline
 	\end{tabular}
 	\vspace{-2em}
 \end{table}
 
-\subsubsection{\lstinline|(a : bool) == (b : bool) : bool|}
+\subsubsection{\mintinline{icl}{(a : bool) == (b : bool) : bool}}
 
 Возвращает \true{} если a равно b, иначе \false{}.
 
-\subsubsection{\lstinline|(a : bool) != (b : bool) : bool|}
+\subsubsection{\mintinline{icl}{(a : bool) != (b : bool) : bool}}
 
 Возвращает \true{} если a равно b, иначе \false{}.
 
@@ -147,53 +151,56 @@ Log.out "false != true = " (false != true);	`` false != true = true
 {numbersops}{Операции над числами}
 {Ранг}{Операция}{Оператор}
 {
-3     & равно                          & \lstinline|int == int : bool|          \\ \hline
-3     & равно                          & \lstinline|double == double : bool|    \\ \hline
-3     & не равно                       & \lstinline|int != int : bool|          \\ \hline
-3     & не равно                       & \lstinline|double != double : bool|    \\ \hline
-3     & больше                         & \lstinline|int > int : bool|           \\ \hline
-3     & больше                         & \lstinline|double > double : bool|     \\ \hline
-3     & больше или равно               & \lstinline|int >= int : bool|          \\ \hline
-3     & больше или равно               & \lstinline|double >= double : bool|    \\ \hline
-3     & меньше                         & \lstinline|int < int : bool|           \\ \hline
-3     & меньше                         & \lstinline|double < double : bool|     \\ \hline
-3     & меньше или равно               & \lstinline|int <= int : bool|          \\ \hline
-3     & меньше или равно               & \lstinline|double <= double : bool|    \\ \hline
-3     & меньше или больше              & \lstinline|int <> (int, int)|          \\ \hline
-3     & меньше или больше              & \lstinline|double <> (double, double)| \\ \hline
-3     & меньше, больше или равно       & \lstinline|int <=> (int, int)|         \\ \hline
-3     & меньше, больше или равно       & \lstinline|double <=> (double, double)|\\ \hline
-3     & больше и меньше                & \lstinline|int >< (int, int)|          \\ \hline
-3     & больше и меньше                & \lstinline|double >< (double, double)| \\ \hline
-3     & больше и меньше (или равно)    & \lstinline|int >=< (int, int)|         \\ \hline
-3     & больше и меньше (или равно)    & \lstinline|double >=< (double, double)|\\ \hline
-4     & сложение                       & \lstinline|int + int : int|            \\ \hline
-4     & сложение                       & \lstinline|double + double : double|   \\ \hline
-4     & вычитание                      & \lstinline|int - int : int|            \\ \hline
-4     & вычитание                      & \lstinline|double - double : double|   \\ \hline
-5     & умножение                      & \lstinline|int * int : int|            \\ \hline
-5     & умножение                      & \lstinline|double * double : double|   \\ \hline
-5     & деление                        & \lstinline|int / int : int|            \\ \hline
-5     & деление                        & \lstinline|double / double : double|   \\ \hline
-5     & остаток от деления целых чисел & \lstinline|int \ int : int|            \\ \hline
-6$^+$ & возведения в квадрат           & \lstinline|int** : int|                \\ \hline
-6$^+$ & возведения в квадрат           & \lstinline|double** : double|          \\ \hline
-6$^+$ & возведения в степень           & \lstinline|int ** int : int|           \\ \hline
-6$^+$ & возведения в степень           & \lstinline|double ** double : double|  \\ \hline
-6$^+$ & извлечения квадратного корня   & \lstinline|/'int : int|                \\ \hline
-6$^+$ & извлечения квадратного корня   & \lstinline|/'double : double|          \\ \hline
-6$^+$ & извлечения корня               & \lstinline|int/'int : int|             \\ \hline
-6$^+$ & извлечения корня               & \lstinline|int/'double : double|       \\ \hline
-6$^+$ & извлечения корня               & \lstinline|double/'double : double|    \\ \hline
-7$^+$ & инверсия знака                 & \lstinline|-int : int|                 \\ \hline
-7$^+$ & инверсия знака                 & \lstinline|-double : double|           \\ \hline
-7$^+$ & абсолютное значение            & \lstinline|+int : int|                 \\ \hline
-7$^+$ & абсолютное значение            & \lstinline|+double : double|           \\
+3     & равно                          & \mintinline{icl}{int == int : bool}          \\ \hline
+3     & равно                          & \mintinline{icl}{double == double : bool}    \\ \hline
+3     & не равно                       & \mintinline{icl}{int != int : bool}          \\ \hline
+3     & не равно                       & \mintinline{icl}{double != double : bool}    \\ \hline
+3     & больше                         & \mintinline{icl}{int > int : bool}           \\ \hline
+3     & больше                         & \mintinline{icl}{double > double : bool}     \\ \hline
+3     & больше или равно               & \mintinline{icl}{int >= int : bool}          \\ \hline
+3     & больше или равно               & \mintinline{icl}{double >= double : bool}    \\ \hline
+3     & меньше                         & \mintinline{icl}{int < int : bool}           \\ \hline
+3     & меньше                         & \mintinline{icl}{double < double : bool}     \\ \hline
+3     & меньше или равно               & \mintinline{icl}{int <= int : bool}          \\ \hline
+3     & меньше или равно               & \mintinline{icl}{double <= double : bool}    \\ \hline
+3     & меньше или больше              & \mintinline{icl}{int <> (int, int)}          \\ \hline
+3     & меньше или больше              & \mintinline{icl}{double <> (double, double)} \\ \hline
+3     & меньше, больше или равно       & \mintinline{icl}{int <=> (int, int)}         \\ \hline
+3     & меньше, больше или равно       & \mintinline{icl}{double <=> (double, double)}\\ \hline
+3     & больше и меньше                & \mintinline{icl}{int >< (int, int)}          \\ \hline
+3     & больше и меньше                & \mintinline{icl}{double >< (double, double)} \\ \hline
+3     & больше и меньше (или равно)    & \mintinline{icl}{int >=< (int, int)}         \\ \hline
+3     & больше и меньше (или равно)    & \mintinline{icl}{double >=< (double, double)}\\ \hline
+4     & сложение                       & \mintinline{icl}{int + int : int}            \\ \hline
+4     & сложение                       & \mintinline{icl}{double + double : double}   \\ \hline
+4     & вычитание                      & \mintinline{icl}{int - int : int}            \\ \hline
+4     & вычитание                      & \mintinline{icl}{double - double : double}   \\ \hline
+5     & умножение                      & \mintinline{icl}{int * int : int}            \\ \hline
+5     & умножение                      & \mintinline{icl}{double * double : double}   \\ \hline
+5     & деление                        & \mintinline{icl}{int / int : int}            \\ \hline
+5     & деление                        & \mintinline{icl}{double / double : double}   \\ \hline
+5     & остаток от деления целых чисел & \mintinline{icl}{int \ int : int}            \\ \hline
+6$^+$ & возведения в квадрат           & \mintinline{icl}{int** : int}                \\ \hline
+6$^+$ & возведения в квадрат           & \mintinline{icl}{double** : double}          \\ \hline
+6$^+$ & возведения в степень           & \mintinline{icl}{int ** int : int}           \\ \hline
+6$^+$ & возведения в степень           & \mintinline{icl}{double ** double : double}  \\ \hline
+6$^+$ & извлечения квадратного корня   & \mintinline{icl}{/'int : int}                \\ \hline
+6$^+$ & извлечения квадратного корня   & \mintinline{icl}{/'double : double}          \\ \hline
+6$^+$ & извлечения корня               & \mintinline{icl}{int/'int : int}             \\ \hline
+6$^+$ & извлечения корня               & \mintinline{icl}{int/'double : double}       \\ \hline
+6$^+$ & извлечения корня               & \mintinline{icl}{double/'double : double}    \\ \hline
+7$^+$ & инверсия знака                 & \mintinline{icl}{-int : int}                 \\ \hline
+7$^+$ & инверсия знака                 & \mintinline{icl}{-double : double}           \\ \hline
+7$^+$ & абсолютное значение            & \mintinline{icl}{+int : int}                 \\ \hline
+7$^+$ & абсолютное значение            & \mintinline{icl}{+double : double}           \\
 }
 
 Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{numberopex}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа int и double, label=numberopex]
+\begin{sourcecode}
+\captionof{listing}{Примеры использования операторов над данными типа int и double}
+\label{numberopex}
+\begin{minted}[linenos]{icl}
 `` 3rd rank
 Log.out "2 == 3 = "			2 == 3;		`` 2 = 3 = false
 Log.out "2.5 == 2.5 = "		2.5 == 2.5;	`` 2.5 = 2.5 = true
@@ -234,178 +241,179 @@ Log.out "- 35 = "			- 35;		`` - 35 = -35
 Log.out "- -56.7 = "		- -56.7;	`` - -56.7 = 56.7
 Log.out "+ -100 = "			+ -100;		`` + -100 = 100
 Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|(a : int) == (b : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) == (b : int) : bool}}
 
-Возвращает \true{} если \code{a} и \code{b} имеют одинаковое значение, иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{a} и \mintinline{icl}{b} имеют одинаковое значение, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) == (b : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) == (b : double) : bool}}
 
-Возвращает \true{} если \code{a} и \code{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{a} и \mintinline{icl}{b} отличаются довольно мало (например на 10$^{-15}$), иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) != (b : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) != (b : int) : bool}}
 
-Возвращает \true{} если \code{a} и \code{b} не имеют одинаковое значение, иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{a} и \mintinline{icl}{b} не имеют одинаковое значение, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) != (b : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) != (b : double) : bool}}
 
-Возвращает \true{} если \code{a} и \code{b} отличаются больше чем на уровень погрешности машины, иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{a} и \mintinline{icl}{b} отличаются больше чем на уровень погрешности машины, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) > (b : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) > (b : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} больше \code{b}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} больше \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) > (b : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) > (b : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} больше \code{b}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} больше \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) >= (b : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) >= (b : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} больше или равно \code{b}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} больше или равно \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) >= (b : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) >= (b : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} больше или равно \code{b}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} больше или равно \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) < (b : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) < (b : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} меньше \code{b}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} меньше \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) < (b : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) < (b : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} меньше \code{b}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} меньше \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) <= (b : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) <= (b : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} меньше или равно \code{b}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} меньше или равно \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) <= (b : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) <= (b : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} меньше или равно \code{b}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} меньше или равно \mintinline{icl}{b}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) <> (b : int, c : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) <> (b : int, c : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} меньше \code{b} или больше \code{c}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} меньше \mintinline{icl}{b} или больше \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) <> (b : double, c : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) <> (b : double, c : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} меньше \code{b} или больше \code{c}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} меньше \mintinline{icl}{b} или больше \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) <=> (b : int, c : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) <=> (b : int, c : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} меньше или равно \code{b} или больше или равно \code{c}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} меньше или равно \mintinline{icl}{b} или больше или равно \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) <=> (b : double, c : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) <=> (b : double, c : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} меньше или равно \code{b} или больше или равно \code{c}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} меньше или равно \mintinline{icl}{b} или больше или равно \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) >< (b : int, c : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) >< (b : int, c : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} больше \code{b} и меньше \code{c}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} больше \mintinline{icl}{b} и меньше \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) >< (b : double, c : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) >< (b : double, c : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} больше \code{b} и меньше \code{c}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} больше \mintinline{icl}{b} и меньше \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : int) >=< (b : int, c : int) : bool|}
+\subsubsection{\mintinline{icl}{(a : int) >=< (b : int, c : int) : bool}}
 
-Возвращает \true{} если целое число \code{a} больше или равно \code{b} и меньше или равно \code{c}, иначе \false{}.
+Возвращает \true{} если целое число \mintinline{icl}{a} больше или равно \mintinline{icl}{b} и меньше или равно \mintinline{icl}{c}, иначе \false{}.
 
-\subsubsection{\lstinline|(a : double) >=< (b : double, c : double) : bool|}
+\subsubsection{\mintinline{icl}{(a : double) >=< (b : double, c : double) : bool}}
 
-Возвращает \true{} если дробное число \code{a} больше или равно \code{b} и меньше или равно \code{c}, иначе \false{}.
+Возвращает \true{} если дробное число \mintinline{icl}{a} больше или равно \mintinline{icl}{b} и меньше или равно \mintinline{icl}{c}, иначе \false{}.
 
 
-\subsubsection{\lstinline|(a : int) + (b : int) : int|}
+\subsubsection{\mintinline{icl}{(a : int) + (b : int) : int}}
 
-Возвращает сумму целых чисел \code{a} и \code{b}.
+Возвращает сумму целых чисел \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : double) + (b : double) : double|}
+\subsubsection{\mintinline{icl}{(a : double) + (b : double) : double}}
 
-Возвращает сумму дробных чисел \code{a} и \code{b}.
+Возвращает сумму дробных чисел \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : int) - (b : int) : int|}
+\subsubsection{\mintinline{icl}{(a : int) - (b : int) : int}}
 
-Возвращает разницу между целыми числами \code{a} и \code{b}.
+Возвращает разницу между целыми числами \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : double) - (b : double) : double|}
+\subsubsection{\mintinline{icl}{(a : double) - (b : double) : double}}
 
-Возвращает разницу между дробными числами \code{a} и \code{b}.
+Возвращает разницу между дробными числами \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : int) * (b : int) : int|}
+\subsubsection{\mintinline{icl}{(a : int) * (b : int) : int}}
 
-Возвращает результат умножения целых чисел \code{a} и \code{b}.
+Возвращает результат умножения целых чисел \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : double) * (b : double) : double|}
+\subsubsection{\mintinline{icl}{(a : double) * (b : double) : double}}
 
-Возвращает результат умножения дробных чисел \code{a} и \code{b}.
+Возвращает результат умножения дробных чисел \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : int) / (b : int) : int|}
+\subsubsection{\mintinline{icl}{(a : int) / (b : int) : int}}
 
-Возвращает результат деления целых чисел \code{a} и \code{b}, остаток отбрасывается.
+Возвращает результат деления целых чисел \mintinline{icl}{a} и \mintinline{icl}{b}, остаток отбрасывается.
 
-\subsubsection{\lstinline|(a : double) / (b : double) : double|}
+\subsubsection{\mintinline{icl}{(a : double) / (b : double) : double}}
 
-Возвращает результат деления дробных чисел \code{a} и \code{b}.
+Возвращает результат деления дробных чисел \mintinline{icl}{a} и \mintinline{icl}{b}.
 
-\subsubsection{\lstinline|(a : int) \ (b : int) : int|}
+\subsubsection{\mintinline{icl}{(a : int) \ (b : int) : int}}
 
-Возвращает результат от деления целых чисел \code{a} и \code{b}.
+Возвращает результат от деления целых чисел \mintinline{icl}{a} и \mintinline{icl}{b}.
 
 
-\subsubsection{\lstinline|(a : int) ** : int|}
+\subsubsection{\mintinline{icl}{(a : int) ** : int}}
 
-Возвращает квадрат целого числа \code{a} (a$^2$);
+Возвращает квадрат целого числа \mintinline{icl}{a} (a$^2$);
 
-\subsubsection{\lstinline|(a : double) ** : double|}
+\subsubsection{\mintinline{icl}{(a : double) ** : double}}
 
-Возвращает квадрат дробного числа \code{a} (a$^2$);
+Возвращает квадрат дробного числа \mintinline{icl}{a} (a$^2$);
 
-\subsubsection{\lstinline|(a : int) ** (b : int) : int|}
+\subsubsection{\mintinline{icl}{(a : int) ** (b : int) : int}}
 
-Возвращает результат возведения целого числа \code{a} в степени \code{b} (a$^b$).
+Возвращает результат возведения целого числа \mintinline{icl}{a} в степени \mintinline{icl}{b} (a$^b$).
 
-\subsubsection{\lstinline|(a : double) ** (b : double) : double|}
+\subsubsection{\mintinline{icl}{(a : double) ** (b : double) : double}}
 
-Возвращает результат возведения дробного числа \code{a} в степени \code{b} (a$^b$).
+Возвращает результат возведения дробного числа \mintinline{icl}{a} в степени \mintinline{icl}{b} (a$^b$).
 
-\subsubsection{\lstinline|/' (a : int) : int|}
+\subsubsection{\mintinline{icl}{/' (a : int) : int}}
 
-Возвращает корень целого числа \code{a} ($\sqrt{a}$).
+Возвращает корень целого числа \mintinline{icl}{a} ($\sqrt{a}$).
 
-\subsubsection{\lstinline|/' (a : double) : double|}
+\subsubsection{\mintinline{icl}{/' (a : double) : double}}
 
-Возвращает корень дробного числа \code{a} ($\sqrt{a}$).
+Возвращает корень дробного числа \mintinline{icl}{a} ($\sqrt{a}$).
 
-\subsubsection{\lstinline|(n : int) /' (a : int) : int|}
+\subsubsection{\mintinline{icl}{(n : int) /' (a : int) : int}}
 
-Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
+Возвращает корень \mintinline{icl}{n}-ой степени из \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\lstinline|(n : int) /' (a : double) : double|}
+\subsubsection{\mintinline{icl}{(n : int) /' (a : double) : double}}
 
-Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
+Возвращает корень \mintinline{icl}{n}-ой степени из \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
-\subsubsection{\lstinline|(n : double) /' (a : double) : double|}
+\subsubsection{\mintinline{icl}{(n : double) /' (a : double) : double}}
 
-Возвращает корень \code{n}-ой степени из \code{a} ($\sqrt[n]{a}$).
+Возвращает корень \mintinline{icl}{n}-ой степени из \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
 
-\subsubsection{\lstinline|- (a : int) : int|}
+\subsubsection{\mintinline{icl}{- (a : int) : int}}
 
-Возвращает \lstinline|0 - a|;
+Возвращает \mintinline{icl}{0 - a};
 
-\subsubsection{\lstinline|- (b : double) : double|}
+\subsubsection{\mintinline{icl}{- (b : double) : double}}
 
-Возвращает \lstinline|0.0 - a|;
+Возвращает \mintinline{icl}{0.0 - a};
 
-\subsubsection{\lstinline|+ (a : int) : int|}
+\subsubsection{\mintinline{icl}{+ (a : int) : int}}
 
-Возвращает абсолютное значение целого числа \code{a}.
+Возвращает абсолютное значение целого числа \mintinline{icl}{a}.
 
-\subsubsection{\lstinline|+ (a : double) : double|}
+\subsubsection{\mintinline{icl}{+ (a : double) : double}}
 
-Возвращает абсолютное значение дробного числа \code{a}.
+Возвращает абсолютное значение дробного числа \mintinline{icl}{a}.
 
 \subsection{Операций над строками и список строк}
 
@@ -415,46 +423,49 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 {stringops}{Операций над строками и списков строк}
 {Ранг}{Операция}{Оператор}
 {
-3     & равно                                    & \lstinline|string == string : bool|   \\ \hline
-3     & равно                                    & \lstinline|list == list : bool|       \\ \hline
-3     & не равно                                 & \lstinline|string != string : bool|   \\ \hline
-3     & не равно                                 & \lstinline|list != list : bool|       \\ \hline
-3     & содержит                                 & \lstinline|list << string : bool|     \\ \hline
-3     & содержит                                 & \lstinline|string << string : bool|   \\ \hline
-3     & не содержит                              & \lstinline|list !< string : bool|     \\ \hline
-3     & не содержит                              & \lstinline|string !< string : bool|   \\ \hline
-3     & содержит строку подходящая по шаблону    & \lstinline|list <* string : bool|     \\ \hline
-3     & не содержит строку подходящая по шаблону & \lstinline|list !* string : bool|     \\ \hline
-4     & конкатенация                             & \lstinline|string + string : string|  \\ \hline
-4     & вставка                                  & \lstinline|string + list : list|      \\ \hline
-4     & вставка                                  & \lstinline|list + string : list|      \\ \hline
-4     & вставка                                  & \lstinline|list + list : list|        \\ \hline
-5     & шаблонное сравнение                      & \lstinline|string * string : bool|    \\ \hline
-5     & шаблонное сравнение                      & \lstinline|list * string : bool|      \\ \hline
-5     & шаблонное сравнение                      & \lstinline|list * list : bool|        \\ \hline
-6$^+$ & эквивалентность                          & \lstinline|string ** string : double| \\
+3     & равно                                    & \mintinline{icl}{string == string : bool}   \\ \hline
+3     & равно                                    & \mintinline{icl}{list == list : bool}       \\ \hline
+3     & не равно                                 & \mintinline{icl}{string != string : bool}   \\ \hline
+3     & не равно                                 & \mintinline{icl}{list != list : bool}       \\ \hline
+3     & содержит                                 & \mintinline{icl}{list << string : bool}     \\ \hline
+3     & содержит                                 & \mintinline{icl}{string << string : bool}   \\ \hline
+3     & не содержит                              & \mintinline{icl}{list !< string : bool}     \\ \hline
+3     & не содержит                              & \mintinline{icl}{string !< string : bool}   \\ \hline
+3     & содержит строку подходящая по шаблону    & \mintinline{icl}{list <* string : bool}     \\ \hline
+3     & не содержит строку подходящая по шаблону & \mintinline{icl}{list !* string : bool}     \\ \hline
+4     & конкатенация                             & \mintinline{icl}{string + string : string}  \\ \hline
+4     & вставка                                  & \mintinline{icl}{string + list : list}      \\ \hline
+4     & вставка                                  & \mintinline{icl}{list + string : list}      \\ \hline
+4     & вставка                                  & \mintinline{icl}{list + list : list}        \\ \hline
+5     & шаблонное сравнение                      & \mintinline{icl}{string * string : bool}    \\ \hline
+5     & шаблонное сравнение                      & \mintinline{icl}{list * string : bool}      \\ \hline
+5     & шаблонное сравнение                      & \mintinline{icl}{list * list : bool}        \\ \hline
+6$^+$ & эквивалентность                          & \mintinline{icl}{string ** string : double} \\
 }
 
 Примеры использование операторов присутствуют на листинге \ref{stringlistopex}.
 
 Чтобы из несколько строк получить список, оператор вставки рекомендуется не использовать, вместо него использовать литерал:
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 [@str1, @str2, "Const string", func, 37.1 : string, @bool : string, @list.Join]
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{\lstinline|(s1 : string) == (s2 : string) : bool|}
+\subsubsection{\mintinline{icl}{(s1 : string) == (s2 : string) : bool}}
 
-Возвращает \true{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{s1} и \mintinline{icl}{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \false{}.
 
-\subsubsection{\lstinline|(l1 : list) == (l2 : list) : bool|}
+\subsubsection{\mintinline{icl}{(l1 : list) == (l2 : list) : bool}}
 
-Возвращает \true{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{l1} и \mintinline{icl}{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \false{}.
 
-\subsubsection{\lstinline|(s1 : string) != (s2 : string) : bool|}
+\subsubsection{\mintinline{icl}{(s1 : string) != (s2 : string) : bool}}
 
-Возвращает \false{} если \code{s1} и \code{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
+Возвращает \false{} если \mintinline{icl}{s1} и \mintinline{icl}{s2} имеют одинаковое количество символов и содержат они и те же символы в один и тот же порядок, иначе \true{}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа string и list, label=stringlistopex]
+\begin{sourcecode}
+\captionof{listing}{Примеры использования операторов над данными типа string и list}
+\label{stringlistopex}
+\begin{minted}[linenos]{icl}
 "String1" == "String2";					 `` false
 ["a", "b"] == ["a", "b"];				 `` true
 ["a", "b"] == ["b", "a"];				 `` true
@@ -470,75 +481,76 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 ["ad", "ac", "bd", "cc"] * ["*d", "*c"]; `` true
 ["ad", "ac", "bc", "cd"] * ["*d", "*c"]; `` false
 "Tom is a cat" ** "Tom is not a cat";	 `` 0.875
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|(l1 : list) != (l2 : list) : bool|}
+\subsubsection{\mintinline{icl}{(l1 : list) != (l2 : list) : bool}}
 
-Возвращает \false{} если \code{l1} и \code{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \true{}.
+Возвращает \false{} если \mintinline{icl}{l1} и \mintinline{icl}{l2} имеют одинаковое количество строк и содержат они и те же строки (порядок игнорируется), иначе \true{}.
 
-\subsubsection{\lstinline|(l : list) << (str : string) : bool|}
+\subsubsection{\mintinline{icl}{(l : list) << (str : string) : bool}}
 
-Возвращает \true{}, если список \code{l} содержит строку \code{str}, иначе \false{}.
+Возвращает \true{}, если список \mintinline{icl}{l} содержит строку \mintinline{icl}{str}, иначе \false{}.
 
-\subsubsection{\lstinline|(str : string) << (substr : string) : bool|}
+\subsubsection{\mintinline{icl}{(str : string) << (substr : string) : bool}}
 
-Возвращает \true{}, если строка \code{str} содержит подстроку \code{substr}, иначе \false{}.
+Возвращает \true{}, если строка \mintinline{icl}{str} содержит подстроку \mintinline{icl}{substr}, иначе \false{}.
 
-\subsubsection{\lstinline|(l : list) !< (str : string) : bool|}
+\subsubsection{\mintinline{icl}{(l : list) !< (str : string) : bool}}
 
-Возвращает \true{}, если список \code{l} не содержит строку \code{str}, иначе \false{}.
+Возвращает \true{}, если список \mintinline{icl}{l} не содержит строку \mintinline{icl}{str}, иначе \false{}.
 
-\subsubsection{\lstinline|(str : string) !< (substr : string) : bool|}
+\subsubsection{\mintinline{icl}{(str : string) !< (substr : string) : bool}}
 
-Возвращает \true{}, если строка \code{str} не содержит подстроку \code{substr}, иначе \false{}.
+Возвращает \true{}, если строка \mintinline{icl}{str} не содержит подстроку \mintinline{icl}{substr}, иначе \false{}.
 
-\subsubsection{\lstinline|(l : list) <* (template : string) : bool|}
+\subsubsection{\mintinline{icl}{(l : list) <* (template : string) : bool}}
 
-Возвращает \true{}, если список \code{l} содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
+Возвращает \true{}, если список \mintinline{icl}{l} содержит хотя бы одна строка, подходящая по шаблону \mintinline{icl}{template}, иначе \false{}.
 
-{\bf Шаблон} - это строка содержащая данные и специальный символ \lstinline|*|, где \lstinline|*| означает любая последовательность символов. Рассмотрим шаблонную строку \lstinline|"Have a * day!"|, примеры строк подходящие по шаблону: \lstinline|"Have a nice day!"|, \lstinline|"Have a amazing day!"|. Пример неподходящей строки \lstinline|"Have a good day"| (отсутствует восклицательный знак).
+{\bf Шаблон} - это строка содержащая данные и специальный символ \mintinline{icl}{*}, где \mintinline{icl}{*} означает любая последовательность символов. Рассмотрим шаблонную строку \mintinline{icl}{"Have a * day!"}, примеры строк подходящие по шаблону: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Пример неподходящей строки \mintinline{icl}{"Have a good day"} (отсутствует восклицательный знак).
 
-\subsubsection{\lstinline|(l : list) !* (template : string) : bool|}
+\subsubsection{\mintinline{icl}{(l : list) !* (template : string) : bool}}
 
-Возвращает \true{}, если список \code{l} не содержит хотя бы одна строка, подходящая по шаблону \code{template}, иначе \false{}.
+Возвращает \true{}, если список \mintinline{icl}{l} не содержит хотя бы одна строка, подходящая по шаблону \mintinline{icl}{template}, иначе \false{}.
 
-\subsubsection{\lstinline|(s1 : string) + (s2 : string) : string|}
+\subsubsection{\mintinline{icl}{(s1 : string) + (s2 : string) : string}}
 
-Возвращает строку содержащую все символы строк \code{s1} и \code{s2}. Полученная строка имеет длину равна суммы длин составляющих.
+Возвращает строку содержащую все символы строк \mintinline{icl}{s1} и \mintinline{icl}{s2}. Полученная строка имеет длину равна суммы длин составляющих.
 
-\subsubsection{\lstinline|(str : string) + (l : list) : list|}
+\subsubsection{\mintinline{icl}{(str : string) + (l : list) : list}}
 
-Возвращает новый список, получен при вставке строке \code{str} в начале списка \code{l}.
+Возвращает новый список, получен при вставке строке \mintinline{icl}{str} в начале списка \mintinline{icl}{l}.
 
-\subsubsection{\lstinline|(l : list) + (str : string) : list|}
+\subsubsection{\mintinline{icl}{(l : list) + (str : string) : list}}
 
-Возвращает новый список, получен при вставке строке \code{str} в конце списка \code{l}.
+Возвращает новый список, получен при вставке строке \mintinline{icl}{str} в конце списка \mintinline{icl}{l}.
 
-\subsubsection{\lstinline|(l1 : list) + (l2 : list) : list|}
+\subsubsection{\mintinline{icl}{(l1 : list) + (l2 : list) : list}}
 
-Возвращает новый список, содержащий все элементы списков \code{l1} и \code{l2}.
+Возвращает новый список, содержащий все элементы списков \mintinline{icl}{l1} и \mintinline{icl}{l2}.
 
-\subsubsection{\lstinline|(str : string) * (template : string) : bool|}
+\subsubsection{\mintinline{icl}{(str : string) * (template : string) : bool}}
 
-Возвращает \true{}, если строка \code{str} подходит по шаблону \code{template}, иначе \false{}.
+Возвращает \true{}, если строка \mintinline{icl}{str} подходит по шаблону \mintinline{icl}{template}, иначе \false{}.
 
-\subsubsection{\lstinline|(l : list) * (template : string) : bool|}
+\subsubsection{\mintinline{icl}{(l : list) * (template : string) : bool}}
 
-Возвращает \true{} если все строки списка \code{l} подходят по шаблону \code{template}, иначе \false{}.
+Возвращает \true{} если все строки списка \mintinline{icl}{l} подходят по шаблону \mintinline{icl}{template}, иначе \false{}.
 
-\subsubsection{\lstinline|(l : list) * (templates : list) : bool|}
+\subsubsection{\mintinline{icl}{(l : list) * (templates : list) : bool}}
 
-Возвращает \true{} если все строки списка \code{l} подходят по соответственному шаблону из списка \code{templates}, иначе \false{}.
+Возвращает \true{} если все строки списка \mintinline{icl}{l} подходят по соответственному шаблону из списка \mintinline{icl}{templates}, иначе \false{}.
 
-\subsubsection{\lstinline|(s1 : string) ** (s2 : string) : double|}
+\subsubsection{\mintinline{icl}{(s1 : string) ** (s2 : string) : double}}
 
-Возвращает коэффициент эквивалентности получен при сравнении \code{s1} с \code{s2}.
+Возвращает коэффициент эквивалентности получен при сравнении \mintinline{icl}{s1} с \mintinline{icl}{s2}.
 
-{\bf Эквивалентность} - уровень схожести строк. \lstinline|"Hi! Robert, how do you do?"| относительно \lstinline|"Robert! Hi! How do you do?"| имеет эквивалентность равна единицы. Так как они состоят из одни и те же слова. Но если сравнивать с  \lstinline|"Rich! Hi! How are you?"| оценка снижается до 0,64.
+{\bf Эквивалентность} - уровень схожести строк. \mintinline{icl}{"Hi! Robert, how do you do?"} относительно \mintinline{icl}{"Robert! Hi! How do you do?"} имеет эквивалентность равна единицы. Так как они состоят из одни и те же слова. Но если сравнивать с  \mintinline{icl}{"Rich! Hi! How are you?"} оценка снижается до 0,64.
 
-\subsubsection{\lstinline|(l1 : list) ** (l2 : list) : double|}
+\subsubsection{\mintinline{icl}{(l1 : list) ** (l2 : list) : double}}
 
-Возвращает коэффициент эквивалентности получен при сравнении строк из списка \code{l1} со строками из списка \code{l2}.
+Возвращает коэффициент эквивалентности получен при сравнении строк из списка \mintinline{icl}{l1} со строками из списка \mintinline{icl}{l2}.
 Для корректности вычисления, каждая строка должна содержать одно слово.
 
 \subsection{Операции над объектами и множеств}
@@ -549,32 +561,35 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 {objectops}{Операции над объектами и множеств}
 {Ранг}{Операция}{Оператор}
 {
-3     & равно                   & \lstinline|object == object : bool| \\ \hline
-3     & равно                   & \lstinline|set == set : bool|       \\ \hline
-3     & не равно                & \lstinline|object != object : bool| \\ \hline
-3     & не равно                & \lstinline|set != set : bool|       \\ \hline
-3     & включение               & \lstinline|set << object : bool|    \\ \hline
-3     & включение               & \lstinline|set << set : bool|       \\ \hline
-3     & исключение              & \lstinline|set !< object : bool|    \\ \hline
-3     & исключение              & \lstinline|set !< set : bool|       \\ \hline
-3     & включение шаблона       & \lstinline|set <* object : bool|    \\ \hline
-3     & включение шаблона       & \lstinline|object <* object : bool| \\ \hline
-3     & исключение шаблона      & \lstinline|set !* object : bool|    \\ \hline
-3     & исключение шаблона      & \lstinline|object !* object : bool| \\ \hline
-4     & объединение             & \lstinline|set + set : set|         \\ \hline
-4     & симметрическая разность & \lstinline|set -   set : set|       \\ \hline
-5     & разность                & \lstinline|set \\ set : set|         \\ \hline
-5     & пересечение             & \lstinline|set * set : set|         \\ \hline
-6$^+$ & присутствия пересечений & \lstinline|set ** set : bool|       \\
+3     & равно                   & \mintinline{icl}{object == object : bool} \\ \hline
+3     & равно                   & \mintinline{icl}{set == set : bool}       \\ \hline
+3     & не равно                & \mintinline{icl}{object != object : bool} \\ \hline
+3     & не равно                & \mintinline{icl}{set != set : bool}       \\ \hline
+3     & включение               & \mintinline{icl}{set << object : bool}    \\ \hline
+3     & включение               & \mintinline{icl}{set << set : bool}       \\ \hline
+3     & исключение              & \mintinline{icl}{set !< object : bool}    \\ \hline
+3     & исключение              & \mintinline{icl}{set !< set : bool}       \\ \hline
+3     & включение шаблона       & \mintinline{icl}{set <* object : bool}    \\ \hline
+3     & включение шаблона       & \mintinline{icl}{object <* object : bool} \\ \hline
+3     & исключение шаблона      & \mintinline{icl}{set !* object : bool}    \\ \hline
+3     & исключение шаблона      & \mintinline{icl}{object !* object : bool} \\ \hline
+4     & объединение             & \mintinline{icl}{set + set : set}         \\ \hline
+4     & симметрическая разность & \mintinline{icl}{set -   set : set}       \\ \hline
+5     & разность                & \mintinline{icl}{set \\ set : set}         \\ \hline
+5     & пересечение             & \mintinline{icl}{set * set : set}         \\ \hline
+6$^+$ & присутствия пересечений & \mintinline{icl}{set ** set : bool}       \\
 }
 
 Примеры использование операторов присутствуют на листинге \ref{setobjopex}.
 
-\subsubsection{\lstinline|(obj1 : object) == (obj2 : object) : bool|}
+\subsubsection{\mintinline{icl}{(obj1 : object) == (obj2 : object) : bool}}
 
-Возвращает \true{} если \code{obj1} и \code{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{obj1} и \mintinline{icl}{obj2} имеют одни и те же поля, значения полях из первого объекта совпадает с значениям одноимённых полях второго объекта, иначе \false{}.
 
-\begin{lstlisting}[caption=Примеры использования операторов над данными типа object и set, label=setobjopex]
+\begin{sourcecode}
+\captionof{listing}{Примеры использования операторов над данными типа object и set}
+\label{setobjopex}
+\begin{minted}[linenos]{icl}
 `` init
 @set1 = [age : int, name : string];
 @set2 = [age : int, name : string];
@@ -610,92 +625,93 @@ Log.out "+ 89.7 = "			+ 89.7;		`` + 89.7 = 89.7
 @set1 * @set2;					`` [@obj2]
 
 @set1 ** @set2;					`` true
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|(set1 : set) == (set2 : set) : bool|}
+\subsubsection{\mintinline{icl}{(set1 : set) == (set2 : set) : bool}}
 
-Возвращает \true{} если \code{set1} и \code{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \false{}.
+Возвращает \true{} если \mintinline{icl}{set1} и \mintinline{icl}{set2} имеют один и тоже заголовок, всё объекты из первой множестве приличествуют во вторым и наоборот, иначе \false{}.
 
-\subsubsection{\lstinline|(obj1 : object) != (obj2 : object) : bool|}
+\subsubsection{\mintinline{icl}{(obj1 : object) != (obj2 : object) : bool}}
 
 Возвращает \true{} если один из объектов имеет поле, отсутствующее в другом или значения поле первого отличается от значении одноимённой поле второго объекта, иначе \false{}.
 
-\subsubsection{\lstinline|(set1 : set) != (set2 : set) : bool|}
+\subsubsection{\mintinline{icl}{(set1 : set) != (set2 : set) : bool}}
 
 Возвращает \true{} если количество объектов во втором объекте отличается от количества объектов в первом или существует объект присутствующий только в одной множестве, иначе \false{}.
 
-\subsubsection{\lstinline|(s : set) << (obj : object) : bool|}
+\subsubsection{\mintinline{icl}{(s : set) << (obj : object) : bool}}
 
-Возвращает \true{}, если множество \code{s} содержит объект \code{obj}, иначе \false{}.
+Возвращает \true{}, если множество \mintinline{icl}{s} содержит объект \mintinline{icl}{obj}, иначе \false{}.
 
-\subsubsection{\lstinline|(set1 : set) << (set2 : set) : bool|}
+\subsubsection{\mintinline{icl}{(set1 : set) << (set2 : set) : bool}}
 
-Возвращает \true, если множество \code{set1} содержит подмножество \code{set2}, иначе \false.
+Возвращает \true, если множество \mintinline{icl}{set1} содержит подмножество \mintinline{icl}{set2}, иначе \false.
 
-\subsubsection{\lstinline|(s : set) !< (obj : object) : bool|}
+\subsubsection{\mintinline{icl}{(s : set) !< (obj : object) : bool}}
 
-Возвращает \true{}, если множество \code{s} не содержит объект \code{obj}, иначе \false{}.
+Возвращает \true{}, если множество \mintinline{icl}{s} не содержит объект \mintinline{icl}{obj}, иначе \false{}.
 
-\subsubsection{\lstinline|(set1 : set) !< (set2 : set) : bool|}
+\subsubsection{\mintinline{icl}{(set1 : set) !< (set2 : set) : bool}}
 
-Возвращает \true, если множество \code{set1} не содержит подмножество \code{set2}, иначе \false.
+Возвращает \true, если множество \mintinline{icl}{set1} не содержит подмножество \mintinline{icl}{set2}, иначе \false.
 
-\subsubsection{\lstinline|(s : set) <* (subobj : object) : bool|}
+\subsubsection{\mintinline{icl}{(s : set) <* (subobj : object) : bool}}
 
-Возвращает \true{}, если множество \code{s} содержит под объект \code{subobj}, иначе \false{}.
+Возвращает \true{}, если множество \mintinline{icl}{s} содержит под объект \mintinline{icl}{subobj}, иначе \false{}.
 
-\subsubsection{\lstinline|(obj : object) <* (subobj : object) : bool|}
+\subsubsection{\mintinline{icl}{(obj : object) <* (subobj : object) : bool}}
 
-Возвращает \true{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \false{}.
+Возвращает \true{} если каждое поле объекта \mintinline{icl}{subobj} содержится в объекте \mintinline{icl}{obj} и значение одноимённых полях совпадает, иначе \false{}.
 
-\subsubsection{\lstinline|(s : set) !* (subobj : object) : bool|}
+\subsubsection{\mintinline{icl}{(s : set) !* (subobj : object) : bool}}
 
-Возвращает \true{}, если множество \code{s} не содержит под объект \code{subobj}, иначе \false{}.
+Возвращает \true{}, если множество \mintinline{icl}{s} не содержит под объект \mintinline{icl}{subobj}, иначе \false{}.
 
-\subsubsection{\lstinline|(obj : object) !* (subobj : object) : bool|}
+\subsubsection{\mintinline{icl}{(obj : object) !* (subobj : object) : bool}}
 
-Возвращает \false{} если каждое поле объекта \code{subobj} содержится в объекте \code{obj} и значение одноимённых полях совпадает, иначе \true{}.
+Возвращает \false{} если каждое поле объекта \mintinline{icl}{subobj} содержится в объекте \mintinline{icl}{obj} и значение одноимённых полях совпадает, иначе \true{}.
 
-\subsubsection{\lstinline|(set1 : set) + (set2 : set) : set|}
+\subsubsection{\mintinline{icl}{(set1 : set) + (set2 : set) : set}}
 
-Возвращает новое множество содержащая все объекты множеств \code{set1} и \code{set2}.
+Возвращает новое множество содержащая все объекты множеств \mintinline{icl}{set1} и \mintinline{icl}{set2}.
 
-\subsubsection{\lstinline|(set1 : set) - (set2 : set) : set|}
+\subsubsection{\mintinline{icl}{(set1 : set) - (set2 : set) : set}}
 
-Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}, и все объекты множестве \code{set2}, отсутствующих в \code{set1}.
+Возвращает новое множество содержащая все объекты множества \mintinline{icl}{set1}, отсутствующих в множестве \mintinline{icl}{set2}, и все объекты множестве \mintinline{icl}{set2}, отсутствующих в \mintinline{icl}{set1}.
 
-\subsubsection{\lstinline|(set1 : set) \\ (set2 : set) : set|}
+\subsubsection{\mintinline{icl}{(set1 : set) \\ (set2 : set) : set}}
 
-Возвращает новое множество содержащая все объекты множества \code{set1}, отсутствующих в множестве \code{set2}.
+Возвращает новое множество содержащая все объекты множества \mintinline{icl}{set1}, отсутствующих в множестве \mintinline{icl}{set2}.
 
-\subsubsection{\lstinline|(set1 : set) * (set2 : set) : set|}
+\subsubsection{\mintinline{icl}{(set1 : set) * (set2 : set) : set}}
 
-Возвращает новое множество содержащая все объекты , которые приличествуют в \code{set1} и \code{set2}.
+Возвращает новое множество содержащая все объекты , которые приличествуют в \mintinline{icl}{set1} и \mintinline{icl}{set2}.
 
-\subsubsection{\lstinline|(set1 : set) ** (set2 : set) : bool|}
+\subsubsection{\mintinline{icl}{(set1 : set) ** (set2 : set) : bool}}
 
-Возвращает \true, если множества \code{set1} и \code{set2} пересекаются, иначе \false.
+Возвращает \true, если множества \mintinline{icl}{set1} и \mintinline{icl}{set2} пересекаются, иначе \false.
 
 \subsection{Оператор объединения данных}
 
 {\bf Квадратные скобки} или {\bf оператор объединения данных} позволяет создавать объекты следующих типов данных \listtype{}, \set{} и \object{}.
 
-\code{[] : list} создаёт пустой список.
+\mintinline{icl}{[] : list} создаёт пустой список.
 
-\code{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так и вызовы на функций возвращающие строки. Пример: \code{["a", "b", "c"]}.
+\mintinline{icl}{[string ...] : list} создаёт заполненный список, он может содержать как константные литеры, так и вызовы на функций возвращающие строки. Пример: \mintinline{icl}{["a", "b", "c"]}.
 
-\code{[list ...] : list} объединяет несколько списков в один.
+\mintinline{icl}{[list ...] : list} объединяет несколько списков в один.
 
-\code{[string or list ...] : list} - строки и списки можно смешать.
+\mintinline{icl}{[string or list ...] : list} - строки и списки можно смешать.
 
-\code{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \code{name = value}, где \code{value} - значение, \code{name} - название аргумента. Пример \code{[number = 2, str = "str"]}.
+\mintinline{icl}{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \mintinline{icl}{name = value}, где \mintinline{icl}{value} - значение, \mintinline{icl}{name} - название аргумента. Пример \mintinline{icl}{[number = 2, str = "str"]}.
 
-\code{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \code{name : type}, где \code{type} - тип значения, \code{name} - название параметра. Пример \code{[number : int, str : string]}.
+\mintinline{icl}{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \mintinline{icl}{name : type}, где \mintinline{icl}{type} - тип значения, \mintinline{icl}{name} - название параметра. Пример \mintinline{icl}{[number : int, str : string]}.
 
-\code{[object ...] : set} создаёт множество из несколько объектов.
+\mintinline{icl}{[object ...] : set} создаёт множество из несколько объектов.
 
-\code{[set ...] : set} объединяет несколько множеств в одной.
+\mintinline{icl}{[set ...] : set} объединяет несколько множеств в одной.
 
-\code{[object or set ...] : set} объекты и множества также можно смешать.
+\mintinline{icl}{[object or set ...] : set} объекты и множества также можно смешать.
 
 %\newpage

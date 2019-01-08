@@ -5,15 +5,19 @@
 
 icL достаточно прост в освоении, вставьте код с листинга \ref{first} в icL и выполняйте его. Первую программу можно уже сохранить в файле с расширением \textit{icL}.
 
-\begin{lstlisting}[caption=Первая программа, label=first]
+\begin{sourcecode}
+\captionof{listing}{Первая программа}
+\label{first}
+\begin{minted}[linenos]{icl}
 Log.info "Test!";
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 В консоль можем увидеть следующий \textbf{вывод программы}:
 
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 Test!
-\end{lstlisting}
+\end{minted}
 
 \subsection{Импорт в icL}
 
@@ -21,30 +25,30 @@ Test!
 
 \begin{icItems}
 \item
-	\lstinline|Import.none "project/lib.icL"| - выполнить код, который содержится в файле, ничего не импортировать.
+	\mintinline{icl}{Import.none "project/lib.icL"} - выполнить код, который содержится в файле, ничего не импортировать.
 \item
-	\lstinline|Import.functions "project/lib.icL"| - выполнить код и импортировать функции; {\color{red}Важно:} импортированные функции не должны использовать глобальные переменные.
+	\mintinline{icl}{Import.functions "project/lib.icL"} - выполнить код и импортировать функции; {\color{red}Важно:} импортированные функции не должны использовать глобальные переменные.
 \item
-	\lstinline|Import.all "project/lib.icL"| -  выполнить код, импортировать функции и глобальные переменные;
+	\mintinline{icl}{Import.all "project/lib.icL"} -  выполнить код, импортировать функции и глобальные переменные;
 \item
-	\lstinline|Import.run "project/lib.icL"| - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
+	\mintinline{icl}{Import.run "project/lib.icL"} - выполнить код в текущем контексте, все функции и глобальные переменные импортируется и экспортируется;
 \end{icItems}
 
 \subsection{Токены в icL}
 
-Программа на icL состоит из различных \textbf{токенов} (литералов, семантических конструкций, операторов, разделителях, ключевые слова), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \lstinline|Log.info "Hello world!";|
+Программа на icL состоит из различных \textbf{токенов} (литералов, семантических конструкций, операторов, разделителях, ключевые слова), а токен может являться ключевым словом, идентификатором, константной, строковым литералом, либо символом. Например следующая команда состоит из четырёх токенов: \mintinline{icl}{Log.info "Hello world!";}
 
 Отдельными токенами являются:
 
 \begin{icItems}
 \item
-	\lstinline|Log| - идентификатор объекта;
+	\mintinline{icl}{Log} - идентификатор объекта;
 \item
-	\lstinline|.info| - идентификатор метода;
+	\mintinline{icl}{.info} - идентификатор метода;
 \item
-	\lstinline|"Hello world!"| - строковый литерал;
+	\mintinline{icl}{"Hello world!"} - строковый литерал;
 \item
-	\lstinline|;| - разделитель, конец команды.
+	\mintinline{icl}{;} - разделитель, конец команды.
 \end{icItems}
 
 \subsection{Комментарии}
@@ -53,57 +57,76 @@ Test!
 
 \textbf{Комментарии в линии} (\textit{inline}) являются строковым литералом ограниченным специальными кавычками \texttt{`}, как показано на листинге \ref{inlinecomment}.
 
-\begin{lstlisting}[caption=Комментарий в линии,label=inlinecomment]
+\begin{sourcecode}
+\captionof{listing}{Комментарий в линии}
+\label{inlinecomment}
+\begin{minted}[linenos]{icl}
 No comment `comment` no comment
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \textbf{Одиночный комментарий} записывается с использованием символов \texttt{``} в начале, смотрите листинг \ref{linecomment}.
 
-\begin{lstlisting}[caption=Одиночный комментарий,label=linecomment]
+\begin{sourcecode}
+\captionof{listing}{Одиночный комментарий}
+\label{linecomment}
+\begin{minted}[linenos]{icl}
 No comment `` comment
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \textbf{Многострочный комментарий} начинается и заканчивается с \texttt{```}, пример многострочного комментария приведён на листинге \ref{multilinecomment}.
 
-\begin{lstlisting}[caption=Многострочный комментарий,label=multilinecomment]
+\begin{sourcecode}
+\captionof{listing}{Многострочный комментарий}
+\label{multilinecomment}
+\begin{minted}[linenos]{icl}
 No comment
 ``` comment 1
 	comment 2
 	comment 3
 ``` No comment
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 \subsection{Идентификторы}
 
-\textbf{Идентификатор} в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\lstinline|@|, \lstinline|#|, \lstinline|.|, \lstinline|'| или с буквой верхнего или нижнего регистра), за которым следует от 0 до 32 букв(английского или национального алфавита), цифр (от 0 до 9) или нижнее подчёркивание.
+\textbf{Идентификатор} в icL - это имя, используемое для идентификации переменной, функций, методов и свойств. Идентификатор начинается с символов обозначающий его предназначение(\mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{.}, \mintinline{icl}{'} или с буквой верхнего или нижнего регистра), за которым следует от 0 до 32 букв(английского или национального алфавита), цифр (от 0 до 9) или нижнее подчёркивание.
 
 icL - чувствительный к регистру язык. Таким образом \textit{@var} и \textit{@Var} являются двумя разными идентификаторами. Вот несколько примеров допустимых идентификаторов:
 
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 #loop		Tab		    .append		'length	Doc	    @i	 	@VAR
 @variable	sumPoints	#global		.merge	.get	#01		sin
-\end{lstlisting}
+\end{minted}
 
 \subsection{Ключевые слова}
 
-В icL \textbf{ключевые слова} зарезервированные. Их всего 18: \lstinline|if|, \lstinline|else| \lstinline|for|, \lstinline|filter|, \lstinline|range|, \lstinline|exists|, \lstinline|while|, \lstinline|do|, \lstinline|any|, \lstinline|emit|, \lstinline|emiter|, \lstinline|slot|, \lstinline|jammer|, \lstinline|listen|, \lstinline|wait|, \lstinline|switch|, \lstinline|case| и \lstinline|assert|. В данном документе они выделены синим цветом.
+В icL \textbf{ключевые слова} зарезервированные. Их всего 18: \mintinline{icl}{if}, \mintinline{icl}{else} \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}, \mintinline{icl}{exists}, \mintinline{icl}{while}, \mintinline{icl}{do}, \mintinline{icl}{any}, \mintinline{icl}{emit}, \mintinline{icl}{emiter}, \mintinline{icl}{slot}, \mintinline{icl}{jammer}, \mintinline{icl}{listen}, \mintinline{icl}{wait}, \mintinline{icl}{switch}, \mintinline{icl}{case} и \mintinline{icl}{assert}. В данном документе они выделены синим цветом.
 
 \subsection{Пробельные символы и разделители}
 
 \textbf{Пробельный символ} (\textit{whitespace}) - этот термин используется в icL для описания пробелов, символов табуляции, символов новой строкой и комментариев. Пробельные символы не обязательные, они используются для улучшения читабельности кода. На листинге \ref{unreadable} показан пример кода без пробельных символов, а на листинге \ref{readable} с пробельными символами.
 
-\begin{lstlisting}[caption=Koд без пробельных символов,label=unreadable]
+\begin{sourcecode}
+\captionof{listing}{Koд без пробельных символов}
+\label{unreadable}
+\begin{minted}[linenos]{icl}
 if(Tab.get"mai.ru"){Doc.query("button").click();}else{Log.error"The site mai.ru is unaviable";};
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-В icL присутствует \textbf{разделитель команд} \lstinline|;|, его можно пропустить, но не рекомендуется. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \lstinline|Tab.get "URL"|, закрыть вкладку - \lstinline|Tab.close|.
+В icL присутствует \textbf{разделитель команд} \mintinline{icl}{;}, его можно пропустить, но не рекомендуется. Команда - это набор токенов, распределенных в определённом порядке и характеризующее действие. Примеры команд: открыть сайт - \mintinline{icl}{Tab.get "URL"}, закрыть вкладку - \mintinline{icl}{Tab.close}.
 
 При описании последовательности действий, их надо разделить, например последовательность вышеперечисленных команд описывается так:
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 Tab.get "URL"; Tab.close()
-\end{lstlisting}
+\end{minted}
 
-\begin{lstlisting}[caption=Koд с пробельных символов,label=readable]
+\begin{sourcecode}
+\captionof{listing}{Koд с пробельных символов}
+\label{readable}
+\begin{minted}[linenos]{icl}
 `` the begin of program
 
 `` try to go to mai.ru
@@ -119,6 +142,7 @@ else {
 };
 
 `` end of the program
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 Таким образом из команд собираем сценарии.

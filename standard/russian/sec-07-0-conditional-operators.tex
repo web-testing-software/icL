@@ -5,50 +5,50 @@
 
 В icL приличествуют следующее операторы управления:
 \begin{icItems}
-	\item \code{if};
-	\item \code{if else};
-	\item каскадное \code{if else};
-	\item \code{switch case};
+	\item \mintinline{icl}{if};
+	\item \mintinline{icl}{if else};
+	\item каскадное \mintinline{icl}{if else};
+	\item \mintinline{icl}{switch case};
 \end{icItems}
 
-\subsubsection{\lstinline|if|}
+\subsubsection{\mintinline{icl}{if}}
 
-\code{if} позволяет ставить условие выполнения блока команд. Он имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
+\mintinline{icl}{if} позволяет ставить условие выполнения блока команд. Он имеет следующий синтаксис -
+\begin{minted}{icl}
 if (condition) {
 	commands
 };
-\end{lstlisting}
-где \code{condition} любое выражение возвращающее значение типа \bool{} и \code{commands} любой набор команд.
+\end{minted}
+где \mintinline{icl}{condition} любое выражение возвращающее значение типа \bool{} и \mintinline{icl}{commands} любой набор команд.
 
 Также допускаются пропустить круглые скобки, синтаксис -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 if true  { commands };
 if !true { commands };
 if @var  { commands };
 if !@var { commands };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{\lstinline|if else|}
+\subsubsection{\mintinline{icl}{if else}}
 
-\code{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно - выполняется первый блок, иначе второй блок.
+\mintinline{icl}{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно - выполняется первый блок, иначе второй блок.
 
-Конструкция \code{if else} имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
+Конструкция \mintinline{icl}{if else} имеет следующий синтаксис -
+\begin{minted}{icl}
 if (condition) {
 	commands1
 }
 else {
 	commands2
 };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{Каскадное \lstinline|if else|}
+\subsubsection{Каскадное \mintinline{icl}{if else}}
 
-Каскадное \code{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
+Каскадное \mintinline{icl}{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
 
-Каскадное \code{if else} имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
+Каскадное \mintinline{icl}{if else} имеет следующий синтаксис -
+\begin{minted}{icl}
 if (condition1) {
 	commands1
 } else if (condition2) {
@@ -56,31 +56,34 @@ if (condition1) {
 } else {
 	commands3
 };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{\lstinline|switch case|}
+\subsubsection{\mintinline{icl}{switch case}}
 
-\code{switch case} позволяет выбирать между n блоков команд, но для это нужно предъявить n условии.
+\mintinline{icl}{switch case} позволяет выбирать между n блоков команд, но для это нужно предъявить n условии.
 
 Синтаксис -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 switch (value) {
 	case (caseValue) { ```code``` }
 	`` more cases
 }
-\end{lstlisting}
+\end{minted}
 
-\code{switch} получает значения \code{value}, она может иметь любой тип кроме \bool. Дальше внутри \code{switch}-а имеет несколько \code{case}-ов. Если значения \code{case}-а - \code{caseValue} совпадает с \code{value}, то \code{case} будет выполнен.
+\mintinline{icl}{switch} получает значения \mintinline{icl}{value}, она может иметь любой тип кроме \bool. Дальше внутри \mintinline{icl}{switch}-а имеет несколько \mintinline{icl}{case}-ов. Если значения \mintinline{icl}{case}-а - \mintinline{icl}{caseValue} совпадает с \mintinline{icl}{value}, то \mintinline{icl}{case} будет выполнен.
 
-\code{case} может иметь несколько значений разделённые запятой.
+\mintinline{icl}{case} может иметь несколько значений разделённые запятой.
 
-Он может получить в качестве значения \void, выглядит это следующим образом \lstinline|case (~) { ```code``` }|, такой \code{case} будет выполнен только если ни один из предыдущих не был выполнен.
+Он может получить в качестве значения \void, выглядит это следующим образом \mintinline{icl}{case (~) { ```code``` }}, такой \mintinline{icl}{case} будет выполнен только если ни один из предыдущих не был выполнен.
 
-Ещё одна специальное значение - \code{#}, через неё обозначается что текущий \code{case} нужно выполнить при условии что предыдущий был выполнен.
+Ещё одна специальное значение - \mintinline{icl}{#}, через неё обозначается что текущий \mintinline{icl}{case} нужно выполнить при условии что предыдущий был выполнен.
 
-Разбираем на примере все возможность \code{switch case}, пример представлен на листинге \ref{switchcaseex}.
+Разбираем на примере все возможность \mintinline{icl}{switch case}, пример представлен на листинге \ref{switchcaseex}.
 
-\begin{lstlisting}[caption=Использование switch case, label=switchcaseex]
+\begin{sourcecode}
+\captionof{listing}{Использование switch case}
+\label{switchcaseex}
+\begin{minted}[linenos]{icl}
 @v = 0 | 1 | 2 | 3 | 4 | 5;
 
 switch (@v) {
@@ -90,19 +93,20 @@ switch (@v) {
 	case (4) { ```code4``` }
 	case (~) { ```code5``` }
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-Переменная \code{@v} имеет значения в интервале от 0 до 6.
+Переменная \mintinline{icl}{@v} имеет значения в интервале от 0 до 6.
 
 Разбираем какие фрагменты кода будут выполнены для каждой возможной значении:
 \begin{icItems}
-	\item 0 - будет выполнен \code{code1};
-	\item 1 - будет выполнен \code{code2} и \code{code3};
-	\item 2 - будет выполнен \code{code2} и \code{code3};
-	\item 3 - будет выполнен \code{code3};
-	\item 4 - будет выполнен \code{code4};
-	\item 5 - будет выполнен \code{code5};
-	\item 6 - будет выполнен \code{code5}.
+	\item 0 - будет выполнен \mintinline{icl}{code1};
+	\item 1 - будет выполнен \mintinline{icl}{code2} и \mintinline{icl}{code3};
+	\item 2 - будет выполнен \mintinline{icl}{code2} и \mintinline{icl}{code3};
+	\item 3 - будет выполнен \mintinline{icl}{code3};
+	\item 4 - будет выполнен \mintinline{icl}{code4};
+	\item 5 - будет выполнен \mintinline{icl}{code5};
+	\item 6 - будет выполнен \mintinline{icl}{code5}.
 \end{icItems}
 
 %\newpage

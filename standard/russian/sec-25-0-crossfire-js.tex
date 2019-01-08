@@ -3,29 +3,33 @@
 
 Технология {\bf crossfire.js} позволяет вызвать функцию icL из веб-страницы. Функция будет выполнено асинхронно.
 
-Вставить функцию icL в Javascript можно с помощью заменителя \lstinline|!{name}|. При вызове функций icL, параметры по типу данных должны подходить, иначе будет сгенерирован сигнал, который остановит в последствия выполнение скрипта. Для корректность восприятия данных рекомендуется использовать следующее функций Javascript:
+Вставить функцию icL в Javascript можно с помощью заменителя \mintinline{icl}{!{name}}. При вызове функций icL, параметры по типу данных должны подходить, иначе будет сгенерирован сигнал, который остановит в последствия выполнение скрипта. Для корректность восприятия данных рекомендуется использовать следующее функций Javascript:
 \begin{icItems}
-	\item \lstinline|crossfire.bool(arg)|;
-	\item \lstinline|crossfire.int(arg)|;
-	\item \lstinline|crossfire.double(arg)|;
-	\item \lstinline|crossfire.string(arg)|;
-	\item \lstinline|crossfire.list(arg)|;
-	\item \lstinline|crossfire.object(arg)|;
-	\item \lstinline|crossfire.set(arg)|;
-	\item \lstinline|crossfire.element(arg)|;
+	\item \mintinline{icl}{crossfire.bool(arg)};
+	\item \mintinline{icl}{crossfire.int(arg)};
+	\item \mintinline{icl}{crossfire.double(arg)};
+	\item \mintinline{icl}{crossfire.string(arg)};
+	\item \mintinline{icl}{crossfire.list(arg)};
+	\item \mintinline{icl}{crossfire.object(arg)};
+	\item \mintinline{icl}{crossfire.set(arg)};
+	\item \mintinline{icl}{crossfire.element(arg)};
 \end{icItems}
 
-Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \code{onclick} получает один параметр, но \code{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
+Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \mintinline{icl}{onclick} получает один параметр, но \mintinline{icl}{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
 
-\begin{lstlisting}[caption=Пример вызова функций icL, label=crossfireexample]
+\begin{sourcecode}
+\captionof{listing}{Пример вызова функций icL}
+\label{crossfireexample}
+\begin{minted}[linenos]{icl}
 @el = Doc.query "button";
 !func = { Log.info "It's working!" };
 
 $run {
 	@{el}[0].onlick = function (ev) { !{func}() }
 };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-Использование технологий \textit{crossfire.js} в скрипте приводит к переходу программы в режиме ожидания. В этом режиме программа не будет сама закрываться никогда, а будет ждать внешний вызов функций, чтобы остановить программу используете сигнал \code{Exit}.
+Использование технологий \textit{crossfire.js} в скрипте приводит к переходу программы в режиме ожидания. В этом режиме программа не будет сама закрываться никогда, а будет ждать внешний вызов функций, чтобы остановить программу используете сигнал \mintinline{icl}{Exit}.
 
 Список технологии \textit{icL} доступен по ссылке: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.

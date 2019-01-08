@@ -1,24 +1,27 @@
 \section{Списки}
 
-{\bf Списки} (тип \code{list}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
+{\bf Списки} (тип \mintinline{icl}{list}) позволяет хранить несколько строк в одной переменной. Доступ к ним обеспечивается через индекс - номер по порядку строке в списке.
 
 \subsection{Свойства}
 
 Списки имеют следующее дополнительные свойства:
 \begin{icItems}
 \item
-	\lstinline|[r/o] list'empty : bool|;
+	\mintinline{icl}{[r/o] list'empty : bool};
 \item
-	\lstinline|[r/o] list'length : int|;
+	\mintinline{icl}{[r/o] list'length : int};
 \item
-	\lstinline|[r/o] list'last : string|;
+	\mintinline{icl}{[r/o] list'last : string};
 \item
-	\lstinline|[r/o] list'(n : int) : string|.
+	\mintinline{icl}{[r/o] list'(n : int) : string}.
 \end{icItems}
 
 На листинге \ref{listprop} представлен код, использующий выше перечисленных свойства.
 
-\begin{lstlisting}[caption=Свойства класса list, label=listprop]
+\begin{sourcecode}
+\captionof{listing}{Свойства класса list}
+\label{listprop}
+\begin{minted}[linenos]{icl}
 @empty = [];
 @fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
@@ -33,23 +36,24 @@
 
 @empty'0; `` error
 @fonts'0; `` "Arial"
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|[r/o] list'empty : bool|}
+\subsubsection{\mintinline{icl}{[r/o] list'empty : bool}}
 
 Список считается пустым если он не содержит ни одну строку.
 
-\subsubsection{\lstinline|[r/o] list'length : int|}
+\subsubsection{\mintinline{icl}{[r/o] list'length : int}}
 
 Длина списка равна количеству строк в списке.
 
-\subsubsection{\lstinline|[r/o] list'last : string|}
+\subsubsection{\mintinline{icl}{[r/o] list'last : string}}
 
-Последняя строка в списке, то же соме что и \lstinline|list'at (list'length - 1)|.
+Последняя строка в списке, то же соме что и \mintinline{icl}{list'at (list'length - 1)}.
 
 Возможные исключения: \ferror{EmptyList} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|[r/o] list'(n : int) : string|}
+\subsubsection{\mintinline{icl}{[r/o] list'(n : int) : string}}
 
 n-я строка списка, n должен быть целым литералом.
 
@@ -59,32 +63,35 @@ n-я строка списка, n должен быть целым литера�
 
 Списки имеют следующий набор дополнительных методов:
 \begin{icItems}
-\item \lstinline|list.append (str : string) : list|;
-\item \lstinline|list.at (i : int) : string|;
-\item \lstinline|list.contains (str : string, caseSensitive = true) : bool|;
-\item \lstinline|list.clear () : list|;
-\item \lstinline|list.count (what : string) : int|;
-\item \lstinline|list.filter (str : string, caseSensitive = true) : bool|;
-\item \lstinline|list.indexOf (str : string, start = 0) : int|;
-\item \lstinline|list.insert (index : int, str : string) : list|;
-\item \lstinline|list.join (separator : string) : string|;
-\item \lstinline|list.lastIndexOf (str : string, start = -1) : int|;
-\item \lstinline|list.mid (pos : int, n = -1) : list|;
-\item \lstinline|list.prepend (str : string) : list|;
-\item \lstinline|list.move (from : int, to : int) : list|;
-\item \lstinline|list.removeAll (str : string) : list|;
-\item \lstinline|list.removeAt (i : int) : list|;
-\item \lstinline|list.removeDuplicates () : list|;
-\item \lstinline|list.removeFirst () : list|;
-\item \lstinline|list.removeLast () : list|;
-\item \lstinline|list.removeOne (str : string) : bool|;
-\item \lstinline|list.replaceInStrings (before : string, after : string) : list|;
-\item \lstinline|list.sort (caseSensitive = true) : list|.
+\item \mintinline{icl}{list.append (str : string) : list};
+\item \mintinline{icl}{list.at (i : int) : string};
+\item \mintinline{icl}{list.contains (str : string, caseSensitive = true) : bool};
+\item \mintinline{icl}{list.clear () : list};
+\item \mintinline{icl}{list.count (what : string) : int};
+\item \mintinline{icl}{list.filter (str : string, caseSensitive = true) : bool};
+\item \mintinline{icl}{list.indexOf (str : string, start = 0) : int};
+\item \mintinline{icl}{list.insert (index : int, str : string) : list};
+\item \mintinline{icl}{list.join (separator : string) : string};
+\item \mintinline{icl}{list.lastIndexOf (str : string, start = -1) : int};
+\item \mintinline{icl}{list.mid (pos : int, n = -1) : list};
+\item \mintinline{icl}{list.prepend (str : string) : list};
+\item \mintinline{icl}{list.move (from : int, to : int) : list};
+\item \mintinline{icl}{list.removeAll (str : string) : list};
+\item \mintinline{icl}{list.removeAt (i : int) : list};
+\item \mintinline{icl}{list.removeDuplicates () : list};
+\item \mintinline{icl}{list.removeFirst () : list};
+\item \mintinline{icl}{list.removeLast () : list};
+\item \mintinline{icl}{list.removeOne (str : string) : bool};
+\item \mintinline{icl}{list.replaceInStrings (before : string, after : string) : list};
+\item \mintinline{icl}{list.sort (caseSensitive = true) : list}.
 \end{icItems}
 
 Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{listmethods}. 
 
-\begin{lstlisting}[caption=Методы класса list, label=listmethods]
+\begin{sourcecode}
+\captionof{listing}{Методы класса list}
+\label{listmethods}
+\begin{minted}[linenos]{icl}
 @empty = [];
 @fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
@@ -116,101 +123,102 @@ n-я строка списка, n должен быть целым литера�
 
 @fonts.replaceInStrings ("e", "-"); `` ["Arial", "H-lv-tica", "Tim-s", "Couri-r"];
 @fonts.sort;                        `` ["Arial", "Couri-r", "H-lv-tica", "Tim-s"];
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-Параметр \code{caseSensitive} во всех функциях отвечает за чувствительность к регистру. Его установка гарантирует что регистр букв будет проигнорирован.
+Параметр \mintinline{icl}{caseSensitive} во всех функциях отвечает за чувствительность к регистру. Его установка гарантирует что регистр букв будет проигнорирован.
 
-\subsubsection{\lstinline|list.append (str : string) : list|}
+\subsubsection{\mintinline{icl}{list.append (str : string) : list}}
 
-Вставит строку \code{str} в конце списка.
+Вставит строку \mintinline{icl}{str} в конце списка.
 
-\subsubsection{\lstinline|list.at (i : int) : string|}
+\subsubsection{\mintinline{icl}{list.at (i : int) : string}}
 
-Возвращает \code{i}-й строка.
+Возвращает \mintinline{icl}{i}-й строка.
 
 Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|list.contains (str : string, caseSensitive = true) : bool|}
+\subsubsection{\mintinline{icl}{list.contains (str : string, caseSensitive = true) : bool}}
 
-Возвращает \true, если список содержит строка, ровна \code{str}, иначе \false.
+Возвращает \true, если список содержит строка, ровна \mintinline{icl}{str}, иначе \false.
 
-\subsubsection{\lstinline|list.clear () : list|}
+\subsubsection{\mintinline{icl}{list.clear () : list}}
 
 Очищает список.
 
-\subsubsection{\lstinline|list.count (what : string) : int|}
+\subsubsection{\mintinline{icl}{list.count (what : string) : int}}
 
-Возвращает сколько раз строка \code{what} повторяется в списке.
+Возвращает сколько раз строка \mintinline{icl}{what} повторяется в списке.
 
-\subsubsection{\lstinline|list.filter (str : string, caseSensitive = true) : bool|}
+\subsubsection{\mintinline{icl}{list.filter (str : string, caseSensitive = true) : bool}}
 
-Возвращает новый список строк, содержащий только строки этого списка, содержащие подстроку \code{str}. 
+Возвращает новый список строк, содержащий только строки этого списка, содержащие подстроку \mintinline{icl}{str}. 
 
-\subsubsection{\lstinline|list.indexOf (str : string, start = 0) : int|}
+\subsubsection{\mintinline{icl}{list.indexOf (str : string, start = 0) : int}}
 
-Возвращает индекс первой нахождения строки \code{str} в списке, ища вперёд с позиции \code{start}, если строка не найдено возвращает -1.
+Возвращает индекс первой нахождения строки \mintinline{icl}{str} в списке, ища вперёд с позиции \mintinline{icl}{start}, если строка не найдено возвращает -1.
 
-\subsubsection{\lstinline|list.insert (index : int, str : string) : list|}
+\subsubsection{\mintinline{icl}{list.insert (index : int, str : string) : list}}
 
-Вставит строку \code{str} в позиции \code{index}, если \code{index <= 0} то значение вставится в начале списка, если \code{index >= list'length} то значение вставится в конце списка.
+Вставит строку \mintinline{icl}{str} в позиции \mintinline{icl}{index}, если \mintinline{icl}{index <= 0} то значение вставится в начале списка, если \mintinline{icl}{index >= list'length} то значение вставится в конце списка.
 
-\subsubsection{\lstinline|list.join (separator : string) : string|}
+\subsubsection{\mintinline{icl}{list.join (separator : string) : string}}
 
-Создаёт новую строку, из строк списка, путём последовательной конкатенации, между значениями вставится \code{separator}, он может быть пустой строкой.
+Создаёт новую строку, из строк списка, путём последовательной конкатенации, между значениями вставится \mintinline{icl}{separator}, он может быть пустой строкой.
 
-\subsubsection{\lstinline|list.lastIndexOf (str : string, start = -1) : int|}
+\subsubsection{\mintinline{icl}{list.lastIndexOf (str : string, start = -1) : int}}
 
-Возвращает индекс первой нахождения строки \code{str} в списке, ища назад с позиции \code{start}, если строка не найдена возвращает -1.
+Возвращает индекс первой нахождения строки \mintinline{icl}{str} в списке, ища назад с позиции \mintinline{icl}{start}, если строка не найдена возвращает -1.
 
-\subsubsection{\lstinline|list.mid (pos : int, n = -1) : list|}
+\subsubsection{\mintinline{icl}{list.mid (pos : int, n = -1) : list}}
 
-Возвращает новый список, содержащий \code{n} строки, начиная со строкой с индексом \code{pos}. Если \code{n} имеет значение \code{-1} то будут добавлены все значение до конца списка.
+Возвращает новый список, содержащий \mintinline{icl}{n} строки, начиная со строкой с индексом \mintinline{icl}{pos}. Если \mintinline{icl}{n} имеет значение \mintinline{icl}{-1} то будут добавлены все значение до конца списка.
 
-\subsubsection{\lstinline|list.prepend (str : string) : list|}
+\subsubsection{\mintinline{icl}{list.prepend (str : string) : list}}
 
-Вставит строку \code{str} в начале списка.
+Вставит строку \mintinline{icl}{str} в начале списка.
 
-\subsubsection{\lstinline|list.move (from : int, to : int) : list|}
+\subsubsection{\mintinline{icl}{list.move (from : int, to : int) : list}}
 
-Переставит строку с индексом \code{from} в позиции с индексом \code{to}.
-
-Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
-
-\subsubsection{\lstinline|list.removeAll (str : string) : list|}
-
-Удаляет все нахождения строке \code{str}.
-
-\subsubsection{\lstinline|list.removeAt (i : int) : list|}
-
-Удаляет \code{i}-я строка.
+Переставит строку с индексом \mintinline{icl}{from} в позиции с индексом \mintinline{icl}{to}.
 
 Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|list.removeDuplicates () : list|}
+\subsubsection{\mintinline{icl}{list.removeAll (str : string) : list}}
+
+Удаляет все нахождения строке \mintinline{icl}{str}.
+
+\subsubsection{\mintinline{icl}{list.removeAt (i : int) : list}}
+
+Удаляет \mintinline{icl}{i}-я строка.
+
+Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list.removeDuplicates () : list}}
 
 Удаляет повторы строк.
 
-\subsubsection{\lstinline|list.removeFirst () : list|}
+\subsubsection{\mintinline{icl}{list.removeFirst () : list}}
 
 Удаляет первую строку.
 
 Возможные исключения: \ferror{EmptyList} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|list.removeLast () : list|}
+\subsubsection{\mintinline{icl}{list.removeLast () : list}}
 
 Удаляет последнюю строку.
 
 Возможные исключения: \ferror{EmptyList} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|list.removeOne (str : string) : bool|}
+\subsubsection{\mintinline{icl}{list.removeOne (str : string) : bool}}
 
-Удаляет первое нахождение строке \code{str}. Возвращает \true, если строка была найдена, иначе \false.
+Удаляет первое нахождение строке \mintinline{icl}{str}. Возвращает \true, если строка была найдена, иначе \false.
 
-\subsubsection{\lstinline|list.replaceInStrings (before : string, after : string) : list|}
+\subsubsection{\mintinline{icl}{list.replaceInStrings (before : string, after : string) : list}}
 
-Заменяет подстроку \code{before} с подстрокой \code{after} в каждом строке.
+Заменяет подстроку \mintinline{icl}{before} с подстрокой \mintinline{icl}{after} в каждом строке.
 
-\subsubsection{\lstinline|list.sort (caseSensitive = true) : list|}
+\subsubsection{\mintinline{icl}{list.sort (caseSensitive = true) : list}}
 
 Сортирует строки в алфавитном порядке.
 

@@ -1,138 +1,141 @@
 % !TeX spellcheck = ru_RU
 \section{Базы данных}
 
-Модуль баз данных определяет следующее глобальные объекты: \lstinline|DBManager| - менеджер баз данных, \lstinline|DB| - последняя открытая база данных, \lstinline|Query| - последний запрос.
+Модуль баз данных определяет следующее глобальные объекты: \mintinline{icl}{DBManager} - менеджер баз данных, \mintinline{icl}{DB} - последняя открытая база данных, \mintinline{icl}{Query} - последний запрос.
 
 Модуль баз данных обеспечивает следующий набор возможностей:
 \begin{icItems}
-    \item \lstinline|DBManager.openSQLite (path : string) : DB|;
-    \item \lstinline|DBManager.connect (server : string, user : string, password : string) : DB|;
-    \item \lstinline|DBManager.connect (server : string) : DB|;
-	\item \lstinline|DB.query (q : Code) : Query|;
-	\item \lstinline|DB.close () : void|;
-	\item \lstinline|[w/o] Query'(name : string) : any|;
-	\item \lstinline|Query.set (field : string, value : any) : void|;
-	\item \lstinline|Query.exec () : bool|;
+    \item \mintinline{icl}{DBManager.openSQLite (path : string) : DB};
+    \item \mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB};
+    \item \mintinline{icl}{DBManager.connect (server : string) : DB};
+	\item \mintinline{icl}{DB.query (q : Code) : Query};
+	\item \mintinline{icl}{DB.close () : void};
+	\item \mintinline{icl}{[w/o] Query'(name : string) : any};
+	\item \mintinline{icl}{Query.set (field : string, value : any) : void};
+	\item \mintinline{icl}{Query.exec () : bool};
 	\item Доступны после выполнения:
 	\begin{icItems}
-	    \item \lstinline|[r/o] Query'(name : string) : any|;
-		\item \lstinline|Query.getRowsAffected () : int|;
-		\item \lstinline|Query.getError () : bool|;
-		\item \lstinline|Query.getLength () : int|;
-		\item \lstinline|Query.get (field : string) : any|;
-		\item \lstinline|Query.next () : bool|;
-		\item \lstinline|Query.previous () : bool|;
-		\item \lstinline|Query.first () : bool|;
-		\item \lstinline|Query.last () : bool|;
-		\item \lstinline|Query.seek (i : int, relative = false) : bool|;
+	    \item \mintinline{icl}{[r/o] Query'(name : string) : any};
+		\item \mintinline{icl}{Query.getRowsAffected () : int};
+		\item \mintinline{icl}{Query.getError () : bool};
+		\item \mintinline{icl}{Query.getLength () : int};
+		\item \mintinline{icl}{Query.get (field : string) : any};
+		\item \mintinline{icl}{Query.next () : bool};
+		\item \mintinline{icl}{Query.previous () : bool};
+		\item \mintinline{icl}{Query.first () : bool};
+		\item \mintinline{icl}{Query.last () : bool};
+		\item \mintinline{icl}{Query.seek (i : int, relative = false) : bool};
 	\end{icItems}
 \end{icItems}
 
-\subsubsection{\lstinline|DBManager.openSQLite (path : string) : DB|}
+\subsubsection{\mintinline{icl}{DBManager.openSQLite (path : string) : DB}}
 
-Открывает новое подключение. \code{path} - путь к файлу базы данных.
+Открывает новое подключение. \mintinline{icl}{path} - путь к файлу базы данных.
 
 Возможные исключения: \ferror{NoSuchDatabase} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|DBManager.connect (server : string, user : string, password : string) : DB|}
+\subsubsection{\mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB}}
 
 Создаёт соединение к icL DB Client через WebSockets, клиентов можно писать на любые языки программирование, для написания собсвенных клиентов познакомитесь с \textit{icL DataBase Share over WebSockets}, описан в \textit{icL Wire Protocol}.
 
 Возможные исключения: \ferror{NoSuchServer} и \ferror{WrongUserPassword} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|DBManager.connect (server : string) : DB|}
+\subsubsection{\mintinline{icl}{DBManager.connect (server : string) : DB}}
 
 Создаёт соединение к icL DB Client через HTTP, клиентов можно писать на любые языки программирование, для написания собсвенных клиентов познакомитесь с \textit{icL DataBase Share over HTTP}, описан в \textit{icL Wire Protocol}.
 
 Возможные исключения: \ferror{NoSuchServer} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|DB.query (q : Code) : Query|}
+\subsubsection{\mintinline{icl}{DB.query (q : Code) : Query}}
 
 Создаёт запрос, на основе кода SQL, изолированный в фигурных скобках.
 
-\subsubsection{\lstinline|DB.close () : void|}
+\subsubsection{\mintinline{icl}{DB.close () : void}}
 
 Закрывает подключение к базе данных.
 
 Возможные исключения: \ferror{NoSuchDatabase} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|[w/o] Query'(name : string) : any|}
+\subsubsection{\mintinline{icl}{[w/o] Query'(name : string) : any}}
 
-Возвращает объект, позволяющий заменить заменитель на значение через присваивание. Заменители в коде имеют следующий синтаксис \lstinline|:name|.
+Возвращает объект, позволяющий заменить заменитель на значение через присваивание. Заменители в коде имеют следующий синтаксис \mintinline{icl}{:name}.
 
 Возможные исключения: \ferror{NoSuchPlaceholder} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.set (field : string, value : any) : void|}
+\subsubsection{\mintinline{icl}{Query.set (field : string, value : any) : void}}
 
-Установит значения заменителя с именем \code{field}.
+Установит значения заменителя с именем \mintinline{icl}{field}.
 
 Возможные исключения: \ferror{NoSuchField} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.exec () : bool|}
+\subsubsection{\mintinline{icl}{Query.exec () : bool}}
 
 Возвращает \true, если выполнения запроса была успешной, иначе \false.
 
-\subsubsection{\lstinline|Query.getError () : string|}
+\subsubsection{\mintinline{icl}{Query.getError () : string}}
 
 Возвращает текст ошибки, если при выполнении кода произошла ошибка.
 
-\subsubsection{\lstinline|[r/o] Query'(name : string) : any|}
+\subsubsection{\mintinline{icl}{[r/o] Query'(name : string) : any}}
 
-После вызова функции \lstinline|Query.exec| свойства будут возвращать значения запрошенных полей. Если такое поле отсутствует, будет возвращать \void.
+После вызова функции \mintinline{icl}{Query.exec} свойства будут возвращать значения запрошенных полей. Если такое поле отсутствует, будет возвращать \void.
 
-\subsubsection{\lstinline|Query.getRowsAffected () : int|}
+\subsubsection{\mintinline{icl}{Query.getRowsAffected () : int}}
 
 Количество обновлённых/добавленных строк в базе данных.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.getLength () : int|}
+\subsubsection{\mintinline{icl}{Query.getLength () : int}}
 
-Количество результатов полученных при выполнении команды \code{SELECT}.
-
-Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
-
-\subsubsection{\lstinline|Query.get (field : string) : any|}
-
-Возвращает значение поле или \void{} если столбец \code{field} отсутствует.
+Количество результатов полученных при выполнении команды \mintinline{icl}{SELECT}.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.next () : bool|}
+\subsubsection{\mintinline{icl}{Query.get (field : string) : any}}
+
+Возвращает значение поле или \void{} если столбец \mintinline{icl}{field} отсутствует.
+
+Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.next () : bool}}
 
 Возвращает \true, если получилось перейти на следующую запись, иначе \false.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.previous () : bool|}
+\subsubsection{\mintinline{icl}{Query.previous () : bool}}
 
 Возвращает \true, если получилось перейти на предыдущую запись, иначе \false.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.first () : bool|}
+\subsubsection{\mintinline{icl}{Query.first () : bool}}
 
 Возвращает \true, если получилось перейти на первую запись, иначе \false.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.last () : bool|}
+\subsubsection{\mintinline{icl}{Query.last () : bool}}
 
 Возвращает \true, если получилось перейти на последнюю запись, иначе \false.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|Query.seek (i : int, relative = false) : bool|}
+\subsubsection{\mintinline{icl}{Query.seek (i : int, relative = false) : bool}}
 
-Возвращает \true, если получилось перейти на \code{i}-ю запись или сдвинуть курсор на \code{i}-e количество шагов (при условии \code{@relative == true}), иначе \false.
+Возвращает \true, если получилось перейти на \mintinline{icl}{i}-ю запись или сдвинуть курсор на \mintinline{icl}{i}-e количество шагов (при условии \mintinline{icl}{@relative == true}), иначе \false.
 
 Возможные исключения: \ferror{QueryNotExecutedYet} (см. таб. \ref{errors}).
 
 \subsubsection{Пример}
 
-Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \code{@:name}, а глобальные - \code{\#:name}.
+Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \mintinline{icl}{@:name}, а глобальные - \mintinline{icl}{\#:name}.
 
-\begin{lstlisting}[caption=Пример кода использующий базу данных, label=dbexample]
+\begin{sourcecode}
+\captionof{listing}{Пример кода использующий базу данных}
+\label{dbexample}
+\begin{minted}[linenos]{icl}
 DBManager.openSQLite "db.sqlite";
 
 `` simple query
@@ -172,6 +175,7 @@ Query'id = 1001;
 Query'forname = "Bart";
 Query'name = "Simpson";
 Query.exec();
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 %\newpage

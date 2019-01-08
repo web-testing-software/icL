@@ -7,174 +7,210 @@
 
 \begin{icItems}
 \item
-	\code{for} - параметрический цикл;
+	\mintinline{icl}{for} - параметрический цикл;
 \item
-	\code{while} - условное повторение кода;
+	\mintinline{icl}{while} - условное повторение кода;
 \item
-	\code{do while} - цикл с постусловий;
+	\mintinline{icl}{do while} - цикл с постусловий;
 \item
-	\code{for} - прохождение коллекций;
+	\mintinline{icl}{for} - прохождение коллекций;
 \item
-	\code{filter} - выборочное прохождение коллекций;
+	\mintinline{icl}{filter} - выборочное прохождение коллекций;
 \item
-	\code{range} - частичное прохождение коллекций.
+	\mintinline{icl}{range} - частичное прохождение коллекций.
 \end{icItems}
 
 
-\subsubsection{\lstinline|for| - параметрический цикл}
+\subsubsection{\mintinline{icl}{for} - параметрический цикл}
 
 {\bf Параметрический цикл} позволяет полностью управлять ходом выполнения кода. Он содержит:
 
 \begin{icItems}
 \item
-	\code{initialization} - код отвечающий за инициализацию;
+	\mintinline{icl}{initialization} - код отвечающий за инициализацию;
 \item
-	\code{condition} - условие, которое проверяется перед запуском цикла;
+	\mintinline{icl}{condition} - условие, которое проверяется перед запуском цикла;
 \item
-	\code{step} - код, отвечающий за перехода на следующую итерацию цикла.
+	\mintinline{icl}{step} - код, отвечающий за перехода на следующую итерацию цикла.
 \item
-	\code{commands} - тело цикла.
+	\mintinline{icl}{commands} - тело цикла.
 \end{icItems}
 
 Параметрический цикл имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 for (initialization; condition; step) {
 	commands
 };
-\end{lstlisting}
+\end{minted}
 
-На листинге \ref{uniloopex} показан пример использование цикла \code{for}, цикл будет выводить числа от нуля до четырёх.
+На листинге \ref{uniloopex} показан пример использование цикла \mintinline{icl}{for}, цикл будет выводить числа от нуля до четырёх.
 
-\begin{lstlisting}[caption=Параметрический цикл, label=uniloopex]
+\begin{sourcecode}
+\captionof{listing}{Параметрический цикл}
+\label{uniloopex}
+\begin{minted}[linenos]{icl}
 for (@i = 0; i < 5; @i = @i + 1) {
 	Log.out @i;
 };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|while| - условное повторение кода}
+\subsubsection{\mintinline{icl}{while} - условное повторение кода}
 
 {\bf Условное повторение кода} будет многократно исполнять блок команд, пока условие остаётся истиной. Условие проверяется перед запуском цикла и если условие изначально - ложь, тело цикла не будет выполниться ни разу.
 
-Главное его преимущества - простота. В сравнения с универсального цикла, в конструкции \code{while} отсутствуют фрагменты кода для инициализации и перехода на следующую итерацию. Он содержит только условие и тело, синтаксис -
-\begin{lstlisting}[numbers=none]
+Главное его преимущества - простота. В сравнения с универсального цикла, в конструкции \mintinline{icl}{while} отсутствуют фрагменты кода для инициализации и перехода на следующую итерацию. Он содержит только условие и тело, синтаксис -
+\begin{minted}{icl}
 while (condition) {
 	commands
 };
-\end{lstlisting}
+\end{minted}
 
-На листинге \ref{whileex} переставлен код, использующий цикл \code{while}. Переменная \code{@number} объявлено до цикла и будет доступа и после него. При завершении работы цикла \code{@number} будет равен 6-и.
+На листинге \ref{whileex} переставлен код, использующий цикл \mintinline{icl}{while}. Переменная \mintinline{icl}{@number} объявлено до цикла и будет доступа и после него. При завершении работы цикла \mintinline{icl}{@number} будет равен 6-и.
 
-\begin{lstlisting}[caption=Цикл while, label=whileex]
+\begin{sourcecode}
+\captionof{listing}{Цикл while}
+\label{whileex}
+\begin{minted}[linenos]{icl}
 @number = 1;
 
 while (@number <= 5) {
 	@number = @number + 1;
 };
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|do while| - цикл с постусловием}
+\subsubsection{\mintinline{icl}{do while} - цикл с постусловием}
 
-{\bf Цикл с постусловием} мало отличается от \code{while}, но он гарантирует что тело цикла будет выполнено минимум 1 раз. Также условие объявляется после тело цикла, указывая на то что она будет проверено после первой итерации. Синтаксис -
-\begin{lstlisting}[numbers=none]
+{\bf Цикл с постусловием} мало отличается от \mintinline{icl}{while}, но он гарантирует что тело цикла будет выполнено минимум 1 раз. Также условие объявляется после тело цикла, указывая на то что она будет проверено после первой итерации. Синтаксис -
+\begin{minted}{icl}
 do {
 	commands
 } while (condition);
-\end{lstlisting}
+\end{minted}
 
-На листинге \ref{dowhileex} представлен код, использующий цикл \code{do while}. Несмотря на то что условие изначально \code{false}, первая итерация цикла будет выполнена, в результате чего \code{@number} станет равен 7-и.
+На листинге \ref{dowhileex} представлен код, использующий цикл \mintinline{icl}{do while}. Несмотря на то что условие изначально \mintinline{icl}{false}, первая итерация цикла будет выполнена, в результате чего \mintinline{icl}{@number} станет равен 7-и.
 
-\begin{lstlisting}[caption=Цикл do while, label=dowhileex]
+\begin{sourcecode}
+\captionof{listing}{Цикл do while}
+\label{dowhileex}
+\begin{minted}[linenos]{icl}
 @number = 6;
 
 do {
 	@number = @number + 1;
 } while (@number < 5);
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|for| - прохождение коллекций}
+\subsubsection{\mintinline{icl}{for} - прохождение коллекций}
 
-{Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать параметрический цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}). Под коллекции имеется в виду следующие типы данных \code{list}, \code{set} и \code{element}.
-\begin{lstlisting}[caption=Прохождение коллекций с помощью параметрического цикла, label=colluniloop]
+{Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать параметрический цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}). Под коллекции имеется в виду следующие типы данных \mintinline{icl}{list}, \mintinline{icl}{set} и \mintinline{icl}{element}.
+\begin{sourcecode}
+\captionof{listing}{Прохождение коллекций с помощью параметрического цикла}
+\label{colluniloop}
+\begin{minted}[linenos]{icl}
 @list = ["apple", "banana", "fruit"];
 
 for (@i = 0; @i < @list'length; @i = @i + 1) {
 	@list.at @i; `` get i-th value
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Упрощённое прохождение коллекций, label=collsimple]
+\begin{sourcecode}
+\captionof{listing}{Упрощённое прохождение коллекций}
+\label{collsimple}
+\begin{minted}[linenos]{icl}
 @list = ["apple", "banana", "fruit"];
 
 for (@list) {
 	@; `` get i-th value
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|filter| - выборочное прохождение коллекций}
+\subsubsection{\mintinline{icl}{filter} - выборочное прохождение коллекций}
 
-{\bf Конструкция \code{filter}} позволяет ставить условие, для каких элементов коллекций выполнять тело цикла, для каких нет.
+{\bf Конструкция \mintinline{icl}{filter}} позволяет ставить условие, для каких элементов коллекций выполнять тело цикла, для каких нет.
 
-В условия есть специальные переменные: \lstinline|@| - значение элемента коллекций и \lstinline|#| - индекс текущей значения.
+В условия есть специальные переменные: \mintinline{icl}{@} - значение элемента коллекций и \mintinline{icl}{#} - индекс текущей значения.
 
 Фильтр имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 filter (collection; condition) {
 	commands
 };
-\end{lstlisting}
+\end{minted}
 
 Фильтровать элементы можно по данных (см. листинг \ref{filterdataex}, выбирается те которые содержат букву а) или по индексам (см. листинг \ref{filterindexex}, выбирается чётные элементы списка).
 
-\begin{lstlisting}[caption=Фильтрование по данных, label=filterdataex]
+\begin{sourcecode}
+\captionof{listing}{Фильтрование по данных}
+\label{filterdataex}
+\begin{minted}[linenos]{icl}
 @list = ["apple", "banana", "fruit"];
 
 filter (@list; @ << "a") {
 	@; `` apple, banana
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\subsubsection{\lstinline|range| - частичное прохождение коллекций}
+\subsubsection{\mintinline{icl}{range} - частичное прохождение коллекций}
 
 {\bf Частичное прохождение} позволяет выполнить код для интервала коллекций. Интервал определяется одной или двумя условий. Первое условие используется для поиска начала интервала. Второе условие - для поиска конца, если оно отсутствует, будет использоваться первое условие. В отсутствия подходящих элементов, тела цикла не будет выполнена. Чтобы выбирать первый или последний элемент (в зависимость от предназначения условии), использует выражение \true{}.
 
 Синтаксис для интервала с одним условием -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 range (collection; condition) {
 	commands
 };
-\end{lstlisting}
+\end{minted}
 
 Синтаксис для интервала с отдельным условием для начало и конца -
-\begin{lstlisting}[numbers=none]
+\begin{minted}{icl}
 range (collection; condition_for_begin; condition_for_end) {
 	commands
 };
-\end{lstlisting}
+\end{minted}
 
-\begin{lstlisting}[caption=Фильтрование по индексам, label=filterindexex]
+\begin{sourcecode}
+\captionof{listing}{Фильтрование по индексам}
+\label{filterindexex}
+\begin{minted}[linenos]{icl}
 @list = ["apple", "banana", "fruit"];
 
 filter (@list; # \ 2 == 0) {
 @; `` apple, fruit
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-Выбрать первый и последний элемент можно по значении (см. листинг \ref{bananakiwiex}, интервал от значений \code{banana} до \code{kiwi}) или по индексам (см. листинг \ref{seclastex}, интервал от второго до последнего).
+Выбрать первый и последний элемент можно по значении (см. листинг \ref{bananakiwiex}, интервал от значений \mintinline{icl}{banana} до \mintinline{icl}{kiwi}) или по индексам (см. листинг \ref{seclastex}, интервал от второго до последнего).
 
-\begin{lstlisting}[caption=Интервал: от banana до kiwi, label=bananakiwiex]
+\begin{sourcecode}
+\captionof{listing}{Интервал: от banana до kiwi}
+\label{bananakiwiex}
+\begin{minted}[linenos]{icl}
 @list = ["apple", "banana", "fruit", "kiwi"];
 
 range (@list; @ == "banana"; @ == "kiwi") {
 	@; `` banana, fruit, kiwi
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Интервал: от второго до последнего, label=seclastex]
+\begin{sourcecode}
+\captionof{listing}{Интервал: от второго до последнего}
+\label{seclastex}
+\begin{minted}[linenos]{icl}
 @list = ["apple", "banana", "fruit", "kiwi"];
 
 range (@list; # == 2; true) {
 	@; `` fruit, kiwi
 }
-\end{lstlisting}
+\end{minted}
+\end{sourcecode}
 
 %\newpage
