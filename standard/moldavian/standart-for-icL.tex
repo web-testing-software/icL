@@ -33,6 +33,8 @@
 	\setcounter{tocdepth}{3}
 }{}
 
+\usepackage[final]{pdfpages}
+
 \begin{document}
 
 \input{header.tex}
@@ -43,13 +45,15 @@
 	\fancyhead[R]{\textmd{\thepage{}}}
 }{}
 
-\title{Specificația limbajului de script-are icL 1.1.0}
+\title{Specificația limbajului de script-are icL 1.1.1}
 \author{Lelițac Vasile\thanks{Supervizorul proiectului: Молчанова Светлана Ивановна}}
 
-\clearpage\maketitle
-\thispagestyle{empty}
+%\clearpage\maketitle
+%\thispagestyle{empty}
+%\newpage
 
-\newpage
+\includepdf[pages=1]{../covers/md.pdf}
+
 \renewcommand{\contentsname}{\textsf{Cuprins}}\makeatletter
 \renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{2.6em}}
 \renewcommand{\l@subsection}{\@dottedtocline{2}{4.0em}{3.6em}}

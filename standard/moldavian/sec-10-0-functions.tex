@@ -38,22 +38,16 @@ Parametrul cu valoare implicită se descrie cu următoarea sintaxă \mintinline{
 	\inputminted[linenos]{icl}{../sources/fullfunc.icL}
 \end{sourcecode}
 
-\begin{listing}[p]
+\begin{listing}
 	\captionof{listing}{Funcție fără argumente}
 	\label{noargsfunc}
 	\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
 \end{listing}
 
-\begin{listing}[p]
+\begin{listing}
 	\captionof{listing}{Funcție făra tip de date}
 	\label{notypefunc}
 	\inputminted[linenos]{icl}{../sources/notypefunc.icL}
-\end{listing}
-
-\begin{listing}[p]
-	\captionof{listing}{Funcție fără argumente și tip de date}
-	\label{minfunc}
-	\inputminted[linenos]{icl}{../sources/minfunc.icL}
 \end{listing}
 
 \subsubsection{Apelul funcției}
@@ -64,7 +58,7 @@ name (arguments);
 \end{minted}
 unde \mintinline{icl}{name} este {\bf numele funcției}, \mintinline{icl}{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
 
-\begin{listing}[h]
+\begin{listing}
 	\captionof{listing}{Apeluri de funcții}
 	\label{callfunc}
 	\inputminted[linenos]{icl}{../sources/callfunc.icL}
@@ -72,10 +66,10 @@ unde \mintinline{icl}{name} este {\bf numele funcției}, \mintinline{icl}{argume
 
 Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\mintinline{icl}{~}). De exemplu avem funcția \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}}, ea poate fi apelată în felul următor \mintinline{icl}{fun (~, 3)}. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
 
-\begin{listing}
+\begin{sourcecode}
 	\captionof{listing}{Valori predefinite}
 	\label{defaultparametrs}
 	\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
-\end{listing}
+\end{sourcecode}
 
-Funcțiile care dețin doar un parametru fără valoare implicită, pot fi apelate folosind acronimul \mintinline{icl}{name arg} sau \mintinline{icl}{name (arg)}. Poziția argumentului nu are importanță (la început, la mijloc sau la sfîrșit).
+Funcțiile care dețin doar un parametru fără valoare implicită, pot fi apelate folosind acronimul \mintinline{icl}{nume argument} sau \mintinline{icl}{nume (argument)}. Poziția argumentului nu are importanță (la început, la mijloc sau la sfîrșit).
