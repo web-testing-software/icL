@@ -170,8 +170,8 @@ Condiții implicite:
 	pentru \element{} - \mintinline{icl}{#'empty}.
 \end{icItems}
 
-În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \mintinline{icl}{exists(expression)}.
-Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă \mintinline{icl}{exists(expression, condition)}.
+În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \mintinline{icl}{exists(expresie)}.
+Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă \mintinline{icl}{exists(expresie, condiție)}.
 
 \subsubsection{\mintinline{icl}{if-exists}}
 
@@ -183,15 +183,15 @@ Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
 \mintinline{icl}{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea if-exist-ului}
-\label{ifexistsex}
-\inputminted[linenos]{icl}{../sources/ifexistsex.icL}
+    \captionof{listing}{Folosirea if-exist-ului}
+    \label{ifexistsex}
+    \inputminted[linenos]{icl}{../sources/ifexistsex.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea for-any-ului}
-\label{foranyex}
-\inputminted[linenos]{icl}{../sources/foranyex.icL}
+    \captionof{listing}{Folosirea for-any-ului}
+    \label{foranyex}
+    \inputminted[linenos]{icl}{../sources/foranyex.icL}
 \end{sourcecode}
 
 
@@ -223,9 +223,9 @@ Modificatori de control adiționali:
 Cea mai simplă metoda de a executa codul de \mintinline{icl}{X} ori. Exemplu de cod care folosește \mintinline{icl}{for:Xtimes} este prezent pe foaia \ref{forxtimes}. Zero și unu nu vor fi acceptați ca argument corect.
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea for:Xtimes}
-\label{forxtimes}
-\inputminted[linenos]{icl}{../sources/forxtimes.icL}
+    \captionof{listing}{Folosirea for:Xtimes}
+    \label{forxtimes}
+    \inputminted[linenos]{icl}{../sources/forxtimes.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for:ever}}
@@ -233,9 +233,9 @@ Cea mai simplă metoda de a executa codul de \mintinline{icl}{X} ori. Exemplu de
 \mintinline{icl}{for:ever} este un ciclu infinit, el poate fi folosit pentru a îndeplini codul de \mintinline{icl}{X} ori, unde \mintinline{icl}{X} este a valoare variabilă. Exemplu de cod este demonstrat pe foaia \ref{foreverloop}.
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea for:ever}
-\label{foreverloop}
-\inputminted[linenos]{icl}{../sources/foreverloop.icL}
+    \captionof{listing}{Folosirea for:ever}
+    \label{foreverloop}
+    \inputminted[linenos]{icl}{../sources/foreverloop.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{while:minX}}
@@ -247,9 +247,9 @@ Modificatorul \mintinline{icl}{min} permite a instala numărul minim de îndepli
 Modificatorul \mintinline{icl}{max} apără de cicluri infinite, se poate de indicat un număr mare, dacă ceva va fi incorect, scenariul nu se va ori pe loc. Acest modificator este disponibil și pentru \mintinline{icl}{for} - răsfoirea colecției, \mintinline{icl}{filter} și \mintinline{icl}{range}. La fel el este util pentru a stabili limită de sus, de exemplu pentru a extrage din pagina primele 10 articole, cînd ele pot fi mii (pr. foaia \ref{maxlimitsheet}).
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea for:maxX}
-\label{maxlimitsheet}
-\inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
+    \captionof{listing}{Folosirea for:maxX}
+    \label{maxlimitsheet}
+    \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
 \end{sourcecode}
 
 \subsection{Elemente Web}
@@ -257,8 +257,8 @@ Modificatorul \mintinline{icl}{max} apără de cicluri infinite, se poate de ind
 Standardul \textit{WebDriver} propus de \textit{World Wide Web Consortium} descrie un număr enorm de excepții în lucrul cu elementele. Toate nu pot fi ignorate, numai una \ferror{NoSuchElement}. Ea este ignorată în regim de automatizare, dacă elementul nu a fost găsit se returnează o colecție deșartă. La prima vedere e puțin, dar aplicații la practică se găsesc multe, în combinație cu alte posibilități, priviți foaia \ref{webelementsheet}.
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea elementelor web}
-\label{webelementsheet}
-\inputminted[linenos]{icl}{../sources/webelementsheet.icL}
+    \captionof{listing}{Folosirea elementelor web}
+    \label{webelementsheet}
+    \inputminted[linenos]{icl}{../sources/webelementsheet.icL}
 \end{sourcecode}
 

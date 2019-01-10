@@ -8,18 +8,18 @@ icL nu se limitează la sincronizarea cu procesele de încărcare și executarea
 
 Ca să captezi mesaje trebuie de creat spion, care are sintaxa următoare:
 \begin{iclcode}
-listen serverAddress : (parameters) {
-	`` code
+listen adresaServerului : (parametri) {
+	`` cod
 }
 \end{iclcode}
 
-Unde \mintinline{icl}{serverAddress} e URL serviciului de sincronizare, iar \mintinline{icl}{parameters} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
+Unde \mintinline{icl}{adresaServerului} e URL serviciului de sincronizare, iar \mintinline{icl}{parametri} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
 
 
 \begin{sourcecode}
-\captionof{listing}{Capturarea erorilor}
-\label{errorcatch}
-\inputminted[linenos]{icl}{../sources/errorcatch.icL}
+    \captionof{listing}{Capturarea erorilor}
+    \label{errorcatch}
+    \inputminted[linenos]{icl}{../sources/errorcatch.icL}
 \end{sourcecode}
 
 \subsubsection{Deconectare}

@@ -2,9 +2,9 @@
 \section{Expresii regulare}
 \label{regex}
 
-Pentru definirea {\bf expresiilor regulare} se folosește literalul \mintinline{icl}{//pattern//mods}, unde \mintinline{icl}{pattern} este paternul expresii, \mintinline{icl}{mods} sunt modificatorii. În patern grupele pot avea nume, gupa anonimă are următoarea sintaxă \mintinline{icl}{(content)}, grupa cu nume - \mintinline{icl}{(?<name>content)}.
+Pentru definirea {\bf expresiilor regulare} se folosește literalul \mintinline{icl}{//șablon//mods}, unde \mintinline{icl}{șablon} este paternul expresii, \mintinline{icl}{mods} sunt modificatorii. În patern grupele pot avea nume, gupa anonimă are următoarea sintaxă \mintinline{icl}{(conținut)}, grupa cu nume - \mintinline{icl}{(?<nume>conținut)}.
 
-Simbolul intern poate fi nu numai \mintinline{icl}{/}, dar și oricare alt simbol, în afară de apostrof (\mintinline{icl}{'}) el intră în conflict cu operatorul {\it rădăcină} (\mintinline{icl}{/'}), \mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{-}, \mintinline{icl}{+} și \mintinline{icl}{!}. De exemplu  \mintinline{icl}{/"pattern"/mods}, \mintinline{icl}{/:pattern:/mods}, \mintinline{icl}{/$pattern$/mods}.
+Simbolul intern poate fi nu numai \mintinline{icl}{/}, dar și oricare alt simbol, în afară de apostrof (\mintinline{icl}{'}) el intră în conflict cu operatorul {\it rădăcină pătrată} (\mintinline{icl}{/'}), \mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{-}, \mintinline{icl}{+} și \mintinline{icl}{!}. De exemplu  \mintinline{icl}{/"șablon"/mods}, \mintinline{icl}{/:șablon:/mods}, \mintinline{icl}{/$șablon$/mods}.
 
 Ca să capturezi începutul șirului de caractere se poate de folosit \mintinline{icl}{^} și \mintinline{icl}{\A}, dar pentru sfîrșit - \mintinline{icl}{$} și \mintinline{icl}{\z}. Primul variant necătînd la popularitatea lui poate funcționa incorect, pentru ca ele capturează începutul și sfîrșitul liniilor în context de text în mai multe linii.
 
@@ -58,13 +58,9 @@ Pentru expresiile regulare sunt disponibili următorii operatori:
 Exemple de folosire a operatorilor sunt prezenți pe foaia \ref{regexpopsex}.
 
 \begin{sourcecode}
-\captionof{listing}{Operații cu expresii regulare}
-\label{regexpopsex}
-\begin{minted}[linenos]{icl}
-"string" << //s.r//;            `` true
-"string" <* //s(.)r//;          `` ["str", "t"]
-"string" ** //s(?<letter>.)r//; `` [letter = "t"]
-\end{minted}
+    \captionof{listing}{Operații cu expresii regulare}
+    \label{regexpopsex}
+    \inputminted[linenos]{icl}{../sources/regexpopsex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{string << regex : bool}}
@@ -108,9 +104,9 @@ Metodele clasei \str{} și \listtype, care primesc parametri de tipul \regex{}:
 Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{regexplikearg}.
 
 \begin{sourcecode}
-\captionof{listing}{Expresii regulare în calitate de argumente}
-\label{regexplikearg}
-\inputminted[linenos]{icl}{../sources/regexplikearg.icL}
+    \captionof{listing}{Expresii regulare în calitate de argumente}
+    \label{regexplikearg}
+    \inputminted[linenos]{icl}{../sources/regexplikearg.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{string.count (re : regex) : int}}

@@ -79,12 +79,12 @@ De asemenea cîmpul poate fi descris în formă prescurtată \mintinline{icl}{@v
 
 \noindent Exemple -
 \begin{minted}{icl}
-@quotation = [author = "author", text = "text"];
-@child = [age = 4, hasBrothers = true, hasParents = true];
-@file = [isEmpty = false, size = 25220, readOnly = true];
+@citată = [autor = "autor", text = "text"];
+@copil = [vîrstă = 4, areFrați = true, arePărinți = true];
+@fișier = [eDeșert = false, mărime = 25220, doarPentruCitire = true];
 
-@text = "la la la"; @file = "song.mp3";
-@object = [=, @text, @file]; `` [text = @text, file = @file];
+@text = "la la la"; @fișier = "song.mp3";
+@obiect = [=, @text, @fișier]; `` [text = @text, fișier = @fișier];
 
 @empty = [=];
 \end{minted}
@@ -97,11 +97,11 @@ Coloana de asemenea poate fi descrisă în formă scurtă, folosind sintaxa \min
 
 \noindent Exemple -
 \begin{minted}{icl}
-@quotations = [author : string, text : string];
-@children = [age : int, hasBrothers : bool, hasParents : bool];
-@files = [isEmpty : bool, size : int, readOnly : bool];
+@citate = [autor : string, text : string];
+@copii = [vîrstă : int, areFrați : bool, arePărinți : bool];
+@fișiere = [eDeșert : bool, mărime : int, doarPentruCitire : bool];
 
-@empty = [:];
+@mulțimeDeșertă = [:];
 \end{minted}
 
 %\newpage

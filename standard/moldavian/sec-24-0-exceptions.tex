@@ -5,18 +5,18 @@ Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în con
 
 \subsection{Generarea excepțiilor}
 
-Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {`code`}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception {`code`}},
+Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {`cod`}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception {`cod`}},
 unde \mintinline{icl}{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \mintinline{icl}{slot:Any}. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
 
 \begin{sourcecode}
-\captionof{listing}{Prelucrarea excepțiilor}
-\label{sighandling}
-\inputminted[linenos]{icl}{../sources/sighandling.icL}
+    \captionof{listing}{Prelucrarea excepțiilor}
+    \label{sighandling}
+    \inputminted[linenos]{icl}{../sources/sighandling.icL}
 \end{sourcecode}
 
 Pentru a genera semnale proprii folosiți comanda \mintinline{icl}{emit:exception (description :}\\*\mintinline{icl}{string)}, unde \mintinline{icl}{exception} e numele semnalului, dar \mintinline{icl}{description} e descrierea.
 
-Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \mintinline{icl}{jammer {`code`}}. Semnalele erorilor semantice și de sintaxă, și \mintinline{icl}{emit:Exit} de asemenea, nu pot fi oprite de jammer.
+Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă \mintinline{icl}{jammer {`cod`}}. Semnalele erorilor semantice și de sintaxă, și \mintinline{icl}{emit:Exit} de asemenea, nu pot fi oprite de jammer.
 
 \subsection{Semnale implicite}
 

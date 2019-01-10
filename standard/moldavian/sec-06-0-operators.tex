@@ -50,9 +50,9 @@ Operatorul aplică operația "conjuncție logică" asupra a și b. Dependența r
 
 \newpage
 \begin{sourcecode}
-\captionof{listing}{Exemple de folosite a operatorilor asupra tipului bool}
-\label{boolopex}
-\inputminted[linenos]{icl}{../sources/boolopex.icL}
+    \captionof{listing}{Exemple de folosite a operatorilor asupra tipului bool}
+    \label{boolopex}
+    \inputminted[linenos]{icl}{../sources/boolopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(a : bool) | (b : bool) : bool}}
@@ -195,9 +195,9 @@ Returnează \true{} dacă \mintinline{icl}{a} și \mintinline{icl}{b} conțin ac
 Returnează \true{} dacă \mintinline{icl}{a} și \mintinline{icl}{b} au aproximativ aceeași valoare, în caz contrar \false{}.
 
 \begin{sourcecode}
-\captionof{listing}{Exemple de folosire al operatorilor asupra tipului int și double}
-\label{numberopex}
-\inputminted[linenos]{icl}{../sources/numberopex.icL}
+    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului int și double}
+    \label{numberopex}
+    \inputminted[linenos]{icl}{../sources/numberopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(a : int) != (b : int) : bool}}
@@ -393,7 +393,7 @@ Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia
 
 Pentru a uni cîteva șiruri de caractere în listă, no se recomandă de folosit concatenarea, dar următorul literal:
 \begin{minted}{icl}
-[@str1, @str2, "Const string", func, 37.1 : string, @bool : string, @list.Join]
+[@str1, @str2, "Const string", func(), 37.1 : string, @bool : string, @list.join()]
 \end{minted}
 
 \subsubsection{\mintinline{icl}{(s1 : string) == (s2 : string) : bool}}
@@ -409,9 +409,9 @@ Returnează \true{} dacă \mintinline{icl}{l1} și \mintinline{icl}{l2} conțin 
 Returnează \false{} dacă \mintinline{icl}{s1} și \mintinline{icl}{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, în caz contrar \true{}.
 
 \begin{sourcecode}
-\captionof{listing}{Exemple de folosire al operatorilor asupra tipului string și list}
-\label{stringlistopex}
-\inputminted[linenos]{icl}{../sources/stringlistopex.icL}
+    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului string și list}
+    \label{stringlistopex}
+    \inputminted[linenos]{icl}{../sources/stringlistopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(l1 : list) != (l2 : list) : bool}}
@@ -478,8 +478,8 @@ Returnează coeficientul de echivalență primit prin comparare șirului \mintin
 
 \subsubsection{\mintinline{icl}{(l1 : list) ** (l2 : list) : double}}
 
-Returnează primit prin compararea șirurilor din lista \mintinline{icl}{l1} cu șirurile din lista \mintinline{icl}{l2}.
-Pentru a primi un rezultat corecte, șirurile de caractere trebuie să dețină un singur cuvînt.
+Returnează coeficientul primit prin compararea șirurilor din lista \mintinline{icl}{l1} cu șirurile din lista \mintinline{icl}{l2}.
+Pentru a primi un rezultat corect, șirurile de caractere trebuie să dețină un singur cuvînt.
 
 \subsection{Operații cu obiecte și mulțimi}
 
@@ -519,9 +519,9 @@ Returnează \true{} dacă \mintinline{icl}{obj1} și \mintinline{icl}{obj2} con�
 Returnează \true{} dacă \mintinline{icl}{set1} și \mintinline{icl}{set2} au același header, toate obiectele din mulțimea \mintinline{icl}{set1} sunt prezente în mulțimea \mintinline{icl}{set2} și invers, în caz contrar \false{}.
 
 \begin{sourcecode}
-\captionof{listing}{Exemple de folosire al operatorilor asupra tipului object și set}
-\label{setobjopex}
-\inputminted[linenos]{icl}{../sources/setobjopex.icL}
+    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului object și set}
+    \label{setobjopex}
+    \inputminted[linenos]{icl}{../sources/setobjopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(obj1 : object) != (obj2 : object) : bool}}

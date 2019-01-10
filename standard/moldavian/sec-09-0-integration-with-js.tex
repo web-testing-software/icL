@@ -7,7 +7,7 @@
 
 {\bf Valorile JS} - principala inovare în integrația cu JavaScript. Ea permite a folosi variabile JavaScript, comod ca și variabilele icL. Ele de asemenea pot fi disponibile pentru citire și scriere sau doar pentru citire.
 
-Fiecare valoare JS are getter, numai variabilele disponibile pentru scriere au setter. Getterii și setterii sunt fragmente de cod JavaScript. În setter valoare pentru instalare se descrie în felul următor \mintinline{icl}{@\{value\}} Sintaxa valorii JS:
+Fiecare valoare JS are getter, numai variabilele disponibile pentru scriere au setter. Getterii și setterii sunt fragmente de cod JavaScript. În setter valoare pentru instalare se descrie în felul următor \mintinline{icl}{@{value}} Sintaxa valorii JS:
 \begin{minted}{icl}
 $value {getter; setter};
 \end{minted}
@@ -20,29 +20,29 @@ $value {getter};
 În calitate de valoare JS poate fi folosită orice variabilă, de exemplu titlu paginii (foaia \ref{jsvalueex}), ea rămîne disponibilă și după trecerea la altă pagină.
 
 \begin{sourcecode}
-\captionof{listing}{Folosirea valorii JS}
-\label{jsvalueex}
-\inputminted[linenos]{icl}{../sources/jsvalueex.icL}
+    \captionof{listing}{Folosirea valorii JS}
+    \label{jsvalueex}
+    \inputminted[linenos]{icl}{../sources/jsvalueex.icL}
 \end{sourcecode}
 
 \subsection{Executarea codului JavaScript}
 
 Comanda \mintinline{icl}{$run} permite a executa {\bf cod în limbajul JavaScript}.
 
-\mintinline{icl}{[icL]} Comanda \mintinline{icl}{$run} primește numai un argument - cod, în cod pot fi prezente variabile icL. Variabilele globale pot fi transmise în modul următor \mintinline{icl}{#{name}}, localele - \mintinline{icl}{@{name}}. Exemplu de transmitere al valorilor în JavaScript este demonstrat pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
+\mintinline{icl}{[icL]} Comanda \mintinline{icl}{$run} primește numai un argument - cod, în cod pot fi prezente variabile icL. Variabilele globale pot fi transmise în modul următor \mintinline{icl}{#{nume}}, localele - \mintinline{icl}{@{nume}}. Exemplu de transmitere al valorilor în JavaScript este demonstrat pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
 
 \begin{sourcecode}
-\captionof{listing}{Executarea codului în limbajul JavaScript (icL)}
-\label{jsrunex1}
-\inputminted[linenos]{icl}{../sources/jsrunex1.icL}
+    \captionof{listing}{Executarea codului în limbajul JavaScript (icL)}
+    \label{jsrunex1}
+    \inputminted[linenos]{icl}{../sources/jsrunex1.icL}
 \end{sourcecode}
 
 \mintinline{icl}{[w3c]} Comanda \mintinline{icl}{$run} primește un număr variabil de argumente. Ei se transmit în JavaScript sub formă de argumente ai funcției. Accesul la ele se realizează prin variabila \mintinline{icl}{arguments}. Cod care folosește această metodă este prezentat pe foaia \ref{jsrunex2}, se poate de-l comparat cu codul de pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
 
 \begin{sourcecode}
-\captionof{listing}{Executarea codului în limbajul JavaScript (w3c)}
-\label{jsrunex2}
-\inputminted[linenos]{icl}{../sources/jsrunex2.icL}
+    \captionof{listing}{Executarea codului în limbajul JavaScript (w3c)}
+    \label{jsrunex2}
+    \inputminted[linenos]{icl}{../sources/jsrunex2.icL}
 \end{sourcecode}
 
 Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
@@ -62,6 +62,7 @@ Excepții posibile: \ferror{FileNotFound}, \ferror{JavascriptError} (pr. tab. \r
 
 \mintinline{icl}{[icL]} {\bf Scripturile personale} se execută pînă la încărcarea paginii, la trecerea la o nouă pagină. Scriptul poate fi fixat la tabul curent (\mintinline{icl}{$user}) sau la toate taburile din sesie (\mintinline{icl}{$always}).
 
+\newpage
 \mintinline{icl}{[icL]} Sintaxă -
 \begin{minted}{icl}
 $user "calea/spre/fișier.js";

@@ -27,28 +27,28 @@ Poate să apară necesitatea de a folosi unul și același grup de comenzi de ma
 
 \begin{icItems}
 \item
-	\mintinline{icl}{initialization} - inițializare.
+	\mintinline{icl}{inițializare} - inițializare.
 \item
-	\mintinline{icl}{condition} - condiție, care se controlează înainte de executare;
+	\mintinline{icl}{condiție} - condiție, care se controlează înainte de executare;
 \item
-	\mintinline{icl}{step} - cod, care răspunde de trecerea la următoarea iterație.
+	\mintinline{icl}{pas} - cod, care răspunde de trecerea la următoarea iterație.
 \item
-	\mintinline{icl}{commands} - codul care fi executat repetat.
+	\mintinline{icl}{comenzi} - codul care fi executat repetat.
 \end{icItems}
 
 Ciclul universal are următoarea sintaxă -
 \begin{minted}{icl}
-for (initialization; condition; step) {
-	commands
+for (inițializare; condiție; pas) {
+	comenzi
 };
 \end{minted}
 
 Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \mintinline{icl}{for}, ciclu va printa în consolă numere de la zero la patru.
 
 \begin{sourcecode}
-\captionof{listing}{Ciclu universal}
-\label{uniloopex}
-\inputminted[linenos]{icl}{../sources/uniloopex.icL}
+    \captionof{listing}{Ciclu universal}
+    \label{uniloopex}
+    \inputminted[linenos]{icl}{../sources/uniloopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{while} - repetare condiționată a codului}
@@ -57,17 +57,17 @@ Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \mint
 
 Avantajul lui principal este simplitatea. În comparație cu ciclul universal el nu are inițializare și trece la următoarea iterație. El are doar condiție și grup de comenzi, sintaxă -
 \begin{minted}{icl}
-while (condition) {
-	commands
+while (condiție) {
+	comenzi
 };
 \end{minted}
 
 Pe foaia \ref{whileex} este prezentat cod care folosește ciclu \mintinline{icl}{while}. Variabila \mintinline{icl}{@number} este declarată pînă la ciclu și va fi disponibilă și după ciclu. După finalizarea ciclului variabila \mintinline{icl}{@number} va avea valoarea 6.
 
 \begin{sourcecode}
-\captionof{listing}{Ciclu while}
-\label{whileex}
-\inputminted[linenos]{icl}{../sources/whileex.icL}
+    \captionof{listing}{Ciclu while}
+    \label{whileex}
+    \inputminted[linenos]{icl}{../sources/whileex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{do-while} - ciclu cu condiție posterioară}
@@ -75,16 +75,16 @@ Pe foaia \ref{whileex} este prezentat cod care folosește ciclu \mintinline{icl}
 {\bf Ciclu cu condiție posterioară} nu tare se doasebește de \mintinline{icl}{while}, dar el garantează că grupul de comenzi va fi executat cel puțin o dată. De asemenea condiția se declară după grupul de comenzi, arătînd la ceea că ea va fi verificată după prima iterație. Sintaxă -
 \begin{minted}{icl}
 do {
-	commands
-} while (condition);
+	comenzi
+} while (condiție);
 \end{minted}
 
 Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \mintinline{icl}{do-while}. Necătînd la aceea că condiția este implicit falsă, o iterație va avea loc, în rezultat variabila \mintinline{icl}{@number} va deveni egală cu 7.
 
 \begin{sourcecode}
-\captionof{listing}{Ciclu do while}
-\label{dowhileex}
-\inputminted[linenos]{icl}{../sources/dowhileex.icL}
+    \captionof{listing}{Ciclu do while}
+    \label{dowhileex}
+    \inputminted[linenos]{icl}{../sources/dowhileex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for} - răsfoirea colecție}
@@ -99,36 +99,36 @@ Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \mintinline{i
 
 Filtrul are următoarea sintaxă -
 \begin{minted}{icl}
-filter (collection; condition) {
-	commands
+filter (colecție; condiție) {
+	comenzi
 };
 \end{minted}
 
 A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se filtreză cele care conțin litera a) sau după index (foaia \ref{filterindexex}, se aleg elementele pare a listei).
 
 \begin{sourcecode}
-\captionof{listing}{Răsfoirea colecție prin ciclu universal}
-\label{colluniloop}
-\inputminted[linenos]{icl}{../sources/colluniloop.icL}
+    \captionof{listing}{Răsfoirea colecție prin ciclu universal}
+    \label{colluniloop}
+    \inputminted[linenos]{icl}{../sources/colluniloop.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
-\captionof{listing}{Răsfoirea simplificată a colecției}
-\label{collsimple}
-\inputminted[linenos]{icl}{../sources/collsimple.icL}
+    \captionof{listing}{Răsfoirea simplificată a colecției}
+    \label{collsimple}
+    \inputminted[linenos]{icl}{../sources/collsimple.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
-\captionof{listing}{Filtrare pe bază de valoare}
-\label{filterdataex}
-\inputminted[linenos]{icl}{../sources/filterdataex.icL}
+    \captionof{listing}{Filtrare pe bază de valoare}
+    \label{filterdataex}
+    \inputminted[linenos]{icl}{../sources/filterdataex.icL}
 \end{sourcecode}
 
-\begin{sourcecode}
-\captionof{listing}{Filtare după index}
-\label{filterindexex}
-\inputminted[linenos]{icl}{../sources/filterindexex.icL}
-\end{sourcecode}
+\begin{listing}[t]
+    \captionof{listing}{Filtare după index}
+    \label{filterindexex}
+    \inputminted[linenos]{icl}{../sources/filterindexex.icL}
+\end{listing}
 
 \subsubsection{\mintinline{icl}{range} - răsfoirea selectivă a colecției}
 
@@ -136,29 +136,29 @@ A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se f
 
 Sintaxă cu o singură condiție -
 \begin{minted}{icl}
-range (collection; condition) {
-	commands
+range (colecție; condiție) {
+	comenzi
 };
 \end{minted}
 
 Sintaxă cu două condiții (pentru început și sfîrșit de o parte) -
 \begin{minted}{icl}
-range (collection; condition_for_begin; condition_for_end) {
-	commands
+range (colecție; condițiePentruÎnceput; condițiePentruSfîrșit) {
+	comenzi
 };
 \end{minted}
 
 A alege intervalul se poate după valoare (foaia \ref{bananakiwiex}, interval de la \mintinline{icl}{banana} pînă la \mintinline{icl}{kiwi}) sau după index (foaia \ref{seclastex}, de la a doilea pînă la ultimul).
 
 \begin{sourcecode}
-\captionof{listing}{Interval: de la banana pîna la kiwi}
-\label{bananakiwiex}
-\inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
+    \captionof{listing}{Interval: de la banana pîna la kiwi}
+    \label{bananakiwiex}
+    \inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
-\vspace{-2em}
-\captionof{listing}{Interval: de la al doilea pînă la ultimul}
-\label{seclastex}
-\inputminted[linenos]{icl}{../sources/seclastex.icL}
+    \vspace{-2em}
+    \captionof{listing}{Interval: de la al doilea pînă la ultimul}
+    \label{seclastex}
+    \inputminted[linenos]{icl}{../sources/seclastex.icL}
 \end{sourcecode}
