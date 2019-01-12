@@ -427,9 +427,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="406.11389"
-     inkscape:cy="511.74515"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="403.02704"
+     inkscape:cy="376.92834"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -466,19 +466,19 @@
        y="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:11.06334782px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.69145924;"
-       x="11.438046"
-       y="225.54285"
+       style="font-style:normal;font-weight:normal;font-size:9.94617653px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.62163603"
+       x="20.885883"
+       y="225.81097"
        id="text1368"><tspan
          sodipodi:role="line"
          id="tspan1366"
-         x="11.438046"
-         y="225.54285"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif';stroke-width:0.69145924;fill:#ffffff;fill-opacity:1;">Specificația limbajului de script-are</tspan><tspan
+         x="20.885883"
+         y="225.81097"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif';fill:#ffffff;fill-opacity:1;stroke-width:0.62163603">Specificația limbajului de script-are</tspan><tspan
          sodipodi:role="line"
-         x="11.438046"
-         y="239.37202"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif';stroke-width:0.69145924;fill:#ffffff;fill-opacity:1;"
+         x="20.885883"
+         y="238.2437"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif';fill:#ffffff;fill-opacity:1;stroke-width:0.62163603"
          id="tspan1370" /></text>
     <text
        xml:space="preserve"
