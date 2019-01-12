@@ -12,16 +12,9 @@
 На листинге \ref{initexample} показаны несколько пример объявлений и инициализации переменных, обратите внимание что дробные числа пишется через точку, а не через запятую как принято в Европе и Российском Федераций.
 
 \begin{sourcecode}
-\captionof{listing}{Пример объявлений и инициализации переменных}
-\label{initexample}
-\begin{minted}[linenos]{icl}
-@bool = false;
-@catched = true;
-@int = 234;
-@double = 23.4;
-#pi = 3.14;
-#negative = -100.0;
-\end{minted}
+	\captionof{listing}{Пример объявлений и инициализации переменных}
+	\label{initexample}
+    \inputminted[linenos]{icl}{../sources/initexample.icL}
 \end{sourcecode}
 
 \subsection{Локальные переменные}
@@ -32,28 +25,9 @@
 
 На листинге \ref{localvars} показана область видимость переменной \mintinline{icl}{@var}, в точках объявления переменных \mintinline{icl}{@test1}, \mintinline{icl}{@test2} и \mintinline{icl}{@test6} - она не видна, когда в точках объявления переменных \mintinline{icl}{@test3}, \mintinline{icl}{@test4} и \mintinline{icl}{@test5} - да.
 \begin{sourcecode}
-\captionof{listing}{Область видимости локальных перемен}
-\label{localvars}
-\begin{minted}[linenos]{icl}
-`` error
-@test1 = @var;
-if (@) {
-	`` error
-	@test2 = @var;
-	`` initialization
-	@var = 0;
-	`` ok
-	@test3 = @var;
-	if (@) {
-		`` ok
-		@test4 = @var;
-	}
-	`` ok
-	@test5 = @var;
-}
-`` error
-@test6 = @var;
-\end{minted}
+	\captionof{listing}{Область видимости локальных перемен}
+	\label{localvars}
+    \inputminted[linenos]{icl}{../sources/localvars.icL}
 \end{sourcecode}
 
 \subsection{Глобальные переменные}
@@ -67,28 +41,9 @@ if (@) {
 \
 
 \begin{sourcecode}
-\captionof{listing}{Область видимости глобальных перемен}
-\label{globalvars}
-\begin{minted}[linenos]{icl}
-`` error
-@test1 = @var;
-if (@) {
-	`` error
-	@test2 = @var;
-	if (@) {
-		`` error
-		@test3 = @var;
-		`` initialization
-		@var = 0;
-		`` ok
-		@test4 = @var;
-	}
-	`` ok
-	@test5 = @var;
-}
-`` ok
-@test6 = @var;
-\end{minted}
+	\captionof{listing}{Область видимости глобальных перемен}
+	\label{globalvars}
+	\inputminted[linenos]{icl}{../sources/globalvars.icL}
 \end{sourcecode}
 
 \subsection{Левые и правые значения в icL}
@@ -107,12 +62,9 @@ if (@) {
 Левые значения могут находиться с обеих сторон знака {\it присваивание}, когда правые - только справа. Примеры правильно и неправильно кода иллюстрированы на листинге \ref{rlvalues};
 
 \begin{sourcecode}
-\captionof{listing}{Левые и правые значения}
-\label{rlvalues}
-\begin{minted}[linenos]{icl}
-@a1 = @a2; @a3 = 123; `` ok
-123 = @a1; 125 = 456; `` error
-\end{minted}
+	\captionof{listing}{Левые и правые значения}
+	\label{rlvalues}
+	\inputminted[linenos]{icl}{../sources/rlvalues.icL}
 \end{sourcecode}
 
 \subsection{Запакованные значения}

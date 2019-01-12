@@ -65,41 +65,13 @@
 \
 
 \noindent Примеры использования свойств -
-\begin{lstlisting}
-@int = 2;
-@double = 3;
-@string = "int";
-
-@int'typeName == @string;		 `` true
-@int'typeId == @double'typeId ;	 `` false
-@string'typeId == Types'string; `` true
-
-@int'rValue; `` false
-1234'rValue; `` true
-
-@int'readOnly; `` false
-1234'readOnly; `` true
-
-@int'lValue; `` true
-1234'lValue; `` false
-
-@int'link; `` true
-1234'link; `` false
-\end{lstlisting}
+\inputminted[linenos]{icl}{../sources/propertiesmain.icL}
 
 \subsection{Методы}
 
 Методы позволяют изменить состояние объекта. Все типы данных имеют только один общий метод \mintinline{icl}{any.ensureRValue}, который гарантирует что изменение значению объекту не будет изменить данные во вне текущего контекста.
 
 \noindent Пример -
-\begin{lstlisting}
-@int = 123;
-
-@int'rValue;   `` false
-@int'readOnly; `` false
-@int.ensureRValue;
-@int'rValue;   `` true
-@int'readOnly; `` false
-\end{lstlisting}
+\inputminted[linenos]{icl}{../sources/anyensureRValue.icL}
 
 %\newpage

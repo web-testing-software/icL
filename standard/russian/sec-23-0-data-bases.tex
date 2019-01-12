@@ -133,49 +133,9 @@
 Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \mintinline{icl}{@:name}, а глобальные - \mintinline{icl}{\#:name}.
 
 \begin{sourcecode}
-\captionof{listing}{Пример кода использующий базу данных}
-\label{dbexample}
-\begin{minted}[linenos]{icl}
-DBManager.openSQLite "db.sqlite";
-
-`` simple query
-DB.query {
-	SELECT country
-	FROM artists
-};
-Query.exec();
-
-while (Query.next) {
-    doSomething Query'country;
-};
-
-`` query with parameters
-DB.query {
-	SELECT name
-	FROM programmers
-	WHERE country = :country
-	LIMIT 1
-};
-Query'country = "Moldova";
-`` is equivalent to
-@md = "Moldova";
-DB.query {
-	SELECT name
-	FROM programmers
-	WHERE country = @:md
-	LIMIT 1
-};
-
-`` insert query
-DB.query {
-	INSERT INTO person (id, forname, name)
-	VALUE (:id :forname :name)
-};
-Query'id = 1001;
-Query'forname = "Bart";
-Query'name = "Simpson";
-Query.exec();
-\end{minted}
+	\captionof{listing}{Пример кода использующий базу данных}
+	\label{dbexample}
+    \inputminted[linenos]{icl}{../sources/dbexample.icL}
 \end{sourcecode}
 
 %\newpage

@@ -57,13 +57,9 @@
 Примеры использования операторов приведены на листинге \ref{regexpopsex}.
 
 \begin{sourcecode}
-\captionof{listing}{Операторы регулярных выражений}
-\label{regexpopsex}
-\begin{minted}[linenos]{icl}
-"string" << //s.r//;            `` true
-"string" <* //s(.)r//;          `` ["str", "t"]
-"string" ** //s(?<letter>.)r//; `` [letter = "t"]
-\end{minted}
+	\captionof{listing}{Операторы регулярных выражений}
+	\label{regexpopsex}
+    \inputminted[linenos]{icl}{../sources/regexpopsex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{string << regex : bool}}
@@ -115,25 +111,9 @@
 Возвращает индекс первой подстроки подходящей по шаблону \mintinline{icl}{re}, ища вперёд с позицией \mintinline{icl}{startPos}; если такая подстрока не нашлось, возвращает -1.
 
 \begin{sourcecode}
-\captionof{listing}{Регулярные выражения в качестве аргумента}
-\label{regexplikearg}
-\begin{minted}[linenos]{icl}
-@str = "Hello world, collaborators!";
-
-@str.count //\wo//;       `` 5
-@str.indexOf //\w{6}//;   `` 13
-@str.lastIndexOf //l+o//; `` 2
-@str.remove //\w{2}o//;   `` "He world, collrrs!"
-@str.split //,?\s//;      `` ["He", "world", "collrrs!"]
-
-@fonts = ["Arial", "Helvetica", "Times", "Courier"];
-
-@fonts.filter //^[ac]//i;    `` ["Arial", "Courier"]
-@fonts.indexOf //e.//;       `` 1
-@fonts.indexOf //e.// 2;     `` 2
-@fonts.lastIndexOf //e.//;   `` 3
-@fonts.lastIndexOf //e.// 2; `` 2
-\end{minted}
+	\captionof{listing}{Регулярные выражения в качестве аргумента}
+	\label{regexplikearg}
+    \inputminted[linenos]{icl}{../sources/regexplikearg.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{string.lastIndexOf (re : regex, startPos = -1) : int}}

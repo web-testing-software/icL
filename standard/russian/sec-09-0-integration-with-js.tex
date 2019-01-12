@@ -19,13 +19,9 @@ $value {getter};
 В качестве JS-Значений может объявить любое переменное, на пример название страницы (см. листинг \ref{jsvalueex}), она остаётся доступной даже после перехода на другой странице.
 
 \begin{sourcecode}
-\captionof{listing}{Использование JS-Значений}
-\label{jsvalueex}
-\begin{minted}[linenos]{icl}
-@title = $value {document.title; document.title = @{value}};
-Log.out @title;
-@title = "Yet another title.";
-\end{minted}
+	\captionof{listing}{Использование JS-Значений}
+	\label{jsvalueex}
+    \inputminted[linenos]{icl}{../sources/jsvalueex.icL}
 \end{sourcecode}
 
 \subsection{Выполнение кода на языке JavaScript}
@@ -35,23 +31,17 @@ Log.out @title;
 \mintinline{icl}{[icL]} Команда \mintinline{icl}{$run} получает один аргумент - код, в коде могут присутствовать переменные icL. Глобальные переменные предаются следующим образом \mintinline{icl}{#{name}}, локальные - \mintinline{icl}{@{name}}. Пример передачи значений перемены в JavaScript представлен на листинге \ref{jsrunex1}. Код можно выполнить асинхронно используя \mintinline{icl}{$runAsync}.
 
 \begin{sourcecode}
-\captionof{listing}{Выполнение кода на языке JavaScript (icL)}
-\label{jsrunex1}
-\begin{minted}[linenos]{icl}
-@var = 2;
-$run { window.a = @{var} }
-\end{minted}
+	\captionof{listing}{Выполнение кода на языке JavaScript (icL)}
+	\label{jsrunex1}
+    \inputminted[linenos]{icl}{../sources/jsrunex1.icL}
 \end{sourcecode}
 
 \mintinline{icl}{[w3c]} Команда \mintinline{icl}{$run} получает переменное количество переменных. Они передаются в коде на языке JavaScript в виде аргументов вызова функций. Доступ к ним осуществляется с помощью переменной \mintinline{icl}{arguments}. Код использующий данную тактику представлен на листинге \ref{jsrunex2}, его можно сравнивать с листингом \ref{jsrunex1}. Код можно выполнить асинхронно используя \mintinline{icl}{$runAsync}.
 
 \begin{sourcecode}
-\captionof{listing}{Выполнение кода на языке JavaScript (w3c)}
-\label{jsrunex2}
-\begin{minted}[linenos]{icl}
-@var = 2;
-$run @var { window.a = arguments[0] }
-\end{minted}
+	\captionof{listing}{Выполнение кода на языке JavaScript (w3c)}
+	\label{jsrunex2}
+    \inputminted[linenos]{icl}{../sources/jsrunex2.icL}
 \end{sourcecode}
 
 Возможные исключения: \ferror{JavascriptError}, \ferror{ScriptTimeout} (см. таб. \ref{errors}).

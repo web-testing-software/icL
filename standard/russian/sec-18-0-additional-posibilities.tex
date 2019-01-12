@@ -384,17 +384,9 @@
 На листинге \ref{newcookies}, представлен правильный способ создания новых cookie.
 
 \begin{sourcecode}
-\captionof{listing}{Создания новых cookie}
-\label{newcookies}
-\begin{minted}[linenos]{icl}
-for any Cookie {
-	@'name = "age";
-	@'domain = "example.org";
-	@'value = 23 : string;
-	@.resetTime().add(1, 0, 0);
-	@.save;
-};
-\end{minted}
+	\captionof{listing}{Создания новых cookie}
+	\label{newcookies}
+    \inputminted[linenos]{icl}{../sources/newcookies.icL}
 \end{sourcecode}
 
 

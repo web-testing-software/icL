@@ -197,13 +197,9 @@
 Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
 
 \begin{sourcecode}
-\captionof{listing}{Использование if exist}
-\label{ifexistsex}
-\begin{minted}[linenos]{icl}
-if exists(23 + 3; # > 20) {
-	Log.out "@ = " @; `` @ = 26
-};
-\end{minted}
+	\captionof{listing}{Использование if exist}
+	\label{ifexistsex}
+    \inputminted[linenos]{icl}{../sources/ifexistsex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for any}}
@@ -211,13 +207,9 @@ if exists(23 + 3; # > 20) {
 Часто придётся найти и использовать дважды или трижды один веб-элемент, и чем придумать название для такой переменной гораздо проще копировать и вставить запрос \mintinline{icl}{Doc.query}, но когда приходит время изменить код это приводит к ошибкам. \mintinline{icl}{for any} позволяет повторно использовать любое значение без создания ненужных переменных и избегает ошибки при редактировании. Пример использования представлен на листинге \ref{foranyex}.
 
 \begin{sourcecode}
-\captionof{listing}{Использование for any}
-\label{foranyex}
-\begin{minted}[linenos]{icl}
-for any(Doc.query "#id") {
-	Log.out "@ = " @; `` @ = div\#id.class
-};
-\end{minted}
+	\captionof{listing}{Использование for any}
+	\label{foranyex}
+    \inputminted[linenos]{icl}{../sources/foranyex.icL}
 \end{sourcecode}
 
 \subsection{Преобразование типов}
@@ -247,17 +239,9 @@ for any(Doc.query "#id") {
 Самый простой способ выполнить блок команд \mintinline{icl}{X} раз. Пример кода использующий \mintinline{icl}{for:Xtimes} представлен на листинге \ref{forxtimes}. Единица и ноль не подходят для определения количестве повторении.
 
 \begin{sourcecode}
-\captionof{listing}{Использование for:Xtimes}
-\label{forxtimes}
-\begin{minted}[linenos]{icl}
-for:5times () {
-	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
-};
-`` replaces
-for (@i = 0; @i < 5; @i = @i + 1) {
-	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
-}
-\end{minted}
+	\captionof{listing}{Использование for:Xtimes}
+	\label{forxtimes}
+    \inputminted[linenos]{icl}{../sources/forxtimes.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for:ever}}
@@ -265,19 +249,9 @@ for (@i = 0; @i < 5; @i = @i + 1) {
 \mintinline{icl}{for:ever} является бесконечным циклом, его можно использовать для выполнения блока команд \mintinline{icl}{X} раз, но количество итераций не фиксируемая, а определена переменной. Пример кода представлен на листинге \ref{foreverloop}.
 
 \begin{sourcecode}
-\captionof{listing}{Использование for:ever}
-\label{foreverloop}
-\begin{minted}[linenos]{icl}
-@times = 5;
-
-for:ever (@ < @times) {
-	Log.out "@ = " @; `` @ = 0, 1, 2, 3, 4
-};
-`` replaces
-for (@i = 0; @i < @times; @i = @i + 1) {
-	Log.out "@i = " @i; `` @i = 0, 1, 2, 3, 4
-}
-\end{minted}
+	\captionof{listing}{Использование for:ever}
+	\label{foreverloop}
+    \inputminted[linenos]{icl}{../sources/foreverloop.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{while:minX}}
@@ -289,13 +263,9 @@ for (@i = 0; @i < @times; @i = @i + 1) {
 Модификатор \mintinline{icl}{max} защищает вас от бесконечных циклов, можно указать для тестирования большое число, если что-то пойдёт не так, сценарии не зацикливается. Данный модификатор также доступен для оператора \mintinline{icl}{for} - прохождение коллекций, \mintinline{icl}{filter} и \mintinline{icl}{range}. Также пригодится для вставки ограничений сверху, например излечи из страницы только первых 10 записи, когда их там может быть и тысячи (см. листинг \ref{maxlimitsheet}).
 
 \begin{sourcecode}
-\captionof{listing}{Использование for:maxX}
-\label{maxlimitsheet}
-\begin{minted}[linenos]{icl}
-for:max10 (Doc.query "#my-table tr") {
-	@; `` just first 10 elements
-}
-\end{minted}
+	\captionof{listing}{Использование for:maxX}
+	\label{maxlimitsheet}
+    \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
 \end{sourcecode}
 
 \subsection{Веб-элементы}
@@ -303,26 +273,9 @@ for:max10 (Doc.query "#my-table tr") {
 Стандарт \textit{WebDriver} преложен \textit{World Wide Web Consortium} описывает огромное количество исключений при работе с веб-элементами. Всех игнорировать нельзя, а только одну \ferror{NoSuchElement}. Она игнорируется в режиме автоматизации, если элемент не найден возвращается пустая коллекция. На первый взгляд мало, но применении на практике найдутся много, в комбинации с другими возможностями, смотрите листинг \ref{maxlimitsheet}.
 
 \begin{sourcecode}
-\captionof{listing}{Использование веб-элементов}
-\label{maxlimitsheet}
-\begin{minted}[linenos]{icl}
-`` example 1
-
-@a = exists(Doc.query "#el")'text | "";
-`` replaces
-@a = "";
-if (Doc.queryAll("#el")'length > 0) { @a = Doc.query("#el")'text; }
-
-`` example 2
-
-@links = Doc.queryAll "a";
-
-@links.add(Doc.query "#special");
-`` replaces
-if (!Doc.queryAll("#special")'empty) { @links.add(Doc.query "#special"); }
-`` or
-if exists(Doc.query "#special") { @links.add(@); }
-\end{minted}
+	\captionof{listing}{Использование веб-элементов}
+	\label{maxlimitsheet}
+    \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
 \end{sourcecode}
 
 

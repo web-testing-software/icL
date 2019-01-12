@@ -46,13 +46,9 @@ for (initialization; condition; step) {
 На листинге \ref{uniloopex} показан пример использование цикла \mintinline{icl}{for}, цикл будет выводить числа от нуля до четырёх.
 
 \begin{sourcecode}
-\captionof{listing}{Параметрический цикл}
-\label{uniloopex}
-\begin{minted}[linenos]{icl}
-for (@i = 0; i < 5; @i = @i + 1) {
-	Log.out @i;
-};
-\end{minted}
+	\captionof{listing}{Параметрический цикл}
+	\label{uniloopex}
+    \inputminted[linenos]{icl}{../sources/uniloopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{while} - условное повторение кода}
@@ -69,15 +65,9 @@ while (condition) {
 На листинге \ref{whileex} переставлен код, использующий цикл \mintinline{icl}{while}. Переменная \mintinline{icl}{@number} объявлено до цикла и будет доступа и после него. При завершении работы цикла \mintinline{icl}{@number} будет равен 6-и.
 
 \begin{sourcecode}
-\captionof{listing}{Цикл while}
-\label{whileex}
-\begin{minted}[linenos]{icl}
-@number = 1;
-
-while (@number <= 5) {
-	@number = @number + 1;
-};
-\end{minted}
+	\captionof{listing}{Цикл while}
+	\label{whileex}
+    \inputminted[linenos]{icl}{../sources/whileex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{do while} - цикл с постусловием}
@@ -92,42 +82,24 @@ do {
 На листинге \ref{dowhileex} представлен код, использующий цикл \mintinline{icl}{do while}. Несмотря на то что условие изначально \mintinline{icl}{false}, первая итерация цикла будет выполнена, в результате чего \mintinline{icl}{@number} станет равен 7-и.
 
 \begin{sourcecode}
-\captionof{listing}{Цикл do while}
-\label{dowhileex}
-\begin{minted}[linenos]{icl}
-@number = 6;
-
-do {
-	@number = @number + 1;
-} while (@number < 5);
-\end{minted}
+	\captionof{listing}{Цикл do while}
+	\label{dowhileex}
+    \inputminted[linenos]{icl}{../sources/dowhileex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{for} - прохождение коллекций}
 
 {Коллекция} - объект, содержащий несколько значений. Самый простой пример коллекций это список, он содержит несколько строк. Например, нужно выполнять операцию для каждой строки списка. Можно использовать параметрический цикл (см. листинг \ref{colluniloop}) или использовать упрощенное {\bf прохождение коллекций} (см. листинг \ref{collsimple}). Под коллекции имеется в виду следующие типы данных \mintinline{icl}{list}, \mintinline{icl}{set} и \mintinline{icl}{element}.
 \begin{sourcecode}
-\captionof{listing}{Прохождение коллекций с помощью параметрического цикла}
-\label{colluniloop}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-for (@i = 0; @i < @list'length; @i = @i + 1) {
-	@list.at @i; `` get i-th value
-}
-\end{minted}
+	\captionof{listing}{Прохождение коллекций с помощью параметрического цикла}
+	\label{colluniloop}
+    \inputminted[linenos]{icl}{../sources/colluniloop.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
-\captionof{listing}{Упрощённое прохождение коллекций}
-\label{collsimple}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-for (@list) {
-	@; `` get i-th value
-}
-\end{minted}
+	\captionof{listing}{Упрощённое прохождение коллекций}
+	\label{collsimple}
+    \inputminted[linenos]{icl}{../sources/collsimple.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{filter} - выборочное прохождение коллекций}
@@ -146,15 +118,9 @@ filter (collection; condition) {
 Фильтровать элементы можно по данных (см. листинг \ref{filterdataex}, выбирается те которые содержат букву а) или по индексам (см. листинг \ref{filterindexex}, выбирается чётные элементы списка).
 
 \begin{sourcecode}
-\captionof{listing}{Фильтрование по данных}
-\label{filterdataex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-filter (@list; @ << "a") {
-	@; `` apple, banana
-}
-\end{minted}
+	\captionof{listing}{Фильтрование по данных}
+	\label{filterdataex}
+    \inputminted[linenos]{icl}{../sources/filterdataex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{range} - частичное прохождение коллекций}
@@ -176,41 +142,23 @@ range (collection; condition_for_begin; condition_for_end) {
 \end{minted}
 
 \begin{sourcecode}
-\captionof{listing}{Фильтрование по индексам}
-\label{filterindexex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit"];
-
-filter (@list; # \ 2 == 0) {
-@; `` apple, fruit
-}
-\end{minted}
+	\captionof{listing}{Фильтрование по индексам}
+	\label{filterindexex}
+    \inputminted[linenos]{icl}{../sources/filterindexex.icL}
 \end{sourcecode}
 
 Выбрать первый и последний элемент можно по значении (см. листинг \ref{bananakiwiex}, интервал от значений \mintinline{icl}{banana} до \mintinline{icl}{kiwi}) или по индексам (см. листинг \ref{seclastex}, интервал от второго до последнего).
 
 \begin{sourcecode}
-\captionof{listing}{Интервал: от banana до kiwi}
-\label{bananakiwiex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit", "kiwi"];
-
-range (@list; @ == "banana"; @ == "kiwi") {
-	@; `` banana, fruit, kiwi
-}
-\end{minted}
+	\captionof{listing}{Интервал: от banana до kiwi}
+	\label{bananakiwiex}
+    \inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
 \end{sourcecode}
 
 \begin{sourcecode}
-\captionof{listing}{Интервал: от второго до последнего}
-\label{seclastex}
-\begin{minted}[linenos]{icl}
-@list = ["apple", "banana", "fruit", "kiwi"];
-
-range (@list; # == 2; true) {
-	@; `` fruit, kiwi
-}
-\end{minted}
+	\captionof{listing}{Интервал: от второго до последнего}
+	\label{seclastex}
+    \inputminted[linenos]{icl}{../sources/seclastex.icL}
 \end{sourcecode}
 
 %\newpage

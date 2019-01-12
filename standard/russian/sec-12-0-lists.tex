@@ -19,24 +19,9 @@
 На листинге \ref{listprop} представлен код, использующий выше перечисленных свойства.
 
 \begin{sourcecode}
-\captionof{listing}{Свойства класса list}
-\label{listprop}
-\begin{minted}[linenos]{icl}
-@empty = [];
-@fonts = ["Arial", "Helvetica", "Times", "Courier"];
-
-@empty'empty; `` true
-@fonts'empty; `` false
-
-@empty'length; `` 0
-@fonts'length; `` 4
-
-@empty'last; `` error
-@fonts'last; `` "Courier"
-
-@empty'0; `` error
-@fonts'0; `` "Arial"
-\end{minted}
+	\captionof{listing}{Свойства класса list}
+	\label{listprop}
+    \inputminted[linenos]{icl}{../sources/listprop.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{[r/o] list'empty : bool}}
@@ -89,41 +74,9 @@ n-я строка списка, n должен быть целым литера�
 Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{listmethods}. 
 
 \begin{sourcecode}
-\captionof{listing}{Методы класса list}
-\label{listmethods}
-\begin{minted}[linenos]{icl}
-@empty = [];
-@fonts = ["Arial", "Helvetica", "Times", "Courier"];
-
-@empty.append "";                 `` [""]
-@fonts.at 2;                      `` "Times"
-@fonts.contains "arial";          `` false
-@fonts.contains ("arial", false); `` true
-@empty.clear;                     `` []
-@fonts.count "Arial";             `` 1
-
-@fonts.filter "e";           `` ["Helvetica", "Times", "Courier"]
-@fonts.indexOf "Times";      `` 2
-@fonts.insert (1, "DejaVu"); `` ["Arial", "DejaVu", "Helvetica", "Times", "Courier"]
-@fonts.join ", ";            `` "Arial, DejaVu, Helvetica, Times, Courier"
-@fonts.lastIndexOf "Arial";  `` 0
-
-@fonts.mid (2, 2);       `` ["Times", "Courier"]
-@fonts.prepend "DejaVu"; `` ["DejaVu", "Arial", "DejaVu" .. "Courier"]
-@fonts.move (1, 2);      `` ["DejaVu", "DejaVu", "Arial", "Helvetica" ..]
-
-@fonts.removeAll "Helvetica"; `` ["DejaVu", "DejaVu", "Arial", "Times", "Courier"]
-@fonts.removeAt 3;            `` ["DejaVu", "DejaVu", "Arial", "Courier"]
-@fonts.removeDuplicates;      `` ["DejaVu", "Arial", "Courier"]
-@fonts.removeFirst;           `` ["Arial", "Courier"]
-@fonts.removeLast;            `` ["Arial"]
-@fonts.removeOne "Arial";     `` []
-
-@fonts = ["Arial", "Helvetica", "Times", "Courier"];
-
-@fonts.replaceInStrings ("e", "-"); `` ["Arial", "H-lv-tica", "Tim-s", "Couri-r"];
-@fonts.sort;                        `` ["Arial", "Couri-r", "H-lv-tica", "Tim-s"];
-\end{minted}
+	\captionof{listing}{Методы класса list}
+	\label{listmethods}
+    \inputminted[linenos]{icl}{../sources/listprop.icL}
 \end{sourcecode}
 
 Параметр \mintinline{icl}{caseSensitive} во всех функциях отвечает за чувствительность к регистру. Его установка гарантирует что регистр букв будет проигнорирован.

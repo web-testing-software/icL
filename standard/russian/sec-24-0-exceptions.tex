@@ -13,32 +13,9 @@
 Чтобы глушить все сигналы об ошибках используется подавитель сигналов, он имеет синтаксис \mintinline{icl}{jammer {```code```}}. Сигналы об схематических и синтаксических ошибках, а также сигнал \mintinline{icl}{emit:Exit}, не могут быть остановлены подавителем.
 
 \begin{sourcecode}
-\captionof{listing}{Обработка инключении}
-\label{sighandling}
-\begin{minted}[linenos]{icl}
-Signal.add "NumberTooBig";
-Signal.add "NumberTooSmall";
-
-@i = 3;
-
-emiter {
-	if (@i < 2) {
-		emit:NumberTooSmall (@i:string) + " is smaller then 2.";
-	}
-	
-	if (@i > 5) {
-		emit:NumberTooBig (@i:string) + " is bigger then 5."
-	}
-
-	`` @i >= 2 \& @i <= 5
-}
-slot:NumberTooBig {
-	Log.error "Oooops...";
-}
-slot:NumberTooSmall {
-	Log.error "Nope! O_O";
-};
-\end{minted}
+	\captionof{listing}{Обработка инключении}
+	\label{sighandling}
+    \inputminted[linenos]{icl}{../sources/sighandling.icL}
 \end{sourcecode}
 
 \subsection{Предопределённые исключения}

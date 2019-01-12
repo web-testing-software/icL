@@ -81,19 +81,9 @@ switch (value) {
 Разбираем на примере все возможность \mintinline{icl}{switch case}, пример представлен на листинге \ref{switchcaseex}.
 
 \begin{sourcecode}
-\captionof{listing}{Использование switch case}
-\label{switchcaseex}
-\begin{minted}[linenos]{icl}
-@v = 0 | 1 | 2 | 3 | 4 | 5;
-
-switch (@v) {
-	case (0) { ```code1``` }
-	case (1, 2) { ```code2``` }
-	case (#, 3) { ```code3``` }
-	case (4) { ```code4``` }
-	case (~) { ```code5``` }
-}
-\end{minted}
+	\captionof{listing}{Использование switch case}
+	\label{switchcaseex}
+    \inputminted[linenos]{icl}{../sources/switchcaseex.icL}
 \end{sourcecode}
 
 Переменная \mintinline{icl}{@v} имеет значения в интервале от 0 до 6.

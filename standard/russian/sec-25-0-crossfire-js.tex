@@ -18,16 +18,9 @@
 Элементарный пример как вызвать правильно функцию icL представлен на листинге \ref{crossfireexample}. Функция \mintinline{icl}{onclick} получает один параметр, но \mintinline{icl}{func} - нет. Соответственно нужен интерфейс, легче всего определить анонимную функцию.
 
 \begin{sourcecode}
-\captionof{listing}{Пример вызова функций icL}
-\label{crossfireexample}
-\begin{minted}[linenos]{icl}
-@el = Doc.query "button";
-!func = { Log.info "It's working!" };
-
-$run {
-	@{el}[0].onlick = function (ev) { !{func}() }
-};
-\end{minted}
+	\captionof{listing}{Пример вызова функций icL}
+	\label{crossfireexample}
+    \inputminted[linenos]{icl}{../sources/crossfireexample.icL}
 \end{sourcecode}
 
 Использование технологий \textit{crossfire.js} в скрипте приводит к переходу программы в режиме ожидания. В этом режиме программа не будет сама закрываться никогда, а будет ждать внешний вызов функций, чтобы остановить программу используете сигнал \mintinline{icl}{Exit}.
