@@ -58,11 +58,17 @@ name (arguments);
 \end{minted}
 unde \mintinline{icl}{name} este {\bf numele funcției}, \mintinline{icl}{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
 
-\begin{listing}
+\begin{sourcecode}
+	\captionof{listing}{Funcție făra argumente și tip de date}
+	\label{minfunc}
+	\inputminted[linenos]{icl}{../sources/minfunc.icL}
+\end{sourcecode}
+
+\begin{sourcecode}
 	\captionof{listing}{Apeluri de funcții}
 	\label{callfunc}
 	\inputminted[linenos]{icl}{../sources/callfunc.icL}
-\end{listing}
+\end{sourcecode}
 
 Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\mintinline{icl}{~}). De exemplu avem funcția \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}}, ea poate fi apelată în felul următor \mintinline{icl}{fun (~, 3)}. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
 
