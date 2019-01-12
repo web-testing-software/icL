@@ -36,27 +36,27 @@
 
 Получает список тестов.
 
-Принимает параметр \jsinline{session} (целое число) - идентификатор сессий.
+Принимает параметр \jsinline{session} (целое число) — идентификатор сессий.
 
-\jsinline{payload} ответа содержит поле \jsinline{tests}, тип - список чисел, которая содержит идентификаторы всех тестов сессий.
+\jsinline{payload} ответа содержит поле \jsinline{tests}, тип — список чисел, которая содержит идентификаторы всех тестов сессий.
 
 \subsubsection{\jsinline{run-tests}}
 
 Запускает выполнения всех тестов сессий.
 
-Принимает параметр \jsinline{session} (целое число) - идентификатор сессий.
+Принимает параметр \jsinline{session} (целое число) — идентификатор сессий.
 
 \subsubsection{\jsinline{cancel-running}}
 
 Отменяет выполнение тестов.
 
-Принимает параметр \jsinline{session} (целое число) - идентификатор сессий.
+Принимает параметр \jsinline{session} (целое число) — идентификатор сессий.
 
 \subsubsection{\jsinline{is-running}}
 
 Проверяет, выполняются ли в настоящее время тесты.
 
-Принимает параметр \jsinline{session} (целое число) - идентификатор сессий.
+Принимает параметр \jsinline{session} (целое число) — идентификатор сессий.
 
 \jsinline{payload} ответа содержит поле \jsinline{running}, тип - логическое значение, которая характеризует текущее состояние сервера.
 
@@ -64,16 +64,16 @@
 
 Возвращает текущий прогресс и подписывает клиент на обновлений статуса. Когда тест завершается (удачно или нет), клиент будет осведомлён.
 
-Принимает параметр \jsinline{session} (целое число) - идентификатор сессий.
+Принимает параметр \jsinline{session} (целое число) — идентификатор сессий.
 
 \jsinline{payload} ответа содержит поле \jsinline{tests} (список тестов), где каждый тест может иметь одну или несколько из следующих полей отвечающий за выполнение теста в определённом браузере:
 
 \begin{icItems}
-	\item \jsinline{icL} - встроенный браузер;
-	\item \jsinline{chrome} - Google Chrome;
-	\item \jsinline{firefox} - Mozilla Firefox;
-	\item \jsinline{edge} - Microsoft Edge;
-	\item \jsinline{safari} - Safari.
+	\item \jsinline{icL} — встроенный браузер;
+	\item \jsinline{chrome} — Google Chrome;
+	\item \jsinline{firefox} — Mozilla Firefox;
+	\item \jsinline{edge} — Microsoft Edge;
+	\item \jsinline{safari} — Safari.
 \end{icItems}
 
 Каждый тест имеет обязательное поле \jsinline{project} (целое число) - идентификатор проекта, отвечающий за тест.
@@ -82,7 +82,7 @@
 
 Возвращает список пользователей, созданных данным менеджером.
 
-\jsinline{payload} ответа имеет поле \jsinline{users} - список строк, где каждая строка является именем пользователя.
+\jsinline{payload} ответа имеет поле \jsinline{users} — список строк, где каждая строка является именем пользователя.
 
 \subsubsection{\jsinline{create-user}}
 
@@ -91,42 +91,42 @@
 Принимает следующее параметры:
 
 \begin{icItems}
-	\item \jsinline{username} (строка) - имя пользователя, может содержать только буквы английского языка, цифры и тире, максимальная длина - 32 символов;
-	\item \jsinline{password} (строка) - любая строка до 32 символов, включая пустую строку.
+	\item \jsinline{username} (строка) — имя пользователя, может содержать только буквы английского языка, цифры и тире, максимальная длина — 32 символов;
+	\item \jsinline{password} (строка) — любая строка до 32 символов, включая пустую строку.
 \end{icItems}
 
 \subsubsection{\jsinline{remove-user}}
 
 Удаляет пользователя.
 
-Принимает параметр \jsinline{username} (строка) - имя пользователя.
+Принимает параметр \jsinline{username} (строка) — имя пользователя.
 
 \subsubsection{\jsinline{change-password}}
 
 Изменяет пароль пользователя.
 
 \begin{icItems}
-	\item \jsinline{username} (строка) - имя пользователя;
-	\item \jsinline{password} (строка) - любая строка до 32 символов, включая пустую строку.
+	\item \jsinline{username} (строка) — имя пользователя;
+	\item \jsinline{password} (строка) — любая строка до 32 символов, включая пустую строку.
 \end{icItems}
 
 \subsubsection{\jsinline{list-sessions}}
 
 Возвращаем список сессий созданных менеджером.
 
-\jsinline{payload} ответа имеет поле \jsinline{sessions} - список чисел, где каждое число является идентификатором сессий.
+\jsinline{payload} ответа имеет поле \jsinline{sessions} — список чисел, где каждое число является идентификатором сессий.
 
 \subsubsection{\jsinline{create-session}}
 
 Создаёт новую сессию.
 
-Принимает параметр \jsinline{name} (строка) - название сессии.
+Принимает параметр \jsinline{name} (строка) — название сессии.
 
 \subsubsection{\jsinline{remove-session}}
 
 Удаляет сессию всё что связано с ней, кроме пользователей.
 
-Принимает параметр \jsinline{id} (целое число) - идентификатор сессий.
+Принимает параметр \jsinline{id} (целое число) — идентификатор сессий.
 
 \subsubsection{\jsinline{ensure-access}}
 
@@ -135,8 +135,8 @@
 Принимает следующие параметры:
 
 \begin{icItems}
-	\item \jsinline{session} (целое число) - идентификатор сессии;
-	\item \jsinline{username} (строка) - имя пользователя.
+	\item \jsinline{session} (целое число) — идентификатор сессии;
+	\item \jsinline{username} (строка) — имя пользователя.
 \end{icItems}
 
 \subsubsection{\jsinline{restrict-access}}
@@ -146,61 +146,61 @@
 Принимает следующие параметры:
 
 \begin{icItems}
-	\item \jsinline{session} (целое число) - идентификатор сессии;
-	\item \jsinline{username} (строка) - имя пользователя.
+	\item \jsinline{session} (целое число) — идентификатор сессии;
+	\item \jsinline{username} (строка) — имя пользователя.
 \end{icItems}
 
 \subsubsection{\jsinline{list-suites}}
 
 Получает список наборов тестов.
 
-\jsinline{payload} ответа имеет поле \jsinline{suites} - список чисел, где каждое число является идентификатором набора тестов.
+\jsinline{payload} ответа имеет поле \jsinline{suites} — список чисел, где каждое число является идентификатором набора тестов.
 
 \subsubsection{\jsinline{get-suite}}
 
 Получает данные набора тестов. 
 
-Принимает параметр \jsinline{id} (целое число) - идентификатор набора тестов.
+Принимает параметр \jsinline{id} (целое число) — идентификатор набора тестов.
 
 \subsubsection{\jsinline{create-suite}}
 
 Создаёт новый набор тестов.
 
-Получает параметр \jsinline{name} (строка) - название набора.
+Получает параметр \jsinline{name} (строка) — название набора.
 
-\jsinline{payload} ответа имеет поле \jsinline{suite} (целое число) - идентификатор нового набора тестов.
+\jsinline{payload} ответа имеет поле \jsinline{suite} (целое число) — идентификатор нового набора тестов.
 
 \subsubsection{\jsinline{remove-suite}}
 
 Удаляет набор тестов.
 
-Принимает параметр \jsinline{id} (целое число) - идентификатор набора тестов.
+Принимает параметр \jsinline{id} (целое число) — идентификатор набора тестов.
 
 \subsubsection{\jsinline{edit-suite}}
 
 Изменяет набор тестов.
 
-Получает параметр \jsinline{tests} (массив чисел) - набор тестов в серии.
+Получает параметр \jsinline{tests} (массив чисел) — набор тестов в серии.
 
 \subsubsection{\jsinline{run-suite}}
 
 Выполняет все тесты набора.
 
-Принимает параметр \jsinline{id} (целое число) - идентификатор набора тестов.
+Принимает параметр \jsinline{id} (целое число) — идентификатор набора тестов.
 
 \subsubsection{\jsinline{list-removes}}
 
 Получает список запросов на удаление для нужной сессии.
 
-Принимает параметр \jsinline{id} (целое число) - идентификатор сессии.
+Принимает параметр \jsinline{id} (целое число) — идентификатор сессии.
 
-\jsinline{payload} ответа имеет поле \jsinline{projects} - список числе, где каждое число является идентификатором проекта.
+\jsinline{payload} ответа имеет поле \jsinline{projects} — список числе, где каждое число является идентификатором проекта.
 
 \subsubsection{\jsinline{confirm-remove}}
 
 Подтверждает удаление проекта.
 
-Принимает параметр \jsinline{id} (целое число) - идентификатор проекта.
+Принимает параметр \jsinline{id} (целое число) — идентификатор проекта.
 
 \subsection{Backwards}
 
@@ -217,10 +217,16 @@
 Сервер указывает отметить результат прохождения теста, запрос содержит следующее полезные данные:
 
 \begin{icItems}
-	\item \jsinline{result} (строка) - результат: \jsinline{"successful"} - пройден удачно, \jsinline{"test-failed"} - тест упал из-за ошибки в коде, \jsinline{"assert-failed"} - тест упал при проверке утверждений, \jsinline{"unknown"} - неизвестный результат;
-	\item \jsinline{session} (целое число) - идентификатор сессии;
-	\item \jsinline{test} (целое число) - идентификатор теста;
-	\item \jsinline{browser} (строка) - идентификатор браузера: \jsinline{"icL"}, \jsinline{"chrome"}, \jsinline{"firefox"}, \jsinline{"edge"} или \jsinline{"safari"}.
+	\item \jsinline{result} (строка) — результат:
+	\begin{icItems}
+		\item \jsinline{"successful"} — пройден удачно;
+		\item \jsinline{"test-failed"} — тест упал из-за ошибки в коде;
+		\item \jsinline{"assert-failed"} — тест упал при проверке утверждений;
+		\item \jsinline{"unknown"} — неизвестный результат;
+	\end{icItems}
+	\item \jsinline{session} (целое число) — идентификатор сессии;
+	\item \jsinline{test} (целое число) — идентификатор теста;
+	\item \jsinline{browser} (строка) — идентификатор браузера: \jsinline{"icL"}, \jsinline{"chrome"}, \jsinline{"firefox"}, \jsinline{"edge"} или \jsinline{"safari"}.
 \end{icItems}
 
 \subsubsection{\jsinline{canceled}}
