@@ -90,7 +90,7 @@
 		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
 		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg1}   		\\ \hline
 	\end{tabular}
-	\vspace{0em}
+	\vspace{-2em}
 \end{table}
 
 \subsubsection{\mintinline{icl}{(void or any) ~ (void or any) : void or any}}
@@ -188,8 +188,8 @@
 	для \element{} - \mintinline{icl}{#'empty}.
 \end{icItems}
 
-Если использовать условию по умолчанию, используется следующий синтаксис - \mintinline{icl}{exists(expression)}.
-При необходимости задать своё условие, синтаксис чуть изменяется - \mintinline{icl}{exists(expression; condition)}.
+Если использовать условию по умолчанию, используется следующий синтаксис - \mintinline{icl}{exists(выражение)}.
+При необходимости задать своё условие, синтаксис чуть изменяется - \mintinline{icl}{exists(выражение; условие)}.
 
 \subsubsection{\mintinline{icl}{if exists}}
 
@@ -221,7 +221,7 @@
 
 Модификаторы управления тоже могут быть использованы для исключения ошибок. Напомню что модификатор имеет следующий синтаксис — \mintinline{icl}{control:modifier}. А также модификаторы могут быть несколько, синтаксис — \mintinline{icl}{control:[mod1,mod2]}. Написания нескольких между собой не совместимых модификаторов приводит к немедленной остановке программы.
 
-Дополнительные модификаторы управления:
+Дополнительные модификаторы управления: 
 \begin{icItems}
 	\item \mintinline{icl}{if:not exists};
 	\item \mintinline{icl}{for:Xtimes};
@@ -268,14 +268,16 @@
     \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
 \end{sourcecode}
 
+\vspace{-1em}
+
 \subsection{Веб-элементы}
 
-Стандарт \textit{WebDriver} преложен \textit{World Wide Web Consortium} описывает огромное количество исключений при работе с веб-элементами. Всех игнорировать нельзя, а только одну \ferror{NoSuchElement}. Она игнорируется в режиме автоматизации, если элемент не найден возвращается пустая коллекция. На первый взгляд мало, но применении на практике найдутся много, в комбинации с другими возможностями, смотрите листинг \ref{maxlimitsheet}.
+Стандарт \textit{WebDriver} преложен \textit{World Wide Web Consortium} описывает огромное количество исключений при работе с веб-элементами. Всех игнорировать нельзя, а только одну \ferror{NoSuchElement}. Она игнорируется в режиме автоматизации, если элемент не найден возвращается пустая коллекция. На первый взгляд мало, но применении на практике найдутся много, в комбинации с другими возможностями, смотрите листинг \ref{webelementsheet}.
 
 \begin{sourcecode}
 	\captionof{listing}{Использование веб-элементов}
-	\label{maxlimitsheet}
-    \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
+	\label{webelementsheet}
+    \inputminted[linenos,firstline=3,firstnumber=1]{icl}{../sources/webelementsheet.icL}
 \end{sourcecode}
 
 
