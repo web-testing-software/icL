@@ -1,7 +1,7 @@
 % !TeX spellcheck = ru_RU
 \section{Базы данных}
 
-Модуль баз данных определяет следующее глобальные объекты: \mintinline{icl}{DBManager} - менеджер баз данных, \mintinline{icl}{DB} - последняя открытая база данных, \mintinline{icl}{Query} - последний запрос.
+Модуль баз данных определяет следующее глобальные объекты: \mintinline{icl}{DBManager} — менеджер баз данных, \mintinline{icl}{DB} — последняя открытая база данных, \mintinline{icl}{Query} — последний запрос.
 
 Модуль баз данных обеспечивает следующий набор возможностей:
 \begin{icItems}
@@ -30,7 +30,7 @@
 
 \subsubsection{\mintinline{icl}{DBManager.openSQLite (path : string) : DB}}
 
-Открывает новое подключение. \mintinline{icl}{path} - путь к файлу базы данных.
+Открывает новое подключение. \mintinline{icl}{path} — путь к файлу базы данных.
 
 Возможные исключения: \ferror{NoSuchDatabase} (см. таб. \ref{errors}).
 
@@ -130,7 +130,7 @@
 
 \subsubsection{Пример}
 
-Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \mintinline{icl}{@:name}, а глобальные - \mintinline{icl}{\#:name}.
+Пример кода, использующий базы данных представлен на листинге \ref{dbexample}. Так же как и при использовании кода на языке Javascript, в коде можно встроить переменные icL, локальные переменный имеет синтаксис \mintinline{icl}{@:name}, а глобальные — \mintinline{icl}{#:name}.
 
 \begin{sourcecode}
 	\captionof{listing}{Пример кода использующий базу данных}

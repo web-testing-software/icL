@@ -1,7 +1,8 @@
+% !TeX spellcheck = ru_RU
 \section{Регулярные выражения}
 \label{regex}
 
-Для объявления {\bf регулярных выражения} используется литерал \mintinline{icl}{//pattern//ms}, где \mintinline{icl}{pattern} - шаблон регулярней выражений, \mintinline{icl}{ms} - модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \mintinline{icl}{(content)}, именованная группа - \mintinline{icl}{(?<name>content)}.
+Для объявления {\bf регулярных выражения} используется литерал \mintinline{icl}{//pattern//ms}, где \mintinline{icl}{pattern} — шаблон регулярней выражений, \mintinline{icl}{ms} — модификаторы. В шаблоне группы можно наименовать, анонимная группа имеет следующий синтаксис \mintinline{icl}{(content)}, именованная группа — \mintinline{icl}{(?<name>content)}.
 
 Внутренний символ может быть не только \mintinline{icl}{/}, но и любой другой на свой вкус, кроме апострофа (\mintinline{icl}{'}) он конфликтует с оператором {\it корень} (\mintinline{icl}{/'}), \mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{-}, \mintinline{icl}{+} и \mintinline{icl}{!}. Например  \mintinline{icl}{/"pattern"/mods}, \mintinline{icl}{/:pattern:/mods}, \mintinline{icl}{/$pattern$/mods}.
 

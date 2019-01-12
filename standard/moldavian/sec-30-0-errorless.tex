@@ -24,20 +24,40 @@ Operatori \void{} sunt opțiuni pe care eu le pot recomanda cu încredere. Ei nu
 
 Toți operatorii \void{} sunt de rangul 2. Acești operatori împart datele în 2 tipuri \void{} și nu \void{}. Al doilea tip mai departe va fi numit \mintinline{icl}{any}, el poate înlocui unul din tipurile următoare: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
 
-Lista operatorilor \void{}:
+Operatorii sunt enumerați în tabela \ref{voidops}:
 
-\begin{icItems}
-	\item
-	alegere alternativă \mintinline{icl}{void | void : void}, \mintinline{icl}{void | any : any}, \mintinline{icl}{any | void : any} și \mintinline{icl}{any | any : any};
-	\item
-	alegere primară \mintinline{icl}{void & void : void}, \mintinline{icl}{any & void : void}, \mintinline{icl}{void & any : void} și \mintinline{icl}{any & any : any};
-	\item
-	alegere secundară \mintinline{icl}{void ~ void : void}, \mintinline{icl}{void ~ any : void}, \mintinline{icl}{any ~ void : void} și \mintinline{icl}{any ~ any : any};
-	\item
-	alegere exclusivă \mintinline{icl}{void ^ void : void}, \mintinline{icl}{void ^ any : any}, \mintinline{icl}{any ^ void : any} și \mintinline{icl}{any ^ any : void};
-	\item
-	alegere selecționistă \mintinline{icl}{void % void : void}, \mintinline{icl}{void % any : any}, \mintinline{icl}{any % void : any}, \mintinline{icl}{int % int : int}, \mintinline{icl}{double % double : double}, \mintinline{icl}{string % string : list}, \mintinline{icl}{list % string} \mintinline{icl}{: list}, \mintinline{icl}{list % list : list}, \mintinline{icl}{object % object : set}, \mintinline{icl}{set % object : set}, \mintinline{icl}{set % set}\\*\mintinline{icl}{: set} și \mintinline{icl}{element % element : element}. Încă un operator va fi descris în capitolul \ref{webelments}.
-\end{icItems}
+\stablethree{1.0cm}{7.0cm}{6.0cm}
+{voidops}{Operatori void}
+{Ранг}{Операция}{Оператор}
+{
+    2 & alegere alternativă   & \mintinline{icl}{void | void : void}        \\ \hline
+    2 & alegere alternativă   & \mintinline{icl}{void | any : any}          \\ \hline
+    2 & alegere alternativă   & \mintinline{icl}{any | void : any}          \\ \hline
+    2 & alegere alternativă   & \mintinline{icl}{any | any : any}           \\ \hline
+    2 & alegere primară       & \mintinline{icl}{void & void : void}        \\ \hline
+    2 & alegere primară       & \mintinline{icl}{any & void : void}         \\ \hline
+    2 & alegere primară       & \mintinline{icl}{void & any : void}         \\ \hline
+    2 & alegere primară       & \mintinline{icl}{any & any : any}           \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{void ~ void : void}        \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{void ~ any : void}         \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{any ~ void : void}         \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{any ~ any : any}           \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{void ^ void : void}        \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{void ^ any : any}          \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{any ^ void : any}          \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{any ^ any : void}          \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{void \% void : void}       \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{void \% any : any}         \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{any \% void : any}         \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{int \% int : int}          \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{double \% double : double} \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{string \% string : list}   \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{list \% string : list}     \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{list \% list : list}       \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{object \% object : set}    \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{set \% object : set}       \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{set \% set : set}          \\ \hline
+}
 
 \subsubsection{\mintinline{icl}{(arg1 : void or any) | (arg2 : void or any) : void or any}}
 

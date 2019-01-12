@@ -8,21 +8,21 @@
 
 \subsection{Литерал}
 
-Веб-элементы могут быть описаны литералом \mintinline{icl}{method@target[selector]}, где \mintinline{icl}{method} - одно из следующих фиксируемых слов: \mintinline{icl}{css}, \mintinline{icl}{xpath}, \mintinline{icl}{link}, \mintinline{icl}{links}, \mintinline{icl}{tag}, \mintinline{icl}{tags}. \mintinline{icl}{@target} - локальная переменная содержащая веб-элемент. \mintinline{icl}{selector} - селектор, набор последовательных символов, по которому определяется какие элементы будут выбраны, для каждого метода нужен специфический селектор.
+Веб-элементы могут быть описаны литералом \mintinline{icl}{метод@предел[селектор]}, где \mintinline{icl}{метод} — одно из следующих фиксируемых слов: \mintinline{icl}{css}, \mintinline{icl}{xpath}, \mintinline{icl}{link}, \mintinline{icl}{links}, \mintinline{icl}{tag}, \mintinline{icl}{tags}. \mintinline{icl}{@предел} — локальная переменная содержащая веб-элемент. \mintinline{icl}{селектор} — селектор, набор последовательных символов, по которому определяется какие элементы будут выбраны, для каждого метода нужен специфический селектор.
 
-Метод \mintinline{icl}{css} получает в качестве селектора - селектор CSS. Данный метод будет возвращать первый подходящий элемент. Чтобы получить все используете \mintinline{icl}{css:all}, где \mintinline{icl}{all} - модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
+Метод \mintinline{icl}{css} получает в качестве селектора — селектор CSS. Данный метод будет возвращать первый подходящий элемент. Чтобы получить все используете \mintinline{icl}{css:all}, где \mintinline{icl}{all} — модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
 
-Метод \mintinline{icl}{xpath} получает в качестве селектора - путь XPath. Данный метод будет возвращать первый подходящий элемент. Чтобы получить все используете \mintinline{icl}{xpath:all}, где \mintinline{icl}{all} - модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
+Метод \mintinline{icl}{xpath} получает в качестве селектора — путь XPath. Данный метод будет возвращать первый подходящий элемент. Чтобы получить все используете \mintinline{icl}{xpath:all}, где \mintinline{icl}{all} — модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
 
-Метод \mintinline{icl}{link} получает в качестве селектора текст ссылки и возвращает соответствующую ссылку. Чтобы указать фрагмент текста используете \mintinline{icl}{link:fragment}, где \mintinline{icl}{fragment} - модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
+Метод \mintinline{icl}{link} получает в качестве селектора текст ссылки и возвращает соответствующую ссылку. Чтобы указать фрагмент текста используете \mintinline{icl}{link:fragment}, где \mintinline{icl}{fragment} — модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
 
-Метод \mintinline{icl}{links} получает в качестве селектора текст ссылки и возвращает все подходящие ссылки. Чтобы указать фрагмент текста используете \mintinline{icl}{links:fragment}, где \mintinline{icl}{fragment} - модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
+Метод \mintinline{icl}{links} получает в качестве селектора текст ссылки и возвращает все подходящие ссылки. Чтобы указать фрагмент текста используете \mintinline{icl}{links:fragment}, где \mintinline{icl}{fragment} — модификатор, подробное информация о модификаторах представлена в главе \ref{sec-modifiers}.
 
 Метод \mintinline{icl}{tag} получает в качестве селектора название тега и возвращает первый элемент соответствующего тега.
 
 Метод \mintinline{icl}{tags} получает в качестве селектора название тега и возвращает все элементы соответствующего тега.
 
-Примеры литералов -
+Примеры литералов —
 \begin{minted}{icl}
 @div = tag[div];
 @a = tag@div[a];
@@ -84,7 +84,7 @@ css[header ul > li:nth-child(even)]
 
 \mintinline{icl}{[w3c]} Возвращает значения свойства \mintinline{icl}{*}.
 
-\mintinline{icl}{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Тип JS-значений не определён, это можно сводить к проблемам в динамическом анализаторе кода. При использовании свойств неопределённых в главе \ref{elements:predefined:properties}, используете преобразование для указания какого типа будет результат. Если переменная уже инициализируемая, то никаких проблем не должны быть. Новых перемен инициализируете одним из следующим способом -
+\mintinline{icl}{[icL]}  Возвращает JS-значение для запрашиваемой свойства. Тип JS-значений не определён, это можно сводить к проблемам в динамическом анализаторе кода. При использовании свойств неопределённых в главе \ref{elements:predefined:properties}, используете преобразование для указания какого типа будет результат. Если переменная уже инициализируемая, то никаких проблем не должны быть. Новых перемен инициализируете одним из следующим способом —
 \begin{minted}{icl}
 @var = element'prop-userdefined : string;
 @var:string = element'prop-userdefined;
@@ -96,10 +96,10 @@ css[header ul > li:nth-child(even)]
 
 Возвращает положение размер элемента на экране в CSS пикселей, а точнее объект содержащий следующее поля:
 \begin{icItems}
-	\item \mintinline{icl}{x : double} - координата x относительно левого края;
-	\item \mintinline{icl}{y : double} - координата y относительно верхнего края;
-	\item \mintinline{icl}{width : double} - ширина;
-	\item \mintinline{icl}{height : double} - высота;
+	\item \mintinline{icl}{x : double} — координата x относительно левого края;
+	\item \mintinline{icl}{y : double} — координата y относительно верхнего края;
+	\item \mintinline{icl}{width : double} — ширина;
+	\item \mintinline{icl}{height : double} — высота;
 \end{icItems}
 
 \mintinline{icl}{[icL]} Возвращает \set, в случае коллекции.
@@ -136,7 +136,7 @@ css[header ul > li:nth-child(even)]
 
 \subsection{Операторы}
 
-В контексте веб-элементов появляются новый оператор \mintinline{icl}{[element ...] : element}.
+В контексте веб-элементов появляются новый оператор \mintinline{icl}{[element ...] :}\\*\mintinline{icl}{element}.
 
 \subsubsection{\mintinline{icl}{[element ...] : element}}
 
@@ -186,11 +186,11 @@ css[header ul > li:nth-child(even)]
 
 Параметр \mintinline{icl}{by} получает одно из следующих значений:
 \begin{icItems}
-	\item \mintinline{icl}{[r/o] By'cssSelector : 1} - селектор CSS;
-	\item \mintinline{icl}{[r/o] By'linkText : 2} - текст ссылки;
-	\item \mintinline{icl}{[r/o] By'partialLinkText : 3} - фрагмент текста ссылки;
-	\item \mintinline{icl}{[r/o] By'tagName : 4} - название тега;
-	\item \mintinline{icl}{[r/o] By'xPath : 5} - XPath.
+	\item \mintinline{icl}{[r/o] By'cssSelector : 1} — селектор CSS;
+	\item \mintinline{icl}{[r/o] By'linkText : 2} — текст ссылки;
+	\item \mintinline{icl}{[r/o] By'partialLinkText : 3} — фрагмент текста ссылки;
+	\item \mintinline{icl}{[r/o] By'tagName : 4} — название тега;
+	\item \mintinline{icl}{[r/o] By'xPath : 5} — XPath.
 \end{icItems}
 
 Параметр \mintinline{icl}{selector} получает селектор CSS, текст ссылки, фрагмент текста ссылки, название тега или XPath, в зависимость от значений первого параметра.
@@ -243,7 +243,7 @@ css[header ul > li:nth-child(even)]
 
 \subsubsection{\mintinline{icl}{element.screenshot () : string}}
 
-Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \mintinline{icl}{Make.image (base64 : string, path : string) : void}.
+Возвращает строку, содержащая код base64 скриншота элемента. Его можно сохранить как изображение используя \mintinline{icl}{Make.image (base64 : string, path : string) :}\\*\mintinline{icl}{void}.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} и \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
@@ -634,7 +634,7 @@ css[header ul > li:nth-child(even)]
 	% \item \mintinline{icl}{[r/w] element'prop-};
 \end{icItems}
 
-\mintinline{icl}{element [c]} будет всегда коллекцией, \mintinline{icl}{element [i]} - варьирует в зависимости от субъекта, если субъект - элемент, результат также будет элементом, если субъект - коллекция, результат также будет коллекцией. 
+\mintinline{icl}{element [c]} будет всегда коллекцией, \mintinline{icl}{element [i]} — варьирует в зависимости от субъекта, если субъект — элемент, результат также будет элементом, если субъект — коллекция, результат также будет коллекцией. 
 
 Напоминаю что стандарт W3C WebDriver предусматривает чтения свойств только для элементов, и в режиме тестирования все свойства будут доступны только для чтения.
 

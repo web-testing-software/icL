@@ -15,7 +15,7 @@
 
 \subsubsection{\mintinline{icl}{wait}}
 
-Ожидает пока условие не станет истинной. Время ожидании: \mintinline{icl}{Session'im\- plicitTimeout} миллисекунды. 
+Ожидает пока условие не станет истинной. Время ожидании: \mintinline{icl}{Session}\\*\mintinline{icl}{'implicitTimeout} миллисекунды. 
 
 \subsubsection{\mintinline{icl}{wait:Xs}}
 
@@ -27,7 +27,7 @@
 
 \subsubsection{\mintinline{icl}{wait:ajax}}
 
-Ожидает пока условие не станет истинной. Время ожидания: \mintinline{icl}{Session'implicit\- Timeout} миллисекунды. В сравнении с обычным \mintinline{icl}{wait}, тут будет передано следующие данные: \mintinline{icl}{@response} - объект с данными о завершённом запросе и \mintinline{icl}{@count} - количество активных запросов.
+Ожидает пока условие не станет истинной. Время ожидания: \mintinline{icl}{Session}\\*\mintinline{icl}{'implicitTimeout} миллисекунды. В сравнении с обычным \mintinline{icl}{wait}, тут будет передано следующие данные: \mintinline{icl}{@response} — объект с данными о завершённом запросе и \mintinline{icl}{@count} — количество активных запросов.
 
 \subsection{Клавиатура}
 
@@ -88,25 +88,25 @@
 
 В следующих функциях объект \mintinline{icl}{data} может иметь следующие поля:
 \begin{icItems}
-	\item \mintinline{icl}{[r/w] @data'button : int} - кнопка мышки, принимает одно из следующих значений:
+	\item \mintinline{icl}{[r/w] @data'button : int} — кнопка мышки, принимает одно из следующих значений:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/o] Mouse'left : 1} - левая кнопка;
-		\item \mintinline{icl}{[r/o] Mouse'middle : 2} - средняя кнопка;
-		\item \mintinline{icl}{[r/o] Mouse'right : 3} - правая кнопка.
+		\item \mintinline{icl}{[r/o] Mouse'left : 1} — левая кнопка;
+		\item \mintinline{icl}{[r/o] Mouse'middle : 2} — средняя кнопка;
+		\item \mintinline{icl}{[r/o] Mouse'right : 3} — правая кнопка.
 	\end{icItems}
 	По умолчанию \mintinline{icl}{Mouse'left};
-	\item \mintinline{icl}{[r/w] @data'rx : double} - \mintinline{icl}{ax = rx * width};
-	\item \mintinline{icl}{[r/w] @data'ry : double} - \mintinline{icl}{ay = rx * height};
-	\item \mintinline{icl}{[r/w] @data'ax : int} - относительная координата от левого края элемента;
-	\item \mintinline{icl}{[r/w] @data'ay : int} - относительная координата от верхнего края элемента.
+	\item \mintinline{icl}{[r/w] @data'rx : double} — \mintinline{icl}{ax = rx * width};
+	\item \mintinline{icl}{[r/w] @data'ry : double} — \mintinline{icl}{ay = rx * height};
+	\item \mintinline{icl}{[r/w] @data'ax : int} — относительная координата от левого края элемента;
+	\item \mintinline{icl}{[r/w] @data'ay : int} — относительная координата от верхнего края элемента.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{element.click (data : object) : element}}
 
 Симулирует клик. Объект \mintinline{icl}{data} имеет следующие дополнительные свойства:
 \begin{icItems}
-	\item \mintinline{icl}{[r/w] @data'delay : int} - задержка между нажатием и отпускании кнопке;
-	\item \mintinline{icl}{[r/w] @data'count : int} - количество симулированных кликов.
+	\item \mintinline{icl}{[r/w] @data'delay : int} — задержка между нажатием и отпускании кнопке;
+	\item \mintinline{icl}{[r/w] @data'count : int} — количество симулированных кликов.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{element.forceClick (data : object) : element}}
@@ -125,20 +125,20 @@
 
 Перемещает мышку над элементом. \mintinline{icl}{data} имеет следующие дополнительные свойства:
 \begin{icItems}
-	\item \mintinline{icl}{[r/w] @data'time : int} - среднее время за которой курсор перемещается на 100 пикселей;
-	\item \mintinline{icl}{[r/w] @data'func : int} - функция описывающая движение курсора. Принимает одно из следующих значений:
+	\item \mintinline{icl}{[r/w] @data'time : int} — среднее время за которой курсор перемещается на 100 пикселей;
+	\item \mintinline{icl}{[r/w] @data'func : int} — функция описывающая движение курсора. Принимает одно из следующих значений:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/o] Move'teleport : 1} - перемещает курсор немедленно;
-		\item \mintinline{icl}{[r/o] Move'linear : 2} - линейная интерполяция;
-		\item \mintinline{icl}{[r/o] Move'quadratic : 3} - квадратичная интерполяция;
-		\item \mintinline{icl}{[r/o] Move'cubic : 4} - кубическая интерполяция;
-		\item \mintinline{icl}{[r/o] Move'bezier : 5} - использовает кубическую кривую Безье. Использует дополнительные параметры \mintinline{icl}{p1x}, \mintinline{icl}{p1y}, \mintinline{icl}{p2x} и \mintinline{icl}{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
+		\item \mintinline{icl}{[r/o] Move'teleport : 1} — перемещает курсор немедленно;
+		\item \mintinline{icl}{[r/o] Move'linear : 2} — линейная интерполяция;
+		\item \mintinline{icl}{[r/o] Move'quadratic : 3} — квадратичная интерполяция;
+		\item \mintinline{icl}{[r/o] Move'cubic : 4} — кубическая интерполяция;
+		\item \mintinline{icl}{[r/o] Move'bezier : 5} — использовает кубическую кривую Безье. Использует дополнительные параметры \mintinline{icl}{p1x}, \mintinline{icl}{p1y}, \mintinline{icl}{p2x} и \mintinline{icl}{p2y}. Если они не установлены то получат случайное значение от 0,0 до 1,0.
 	\end{icItems}
 	По умолчанию \mintinline{icl}{Move'teleport}.
-	\item \mintinline{icl}{[r/w] @data'p1x : double} - Координата $x$ первой точке.
-	\item \mintinline{icl}{[r/w] @data'p1y : double} - Координата $y$ первой точке.
-	\item \mintinline{icl}{[r/w] @data'p2x : double} - Координата $x$ второй точке.
-	\item \mintinline{icl}{[r/w] @data'p2y : double} - Координата $y$ второй точке.
+	\item \mintinline{icl}{[r/w] @data'p1x : double} — Координата $x$ первой точке.
+	\item \mintinline{icl}{[r/w] @data'p1y : double} — Координата $y$ первой точке.
+	\item \mintinline{icl}{[r/w] @data'p2x : double} — Координата $x$ второй точке.
+	\item \mintinline{icl}{[r/w] @data'p2y : double} — Координата $y$ второй точке.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{Doc.click (data : object) : Doc}}

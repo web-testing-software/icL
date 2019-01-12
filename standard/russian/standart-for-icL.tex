@@ -33,6 +33,8 @@
 	\setcounter{tocdepth}{3}
 }{}
 
+\usepackage[final]{pdfpages}
+
 \begin{document}
 
 \input{header.tex}
@@ -43,13 +45,15 @@
 	\fancyhead[R]{\textmd{\thepage{}}}
 }{}
 
+\includepdf[pages=1]{../covers/ru.pdf}
+
 \title{Стандарт языка описания сценариев icL v1.1.0}
 \author{Лелицак Василе\thanks{Руководитель проекта: Молчанова Светлана Ивановна}}
 
-\clearpage\maketitle
-\thispagestyle{empty}
+%\clearpage\maketitle
+%\thispagestyle{empty}
+%\newpage
 
-\newpage
 \renewcommand{\contentsname}{\textsf{Оглавление}}\makeatletter
 \renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{2.6em}}
 \renewcommand{\l@subsection}{\@dottedtocline{2}{4.0em}{3.6em}}

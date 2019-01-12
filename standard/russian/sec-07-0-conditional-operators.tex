@@ -13,33 +13,33 @@
 
 \subsubsection{\mintinline{icl}{if}}
 
-\mintinline{icl}{if} позволяет ставить условие выполнения блока команд. Он имеет следующий синтаксис -
+\mintinline{icl}{if} позволяет ставить условие выполнения блока команд. Он имеет следующий синтаксис —
 \begin{minted}{icl}
-if (condition) {
-	commands
+if (условие) {
+	команды
 };
 \end{minted}
-где \mintinline{icl}{condition} любое выражение возвращающее значение типа \bool{} и \mintinline{icl}{commands} любой набор команд.
+где \mintinline{icl}{условие} любое выражение возвращающее значение типа \bool{} и \mintinline{icl}{команды} любой набор команд.
 
-Также допускаются пропустить круглые скобки, синтаксис -
+Также допускаются пропустить круглые скобки, синтаксис —
 \begin{minted}{icl}
-if true  { commands };
-if !true { commands };
-if @var  { commands };
-if !@var { commands };
+if true  { команды };
+if !true { команды };
+if @var  { команды };
+if !@var { команды };
 \end{minted}
 
 \subsubsection{\mintinline{icl}{if else}}
 
 \mintinline{icl}{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно - выполняется первый блок, иначе второй блок.
 
-Конструкция \mintinline{icl}{if else} имеет следующий синтаксис -
+Конструкция \mintinline{icl}{if else} имеет следующий синтаксис —
 \begin{minted}{icl}
-if (condition) {
-	commands1
+if (условие) {
+	команды1
 }
 else {
-	commands2
+	команды2
 };
 \end{minted}
 
@@ -47,14 +47,14 @@ else {
 
 Каскадное \mintinline{icl}{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
 
-Каскадное \mintinline{icl}{if else} имеет следующий синтаксис -
+Каскадное \mintinline{icl}{if else} имеет следующий синтаксис —
 \begin{minted}{icl}
-if (condition1) {
-	commands1
-} else if (condition2) {
-	commands2
+if (условие1) {
+	команды1
+} else if (условие2) {
+	команды2
 } else {
-	commands3
+	команды3
 };
 \end{minted}
 
@@ -62,19 +62,19 @@ if (condition1) {
 
 \mintinline{icl}{switch case} позволяет выбирать между n блоков команд, но для это нужно предъявить n условии.
 
-Синтаксис -
+Синтаксис —
 \begin{minted}{icl}
-switch (value) {
-	case (caseValue) { ```code``` }
-	`` more cases
+switch (значение) {
+	case (значениеСлучая) { `код` }
+	`` больше case-ов
 }
 \end{minted}
 
-\mintinline{icl}{switch} получает значения \mintinline{icl}{value}, она может иметь любой тип кроме \bool. Дальше внутри \mintinline{icl}{switch}-а имеет несколько \mintinline{icl}{case}-ов. Если значения \mintinline{icl}{case}-а - \mintinline{icl}{caseValue} совпадает с \mintinline{icl}{value}, то \mintinline{icl}{case} будет выполнен.
+\mintinline{icl}{switch} получает значения \mintinline{icl}{значение}, она может иметь любой тип кроме \bool. Дальше внутри \mintinline{icl}{switch}-а имеет несколько \mintinline{icl}{case}-ов. Если значения \mintinline{icl}{case}-а — \mintinline{icl}{значениеСлучая} совпадает с \mintinline{icl}{value}, то \mintinline{icl}{case} будет выполнен.
 
 \mintinline{icl}{case} может иметь несколько значений разделённые запятой.
 
-Он может получить в качестве значения \void, выглядит это следующим образом \mintinline{icl}{case (~) { ```code``` }}, такой \mintinline{icl}{case} будет выполнен только если ни один из предыдущих не был выполнен.
+Он может получить в качестве значения \void, выглядит это следующим образом \mintinline{icl}{case (~) { `код` }}, такой \mintinline{icl}{case} будет выполнен только если ни один из предыдущих не был выполнен.
 
 Ещё одна специальное значение - \mintinline{icl}{#}, через неё обозначается что текущий \mintinline{icl}{case} нужно выполнить при условии что предыдущий был выполнен.
 

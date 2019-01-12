@@ -19,7 +19,7 @@
 {logicops}{Логические операций}
 {Ранг}{Операция}{Оператор}
 {
-    2     & конъюнкция      & \mintinline{icl}{bool \& bool : bool} \\ \hline
+    2     & конъюнкция      & \mintinline{icl}{bool & bool : bool} \\ \hline
 	2     & дизъюнкция      & \mintinline{icl}{bool | bool : bool}  \\ \hline
 	2     & эквивалентность & \mintinline{icl}{bool ~ bool : bool}  \\ \hline
 	2     & исключающий или & \mintinline{icl}{bool ^ bool : bool}  \\ \hline
@@ -45,7 +45,7 @@
 	\label{conjtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \& b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a & b} \\ \hline
 		\false{} & \false{} & \false{}  	\\ \hline
 		\false{} & \true{}  & \false{}  	\\ \hline
 		\true{}  & \false{} & \false{}  	\\ \hline
@@ -63,7 +63,7 @@
 	\label{distable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \| b} 	\\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a | b} 	\\ \hline
 		\false{} & \false{} & \false{} 		\\ \hline
 		\false{} & \true{}  & \true{}  		\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -81,7 +81,7 @@
 	\label{logeqtable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \~ b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a ~ b} \\ \hline
 		\false{} & \false{} & \true{}   	\\ \hline
 		\false{} & \true{}  & \false{}  	\\ \hline
 		\true{}  & \false{} & \false{}  	\\ \hline
@@ -99,7 +99,7 @@
 	\label{logdifftable}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a \^ b} \\ \hline
+		\mintinline{icl}{a} & \mintinline{icl}{b} & \mintinline{icl}{a ^ b} \\ \hline
 		\false{} & \false{} & \false{}  	\\ \hline
 		\false{} & \true{}  & \true{}   	\\ \hline
 		\true{}  & \false{} & \true{}  		\\ \hline
@@ -187,7 +187,7 @@
 Примеры использования выше перечисленных операторов, продемонстрированы на листинге \ref{numberopex}.
 
 \begin{sourcecode}
-	\captionof{listing}{Примеры использования операторов над данными типа int и double}
+	\captionof{listing}{Примеры использования операторов над числами}
 	\label{numberopex}
 	\inputminted[linenos]{icl}{../sources/numberopex.icL}
 \end{sourcecode}
@@ -576,7 +576,7 @@
 
 Возвращает новое множество содержащая все объекты множества \mintinline{icl}{set1}, отсутствующих в множестве \mintinline{icl}{set2}, и все объекты множестве \mintinline{icl}{set2}, отсутствующих в \mintinline{icl}{set1}.
 
-\subsubsection{\mintinline{icl}{(set1 : set) \\ (set2 : set) : set}}
+\subsubsection{\mintinline{icl}{(set1 : set) \ (set2 : set) : set}}
 
 Возвращает новое множество содержащая все объекты множества \mintinline{icl}{set1}, отсутствующих в множестве \mintinline{icl}{set2}.
 
@@ -598,11 +598,11 @@
 
 \mintinline{icl}{[list ...] : list} объединяет несколько списков в один.
 
-\mintinline{icl}{[string or list ...] : list} - строки и списки можно смешать.
+\mintinline{icl}{[string or list ...] : list} — строки и списки можно смешать.
 
-\mintinline{icl}{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \mintinline{icl}{name = value}, где \mintinline{icl}{value} - значение, \mintinline{icl}{name} - название аргумента. Пример \mintinline{icl}{[number = 2, str = "str"]}.
+\mintinline{icl}{[arg ...] : object} создаёт объект имеющие поля (каждое поле описывается в виде аргумента), аргумент описывается следующим образом \mintinline{icl}{навание = значение}. Пример \mintinline{icl}{[number = 2, str = "str"]}.
 
-\mintinline{icl}{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \mintinline{icl}{name : type}, где \mintinline{icl}{type} - тип значения, \mintinline{icl}{name} - название параметра. Пример \mintinline{icl}{[number : int, str : string]}.
+\mintinline{icl}{[param ...] : set} создаёт множество с указанным заголовкам, каждый столбец описывается в виде параметра, параметр описывается следующим образом \mintinline{icl}{name : type}, где \mintinline{icl}{type} — тип значения, \mintinline{icl}{name} - название параметра. Пример \mintinline{icl}{[number : int, str : string]}.
 
 \mintinline{icl}{[object ...] : set} создаёт множество из несколько объектов.
 

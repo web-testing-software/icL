@@ -25,25 +25,25 @@
 Все \void{} операторы делят данных на 2 типа \void{} и не \void{}. Второй тип в дальнейшем будет отмечен как \mintinline{icl}{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}. \void{} операторы перечислены в таблице \ref{voidops}.
 
 \stablethree{1.0cm}{7.0cm}{6.0cm}
-{voidops}{Операции над объектами и множеств}
+{voidops}{void операторы}
 {Ранг}{Операция}{Оператор}
 {
 	2 & альтернативный выбор & \mintinline{icl}{void | void : void}       \\ \hline
 	2 & альтернативный выбор & \mintinline{icl}{void | any : any}         \\ \hline
 	2 & альтернативный выбор & \mintinline{icl}{any | void : any}         \\ \hline
 	2 & альтернативный выбор & \mintinline{icl}{any | any : any}          \\ \hline
-	2 & первичный выбор      & \mintinline{icl}{void \& void : void}      \\ \hline
-	2 & первичный выбор      & \mintinline{icl}{any \& void : void}       \\ \hline
-	2 & первичный выбор      & \mintinline{icl}{void \& any : void}       \\ \hline
-	2 & первичный выбор      & \mintinline{icl}{any \& any : any}         \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{void & void : void}      \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{any & void : void}       \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{void & any : void}       \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{any & any : any}         \\ \hline
 	2 & вторичный выбор      & \mintinline{icl}{void ~ void : void}       \\ \hline
 	2 & вторичный выбор      & \mintinline{icl}{void ~ any : void}        \\ \hline
 	2 & вторичный выбор      & \mintinline{icl}{any ~ void : void}        \\ \hline
 	2 & вторичный выбор      & \mintinline{icl}{any ~ any : any}          \\ \hline
-	2 & исключающий выбор    & \mintinline{icl}{void \^ void : void}      \\ \hline
-	2 & исключающий выбор    & \mintinline{icl}{void \^ any : any}        \\ \hline
-	2 & исключающий выбор    & \mintinline{icl}{any \^ void : any}        \\ \hline
-	2 & исключающий выбор    & \mintinline{icl}{any \^ any : void}        \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{void ^ void : void}      \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{void ^ any : any}        \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{any ^ void : any}        \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{any ^ any : void}        \\ \hline
 	2 & коллекционный выбор  & \mintinline{icl}{void \% void : void}      \\ \hline
 	2 & коллекционный выбор  & \mintinline{icl}{void \% any : any}        \\ \hline
 	2 & коллекционный выбор  & \mintinline{icl}{any \% void : any}        \\ \hline
@@ -66,7 +66,7 @@
 	\label{orhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \| arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 | arg2} \\ \hline
 		\void{}     & \void{}     & \void{}  			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}  		\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}  		\\ \hline
@@ -75,7 +75,7 @@
 	\vspace{0em}
 \end{table}
 
-\subsubsection{\mintinline{icl}{(void or any) \& (void or any) : (void or any)}}
+\subsubsection{\mintinline{icl}{(void or any) & (void or any) : (void or any)}}
 
 Возвращаемый результат оператором первичного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{andhacktable}.
 
@@ -102,7 +102,7 @@
 	\label{eqhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \~ arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ~ arg2} \\ \hline
 		\void{}     & \void{}     & \void{}   			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
@@ -120,7 +120,7 @@
 	\label{xorhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \^ arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ^ arg2} \\ \hline
 		\void{}     & \void{}     & \void{}   			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}   		\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}   		\\ \hline
@@ -219,7 +219,7 @@
 
 \subsection{Модификаторы управления}
 
-Модификаторы управления тоже могут быть использованы для исключения ошибок. Напомню что модификатор имеет следующий синтаксис - \mintinline{icl}{control:modifier}. А также модификаторы могут быть несколько, синтаксис - \mintinline{icl}{control:[mod1,mod2]}. Написания нескольких между собой не совместимых модификаторов приводит к немедленной остановке программы.
+Модификаторы управления тоже могут быть использованы для исключения ошибок. Напомню что модификатор имеет следующий синтаксис — \mintinline{icl}{control:modifier}. А также модификаторы могут быть несколько, синтаксис — \mintinline{icl}{control:[mod1,mod2]}. Написания нескольких между собой не совместимых модификаторов приводит к немедленной остановке программы.
 
 Дополнительные модификаторы управления:
 \begin{icItems}
