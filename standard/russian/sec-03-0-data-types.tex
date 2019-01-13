@@ -62,14 +62,14 @@
 	\mintinline{icl}{any'link : bool} — при чтении получаем \true{} если значение объекта хранится во внешнем контейнере и изменение значении объекта будет изменить данные во внешней среде, иначе \false{}.
 \end{icItems}
 
-\noindent Примеры использования свойств -
+\noindent Примеры использования свойств —
 \inputminted[linenos]{icl}{../sources/propertiesmain.icL}
 
 \subsection{Методы}
 
 Методы позволяют изменить состояние объекта. Все типы данных имеют только один общий метод \mintinline{icl}{any.ensureRValue}, который гарантирует что изменение значению объекту не будет изменить данные во вне текущего контекста.
 
-\noindent Пример -
+\noindent Пример —
 \inputminted[linenos]{icl}{../sources/anyensureRValue.icL}
 
 %\newpage

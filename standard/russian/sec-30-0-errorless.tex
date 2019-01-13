@@ -84,7 +84,7 @@
 	\label{andhacktable}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \& arg2} \\ \hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 & arg2} \\ \hline
 		\void{}     & \void{}     & \void{}   			\\ \hline
 		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
 		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
@@ -155,7 +155,7 @@
 	\vspace{0em}
 \end{table}
 
-Для аргументов типов \integer{} и \double{}, вызывается функция \mintinline{icl}{Numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \mintinline{icl}{Numbers.setProcess} с одни из следующих аргументов: \mintinline{icl}{Numbers'sum} - сумма, \mintinline{icl}{Numbers'product} - произведение, \mintinline{icl}{Numbers'max} - максимум, \mintinline{icl}{Numbers'min} - минимум. После использования оператора, вызываете \mintinline{icl}{Numbers.restoreProcess} чтобы восстановить исходные настройки.
+Для аргументов типов \integer{} и \double{}, вызывается функция \mintinline{icl}{Numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \mintinline{icl}{Numbers.setProcess} с одни из следующих аргументов: \mintinline{icl}{Numbers'sum} — сумма, \mintinline{icl}{Numbers'product} — произведение, \mintinline{icl}{Numbers'max} — максимум, \mintinline{icl}{Numbers'min} — минимум. После использования оператора, вызываете \mintinline{icl}{Numbers.restoreProcess} чтобы восстановить исходные настройки.
 
 \subsection{Операторы управления}
 
@@ -214,7 +214,7 @@
 
 \subsection{Преобразование типов}
 
-В icL только один оператор позволяет преобразовать данные безопасно - \mintinline{icl}{data :? type : bool}.
+В icL только один оператор позволяет преобразовать данные безопасно — \mintinline{icl}{data :? type : bool}.
 Он преобразует данные в нужном тип данных и имеет первый ранг, как и обычный оператор преобразования. Особенность данного оператора, то что он не генерирует исключений, а возвращает \void{} при неудаче.
 
 \subsection{Модификаторы управления}
