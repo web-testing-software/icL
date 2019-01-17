@@ -1,117 +1,99 @@
-% !TeX spellcheck = ro_RO
+% !TeX spellcheck = en_US
 \input{part-01-0-advanced-users}
 
-\section{Sintaxă de bază}
+\section{Base syntax}
 
-icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icL}.
+icL is quite simple to learn and let's start creating our first icL script.
+\begin{minted}[linenos]{icl}
+Log.info "Test!";
+\end{minted}
 
-\begin{sourcecode}
-    \captionof{listing}{Prima programă}
-    \label{first}
-    \begin{minted}[linenos]{icl}
-    Log.info "Test!";
-    \end{minted}
-\end{sourcecode}
+The script can be saved to a file with \textit{icL} extension.
 
-În consolă ar trebui să apară următorul \textbf{text}:
+We can see the following \textbf{output}:
 
 \begin{minted}{icl}
 Test!
 \end{minted}
 
-\subsection{Import în icL}
+\subsection{Import in icL}
 
-Toate \textbf{bibliotecile standarde} sunt include în limbaj, dar se poate de inclus biblioteci \textbf{personalizate} folosind:
+All \textbf{standard libraries} are integrated in language, but you can include owns using:
 
 \begin{icItems}
 \item
-	\mintinline{icl}{Import.none "project/lib.icL"} - execută codul care se află în fișier, nu importă nimic;
+	\mintinline{icl}{Import.none "project/lib.icL"} executes the code of file without any import;
 \item
-	\mintinline{icl}{Import.functions "project/lib.icL"} - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
+	\mintinline{icl}{Import.functions "project/lib.icL"} executes the code of file and import functions. {\color{red}Important:} functions must not use global variables;
 \item
-	\mintinline{icl}{Import.all "project/lib.icL"} -  execută codul, importa funcțiile și variabilele globale;
+	\mintinline{icl}{Import.all "project/lib.icL"} executes the code and import functions and global variables;
 \item
-	\mintinline{icl}{Import.run "project/lib.icL"} - execută codul în contextul curent, toate funcțiile și variabilele globale se importă și exportă.
+	\mintinline{icl}{Import.run "project/lib.icL"} executes the code in current context, all functions and global variables will be imported and exported.
 \end{icItems}
 
-\subsection{Semne în icL}
+\subsection{Tokens in icL}
 
-Programa în icL conține diferite \textbf{semne} (literale, construcții semantice, operatori, delimitatori, cuvinte cheie). Semnul poate fi cuvînt cheie, identificator, constantă ori caracter. De exemple comanda următoare conține 4 semne: \mintinline{icl}{Log.info "Hello world!";}.
+The icL scripts contain a lot of tokens (literals, words, operators, delimiters, keywords). The token can be a keyword, identifier, constant or character. For example the following command contains 4 tokens: \mint{icl}{Log.info "Hello world!";}.
 
-Semnele prezente:
+Tokens enumeration:
 \begin{icItems}
 \item
-	\mintinline{icl}{Log} - identificator de obiect;
+	\mintinline{icl}{Log} is an identifier of an object;
 \item
-	\mintinline{icl}{.info} - identificator de metodă;
+	\mintinline{icl}{.info} is an identifier of a method;
 \item
-	\mintinline{icl}{"Hello world!"} - literal, șir de caracter;
+	\mintinline{icl}{"Hello world!"} is a literal (string);
 \item
-	\mintinline{icl}{;} - delimitator, sfîrșit de comandă.
+	\mintinline{icl}{;} is a delimiter (end of command).
 \end{icItems}
 
-\subsection{Comentarii}
+\subsection{Comments}
 
-\textbf{Comentariu} este un text adjunct, care ajută să înțelegi scenariile descrise. Comentariile sunt ignorate de procesorul de comande.
+\textbf{Comments} are like supporting text in your icL script and they are ignored by the command processor.
 
-\textbf{Comentariu în linie} (\textit{inline}) este un fragment de text limitat cu caractere speciale \texttt{`}, cum este arătat pe foaia \ref{inlinecomment}.
+\textbf{Inline comment} is a fragment of line which begins and ends with \texttt{`} —
 
-\begin{sourcecode}
-    \captionof{listing}{Comentariu în linie}
-    \label{inlinecomment}
-    \inputminted[linenos]{icl}{../sources/inlinecomment.icL}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/inlinecomment.icL}
 
-\textbf{Comentariu al liniei} este desemnat de \texttt{``}, cum este prezentat pe foaia \ref{linecomment}.
+\textbf{Single comment} is written using \texttt{``} in the beginning of the comment —
 
-\begin{sourcecode}
-    \captionof{listing}{Comentariu al liniei}
-    \label{linecomment}
-    \inputminted[linenos]{icl}{../sources/linecomment.icL}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/linecomment.icL}
 
-\textbf{Comentariu în cîteva linii} se începe și se termină cu \texttt{```}, exemplu de acest comentariu este prezent pe foaia \ref{multilinecomment}.
+\textbf{Multi line comment} starts and terminates with \texttt{```} —
 
-\begin{sourcecode}
-    \captionof{listing}{Comentariu în cîteva linii}
-    \label{multilinecomment}
-    \inputminted[linenos]{icl}{../sources/multilinecomment.icL}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/multilinecomment.icL}
 
-\subsection{Identificatori}
+\subsection{Identifiers}
 
-\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{.}, \mintinline{icl}{'} sau literă, după care merg de la 1 la 32 de caractere: litere latine, diacritice, sublinia și cifre.
+\textbf{A icL identifier} is a variable, property or function.
+An identifier starts with a special symbol (\mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{.}, \mintinline{icl}{'}) or letter, followed by one or more letters, underscores, and digits (0 to 9).
 
-icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
+icL is a case sensitive language. The \mintinline{icl}{@var} and \mintinline{icl}{@Var} are 2 different identifiers in icL. Here are some examples of acceptable identifiers —
 
 \begin{minted}{icl}
 #loop      Tab        .append  'length  Doc   @i   @VAR
 @variable  sumPoints  #global  .merge   .get  #01  sin
 \end{minted}
 
-\subsection{Cuvinte cheie}
+\subsection{Keywords}
 
-În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 18: \mintinline{icl}{if}, \mintinline{icl}{else} \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}, \mintinline{icl}{exists}, \mintinline{icl}{while}, \mintinline{icl}{do}, \mintinline{icl}{any}, \mintinline{icl}{emit}, \mintinline{icl}{emiter}, \mintinline{icl}{slot}, \mintinline{icl}{jammer}, \mintinline{icl}{listen}, \mintinline{icl}{wait}, \mintinline{icl}{switch}, \mintinline{icl}{case} și \mintinline{icl}{assert}. În acest document ele sunt accentuate folosind culoarea albastră.
+The following list shows reserved words in icL: \mintinline{icl}{if}, \mintinline{icl}{else} \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}, \mintinline{icl}{exists}, \mintinline{icl}{while}, \mintinline{icl}{do}, \mintinline{icl}{any}, \mintinline{icl}{emit}, \mintinline{icl}{emiter}, \mintinline{icl}{slot}, \mintinline{icl}{jammer}, \mintinline{icl}{listen}, \mintinline{icl}{wait}, \mintinline{icl}{switch}, \mintinline{icl}{case} și \mintinline{icl}{assert}. These words may not be used as identifiers names.
 
-\subsection{Spații si delimitatori}
+\subsection{Whitespace in icL}
 
-\textbf{Spațiu} (\textit{whitespace}) - este un termen, folosit în icL, pentru a însemna caracterul "spațiu", caracterul de tabulare, caracterul "rînd nou" și comentariu. Spațiile nu sunt obligatorii, ele sunt folosite pentru a face codul mai citabil. Pe foia \ref{unreadable} este prezent un exemplu de cod fără spații, dar pe foia \ref{readable} cu spații.
+\textbf{Whitespace} is the term used in icL to describe blanks, tabs, and newline characters. The whitespace in icL is used to make the code readable.
 
-\begin{sourcecode}
-    \captionof{listing}{Cod fără spații}
-    \label{unreadable}
-    \inputminted[linenos]{icl}{../sources/unreadable.icL}
-\end{sourcecode}
+Example of code without whitespace —
 
-În icL este prezent \textbf{delimitatorul de comenzi} \mintinline{icl}{;}, el poate fi ignorat, dar nu se recomandă. Comanda este o succesiune de semne, ordonate într-o ordine strictă și însemnînd anumite acțiuni. Exemple de comenzi: deschide site-ul - \mintinline{icl}{Tab.get "URL"}, închide tabul - \mintinline{icl}{Tab.close()}.
+\inputminted[linenos]{icl}{../sources/unreadable.icL}
 
-În descrierea succesiunii de acțiuni, acțiunile trebuie despărțite. De exemplu succesiunea din comenzile precedente se descrie în felul următor -
+Example of code with whitespace —
+
+\inputminted[linenos]{icl}{../sources/readable.icL}
+
+icL has a \textbf{delimiter for commands} \mintinline{icl}{;}, it can be omitted, but I don't recommend. The command is a  strong succession of tokens. Examples of commands: go to URL — \mintinline{icl}{Tab.get "URL"}, close tab — \mintinline{icl}{Tab.close()}.
+
+The scripts are successions of commands. In succession the commands must be delimited —
 \begin{minted}{icl}
 Tab.get "URL"; Tab.close()
 \end{minted}
-
-\begin{sourcecode}
-    \captionof{listing}{Cod cu spații}
-    \label{readable}
-    \inputminted[linenos]{icl}{../sources/readable.icL}
-\end{sourcecode}
