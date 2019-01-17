@@ -1,0 +1,284 @@
+% !TeX spellcheck = ro_RO
+
+\section{Metodologia errorless}
+
+\label{errorless-sec}
+
+Metodologia de programare, care a primit numele \textit{errorless} este o parte a filosofiei icL. În acord cu ea codul trebuie să fie rezistent la eșecuri, în acest capitol for fi descrise metode de a îmbunătăți rezistența.
+
+Dacă lucrați în comandă, acordați cu colegii care posibilități veți folosi, care nu.
+
+\subsection{Variabile}
+
+Variabilele în icL, de sine stătător nu generează excepții. Excepțiile sunt generate de folosirea incorectă a lor. Variabilele globale pot primi valori din setările proiectului, dar înainte de a folosi așa variabile verificați dacă conțin ele valori, dar în cel mai bun caz dați lor valori implicite - \mintinline{icl}{#server = #server | "192.168.7.12"} (pr. paragraful \ref{void-operators}).
+
+Dacă variabilă are valoare \void, puteți citi orice proprietate a ei, și apela orice metodă. Asta nu va genera excepții.
+
+Dacă apelați o metodă prin acronim și trimiteți valoare \void, metoda nu va fi apelată, iar comanda va returna \void. Folosirea acestei posibilități ne se recomandă, ea este prezentă pentru ca metodologia să fie completă.
+
+\subsection{Operatori {\color{lightblue}void}}
+
+\label{void-operators}
+
+Operatori \void{} sunt opțiuni pe care eu le pot recomanda cu încredere. Ei nu complică înțelegerea codului, dar o simplifică. Numai nu folosiți în serie mai mulți de 2 operatori.
+
+Toți operatorii \void{} sunt de rangul 2. Acești operatori împart datele în 2 tipuri \void{} și nu \void{}. Al doilea tip mai departe va fi numit \mintinline{icl}{any}, el poate înlocui unul din tipurile următoare: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}.
+
+Operatorii sunt enumerați în tabela \ref{voidops}:
+
+\stablethree{1.0cm}{7.0cm}{6.0cm}
+{voidops}{Operatori void}
+{Ранг}{Операция}{Оператор}
+{
+    2 & alegere alternativă   & \mintinline{icl}{void | void : void}        \\ \hline
+    2 & alegere alternativă   & \mintinline{icl}{void | any : any}          \\ \hline
+    2 & alegere alternativă   & \mintinline{icl}{any | void : any}          \\ \hline
+    2 & alegere alternativă   & \mintinline{icl}{any | any : any}           \\ \hline
+    2 & alegere primară       & \mintinline{icl}{void & void : void}        \\ \hline
+    2 & alegere primară       & \mintinline{icl}{any & void : void}         \\ \hline
+    2 & alegere primară       & \mintinline{icl}{void & any : void}         \\ \hline
+    2 & alegere primară       & \mintinline{icl}{any & any : any}           \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{void ~ void : void}        \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{void ~ any : void}         \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{any ~ void : void}         \\ \hline
+    2 & alegere secundară     & \mintinline{icl}{any ~ any : any}           \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{void ^ void : void}        \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{void ^ any : any}          \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{any ^ void : any}          \\ \hline
+    2 & alegere exclusivă     & \mintinline{icl}{any ^ any : void}          \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{void \% void : void}       \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{void \% any : any}         \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{any \% void : any}         \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{int \% int : int}          \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{double \% double : double} \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{string \% string : list}   \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{list \% string : list}     \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{list \% list : list}       \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{object \% object : set}    \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{set \% object : set}       \\ \hline
+    2 & alegere selecționistă & \mintinline{icl}{set \% set : set}          \\ \hline
+}
+
+\subsubsection{\mintinline{icl}{(arg1 : void or any) | (arg2 : void or any) : void or any}}
+
+Dependența alegerii alternative de datele de intrare este demonstrată în tabela \ref{orhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea alternativă"}
+	\label{orhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 | arg2} \\ \hline
+		\void{}     & \void{}     & \void{}  			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}  		\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}  		\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg1}  		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(arg1 : void or any) & (arg2 : void or any) : void or any}}
+
+Dependența alegerii primare de datele de intrare este demonstrată în tabela \ref{andhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea primară"}
+	\label{andhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 & arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg1}   		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(arg1 : void or any) ~ (arg2 : void or any) : void or any}}
+
+Dependența alegerii secundare de datele de intrare este demonstrată în tabela \ref{eqhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea secundară"}
+	\label{eqhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ~ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg2}   		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(arg1 : void or any) ^ (arg2 : void or any) : void or any}}
+
+Dependența alegerii exclusive de datele de intrare este demonstrată în tabela \ref{xorhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea exclusivă"}
+	\label{xorhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ^ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}   		\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}   		\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \void{}   			\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(arg1 : void or any) \% (arg2 : void or any) : void or any}}
+
+Dependența alegerii selective de datele de intrare este demonstrată în tabela \ref{centhacktable}.
+
+\begin{table}[htb]
+	\caption{Operatorul "alegerea selectivă"}
+	\label{centhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \% arg2}			\\ \hline
+		\void{}     & \void{}     & \void{}						\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}					\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}					\\ \hline
+		\integer{}  & \integer{}  & \integer{}					\\ \hline
+		\double{}   & \double{}   & \double{}					\\ \hline
+		\str{}      & \str{}      & \mintinline{icl}{list - [arg1, arg2]}	\\ \hline
+		\listtype{} & \str{}      & \mintinline{icl}{list - [arg1, arg2]}	\\ \hline
+		\listtype{} & \listtype{} & \mintinline{icl}{list - [arg1, arg2]}	\\ \hline
+		\object{}   & \object{}   & \mintinline{icl}{set - [arg1, arg2]}	\\ \hline
+		\set{}      & \object{}   & \mintinline{icl}{set - [arg1, arg2]}	\\ \hline
+		\set{}      & \set{}      & \mintinline{icl}{set - [arg1, arg2]}	\\ \hline
+		\element{}  & \element{}  & \mintinline{icl}{element - [arg1, arg2]}\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+Pentru argumentele \integer{} și \double{}, se apelează funcția \mintinline{icl}{Numbers.process}, înainte de folosire indicați care funcție doriți să folosiți, folosind funcția \mintinline{icl}{Numbers.setProcess} cu una din următoarele argumente: \mintinline{icl}{Numbers'sum} - suma, \mintinline{icl}{Numbers'product} - produs, \mintinline{icl}{Numbers'max} - maximum, \mintinline{icl}{Numbers'min} - minimum. După folosirea operatorului, apelați \mintinline{icl}{Numbers .restoreProcess} ca să restaurați setările.
+
+\subsection{Operatorii de control}
+
+Pentru a exclude excepții sunt operatori de control speciali:
+\begin{icItems}
+	\item \mintinline{icl}{exists};
+	\item \mintinline{icl}{if-exists};
+	\item \mintinline{icl}{for-any}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{exists}}
+
+\mintinline{icl}{exists} permite a returna date condițional, filtrînd informația după criteriile dorite.
+
+Condiții implicite:
+\begin{icItems}
+	\item
+	pentru \bool{} - \mintinline{icl}{# == true};
+	\item
+	pentru \integer{} - \mintinline{icl}{# != 0};
+	\item
+	pentru \double{} - \mintinline{icl}{# != 0.0};
+	\item
+	pentru \str{} - \mintinline{icl}{!#'empty};
+	\item
+	pentru \listtype{} - \mintinline{icl}{!#'empty};
+	\item
+	pentru \set{} - \mintinline{icl}{!#'empty};
+	\item
+	pentru \element{} - \mintinline{icl}{#'empty}.
+\end{icItems}
+
+În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \mintinline{icl}{exists(expresie)}.
+Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă \mintinline{icl}{exists(expresie, condiție)}.
+
+\subsubsection{\mintinline{icl}{if-exists}}
+
+Construcția \mintinline{icl}{if-exists} permite a execută o grupă de comenzi în condiție de rezultatul \mintinline{icl}{exists}-ului și de a folosi valoarea repetat. În cazul în care condiția \mintinline{icl}{exists}-ului e adevărată, se execută grupa de comenzi și se transmitwe valoare returnată de \mintinline{icl}{exists} sub numele \mintinline{icl}{@}.
+Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
+
+\subsubsection{\mintinline{icl}{for-any}}
+
+\mintinline{icl}{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea if-exist-ului}
+    \label{ifexistsex}
+    \inputminted[linenos]{icl}{../sources/ifexistsex.icL}
+\end{sourcecode}
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea for-any-ului}
+    \label{foranyex}
+    \inputminted[linenos]{icl}{../sources/foranyex.icL}
+\end{sourcecode}
+
+
+\subsection{Conversia datelor}
+
+În icL numai un operator permite a converti date și nu generează excepții - \mintinline{icl}{data :? type : bool}.
+El conversează datele în tipul de date necesar, ca oricare altul. Numai că în caz de eșec va returna \void.
+
+\subsection{Modificatorii de control}
+
+Modificatorii de control pot fi folosiți pentru a exclude eșecuri.
+Amintesc că modificatorii se descriu prin următoarea sintaxă - \mintinline{icl}{control:modifier}. De asemenea modificatorii pot fi mai mulți, sintaxă - \mintinline{icl}{control:[mod1,mod2]}. Folosirea în pereche a modificatorilor incompatibili va opri imediat programul.
+
+Modificatori de control adiționali:
+\begin{icItems}
+	\item \mintinline{icl}{if:not exists};
+	\item \mintinline{icl}{for:Xtimes};
+	\item \mintinline{icl}{for:ever};
+	\item \mintinline{icl}{while:minX};
+	\item \mintinline{icl}{while:maxX};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{if:not exists}}
+
+\mintinline{icl}{if-exists} este util prin ceea că permite de a executa cod cînd sunt prezente datele necesare. Dar dacă este necesar de generat excepție ca datele necesare lipsesc? Aceasta problemă este rezolvată de \mintinline{icl}{if:not-exists}. În comparație cu \mintinline{icl}{if-exists}, el nu va trimite date în grupa de comenzi.
+
+\subsubsection{\mintinline{icl}{for:Xtimes}}
+
+Cea mai simplă metoda de a executa codul de \mintinline{icl}{X} ori. Exemplu de cod care folosește \mintinline{icl}{for:Xtimes} este prezent pe foaia \ref{forxtimes}. Zero și unu nu vor fi acceptați ca argument corect.
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea for:Xtimes}
+    \label{forxtimes}
+    \inputminted[linenos]{icl}{../sources/forxtimes.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{for:ever}}
+
+\mintinline{icl}{for:ever} este un ciclu infinit, el poate fi folosit pentru a îndeplini codul de \mintinline{icl}{X} ori, unde \mintinline{icl}{X} este a valoare variabilă. Exemplu de cod este demonstrat pe foaia \ref{foreverloop}.
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea for:ever}
+    \label{foreverloop}
+    \inputminted[linenos]{icl}{../sources/foreverloop.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{while:minX}}
+
+Modificatorul \mintinline{icl}{min} permite a instala numărul minim de îndeplinire a ciclurilor \mintinline{icl}{while} și \mintinline{icl}{do-while}. În cilu ca fi transmisă o variabilă booleană, cu numele \mintinline{icl}{@}, \true{} înseamnă că condiția a fost controlată, adică numărul minim de cicluri a fost îndeplinit.
+
+\subsubsection{\mintinline{icl}{while:maxX}}
+
+Modificatorul \mintinline{icl}{max} apără de cicluri infinite, se poate de indicat un număr mare, dacă ceva va fi incorect, scenariul nu se va ori pe loc. Acest modificator este disponibil și pentru \mintinline{icl}{for} - răsfoirea colecției, \mintinline{icl}{filter} și \mintinline{icl}{range}. La fel el este util pentru a stabili limită de sus, de exemplu pentru a extrage din pagina primele 10 articole, cînd ele pot fi mii (pr. foaia \ref{maxlimitsheet}).
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea for:maxX}
+    \label{maxlimitsheet}
+    \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
+\end{sourcecode}
+
+\subsection{Elemente Web}
+
+Standardul \textit{WebDriver} propus de \textit{World Wide Web Consortium} descrie un număr enorm de excepții în lucrul cu elementele. Toate nu pot fi ignorate, numai una \ferror{NoSuchElement}. Ea este ignorată în regim de automatizare, dacă elementul nu a fost găsit se returnează o colecție deșartă. La prima vedere e puțin, dar aplicații la practică se găsesc multe, în combinație cu alte posibilități, priviți foaia \ref{webelementsheet}.
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea elementelor web}
+    \label{webelementsheet}
+    \inputminted[linenos]{icl}{../sources/webelementsheet.icL}
+\end{sourcecode}
+

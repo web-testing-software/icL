@@ -1,0 +1,257 @@
+% !TeX spellcheck = ro_RO
+\section{Conversia datelor}
+
+De conversia datelor în icL răspund 4 operatori de rangul 1:
+\begin{icItems}
+	\item \mintinline{icl}{data : type : type};
+	\item \mintinline{icl}{data :: type : bool};
+	\item \mintinline{icl}{data :* type : bool};
+	\item \mintinline{icl}{data :? type : bool};
+\end{icItems}
+
+Și un operator de rangul 7 - \mintinline{icl}{date :! type : type}.
+
+\subsubsection{\mintinline{icl}{data : type : type}}
+
+Conversează datele în tipul necesar. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \mintinline{icl}{value : type};
+	\item \mintinline{icl}{(value...) : type};
+	\item \mintinline{icl}{(value...) : (type...)};
+\end{icItems}
+
+\mintinline{icl}{value : type} conversează valoarea în tipul necesar.
+
+\mintinline{icl}{(value...) : type} conversează valorile împachetate în tipul necesar. Returnează pachet de valori (valori împachetate). Ele pot fi folosite pentru a apela o funcție, de exemplu \mintinline{icl}{func ((2.0, 3.2) : int)}.
+
+\mintinline{icl}{(value...) : (type...)} conversează fiecare valoare în tipul trebuit, ambele pachete ar trebui să dețină același număr de elemente. Returnează valori împachetate.
+
+Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{data :: type : bool}}
+
+Returnează \true, datele dețin tipul indicat, în caz contrar \false. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \mintinline{icl}{value :: type};
+	\item \mintinline{icl}{(value...) :: type};
+	\item \mintinline{icl}{(value...) :: (type...)};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{data :* type : bool}}
+
+Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \mintinline{icl}{value :* type};
+	\item \mintinline{icl}{(value...) :* type};
+	\item \mintinline{icl}{(value...) :* (type...)};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{data :! type : type}}
+
+\mintinline{icl}{data :! type : type} se deosebește de \mintinline{icl}{data : type : type} numai prin rang, conversia obișnuită are rangul 1 și se execută în ultimul  rînd, acest operator are rangul 7 și se execută în primul rînd.
+
+\subsection{Conversii posibile}
+
+În tabela \ref{castingtable} este prezentată compatibilitatea conversiei datelor. Cu minus sunt însemnate conversiile imposibile, ele mereu generează excepția \ferror{UnrealCast}. Cu plus sunt însemnate conversiile care mereu sunt posibile. Cu steluță sunt însemnate conversiile care pot eșua, ele la fel pot genera excepții. În numele coloanelor este indicat tipul de date curent, în numele rîndurilor - tipul de date necesar.
+
+\begin{table}[htb]
+	\caption{Conversii}
+	\label{castingtable}
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+		\hline
+		          & \void & \bool & \integer & \double & \str & \listtype & \object & \set & \element \\ \hline
+		\void     & +     & -     & -        & -       & -    & -         & -       & -    & -        \\ \hline
+		\bool     & +     & +     & +        & +       & +    & +         & +       & +    & +        \\ \hline
+		\integer  & +     & +     & +        & +       & *    & -         & -       & -    & -        \\ \hline
+		\double   & +     & +     & +        & +       & *    & -         & -       & -    & -        \\ \hline
+		\str      & +     & +     & +        & +       & +    & *         & +       & +    & +        \\ \hline
+		\listtype & +     & -     & -        & -       & +    & +         & -       & +    & -        \\ \hline
+		\object   & +     & -     & -        & -       & *    & -         & +       & *    & -        \\ \hline
+		\set      & +     & -     & -        & -       & *    & *         & -       & +    & -        \\ \hline
+		\element  & +     & -     & -        & -       & -    & -         & -       & -    & +        \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{\mintinline{icl}{void : void}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{void : bool}}
+
+Returnează \false.
+
+\subsubsection{\mintinline{icl}{void : int}}
+
+Returnează \mintinline{icl}{0}.
+
+\subsubsection{\mintinline{icl}{void : double}}
+
+Returnează \mintinline{icl}{0.0}.
+
+\subsubsection{\mintinline{icl}{void : string}}
+
+Returnează \mintinline{icl}{""}.
+
+\subsubsection{\mintinline{icl}{void : list}}
+
+Returnează \mintinline{icl}{[]}.
+
+\subsubsection{\mintinline{icl}{void : object}}
+
+Returnează \mintinline{icl}{[=]}.
+
+\subsubsection{\mintinline{icl}{void : set}}
+
+Returnează mulțime vidă.
+
+\subsubsection{\mintinline{icl}{void : element}}
+
+Returnează colecție deșartă.
+
+\subsubsection{\mintinline{icl}{bool : bool}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{bool : int}}
+
+Returnează \mintinline{icl}{1}, dacă valoare booleană e adevărată, în caz contrar \mintinline{icl}{0}.
+
+\subsubsection{\mintinline{icl}{bool : double}}
+
+Returnează \mintinline{icl}{1.0}, dacă valoare booleană e adevărată, în caz contrar \mintinline{icl}{0.0}.
+
+\subsubsection{\mintinline{icl}{bool : string}}
+
+Returnează \mintinline{icl}{"true"}, dacă valoare booleană e adevărată, în caz contrar \mintinline{icl}{"false"}.
+
+\subsubsection{\mintinline{icl}{int : bool}}
+
+Returnează valoarea expresiei \mintinline{icl}{int != 0}.
+
+\subsubsection{\mintinline{icl}{int : int}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{int : double}}
+
+Returnează număr decimal, cu partea întreagă egală cu  \integer, dar decimală egală cu 0.
+
+\subsubsection{\mintinline{icl}{int : string}}
+
+Returnează un șir de caractere, care conține descrierea numărului \integer{} în sistemul decimal.
+
+\subsubsection{\mintinline{icl}{double : bool}}
+
+Returnează valoarea expresiei \mintinline{icl}{double != 0.0}.
+
+\subsubsection{\mintinline{icl}{double : int}}
+
+Returnează un număr întreg egal cu partea întreagă a \double. Partea decimală se omite.
+
+\subsubsection{\mintinline{icl}{double : double}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{double : string}}
+
+Returnează un șir de caractere, care conține reprezentarea în caractere a numărului \double.
+
+\subsubsection{\mintinline{icl}{string : bool}}
+
+Returnează valoarea expresiei \mintinline{icl}{!string'empty}.
+
+\subsubsection{\mintinline{icl}{string : int}}
+
+Returnează număr întreg, care este rezultatul parsing-ului șirului \str.
+
+Excepții posibile: \ferror{ParsingFailed} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{string : double}}
+
+Returnează număr decimal, care este rezultatul parsing-ului șirului \str. Partea întreagă de decimală se desparte prin punct, nu prin virgulă.
+
+Excepții posibile: \ferror{ParsingFailed} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{string : string}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{string : list}}
+
+Returnează \mintinline{icl}{[string]}.
+
+\subsubsection{\mintinline{icl}{string : object}}
+
+Returnează obiect, care este rezultatul parsing-ului șirului JSON \str. Obiectul JSON trebuie să conțină numai cîmpuri de următoarele tipuri: \bool, \integer, \double, \str{} și \listtype.
+
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{string : set}}
+
+Returnează o mulțime, care este rezultatul parsing-ului șirului JSON \str, care trebuie să conțină un masiv de obiecte și fiecare obiect trebuie să corespundă criteriilor operatorului \mintinline{icl}{string : object}.
+
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list : bool}}
+
+Returnează valoarea expresiei \mintinline{icl}{!list'empty}.
+
+\subsubsection{\mintinline{icl}{list : string}}
+
+Returnează primul șir al listei, dacă lista constă dintr-un singur șir, în caz contrar generează excepție.
+
+Excepții posibile: \ferror{EmptyList} și \ferror{MultiList} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list : list}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{list : set}}
+
+Fiecare șir de caractere din listă va fi convertit în obiect prin \mintinline{icl}{string : object}, obiectele generate for fi grupate în mulțime, mulțimea generată va fi returnata de operator.
+
+\subsubsection{\mintinline{icl}{object : bool}}
+
+Returnează \true, dacă obiectul conține cel puțin o variabilă, în caz contrar \false.
+
+\subsubsection{\mintinline{icl}{object : string}}
+
+Returnează un șir JSON, care descrie obiectul.
+
+\subsubsection{\mintinline{icl}{object : object}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{set : bool}}
+
+Returnează valoarea expresiei \mintinline{icl}{!set'empty}.
+
+\subsubsection{\mintinline{icl}{set : string}}
+
+Returnează un șir JSON, care descrie mulțimea.
+
+\subsubsection{\mintinline{icl}{set : object}}
+
+Returnează singurul obiect, dacă mulțimea conține doar un singur obiect, în caz contrar generează o excepție.
+
+Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{set : list}}
+
+Returnează o listă de șiruri JSON, unde fiecare șir descrie un obiect din mulțime.
+
+\subsubsection{\mintinline{icl}{set : set}}
+
+Returnează datele primite.
+
+\subsubsection{\mintinline{icl}{element : bool}}
+
+Returnează valoarea expresiei \mintinline{icl}{!element'empty}.
+
+\subsubsection{\mintinline{icl}{element : string}}
+
+Returnează un șir care descrie, descrie ordinea de acțiuni necesare, ca să primești colecția dată.
+
+\subsubsection{\mintinline{icl}{element : element}}
+
+Returnează datele primite.

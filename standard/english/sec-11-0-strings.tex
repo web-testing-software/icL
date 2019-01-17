@@ -1,0 +1,204 @@
+% !TeX spellcheck = ro_RO
+\section{Șiruri de caractere}
+
+{\bf Șirurile de caractere} (tipul \str{}) permite a reține și a manipula fragmente de text. 
+
+\subsection{Proprietăți}
+
+Mai departe proprietățile for fi însemnate cu următoarele semne: \mintinline{icl}{[r/w]} - disponibil pentru citire și scriere, \mintinline{icl}{[r/o]} - disponibil numai pentru citire, \mintinline{icl}{[w/o]} - disponibil numai pentru scriere,  \mintinline{icl}{[r/*]} - disponibil pentru scriere numai în regim de automatizare, \mintinline{icl}{[*/*]} - accesul va fi concretizat mai apoi.
+
+Șirurile de caractere dețin următoarele proprietăți adiționale
+\begin{icItems}
+\item
+	\mintinline{icl}{[r/o] string'empty : bool};
+\item
+	\mintinline{icl}{[r/o] string'length : int};
+\item
+	\mintinline{icl}{[r/o] string'last : string};
+\item
+	\mintinline{icl}{[r/o] string'(n : int) : string}.
+\end{icItems}
+
+\
+
+Pe foaia \ref{stringprop} este prezentat cod, care folosește proprietățile enumerate.
+
+\subsubsection{\mintinline{icl}{[r/o] string'empty : bool}}
+
+Șirul se socoate deșert dacă lungimea lui este egală cu zero;
+
+\begin{sourcecode}
+    \captionof{listing}{Proprietățile clasei string}
+    \label{stringprop}
+    \inputminted[linenos]{icl}{../sources/stringprop.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{[r/o] string'length : int}}
+
+Lungimea șirului este egală cu numărul de caractere;
+
+\subsubsection{\mintinline{icl}{[r/o] string'last : char}}
+
+Ultimul caracter al șirului \mintinline{icl}{string.at (string'length - 1)}.
+
+Excepții posibile: \ferror{EmptyString} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] string'(<int> n) : string}}
+
+Al n-lea caracter. n trebuie sa fie literal întreg, exemple: \mintinline{icl}{@str'0; @string'2}.
+
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+
+\subsection{Metode}
+
+Șirurile dețin următoarele metode adiționale:
+\begin{icItems}
+	\item
+	\mintinline{icl}{string.append (str : string) : string};
+	\item
+	\mintinline{icl}{string.at (i : int) : string};
+	\item
+	\mintinline{icl}{string.beginsWith (str : string) : bool};
+	\item
+	\mintinline{icl}{string.compare (str : string, caseSensitive = true) : bool};
+	\item
+	\mintinline{icl}{string.count (str : string) : int};
+	\item
+	\mintinline{icl}{string.endsWith (str : string) : bool};
+	\item
+	\mintinline{icl}{string.indexOf (str : string, startPos = 0) : int};
+	\item
+	\mintinline{icl}{string.insert (str : string, pos : int) : string};
+	\item
+	\mintinline{icl}{string.lastIndexOf (str : string, startPos = -1) : int};
+	\item
+	\mintinline{icl}{string.left (n : int) : string};
+	\item
+	\mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\*\mintinline{icl}{string};
+	\item
+	\mintinline{icl}{string.mid (pos : int, n = -1) : string};
+	\item
+	\mintinline{icl}{string.prepend (str : string) : string};
+	\item
+	\mintinline{icl}{string.remove (pos : int, n : int) : string};
+	\item
+	\mintinline{icl}{string.remove (str : string, caseSensitive = true) : string};
+	\item
+	\mintinline{icl}{string.replace (pos : int, n : int, after : string) : string};
+	\item
+	\mintinline{icl}{string.replace (before : string, after : string) : string};
+	\item
+	\mintinline{icl}{string.right (n : int) : string};
+	\item
+	\mintinline{icl}{string.rightJustified (width : int, fillChar : string, truncate = false) :}\\* \mintinline{icl}{string};
+	\item
+	\mintinline{icl}{string.split (separator : string, keepEmptyParts = true, caseSensitive = true) } \mintinline{icl}{: list};
+	\item
+	\mintinline{icl}{string.substring (begin : int, end : int) : string};
+	\item
+	\mintinline{icl}{string.trim (justWhitespace = true) : string}.
+\end{icItems}
+
+Unele metode sunt ignorate, ele vor fi enumerate în capitolul \ref{regex}; Exemplu de cod, care folosește metodele enumerate este prezent pe foaia \ref{stringmethods}.
+
+\
+
+\begin{sourcecode}
+    \captionof{listing}{Metodele clasei string}
+    \label{stringmethods}
+    \inputminted[linenos]{icl}{../sources/stringmethods.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{string.append (str : string) : string}}
+
+Inserează șirul \mintinline{icl}{str} la sfîrșitul listei.
+
+\subsubsection{\mintinline{icl}{string.at (i : int) : string}}
+
+Returnează al \mintinline{icl}{i}-lea simbol.
+
+Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{string.beginsWith (str : string) : bool}}
+
+Returnează \true{}, dacă începutul șirului coincide cu \mintinline{icl}{str}, în caz contrar \false{}.
+
+\subsubsection{\mintinline{icl}{string.compare (str : string, caseSensitive = true) : bool}}
+
+Compară șirurile, returnează \true{} dacă ele sunt egale, în caz contrar \false{}. Argument \mintinline{icl}{caseSensitive} poate fi omis, dacă el primește valoarea \false{}, diferența dintre majuscule și minuscule va fi ignorată.
+
+\subsubsection{\mintinline{icl}{string.count (str : string) : int}}
+
+Calculează de cîte ori subșirul \mintinline{icl}{str} se întîlnește în șir.
+
+\subsubsection{\mintinline{icl}{string.endsWith (str : string) : bool}}
+
+Returnează \true{}, dacă sfîrșitul șirului coincide cu \mintinline{icl}{str}, în caz contrar \false{}.
+
+\subsubsection{\mintinline{icl}{string.indexOf (str : string, startPos = 0) : int}}
+
+Returnează indexul primii includeri a șubșirului \mintinline{icl}{str} în șir, căutînd înainte de pe poziția \mintinline{icl}{startPos}, dacă șirul nu include subșirul se returnează -1.
+
+\subsubsection{\mintinline{icl}{string.insert (str : string, pos : int) : string}}
+
+Inserează șirul \mintinline{icl}{str} pe poziția \mintinline{icl}{pos}.
+
+\subsubsection{\mintinline{icl}{string.lastIndexOf (str : string, startPos = -1) : int}}
+
+Returnează indexul primii includeri a șubșirului \mintinline{icl}{str} în șir, căutînd înapoi de pe poziția \mintinline{icl}{startPos}, dacă șirul nu include subșirul se returnează -1.
+
+\subsubsection{\mintinline{icl}{string.left (n : int) : string}}
+
+Returnează subșir, care conține primele \mintinline{icl}{n} caractere.
+
+\subsubsection{\mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\* \mintinline{icl}{string}}
+
+Returnează șir cu lungimea \mintinline{icl}{width}, care conține șirul acesta la început, dar la sfîrșit se inserează \mintinline{icl}{width - .length} caractere \mintinline{icl}{fillChar}. Dacă \mintinline{icl}{truncate == true} și \mintinline{icl}{width < .length}, ultimele \mintinline{icl}{.length - width} simboluri se șterg.
+
+\subsubsection{\mintinline{icl}{string.mid (pos : int, n = -1) : string}}
+
+Returnează șir, care conține \mintinline{icl}{n} caractere din șirul acesta, începînd cu poziția \mintinline{icl}{pos.} Va fi întors un șir deșert în cazul în care intervalul iese din granițele șirului. Dacă \mintinline{icl}{n == -1} vor fi returnate toate caractere disponibile începînd cu caracterul de pe poziția \mintinline{icl}{pos}.
+
+\subsubsection{\mintinline{icl}{string.prepend (str : string) : string}}
+
+Inserează șirul \mintinline{icl}{str} la început.
+
+\subsubsection{\mintinline{icl}{string.remove (pos : int, n : int) : string}}
+
+Șterge \mintinline{icl}{n} caractere din șir începînd cu poziția \mintinline{icl}{pos}.
+
+\subsubsection{\mintinline{icl}{string.remove (str : string, caseSensitive = true) : string}}
+
+Șterge fiecare includere al subșirului \mintinline{icl}{str} în șir. Argumentul \mintinline{icl}{caseSensitive} poate fi omis, dacă el primește valoarea \false{} diferența între majuscule și minuscule va fi ignorată.
+
+\subsubsection{\mintinline{icl}{string.replace (pos : int, n : int, after : string) : string}}
+
+Înlocuiește intervalul [\mintinline{icl}{pos}; \mintinline{icl}{pos + n}] cu șirul \mintinline{icl}{after}.
+
+\subsubsection{\mintinline{icl}{string.replace (before : string, after : string) : string}}
+
+Înlocuiește fiecare includere a șirului \mintinline{icl}{before} cu șirul \mintinline{icl}{after}.
+
+\subsubsection{\mintinline{icl}{string.right (n : int) : string}}
+
+Returnează șir, care conține ultimele \mintinline{icl}{n} caractere din șir.
+
+\subsubsection{\mintinline{icl}{string.rightJustified (width : int, fillChar) : string, truncate = false :}\\* \mintinline{icl}{string};}
+
+Returnează șir cu lungimea \mintinline{icl}{width}, care conține acest șir, la început se înserează \mintinline{icl}{width - .length} caractere \mintinline{icl}{fillChar}. Dacă \mintinline{icl}{truncate == true} și \mintinline{icl}{width < .length}, primele \mintinline{icl}{.length - width} caractere vor fi șterse.
+
+\subsubsection{\mintinline{icl}{string.split (separator : string, keepEmptyParts = true, caseSensiti : bool,}\\* \mintinline{icl}{ve = true) : list}}
+
+Împarte șirul în subșiruri, la fiecare găsire a subșirului \mintinline{icl}{separator} și strînge subșirurile în lista. Dacă \mintinline{icl}{separator} nu se întîlneste nici o dată, va fi returnată o listă dintr-un șir - acest șir. Dacă \mintinline{icl}{keepEmptyParts == false} șirurile deșarte se ignoră.
+
+\subsubsection{\mintinline{icl}{string.substring (begin : int, end : int) : string}}
+
+Returnează șir, care conține caracterele din intervalul [\mintinline{icl}{begin}; \mintinline{icl}{end}].
+
+\subsubsection{\mintinline{icl}{string.trim (justWhitespace = true) : string}}
+
+Returnează șir, copia acestui șir din care se șterg toate spațiile de la început și sfîrșit. Dacă \mintinline{icl}{justWhitespace == false} vor fi șterse toate caracterele care nu sunt litere sau cifre (de la începutul și sfîrșitul șirului).
+
+% \subsubsection{}
+
+%\newpage
