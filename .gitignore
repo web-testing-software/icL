@@ -18,7 +18,7 @@ layouts/*/*/*.png
 layouts/*/icons/*
 layouts/pdf/*
 standard/*/*html/*
-standard/standard*.pdf
+standard/english/*.pdf
 standard/moldavian/*.pdf
 standard/russian/*.pdf
 philosophy/standard*.pdf

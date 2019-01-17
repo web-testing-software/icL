@@ -1,19 +1,17 @@
-% !TeX spellcheck = ro_RO
+% !TeX spellcheck = en_US
  %\renewcommand{\rmdefault}{ftm}
 \counterwithin{lstlisting}{section}
 \counterwithin{listing}{section}
 \counterwithin{table}{section}
-
-\SetupFloatingEnvironment{listing}{name=Foaia}
 
 \setlength\abovecaptionskip{2pt}
 \setlength\belowcaptionskip{1pt}
 
 \pagestyle{fancy}
 \fancyhead[]{}
-\fancyhead[L]{\textmd{Versiunea 1.1.1 în limba moldovenească}}
+\fancyhead[L]{\textmd{Version 1.1.1 in English}}
 \fancyhead[C]{}
-\fancyhead[R]{Pagina \textmd{\thepage{}-a din \pageref{LastPage}}}
+\fancyhead[R]{The \textmd{\thepage{}$^{th}$ of \pageref{LastPage}}}
 \fancyfoot[]{}
 \renewcommand{\headrulewidth}{0pt}
 
@@ -61,7 +59,7 @@
 % row1 name, row2 name, body
 \newcommand{\tabletwo}[7]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|}
-	\caption*{Tabela \thetable{} – #4} \label{#3} \\
+	\caption*{Table \thetable{} – #4} \label{#3} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
@@ -93,7 +91,7 @@
 % row1 name, row2 name, body
 \newcommand{\stabletwo}[7]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|}
-	\caption*{Tabela \thetable{} – #4} \label{#3} \\
+	\caption*{Table \thetable{} – #4} \label{#3} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
@@ -102,7 +100,7 @@
 	\endfirsthead
 
 	\multicolumn{2}{l}%
-	{{Continuarea tabelei \thetable{} – #4}} \\
+	{{Continuation of table \thetable{} – #4}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
 	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
@@ -122,7 +120,7 @@
 % row1 name, row2 name, row3 name, body
 \newcommand{\tablethree}[9]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
-	\caption*{Tabela \thetable{} – #5} \label{#4} \\
+	\caption*{Table \thetable{} – #5} \label{#4} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
@@ -136,7 +134,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{} – #5}} \\
+	{{Continuation of table \thetable{} – #5}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
 	\multicolumn{1}{p{#2}|}{\greycell{2}} &
@@ -157,7 +155,7 @@
 % row1 name, row2 name, row3 name, body
 \newcommand{\stablethree}[9]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
-	\caption*{Tabela \thetable{} – #5} \label{#4} \\
+	\caption*{Table \thetable{} – #5} \label{#4} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
@@ -167,7 +165,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{} – #5}} \\
+	{{Continuation of table \thetable{} – #5}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
 	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
@@ -187,7 +185,7 @@
 % rows, header, repeated, label, name, body
 \newcommand{\tableuni}[6]{
 	\begin{longtable}[h]{#1}
-	\caption*{Tabela \thetable{} – #5} \label{#4} \\
+	\caption*{Table \thetable{} – #5} \label{#4} \\
 
 	\hline
 	#2
@@ -195,7 +193,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{} – #5}} \\
+	{{Continuation of table \thetable{} – #5}} \\
 	#3
 	\endhead
 
@@ -211,7 +209,7 @@
 % rows, header, repeated, label, name, body
 \newcommand{\stableuni}[6]{
 	\begin{longtable}[h]{#1}
-	\caption*{Tabela \thetable{} – #4} \label{#3} \\
+	\caption*{Table \thetable{} – #4} \label{#3} \\
 
 	\hline
 	#2
@@ -219,7 +217,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{} – #4}} \\
+	{{Continuation of table \thetable{} – #4}} \\
 	\hline
 	#2
 	\hline
