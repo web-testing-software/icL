@@ -1,72 +1,67 @@
-% !TeX spellcheck = ro_RO
-\section{Introducere}
+% !TeX spellcheck = en_US
+\section{Introduction}
 
-\indent \textbf{icL} - \textbf{limbaj de script-are}, optimizat pentru descrierea scenariilor de testare al aplicaților web. Acest document (la fel ca și programul icL) este distribuit sub licența GNU GLPv3.
+\indent \textbf{icL} is a \textbf{scripting language}, specialized for web applications testing. This document (also as the icL software) is distributed under GNU GPLv3.
 
-Limbajul icL are calități speciale și este creat be bază de filozofia icL. În acord cu ea codul trebuie să fie simplu, scurt, să asigure funcționalul necesar și să fie rezistent la erori (privește capitolul \ref{errorless-sec}).
+The language icL has some exclusive characteristics and was based on icL philosophy. In agreement with it, the code must support all needed functional and must be simple and errorless (see the section \ref{errorless-sec}).
 
-\subsection{Cititorilor}
+\subsection{Audience}
 
-Acest document este desemnat celor, ce vor să înceapă să învețe limbajul icL. De asemenea acest document v-a fi folosit în procesul de dezvoltare al procesorului de comande, comportarea lui în situațiile care lipsesc se declară nedefinită.
+This document is designed for those individuals who are looking for starting point of learning icL language. Also, this document will be used in development process of command processor, its behavior in situations which had not been described in this document is declared undefined.
 
-Simțiți-vă liberi să indicați la erori și prezentarea ideilor și punctelor de vedere noi, aștept scrisorile voastre pe adresa {\bf icl@vivaldi.net}.
+Feel free to indicate in errors and to show your own point of view. I wait your letters on the address {\bf icl@vivaldi.net}.
 
-\subsection{Ce capabilități trebuiesc}
+\subsection{Prerequisites}
 
-Înainte de a învăța icL, ar trebuie să aveți cunoștințe generale în programare.
+Before proceeding with this tutorial, it is advisable for you to understand the basic concepts of computer programming.
 
-\subsection{Recenzie}
+\subsection{Overview}
 
-icL este un limbaj de descriere al scenariilor de aplicațiilor web. Desolvatarea a început în anul 2017, lansarea primei versiuni se plănuiește în anul 2020. În timpul de față se află în dezvoltare activă.
+icL language is a scripting language specialized for testing of web applications. Its development was initiated in 2017 year. The release of the first version is planed to 2020 year.
 
-icL are \textbf{sintaxă bazată pe sintaxa limbajului C}, care folosește tipizare statică. În icL nu se poate de definit tipuri de date proprii, pentru că el nu este destinat pentru programare, cunoștințele primite în timpul cursului de programare în școală ar trebui să fie destule. Limbajul icL suportă o singură paradigmă de programare - procedurală. În caz de necesitate de a prelucra date externe, se poate de folosit export/import în CSV și baze de date.
+icL is language with \textbf{syntax being C style} and uses static typing. icL does not allow defining own data types, because it is not designed for programming. The knowledge of school Informatics course must be enough to start coding. icL is a single paradigm programming language — procedural. To process external data is available export/import to/from CVS and data bases.
 
-\subsection{Exemplu de cod}
+\subsection{Example}
 
-În icL puntul de intrare în script este începutul fișierului, programul \textit{Hello world!} este demonstrat pe foia \ref{example0}.
+The entry point to a icL script is the beginning of the file. The \textit{Hello world!} program —
+\inputminted[linenos]{icl}{../sources/helloworld.icL}
 
-\begin{listing}
-    \captionof{listing}{Exemplu}
-    \label{example0}
-    \inputminted[linenos]{icl}{../sources/helloworld.icL}
-\end{listing}
+\subsection{Learning icL}
 
-\subsection{Învățarea limbajului icL}
+The most important thing to do when learning icL is to focus on concepts and not get lost in language technical details.
 
-Cel mai important în învățarea limbajului icL este de a se concentra la idei și a nu atrage atenția la detaliile realizării.
+\subsection{Scope of icL}
 
-\subsection{Unde se folosește icL}
-
-Limbajul icL este o parte a \textbf{programei icL}, cu ajutorul ei se poate de controlat un browser, anume:
+The language icL is a part of icL software, it realizes the browser control, exactly:
 \begin{icItems}
 \item
-	a deschide un tab;
+	to open a tab;
 \item
-	a închide un tab;
+	to close a tab;
 \item
-	a trece la altă pagină;
+	to get a page by URL;
 \item
-	a simula evenimentele mouse-ului și claviaturii;
+	to simulate mouse and keyboard events;
 \item
-	a interacționa cu pagina web;
+	to interact with a web page;
 \item
-	a executa cod javascript;
+	to execute JavaScript code in page;
 \item
-	a controla pagina web;
+	to control a web page;
 \item
-	a face schimb de informație cu pagina web;
+	to exchange data with a web page;
 \item
-	a captura ecranul;
+	to grab the screen;
 \item
-	a controla memoria;
+	to control memory;
 \item
-	a exporta date in fișiere CSV;
+	to export data to CSV files;
 \item
-	a importa date din fișier CSV;
+	to import data from CSV files;
 \item
-	a executa comenzi SQL.
+	to run SQL queries.
 \end{icItems}
 
-\subsection{Începutul lucrului}
+\subsection{Setup}
 
-Pentru a începe a lucra folosind limbajul icL e destul de a instala programul icL.
+Just install the icL software.
