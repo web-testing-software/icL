@@ -1,85 +1,73 @@
-% !TeX spellcheck = ro_RO
-\section{Tipuri de date}
+% !TeX spellcheck = en_US
+\section{Data types}
 
-În limbajul de script-are icL, tipurile de date joacă un rol tare important, ele hotărăsc cum datele au să fie păstrate și prelucrate în decursul rulării programei. Clasificarea tipurilor de date este demonstrată în tabela \ref{datatypeclasses}.
+Int the icL scripting language, data types refer to an extensive system used for declaring variables or functions of different types. The type of variable determines how much space it occupies in storage and how the stored bit pattern is interpreted.
 
+The types in icL can b classified as follows —
 \stabletwo{3.5cm}{13.6cm}
-{datatypeclasses}{Gruparea tipurilor de date}
-{Categorie}{Descriere}
+{}{}{Category}{Description}
 {
-	De bază     & Tipurile de date descrise în capitolul precedent: \bool{} - boolean, \integer{} - numere întregi, \double{} - numere decimale. \\ \hline
-	Complexe    & Tipuri de date care conțin cîteva valori în container, exemple: șiruri de caractere, liste, mulțimi. \\ \hline
-	De sistem   & Tipuri de date pe care nu pot fi create direct de programator, accesul la ele este asigurat de obiecte de sistem. Exemple: browser, tab, istoria browserului, fereastră \\ \hline
-	Tip \void{} & Tip de date care înseamnă lipsa valorii.
+	Basic types      &  \bool{} — Boolean values, \integer{} — integer numbers, \double{} — decimal numbers. \\ \hline
+	Complex types    & Data types which contains some values in container, examples: string, lists, sets. \\ \hline
+	System types     & Data types which describe system objects, these objects can not be created by programmer, just accessed over system types. Examples: browser, tab, browser history, browser window. \\ \hline
+	The \void{} type & The type specifier \void{} indicates that no value is available.
 }
 
-\subsection{Tipuri de bază}
+\subsection{Basic types}
 
-{\bf Tipuri de bază} se folosesc în realizarea operațiilor logice și aritmetice. De asemenea aceste valori pot fi comparate. Operațiile logice sunt conjuncția, disjuncția, disjuncție exclusivă, echivalență și negație logică. Operațiile aritmetice sunt adunarea, scăderea, înmulțirea, împărțirea, extragerea rădăcinii și ridicarea la putere.
+{\bf Basic types} are used in logical and arithmetical operations. Also, these values can be compared. The logical operations are conjunction, disjunction, exclusive disjunction, biconditional and negation. Arithmetical operations are addition, subtraction, multiplication, division, root and power.
 
-\subsection{Tipuri complexe}
+\subsection{Complex types}
 
-{\bf Tipurile complexe} sunt concentrate pe păstrarea masivelor de informație. Șirul de caractere poate conține mai mult de 2 miliarde de caractere, lista - mai mult de 2 miliarde de șiruri de caractere. Mulțimile pot conține o mare cantitate de date, limitată doar de memoria operativă. Obiectele permit a salva mai multe variabile sub un nume. Elementele pot conține linkuri la mai multe tag-uri HTML.
+{\bf Complex types} are designed for storing of data arrays. The string can contain more than 2 billions of characters, the list — more than 2 billions of strings. The sets are limited just by RAM, the object contains some variables. And the element can contain some HTML tags.
 
-\subsection{Tipuri de sistem}
+\subsection{System types}
 
-{\bf Tipurile de siste} permit a interacționa cu pagina web și cu browserul. Mai multă informație puteți găsi în capitolele \ref{webelments} și \ref{dataexchange}.
+{\bf System types} realize the interaction with web pages and browser. More information are present in sections \ref{webelments} and \ref{dataexchange}.
 
-\subsection{Tip {\color{lightblue} void}}
+\subsection{The {\color{lightblue} void} type}
 
-{\bf Tipul \void{}} indică la lipsa valorii, el poate fi folosit în cele mai diferite scopuri:
-
-\begin{icItems}
-\item
-	a indica la ceea că funcția nimic nu întoarce;
-\item
-	a indica la ceea că in timpul execuției funcția a apărut o excepție;
-\item
-	a alege sursa de date;
-\item
-	a filtra datele;
-\item
-	și multe altele.
-\end{icItems}
-
-
-\subsection{Proprietăți}
-
-Unele tipuri de date au proprietăți. Proprietățile permit a citi caracteristicile datelor. Indiferent de tipul de date, orice obiect are următoarele proprietăți (disponibile doar pentru citire):
+{\bf The type specifier \void{}} indicates that no value is aviable, it can be used for any proposes —
 
 \begin{icItems}
 \item
-	\mintinline{icl}{any'typeName : string} e numele tipului de date conținut de obiect;
+	To mark functions with no return value.
 \item
-	\mintinline{icl}{any'typeId : int} e identificatorul tipului de date conținut de obiect;
+	When the function executes fails, it returns \void.
 \item
-	\mintinline{icl}{any'rValue : bool} e egal cu \true{} dacă obiectul este o valoare de dreapta, în caz contrar \false{};
+	To select a source of data.
 \item
-	\mintinline{icl}{any'readOnly : bool} e egal cu \true{} dacă obiectul este disponibil doar pentru citire, în caz contrar \false{};
+	To filter data.
 \item
-	\mintinline{icl}{any'lValue : bool} e egal cu \true{} dacă obiectul este disponibil pentru citire și scriere, în caz contrar \false{};
-\item
-	\mintinline{icl}{any'link : bool} e egal cu \true{} dacă valoare sa află într-un container extern și schimbarea valorii va schimba valoarea în mediu extern, în caz contrar \false{}.
+	Many more besides.
 \end{icItems}
 
-Exemple de folosire a proprietăților sunt prezente pe foaia \ref{propertiesmain}.
 
-\subsection{Metode}
+\subsection{Properties}
 
-Metodele permit a schimba starea obiectului. Toate tipurile de date au doar o singură metodă comună \mintinline{icl}{any.ensureRValue}, care garantează că schimbarea valorii obiectului nu va schimba date în mediul extern.
+Some data types has properties. The properties define some data characteristics.  Whatever data type, each object has the next read-only properties —
 
-Exemplu de folosire a metodei \mintinline{icl}{any.ensureRValue} este demonstrat pe foaia \ref{anyensureRValue}.
+\begin{icItems}
+\item
+	\mintinline{icl}{any'typeName : string} is the name of data type as string.
+\item
+	\mintinline{icl}{any'typeId : int} is the identifier of data type.
+\item
+	\mintinline{icl}{any'rValue : bool} is \true{} the object is a right value, otherwise \false{}.
+\item
+	\mintinline{icl}{any'readOnly : bool} is \true{} if the object is read-only, otherwise \false{}.
+\item
+	\mintinline{icl}{any'lValue : bool} is \true{} if the object is a left value, otherwise \false{};
+\item
+	\mintinline{icl}{any'link : bool} is \true{} if value is stored in external container and the change the value will change it externally, otherwise \false{}.
+\end{icItems}
 
-\newpage
-\begin{sourcecode}
-    \captionof{listing}{Proprietăți}
-    \label{propertiesmain}
-    \inputminted[linenos]{icl}{../sources/propertiesmain.icL}
-\end{sourcecode}
+Example of using properties —
+\inputminted[linenos]{icl}{../sources/propertiesmain.icL}
 
+\subsection{Methods}
 
-\begin{sourcecode}
-    \captionof{listing}{Metoda any.ensureRValue}
-    \label{anyensureRValue}
-    \inputminted[linenos]{icl}{../sources/anyensureRValue.icL}
-\end{sourcecode}
+The methods change the state of the object. All data types has a single common method: \mintinline{icl}{any.ensureRValue}, it convert a left value to a right value.
+
+Example of the \mintinline{icl}{any.ensureRValue} method using —
+\inputminted[linenos]{icl}{../sources/anyensureRValue.icL}
