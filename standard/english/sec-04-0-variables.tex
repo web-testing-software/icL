@@ -1,23 +1,19 @@
-% !TeX spellcheck = ro_RO
-\section{Variabile}
+% !TeX spellcheck = en_US
+\section{Variables}
 
-\textbf{Variabila} este o pereche "nume" - "valoare". Fiecare variabilă în icL are domeniu de vizibilitate (fragment de cod unde ea poate fi folosită) și tip, care hotărăște metoda de distribuire a memoriei și domeniul de valori.
+\textbf{A variable} is nothing but a name given to a storage area that our scripts can manipulate. Each icL variables has a domain of visibility (a fragment of code where the variable can be used) and data type which determines layout of the variable's memory; the range of values that can be stored within that memory.
 
-Numele variabilei este identificator, care se începe cu \mintinline{icl}{@} sau {\color{blue2}\mintinline{icl}{#}}. 
+The variable name is an identifier which starts with \mintinline{icl}{@} or \mintinline{icl}{#}.
 
-\subsection{Definire și inițializare a variabilelor}
+\subsection{Variable definition and initialization icL}
 
-\textbf{Definirea și inițializarea} se realizează prin definirea perechilor "nume" - "valoare", numele de valoare se desparte prin semnul \mintinline{icl}{=} și are următoarea sintaxă \mintinline{icl}{var = value}, unde \mintinline{icl}{var} este numele, iar \mintinline{icl}{value} e valoarea.
+\textbf{DefinirVariable definition and initialization} tells the command processor where and the initial value for variable. A variable definition specifies an identifier and a value as follows -
+\mint{icl}{identifier = value}.
 
-Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și inițializare. Atrageți atenția la aceea că numerele reale se scriu prin punct (.), nu prin virgulă (,), așa cum este primit în Europa și Republica Moldova.
+Some valid declarations are shown here —
+\inputminted[linenos]{icl}{../sources/initexample.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Exemplu de declarare și inițializare al variabilelor}
-    \label{initexample}
-    \inputminted[linenos]{icl}{../sources/initexample.icL}
-\end{sourcecode}
-
-\subsection{Variabile locale}
+\subsection{Local variables}
 
 \textbf{Variabilele locale} au un domeniu îngust de vizibilitate, limitat de acoladele care le înconjoară și numai după declarare.
 
