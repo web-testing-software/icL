@@ -7,7 +7,7 @@ The variable name is an identifier which starts with \mintinline{icl}{@} or \min
 
 \subsection{Variable definition and initialization icL}
 
-\textbf{DefinirVariable definition and initialization} tells the command processor where and the initial value for variable. A variable definition specifies an identifier and a value as follows -
+\textbf{Variable definition and initialization} tells the command processor where and the initial value for variable. A variable definition specifies an identifier and a value as follows —
 \mint{icl}{identifier = value}.
 
 Some valid declarations are shown here —
@@ -15,64 +15,52 @@ Some valid declarations are shown here —
 
 \subsection{Local variables}
 
-\textbf{Variabilele locale} au un domeniu îngust de vizibilitate, limitat de acoladele care le înconjoară și numai după declarare.
+\textbf{The local variables} have a narrow domain of visibility, limited by brackets which embrace it.
 
-{\bf Identificatorii} variabilelor locale se încep cu simbolul \mintinline{icl}{@}.
+{\bf The identifiers} of local variables start with \mintinline{icl}{@}.
 
-Pe foaia \ref{localvars} se demonstrează domeniul de vizibilitate al variabilei \mintinline{icl}{@var}, în punctele de declarare al variabilelor \mintinline{icl}{@test1}, \mintinline{icl}{@test2} și \mintinline{icl}{@test6} ea nu este vizibilă, dar în punctele de declarare ale variabilelor \mintinline{icl}{@test3}, \mintinline{icl}{@test4} și \mintinline{icl}{@test5} - da.
+Demonstration of domain visibility for \mintinline{icl}{@var} variable —
+\inputminted[linenos]{icl}{../sources/localvars.icL}
 
-\subsection{Variabile globale}
+Here \mintinline{icl}{@var} is not visible in declaration points of \mintinline{icl}{@test1}, \mintinline{icl}{@test2} and \mintinline{icl}{@test6} variables. And is visible in declaration points of \mintinline{icl}{@test3}, \mintinline{icl}{@test4} and \mintinline{icl}{@test5} variables.
 
-\textbf{Variabilele globale} au cel mai larg domeniu de vizibilitate, ele sunt vizibile în orice punct al programei după declarare. Nu se recomandă a folosi variabile globale, pentru că ele pot să provoace erori serioase.
+\subsection{Global variables}
 
-{\bf Identificatorii} variabilelor globale se încep cu caracterul {\color{blue2}\mintinline{icl}{#}}. Mai multe variabile locale pot avea același nume, dar variabilele globale au nume unic, care nu poate fi repetat.
+\textbf{The global variables} has the largest domain of visibility. They are visible in any point after declaration. I do not recomand to use global variables.
 
-\begin{sourcecode}
-    \captionof{listing}{Domeniul de vizibilitate al variabilei locale}
-    \label{localvars}
-    \inputminted[linenos]{icl}{../sources/localvars.icL}
-\end{sourcecode}
+{\bf The identifiers} of global variables starts with \mintinline{icl}{#}. Is possible to create 2 local variables with the same name, but the global variables has a unique name which can not be repeated.
 
-Pe foaia \ref{globalvars}, este demonstrat domeniul de vizibilitate al variabilei \mintinline{icl}{@var}, ea nu este vizibilă în punctele de declarare ale variabilelor \mintinline{icl}{@test1}, \mintinline{icl}{@test2} și \mintinline{icl}{@test3}, dar este vizibilă în punctele de declarare ale variabilelor \mintinline{icl}{@test4}, \mintinline{icl}{@test5} și \mintinline{icl}{@test6}.
+Demonstration of domain visibility for \mintinline{icl}{#var} variable —
+\inputminted[linenos]{icl}{../sources/globalvars.icL}
 
-\subsection{Valori de stînga și dreapta în icL}
+Here \mintinline{icl}{#var} is not visible in declaration points of \mintinline{icl}{@test1}, \mintinline{icl}{@test2} and \mintinline{icl}{@test3} variables. And is visible in declaration points of \mintinline{icl}{@test4}, \mintinline{icl}{@test5} and \mintinline{icl}{@test6} variables.
 
-În icL sunt 3 tipuri de valori:
+\subsection{Lvalues and Rvalues icL}
+
+There are 3 kinds of expressions in icL:
 
 \begin{icEnum}
 \item
-	valori de stînga ({\it lvalue}) - variabile;
+	Lvalue — An expression that is a lvalue may appear as either the left-hand or right-hand side of an assignment;
 \item
-	valori de dreapta ({\it rvalue}) - variabile și constante;
+	Rvalue — An expression that is a rvalue may appear on the right- but not left-hand side of an assignment;
 \item
-	valori javascript ({\it jsvalue}) - vor fi descrise mai tîrziu.
+	JSvalue — It will be described after.
 \end{icEnum}
+Examples of correct and incorrect use of lvalues and rvalues —
+\inputminted[linenos]{icl}{../sources/rlvalues.icL}
 
-Valorile de stînga se pot afla în ambele părți ale operație {\it de atribuire}, dar valorile de dreapta - numai în partea dreaptă. Exemple de folosire corectă și incorectă sunt demonstrate pe foaia \ref{rlvalues};
+\subsection{Packed values}
 
-\subsection{Valori împachetate}
+{\bf The packed values} are used in special operators. To pack values, embrace them in curly brackets and delimit them by comma. The simplest example of using packet value is value swap -
+\mint{icl}{(@a, @b) = (@b.ensureRValue, @a.ensureRValue)}
 
-{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \mintinline{icl}{(@a, @b) = (@b.ensureRValue, @a.ensureRValue)}. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
+\subsection{The @ and \# variables}
 
-\subsection{Variabilele @ și \#}
+{The variable \mintinline{icl}{@}} is an acronym for \mintinline{icl}{@stack} and \mintinline{icl}{Stack'stack}. A system variable which is used to export/import data to/from stack.
 
-{Variabila @} este un acronim pentru @stack și Stack'stack. Variabilă de sistem care permite a importa/exporta valori în/din stivă. 
+{The variable \mintinline{icl}{#}} is an acronym for \mintinline{icl}{@console}, the result of current command execution is stored to this variable and transferred to next command.
 
-{Variabila \#} este un acronim pentru @console, rezultatul comenzii este salvat în această variabilă, apoi printat în consolă sau transmis comenzii următoare.
+\subsection{Conclusion}
 
-
-\begin{sourcecode}
-    \captionof{listing}{Domeniu de vizibilitate al variabilei globale}
-    \label{globalvars}
-    \inputminted[linenos]{icl}{../sources/globalvars.icL}
-\end{sourcecode}
-
-\begin{sourcecode}
-    \captionof{listing}{Valori de stînga și dreapta}
-    \label{rlvalues}
-    \inputminted[linenos]{icl}{../sources/rlvalues.icL}
-\end{sourcecode}
-
-\subsection{Concluzii}
-
-{\bf Operarea cu variabile în icL} este foarte simplă, dar utilizatorilor avansați fără cunoștințe în programare nu se recomandă de folosit variabile globale. Pentru descrierea scenariilor de complexitate medie și joasă pot fi folosite doar variabile locale.
+{\bf Work with icL variables} is simple, but I do not recommend to use global variables, if you have not knowledge in computer programming. To start writing of icL scripts use local variables, that's enough.
