@@ -442,108 +442,106 @@ Returns the quantifier of equivalence given by comparing the strings \mintinline
 
 Returns the quantifiers got by comparing each string in list \mintinline{icl}{l1} with each string in list \mintinline{icl}{l2}. To get a correct result each string must contains one word.
 
-\subsection{Operații cu obiecte and mulțimi}
-
-Operațiile cu obiecte and mulțimi sunt enumerate în tabela \ref{objectops}.
+\subsection{Operations with Objects and Sets}
 
 \stablethree{1.0cm}{7.0cm}{6.0cm}
-{objectops}{Operații cu obiecte and mulțimi}
-{Rang}{Operație}{Operator}
+{}{}{Rank}{Operation}{Operator}
 {
-	3     & equality                & \mintinline{icl}{object == object : bool} \\ \hline
-	3     & equality                & \mintinline{icl}{set == set : bool}       \\ \hline
-	3     & inequality              & \mintinline{icl}{object != object : bool} \\ \hline
-	3     & inequality              & \mintinline{icl}{set != set : bool}       \\ \hline
-	3     & includere           & \mintinline{icl}{set << object : bool}    \\ \hline
-	3     & includere           & \mintinline{icl}{set << set : bool}       \\ \hline
-	3     & includere           & \mintinline{icl}{set !< object : bool}    \\ \hline
-	3     & includere           & \mintinline{icl}{set !< set : bool}       \\ \hline
-	3     & includere de șablon & \mintinline{icl}{set <* object : bool}    \\ \hline
-	3     & includere de șablon & \mintinline{icl}{object <* object : bool} \\ \hline
-	3     & excludere de șablon & \mintinline{icl}{set !* object : bool}    \\ \hline
-	3     & excludere de șablon & \mintinline{icl}{object !* object : bool} \\ \hline
-	4     & reuniune            & \mintinline{icl}{set + set : set}         \\ \hline
-	4     & diferență simetrică & \mintinline{icl}{set -   set : set}       \\ \hline
-	5     & diferență           & \mintinline{icl}{set \ set : set}        \\ \hline
-	5     & intersecție         & \mintinline{icl}{set * set : set}         \\ \hline
-	6$^+$ & se intersectează    & \mintinline{icl}{set ** set : bool}       \\
+	3     & equality              & \mintinline{icl}{object == object : bool} \\ \hline
+	3     & equality              & \mintinline{icl}{set == set : bool}       \\ \hline
+	3     & inequality            & \mintinline{icl}{object != object : bool} \\ \hline
+	3     & inequality            & \mintinline{icl}{set != set : bool}       \\ \hline
+	3     & contains              & \mintinline{icl}{set << object : bool}    \\ \hline
+	3     & contains              & \mintinline{icl}{set << set : bool}       \\ \hline
+	3     & not contains          & \mintinline{icl}{set !< object : bool}    \\ \hline
+	3     & not contains          & \mintinline{icl}{set !< set : bool}       \\ \hline
+	3     & contains template     & \mintinline{icl}{set <* object : bool}    \\ \hline
+	3     & contains template     & \mintinline{icl}{object <* object : bool} \\ \hline
+	3     & not contains template & \mintinline{icl}{set !* object : bool}    \\ \hline
+	3     & not contains template & \mintinline{icl}{object !* object : bool} \\ \hline
+	4     & union                 & \mintinline{icl}{set + set : set}         \\ \hline
+	4     & symmetric difference  & \mintinline{icl}{set - set : set}         \\ \hline
+	5     & complement            & \mintinline{icl}{set \ set : set}         \\ \hline
+	5     & intersection          & \mintinline{icl}{set * set : set}         \\ \hline
+	6$^+$ & intersects with       & \mintinline{icl}{set ** set : bool}       \\
 }
 
-Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \ref{setobjopex}.
+Examples —
+\inputminted[linenos]{icl}{../sources/setobjopex.icL}
 
 \subsubsection{\mintinline{icl}{(obj1 : object) == (obj2 : object) : bool}}
 
-Returns \true{} if \mintinline{icl}{obj1} and \mintinline{icl}{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \mintinline{icl}{obj1} sunt equalitye cu valori cîmpurilor obiectului \mintinline{icl}{obj2}, otherwise \false{}.
+Returns \true{} if object \mintinline{icl}{obj1} is equal to object \mintinline{icl}{obj2}, otherwise \false{}.
+
+Two objects are considered equal if they contain the same fields and the same values for each field.
 
 \subsubsection{\mintinline{icl}{(set1 : set) == (set2 : set) : bool}}
 
-Returns \true{} if \mintinline{icl}{set1} and \mintinline{icl}{set2} au același header, toate obiectele din mulțimea \mintinline{icl}{set1} sunt prezente în mulțimea \mintinline{icl}{set2} and invers, otherwise \false{}.
+Returns \true{} if set \mintinline{icl}{set1} is equal to set \mintinline{icl}{set2}, otherwise \false{}.
 
-\begin{sourcecode}
-    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului object and set}
-    \label{setobjopex}
-    \inputminted[linenos]{icl}{../sources/setobjopex.icL}
-\end{sourcecode}
+Two sets are considered equal if they contain the same elements.
 
 \subsubsection{\mintinline{icl}{(obj1 : object) != (obj2 : object) : bool}}
 
-Returns \true{} unul din obiecte are un cîmp care lipsește în celălalt sau valoarea unui cîmp al unui obiect se deosebește de valoarea cu aceeași denumire al celuilalt obiect, otherwise \false{}.
+Returns \true{} if object \mintinline{icl}{obj1} is not equal to object \mintinline{icl}{obj2}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) != (set2 : set) : bool}}
 
-Returns \true{} if mulțimile conțin număr diferit de obiecte sau există un obiect care se conține într-o mulțime, dar lipsește în cealaltă, otherwise \false{}.
+Returns \true{} if set \mintinline{icl}{set1} is not equal to set \mintinline{icl}{set2}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s : set) << (obj : object) : bool}}
 
-Returns \true{}, if mulțimea \mintinline{icl}{s} conține obiectul \mintinline{icl}{obj}, otherwise \false{}.
+Returns \true{}, if set \mintinline{icl}{s} contains the object \mintinline{icl}{obj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) << (set2 : set) : bool}}
 
-Returns \true, if mulțimea \mintinline{icl}{set1} conține toate obiectele mulțimii \mintinline{icl}{set2}, otherwise \false.
+Returns \true, if set \mintinline{icl}{set1} contains all elements in set \mintinline{icl}{set2}, otherwise \false.
 
 \subsubsection{\mintinline{icl}{(s : set) !< (obj : object) : bool}}
 
-Returns \true{}, if mulțimea \mintinline{icl}{s} nu conține obiectul \mintinline{icl}{obj}, otherwise \false{}.
+Returns \true{}, if set \mintinline{icl}{s} does not contain the object \mintinline{icl}{obj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) !< (set2 : set) : bool}}
 
-Returns \true, if mulțimea \mintinline{icl}{set1} nu conține sub obiectul \mintinline{icl}{set2}, otherwise \false.
+Returns \true, if set \mintinline{icl}{set1} does not contain all elements in set \mintinline{icl}{set2}, otherwise \false.
 
 \subsubsection{\mintinline{icl}{(s : set) <* (subobj : object) : bool}}
 
-Returns \true{}, if mulțimea \mintinline{icl}{s} conține fragmentul de obiect \mintinline{icl}{subobj}, otherwise \false{}.
+Returns \true{}, if set \mintinline{icl}{s} contains an object which includes the subobject \mintinline{icl}{subobj}, otherwise \false{}.
+
+An object includes a subobject if the object contains each field of suboject with the same values.
 
 \subsubsection{\mintinline{icl}{(obj : object) <* (subobj : object) : bool}}
 
-Returns \true{} if fiecare cîmp al obiectului \mintinline{icl}{subobj} se conține in obiectul \mintinline{icl}{obj} and dețin aceleași valori, otherwise \false{}.
+Returns \true{} if object \mintinline{icl}{obj} includes subobject \mintinline{icl}{subobj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s : set) !* (subobj : object) : bool}}
 
-Returns \false{}, if mulțimea \mintinline{icl}{s} conține fragmentul de obiect \mintinline{icl}{subobj}, otherwise \true{}.
+Returns \true{}, if set \mintinline{icl}{s} does not contain an object which includes the subobject \mintinline{icl}{subobj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(obj : object) !* (subobj : object) : bool}}
 
-Returns \false{} if fiecare cîmp al obiectului \mintinline{icl}{subobj} se conține in obiectul \mintinline{icl}{obj} and dețin aceleași valori, otherwise \true{}.
+Returns \true{} if object \mintinline{icl}{obj} does not include subobject \mintinline{icl}{subobj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) + (set2 : set) : set}}
 
-Returns o mulțime nouă, ce conține toate obiectele din mulțimile \mintinline{icl}{set1} and \mintinline{icl}{set2}.
+Returns a new set that is the union of set \mintinline{icl}{set1} and the set \mintinline{icl}{set2}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) - (set2 : set) : set}}
 
-Returns o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în mulțimea \mintinline{icl}{set2}, and obiectele mulțimii \mintinline{icl}{set2}, ce lipsesc în \mintinline{icl}{set1}.
+Returns a new set that is the symmetric difference of set \mintinline{icl}{set1} and the set \mintinline{icl}{set2}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) \ (set2 : set) : set}}
 
-Returns o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în \mintinline{icl}{set2}.
+Returns a new set that is the relative complement of set \mintinline{icl}{set2} in the set \mintinline{icl}{set1}.s
 
 \subsubsection{\mintinline{icl}{(set1 : set) * (set2 : set) : set}}
 
-Returns o mulțime nouă, ce conține toate obiectele ce se conțin în mulțimile \mintinline{icl}{set1} and \mintinline{icl}{set2} concomitent.
+Returns a new set that is the intersection of set \mintinline{icl}{set1} and the set \mintinline{icl}{set2}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) ** (set2 : set) : bool}}
 
-Returns \true, if exisă cel puțin un obiect care este prezent in mulțimile \mintinline{icl}{set1} and \mintinline{icl}{set2} concomitent, otherwise \false.
+Returns \true, if the set \mintinline{icl}{set1} intersects the set \mintinline{icl}{set2}, otherwise \false.
 
 \subsection{Operatorul de combinare}
 
