@@ -103,246 +103,239 @@ The truth table of negation —
 
 \subsubsection{\mintinline{icl}{(a : bool) == (b : bool) : bool}}
 
-Return \true{} if \mintinline{icl}{a} is equal to \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{a} is equal to \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : bool) != (b : bool) : bool}}
 
-Return \true{} if \mintinline{icl}{a} is not equal to \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{a} is not equal to \mintinline{icl}{b}, otherwise \false{}.
 
-\subsection{Operații cu cifre}
+\subsection{Number Operators}
 
-Operațiile cu cifre sunt enumerate în tabela \ref{numbersops}.
 \stablethree{1.0cm}{7.0cm}{6.0cm}
-{numbersops}{Operații cu cifre}
-{Rang}{Operație}{Operator}
+{}{}{Rank}{Operation}{Operator}
 {
-	3     & equality                           & \mintinline{icl}{int == int : bool}          \\ \hline
-	3     & equality                           & \mintinline{icl}{double == double : bool}    \\ \hline
-	3     & inequality                         & \mintinline{icl}{int != int : bool}          \\ \hline
-	3     & inequality                         & \mintinline{icl}{double != double : bool}    \\ \hline
-	3     & mai mare                       & \mintinline{icl}{int > int : bool}           \\ \hline
-	3     & mai mare                       & \mintinline{icl}{double > double : bool}     \\ \hline
-	3     & mai mare sau equality              & \mintinline{icl}{int >= int : bool}          \\ \hline
-	3     & mai mare sau equality              & \mintinline{icl}{double >= double : bool}    \\ \hline
-	3     & mai mic                        & \mintinline{icl}{int < int : bool}           \\ \hline
-	3     & mai mic                        & \mintinline{icl}{double < double : bool}     \\ \hline
-	3     & mai mic sau equality               & \mintinline{icl}{int <= int : bool}          \\ \hline
-	3     & mai mic sau equality               & \mintinline{icl}{double <= double : bool}    \\ \hline
-	3     & mai mic sau mai mare           & \mintinline{icl}{int <> (int, int)}          \\ \hline
-	3     & mai mic sau mai mare           & \mintinline{icl}{double <> (double, double)} \\ \hline
-	3     & mai mic, mai mare sau equality     & \mintinline{icl}{int <=> (int, int)}         \\ \hline
-	3     & mai mic, mai mare sau equality     & \mintinline{icl}{double <=> (double, double)}\\ \hline
-	3     & mai mare și mai mic            & \mintinline{icl}{int >< (int, int)}          \\ \hline
-	3     & mai mare și mai mic            & \mintinline{icl}{double >< (double, double)} \\ \hline
-	3     & mai mare și mai mic (sau equality) & \mintinline{icl}{int >=< (int, int)}         \\ \hline
-	3     & mai mare și mai mic (sau equality) & \mintinline{icl}{double >=< (double, double)}\\ \hline
-	4     & adunare                        & \mintinline{icl}{int + int : int}            \\ \hline
-	4     & adunare                        & \mintinline{icl}{double + double : double}   \\ \hline
-	4     & scădere                        & \mintinline{icl}{int - int : int}            \\ \hline
-	4     & scădere                        & \mintinline{icl}{double - double : double}   \\ \hline
-	5     & înmulțire                      & \mintinline{icl}{int * int : int}            \\ \hline
-	5     & înmulțire                      & \mintinline{icl}{double * double : double}   \\ \hline
-	5     & împărțire                      & \mintinline{icl}{int / int : int}            \\ \hline
-	5     & împărțire                      & \mintinline{icl}{double / double : double}   \\ \hline
-	5     & restul împărțirii              & \mintinline{icl}{int \ int : int}            \\ \hline
-	6$^+$ & ridicare la pătrat             & \mintinline{icl}{int** : int}                \\ \hline
-	6$^+$ & ridicare la pătrat             & \mintinline{icl}{double** : double}          \\ \hline
-	6$^+$ & ridicarea la putere            & \mintinline{icl}{int ** int : int}           \\ \hline
-	6$^+$ & ridicarea la putere            & \mintinline{icl}{double ** double : double}  \\ \hline
-	6$^+$ & radical                        & \mintinline{icl}{/' int : int}                \\ \hline
-	6$^+$ & radical                        & \mintinline{icl}{/' double : double}          \\ \hline
-	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{int /' int : int}             \\ \hline
-	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{int /' double : double}       \\ \hline
-	6$^+$ & extragerea rădăcinii           & \mintinline{icl}{double /' double : double}    \\ \hline
-	7$^+$ & inversia semnului              & \mintinline{icl}{-int : int}                 \\ \hline
-	7$^+$ & inversia semnului              & \mintinline{icl}{-double : double}           \\ \hline
-	7$^+$ & valoarea absolută              & \mintinline{icl}{+int : int}                 \\ \hline
-	7$^+$ & valoarea absolută              & \mintinline{icl}{+double : double}           \\
+	3     & equality                      & \mintinline{icl}{int == int : bool}          \\ \hline
+	3     & equality                      & \mintinline{icl}{double == double : bool}    \\ \hline
+	3     & inequality                    & \mintinline{icl}{int != int : bool}          \\ \hline
+	3     & inequality                    & \mintinline{icl}{double != double : bool}    \\ \hline
+	3     & bigger than                   & \mintinline{icl}{int > int : bool}           \\ \hline
+	3     & bigger than                   & \mintinline{icl}{double > double : bool}     \\ \hline
+	3     & bigger than or equal to       & \mintinline{icl}{int >= int : bool}          \\ \hline
+	3     & bigger than or equal to       & \mintinline{icl}{double >= double : bool}    \\ \hline
+	3     & smaller than                  & \mintinline{icl}{int < int : bool}           \\ \hline
+	3     & smaller than                  & \mintinline{icl}{double < double : bool}     \\ \hline
+	3     & smaller than or equal to      & \mintinline{icl}{int <= int : bool}          \\ \hline
+	3     & smaller than or equal to      & \mintinline{icl}{double <= double : bool}    \\ \hline
+	3     & smaller or bigger then        & \mintinline{icl}{int <> (int, int)}          \\ \hline
+	3     & smaller or bigger then        & \mintinline{icl}{double <> (double, double)} \\ \hline
+	3     & smaller, bigger or equal to   & \mintinline{icl}{int <=> (int, int)}         \\ \hline
+	3     & smaller, bigger or equal to   & \mintinline{icl}{double <=> (double, double)}\\ \hline
+	3     & bigger or smaller then        & \mintinline{icl}{int >< (int, int)}          \\ \hline
+	3     & bigger or smaller then        & \mintinline{icl}{double >< (double, double)} \\ \hline
+	3     & bigger, smaller or equal      & \mintinline{icl}{int >=< (int, int)}         \\ \hline
+	3     & bigger, smaller or equal      & \mintinline{icl}{double >=< (double, double)}\\ \hline
+	4     & addition                      & \mintinline{icl}{int + int : int}            \\ \hline
+	4     & addition                      & \mintinline{icl}{double + double : double}   \\ \hline
+	4     & subtraction                   & \mintinline{icl}{int - int : int}            \\ \hline
+	4     & subtraction                   & \mintinline{icl}{double - double : double}   \\ \hline
+	5     & multiplication                & \mintinline{icl}{int * int : int}            \\ \hline
+	5     & multiplication                & \mintinline{icl}{double * double : double}   \\ \hline
+	5     & division                      & \mintinline{icl}{int / int : int}            \\ \hline
+	5     & division                      & \mintinline{icl}{double / double : double}   \\ \hline
+	5     & remainder of integer division & \mintinline{icl}{int \ int : int}            \\ \hline
+	6$^+$ & square of                     & \mintinline{icl}{int** : int}                \\ \hline
+	6$^+$ & square of                     & \mintinline{icl}{double** : double}          \\ \hline
+	6$^+$ & exponentiation                & \mintinline{icl}{int ** int : int}           \\ \hline
+	6$^+$ & exponentiation                & \mintinline{icl}{double ** double : double}  \\ \hline
+	6$^+$ & square root                   & \mintinline{icl}{/' int : int}               \\ \hline
+	6$^+$ & square root                   & \mintinline{icl}{/' double : double}         \\ \hline
+	6$^+$ & {\it n}th root                & \mintinline{icl}{int /' int : int}           \\ \hline
+	6$^+$ & {\it n}th root                & \mintinline{icl}{int /' double : double}     \\ \hline
+	6$^+$ & {\it n}th root                & \mintinline{icl}{double /' double : double}  \\ \hline
+	7$^+$ & sign inversion                & \mintinline{icl}{-int : int}                 \\ \hline
+	7$^+$ & sign inversion                & \mintinline{icl}{-double : double}           \\ \hline
+	7$^+$ & absolute value                & \mintinline{icl}{+int : int}                 \\ \hline
+	7$^+$ & absolute value                & \mintinline{icl}{+double : double}           \\
 }
 
-Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{numberopex}.
+Examples —
+\inputminted[linenos]{icl}{../sources/numberopex.icL}
 
 \subsubsection{\mintinline{icl}{(a : int) == (b : int) : bool}}
 
-Return \true{} if \mintinline{icl}{a} și \mintinline{icl}{b} conțin aceeași valoare, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{a} and \mintinline{icl}{b} have the same value, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) == (b : double) : bool}}
 
-Return \true{} if \mintinline{icl}{a} și \mintinline{icl}{b} au aproximativ aceeași valoare, otherwise \false{}.
-
-\begin{sourcecode}
-    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului int și double}
-    \label{numberopex}
-    \inputminted[linenos]{icl}{../sources/numberopex.icL}
-\end{sourcecode}
+Returns \true{} if \mintinline{icl}{a} and \mintinline{icl}{b} have the same value, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) != (b : int) : bool}}
 
-Return \true{} if \mintinline{icl}{a} și \mintinline{icl}{b} conțin valori diferite, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{a} and \mintinline{icl}{b} have different values, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) != (b : double) : bool}}
 
-Return \true{} if \mintinline{icl}{a} și \mintinline{icl}{b} conțin valori diferite, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{a} and \mintinline{icl}{b} have different values, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) > (b : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mare decît \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is bigger than \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) > (b : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mare decît \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is bigger than \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) >= (b : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mare sau equality cu \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is bigger or equal to \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) >= (b : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mare sau equality cu \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is bigger or equal to \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) < (b : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mic decît \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is smaller than \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) < (b : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mic decît \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is smaller than \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) <= (b : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mic sau equality cu \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is smaller or equal to \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) <= (b : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mic sau equality cu \mintinline{icl}{b}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is smaller or equal to \mintinline{icl}{b}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) <> (b : int, c : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mic decît \mintinline{icl}{b} sau mai mare decît \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is smaller than \mintinline{icl}{b} or bigger than \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) <> (b : double, c : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mic decît \mintinline{icl}{b} sau mai mare decît \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is smaller than \mintinline{icl}{b} or bigger than \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) <=> (b : int, c : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mic sau equality cu \mintinline{icl}{b} ori mai mare sau equality \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is smaller or equal to \mintinline{icl}{b} or is bigger or equal to \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) <=> (b : double, c : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mic sau equality cu \mintinline{icl}{b} ori mai mare sau equality \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is smaller or equal to \mintinline{icl}{b} or is bigger or equal to \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) >< (b : int, c : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mare decît \mintinline{icl}{b} și mai mic decît \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is bigger than \mintinline{icl}{b} and is smaller than \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) >< (b : double, c : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mare decît \mintinline{icl}{b} și mai mic decît \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is bigger then \mintinline{icl}{b} and is smaller than \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) >=< (b : int, c : int) : bool}}
 
-Return \true{} if numărul întreg \mintinline{icl}{a} este mai mare sau equality cu \mintinline{icl}{b} și mai mic sau equality cu \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the integer \mintinline{icl}{a} is bigger or equal to \mintinline{icl}{b} and is smaller or equal to \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : double) >=< (b : double, c : double) : bool}}
 
-Return \true{} if numărul decimal \mintinline{icl}{a} este mai mare sau equality cu \mintinline{icl}{b} și mai mic sau equality cu \mintinline{icl}{c}, otherwise \false{}.
+Returns \true{} if the floating-point number \mintinline{icl}{a} is bigger or equal to \mintinline{icl}{b} and is smaller or equal to \mintinline{icl}{c}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(a : int) + (b : int) : int}}
 
-Return suma numerelor întregi \mintinline{icl}{a} și \mintinline{icl}{b}.
+Returns the sum of integers \mintinline{icl}{a} and \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : double) + (b : double) : double}}
 
-Return suma numerelor decimale \mintinline{icl}{a} și \mintinline{icl}{b}.
+Returns the sum of floating-points numbers \mintinline{icl}{a} and \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : int) - (b : int) : int}}
 
-Return diferența dintre numerele întregi \mintinline{icl}{a} și \mintinline{icl}{b}.
+Returns the difference between \mintinline{icl}{a} and \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : double) - (b : double) : double}}
 
-Return diferența dintre numerele decimale \mintinline{icl}{a} și \mintinline{icl}{b}.
+Returns the difference between \mintinline{icl}{a} and \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : int) * (b : int) : int}}
 
-Return produsul numerelor întregi \mintinline{icl}{a} și \mintinline{icl}{b}.
+Returns the product of \mintinline{icl}{a} and \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : double) * (b : double) : double}}
 
-Return produsul numerelor decimale \mintinline{icl}{a} și \mintinline{icl}{b}.
+Returns the product of \mintinline{icl}{a} and \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : int) / (b : int) : int}}
 
-Return cîtul împărțirii \mintinline{icl}{a} la \mintinline{icl}{b}, restul se exclude.
+Returns the quotient of Euclidean division of \mintinline{icl}{a} by \mintinline{icl}{b}, the remainder is omitted.
 
 \subsubsection{\mintinline{icl}{(a : double) / (b : double) : double}}
 
-Return cîtul împărțirii \mintinline{icl}{a} la \mintinline{icl}{b}.
+Returns the quotient of division of \mintinline{icl}{a} by \mintinline{icl}{b}.
 
 \subsubsection{\mintinline{icl}{(a : int) \ (b : int) : int}}
 
-Return restul împărțirii \mintinline{icl}{a} la \mintinline{icl}{b}.
+Returns the remainder of Euclidean division of \mintinline{icl}{a} by \mintinline{icl}{b}.
 
 
 \subsubsection{\mintinline{icl}{(a : int) ** : int}}
 
-Return pătratul numărului întreg \mintinline{icl}{a} (a$^2$);
+Returns the square of \mintinline{icl}{a} ($a^2$);
 
 \subsubsection{\mintinline{icl}{(a : double) ** : double}}
 
-Return pătratul numărului decimal \mintinline{icl}{a} (a$^2$);
+Returns the square of \mintinline{icl}{a} ($a^2$);
 
 \subsubsection{\mintinline{icl}{(a : int) ** (b : int) : int}}
 
-Return \mintinline{icl}{a} la puterea \mintinline{icl}{b} (a$^b$).
+Returns \mintinline{icl}{a} to the power of \mintinline{icl}{b} ($a^b$).
 
 \subsubsection{\mintinline{icl}{(a : double) ** (b : double) : double}}
 
-Return \mintinline{icl}{a} la puterea \mintinline{icl}{b} (a$^b$).
+Returns \mintinline{icl}{a} to the power of \mintinline{icl}{b} ($a^b$).
 
 \subsubsection{\mintinline{icl}{/' (a : int) : int}}
 
-Return rădăcina pătrată numărului întreg \mintinline{icl}{a} ($\sqrt{a}$).
+Returns the square root of \mintinline{icl}{a} ($\sqrt{a}$).
 
 \subsubsection{\mintinline{icl}{/' (a : double) : double}}
 
-Return rădăcina pătrată numărului decimal \mintinline{icl}{a} ($\sqrt{a}$).
+Returns the square root of \mintinline{icl}{a} ($\sqrt{a}$).
 
 \subsubsection{\mintinline{icl}{(n : int) /' (a : int) : int}}
 
-Return radical de ordinul \mintinline{icl}{n} din \mintinline{icl}{a} ($\sqrt[n]{a}$).
+Returns the \mintinline{icl}{n}-th root of \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
 \subsubsection{\mintinline{icl}{(n : int) /' (a : double) : double}}
 
-Return radical de ordinul \mintinline{icl}{n} din \mintinline{icl}{a} ($\sqrt[n]{a}$).
+Returns the \mintinline{icl}{n}-th root of \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
 \subsubsection{\mintinline{icl}{(n : double) /' (a : double) : double}}
 
-Return radical de ordinul \mintinline{icl}{n} din \mintinline{icl}{a} ($\sqrt[n]{a}$).
+Returns the \mintinline{icl}{n}-th root of \mintinline{icl}{a} ($\sqrt[n]{a}$).
 
 
 \subsubsection{\mintinline{icl}{- (a : int) : int}}
 
-Return \mintinline{icl}{0 - a};
+Returns \mintinline{icl}{0 - a};
 
 \subsubsection{\mintinline{icl}{- (b : double) : double}}
 
-Return \mintinline{icl}{0.0 - a};
+Returns \mintinline{icl}{0.0 - b};
 
 \subsubsection{\mintinline{icl}{+ (a : int) : int}}
 
-Return valoare absolută a numărului întreg \mintinline{icl}{a}.
+Returns the absolute value of \mintinline{icl}{a}.
 
 \subsubsection{\mintinline{icl}{+ (a : double) : double}}
 
-Return valoare absolută a numărului decimal \mintinline{icl}{a}.
+Returns the absolute value of \mintinline{icl}{a}.
 
-\subsection{Operații cu șiruri de caractere și liste}
+\subsection{Operații cu șiruri de caractere and liste}
 
-Operațiile cu șiruri de caractere și liste sunt enumerate în tabela \ref{stringops}.
+Operațiile cu șiruri de caractere and liste sunt enumerate în tabela \ref{stringops}.
 \stablethree{1.0cm}{6.0cm}{7.0cm}
-{stringops}{Operații cu șiruri de caractere și liste}
+{stringops}{Operații cu șiruri de caractere and liste}
 {Rang}{Operație}{Operator}
 {
 	3     & equality                & \mintinline{icl}{string == string : bool}   \\ \hline
@@ -374,95 +367,95 @@ Pentru a uni cîteva șiruri de caractere în listă, no se recomandă de folosi
 
 \subsubsection{\mintinline{icl}{(s1 : string) == (s2 : string) : bool}}
 
-Return \true{} if \mintinline{icl}{s1} și \mintinline{icl}{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{s1} and \mintinline{icl}{s2} conțin același număr de caractere and conțin aceleași caractere în aceeași ordine, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l1 : list) == (l2 : list) : bool}}
 
-Return \true{} if \mintinline{icl}{l1} și \mintinline{icl}{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), otherwise \false{}.
+Returns \true{} if \mintinline{icl}{l1} and \mintinline{icl}{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s1 : string) != (s2 : string) : bool}}
 
-Return \false{} if \mintinline{icl}{s1} și \mintinline{icl}{s2} conțin același număr de caractere și conțin aceleași caractere în aceeași ordine, otherwise \true{}.
+Returns \false{} if \mintinline{icl}{s1} and \mintinline{icl}{s2} conțin același număr de caractere and conțin aceleași caractere în aceeași ordine, otherwise \true{}.
 
 \begin{sourcecode}
-    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului string și list}
+    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului string and list}
     \label{stringlistopex}
     \inputminted[linenos]{icl}{../sources/stringlistopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(l1 : list) != (l2 : list) : bool}}
 
-Return \false{} if \mintinline{icl}{l1} și \mintinline{icl}{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), otherwise \true{}.
+Returns \false{} if \mintinline{icl}{l1} and \mintinline{icl}{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), otherwise \true{}.
 
 \subsubsection{\mintinline{icl}{(l : list) << (str : string) : bool}}
 
-Return \true{}, if lista \mintinline{icl}{l} conține șirurl de caractere \mintinline{icl}{str}, otherwise \false{}.
+Returns \true{}, if lista \mintinline{icl}{l} conține șirurl de caractere \mintinline{icl}{str}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(str : string) << (substr : string) : bool}}
 
-Return \true{}, if șirul de caractere \mintinline{icl}{str} conține subșirul \mintinline{icl}{substr}, otherwise \false{}.
+Returns \true{}, if șirul de caractere \mintinline{icl}{str} conține subșirul \mintinline{icl}{substr}, otherwise \false{}.
 
-Return \true{}, if lista \mintinline{icl}{l} nu conține șirul \mintinline{icl}{str}, otherwise \false{}.
+Returns \true{}, if lista \mintinline{icl}{l} nu conține șirul \mintinline{icl}{str}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(str : string) !< (substr : string) : bool}}
 
-Return \true{}, if șirul de caractere \mintinline{icl}{str} nu conține subșirul \mintinline{icl}{substr}, otherwise \false{}.
+Returns \true{}, if șirul de caractere \mintinline{icl}{str} nu conține subșirul \mintinline{icl}{substr}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) <* (template : string) : bool}}
 
-Return \true{}, if lista \mintinline{icl}{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{}, if lista \mintinline{icl}{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
 
-{\bf Șablonul} este un și de caractere, el conține date și un caracter special \mintinline{icl}{*}, care înseamnă orice succesiune de simboluri. Cercetăm următorul șablon \mintinline{icl}{"Have a * day!"}, exemple de șiruri de caracter care se potrivesc: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Exemplu de șir care nu se potrivește \mintinline{icl}{"Have a good day"} (lipsește semnul exclamării).
+{\bf Șablonul} este un and de caractere, el conține date and un caracter special \mintinline{icl}{*}, care înseamnă orice succesiune de simboluri. Cercetăm următorul șablon \mintinline{icl}{"Have a * day!"}, exemple de șiruri de caracter care se potrivesc: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Exemplu de șir care nu se potrivește \mintinline{icl}{"Have a good day"} (lipsește semnul exclamării).
 
 \subsubsection{\mintinline{icl}{(l : list) !* (template : string) : bool}}
 
-Return \true{}, if lista \mintinline{icl}{l} if lista nu conține cel puțin un șir, care se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{}, if lista \mintinline{icl}{l} if lista nu conține cel puțin un șir, care se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s1 : string) + (s2 : string) : string}}
 
-Return un nou șir de caractere, care conține toate caracterele șirelor de caracter \mintinline{icl}{s1} și \mintinline{icl}{s2}. Șirul obținut va avea lungimea equalityă cu suma lungimilor șirurilor componente.
+Returns un nou șir de caractere, care conține toate caracterele șirelor de caracter \mintinline{icl}{s1} and \mintinline{icl}{s2}. Șirul obținut va avea lungimea equalityă cu suma lungimilor șirurilor componente.
 
 \subsubsection{\mintinline{icl}{(str : string) + (l : list) : list}}
 
-Return o listă nouă, primită în rezultatul adăugării șirului \mintinline{icl}{str} la începutul listei \mintinline{icl}{l}.
+Returns o listă nouă, primită în rezultatul adăugării șirului \mintinline{icl}{str} la începutul listei \mintinline{icl}{l}.
 
 \subsubsection{\mintinline{icl}{(l : list) + (str : string) : list}}
 
-Return o listă nouă, primită în rezultatul adăugării șirului \mintinline{icl}{str} la sfîrșitul listei \mintinline{icl}{l}.
+Returns o listă nouă, primită în rezultatul adăugării șirului \mintinline{icl}{str} la sfîrșitul listei \mintinline{icl}{l}.
 
 \subsubsection{\mintinline{icl}{(l1 : list) + (l2 : list) : list}}
 
-Return o listă nouă, care conține toate șirurile listelor \mintinline{icl}{l1} și \mintinline{icl}{l2}.
+Returns o listă nouă, care conține toate șirurile listelor \mintinline{icl}{l1} and \mintinline{icl}{l2}.
 
 \subsubsection{\mintinline{icl}{(str : string) * (template : string) : bool}}
 
-Return \true{}, if șirul de caractere \mintinline{icl}{str} se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{}, if șirul de caractere \mintinline{icl}{str} se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) * (template : string) : bool}}
 
-Return \true{} if toate șirurile din lista \mintinline{icl}{l} se potrivesc cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{} if toate șirurile din lista \mintinline{icl}{l} se potrivesc cu șablonul \mintinline{icl}{template}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) * (templates : list) : bool}}
 
-Return \true{} if toate șirurile din lista \mintinline{icl}{l} se potrivesc cu șablonul cuvenit din lista \mintinline{icl}{templates}, otherwise \false{}.
+Returns \true{} if toate șirurile din lista \mintinline{icl}{l} se potrivesc cu șablonul cuvenit din lista \mintinline{icl}{templates}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s1 : string) ** (s2 : string) : double}}
 
-Return coeficientul de echivalență primit prin comparare șirului \mintinline{icl}{s1} cu \mintinline{icl}{s2}.
+Returns coeficientul de echivalență primit prin comparare șirului \mintinline{icl}{s1} cu \mintinline{icl}{s2}.
 
 {\bf Echivalența} este nivelul de asemănare al șirurilor. \mintinline{icl}{"Hi! Robert, how do you do?"} în comparație cu \mintinline{icl}{"Robert! Hi! How do you do?"} are coeficient de echivalență equality cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \mintinline{icl}{"Rich! Hi! How are}\\*\mintinline{icl}{ you?"} coeficientul scade pînă la 0,64.
 
 \subsubsection{\mintinline{icl}{(l1 : list) ** (l2 : list) : double}}
 
-Return coeficientul primit prin compararea șirurilor din lista \mintinline{icl}{l1} cu șirurile din lista \mintinline{icl}{l2}.
+Returns coeficientul primit prin compararea șirurilor din lista \mintinline{icl}{l1} cu șirurile din lista \mintinline{icl}{l2}.
 Pentru a primi un rezultat corect, șirurile de caractere trebuie să dețină un singur cuvînt.
 
-\subsection{Operații cu obiecte și mulțimi}
+\subsection{Operații cu obiecte and mulțimi}
 
-Operațiile cu obiecte și mulțimi sunt enumerate în tabela \ref{objectops}.
+Operațiile cu obiecte and mulțimi sunt enumerate în tabela \ref{objectops}.
 
 \stablethree{1.0cm}{7.0cm}{6.0cm}
-{objectops}{Operații cu obiecte și mulțimi}
+{objectops}{Operații cu obiecte and mulțimi}
 {Rang}{Operație}{Operator}
 {
 	3     & equality                & \mintinline{icl}{object == object : bool} \\ \hline
@@ -488,89 +481,89 @@ Exemple de folosire a operatorilor enumerați mai sus, sunt prezente pe foaia \r
 
 \subsubsection{\mintinline{icl}{(obj1 : object) == (obj2 : object) : bool}}
 
-Return \true{} if \mintinline{icl}{obj1} și \mintinline{icl}{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \mintinline{icl}{obj1} sunt equalitye cu valori cîmpurilor obiectului \mintinline{icl}{obj2}, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{obj1} and \mintinline{icl}{obj2} conțin aceleași cîmpuri, valorile cîmpurilor obiectului \mintinline{icl}{obj1} sunt equalitye cu valori cîmpurilor obiectului \mintinline{icl}{obj2}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) == (set2 : set) : bool}}
 
-Return \true{} if \mintinline{icl}{set1} și \mintinline{icl}{set2} au același header, toate obiectele din mulțimea \mintinline{icl}{set1} sunt prezente în mulțimea \mintinline{icl}{set2} și invers, otherwise \false{}.
+Returns \true{} if \mintinline{icl}{set1} and \mintinline{icl}{set2} au același header, toate obiectele din mulțimea \mintinline{icl}{set1} sunt prezente în mulțimea \mintinline{icl}{set2} and invers, otherwise \false{}.
 
 \begin{sourcecode}
-    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului object și set}
+    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului object and set}
     \label{setobjopex}
     \inputminted[linenos]{icl}{../sources/setobjopex.icL}
 \end{sourcecode}
 
 \subsubsection{\mintinline{icl}{(obj1 : object) != (obj2 : object) : bool}}
 
-Return \true{} unul din obiecte are un cîmp care lipsește în celălalt sau valoarea unui cîmp al unui obiect se deosebește de valoarea cu aceeași denumire al celuilalt obiect, otherwise \false{}.
+Returns \true{} unul din obiecte are un cîmp care lipsește în celălalt sau valoarea unui cîmp al unui obiect se deosebește de valoarea cu aceeași denumire al celuilalt obiect, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) != (set2 : set) : bool}}
 
-Return \true{} if mulțimile conțin număr diferit de obiecte sau există un obiect care se conține într-o mulțime, dar lipsește în cealaltă, otherwise \false{}.
+Returns \true{} if mulțimile conțin număr diferit de obiecte sau există un obiect care se conține într-o mulțime, dar lipsește în cealaltă, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s : set) << (obj : object) : bool}}
 
-Return \true{}, if mulțimea \mintinline{icl}{s} conține obiectul \mintinline{icl}{obj}, otherwise \false{}.
+Returns \true{}, if mulțimea \mintinline{icl}{s} conține obiectul \mintinline{icl}{obj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) << (set2 : set) : bool}}
 
-Return \true, if mulțimea \mintinline{icl}{set1} conține toate obiectele mulțimii \mintinline{icl}{set2}, otherwise \false.
+Returns \true, if mulțimea \mintinline{icl}{set1} conține toate obiectele mulțimii \mintinline{icl}{set2}, otherwise \false.
 
 \subsubsection{\mintinline{icl}{(s : set) !< (obj : object) : bool}}
 
-Return \true{}, if mulțimea \mintinline{icl}{s} nu conține obiectul \mintinline{icl}{obj}, otherwise \false{}.
+Returns \true{}, if mulțimea \mintinline{icl}{s} nu conține obiectul \mintinline{icl}{obj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) !< (set2 : set) : bool}}
 
-Return \true, if mulțimea \mintinline{icl}{set1} nu conține sub obiectul \mintinline{icl}{set2}, otherwise \false.
+Returns \true, if mulțimea \mintinline{icl}{set1} nu conține sub obiectul \mintinline{icl}{set2}, otherwise \false.
 
 \subsubsection{\mintinline{icl}{(s : set) <* (subobj : object) : bool}}
 
-Return \true{}, if mulțimea \mintinline{icl}{s} conține fragmentul de obiect \mintinline{icl}{subobj}, otherwise \false{}.
+Returns \true{}, if mulțimea \mintinline{icl}{s} conține fragmentul de obiect \mintinline{icl}{subobj}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(obj : object) <* (subobj : object) : bool}}
 
-Return \true{} if fiecare cîmp al obiectului \mintinline{icl}{subobj} se conține in obiectul \mintinline{icl}{obj} și dețin aceleași valori, otherwise \false{}.
+Returns \true{} if fiecare cîmp al obiectului \mintinline{icl}{subobj} se conține in obiectul \mintinline{icl}{obj} and dețin aceleași valori, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s : set) !* (subobj : object) : bool}}
 
-Return \false{}, if mulțimea \mintinline{icl}{s} conține fragmentul de obiect \mintinline{icl}{subobj}, otherwise \true{}.
+Returns \false{}, if mulțimea \mintinline{icl}{s} conține fragmentul de obiect \mintinline{icl}{subobj}, otherwise \true{}.
 
 \subsubsection{\mintinline{icl}{(obj : object) !* (subobj : object) : bool}}
 
-Return \false{} if fiecare cîmp al obiectului \mintinline{icl}{subobj} se conține in obiectul \mintinline{icl}{obj} și dețin aceleași valori, otherwise \true{}.
+Returns \false{} if fiecare cîmp al obiectului \mintinline{icl}{subobj} se conține in obiectul \mintinline{icl}{obj} and dețin aceleași valori, otherwise \true{}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) + (set2 : set) : set}}
 
-Return o mulțime nouă, ce conține toate obiectele din mulțimile \mintinline{icl}{set1} și \mintinline{icl}{set2}.
+Returns o mulțime nouă, ce conține toate obiectele din mulțimile \mintinline{icl}{set1} and \mintinline{icl}{set2}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) - (set2 : set) : set}}
 
-Return o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în mulțimea \mintinline{icl}{set2}, și obiectele mulțimii \mintinline{icl}{set2}, ce lipsesc în \mintinline{icl}{set1}.
+Returns o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în mulțimea \mintinline{icl}{set2}, and obiectele mulțimii \mintinline{icl}{set2}, ce lipsesc în \mintinline{icl}{set1}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) \ (set2 : set) : set}}
 
-Return o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în \mintinline{icl}{set2}.
+Returns o mulțime nouă, ce conține toate obiectele mulțimii \mintinline{icl}{set1}, care lipsesc în \mintinline{icl}{set2}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) * (set2 : set) : set}}
 
-Return o mulțime nouă, ce conține toate obiectele ce se conțin în mulțimile \mintinline{icl}{set1} și \mintinline{icl}{set2} concomitent.
+Returns o mulțime nouă, ce conține toate obiectele ce se conțin în mulțimile \mintinline{icl}{set1} and \mintinline{icl}{set2} concomitent.
 
 \subsubsection{\mintinline{icl}{(set1 : set) ** (set2 : set) : bool}}
 
-Return \true, if exisă cel puțin un obiect care este prezent in mulțimile \mintinline{icl}{set1} și \mintinline{icl}{set2} concomitent, otherwise \false.
+Returns \true, if exisă cel puțin un obiect care este prezent in mulțimile \mintinline{icl}{set1} and \mintinline{icl}{set2} concomitent, otherwise \false.
 
 \subsection{Operatorul de combinare}
 
-{\bf Parantezele pătrate} sau {\bf operatorul de combinare} permite a crea obiecte de tipurile următoare \listtype{}, \set{} și \object{}.
+{\bf Parantezele pătrate} sau {\bf operatorul de combinare} permite a crea obiecte de tipurile următoare \listtype{}, \set{} and \object{}.
 
 \mintinline{icl}{[] : list} creează o lită goală.
 
-\mintinline{icl}{[string ...] : list} creează o listă din șiruri de caractere variabile și constante, de asemenea se permite apeluri la funcții care Return șiruri de caractere. Exemplu: \mintinline{icl}{["a", "b", "c"]}.
+\mintinline{icl}{[string ...] : list} creează o listă din șiruri de caractere variabile and constante, de asemenea se permite apeluri la funcții care Returns șiruri de caractere. Exemplu: \mintinline{icl}{["a", "b", "c"]}.
 
 \mintinline{icl}{[list ...] : list} unește mai multe liste în una.
 
-\mintinline{icl}{[string or list ...] : list} unește șirurile de caractere și listele într-o listă.
+\mintinline{icl}{[string or list ...] : list} unește șirurile de caractere and listele într-o listă.
 
 \mintinline{icl}{[arg ...] : object} creează un obiect cu cîmpuri (fiecare cîmp se descrie ca argument), argumentele se descriu prin următoarea sintaxă \mintinline{icl}{name = value}, unde \mintinline{icl}{value} este o valoare, \mintinline{icl}{name} - numele argumentului. Exemplu \mintinline{icl}{[number = 2, str = "str"]}.
 
