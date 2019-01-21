@@ -9,7 +9,7 @@ Ordinea de executare a operatorilor este definită de rang, operatorii care au c
 
 {\bf Parantezele pătrate} în icL este operator de rangul 1 și cu asociativitate stîngă.
 
-În descrierea operatorilor se folosește noțiunea de {\bf operație} și {\bf operator}. Sub operație se subînțelege cazuri comune (de exemplu {\it adunarea}). Sub operator se subînțelege cazuri concrete (de exemplu {\it adunarea numerelor întregi}). Operatorul devine operație la prima oportunitate de realizare, de exemplu în expresia \mintinline{icl}{1 + 2 * 3}, operatorul Operator \mintinline{icl}{+} devine operație numai după ce realizează operația de înmulțire.
+În descrierea operatorilor se folosește noțiunea de {\bf operație} și {\bf operator}. Sub operație se subînțelege cazuri comune (de exemplu {\it adunarea}). Sub operator se subînțelege cazuri concrete (de exemplu {\it adunarea numerelor întregi}). Operatorul devine operație la prima oportunitate de realizare, de exemplu în expresia \mintinline{icl}{1 + 2 * 3}, operatorul \mintinline{icl}{+} devine operație numai după ce realizează operația de înmulțire.
 
 \subsection{Operații logice}
 
@@ -588,17 +588,13 @@ Returnează \true, dacă exisă cel puțin un obiect care este prezent in mulți
 
 {\bf Parantezele pătrate} sau {\bf operatorul de combinare} permite a crea obiecte de tipurile următoare \listtype{}, \set{} și \object{}.
 
-\mintinline{icl}{[] : list} creează o lită goală.
+\mintinline{icl}{[] : list} creează o listă goală.
 
 \mintinline{icl}{[string ...] : list} creează o listă din șiruri de caractere variabile și constante, de asemenea se permite apeluri la funcții care returnează șiruri de caractere. Exemplu: \mintinline{icl}{["a", "b", "c"]}.
 
 \mintinline{icl}{[list ...] : list} unește mai multe liste în una.
 
 \mintinline{icl}{[string or list ...] : list} unește șirurile de caractere și listele într-o listă.
-
-\mintinline{icl}{[arg ...] : object} creează un obiect cu cîmpuri (fiecare cîmp se descrie ca argument), argumentele se descriu prin următoarea sintaxă \mintinline{icl}{name = value}, unde \mintinline{icl}{value} este o valoare, \mintinline{icl}{name} - numele argumentului. Exemplu \mintinline{icl}{[number = 2, str = "str"]}.
-
-\mintinline{icl}{[param ...] : set} creează o mulțime cu header-ul dorit, fiecare coloană se descrie ca un parametru, parametrul se descrie prin următoarea sintaxă \mintinline{icl}{name : type}, unde \mintinline{icl}{type} este un tip de date, \mintinline{icl}{name} - numele parametrului. Nu se poate de creat mulțime fără header. Exemplu \mintinline{icl}{[number : int, str : string]}.
 
 \mintinline{icl}{[object ...] : set} creează o mulțime din mai multe obiecte.
 
