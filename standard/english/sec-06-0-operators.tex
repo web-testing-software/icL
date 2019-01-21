@@ -533,7 +533,7 @@ Returns a new set that is the symmetric difference of set \mintinline{icl}{set1}
 
 \subsubsection{\mintinline{icl}{(set1 : set) \ (set2 : set) : set}}
 
-Returns a new set that is the relative complement of set \mintinline{icl}{set2} in the set \mintinline{icl}{set1}.s
+Returns a new set that is the relative complement of set \mintinline{icl}{set2} in the set \mintinline{icl}{set1}.
 
 \subsubsection{\mintinline{icl}{(set1 : set) * (set2 : set) : set}}
 
@@ -543,25 +543,21 @@ Returns a new set that is the intersection of set \mintinline{icl}{set1} and the
 
 Returns \true, if the set \mintinline{icl}{set1} intersects the set \mintinline{icl}{set2}, otherwise \false.
 
-\subsection{Operatorul de combinare}
+\subsection{Merge Operator}
 
-{\bf Parantezele pătrate} sau {\bf operatorul de combinare} permite a crea obiecte de tipurile următoare \listtype{}, \set{} and \object{}.
+{\bf The square operator} or {\bf the merge operator} creates the next data types: \listtype{}, \set{} and \object{}.
 
-\mintinline{icl}{[] : list} creează o lită goală.
+\mintinline{icl}{[] : list} creates a empty list.
 
-\mintinline{icl}{[string ...] : list} creează o listă din șiruri de caractere variabile and constante, de asemenea se permite apeluri la funcții care Returns șiruri de caractere. Exemplu: \mintinline{icl}{["a", "b", "c"]}.
+\mintinline{icl}{[string ...] : list} creates a new list from strings (constant and variables, including functions calls). Example —  \mintinline{icl}{["a", "b", "c"]}.
 
-\mintinline{icl}{[list ...] : list} unește mai multe liste în una.
+\mintinline{icl}{[list ...] : list} creates a new list from items of all lists.
 
-\mintinline{icl}{[string or list ...] : list} unește șirurile de caractere and listele într-o listă.
+\mintinline{icl}{[string or list ...] : list} creates a new list from strings and items in lists.
 
-\mintinline{icl}{[arg ...] : object} creează un obiect cu cîmpuri (fiecare cîmp se descrie ca argument), argumentele se descriu prin următoarea sintaxă \mintinline{icl}{name = value}, unde \mintinline{icl}{value} este o valoare, \mintinline{icl}{name} - numele argumentului. Exemplu \mintinline{icl}{[number = 2, str = "str"]}.
+\mintinline{icl}{[object ...] : set} creates a new set from objects.
 
-\mintinline{icl}{[param ...] : set} creează o mulțime cu header-ul dorit, fiecare coloană se descrie ca un parametru, parametrul se descrie prin următoarea sintaxă \mintinline{icl}{name : type}, unde \mintinline{icl}{type} este un tip de date, \mintinline{icl}{name} - numele parametrului. Nu se poate de creat mulțime fără header. Exemplu \mintinline{icl}{[number : int, str : string]}.
+\mintinline{icl}{[set ...] : set} create union of some sets.
 
-\mintinline{icl}{[object ...] : set} creează o mulțime din mai multe obiecte.
-
-\mintinline{icl}{[set ...] : set} unește mai multe mulțimi în una.
-
-\mintinline{icl}{[object or set ...] : set} unește mulțimi si obiecte într-o mulțime.
+\mintinline{icl}{[object or set ...] : set} create union of sets and objects.
 
