@@ -7,7 +7,7 @@ if (@) {
 		`` error
 		@test3 = @var;
 		`` initialization
-		@var = 0;
+		#var = 0;
 		`` ok
 		@test4 = @var;
 	}
