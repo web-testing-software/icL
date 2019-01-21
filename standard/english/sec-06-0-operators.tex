@@ -331,124 +331,116 @@ Returns the absolute value of \mintinline{icl}{a}.
 
 Returns the absolute value of \mintinline{icl}{a}.
 
-\subsection{Operații cu șiruri de caractere and liste}
+\subsection{Operations with Strings and Lists}
 
-Operațiile cu șiruri de caractere and liste sunt enumerate în tabela \ref{stringops}.
 \stablethree{1.0cm}{6.0cm}{7.0cm}
-{stringops}{Operații cu șiruri de caractere and liste}
-{Rang}{Operație}{Operator}
+{}{}{Rank}{Operation}{Operator}
 {
-	3     & equality                & \mintinline{icl}{string == string : bool}   \\ \hline
-	3     & equality                & \mintinline{icl}{list == list : bool}       \\ \hline
-	3     & inequality              & \mintinline{icl}{string != string : bool}   \\ \hline
-	3     & inequality              & \mintinline{icl}{list != list : bool}       \\ \hline
-	3     & includere           & \mintinline{icl}{list << string : bool}     \\ \hline
-	3     & includere           & \mintinline{icl}{string << string : bool}   \\ \hline
-	3     & excludere           & \mintinline{icl}{list !< string : bool}     \\ \hline
-	3     & excludere           & \mintinline{icl}{string !< string : bool}   \\ \hline
-	3     & includere de șablon & \mintinline{icl}{list <* string : bool}     \\ \hline
-	3     & excludere de șablon & \mintinline{icl}{list !* string : bool}     \\ \hline
-	4     & concatenare         & \mintinline{icl}{string + string : string}  \\ \hline
-	4     & inserare            & \mintinline{icl}{string + list : list}      \\ \hline
-	4     & inserare            & \mintinline{icl}{list + string : list}      \\ \hline
-	4     & inserare            & \mintinline{icl}{list + list : list}        \\ \hline
-	5     & comparare cu șablon & \mintinline{icl}{string * string : bool}    \\ \hline
-	5     & comparare cu șablon & \mintinline{icl}{list * string : bool}      \\ \hline
-	5     & comparare cu șablon & \mintinline{icl}{list * list : bool}        \\ \hline
-	6$^+$ & echivalență         & \mintinline{icl}{string ** string : double} \\
+	3     & equality              & \mintinline{icl}{string == string : bool}   \\ \hline
+	3     & equality              & \mintinline{icl}{list == list : bool}       \\ \hline
+	3     & inequality            & \mintinline{icl}{string != string : bool}   \\ \hline
+	3     & inequality            & \mintinline{icl}{list != list : bool}       \\ \hline
+	3     & contains              & \mintinline{icl}{list << string : bool}     \\ \hline
+	3     & contains              & \mintinline{icl}{string << string : bool}   \\ \hline
+	3     & not contains          & \mintinline{icl}{list !< string : bool}     \\ \hline
+	3     & not contains          & \mintinline{icl}{string !< string : bool}   \\ \hline
+	3     & contains template     & \mintinline{icl}{list <* string : bool}     \\ \hline
+	3     & contains template     & \mintinline{icl}{list !* string : bool}     \\ \hline
+	4     & concatenation         & \mintinline{icl}{string + string : string}  \\ \hline
+	4     & insertion             & \mintinline{icl}{string + list : list}      \\ \hline
+	4     & insertion             & \mintinline{icl}{list + string : list}      \\ \hline
+	4     & insertion             & \mintinline{icl}{list + list : list}        \\ \hline
+	5     & compare with template & \mintinline{icl}{string * string : bool}    \\ \hline
+	5     & compare with template & \mintinline{icl}{list * string : bool}      \\ \hline
+	5     & compare with template & \mintinline{icl}{list * list : bool}        \\ \hline
+	6$^+$ & equivalence           & \mintinline{icl}{string ** string : double} \\
 }
 
-Exemple de folosire a operatorilor enumerați mai sus, sunt demonstrate pe foaia \ref{stringlistopex}.
-
-Pentru a uni cîteva șiruri de caractere în listă, no se recomandă de folosit concatenarea, dar următorul literal:
-\begin{minted}{icl}
-[@str1, @str2, "Const string", func(), 37.1 : string, @bool : string, @list.join()]
-\end{minted}
+\newpage
+Examples —
+\inputminted[linenos]{icl}{../sources/stringlistopex.icL}
 
 \subsubsection{\mintinline{icl}{(s1 : string) == (s2 : string) : bool}}
 
-Returns \true{} if \mintinline{icl}{s1} and \mintinline{icl}{s2} conțin același număr de caractere and conțin aceleași caractere în aceeași ordine, otherwise \false{}.
+Returns \true{} if string \mintinline{icl}{s1} is equal to string \mintinline{icl}{s2}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l1 : list) == (l2 : list) : bool}}
 
-Returns \true{} if \mintinline{icl}{l1} and \mintinline{icl}{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), otherwise \false{}.
+Returns \true{} if list \mintinline{icl}{l1} is equal to list \mintinline{icl}{l2}, otherwise \false{}.
+
+Two lists are considered equal if they contain the same values.
 
 \subsubsection{\mintinline{icl}{(s1 : string) != (s2 : string) : bool}}
 
-Returns \false{} if \mintinline{icl}{s1} and \mintinline{icl}{s2} conțin același număr de caractere and conțin aceleași caractere în aceeași ordine, otherwise \true{}.
-
-\begin{sourcecode}
-    \captionof{listing}{Exemple de folosire al operatorilor asupra tipului string and list}
-    \label{stringlistopex}
-    \inputminted[linenos]{icl}{../sources/stringlistopex.icL}
-\end{sourcecode}
+Returns \false{} if string \mintinline{icl}{s1} is not equal to string \mintinline{icl}{s2}, otherwise \true{}.
 
 \subsubsection{\mintinline{icl}{(l1 : list) != (l2 : list) : bool}}
 
-Returns \false{} if \mintinline{icl}{l1} and \mintinline{icl}{l2} conțin aceleași șiruri de caractere (ordinea se ignoră), otherwise \true{}.
+Returns \false{} if list \mintinline{icl}{l1} is not equal to list \mintinline{icl}{l2}, otherwise \true{}.
 
 \subsubsection{\mintinline{icl}{(l : list) << (str : string) : bool}}
 
-Returns \true{}, if lista \mintinline{icl}{l} conține șirurl de caractere \mintinline{icl}{str}, otherwise \false{}.
+Returns \true{}, if list \mintinline{icl}{l} contains a string equal to string \mintinline{icl}{str}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(str : string) << (substr : string) : bool}}
 
-Returns \true{}, if șirul de caractere \mintinline{icl}{str} conține subșirul \mintinline{icl}{substr}, otherwise \false{}.
+Returns \true{}, if string \mintinline{icl}{str} contain substring \mintinline{icl}{substr}, otherwise \false{}.
 
-Returns \true{}, if lista \mintinline{icl}{l} nu conține șirul \mintinline{icl}{str}, otherwise \false{}.
+\subsubsection{\mintinline{icl}{(l : list) !< (str : string) : bool}}
+
+Returns \true{}, if list \mintinline{icl}{l} does not contain the string \mintinline{icl}{str}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(str : string) !< (substr : string) : bool}}
 
-Returns \true{}, if șirul de caractere \mintinline{icl}{str} nu conține subșirul \mintinline{icl}{substr}, otherwise \false{}.
+Returns \true{}, if string \mintinline{icl}{str} does not contain the substring \mintinline{icl}{substr}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) <* (template : string) : bool}}
 
-Returns \true{}, if lista \mintinline{icl}{l} conține cel puțin un șir de caractere, care se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{}, if list \mintinline{icl}{l} contains a string, which match the template \mintinline{icl}{template}, otherwise \false{}.
 
-{\bf Șablonul} este un and de caractere, el conține date and un caracter special \mintinline{icl}{*}, care înseamnă orice succesiune de simboluri. Cercetăm următorul șablon \mintinline{icl}{"Have a * day!"}, exemple de șiruri de caracter care se potrivesc: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Exemplu de șir care nu se potrivește \mintinline{icl}{"Have a good day"} (lipsește semnul exclamării).
+{\bf A template} is a string, which can contain a special symbol \mintinline{icl}{*}. This symbol means any character sequence. Let's see the next example \mintinline{icl}{"Have a * day!"}. Exemples of string which match it: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Example of string which does not match it — \mintinline{icl}{"Have a good day"} (the exclamation mark is absent).
 
 \subsubsection{\mintinline{icl}{(l : list) !* (template : string) : bool}}
 
-Returns \true{}, if lista \mintinline{icl}{l} if lista nu conține cel puțin un șir, care se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{}, if list \mintinline{icl}{l} does not contain any string which matches the template \mintinline{icl}{template}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s1 : string) + (s2 : string) : string}}
 
-Returns un nou șir de caractere, care conține toate caracterele șirelor de caracter \mintinline{icl}{s1} and \mintinline{icl}{s2}. Șirul obținut va avea lungimea equalityă cu suma lungimilor șirurilor componente.
+Returns a new string, which is the result of concatenating \mintinline{icl}{s1} and \mintinline{icl}{s2}.
 
 \subsubsection{\mintinline{icl}{(str : string) + (l : list) : list}}
 
-Returns o listă nouă, primită în rezultatul adăugării șirului \mintinline{icl}{str} la începutul listei \mintinline{icl}{l}.
+Returns a list that contains the item \mintinline{icl}{str} followed by all the items in the list \mintinline{icl}{l}.
 
 \subsubsection{\mintinline{icl}{(l : list) + (str : string) : list}}
 
-Returns o listă nouă, primită în rezultatul adăugării șirului \mintinline{icl}{str} la sfîrșitul listei \mintinline{icl}{l}.
+Return a list then contains all the items of list \mintinline{icl}{l} followed by the string \mintinline{icl}{str}.
 
 \subsubsection{\mintinline{icl}{(l1 : list) + (l2 : list) : list}}
 
-Returns o listă nouă, care conține toate șirurile listelor \mintinline{icl}{l1} and \mintinline{icl}{l2}.
+Returns a list that contains all the items in list \mintinline{icl}{l1} followed by all the items in the list \mintinline{icl}{l2}.
 
 \subsubsection{\mintinline{icl}{(str : string) * (template : string) : bool}}
 
-Returns \true{}, if șirul de caractere \mintinline{icl}{str} se potrivește cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{}, if string \mintinline{icl}{str} matches the template \mintinline{icl}{template}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) * (template : string) : bool}}
 
-Returns \true{} if toate șirurile din lista \mintinline{icl}{l} se potrivesc cu șablonul \mintinline{icl}{template}, otherwise \false{}.
+Returns \true{} if all strings in list \mintinline{icl}{l} match the template \mintinline{icl}{template}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) * (templates : list) : bool}}
 
-Returns \true{} if toate șirurile din lista \mintinline{icl}{l} se potrivesc cu șablonul cuvenit din lista \mintinline{icl}{templates}, otherwise \false{}.
+Returns \true{} if all strings in list \mintinline{icl}{l} matches the appointed template from list \mintinline{icl}{templates}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(s1 : string) ** (s2 : string) : double}}
 
-Returns coeficientul de echivalență primit prin comparare șirului \mintinline{icl}{s1} cu \mintinline{icl}{s2}.
+Returns the quantifier of equivalence given by comparing the strings \mintinline{icl}{s1} and \mintinline{icl}{s2}.
 
-{\bf Echivalența} este nivelul de asemănare al șirurilor. \mintinline{icl}{"Hi! Robert, how do you do?"} în comparație cu \mintinline{icl}{"Robert! Hi! How do you do?"} are coeficient de echivalență equality cu 1. Pentru ca ambele șiruri conțin aceleași cuvinte. Dar în comparație cu  \mintinline{icl}{"Rich! Hi! How are}\\*\mintinline{icl}{ you?"} coeficientul scade pînă la 0,64.
+{\bf The equivalence} is the level of resemblance. \mintinline{icl}{"Hi! Robert, how do you do?"} compared to \mintinline{icl}{"Robert! Hi! How do you do?"} gets a quantifier equals with 1, because the both strings contain the same words. But compared to \mintinline{icl}{"Rich! Hi! How are you?"} it gets a quantifier equals to 0.64.
 
 \subsubsection{\mintinline{icl}{(l1 : list) ** (l2 : list) : double}}
 
-Returns coeficientul primit prin compararea șirurilor din lista \mintinline{icl}{l1} cu șirurile din lista \mintinline{icl}{l2}.
-Pentru a primi un rezultat corect, șirurile de caractere trebuie să dețină un singur cuvînt.
+Returns the quantifiers got by comparing each string in list \mintinline{icl}{l1} with each string in list \mintinline{icl}{l2}. To get a correct result each string must contains one word.
 
 \subsection{Operații cu obiecte and mulțimi}
 
