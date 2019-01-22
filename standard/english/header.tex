@@ -7,11 +7,27 @@
 \setlength\abovecaptionskip{2pt}
 \setlength\belowcaptionskip{1pt}
 
+\newcounter{mypage}
+\newcounter{mpdiv}
+\newcounter{mpmod}
+
 \pagestyle{fancy}
 \fancyhead[]{}
 \fancyhead[L]{\textmd{Version 1.1.1 in English}}
 \fancyhead[C]{}
-\fancyhead[R]{The \textmd{\thepage{}$^{th}$ of \pageref{LastPage}}}
+\fancyhead[R]{
+	\setcounter{mypage}{\thepage{}}
+	\setcounter{mpdiv}{\value{mypage} / 10}
+	\setcounter{mpmod}{\value{mypage} - \value{mpdiv}}
+	\ifthenelse{\value{mpdiv} = 1}{The \thepage{}-th page of \pageref{LastPage}}{
+		\ifthenelse{\value{mpmod} = 1}{The \thepage{}-st page of \pageref{LastPage}}{
+			\ifthenelse{\value{mpmod} = 2}{The \thepage{}-nd page of \pageref{LastPage}}{
+				\ifthenelse{\value{mpmod} = 3}{The \thepage{}-nd page of \pageref{LastPage}}
+					{The \thepage{}-th page of \pageref{LastPage}}
+			}
+		}
+	}
+}
 \fancyfoot[]{}
 \renewcommand{\headrulewidth}{0pt}
 
