@@ -1,164 +1,129 @@
-% !TeX spellcheck = ro_RO
-\section{Cicluri}
+% !TeX spellcheck = en_US
+\section{Loops}
 
-Poate să apară necesitatea de a folosi unul și același grup de comenzi de mai multe ori. Nu e numaidecît de scris același cod cîteva ori, e mai simplu a folosi un ciclu.
+There may be a situation, when you need to execute a block of code several times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on. A loop statement executes a statement or group of statements multiple times. 
 
-În limbajul icL sunt prezente următoarele tipuri de cicluri:
-
-\begin{icItems}
-\item
-	\mintinline{icl}{for} - ciclu universal;
-\item
-	\mintinline{icl}{while} - repetarea condiționată a codului;
-\item
-	\mintinline{icl}{do-while} - ciclu cu condiție posterioară;
-\item
-	\mintinline{icl}{for} - răsfoirea colecției;
-\item
-	\mintinline{icl}{filter} - răsfoirea selectivă colecției;
-\item
-	\mintinline{icl}{range} - răsfoirea parțială colecției.
-\end{icItems}
-
-
-\subsubsection{\mintinline{icl}{for} - ciclu universal}
-
-{\bf Ciclul universal} permite a controla fiecare delatiu al executării. El conține:
+List of loops in icL —
 
 \begin{icItems}
 \item
-	\mintinline{icl}{inițializare} - inițializare.
+	\mintinline{icl}{for};
 \item
-	\mintinline{icl}{condiție} - condiție, care se controlează înainte de executare;
+	\mintinline{icl}{while};
 \item
-	\mintinline{icl}{pas} - cod, care răspunde de trecerea la următoarea iterație.
+	\mintinline{icl}{do-while};
 \item
-	\mintinline{icl}{comenzi} - codul care fi executat repetat.
+	\mintinline{icl}{for-each};
+\item
+	\mintinline{icl}{filter};
+\item
+	\mintinline{icl}{range}.
 \end{icItems}
 
-Ciclul universal are următoarea sintaxă -
+
+\subsubsection{\mintinline{icl}{for}}
+
+{\bf Parametric loop} has initialization code, condition and step. 
+
+Syntax —
 \begin{minted}{icl}
-for (inițializare; condiție; pas) {
-	comenzi
+for (initialization; condition; step) {
+	commands
 };
 \end{minted}
 
-Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \mintinline{icl}{for}, ciclu va printa în consolă numere de la zero la patru.
+Before to execute the set of statements, the initialization code is executed and the condition is checked. But step code is executed after it.
 
-\begin{sourcecode}
-    \captionof{listing}{Ciclu universal}
-    \label{uniloopex}
-    \inputminted[linenos]{icl}{../sources/uniloopex.icL}
-\end{sourcecode}
+The following code will print in console numbers from zero to four —
+\inputminted[linenos]{icl}{../sources/uniloopex.icL}
 
-\subsubsection{\mintinline{icl}{while} - repetare condiționată a codului}
+\subsubsection{\mintinline{icl}{while}}
 
-{\bf Repetarea condiționată a codului} va executa codul pînă cînd condiția nu va deveni falsă. Condiția se verifică înainte de a executa ciclul, dacă este inițial falsă, ciclul nu va fi executat niciodată.
+\mintinline{icl}{while} repeats a set of statements while a given condition is true. If the condition is initially false, the set of states will not be executed.
 
-Avantajul lui principal este simplitatea. În comparație cu ciclul universal el nu are inițializare și trece la următoarea iterație. El are doar condiție și grup de comenzi, sintaxă -
+Syntax —
 \begin{minted}{icl}
-while (condiție) {
-	comenzi
+while (condition) {
+	commands
 };
 \end{minted}
 
-Pe foaia \ref{whileex} este prezentat cod care folosește ciclu \mintinline{icl}{while}. Variabila \mintinline{icl}{@number} este declarată pînă la ciclu și va fi disponibilă și după ciclu. După finalizarea ciclului variabila \mintinline{icl}{@number} va avea valoarea 6.
+\newpage
+Example —
+\inputminted[linenos]{icl}{../sources/whileex.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Ciclu while}
-    \label{whileex}
-    \inputminted[linenos]{icl}{../sources/whileex.icL}
-\end{sourcecode}
+Here the variable \mintinline{icl}{@number} is defined before the loop, and will be available after it. Variable \mintinline{icl}{@number} will get a value equals to 6.
 
-\subsubsection{\mintinline{icl}{do-while} - ciclu cu condiție posterioară}
+\subsubsection{\mintinline{icl}{do-while}}
 
-{\bf Ciclu cu condiție posterioară} nu tare se doasebește de \mintinline{icl}{while}, dar el garantează că grupul de comenzi va fi executat cel puțin o dată. De asemenea condiția se declară după grupul de comenzi, arătînd la ceea că ea va fi verificată după prima iterație. Sintaxă -
+\mintinline{icl}{do-while} is like a while statement, except that it tests the condition at the end of the loop body. The set of statement always is executed minimum one time.
+Syntax —
 \begin{minted}{icl}
 do {
-	comenzi
-} while (condiție);
+	commands
+} while (condition);
 \end{minted}
 
-Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \mintinline{icl}{do-while}. Necătînd la aceea că condiția este implicit falsă, o iterație va avea loc, în rezultat variabila \mintinline{icl}{@number} va deveni egală cu 7.
+Example —
+\inputminted[linenos]{icl}{../sources/dowhileex.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Ciclu do while}
-    \label{dowhileex}
-    \inputminted[linenos]{icl}{../sources/dowhileex.icL}
-\end{sourcecode}
+Here, variable \mintinline{icl}{@number} will get a value equals to 7.
 
-\subsubsection{\mintinline{icl}{for} - răsfoirea colecție}
+\subsubsection{\mintinline{icl}{for-each}}
 
-{Colecția} este un obiect, care conține mai multe valori. Cel mai simplu exemplu de colecție este lista, ea conține mai multe șiruri de caractere. De exemplu, trebuie de executat o anumită operație cu fiecare șir de caractere din listă. Se poate de folosit ciclul universal (foaia \ref{colluniloop}) sau de {\bf răsfoit colecția} (foaia \ref{collsimple}). Sub numele de colecție se unesc următoarele tipuri de date \mintinline{icl}{list}, \mintinline{icl}{set} și \mintinline{icl}{element}.
+{\bf A collection} is an object which contains some values. A collection can be a \mintinline{icl}{list}, \mintinline{icl}{set} or \mintinline{icl}{element}. To run an operation to each string in list, can use \mintinline{icl}{for} or \mintinline{icl}{for-each}.
 
-\subsubsection{\mintinline{icl}{filter} - răsfoirea selectivă a colecție}
-
-{\bf Construcția \mintinline{icl}{filter}} permite a condiționa, pentru care elemente se va executa ciclu, pentru care nu.
-
-În condiție se poate de folosit următoarele variabile: \mintinline{icl}{@} - valoarea elementului colecției și \mintinline{icl}{#} - indexul valorii.
-
-Filtrul are următoarea sintaxă -
+Syntax of \mintinline{icl}{for-each} —
 \begin{minted}{icl}
-filter (colecție; condiție) {
-	comenzi
+for (collection) {
+	commands
 };
 \end{minted}
 
-A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se filtreză cele care conțin litera a) sau după index (foaia \ref{filterindexex}, se aleg elementele pare a listei).
+\newpage
+Example of using \mintinline{icl}{for} loop for collection —
+\inputminted[linenos]{icl}{../sources/colluniloop.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Răsfoirea colecție prin ciclu universal}
-    \label{colluniloop}
-    \inputminted[linenos]{icl}{../sources/colluniloop.icL}
-\end{sourcecode}
+Example of using \mintinline{icl}{for-each} loop for collection —
+\inputminted[linenos]{icl}{../sources/collsimple.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Răsfoirea simplificată a colecției}
-    \label{collsimple}
-    \inputminted[linenos]{icl}{../sources/collsimple.icL}
-\end{sourcecode}
+\subsubsection{\mintinline{icl}{filter}}
 
-\begin{sourcecode}
-    \captionof{listing}{Filtrare pe bază de valoare}
-    \label{filterdataex}
-    \inputminted[linenos]{icl}{../sources/filterdataex.icL}
-\end{sourcecode}
+\mintinline{icl}{filter} executes a set of statements for special values in collection. In condition can be used the next variables: \mintinline{icl}{@} is the value of current element, \mintinline{icl}{#} is the index of current element.
 
-\begin{listing}[t]
-    \captionof{listing}{Filtare după index}
-    \label{filterindexex}
-    \inputminted[linenos]{icl}{../sources/filterindexex.icL}
-\end{listing}
-
-\subsubsection{\mintinline{icl}{range} - răsfoirea selectivă a colecției}
-
-{\bf Răsfoirea selectivă} permite a executa codul pentru un fragment de colecție. Intervalul de definește pe bază de o valoare sau două. Prima condiție se folosește pentru a defini începutul fragmentului, pe cînd a doua pentru sfîrșit, dacă a doua lipsește va fi folosită prima. În lipsă de un interval corespunzător, ciclul nu va fi executat. Pentru a selecta primul sau ultimul element (în cauză de destinația condiției), folosiți expresia \true{}.
-
-Sintaxă cu o singură condiție -
+Syntax of \mintinline{icl}{filter} —
 \begin{minted}{icl}
-range (colecție; condiție) {
-	comenzi
+filter (collection; condition) {
+	commands
 };
 \end{minted}
 
-Sintaxă cu două condiții (pentru început și sfîrșit de o parte) -
+Example of filtering data by value —
+\inputminted[linenos]{icl}{../sources/filterdataex.icL}
+
+Example of filtering data by index —
+\inputminted[linenos]{icl}{../sources/filterindexex.icL}
+
+\subsubsection{\mintinline{icl}{range}}
+
+\mintinline{icl}{range} executes a set of statements for a range of collection. The range is defined by 1 or 2 conditions. The first condition is used to find the beginning of range. The second condition is used to find the end of range, if it is absent the first will be used. If no such range will be found, the set of statements will not be executed. To select the first or last element of collection use the expression \true{}.
+
+Syntax for single condition \mintinline{icl}{range} —
 \begin{minted}{icl}
-range (colecție; condițiePentruÎnceput; condițiePentruSfîrșit) {
-	comenzi
+range (collection; condition) {
+	commands
 };
 \end{minted}
 
-A alege intervalul se poate după valoare (foaia \ref{bananakiwiex}, interval de la \mintinline{icl}{banana} pînă la \mintinline{icl}{kiwi}) sau după index (foaia \ref{seclastex}, de la a doilea pînă la ultimul).
+Syntax for double condition \mintinline{icl}{range} —
+\begin{minted}{icl}
+range (collection; conditionForBeggining; conditionForEnd) {
+	commands
+};
+\end{minted}
 
-\begin{sourcecode}
-    \captionof{listing}{Interval: de la banana pîna la kiwi}
-    \label{bananakiwiex}
-    \inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
-\end{sourcecode}
+Select a range by values (from \mintinline{icl}{"banana"} to \mintinline{icl}{"kiwi"}) —
+\inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
 
-\begin{sourcecode}
-    \vspace{-2em}
-    \captionof{listing}{Interval: de la al doilea pînă la ultimul}
-    \label{seclastex}
-    \inputminted[linenos]{icl}{../sources/seclastex.icL}
-\end{sourcecode}
+Select a range by index (from \mintinline{icl}{2} to last) —
+\inputminted[linenos]{icl}{../sources/seclastex.icL}
