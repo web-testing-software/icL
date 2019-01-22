@@ -1,102 +1,98 @@
-% !TeX spellcheck = ro_RO
-\section{Operatori condiționali}
+% !TeX spellcheck = en_US
+\section{Control operators}
 
-Operatorii condiționali dețin condiții (valoarea cărora trebuie socotită) și grupuri de comenzi, execuția cărora depinde de condiție.
-
-În icL sunt prezenți următorii operatori logici:
+The control operators have condition and command group. The execution of a command group depends on value of condition.
+ 
+ List of control operators in icL:
 \begin{icItems}
 	\item \mintinline{icl}{if};
 	\item \mintinline{icl}{if-else};
-	\item \mintinline{icl}{if-else} în cascadă;
+	\item cascade \mintinline{icl}{if-else};
 	\item \mintinline{icl}{switch-case};
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{if}}
 
-\mintinline{icl}{if} permite să condiționezi executarea grupei de comenzi. Sintaxa lui -
+\mintinline{icl}{if} switches executing of a group of commands by a condition —
 \begin{minted}{icl}
-if (condiție) {
-	comenzi
+if (condition) {
+	commands
 };
 \end{minted}
-unde \mintinline{icl}{condiție} orice expresie care returnează valoare \bool{} și \mintinline{icl}{comenzi} orice succesiune de comenzi.
+Here \mintinline{icl}{condtition} is an expression which returns \bool{} and \mintinline{icl}{commands} is a sequence of commands.
 
-De asemenea se permite de exclus parantezele rotunde dacă expresia este simplă, sintaxă -
+The round brackets can be omitted if the expression is simple, syntax —
 \begin{minted}{icl}
-if true  { comenzi };
-if !true { comenzi };
-if @var  { comenzi };
-if !@var { comenzi };
+if true  { commands };
+if !true { commands };
+if @var  { commands };
+if !@var { commands };
 \end{minted}
 
 \subsubsection{\mintinline{icl}{if-else}}
 
-\mintinline{icl}{if-else} permite a alege dintre 2 grupe de comenzi, în cazul în care condiția este adevărată se execută prima, în caz contrar a doua.
+\mintinline{icl}{if-else} selects one of two sets of statements, if condition is \true{} the first set of statements gets executed, otherwise — the second.
 
-Sintaxa \mintinline{icl}{if-else}-ului -
+Syntax of \mintinline{icl}{if-else} —
 \begin{minted}{icl}
-if (condiție) {
-	comenzi1
+if (condition) {
+	commands1
 }
 else {
-	comenzi2
+	commands2
 };
 \end{minted}
 
-\subsubsection{\mintinline{icl}{if-else} în cascadă}
+\subsubsection{Cascade \mintinline{icl}{if-else}}
 
-\mintinline{icl}{if-else} în cascadă permite a alege dintre n grupe de comenzi, numai că necesită n-1 condiții.
+Cascade \mintinline{icl}{if-else} selects one of n sets of statements using n-1 conditions.
 
-Sintaxa \mintinline{icl}{if-else}-ului în cascadă -
+Syntax of cascade \mintinline{icl}{if-else} —
 \begin{minted}{icl}
-if (condiție1) {
-	comenzi1
-} else if (condiție2) {
-	comenzi2
+if (condition1) {
+	commands1
+} else if (condition2) {
+	commands2
 } else {
-	comenzi3
+	commands3
 };
 \end{minted}
 
 \subsubsection{\mintinline{icl}{switch-case}}
 
-\mintinline{icl}{switch-case} permite a alege între n blocuri de comenzi, pe bază de n condiții.
+\mintinline{icl}{switch-case} selects m (one or more) sets of statements form n sets of statements, using n or more values, where m <= n.
 
-Sintaxă -
+Syntax —
 \begin{minted}{icl}
-switch (valoare) {
-	case (valoareDeCaz) { `cod` }
-	`` mai multe case-uri
+switch (value) {
+	case (caseValue) { `code` }
+	`` more cases
 }
 \end{minted}
 
-\mintinline{icl}{switch} primește valoarea \mintinline{icl}{valoare}, ea poate avea orice tip în afară de \bool. Mai departe în \mintinline{icl}{switch} se definesc cîteva \mintinline{icl}{case}-uri. Dacă valoarea \mintinline{icl}{case}-ului - \mintinline{icl}{valoareDeCaz} coincide cu \mintinline{icl}{value}, atunci \mintinline{icl}{case} va fi executat.
+\mintinline{icl}{switch} gets the value \mintinline{icl}{value}, which can have any type excluding \bool. Next, in \mintinline{icl}{switch} shall be defined some cases (\mintinline{icl}{case}), if \mintinline{icl}{value == caseValue} then the set of statements gets executed.
 
-\mintinline{icl}{case}-ul poate deține mai multe valori despărțite prin virgulă.
+A \mintinline{icl}{case} can contains some values delimited by comma.
 
-El poate primi valoare \void, în felul următor \mintinline{icl}{case (~) { `cod` }}, acest tip de \mintinline{icl}{case} va fi executat numai dacă nici unul din \mintinline{icl}{case}-urile precedente nu a fost executat.
+A \mintinline{icl}{case} can get a \void{} value — \mintinline{icl}{case (~) { `code` }}, this type of \mintinline{icl}{case} will be executed if no one of previous cases was executed.
 
-Este a valoare specială - \mintinline{icl}{#}, prin ea se desemnează ca \mintinline{icl}{case}-ul trebuie executat dacă precedentul a fost executat.
+There is a special value — \mintinline{icl}{#}, it means that this \mintinline{icl}{case} with the condition that the previous \mintinline{icl}{case} was executed.
 
-Descurcăm prin exemplu toate posibilitățile \mintinline{icl}{switch-case}-ului, exemplu este prezent pe foaia \ref{switchcaseex}.
+Example of using the \mintinline{icl}{switch-case} —
+\inputminted[linenos]{icl}{../sources/switchcaseex.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Folosirea switch-case-ului}
-    \label{switchcaseex}
-    \inputminted[linenos]{icl}{../sources/switchcaseex.icL}
-\end{sourcecode}
+Variable \mintinline{icl}{@v} gets values of interval [0, 6].
 
-Variabila \mintinline{icl}{@v} primește valori in intervalul [0, 6].
-
-Descurcăm care grupuri de comenzi vor fi executate pentru fiecare valoare posibilă:
+\newpage
+Let's see which sets of statements will be executed for each value of \mintinline{icl}{@v} —
 \begin{icItems}
-	\item 0 - va fi executat grupul \mintinline{icl}{code1};
-	\item 1 - vor fi executate grupurile \mintinline{icl}{code2} și \mintinline{icl}{code3};
-	\item 2 - vor fi executate grupurile \mintinline{icl}{code2} și \mintinline{icl}{code3};
-	\item 3 - va fi executat grupul \mintinline{icl}{code3};
-	\item 4 - va fi executat grupul \mintinline{icl}{code4};
-	\item 5 - va fi executat grupul \mintinline{icl}{code5};
-	\item 6 - va fi executat grupul \mintinline{icl}{code5}.
+	\item 0 — will be executed \mintinline{icl}{code1};
+	\item 1 — will be executed \mintinline{icl}{code2} and \mintinline{icl}{code3};
+	\item 2 — will be executed \mintinline{icl}{code2} and \mintinline{icl}{code3};
+	\item 3 — will be executed \mintinline{icl}{code3};
+	\item 4 — will be executed \mintinline{icl}{code4};
+	\item 5 — will be executedupul \mintinline{icl}{code5};
+	\item 6 — will be executedupul \mintinline{icl}{code5}.
 \end{icItems}
 
 
