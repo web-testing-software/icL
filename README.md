@@ -88,9 +88,12 @@ Comparation between icL share and Selenium Grid -
 
 ## Contributing
 
+You can contribute by code or translations. 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Tiers:
+But if you are still reading that, it means you want to contribute by money.
+
+Tiers for you:
 [![Become a patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/icL)
 
 Microdonations:
