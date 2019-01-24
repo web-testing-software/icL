@@ -7,6 +7,50 @@ developement. Please wait for details.
 The documentation of icL code can be found 
 [here](https://web.testing.gitlab.io/icL-docs/docs/).
 
+## What icL does?
+
+icL automates the functional testing of web-applications, it speeds up the
+writing of autotests, debug and running of tests itself (it will use all
+available machines to run tests parallel, 2 machines with quandcore processors
+will speed up the running of test cases up to 8 times).
+
+## Features of icL
+
+**Cross platform** — *Develop and test anywhere*
+
+All icL utilities are available under Windows, Linux and Mac OS X.
+
+**Cross browser** *testing*
+
+You can user build-in browser or test on browsers, supported by Selenium Web
+Driver: Chrome, Firefox, MS Edge, MS IE, PhanthomJS.
+
+**icL Editor** — *Work together*
+
+Editor permit developing tests in team. Each change will be shared with your
+coworkers. You can share not just the final version, but the draft too.
+
+**icL FlyTime** — *Analising for you*
+
+FlyTime is a hybrid code analyzer, which can detect errors in code and speak to
+you, where the program can crash. The hybrid analyzer is more powerful than a
+static analyzer.
+
+**icL FlyProgramming** — *Edit code always*
+
+FlyProgramming permits editing code on run time, just forgot about stop and run
+again, just fix code and be happy.
+
+**icL Crossfire** — *Call back*
+
+From icL you can call JavaScript functions. And from JavaScript in web page, you
+can call icL functions.
+
+**icL Sync** — *Sync test and back-end*
+
+The synchronization is not possible just with web page, the back-end also can be
+synchronized. An ideal solution for long asynchronous processes on server side.
+
 ## Look
 
 The application will have the next look -
@@ -45,6 +89,14 @@ Comparation between icL share and Selenium Grid -
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
+
+Tiers:
+[![Become a patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/icL)
+
+Microdonations:
+[![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/icL/donate)
+
+One-time transfer: [Yandex.Money](https://money.yandex.ru/to/410014189704428)
 
 ## License
 
