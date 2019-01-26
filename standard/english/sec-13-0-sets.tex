@@ -57,7 +57,7 @@ Exemple de folosire al metodelor descrise mai sus, sunt prezentate pe foaia \ref
 
 Numărul de argumente, trebuie să fie egal cu numărul de cîmpuri în header. Numărul de obiecte adăugate este egal cu lungimea celei mai lungi liste din \mintinline{icl}{data}. Din listele mai scurte elementele vor fi adăugate repetat.
 
-Excepții posibile: \ferror{IncompatibleData} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{IncompatibleData} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{set.clear () : set}}
 
@@ -71,7 +71,7 @@ Creează o copie, prin copierea datelor în alt container.
 
 Întoarce lista de valori al cîmpului \mintinline{icl}{name}, acumulînd informație din toate obiectele mulțimii.
 
-Excepții posibile: \ferror{FieldNotFound} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FieldNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{set.hasField (name : string) : bool}}
 
@@ -81,25 +81,25 @@ Returnează \true, dacă header-ul mulțimii conține cîmpul \mintinline{icl}{n
 
 Inserează un obiect nou, vectorul \mintinline{icl}{data} trebuie numaidecît să fie compatibil complet cu header-ul mulțimii;
 
-Excepții posibile: \ferror{IncompatibleData} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{IncompatibleData} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{set.insert (obj : object) : set}}
 
 Inserează un obiect nou, obiectul \mintinline{icl}{obj} trebuie numaidecît să fie compatibil cu header-ul mulțimii.
 
-Excepții posibile: \ferror{IncompatibleObject} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{IncompatibleObject} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{set.inserField (name : string, value : list, type = list)}}
 
 Creează un cîmp nou de tip \mintinline{icl}{type}. \mintinline{icl}{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \mintinline{icl}{set.applicate}.
 
-Excepții posibile: \ferror{FieldAlreadyExists} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FieldAlreadyExists} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{set.insertField (name : string, value : any, type = void)}}
 
 Creează un cîmp nou de tip \mintinline{icl}{type}. Dacă \mintinline{icl}{type == void} tipul va fi depistat automat, dar e mai bine de în indicat manual, poate exclude unele probleme în viitor.
 
-Excepții posibile: \ferror{FieldAlreadyExists} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FieldAlreadyExists} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{set.remove (data : any ...) : set}}
 
@@ -113,6 +113,6 @@ Excepții posibile: \ferror{FieldAlreadyExists} (pr. tab. \ref{errors}).
 
 Șterge cîmpul \mintinline{icl}{name} din header-ul mulțimii.
 
-Excepții posibile: \ferror{FieldNotFound} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FieldNotFound} (see table \ref{errors}).
 
 %\newpage

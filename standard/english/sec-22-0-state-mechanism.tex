@@ -49,55 +49,55 @@ Returnează variabila, care se află anume în acest container. De exemplu: deja
 
 Trece la următoarea iterație, disponibil doar pentru cicluri.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.break () : void}}
 
 Întrerupe imediat ciclul sau executarea funcției. Disponibil doar pentru cicluri și funcții.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.return (value : any) : void}}
 
 Returnează rezultatul executării funcției. Dacă stratul curent nu este o funcție, va căuta cea mai apropiată funcție.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.markTest (name : string) : Stack}}
 
 Înseamnă stratul curent ca test cu numele \mintinline{icl}{name}, a include un test în alt test nu se permite.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.markStep (name : string) : Stack}}
 
 Înseamnă stratul curent ca pas cu numele \mintinline{icl}{name}. Pasul poate fi definit în test sau în alt pas.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.addDescription (description : string) : void}}
 
 Adaugă descrierea pasului sau testului.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.destroy () : void}}
 
 Șterge din memorie stratul \mintinline{icl}{listen}.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.ignore () : Stack}}
 
 Activează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.listen () : Stack}}
 
 Deactivează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
 
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsection{Controlul stărilor}
 

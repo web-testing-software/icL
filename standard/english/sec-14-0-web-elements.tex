@@ -58,7 +58,7 @@ Elementele web au următoarele proprietăți:
 
 \mintinline{icl}{[icL]} Returnează o valoare JS pentru atributul necesar.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/*] element'css-* : string}}
 
@@ -66,7 +66,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiEle
 
 \mintinline{icl}{[icL]} Returnează o valoare JS pentru proprietatea CSS necesară.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'empty : bool}}
 
@@ -76,7 +76,7 @@ Returnează \true, dacă colecția nu conține nici un element, în caz contrar 
 
 Returnează \false, dacă elementul este un formular și el este închis, în caz contrar \true.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'length : int}}
 
@@ -92,7 +92,7 @@ Returnează numărul de elemente în colecție.
 @var:string = element'prop-userdefined;
 \end{minted}
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'rect : obj}}
 
@@ -106,13 +106,13 @@ Returnează poziția și mărimea elementului pe ecran in pixeli CSS, dar mai ex
 
 \mintinline{icl}{[icL]} Returnează \set, în caz ca elementul este o colecție.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'selected : bool}}
 
 Returnează \true, dacă elementul este o casetă bifată, radio buton selectat sau o opțiune selectată, în caz contrar \false.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'tag : string}}
 
@@ -120,7 +120,7 @@ Returnează numele tagului.
 
 \mintinline{icl}{[icL]} Returnează \listtype, dacă elementul este o colecție.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'text : string}}
 
@@ -128,13 +128,13 @@ Returnează textul elementului vizibil pe ecran.
 
 \mintinline{icl}{[icL]} Returnează \listtype, dacă elementul este o colecție.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement} și \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement} și \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'(<int> n) : element}}
 
 Returnează element unic care conține al n-lea element.
 
-Excepții posibile: \ferror{OutOfBounds}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{OutOfBounds}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsection{Operatori}
 
@@ -174,7 +174,7 @@ Dacă elementul este un cîmp de inserarea a datelor, atunci valoarea lui se anu
 
 \mintinline{icl}{[icL]} Se vor curăți toate elementele colecției.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.click () : element}}
 
@@ -182,7 +182,7 @@ Simulează un clic pe centrul elementului, și așteaptă încărcarea paginii.
 
 \mintinline{icl}{[icL]} Clicul va fi simulat pentru fiecare element al colecției.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.query (by = By'cssSelector, selector : string) : element}}
 
@@ -201,7 +201,7 @@ Metoda returnează un element nou care conține primul element, găsit după cri
 
 \mintinline{icl}{[icL]} Cătarea se realizează în toate elementele colecției.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.query (by = By'cssSelector, selector : string) : element}}
 
@@ -209,7 +209,7 @@ Primește aceiași parametri ca și \mintinline{icl}{element.query}, numai că m
 
 \mintinline{icl}{[icL]} Căutarea se realizează în toate elementele colecției.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.queryAllByXPath (xpath : string) : element}}
 
@@ -247,7 +247,7 @@ Acronim pentru \mintinline{icl}{element.queryAll (By'tagName, @name)};
 
 Returnează un șir de caractere, care conține captura elementului, codată în base64. Captura poate fi salvată ca imagine cu \mintinline{icl}{Make.image (base64 : string, path : string) :}\\*\mintinline{icl}{void}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.sendKeys (modifiers : int, text : string) : element}}
 
@@ -260,7 +260,7 @@ Parametrul \mintinline{icl}{modifiers} primește una din valorile următoare (sa
 
 Parametrul \mintinline{icl}{text} primește textul, care va fi tastat tastatură.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} și \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsection{Metode adiționale}
 
@@ -284,60 +284,60 @@ Lista metodelor adiționale:
 
 Adăugă toate elementele colecției \mintinline{icl}{other}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.child (i : int) : element}}
 
 Returnează un element nou, care conține al \mintinline{icl}{i}-lea succesor.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.closest (cssSelector : string) : element}}
 
 Returnează un element nou, care conține cel mai apropiat predecesor, care este compatibil cu selectorul CSS \mintinline{icl}{cssSelector}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.contains (text : string, asFragment = false) : element}}
 
 Returnează o colecție nouă, care conține toate elementele, care conțin textul (ca fragment sau ca text întreg) \mintinline{icl}{text}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.copy () : element}}
 
 Returnează o colecție nouă, care conține toate elementele colecției curente.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.get (i : int) : element}}
 
 Returnează al i-lea element al colecției.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.filter (cssSelector : string) : element}}
 
 Returnează o colecție nouă, care conține doar elementele care sunt compatibile cu selectorul CSS \mintinline{icl}{cssSelector}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 \subsubsection{\mintinline{icl}{element.next () : element}}
 
 Returnează un element nou, care conține următorul nod.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.prev () : element}}
 
 Returnează un element nou, care conține nodul precedent.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.parent () : element}}
 
 Returnează ul element nou, care conține nodul ascensor.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsection{Lista proprietăților prestabilite}
 \label{elements:predefined:properties}

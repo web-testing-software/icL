@@ -30,7 +30,7 @@ Returnează numărul de sesiuni deschise.
 
 Returnează a \mintinline{icl}{i}-a sesiune.
 
-Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Sessions.closeAll () : void}}
 
@@ -40,13 +40,13 @@ Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 Returnează a \mintinline{icl}{i}-a sesie.
 
-Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Sessions.new () : Session}}
 
 Deschide o sesiune nouă.
 
-Excepții posibile: \ferror{SessionNotCreated} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{SessionNotCreated} (see table \ref{errors}).
 
 \subsection{{\color{orange} Session}}
 
@@ -76,73 +76,73 @@ Obiectul \session{} are următoarele proprietăți:
 
 Tipul în milisecunde de așteptare a găsirii elementului sau al trecerii în stare interactivă. Implicit egal cu 0.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi) (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi) (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Session'pageLoadTimeout : int}}
 
 Timpul de așteptare al încărcării paginii web. Implicit 300 000 de milisecunde.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Session'scriptTimeout : int}}
 
-Timpul de așteptare al executării codului Javascript. Implicit 30 000 de milisecunde.
+Timpul de așteptare al executării codului JavaScript. Implicit 30 000 de milisecunde.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Session'source : string}}
 
 Codul sursă al paginii.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Session'title : string}}
 
 Titlu paginii.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Session'url : string}}
 
 Adresa URL a pagini curente.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.back () : Session}}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înapoi} în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.close () : void}}
 
 Închide sesia. Toate taburile vor fi închise.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.forward () : Session}}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înainte} în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.refresh () : Session}}
 
 Reîncarcă pagina.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.screenshot () : string}}
 
 Returnează un șir de caracter, care reprezintă captură de ecran codată în base64.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.switchTo () : Session}}
 
 Schimbă focusul la altă sesie.
 
-Excepții posibile: \ferror{NoSuchSession} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSuchSession} (see table \ref{errors}).
 
 %\subsubsection{}
 
@@ -160,19 +160,19 @@ Obiectul \windows{} are următoarele proprietăți:
 
 Returnează numărul de ferestre în sesiunea curentă.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Windows'(i : int) : Window}}
 
 Returnează a \mintinline{icl}{i}-a fereastră.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Windows.get (i : int) : Window}}
 
 Returnează a \mintinline{icl}{i}-a fereastră.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsection{{\color{orange} Window}}
 
@@ -202,85 +202,85 @@ Obiectul \window{} are următoarele proprietăți:
 
 Înălțimea ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Window'width : int}}
 
 Lățimea ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Window'x : int}}
 
 Coordonata $x$ a ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Window'y : int}}
 
 Coordinata $y$ a ferestrei curente în pixeli.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.close () : void}}
 
 Închide fereastra curentă, dacă ea este ultima se închide și sesia.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.focus () : Window}}
 
 Schimbă focusul la fereastra aceasta.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.fullscreen () : Window}}
 
 Schimbă regimul de afișare a ferestrei browserului la \textit{ecran complet}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.maximize () : Window}}
 
 Maximizează fereastra browserului.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.minimize () : Window}}
 
 Minimizează fereastra browserului.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.restore () : Window}}
 
 Restaurează fereastra în regim normal.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToDefault () : Window}}
 
 Schimbă focusul la frame-ul principal.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToFrame (i : int) : Window}}
 
 Schimbă focusul la frame-ul cu indexul \mintinline{icl}{i}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToFrame (el : element) : Window}}
 
 Schimbă focusul la frame-ul elementului \mintinline{icl}{el}. Elementul trebuie să fir numaidecît tag frame sau iframe.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToParent () : Window}}
 
 Schimbă focusul la frame-ul ascensor.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsection{{\color{orange} Cookies}}
 
@@ -296,7 +296,7 @@ Obiectul \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'
 
 Returnează \cookie{} cu numele \mintinline{icl}{name}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Cookies.deleteAll : void}}
 
@@ -306,7 +306,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCo
 
 Returnează \cookie{} cu numele \mintinline{icl}{name}.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
 \subsection{{\color{orange} Cookie}}
 
@@ -365,7 +365,7 @@ Adaugă la timpul de expirare numărul necesar de ani, luni, zile, ore, minute �
 
 Încarcă datele despre \cookie{} din browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Cookie.resetTime () : Cookie}}
 
@@ -375,7 +375,7 @@ Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să
 
 Transmite schimbările fișierului cookie în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (see table \ref{errors}).
 
 \subsubsection{Crearea noilor fișiere cookie}
 
@@ -403,25 +403,25 @@ Obiectul \alert{} are următoarea proprietate: \mintinline{icl}{[r/o] Alert'text
 
 Returnează textul avertizării.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Alert.accept () : void}}
 
 Acceptă avertizarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Alert.dismiss () : void}}
 
 Refuză avertizarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Alert.sendKeys (keys : string) : void}}
 
 Completează formularul cu textul \mintinline{icl}{keys} și confirmă inserarea.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (see table \ref{errors}).
 
 \subsection{{\color{orange} Tabs}}
 
@@ -459,109 +459,109 @@ Obiectul \tabs{} are următoarele proprietăți:
 
 Tabul curent.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'first : Tab}}
 
 Primul tab.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'last : Tab}}
 
 Ultimul tab.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'length : int}}
 
 Numărul de taburi în sesie.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'next : Tab}}
 
 Următorul tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchTab} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'previous : Tab}}
 
 Tabul precedent.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchTab} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'(i : int) : Tab}}
 
 Al \mintinline{icl}{i}-lea tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
 
 Închide toate taburile, la care adresa URL convine șablonului. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
 
 Închide toate taburile, la care adresa URL convine expresii regulare \mintinline{icl}{url}. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeByTitle (template : string) : int}}
 
 Închide toate taburile, la care titlul convine șablonului. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeByTitle (title : regex) : int}}
 
 Închide toate taburile, la care titlul convine expresii regulare \mintinline{icl}{url}. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeOthers () : int}}
 
 Închide toate taburile în afară de tabul curent. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeToLeft () : int}}
 
 Închide toate taburile care se află la stînga de tabul curent. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeToRight () : int}}
 
 Închide toate taburile care se află la dreapta de tabul curent. Returnează numărul de taburi închise.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.find (template : string) : Tab}}
 
 Returnează primul tab, la care adresa URL convine șablonului.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.find (url : regex) : Tab}}
 
 Returnează primul tab, la care adresa URL convine expresii regulare.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.findByTitle (template : string) : Tab}}
 
 Returnează primul tab, la care titlul convine șablonului.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}}
 
 Returnează primul tab, la care titlul convine expresii regulare.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsection{{\color{orange} Tab}}
 
@@ -597,50 +597,50 @@ Returnează \true, dacă butonul \textit{Înainte} e disponibil, în caz contrar
 
 Returnează captura tabului, codată în base64.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tab'source : string}}
 
 Codul sursă al paginii deschise în tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/*] Tab'title}}
 
 Titlu paginii deschise în tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Tab'url}}
 
 Adresa URL a paginii deschise în tab.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.back () : void}}
 
 Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înapoi} în browser.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.close () : void}}
 
 Închide tabul, dacă e ultimul închide și sesia.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.focus () : void}}
 
 Schimbă focusul la tab. Focusul se schimbă între taburile din sesiune.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.forward () : void}}
 
 Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înainte} în browser.
 
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.get (url : string) : bool}}
 
@@ -650,7 +650,7 @@ Trece la pagină, URL trebuie să fie absolut. Returnează \true{} dacă pagina 
 
 Trece la pagină, URL trebuie să fie absolut. În caz de eroare generează excepție.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (see table \ref{errors}).
 
 \subsection{{\color{orange} Doc}}
 
@@ -670,13 +670,13 @@ Obiectul \dom{} are următoarele metode:
 
 Primește aceiași parametri ca și  \mintinline{icl}{element.query}, numai că această funcție va căuta în tot documentul.
 
-Excepții posibile: \ferror{NoSessions}, \ferror{Timeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Doc.queryAll (by = By'cssSelector, selecor : string) : element}}
 
 Primește aceiași parametri ca și \mintinline{icl}{element.queryAll}, numai că această funcție va căuta în tot documentul.
 
-Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Doc.queryAllByXPath (xpath : string) : element}}
 
@@ -724,19 +724,19 @@ Obiectul \files{} are următoarele metode:
 
 Deschide fișierul.
 
-Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FileNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Files.create (path : string) : File}}
 
 Deschide fișierul, dacă el nu există se creează.
 
-Excepții posibile: \ferror{FolderNotFound} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Files.createDir (path : string) : void}}
 
 Creează folder, folderul ascendent trebuie să existe deja.
 
-Excepții posibile: \ferror{FolderNotFound} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Files.createPath (path : string) : void}}
 

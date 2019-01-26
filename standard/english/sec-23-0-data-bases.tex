@@ -36,13 +36,13 @@ Deschide o nouă conexiune. \mintinline{icl}{path} e calea spre fișierul bazei 
 
 Se conectează la icL DB Client prin WebSockets, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over WebSockets}, descris în \textit{icL Wire Protocol}.
 
-Excepții posibile: \ferror{NoSuchServer} și \ferror{WrongUserPassword} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSuchServer} și \ferror{WrongUserPassword} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{DBManager.connect (server : string) : DB}}
 
 Se conectează la icL DB Client prin HTTP, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over HTTP}, descris în \textit{icL Wire Protocol}.
 
-Excepții posibile: \ferror{NoSuchServer} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{NoSuchServer} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{DB.query (q : Code) : Query}}
 
@@ -76,53 +76,53 @@ După executarea \mintinline{icl}{Query.exec} proprietățile vor returna valoar
 
 Numărul de rînduri afectate/adăugate în baza de date.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.getLength () : int}}
 
 Numărul de rezultate primit în rezultatul executării comenzii \mintinline{icl}{SELECT}.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.get (field : string) : any}}
 
 Returnează valoarea cîmpului \mintinline{icl}{field} sau \void{} dacă așa cîmp nu există.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.next () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la următorul rînd, în caz contrar \false.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.previous () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la rîndul precedent, în caz contrar \false.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.first () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la primul rînd, în caz contrar \false.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.last () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la ultimul rînd, în caz contrar \false.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.seek (i : int, relative = false) : bool}}
 
 Returnează \true, dacă s-a primit să treacă la al \mintinline{icl}{i}-lea rînd sau să mute cursorul cu \mintinline{icl}{i} rînduri (cu condiția că \mintinline{icl}{@relative == true}), în caz contrar \false.
 
-Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{Exemplu}
 
-Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului Javascript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \mintinline{icl}{@:nume}, dar variabilele globale - \mintinline{icl}{#:nume}.
+Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului JavaScript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \mintinline{icl}{@:nume}, dar variabilele globale - \mintinline{icl}{#:nume}.
 
 \newpage
 \begin{sourcecode}

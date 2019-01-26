@@ -1,74 +1,63 @@
-% !TeX spellcheck = ro_RO
-\section{Integrația cu JavaScript}
+% !TeX spellcheck = en_US
+\section{Integration with JavaScript}
 
-În limbajul icL {\bf integrația cu JavaScript} se diferențiază în funcție de regimul de lucru. {\bf Regimuri de lucru} sunt de tot 2: testare și automatizare. Următoarele paragrafe for fi însemnate în modul următor: paragrafele însemnate cu \mintinline{icl}{[icL]} se referă la automatizare și funcții adiționale icL, dar paragrafele cu \mintinline{icl}{[w3c]} la testare și standardul WebDriver, propus de World Wide Web Consortium.
+There are 2 operation modes: testing and automation. For each mode the {\bf integration with JavaScript} is different. The testing API is defined by World Wide Web Consortium WebDriver Protocol, its specifications are marked by \mintinline{icl}{[w3c]}. The automation API is icL proprietary, its specifications are marked by \mintinline{icl}{[icL]}.
 
-\subsection{Valori JS}
+\subsection{JS-Values}
 
-{\bf Valorile JS} - principala inovare în integrația cu JavaScript. Ea permite a folosi variabile JavaScript, comod ca și variabilele icL. Ele de asemenea pot fi disponibile pentru citire și scriere sau doar pentru citire.
+{\bf JS-Values} is the main innovation of JavaScript integration. It creates opportunity to use JavaScript variables as icL variables. JS-Values can be read-only.
 
-Fiecare valoare JS are getter, numai variabilele disponibile pentru scriere au setter. Getterii și setterii sunt fragmente de cod JavaScript. În setter valoare pentru instalare se descrie în felul următor \mintinline{icl}{@{value}} Sintaxa valorii JS:
+Each JS-Value has getter and setter, read-only values have only getter. A getter or a setter is a fragment of JavaScript code. In setter the getter value is included as \mintinline{icl}{@{value}}.
+
+The syntax of JS-Value —
 \begin{minted}{icl}
 $value {getter; setter};
 \end{minted}
 
-Sintaxa simplificată a valorii JS:
+the syntax of read-only JS-Value —
 \begin{minted}{icl}
 $value {getter};
 \end{minted}
 
-În calitate de valoare JS poate fi folosită orice variabilă, de exemplu titlu paginii (foaia \ref{jsvalueex}), ea rămîne disponibilă și după trecerea la altă pagină.
+A JS-Value can be any JavaScript variable. They keep to be available after switching to other web page.
 
-\begin{sourcecode}
-    \captionof{listing}{Folosirea valorii JS}
-    \label{jsvalueex}
-    \inputminted[linenos]{icl}{../sources/jsvalueex.icL}
-\end{sourcecode}
+Example of JS-Value —
+\inputminted[linenos]{icl}{../sources/jsvalueex.icL}
 
-\subsection{Executarea codului JavaScript}
+\subsection{Execution of JavaScript}
 
-Comanda \mintinline{icl}{$run} permite a executa {\bf cod în limbajul JavaScript}.
+\mintinline{icl}{[icL]} Use \mintinline{icl}{$run} to run JavaScript code which can contain icL variables. For global variables use placeholder — \mintinline{icl}{#{nume}}, for local — \mintinline{icl}{@{nume}}. Example —
 
-\mintinline{icl}{[icL]} Comanda \mintinline{icl}{$run} primește numai un argument - cod, în cod pot fi prezente variabile icL. Variabilele globale pot fi transmise în modul următor \mintinline{icl}{#{nume}}, localele - \mintinline{icl}{@{nume}}. Exemplu de transmitere al valorilor în JavaScript este demonstrat pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
+\inputminted[linenos]{icl}{../sources/jsrunex1.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Executarea codului în limbajul JavaScript (icL)}
-    \label{jsrunex1}
-    \inputminted[linenos]{icl}{../sources/jsrunex1.icL}
-\end{sourcecode}
+\mintinline{icl}{[w3c]} Use \mintinline{icl}{$run} command to run JavaScript code. To transmit data in JavaScript code use arguments. Example —
 
-\mintinline{icl}{[w3c]} Comanda \mintinline{icl}{$run} primește un număr variabil de argumente. Ei se transmit în JavaScript sub formă de argumente ai funcției. Accesul la ele se realizează prin variabila \mintinline{icl}{arguments}. Cod care folosește această metodă este prezentat pe foaia \ref{jsrunex2}, se poate de-l comparat cu codul de pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
+\inputminted[linenos]{icl}{../sources/jsrunex2.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Executarea codului în limbajul JavaScript (w3c)}
-    \label{jsrunex2}
-    \inputminted[linenos]{icl}{../sources/jsrunex2.icL}
-\end{sourcecode}
+To run code asynchronous use \mintinline{icl}{$runAsync}.
 
-Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{JavaScriptError}, \ferror{ScriptTimeout} (see table \ref{errors}).
 
-\subsection{Executarea fișierelor}
+\subsection{JavaScript Files Execution}
 
-Comanda \mintinline{icl}{$file} {\bf execută fișiere} JavaScript (.js). Pentru aceasta este destul de transmis calea spre fișier ca argument.
+Use \mintinline{icl}{$file} command {\bf to execute} JavaScript files. Syntax —
 
-Sintaxă -
 \begin{minted}{icl}
-$file "calea/spre/fișier.js";
+$file "path/to/file.js";
 \end{minted}
 
-Excepții posibile: \ferror{FileNotFound}, \ferror{JavascriptError} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FileNotFound}, \ferror{JavaScriptError} (see table \ref{errors}).
 
-\subsection{Scripturi personale}
+\subsection{User Scripts}
 
-\mintinline{icl}{[icL]} {\bf Scripturile personale} se execută pînă la încărcarea paginii, la trecerea la o nouă pagină. Scriptul poate fi fixat la tabul curent (\mintinline{icl}{$user}) sau la toate taburile din sesie (\mintinline{icl}{$always}).
+\mintinline{icl}{[icL]} {\bf User scripts} are executed immediately after page load. Use \mintinline{icl}{$user} to add a user script to current tab or \mintinline{icl}{$always} for all tabs of session.
 
-\newpage
-\mintinline{icl}{[icL]} Sintaxă -
+\mintinline{icl}{[icL]} Syntax —
 \begin{minted}{icl}
-$user "calea/spre/fișier.js";
-$always "calea/spre/fișier.js";
+$user "path/to/file.js";
+$always "path/to/file.js";
 \end{minted}
 
-Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
+Possible exceptions: \ferror{FileNotFound} (see table \ref{errors}).
 
 %\newpage
