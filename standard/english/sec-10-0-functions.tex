@@ -1,81 +1,64 @@
-% !TeX spellcheck = ro_RO
-\section{Funcții}
+% !TeX spellcheck = en_US
+\section{Functions}
 
-{\bf Funcțiile} în icL permit a folosi repetat fragmente de cod și a structura codul. Toate funcțiile în icL sunt globale. Funcțiile se deosebesc de metodă prin ceea că ele sunt desemnate de utilizator, iar metodele sunt predefinite.
+Use {\bf funtions} to structure the code. The difference between functions and structures is the next — the methods are predefined when the functions are user-defined.
 
-\subsubsection{Definirea funcțiilor}
+\subsubsection{Definition of functions}
 
-{\bf Definirea funcției} constă din header și corp.
+A basic {\bf function definition} consists of a function header and a function body.
 
-\noindent Sintaxă -
+Syntax —
 \begin{minted}{icl}
-nume = (parametri) : tipDeDate {
-	comenzi
+name = (parameters) : type {
+	commands
 }
 \end{minted}
 
-Descrierea parților funcției:
+Here are all the parts of a function —
 \begin{icItems}
 \item
-	\mintinline{icl}{nume} - {\bf numele funcției};
+	\mintinline{icl}{name} is the {\bf function name}.
 \item
-	\mintinline{icl}{parametri} - {\bf lista parametrilor}. La chemarea funcției fiecare parametru primește o valoare. Lista parametrilor definește tipul, cantitatea și ordinea parametrilor. Lista nu este obligatorie (vezi foile \ref{fullfunc} și \ref{noargsfunc});
+	\mintinline{icl}{parameters} is the {\bf list of parameters}. On function call each parameter gets a value. The list of parameters fixes the number, types, quantity and order of parameters. The list of parameters may be absent.
 \item
-	\mintinline{icl}{tipDeDate} - {\bf tipul de datelor} returnate de funcție. Dacă funcția nimic nu întoarce se tipul poate fi omis sau indicat clar - \void{}. Pentru a întoarce date se folosește comanda \mintinline{icl}{@ = valoare} sau \mintinline{icl}{Stack.return valoare} (vezi foile \ref{fullfunc}, \ref{notypefunc} și \ref{minfunc});
+	\mintinline{icl}{type} is the {\bf type} of data which will be returned by function. Use \mintinline{icl}{@ = value} or \mintinline{icl}{Stack.return value} to return a value.
 \item
-	\mintinline{icl}{comenzi} - {\bf corpul} conține comenzi, care definesc acțiunile executate de funcție.
+	\mintinline{icl}{commands} is the {\bf function body} (a set of statements).
 \end{icItems}
 
-Parametrii se despart prin virgulă. Chiar dacă funcția deține doar on parametru, parantezele rotunde nu pot fi omise.
+The parameters are delimited by comma. The curly brackets can not be absent.
 
-Parametrul se descriere prin următoarea sintaxă \mintinline{icl}{@name : type}, unde \mintinline{icl}{@name} este numele, iar \mintinline{icl}{type} e un tip de date. Se poate de descris numai tipul (fără doua puncte), în acest caz parametrul ca avea același nume ca și tipul de date.
+A parameter has the next syntax — \mintinline{icl}{@name : type}, where \mintinline{icl}{type} is type of data. There is a short form — \mintinline{icl}{type}, here the parameter will get the name of type.
 
-Parametrul cu valoare implicită se descrie cu următoarea sintaxă \mintinline{icl}{@name = value}, unde \mintinline{icl}{@name} este numele, iar \mintinline{icl}{value} e valoarea implicită, ea pate fi o constantă, o variabilă sau o expresie. Valoarea expresiei va fi calculată numai o dată, la definirea funcției. Valoare predefinită pot avea orice parametri, nu numai ultimii.
+A parameter can have an implicit value, syntax — \mintinline{icl}{@name = value}, \mintinline{icl}{value} can be a constant, variable or expression. The value of expression will be calculated once, on function definition. An implicit value can have any argument, not just the lasts.
 
-\begin{sourcecode}
-	\captionof{listing}{Funcție completă}
-	\label{fullfunc}
-	\inputminted[linenos]{icl}{../sources/fullfunc.icL}
-\end{sourcecode}
+Function example —
+\inputminted[linenos]{icl}{../sources/fullfunc.icL}
 
-\begin{listing}
-	\captionof{listing}{Funcție fără argumente}
-	\label{noargsfunc}
-	\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
-\end{listing}
+Function without parameters —
+\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
 
-\begin{listing}
-	\captionof{listing}{Funcție făra tip de date}
-	\label{notypefunc}
-	\inputminted[linenos]{icl}{../sources/notypefunc.icL}
-\end{listing}
+\newpage
+Function without a return type —
+\inputminted[linenos]{icl}{../sources/notypefunc.icL}
 
-\subsubsection{Apelul funcției}
+Function without a return type and parameters —
+\inputminted[linenos]{icl}{../sources/minfunc.icL}
 
-Puteți să apelați funcția în felul următor -
+\subsubsection{Function call}
+
+Function call has next syntax —
 \begin{minted}{icl}
 name (arguments);
 \end{minted}
-unde \mintinline{icl}{name} este {\bf numele funcției}, \mintinline{icl}{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
+Here \mintinline{icl}{name} is {\bf a name of a function}, \mintinline{icl}{arguments} is {\bf a list of arguments} (it must be compatible with the parameters list).
 
-\begin{sourcecode}
-	\captionof{listing}{Funcție făra argumente și tip de date}
-	\label{minfunc}
-	\inputminted[linenos]{icl}{../sources/minfunc.icL}
-\end{sourcecode}
+Calls of functions defined earlier —
+\inputminted[linenos]{icl}{../sources/callfunc.icL}
 
-\begin{sourcecode}
-	\captionof{listing}{Apeluri de funcții}
-	\label{callfunc}
-	\inputminted[linenos]{icl}{../sources/callfunc.icL}
-\end{sourcecode}
+The lasts parameters with implicit value can be omitted. For a non last parameter use \void{} value (\mintinline{icl}{~}) to specific implicit value. For example the function \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}} can be called in the following way — \mintinline{icl}{fun (~, 3)}.
 
-Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\mintinline{icl}{~}). De exemplu avem funcția \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}}, ea poate fi apelată în felul următor \mintinline{icl}{fun (~, 3)}. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
+Default values in practice —
+\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
 
-\begin{sourcecode}
-	\captionof{listing}{Valori predefinite}
-	\label{defaultparametrs}
-	\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
-\end{sourcecode}
-
-Funcțiile care dețin doar un parametru fără valoare implicită, pot fi apelate folosind acronimul \mintinline{icl}{nume argument} sau \mintinline{icl}{nume (argument)}. Poziția argumentului nu are importanță (la început, la mijloc sau la sfîrșit).
+The function with a parameter without default value can be called using acronym \mintinline{icl}{name argument} or \mintinline{icl}{name (argument)}. The position of argument is arguments list has no importance.

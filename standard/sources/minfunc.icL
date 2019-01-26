@@ -1,3 +1,3 @@
-out = (@a : int, @b : int) {
-	Log.out @a @b;
+print34 = () {
+	Log.out 34;
 };
