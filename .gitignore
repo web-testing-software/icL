@@ -18,6 +18,7 @@ layouts/*/*/*.png
 layouts/*/icons/*
 layouts/pdf/*
 standard/*/*html/*
+standard/covers/*.pdf
 standard/english/*.pdf
 standard/moldavian/*.pdf
 standard/russian/*.pdf
