@@ -86,6 +86,13 @@ Comparation between icL share and Selenium Grid -
 |extern IDE needed     |yes          |no         |
 |safe password storange|no           |yes        |
 
+## Contanct us
+
+When looking for support, try:
+
+* [icL Discord community](https://discord.gg/VZe8uXv)
+* [icL Creators Mail](mailto:icl@vivaldi.net)
+
 ## Contributing
 
 You can contribute by code or translations. 
