@@ -99,7 +99,7 @@ Tiers for you:
 Microdonations:
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/icL/donate)
 
-One-time transfer: [Yandex.Money](https://money.yandex.ru/to/410014189704428)
+One-time transfer: [Yandex.Money](https://yasobe.ru/na/icl)
 
 ## License
 
