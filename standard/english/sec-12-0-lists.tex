@@ -1,11 +1,11 @@
-% !TeX spellcheck = ro_RO
-\section{Liste}
+% !TeX spellcheck = en_US
+\section{Lists}
 
-{\bf Listele} (tipul \mintinline{icl}{list}) permit a salva cîteva șiruri de caractere într-o variabilă. Accesul la șiruri se realizează prin index - numărul de ordine al șirului în listă.
+icL scripting language provides a data structure, named {\bf list}, which stores a dynamical-size sequential collection of strings. A specific string in a list is accessed by an index.
 
 \subsection{Properties}
 
-Listele dețin următoarele proprietăți adiționale:
+A list has the following properties —
 \begin{icItems}
 \item
 	\mintinline{icl}{[r/o] list'empty : bool};
@@ -17,37 +17,32 @@ Listele dețin următoarele proprietăți adiționale:
 	\mintinline{icl}{[r/o] list'(n : int) : string}.
 \end{icItems}
 
-Pe foaia \ref{listprop} este prezentat cod, care folosește proprietățile enumerate mai sus.
-
-\begin{sourcecode}
-    \captionof{listing}{Propertiesle clasei list}
-    \label{listprop}
-    \inputminted[linenos]{icl}{../sources/listprop.icL}
-\end{sourcecode}
+Example of usage —
+\inputminted[linenos]{icl}{../sources/listprop.icL}
 
 \subsubsection{\mintinline{icl}{[r/o] list'empty : bool}}
 
-Listă se consideră deșartă dacă nu conține nici un șir.
+A list is considered empty is its length is equal to zero.
 
 \subsubsection{\mintinline{icl}{[r/o] list'length : int}}
 
-Lungimea listei este egală cu numărul de șiruri în ea.
+A length of a list is the numbers or strings in it.
 
 \subsubsection{\mintinline{icl}{[r/o] list'last : string}}
 
-Ultimul șir din listă, echivalent \mintinline{icl}{list'at (list'length - 1)}.
+The last string of list, equivalent to \mintinline{icl}{list'at (list'length - 1)}.
 
 Possible exceptions: \ferror{EmptyList} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] list'(n : int) : string}}
 
-Al n-lea șir, n trebuie să fie un literal întreg.
+The nth string, \mintinline{icl}{n} must be an integer literal.
 
 Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsection{Methods}
 
-Listele dețin următoarele metode adiționale:
+A list has the following methods —
 \begin{icItems}
 \item \mintinline{icl}{list.append (str : string) : list};
 \item \mintinline{icl}{list.at (i : int) : string};
@@ -72,109 +67,103 @@ Listele dețin următoarele metode adiționale:
 \item \mintinline{icl}{list.sort (caseSensitive = true) : list}.
 \end{icItems}
 
-Unele metode au fost omise, ele for fi enumerate în capitulul \ref{regex}. Exemplu de cod, care folosește metodele enumerate mai sus, este prezentat pe foaia \ref{listmethods}. 
+Some methods are omitted and will be enumerated in section \ref{regex}.
 
-Parametrul \mintinline{icl}{caseSensitive} în toate funcțiile răspunde de diferențierea majusculelor și minusculelor. Dacă el va primi valoarea \false, diferența dintre majuscule și minuscule va fi ignorată.
+Example of usage —
+\inputminted[linenos]{icl}{../sources/listmethods.icL}
 
 \subsubsection{\mintinline{icl}{list.append (str : string) : list}}
 
-Inserează șirul \mintinline{icl}{str} la sfîrșitul listei.
-
-\newpage
-\begin{sourcecode}
-    \captionof{listing}{Methodsle clasei list}
-    \label{listmethods}
-    \inputminted[linenos]{icl}{../sources/listmethods.icL}
-\end{sourcecode}
+Inserts string \mintinline{icl}{str} at the end of the list.
 
 \subsubsection{\mintinline{icl}{list.at (i : int) : string}}
 
-Returnează al \mintinline{icl}{i}-lea șir.
+Returns the item at index position \mintinline{icl}{i} in the list.
 
 Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{list.contains (str : string, caseSensitive = true) : bool}}
 
-Returnează \true, dacă lista conține șir egal cu \mintinline{icl}{str}, în caz contrar \false.
+Returns \true{} if the list contains the string \mintinline{icl}{str}; otherwise returns \false. The search is case insensitive if \mintinline{icl}{caseSensitive} is \true; the search is case sensitive by default.
 
 \subsubsection{\mintinline{icl}{list.clear () : list}}
 
-Curăță lista.
+Removes all strings from the list.
 
 \subsubsection{\mintinline{icl}{list.count (what : string) : int}}
 
-Returnează de cîte ori șirul \mintinline{icl}{what} se repetă în listă.
+Returns the number of occurrences of string \mintinline{icl}{what} in the list.
 
 \subsubsection{\mintinline{icl}{list.filter (str : string, caseSensitive = true) : bool}}
 
-Returnează o nouă listă de șiruri, care conține numai șirurile, care conțin subșirul \mintinline{icl}{str}. 
+Returns a list of all the strings containing the substring \mintinline{icl}{caseSensitive}.
+
+If \mintinline{icl}{str} is \true{} (the default), the string comparison is case sensitive; otherwise the comparison is case insensitive.
 
 \subsubsection{\mintinline{icl}{list.indexOf (str : string, start = 0) : int}}
 
-Returnează indexul primii includeri al șirului \mintinline{icl}{str} în listă, căutînd înainte de pe poziția \mintinline{icl}{start}, dacă lista nu conține așa șir se returnează -1.
+Returns the index position of the first occurrence of string \mintinline{icl}{str} in the list, searching forward from index position \mintinline{icl}{start}. Returns \mintinline{icl}{-1} if no item matched.
 
 \subsubsection{\mintinline{icl}{list.insert (index : int, str : string) : list}}
 
-Inserează șirul \mintinline{icl}{str} pe poziția \mintinline{icl}{index}, dacă \mintinline{icl}{index <= 0} șirul se înserează la începutul listei, dacă \mintinline{icl}{index >= list'length} șirul se inserează la sfîrșitul listei.
+Inserts string \mintinline{icl}{str} at index position \mintinline{icl}{index} in the list. If \mintinline{icl}{index <= 0}, the value is prepended to the list. If \mintinline{icl}{index >= list'length}, the value is appended to the list.
 
 \subsubsection{\mintinline{icl}{list.join (separator : string) : string}}
 
-Creează un șir nou, din șirurile listei, prin concatenarea lor, între șiruri se inserează șirul \mintinline{icl}{separator}, el poate fi un sir deșert.
+Joins all the string list's strings into a single string with each element separated by the given \mintinline{icl}{separator} (which can be an empty string).
 
 \subsubsection{\mintinline{icl}{list.lastIndexOf (str : string, start = -1) : int}}
 
-Returnează indexul primii includeri al șirului \mintinline{icl}{str} în listă, căutînd înapoi de pe poziția \mintinline{icl}{start}, dacă lista nu conține așa șir se returnează -1.
+Returns the index position of the last occurrence of string \mintinline{icl}{str} in the list, searching backward from index position \mintinline{icl}{start}. If \mintinline{icl}{start} is \mintinline{icl}{-1} (the default), the search starts at the last item. Returns \mintinline{icl}{-1} if no item matched.
 
 \subsubsection{\mintinline{icl}{list.mid (pos : int, n = -1) : list}}
 
-Returnează o listă nouă, care conține \mintinline{icl}{n} șiruri din listă, începînd cu poziția \mintinline{icl}{pos}. Dacă \mintinline{icl}{n} are valoarea \mintinline{icl}{-1} vor fi adăugate toate șirurile pînă la sfîrșitul listei.
+Returns a sub-list which includes strings from this list, starting at position \mintinline{icl}{pos}. If length is \mintinline{icl}{-1} (the default), all strings from \mintinline{icl}{pos} are included; otherwise \mintinline{icl}{n} strings (or all remaining strings if there are less than \mintinline{icl}{n} strings) are included.
 
 \subsubsection{\mintinline{icl}{list.prepend (str : string) : list}}
 
-Inserează șirul \mintinline{icl}{str} la începutul listei.
+Inserts string \mintinline{icl}{str} at the beginning of the list.
 
 \subsubsection{\mintinline{icl}{list.move (from : int, to : int) : list}}
 
-Mută șirul de pe poziția \mintinline{icl}{from} pe poziția \mintinline{icl}{to}.
+Moves the item at index position \mintinline{icl}{from} to index position \mintinline{icl}{to}.
 
 Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{list.removeAll (str : string) : list}}
 
-Șterge toate șirurile egale cu \mintinline{icl}{str}.
+Removes all occurrences of string \mintinline{icl}{str} in the list.
 
 \subsubsection{\mintinline{icl}{list.removeAt (i : int) : list}}
 
-Șterge al \mintinline{icl}{i}-lea șir.
+Removes the item at index position \mintinline{icl}{i}.
 
 Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{list.removeDuplicates () : list}}
 
-Șterge șirurile care se repetă.
+This function removes duplicate entries from a list. The entries do not have to be sorted. They will retain their original order.
 
 \subsubsection{\mintinline{icl}{list.removeFirst () : list}}
 
-Șterge primul șir.
+Removes the first string in the list.
 
 Possible exceptions: \ferror{EmptyList} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{list.removeLast () : list}}
 
-Șterge ultimul șir.
+Removes the last item in the list.
 
 Possible exceptions: \ferror{EmptyList} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{list.removeOne (str : string) : bool}}
 
-Șterge primul șir egal cu \mintinline{icl}{str}. Returnează \true, dacă așa șir a fost găsit, în caz contrar \false.
+Removes the first occurrence of string \mintinline{icl}{str} in the list and returns \true{} on success; otherwise returns \false.
 
 \subsubsection{\mintinline{icl}{list.replaceInStrings (before : string, after : string) : list}}
 
-Înlocuiește subșirul \mintinline{icl}{before} cu subșirul \mintinline{icl}{after} în fiecare șir din listă.
+Returns a string list where every string has had the \mintinline{icl}{before} text replaced with the \mintinline{icl}{after} text wherever the \mintinline{icl}{before} text is found. The \mintinline{icl}{before} text is matched case-sensitively.
 
 \subsubsection{\mintinline{icl}{list.sort (caseSensitive = true) : list}}
 
-Sortează șirurile în ordine alfabetică.
-
-%\newpage
+Sorts the list of strings in ascending order. If {ccaseSensitive} is \true, the string comparison is case sensitive; otherwise the comparison is case insensitive.
