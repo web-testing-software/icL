@@ -256,15 +256,15 @@ The parameter \mintinline{icl}{modifiers} get one of the following values (or a 
 	\item \mintinline{icl}{[r/o] Key'alt : 3} — Alt.
 \end{icItems}
 
-Parametrul \mintinline{icl}{text} primește textul, care va fi tastat tastatură.
+The parameter \mintinline{icl}{text} gets the text which will be typed.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{ElementNotIntractable} \ferror{NoSuchWindow} and \ferror{StaleElementReference} (see table \ref{errors}).
 
-\subsection{Methods adiționale}
+\subsection{Additional methods}
 
-Methodsle adiționale pot lucra încet în regimul de testare la folosirea browserului extern. În cazul colecției, operațiile vor fi aplicate pentru fiecare element, and vor fi returnate colecții, nu elemente unice. 
+Additional methods may be used in testing mode using an external browser. For collection each action will be applied to each element.
 
-Lista metodelor adiționale:
+List of additional methods —
 \begin{icItems}
 	\item \mintinline{icl}{element.add (other : element) : element};
 	\item \mintinline{icl}{element.child (index : int) : element};
@@ -280,67 +280,67 @@ Lista metodelor adiționale:
 
 \subsubsection{\mintinline{icl}{element.add (other : element) : element}}
 
-Adăugă toate elementele colecției \mintinline{icl}{other}.
+Add to this collection all elements from collection \mintinline{icl}{other}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.child (i : int) : element}}
 
-Returnează un element nou, care conține al \mintinline{icl}{i}-lea succesor.
+Returns a new element which contains the \mintinline{icl}{i}th child element.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.closest (cssSelector : string) : element}}
 
-Returnează un element nou, care conține cel mai apropiat predecesor, care este compatibil cu selectorul CSS \mintinline{icl}{cssSelector}.
+Returns a new element which contains the closest parent which matches CSS selector \mintinline{icl}{cssSelector}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.contains (text : string, asFragment = false) : element}}
 
-Returnează o colecție nouă, care conține toate elementele, care conțin textul (ca fragment sau ca text întreg) \mintinline{icl}{text}.
+Returns a new collection which contains all elements of collection which contains the fragment of text \mintinline{icl}{text}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.copy () : element}}
 
-Returnează o colecție nouă, care conține toate elementele colecției curente.
+Returns a new collection which contains all elements of this collection.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.get (i : int) : element}}
 
-Returnează al i-lea element al colecției.
+Returns the \mintinline{icl}{i}th elements of collection.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.filter (cssSelector : string) : element}}
 
-Returnează o colecție nouă, care conține doar elementele care sunt compatibile cu selectorul CSS \mintinline{icl}{cssSelector}.
+Returns a new collection which elements of this collection, which match the CSS selector \mintinline{icl}{cssSelector}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 \subsubsection{\mintinline{icl}{element.next () : element}}
 
-Returnează un element nou, care conține următorul nod.
+Returns a new collection which contains the next sibling element.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.prev () : element}}
 
-Returnează un element nou, care conține nodul precedent.
+Returns a new collection which contains the previous sibling element.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.parent () : element}}
 
-Returnează ul element nou, care conține nodul ascensor.
+Return a new collection which contains the parent element.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (see table \ref{errors}).
 
-\subsection{Lista proprietăților prestabilite}
+\subsection{List of implicit properties}
 \label{elements:predefined:properties}
 
-În icL sunt prestabilite doar proprietățile ce au tipuri de date compatibile cu tipurile de date prezente în icL:
+In icL are implicit just properties with a data type compatible with icL —
 \begin{icItems}
 	\item Node:	
 	\begin{icItems}
@@ -633,10 +633,8 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleEl
 	% \item \mintinline{icl}{[r/w] element'prop-};
 \end{icItems}
 
-\mintinline{icl}{element [c]} întotdeauna va fi o colecție, \mintinline{icl}{element [i]} - variază în dependența de subiect, dacă subiectul este un element unic, atunci rezultatul va vi un element unic, dacă subiectul este o colecție, atunci rezultatul va fi de asemenea colecție. 
+\mintinline{icl}{element [c]} always will be a collection, \mintinline{icl}{element [i]} inherits the type of source element.
 
-Amintim că standardul W3C WebDriver privește numai citirea proprietăților și numai pentru elemente unice, și în regim de testare proprietățile var fi disponibile numai pentru citire.
+W3C WebDriver defines properties avialable just for read, in testing mode they will be read-only. In automation mode \mintinline{icl}{[r/*]} properties will be read-write.
 
-Proprietatea \mintinline{icl}{rows} nu este prezent în lista dată, pentru că tipul ei de date se diferențiază de la element la element.
-
-%\newpage
+The \mintinline{icl}{rows} is absent in this list, because for different element it may have different type.
