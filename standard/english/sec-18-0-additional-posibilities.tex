@@ -1,21 +1,21 @@
-% !TeX spellcheck = ro_RO
+% !TeX spellcheck = en_US
 \input{part-02-0-programmers}
 
-\section{Posibilități adiționale}
+\section{Additional Possibilities}
 
-{\bf Posibilitățile adiționale} sunt prezente în icL pentru acoperirea completă a standardului W3C WebDriver și pentru rezolvarea unor probleme care pot apărea la practică.
+There are {\bf additional possibilities} for complete cover of W3C WebDriver standard and add some practices.
 
-Aceste posibilități nu trebuiesc numaidecît, se poate de se descurcat și fără ele. Pentru că la executarea scriptului automat se deschide o nouă sesie și un nou tab, iar la oprire sesia se închide automat.
+These possibilities are required for complex scripts. On start icL automatically start a session and close it on finish.
 
 \subsection{{\color{orange} Sessions}}
 
-Obiectul \sessions{} are următoarele proprietăți:
+The object \sessions{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] Sessions'length : int};
 	\item \mintinline{icl}{[r/o] Sessions'(i : int) : Session}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Sessions.closeAll () : void};
 	\item \mintinline{icl}{Sessions.get (i : int) : Session};
@@ -52,7 +52,7 @@ Possible exceptions: \ferror{SessionNotCreated} (see table \ref{errors}).
 
 Comanda \session{} returnează un link la sesiunea curentă.
 
-Obiectul \session{} are următoarele proprietăți:
+The object \session{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/w] Session'implicitTimeout : int};
 	\item \mintinline{icl}{[r/w] Session'pageLoadTimeout : int};
@@ -62,7 +62,7 @@ Obiectul \session{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/w] Session'url : string}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Session.back () : Session};
 	\item \mintinline{icl}{Session.close () : void};
@@ -148,7 +148,7 @@ Possible exceptions: \ferror{NoSuchSession} (see table \ref{errors}).
 
 \subsection{{\color{orange} Windows}}
 
-Obiectul \windows{} are următoarele proprietăți:
+The object \windows{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] Windows'length : int};
 	\item \mintinline{icl}{[r/o] Windows'(i : int) : Window}.
@@ -176,7 +176,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{e
 
 \subsection{{\color{orange} Window}}
 
-Obiectul \window{} are următoarele proprietăți:
+The object \window{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/w] Window'height : int};
 	\item \mintinline{icl}{[r/w] Window'width : int};
@@ -184,7 +184,7 @@ Obiectul \window{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/w] Window'y : int}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Window.close () : void};
 	\item \mintinline{icl}{Window.focus () : Window};
@@ -284,9 +284,9 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{
 
 \subsection{{\color{orange} Cookies}}
 
-Obiectul \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
+The object \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
 
-Și următoarele metode: 
+And following methods — 
 \begin{icItems}
 	\item \mintinline{icl}{Cookies.deleteAll () : void};
 	\item \mintinline{icl}{Cookies.get (name : string) : Cookie}.
@@ -310,7 +310,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchC
 
 \subsection{{\color{orange} Cookie}}
 
-Obiectul \cookie{} are următoarele proprietăți:
+The object \cookie{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/w] Cookie'domain : string};
 	\item \mintinline{icl}{[r/w] Cookie'expiry : int};
@@ -321,7 +321,7 @@ Obiectul \cookie{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/w] Cookie'value : string}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,}\\* \mintinline{icl}{seconds = 0) : Cookie};
 	\item \mintinline{icl}{Cookie.load () : Cookie};
@@ -390,9 +390,9 @@ Pe foaia \ref{newcookies}, este prezentată metoda corectă de a crea fișiere c
 
 \subsection{{\color{orange} Alert}}
 
-Obiectul \alert{} are următoarea proprietate: \mintinline{icl}{[r/o] Alert'text : string}.
+The object \alert{} are următoarea proprietate: \mintinline{icl}{[r/o] Alert'text : string}.
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Alert.accept () : void};
 	\item \mintinline{icl}{Alert.dismiss () : void};
@@ -425,7 +425,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchA
 
 \subsection{{\color{orange} Tabs}}
 
-Obiectul \tabs{} are următoarele proprietăți:
+The object \tabs{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] Tabs'current : Tab};
 	\item \mintinline{icl}{[r/o] Tabs'first : Tab};
@@ -437,7 +437,7 @@ Obiectul \tabs{} are următoarele proprietăți:
 	% \item \mintinline{icl}{Tabs'};
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Tabs.close (template : string) : int};
 	\item \mintinline{icl}{Tabs.close (url : regex) : int};
@@ -565,7 +565,7 @@ Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsection{{\color{orange} Tab}}
 
-Obiectul \tab{} are următoarele proprietăți:
+The object \tab{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool};
 	\item \mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool};
@@ -575,7 +575,7 @@ Obiectul \tab{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/w] Tab'url}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Tab.back () : void};
 	\item \mintinline{icl}{Tab.close () : void};
@@ -654,7 +654,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Invalid
 
 \subsection{{\color{orange} Doc}}
 
-Obiectul \dom{} are următoarele metode:
+The object \dom{} are următoarele metode:
 \begin{icItems}
 	\item \mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element};
 	\item \mintinline{icl}{Doc.queryAll (by = By'cssSelector, selector : string) : element};
@@ -712,7 +712,7 @@ Acronim pentru \mintinline{icl}{Doc.queryAll (By'tagName, @name)}.
 
 \subsection{{\color{orange} Files}}
 
-Obiectul \files{} are următoarele metode:
+The object \files{} are următoarele metode:
 \begin{icItems}
 	\item \mintinline{icl}{Files.open (path : string) : File};
 	\item \mintinline{icl}{Files.create (path : string) : File};
@@ -744,7 +744,7 @@ Creează toate folderele care nu există în calea indicată.
 
 \subsection{{\color{orange} File}}
 
-Obiectul \file{} are următoarele proprietăți:
+The object \file{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] File'csv : 1};
 	\item \mintinline{icl}{[r/w] File'format : int};
@@ -753,7 +753,7 @@ Obiectul \file{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/o] File'valid : bool}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{File.close () : void};
 	\item \mintinline{icl}{File.delete () : void}.
@@ -789,7 +789,7 @@ Returnează \true, dacă fișierul este inițializat, în caz contrar \false.
 
 \subsection{{\color{orange} Make}}
 
-Obiectul \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base64 : string, path :}\\*\mintinline{icl}{string) : void}.
+The object \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base64 : string, path :}\\*\mintinline{icl}{string) : void}.
 
 \subsubsection{\mintinline{icl}{Make.image (base64 : string, path : string) : void}}
 
@@ -797,7 +797,7 @@ Salvează captura de ecran pe disc.
 
 \subsection{{\color{orange} Log}}
 
-Obiectul \logtype{} deține următoarele metode:
+The object \logtype{} deține următoarele metode:
 \begin{icItems}
 	\item \mintinline{icl}{Log.error (message : string) : void};
 	\item \mintinline{icl}{Log.info (message : string) : void};
@@ -828,7 +828,7 @@ Printează lista tuturor stărilor, arătînd în care din ele se întilnește a
 
 \subsection{{\color{orange} Numbers}}
 
-Obiectul \numbers{} are următoarele proprietăți:
+The object \numbers{} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] Numbers'max : 4};
 	\item \mintinline{icl}{[r/o] Numbers'min : 3};
@@ -837,7 +837,7 @@ Obiectul \numbers{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/o] Numbers'sum : 1}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Numbers.process (a : int, b : int) : int};
 	\item \mintinline{icl}{Numbers.process (a : double, b : double) : double};
@@ -883,7 +883,7 @@ Adaugă o nouă înscriere în stiva metodelor de prelucrare.
 
 \subsection{{\color{orange} Math}}
 
-Obiectul \mintinline{icl}{Math} are următoarele proprietăți:
+The object \mintinline{icl}{Math} has following properties —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] Math'1divPi : double};
 	\item \mintinline{icl}{[r/o] Math'1divSqrt2 : double};
@@ -900,7 +900,7 @@ Obiectul \mintinline{icl}{Math} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/o] Math'sqrt2 : double}.
 \end{icItems}
 
-Și următoarele metode:
+And following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Math.acos (v : double) : double};
 	\item \mintinline{icl}{Math.asin (v : double) : double};
@@ -1043,7 +1043,7 @@ Cosinus ($\tan{v}$).
 
 \subsection{{\color{orange} Import}}
 
-Obiectul \mintinline{icl}{Import} deține următoarele metode:
+The object \mintinline{icl}{Import} deține următoarele metode:
 \begin{icItems}
 	\item \mintinline{icl}{Import.none (data : object, path : string) : void};
 	\item \mintinline{icl}{Import.none (path : string) : void};
@@ -1054,7 +1054,7 @@ Obiectul \mintinline{icl}{Import} deține următoarele metode:
 	\item \mintinline{icl}{Import.run (path : string) : void}.
 \end{icItems}
 
-Obiectul \mintinline{icl}{data} permite a transmite date în contextul izolat în care se execut fișierele externe, proprietățile obiectului \mintinline{icl}{data} vor fi disponibile ca variabile globale. Aceasta permite a deține într-un fișier mai multe versiuni ale bibliotecii de exemplu, și la folosire se poate de indicat care versiune e necesară.
+The object \mintinline{icl}{data} permite a transmite date în contextul izolat în care se execut fișierele externe, proprietățile obiectului \mintinline{icl}{data} vor fi disponibile ca variabile globale. Aceasta permite a deține într-un fișier mai multe versiuni ale bibliotecii de exemplu, și la folosire se poate de indicat care versiune e necesară.
 
 \subsubsection{\mintinline{icl}{Import.none (data : object, path : string) : void}}
 
