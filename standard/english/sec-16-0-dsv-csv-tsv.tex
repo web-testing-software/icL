@@ -1,60 +1,58 @@
-% !TeX spellcheck = ro_RO
-\section{DSV: CSV și TSV}
+% !TeX spellcheck = en_US
+\section{DSV: CSV and TSV}
 
-{\bf DSV (Delimiter Separated Values, Valori Delimitate de Delimitator)} sunt fișiere text, care conțin valori sub formă de text.
+{\bf DSV (Delimiter Separated Values)} are text files which contain data.
 
-{\bf CSV (Comma Separated Values, Valori Delimitate de Virgulă)} folosește virgula în calitate de delimitator, formatul este forate popular și folosit des de programe office. Mai multă informație despre el puteți găsi în internet.
+{\bf CSV (Comma Separated Values)} are DSV files which use comma as separator, this format is used by office software.
 
-{\bf TSV (Tab Separated Values, Valori Delimitate de Tabulator)} este mult mai simplu, folosește tabulatorul în calitate de delimitator și se folosește des în aplicații web.
+{\bf TSV (Tab Separated Values)} are DSV files which use tab as separator, this format is used in web-applications.
 
-icL permite a efectua următoarele operații cu fișiere de acest tip:
+Operations with DSV —
 \begin{icItems}
-	\item a încărca;
-	\item a scrie;
-	\item a insera date;
-	\item a sincroniza.
+	\item Load.
+	\item Write.
+	\item Append of data.
+	\item Synchronization.
 \end{icItems}
 
-\subsection{Încărcare}
+\subsection{Load}
 
 \subsubsection{\mintinline{icl}{DSV.load (delimiter : string, f : File, base : set) : set};}
 
-Returnează o mulțime care conține toate datele din fișierul \mintinline{icl}{f}. Șirul de caractere \mintinline{icl}{delimiter} trebuie să conțină un singur caracter - caracterul delimitator. Obiect de tipul \mintinline{icl}{File} poate fi creat cu ajutorul funcției \mintinline{icl}{Files.create (path : string) : File}, dacă fișierul nu există el va fi creat, în caz contrat deschis.
+Return a new set which contains all data of the file \mintinline{icl}{f}. The string \mintinline{icl}{delimiter} must contain just a character — the delimiter. Use \mintinline{icl}{Files.create (path : string) : File} to create a object of type \mintinline{icl}{File}, if file doesn't exist it will be created, otherwise will be opened.
 
-Parametrul \mintinline{icl}{base} primește mulțimea pe baza cărei va fi creată noua mulțime, header-ul ei trebui să fie compatibil cu datele din fișier. De asemenea poate conține date care vor fi prezente în mulțimea returnată.
+The parameter \mintinline{icl}{base} gets a set, on base of it will be created the new set. Its header must be compatible with data of file. Also, the data of base set will be copied to new.
 
 Possible exceptions: \ferror{ParsingFailed}, \ferror{WrongDelimiter} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{DSV.loadCSV (f : File, base : set) : File};}
 
-Acronim pentru \mintinline{icl}{DSV.load (",", @f, @base)}.
+The same as \mintinline{icl}{DSV.load (",", @f, @base)}.
 
 \subsubsection{\mintinline{icl}{DSV.loadTSV (f : File, base : set) : File};}
 
-TSV se deosebește de restul, fișierele se prelucrează după un alt algoritm, de aceea această funcție nu are alternativă și nu este un acronim.
+TSV has a different parsing algorithm, is not the same equivalent to \mintinline{icl}{DSV.load ("\t", @f, @base)}.
 
-\subsection{Scriere}
+\subsection{Write}
 
 \subsubsection{\mintinline{icl}{DSV.write (f : File, s : set) : File};}
 
-Tot conținutul fișierului va fi rescris.
+All file content will be rewritten.
 
-\subsection{Inserare}
+\subsection{Append of data}
 
-Conținutul fișierului nu va fi atins, datele noi vor fi înscrise la sfârșitul fișierului. De compatibilitate răspunde utilizatorul, icL nu controlează datele existente.
+The file content will be saved, the new data will be added to the end of file. The compatibility of data will not be checked, you can brake a file by adding incompatible data.
 
 \subsubsection{\mintinline{icl}{DSV.append (f : File, s : set) : File};}
 
-Inserează toate obiectele din mulțime la sfîrșitul fișierului \mintinline{icl}{s}.
+Appends all objects of the set \mintinline{icl}{s}.
 
 \subsubsection{\mintinline{icl}{DSV.append (f : File, obj : object) : File};}
 
-Inserează un obiect la sfîrșitul fișierului \mintinline{icl}{obj}.
+Appends object \mintinline{icl}{obj}.
 
-\subsection{Sincronizare}
+\subsection{Synchronization}
 
 \subsubsection{\mintinline{icl}{DSV.sync (f : File, s : set) : set};}
 
-La instalarea legăturii de sincronizare fișierul este rescris complet. La adăugarea datelor ele vor fi inserate la sfîrșitul fișierului. La ștergerea datelor fișierul va fi rescris complet.
-
-%\newpage
+On binding all content of data will be rewritten. On adding the data will be appended. On removing all content of file will be rewritten.
