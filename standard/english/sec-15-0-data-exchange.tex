@@ -1,44 +1,42 @@
-% !TeX spellcheck = ro_RO
-\section{Schimbul de date cu pagina web}
+% !TeX spellcheck = en_US
+\section{Data exchange with the web page}
 \label{dataexchange}
 
-\subsubsection{Titlul paginii}
+\subsubsection{Page Title}
 
-Titlu pagini poate fi obținut cu ajutorul \mintinline{icl}{[r/*] Tab'title : string}.
+Use \mintinline{icl}{[r/*] Tab'title : string} to get page title.
 
-\subsubsection{Codul sursă}
+\subsubsection{Source Code}
 
-Codul sursă al paginii poate \mintinline{icl}{[r/o] Tab'source : string}.
+Use \mintinline{icl}{[r/o] Tab'source : string} to get the source code of page.
 
-\subsubsection{Captură de ecran}
+\subsubsection{Screenshot}
 
-Captura de ecran, codată în base64, poate fi obținută cu ajutorul \\*\mintinline{icl}{[r/o] Tab'screenshot: string}.
+Use \mintinline{icl}{[r/o] Tab'screenshot: string} to get a base64 encoded screenshot.
 
 \subsubsection{URL}
 
-Adresa URL este disponibilă prin proprietatea \mintinline{icl}{[r/w] Tab'url : string}.
+Use \mintinline{icl}{[r/w] Tab'url : string} to get or set URL the address.
 
-\subsubsection{Navigare}
+\subsubsection{Navigation}
 
-\mintinline{icl}{Tab.back () : void} permite a se întoarce la pagina precedentă.
+\mintinline{icl}{Tab.back () : void} is equivalent to pressing the back button in the browser.
 
-\mintinline{icl}{Tab.forward () : void} permite a se întoarce la pagina următoare.
+\mintinline{icl}{Tab.forward () : void} is equivalent to pressing the forward button in the browser.
 
-\mintinline{icl}{Tab.refresh () : void}  permite a reîncărca pagina.
+Use \mintinline{icl}{Tab.refresh () : void} to reload the page.
 
-\mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool} informează dacă se poate de se întors la pagina precedentă.
+\mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool} is \true{} if the back button is available, otherwise is \false.
 
-\mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool} informează dacă se poate de se întors la pagina următoare.
+\mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool} is \true{} if the forward button is available, otherwise is \false.
 
 
-\subsubsection{Avertizări}
+\subsubsection{Alerts}
 
-\mintinline{icl}{[r/o] Alert'text : string} este textul avertizării
+\mintinline{icl}{[r/o] Alert'text : string} is the text of alert.
 
-\mintinline{icl}{Alert.accept : void} închide avertizarea cu răspuns pozitiv.
+\mintinline{icl}{Alert.accept : void} dismisses an alert dialog if present.
 
-\mintinline{icl}{Alert.dismiss : void} închide avertizarea cu răspuns negativ.
+\mintinline{icl}{Alert.dismiss : void} accepts an alert dialog if present.
 
-\mintinline{icl}{Alert.sendKeys (str : string) : void} răspunde cu textul \mintinline{icl}{str}.
-
-%\newpage
+\mintinline{icl}{Alert.sendKeys (str : string) : void} sets the test of dialog text field.
