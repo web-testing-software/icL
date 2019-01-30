@@ -276,13 +276,13 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchF
 
 \subsubsection{\mintinline{icl}{Window.switchToParent () : Window}}
 
-Switch focut to parent frame.
+Switch focus to parent frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsection{{\color{orange} Cookies}}
 
-The object \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
+The object \cookies{} has property \mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}.
 
 And following methods — 
 \begin{icItems}
@@ -292,17 +292,17 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}}
 
-Returnează \cookie{} cu numele \mintinline{icl}{name}.
+The \cookie{} named \mintinline{icl}{name}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Cookies.deleteAll : void}}
 
-Șterge toate fișierele cookie.
+Remove all cookies.
 
 \subsubsection{\mintinline{icl}{Cookies.get (name : string) : Cookie}}
 
-Returnează \cookie{} cu numele \mintinline{icl}{name}.
+Returns the \cookie{} named \mintinline{icl}{name}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
@@ -329,7 +329,7 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'domain : string}}
 
-Numele de domeniu, pe care \cookie{} este disponibil.
+Domain of cookie.
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'expiry : int}}
 
@@ -337,53 +337,47 @@ Timpul de expirare al fișierului cookie. Implicit -1, indică că fișierul coo
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'httpOnly : bool}}
 
-Doar pentru protocolul HTTP. Implicit \false.
+HTTP-only property of cookie. By default, is \false.
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'name : string}}
 
-Denumire, obligatorie pentru completare.
+The name of cookie.
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'path : string}}
 
-Calea pe care fișierul cookie este diponibil, implicit \mintinline{icl}{"/"}.
+The path of cookie. By default, is "/".
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'secure : bool}}
 
-Securizat, implicit \false.
+The secure property of cookie. By default, is \false.
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'value : string}}
 
-Valoarea fișierului cookie, obligatorie pentru completare.
+The stored value of cookie.
 
 \subsubsection{\mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0}\\*\noindent\mintinline{icl}{seconds = 0) : Cookie}}
 
-Adaugă la timpul de expirare numărul necesar de ani, luni, zile, ore, minute și secunde.
+Add years, months, days, hours, minutes to expire time of cookie.
 
 \subsubsection{\mintinline{icl}{Cookie.load () : Cookie}}
 
-Încarcă datele despre \cookie{} din browser.
+Load \cookie{} data from browser.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Cookie.resetTime () : Cookie}}
 
-Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să expire peste un an se folosește comanda următoare: \mintinline{icl}{Cookie.resetTime().add(1, 0, 0)}.
+Reset expire time to current. To set expire time after a year use code — \mintinline{icl}{Cookie.resetTime().add(1, 0, 0)}.
 
 \subsubsection{\mintinline{icl}{Cookie.save () : Cookie}}
 
-Transmite schimbările fișierului cookie în browser.
+Commit the changes of cookie to browser.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (see table \ref{errors}).
 
-\subsubsection{Crearea noilor fișiere cookie}
+\subsubsection{How to Create Correctly a New Cookie}
 
-Pe foaia \ref{newcookies}, este prezentată metoda corectă de a crea fișiere cookie noi.
-
-\begin{sourcecode}
-    \captionof{listing}{Crearea noilor fișiere cookie}
-    \label{newcookies}
-    \inputminted[linenos]{icl}{../sources/newcookies.icL}
-\end{sourcecode}
+\inputminted[linenos]{icl}{../sources/newcookies.icL}
 
 
 \subsection{{\color{orange} Alert}}
