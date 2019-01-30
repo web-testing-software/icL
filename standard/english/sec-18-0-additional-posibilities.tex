@@ -836,39 +836,39 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'max : 4}}
 
-A alege maximum.
+The maximum identifier.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'min : 3}}
 
-A alege minimum.
+The minimum identifier.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'product : 2}}
 
-A înmulți numerele.
+The product identifier.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'process : int}}
 
-Modul curent de a prelucra numerele.
+The current process mode.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'sum : 1}}
 
-A aduna numerele.
+The sum identifier.
 
 \subsubsection{\mintinline{icl}{Numbers.process (a : int, b : int) : int}}
 
-Prelucrează numerele întregi cu metoda de prelucrare curentă.
+Process integer numbers in current mode.
 
 \subsubsection{\mintinline{icl}{Numbers.process (a : double, b : double) : double}}
 
-Prelucrează numerele decimale cu metoda de prelucrare curentă.
+Process floating-point numbers in current mode.
 
 \subsubsection{\mintinline{icl}{Numbers.restoreProcess () : void}}
 
-Șterge ultima înscriere sin stiva metodelor de prelucrare.
+Restores the previous process mode.
 
 \subsubsection{\mintinline{icl}{Numbers.setProcess (proc : int) : void}}
 
-Adaugă o nouă înscriere în stiva metodelor de prelucrare.
+Switch to a new process mode.
 
 \subsection{{\color{orange} Math}}
 
@@ -912,123 +912,123 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Math'1divPi : double}}
 
-1 împărțit la pi ($\frac{1}{\pi}$).
+1 divided by pi ($\frac{1}{\pi}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'1divSqrt2 : double}}
 
-1 împărțit la radical din 2 ($\frac{1}{\sqrt{2}}$).
+1 divided by root of 2 ($\frac{1}{\sqrt{2}}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'2divPi : double}}
 
-2 împărțit la pi ($\frac{2}{\pi}$).
+2 divided by pi ($\frac{2}{\pi}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'2divSqrtPi : double}}
 
-2 împărțit la pi ($\frac{2}{\sqrt{\pi}}$).
+2 divided by pi ($\frac{2}{\sqrt{\pi}}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'e : double}}
 
-Numărul ($e$).
+The constant $e$.
 
 \subsubsection{\mintinline{icl}{[r/o] Math'ln2 : double}}
 
-Logaritmul natural al numărului 2 ($\ln{2}$).
+Natural logarithm of 2 ($\ln{2}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'ln10 : double}}
 
-Logaritmul natural al numărului 10 ($\ln_{10}$).
+Natural logarithm of 10 ($\ln{10}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'log2e : double}}
 
-Logaritmul numărului $e$ cu baza 2 ($\log_{2}{e}$).
+Logarithm of $e$ to base 2 ($\log_{2}{e}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'log10e : double}}
 
-Logaritmul numărului $e$ cu baza 10 ($\log_{10}{e}$).
+Logarithm of $e$ to base 10 ($\log_{10}{e}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'pi : double}}
 
-Numărul pi ($\pi$).
+Constant pi ($\pi$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'piDiv2 : double}}
 
-Pi pe 2 ($\frac{\pi}{2}$).
+Pi divided by 2 ($\frac{\pi}{2}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'piDiv4 : double}}
 
-Pi pe 4 ($\frac{\pi}{4}$).
+Pi divided by 4 ($\frac{\pi}{4}$).
 
 \subsubsection{\mintinline{icl}{[r/o] Math'sqrt2 : double}}
 
-Radical din 2 ($\sqrt{2}$).
+Root of 2 ($\sqrt{2}$).
 
 \subsubsection{\mintinline{icl}{Math.acos (v : double) : double}}
 
-Arccosinus ($\arccos{v}$).
+Arccosine ($\arccos{v}$).
 
 \subsubsection{\mintinline{icl}{Math.asin (v : double) : double}}
 
-Arcsinus ($\arcsin{v}$).
+Arcsine ($\arcsin{v}$).
 
 \subsubsection{\mintinline{icl}{Math.atan (v : double) : double}}
 
-Arctangență ($\arctan{v}$).
+Arctangent ($\arctan{v}$).
 
 \subsubsection{\mintinline{icl}{Math.ceil (v : double) : int}}
 
-Cel mai mic număr întreg mai mare sau egal cu \mintinline{icl}{v}.
+The smallest integer number which is bigger or equal to \mintinline{icl}{v}.
 
 \subsubsection{\mintinline{icl}{Math.cos (v : double) : double}}
 
-Cosinus ($\cos{v}$).
+Cosine ($\cos{v}$).
 
 \subsubsection{\mintinline{icl}{Math.degreesToRadians (v : double) : double}}
 
-Conversează grade în radiani.
+Converts degrees to radians.
 
 \subsubsection{\mintinline{icl}{Math.exp (v : double) : double}}
 
-Funcția exponent ($\exp{v}$).
+Exponent function ($\exp{v}$).
 
 \subsubsection{\mintinline{icl}{Math.floor (v : double) : int}}
 
-Cel mai mare număr întreg mai mic sau egal cu \mintinline{icl}{v}.
+The biggest integer number which is smaller or equal to \mintinline{icl}{v}.
 
 \subsubsection{\mintinline{icl}{Math.ln (v : double) : double}}
 
-Logaritm natural ($\ln{v}$).
+Natural logarithm ($\ln{v}$).
 
 \subsubsection{\mintinline{icl}{Math.min (arr : int...) : int}}
 
-Returnează cel mai mic număr întreg.
+Returns the smallest integer number.
 
 \subsubsection{\mintinline{icl}{Math.min (arr : double...) : double}}
 
-Returnează cel mai mic număr decimal.
+Returns the smallest floating-point number.
 
 \subsubsection{\mintinline{icl}{Math.max (arr : int...) : int}}
 
-Returnează cel mai mare număr întreg.
+Returns the biggest integer number.
 
 \subsubsection{\mintinline{icl}{Math.max (arr : double...) : double}}
 
-Returnează cel mai mare număr decimal.
+Returns the biggest floating-point number.
 
 \subsubsection{\mintinline{icl}{Math.radiansToDegrees (v : double) : double}}
 
-Conversează radiani în grade.
+Converts radians to degrees.
 
 \subsubsection{\mintinline{icl}{Math.round (v : double) : int}}
 
-Returnează cel mai apropiat număr întreg.
+Returns the closest integer number.
 
 \subsubsection{\mintinline{icl}{Math.sin (v : double) : double}}
 
-Sinus ($\sin{v}$).
+Sine ($\sin{v}$).
 
 \subsubsection{\mintinline{icl}{Math.tan (v : double) : double}}
 
-Cosinus ($\tan{v}$).
+Cosine ($\tan{v}$).
 
 \subsection{{\color{orange} Import}}
 
