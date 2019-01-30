@@ -1032,7 +1032,7 @@ Cosine ($\tan{v}$).
 
 \subsection{{\color{orange} Import}}
 
-The object \mintinline{icl}{Import} deține următoarele metode:
+The object \mintinline{icl}{Import} has following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Import.none (data : object, path : string) : void};
 	\item \mintinline{icl}{Import.none (path : string) : void};
@@ -1043,34 +1043,32 @@ The object \mintinline{icl}{Import} deține următoarele metode:
 	\item \mintinline{icl}{Import.run (path : string) : void}.
 \end{icItems}
 
-The object \mintinline{icl}{data} permite a transmite date în contextul izolat în care se execut fișierele externe, proprietățile obiectului \mintinline{icl}{data} vor fi disponibile ca variabile globale. Aceasta permite a deține într-un fișier mai multe versiuni ale bibliotecii de exemplu, și la folosire se poate de indicat care versiune e necesară.
+Use object \mintinline{icl}{data} to transfer data to context of external files. Each field of object \mintinline{icl}{data} will become a global variable. This option can be used to store some versions of library in 1 file, and load just the needed.
 
 \subsubsection{\mintinline{icl}{Import.none (data : object, path : string) : void}}
 
-Creează context izolat în care se execută fișierul.
+Run the file in isolated context.
 
 \subsubsection{\mintinline{icl}{Import.none (path : string) : void}}
 
-Acronim pentru \mintinline{icl}{Import.none([=], @path)}.
+The same as \mintinline{icl}{Import.none([=], @path)}.
 
 \subsubsection{\mintinline{icl}{Import.functions (data : object, path : string) : void}}
 
-Creează context izolat în care se execută fișierul, Apoi se importă funcțiile în contextul curent.
+Run the file in isolated context and import functions to current context.
 
 \subsubsection{\mintinline{icl}{Import.functions (path : string) : void}}
 
-Acronim pentru \mintinline{icl}{Import.functions ([=], @path)}.
+The same as \mintinline{icl}{Import.functions ([=], @path)}.
 
 \subsubsection{\mintinline{icl}{Import.all (data : object, path : string) : void}}
 
-Creează context izolat în care se execută fișierul, Apoi se importă funcțiile și variabilele globale în contextul curent.
+Run the file in isolated context and import functions and global variables to current context.
 
 \subsubsection{\mintinline{icl}{Import.all (path : string) : void}}
 
-Acronim pentru \mintinline{icl}{Import.all ([=], @path)}.
+The same as \mintinline{icl}{Import.all ([=], @path)}.
 
 \subsubsection{\mintinline{icl}{Import.run (path : string) : void}}
 
-Execută fișierul în contextul curent.
-
-%\newpage
+Executes the file in current context.
