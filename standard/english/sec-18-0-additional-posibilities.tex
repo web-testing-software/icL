@@ -24,33 +24,33 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Sessions'length : int}}
 
-Returnează numărul de sesiuni deschise.
+The number od opened sessions.
 
 \subsubsection{\mintinline{icl}{[r/o] Sessions'(i : int) : Session}}
 
-Returnează a \mintinline{icl}{i}-a sesiune.
+The \mintinline{icl}{i}th session.
 
 Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Sessions.closeAll () : void}}
 
-Închide toate sesiunile.
+Close all sessions.
 
 \subsubsection{\mintinline{icl}{Sessions.get (i : int) : Session}}
 
-Returnează a \mintinline{icl}{i}-a sesie.
+Returns the \mintinline{icl}{i}th session.
 
 Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Sessions.new () : Session}}
 
-Deschide o sesiune nouă.
+Opens and returns a new session.
 
 Possible exceptions: \ferror{SessionNotCreated} (see table \ref{errors}).
 
 \subsection{{\color{orange} Session}}
 
-Comanda \session{} returnează un link la sesiunea curentă.
+\session{} returns a reference to current session.
 
 The object \session{} has following properties —
 \begin{icItems}
@@ -74,77 +74,75 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/w] Session'implicitTimeout : int}}
 
-Tipul în milisecunde de așteptare a găsirii elementului sau al trecerii în stare interactivă. Implicit egal cu 0.
+Implicit timeout. By default, is 0.
 
-Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi) (see table \ref{errors}).
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Session'pageLoadTimeout : int}}
 
-Timpul de așteptare al încărcării paginii web. Implicit 300 000 de milisecunde.
+Page load timeout. By default, 300000ms.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Session'scriptTimeout : int}}
 
-Timpul de așteptare al executării codului JavaScript. Implicit 30 000 de milisecunde.
+JavaScript code execution timeout. By default, 30000ms.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Session'source : string}}
 
-Codul sursă al paginii.
+The source code of page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Session'title : string}}
 
-Titlu paginii.
+the title of page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Session'url : string}}
 
-Adresa URL a pagini curente.
+URL of current page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.back () : Session}}
 
-Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înapoi} în browser.
+Is equivalent to pressing the back button in the browser.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.close () : void}}
 
-Închide sesia. Toate taburile vor fi închise.
+Close session, all its tabs will be closed.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.forward () : Session}}
 
-Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înainte} în browser.
+Is equivalent to pressing the forward button in the browser.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.refresh () : Session}}
 
-Reîncarcă pagina.
+Reloads page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.screenshot () : string}}
 
-Returnează un șir de caracter, care reprezintă captură de ecran codată în base64.
+Returns a base64 encoded screenshot.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Session.switchTo () : Session}}
 
-Schimbă focusul la altă sesie.
+Focus this session.
 
 Possible exceptions: \ferror{NoSuchSession} (see table \ref{errors}).
-
-%\subsubsection{}
 
 \subsection{{\color{orange} Windows}}
 
