@@ -382,7 +382,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Invalid
 
 \subsection{{\color{orange} Alert}}
 
-The object \alert{} are următoarea proprietate: \mintinline{icl}{[r/o] Alert'text : string}.
+The object \alert{} has property \mintinline{icl}{[r/o] Alert'text : string}.
 
 And following methods —
 \begin{icItems}
@@ -393,25 +393,25 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Alert'text : string}}
 
-Returnează textul avertizării.
+The text of alert.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Alert.accept () : void}}
 
-Acceptă avertizarea.
+Accepts the alert.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Alert.dismiss () : void}}
 
-Refuză avertizarea.
+Dismiss the alert.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Alert.sendKeys (keys : string) : void}}
 
-Completează formularul cu textul \mintinline{icl}{keys} și confirmă inserarea.
+Sets the text of dialog field.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (see table \ref{errors}).
 
@@ -426,7 +426,6 @@ The object \tabs{} has following properties —
 	\item \mintinline{icl}{[r/o] Tabs'next : Tab};
 	\item \mintinline{icl}{[r/o] Tabs'previous : Tab};
 	\item \mintinline{icl}{[r/o] Tabs'(i : int) : Tab}.
-	% \item \mintinline{icl}{Tabs'};
 \end{icItems}
 
 And following methods —
@@ -442,116 +441,115 @@ And following methods —
 	\item \mintinline{icl}{Tabs.find (url : regex) : Tab};
 	\item \mintinline{icl}{Tabs.findByTitle (template : string) : Tab};
 	\item \mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}.
-	% \item \mintinline{icl}{Tabs.};
 \end{icItems}
 
-În regimul de testare taburile vor fi în ordine aleatorie. În regim de automatizare în ordine strictă.
+In testing mode the tabs will have a random order. In automation mode a strict order.
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'current : Tab}}
 
-Tabul curent.
+The current tab.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'first : Tab}}
 
-Primul tab.
+The first tab.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'last : Tab}}
 
-Ultimul tab.
+The last tab.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'length : int}}
 
-Numărul de taburi în sesie.
+The number of tabs in session.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'next : Tab}}
 
-Următorul tab.
+The next tab.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchTab} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'previous : Tab}}
 
-Tabul precedent.
+The previous tab.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchTab} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tabs'(i : int) : Tab}}
 
-Al \mintinline{icl}{i}-lea tab.
+The \mintinline{icl}{i}th tab.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
+\subsubsection{\mintinline{icl}{Tabs.close (url : string) : int}}
 
-Închide toate taburile, la care adresa URL convine șablonului. Returnează numărul de taburi închise.
+Close all tabs whose URL matches the template \mintinline{icl}{url}. Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
 
-Închide toate taburile, la care adresa URL convine expresii regulare \mintinline{icl}{url}. Returnează numărul de taburi închise.
+Close all tabs whose URL matches the regular expression \mintinline{icl}{url}. Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeByTitle (template : string) : int}}
 
-Închide toate taburile, la care titlul convine șablonului. Returnează numărul de taburi închise.
+Close all tabs whose title matches the template \mintinline{icl}{template}. Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeByTitle (title : regex) : int}}
 
-Închide toate taburile, la care titlul convine expresii regulare \mintinline{icl}{url}. Returnează numărul de taburi închise.
+Close all tabs whose title matches the regular expression \mintinline{icl}{title}. Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeOthers () : int}}
 
-Închide toate taburile în afară de tabul curent. Returnează numărul de taburi închise.
+Closes all tabs excepting the current. Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeToLeft () : int}}
 
-Închide toate taburile care se află la stînga de tabul curent. Returnează numărul de taburi închise.
+Closes all tabs on left of current. Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.closeToRight () : int}}
 
-Închide toate taburile care se află la dreapta de tabul curent. Returnează numărul de taburi închise.
+Closes all tabs on right of current.  Returns the number of closed tabs.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.find (template : string) : Tab}}
 
-Returnează primul tab, la care adresa URL convine șablonului.
+Return the first tab whose URL matches the template.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.find (url : regex) : Tab}}
 
-Returnează primul tab, la care adresa URL convine expresii regulare.
+Return the first tab whose URL matches the regular expression.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.findByTitle (template : string) : Tab}}
 
-Returnează primul tab, la care titlul convine șablonului.
+Return the first tab whose title matches the template.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}}
 
-Returnează primul tab, la care titlul convine expresii regulare.
+Return the first tab whose title matches the regular expression.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
@@ -579,68 +577,67 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool}}
 
-Returnează \true, dacă butonul \textit{Înapoi} e disponibil, în caz contrar \false.
+Is \true{} if the back button is available, otherwise is \false.
 
 \subsubsection{\mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool}}
 
-Returnează \true, dacă butonul \textit{Înainte} e disponibil, în caz contrar \false.
+Is \true{} if the forward button is available, otherwise is \false.
 
 \subsubsection{\mintinline{icl}{[r/o] Tab'screenshot : string}}
 
-Returnează captura tabului, codată în base64.
+Base64 encoded screenshot of tab.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Tab'source : string}}
 
-Codul sursă al paginii deschise în tab.
+The source code of tab page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/*] Tab'title}}
 
-Titlu paginii deschise în tab.
+The title of tab page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Tab'url}}
 
-Adresa URL a paginii deschise în tab.
+The URL of tab.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.back () : void}}
 
-Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înapoi} în browser.
+Is equivalent to pressing the back button in the browser.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.close () : void}}
 
-Închide tabul, dacă e ultimul închide și sesia.
+Close the tab, if it is the last will close session.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.focus () : void}}
 
-Schimbă focusul la tab. Focusul se schimbă între taburile din sesiune.
+Focus this tab.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.forward () : void}}
 
-Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înainte} în browser.
-
+Is equivalent to pressing the forward button in the browser.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Tab.get (url : string) : bool}}
 
-Trece la pagină, URL trebuie să fie absolut. Returnează \true{} dacă pagina a fost descărcată cu succes, în caz contrar \false.
+Load page, the URL must be absolute. Returns \true{} on success, on failed returns \false.
 
 \subsubsection{\mintinline{icl}{Tab.load (url : string) : void}}
 
-Trece la pagină, URL trebuie să fie absolut. În caz de eroare generează excepție.
+Load page, the URL must be absolute. On failed will be generated an error.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (see table \ref{errors}).
 
