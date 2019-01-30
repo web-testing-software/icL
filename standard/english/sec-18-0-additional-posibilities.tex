@@ -778,15 +778,15 @@ Removes the file.
 
 \subsection{{\color{orange} Make}}
 
-The object \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base64 : string, path :}\\*\mintinline{icl}{string) : void}.
+The object \make{} has a method \mintinline{icl}{Make.image (base64 : string, path : string) : void}.
 
 \subsubsection{\mintinline{icl}{Make.image (base64 : string, path : string) : void}}
 
-Salvează captura de ecran pe disc.
+Saves the screenshot on disk.
 
 \subsection{{\color{orange} Log}}
 
-The object \logtype{} deține următoarele metode:
+The object \logtype{} has following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Log.error (message : string) : void};
 	\item \mintinline{icl}{Log.info (message : string) : void};
@@ -797,23 +797,23 @@ The object \logtype{} deține următoarele metode:
 
 \subsubsection{\mintinline{icl}{Log.error (message : string) : void}}
 
-Printează un mesaj de eroare.
+Prints an error message.
 
 \subsubsection{\mintinline{icl}{Log.info (message : string) : void}}
 
-Printează un mesaj informațional.
+Prints an informational message.
 
 \subsubsection{\mintinline{icl}{Log.out (args : any ...) : void}}
 
-Printează informație pentru debug, primește cîțeva argumente de orice tip. La transmiterea variabilelor se printează containerul, numele variabilei, tipul de date și valoarea. La transmiterea constantelor numai valoarea. La transmiterea rezultatului funcției se printează tipul și valoarea.
+Prints a debugging message, it gives some arguments of any types. Will be printed the stack name, name of variable, type of data and value. For constants will print only the value. For a rvalue — value and type.
 
 \subsubsection{\mintinline{icl}{Log.stack (var : any) : void}}
 
-Printează lista de stive, arătînd în care din ele se întilnește așa variabilă și ce valori are.
+Prints all definitions and values of stack variable.
 
 \subsubsection{\mintinline{icl}{Log.state (var : any) : void}}
 
-Printează lista tuturor stărilor, arătînd în care din ele se întilnește așa variabilă și ce valori are.
+Prints all definitions and values of state variable.
 
 \subsection{{\color{orange} Numbers}}
 
