@@ -152,23 +152,23 @@ The object \windows{} has following properties —
 	\item \mintinline{icl}{[r/o] Windows'(i : int) : Window}.
 \end{icItems}
 
-Și următoarea metodă \mintinline{icl}{Windows.get (i : int) : Window}.
+And a method \mintinline{icl}{Windows.get (i : int) : Window}.
 
 \subsubsection{\mintinline{icl}{[r/o] Windows'length : int}}
 
-Returnează numărul de ferestre în sesiunea curentă.
+The number of windows in current session.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] Windows'(i : int) : Window}}
 
-Returnează a \mintinline{icl}{i}-a fereastră.
+The \mintinline{icl}{i}th window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Windows.get (i : int) : Window}}
 
-Returnează a \mintinline{icl}{i}-a fereastră.
+Returns the \mintinline{icl}{i}th window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
@@ -198,85 +198,85 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/w] Window'height : int}}
 
-Înălțimea ferestrei curente în pixeli.
+The height of window in pixels.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Window'width : int}}
 
-Lățimea ferestrei curente în pixeli.
+The width of window in pixels.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Window'x : int}}
 
-Coordonata $x$ a ferestrei curente în pixeli.
+The $x$ coordinate of window in pixels.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/w] Window'y : int}}
 
-Coordinata $y$ a ferestrei curente în pixeli.
+The $y$ a coordinate of window in pixels.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.close () : void}}
 
-Închide fereastra curentă, dacă ea este ultima se închide și sesia.
+Close current window, if last will close the session.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.focus () : Window}}
 
-Schimbă focusul la fereastra aceasta.
+Focus this window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.fullscreen () : Window}}
 
-Schimbă regimul de afișare a ferestrei browserului la \textit{ecran complet}.
+Enter full-screen mode.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.maximize () : Window}}
 
-Maximizează fereastra browserului.
+Maximize the browser window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.minimize () : Window}}
 
-Minimizează fereastra browserului.
+Minimize the browser window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.restore () : Window}}
 
-Restaurează fereastra în regim normal.
+Restore browser window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToDefault () : Window}}
 
-Schimbă focusul la frame-ul principal.
+Restore focus to main frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToFrame (i : int) : Window}}
 
-Schimbă focusul la frame-ul cu indexul \mintinline{icl}{i}.
+Switch focus to \mintinline{icl}{i}th frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToFrame (el : element) : Window}}
 
-Schimbă focusul la frame-ul elementului \mintinline{icl}{el}. Elementul trebuie să fir numaidecît tag frame sau iframe.
+Switch focus to element \mintinline{icl}{el}, the element must be a frame or iframe tag.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToParent () : Window}}
 
-Schimbă focusul la frame-ul ascensor.
+Switch focut to parent frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
