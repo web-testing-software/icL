@@ -643,7 +643,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Invalid
 
 \subsection{{\color{orange} Doc}}
 
-The object \dom{} are următoarele metode:
+The object \dom{} has following methods:
 \begin{icItems}
 	\item \mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element};
 	\item \mintinline{icl}{Doc.queryAll (by = By'cssSelector, selector : string) : element};
@@ -657,27 +657,27 @@ The object \dom{} are următoarele metode:
 
 \subsubsection{\mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element}}
 
-Primește aceiași parametri ca și  \mintinline{icl}{element.query}, numai că această funcție va căuta în tot documentul.
+Gets the same arguments as \mintinline{icl}{element.query}, but this function will find in all document.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{Timeout} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Doc.queryAll (by = By'cssSelector, selecor : string) : element}}
 
-Primește aceiași parametri ca și \mintinline{icl}{element.queryAll}, numai că această funcție va căuta în tot documentul.
+Gets the same arguments as \mintinline{icl}{element.queryAll}, but this function will find in all document.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Doc.queryAllByXPath (xpath : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.queryAll (By'xPath, @xpath)}.
+The same as \mintinline{icl}{Doc.queryAll (By'xPath, @xpath)}.
 
 \subsubsection{\mintinline{icl}{Doc.queryByXPath (xpath : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.query (By'xPath, @xpath)}.
+The same as \mintinline{icl}{Doc.query (By'xPath, @xpath)}.
 
 \subsubsection{\mintinline{icl}{Doc.queryLink (name : string, isFragment = false) : element}}
 
-Acronim pentru:
+The same as —
 \begin{icItems}
 	\item \mintinline{icl}{Doc.query (By'linkText, @name)};
 	\item \mintinline{icl}{Doc.query (By'partialLinkText, @name)};
@@ -685,7 +685,7 @@ Acronim pentru:
 
 \subsubsection{\mintinline{icl}{Doc.queryLinks (name : string, isFragment = false) : element}}
 
-Acronim pentru:
+The same as —
 \begin{icItems}
 	\item \mintinline{icl}{Doc.queryAll (By'linkText, @name)};
 	\item \mintinline{icl}{Doc.queryAll (By'partialLinkText, @name)};
@@ -693,15 +693,15 @@ Acronim pentru:
 
 \subsubsection{\mintinline{icl}{Doc.queryTag (name : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.query (By'tagName, @name)}.
+The same as \mintinline{icl}{Doc.query (By'tagName, @name)}.
 
 \subsubsection{\mintinline{icl}{Doc.queryTags (name : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.queryAll (By'tagName, @name)}.
+The same as \mintinline{icl}{Doc.queryAll (By'tagName, @name)}.
 
 \subsection{{\color{orange} Files}}
 
-The object \files{} are următoarele metode:
+The object \files{} has following methods —
 \begin{icItems}
 	\item \mintinline{icl}{Files.open (path : string) : File};
 	\item \mintinline{icl}{Files.create (path : string) : File};
@@ -711,25 +711,25 @@ The object \files{} are următoarele metode:
 
 \subsubsection{\mintinline{icl}{Files.open (path : string) : File}}
 
-Deschide fișierul.
+Open the file.
 
 Possible exceptions: \ferror{FileNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Files.create (path : string) : File}}
 
-Deschide fișierul, dacă el nu există se creează.
+Open the file, if not exist will create it.
 
 Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Files.createDir (path : string) : void}}
 
-Creează folder, folderul ascendent trebuie să existe deja.
+Create a folder, the parent folder must exists.
 
 Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Files.createPath (path : string) : void}}
 
-Creează toate folderele care nu există în calea indicată.
+Create all folders in path.
 
 \subsection{{\color{orange} File}}
 
@@ -750,31 +750,31 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] File'csv : 1}}
 
-Format CSV.
+The CSV file format.
 
 \subsubsection{\mintinline{icl}{[r/w] File'format : int}}
 
-Returnează formatul fișierului.
+The format of file.
 
 \subsubsection{\mintinline{icl}{[r/o] File'none : 0}}
 
-File neinițializat.
+Uninitialized file.
 
 \subsubsection{\mintinline{icl}{[r/o] File'tsv : 2}}
 
-Format TSV.
+The TSV file format.
 
 \subsubsection{\mintinline{icl}{[r/o] File'valid : bool}}
 
-Returnează \true, dacă fișierul este inițializat, în caz contrar \false.
+Returns \true{} if the file is initialized, otherwise returns \false.
 
 \subsubsection{\mintinline{icl}{File.close () : void}}
 
-Închide fișierul.
+Closes the file.
 
 \subsubsection{\mintinline{icl}{File.delete () : void}}
 
-Șterge fișierul.
+Removes the file.
 
 \subsection{{\color{orange} Make}}
 
