@@ -1,85 +1,76 @@
-% !TeX spellcheck = ro_RO
-\section{Expresii regulare}
+% !TeX spellcheck = en_US
+\section{Regular expressions}
 \label{regex}
 
-Pentru definirea {\bf expresiilor regulare} se folosește literalul \mintinline{icl}{//șablon//mods}, unde \mintinline{icl}{șablon} este paternul expresii, \mintinline{icl}{mods} sunt modificatorii. În patern grupele pot avea nume, gupa anonimă are următoarea sintaxă \mintinline{icl}{(conținut)}, grupa cu nume - \mintinline{icl}{(?<nume>conținut)}.
+To defines {\bf regular expressions} use literal \mintinline{icl}{//pattern//mods}, here \mintinline{icl}{pattern} is the pattern of expression and \mintinline{icl}{mods} are modifiers. In pattern, groups can be named using the next syntax \mintinline{icl}{(?<name>content)}.
 
-Simbolul intern poate fi nu numai \mintinline{icl}{/}, dar și oricare alt simbol, în afară de apostrof (\mintinline{icl}{'}) el intră în conflict cu operatorul {\it rădăcină pătrată} (\mintinline{icl}{/'}), \mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{-}, \mintinline{icl}{+} și \mintinline{icl}{!}. De exemplu  \mintinline{icl}{/"șablon"/mods}, \mintinline{icl}{/:șablon:/mods}, \mintinline{icl}{/$șablon$/mods}.
+The internal literal token \mintinline{icl}{/}, cab be replaced by other symbols, excluding \mintinline{icl}{'}, \mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{-}, \mintinline{icl}{+} and \mintinline{icl}{!}. For example  \mintinline{icl}{/"pattern"/mods}, \mintinline{icl}{/:pattern:/mods}, \mintinline{icl}{/$pattern$/mods}.
 
-Ca să capturezi începutul șirului de caractere se poate de folosit \mintinline{icl}{^} și \mintinline{icl}{\A}, dar pentru sfîrșit - \mintinline{icl}{$} și \mintinline{icl}{\z}. Primul variant necătînd la popularitatea lui poate funcționa incorect, pentru ca ele capturează începutul și sfîrșitul liniilor în context de text în mai multe linii.
+To catch the beginning of string use \mintinline{icl}{^} or \mintinline{icl}{\A}, for end — \mintinline{icl}{$} or \mintinline{icl}{\z}. \mintinline{icl}{^} and \mintinline{icl}{$} catches the beginning and end of line, not just of string.
 
-\subsection{Modificatori}
+\subsection{Modifiers}
 
-În limbajul icL sunt prezenți următorii modificatori: \mintinline{icl}{/i}, \mintinline{icl}{/s}, \mintinline{icl}{/m}, \mintinline{icl}{/x}, \mintinline{icl}{/u} și \mintinline{icl}{/f}. Modificatorii pot fi combinați, de exemplu \mintinline{icl}{/xi}.
+For regular expressions are available following modifiers — \mintinline{icl}{/i}, \mintinline{icl}{/s}, \mintinline{icl}{/m}, \mintinline{icl}{/x}, \mintinline{icl}{/u} și \mintinline{icl}{/f}. Modifiers can be combined, for example \mintinline{icl}{/xi}.
 
-\subsubsection{Modificator \mintinline{icl}{/i}}
+\subsubsection{Modifier \mintinline{icl}{/i}}
 
-Diferența între majuscule și minuscule va fi ignorată. 
+Regular expression will be case-insensitive. 
 
-\subsubsection{Modificator \mintinline{icl}{/s}}
+\subsubsection{Modifier \mintinline{icl}{/s}}
 
-Punctul va însemna orice simbol, inclusiv și simbolul {\it rînd nou}.
+The dot will mean any symbol, including new line.
 
-\subsubsection{Modificator \mintinline{icl}{/m}}
+\subsubsection{Modifier \mintinline{icl}{/m}}
 
-Meta-simbolurile \mintinline{icl}{^} și \mintinline{icl}{$} vor captura nu numai începutul și sfîrșitul șirului, dar și al liniilor de text.
+Meta-symbols \mintinline{icl}{^} and \mintinline{icl}{$} will catch just the end and beginning of lines.
 
-\subsubsection{Modificator \mintinline{icl}{/x}}
+\subsubsection{Modifier \mintinline{icl}{/x}}
 
-Toate spațiile vor fi ignorate, simbolul \mintinline{icl}{#} va însemna începutul comentariului, care se termină cu simbolul {\it rînd nou}.
+Any whitespace in the pattern string which is not escaped and outside a character class is ignored. Moreover, an unescaped sharp (\mintinline{icl}{#}) outside a character class causes all the following characters, until the first newline (included), to be ignored. 
 
-\subsubsection{Modificator \mintinline{icl}{/u}}
+\subsubsection{Modifier \mintinline{icl}{/u}}
 
-Clasele de simboluri \mintinline{icl}{\w}, \mintinline{icl}{\d} ș.a.m.d. și inversiile lor \mintinline{icl}{\W}, \mintinline{icl}{\D} ș.a.m.d. vor captura nu numai literele latine, dar și literele alfabetelor naționale.
+The meaning of the \mintinline{icl}{\w}, \mintinline{icl}{\d}, etc., character classes, as well as the meaning of their counterparts (\mintinline{icl}{\W}, \mintinline{icl}{\D}, etc.), is changed from matching ASCII characters only to matching any character with the corresponding Unicode property. 
 
-\subsubsection{Modificator \mintinline{icl}{/f}}
+\subsubsection{Modifier \mintinline{icl}{/f}}
 
-Se inventează zgîrcirea cuantificatorilor \mintinline{icl}{*}, \mintinline{icl}{+}, \mintinline{icl}{?} ș.a.m.d. și ei devin leneși. Dar versiunile lor leneșe \mintinline{icl}{*?}, \mintinline{icl}{+?}, \mintinline{icl}{??} ș.a.m.d. devin zgîrite.
+The greediness of the quantifiers is inverted: \mintinline{icl}{*}, \mintinline{icl}{+}, \mintinline{icl}{?}, \mintinline{icl}{{m,n}}, etc. become lazy, while their lazy versions (\mintinline{icl}{*?}, \mintinline{icl}{+?}, \mintinline{icl}{??}, \mintinline{icl}{{m,n}?}, etc.) become greedy.
 
-{\bf Cuantificatorul zgîrgit} capturează cantitatea maximă de simboluri, dar {\bf cuantificatorul leneș} - minimală.
+\subsection{Operators}
 
-\subsection{Operatori}
-
-Pentru expresiile regulare sunt disponibili următorii operatori:
+Operators of regular expressions —
 \begin{icItems}
 \item
-	de rangul 3:
+	Of rank 3:
 	\begin{icItems}
 	\item
-		\mintinline{icl}{string << regex : bool};
+		\mintinline{icl}{string << regex : bool}.
 	\item
 		\mintinline{icl}{string <* regex : list}.
 	\end{icItems}
 
 \item 
-	de rangul 6$^+$: \mintinline{icl}{string ** regex : object}.
+	Of rank 6$^+$: \mintinline{icl}{string ** regex : object}.
 \end{icItems}
 
-Exemple de folosire a operatorilor sunt prezenți pe foaia \ref{regexpopsex}.
-
-\begin{sourcecode}
-    \captionof{listing}{Operații cu expresii regulare}
-    \label{regexpopsex}
-    \inputminted[linenos]{icl}{../sources/regexpopsex.icL}
-\end{sourcecode}
+Example of using —
+\inputminted[linenos]{icl}{../sources/regexpopsex.icL}
 
 \subsubsection{\mintinline{icl}{string << regex : bool}}
 
-Returnează \true{}, dacă șirul conține subșir care convine după expresia regulară, în caz contrar \false{}.
+Returns \true{} if the string contains a substring which matches the regular expression, otherwise returns \false.
 
 \subsubsection{\mintinline{icl}{string <* regex : list}}
 
-Returnează lista de șiruri capturate, dacă șirul conține subșir care convine după expresia regulară, în caz contrar o listă deșartă.
+Returns list of matched groups if the string contains a substring which matches the regular expression.
 
 \subsubsection{\mintinline{icl}{string ** regex : object}}
 
-Returnează un obiect, care conține toate valorilor grupelor cu nume, dacă șirul conține subșir care convine după expresia regulară, în caz contrar o obiect deșert.
-
-% \subsubsection{}
+Returns an object, each field of it contains a value of a named group, if the string contains a substring which matches the regular expression.
 
 \subsection{Methods}
 
-Methodsle clasei \str{} și \listtype, care primesc parametri de tipul \regex{}:
+Methods of classes \str{} and \listtype, which gets arguments of type \regex{} —
 \begin{icItems}
 \item
 \mintinline{icl}{string.count (re : regex) : int};
@@ -101,50 +92,43 @@ Methodsle clasei \str{} și \listtype, care primesc parametri de tipul \regex{}:
 \mintinline{icl}{list.lastIndexOf (re : regex, start : int) : int};
 \end{icItems}
 
-Exemple de folosire a metodelor enumerate mai sus sunt prezente pe foaia \ref{regexplikearg}.
-
-\begin{sourcecode}
-    \captionof{listing}{Expresii regulare în calitate de argumente}
-    \label{regexplikearg}
-    \inputminted[linenos]{icl}{../sources/regexplikearg.icL}
-\end{sourcecode}
+Examples of using —
+\inputminted[linenos]{icl}{../sources/regexplikearg.icL}
 
 \subsubsection{\mintinline{icl}{string.count (re : regex) : int}}
 
-Numără cîte subșiruri convin expresii regulare \mintinline{icl}{re}.
+Counts the substrings which match the regular expression \mintinline{icl}{re}.
 
 \subsubsection{\mintinline{icl}{string.indexOf (re : regex, startPos = -1) : int}}
 
-Returnează indexul primului subșir care convine expresii regulare \mintinline{icl}{re}, căutînd înainte de pe poziția code{startPos}. Dacă așa subșir nu a fost găsit, returnează -1.
+Returns the index position of the first substring which matches the regular expression \mintinline{icl}{re} in this string, searching forward from index position \mintinline{icl}{startPos}. Returns \mintinline{icl}{-1} if no match is found.
 
 \subsubsection{\mintinline{icl}{string.lastIndexOf (re : regex, startPos = -1) : int}}
 
-Returnează primului subșir care convine expresii regulare \mintinline{icl}{re}, căutînd înapoi de pe poziția \mintinline{icl}{startPos}; dacă așa subșir nu a fost găsit, returnează -1.
+Returns the index position of the first substring which matches the regular expression \mintinline{icl}{re} in this string, searching backward from index position \mintinline{icl}{startPos}. Returns \mintinline{icl}{-1} if no match is found.
 
 \subsubsection{\mintinline{icl}{string.remove (re : regex) : string}}
 
-Șterge din șir toate subșirurile care convin expresii regulare \mintinline{icl}{re}.
+Remove each sucstring which matches the regular expression \mintinline{icl}{re}.
 
 \subsubsection{\mintinline{icl}{string.replace (re : regex, after : string) : string}}
 
-Înlocuiește subșirurile care convin expresii regulare \mintinline{icl}{re}, cu șirul \mintinline{icl}{after}.
+Replace each substrin which matches regular expression \mintinline{icl}{re}, with string \mintinline{icl}{after}.
 
 \subsubsection{\mintinline{icl}{string.split (re : regex, keepEmptyParts = true) : list}}
 
-Împarte șirul în subșiruri, la fiecare găsire a subșirului care convine expresii regulare \mintinline{icl}{re} și strînge subșirurile în listă. Dacă \mintinline{icl}{keepEmptyParts == false} șirurile deșarte se ignoră.
+Splits the string into substrings wherever the regular expression {re} matches, and returns the list of those strings. If {re} does not match anywhere in the string, it returns a single-element list containing this string.
+
+If \mintinline{icl}{keepEmptyParts} is \false, empty entries don't appear in the result. By default, empty entries are kept.
 
 \subsubsection{\mintinline{icl}{list.filter (re : regex) : list}}
 
-Returnează o listă nouă, care conține doar șirurile acestei liste, care convin expresii regulare \mintinline{icl}{re}.
+Returns a new list with strings of this list, which match the regular expression \mintinline{icl}{re}.
 
 \subsubsection{\mintinline{icl}{list.indexOf (re : regex, start = 0) : int}}
 
-Returnează indexul primului șir, care convine expresii regulare \mintinline{icl}{re}, căutînd înainte de pe poziția \mintinline{icl}{start}, dacă așa șir nu a fost găsit returnează -1.
+Returns the index position of the first string which matches the regular expression \mintinline{icl}{re}, searching forward from index position \mintinline{icl}{startPos}. Returns \mintinline{icl}{-1} if no match is found.
 
 \subsubsection{\mintinline{icl}{list.lastIndexOf (re : regex, start = -1) : int}}
 
-Returnează indexul primului șir, care convine expresii regulare \mintinline{icl}{re}, căutînd înapoi de pe poziția \mintinline{icl}{start}, dacă așa șir nu a fost găsit returnează -1.
-
-% \subsubsection{}
-
-%\newpage
+Returns the index position of the first string which matches the regular expression \mintinline{icl}{re}, searching backward from index position \mintinline{icl}{startPos}. Returns \mintinline{icl}{-1} if no match is found.
