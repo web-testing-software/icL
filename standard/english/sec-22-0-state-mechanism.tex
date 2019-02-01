@@ -1,16 +1,16 @@
-% !TeX spellcheck = ro_RO
-\section{Mecanismul de stări}
+% !TeX spellcheck = en_US
+\section{State mechanism}
 
-Toate variabilele icL se păstrează în containere de 2 tipuri: stivă și stare.
+All variables in icL are contained by 2 types of containers: stack and state.
 
-Stiva reprezintă containere grupate în stivă, fiecare container este strict legat de fragment de cod icL, la intrarea în fragment containerul se creează, iar la ieșire se distruge.
+The stack contains come containers, each container is liked to a fragment of code. On fragment touched the container is created, on exited the container is destroyed.
 
-Starea reprezintă o listă dublă de containere, ele nu sunt legate de cod și sunt disponibile global. Implicit se creează un singur container, dar containere noi sunt create de utilizator.
+The state is double-linked list, containers of it has global visibility. By default, there is a single container, new containers can be created by user.
 
-\subsection{Controlul stivelor}
+\subsection{Stack Control}
 \label{stack:control}
 
-Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
+There are following properties and methods to manipulate stack content —
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] Stacks'(name : string) : Stack};
 	\item \mintinline{icl}{[r/w] Stack'(name : string) : any};
@@ -28,147 +28,145 @@ Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
 
 \subsubsection{[r/o] \mintinline{icl}{Stacks'(name : string) : Stack}}
 
-Returnează containerul cu numele \mintinline{icl}{name}. A numi containerul se poate în felul următor -
+Returns the container with \mintinline{icl}{name}. Use following syntax to name a container —
 \begin{minted}{icl}
 {:nume
 	`` conținut
 }
 \end{minted}
-Pot avea nume numai grupurile de comenzi (cod în acolade). Kodul în paranteze rotunde nu poate avea nume. Apelul funcții creează un container numele funcției.
+A function call creates a container with name of function.
 
 
 \subsubsection{\mintinline{icl}{Stack'(name : string) : any}}
 
-Returnează variabila, care se află anume în acest container. De exemplu: deja există o variabilă cu numele \mintinline{icl}{i} în containerul ascendent, trebui de definit o variabilă cu același nume în containerul curent. Problema se rezolvă în felul următor: \mintinline{icl}{Stack'i = 0} în loc de \mintinline{icl}{@i = 0}.
+Return a local variable located in this container. For example, if already exists a variable named \mintinline{icl}{i} in parent container, use \mintinline{icl}{Stack'i = 0} to create a variable named \mintinline{icl}{i} in current content.
 
 \subsubsection{\mintinline{icl}{Stack.clear () : void}}
 
-Șterge toate variabilele din container.
+Removes all variables of container.
 
 \subsubsection{\mintinline{icl}{Stack.continue () : void}}
 
-Trece la următoarea iterație, disponibil doar pentru cicluri.
+Skip current iteration, available just for loops.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.break () : void}}
 
-Întrerupe imediat ciclul sau executarea funcției. Disponibil doar pentru cicluri și funcții.
+Break the loop. Available just for loops.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.return (value : any) : void}}
 
-Returnează rezultatul executării funcției. Dacă stratul curent nu este o funcție, va căuta cea mai apropiată funcție.
+Returns the function result.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.markTest (name : string) : Stack}}
 
-Înseamnă stratul curent ca test cu numele \mintinline{icl}{name}, a include un test în alt test nu se permite.
+Marks container as test named \mintinline{icl}{name}. Definition of a test inner another test is restricted.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.markStep (name : string) : Stack}}
 
-Înseamnă stratul curent ca pas cu numele \mintinline{icl}{name}. Pasul poate fi definit în test sau în alt pas.
+Marks container as step named \mintinline{icl}{name}. A step can be defined in a test or step.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.addDescription (description : string) : void}}
 
-Adaugă descrierea pasului sau testului.
+Adds a description for test or step.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.destroy () : void}}
 
-Șterge din memorie stratul \mintinline{icl}{listen}.
+Removes \mintinline{icl}{listen} container.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.ignore () : Stack}}
 
-Activează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
+Switch off \mintinline{icl}{listen}.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Stack.listen () : Stack}}
 
-Deactivează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
+Switch on \mintinline{icl}{listen}.
 
 Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
 
-\subsection{Controlul stărilor}
+\subsection{State Control}
 
-Pentru a controla stările, se folosesc următoarele metode și proprietăți:
+There are following properties and methods to manipulate state content —
 \begin{icItems}
-	\item \mintinline{icl}{States'first : object};
-	\item \mintinline{icl}{States'prev : object};
-	\item \mintinline{icl}{States'next : object};
-	\item \mintinline{icl}{States'last : object};
-	\item \mintinline{icl}{States.new (data = [=]) : void};
-	\item \mintinline{icl}{States.newAtEnd (data = [=]) : void};
-	\item \mintinline{icl}{States.toNext () : void};
-	\item \mintinline{icl}{States.toPrev () : void};
-	\item \mintinline{icl}{States.clear () : void};
-	\item \mintinline{icl}{States.delete () : void};
-	\item \mintinline{icl}{States.toFirst () : void};
-	\item \mintinline{icl}{States.toLast () : void}.
+	\item \mintinline{icl}{State'first : object};
+	\item \mintinline{icl}{State'prev : object};
+	\item \mintinline{icl}{State'next : object};
+	\item \mintinline{icl}{State'last : object};
+	\item \mintinline{icl}{State.new (data = [=]) : void};
+	\item \mintinline{icl}{State.newAtEnd (data = [=]) : void};
+	\item \mintinline{icl}{State.toNext () : void};
+	\item \mintinline{icl}{State.toPrev () : void};
+	\item \mintinline{icl}{State.clear () : void};
+	\item \mintinline{icl}{State.delete () : void};
+	\item \mintinline{icl}{State.toFirst () : void};
+	\item \mintinline{icl}{State.toLast () : void}.
 \end{icItems}
 
-Obiectul \mintinline{icl}{States} este o colecție, înseamnă că ea poate fi răsfoită prin \\*\mintinline{icl}{for (States) {}}. Suportul pentru alte cicluri lipsește.
+\mintinline{icl}{State} is a collection, that means that it ccan be iterated by \mintinline{icl}{for (State) {}}. Other loops are not supported.
 
-\subsubsection{\mintinline{icl}{States'first : object}}
+\subsubsection{\mintinline{icl}{State'first : object}}
 
-Returnează prima stare ca obiect.
+Returns the first container as object.
 
-\subsubsection{\mintinline{icl}{States'prev : object}}
+\subsubsection{\mintinline{icl}{State'prev : object}}
 
-Returnează starea precedentă ca obiect.
+Returns previous container as object.
 
-\subsubsection{\mintinline{icl}{States'next : object}}
+\subsubsection{\mintinline{icl}{State'next : object}}
 
-Returnează starea următoare ca obiect.
+Returns next container as object.
 
-\subsubsection{\mintinline{icl}{States'last : object}}
+\subsubsection{\mintinline{icl}{State'last : object}}
 
-Returnează ultima stare ca obiect.
+Returns the last container as object.
 
-\subsubsection{\mintinline{icl}{States.new (data = [=]) : void}}
+\subsubsection{\mintinline{icl}{State.new (data = [=]) : void}}
 
-Creează o nouă stare după starea curentă și schimbă focusul la ea. Toate datele obiectului \mintinline{icl}{data} se adaugă în containerul nou.
+Creates a new container after the current and focuses it. All fields of data object will be copied to container.
 
-\subsubsection{\mintinline{icl}{States.newAtEnd (data = [=]) : void}}
+\subsubsection{\mintinline{icl}{State.newAtEnd (data = [=]) : void}}
 
-Creează o nouă stare la sfîrșit, care nu va fi primi focus.  Toate datele obiectului \mintinline{icl}{data} se adaugă în containerul nou.
+Creates a new container on end of state. All fields of data object will be copied to container.
 
-\subsubsection{\mintinline{icl}{States.toNext () : bool}}
+\subsubsection{\mintinline{icl}{State.toNext () : bool}}
 
-Returnează \true, dacă există o stare următoare și focusul a fost schimbat la ea, în caz contrar \false.
+Returns \true{} if there is a next container and the focus was switched to it, otherwise returns \false.
 
-\subsubsection{\mintinline{icl}{States.toPrev () : bool}}
+\subsubsection{\mintinline{icl}{State.toPrev () : bool}}
 
-Returnează \true, dacă există o stare precedentă și focusul a fost schimbat la ea, în caz contrar \false.
+Returns \true{} if there is a previous container and the focus was switched to it, otherwise returns \false.
 
-\subsubsection{\mintinline{icl}{States.clear () : void}}
+\subsubsection{\mintinline{icl}{State.clear () : void}}
 
-Șterge toate variabilele din stare.
+Clears the state.
 
-\subsubsection{\mintinline{icl}{States.delete () : void}}
+\subsubsection{\mintinline{icl}{State.delete () : void}}
 
-Șterge starea, dacă există o stare următoare focusul trece la ea, în caz contrar dacă există o stare precedentă focusul trece la ea, iar dacă această este ultima, ea este doar curățită.
+Removes the current container, if there is a next container — will be focused, if there is a previous container — will be focused, if the current is the last — will be cleared.
 
-\subsubsection{\mintinline{icl}{States.toFirst () : void}}
+\subsubsection{\mintinline{icl}{State.toFirst () : void}}
 
-Schimbă focusul la prima stare.
+Switch focus to first state.
 
-\subsubsection{\mintinline{icl}{States.toLast () : void}}
+\subsubsection{\mintinline{icl}{State.toLast () : void}}
 
-Schimbă focusul la ultima stare.
+Switch focus to last state.
 
-\subsubsection{\mintinline{icl}{for (States) {}}}
+\subsubsection{\mintinline{icl}{for (State) {}}}
 
-Îndeplinește ciclul pentru fiecare stare în parte.
-
-%\newpage
+Run commands for each container of state.

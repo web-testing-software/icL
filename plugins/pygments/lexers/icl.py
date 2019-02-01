@@ -27,7 +27,7 @@ class IclLexer(RegexLexer):
                     Name.Label, 
                     Text)),
 
-            (r'\b(icL|Log|Tab|Doc|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies?|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|States|DB|Query|DBManager|Code|Signal|Datetime)\b', 
+            (r'\b(icL|Log|Tab|Doc|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies?|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b', 
                 Name.Class),
 
             (r'\'[\w\-\*]+', 
