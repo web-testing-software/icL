@@ -1,9 +1,9 @@
-% !TeX spellcheck = ro_RO
-\section{Baze de date}
+% !TeX spellcheck = en_US
+\section{Databases}
 
-Modulul definește următoarele obiecte globale: \mintinline{icl}{DBManager} este managerul de baze de date, \mintinline{icl}{DB} este ultima bază de date deschisă, \mintinline{icl}{Query} este ultimul query.
+This section defines following global objects: \mintinline{icl}{DBManager} is a database manager, \mintinline{icl}{DB} is the last opened database, \mintinline{icl}{Query} is the last query.
 
-Modulul \textit{Baze de date} definește următoarele posibilități:
+There are following properties and methods to manipulate databases —
 \begin{icItems}
 	\item \mintinline{icl}{DBManager.openSQLite (path : string) : DB};
 	\item \mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB};
@@ -13,7 +13,7 @@ Modulul \textit{Baze de date} definește următoarele posibilități:
 	\item \mintinline{icl}{[w/o] Query'(name : string) : any};
 	\item \mintinline{icl}{Query.set (field : string, value : any) : void};
 	\item \mintinline{icl}{Query.exec () : bool};
-	\item Disponibile după executare:
+	\item Available after query execution:
 	\begin{icItems}
 		\item \mintinline{icl}{[r/o] Query'(name : string) : any};
 		\item \mintinline{icl}{Query.getRowsAffected () : int};
@@ -30,105 +30,98 @@ Modulul \textit{Baze de date} definește următoarele posibilități:
 
 \subsubsection{\mintinline{icl}{DBManager.openSQLite (path : string) : DB}}
 
-Deschide o nouă conexiune. \mintinline{icl}{path} e calea spre fișierul bazei de date.
+Open a new connection. \mintinline{icl}{path} is the database location.
 
 \subsubsection{\mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB}}
 
-Se conectează la icL DB Client prin WebSockets, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over WebSockets}, descris în \textit{icL Wire Protocol}.
+Creates a new connection to {\bf icL DB Client over WebSockets}, clients must realize the interface described in \textit{icL Wire Protocol}.
 
-Possible exceptions: \ferror{NoSuchServer} și \ferror{WrongUserPassword} (see table \ref{errors}).
+Possible exceptions: \ferror{NoSuchServer} and \ferror{WrongUserPassword} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{DBManager.connect (server : string) : DB}}
 
-Se conectează la icL DB Client prin HTTP, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over HTTP}, descris în \textit{icL Wire Protocol}.
+Creates a new connection to {\bf icL DB Client over HTTP}, clients must realize the interface described in \textit{icL Wire Protocol}.
 
 Possible exceptions: \ferror{NoSuchServer} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{DB.query (q : Code) : Query}}
 
-Creează un query, pe bază de comandă SQL izolată în acolade.
+Creates an SQL query, from SQL code.
 
 \subsubsection{\mintinline{icl}{DB.close () : void}}
 
-Închide conexiunea cu baza de date.
+Closes the connection with database.
 
 \subsubsection{\mintinline{icl}{[w/o] Query'(name : string) : any}}
 
-Întoarce o valoare, care permite a schimba valoarea înlocuitorului prin atribuire. Înlocuitorul are următoarea sintaxă \mintinline{icl}{:name}.
+Returns a placeholder value named \mintinline{icl}{name}. 
+The placeholder in SQL code has syntax \mintinline{icl}{:name}.
 
 \subsubsection{\mintinline{icl}{Query.set (field : string, value : any) : void}}
 
-Atribuie valoarea înlocuitorului \mintinline{icl}{field}.
+Set value of placeholder \mintinline{icl}{field}.
 
 \subsubsection{\mintinline{icl}{Query.exec () : bool}}
 
-Returnează \true, dacă query-ului a fost executată cu succes, în caz contrar \false.
+Returns \true{} if the query was executed successful, otherwise returns \false.
 
 \subsubsection{\mintinline{icl}{Query.getError () : string}}
 
-Returnează textul erorii, dacă la executarea query-ului a apărut o eroare.
+Gets the last errors text.
 
 \subsubsection{\mintinline{icl}{[r/o] Query'(name : string) : any}}
 
-După executarea \mintinline{icl}{Query.exec} proprietățile vor returna valoarea cîmpurilor necesare. Dacă așa cîmp nu există, va fi returnat \void.
+After \mintinline{icl}{Query.exec} the properties will return the value of column, if so column does not exists returns \void.
 
 \subsubsection{\mintinline{icl}{Query.getRowsAffected () : int}}
 
-Numărul de rînduri afectate/adăugate în baza de date.
+Gets the number of rows affected by query.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.getLength () : int}}
 
-Numărul de rezultate primit în rezultatul executării comenzii \mintinline{icl}{SELECT}.
+Gets the number of rows returned by \mintinline{icl}{SELECT}.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.get (field : string) : any}}
 
-Returnează valoarea cîmpului \mintinline{icl}{field} sau \void{} dacă așa cîmp nu există.
+Returns the value of column \mintinline{icl}{field} or \void{} if so column does not exist.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.next () : bool}}
 
-Returnează \true, dacă s-a primit să treacă la următorul rînd, în caz contrar \false.
+Returns \true{} if the cursor was successfully moved to the next row, otherwise returns \false.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.previous () : bool}}
 
-Returnează \true, dacă s-a primit să treacă la rîndul precedent, în caz contrar \false.
+Returns \true{} if the cursor was successfully moved to the previous row, otherwise returns \false.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.first () : bool}}
 
-Returnează \true, dacă s-a primit să treacă la primul rînd, în caz contrar \false.
+Returns \true{} if the cursor was successfully moved to the first row, otherwise returns \false.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.last () : bool}}
 
-Returnează \true, dacă s-a primit să treacă la ultimul rînd, în caz contrar \false.
+Returns \true{} if the cursor was successfully moved to the last row, otherwise returns \false.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Query.seek (i : int, relative = false) : bool}}
 
-Returnează \true, dacă s-a primit să treacă la al \mintinline{icl}{i}-lea rînd sau să mute cursorul cu \mintinline{icl}{i} rînduri (cu condiția că \mintinline{icl}{@relative == true}), în caz contrar \false.
+Returns \true{} if the cursor was successfully moved to the \mintinline{icl}{i}th row, otherwise returns \false. If \mintinline{icl}{@relative == true} then will switch to the \mintinline{icl}{current + i} position, also return \true{} on success and \false{} on failed.
 
 Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
 
-\subsubsection{Exemplu}
+\subsubsection{Example}
 
-Exemplu de cod, care folosește baze de date este prezentat pe foaia \ref{dbexample}. La fel ca și la executarea codului JavaScript, în cod pot să fie prezente variabile icL, variabilele locale au următoarea sintaxă \mintinline{icl}{@:nume}, dar variabilele globale - \mintinline{icl}{#:nume}.
-
-\newpage
-\begin{sourcecode}
-    \captionof{listing}{Exemplu de cod care folosește baze de date}
-    \label{dbexample}
-    \inputminted[linenos]{icl}{../sources/dbexample.icL}
-\end{sourcecode}
-
-%\newpage
+In SQL code can be integrated icL variables, placeholder for local variables has syntax — \mintinline{icl}{@:nume}, for global — \mintinline{icl}{#:nume}. Example of using the SQL queries and placeholders —
+\inputminted[linenos]{icl}{../sources/dbexample.icL}
