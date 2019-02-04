@@ -1,27 +1,21 @@
-% !TeX spellcheck = ro_RO
-\section{Sincronizare}
+% !TeX spellcheck = en_US
+\section{Synchronization}
 \label{sync}
 
-icL nu se limitează la sincronizarea cu procesele de încărcare și executarea script-urilor în pagina web. icL poate fi sincronizat cu back-end-ul cu ajutorul tehnologiei \textit{icL-Sync}. Lista tehnologiilor icL este disponibilă pe adresa \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
+icL is not limited to synchronization with the load of web pages and execution of JavaScript code in page. It can be synchronized with the back-end of web application using technology \textit{icL-Sync}. List of icL technologies is available on \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
 
-\subsubsection{Conectare}
+\subsubsection{Connection}
 
-Ca să captezi mesaje trebuie de creat spion, care are sintaxa următoare:
+To receive messages form server must be created a spy, syntax —
 \begin{iclcode}
-listen adresaServerului : (parametri) {
-	`` cod
+listen addressOfServer : (parameters) {
+	`` code
 }
 \end{iclcode}
 
-Unde \mintinline{icl}{adresaServerului} e URL serviciului de sincronizare, iar \mintinline{icl}{parametri} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
+Here \mintinline{icl}{addressOfServer} is the URL of synchronization service, \mintinline{icl}{parameters} is a list of parameters, messages with incompatible messages will be ignored. To one synchronization service can be connected some spies. If a parameter has an implicit value, the spy will catch just these messages, which will have the same value of argument. 
 
+Example of spy which will catch just errors messages —
+\inputminted[linenos]{icl}{../sources/errorcatch.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Capturarea erorilor}
-    \label{errorcatch}
-    \inputminted[linenos]{icl}{../sources/errorcatch.icL}
-\end{sourcecode}
-
-\subsubsection{Deconectare}
-
-Pentru a opri captura mesajelor folosiți metodele: \mintinline{icl}{Stack}\\*\mintinline{icl}{.ignore()} sau \mintinline{icl}{Stack.destroy()}. Mai multe date puteți găsi în paragraful \ref{stack:control}.
+\subsubsection{Disconnection} \mintinline{icl}{Stack.ignore()} sau \mintinline{icl}{Stack.destroy()}. Read §\ref{stack:control} for more information.
