@@ -1,61 +1,59 @@
-% !TeX spellcheck = ro_RO
+% !TeX spellcheck = en_US
 
-\section{Modificatori de control}
+\section{Control Modifiers}
 
 \label{sec-modifiers}
 
-Modificatorii de control permit a schimba calea de îndeplinire a unor construcții.
+Modifiers change the behavior of control operators.
 
 \subsubsection{\mintinline{icl}{if:not}}
 
-\mintinline{icl}{if:not (@var == true)} este echivalent cu \mintinline{icl}{if (!(@var == true))}, doar în acest caz se micșorează numărul de paranteze și codul arată mai simplu.
+\mintinline{icl}{if:not (@var == true)} is equivalent to \mintinline{icl}{if (!(@var == true))}.
 
-\subsubsection{\mintinline{icl}{for:alt} - ciclu universal alternativ}
+\subsubsection{\mintinline{icl}{for:alt}}
 
-În ciclul universal se schimbă ordinea de îndeplinire al operațiilor. \mintinline{icl}{for:alt} garantează ca grupa de comenzi va fi executat cel puțin o dată.
-
-Ordinea acțiunilor pentru \mintinline{icl}{for}:
+Changes the order of operations from —
 \begin{icEnum}
-    \item inițializare;
-	\item controlul condiției;
-	\item executarea grupei de comenzi;
-	\item trecerea la următoarea iterație.
+    \item Initialization.
+	\item Condition check.
+	\item Body execution.
+	\item Iteration check.
 \end{icEnum}
 
-Ordinea acțiunilor pentru \mintinline{icl}{for:alt}:
+To —
 \begin{icEnum}
-    \item inițializare;
-	\item executarea grupei de comenzi;
-	\item trecerea la următoarea iterație;
-	\item controlul condiției.
+    \item Initialization.
+	\item Body execution.
+	\item Iteration step.
+	\item Condition check.
 \end{icEnum}
 
-\subsubsection{\mintinline{icl}{while:not} - executare condiționată repetată}
+\subsubsection{\mintinline{icl}{while:not}}
 
-\mintinline{icl}{while:not} va executa drupa de comenzi atît timp, cît condiția va rămîne falsă.
+\mintinline{icl}{while:not} executes loop body while the condition is false.
 
-\subsubsection{\mintinline{icl}{do-while:not} - ciclu cu condiție posterioară}
+\subsubsection{\mintinline{icl}{do-while:not}}
 
-\mintinline{icl}{do-while:not} va executa drupa de comenzi atît timp, cît condiția va rămîne falsă. La fel ca \mintinline{icl}{do-while} garantează că grupa de comenzi va fi executată minimum o dată.
+\mintinline{icl}{do-while:not} executes loop body while the condition is false.
 
-\subsubsection{\mintinline{icl}{for:reverse} - răsfoirea colecție}
+\subsubsection{\mintinline{icl}{for:reverse}}
 
-\mintinline{icl}{for:reverse} va răsfoi colecția de la sfîrșit la început.
+\mintinline{icl}{for:reverse} iterates collection from end to begin.
 
-\subsubsection{\mintinline{icl}{filter:reverse} - răsfoirea selectivă a colecției}
+\subsubsection{\mintinline{icl}{filter:reverse}}
 
-\mintinline{icl}{filter:reverse} va răsfoi colecția de la sfîrșit la început.
+\mintinline{icl}{filter:reverse} iterates collection from end to begin.
 
-\subsubsection{\mintinline{icl}{range:reverse} - răsfoirea parțială a colecției}
+\subsubsection{\mintinline{icl}{range:reverse}}
 
-\mintinline{icl}{filter:reverse} va răsfoi colecția de la sfîrșit la început.
+\mintinline{icl}{filter:reverse} iterates collection from end to begin.
 
-\subsubsection{\mintinline{icl}{emiter:alive} - a doua răsuflare}
+\subsubsection{\mintinline{icl}{emiter:alive}}
 
-În lista tehnologiilor \textit{icL} este prezentă tehnologia \textit{icL ALive}. Ea permite a restaura abilitatea de lucra a procesorului de comenzi după eșec, dar dacă excepția este prinsă de construcția \mintinline{icl}{emiter-slot}, excepția va fi prelucrată de ea. Dacă este necesar ca excepția să fie prelucrată de \textit{icL ALive} atunci cînd este posibil, folosiți modificatorul \mintinline{icl}{emiter:alive}.
+There is \textit{icL ALive} technology. It restores the command processor after fail. If the exception get handled by \mintinline{icl}{emiter-slot} control, \textit{icL ALive} will not stop command processor. If you want to handle the exception by \textit{icL ALive} use modifier \mintinline{icl}{emiter:alive}.
 
-Lista tehnologiilor \textit{icL} este disponibilă pe linkul: \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
+List of icL technologies is available on \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
 
-\subsubsection{\mintinline{icl}{listen:ignore} - regim "offline"}
+\subsubsection{\mintinline{icl}{listen:ignore}}
 
-Construcția \mintinline{icl}{listen} este o parte a tehnologiei \textit{icL-Sync}, \mintinline{icl}{listen:ignore} permite a crea spion, care nu va spiona de la inițializare, dar va aștepta apelul metodei \mintinline{icl}{Stack.listen()}. Mai multă informație poate fi găsită in capitolul \ref{sync}.
+Creates a passive (initially disabled) spy.
