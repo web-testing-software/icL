@@ -1,9 +1,9 @@
-% !TeX spellcheck = ro_RO
+% !TeX spellcheck = en_US
 \section{crossfire.js}
 
-Tehnologia {\bf crossfire.js} permite a apela funcții icL din pagina web. Funcția va fi executată asincron.
+The technology {\bf crossfire.js} is used to call icL function form web page. The call are asynchronous.
 
-A insera funcții icL în JavaScript se poate cu următorul înlocuitor \mintinline{icl}{!{name}}. La apelul funcției icL, parametri trebuie să fie compatibili, în caz contrar va fi generat un semnal care va opri executarea funcției, în urma căruia executarea scriptului va fi oprită. Pentru a garanta înțelegerea corectă a datelor se recomadă de folosit următoarele funcții JavaScript:
+To insert calls to icL function is JavaScript use placeholder \mintinline{icl}{!{name}}. The arguments must be compatible with parameters of icL functions. To ensure correct type interpretation use following functions —
 \begin{icItems}
 	\item \mintinline{icl}{crossfire.bool(arg)};
 	\item \mintinline{icl}{crossfire.int(arg)};
@@ -15,11 +15,5 @@ A insera funcții icL în JavaScript se poate cu următorul înlocuitor \mintinl
 	\item \mintinline{icl}{crossfire.element(arg)};
 \end{icItems}
 
-Exemplu elementar de apelare corectă a funcției icL este prezentat pe foaia \ref{crossfireexample}. Funcția \mintinline{icl}{onclick} primește un parametru, dar \mintinline{icl}{func} - nu. În cauză trebuie interface, cel mai simplu mod este de a defini o funcție anonimă.
-
-\begin{sourcecode}
-    \captionof{listing}{Exemplu de apelare a funcției icL}
-    \label{crossfireexample}
-    \inputminted[linenos]{icl}{../sources/crossfireexample.icL}
-\end{sourcecode}
-
+In following code, function \mintinline{icl}{onclick} gets a parameter, but \mintinline{icl}{func} — no one. In this case can be defined an anonymous function —
+\inputminted[linenos]{icl}{../sources/crossfireexample.icL}
