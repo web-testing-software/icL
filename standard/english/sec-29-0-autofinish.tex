@@ -1,25 +1,20 @@
-% !TeX spellcheck = ro_RO
-\section{Auto-finisarea comenzilor}
+% !TeX spellcheck = en_US
+\section{Commands auto-finish}
 
-\textbf{Delimitatorul de comenzi} în icL poate fi omis, dar nu se recomandă. Dar pentru a face codul mai clar e mai bine de omis delimitatorul de comenzi după \mintinline{icl}{if}, \mintinline{icl}{else}, \mintinline{icl}{while}, \mintinline{icl}{do while}, \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}. Diferența o puteți vedea comparînd foaia \ref{nodelimiterskipping} cu  \ref{delimiterskipping}.
+\textbf{The delimiter of commands} can be omitted in icL. It's recommended to skip it just after the next controls — \mintinline{icl}{if}, \mintinline{icl}{else}, \mintinline{icl}{while}, \mintinline{icl}{do while}, \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}.
 
-\begin{sourcecode}
-    \captionof{listing}{Făra delimitatori omiși}
-    \label{nodelimiterskipping}
-    \inputminted[linenos]{icl}{../sources/nodelimiterskipping.icL}
-\end{sourcecode}
+Code without delimiters —
+\inputminted[linenos]{icl}{../sources/nodelimiterskipping.icL}
 
-\begin{sourcecode}
-    \captionof{listing}{Cu delimitatori omiși}
-    \label{delimiterskipping}
-    \inputminted[linenos]{icl}{../sources/delimiterskipping.icL}
-\end{sourcecode}
+Code with delimiters —
+\inputminted[linenos]{icl}{../sources/delimiterskipping.icL}
 
-Comanda poate fi finisată automat după următoarele construcții semantice:
+\newpage
+Command gets auto-finished after following tokens —
 \begin{icItems}
-	\item literal;
-	\item valoare;
-	\item proprietate;
-	\item pachet de valori;
-	\item grup de comenzi.
+	\item Literal.
+	\item Value.
+	\item Property.
+	\item Packed value.
+	\item Sets of statements.
 \end{icItems}
