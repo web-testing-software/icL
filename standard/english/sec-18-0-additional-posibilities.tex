@@ -7,7 +7,7 @@ There are {\bf additional possibilities} for complete cover of W3C WebDriver sta
 
 These possibilities are required for complex scripts. On start icL automatically start a session and close it on finish.
 
-\subsection{{\color{orange} Sessions}}
+\subsection{Sessions}
 
 The object \sessions{} has following properties —
 \begin{icItems}
@@ -48,7 +48,7 @@ Opens and returns a new session.
 
 Possible exceptions: \ferror{SessionNotCreated} (see table \ref{errors}).
 
-\subsection{{\color{orange} Session}}
+\subsection{Session}
 
 \session{} returns a reference to current session.
 
@@ -144,7 +144,7 @@ Focus this session.
 
 Possible exceptions: \ferror{NoSuchSession} (see table \ref{errors}).
 
-\subsection{{\color{orange} Windows}}
+\subsection{Windows}
 
 The object \windows{} has following properties —
 \begin{icItems}
@@ -172,7 +172,7 @@ Returns the \mintinline{icl}{i}th window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
 
-\subsection{{\color{orange} Window}}
+\subsection{Window}
 
 The object \window{} has following properties —
 \begin{icItems}
@@ -280,7 +280,7 @@ Switch focus to parent frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
-\subsection{{\color{orange} Cookies}}
+\subsection{Cookies}
 
 The object \cookies{} has property \mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}.
 
@@ -306,7 +306,7 @@ Returns the \cookie{} named \mintinline{icl}{name}.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
 
-\subsection{{\color{orange} Cookie}}
+\subsection{Cookie}
 
 The object \cookie{} has following properties —
 \begin{icItems}
@@ -380,7 +380,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Invalid
 \inputminted[linenos]{icl}{../sources/newcookies.icL}
 
 
-\subsection{{\color{orange} Alert}}
+\subsection{Alert}
 
 The object \alert{} has property \mintinline{icl}{[r/o] Alert'text : string}.
 
@@ -415,7 +415,7 @@ Sets the text of dialog field.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (see table \ref{errors}).
 
-\subsection{{\color{orange} Tabs}}
+\subsection{Tabs}
 
 The object \tabs{} has following properties —
 \begin{icItems}
@@ -553,7 +553,7 @@ Return the first tab whose title matches the regular expression.
 
 Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
 
-\subsection{{\color{orange} Tab}}
+\subsection{Tab}
 
 The object \tab{} has following properties —
 \begin{icItems}
@@ -641,7 +641,7 @@ Load page, the URL must be absolute. On failed will be generated an error.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (see table \ref{errors}).
 
-\subsection{{\color{orange} Doc}}
+\subsection{Doc}
 
 The object \dom{} has following methods:
 \begin{icItems}
@@ -699,7 +699,7 @@ The same as \mintinline{icl}{Doc.query (By'tagName, @name)}.
 
 The same as \mintinline{icl}{Doc.queryAll (By'tagName, @name)}.
 
-\subsection{{\color{orange} Files}}
+\subsection{Files}
 
 The object \files{} has following methods —
 \begin{icItems}
@@ -731,7 +731,7 @@ Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
 
 Create all folders in path.
 
-\subsection{{\color{orange} File}}
+\subsection{File}
 
 The object \file{} has following properties —
 \begin{icItems}
@@ -776,7 +776,7 @@ Closes the file.
 
 Removes the file.
 
-\subsection{{\color{orange} Make}}
+\subsection{Make}
 
 The object \make{} has a method \mintinline{icl}{Make.image (base64 : string, path : string) : void}.
 
@@ -784,7 +784,7 @@ The object \make{} has a method \mintinline{icl}{Make.image (base64 : string, pa
 
 Saves the screenshot on disk.
 
-\subsection{{\color{orange} Log}}
+\subsection{Log}
 
 The object \logtype{} has following methods —
 \begin{icItems}
@@ -815,7 +815,7 @@ Prints all definitions and values of stack variable.
 
 Prints all definitions and values of state variable.
 
-\subsection{{\color{orange} Numbers}}
+\subsection{Numbers}
 
 The object \numbers{} has following properties —
 \begin{icItems}
@@ -870,7 +870,7 @@ Restores the previous process mode.
 
 Switch to a new process mode.
 
-\subsection{{\color{orange} Math}}
+\subsection{Math}
 
 The object \mintinline{icl}{Math} has following properties —
 \begin{icItems}
@@ -1030,7 +1030,7 @@ Sine ($\sin{v}$).
 
 Cosine ($\tan{v}$).
 
-\subsection{{\color{orange} Import}}
+\subsection{Import}
 
 The object \mintinline{icl}{Import} has following methods —
 \begin{icItems}
