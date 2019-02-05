@@ -9,7 +9,7 @@ The execution order of operators is defined by rank, an operator with a bigger r
 
 {\bf The square brackets} in icL is an operator of $1^{st}$ rang and left associativity.
 
-In operators descriptions is used the notation {\bf operation} an {\bf operator}. The operation is a public case (for example {\it addition}). The oeprator is a private case (for example {\bf addition of integer numbers}). The operator becomes and an operation on its first occasion of realization, for example in the expression \mintinline{icl}{1 + 2 * 3}, the operator \mintinline{icl}{+} becomes an operation just after multiplication.
+In operators descriptions is used the notation {\bf operation} an {\bf operator}. The operation is a public case (for example {\it addition}). The operator is a private case (for example {\bf addition of integer numbers}). The operator becomes and an operation on its first occasion of realization, for example in the expression \mintinline{icl}{1 + 2 * 3}, the operator \mintinline{icl}{+} becomes an operation just after multiplication.
 
 \subsection{Logical Operators}
 
@@ -30,7 +30,7 @@ Examples —
 
 \subsubsection{\mintinline{icl}{(a : bool) & (b : bool) : bool}}
 
-The truth table of conjunction —
+\noindent The truth table of conjunction —
 
 \begin{table}[H]
 	\begin{tabular}{|c|c|c|}
@@ -45,7 +45,7 @@ The truth table of conjunction —
 
 \subsubsection{\mintinline{icl}{(a : bool) | (b : bool) : bool}}
 
-The truth table of disjunction —
+\noindent The truth table of disjunction —
 
 \begin{table}[H]
 	\begin{tabular}{|c|c|c|}
@@ -60,7 +60,7 @@ The truth table of disjunction —
 
 \subsubsection{\mintinline{icl}{(a : bool) ~ (b : bool) : bool}}
 
-The truth table of biconditional —
+\noindent The truth table of biconditional —
 
 \begin{table}[H]
 	\begin{tabular}{|c|c|c|}
@@ -75,7 +75,7 @@ The truth table of biconditional —
 
 \subsubsection{\mintinline{icl}{(a : bool) ^ (b : bool) : bool}}
 
-The truth table of exclusive or —
+\noindent The truth table of exclusive or —
 
 \begin{table}[H]
 	\begin{tabular}{|c|c|c|}
@@ -90,7 +90,7 @@ The truth table of exclusive or —
 
 \subsubsection{\mintinline{icl}{! (a : bool) : bool}}
 
-The truth table of negation —
+\noindent The truth table of negation —
 
 \begin{table}[H]
 	\begin{tabular}{|c|c|}
@@ -384,7 +384,7 @@ Returns \true{}, if list \mintinline{icl}{l} contains a string equal to string \
 
 \subsubsection{\mintinline{icl}{(str : string) << (substr : string) : bool}}
 
-Returns \true{}, if string \mintinline{icl}{str} contain substring \mintinline{icl}{substr}, otherwise \false{}.
+Returns \true{}, if string \mintinline{icl}{str} contains substring \mintinline{icl}{substr}, otherwise \false{}.
 
 \subsubsection{\mintinline{icl}{(l : list) !< (str : string) : bool}}
 
@@ -398,7 +398,7 @@ Returns \true{}, if string \mintinline{icl}{str} does not contain the substring 
 
 Returns \true{}, if list \mintinline{icl}{l} contains a string, which match the template \mintinline{icl}{template}, otherwise \false{}.
 
-{\bf A template} is a string, which can contain a special symbol \mintinline{icl}{*}. This symbol means any character sequence. Let's see the next example \mintinline{icl}{"Have a * day!"}. Exemples of string which match it: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have a amazing day!"}. Example of string which does not match it — \mintinline{icl}{"Have a good day"} (the exclamation mark is absent).
+{\bf A template} is a string, which can contain a special symbol \mintinline{icl}{*}. This symbol means any character sequence. Let's see the next example \mintinline{icl}{"Have a * day!"}. Exemples of string which match it: \mintinline{icl}{"Have a nice day!"}, \mintinline{icl}{"Have an amazing day!"}. Example of string which does not match it — \mintinline{icl}{"Have a good day"} (the exclamation mark is absent).
 
 \subsubsection{\mintinline{icl}{(l : list) !* (template : string) : bool}}
 
@@ -547,7 +547,7 @@ Returns \true, if the set \mintinline{icl}{set1} intersects the set \mintinline{
 
 {\bf The square operator} or {\bf the merge operator} creates the next data types: \listtype{}, \set{} and \object{}.
 
-\mintinline{icl}{[] : list} creates a empty list.
+\mintinline{icl}{[] : list} creates an empty list.
 
 \mintinline{icl}{[string ...] : list} creates a new list from strings (constant and variables, including functions calls). Example —  \mintinline{icl}{["a", "b", "c"]}.
 
@@ -557,7 +557,7 @@ Returns \true, if the set \mintinline{icl}{set1} intersects the set \mintinline{
 
 \mintinline{icl}{[object ...] : set} creates a new set from objects.
 
-\mintinline{icl}{[set ...] : set} create union of some sets.
+\mintinline{icl}{[set ...] : set} creates union of some sets.
 
-\mintinline{icl}{[object or set ...] : set} create union of sets and objects.
+\mintinline{icl}{[object or set ...] : set} creates union of sets and objects.
 

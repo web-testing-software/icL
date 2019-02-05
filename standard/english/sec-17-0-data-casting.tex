@@ -9,7 +9,7 @@ There are 4 operators of first rank:
 	\item \mintinline{icl}{data :? type : bool};
 \end{icItems}
 
-And a operator of seventh rank — \mintinline{icl}{date :! type : type}.
+And an operator of seventh rank — \mintinline{icl}{date :! type : type}.
 
 \subsubsection{\mintinline{icl}{data : type : type}}
 
@@ -24,13 +24,13 @@ Cast data to \mintinline{icl}{type}. Has next overloads —
 
 \mintinline{icl}{(value...) : type} coverts some values and returns packed values.
 
-\mintinline{icl}{(value...) : (type...)} converts each value to congruent type and returns packed values. The value and data packs must contains the same number of values.
+\mintinline{icl}{(value...) : (type...)} converts each value to congruent type and returns packed values. The \mintinline{icl}{value} pack and \mintinline{icl}{type} pack must contains the same number of values.
 
 Possible exceptions: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} and \ferror{ComplexField} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{data :: type : bool}}
 
-Returns \true{} if data has needed type, otherwise returns \false. Has next overloads —
+Returns \true{} if data has needed type, otherwise returns \false. Has following overloads —
 \begin{icItems}
 	\item \mintinline{icl}{value :: type};
 	\item \mintinline{icl}{(value...) :: type};
@@ -53,7 +53,7 @@ The difference between \mintinline{icl}{data :! type : type} and \mintinline{icl
 \subsection{Possible Casts}
 
 In table \ref{castingtable} are demonstrated the possible casts.
-With minus sign was marked the impossible casts which will generate the exception \ferror{UnrealCast}. With plus sign are marked the casts with never generate exception. With star sign are marked casts which may generate exceptions. Columns are value type, rows are needed type name.
+With minus sign was marked the impossible casts which will generate the exception \ferror{UnrealCast}. With plus sign are marked the casts which never generate exception. With star sign are marked casts which may generate exceptions. Columns are value type, rows are needed type name.
 
 \begin{table}[htb]
 	\caption{Conversii}
@@ -233,7 +233,7 @@ Returns a JSON string which describes the object.
 
 \subsubsection{\mintinline{icl}{set : object}}
 
-Returns a object if the set contains a single objects, otherwise generates a error.
+Returns an object if the set contains a single object, otherwise generates an exception.
 
 Possible exceptions: \ferror{EmptySet} and \ferror{MultiSet} (see table \ref{errors}).
 

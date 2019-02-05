@@ -164,7 +164,7 @@ Default validation condition —
 	\item
 	for \set{} — \mintinline{icl}{!#'empty};
 	\item
-	for \element{} — \mintinline{icl}{#'empty}.
+	for \element{} — \mintinline{icl}{!#'empty}.
 \end{icItems}
 
 Syntax for default condition —
@@ -182,7 +182,7 @@ Example —
 
 \subsubsection{\mintinline{icl}{for-any}}
 
-\mintinline{icl}{for-any} is used to sometimes use a value without creating a value.
+\mintinline{icl}{for-any} is used to sometimes use a value without creating a variable.
 
 Example —
 \inputminted[linenos]{icl}{../sources/foranyex.icL}
@@ -233,7 +233,7 @@ Example -
 
 \subsection{Web Elements}
 
-All errors of web elements are defined by W3C WebDriver Standard. In automation mode the error \ferror{NoSuchElement} gets omitted and the request returns a empty collection.
+All errors of web elements are defined by W3C WebDriver Standard. In automation mode the error \ferror{NoSuchElement} gets omitted and the request returns an empty collection.
 
 Examples —
 \inputminted[linenos]{icl}{../sources/webelementsheet.icL}

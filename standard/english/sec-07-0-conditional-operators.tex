@@ -19,7 +19,7 @@ if (condition) {
 	commands
 };
 \end{minted}
-Here \mintinline{icl}{condtition} is an expression which returns \bool{} and \mintinline{icl}{commands} is a sequence of commands.
+Here \mintinline{icl}{condtition} is an expression which returns \bool{} and \mintinline{icl}{commands} is a set of statements.
 
 The round brackets can be omitted if the expression is simple, syntax —
 \begin{minted}{icl}
@@ -70,7 +70,7 @@ switch (value) {
 }
 \end{minted}
 
-\mintinline{icl}{switch} gets the value \mintinline{icl}{value}, which can have any type excluding \bool. Next, in \mintinline{icl}{switch} shall be defined some cases (\mintinline{icl}{case}), if \mintinline{icl}{value == caseValue} then the set of statements gets executed.
+\mintinline{icl}{switch} gets a \mintinline{icl}{value}, which can have any type excluding \bool. Next, in \mintinline{icl}{switch} shall be defined some cases (\mintinline{icl}{case}), if \mintinline{icl}{value == caseValue} then the set of statements gets executed.
 
 A \mintinline{icl}{case} can contains some values delimited by comma.
 
@@ -91,8 +91,8 @@ Let's see which sets of statements will be executed for each value of \mintinlin
 	\item 2 — will be executed \mintinline{icl}{code2} and \mintinline{icl}{code3};
 	\item 3 — will be executed \mintinline{icl}{code3};
 	\item 4 — will be executed \mintinline{icl}{code4};
-	\item 5 — will be executedupul \mintinline{icl}{code5};
-	\item 6 — will be executedupul \mintinline{icl}{code5}.
+	\item 5 — will be executed \mintinline{icl}{code5};
+	\item 6 — will be executed \mintinline{icl}{code5}.
 \end{icItems}
 
 

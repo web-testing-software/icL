@@ -7,7 +7,7 @@ An exception in icL has name and description. To print out the name and descript
 
 The code which emits exceptions is named {\it emitter}. It has the syntax \mintinline{icl}{emitter {`code`}}. The emitted signal is received by slot. Slot has the syntax \mintinline{icl}{slot:exception {`cod`}}, where exception is a name of registered exception. To handle any error use \mintinline{icl}{slot:Any}.
 
-to generate a exception signal use \mintinline{icl}{emit:exception (description : string)}.
+To generate an exception signal use \mintinline{icl}{emit:exception (description : string)}.
 
 Example of using user defined exceptions —
 \inputminted[linenos]{icl}{../sources/sighandling.icL}
@@ -25,7 +25,7 @@ List of predefined signals —
 {
 	\ferror{Exit}                    & Script exit was requested.                  \\ \hline
 	
-	\ferror{NoSessions}              & There is not a opened session.              \\ \hline
+        \ferror{NoSessions}              & There is not an opened session.             \\ \hline
 	\ferror{NoSuchWindow}            & No such window.                             \\ \hline
 	\ferror{NoSuchElement}           & No such element.                            \\ \hline
 	\ferror{NoSuchFrame}             & Nu such frame.                              \\ \hline

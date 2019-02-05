@@ -24,7 +24,7 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Sessions'length : int}}
 
-The number od opened sessions.
+The number of opened sessions.
 
 \subsubsection{\mintinline{icl}{[r/o] Sessions'(i : int) : Session}}
 
@@ -98,7 +98,7 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{
 
 \subsubsection{\mintinline{icl}{[r/o] Session'title : string}}
 
-the title of page.
+The title of page.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
@@ -222,61 +222,61 @@ Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Invalid
 
 \subsubsection{\mintinline{icl}{Window.close () : void}}
 
-Close current window, if last will close the session.
+Closes the current window, if it is the last will close the session.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.focus () : Window}}
 
-Focus this window.
+Focuses this window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.fullscreen () : Window}}
 
-Enter full-screen mode.
+Enters full-screen mode.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.maximize () : Window}}
 
-Maximize the browser window.
+Maximizes the browser window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.minimize () : Window}}
 
-Minimize the browser window.
+Minimizes the browser window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.restore () : Window}}
 
-Restore browser window.
+Restores the browser window.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToDefault () : Window}}
 
-Restore focus to main frame.
+Restores focus to main frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToFrame (i : int) : Window}}
 
-Switch focus to \mintinline{icl}{i}th frame.
+Switches focus to \mintinline{icl}{i}th frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToFrame (el : element) : Window}}
 
-Switch focus to element \mintinline{icl}{el}, the element must be a frame or iframe tag.
+Switches focus to element \mintinline{icl}{el}, the element must be a frame or iframe tag.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (see table \ref{errors}).
 
 \subsubsection{\mintinline{icl}{Window.switchToParent () : Window}}
 
-Switch focus to parent frame.
+Switches focus to parent frame.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
 
@@ -333,7 +333,7 @@ Domain of cookie.
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'expiry : int}}
 
-Timpul de expirare al fișierului cookie. Implicit -1, indică că fișierul cookie va fi șters la sfîrșitul sesiei.
+Expiry time of cookie. By default, is \mintinline{icl}{-1}, the cookie will be deleted on session close.
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'httpOnly : bool}}
 
@@ -637,7 +637,7 @@ Load page, the URL must be absolute. Returns \true{} on success, on failed retur
 
 \subsubsection{\mintinline{icl}{Tab.load (url : string) : void}}
 
-Load page, the URL must be absolute. On failed will be generated an error.
+Load page, the URL must be absolute. On failed will be generated an exception.
 
 Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (see table \ref{errors}).
 
@@ -836,15 +836,15 @@ And following methods —
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'max : 4}}
 
-The maximum identifier.
+The identifier of maximum.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'min : 3}}
 
-The minimum identifier.
+The identifier of minimum.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'product : 2}}
 
-The product identifier.
+The identifier of product.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'process : int}}
 
@@ -852,7 +852,7 @@ The current process mode.
 
 \subsubsection{\mintinline{icl}{[r/o] Numbers'sum : 1}}
 
-The sum identifier.
+The identifier of sum.
 
 \subsubsection{\mintinline{icl}{Numbers.process (a : int, b : int) : int}}
 

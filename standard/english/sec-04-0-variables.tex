@@ -8,7 +8,7 @@ The variable name is an identifier which starts with \mintinline{icl}{@} or \min
 \subsection{Variables Definition and Initialization in icL}
 
 \textbf{Variable definition and initialization} tells the command processor where and the initial value for variable. A variable definition specifies an identifier and a value as follows —
-\mint{icl}{identifier = value}.
+\mint{icl}{identifier = value}
 
 Some valid declarations are shown here —
 \inputminted[linenos]{icl}{../sources/initexample.icL}
@@ -28,7 +28,7 @@ Here \mintinline{icl}{@var} is not visible in declaration points of \mintinline{
 
 \textbf{The global variables} has the largest domain of visibility. They are visible in any point after declaration. I do not recomand to use global variables.
 
-{\bf The identifiers} of global variables starts with \mintinline{icl}{#}. Is possible to create 2 local variables with the same name, but the global variables has a unique name which can not be repeated.
+{\bf The identifiers} of global variables start with \mintinline{icl}{#}. Is possible to create 2 local variables with the same name, but the global variables has a unique name which can not be repeated.
 
 Demonstration of domain visibility for \mintinline{icl}{#var} variable —
 \inputminted[linenos]{icl}{../sources/globalvars.icL}
@@ -37,7 +37,7 @@ Here \mintinline{icl}{#var} is not visible in declaration points of \mintinline{
 
 \subsection{Lvalues and Rvalues in icL}
 
-There are 3 kinds of expressions in icL:
+There are 3 kinds of expressions in icL —
 
 \begin{icEnum}
 \item
@@ -52,12 +52,12 @@ Examples of correct and incorrect use of lvalues and rvalues —
 
 \subsection{Packed Values}
 
-{\bf The packed values} are used in special operators. To pack values, embrace them in curly brackets and delimit them by comma. The simplest example of using packet value is value swap -
+{\bf The packed values} are used in special operators. To pack values, embrace them in curly brackets and delimit them by comma. The simplest example of using packet value is value swap —
 \mint{icl}{(@a, @b) = (@b.ensureRValue, @a.ensureRValue)}
 
 \subsection{The @ and \# Variables}
 
-{The variable \mintinline{icl}{@}} is an acronym for \mintinline{icl}{@stack} and \mintinline{icl}{Stack'stack}. A system variable which is used to export/import data to/from stack.
+{The variable \mintinline{icl}{@}} is an acronym for \mintinline{icl}{@stack} and \mintinline{icl}{Stack'stack}. A system variable which is used to export/import data to/from stack container.
 
 {The variable \mintinline{icl}{#}} is an acronym for \mintinline{icl}{@console}, the result of current command execution is stored to this variable and transferred to next command.
 

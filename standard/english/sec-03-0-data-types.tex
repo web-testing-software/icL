@@ -1,7 +1,7 @@
 % !TeX spellcheck = en_US
 \section{Data Types}
 
-Int the icL scripting language, data types refer to an extensive system used for declaring variables or functions of different types. The type of variable determines how much space it occupies in storage and how the stored bit pattern is interpreted.
+Int the icL scripting language, data types refer to an extensive system used for declaring variables or functions of different types. The type of variable determines how much space it occupies in storage and how the stored data is interpreted.
 
 The types in icL can b classified as follows —
 \stabletwo{3.5cm}{13.6cm}
@@ -27,7 +27,7 @@ The types in icL can b classified as follows —
 
 \subsection{The Void Type}
 
-{\bf The type specifier \void{}} indicates that no value is aviable, it can be used for any proposes —
+{\bf The type specifier \void{}} indicates that no value is available, it can be used for any proposes —
 
 \begin{icItems}
 \item
@@ -53,13 +53,13 @@ Some data types has properties. The properties define some data characteristics.
 \item
 	\mintinline{icl}{any'typeId : int} is the identifier of data type.
 \item
-	\mintinline{icl}{any'rValue : bool} is \true{} the object is a right value, otherwise \false{}.
+	\mintinline{icl}{any'rValue : bool} is \true{} the object is a right value, otherwise returns \false{}.
 \item
-	\mintinline{icl}{any'readOnly : bool} is \true{} if the object is read-only, otherwise \false{}.
+	\mintinline{icl}{any'readOnly : bool} is \true{} if the object is read-only, otherwise returns \false{}.
 \item
-	\mintinline{icl}{any'lValue : bool} is \true{} if the object is a left value, otherwise \false{};
+	\mintinline{icl}{any'lValue : bool} is \true{} if the object is a left value, otherwise returns \false{};
 \item
-	\mintinline{icl}{any'link : bool} is \true{} if value is stored in external container and the change the value will change it externally, otherwise \false{}.
+	\mintinline{icl}{any'link : bool} is \true{} if value is stored in external container and the change the value will change it externally, otherwise returns \false{}.
 \end{icItems}
 
 Example of using properties —
@@ -69,5 +69,5 @@ Example of using properties —
 
 The methods change the state of the object. All data types has a single common method: \mintinline{icl}{any.ensureRValue}, it convert a left value to a right value.
 
-Example of the \mintinline{icl}{any.ensureRValue} method using —
+Example of method \mintinline{icl}{any.ensureRValue} using —
 \inputminted[linenos]{icl}{../sources/anyensureRValue.icL}
