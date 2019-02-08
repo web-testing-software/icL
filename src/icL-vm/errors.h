@@ -7,7 +7,7 @@
 // namespace icL::errors {
 
 ///**
-//  \~english
+// 
 // * @brief The Errors enum contains all standard error codes
 // *
 // * For more information plase see the Standard for language icL
