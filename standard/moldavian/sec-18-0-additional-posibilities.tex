@@ -326,7 +326,8 @@ Obiectul \cookie{} are următoarele proprietăți:
 	\item \mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,}\\* \mintinline{icl}{seconds = 0) : Cookie};
 	\item \mintinline{icl}{Cookie.load () : Cookie};
 	\item \mintinline{icl}{Cookie.resetTime () : Cookie};
-	\item \mintinline{icl}{Cookie.save () : Cookie}.
+	\item \mintinline{icl}{Cookie.save () : Cookie};
+	\item \mintinline{icl}{Cookie.delete () : void}.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'domain : string}}
@@ -376,6 +377,12 @@ Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să
 Transmite schimbările fișierului cookie în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Cookie.delete () : void}}
+
+Șterge fișierul cookie din browser.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{Crearea noilor fișiere cookie}
 
