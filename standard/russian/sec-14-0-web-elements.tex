@@ -269,7 +269,7 @@ css[header ul > li:nth-child(even)]
     \item \mintinline{icl}{element.add (other : element) : element};
 	\item \mintinline{icl}{element.child (index : int) : element};
 	\item \mintinline{icl}{element.closest (cssSelector : string) : element};
-	\item \mintinline{icl}{element.contains (text : string, asFragment = false) : element};
+	\item \mintinline{icl}{element.contains (template : string) : element};
 	\item \mintinline{icl}{element.copy () : element};
 	\item \mintinline{icl}{element.get (i : int) : element};
 	\item \mintinline{icl}{element.filter (cssSelector : string) : element};
@@ -296,9 +296,9 @@ css[header ul > li:nth-child(even)]
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{element.contains (text : string, asFragment = false) : element}}
+\subsubsection{\mintinline{icl}{element.contains (template : string) : element}}
 
-Возвращает новая коллекция, содержащая все элементы, которые содержат текст/фрагмент \mintinline{icl}{text}.
+Возвращает новая коллекция, содержащая все элементы, которые содержат текст подходящая по шаблону \mintinline{icl}{template}.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (см. таб. \ref{errors}).
 
