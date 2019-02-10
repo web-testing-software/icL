@@ -1,0 +1,63 @@
+% !TeX spellcheck = en_US
+\section{Integration with JavaScript}
+
+There are 2 operation modes: testing and automation. For each mode the {\bf integration with JavaScript} is different. The testing API is defined by World Wide Web Consortium WebDriver Protocol, its specifications are marked by \mintinline{icl}{[w3c]}. The automation API is icL proprietary, its specifications are marked by \mintinline{icl}{[icL]}.
+
+\subsection{JS-Values}
+
+{\bf JS-Values} is the main innovation of JavaScript integration. It creates opportunity to use JavaScript variables as icL variables. JS-Values can be read-only.
+
+Each JS-Value has getter and setter, read-only values have only getter. A getter or a setter is a fragment of JavaScript code. In setter the gotten value is included as \mintinline{icl}{@{value}}.
+
+The syntax of JS-Value —
+\begin{minted}{icl}
+$value {getter; setter};
+\end{minted}
+
+the syntax of read-only JS-Value —
+\begin{minted}{icl}
+$value {getter};
+\end{minted}
+
+A JS-Value can be any JavaScript variable. They keep to be available after switching to other web page.
+
+Example of JS-Value —
+\inputminted[linenos]{icl}{../sources/jsvalueex.icL}
+
+\subsection{Execution of JavaScript}
+
+\mintinline{icl}{[icL]} Use \mintinline{icl}{$run} to run JavaScript code which can contain icL variables. For global variables use placeholder — \mintinline{icl}{#{nume}}, for local — \mintinline{icl}{@{nume}}. Example —
+
+\inputminted[linenos]{icl}{../sources/jsrunex1.icL}
+
+\mintinline{icl}{[w3c]} Use \mintinline{icl}{$run} command to run JavaScript code. To transmit data in JavaScript code use arguments. Example —
+
+\inputminted[linenos]{icl}{../sources/jsrunex2.icL}
+
+To run code asynchronous use \mintinline{icl}{$runAsync}.
+
+Possible exceptions: \ferror{JavaScriptError}, \ferror{ScriptTimeout} (see table \ref{errors}).
+
+\subsection{JavaScript Files Execution}
+
+Use \mintinline{icl}{$file} command {\bf to execute} JavaScript files. Syntax —
+
+\begin{minted}{icl}
+$file "path/to/file.js";
+\end{minted}
+
+Possible exceptions: \ferror{FileNotFound}, \ferror{JavaScriptError} (see table \ref{errors}).
+
+\subsection{User Scripts}
+
+\mintinline{icl}{[icL]} {\bf User scripts} are executed immediately after page load. Use \mintinline{icl}{$user} to add a user script to current tab or \mintinline{icl}{$always} for all tabs of session.
+
+\mintinline{icl}{[icL]} Syntax —
+\begin{minted}{icl}
+$user "path/to/file.js";
+$always "path/to/file.js";
+\end{minted}
+
+Possible exceptions: \ferror{FileNotFound} (see table \ref{errors}).
+
+%\newpage

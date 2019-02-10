@@ -1,0 +1,147 @@
+% !TeX spellcheck = ru_RU
+\documentclass[a4paper, 14pt]{extarticle}
+%\documentclass[utf8x, 14pt]{G7-32}
+
+\usepackage{ifthen}
+
+% economy papper
+\newboolean{compress}
+\setboolean{compress}{false}
+
+% optimize black-white printing
+\newboolean{whiteblack}
+\setboolean{whiteblack}{false}
+
+% ГОСТ
+\newboolean{gost}
+\setboolean{gost}{false}
+
+\ifthenelse{\boolean{whiteblack}}{
+	\input{style-whiteblack.tex}
+}{
+	\input{style-colored.tex}
+}
+
+\ifthenelse{\boolean{gost}}{
+	\usepackage[sf]{titlesec}
+	
+	\newfontfamily\headingfont[]{Liberation Sans}
+	\titleformat*{\section}{\normalsize\headingfont\centering}
+	\titleformat*{\subsection}{\normalsize\headingfont\centering}
+	\titleformat*{\subsubsection}{\normalsize\headingfont\centering}
+	
+	\setcounter{tocdepth}{3}
+}{}
+
+\usepackage[final]{pdfpages}
+
+\begin{document}
+
+\input{header.tex}
+
+\ifthenelse{\boolean{gost}}{
+	\fancyhead[L]{}
+	\fancyhead[C]{\textmd{12603 - 01 xx 01}}
+	\fancyhead[R]{\textmd{\thepage{}}}
+}{}
+
+\includepdf[pages=1]{../covers/ru.pdf}
+
+\title{Стандарт языка описания сценариев icL v1.1.1}
+\author{Лелицак Василе\thanks{Руководитель проекта: Молчанова Светлана Ивановна}}
+
+%\clearpage\maketitle
+%\thispagestyle{empty}
+%\newpage
+
+\renewcommand{\contentsname}{\textsf{Оглавление}}\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{2.6em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{4.0em}{3.6em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{7.4em}{4.5em}}
+\makeatother
+\tableofcontents
+
+\ifthenelse{\boolean{compress}}{
+	% compresed mode 
+	\input{sec-01-0-introduction}
+	
+	\newpage
+	\input{sec-02-0-base-syntax}
+	\input{sec-03-0-data-types}
+	\input{sec-04-0-variables}
+	\input{sec-05-0-literals}
+	\input{sec-06-0-operators}
+	\input{sec-07-0-conditional-operators}
+	\input{sec-08-0-loops}
+	\input{sec-09-0-integration-with-js}
+	\input{sec-10-0-functions}
+	\input{sec-11-0-strings}
+	\input{sec-12-0-lists}
+	\input{sec-13-0-sets}
+	\input{sec-14-0-web-elements}
+	\input{sec-15-0-data-exchange}
+	\input{sec-16-0-dsv-csv-tsv}
+	\input{sec-17-0-data-casting}
+	
+	\newpage
+	\input{sec-18-0-additional-posibilities}
+	\input{sec-19-0-additional-interaction}
+	\input{sec-20-0-regular-expressions}
+	\input{sec-21-0-datetime}
+	\input{sec-22-0-state-mechanism}
+	\input{sec-23-0-data-bases}
+	\input{sec-24-0-exceptions}
+	\input{sec-25-0-crossfire-js}
+	\input{sec-26-0-sync}
+	\input{sec-27-0-modifiers}
+	\input{sec-28-0-assets}
+	\input{sec-29-0-autofinish}
+	\input{sec-30-0-errorless}
+	
+%	\newpage
+%	\input{sec-31-0-data-types-pro}
+%	\input{sec-32-0-system-data-types-pro}
+%	\input{sec-33-0-operators-pro}
+%	\input{sec-34-0-last-examples}
+}{
+	% extended mode
+	\include{sec-01-0-introduction}
+	
+	\include{sec-02-0-base-syntax}
+	\include{sec-03-0-data-types}
+	\include{sec-04-0-variables}
+	\include{sec-05-0-literals}
+	\include{sec-06-0-operators}
+	\include{sec-07-0-conditional-operators}
+	\include{sec-08-0-loops}
+	\include{sec-09-0-integration-with-js}
+	\include{sec-10-0-functions}
+	\include{sec-11-0-strings}
+	\include{sec-12-0-lists}
+	\include{sec-13-0-sets}
+	\include{sec-14-0-web-elements}
+	\include{sec-15-0-data-exchange}
+	\include{sec-16-0-dsv-csv-tsv}
+	\include{sec-17-0-data-casting}
+	
+	\include{sec-18-0-additional-posibilities}
+	\include{sec-19-0-additional-interaction}
+	\include{sec-20-0-regular-expressions}
+	\include{sec-21-0-datetime}
+	\include{sec-22-0-state-mechanism}
+	\include{sec-23-0-data-bases}
+	\include{sec-24-0-exceptions}
+	\include{sec-25-0-crossfire-js}
+	\include{sec-26-0-sync}
+	\include{sec-27-0-modifiers}
+	\include{sec-28-0-assets}
+	\include{sec-29-0-autofinish}
+	\include{sec-30-0-errorless}
+	
+%	\include{sec-31-0-data-types-pro}
+%	\include{sec-32-0-system-data-types-pro}
+%	\include{sec-33-0-operators-pro}
+%	\include{sec-34-0-last-examples}
+}
+
+\end{document}

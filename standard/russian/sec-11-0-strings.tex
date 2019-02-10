@@ -1,268 +1,201 @@
+% !TeX spellcheck = ru_RU
 \section{Строки}
 
 {\bf Строки} (тип \str{}) позволяет хранить и манипулировать фрагменты текста. 
 
 \subsection{Свойства}
 
-В дальнейшем свойства будут отмечены следующим маркером: \code{[r/w]} - доступно для чтения и записи, \code{[r/o]} - доступно только для чтения, \code{[w/o]} - доступно только для записи,  \code{[r/*]} - доступно для записи только в режиме автоматизации, \code{[*/*]} - доступ будет конкретизирован потом.
+В дальнейшем свойства будут отмечены следующим маркером: \mintinline{icl}{[r/w]} — доступно для чтения и записи, \mintinline{icl}{[r/o]} — доступно только для чтения, \mintinline{icl}{[w/o]} — доступно только для записи,  \mintinline{icl}{[r/*]} — доступно для записи только в режиме автоматизации, \mintinline{icl}{[*/*]} — доступ будет конкретизирован потом.
 
 Строки имеют следующее дополнительные свойства:
 \begin{icItems}
 \item
-	\code{[r/o] string'empty : bool};
+	\mintinline{icl}{[r/o] string'empty : bool};
 \item
-	\code{[r/o] string'length : int};
+	\mintinline{icl}{[r/o] string'length : int};
 \item
-	\code{[r/o] string'last : string};
+	\mintinline{icl}{[r/o] string'last : string};
 \item
-    \lstinline|[r/o] string'(n : int) : string|.
+    \mintinline{icl}{[r/o] string'(n : int) : string}.
 \end{icItems}
 
 \
 
 На листинге \ref{stringprop} представлен код, использующий выше перечисленных свойства.
 
-\subsubsection{\code{[r/o] string'empty : bool}}
+\subsubsection{\mintinline{icl}{[r/o] string'empty : bool}}
 
 Строка считается пустой если количество содержащих символов равна нулю;
 
-\begin{lstlisting}[caption=Свойства класса string, label=stringprop]
-@empty = "";
-@fonts = "Arial, Helvetica, Times, Courier";
+\begin{sourcecode}
+    \captionof{listing}{Свойства класса string}
+    \label{stringprop}
+    \inputminted[linenos]{icl}{../sources/stringprop.icL}
+\end{sourcecode}
 
-@empty'empty; `` true
-@fonts'empty; `` false
-
-@empty'length; `` 0
-@fonts'length; `` 32
-
-@empty'last; `` error
-@fonts'last; `` "r"
-
-@empty'0; `` error
-@fonts'0; `` "A"
-\end{lstlisting}
-
-\subsubsection{\code{[r/o] string'length : int}}
+\subsubsection{\mintinline{icl}{[r/o] string'length : int}}
 
 Длина строки равна количеству символов в строке;
 
-\subsubsection{\code{[r/o] string'last : char}}
+\subsubsection{\mintinline{icl}{[r/o] string'last : char}}
 
-Последний символ строки, то же самое что и \lstinline|string.at (string'length - 1)|.
+Последний символ строки, то же самое что и \mintinline{icl}{string.at (string'length - 1)}.
 
-Возможные исключения: \ferror{EmptyString}.
+Возможные исключения: \ferror{EmptyString} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|[r/o] string'(n : int) : string|}
+\subsubsection{\mintinline{icl}{[r/o] string'(n : int) : string}}
 
-n-й символ строки. n должен быть целым литералов, примеры \lstinline|@str'0; @string'2|.
+n-й символ строки. n должен быть целым литералов, примеры \mintinline{icl}{@str'0; @str'2}.
 
-Возможные исключения: \ferror{OutOfBounds}.
+Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
 \subsection{Методы}
 
 Строки имеют следующий набор дополнительных методов:
 \begin{icItems}
 \item
-    \lstinline|string.append (str : string) : string|;
+    \mintinline{icl}{string.append (str : string) : string};
 \item
-    \lstinline|string.at (i : int) : string|;
+    \mintinline{icl}{string.at (i : int) : string};
 \item
-    \lstinline|string.beginsWith (str : string) : bool|;
+    \mintinline{icl}{string.beginsWith (str : string) : bool};
 \item
-    \lstinline|string.compare (str : string, caseSensitive = true) : bool|;
+    \mintinline{icl}{string.compare (str : string, caseSensitive = true) : bool};
 \item
-    \lstinline|string.count (str : string) : int|;
+    \mintinline{icl}{string.count (str : string) : int};
 \item
-    \lstinline|string.endsWith (str : string) : bool|;
+    \mintinline{icl}{string.endsWith (str : string) : bool};
 \item
-    \lstinline|string.indexOf (str : string, startPos = 0) : int|;
+    \mintinline{icl}{string.indexOf (str : string, startPos = 0) : int};
 \item
-    \lstinline|string.insert (str : string, pos : int) : string|;
+    \mintinline{icl}{string.insert (str : string, pos : int) : string};
 \item
-    \lstinline|string.lastIndexOf (str : string, startPos = -1) : int|;
+    \mintinline{icl}{string.lastIndexOf (str : string, startPos = -1) : int};
 \item
-    \lstinline|string.left (n : int) : string|;
+    \mintinline{icl}{string.left (n : int) : string};
 \item
-    \lstinline|string.leftJustified (width : int, fillChar) : string, truncate = false :string|;
+    \mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\*\mintinline{icl}{string};
 \item
-    \lstinline|string.mid (pos : int, n = -1) : string|;
+    \mintinline{icl}{string.mid (pos : int, n = -1) : string};
 \item
-    \lstinline|string.prepend (str : string) : string|;
+    \mintinline{icl}{string.prepend (str : string) : string};
 \item
-    \lstinline|string.remove (pos : int, n : int) : string|;
+    \mintinline{icl}{string.remove (pos : int, n : int) : string};
 \item
-    \lstinline|string.remove (str : string, caseSensitive = true) : string|;
+    \mintinline{icl}{string.remove (str : string, caseSensitive = true) : string};
 \item
-    \lstinline|string.replace (pos : int, n : int, after : string) : string|;
+    \mintinline{icl}{string.replace (pos : int, n : int, after : string) : string};
 \item
-    \lstinline|string.replace (before : string, after : string) : string|;
+    \mintinline{icl}{string.replace (before : string, after : string) : string};
 \item
-    \lstinline|string.right (n : int) : string|;
+    \mintinline{icl}{string.right (n : int) : string};
 \item
-    \lstinline|string.rightJustified (width : int, fillChar : string, truncate) : bool, = false:string|;
+    \mintinline{icl}{string.rightJustified (width : int, fillChar : string, truncate = false)}\\*\mintinline{icl}{: string};
 \item
-    \lstinline|string.split (separator : string, keepEmptyParts = true, caseSensitive = true) : list|;
+    \mintinline{icl}{string.split (separator : string, keepEmptyParts = true, caseSensitive = true)}\\*\mintinline{icl}{: list};
 \item
-    \lstinline|string.substring (begin : int, end : int) : string|;
+    \mintinline{icl}{string.substring (begin : int, end : int) : string};
 \item
-    \lstinline|string.trim (justWhitespace = true) : string|.
+    \mintinline{icl}{string.trim (justWhitespace = true) : string}.
 \end{icItems}
 
 Некоторые методы пропущены, они будут представлены в главе \ref{regex}; Код, использующий выше перечисленных методов представлен на листинге \ref{stringmethods}.
 
-\begin{lstlisting}[caption=Методы класса string, label=stringmethods]
-@empty = "";
-@fonts = "Arial, Helvetica, Times, Courier";
-@index = 2;
+\begin{sourcecode}
+    \captionof{listing}{Методы класса string}
+    \label{stringmethods}
+    \inputminted[linenos]{icl}{../sources/stringmethods.icL}
+\end{sourcecode}
 
-@empty.append "data";   `` "data"
-@empty.append @fonts'0; `` "dataA"
-@empty = "";
+\subsubsection{\mintinline{icl}{string.append (str : string) : string}}
 
-@empty.at @index; `` error
-@fonts.at @index; `` i
-@fonts.at 1;	  `` r
+Вставит строку \mintinline{icl}{str} в конце строки.
 
-@empty.beginsWith "";      `` true
-@fonts.beginsWith "Arial"; `` true
+\subsubsection{\mintinline{icl}{string.at (i : int) : string}}
 
-@empty.compare "data"; `` false
-@empty.compare "";     `` true
+Возвращает ссылка на \mintinline{icl}{i}-й символ.
 
-@fonts.count ",";      `` 3
-@fonts.count @fonts'0; `` 1
+Возможные исключения: \ferror{OutOfBounds} (см. таб. \ref{errors}).
 
-@fonts.endsWith "Courier"; `` true
-@fonts.endsWith "Arial";   `` false
+\subsubsection{\mintinline{icl}{string.beginsWith (str : string) : bool}}
 
-@fonts.indexOf "Courier"; `` 25
-@fonts.indexOf @fonts'11; `` 8
+Возвращает \true{}, если начало строки совпадает с \mintinline{icl}{str}, иначе \false{}.
 
-@data = "10"
-@data.insert ("data", 1);   `` "1data0"
-@data.insert (@fonts'0, 2); `` "1dAata0"
+\subsubsection{\mintinline{icl}{string.compare (str : string, caseSensitive = true) : bool}}
 
-@fonts.lastIndexOf "e";      `` 30
-@fonts.lastIndexOf @fonts'8; `` 30
+Сравнивает строки, возвращает \true{} если они равны, иначе \false{}. Аргумент \mintinline{icl}{caseSensitive} может быть пропущен, если установить его в \false{}, то регистр букв будет проигнорирован.
 
-@fonts.left 5; `` "Arial"
+\subsubsection{\mintinline{icl}{string.count (str : string) : int}}
 
-@data = "10";
-@data.leftJustified (4, "0"); `` "0010"
-@data.mid (1, 2);             `` "01"
+Считает сколько раз подстрока \mintinline{icl}{str} встречается в строке.
 
-@data.prepend "11";     `` "1100010"
-@data.prepend @fonts'0; `` "A1100010"
+\subsubsection{\mintinline{icl}{string.endsWith (str : string) : bool}}
 
-@data.remove (2, 2);  `` "11010"
-@data.remove "01";    `` "110"
+Возвращает \true{}, если конец строки совпадает с \mintinline{icl}{str}, иначе \false{}.
 
-@data.replace (2, 1, "0101"); `` "110101"
-@data.replace ("01", "01");   `` "111010"
+\subsubsection{\mintinline{icl}{string.indexOf (str : string, startPos = 0) : int}}
 
-@data.right 4; 				   `` "1010"
-@data.rightJustified (8, "0"); `` "11101000"
+Возвращает индекс первой нахождения подстроки \mintinline{icl}{str} в строке, ища вперёд с позиции \mintinline{icl}{startPos}, если подстрока не найдено возвращает -1.
 
-@fonts.split ", ";     `` ["Arial", "Helvica", "Times", "Curier"]
-@fonts.split @fonts'5; `` ["Arial", " Helvica", " Times", " Curier"];
+\subsubsection{\mintinline{icl}{string.insert (str : string, pos : int) : string}}
 
-@data.substring (1, 3); `` "11"
+Вставит строку \mintinline{icl}{str} в позиции \mintinline{icl}{pos}.
 
-@str = " , 34px \n";
-@str.trim;       `` ", 34px"
-@str.trim false; `` "34px"
-\end{lstlisting}
+\subsubsection{\mintinline{icl}{string.lastIndexOf (str : string, startPos = -1) : int}}
 
-\subsubsection{\lstinline|string.append (str : string) : string|}
+Возвращает индекс первой нахождения подстроки \mintinline{icl}{str} в строке, ища назад с позиции \mintinline{icl}{startPos}, если подстрока не найдена возвращает -1.
 
-Вставит строку \code{str} в конце строки.
+\subsubsection{\mintinline{icl}{string.left (n : int) : string}}
 
-\subsubsection{\lstinline|string.at (i : int) : string|}
+Возвращает подстроку содержащая первый \mintinline{icl}{n} символы.
 
-Возвращает ссылка на \code{i}-й символ.
+\subsubsection{\mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\* \mintinline{icl}{string}}
 
-Возможные исключения: \ferror{OutOfBounds}.
+Возвращает строку длины \mintinline{icl}{width}, содержащую эту строку, в конце ставится \mintinline{icl}{width - .length} символов \mintinline{icl}{fillChar}. Если \mintinline{icl}{truncate == true} и \mintinline{icl}{width < .length}, то последние \mintinline{icl}{.length - width} символы будут удалены.
 
-\subsubsection{\lstinline|string.beginsWith (str : string) : bool|}
+\subsubsection{\mintinline{icl}{string.mid (pos : int, n = -1) : string}}
 
-Возвращает \true{}, если начало строки совпадает с \code{str}, иначе \false{}.
+Возвращает строку содержащую \mintinline{icl}{n} символы строки, начиная с позиции \mintinline{icl}{pos}. Будет возвращена пустая строка если установленный интервал выходит за рамки строки. Если \mintinline{icl}{n == -1} то будут возвращены все доступные символы начиная с позицией \mintinline{icl}{pos}.
 
-\subsubsection{\lstinline|string.compare (str : string, caseSensitive = true) : bool|}
+\subsubsection{\mintinline{icl}{string.prepend (str : string) : string}}
 
-Сравнивает строки, возвращает \true{} если они равны, иначе \false{}. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{}, то регистр букв будет проигнорирован.
+Вставит строку \mintinline{icl}{str} в начале строки.
 
-\subsubsection{\lstinline|string.count (str : string) : int|}
+\subsubsection{\mintinline{icl}{string.remove (pos : int, n : int) : string}}
 
-Считает сколько раз подстрока \code{str} встречается в строке.
+Удаляет \mintinline{icl}{n} символы строки начиная с позицией \mintinline{icl}{pos}.
 
-\subsubsection{\lstinline|string.endsWith (str : string) : bool|}
+\subsubsection{\mintinline{icl}{string.remove (str : string, caseSensitive = true) : string}}
 
-Возвращает \true{}, если конец строки совпадает с \code{str}, иначе \false{}.
+Удаляет каждое нахождения подстроки \mintinline{icl}{str} в строке. Аргумент \mintinline{icl}{caseSensitive} может быть пропущен, если установить его в \false{} то регистр букв будет проигнорирован.
 
-\subsubsection{\lstinline|string.indexOf (str : string, startPos = 0) : int|}
+\subsubsection{\mintinline{icl}{string.replace (pos : int, n : int, after : string) : string}}
 
-Возвращает индекс первой нахождения подстроки \code{str} в строке, ища вперёд с позиции \code{startPos}, если подстрока не найдено возвращает -1.
+Заменяет интервал установленный позицией \mintinline{icl}{pos} и количеством символов \mintinline{icl}{n} строкой \mintinline{icl}{after}.
 
-\subsubsection{\lstinline|string.insert (str : string, pos : int) : string|}
+\subsubsection{\mintinline{icl}{string.replace (before : string, after : string) : string}}
 
-Вставит строку \code{str} в позиции \code{pos}.
+Заменяет каждое нахождение подстроки \mintinline{icl}{before} подстрокой \mintinline{icl}{after}.
 
-\subsubsection{\lstinline|string.lastIndexOf (str : string, startPos = -1) : int|}
+\subsubsection{\mintinline{icl}{string.right (n : int) : string}}
 
-Возвращает индекс первой нахождения подстроки \code{str} в строке, ища назад с позиции \code{startPos}, если подстрока не найдена возвращает -1.
+Возвращает строку содержащую последние \mintinline{icl}{n} символы строки.
 
-\subsubsection{\lstinline|string.left (n : int) : string|}
+\subsubsection{\mintinline{icl}{string.rightJustified (width : int, fillChar) : string, truncate = false :}\\* \mintinline{icl}{string};}
 
-Возвращает подстроку содержащая первый \code{n} символы.
+Возвращает строку длины \mintinline{icl}{width}, содержащую эту строку, в начале ставится \mintinline{icl}{width - .length} символов \mintinline{icl}{fillChar}. Если \mintinline{icl}{truncate == true} и \mintinline{icl}{width < .length}, то первые \mintinline{icl}{.length - width} символы будут удалены.
 
-\subsubsection{\lstinline|string.leftJustified (width : int, fillChar) : string, truncate = false :|\\* \lstinline|string|}
+\subsubsection{\mintinline{icl}{string.split (separator : string, keepEmptyParts = true, caseSensiti : bool,}\\* \mintinline{icl}{ve = true) : list}}
 
-Возвращает строку длины \code{width}, содержащую эту строку, в конце ставится \code{width - .length} символов \code{fillChar}. Если \code{truncate == true} и \code{width < .length}, то последние \code{.length - width} символы будут удалены.
+Разрывает строку на подстроки при каждой нахождения подстроки \mintinline{icl}{separator} и собирает список из этих строк. Если \mintinline{icl}{separator} не встречается ни разу, будет возвращён список из одной строки — этой строки. Если \mintinline{icl}{keepEmptyParts == false} то пустые строки пропускаются.
 
-\subsubsection{\lstinline|string.mid (pos : int, n = -1) : string|}
+\subsubsection{\mintinline{icl}{string.substring (begin : int, end : int) : string}}
 
-Возвращает строку содержащую \code{n} символы строки, начиная с позиции \code{pos}. Будет возвращена пустая строка если установленный интервал выходит за рамки строки. Если \code{n == -1} то будут возвращены все доступные символы начиная с позицией \code{pos}.
+Возвращает подстроку содержащую символы строки, от позиции \mintinline{icl}{begin} до \mintinline{icl}{end}.
 
-\subsubsection{\lstinline|string.prepend (str : string) : string|}
+\subsubsection{\mintinline{icl}{string.trim (justWhitespace = true) : string}}
 
-Вставит строку \code{str} в начале строки.
-
-\subsubsection{\lstinline|string.remove (pos : int, n : int) : string|}
-
-Удаляет \code{n} символы строки начиная с позицией \code{pos}.
-
-\subsubsection{\lstinline|string.remove (str : string, caseSensitive = true) : string|}
-
-Удаляет каждое нахождения подстроки \code{str} в строке. Аргумент \code{caseSensitive} может быть пропущен, если установить его в \false{} то регистр букв будет проигнорирован.
-
-\subsubsection{\lstinline|string.replace (pos : int, n : int, after : string) : string|}
-
-Заменяет интервал установленный позицией \code{pos} и количеством символов \code{n} строкой \code{after}.
-
-\subsubsection{\lstinline|string.replace (before : string, after : string) : string|}
-
-Заменяет каждое нахождение подстроки \code{before} подстрокой \code{after}.
-
-\subsubsection{\lstinline|string.right (n : int) : string|}
-
-Возвращает строку содержащую последние \code{n} символы строки.
-
-\subsubsection{\lstinline|string.rightJustified (width : int, fillChar) : string, truncate = false :|\\* \lstinline|string|;}
-
-Возвращает строку длины \code{width}, содержащую эту строку, в начале ставится \code{width - .length} символов \code{fillChar}. Если \code{truncate == true} и \code{width < .length}, то первые \code{.length - width} символы будут удалены.
-
-\subsubsection{\lstinline|string.split (separator : string, keepEmptyParts = true, caseSensiti : bool,|\\* \lstinline|ve = true) : list|}
-
-Разрывает строку на подстроки при каждой нахождения подстроки \code{separator} и собирает список из этих строк. Если \code{separator} не встречается ни разу, будет возвращён список из одной строки - этой строки. Если \code{keepEmptyParts == false} то пустые строки пропускаются.
-
-\subsubsection{\lstinline|string.substring (begin : int, end : int) : string|}
-
-Возвращает подстроку содержащую символы строки, от позиции \code{begin} до \code{end}.
-
-\subsubsection{\lstinline|string.trim (justWhitespace = true) : string|}
-
-Возвращает строку, копия текущей из которого удаляются пробельные символы с начало и конце строки. Если \lstinline|justWhitespace == false|, то будут удалены все знаки которые не является буквой или цифрой.
+Возвращает строку, копия текущей из которого удаляются пробельные символы с начало и конце строки. Если \mintinline{icl}{justWhitespace == false}, то будут удалены все знаки которые не является буквой или цифрой.
 
 % \subsubsection{}
 

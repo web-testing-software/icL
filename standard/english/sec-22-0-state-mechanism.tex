@@ -1,0 +1,172 @@
+% !TeX spellcheck = en_US
+\section{State mechanism}
+
+All variables in icL are contained by 2 types of containers: stack and state.
+
+The stack contains come containers, each container is liked to a fragment of code. On fragment touched the container is created, on exited the container is destroyed.
+
+The state is double-linked list, containers of it has global visibility. By default, there is a single container, new containers can be created by user.
+
+\subsection{Stack Control}
+\label{stack:control}
+
+There are following properties and methods to manipulate stack content —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Stacks'(name : string) : Stack};
+	\item \mintinline{icl}{[r/w] Stack'(name : string) : any};
+	\item \mintinline{icl}{Stack.clear () : void};
+	\item \mintinline{icl}{Stack.continue () : void};
+	\item \mintinline{icl}{Stack.break () : void};
+	\item \mintinline{icl}{Stack.return (value : any) : void};
+	\item \mintinline{icl}{Stack.markTest (name : string) : Stack};
+	\item \mintinline{icl}{Stack.markStep (name : string) : Stack};
+	\item \mintinline{icl}{Stack.addDescription (description : string) : void};
+	\item \mintinline{icl}{Stack.destroy () : void};
+	\item \mintinline{icl}{Stack.ignore () : Stack};
+	\item \mintinline{icl}{Stack.listen () : Stack}.
+\end{icItems}
+
+\subsubsection{[r/o] \mintinline{icl}{Stacks'(name : string) : Stack}}
+
+Returns the container with \mintinline{icl}{name}. Use following syntax to name a container —
+\begin{minted}{icl}
+{:name
+	`` code
+}
+\end{minted}
+A function call creates a container with name of function.
+
+
+\subsubsection{\mintinline{icl}{Stack'(name : string) : any}}
+
+Return a local variable located in this container. For example, if already exists a variable named \mintinline{icl}{i} in parent container, use \mintinline{icl}{Stack'i = 0} to create a variable named \mintinline{icl}{i} in current content.
+
+\subsubsection{\mintinline{icl}{Stack.clear () : void}}
+
+Removes all variables of container.
+
+\subsubsection{\mintinline{icl}{Stack.continue () : void}}
+
+Skip current iteration, available just for loops.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.break () : void}}
+
+Break the loop. Available just for loops.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.return (value : any) : void}}
+
+Returns the function result.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.markTest (name : string) : Stack}}
+
+Marks container as test named \mintinline{icl}{name}. Definition of a test inner another test is restricted.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.markStep (name : string) : Stack}}
+
+Marks container as step named \mintinline{icl}{name}. A step can be defined in a test or step.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.addDescription (description : string) : void}}
+
+Adds a description for test or step.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.destroy () : void}}
+
+Removes \mintinline{icl}{listen} container.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.ignore () : Stack}}
+
+Switch off \mintinline{icl}{listen}.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.listen () : Stack}}
+
+Switch on \mintinline{icl}{listen}.
+
+Possible exceptions: \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsection{State Control}
+
+There are following properties and methods to manipulate state content —
+\begin{icItems}
+	\item \mintinline{icl}{State'first : object};
+	\item \mintinline{icl}{State'prev : object};
+	\item \mintinline{icl}{State'next : object};
+	\item \mintinline{icl}{State'last : object};
+	\item \mintinline{icl}{State.new (data = [=]) : void};
+	\item \mintinline{icl}{State.newAtEnd (data = [=]) : void};
+	\item \mintinline{icl}{State.toNext () : void};
+	\item \mintinline{icl}{State.toPrev () : void};
+	\item \mintinline{icl}{State.clear () : void};
+	\item \mintinline{icl}{State.delete () : void};
+	\item \mintinline{icl}{State.toFirst () : void};
+	\item \mintinline{icl}{State.toLast () : void}.
+\end{icItems}
+
+\mintinline{icl}{State} is a collection, that means that it ccan be iterated by \mintinline{icl}{for (State) {}}. Other loops are not supported.
+
+\subsubsection{\mintinline{icl}{State'first : object}}
+
+Returns the first container as object.
+
+\subsubsection{\mintinline{icl}{State'prev : object}}
+
+Returns previous container as object.
+
+\subsubsection{\mintinline{icl}{State'next : object}}
+
+Returns next container as object.
+
+\subsubsection{\mintinline{icl}{State'last : object}}
+
+Returns the last container as object.
+
+\subsubsection{\mintinline{icl}{State.new (data = [=]) : void}}
+
+Creates a new container after the current and focuses it. All fields of data object will be copied to container.
+
+\subsubsection{\mintinline{icl}{State.newAtEnd (data = [=]) : void}}
+
+Creates a new container on end of state. All fields of data object will be copied to container.
+
+\subsubsection{\mintinline{icl}{State.toNext () : bool}}
+
+Returns \true{} if there is a next container and the focus was switched to it, otherwise returns \false.
+
+\subsubsection{\mintinline{icl}{State.toPrev () : bool}}
+
+Returns \true{} if there is a previous container and the focus was switched to it, otherwise returns \false.
+
+\subsubsection{\mintinline{icl}{State.clear () : void}}
+
+Clears the state.
+
+\subsubsection{\mintinline{icl}{State.delete () : void}}
+
+Removes the current container, if there is a next container — will be focused, if there is a previous container — will be focused, if the current is the last — will be cleared.
+
+\subsubsection{\mintinline{icl}{State.toFirst () : void}}
+
+Switch focus to first state.
+
+\subsubsection{\mintinline{icl}{State.toLast () : void}}
+
+Switch focus to last state.
+
+\subsubsection{\mintinline{icl}{for (State) {}}}
+
+Run set of statement for each container of state.

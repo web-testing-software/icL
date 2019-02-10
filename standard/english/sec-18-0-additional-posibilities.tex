@@ -1,0 +1,1074 @@
+% !TeX spellcheck = en_US
+\input{part-02-0-programmers}
+
+\section{Additional Possibilities}
+
+There are {\bf additional possibilities} for complete cover of W3C WebDriver standard and add some practices.
+
+These possibilities are required for complex scripts. On start icL automatically start a session and close it on finish.
+
+\subsection{Sessions}
+
+The object \sessions{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Sessions'length : int};
+	\item \mintinline{icl}{[r/o] Sessions'(i : int) : Session}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Sessions.closeAll () : void};
+	\item \mintinline{icl}{Sessions.get (i : int) : Session};
+	\item \mintinline{icl}{Sessions.new () : Session}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Sessions'length : int}}
+
+The number of opened sessions.
+
+\subsubsection{\mintinline{icl}{[r/o] Sessions'(i : int) : Session}}
+
+The \mintinline{icl}{i}th session.
+
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Sessions.closeAll () : void}}
+
+Close all sessions.
+
+\subsubsection{\mintinline{icl}{Sessions.get (i : int) : Session}}
+
+Returns the \mintinline{icl}{i}th session.
+
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Sessions.new () : Session}}
+
+Opens and returns a new session.
+
+Possible exceptions: \ferror{SessionNotCreated} (see table \ref{errors}).
+
+\subsection{Session}
+
+\session{} returns a reference to current session.
+
+The object \session{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/w] Session'implicitTimeout : int};
+	\item \mintinline{icl}{[r/w] Session'pageLoadTimeout : int};
+	\item \mintinline{icl}{[r/w] Session'scriptTimeout : int};
+	\item \mintinline{icl}{[r/o] Session'source : string};
+	\item \mintinline{icl}{[r/o] Session'title : string};
+	\item \mintinline{icl}{[r/w] Session'url : string}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Session.back () : Session};
+	\item \mintinline{icl}{Session.close () : void};
+	\item \mintinline{icl}{Session.forward () : Session};
+	\item \mintinline{icl}{Session.refresh () : Session};
+	\item \mintinline{icl}{Session.screenshot () : string};
+	\item \mintinline{icl}{Session.switchTo () : Session}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/w] Session'implicitTimeout : int}}
+
+Implicit timeout. By default, is 0.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Session'pageLoadTimeout : int}}
+
+Page load timeout. By default, 300000ms.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Session'scriptTimeout : int}}
+
+JavaScript code execution timeout. By default, 30000ms.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{InvalidArgument} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Session'source : string}}
+
+The source code of page.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Session'title : string}}
+
+The title of page.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Session'url : string}}
+
+URL of current page.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Session.back () : Session}}
+
+Is equivalent to pressing the back button in the browser.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Session.close () : void}}
+
+Close session, all its tabs will be closed.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Session.forward () : Session}}
+
+Is equivalent to pressing the forward button in the browser.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Session.refresh () : Session}}
+
+Reloads page.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Session.screenshot () : string}}
+
+Returns a base64 encoded screenshot.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Session.switchTo () : Session}}
+
+Focus this session.
+
+Possible exceptions: \ferror{NoSuchSession} (see table \ref{errors}).
+
+\subsection{Windows}
+
+The object \windows{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Windows'length : int};
+	\item \mintinline{icl}{[r/o] Windows'(i : int) : Window}.
+\end{icItems}
+
+And a method \mintinline{icl}{Windows.get (i : int) : Window}.
+
+\subsubsection{\mintinline{icl}{[r/o] Windows'length : int}}
+
+The number of windows in current session.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Windows'(i : int) : Window}}
+
+The \mintinline{icl}{i}th window.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Windows.get (i : int) : Window}}
+
+Returns the \mintinline{icl}{i}th window.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsection{Window}
+
+The object \window{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/w] Window'height : int};
+	\item \mintinline{icl}{[r/w] Window'width : int};
+	\item \mintinline{icl}{[r/w] Window'x : int};
+	\item \mintinline{icl}{[r/w] Window'y : int}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Window.close () : void};
+	\item \mintinline{icl}{Window.focus () : Window};
+	\item \mintinline{icl}{Window.fullscreen () : Window};
+	\item \mintinline{icl}{Window.maximize () : Window};
+	\item \mintinline{icl}{Window.minimize () : Window};
+	\item \mintinline{icl}{Window.restore () : Window};
+	\item \mintinline{icl}{Window.switchToDefault () : Window};
+	\item \mintinline{icl}{Window.switchToFrame (i : int) : Window};
+	\item \mintinline{icl}{Window.switchToFrame (el : element) : Window};
+	\item \mintinline{icl}{Window.switchToParent () : Window}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/w] Window'height : int}}
+
+The height of window in pixels.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Window'width : int}}
+
+The width of window in pixels.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Window'x : int}}
+
+The $x$ coordinate of window in pixels.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Window'y : int}}
+
+The $y$ a coordinate of window in pixels.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.close () : void}}
+
+Closes the current window, if it is the last will close the session.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.focus () : Window}}
+
+Focuses this window.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.fullscreen () : Window}}
+
+Enters full-screen mode.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.maximize () : Window}}
+
+Maximizes the browser window.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.minimize () : Window}}
+
+Minimizes the browser window.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.restore () : Window}}
+
+Restores the browser window.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.switchToDefault () : Window}}
+
+Restores focus to main frame.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.switchToFrame (i : int) : Window}}
+
+Switches focus to \mintinline{icl}{i}th frame.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.switchToFrame (el : element) : Window}}
+
+Switches focus to element \mintinline{icl}{el}, the element must be a frame or iframe tag.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Window.switchToParent () : Window}}
+
+Switches focus to parent frame.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsection{Cookies}
+
+The object \cookies{} has property \mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}.
+
+And following methods — 
+\begin{icItems}
+	\item \mintinline{icl}{Cookies.deleteAll () : void};
+	\item \mintinline{icl}{Cookies.get (name : string) : Cookie}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}}
+
+The \cookie{} named \mintinline{icl}{name}.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Cookies.deleteAll : void}}
+
+Remove all cookies.
+
+\subsubsection{\mintinline{icl}{Cookies.get (name : string) : Cookie}}
+
+Returns the \cookie{} named \mintinline{icl}{name}.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
+
+\subsection{Cookie}
+
+The object \cookie{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/w] Cookie'domain : string};
+	\item \mintinline{icl}{[r/w] Cookie'expiry : int};
+	\item \mintinline{icl}{[r/w] Cookie'httpOnly : bool};
+	\item \mintinline{icl}{[r/w] Cookie'name : string};
+	\item \mintinline{icl}{[r/w] Cookie'path : string};
+	\item \mintinline{icl}{[r/w] Cookie'secure : bool};
+	\item \mintinline{icl}{[r/w] Cookie'value : string}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,}\\* \mintinline{icl}{seconds = 0) : Cookie};
+	\item \mintinline{icl}{Cookie.load () : Cookie};
+	\item \mintinline{icl}{Cookie.resetTime () : Cookie};
+	\item \mintinline{icl}{Cookie.save () : Cookie}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'domain : string}}
+
+Domain of cookie.
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'expiry : int}}
+
+Expiry time of cookie. By default, is \mintinline{icl}{-1}, the cookie will be deleted on session close.
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'httpOnly : bool}}
+
+HTTP-only property of cookie. By default, is \false.
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'name : string}}
+
+The name of cookie.
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'path : string}}
+
+The path of cookie. By default, is "/".
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'secure : bool}}
+
+The secure property of cookie. By default, is \false.
+
+\subsubsection{\mintinline{icl}{[r/w] Cookie'value : string}}
+
+The stored value of cookie.
+
+\subsubsection{\mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0}\\*\noindent\mintinline{icl}{seconds = 0) : Cookie}}
+
+Add years, months, days, hours, minutes to expire time of cookie.
+
+\subsubsection{\mintinline{icl}{Cookie.load () : Cookie}}
+
+Load \cookie{} data from browser.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Cookie.resetTime () : Cookie}}
+
+Reset expire time to current. To set expire time after a year use code —\\*\mintinline{icl}{Cookie.resetTime().add(1, 0, 0)}.
+
+\subsubsection{\mintinline{icl}{Cookie.save () : Cookie}}
+
+Commit the changes of cookie to browser.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (see table \ref{errors}).
+
+\subsubsection{How to Create Correctly a New Cookie}
+
+\inputminted[linenos]{icl}{../sources/newcookies.icL}
+
+
+\subsection{Alert}
+
+The object \alert{} has property \mintinline{icl}{[r/o] Alert'text : string}.
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Alert.accept () : void};
+	\item \mintinline{icl}{Alert.dismiss () : void};
+	\item \mintinline{icl}{Alert.sendKeys (keys : string) : void}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Alert'text : string}}
+
+The text of alert.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Alert.accept () : void}}
+
+Accepts the alert.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Alert.dismiss () : void}}
+
+Dismiss the alert.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Alert.sendKeys (keys : string) : void}}
+
+Sets the text of dialog field.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (see table \ref{errors}).
+
+\subsection{Tabs}
+
+The object \tabs{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Tabs'current : Tab};
+	\item \mintinline{icl}{[r/o] Tabs'first : Tab};
+	\item \mintinline{icl}{[r/o] Tabs'last : Tab};
+	\item \mintinline{icl}{[r/o] Tabs'length : int};
+	\item \mintinline{icl}{[r/o] Tabs'next : Tab};
+	\item \mintinline{icl}{[r/o] Tabs'previous : Tab};
+	\item \mintinline{icl}{[r/o] Tabs'(i : int) : Tab}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Tabs.close (template : string) : int};
+	\item \mintinline{icl}{Tabs.close (url : regex) : int};
+	\item \mintinline{icl}{Tabs.closeByTitle (template : string) : int};
+	\item \mintinline{icl}{Tabs.closeByTitle (title : regex) : int};
+	\item \mintinline{icl}{Tabs.closeOthers () : int};
+	\item \mintinline{icl}{Tabs.closeToLeft () : int};
+	\item \mintinline{icl}{Tabs.closeToRight () : int};
+	\item \mintinline{icl}{Tabs.find (template : string) : Tab};
+	\item \mintinline{icl}{Tabs.find (url : regex) : Tab};
+	\item \mintinline{icl}{Tabs.findByTitle (template : string) : Tab};
+	\item \mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}.
+\end{icItems}
+
+In testing mode the tabs will have a random order. In automation mode a strict order.
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'current : Tab}}
+
+The current tab.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'first : Tab}}
+
+The first tab.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'last : Tab}}
+
+The last tab.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'length : int}}
+
+The number of tabs in session.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'next : Tab}}
+
+The next tab.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchTab} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'previous : Tab}}
+
+The previous tab.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchTab} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tabs'(i : int) : Tab}}
+
+The \mintinline{icl}{i}th tab.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.close (url : string) : int}}
+
+Close all tabs whose URL matches the template \mintinline{icl}{url}. Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
+
+Close all tabs whose URL matches the regular expression \mintinline{icl}{url}. Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.closeByTitle (template : string) : int}}
+
+Close all tabs whose title matches the template \mintinline{icl}{template}. Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.closeByTitle (title : regex) : int}}
+
+Close all tabs whose title matches the regular expression \mintinline{icl}{title}. Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.closeOthers () : int}}
+
+Closes all tabs excepting the current. Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.closeToLeft () : int}}
+
+Closes all tabs on left of current. Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.closeToRight () : int}}
+
+Closes all tabs on right of current.  Returns the number of closed tabs.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.find (template : string) : Tab}}
+
+Return the first tab whose URL matches the template.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.find (url : regex) : Tab}}
+
+Return the first tab whose URL matches the regular expression.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.findByTitle (template : string) : Tab}}
+
+Return the first tab whose title matches the template.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}}
+
+Return the first tab whose title matches the regular expression.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsection{Tab}
+
+The object \tab{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool};
+	\item \mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool};
+	\item \mintinline{icl}{[r/o] Tab'screenshot : string};
+	\item \mintinline{icl}{[r/o] Tab'source : string};
+	\item \mintinline{icl}{[r/*] Tab'title};
+	\item \mintinline{icl}{[r/w] Tab'url}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Tab.back () : void};
+	\item \mintinline{icl}{Tab.close () : void};
+	\item \mintinline{icl}{Tab.focus () : void};
+	\item \mintinline{icl}{Tab.forward () : void};
+	\item \mintinline{icl}{Tab.get (url : string) : bool};
+	\item \mintinline{icl}{Tab.load (url : string) : bool}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[icL] [r/o] Tab'canGoBack : bool}}
+
+Is \true{} if the back button is available, otherwise is \false.
+
+\subsubsection{\mintinline{icl}{[icL] [r/o] Tab'canGoForward : bool}}
+
+Is \true{} if the forward button is available, otherwise is \false.
+
+\subsubsection{\mintinline{icl}{[r/o] Tab'screenshot : string}}
+
+Base64 encoded screenshot of tab.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] Tab'source : string}}
+
+The source code of tab page.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/*] Tab'title}}
+
+The title of tab page.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] Tab'url}}
+
+The URL of tab.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tab.back () : void}}
+
+Is equivalent to pressing the back button in the browser.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tab.close () : void}}
+
+Close the tab, if it is the last will close session.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tab.focus () : void}}
+
+Focus this tab.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tab.forward () : void}}
+
+Is equivalent to pressing the forward button in the browser.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Tab.get (url : string) : bool}}
+
+Load page, the URL must be absolute. Returns \true{} on success, on failed returns \false.
+
+\subsubsection{\mintinline{icl}{Tab.load (url : string) : void}}
+
+Load page, the URL must be absolute. On failed will be generated an exception.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (see table \ref{errors}).
+
+\subsection{Doc}
+
+The object \dom{} has following methods:
+\begin{icItems}
+	\item \mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element};
+	\item \mintinline{icl}{Doc.queryAll (by = By'cssSelector, selector : string) : element};
+	\item \mintinline{icl}{Doc.queryAllByXPath (xpath : string) : element};
+	\item \mintinline{icl}{Doc.queryByXPath (xpath : string) : element};
+	\item \mintinline{icl}{Doc.queryLink (name : string, isFragment = false) : element};
+	\item \mintinline{icl}{Doc.queryLinks (name : string, isFragment = false) : element};
+	\item \mintinline{icl}{Doc.queryTag (name : string) : element};
+	\item \mintinline{icl}{Doc.queryTags (name : string) : element}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element}}
+
+Gets the same arguments as \mintinline{icl}{element.query}, but this function will find in all document.
+
+Possible exceptions: \ferror{NoSessions}, \ferror{Timeout} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Doc.queryAll (by = By'cssSelector, selecor : string) : element}}
+
+Gets the same arguments as \mintinline{icl}{element.queryAll}, but this function will find in all document.
+
+Possible exceptions: \ferror{NoSessions} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Doc.queryAllByXPath (xpath : string) : element}}
+
+The same as \mintinline{icl}{Doc.queryAll (By'xPath, @xpath)}.
+
+\subsubsection{\mintinline{icl}{Doc.queryByXPath (xpath : string) : element}}
+
+The same as \mintinline{icl}{Doc.query (By'xPath, @xpath)}.
+
+\subsubsection{\mintinline{icl}{Doc.queryLink (name : string, isFragment = false) : element}}
+
+The same as —
+\begin{icItems}
+	\item \mintinline{icl}{Doc.query (By'linkText, @name)};
+	\item \mintinline{icl}{Doc.query (By'partialLinkText, @name)};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{Doc.queryLinks (name : string, isFragment = false) : element}}
+
+The same as —
+\begin{icItems}
+	\item \mintinline{icl}{Doc.queryAll (By'linkText, @name)};
+	\item \mintinline{icl}{Doc.queryAll (By'partialLinkText, @name)};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{Doc.queryTag (name : string) : element}}
+
+The same as \mintinline{icl}{Doc.query (By'tagName, @name)}.
+
+\subsubsection{\mintinline{icl}{Doc.queryTags (name : string) : element}}
+
+The same as \mintinline{icl}{Doc.queryAll (By'tagName, @name)}.
+
+\subsection{Files}
+
+The object \files{} has following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Files.open (path : string) : File};
+	\item \mintinline{icl}{Files.create (path : string) : File};
+	\item \mintinline{icl}{Files.createDir (path : string) : void};
+	\item \mintinline{icl}{Files.createPath (path : string) : void}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{Files.open (path : string) : File}}
+
+Open the file.
+
+Possible exceptions: \ferror{FileNotFound} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Files.create (path : string) : File}}
+
+Open the file, if not exist will create it.
+
+Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Files.createDir (path : string) : void}}
+
+Create a folder, the parent folder must exists.
+
+Possible exceptions: \ferror{FolderNotFound} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Files.createPath (path : string) : void}}
+
+Create all folders in path.
+
+\subsection{File}
+
+The object \file{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] File'csv : 1};
+	\item \mintinline{icl}{[r/w] File'format : int};
+	\item \mintinline{icl}{[r/o] File'none : 0};
+	\item \mintinline{icl}{[r/o] File'tsv : 2};
+	\item \mintinline{icl}{[r/o] File'valid : bool}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{File.close () : void};
+	\item \mintinline{icl}{File.delete () : void}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] File'csv : 1}}
+
+The CSV file format.
+
+\subsubsection{\mintinline{icl}{[r/w] File'format : int}}
+
+The format of file.
+
+\subsubsection{\mintinline{icl}{[r/o] File'none : 0}}
+
+Uninitialized file.
+
+\subsubsection{\mintinline{icl}{[r/o] File'tsv : 2}}
+
+The TSV file format.
+
+\subsubsection{\mintinline{icl}{[r/o] File'valid : bool}}
+
+Returns \true{} if the file is initialized, otherwise returns \false.
+
+\subsubsection{\mintinline{icl}{File.close () : void}}
+
+Closes the file.
+
+\subsubsection{\mintinline{icl}{File.delete () : void}}
+
+Removes the file.
+
+\subsection{Make}
+
+The object \make{} has a method \mintinline{icl}{Make.image (base64 : string, path : string) : void}.
+
+\subsubsection{\mintinline{icl}{Make.image (base64 : string, path : string) : void}}
+
+Saves the screenshot on disk.
+
+\subsection{Log}
+
+The object \logtype{} has following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Log.error (message : string) : void};
+	\item \mintinline{icl}{Log.info (message : string) : void};
+	\item \mintinline{icl}{Log.out (args : any ...) : void};
+	\item \mintinline{icl}{Log.stack (var : any) : void};
+	\item \mintinline{icl}{Log.state (var : any) : void}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{Log.error (message : string) : void}}
+
+Prints an error message.
+
+\subsubsection{\mintinline{icl}{Log.info (message : string) : void}}
+
+Prints an informational message.
+
+\subsubsection{\mintinline{icl}{Log.out (args : any ...) : void}}
+
+Prints a debugging message, it gives some arguments of any types. Will be printed the stack name, name of variable, type of data and value. For constants will print only the value. For a rvalue — value and type.
+
+\subsubsection{\mintinline{icl}{Log.stack (var : any) : void}}
+
+Prints all definitions and values of stack variable.
+
+\subsubsection{\mintinline{icl}{Log.state (var : any) : void}}
+
+Prints all definitions and values of state variable.
+
+\subsection{Numbers}
+
+The object \numbers{} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Numbers'max : 4};
+	\item \mintinline{icl}{[r/o] Numbers'min : 3};
+	\item \mintinline{icl}{[r/o] Numbers'product : 2};
+	\item \mintinline{icl}{[r/o] Numbers'process : int};
+	\item \mintinline{icl}{[r/o] Numbers'sum : 1}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Numbers.process (a : int, b : int) : int};
+	\item \mintinline{icl}{Numbers.process (a : double, b : double) : double};
+	\item \mintinline{icl}{Numbers.restoreProcess () : void};
+	\item \mintinline{icl}{Numbers.setProcess (proc : int) : void}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Numbers'max : 4}}
+
+The identifier of maximum.
+
+\subsubsection{\mintinline{icl}{[r/o] Numbers'min : 3}}
+
+The identifier of minimum.
+
+\subsubsection{\mintinline{icl}{[r/o] Numbers'product : 2}}
+
+The identifier of product.
+
+\subsubsection{\mintinline{icl}{[r/o] Numbers'process : int}}
+
+The current process mode.
+
+\subsubsection{\mintinline{icl}{[r/o] Numbers'sum : 1}}
+
+The identifier of sum.
+
+\subsubsection{\mintinline{icl}{Numbers.process (a : int, b : int) : int}}
+
+Process integer numbers in current mode.
+
+\subsubsection{\mintinline{icl}{Numbers.process (a : double, b : double) : double}}
+
+Process floating-point numbers in current mode.
+
+\subsubsection{\mintinline{icl}{Numbers.restoreProcess () : void}}
+
+Restores the previous process mode.
+
+\subsubsection{\mintinline{icl}{Numbers.setProcess (proc : int) : void}}
+
+Switch to a new process mode.
+
+\subsection{Math}
+
+The object \mintinline{icl}{Math} has following properties —
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Math'1divPi : double};
+	\item \mintinline{icl}{[r/o] Math'1divSqrt2 : double};
+	\item \mintinline{icl}{[r/o] Math'2divPi : double};
+	\item \mintinline{icl}{[r/o] Math'2divSqrtPi : double};
+	\item \mintinline{icl}{[r/o] Math'e : double};
+	\item \mintinline{icl}{[r/o] Math'ln2 : double};
+	\item \mintinline{icl}{[r/o] Math'ln10 : double};
+	\item \mintinline{icl}{[r/o] Math'log2e : double};
+	\item \mintinline{icl}{[r/o] Math'log10e : double};
+	\item \mintinline{icl}{[r/o] Math'pi : double};
+	\item \mintinline{icl}{[r/o] Math'piDiv2 : double};
+	\item \mintinline{icl}{[r/o] Math'piDiv4 : double};
+	\item \mintinline{icl}{[r/o] Math'sqrt2 : double}.
+\end{icItems}
+
+And following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Math.acos (v : double) : double};
+	\item \mintinline{icl}{Math.asin (v : double) : double};
+	\item \mintinline{icl}{Math.atan (v : double) : double};
+	\item \mintinline{icl}{Math.ceil (v : double) : int};
+	\item \mintinline{icl}{Math.cos (v : double) : double};
+	\item \mintinline{icl}{Math.degreesToRadians (v : double) : double};
+	\item \mintinline{icl}{Math.exp (v : double) : double};
+	\item \mintinline{icl}{Math.floor (v : double) : int};
+	\item \mintinline{icl}{Math.ln (v : double) : double};
+	\item \mintinline{icl}{Math.min (arr : int...) : int};
+	\item \mintinline{icl}{Math.min (arr : double...) : double};
+	\item \mintinline{icl}{Math.max (arr : int...) : int};
+	\item \mintinline{icl}{Math.max (arr : double...) : double};
+	\item \mintinline{icl}{Math.radiansToDegrees (v : double) : double};
+	\item \mintinline{icl}{Math.round (v : double) : int};
+	\item \mintinline{icl}{Math.sin (v : double) : double};
+	\item \mintinline{icl}{Math.tan (v : double) : double}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Math'1divPi : double}}
+
+1 divided by pi ($\frac{1}{\pi}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'1divSqrt2 : double}}
+
+1 divided by root of 2 ($\frac{1}{\sqrt{2}}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'2divPi : double}}
+
+2 divided by pi ($\frac{2}{\pi}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'2divSqrtPi : double}}
+
+2 divided by pi ($\frac{2}{\sqrt{\pi}}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'e : double}}
+
+The constant $e$.
+
+\subsubsection{\mintinline{icl}{[r/o] Math'ln2 : double}}
+
+Natural logarithm of 2 ($\ln{2}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'ln10 : double}}
+
+Natural logarithm of 10 ($\ln{10}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'log2e : double}}
+
+Logarithm of $e$ to base 2 ($\log_{2}{e}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'log10e : double}}
+
+Logarithm of $e$ to base 10 ($\log_{10}{e}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'pi : double}}
+
+Constant pi ($\pi$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'piDiv2 : double}}
+
+Pi divided by 2 ($\frac{\pi}{2}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'piDiv4 : double}}
+
+Pi divided by 4 ($\frac{\pi}{4}$).
+
+\subsubsection{\mintinline{icl}{[r/o] Math'sqrt2 : double}}
+
+Root of 2 ($\sqrt{2}$).
+
+\subsubsection{\mintinline{icl}{Math.acos (v : double) : double}}
+
+Arccosine ($\arccos{v}$).
+
+\subsubsection{\mintinline{icl}{Math.asin (v : double) : double}}
+
+Arcsine ($\arcsin{v}$).
+
+\subsubsection{\mintinline{icl}{Math.atan (v : double) : double}}
+
+Arctangent ($\arctan{v}$).
+
+\subsubsection{\mintinline{icl}{Math.ceil (v : double) : int}}
+
+The smallest integer number which is bigger or equal to \mintinline{icl}{v}.
+
+\subsubsection{\mintinline{icl}{Math.cos (v : double) : double}}
+
+Cosine ($\cos{v}$).
+
+\subsubsection{\mintinline{icl}{Math.degreesToRadians (v : double) : double}}
+
+Converts degrees to radians.
+
+\subsubsection{\mintinline{icl}{Math.exp (v : double) : double}}
+
+Exponent function ($\exp{v}$).
+
+\subsubsection{\mintinline{icl}{Math.floor (v : double) : int}}
+
+The biggest integer number which is smaller or equal to \mintinline{icl}{v}.
+
+\subsubsection{\mintinline{icl}{Math.ln (v : double) : double}}
+
+Natural logarithm ($\ln{v}$).
+
+\subsubsection{\mintinline{icl}{Math.min (arr : int...) : int}}
+
+Returns the smallest integer number.
+
+\subsubsection{\mintinline{icl}{Math.min (arr : double...) : double}}
+
+Returns the smallest floating-point number.
+
+\subsubsection{\mintinline{icl}{Math.max (arr : int...) : int}}
+
+Returns the biggest integer number.
+
+\subsubsection{\mintinline{icl}{Math.max (arr : double...) : double}}
+
+Returns the biggest floating-point number.
+
+\subsubsection{\mintinline{icl}{Math.radiansToDegrees (v : double) : double}}
+
+Converts radians to degrees.
+
+\subsubsection{\mintinline{icl}{Math.round (v : double) : int}}
+
+Returns the closest integer number.
+
+\subsubsection{\mintinline{icl}{Math.sin (v : double) : double}}
+
+Sine ($\sin{v}$).
+
+\subsubsection{\mintinline{icl}{Math.tan (v : double) : double}}
+
+Cosine ($\tan{v}$).
+
+\subsection{Import}
+
+The object \mintinline{icl}{Import} has following methods —
+\begin{icItems}
+	\item \mintinline{icl}{Import.none (data : object, path : string) : void};
+	\item \mintinline{icl}{Import.none (path : string) : void};
+	\item \mintinline{icl}{Import.functions (data : object, path : string) : void};
+	\item \mintinline{icl}{Import.functions (path : string) : void};
+	\item \mintinline{icl}{Import.all (data : object, path : string) : void};
+	\item \mintinline{icl}{Import.all (path : string) : void};
+	\item \mintinline{icl}{Import.run (path : string) : void}.
+\end{icItems}
+
+Use object \mintinline{icl}{data} to transfer data to context of external files. Each field of object \mintinline{icl}{data} will become a global variable. This option can be used to store some versions of library in 1 file, and load just the needed.
+
+\subsubsection{\mintinline{icl}{Import.none (data : object, path : string) : void}}
+
+Run the file in isolated context.
+
+\subsubsection{\mintinline{icl}{Import.none (path : string) : void}}
+
+The same as \mintinline{icl}{Import.none([=], @path)}.
+
+\subsubsection{\mintinline{icl}{Import.functions (data : object, path : string) : void}}
+
+Run the file in isolated context and import functions to current context.
+
+\subsubsection{\mintinline{icl}{Import.functions (path : string) : void}}
+
+The same as \mintinline{icl}{Import.functions ([=], @path)}.
+
+\subsubsection{\mintinline{icl}{Import.all (data : object, path : string) : void}}
+
+Run the file in isolated context and import functions and global variables to current context.
+
+\subsubsection{\mintinline{icl}{Import.all (path : string) : void}}
+
+The same as \mintinline{icl}{Import.all ([=], @path)}.
+
+\subsubsection{\mintinline{icl}{Import.run (path : string) : void}}
+
+Executes the file in current context.
