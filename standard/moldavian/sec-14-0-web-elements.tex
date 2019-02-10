@@ -271,7 +271,7 @@ Lista metodelor adiționale:
 	\item \mintinline{icl}{element.add (other : element) : element};
 	\item \mintinline{icl}{element.child (index : int) : element};
 	\item \mintinline{icl}{element.closest (cssSelector : string) : element};
-	\item \mintinline{icl}{element.contains (text : string, asFragment = false) : element};
+	\item \mintinline{icl}{element.contains (template : string) : element};
 	\item \mintinline{icl}{element.copy () : element};
 	\item \mintinline{icl}{element.get (i : int) : element};
 	\item \mintinline{icl}{element.filter (cssSelector : string) : element};
@@ -298,9 +298,9 @@ Returnează un element nou, care conține cel mai apropiat predecesor, care este
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{element.contains (text : string, asFragment = false) : element}}
+\subsubsection{\mintinline{icl}{element.contains (text : string) : element}}
 
-Returnează o colecție nouă, care conține toate elementele, care conțin textul (ca fragment sau ca text întreg) \mintinline{icl}{text}.
+Returnează o colecție nouă, care conține toate elementele, care conțin un fragment de text care convine șablonului \mintinline{icl}{text}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 

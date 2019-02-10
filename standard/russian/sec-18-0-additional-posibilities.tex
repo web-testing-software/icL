@@ -328,7 +328,8 @@
 	\item \mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,}\\* \mintinline{icl}{seconds = 0) : Cookie};
 	\item \mintinline{icl}{Cookie.load () : Cookie};
 	\item \mintinline{icl}{Cookie.resetTime () : Cookie};
-	\item \mintinline{icl}{Cookie.save () : Cookie}.
+	\item \mintinline{icl}{Cookie.save () : Cookie}.;
+	\item \mintinline{icl}{Cookie.delete () : void}.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{[r/w] Cookie'domain : string}}
@@ -378,6 +379,12 @@
 Сохраняет изменения в браузере.
 
 Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Cookie.delete () : void}}
+
+Удаляет файл cookie.
+
+Возможные исключения: \ferror{NoSessions}, \ferror{NoSuchWindow}.
 
 \subsubsection{Создать новый cookie}
 

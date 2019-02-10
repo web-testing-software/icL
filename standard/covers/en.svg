@@ -543,9 +543,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="208.27923"
-     inkscape:cy="93.033353"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="291.57028"
+     inkscape:cy="551.67387"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -556,13 +556,7 @@
      inkscape:window-height="744"
      inkscape:window-x="0"
      inkscape:window-y="24"
-     inkscape:window-maximized="1">
-    <sodipodi:guide
-       position="59.500877,40.59156"
-       orientation="1,0"
-       id="guide1323"
-       inkscape:locked="false" />
-  </sodipodi:namedview>
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -599,7 +593,7 @@
          id="tspan1370">Standard for scripting language</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:25.4546814px;line-height:1.25;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif Light';letter-spacing:0px;word-spacing:0px;fill:#212121;fill-opacity:1;stroke:none;stroke-width:1.59091759;"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:25.4546814px;line-height:1.25;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif Light';letter-spacing:0px;word-spacing:0px;fill:#212121;fill-opacity:1;stroke:none;stroke-width:1.59091759"
        x="57.373894"
        y="256.32568"
        id="text1766"><tspan
@@ -607,7 +601,7 @@
          id="tspan1764"
          x="57.373894"
          y="256.32568"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#212121;fill-opacity:1;stroke-width:1.59091759">icL 1.1.1</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#212121;fill-opacity:1;stroke-width:1.59091759">icL 1.1.2</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:4.23333311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.26458332"
