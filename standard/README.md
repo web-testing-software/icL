@@ -27,3 +27,12 @@ __24.12.2018__
   * [+] tags[]
 
 All accepted changes will be present in version 1.1.0.
+
+__14.01.2019__
+
+* [?] Add literal for date [:date]
+* [?] Add literal for date [::date ::format]
+* [?] set.remove (obj : object) : set, add exception IncompatibleData
+* [?] set.insertField (name : string, value : list, type = string), fix default
+  argument name and add return type
+* [?] add string.toLowerCase and string.toUpperCase
