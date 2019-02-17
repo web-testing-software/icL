@@ -9,13 +9,9 @@ namespace icL::toolkit::session {
 
 class Session : public tree::Folder
 {
-	Q_OBJECT
+
 public:
 	explicit Session();
-
-signals:
-
-public slots:
 
 	// Item interface
 public:
