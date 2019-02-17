@@ -17,16 +17,16 @@ private:
 
 protected:
 	QString getFileContent();
-	bool checkArgs();
+	bool    checkArgs();
 
 	// Context interface
 public:
-	bool checkPrev(const Context *context) const override;
+	bool checkPrev(const Context * context) const override;
 
 	memory::StepType::Value execute() override;
 
-	Context *getBeginContext() override;
-	Context *getEndContext() override;
+	Context * getBeginContext() override;
+	Context * getEndContext() override;
 };
 
 }  // namespace icL::context::data::js

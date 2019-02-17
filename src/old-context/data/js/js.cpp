@@ -3,7 +3,7 @@
 namespace icL::context::data::js {
 
 Js::Js(memory::InterLevel * il)
-	: Context(il) {}
+    : Context(il) {}
 
 bool Js::canBeAtEnd() const {
 	return false;

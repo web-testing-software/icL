@@ -115,8 +115,15 @@ Module {
         }
     }
     Component {
+        name: "icL::look::Chars"
+        prototype: "QObject"
+        Signal { name: "highlight" }
+    }
+    Component {
         name: "icL::look::Editor"
         prototype: "icL::look::BaseLook"
+        Property { name: "style"; type: "icL::look::EditorStyle"; isReadonly: true; isPointer: true }
+        Property { name: "chars"; type: "icL::look::Chars"; isReadonly: true; isPointer: true }
         Property { name: "text"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
         Property { name: "selection"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
         Property { name: "number"; type: "icL::look::CharFormat"; isReadonly: true; isPointer: true }
@@ -136,6 +143,15 @@ Module {
         Property { name: "current"; type: "icL::look::Line"; isReadonly: true; isPointer: true }
         Property { name: "debug"; type: "icL::look::Line"; isReadonly: true; isPointer: true }
         Property { name: "breakpoint"; type: "icL::look::Line"; isReadonly: true; isPointer: true }
+        Property { name: "cline"; type: "icL::look::CLine"; isReadonly: true; isPointer: true }
+        Signal {
+            name: "styleChanged"
+            Parameter { name: "style"; type: "EditorStyle"; isPointer: true }
+        }
+        Signal {
+            name: "charsChanged"
+            Parameter { name: "chars"; type: "Chars"; isPointer: true }
+        }
         Signal {
             name: "textChanged"
             Parameter { name: "text"; type: "CharFormat"; isPointer: true }
@@ -212,6 +228,10 @@ Module {
             name: "breakpointChanged"
             Parameter { name: "breakpoint"; type: "Line"; isPointer: true }
         }
+        Signal {
+            name: "clineChanged"
+            Parameter { name: "cline"; type: "CLine"; isPointer: true }
+        }
         Method { name: "updateOccurrence" }
         Method { name: "updateNumber" }
         Method { name: "updateString" }
@@ -226,6 +246,50 @@ Module {
         Method { name: "updateSystem" }
         Method { name: "updateError" }
         Method { name: "updateWarning" }
+        Method { name: "updateCurrent" }
+        Method { name: "updateDebug" }
+        Method { name: "updateBreakpoint" }
+        Method { name: "updateCLine" }
+    }
+    Component {
+        name: "icL::look::EditorStyle"
+        prototype: "QObject"
+        Property { name: "charW"; type: "int" }
+        Property { name: "charH"; type: "int" }
+        Property { name: "fontS"; type: "int" }
+        Property { name: "lineS"; type: "int" }
+        Signal {
+            name: "charWChanged"
+            Parameter { name: "charW"; type: "int" }
+        }
+        Signal {
+            name: "charHChanged"
+            Parameter { name: "charH"; type: "int" }
+        }
+        Signal {
+            name: "fontSChanged"
+            Parameter { name: "fontS"; type: "int" }
+        }
+        Signal {
+            name: "lineSChanged"
+            Parameter { name: "lineS"; type: "int" }
+        }
+        Method {
+            name: "setCharW"
+            Parameter { name: "charW"; type: "int" }
+        }
+        Method {
+            name: "setCharH"
+            Parameter { name: "charH"; type: "int" }
+        }
+        Method {
+            name: "setFontS"
+            Parameter { name: "fontS"; type: "int" }
+        }
+        Method {
+            name: "setLineS"
+            Parameter { name: "lineS"; type: "int" }
+        }
     }
     Component {
         name: "icL::look::Effect"
@@ -492,6 +556,10 @@ Module {
         Method {
             name: "setPath"
             Parameter { name: "path"; type: "string" }
+        }
+        Method {
+            name: "clone"
+            Parameter { name: "look"; type: "icL::look::Look"; isPointer: true }
         }
         Method {
             name: "loadConf"

@@ -1,6 +1,3 @@
 #include "equivalence.h"
 
-Equivalence::Equivalence()
-{
-
-}
+Equivalence::Equivalence() {}

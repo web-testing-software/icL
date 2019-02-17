@@ -17,28 +17,27 @@ We are using Qt framework.
 
 Pull request process:
 1. Before commit please format your code using clang-format, the settings file 
-2. is present in root of repository and named clang-format.
+   is present in root of repository and named clang-format.
 2. Update the README.md with details of changes to the interface, this includes 
-3. new environment variables, exposed ports, useful file locations and container 
-4. parameters.
+   new environment variables, exposed ports, useful file locations and container 
+   parameters.
 3. Each subproject has a README.md file. Use it for small changes.
 4. You may merge the Pull Request in once you have the sign-off of two other 
-5. developers, or if you do not have permission to do that, you may request 
-6. the second reviewer to merge it for you.
+   developers, or if you do not have permission to do that, you may request 
+   the second reviewer to merge it for you.
 
 ### Contributing by design
 
 1. We are using platuml.
 2. Each subproject has own models folder.
 3. Each models folder has a README.md file, update it after adding new classes 
-4. or interfaces.
+   or interfaces.
 
 ### Tanslating the standard
 
 1. Any translations are wellcome. :)
 2. Standard is long, you can translate and push it section by section.
 3. The standard will be updated each 2 years.
-4. For defining an additional translation use doxygen language tags.
 
 ### Fix the grammatical and semantic errors
 
@@ -47,8 +46,8 @@ Pull request process:
 
 ### Donating
 
-1. Using a [bank card][ymoney] or [paypal][ppal].
-2. On IndieGoGo (coming soon).
+1. Using a [bank card][ymoney].
+2. Using [paypal][ppal].
 
 ## Code of Conduct
 

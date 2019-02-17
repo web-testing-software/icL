@@ -14,7 +14,8 @@ DEFINES += icL_root=\"$$ICL_ROOT\"
 QML_IMPORT_PATH += $$DESTDIR
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    gateway.cpp
 
 RESOURCES += \
     qml/qml.qrc \
@@ -27,11 +28,13 @@ RESOURCES += \
     qml/startwindow.qrc \
     qml/themes.qrc \
     qml/themes-images.qrc \
-    qml/ui.qrc
+    qml/ui.qrc \
+    qml/utils.qrc
 
 
 DISTFILES += \
     README.md \
     models/*.*uml
 
-HEADERS +=
+HEADERS += \
+    gateway.h

@@ -3,7 +3,7 @@
 namespace icL::logic::cross {
 
 Not::Not(memory::InterLevel * il)
-	: Cross(il){};
+    : Cross(il){};
 
 /**
  * @brief Not::calcResult - invert the result of the secound block

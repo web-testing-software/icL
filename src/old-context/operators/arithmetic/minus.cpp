@@ -1,6 +1,3 @@
 #include "minus.h"
 
-Minus::Minus()
-{
-
-}
+Minus::Minus() {}

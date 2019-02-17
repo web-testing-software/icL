@@ -8,4 +8,4 @@ public:
 	Slot();
 };
 
-#endif // SLOT_H
+#endif  // SLOT_H

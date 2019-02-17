@@ -3,12 +3,12 @@
 namespace icL::logic::rich {
 
 Double::Double(memory::InterLevel * il, OperationType otype)
-	: icL::logic::rich::Rich(il, otype) {
+    : icL::logic::rich::Rich(il, otype) {
 	casted = true;
 }
 
 Double::Double(memory::InterLevel * il, Rich * block)
-	: Rich(il, block) {}
+    : Rich(il, block) {}
 
 
 /**

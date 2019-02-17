@@ -52,11 +52,6 @@ DISTFILES += \
     templates/doxy_style.css \
     templates/doxy_header.html \
     templates/doxy_footer.html \
-    graduation/src2pdf.sh \
-    graduation/bachelor/*.epub \
-    graduation/bachelor/*.pdf \
-    graduation/bachelor/*.odt \
-    graduation/bachelor/*.pptx \
     bin/release/linux/update.sh \
     bin/release/linux/uninstall.sh \
     bin/release/linux/install.sh \
@@ -64,12 +59,11 @@ DISTFILES += \
     bin/release/linux/extra/icL.svg \
     standard/standard_for_icl_1.0.0_draft.tex \
     standard/russian/*.tex \
-    standard/moldavian/*.tex \ \
+    standard/moldavian/*.tex \
+    standard/english/*.tex \
     README.md \
     standard/README.md \
-    clang-format \
-    graduation/README.md \
-    graduation/bachelor/README.md \
+    .clang-format \
     standart/README.md \
     src/icL-memory/README.md \
     src/icL-vm/README.md \
@@ -78,4 +72,5 @@ DISTFILES += \
     layouts/light/*.svg \
     layouts/structure/*.svg \
     layouts/models/*.svg \
-    images/*.png
+    images/*.png \
+    technologies/README.md

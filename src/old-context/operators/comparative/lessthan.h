@@ -8,4 +8,4 @@ public:
 	LessThan();
 };
 
-#endif // LESSTHAN_H
+#endif  // LESSTHAN_H

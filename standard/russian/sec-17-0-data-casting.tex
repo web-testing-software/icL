@@ -1,47 +1,54 @@
 % !TeX spellcheck = ru_RU
 \section{Преобразование типов}
 
-Для преобразования данных в icL присутствуют 3 операторы первого ранга:
+Для преобразования данных в icL присутствуют 4 операторы первого ранга:
 \begin{icItems}
-	\item \lstinline|data : type : type|;
-	\item \lstinline|data :: type : bool|;
-	\item \lstinline|data :* type : bool|;
+	\item \mintinline{icl}{data : type : type};
+	\item \mintinline{icl}{data :: type : bool};
+	\item \mintinline{icl}{data :* type : bool};
+	\item \mintinline{icl}{data :? type : type};
 \end{icItems}
 
-\subsubsection{\lstinline|data : type|}
+И 1 оператор 7-ого ранга \mintinline{icl}{date :! type : type}.
+
+\subsubsection{\mintinline{icl}{data : type}}
 
 Преобразует данные в нужном типа данных. Доступен следующее вариации:
 \begin{icItems}
-	\item \lstinline|value : type|;
-	\item \lstinline|(value...) : type|;
-	\item \lstinline|(value...) : (type...)|;
+	\item \mintinline{icl}{value : type};
+	\item \mintinline{icl}{(value...) : type};
+	\item \mintinline{icl}{(value...) : (type...)};
 \end{icItems}
 
-\lstinline|value : type| - преобразует значение в нужном типа данных.
+\mintinline{icl}{value : type} — преобразует значение в нужном типа данных.
 
-\lstinline|(value...) : type| - преобразует запакованные значения в запакованных значении нужного типа. Возвращает запакованные значения, они могут быть использованы для вызова функции, например \lstinline|func ((2.0, 3.2) : int)|.
+\mintinline{icl}{(value...) : type} — преобразует запакованные значения в запакованных значении нужного типа. Возвращает запакованные значения, они могут быть использованы для вызова функции, например \mintinline{icl}{func ((2.0, 3.2) : int)}.
 
-\lstinline|(value...) : (type...)| - преобразует каждое запакованное значение в нужном типа данных, количество значений в обоих пакетов должна совпадать. Возвращает также запакованное значения.
+\mintinline{icl}{(value...) : (type...)} — преобразует каждое запакованное значение в нужном типа данных, количество значений в обоих пакетов должна совпадать. Возвращает также запакованное значения.
 
-Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|data :: type : bool|}
+\subsubsection{\mintinline{icl}{data :: type : bool}}
 
 Возвращает \true, если данные имеют нужный тип, иначе \false. Имеет следующие вариации:
 \begin{icItems}
-	\item \lstinline|value :: type|;
-	\item \lstinline|(value...) :: type|;
-	\item \lstinline|(value...) :: (type...)|;
+	\item \mintinline{icl}{value :: type};
+	\item \mintinline{icl}{(value...) :: type};
+	\item \mintinline{icl}{(value...) :: (type...)};
 \end{icItems}
 
-\subsubsection{\lstinline|data :* type : bool|}
+\subsubsection{\mintinline{icl}{data :* type : bool}}
 
 Возвращает \true, если данные могут быть преобразованы в нужном типе, иначе \false. Имеет следующие вариации:
 \begin{icItems}
-	\item \lstinline|value :* type|;
-	\item \lstinline|(value...) :* type|;
-	\item \lstinline|(value...) :* (type...)|;
+	\item \mintinline{icl}{value :* type};
+	\item \mintinline{icl}{(value...) :* type};
+	\item \mintinline{icl}{(value...) :* (type...)};
 \end{icItems}
+
+\subsubsection{\mintinline{icl}{data :! type : type}}
+
+\mintinline{icl}{data :! type : type} отличается от \mintinline{icl}{data : type : type} только рангом, обычное преобразование имеет ранг 1 и она выполняется в последнюю очередь, а этот оператор гарантирует немедленное преобразование.
 
 \subsection{Возможные преобразования}
 
@@ -65,186 +72,186 @@
 	\end{tabular}
 \end{table}
 
-\subsubsection{\lstinline|void : void|}
+\subsubsection{\mintinline{icl}{void : void}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|void : bool|}
+\subsubsection{\mintinline{icl}{void : bool}}
 
 Возвращает \false.
 
-\subsubsection{\lstinline|void : int|}
+\subsubsection{\mintinline{icl}{void : int}}
 
-Возвращает \lstinline|0|.
+Возвращает \mintinline{icl}{0}.
 
-\subsubsection{\lstinline|void : double|}
+\subsubsection{\mintinline{icl}{void : double}}
 
-Возвращает \lstinline|0.0|.
+Возвращает \mintinline{icl}{0.0}.
 
-\subsubsection{\lstinline|void : string|}
+\subsubsection{\mintinline{icl}{void : string}}
 
-Возвращает \lstinline|""|.
+Возвращает \mintinline{icl}{""}.
 
-\subsubsection{\lstinline|void : list|}
+\subsubsection{\mintinline{icl}{void : list}}
 
-Возвращает \lstinline|[]|.
+Возвращает \mintinline{icl}{[]}.
 
-\subsubsection{\lstinline|void : object|}
+\subsubsection{\mintinline{icl}{void : object}}
 
-Возвращает \lstinline|[=]|.
+Возвращает \mintinline{icl}{[=]}.
 
-\subsubsection{\lstinline|void : set|}
+\subsubsection{\mintinline{icl}{void : set}}
 
-Возвращает пустое множество.
+Возвращает \mintinline{icl}{[:]}.
 
-\subsubsection{\lstinline|void : element|}
+\subsubsection{\mintinline{icl}{void : element}}
 
-Возвращает \lstinline|[:]|.
+Возвращает пустую коллекцию.
 
-\subsubsection{\lstinline|bool : bool|}
-
-Возвращает исходный объект.
-
-\subsubsection{\lstinline|bool : int|}
-
-Возвращает \lstinline|1|, если логическое значение - единица, иначе \lstinline|0|.
-
-\subsubsection{\lstinline|bool : double|}
-
-Возвращает \lstinline|1.0|, если логическое значение - единица, иначе \lstinline|0.0|.
-
-\subsubsection{\lstinline|bool : string|}
-
-Возвращает \lstinline|"true"|, если логическое значение - единица, иначе \lstinline|"false"|.
-
-\subsubsection{\lstinline|int : bool|}
-
-Возвращает значение выражений \lstinline|int != 0|.
-
-\subsubsection{\lstinline|int : int|}
+\subsubsection{\mintinline{icl}{bool : bool}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|int : double|}
+\subsubsection{\mintinline{icl}{bool : int}}
+
+Возвращает \mintinline{icl}{1}, если логическое значение - единица, иначе \mintinline{icl}{0}.
+
+\subsubsection{\mintinline{icl}{bool : double}}
+
+Возвращает \mintinline{icl}{1.0}, если логическое значение - единица, иначе \mintinline{icl}{0.0}.
+
+\subsubsection{\mintinline{icl}{bool : string}}
+
+Возвращает \mintinline{icl}{"true"}, если логическое значение - единица, иначе \mintinline{icl}{"false"}.
+
+\subsubsection{\mintinline{icl}{int : bool}}
+
+Возвращает значение выражений \mintinline{icl}{int != 0}.
+
+\subsubsection{\mintinline{icl}{int : int}}
+
+Возвращает исходный объект.
+
+\subsubsection{\mintinline{icl}{int : double}}
 
 Возвращает вещественное число, имеющее целая часть равна \integer, а дробная равна нулю.
 
-\subsubsection{\lstinline|int : string|}
+\subsubsection{\mintinline{icl}{int : string}}
 
 Возвращает строку, содержащая строковое представление числа \integer.
 
-\subsubsection{\lstinline|double : bool|}
+\subsubsection{\mintinline{icl}{double : bool}}
 
-Возвращает значение выражений \lstinline|double != 0.0|.
+Возвращает значение выражений \mintinline{icl}{double != 0.0}.
 
-\subsubsection{\lstinline|double : int|}
+\subsubsection{\mintinline{icl}{double : int}}
 
 Возвращает целое число, равна целой части числа \double. Дробная часть пропадёт.
 
-\subsubsection{\lstinline|double : double|}
+\subsubsection{\mintinline{icl}{double : double}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|double : string|}
+\subsubsection{\mintinline{icl}{double : string}}
 
 Возвращает строку, содержащая строковое представление числа \double.
 
-\subsubsection{\lstinline|string : bool|}
+\subsubsection{\mintinline{icl}{string : bool}}
 
-Возвращает значение выражений \lstinline|!string'empty|.
+Возвращает значение выражений \mintinline{icl}{!string'empty}.
 
-\subsubsection{\lstinline|string : int|}
+\subsubsection{\mintinline{icl}{string : int}}
 
 Возвращает целое число, являющейся результат парсинга строки \str.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|string : double|}
+\subsubsection{\mintinline{icl}{string : double}}
 
 Возвращает вещественное число, являющейся результат парсинга строки \str. Целая часть от дробной делить надо точкой, а не запятой.
 
-Возможные исключения: \ferror{ParsingFailed}.
+Возможные исключения: \ferror{ParsingFailed} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|string : string|}
+\subsubsection{\mintinline{icl}{string : string}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|string : list|}
+\subsubsection{\mintinline{icl}{string : list}}
 
-Возвращает \lstinline|[string]|.
+Возвращает \mintinline{icl}{[string]}.
 
-\subsubsection{\lstinline|string : object|}
+\subsubsection{\mintinline{icl}{string : object}}
 
 Возвращает объект, являющийся результат парсинга JSON-строки \str. JSON-объект должен иметь поля только следующих типов: \bool, \integer, \double, \str{} и \listtype.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} и \ferror{ComplexField} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|string : set|}
+\subsubsection{\mintinline{icl}{string : set}}
 
-Возвращает множество, являющийся результат парсинга JSON-строки \str, которая должна содержать массив объект, а каждый объект должен соответствовать критерия оператора \lstinline|string : object|.
+Возвращает множество, являющийся результат парсинга JSON-строки \str, которая должна содержать массив объект, а каждый объект должен соответствовать критерия оператора \mintinline{icl}{string : object}.
 
-Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField}.
+Возможные исключения: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} и \ferror{ComplexField} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|list : bool|}
+\subsubsection{\mintinline{icl}{list : bool}}
 
-Возвращает значение выражений \lstinline|!list'empty|.
+Возвращает значение выражений \mintinline{icl}{!list'empty}.
 
-\subsubsection{\lstinline|list : string|}
+\subsubsection{\mintinline{icl}{list : string}}
 
 Возвращает первую строку списка, если список состоит только из одной строки, иначе генерирует исключение.
 
-Возможные исключения: \ferror{EmptyList} и \ferror{MultiList}.
+Возможные исключения: \ferror{EmptyList} и \ferror{MultiList} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|list : list|}
+\subsubsection{\mintinline{icl}{list : list}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|list : set|}
+\subsubsection{\mintinline{icl}{list : set}}
 
-Каждая строка списка будет преобразовано в объекте оператором \lstinline|string : object|, получены объекты будут группированы в множестве, полученная множество будет возвращена оператором.
+Каждая строка списка будет преобразовано в объекте оператором \mintinline{icl}{string :}\\*\mintinline{icl}{object}, получены объекты будут группированы в множестве, полученная множество будет возвращена оператором.
 
-\subsubsection{\lstinline|object : bool|}
+\subsubsection{\mintinline{icl}{object : bool}}
 
 Возвращает \true, если объект хранит хотя бы одну переменную, иначе \false.
 
-\subsubsection{\lstinline|object : string|}
+\subsubsection{\mintinline{icl}{object : string}}
 
 Возвращает JSON-строку, описывающая объект.
 
-\subsubsection{\lstinline|object : object|}
+\subsubsection{\mintinline{icl}{object : object}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|set : bool|}
+\subsubsection{\mintinline{icl}{set : bool}}
 
-Возвращает значение выражений \lstinline|!set'empty|.
+Возвращает значение выражений \mintinline{icl}{!set'empty}.
 
-\subsubsection{\lstinline|set : string|}
+\subsubsection{\mintinline{icl}{set : string}}
 
 Возвращает JSON-строку, описывающая множеству.
 
-\subsubsection{\lstinline|set : object|}
+\subsubsection{\mintinline{icl}{set : object}}
 
 Возвращает единственный объект, если множество содержит только один объект, иначе генерирует исключение.
 
-Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet}.
+Возможные исключения: \ferror{EmptySet} и \ferror{MultiSet} (см. таб. \ref{errors}).
 
-\subsubsection{\lstinline|set : list|}
+\subsubsection{\mintinline{icl}{set : list}}
 
 Возвращает список JSON-строк, где каждая строка описывает объект множества.
 
-\subsubsection{\lstinline|set : set|}
+\subsubsection{\mintinline{icl}{set : set}}
 
 Возвращает исходный объект.
 
-\subsubsection{\lstinline|element : bool|}
+\subsubsection{\mintinline{icl}{element : bool}}
 
-Возвращает значение выражений \lstinline|!element'empty|.
+Возвращает значение выражений \mintinline{icl}{!element'empty}.
 
-\subsubsection{\lstinline|element : string|}
+\subsubsection{\mintinline{icl}{element : string}}
 
 Возвращает строка, описывающая последовательность действий, при которых была получена данная коллекция.
 
-\subsubsection{\lstinline|element : element|}
+\subsubsection{\mintinline{icl}{element : element}}
 
 Возвращает исходный объект.

@@ -3,7 +3,7 @@
 namespace icL::app {
 
 DialDescription::DialDescription(QObject * parent)
-	: QObject(parent) {}
+    : QObject(parent) {}
 
 int DialDescription::count() const {
 	return m_count;

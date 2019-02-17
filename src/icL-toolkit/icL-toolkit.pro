@@ -8,12 +8,9 @@ QT = core gui qml
 
 ICL_ROOT = $$PWD/../..
 
-include($$ICL_ROOT/pri_files/lib.pri)
-
-DESTDIR = $$ICL_ROOT/bin/$$BUILDTYPE/$$OS/icL/Toolkit
-
-TARGET = $$qtLibraryTarget($$TARGET)
 uri = icL.Toolkit
+QML_TYPES = toolkit.qmltypes
+include($$ICL_ROOT/pri_files/qmlplugin.pri)
 
 DISTFILES += \
     README.md \
@@ -21,32 +18,25 @@ DISTFILES += \
     toolkit.qmltypes \
     models/*.*uml
 
-
-copy_qmldir.target = $$DESTDIR/qmldir
-copy_qmldir.depends = $$_PRO_FILE_PWD_/qmldir
-copy_qmldir.commands = mkdir -p \"$$replace($$DESTDIR, /, $$QMAKE_DIR_SEP)\"; \
-    $(COPY_FILE) \"$$replace(copy_qmldir.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_qmldir.target, /, $$QMAKE_DIR_SEP)\"
-copy_qmltypes.target = $$DESTDIR/toolkit.qmltypes
-copy_qmltypes.depends = $$_PRO_FILE_PWD_/toolkit.qmltypes
-copy_qmltypes.commands = $(COPY_FILE) \"$$replace(copy_qmltypes.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_qmltypes.target, /, $$QMAKE_DIR_SEP)\"
-QMAKE_EXTRA_TARGETS += copy_qmldir copy_qmltypes
-PRE_TARGETDEPS += $$copy_qmldir.target $$copy_qmltypes.target
-
-qmldir.files = qmldir toolkit.qmltypes
-unix {
-    installPath = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)
-    qmldir.path = $$installPath
-    target.path = $$installPath
-    INSTALLS += qmldir toolkit.qmltypes
-}
-
 HEADERS += \
     export/plugin.h \
     panels/browser.h \
     panels/code.h \
     panels/basepanels.h \
     panels/debug.h \
-    export/panels.h
+    export/panels.h \
+    utils/mousetracker.h \
+    session/session.h \
+    tree/item.h \
+    tree/folder.h \
+    tree/finaly.h \
+    session/project.h \
+    session/libs.h \
+    session/resources.h \
+    session/script.h \
+    session/lib.h \
+    session/resource.h \
+    utils/remotecall.h
 
 SOURCES += \
     export/plugin.cpp \
@@ -54,4 +44,16 @@ SOURCES += \
     panels/code.cpp \
     panels/basepanels.cpp \
     panels/debug.cpp \
-    export/panels.cpp
+    export/panels.cpp \
+    utils/mousetracker.cpp \
+    session/session.cpp \
+    tree/item.cpp \
+    tree/folder.cpp \
+    tree/finaly.cpp \
+    session/project.cpp \
+    session/libs.cpp \
+    session/resources.cpp \
+    session/script.cpp \
+    session/lib.cpp \
+    session/resource.cpp \
+    utils/remotecall.cpp

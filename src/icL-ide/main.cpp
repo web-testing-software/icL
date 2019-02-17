@@ -1,3 +1,7 @@
+#include "gateway.h"
+
+#include <icL-look/export/look.h>
+
 #include <iostream>
 
 #include <QApplication>
@@ -26,26 +30,26 @@
  */
 
 int main(int argc, char * argv[]) {
-	QApplication app(argc, argv);
-	QtWebEngine::initialize();
+    QApplication app(argc, argv);
+    QtWebEngine::initialize();
 
-//	Look look;
-//	look.loadConf(":/themes/light.json");
+    // Now we are using a single engine
+    // Thnaks to derM for his/her answer
+    // https://stackoverflow.com/questions/52696330/how-to-create-some-independent-windows-in-qml/52699869
+    QQmlApplicationEngine engine;
 
+    QQmlContext * context = engine.rootContext();
 
-	QQmlApplicationEngine engine;
-	QQmlContext *         context = engine.rootContext();
+    icL::ide::GateWay gateway;
 
-//	engine.addImportPath("/home/lixcode/Qt/Projects/icL/bin/debug/linux/qml");
+    context->setContextProperty("gateway", &gateway);
 
-	//	context->setContextProperty("look", &look);
-	//	context->setContextProperty("database", &database);
+    qmlRegisterSingletonType(
+      {"qrc:/utils/MoveFlags.qml"}, "icL", 1, 0, "MoveFlags");
 
-//	 QDirIterator it(":/", QDirIterator::Subdirectories); while (it.hasNext()) qDebug() << it.next();
+    engine.load("qrc:/windows/start-window.qml");
+    engine.load("qrc:/main.qml");
 
-//	engine.addImportPath("qrc:///");
-	qDebug() << engine.importPathList();
-	engine.load(QUrl("qrc:/main.qml"));
-	return QGuiApplication::exec();
-	return 0;
+    return QGuiApplication::exec();
+    return 0;
 }

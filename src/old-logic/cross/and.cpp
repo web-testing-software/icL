@@ -3,7 +3,7 @@
 namespace icL::logic::cross {
 
 And::And(memory::InterLevel * il)
-	: Cross(il){};
+    : Cross(il){};
 
 /**
  * @brief And::calcResult - append operation && to child blocks

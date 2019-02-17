@@ -8,4 +8,4 @@ public:
 	For();
 };
 
-#endif // FOR_H
+#endif  // FOR_H

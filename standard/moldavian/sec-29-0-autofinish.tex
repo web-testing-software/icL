@@ -1,0 +1,25 @@
+% !TeX spellcheck = ro_RO
+\section{Auto-finisarea comenzilor}
+
+\textbf{Delimitatorul de comenzi} în icL poate fi omis, dar nu se recomandă. Dar pentru a face codul mai clar e mai bine de omis delimitatorul de comenzi după \mintinline{icl}{if}, \mintinline{icl}{else}, \mintinline{icl}{while}, \mintinline{icl}{do while}, \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}. Diferența o puteți vedea comparînd foaia \ref{nodelimiterskipping} cu  \ref{delimiterskipping}.
+
+\begin{sourcecode}
+    \captionof{listing}{Făra delimitatori omiși}
+    \label{nodelimiterskipping}
+    \inputminted[linenos]{icl}{../sources/nodelimiterskipping.icL}
+\end{sourcecode}
+
+\begin{sourcecode}
+    \captionof{listing}{Cu delimitatori omiși}
+    \label{delimiterskipping}
+    \inputminted[linenos]{icl}{../sources/delimiterskipping.icL}
+\end{sourcecode}
+
+Comanda poate fi finisată automat după următoarele construcții semantice:
+\begin{icItems}
+	\item literal;
+	\item valoare;
+	\item proprietate;
+	\item pachet de valori;
+	\item grup de comenzi.
+\end{icItems}

@@ -9,6 +9,19 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: ["QtQuick 2.8"]
     Component {
+        name: "QThread"
+        prototype: "QObject"
+        Signal { name: "started" }
+        Signal { name: "finished" }
+        Method {
+            name: "start"
+            Parameter { type: "Priority" }
+        }
+        Method { name: "start" }
+        Method { name: "terminate" }
+        Method { name: "quit" }
+    }
+    Component {
         name: "icL::toolkit::panels::BasePanels"
         prototype: "QObject"
         Property { name: "navigationBar"; type: "bool" }
@@ -119,9 +132,14 @@ Module {
         prototype: "QObject"
         exports: ["Panels 1.0"]
         exportMetaObjectRevisions: [0]
-        Property { name: "browser"; type: "Browser"; isReadonly: true; isPointer: true }
-        Property { name: "code"; type: "Code"; isReadonly: true; isPointer: true }
-        Property { name: "debug"; type: "Debug"; isReadonly: true; isPointer: true }
+        Property {
+            name: "browser"
+            type: "icL::toolkit::panels::Browser"
+            isReadonly: true
+            isPointer: true
+        }
+        Property { name: "code"; type: "icL::toolkit::panels::Code"; isReadonly: true; isPointer: true }
+        Property { name: "debug"; type: "icL::toolkit::panels::Debug"; isReadonly: true; isPointer: true }
         Property { name: "projectsOrFiles"; type: "bool" }
         Signal {
             name: "browserChanged"
@@ -149,5 +167,23 @@ Module {
             Parameter { name: "path"; type: "string" }
         }
         Method { name: "saveConf"; type: "bool" }
+    }
+    Component {
+        name: "icL::toolkit::utils::MouseTracker"
+        prototype: "QThread"
+        exports: ["MouseTrack 1.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "tracking"; type: "bool"; isReadonly: true }
+        Property { name: "position"; type: "QPoint"; isReadonly: true }
+        Signal {
+            name: "trackingChanged"
+            Parameter { name: "tracking"; type: "bool" }
+        }
+        Signal {
+            name: "posittionChanged"
+            Parameter { name: "position"; type: "QPoint" }
+        }
+        Method { name: "startTracking"; type: "QPoint" }
+        Method { name: "stopTracking"; type: "QPoint" }
     }
 }

@@ -7,7 +7,7 @@
 namespace icL::context::code {
 
 ForAny::ForAny(memory::InterLevel * il, const memory::CodeFragment & source)
-	: Code(il, source) {
+    : Code(il, source) {
 	m_role = Role::ForAny;
 };
 
@@ -15,7 +15,7 @@ ForAny::ForAny(memory::InterLevel * il, const memory::CodeFragment & source)
 
 bool ForAny::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
-		   context->isResultative();
+	       context->isResultative();
 }
 
 bool ForAny::isRightToLeft() const {

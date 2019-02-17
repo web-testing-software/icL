@@ -3,7 +3,7 @@
 namespace icL::context::code::control {
 
 Else::Else(memory::InterLevel * il)
-	: Control(il, memory::CodeFragment()) {
+    : Control(il, memory::CodeFragment()) {
 	m_role = Role::Else;
 };
 
@@ -11,7 +11,7 @@ Else::Else(memory::InterLevel * il)
 
 bool Else::checkPrev(const Context * context) const {
 	return context != nullptr && context->role() == Role::Code &&
-		   context->prev() != nullptr && context->prev()->role() == Role::If;
+	       context->prev() != nullptr && context->prev()->role() == Role::If;
 }
 
 bool Else::isExecutable() const {

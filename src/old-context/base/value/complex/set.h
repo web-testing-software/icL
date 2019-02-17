@@ -42,7 +42,7 @@ private:
 	void concatLists(const QString & name, const QString & separator);
 
 	void insert(const QVariantList & row);
-	void merge(const memory::SetPtr &set2);
+	void merge(const memory::SetPtr & set2);
 	void remove(const QVariantList & row);
 	void removeAt(int index);
 	void clear();
@@ -65,7 +65,7 @@ private:
 
 	// Back-end
 	bool checkRow(const memory::SetPtr & set, const QVariantList & row);
-	int indexOf(const QString & name, const memory::SetPtr & set);
+	int  indexOf(const QString & name, const memory::SetPtr & set);
 	bool isSetType(memory::Type type);
 
 private:

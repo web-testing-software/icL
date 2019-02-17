@@ -1,6 +1,3 @@
 #include "if.h"
 
-If::If()
-{
-
-}
+If::If() {}

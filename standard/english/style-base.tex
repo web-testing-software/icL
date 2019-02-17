@@ -1,0 +1,117 @@
+% !TeX spellcheck = en_US
+\usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{fancyvrb}
+\fvset{tabsize=2}
+\usepackage[utf8]{inputenc}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\usepackage[htt]{hyphenat}
+\usepackage{setspace}
+\usepackage[pdfencoding=unicode,hidelinks,unicode]{hyperref}
+\setlength{\emergencystretch}{30pt}
+
+
+\setmainfont{Noto Sans}
+\newfontfamily\cyrillicfont{Noto Sans}
+\let\cyrillicfonttt\ttfamily
+\setmonofont{Noto Mono}
+\setsansfont{Noto Sans}
+\newfontfamily\cyrillicfontmono{Noto Sans}
+\newfontfamily\cyrillicfontsans{Noto Sans}
+
+\usepackage{longtable}
+\usepackage{ragged2e}
+\setcounter{tocdepth}{2}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[singlelinecheck=false,font=singlespacing,labelsep=endash,position=above]{caption}
+\usepackage{listings, lstautogobble}
+
+\usepackage{enumitem}
+
+\usepackage{soul}
+
+\newcommand{\ferror}[1]{\fontsize{11pt}{12pt}\texttt{\sethlcolor{error}\hl{#1}}}
+
+% \colorbox{function}{\textcolor{white}{#1}}
+
+\newcommand{\cerror}[1]{{\fontsize{11pt}{12pt} \tt \colorbox{red!75!blue}{\textcolor{white}{#1}}}}
+
+
+\let\counterwithout\relax
+\let\counterwithin\relax
+\usepackage{chngcntr}
+
+\newenvironment{icItems}
+{ \begin{itemize} [noitemsep,nolistsep] }
+	{ \end{itemize} }
+
+\newenvironment{icEnumResume}
+{ \begin{enumerate}[noitemsep,nolistsep,resume] }
+	{ \end{enumerate} }
+
+\newenvironment{icEnum}
+{ \begin{enumerate}[noitemsep,nolistsep] }
+	{ \end{enumerate} }
+
+
+
+\usepackage[newfloat]{minted}
+\usemintedstyle{icl}
+
+\newenvironment{sourcecode}{
+	\captionsetup{type=listing,margin={1.25cm,0pt}}
+	\vspace{1.5em}
+}{\vspace{-1em}}
+
+\setminted{
+	fontfamily=tt,
+	fontsize=\footnotesize,
+	%	baselinestretch=1,
+	bgcolor=codebg,
+	escapeinside=\_\_,
+	mathescape=true,
+	autogobble=true,
+	breaklines=true,
+	breakanywhere=true
+	encoding=utf8,
+	frame=leftline,
+	framesep=4pt,
+	framerule=1pt,
+	highlightcolor=codeheaderbg,
+	labelposition=topline,
+	numbers=left,
+	numberblanklines=true,
+	numbersep=2pt,
+	resetmargins=true,
+	rulecolor=blue2,
+	%	samepage=true,
+	xleftmargin=1.25cm,
+	tabsize=4,
+	obeytabs=true,
+	linenos=false
+}
+
+\newmintinline{icl}{}
+\newminted{icl}{linenos=true}
+
+\definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
+\definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
+\definecolor{blue2}{RGB}{15, 92, 198}
+
+\makeatletter
+\@ifundefined{iclcode}{
+	\newenvironment{iclcode}{}{}
+}{}
+\makeatother
+
+\providecommand{\iclinline}[1]{\mintinline{js}{#1}}
+
+\renewcommand{\theFancyVerbLine}{\textcolor[RGB]{15, 92, 198}{\footnotesize \texttt{\arabic{FancyVerbLine}}}}

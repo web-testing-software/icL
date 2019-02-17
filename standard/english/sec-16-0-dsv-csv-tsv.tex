@@ -1,0 +1,58 @@
+% !TeX spellcheck = en_US
+\section{DSV: CSV and TSV}
+
+{\bf DSV (Delimiter Separated Values)} are text files which contain data.
+
+{\bf CSV (Comma Separated Values)} are DSV files which use comma as separator, this format is used by office software.
+
+{\bf TSV (Tab Separated Values)} are DSV files which use tab as separator, this format is used in web-applications.
+
+Operations with DSV —
+\begin{icItems}
+	\item Load.
+	\item Write.
+	\item Append of data.
+	\item Synchronization.
+\end{icItems}
+
+\subsection{Load}
+
+\subsubsection{\mintinline{icl}{DSV.load (delimiter : string, f : File, base : set) : set};}
+
+Return a new set which contains all data of the file \mintinline{icl}{f}. The string \mintinline{icl}{delimiter} must contain just a character — the delimiter. Use \mintinline{icl}{Files.create (path : string) : File} to create an object of type \mintinline{icl}{File}, if file doesn't exist it will be created, otherwise will be opened.
+
+The parameter \mintinline{icl}{base} gets a set, on base of it will be created the new set. Its header must be compatible with data of file. Also, the data of base set will be copied to new.
+
+Possible exceptions: \ferror{ParsingFailed}, \ferror{WrongDelimiter} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{DSV.loadCSV (f : File, base : set) : File};}
+
+The same as \mintinline{icl}{DSV.load (",", @f, @base)}.
+
+\subsubsection{\mintinline{icl}{DSV.loadTSV (f : File, base : set) : File};}
+
+TSV has a different parsing algorithm, is not the same equivalent to \\* \mintinline{icl}{DSV.load ("\t", @f, @base)}.
+
+\subsection{Write}
+
+\subsubsection{\mintinline{icl}{DSV.write (f : File, s : set) : File};}
+
+All file content will be rewritten.
+
+\subsection{Append of data}
+
+The file content will be saved, the new data will be added to the end of file. The compatibility of data will not be checked, you can brake a file by adding incompatible data.
+
+\subsubsection{\mintinline{icl}{DSV.append (f : File, s : set) : File};}
+
+Appends all objects of the set \mintinline{icl}{s}.
+
+\subsubsection{\mintinline{icl}{DSV.append (f : File, obj : object) : File};}
+
+Appends object \mintinline{icl}{obj}.
+
+\subsection{Synchronization}
+
+\subsubsection{\mintinline{icl}{DSV.sync (f : File, s : set) : set};}
+
+On binding all content of data will be rewritten. On adding the data will be appended. On removing all content of file will be rewritten.

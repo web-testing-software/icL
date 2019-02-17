@@ -13,6 +13,6 @@ public:
 	Chrome();
 };
 
-}  // namespace icL::driver
+}  // namespace icL::driver::w3c
 
 #endif  // icL_driver_w3c_Chrome

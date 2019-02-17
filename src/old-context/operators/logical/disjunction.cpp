@@ -1,6 +1,3 @@
 #include "disjunction.h"
 
-Disjunction::Disjunction()
-{
-
-}
+Disjunction::Disjunction() {}

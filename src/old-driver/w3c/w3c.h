@@ -19,9 +19,9 @@ namespace icL::driver::w3c {
  * \~english @brief The W3c class - Base W3C webdriver API realisation
  */
 class W3c
-	: public QObject
-	, public memory::Node
-	, public memory::Server
+    : public QObject
+    , public memory::Node
+    , public memory::Server
 {
 public:
 	W3c();

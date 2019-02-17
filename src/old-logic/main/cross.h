@@ -24,7 +24,7 @@ protected:
 	Logic * block1 = nullptr;
 	Logic * block2 = nullptr;
 	bool    value1 = false, value2 = false, value1getted = false,
-		 value2getted = false;
+	     value2getted = false;
 
 
 	// Logic interface

@@ -1,0 +1,173 @@
+% !TeX spellcheck = ru_RU
+\section{Механизм состояний}
+
+Все переменные icL хранятся в контейнерах 2 типов: стек и состояние.
+
+Стек представляет собой стек слоев, каждый слой строго привязан к фрагменту кода icL, при вводе курсора в область слой создаётся, при выходе разрушается.
+
+Состояние представляет собой двусвязный список контейнеров, они не привязываются к коду и доступны глобально. По умолчанию создаётся лишь один контейнер, но новые могут быть созданы пользователем.
+
+\subsection{Управление стеками}
+\label{stack:control}
+
+Для управления стеками, используется следующий набор функций и свойств:
+\begin{icItems}
+	\item \mintinline{icl}{[r/o] Stacks'(name : string) : Stack};
+	\item \mintinline{icl}{[r/w] Stack'(name : string) : any};
+	\item \mintinline{icl}{Stack.clear () : void};
+	\item \mintinline{icl}{Stack.continue () : void};
+	\item \mintinline{icl}{Stack.break () : void};
+	\item \mintinline{icl}{Stack.return (value : any) : void};
+	\item \mintinline{icl}{Stack.markTest (name : string) : Stack};
+	\item \mintinline{icl}{Stack.markStep (name : string) : Stack};
+	\item \mintinline{icl}{Stack.addDescription (description : string) : void};
+	\item \mintinline{icl}{Stack.destroy () : void};
+	\item \mintinline{icl}{Stack.ignore () : Stack};
+	\item \mintinline{icl}{Stack.listen () : Stack}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Stacks'(name : string) : Stack}}
+
+Возвращает слой имеющий имя \mintinline{icl}{name}. Наименование слоя имеет следующий синтаксис —
+\begin{minted}{icl}
+{:name
+	`` content
+}
+\end{minted}
+Могут быть именованными только блоки команд (код ограничен фигурными скобками). Код ограничен круглыми скобками не может иметь название. Вызов функций создаёт слой имеющий названием функций.
+
+\subsubsection{\mintinline{icl}{[r/w] Stack'(name : string) : any}}
+
+Возвращает переменную, находящаяся именно в этот слой. Например: уже существует переменная \mintinline{icl}{i} в верхнем слой, нужно определить переменная с таким же именем в текущем слой. Проблема решается следующим образом: \mintinline{icl}{Stack'i = 0} вместо \mintinline{icl}{@i = 0}.
+
+\subsubsection{\mintinline{icl}{Stack.clear () : void}}
+
+Удаляет все переменные, которые хранится в слой.
+
+\subsubsection{\mintinline{icl}{Stack.continue () : void}}
+
+Переход на следующую итерацию. Если текущий слой не является циклом, то будет искать ближайший цикл и применить операцию к ним.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.break () : void}}
+
+Прекращает немедленно работу цикла. Если текущий слой не является циклом, то будет искать ближайший цикл и применить операцию к ним.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.return (value : any) : void}}
+
+Возвращает результат выполнения функции во внешней среды. Если текущий слой не является функцией, то будет искать ближайшую функцию и применить операцию к ней.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.markTest (name : string) : Stack}}
+
+Отмечает текущий слой как тест с названием \mintinline{icl}{name}, стоит отметить что тест внутри теста нельзя вложить.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.markStep (name : string) : Stack}}
+
+Отмечает текущий слой как шаг с названием \mintinline{icl}{name}. Шаг может быть определён внутри теста и внутри другого шага, в том числе внутри себя.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.addDescription (description : string) : void}}
+
+Добавляет текстовое описание шага или теста. В сравнения с названием, при осмотре результатов теста описание спрятано и показывается только при необходимости.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.destroy () : void}}
+
+Полностью удаляет с памяти слой типа \mintinline{icl}{listen}.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.ignore () : Stack}}
+
+Переводит слой типа \mintinline{icl}{listen} в режиме "Не беспокоить".
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Stack.listen () : Stack}}
+
+Переводит слой типа \mintinline{icl}{listen} в активном режиме.
+
+Возможные исключения: \ferror{InvalidArgument} (см. таб. \ref{errors}).
+
+\subsection{Управление состояниями}
+
+Для управления состояниями, используется следующий набор функций и свойств:
+\begin{icItems}
+	\item \mintinline{icl}{States'first : object};
+	\item \mintinline{icl}{States'prev : object};
+	\item \mintinline{icl}{States'next : object};
+	\item \mintinline{icl}{States'last : object};
+	\item \mintinline{icl}{States.new (data = [=]) : void};
+	\item \mintinline{icl}{States.newAtEnd (data = [=]) : void};
+	\item \mintinline{icl}{States.toNext () : void};
+	\item \mintinline{icl}{States.toPrev () : void};
+	\item \mintinline{icl}{States.clear () : void};
+	\item \mintinline{icl}{States.delete () : void};
+	\item \mintinline{icl}{States.toFirst () : void};
+	\item \mintinline{icl}{States.toLast () : void}.
+\end{icItems}
+
+Объект \mintinline{icl}{States} является коллекцией, а значит её можно посматривать через \mintinline{icl}{for (States) {}}. Поддержка других циклов не предусматриваться.
+
+\subsubsection{\mintinline{icl}{States'first : object}}
+
+Возвращает первое состояние в виде объекта.
+
+\subsubsection{\mintinline{icl}{States'prev : object}}
+
+Возвращает предыдущее состояние в виде объекта.
+
+\subsubsection{\mintinline{icl}{States'next : object}}
+
+Возвращает следующее состояние в виде объекта.
+
+\subsubsection{\mintinline{icl}{States'last : object}}
+
+Возвращает последнее состояние в виде объекта.
+
+\subsubsection{\mintinline{icl}{States.new (data = [=]) : void}}
+
+Создаёт новое состояние после текущей и переключает фокус на ней. Все данные объекта \mintinline{icl}{data} добавляются в новом контейнере.
+
+\subsubsection{\mintinline{icl}{States.newAtEnd (data = [=]) : void}}
+
+Создаёт новое состояние в конце, не переключает фокус на ней. Все данные объекта \mintinline{icl}{data} добавляются в новом контейнере.
+
+\subsubsection{\mintinline{icl}{States.toNext () : bool}}
+
+Возвращает \true, если существует следующее состояние и фокус был перемещён на неё, иначе \false.
+
+\subsubsection{\mintinline{icl}{States.toPrev () : bool}}
+
+Возвращает \true, если существует предыдущее состояние и фокус был перемещён на неё, иначе \false.
+
+\subsubsection{\mintinline{icl}{States.clear () : void}}
+
+Удаляет все переменные, которые хранится в контейнере.
+
+\subsubsection{\mintinline{icl}{States.delete () : void}}
+
+Удаляет состояние, если существует следующее то фокус переходит на ней, иначе если существует предыдущее то фокус переходит на ней, в противном случае текущее состояние - последняя и она не удаляется, а только очищается.
+
+\subsubsection{\mintinline{icl}{States.toFirst () : void}}
+
+Переходит на первое состояние.
+
+\subsubsection{\mintinline{icl}{States.toLast () : void}}
+
+Переходит на последнее состояние.
+
+\subsubsection{\mintinline{icl}{for (States) {}}}
+
+Выполняет тело цикла для каждой состояний.
+
+%\newpage

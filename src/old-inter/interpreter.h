@@ -29,8 +29,8 @@
 namespace icL::inter {
 
 class Interpreter
-	: public memory::Node
-	, public memory::Interpreter
+    : public memory::Node
+    , public memory::Interpreter
 {
 public:
 	Interpreter(memory::InterLevel * il);
@@ -45,7 +45,7 @@ public:
 
 
 	// memory.Interpreter interface
-	void newSignal(int code, const QString & name) override;
+	void     newSignal(int code, const QString & name) override;
 	Flayer & getFlayer() override;
 
 

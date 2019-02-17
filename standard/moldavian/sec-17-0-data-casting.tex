@@ -1,26 +1,54 @@
 % !TeX spellcheck = ro_RO
 \section{Conversia datelor}
 
-De conversia datelor în icL răspund 3 operatori de rangul 1:
+De conversia datelor în icL răspund 4 operatori de rangul 1:
 \begin{icItems}
-	\item \lstinline|data : type : type|;
-	\item \lstinline|data :: type : bool|;
-	\item \lstinline|data :* type : bool|;
+	\item \mintinline{icl}{data : type : type};
+	\item \mintinline{icl}{data :: type : bool};
+	\item \mintinline{icl}{data :* type : bool};
+	\item \mintinline{icl}{data :? type : bool};
 \end{icItems}
 
-\subsubsection{\lstinline|data : type : type|}
+Și un operator de rangul 7 - \mintinline{icl}{date :! type : type}.
 
-Conversează datele în tipul necesar.
+\subsubsection{\mintinline{icl}{data : type : type}}
 
-Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+Conversează datele în tipul necesar. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \mintinline{icl}{value : type};
+	\item \mintinline{icl}{(value...) : type};
+	\item \mintinline{icl}{(value...) : (type...)};
+\end{icItems}
 
-\subsubsection{\lstinline|data :: type : bool|}
+\mintinline{icl}{value : type} conversează valoarea în tipul necesar.
 
-Returnează \true, datele dețin tipul indicat, în caz contrar \false.
+\mintinline{icl}{(value...) : type} conversează valorile împachetate în tipul necesar. Returnează pachet de valori (valori împachetate). Ele pot fi folosite pentru a apela o funcție, de exemplu \mintinline{icl}{func ((2.0, 3.2) : int)}.
 
-\subsubsection{\lstinline|data :* type : bool|}
+\mintinline{icl}{(value...) : (type...)} conversează fiecare valoare în tipul trebuit, ambele pachete ar trebui să dețină același număr de elemente. Returnează valori împachetate.
 
-Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false.
+Excepții posibile: \ferror{UnrealCast}, \ferror{ParsingFailed}, \ferror{EmptyList}, \ferror{MultiList}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{data :: type : bool}}
+
+Returnează \true, datele dețin tipul indicat, în caz contrar \false. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \mintinline{icl}{value :: type};
+	\item \mintinline{icl}{(value...) :: type};
+	\item \mintinline{icl}{(value...) :: (type...)};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{data :* type : bool}}
+
+Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz contrar \false. Disponibil în variațiile următoare:
+\begin{icItems}
+	\item \mintinline{icl}{value :* type};
+	\item \mintinline{icl}{(value...) :* type};
+	\item \mintinline{icl}{(value...) :* (type...)};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{data :! type : type}}
+
+\mintinline{icl}{data :! type : type} se deosebește de \mintinline{icl}{data : type : type} numai prin rang, conversia obișnuită are rangul 1 și se execută în ultimul  rînd, acest operator are rangul 7 și se execută în primul rînd.
 
 \subsection{Conversii posibile}
 
@@ -44,186 +72,186 @@ Returnează \true, dacă datele pot fi conversate în tipul indicat, în caz con
 	\end{tabular}
 \end{table}
 
-\subsubsection{\lstinline|void : void|}
+\subsubsection{\mintinline{icl}{void : void}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|void : bool|}
+\subsubsection{\mintinline{icl}{void : bool}}
 
 Returnează \false.
 
-\subsubsection{\lstinline|void : int|}
+\subsubsection{\mintinline{icl}{void : int}}
 
-Returnează \lstinline|0|.
+Returnează \mintinline{icl}{0}.
 
-\subsubsection{\lstinline|void : double|}
+\subsubsection{\mintinline{icl}{void : double}}
 
-Returnează \lstinline|0.0|.
+Returnează \mintinline{icl}{0.0}.
 
-\subsubsection{\lstinline|void : string|}
+\subsubsection{\mintinline{icl}{void : string}}
 
-Returnează \lstinline|""|.
+Returnează \mintinline{icl}{""}.
 
-\subsubsection{\lstinline|void : list|}
+\subsubsection{\mintinline{icl}{void : list}}
 
-Returnează \lstinline|[]|.
+Returnează \mintinline{icl}{[]}.
 
-\subsubsection{\lstinline|void : object|}
+\subsubsection{\mintinline{icl}{void : object}}
 
-Returnează \lstinline|[<>]|.
+Returnează \mintinline{icl}{[=]}.
 
-\subsubsection{\lstinline|void : set|}
+\subsubsection{\mintinline{icl}{void : set}}
 
 Returnează mulțime vidă.
 
-\subsubsection{\lstinline|void : element|}
+\subsubsection{\mintinline{icl}{void : element}}
 
 Returnează colecție deșartă.
 
-\subsubsection{\lstinline|bool : bool|}
+\subsubsection{\mintinline{icl}{bool : bool}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|bool : int|}
+\subsubsection{\mintinline{icl}{bool : int}}
 
-Returnează \lstinline|1|, dacă valoare booleană e adevărată, în caz contrar \lstinline|0|.
+Returnează \mintinline{icl}{1}, dacă valoare booleană e adevărată, în caz contrar \mintinline{icl}{0}.
 
-\subsubsection{\lstinline|bool : double|}
+\subsubsection{\mintinline{icl}{bool : double}}
 
-Returnează \lstinline|1.0|, dacă valoare booleană e adevărată, în caz contrar \lstinline|0.0|.
+Returnează \mintinline{icl}{1.0}, dacă valoare booleană e adevărată, în caz contrar \mintinline{icl}{0.0}.
 
-\subsubsection{\lstinline|bool : string|}
+\subsubsection{\mintinline{icl}{bool : string}}
 
-Returnează \lstinline|"true"|, dacă valoare booleană e adevărată, în caz contrar \lstinline|"false"|.
+Returnează \mintinline{icl}{"true"}, dacă valoare booleană e adevărată, în caz contrar \mintinline{icl}{"false"}.
 
-\subsubsection{\lstinline|int : bool|}
+\subsubsection{\mintinline{icl}{int : bool}}
 
-Returnează valoarea expresiei \lstinline|int != 0|.
+Returnează valoarea expresiei \mintinline{icl}{int != 0}.
 
-\subsubsection{\lstinline|int : int|}
+\subsubsection{\mintinline{icl}{int : int}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|int : double|}
+\subsubsection{\mintinline{icl}{int : double}}
 
 Returnează număr decimal, cu partea întreagă egală cu  \integer, dar decimală egală cu 0.
 
-\subsubsection{\lstinline|int : string|}
+\subsubsection{\mintinline{icl}{int : string}}
 
 Returnează un șir de caractere, care conține descrierea numărului \integer{} în sistemul decimal.
 
-\subsubsection{\lstinline|double : bool|}
+\subsubsection{\mintinline{icl}{double : bool}}
 
-Returnează valoarea expresiei \lstinline|double != 0.0|.
+Returnează valoarea expresiei \mintinline{icl}{double != 0.0}.
 
-\subsubsection{\lstinline|double : int|}
+\subsubsection{\mintinline{icl}{double : int}}
 
 Returnează un număr întreg egal cu partea întreagă a \double. Partea decimală se omite.
 
-\subsubsection{\lstinline|double : double|}
+\subsubsection{\mintinline{icl}{double : double}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|double : string|}
+\subsubsection{\mintinline{icl}{double : string}}
 
 Returnează un șir de caractere, care conține reprezentarea în caractere a numărului \double.
 
-\subsubsection{\lstinline|string : bool|}
+\subsubsection{\mintinline{icl}{string : bool}}
 
-Returnează valoarea expresiei \lstinline|!string'empty|.
+Returnează valoarea expresiei \mintinline{icl}{!string'empty}.
 
-\subsubsection{\lstinline|string : int|}
+\subsubsection{\mintinline{icl}{string : int}}
 
 Returnează număr întreg, care este rezultatul parsing-ului șirului \str.
 
-Excepții posibile: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|string : double|}
+\subsubsection{\mintinline{icl}{string : double}}
 
 Returnează număr decimal, care este rezultatul parsing-ului șirului \str. Partea întreagă de decimală se desparte prin punct, nu prin virgulă.
 
-Excepții posibile: \ferror{ParsingFailed}.
+Excepții posibile: \ferror{ParsingFailed} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|string : string|}
+\subsubsection{\mintinline{icl}{string : string}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|string : list|}
+\subsubsection{\mintinline{icl}{string : list}}
 
-Returnează \lstinline|[string]|.
+Returnează \mintinline{icl}{[string]}.
 
-\subsubsection{\lstinline|string : object|}
+\subsubsection{\mintinline{icl}{string : object}}
 
 Returnează obiect, care este rezultatul parsing-ului șirului JSON \str. Obiectul JSON trebuie să conțină numai cîmpuri de următoarele tipuri: \bool, \integer, \double, \str{} și \listtype.
 
-Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|string : set|}
+\subsubsection{\mintinline{icl}{string : set}}
 
-Returnează o mulțime, care este rezultatul parsing-ului șirului JSON \str, care trebuie să conțină un masiv de obiecte și fiecare obiect trebuie să corespundă criteriilor operatorului \lstinline|string : object|.
+Returnează o mulțime, care este rezultatul parsing-ului șirului JSON \str, care trebuie să conțină un masiv de obiecte și fiecare obiect trebuie să corespundă criteriilor operatorului \mintinline{icl}{string : object}.
 
-Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField}.
+Excepții posibile: \ferror{ParsingFailed}, \ferror{IncompatibleObject}, \ferror{IncompatibleRoot} și \ferror{ComplexField} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|list : bool|}
+\subsubsection{\mintinline{icl}{list : bool}}
 
-Returnează valoarea expresiei \lstinline|!list'empty|.
+Returnează valoarea expresiei \mintinline{icl}{!list'empty}.
 
-\subsubsection{\lstinline|list : string|}
+\subsubsection{\mintinline{icl}{list : string}}
 
 Returnează primul șir al listei, dacă lista constă dintr-un singur șir, în caz contrar generează excepție.
 
-Excepții posibile: \ferror{EmptyList} și \ferror{MultiList}.
+Excepții posibile: \ferror{EmptyList} și \ferror{MultiList} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|list : list|}
+\subsubsection{\mintinline{icl}{list : list}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|list : set|}
+\subsubsection{\mintinline{icl}{list : set}}
 
-Fiecare șir de caractere din listă va fi convertit în obiect prin \lstinline|string : object|, obiectele generate for fi grupate în mulțime, mulțimea generată va fi returnata de operator.
+Fiecare șir de caractere din listă va fi convertit în obiect prin \mintinline{icl}{string : object}, obiectele generate for fi grupate în mulțime, mulțimea generată va fi returnata de operator.
 
-\subsubsection{\lstinline|object : bool|}
+\subsubsection{\mintinline{icl}{object : bool}}
 
 Returnează \true, dacă obiectul conține cel puțin o variabilă, în caz contrar \false.
 
-\subsubsection{\lstinline|object : string|}
+\subsubsection{\mintinline{icl}{object : string}}
 
 Returnează un șir JSON, care descrie obiectul.
 
-\subsubsection{\lstinline|object : object|}
+\subsubsection{\mintinline{icl}{object : object}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|set : bool|}
+\subsubsection{\mintinline{icl}{set : bool}}
 
-Returnează valoarea expresiei \lstinline|!set'empty|.
+Returnează valoarea expresiei \mintinline{icl}{!set'empty}.
 
-\subsubsection{\lstinline|set : string|}
+\subsubsection{\mintinline{icl}{set : string}}
 
 Returnează un șir JSON, care descrie mulțimea.
 
-\subsubsection{\lstinline|set : object|}
+\subsubsection{\mintinline{icl}{set : object}}
 
 Returnează singurul obiect, dacă mulțimea conține doar un singur obiect, în caz contrar generează o excepție.
 
-Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet}.
+Excepții posibile: \ferror{EmptySet} și \ferror{MultiSet} (pr. tab. \ref{errors}).
 
-\subsubsection{\lstinline|set : list|}
+\subsubsection{\mintinline{icl}{set : list}}
 
 Returnează o listă de șiruri JSON, unde fiecare șir descrie un obiect din mulțime.
 
-\subsubsection{\lstinline|set : set|}
+\subsubsection{\mintinline{icl}{set : set}}
 
 Returnează datele primite.
 
-\subsubsection{\lstinline|element : bool|}
+\subsubsection{\mintinline{icl}{element : bool}}
 
-Returnează valoarea expresiei \lstinline|!element'empty|.
+Returnează valoarea expresiei \mintinline{icl}{!element'empty}.
 
-\subsubsection{\lstinline|element : string|}
+\subsubsection{\mintinline{icl}{element : string}}
 
 Returnează un șir care descrie, descrie ordinea de acțiuni necesare, ca să primești colecția dată.
 
-\subsubsection{\lstinline|element : element|}
+\subsubsection{\mintinline{icl}{element : element}}
 
 Returnează datele primite.

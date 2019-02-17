@@ -3,9 +3,9 @@
 namespace icL::context::data {
 
 Property::Property(memory::InterLevel * il, Prefix prefix, const QString & name)
-	: Data(il)
-	, prefix(prefix)
-	, name(name) {
+    : Data(il)
+    , prefix(prefix)
+    , name(name) {
 	m_role = Role::Property;
 };
 
@@ -13,7 +13,7 @@ Property::Property(memory::InterLevel * il, Prefix prefix, const QString & name)
 
 bool Property::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   (context->isResultative() || context->isComplex());
+	       (context->isResultative() || context->isComplex());
 }
 
 bool Property::canBeAtEnd() const {

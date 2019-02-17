@@ -30,8 +30,8 @@
 namespace icL::inter {
 
 Interpreter::Interpreter(memory::InterLevel * il)
-	: memory::Node(il)
-	, flayer(il) {}
+    : memory::Node(il)
+    , flayer(il) {}
 
 context::Context * Interpreter::parseNext() {
 	context::Context * ret       = nullptr;
@@ -131,9 +131,9 @@ context::Context * Interpreter::parseNext() {
 		default:
 			il->vm->exception(
 			  {-300, QStringLiteral(
-					   "Unexpected token %1, expected one of next symbols "
-					   ";\"#@$EA!-0123456789.:<=>[_{| or a keyword")
-					   .arg(QString(ch))});
+			           "Unexpected token %1, expected one of next symbols "
+			           ";\"#@$EA!-0123456789.:<=>[_{| or a keyword")
+			           .arg(QString(ch))});
 			highlightError(begin_pos, begin_pos + 1);
 		}
 	}
@@ -367,8 +367,8 @@ context::Context * Interpreter::parseParameter() {
 		il->vm->exception(
 		  {-502,
 		   QStringLiteral(
-			 "wrong type %1, expected Int, Double, String, List or Element")
-			 .arg(type)});
+		     "wrong type %1, expected Int, Double, String, List or Element")
+		     .arg(type)});
 		highlightError(start, flayer.getPosition());
 	}
 
@@ -423,7 +423,7 @@ context::Context * Interpreter::parseSystemVar() {
 	else {
 		il->vm->exception(
 		  {-502, QStringLiteral("unexpected %1, expected dom, log, define, tab")
-				   .arg(name)});
+		           .arg(name)});
 		flayer.highlightError();
 	}
 

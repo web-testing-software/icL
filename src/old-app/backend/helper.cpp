@@ -11,7 +11,7 @@
 namespace icL::app {
 
 Helper::Helper(QObject * parent)
-	: QObject(parent) {
+    : QObject(parent) {
 	m_cache_dir =
 	  QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 	m_config_dir =

@@ -1,0 +1,39 @@
+@startuml
+
+!include "uml_style.iuml"
+show fields
+show methods
+
+class TreeItem {
+	+ TreeItem* child (int row)
+	+ int childCount ()
+	+ int columnCount ()
+	+ QVariant data (int row)
+	+ int selfIndex();
+	+ TreeItem* parent ()
+	+ QString icon ()
+}
+
+class Folder {
+	+ list<TreeItem*> children
+	+ int columnCount ()
+}
+
+class Finaly {
+	+ TreeItem* child (int row)
+	+ int childCount ()
+}
+
+TreeItem <|-- Project
+TreeItem <|-- Folder
+TreeItem <|-- Finaly
+
+Folder <|-- Sessions
+Folder <|-- Libs
+Folder <|-- Resources
+
+Finaly <|-- Script
+Finaly <|-- Lib
+Finaly <|-- Resource
+
+@enduml

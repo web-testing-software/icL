@@ -18,7 +18,9 @@ public:
 	 * @param container is a base contructor argument
 	 * @param varName is a base contructor argument
 	 */
-	String(memory::InterLevel * il, memory::DataState * container, const QString & varName);
+	String(
+	  memory::InterLevel * il, memory::DataState * container,
+	  const QString & varName);
 
 	/**
 	 * \~english
@@ -27,7 +29,8 @@ public:
 	 * @param rvalue is a base contructor argument
 	 * @param readonly is a base contructor argument
 	 */
-	String(memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
+	String(
+	  memory::InterLevel * il, const QVariant & rvalue, bool readonly = false);
 
 	/**
 	 * \~english
@@ -36,7 +39,8 @@ public:
 	 * @param getter is a base contructor argument
 	 * @param setter is a base contructor argument
 	 */
-	String(memory::InterLevel * il, const QString & getter, const QString & setter);
+	String(
+	  memory::InterLevel * il, const QString & getter, const QString & setter);
 
 	/**
 	 * \~english

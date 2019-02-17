@@ -1,0 +1,19 @@
+% !TeX spellcheck = en_US
+\section{crossfire.js}
+
+The technology {\bf crossfire.js} is used to call icL function form web page. The calls are asynchronous.
+
+To insert calls to icL function is JavaScript use placeholder \mintinline{icl}{!{name}}. The arguments must be compatible with parameters of icL functions. To ensure correct type interpretation use following functions —
+\begin{icItems}
+	\item \mintinline{icl}{crossfire.bool(arg)};
+	\item \mintinline{icl}{crossfire.int(arg)};
+	\item \mintinline{icl}{crossfire.double(arg)};
+	\item \mintinline{icl}{crossfire.string(arg)};
+	\item \mintinline{icl}{crossfire.list(arg)};
+	\item \mintinline{icl}{crossfire.object(arg)};
+	\item \mintinline{icl}{crossfire.set(arg)};
+	\item \mintinline{icl}{crossfire.element(arg)};
+\end{icItems}
+
+In following code, function \mintinline{icl}{onclick} gets a parameter, but \mintinline{icl}{func} — no one. In this case can be defined an anonymous function —
+\inputminted[linenos]{icl}{../sources/crossfireexample.icL}

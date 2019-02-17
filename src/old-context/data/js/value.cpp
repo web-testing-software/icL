@@ -6,7 +6,7 @@
 namespace icL::context::data::js {
 
 Value::Value(memory::InterLevel * il)
-	: Js(il) {
+    : Js(il) {
 	m_role = Role::JsValue;
 }
 
@@ -30,7 +30,7 @@ QString Value::getCode() {
 
 bool Value::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Assign ||
-		   (context->role() != Role::Exists && context->isResultative());
+	       (context->role() != Role::Exists && context->isResultative());
 }
 
 Context * Value::getBeginContext() {
