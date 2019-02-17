@@ -223,7 +223,12 @@ bool Fragment::isReadOnly() {
 }
 
 void Fragment::setReadOnly(bool value) {
-	readOnly = value;
+    readOnly = value;
+}
+
+void Fragment::replaceContent(const QString &content)
+{
+    // TODO: Write it later
 }
 
 void Fragment::rawInsert(Cursor * cursor, int pos, const QString & text) {
