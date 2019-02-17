@@ -38,9 +38,10 @@
 //{
 //	Q_OBJECT
 
-//	Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY serverChanged)
-//	Q_PROPERTY(QColor sColor READ sColor NOTIFY sColorChanged)
-//	Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
+//    Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY
+//    serverChanged) Q_PROPERTY(QColor sColor READ sColor NOTIFY sColorChanged)
+//    Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY
+//    runningChanged)
 
 // public:
 //	VMStack();

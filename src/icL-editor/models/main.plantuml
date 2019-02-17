@@ -6,7 +6,6 @@ show methods
 
 class Line {
 	Fragment * first
-	Fragment * last ???
 	
 	int8 length
 	int32 beginPos
@@ -35,7 +34,6 @@ class Fragment {
 	virtual insert(int, String)
 	drop(int begin, int end)
 	virtual replace(int begin, int end, string after)
-	
 }
 
 class Cursor {
@@ -58,7 +56,6 @@ class Editor {
 	Line * first
 	Line * current
 	Line * firstVisible
-	Line * lastVisible
 }
 
 Editor *-- Line

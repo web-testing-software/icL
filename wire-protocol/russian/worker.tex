@@ -1,0 +1,61 @@
+% !TeX spellcheck = ru_RU
+\section{Исполнитель}
+
+В этом главе рассматриваются запросы, которых может генерировать исполнитель при обращении к серверу (Forwards). Также и запросы которые исполнитель может получить от сервера (Backwards).
+
+\section{Forwards}
+
+Список запросов к серверу:
+
+\begin{icItems}
+	\item \jsinline{get-next};
+	\item \jsinline{mark}.
+\end{icItems}
+
+Получения содержимое проекта реализуется через запросы, описанные в протоколе среды разработки.
+
+\subsubsection{\jsinline{get-next}}
+
+Просит получить следующую задачу.
+
+Принимает параметры:
+\begin{icItems}
+	\item \jsinline{system} (строка) — тип операционной системы: \jsinline{"unix"}, \jsinline{"windows"} или \jsinline{"mac"};
+	\item \jsinline{browsers} (список строк) — список настроенных браузеров.
+\end{icItems}
+
+\jsinline{payload} ответа содержит следующее поля;
+\begin{icItems}
+	\item \jsinline{project} (число) — идентификатор проекта;
+	\item \jsinline{browser} (строка) — идентификатор браузера;
+	\item \jsinline{task-id} (число) — идентификатор задачи.
+\end{icItems}
+
+\subsubsection{\jsinline{mark}}
+
+Отмечает результат работы.
+
+Принимает параметры:
+\begin{icItems}
+	\item \jsinline{task-id} (число) — идентификатор задачи;
+	\item \jsinline{status} (строка) — статус задачи:
+	\begin{icItems}
+		\item \jsinline{"successful"} — пройден удачно;
+		\item \jsinline{"test-failed"} — тест упал из-за ошибки в коде;
+		\item \jsinline{"assert-failed"} — тест упал при проверке утверждений;
+		\item \jsinline{"unknown"} — неизвестный результат;
+	\end{icItems}
+	\item \jsinline{log} (строка) — лог;
+	\item \jsinline{error-log} (строка) — лог ошибок;
+	\item \jsinline{steps} (массив) — массив шагов, каждый шаг имеет:
+	\begin{icItems}
+		\item \jsinline{name} (строка) — название;
+		\item \jsinline{description} (строка) — описание;
+		\item \jsinline{status} (логическое значения) — если \jsinline{true} то пройден успешно, иначе \jsinline{false};
+		\item \jsinline{steps} (массив) — перечень подшагов.
+	\end{icItems}
+\end{icItems}
+
+\subsection{Backward}
+
+Исполнитель ожидает только одну команду от сервера \jsinline{start-working}, не имеющая параметры и не требует ответа. Таким образом сервер сообщает исполнителю что пора работать.

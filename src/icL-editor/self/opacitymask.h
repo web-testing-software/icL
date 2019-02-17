@@ -1,5 +1,5 @@
 #ifndef icL_editor_OpacityMask
-#define EDITOROPACITYMASK_H
+#define icL_editor_OpacityMask
 
 #include <QQuickPaintedItem>
 
@@ -14,27 +14,27 @@ class EditorInternal;
  */
 class OpacityMask : public QQuickPaintedItem
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit OpacityMask(QQuickItem * parent = nullptr);
+    explicit OpacityMask(QQuickItem * parent = nullptr);
 
-	// QQuickPaintedItem interface
+    // QQuickPaintedItem interface
 public:
-	void paint(QPainter * painter) override;
+    void paint(QPainter * painter) override;
 
 signals:
 
 public slots:
-	/**
-	 * @brief setEditor sets the editor pointer
-	 * @param editor will be used to extract drawing data
-	 */
-	void setEditor(icL::editor::EditorInternal * editor);
+    /**
+     * @brief setEditor sets the editor pointer
+     * @param editor will be used to extract drawing data
+     */
+    void setEditor(icL::editor::EditorInternal * editor);
 
 private:
-	/// @brief is the pointer to text editor
-	EditorInternal * m_editor;
+    /// @brief is the pointer to text editor
+    EditorInternal * m_editor;
 };
 
 }  // namespace icL::editor

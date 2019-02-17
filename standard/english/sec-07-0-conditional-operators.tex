@@ -1,0 +1,98 @@
+% !TeX spellcheck = en_US
+\section{Control operators}
+
+The control operators have condition and command group. The execution of a command group depends on value of condition.
+ 
+ List of control operators in icL:
+\begin{icItems}
+	\item \mintinline{icl}{if};
+	\item \mintinline{icl}{if-else};
+	\item cascade \mintinline{icl}{if-else};
+	\item \mintinline{icl}{switch-case};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{if}}
+
+\mintinline{icl}{if} switches executing of a group of commands by a condition —
+\begin{minted}{icl}
+if (condition) {
+	commands
+};
+\end{minted}
+Here \mintinline{icl}{condtition} is an expression which returns \bool{} and \mintinline{icl}{commands} is a set of statements.
+
+The round brackets can be omitted if the expression is simple, syntax —
+\begin{minted}{icl}
+if true  { commands };
+if !true { commands };
+if @var  { commands };
+if !@var { commands };
+\end{minted}
+
+\subsubsection{\mintinline{icl}{if-else}}
+
+\mintinline{icl}{if-else} selects one of two sets of statements, if condition is \true{} the first set of statements gets executed, otherwise — the second.
+
+Syntax of \mintinline{icl}{if-else} —
+\begin{minted}{icl}
+if (condition) {
+	commands1
+}
+else {
+	commands2
+};
+\end{minted}
+
+\subsubsection{Cascade \mintinline{icl}{if-else}}
+
+Cascade \mintinline{icl}{if-else} selects one of n sets of statements using n-1 conditions.
+
+Syntax of cascade \mintinline{icl}{if-else} —
+\begin{minted}{icl}
+if (condition1) {
+	commands1
+} else if (condition2) {
+	commands2
+} else {
+	commands3
+};
+\end{minted}
+
+\subsubsection{\mintinline{icl}{switch-case}}
+
+\mintinline{icl}{switch-case} selects m (one or more) sets of statements form n sets of statements, using n or more values, where m <= n.
+
+Syntax —
+\begin{minted}{icl}
+switch (value) {
+	case (caseValue) { `code` }
+	`` more cases
+}
+\end{minted}
+
+\mintinline{icl}{switch} gets a \mintinline{icl}{value}, which can have any type excluding \bool. Next, in \mintinline{icl}{switch} shall be defined some cases (\mintinline{icl}{case}), if \mintinline{icl}{value == caseValue} then the set of statements gets executed.
+
+A \mintinline{icl}{case} can contains some values delimited by comma.
+
+A \mintinline{icl}{case} can get a \void{} value — \mintinline{icl}{case (~) { `code` }}, this type of \mintinline{icl}{case} will be executed if no one of previous cases was executed.
+
+There is a special value — \mintinline{icl}{#}, it means that this \mintinline{icl}{case} with the condition that the previous \mintinline{icl}{case} was executed.
+
+Example of using the \mintinline{icl}{switch-case} —
+\inputminted[linenos]{icl}{../sources/switchcaseex.icL}
+
+Variable \mintinline{icl}{@v} gets values of interval [0, 6].
+
+\newpage
+Let's see which sets of statements will be executed for each value of \mintinline{icl}{@v} —
+\begin{icItems}
+	\item 0 — will be executed \mintinline{icl}{code1};
+	\item 1 — will be executed \mintinline{icl}{code2} and \mintinline{icl}{code3};
+	\item 2 — will be executed \mintinline{icl}{code2} and \mintinline{icl}{code3};
+	\item 3 — will be executed \mintinline{icl}{code3};
+	\item 4 — will be executed \mintinline{icl}{code4};
+	\item 5 — will be executed \mintinline{icl}{code5};
+	\item 6 — will be executed \mintinline{icl}{code5}.
+\end{icItems}
+
+

@@ -21,34 +21,34 @@ class Line;
 class Fixer : public QThread
 {
 public:
-	Fixer();
+    Fixer();
 
-	/**
-	 * @brief fix fixes the line in separated thread
-	 * @param line is the first line which needs fix
-	 */
-	void fix(Line * line);
+    /**
+     * @brief fix fixes the line in separated thread
+     * @param line is the first line which needs fix
+     */
+    void fix(Line * line);
 
-	/**
-	 * @brief fixNow fixes the line in current thread
-	 * @param line is the first line which needs fix
-	 */
-	void fixNow(Line * line);
+    /**
+     * @brief fixNow fixes the line in current thread
+     * @param line is the first line which needs fix
+     */
+    void fixNow(Line * line);
 
-	// QThread interface
+    // QThread interface
 protected:
-	void run() override;
+    void run() override;
 
 private:
-	/**
-	 * @brief fixOne fixes a line right now
-	 * @param line is the line to fix
-	 */
-	void fixOne(Line * line);
+    /**
+     * @brief fixOne fixes a line right now
+     * @param line is the line to fix
+     */
+    void fixOne(Line * line);
 
 private:
-	/// @brief the pointer to current line like an atomic pointer
-	QAtomicPointer<Line> linePtr;
+    /// @brief the pointer to current line like an atomic pointer
+    QAtomicPointer<Line> linePtr;
 };
 
 }  // namespace icL::editor

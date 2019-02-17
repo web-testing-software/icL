@@ -15,145 +15,160 @@
 namespace icL::editor {
 
 CursorsArea::CursorsArea(QQuickItem * parent)
-	: QQuickItem(parent) {
-	setFlag(ItemHasContents, true);
+    : QQuickItem(parent) {
+    setFlag(ItemHasContents, true);
 
-	alpha.setInterval(1000);
-	alpha.forceSetCurrentAlpha(0.0);
-	alpha.setCurrentAlpha(1.0);
+    alpha.setInterval(1000);
+    alpha.forceSetCurrentAlpha(0.0);
+    alpha.setCurrentAlpha(1.0);
 }
 
 CursorsArea::~CursorsArea() {
-	if (node != nullptr) {
-		node->removeAllChildNodes();
-	}
+    if (node != nullptr) {
+        node->removeAllChildNodes();
+    }
 }
 
 int CursorsArea::cursorW() const {
-	return m_cursorW;
+    return m_cursorW;
 }
 
 void CursorsArea::makeCursorsOpaque() {
-	alpha.forceSetCurrentAlpha(1.0);
+    alpha.forceSetCurrentAlpha(1.0);
 }
 
 void CursorsArea::setEditor(EditorInternal * editor) {
-	if (this->editor == editor) {
-		return;
-	}
+    if (this->editor == editor) {
+        return;
+    }
 
-	this->editor = editor;
-	update();
+    this->editor = editor;
+    update();
 }
 
 void CursorsArea::setCursorW(int cursorW) {
-	if (m_cursorW == cursorW)
-		return;
+    if (m_cursorW == cursorW)
+        return;
 
-	m_cursorW = cursorW;
-	emit cursorWChanged(m_cursorW);
+    m_cursorW = cursorW;
+    emit cursorWChanged(m_cursorW);
 }
 
 QSGNode * CursorsArea::updatePaintNode(
   QSGNode *, QQuickItem::UpdatePaintNodeData *) {
 
-	if (node == nullptr) {
-		node = new QSGOpacityNode;
-	}
+    if (node == nullptr) {
+        node = new QSGOpacityNode;
+    }
 
-	if (!alpha.update()) {
-		if (alpha.currentAlpha >= 1.0) {
-			alpha.setCurrentAlpha(0.0);
-		}
-		else {
-			alpha.setCurrentAlpha(1.0);
-		}
-	}
+    if (!alpha.update()) {
+        if (alpha.currentAlpha >= 1.0) {
+            alpha.setCurrentAlpha(0.0);
+        }
+        else {
+            alpha.setCurrentAlpha(1.0);
+        }
+    }
 
-	if (node->childCount() == 0) {
-		auto * geometryNode = new QSGGeometryNode;
-		auto * geometry =
-		  new QSGGeometry{QSGGeometry::defaultAttributes_Point2D(), 2};
+    if (editor == nullptr) {
+        return node;
+    }
 
-		geometry->setLineWidth(m_cursorW);
-		geometry->setDrawingMode(QSGGeometry::DrawLines);
-		geometryNode->setGeometry(geometry);
+    if (node->childCount() != editor->hSelectionsCount()) {
 
-		node->appendChildNode(geometryNode);
-	}
+        // remove the old node
+        if (node->parent() != nullptr) {
+            node->parent()->removeChildNode(node);
+        }
 
-	if (editor == nullptr) {
-		return node;
-	}
+        node = new QSGOpacityNode;
 
-	//	qDebug() << node << node->firstChild();
 
-	auto * mainNode = dynamic_cast<QSGGeometryNode *>(node->childAtIndex(0));
-	auto * mainGeometry = mainNode->geometry();
+        for (int i = 0; i < editor->hSelectionsCount(); i++) {
+            auto * geometryNode = new QSGGeometryNode;
+            auto * geometry =
+              new QSGGeometry{QSGGeometry::defaultAttributes_Point2D(), 2};
 
-	QSGGeometry::Point2D * vertices = mainGeometry->vertexDataAsPoint2D();
+            geometry->setLineWidth(m_cursorW);
+            geometry->setDrawingMode(QSGGeometry::DrawLines);
+            geometryNode->setGeometry(geometry);
+            geometryNode->setFlag(QSGNode::OwnsGeometry);
 
-	Cursor * cursor;
+            QSGFlatColorMaterial * material;
+            material = new QSGFlatColorMaterial;
 
-	if (editor->m_main->rtl()) {
-		cursor = editor->m_main->begin();
-	}
-	else {
-		cursor = editor->m_main->end();
-	}
+            geometryNode->setMaterial(material);
+            node->prependChildNode(geometryNode);
+        }
 
-	auto * line = cursor->fragment()->line();
+        //		qDebug() << "node updated";
+    }
 
-	int yPos   = line->lastY();
-	int halfW  = m_cursorW / 2;
-	int xBegin = -editor->xScroll * editor->m_proxy->charW() + halfW;
-	int xPos   = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
-	int hLen   = m_cursorW * 2;
+    auto * selection = editor->hGetFirstSelection();
+    auto * cNode     = dynamic_cast<QSGGeometryNode *>(node->firstChild());
 
-	if (xPos < 0) {
-		xPos = halfW - editor->proxy()->charH() / 2;
-	}
-	else if (xPos >= width()) {
-		xPos = width() - halfW;
-	}
-	else if (line->visible()) {
-		hLen = editor->m_proxy->fullLineH();
-	}
+    //	QList<int> lns;
 
-	if (!line->visible()) {
-		if (line->lineNumber() < editor->m_firstVisible->lineNumber()) {
-			yPos = 0;
-		}
-		else {
-			yPos = height() - hLen;
-		}
-	}
+    while (cNode != nullptr) {
 
-	vertices[0].set(xPos, yPos);
-	vertices[1].set(xPos, yPos + hLen);
+        auto * cGeometry = cNode->geometry();
 
-	mainNode->setFlag(QSGNode::OwnsGeometry);
-	mainNode->markDirty(QSGNode::DirtyGeometry);
+        QSGGeometry::Point2D * vertices = cGeometry->vertexDataAsPoint2D();
 
-	QSGFlatColorMaterial * material;
-	if (mainNode->material() == nullptr) {
-		material = new QSGFlatColorMaterial;
-		mainNode->setFlag(QSGNode::OwnsMaterial);
-	}
-	else {
-		material = dynamic_cast<QSGFlatColorMaterial *>(mainNode->material());
-	}
+        Cursor * cursor = selection->main();
+        auto *   line   = cursor->fragment()->line();
 
-	material->setColor(cursor->fragment()->format().text.color());
-	mainNode->setMaterial(material);
+        //		lns << cursor->fragment()->line()->lineNumber();
 
-	node->setOpacity(alpha.currentAlpha);
+        int yPos   = line->lastY();
+        int halfW  = m_cursorW / 2;
+        int xBegin = -editor->xScroll * editor->m_proxy->charW() + halfW;
+        int xPos   = xBegin + cursor->getPosInLine() * editor->m_proxy->charW();
+        int hLen   = m_cursorW * 2;
 
-	if (editor->hasActiveFocus()) {
-		update();
-	}
+        if (xPos < 0) {
+            xPos = halfW - editor->proxy()->charH() / 2;
+        }
+        else if (xPos >= width()) {
+            xPos = width() - halfW;
+        }
+        else if (line->visible()) {
+            hLen = editor->m_proxy->fullLineH();
+        }
 
-	return node;
+        if (!line->visible()) {
+            if (line->lineNumber() <= editor->m_firstVisible->lineNumber()) {
+                yPos = 0;
+            }
+            else {
+                yPos = height() - hLen;
+            }
+        }
+
+        vertices[0].set(xPos, yPos);
+        vertices[1].set(xPos, yPos + hLen);
+
+        cNode->setFlag(QSGNode::OwnsGeometry);
+        cNode->markDirty(QSGNode::DirtyGeometry);
+
+        QSGFlatColorMaterial * material;
+        material = dynamic_cast<QSGFlatColorMaterial *>(cNode->material());
+
+        material->setColor(cursor->fragment()->format().text.color());
+
+        selection = selection->next();
+        cNode     = dynamic_cast<QSGGeometryNode *>(cNode->nextSibling());
+    }
+
+    //	qDebug() << lns;
+
+    node->setOpacity(alpha.currentAlpha);
+
+    if (editor->hasActiveFocus()) {
+        update();
+    }
+
+    return node;
 }
 
 }  // namespace icL::editor

@@ -1,71 +1,81 @@
 % !TeX spellcheck = ro_RO
 \section{Funcții}
 
-{\bf Funcțiile} în icL permit a folosi repetat fragmente de cod și a structura codul. Toate funcțiile în icL sunt globale.
+{\bf Funcțiile} în icL permit a folosi repetat fragmente de cod și a structura codul. Toate funcțiile în icL sunt globale. Funcțiile se deosebesc de metodă prin ceea că ele sunt desemnate de utilizator, iar metodele sunt predefinite.
 
 \subsubsection{Definirea funcțiilor}
 
 {\bf Definirea funcției} constă din header și corp.
 
 \noindent Sintaxă -
-\begin{lstlisting}[numbers=none]
-!name = parameters : return_type {
-	commands
+\begin{minted}{icl}
+nume = (parametri) : tipDeDate {
+	comenzi
 }
-\end{lstlisting}
+\end{minted}
 
 Descrierea parților funcției:
 \begin{icItems}
 \item
-	\code{name} - {\bf numele funcției};
+	\mintinline{icl}{nume} - {\bf numele funcției};
 \item
-	\code{parameters} - {\bf lista parametrilor}. La chemarea funcției fiecare parametru primește o valoare. Lista parametrilor definește tipul, cantitatea și ordinea parametrilor. Lista nu este obligatorie (vezi foile \ref{fullfunc} și \ref{noargsfunc});
+	\mintinline{icl}{parametri} - {\bf lista parametrilor}. La chemarea funcției fiecare parametru primește o valoare. Lista parametrilor definește tipul, cantitatea și ordinea parametrilor. Lista nu este obligatorie (vezi foile \ref{fullfunc} și \ref{noargsfunc});
 \item
-	\code{return_type} - {\bf tipul de datelor} returnate de funcție. Dacă funcția nimic nu întoarce se tipul poate fi omis sau indicat clar - \void{}. Pentru a întoarce date se folosește comanda \code{@ = value} (vezi foile \ref{fullfunc}, \ref{notypefunc} și \ref{minfunc});
+	\mintinline{icl}{tipDeDate} - {\bf tipul de datelor} returnate de funcție. Dacă funcția nimic nu întoarce se tipul poate fi omis sau indicat clar - \void{}. Pentru a întoarce date se folosește comanda \mintinline{icl}{@ = valoare} sau \mintinline{icl}{Stack.return valoare} (vezi foile \ref{fullfunc}, \ref{notypefunc} și \ref{minfunc});
 \item
-	\code{commands} - {\bf corpul} conține comenzi, care definesc acțiunile executate de funcție.
+	\mintinline{icl}{comenzi} - {\bf corpul} conține comenzi, care definesc acțiunile executate de funcție.
 \end{icItems}
 
-\begin{lstlisting}[caption=Funcție completă, label=fullfunc]
-!sum = <int>a <int>b : int {
-	@ = @a + @b;
-};
-\end{lstlisting}
+Parametrii se despart prin virgulă. Chiar dacă funcția deține doar on parametru, parantezele rotunde nu pot fi omise.
 
-\begin{lstlisting}[caption=Funcție fără argumente, label=noargsfunc]
-!pi = double {
-	@ = 3.14;
-};
-\end{lstlisting}
+Parametrul se descriere prin următoarea sintaxă \mintinline{icl}{@name : type}, unde \mintinline{icl}{@name} este numele, iar \mintinline{icl}{type} e un tip de date. Se poate de descris numai tipul (fără doua puncte), în acest caz parametrul ca avea același nume ca și tipul de date.
 
-\begin{lstlisting}[caption=Funcție făra tip de date, label=notypefunc]
-!out = <int>a <int>b {
-	Log.out @a @b;
-};
-\end{lstlisting}
+Parametrul cu valoare implicită se descrie cu următoarea sintaxă \mintinline{icl}{@name = value}, unde \mintinline{icl}{@name} este numele, iar \mintinline{icl}{value} e valoarea implicită, ea pate fi o constantă, o variabilă sau o expresie. Valoarea expresiei va fi calculată numai o dată, la definirea funcției. Valoare predefinită pot avea orice parametri, nu numai ultimii.
+
+\begin{sourcecode}
+	\captionof{listing}{Funcție completă}
+	\label{fullfunc}
+	\inputminted[linenos]{icl}{../sources/fullfunc.icL}
+\end{sourcecode}
+
+\begin{listing}
+	\captionof{listing}{Funcție fără argumente}
+	\label{noargsfunc}
+	\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
+\end{listing}
+
+\begin{listing}
+	\captionof{listing}{Funcție făra tip de date}
+	\label{notypefunc}
+	\inputminted[linenos]{icl}{../sources/notypefunc.icL}
+\end{listing}
 
 \subsubsection{Apelul funcției}
 
 Puteți să apelați funcția în felul următor -
-\begin{lstlisting}[numbers=none]
-!name arguments;
-\end{lstlisting}
-unde \code{name} este {\bf numele funcției}, \code{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
+\begin{minted}{icl}
+name (arguments);
+\end{minted}
+unde \mintinline{icl}{name} este {\bf numele funcției}, \mintinline{icl}{arguments} este {\bf lista argumentelor} (ea trebuie să fie compatibilă cu lista parametrilor). Cum se apelează funcțiile, definite pe foile \ref{fullfunc} - \ref{minfunc}, este demonstrat pe foaia \ref{callfunc}.
 
-\begin{lstlisting}[caption=Funcție fără argumente și tip de date, label=minfunc]
-!do = {
-	Log.out "It's work!";
-};
-\end{lstlisting}
+\begin{sourcecode}
+	\captionof{listing}{Funcție făra argumente și tip de date}
+	\label{minfunc}
+	\inputminted[linenos]{icl}{../sources/minfunc.icL}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Apeluri de funcții, label=callfunc]
-!sum 2 3; 	`` returns 5
-!pi; 		`` returns 3.14
-!out 4 5; 	`` returns void
-!do; 		`` returns void
+\begin{sourcecode}
+	\captionof{listing}{Apeluri de funcții}
+	\label{callfunc}
+	\inputminted[linenos]{icl}{../sources/callfunc.icL}
+\end{sourcecode}
 
-!sum (!sum 1 2) 3;	`` returns 6
-!out 1 (!sum 4 5);	`` returns void
-\end{lstlisting}
+Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\mintinline{icl}{~}). De exemplu avem funcția \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}}, ea poate fi apelată în felul următor \mintinline{icl}{fun (~, 3)}. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
 
-%\newpage
+\begin{sourcecode}
+	\captionof{listing}{Valori predefinite}
+	\label{defaultparametrs}
+	\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
+\end{sourcecode}
+
+Funcțiile care dețin doar un parametru fără valoare implicită, pot fi apelate folosind acronimul \mintinline{icl}{nume argument} sau \mintinline{icl}{nume (argument)}. Poziția argumentului nu are importanță (la început, la mijloc sau la sfîrșit).

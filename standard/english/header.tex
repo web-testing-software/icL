@@ -1,0 +1,229 @@
+% !TeX spellcheck = en_US
+ %\renewcommand{\rmdefault}{ftm}
+\counterwithin{lstlisting}{section}
+\counterwithin{listing}{section}
+\counterwithin{table}{section}
+
+\setlength\abovecaptionskip{2pt}
+\setlength\belowcaptionskip{1pt}
+
+\newcounter{mypage}
+\newcounter{mpdiv}
+\newcounter{mpmod}
+
+\pagestyle{fancy}
+\fancyhead[]{}
+\fancyhead[L]{\textmd{Version 1.1.2 in English}}
+\fancyhead[C]{}
+\fancyhead[R]{
+	\setcounter{mypage}{\thepage{}}
+	\setcounter{mpdiv}{\value{mypage} / 10}
+	\setcounter{mpmod}{\value{mypage} - \value{mpdiv}}
+	\ifthenelse{\value{mpdiv} = 1}{The \thepage{}-th page of \pageref{LastPage}}{
+		\ifthenelse{\value{mpmod} = 1}{The \thepage{}-st page of \pageref{LastPage}}{
+			\ifthenelse{\value{mpmod} = 2}{The \thepage{}-nd page of \pageref{LastPage}}{
+				\ifthenelse{\value{mpmod} = 3}{The \thepage{}-rd page of \pageref{LastPage}}
+					{The \thepage{}-th page of \pageref{LastPage}}
+			}
+		}
+	}
+}
+\fancyfoot[]{}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\LTleft}{0pt}
+\onehalfspacing
+
+\newcommand{\greycell}[1]{\cellcolor{lightgray}\centering\textbf{#1}}
+
+\newcommand{\code}[1]{ \mintinline{icl}{#1} }
+\newcommand{\true}{\mintinline{icl}{true}}
+\newcommand{\false}{\mintinline{icl}{false}}
+\newcommand{\bool}{\mintinline{icl}{bool}}
+\newcommand{\integer}{\mintinline{icl}{int}}
+\newcommand{\double}{\mintinline{icl}{double}}
+\newcommand{\str}{\mintinline{icl}{string}}
+\newcommand{\listtype}{\mintinline{icl}{list}}
+\newcommand{\element}{\mintinline{icl}{element}}
+\newcommand{\set}{\mintinline{icl}{set}}
+\newcommand{\setitem}{\mintinline{icl}{item}}
+\newcommand{\object}{\mintinline{icl}{object}}
+\newcommand{\function}{\mintinline{icl}{function}}
+\newcommand{\void}{\mintinline{icl}{void}}
+\newcommand{\request}{\mintinline{icl}{request}}
+\newcommand{\chartype}{\mintinline{icl}{char}}
+\newcommand{\regex}{\mintinline{icl}{regex}}
+% \newcommand{}{ \mintinline{icl}{} }
+
+\newcommand{\sessions}{\mintinline{icl}{Sessions}}
+\newcommand{\session}{\mintinline{icl}{Session}}
+\newcommand{\windows}{\mintinline{icl}{Windows}}
+\newcommand{\window}{\mintinline{icl}{Window}}
+\newcommand{\cookies}{\mintinline{icl}{Cookies}}
+\newcommand{\cookie}{\mintinline{icl}{Cookie}}
+\newcommand{\alert}{\mintinline{icl}{Alert}}
+\newcommand{\tabs}{\mintinline{icl}{Tabs}}
+\newcommand{\tab}{\mintinline{icl}{Tab}}
+\newcommand{\dom}{\mintinline{icl}{Doc}}
+\newcommand{\files}{\mintinline{icl}{Files}}
+\newcommand{\file}{\mintinline{icl}{File}}
+\newcommand{\make}{\mintinline{icl}{Make}}
+\newcommand{\logtype}{\mintinline{icl}{Log}}
+\newcommand{\numbers}{\mintinline{icl}{Numbers}}
+
+% row1 width, row2 width, label, name,
+% row1 name, row2 name, body
+\newcommand{\tabletwo}[7]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|}
+		
+	\hline
+	\multicolumn{1}{|p{#1}|}{\label{#3}\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
+	\hline
+	\endfirsthead
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#7
+	\end{longtable}
+}
+
+% row1 width, row2 width, label, name,
+% row1 name, row2 name, body
+\newcommand{\stabletwo}[7]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|}
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\endfirsthead
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#7
+	\end{longtable}
+}
+
+% row1 width, row2 width, row3 width, label, name,
+% row1 name, row2 name, row3 name, body
+\newcommand{\tablethree}[9]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} &
+	\multicolumn{1}{p{#3}|}{\greycell{3}} \\
+	\hline
+	\endfirsthead
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
+	\multicolumn{1}{p{#2}|}{\greycell{2}} &
+	\multicolumn{1}{p{#3}|}{\greycell{3}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#9
+	\end{longtable}
+}
+
+% row1 width, row2 width, row3 width, label, name,
+% row1 name, row2 name, row3 name, body
+\newcommand{\stablethree}[9]{
+	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
+
+	\hline
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\endfirsthead
+
+	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
+	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
+	\multicolumn{1}{p{#3}|}{\greycell{#8}} \\
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#9
+	\end{longtable}
+}
+
+% rows, header, repeated, label, name, body
+\newcommand{\tableuni}[6]{
+	\begin{longtable}[h]{#1}
+
+	\hline
+	#2
+	#3
+	\endfirsthead
+
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#6
+	\end{longtable}
+}
+
+% rows, header, repeated, label, name, body
+\newcommand{\stableuni}[6]{
+	\begin{longtable}[h]{#1}
+		
+	\hline
+	#2
+	\hline
+	\endfirsthead
+
+	\hline
+	#2
+	\hline
+	\endhead
+
+	\hline
+	\endfoot
+
+	\hline
+	\endlastfoot
+#5
+	\end{longtable}
+}
+

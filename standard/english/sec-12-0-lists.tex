@@ -1,0 +1,169 @@
+% !TeX spellcheck = en_US
+\section{Lists}
+
+icL scripting language provides a data structure, named {\bf list}, which stores a dynamical-size sequential collection of strings. A specific string in a list is accessed by an index.
+
+\subsection{Properties}
+
+A list has the following properties —
+\begin{icItems}
+\item
+	\mintinline{icl}{[r/o] list'empty : bool};
+\item
+	\mintinline{icl}{[r/o] list'length : int};
+\item
+	\mintinline{icl}{[r/o] list'last : string};
+\item
+	\mintinline{icl}{[r/o] list'(n : int) : string}.
+\end{icItems}
+
+Example of usage —
+\inputminted[linenos]{icl}{../sources/listprop.icL}
+
+\subsubsection{\mintinline{icl}{[r/o] list'empty : bool}}
+
+A list is considered empty is its length is equal to zero.
+
+\subsubsection{\mintinline{icl}{[r/o] list'length : int}}
+
+A length of a list is the numbers or strings in it.
+
+\subsubsection{\mintinline{icl}{[r/o] list'last : string}}
+
+The last string of list, equivalent to \mintinline{icl}{list'at (list'length - 1)}.
+
+Possible exceptions: \ferror{EmptyList} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] list'(n : int) : string}}
+
+The nth string, \mintinline{icl}{n} must be an integer literal.
+
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsection{Methods}
+
+A list has the following methods —
+\begin{icItems}
+\item \mintinline{icl}{list.append (str : string) : list};
+\item \mintinline{icl}{list.at (i : int) : string};
+\item \mintinline{icl}{list.contains (str : string, caseSensitive = true) : bool};
+\item \mintinline{icl}{list.clear () : list};
+\item \mintinline{icl}{list.count (what : string) : int};
+\item \mintinline{icl}{list.filter (str : string, caseSensitive = true) : bool};
+\item \mintinline{icl}{list.indexOf (str : string, start = 0) : int};
+\item \mintinline{icl}{list.insert (index : int, str : string) : list};
+\item \mintinline{icl}{list.join (separator : string) : string};
+\item \mintinline{icl}{list.lastIndexOf (str : string, start = -1) : int};
+\item \mintinline{icl}{list.mid (pos : int, n = -1) : list};
+\item \mintinline{icl}{list.prepend (str : string) : list};
+\item \mintinline{icl}{list.move (from : int, to : int) : list};
+\item \mintinline{icl}{list.removeAll (str : string) : list};
+\item \mintinline{icl}{list.removeAt (i : int) : list};
+\item \mintinline{icl}{list.removeDuplicates () : list};
+\item \mintinline{icl}{list.removeFirst () : list};
+\item \mintinline{icl}{list.removeLast () : list};
+\item \mintinline{icl}{list.removeOne (str : string) : bool};
+\item \mintinline{icl}{list.replaceInStrings (before : string, after : string) : list};
+\item \mintinline{icl}{list.sort (caseSensitive = true) : list}.
+\end{icItems}
+
+Some methods are omitted and will be enumerated in section \ref{regex}.
+
+Example of usage —
+\inputminted[linenos]{icl}{../sources/listmethods.icL}
+
+\subsubsection{\mintinline{icl}{list.append (str : string) : list}}
+
+Inserts string \mintinline{icl}{str} at the end of the list.
+
+\subsubsection{\mintinline{icl}{list.at (i : int) : string}}
+
+Returns the item at index position \mintinline{icl}{i} in the list.
+
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list.contains (str : string, caseSensitive = true) : bool}}
+
+Returns \true{} if the list contains the string \mintinline{icl}{str}; otherwise returns \false. The search is case insensitive if \mintinline{icl}{caseSensitive} is \true; the search is case sensitive by default.
+
+\subsubsection{\mintinline{icl}{list.clear () : list}}
+
+Removes all strings from the list.
+
+\subsubsection{\mintinline{icl}{list.count (what : string) : int}}
+
+Returns the number of occurrences of string \mintinline{icl}{what} in the list.
+
+\subsubsection{\mintinline{icl}{list.filter (str : string, caseSensitive = true) : bool}}
+
+Returns a list of all the strings containing the substring \mintinline{icl}{caseSensitive}.
+
+If \mintinline{icl}{str} is \true{} (the default), the string comparison is case sensitive; otherwise the comparison is case insensitive.
+
+\subsubsection{\mintinline{icl}{list.indexOf (str : string, start = 0) : int}}
+
+Returns the index position of the first occurrence of string \mintinline{icl}{str} in the list, searching forward from index position \mintinline{icl}{start}. Returns \mintinline{icl}{-1} if no item matched.
+
+\subsubsection{\mintinline{icl}{list.insert (index : int, str : string) : list}}
+
+Inserts string \mintinline{icl}{str} at index position \mintinline{icl}{index} in the list. If \mintinline{icl}{index <= 0}, the value is prepended to the list. If \mintinline{icl}{index >= list'length} the value is appended to the list.
+
+\subsubsection{\mintinline{icl}{list.join (separator : string) : string}}
+
+Joins all the string list's strings into a single string with each element separated by the given \mintinline{icl}{separator} (which can be an empty string).
+
+\subsubsection{\mintinline{icl}{list.lastIndexOf (str : string, start = -1) : int}}
+
+Returns the index position of the last occurrence of string \mintinline{icl}{str} in the list, searching backward from index position \mintinline{icl}{start}. If \mintinline{icl}{start} is \mintinline{icl}{-1} (the default), the search starts at the last item. Returns \mintinline{icl}{-1} if no item matched.
+
+\subsubsection{\mintinline{icl}{list.mid (pos : int, n = -1) : list}}
+
+Returns a sub-list which includes strings from this list, starting at position \mintinline{icl}{pos}. If length is \mintinline{icl}{-1} (the default), all strings from \mintinline{icl}{pos} are included; otherwise \mintinline{icl}{n} strings (or all remaining strings if there are less than \mintinline{icl}{n} strings) are included.
+
+\subsubsection{\mintinline{icl}{list.prepend (str : string) : list}}
+
+Inserts string \mintinline{icl}{str} at the beginning of the list.
+
+\subsubsection{\mintinline{icl}{list.move (from : int, to : int) : list}}
+
+Moves the item at index position \mintinline{icl}{from} to index position \mintinline{icl}{to}.
+
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list.removeAll (str : string) : list}}
+
+Removes all occurrences of string \mintinline{icl}{str} in the list.
+
+\subsubsection{\mintinline{icl}{list.removeAt (i : int) : list}}
+
+Removes the item at index position \mintinline{icl}{i}.
+
+Possible exceptions: \ferror{OutOfBounds} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list.removeDuplicates () : list}}
+
+This function removes duplicate entries from a list. The entries do not have to be sorted. They will retain their original order.
+
+\subsubsection{\mintinline{icl}{list.removeFirst () : list}}
+
+Removes the first string in the list.
+
+Possible exceptions: \ferror{EmptyList} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list.removeLast () : list}}
+
+Removes the last item in the list.
+
+Possible exceptions: \ferror{EmptyList} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{list.removeOne (str : string) : bool}}
+
+Removes the first occurrence of string \mintinline{icl}{str} in the list and returns \true{} on success; otherwise returns \false.
+
+\subsubsection{\mintinline{icl}{list.replaceInStrings (before : string, after : string) : list}}
+
+Returns a string list where every string has had the \mintinline{icl}{before} text replaced with the \mintinline{icl}{after} text wherever the \mintinline{icl}{before} text is found. The \mintinline{icl}{before} text is matched case-sensitively.
+
+\subsubsection{\mintinline{icl}{list.sort (caseSensitive = true) : list}}
+
+Sorts the list of strings in ascending order. If {ccaseSensitive} is \true, the string comparison is case sensitive; otherwise the comparison is case insensitive.

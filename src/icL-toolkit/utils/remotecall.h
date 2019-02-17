@@ -13,46 +13,46 @@ namespace icL::toolkit::utils {
  */
 class RemoteArg : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(QString   name READ name  NOTIFY nameChanged)
-	Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY valueChanged)
-	// clang-format on
+    // clang-format off
+    Q_PROPERTY(QString   name READ name  NOTIFY nameChanged)
+    Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY valueChanged)
+    // clang-format on
 
 public:
-	/**
-	 * @brief RemoteArg is the default construtor
-	 * @param name is the name of argument
-	 */
-	RemoteArg(const QString & name);
+    /**
+     * @brief RemoteArg is the default construtor
+     * @param name is the name of argument
+     */
+    RemoteArg(const QString & name);
 
-	/**
-	 * @brief name is the name of argument
-	 * @return the argument name
-	 */
-	QString name() const;
+    /**
+     * @brief name is the name of argument
+     * @return the argument name
+     */
+    QString name() const;
 
-	/**
-	 * @brief value is the value of argument
-	 * @return the value of argument
-	 */
-	QVariant value() const;
+    /**
+     * @brief value is the value of argument
+     * @return the value of argument
+     */
+    QVariant value() const;
 
 signals:
-	void nameChanged(QString name);
-	void valueChanged(QVariant value);
+    void nameChanged(QString name);
+    void valueChanged(QVariant value);
 
 public slots:
-	/**
-	 * @brief setValue set up the value of argument
-	 * @param value is the new argument value
-	 */
-	void setValue(const QVariant & value);
+    /**
+     * @brief setValue set up the value of argument
+     * @param value is the new argument value
+     */
+    void setValue(const QVariant & value);
 
 private:
-	QString  m_name;
-	QVariant m_value;
+    QString  m_name;
+    QVariant m_value;
 };
 
 /**
@@ -60,54 +60,56 @@ private:
  */
 class RemoteCall : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(int       id READ id   NOTIFY idChanged)
-	Q_PROPERTY(QString name READ name NOTIFY nameChanged)
+    // clang-format off
+    Q_PROPERTY(int       id READ id   NOTIFY idChanged)
+    Q_PROPERTY(QString name READ name NOTIFY nameChanged)
 
-	Q_PROPERTY(QList<RemoteArg*> args READ args NOTIFY argsChanged)
-	// clang-format on
+    Q_PROPERTY(QList<RemoteArg*> args READ args NOTIFY argsChanged)
+    // clang-format on
 
 public:
-	/**
-	 * @brief RemoteCall is the default constuctor
-	 * @param id is the id of function
-	 * @param name is the display name
-	 * @param args is the list or requested args
-	 */
-	RemoteCall(int id, QString name, QList<RemoteArg *> args);
+    /**
+     * @brief RemoteCall is the default constuctor
+     * @param id is the id of function
+     * @param name is the display name
+     * @param args is the list or requested args
+     */
+    RemoteCall(int id, QString name, QList<RemoteArg *> args);
 
-	/**
-	 * @brief id is the id of function
-	 * @return the id of function
-	 */
-	int id() const;
+    ~RemoteCall();
 
-	/**
-	 * @brief name is the display name of function
-	 * @return the display name of function
-	 */
-	QString name() const;
+    /**
+     * @brief id is the id of function
+     * @return the id of function
+     */
+    int id() const;
 
-	/**
-	 * @brief args is the list of needed args
-	 * @return the list of requested args
-	 */
-	QList<RemoteArg *> args() const;
+    /**
+     * @brief name is the display name of function
+     * @return the display name of function
+     */
+    QString name() const;
+
+    /**
+     * @brief args is the list of needed args
+     * @return the list of requested args
+     */
+    QList<RemoteArg *> args() const;
 
 public slots:
 
 signals:
-	void idChanged(int id);
-	void nameChanged(QString name);
-	void argsChanged(QList<RemoteArg *> args);
+    void idChanged(int id);
+    void nameChanged(QString name);
+    void argsChanged(QList<RemoteArg *> args);
 
 private:
-	int     m_id;
-	QString m_name;
+    int     m_id;
+    QString m_name;
 
-	QList<RemoteArg *> m_args;
+    QList<RemoteArg *> m_args;
 };
 
 using Actions = QList<RemoteCall *>;

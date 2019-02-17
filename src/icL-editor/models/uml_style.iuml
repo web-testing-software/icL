@@ -33,6 +33,9 @@ skinparam interface {
   borderColor purple
 }
 
+skinparam ActivityDiamondBackgroundColor white
+skinparam ActivityDiamondBorderColor red
+
 skinparam shadowing false
 
 hide methods

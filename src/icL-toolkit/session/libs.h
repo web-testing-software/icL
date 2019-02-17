@@ -13,27 +13,27 @@ namespace icL::toolkit::session {
 class Libs : public tree::Folder
 {
 public:
-	/**
-	 * @brief Libs is the default constructor
-	 * @param parent is the default Item arg
-	 */
-	Libs(Item * parent);
+    /**
+     * @brief Libs is the default constructor
+     * @param parent is the default Item arg
+     */
+    Libs(Item * parent);
 
-	/**
-	 * @brief setLibsList setup the list of libs
-	 * @param libs is the new libs list
-	 * @return true if all libs exist, otherwise false
-	 */
-	bool setLibsList(const QString & path, const QVariantList & libs);
+    /**
+     * @brief setLibsList setup the list of libs
+     * @param libs is the new libs list
+     * @return true if all libs exist, otherwise false
+     */
+    bool setLibsList(const QString & path, const QVariantList & libs);
 
-	// Item interface
+    // Item interface
 public:
-	QVariant data(int column) override;
-	QString  getIcon() override;
+    QVariant data(int column) override;
+    QString  getIcon() override;
 
-	const utils::Actions & getActionsList() override;
+    const utils::Actions & getActionsList() override;
 
-	bool runAction(utils::RemoteCall * call) override;
+    bool runAction(utils::RemoteCall * call) override;
 };
 
 }  // namespace icL::toolkit::session
