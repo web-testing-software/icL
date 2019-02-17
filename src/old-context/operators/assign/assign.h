@@ -8,4 +8,4 @@ public:
 	Assign();
 };
 
-#endif // ASSIGN_H
+#endif  // ASSIGN_H

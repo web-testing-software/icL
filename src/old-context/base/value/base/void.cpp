@@ -3,16 +3,16 @@
 namespace icL::context::value {
 
 Void::Void(memory::InterLevel * il)
-	: Value(il, QVariant(), true) {}
+    : Value(il, QVariant(), true) {}
 
 Void::Void(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Value(il, container, varName) {}
+    : Value(il, container, varName) {}
 
 Void::Void(
   memory::InterLevel * il, const QString & getter, const QString & setter)
-	: Value(il, getter, setter) {}
+    : Value(il, getter, setter) {}
 
 Context * Void::runProperty(
   [[maybe_unused]] Prefix prefix, [[maybe_unused]] const QString & name) {

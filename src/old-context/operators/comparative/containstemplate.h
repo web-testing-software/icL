@@ -8,4 +8,4 @@ public:
 	ContainsTemplate();
 };
 
-#endif // CONTAINSTEMPLATE_H
+#endif  // CONTAINSTEMPLATE_H

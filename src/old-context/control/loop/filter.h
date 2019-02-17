@@ -8,4 +8,4 @@ public:
 	Filter();
 };
 
-#endif // FILTER_H
+#endif  // FILTER_H

@@ -1,0 +1,10 @@
+@startuml
+
+!include "uml_style.iuml"
+
+LeftPanel *-- StackViewV
+LeftPanel *-left- ProjectsView
+LeftPanel *-right- FilesView
+LeftPanel *-- ProjectFilesSwitcher
+
+@enduml

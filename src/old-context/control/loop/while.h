@@ -8,4 +8,4 @@ public:
 	While();
 };
 
-#endif // WHILE_H
+#endif  // WHILE_H

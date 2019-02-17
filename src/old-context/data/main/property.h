@@ -28,7 +28,7 @@ public:
 	Property(memory::InterLevel * il, Prefix prefix, const QString & name);
 
 protected:
-	Prefix prefix;
+	Prefix  prefix;
 	QString name;
 
 	// Context interface

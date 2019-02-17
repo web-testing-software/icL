@@ -1,6 +1,3 @@
 #include "conjunction.h"
 
-Conjunction::Conjunction()
-{
-
-}
+Conjunction::Conjunction() {}

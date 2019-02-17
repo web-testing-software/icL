@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/sessions/centerpanel/topbar/navigationbar"/>
+    <qresource prefix="/">
+        <file>navigationbar/buttons/Back.qml</file>
+        <file>navigationbar/buttons/Refresh.qml</file>
+        <file>navigationbar/buttons/Forward.qml</file>
+        <file>navigationbar/buttons/Switcher.qml</file>
+        <file>navigationbar/Input.qml</file>
+        <file>navigationbar/UrlShow.qml</file>
+    </qresource>
+</RCC>

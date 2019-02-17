@@ -1,0 +1,22 @@
+@startuml
+
+title Autoindent function
+
+!include "uml_style.iuml"
+
+start
+
+:spaces = this.line.prev.spaces|
+:last = this.line.prev.getLast()|
+
+if (last.isBracket) then (true)
+    if (last.isOpened) then (true)
+        :spaces += tabSize;
+    else if (spaces > tabSize) then (true)
+        :spaces -= tabSize;
+    endif
+endif
+
+stop
+
+@enduml

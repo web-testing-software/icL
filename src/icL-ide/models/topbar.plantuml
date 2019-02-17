@@ -1,0 +1,24 @@
+@startuml
+
+!include "uml_style.iuml"
+
+TopBar *-- Sessions
+TopBar *-- NavigationBar
+
+Sessions *-- Session
+Session *-- TabBar
+TabBar *-left- Tab
+
+Sessions *-up- Close
+Sessions *-up- Max
+Sessions *-left- Min
+Sessions *-- Next
+Sessions *-- Prev
+
+NavigationBar *-up- Back
+NavigationBar *-up- Refresh
+NavigationBar *-right- Forward
+NavigationBar *-- UrlShow
+NavigationBar *-- Switcher
+
+@enduml

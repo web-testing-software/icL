@@ -12,17 +12,17 @@ namespace icL::context::value {
 List::List(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Value(il, container, varName) {}
+    : Value(il, container, varName) {}
 
 List::List(memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Value(il, rvalue, readonly) {}
+    : Value(il, rvalue, readonly) {}
 
 List::List(
   memory::InterLevel * il, const QString & getter, const QString & setter)
-	: Value(il, getter, setter) {}
+    : Value(il, getter, setter) {}
 
 List::List(memory::InterLevel * il, const Value * const object)
-	: Value(il, object) {}
+    : Value(il, object) {}
 
 
 
@@ -38,23 +38,23 @@ const QHash<QString, void (List::*)()> List::initProperties() {
 
 const QHash<QString, void (List::*)(memory::ArgList &)> List::initMethods() {
 	return {{{"Prepend", &List::runPrepend},
-			 {"Append", &List::runAppend},
-			 {"Insert", &List::runInsert},
-			 {"Merge", &List::runMerge},
-			 {"PopFront", &List::runPopFront},
-			 {"PopBack", &List::runPopBack},
-			 {"Remove", &List::runRemove},
-			 {"RemoveOnce", &List::runRemoveOnce},
-			 {"RemoveAll", &List::runRemoveAll},
-			 {"Get", &List::runGet},
-			 {"IndexOf", &List::runIndexOf},
-			 {"LastIndexOf", &List::runLastIndexOf},
-			 {"Join", &List::runJoin},
-			 {"SumUp", &List::runSumUp},
-			 {"Max", &List::runMax},
-			 {"Min", &List::runMin},
-			 {"LogicAnd", &List::runLogicAnd},
-			 {"LogicOr", &List::runLogicOr}}};
+	         {"Append", &List::runAppend},
+	         {"Insert", &List::runInsert},
+	         {"Merge", &List::runMerge},
+	         {"PopFront", &List::runPopFront},
+	         {"PopBack", &List::runPopBack},
+	         {"Remove", &List::runRemove},
+	         {"RemoveOnce", &List::runRemoveOnce},
+	         {"RemoveAll", &List::runRemoveAll},
+	         {"Get", &List::runGet},
+	         {"IndexOf", &List::runIndexOf},
+	         {"LastIndexOf", &List::runLastIndexOf},
+	         {"Join", &List::runJoin},
+	         {"SumUp", &List::runSumUp},
+	         {"Max", &List::runMax},
+	         {"Min", &List::runMin},
+	         {"LogicAnd", &List::runLogicAnd},
+	         {"LogicOr", &List::runLogicOr}}};
 }
 
 

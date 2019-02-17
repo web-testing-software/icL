@@ -1,0 +1,83 @@
+@startuml
+
+!include "uml_style.iuml"
+show fields
+
+class CharFormatBase {
+	color foreground
+	color background
+	bool bold
+	bool italic
+}
+
+class CharFormat {
+	int underline
+	color undercolor
+}
+
+class Line {
+	color lineBG
+	color lineNumberBG
+	color lineNumber
+}
+
+class Highlight {
+	color bg
+	color border
+}
+
+class Editor {
+	CharFormat text
+	CharFormat selection
+	CharFormat number
+	CharFormat string
+	CharFormat type
+	CharFormat local
+	CharFormat global
+	CharFormat property
+	CharFormat method
+	CharFormat function
+	CharFormat keyword
+	CharFormat comment
+	CharFormat system
+	
+	color errorUnderline
+	coloe warnUnderline
+	
+	Hightlight occurrence
+	
+	Line currentline
+	Line breakpoint
+	Line debugline
+}
+
+class HighBlock {
+	int pos
+	int length
+	Stack* stack
+}
+
+class BlockMessage {
+	HightBlock mess
+	HightBlock messContext
+	string message
+}
+
+class BlockUserData {
+	list<HighBlock> blocks
+	BlockMessage* error
+	BlockMessage* warm
+}
+
+Editor *-- Highlight
+Editor *-- CharFormat
+Editor *-- Line
+
+CharFormatBase <|-- CharFormat
+
+BlockMessage *-- HighBlock
+BlockMessage o-- BlockUserData
+BlockUserData *- HighBlock
+HighBlock .> CharFormat
+
+@enduml

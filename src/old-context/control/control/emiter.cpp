@@ -1,6 +1,3 @@
 #include "emiter.h"
 
-Emiter::Emiter()
-{
-
-}
+Emiter::Emiter() {}

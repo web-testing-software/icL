@@ -71,7 +71,7 @@ private:
 	/// \~english This private field is used to transmite data beetween methods.
 	QString sql;
 	/// \~english The database failed to initialize, restrict is future use.
-	bool    invalid;
+	bool invalid;
 
 	/// \~english Regular expression to extract domain name from URL.
 	QRegExp site_exp = QRegExp(R"(https?://((\w+\.)+\w+)/?.*)");

@@ -2,9 +2,8 @@
 #define icL_context_data_Function
 
 
-#include <icl-memory/state/memory.h>
-
 #include <icl-context/base/context.h>
+#include <icl-memory/state/memory.h>
 
 
 /**

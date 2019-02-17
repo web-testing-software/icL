@@ -1,6 +1,3 @@
 #include "for.h"
 
-For::For()
-{
-
-}
+For::For() {}

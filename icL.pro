@@ -11,13 +11,16 @@ SUBDIRS = \
         vm \
         ce \
         cp \
-        ide \
+        look \
+        toolkit \
         il \
-        manager \
-        share \
+        editor \
         sv \
         wd \
-        worker
+        ide \
+        share \
+        worker \
+        manager
 
 # libs
 memory.subdir   = src/icL-memory
@@ -27,12 +30,22 @@ cp.subdir       = src/icL-cp
 il.subdir       = src/icL-il
 sv.subdir       = src/icL-sv
 wd.subdir       = src/icL-wd
+editor.subdir   = src/icL-editor
+look.subdir     = src/icL-look
+toolkit.subdir  = src/icL-toolkit
 
 # apps
 ide.subdir      = src/icL-ide
 share.subdir    = src/icL-share
 manager.subdir  = src/icL-manager
 worker.subdir   = src/icL-worker
+
+# depends
+look.depends = editor
+ide.depends = look
+share.depends = look
+manager.depends = look
+worker.depends = look
 
 DISTFILES += \
     Doxyfile \
@@ -50,8 +63,10 @@ DISTFILES += \
     standard/english/*.tex \
     README.md \
     standard/README.md \
-    clang-format \
+    .clang-format \
     standart/README.md \
+    src/icL-memory/README.md \
+    src/icL-vm/README.md \
     CONTRIBUTING.md \
     layouts/dark/*.svg \
     layouts/light/*.svg \

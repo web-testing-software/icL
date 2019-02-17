@@ -1,6 +1,6 @@
 # sv - Separated Values
 
-TARGET = -icl-sv
+TARGET = -icL-sv
 TEMPLATE = lib
 
 QT = core
@@ -13,4 +13,10 @@ include($$ICL_ROOT/pri_files/lib.pri)
 
 DISTFILES += \
     README.md
+
+HEADERS += \
+    class.h
+
+SOURCES += \
+    class.cpp
 

@@ -1,0 +1,32 @@
+@startuml history_redo
+
+!include "uml_style.iuml"
+
+title History.redo()
+
+start
+
+:next = getNextChange()|
+:it = next.lastSubChange()|
+
+while (it != nullptr)
+    :selection = makeSelection(it.line, it.char)|
+
+    if (it.droped.isEmpty) then (false)
+        :selection.selectToRight(it.droped.length)|
+        :selection.drop()|
+    endif
+
+    if (it.added.isEmpty) then (false)
+        :selection.insert(it.added)|
+    endif
+
+    :it = it.prev;
+endwhile
+
+:current = next;
+
+stop
+
+
+@enduml

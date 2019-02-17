@@ -1,0 +1,24 @@
+@startuml
+
+!include "uml_style.iuml"
+
+title History.backspace()
+
+start
+
+if (hasSelection()) then (false)
+    :selectToLeft(1);
+
+    note left
+        The postion of
+        Cursor.history
+        must not get
+        updated
+    end note
+endif
+
+:drop()|
+
+stop
+
+@enduml

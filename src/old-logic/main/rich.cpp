@@ -11,19 +11,19 @@
 namespace icL::logic::rich {
 
 Rich::Rich(memory::InterLevel * il, OperationType otype)
-	: Logic(il) {
+    : Logic(il) {
 	operationType = otype;
 }
 
 Rich::Rich(memory::InterLevel * il, Rich * block)
-	: Logic(il) {
+    : Logic(il) {
 	operationType = block->operationType;
 	value1        = block->value1;
 	value2        = block->value2;
 	frag1         = block->frag1;
 	frag2         = block->frag2;
 
-	casted = true;
+	casted      = true;
 	valu1getted = true;
 }
 
@@ -90,7 +90,7 @@ QString Rich::oTypeToString() {
  */
 QString Rich::pairData() {
 	return "[" % typeToString(value1.type()) % "-" %
-		   typeToString(value2.type()) % "]";
+	       typeToString(value2.type()) % "]";
 }
 
 void Rich::sendSignalWrongPair() {
@@ -99,7 +99,7 @@ void Rich::sendSignalWrongPair() {
 
 void Rich::sendSignalWrongOperator(const QString & pair) {
 	il->vm->exception({-202, "Wrong operator " % oTypeToString() %
-							   " for operands pair " % pair});
+	                           " for operands pair " % pair});
 }
 
 
@@ -154,8 +154,8 @@ Logic * Rich::castNow() {
 
 	default:
 		il->vm->exception({-201,
-						   "The operands of comparing operators must be "
-						   "Boolean, Int, Double, String or List"});
+		                   "The operands of comparing operators must be "
+		                   "Boolean, Int, Double, String or List"});
 		break;
 	}
 

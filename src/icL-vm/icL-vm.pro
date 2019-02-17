@@ -3,7 +3,7 @@
 QT = core quick
 CONFIG -= app_bundle
 
-TARGET = -icl-vm
+TARGET = -icL-vm
 TEMPLATE = lib
 
 ICL_ROOT = $$PWD/../..

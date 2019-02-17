@@ -1,0 +1,66 @@
+@startuml
+
+!include "uml_style.iuml"
+show fields
+
+class Text {
+	color bg
+	color text
+}
+
+class Link {
+	Text normal
+	Text hover
+	Text active
+}
+
+class Effect {
+	color normal
+	color hover
+	color active
+}
+
+class Input {
+	Text inactive
+	Color selection
+	Color cursor
+}
+
+class LinkAdv {
+	Text activehover
+}
+
+class EffectAdv {
+	color activehover
+}
+
+class ListItem {
+	Effect border
+}
+
+class Side {
+	Text header
+}
+
+class StartWindow {
+	Text header
+	Side left
+	Side right
+}
+
+Link *-- Text
+Link <|-- Input
+Input *-up- Text
+Link <|-- LinkAdv
+Text --* LinkAdv
+Effect <|-- EffectAdv
+ListItem -down-|> Link
+ListItem *-- Effect
+Side -up-|> ListItem
+Side *-- Text
+StartWindow *- Side
+StartWindow *-- Text
+
+Link -right[hidden]- Effect
+
+@enduml

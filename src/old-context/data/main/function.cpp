@@ -10,8 +10,8 @@
 namespace icL::context::data {
 
 Function::Function(memory::InterLevel * il, const QString & name)
-	: Context(il)
-	, name(name) {
+    : Context(il)
+    , name(name) {
 	m_role      = Role::Function;
 	newFunction = il->mem->functions().contains(name);
 }
@@ -146,17 +146,17 @@ void Function::sendWrongArgs() {
 
 	il->vm->exception(
 	  {-203, QStringLiteral(
-			   "Wrong arguments for function %1: getted<%2>, expected<%3>")
-			   .arg(name, getted.join(", "), expected.join(", "))});
+	           "Wrong arguments for function %1: getted<%2>, expected<%3>")
+	           .arg(name, getted.join(", "), expected.join(", "))});
 }
 
 
 
 bool Function::checkPrev(const Context * context) const {
 	return context == nullptr ||
-		   (!newFunction &&
-			(context->role() == Role::Alternative ||
-			 context->role() == Role::Assign || context->isResultative()));
+	       (!newFunction &&
+	        (context->role() == Role::Alternative ||
+	         context->role() == Role::Assign || context->isResultative()));
 }
 
 bool Function::canBeAtEnd() const {

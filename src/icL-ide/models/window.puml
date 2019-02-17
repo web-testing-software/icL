@@ -1,0 +1,20 @@
+@startuml
+
+!include "uml_style.iuml"
+
+Window *-- StartWindow
+Window *-- SessionWindow
+
+SessionWindow *-- Static
+SessionWindow *-- LeftPanel
+SessionWindow *-- CenterPanel
+
+LeftPanel *-- StateClone
+LeftPanel *-- ConsoleClone
+CenterPanel *-- StateClone
+CenterPanel *-- ConsoleClone
+
+StateClone *-- State
+ConsoleClone *-- Console
+
+@enduml

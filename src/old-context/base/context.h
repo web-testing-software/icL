@@ -251,7 +251,7 @@ public:
 	 * @param value is the value to copy in context object
 	 * @return a pointer to created context object
 	 */
-	static value::Value *fromValue(
+	static value::Value * fromValue(
 	  memory::InterLevel * il, const QVariant & value);
 
 	/**

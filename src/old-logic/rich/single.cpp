@@ -3,7 +3,7 @@
 namespace icL::logic::rich {
 
 Single::Single(memory::InterLevel * il, OperationType otype)
-	: Rich(il, otype) {
+    : Rich(il, otype) {
 	casted = true;
 }
 

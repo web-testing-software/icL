@@ -1,6 +1,3 @@
 #include "power.h"
 
-Power::Power()
-{
-
-}
+Power::Power() {}

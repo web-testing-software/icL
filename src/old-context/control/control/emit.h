@@ -8,4 +8,4 @@ public:
 	Emit();
 };
 
-#endif // EMIT_H
+#endif  // EMIT_H

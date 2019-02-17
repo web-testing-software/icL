@@ -61,13 +61,13 @@ public:
 	bool isCross() override;
 	bool checkIntegrity() override;
 
-	bool         needCast() override;
+	bool    needCast() override;
 	Logic * castNow() override;
-	bool         step() override;
+	bool    step() override;
 
 	bool calcResult() override;
 };
 
-}  // namespace icL::logic
+}  // namespace icL::logic::rich
 
 #endif  // icL_logic_rich_Rich

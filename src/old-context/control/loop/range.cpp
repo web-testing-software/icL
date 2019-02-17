@@ -1,6 +1,3 @@
 #include "range.h"
 
-Range::Range()
-{
-
-}
+Range::Range() {}

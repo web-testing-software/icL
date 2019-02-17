@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/sessions/leftpanel"/>
+    <qresource prefix="/">
+        <file>leftpanel/StackViewV.qml</file>
+        <file>leftpanel/ProjectsView.qml</file>
+        <file>leftpanel/FilesView.qml</file>
+        <file>leftpanel/ProjectsFilesSwitcher.qml</file>
+    </qresource>
+</RCC>

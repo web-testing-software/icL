@@ -1,6 +1,3 @@
 #include "emit.h"
 
-Emit::Emit()
-{
-
-}
+Emit::Emit() {}

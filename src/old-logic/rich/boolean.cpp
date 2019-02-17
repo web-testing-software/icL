@@ -3,12 +3,12 @@
 namespace icL::logic::rich {
 
 Bool::Bool(memory::InterLevel * il, OperationType otype)
-	: Rich(il, otype) {
+    : Rich(il, otype) {
 	casted = true;
 }
 
 Bool::Bool(memory::InterLevel * il, Rich * block)
-	: Rich(il, block) {}
+    : Rich(il, block) {}
 
 /**
  * @brief Bool::calcResult - compare values

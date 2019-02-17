@@ -8,4 +8,4 @@ public:
 	IfExists();
 };
 
-#endif // IFEXISTS_H
+#endif  // IFEXISTS_H

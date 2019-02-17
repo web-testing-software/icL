@@ -1,6 +1,3 @@
 #include "modulo.h"
 
-Modulo::Modulo()
-{
-
-}
+Modulo::Modulo() {}

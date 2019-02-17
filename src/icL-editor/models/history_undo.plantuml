@@ -1,0 +1,31 @@
+@startuml history_undo
+
+!include "uml_style.iuml"
+
+title History.undo()
+
+start
+
+:prev = getPrevChange()|
+:it = prev.firstSubChange()|
+
+while (it != nullptr)
+    :selection = makeSelection(it.line, it.char)|
+
+    if (it.added.isEmpty) then (false)
+        :selection.selectToRight(it.added.length)|
+        :selection.drop()|
+    endif
+
+    if (it.droped.isEmpty) then (false)
+        :selection.insert(it.droped)|
+    endif
+
+    :it = it.next;
+endwhile
+
+:current = prev;
+
+stop
+
+@enduml

@@ -5,12 +5,12 @@
 namespace icL::logic::rich {
 
 ListBlock::ListBlock(memory::InterLevel * il, OperationType otype)
-	: Rich(il, otype) {
+    : Rich(il, otype) {
 	casted = true;
 }
 
 ListBlock::ListBlock(memory::InterLevel * il, Rich * block)
-	: Rich(il, block) {}
+    : Rich(il, block) {}
 
 
 /**

@@ -10,8 +10,8 @@ namespace icL::context::code::control::catch0 {
 
 Exists::Exists(
   memory::InterLevel * il, const memory::CodeFragment & source, bool isEmiter)
-	: Catch(il, source)
-	, isEmiter(isEmiter) {
+    : Catch(il, source)
+    , isEmiter(isEmiter) {
 	m_role = Role::Exists;
 }
 
@@ -21,7 +21,7 @@ bool Exists::getIsEmiter() const {
 
 bool Exists::checkPrev(const Context * context) const {
 	return context == nullptr || context->role() == Role::Alternative ||
-		   context->role() == Role::Assign;
+	       context->role() == Role::Assign;
 }
 
 // Context interface

@@ -1,185 +1,186 @@
-#include "vmstack.h"
+//#include "vmstack.h"
 
-#include "virtualmachine.h"
+//#include "virtualmachine.h"
 
-#include <icl-context/base/object/value.h>
+//#include <icl-context/base/object/value.h>
 
-#include <QStringBuilder>
+//#include <QStringBuilder>
 
-namespace icL {
+// namespace icL {
 
-VMStack::VMStack() {
-	connect(
-	  this, &VMStack::invoke_highlight, this, &VMStack::release_hightlight);
+// VMStack::VMStack() {
+//	connect(
+//	  this, &VMStack::invoke_highlight, this, &VMStack::release_hightlight);
 
-	setSColor(memory::SelectionColor::Executing);
-}
+//	setSColor(memory::SelectionColor::Executing);
+//}
 
-memory::Memory * VMStack::memory() {
-	return &mem;
-}
-
-
-void VMStack::init(const QString & source, bool contentChanged) {
-	if (vm == nullptr || contentChanged) {
-		this->source = source;
-
-		if (vm == nullptr) {
-			vm = new VirtualMachine(this, nullptr, &this->source);
-
-			//			vm->setFragLimits(0, source.size());
-		}
-
-		auto it = vm;
-
-		if (it->getParent() != nullptr) {
-			it = it->getParent();
-		}
-
-		it->setFragLimits(-1, source.size());
-	}
-}
-
-void VMStack::step(int stopRule) {
-	if (isRunning()) {
-		qDebug() << "dropped";
-		return;
-	}
-
-	setRunning(true);
-
-	this->stopRule = stopRule;
-
-	start(QThread::HighPriority);
-}
-
-Server * VMStack::server() const {
-	return m_server;
-}
-
-QColor VMStack::sColor() const {
-	return m_sColor;
-}
-
-bool VMStack::running() const {
-	return m_running;
-}
-
-void VMStack::setServer(Server * server) {
-	if (m_server == server)
-		return;
-
-	m_server = server;
-	emit serverChanged(m_server);
-}
-
-void VMStack::setRunning(bool running) {
-	if (m_running == running)
-		return;
-
-	m_running = running;
-	emit runningChanged(m_running);
-}
+// memory::Memory * VMStack::memory() {
+//	return &mem;
+//}
 
 
-void VMStack::interrupt(
-  memory::FunctionCall fcall, std::function<void(memory::Return &)> feedback) {
-	qWarning() << "interrupt"
-			   << fcall.source.source->mid(
-					fcall.source.begin, fcall.source.end - fcall.source.begin);
+// void VMStack::init(const QString & source, bool contentChanged) {
+//	if (vm == nullptr || contentChanged) {
+//		this->source = source;
 
-	vm = new VirtualMachine(this, vm, &source);
+//		if (vm == nullptr) {
+//			vm = new VirtualMachine(this, nullptr, &this->source);
 
-	for (const memory::Argument & arg : fcall.args) {
-		mem.stackIt().stack()->setValue(arg.name, arg.object->getValue());
-	}
+//			//			vm->setFragLimits(0, source.size());
+//		}
 
-	vm->setOnStop(feedback);
-	vm->setFragLimits(fcall.source.begin, fcall.source.end);
+//		auto it = vm;
 
-	setSColor(memory::SelectionColor::NewStack);
-	highlight(fcall.source.begin - 1, fcall.source.end + 1);
-}
+//		if (it->getParent() != nullptr) {
+//			it = it->getParent();
+//		}
 
-const QString & VMStack::getWorkingDir() {
-	return dir_path;
-}
+//		it->setFragLimits(-1, source.size());
+//	}
+//}
 
-const QString & VMStack::getCrossfirePass() {
-	return crossfirePass;
-}
+// void VMStack::step(int stopRule) {
+//	if (isRunning()) {
+//		qDebug() << "dropped";
+//		return;
+//	}
 
-void VMStack::highlight(int pos1, int pos2) {
-	emit invoke_highlight(pos1, pos2);
-}
+//	setRunning(true);
 
-void VMStack::exit(const memory::Exception & exc) {
-	m_server->newLog(
-	  0, "exited with code " % QString::number(exc.code) % ": " % exc.message);
+//	this->stopRule = stopRule;
 
-	setSColor(memory::SelectionColor::Error);
-}
+//	start(QThread::HighPriority);
+//}
 
-void VMStack::setSColor(memory::SelectionColor scolor) {
-	if (scolor == e_sColor) {
-		return;
-	}
+// Server * VMStack::server() const {
+//	return m_server;
+//}
 
-	switch (scolor) {
-	case memory::SelectionColor::Parsing:
-		m_sColor = QColor(0xff7dffb5);
-		break;
+// QColor VMStack::sColor() const {
+//	return m_sColor;
+//}
 
-	case memory::SelectionColor::Executing:
-		m_sColor = QColor(0xff6bdaff);
-		break;
+// bool VMStack::running() const {
+//	return m_running;
+//}
 
-	case memory::SelectionColor::NewStack:
-		m_sColor = QColor(0xfff4cdff);
-		break;
+// void VMStack::setServer(Server * server) {
+//	if (m_server == server)
+//		return;
 
-	case memory::SelectionColor::Destroying:
-		m_sColor = QColor(0xfffdff7d);
-		break;
+//	m_server = server;
+//	emit serverChanged(m_server);
+//}
 
-	case memory::SelectionColor::Error:
-		m_sColor = QColor(0xffffb0bd);
-		break;
-	}
+// void VMStack::setRunning(bool running) {
+//	if (m_running == running)
+//		return;
 
-	e_sColor = scolor;
-	emit sColorChanged(m_sColor);
-}
-
-void VMStack::release_hightlight(int pos1, int pos2) {
-	emit request_Highlight(pos1, pos2);
-}
+//	m_running = running;
+//	emit runningChanged(m_running);
+//}
 
 
-void VMStack::run() {
-	memory::StepType::Value returned = memory::StepType::None;
+// void VMStack::interrupt(
+//  memory::FunctionCall fcall, std::function<void(memory::Return &)> feedback)
+//  {
+//	qWarning() << "interrupt"
+//			   << fcall.source.source->mid(
+//					fcall.source.begin, fcall.source.end - fcall.source.begin);
 
-	while ((returned & stopRule) == 0x0 && vm != nullptr) {
-		returned = vm->step();
+//	vm = new VirtualMachine(this, vm, &source);
 
-		if (returned == memory::StepType::None) {
-			VirtualMachine * nvm = vm->getParent();
+//	for (const memory::Argument & arg : fcall.args) {
+//		mem.stackIt().stack()->setValue(arg.name, arg.object->getValue());
+//	}
 
-			delete vm;
-			vm = nvm;
+//	vm->setOnStop(feedback);
+//	vm->setFragLimits(fcall.source.begin, fcall.source.end);
 
-			returned = memory::StepType::CommandOut;
+//	setSColor(memory::SelectionColor::NewStack);
+//	highlight(fcall.source.begin - 1, fcall.source.end + 1);
+//}
 
-			if (vm == nullptr) {
-				m_server->newLog(0, "exited with code 0");
-			}
-		}
+// const QString & VMStack::getWorkingDir() {
+//	return dir_path;
+//}
 
-		//		QThread::msleep(100);
-	}
+// const QString & VMStack::getCrossfirePass() {
+//	return crossfirePass;
+//}
 
-	setRunning(false);
-	//	qDebug() << "exited";
-}
+// void VMStack::highlight(int pos1, int pos2) {
+//	emit invoke_highlight(pos1, pos2);
+//}
 
-}  // namespace icL
+// void VMStack::exit(const memory::Exception & exc) {
+//	m_server->newLog(
+//	  0, "exited with code " % QString::number(exc.code) % ": " % exc.message);
+
+//	setSColor(memory::SelectionColor::Error);
+//}
+
+// void VMStack::setSColor(memory::SelectionColor scolor) {
+//	if (scolor == e_sColor) {
+//		return;
+//	}
+
+//	switch (scolor) {
+//	case memory::SelectionColor::Parsing:
+//		m_sColor = QColor(0xff7dffb5);
+//		break;
+
+//	case memory::SelectionColor::Executing:
+//		m_sColor = QColor(0xff6bdaff);
+//		break;
+
+//	case memory::SelectionColor::NewStack:
+//		m_sColor = QColor(0xfff4cdff);
+//		break;
+
+//	case memory::SelectionColor::Destroying:
+//		m_sColor = QColor(0xfffdff7d);
+//		break;
+
+//	case memory::SelectionColor::Error:
+//		m_sColor = QColor(0xffffb0bd);
+//		break;
+//	}
+
+//	e_sColor = scolor;
+//	emit sColorChanged(m_sColor);
+//}
+
+// void VMStack::release_hightlight(int pos1, int pos2) {
+//	emit request_Highlight(pos1, pos2);
+//}
+
+
+// void VMStack::run() {
+//	memory::StepType::Value returned = memory::StepType::None;
+
+//	while ((returned & stopRule) == 0x0 && vm != nullptr) {
+//		returned = vm->step();
+
+//		if (returned == memory::StepType::None) {
+//			VirtualMachine * nvm = vm->getParent();
+
+//			delete vm;
+//			vm = nvm;
+
+//			returned = memory::StepType::CommandOut;
+
+//			if (vm == nullptr) {
+//				m_server->newLog(0, "exited with code 0");
+//			}
+//		}
+
+//		//		QThread::msleep(100);
+//	}
+
+//	setRunning(false);
+//	//	qDebug() << "exited";
+//}
+
+//}  // namespace icL

@@ -3,7 +3,7 @@
 namespace icL::logic {
 
 Logic::Logic(memory::InterLevel * il)
-	: memory::Node(il){};
+    : memory::Node(il){};
 
 
 /**

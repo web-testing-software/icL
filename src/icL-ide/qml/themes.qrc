@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>themes/light.json</file>
+        <file>fonts/NotoSans-Regular.ttf</file>
+        <file>fonts/NotoMono-Regular.ttf</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/sessions/static"/>
+    <qresource prefix="/">
+        <file>static/IcLPanel.qml</file>
+        <file>static/Browser.qml</file>
+        <file>static/Code.qml</file>
+        <file>static/Debug.qml</file>
+        <file>static/Run.qml</file>
+        <file>static/RunDebug.qml</file>
+        <file>static/Views.qml</file>
+    </qresource>
+</RCC>

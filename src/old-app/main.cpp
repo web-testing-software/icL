@@ -1,7 +1,7 @@
 #include "backend/helper.h"
-//#include "backend/serverhighlevel.h"
-//#include "backend/steptypehighlevel.h"
-//#include "backend/vmstackhighlevel.h"
+// #include "backend/serverhighlevel.h"
+// #include "backend/steptypehighlevel.h"
+// #include "backend/vmstackhighlevel.h"
 #include "data_management/database.h"
 #include "data_management/dialdescription.h"
 
@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
 	  1, 0,         // major and minor version of the import
 	  "StepType",   // name in QML (does not have to match C++ name)
 	  "Error: This is a enum continer."  // error in case someone tries to
-										 // create a StepType object
+	                                     // create a StepType object
 	);
 
 	QQmlApplicationEngine engine;

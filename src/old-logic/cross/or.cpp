@@ -3,7 +3,7 @@
 namespace icL::logic::cross {
 
 Or::Or(memory::InterLevel * il)
-	: Cross(il){};
+    : Cross(il){};
 
 /**
  * @brief Or::calcResult - append || operation to child blocks
