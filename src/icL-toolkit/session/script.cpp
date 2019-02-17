@@ -43,6 +43,8 @@ const utils::Actions & Script::getActionsList() {
 	return actions;
 }
 
-bool Script::runAction(utils::RemoteCall * call) {}
+bool Script::runAction(utils::RemoteCall * call) {
+	return false;
+}
 
 }  // namespace icL::toolkit::session

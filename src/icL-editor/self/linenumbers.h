@@ -1,5 +1,5 @@
-#ifndef LINENUMBERS_H
-#define LINENUMBERS_H
+#ifndef icL_editor_LineNumbers
+#define icL_editor_LineNumbers
 
 #include <QQuickPaintedItem>
 #include <QStaticText>
@@ -73,8 +73,11 @@ private:
 
 	/// @brief symbol used to mark phantom selected lines
 	QStaticText phantomS{"#"};
+
+	/// @brief yBegin caches the last y begin postion
+	int yBegin = -1995;
 };
 
 }  // namespace icL::editor
 
-#endif  // LINENUMBERS_H
+#endif  // icL_editor_LineNumbers

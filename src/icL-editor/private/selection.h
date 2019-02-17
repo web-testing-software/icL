@@ -8,6 +8,9 @@
 namespace icL::editor {
 
 class Cursor;
+class Line;
+
+struct ChangeEntity;
 
 /**
  * @brief The Selection class describes a selection of text
@@ -32,6 +35,12 @@ public:
 	Cursor * end() const;
 
 	/**
+	 * @brief main returns the main cursor of selection
+	 * @return m_begin if rtl == true, otherwise m_end
+	 */
+	Cursor * main() const;
+
+	/**
 	 * @brief next is prev linked selection
 	 * @return the prev linked selection
 	 */
@@ -54,6 +63,13 @@ public:
 	 * @return the selected text
 	 */
 	QString getText();
+
+	/**
+	 * @brief getChangeEntity gets the change entity
+	 * @return the change entity of this selection
+	 * @note strong use just from History class
+	 */
+	ChangeEntity * getChangeEntity();
 
 	/**
 	 * @brief move moves the cursor to left/right be needed chars
@@ -95,18 +111,59 @@ public:
 	QString delete1();
 
 	/**
-	 * @brief insert inserts text be replacing the selected text
+	 * @brief insert inserts text
 	 * @param text is the text to insert
 	 * @return the inserted text
 	 */
 	QString insert(const QString & text);
 
+	/**
+	 * @brief rawInsert inserts text
+	 * @param text is the text to insert
+	 * @note the text will be inserted as is, without modifications
+	 */
+	void rawInsert(const QString & text);
+
+	/**
+	 * @brief rawDrop drops the selected text
+	 */
+	void rawDrop();
+
+	/**
+	 * @brief linkAfter links a new selection after this
+	 * @param selection is the selection to link
+	 */
+	void linkAfter(Selection * selection);
+
+	/**
+	 * @brief linkBefore links a new selection before this
+	 * @param selection is the selection to link
+	 */
+	void linkBefore(Selection * selection);
+
+	/**
+	 * @brief remove removes this selection from linked list
+	 */
+	void remove();
+
+	/**
+	 * @brief syncWith syncs this selection with selection
+	 * @param selection is the selection to sync with
+	 */
+	void syncWith(Selection * selection);
+
 public:
 	/**
-	 * @brief setNext add a new selection to collection
-	 * @param next is the new selection in collection
+	 * @brief setNext sets the next selection in collection
+	 * @param next is the new next selection in collection
 	 */
 	void setNext(Selection * next);
+
+	/**
+	 * @brief setPrev sets the prev selection is collection
+	 * @param prev is the new previous selection in collection
+	 */
+	void setPrev(Selection * prev);
 
 	/**
 	 * @brief setRtl change the main cursor
@@ -115,18 +172,25 @@ public:
 	void setRtl(bool rtl);
 
 	/**
+	 * @brief setChangeEntity sets the change entity from History class
+	 * @param changeEntity is the new change entity
+	 * @note strong use just from History class
+	 */
+	void setChangeEntity(ChangeEntity * changeEntity);
+
+	/**
 	 * @brief beginSelection begin selection by mouse
 	 * @param line is the line number to position the cursors
 	 * @param ch is the character number to position the cursors
 	 */
-	void beginSelection(int line, int ch);
+	bool beginSelection(Line * line, int ch);
 
 	/**
 	 * @brief selectTo selects text from fixed begin to new position
 	 * @param line is the line number for end cursor
 	 * @param ch is the character number to position the cursors
 	 */
-	void selectTo(int line, int ch);
+	void selectTo(Line * line, int ch);
 
 	/**
 	 * @brief finishSelection finish the selection process
@@ -179,7 +243,7 @@ private:
 	 * @param cursor is the cursor which need move
 	 * @return true if so line was found, otherwise false
 	 */
-	bool moveCursorToLine(int line, Cursor * cursor);
+	bool moveCursorToLine(Line * line, Cursor * cursor);
 
 	/**
 	 * @brief isAfter if the cursor is after the position described by line/ch
@@ -188,7 +252,7 @@ private:
 	 * @param ch the charanter number of position
 	 * @return true if is (line, ch) is after cursor, otherwise false
 	 */
-	bool isAfter(Cursor * cursor, int line, int ch);
+	bool isAfter(Cursor * cursor, Line * line, int ch);
 
 private:
 	/// @brief m_begin is the cursor which describes the begin of seletion
@@ -207,6 +271,9 @@ private:
 	///
 	/// rtl means Right-To-Left
 	bool m_rtl = false;
+
+	/// \brief changeEntity will be used by History class
+	ChangeEntity * changeEntity;
 };
 
 }  // namespace icL::editor

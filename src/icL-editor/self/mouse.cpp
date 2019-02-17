@@ -11,7 +11,7 @@
 namespace icL::editor {
 
 Mouse::Mouse(QQuickItem * parent)
-	: Keyboard(parent) {
+    : Keyboard(parent) {
 	setAcceptedMouseButtons(
 	  Qt::LeftButton | Qt::MiddleButton | Qt::RightButton);
 	setAcceptHoverEvents(true);
@@ -62,7 +62,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				scrollDownBy(-delta.y() / m_proxy->fullLineH());
+				sScrollDownBy(-delta.y() / m_proxy->fullLineH());
 			}
 		}
 		else /* delta.y > 0 */ {
@@ -75,7 +75,7 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 				}
 			}
 			else {
-				scrollUpBy(delta.y() / m_proxy->fullLineH());
+				sScrollUpBy(delta.y() / m_proxy->fullLineH());
 			}
 		}
 	}
@@ -85,33 +85,69 @@ void Mouse::wheelEvent(QWheelEvent * event) {
 }
 
 void Mouse::mousePressEvent(QMouseEvent * event) {
-	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
-	int ch   = qRound(
-			   static_cast<float>(event->x() - m_leftPadding) /
-			   static_cast<float>(m_proxy->charW())) +
-			 xScroll;
+	auto [line, ch] = getLineCh(event);
 
-	m_main->beginSelection(line, ch);
-	updateCurrentLine();
+	selectionMode = m_mainSelection->beginSelection(line, ch);
+	lUpdateCurrentLine();
 }
 
 void Mouse::mouseMoveEvent(QMouseEvent * event) {
-	int line = event->y() / m_proxy->fullLineH() + m_firstVisible->lineNumber();
-	int ch   = qRound(
-			   static_cast<float>(event->x() - m_leftPadding) /
-			   static_cast<float>(m_proxy->charW())) +
-			 xScroll;
+	if (!selectionMode) {
+		return;
+	}
 
-	m_main->selectTo(line, ch);
-	updateCurrentLine();
+	auto [line, ch] = getLineCh(event);
+
+	m_mainSelection->selectTo(line, ch);
+	lUpdateCurrentLine();
 }
 
 void Mouse::mouseReleaseEvent(QMouseEvent * event) {
-	//	qDebug() << "is released";
+	lOptimizeSelections();
 }
 
 void Mouse::hoverMoveEvent(QHoverEvent * event) {
 	//	qDebug() << "hover move";
+}
+
+std::pair<Line *, int> Mouse::getLineCh(QMouseEvent * event) {
+	int y  = event->y();
+	int ch = qRound(
+	           static_cast<float>(event->x() - m_leftPadding) /
+	           static_cast<float>(m_proxy->charW())) +
+	         xScroll;
+
+	Line * it = m_firstVisible;
+
+	if (y > height()) {
+		y = height();
+	}
+
+	while (it->lastY() < y - m_proxy->fullLineH() && it->next() != nullptr) {
+		it = it->next();
+	}
+
+	if (it->lastY() > y && y > 0) {
+		// Selected line is a phantom line
+		it = nullptr;
+	}
+	else {
+		if (y < 0) {
+			if (m_firstVisible->prev() != nullptr) {
+				it = m_firstVisible->prev();
+			}
+			ch = 0;
+		}
+		else if (y > it->lastY() + m_proxy->fullLineH()) {
+			ch = it->length();
+		}
+	}
+
+	if (ch < 0) {
+		ch = 0;
+	}
+
+	return {it, ch};
 }
 
 }  // namespace icL::editor

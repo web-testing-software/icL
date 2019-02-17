@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include <QFontDatabase>
 #include <QFontMetrics>
 #include <QtDebug>
 
@@ -10,9 +11,12 @@ namespace icL::look {
 EditorStyle::EditorStyle(QObject * parent)
     : QObject(parent) {
 
+	int id = QFontDatabase::addApplicationFont(":/fonts/NotoMono-Regular.ttf");
+	QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+
+	m_font.setFamily(family);
 	m_font.setFixedPitch(true);
 	m_font.setPixelSize(m_fontS);
-	m_font.setFamily("monospace");
 
 	fixFont();
 }

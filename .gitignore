@@ -28,3 +28,4 @@ philosophy/russian/*.pdf
 wire-protocol/russian/*.pdf
 src/*/models/*.png
 *.db
+settings.json

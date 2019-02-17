@@ -35,17 +35,7 @@ int Cursor::getPosInLine() {
 }
 
 int Cursor::getPosInFile() {
-	int    pos = 0;
-	auto * it  = m_fragment->line()->first();
-
-	while (it != m_fragment) {
-		pos += it->length();
-		it = it->next();
-	}
-
-	pos += m_position;
-
-	return pos;
+	return m_fragment->line()->beginPos() + getPosInLine();
 }
 
 bool Cursor::stepForward(int number, Cursor * block) {
@@ -330,6 +320,15 @@ EditorInternal * Cursor::getEditor() {
 	return dynamic_cast<EditorInternal *>(m_fragment->line()->parent());
 }
 
+void Cursor::backUp() {
+	m_lineNumber = m_fragment->line()->lineNumber();
+}
+
+void Cursor::restore() {
+	m_fragment = getEditor()->getLineByNumber(m_lineNumber)->first();
+	matchPreffered();
+}
+
 bool Cursor::operator==(const Cursor & other) const {
 	return m_fragment == other.m_fragment && m_position == other.m_position;
 }
@@ -357,6 +356,13 @@ void Cursor::setPreffered(uint8_t preffered) {
 		return;
 
 	m_preffered = preffered;
+}
+
+void Cursor::setLineNumber(int16_t lineNumber) {
+	if (m_lineNumber == lineNumber)
+		return;
+
+	m_lineNumber = lineNumber;
 }
 
 }  // namespace icL::editor

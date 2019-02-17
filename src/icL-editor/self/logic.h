@@ -8,7 +8,7 @@
 class QStaticText;
 
 /**
- * @brief The icL.editor namespace contains all needed component to create a
+ * @brief The icL.editor namespace contains all needed components to create a
  * modern and powerfull text editor
  */
 namespace icL::editor {
@@ -17,6 +17,7 @@ class Selection;
 class Line;
 class Fixer;
 class LineNumbers;
+class ChangesEntity;
 
 /**
  * @brief The Logic class contains the internal logic of editor
@@ -63,12 +64,12 @@ public:
 	/**
 	 * @brief makeChanged set up the changed state of editor
 	 */
-	void makeChanged();
+	void lMakeChanged();
 
 	/**
 	 * @brief clear deletes all editor content
 	 */
-	void clear();
+	void lClear();
 
 	/**
 	 * @brief loadFile loads a file from disk
@@ -76,12 +77,20 @@ public:
 	 */
 	Q_INVOKABLE bool loadFile(const QString & path);
 
+	/**
+	 * @brief getLineByNumber get the n^th line
+	 * @param number is the number of line
+	 * @return a pointer to a line with number <= n
+	 */
+	Line * getLineByNumber(int16_t n);
+
 signals:
 	/// @brief this signal is emited to redraw mask, line numbers and editor
 	void requestRepaint();
 
 	/// @brief elude QML warning
 	void firstLineNrChanged();
+
 	/// @brief elude QML warning
 	void linesCountChanged();
 
@@ -109,40 +118,68 @@ public slots:
 	 * @brief addNewLine inserts a new line after the current
 	 * @param line is the line to add
 	 */
-	void addNewLine(Line * line);
+	void lAddNewLine(Line * line);
 
 	/**
 	 * @brief updateCurrentLine update the pointer to the current line
 	 */
-	void updateCurrentLine();
+	void lUpdateCurrentLine();
 
 	/**
 	 * @brief changeNumberOfLines changes the numbers of lines
 	 * @param newValue is the number of lines
 	 */
-	void changeNumberOfLines(int newValue);
+	void lChangeNumberOfLines(int newValue);
 
-	/// @brief will be defined in Drawing class
-	virtual int visbileLines() const = 0;
-	/// @brief will be defined in Drawing class
-	virtual void updateBackgroundGeometry() = 0;
+	/// \brief will be defined in Drawing class
+	virtual int dVisbileLines() const = 0;
+	/// \brief will be defined in Drawing class
+	virtual void dUpdateBackgroundGeometry() = 0;
+	/// \brief will be defined in History class
+	virtual Selection * hGetFirstSelection() = 0;
+	/// \brief will be defined in History class
+	virtual Selection * hGetLastSelection() = 0;
+
+	/**
+	 * @brief lBackUpSelections save the positions of cursors
+	 */
+	void lBackUpSelections();
+
+	/**
+	 * @brief lRestoreSeletions restore the positions of cursors
+	 */
+	void lRestoreSelections();
+
+	/**
+	 * @brief lOptimizeSelections join the selections, which intersercts each
+	 * other
+	 */
+	void lOptimizeSelections();
+
+	/**
+	 * @brief syncSelecionsWith
+	 * @param change
+	 */
+	void lSyncSelectionsWith(ChangesEntity * change);
 
 protected:
 	/// @brief will be defined in Scroll class
-	virtual void scrollUpBy(int by) = 0;
+	virtual void sScrollUpBy(int by) = 0;
 	/// @brief will be defined in Scroll class
-	virtual void scrollDownBy(int by) = 0;
+	virtual void sScrollDownBy(int by) = 0;
+	/// @brief will be defined in Scroll class
+	virtual void sAutoScrollToCurrent() = 0;
 
 protected:
 	// properties
 	/// @brief the main selection (never deleted)
-	Selection * m_main = nullptr;
+	Selection * m_mainSelection = nullptr;
 
 	/// @brief the first line of text
 	Line * m_first = nullptr;
 
 	/// @brief the current line of text
-	Line * m_current = nullptr;
+	Line * m_currentLine = nullptr;
 
 	/// @brief the first visible line of text
 	Line * m_firstVisible = nullptr;

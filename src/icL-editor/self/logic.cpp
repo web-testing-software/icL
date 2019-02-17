@@ -1,6 +1,7 @@
 #include "logic.h"
 
 #include "../fragment/fragment.h"
+#include "../history/changesentity.h"
 #include "../private/cursor.h"
 #include "../private/fixer.h"
 #include "../private/line.h"
@@ -11,17 +12,17 @@ namespace icL::editor {
 
 Logic::Logic(QQuickItem * parent)
     : QQuickPaintedItem(parent) {
-	m_main  = new Selection();
-	m_fixer = new Fixer();
+	m_mainSelection = new Selection();
+	m_fixer         = new Fixer();
 }
 
 Logic::~Logic() {
-	delete m_main;
+	delete m_mainSelection;
 	delete m_fixer;
 }
 
 Selection * Logic::main() const {
-	return m_main;
+	return m_mainSelection;
 }
 
 Line * Logic::first() const {
@@ -29,7 +30,7 @@ Line * Logic::first() const {
 }
 
 Line * Logic::current() const {
-	return m_current;
+	return m_currentLine;
 }
 
 Line * Logic::firstVisible() const {
@@ -40,11 +41,11 @@ Fixer * Logic::fixer() {
 	return m_fixer;
 }
 
-void Logic::makeChanged() {
+void Logic::lMakeChanged() {
 	changed = true;
 }
 
-void Logic::clear() {
+void Logic::lClear() {
 	auto * it = m_first;
 
 	while (it != nullptr) {
@@ -56,7 +57,7 @@ void Logic::clear() {
 
 	m_first        = nullptr;
 	m_firstVisible = nullptr;
-	m_current      = nullptr;
+	m_currentLine  = nullptr;
 	numberOfLines  = 0;
 }
 
@@ -65,8 +66,11 @@ bool Logic::loadFile(const QString & path) {
 	QTextStream stream(&file);
 
 	if (!file.open(QFile::ReadOnly)) {
+		qDebug() << "File not found" << file.fileName();
 		return false;
 	}
+
+	qDebug() << "File found" << file.fileName();
 
 	while (!stream.atEnd()) {
 		QString str = stream.readLine(160);
@@ -74,11 +78,12 @@ bool Logic::loadFile(const QString & path) {
 		auto * line     = new Line(this, false);
 		auto * fragment = new Fragment(line);
 
-		fragment->insert(m_main->begin(), m_main->end(), 0, str);
+		fragment->insert(
+		  m_mainSelection->begin(), m_mainSelection->end(), 0, str);
 		line->setFirst(fragment);
 		line->getText(true);
 		line->updateLength();
-		addNewLine(line);
+		lAddNewLine(line);
 	}
 
 	auto * it = m_firstVisible = m_first;
@@ -96,19 +101,31 @@ bool Logic::loadFile(const QString & path) {
 	  true);
 
 	ptr->setHasBreakPoint(true);
-	debugLine = m_current = ptr->prev();
+	debugLine = m_currentLine = ptr->prev();
 
 	auto * sixth = m_first->next()->next()->next()->next()->next();
-	m_main->begin()->setFragment(sixth->first());
-	m_main->end()->setFragment(m_current->first());
-	m_main->begin()->setPosition(16);
-	m_main->end()->setPosition(2);
-	m_main->begin()->updatePreffered();
-	m_main->end()->updatePreffered();
+	m_mainSelection->begin()->setFragment(sixth->first());
+	m_mainSelection->end()->setFragment(m_currentLine->first());
+	m_mainSelection->begin()->setPosition(16);
+	m_mainSelection->end()->setPosition(2);
+	m_mainSelection->begin()->updatePreffered();
+	m_mainSelection->end()->updatePreffered();
 
 	m_fixer->fixNow(m_first);
 
 	return true;
+}
+
+Line * Logic::getLineByNumber(int16_t n) {
+	auto * it = m_first;
+	int    i  = 0;
+
+	while (it->next() != nullptr && i < n) {
+		it = it->next();
+		i++;
+	}
+
+	return it;
 }
 
 void Logic::setFirst(Line * first) {
@@ -119,10 +136,10 @@ void Logic::setFirst(Line * first) {
 }
 
 void Logic::setCurrent(Line * current) {
-	if (m_current == current)
+	if (m_currentLine == current)
 		return;
 
-	m_current = current;
+	m_currentLine = current;
 }
 
 void Logic::setFirstVisible(Line * firstVisible) {
@@ -135,55 +152,45 @@ void Logic::setFirstVisible(Line * firstVisible) {
 	emit firstLineNrChanged();
 }
 
-void Logic::addNewLine(Line * line) {
-	if (m_current == nullptr) {
-		m_first = m_current = line;
+void Logic::lAddNewLine(Line * line) {
+	if (m_currentLine == nullptr) {
+		m_first = m_currentLine = line;
 		line->setLineNumber(1);
 	}
 	else {
-		if (m_current->next() != nullptr) {
-			m_current->next()->setPrev(line);
+		if (m_currentLine->next() != nullptr) {
+			m_currentLine->next()->setPrev(line);
 		}
-		line->setNext(m_current->next());
-		m_current->setNext(line);
-		line->setPrev(m_current);
-		line->setLineNumber(m_current->lineNumber() + 1);
-		line->setVisible(m_current->visible());
+		line->setNext(m_currentLine->next());
+		m_currentLine->setNext(line);
+		line->setPrev(m_currentLine);
+		line->setLineNumber(m_currentLine->lineNumber() + 1);
+		line->setVisible(m_currentLine->visible());
 
 		setCurrent(line);
 	}
 }
 
-void Logic::updateCurrentLine() {
+void Logic::lUpdateCurrentLine() {
 	Fragment * fragment;
 
-	if (m_main->rtl()) {
-		fragment = m_main->begin()->fragment();
+	if (m_mainSelection->rtl()) {
+		fragment = m_mainSelection->begin()->fragment();
 	}
 	else {
-		fragment = m_main->end()->fragment();
+		fragment = m_mainSelection->end()->fragment();
 	}
 
 	if (fragment != nullptr) {
 		setCurrent(fragment->line());
 
-		if (!m_current->visible()) {
-			if (m_current->lineNumber() < m_firstVisible->lineNumber()) {
-				scrollUpBy(
-				  m_firstVisible->lineNumber() - m_current->lineNumber());
-			}
-			else {
-				scrollDownBy(
-				  m_current->lineNumber() - m_firstVisible->lineNumber() -
-				  visbileLines() + 1);
-			}
-		}
+		sAutoScrollToCurrent();
 
 		emit requestRepaint();
 	}
 }
 
-void Logic::changeNumberOfLines(int newValue) {
+void Logic::lChangeNumberOfLines(int newValue) {
 	numberOfLines  = newValue;
 	numberOfDigits = 0;
 
@@ -193,7 +200,87 @@ void Logic::changeNumberOfLines(int newValue) {
 	}
 
 	emit linesCountChanged();
-	updateBackgroundGeometry();
+	dUpdateBackgroundGeometry();
+}
+
+void Logic::lBackUpSelections() {
+	auto it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		it->begin()->backUp();
+		it->end()->backUp();
+	}
+}
+
+void Logic::lRestoreSelections() {
+	auto it = hGetFirstSelection();
+
+	while (it != nullptr) {
+		it->begin()->restore();
+		it->end()->restore();
+	}
+}
+
+void Logic::lOptimizeSelections() {
+	auto it = hGetFirstSelection();
+
+	while (it->next() != nullptr) {
+		if (it->next()->begin()->getPosInFile() <= it->end()->getPosInFile()) {
+			it->end()->syncWith(it->next()->end());
+			it->next()->remove();
+		}
+		else {
+			it = it->next();
+		}
+	}
+}
+
+void Logic::lSyncSelectionsWith(ChangesEntity * internalChange) {
+	while (m_mainSelection->prev()) {
+		m_mainSelection->prev()->remove();
+	}
+
+	while (m_mainSelection->next()) {
+		m_mainSelection->next()->remove();
+	}
+
+	// The main seletion was found
+	Selection * lastSelectionAfterMain = nullptr;
+
+	for (auto * change : internalChange->getChanges()) {
+		Selection * current;
+
+		if (change->isMain) {
+			current                = m_mainSelection;
+			lastSelectionAfterMain = m_mainSelection;
+		}
+		else {
+			current = new Selection();
+
+			if (lastSelectionAfterMain == nullptr) {
+
+				if (m_mainSelection->prev() != nullptr) {
+					m_mainSelection->prev()->setNext(current);
+				}
+
+				current->setPrev(m_mainSelection->prev());
+				current->setNext(m_mainSelection);
+				m_mainSelection->setPrev(current);
+			}
+			else {
+				lastSelectionAfterMain->setNext(current);
+				current->setPrev(lastSelectionAfterMain);
+
+				lastSelectionAfterMain = current;
+			}
+		}
+
+		current->begin()->setLineNumber(change->line);
+		current->begin()->setPreffered(change->column);
+
+		current->begin()->restore();
+		current->end()->syncWith(current->begin());
+	}
 }
 
 }  // namespace icL::editor

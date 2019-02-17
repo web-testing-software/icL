@@ -35,6 +35,14 @@ Line * Line::prev() const {
 	return m_prev;
 }
 
+Line * Line::prevDisplay() const {
+	if (m_prev != nullptr && m_prev->m_showPhantom && m_prev->phantom != this) {
+		return m_prev->getLastPhantom();
+	}
+
+	return m_prev;
+}
+
 uint8_t Line::length() const {
 	return m_length;
 }
@@ -44,6 +52,10 @@ int32_t Line::beginPos() const {
 }
 
 int16_t Line::lineNumber() const {
+	if (m_isPhantom) {
+		return m_prev->lineNumber();
+	}
+
 	return m_lineNumber;
 }
 
@@ -89,7 +101,8 @@ bool Line::wasChanged() {
 }
 
 void Line::save(QTextStream * stream) {
-	(*stream) << getText();
+	if (stream->device() != nullptr)
+		(*stream) << getText();
 	m_wasChanged = m_isChanged;
 	m_isChanged  = false;
 }
@@ -241,7 +254,7 @@ void Line::setLastY(int lastY) {
 }
 
 void Line::makeChanged() {
-	m_parent->makeChanged();
+	m_parent->lMakeChanged();
 	m_isChanged  = true;
 	m_wasChanged = false;
 }
@@ -360,6 +373,84 @@ void Line::showPhantoms(bool show) {
 			it = it->next();
 		}
 	}
+}
+
+void Line::replaceContents(const QString & content) {
+	while (m_first->next() != nullptr) {
+		auto * next = m_first->next();
+
+		m_first->setNext(m_first->next()->next());
+		delete next;
+	}
+
+	m_first->replaceContent(content);
+
+	m_isNew     = false;
+	m_isChanged = true;
+}
+
+void Line::deleteNow() {
+	while (m_first != nullptr) {
+		auto * next = m_first->next();
+
+		m_first = next->next();
+		delete m_first;
+	}
+
+	while (phantom != nullptr) {
+		phantom->deleteNow();
+	}
+
+	if (m_prev != nullptr) {
+		if (m_isPhantom) {
+			if (m_next->isPhantom()) {
+				m_prev->phantom = m_next;
+			}
+			else {
+				m_prev->phantom = nullptr;
+			}
+		}
+		else {
+			m_prev->m_next = m_next;
+		}
+	}
+
+	delete this;
+}
+
+void Line::rawDropBegin(int pos) {
+	int accumulatedPos = 0;
+
+	while (m_first->length() + accumulatedPos < pos) {
+		auto next = m_first->next();
+
+		accumulatedPos += m_first->length();
+
+		delete m_first;
+		m_first = next;
+	}
+
+	m_first->rawDrop(0, pos - accumulatedPos);
+}
+
+void Line::rawDropEnd(int pos) {
+	int accumulatedPos = 0;
+
+	auto it = m_first;
+
+	while (it->length() + accumulatedPos <= pos) {
+		accumulatedPos += it->length();
+		it = it->next();
+	}
+
+	while (it->next() != nullptr) {
+		auto nextnext = it->next()->next();
+
+		delete it->next();
+		it->setNext(nextnext);
+	}
+
+	it->rawDrop(pos - accumulatedPos);
 }
 
 }  // namespace icL::editor

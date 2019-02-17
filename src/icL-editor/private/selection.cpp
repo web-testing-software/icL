@@ -25,6 +25,14 @@ Cursor * Selection::end() const {
 	return m_end;
 }
 
+Cursor * Selection::main() const {
+	if (m_rtl) {
+		return m_begin;
+	}
+
+	return m_end;
+}
+
 Selection * Selection::prev() const {
 	return m_prev;
 }
@@ -69,6 +77,10 @@ QString Selection::getText() {
 	return ret;
 }
 
+ChangeEntity * Selection::getChangeEntity() {
+	return changeEntity;
+}
+
 void Selection::move(int step, bool select) {
 	if (select) {
 		setRtlByStep(step);
@@ -96,7 +108,7 @@ void Selection::move(int step, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
 void Selection::moveOverWords(int words, bool select) {
@@ -126,7 +138,7 @@ void Selection::moveOverWords(int words, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
 void Selection::moveUpDown(int lines, bool select) {
@@ -154,7 +166,7 @@ void Selection::moveUpDown(int lines, bool select) {
 	}
 
 	m_begin->getEditor()->makeCursorOpaque();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 }
 
 QString Selection::drop() {
@@ -188,6 +200,9 @@ QString Selection::drop() {
 	auto * endFrag   = m_end->fragment();
 	auto * editor    = beginFrag->line()->parent();
 
+	bool endLineIsSelectedCompletly =
+	  m_end->position() == endFrag->length() && endFrag->next() == nullptr;
+
 	if (beginFrag != endFrag) {
 
 		// make begin line phantom if is removed completly
@@ -199,9 +214,8 @@ QString Selection::drop() {
 			auto * newLine = new Line(beginLine->parent(), beginLine->isNew());
 			auto * newFrag = new Fragment(newLine);
 
-			beginLine->makePhantom();
-
 			newLine->setFirst(newFrag);
+			newLine->setLineNumber(beginLine->lineNumber());
 
 			if (prevLine != nullptr) {
 				prevLine->setNext(newLine);
@@ -212,6 +226,9 @@ QString Selection::drop() {
 				newLine->setNext(nextLine);
 			}
 
+			beginLine->setPrev(newLine);
+			beginLine->makePhantom();
+
 			m_begin->setFragment(newFrag);
 			m_begin->setPosition(0);
 		}
@@ -221,7 +238,7 @@ QString Selection::drop() {
 			beginFrag->line()->makeChanged();
 		}
 
-		if (m_end->position() != 0) {
+		if (m_end->position() != 0 && !endLineIsSelectedCompletly) {
 			endFrag->drop(m_end, 0, m_end->position());
 			endFrag->line()->makeChanged();
 		}
@@ -229,36 +246,36 @@ QString Selection::drop() {
 		// beginFrag and end fragments can be deleted on content drop
 		beginFrag = m_begin->fragment();
 		endFrag   = m_end->fragment();
+	}
+	else {
+		beginFrag->drop(m_begin, m_begin->position(), m_end->position());
+	}
 
+	auto * beginLine = beginFrag->line();
+
+	if (beginLine != endFrag->line()) {
+
+		// Drop content from begin frag to end of line
 		while (beginFrag->next() != nullptr) {
 			auto * tmp = beginFrag->next()->next();
 
 			delete beginFrag->next();
 			beginFrag->setNext(tmp);
 		}
-	}
-	else {
-		beginFrag->drop(m_begin, m_begin->position(), m_end->position());
-	}
 
-	// Drop lines beetwen begin line and end line
-
-	auto * beginLine = beginFrag->line();
-
-	if (beginLine != endFrag->line()) {
-		while (beginLine->next() != endFrag->line()) {
-			auto * next = beginLine->next();
+		// Make phantoms lines beetwen begin line and end line
+		beginLine = beginLine->next();
+		while (beginLine != endFrag->line()) {
+			auto * tmp = beginLine->next();
 
 			beginLine->makePhantom();
-			beginLine = next;
+			beginLine = tmp;
 		}
 
 		auto * endLine = endFrag->line();
 
 		// If we are deleting all end line
-		if (
-		  m_end->position() == endFrag->length() &&
-		  endFrag->next() == nullptr) {
+		if (endLineIsSelectedCompletly) {
 			endLine->makePhantom();
 		}
 
@@ -342,7 +359,7 @@ QString Selection::drop() {
 
 	m_end->syncWith(m_begin);
 	m_begin->fragment()->line()->updateLength();
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
@@ -371,9 +388,7 @@ QString Selection::delete1() {
 
 QString Selection::insert(const QString & text) {
 	// If the selection is not empty
-	if (*m_begin != *m_end) {
-		return {};
-	}
+	Q_ASSERT(*m_begin == *m_end);
 
 	m_end->fragment()->insert(m_begin, m_end, m_end->position(), text);
 
@@ -389,10 +404,87 @@ QString Selection::insert(const QString & text) {
 
 	m_end->updatePreffered();
 	m_begin->syncWith(m_end);
-	m_begin->getEditor()->updateCurrentLine();
+	m_begin->getEditor()->lUpdateCurrentLine();
 	m_begin->fragment()->line()->fixLines();
 
 	return retAfter;
+}
+
+void Selection::rawInsert(const QString & text) {
+	// If the selection is not empty
+	Q_ASSERT(*m_begin == *m_end);
+
+	m_end->fragment()->rawInsert(m_end, m_end->position(), text);
+	m_begin->syncWith(m_end);
+}
+
+void Selection::rawDrop() {
+	if (*m_begin == *m_end) {
+		return;
+	}
+
+	auto beginFrag = m_begin->fragment(), endFrag = m_end->fragment();
+	auto beginLine = beginFrag->line(), endLine = endFrag->line();
+
+	if (beginLine == endLine) {
+		if (beginFrag == endFrag) {
+			beginFrag->rawDrop(m_begin->position(), m_end->position());
+		}
+		else {
+			endFrag->rawDrop(0, m_end->position());
+			beginFrag->rawDrop(m_begin->position());
+			m_end->syncWith(m_begin);
+
+			while (beginFrag->next() != endFrag) {
+				auto nextnext = beginFrag->next()->next();
+
+				delete beginFrag->next();
+				beginFrag->setNext(nextnext);
+			}
+		}
+	}
+	else {
+		while (beginLine->next() != endLine) {
+			beginLine->next()->deleteNow();
+		}
+	}
+}
+
+void Selection::linkAfter(Selection * selection) {
+	if (m_next != nullptr) {
+		m_next->m_prev    = selection;
+		selection->m_next = m_next;
+	}
+
+	selection->m_prev = this;
+	this->m_next      = selection;
+}
+
+void Selection::linkBefore(Selection * selection) {
+	if (m_prev != nullptr) {
+		m_prev->m_next    = selection;
+		selection->m_prev = m_prev;
+	}
+
+	selection->m_next = this;
+	this->m_prev      = selection;
+}
+
+void Selection::remove() {
+	if (m_next != nullptr) {
+		m_next->m_prev = m_prev;
+	}
+
+	if (m_prev != nullptr) {
+		m_prev->m_next = m_next;
+	}
+
+	delete this;
+}
+
+void Selection::syncWith(Selection * selection) {
+	m_begin->syncWith(selection->m_begin);
+	m_end->syncWith(selection->m_end);
 }
 
 void Selection::setNext(Selection * next) {
@@ -402,6 +494,13 @@ void Selection::setNext(Selection * next) {
 	m_next = next;
 }
 
+void Selection::setPrev(Selection * prev) {
+	if (m_prev == prev)
+		return;
+
+	m_prev = prev;
+}
+
 void Selection::setRtl(bool rtl) {
 	if (m_rtl == rtl)
 		return;
@@ -409,15 +508,29 @@ void Selection::setRtl(bool rtl) {
 	m_rtl = rtl;
 }
 
-void Selection::beginSelection(int line, int ch) {
+void Selection::setChangeEntity(ChangeEntity * changeEntity) {
+	this->changeEntity = changeEntity;
+}
+
+bool Selection::beginSelection(Line * line, int ch) {
+	if (line == nullptr) {
+		return false;
+	}
+
 	moveCursorToLine(line, m_begin);
 	m_begin->setPreffered(ch);
 	m_begin->matchPreffered();
 
 	m_end->syncWith(m_begin);
+
+	return true;
 }
 
-void Selection::selectTo(int line, int ch) {
+void Selection::selectTo(Line * line, int ch) {
+	if (line == nullptr) {
+		return;
+	}
+
 	// Nothing selected yet
 	Cursor * toMove;
 	if (*m_begin == *m_end) {
@@ -458,14 +571,8 @@ void Selection::selectTo(int line, int ch) {
 	}
 
 	// Move needed cursor
-	if (!moveCursorToLine(line, toMove)) {
-		if (line < 1) {
-			ch = 0;
-		}
-		else {
-			ch = toMove->fragment()->line()->length();
-		}
-	}
+	moveCursorToLine(line, toMove);
+
 	toMove->setPreffered(ch);
 	toMove->matchPreffered();
 }
@@ -523,46 +630,22 @@ void Selection::setRtlByStep(int step) {
 	}
 }
 
-bool Selection::moveCursorToLine(int line, Cursor * cursor) {
-	auto * lineIt        = cursor->fragment()->line();
-	int    currentLineNr = lineIt->lineNumber();
-
-	bool ret = true;
-
-	// Fix line values
-	int maxValue = dynamic_cast<Drawing *>(lineIt->parent())->linesCount();
-
-	if (line < 1) {
-		line = 1;
-		ret  = false;
-	}
-	else if (line > maxValue) {
-		line = maxValue;
-		ret  = false;
+bool Selection::moveCursorToLine(Line * line, Cursor * cursor) {
+	if (line == nullptr) {
+		return false;
 	}
 
-	if (currentLineNr > line) {
-		while (lineIt->lineNumber() != line) {
-			lineIt = lineIt->prev();
-		}
-	}
-	else {
-		while (lineIt->lineNumber() != line) {
-			lineIt = lineIt->next();
-		}
-	}
-
-	cursor->setFragment(lineIt->first());
+	cursor->setFragment(line->first());
 	cursor->setPosition(0);
 
-	return ret;
+	return true;
 }
 
-bool Selection::isAfter(Cursor * cursor, int line, int ch) {
+bool Selection::isAfter(Cursor * cursor, Line * line, int ch) {
 	int cursorLine = cursor->fragment()->line()->lineNumber();
 
-	return line > cursorLine ||
-		   (line == cursorLine && ch > cursor->getPosInLine());
+	return line->lineNumber() > cursorLine ||
+	       (line->lineNumber() == cursorLine && ch > cursor->getPosInLine());
 }
 
 }  // namespace icL::editor

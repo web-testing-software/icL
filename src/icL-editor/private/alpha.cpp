@@ -71,8 +71,8 @@ bool Alpha::update() {
 qreal Alpha::transition(qreal x) {
 	// x = (e^(x*e) - 1) / (e^e - 1) for x {0, 1}, max error 0.0015 = 0.15%
 	return x * (x * (x * (x * 0.6755328851108425f - 0.3190423664446824f) +
-					 0.47886115389358097f) +
-				0.1646483274402586f);
+	                 0.47886115389358097f) +
+	            0.1646483274402586f);
 }
 
 }  // namespace icL::editor

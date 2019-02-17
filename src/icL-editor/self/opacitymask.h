@@ -1,5 +1,5 @@
 #ifndef icL_editor_OpacityMask
-#define EDITOROPACITYMASK_H
+#define icL_editor_OpacityMask
 
 #include <QQuickPaintedItem>
 

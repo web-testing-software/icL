@@ -231,11 +231,11 @@ QJsonObject Editor::getUp() {
 	        {"current", m_current->getUp()},
 	        {"debug", m_debug->getUp()},
 	        {"breakpoint", m_breakpoint->getUp()},
-			{"cline", m_cline->getUp()},
-			{"scroll-bar", m_scrollBar->getUp()},
-			{"changes", m_changes->getUp()},
-			{"phantom", m_phantom->getUp()},
-			{"phantom-selected", m_phantomS->getUp()}};
+	        {"cline", m_cline->getUp()},
+	        {"scroll-bar", m_scrollBar->getUp()},
+	        {"changes", m_changes->getUp()},
+	        {"phantom", m_phantom->getUp()},
+	        {"phantom-selected", m_phantomS->getUp()}};
 }
 
 void Editor::updateOccurrence() {

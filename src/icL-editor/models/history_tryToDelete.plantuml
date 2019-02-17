@@ -1,0 +1,15 @@
+@startuml
+
+!include "uml_style.iuml"
+
+title History.tryToDelete()
+
+start
+
+if (hasSelection()) then (true)
+    : drop()|
+endif
+
+stop
+
+@enduml

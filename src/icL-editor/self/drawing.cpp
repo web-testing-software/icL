@@ -22,9 +22,9 @@ Drawing::Drawing(QQuickItem * parent)
 	setAntialiasing(true);
 
 	connect(
-	  this, &Logic::widthChanged, this, &Drawing::updateBackgroundGeometry);
+	  this, &Logic::widthChanged, this, &Drawing::dUpdateBackgroundGeometry);
 	connect(
-	  this, &Logic::heightChanged, this, &Drawing::updateBackgroundGeometry);
+	  this, &Logic::heightChanged, this, &Drawing::dUpdateBackgroundGeometry);
 
 	m_proxy = new StyleProxy();
 }
@@ -61,11 +61,11 @@ int Drawing::charsInLine() const {
 	return m_visibleChars;
 }
 
-int Drawing::visbileLines() const {
+int Drawing::dVisbileLines() const {
 	return m_visibleLines;
 }
 
-int Drawing::firstLineNr() const {
+int Drawing::dFirstLineNr() const {
 	if (m_firstVisible == nullptr) {
 		return 1;
 	}
@@ -73,7 +73,7 @@ int Drawing::firstLineNr() const {
 	return m_firstVisible->lineNumber();
 }
 
-int Drawing::firstCharNr() const {
+int Drawing::dFirstCharNr() const {
 	return xScroll;
 }
 
@@ -102,7 +102,7 @@ void Drawing::paint(QPainter * painter) {
 	drawPhantoms(painter);
 	drawCurrentLine(painter);
 
-	drawSelection(painter, m_main);
+	drawSelection(painter, m_mainSelection);
 	drawContent(painter);
 
 	//	qDebug() << "render time" << timer.elapsed();
@@ -115,7 +115,7 @@ void Drawing::setStyle(look::EditorStyle * style) {
 		return;
 
 	m_proxy->setStyle(style);
-	updateBackgroundGeometry();
+	dUpdateBackgroundGeometry();
 	emit styleChanged(style);
 }
 
@@ -163,7 +163,7 @@ void Drawing::setVisbileLines(int visbileLines) {
 	emit visbileLinesChanged(m_visibleLines);
 }
 
-void Drawing::updateBackgroundGeometry() {
+void Drawing::dUpdateBackgroundGeometry() {
 	if (m_proxy->style() == nullptr)
 		return;
 
@@ -175,14 +175,14 @@ void Drawing::updateBackgroundGeometry() {
 	lineNumberArea.setRight(lineNumberRight + m_proxy->fullLineH());
 
 	m_leftPadding = lineNumberArea.right() + m_proxy->fullLineH() / 2 -
-					m_proxy->divLineSBy2() + 1;
+	                m_proxy->divLineSBy2() + 1;
 
 	leftArrow = {
 	  QVector<QPoint>({{0, 0},
-					   {lineNumberArea.right() + 1, 0},
-					   {m_leftPadding, m_proxy->fullLineH() / 2},
-					   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
-					   {0, m_proxy->fullLineH()}})};
+	                   {lineNumberArea.right() + 1, 0},
+	                   {m_leftPadding, m_proxy->fullLineH() / 2},
+	                   {lineNumberArea.right() + 1, m_proxy->fullLineH()},
+	                   {0, m_proxy->fullLineH()}})};
 
 	leftRect.setRight(lineNumberArea.right());
 	leftRect.setBottom(m_proxy->fullLineH() - 1);
@@ -220,11 +220,11 @@ void Drawing::drawBreakPoints(QPainter * painter) {
 }
 
 void Drawing::drawCurrentLine(QPainter * painter) {
-	if (m_current->visible()) {
+	if (m_currentLine->visible()) {
 		painter->setPen(Qt::NoPen);
 		painter->setBrush(m_chars->current.background);
 
-		painter->drawRect(lineRect.translated(0, m_current->lastY()));
+		painter->drawRect(lineRect.translated(0, m_currentLine->lastY()));
 	}
 }
 
@@ -266,8 +266,8 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 
 	if (
 	  beginLine->lineNumber() >
-		m_firstVisible->lineNumber() + 1 +
-		  static_cast<int>(height()) / m_proxy->fullLineH() ||
+	    m_firstVisible->lineNumber() + 1 +
+	      static_cast<int>(height()) / m_proxy->fullLineH() ||
 	  endLine->lineNumber() < m_firstVisible->lineNumber()) {
 		return;
 	}
@@ -318,7 +318,9 @@ void Drawing::drawSelection(QPainter * painter, Selection * selection) {
 			  xBegin + left * xStep, beginLine->lastY(),
 			  (right - left) * xStep + toAdd, yStep);
 
-			if (beginLine->next()->length() < left) {
+			if (
+			  beginLine->next()->length() < left &&
+			  !beginLine->nextDisplay()->isPhantom()) {
 				painter->setBrush(Qt::NoBrush);
 				painter->setPen(m_chars->selection.border);
 
@@ -343,9 +345,9 @@ void Drawing::drawContent(QPainter * painter) {
 
 	auto * itLine = m_firstVisible;
 	int    yDelta = m_proxy->divLineSBy2() +
-				 (m_proxy->charH() -
-				  static_cast<int>(itLine->getCache()->size().height())) /
-				   2;
+	             (m_proxy->charH() -
+	              static_cast<int>(itLine->getCache()->size().height())) /
+	               2;
 	int xBegin = m_leftPadding - xScroll * m_proxy->charW();
 	int xStep  = m_proxy->charW();
 
@@ -355,7 +357,7 @@ void Drawing::drawContent(QPainter * painter) {
 
 		while (itFrag != nullptr && xPos + itFrag->length() * xStep < 0) {
 			xPos += itFrag->length() * xStep;
-			itFrag = itFrag->nextFragment();
+			itFrag = itFrag->next();
 		}
 
 		while (itFrag != nullptr && xPos < width()) {

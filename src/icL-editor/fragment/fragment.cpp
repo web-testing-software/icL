@@ -23,6 +23,10 @@ Fragment::Fragment(Line * parent) {
 	}
 }
 
+Fragment::~Fragment() {
+	delete cache;
+}
+
 Fragment * Fragment::prev() const {
 	return m_prev;
 }
@@ -192,11 +196,11 @@ Fragment * Fragment::insert(
 	  dynamic_cast<Drawing *>(m_line->parent())->linesCount() == 0;
 	bool isEndOfLine = pos == length() && m_next == nullptr && text[0] == '\n';
 
-	if (!isLoadingFile && !isEndOfLine) {
-		m_line->makeChanged();
-	}
 	if (isEndOfLine) {
 		m_line->next()->makeChanged();
+	}
+	else if (!isLoadingFile) {
+		m_line->makeChanged();
 	}
 
 	return ret;
@@ -219,7 +223,54 @@ bool Fragment::isReadOnly() {
 }
 
 void Fragment::setReadOnly(bool value) {
-	readOnly = value;
+    readOnly = value;
+}
+
+void Fragment::replaceContent(const QString &content)
+{
+    // TODO: Write it later
+}
+
+void Fragment::rawInsert(Cursor * cursor, int pos, const QString & text) {
+	QString content    = QString(m_spaces, ' ') + this->content;
+	int     newLinePos = content.indexOf('\n');
+
+	if (newLinePos == -1) {
+		content.insert(pos, text);
+
+		cursor->setPosition(pos + text.length());
+		cursor->setFragment(this);
+	}
+	else {
+		QString toPasteHere   = text.left(newLinePos);
+		QString toPasteInNext = text.midRef(newLinePos) + content.midRef(pos);
+		auto    newFragment   = makeFragmentNow(FragmentTypes::Fragment, true);
+
+		content = content.left(pos) + toPasteHere;
+		newFragment->rawInsert(cursor, 0, toPasteInNext);
+	}
+
+	m_spaces = countSpacesAtBegin(content);
+
+	this->content = content.mid(m_spaces);
+
+	if (cache != nullptr) {
+		cache->setText(content);
+	}
+}
+
+void Fragment::rawDrop(int begin, int end) {
+	QString content = QString(m_spaces, ' ') + this->content;
+
+	content.remove(begin, end - begin);
+
+	m_spaces = countSpacesAtBegin(content);
+
+	this->content = content.mid(m_spaces);
+
+	if (cache != nullptr) {
+		cache->setText(content);
+	}
 }
 
 void Fragment::setPrev(Fragment * prev) {
@@ -359,7 +410,8 @@ Fragment * Fragment::insertInGlyphs(
 	}
 
 	auto * newFrag = makeNewFragment(
-	  begin, end, pg.toInsertInNext + content.mid(posInContent), pg.onNextLine);
+	  begin, end, pg.toInsertInNext + content.midRef(posInContent),
+	  pg.onNextLine);
 
 	end->stepBackward(content.length() - posInContent, end);
 
@@ -581,7 +633,7 @@ Fragment * Fragment::makeFragmentNow(FragmentTypes type, bool onNewLine) {
 
 	if (onNewLine) {
 		parent = new Line(m_line->parent());
-		getEditor()->addNewLine(parent);
+		getEditor()->lAddNewLine(parent);
 	}
 	else {
 		parent = m_line;
@@ -650,10 +702,16 @@ void Fragment::moveNextBlockAfter(Fragment * after) {
 }
 
 int Fragment::countSpacesAtBegin(const QString & text) {
-	int ret = 0;
+	int tabSize = getEditor()->proxy()->tabSize();
+	int ret     = 0;
 
-	while (ret < text.length() && text[ret] == ' ') {
-		ret++;
+	while (ret < text.length() && text[ret].isSpace()) {
+		if (text[ret] == '\t') {
+			ret += tabSize;
+		}
+		else {
+			ret++;
+		}
 	}
 
 	return ret;

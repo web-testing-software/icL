@@ -47,7 +47,7 @@ Item {
 		anchors.fill: parent
 
 		charsInLine: (width - ln.width - yScroll.width) / style.charW
-		visbileLines: (height) / (style.charH + style.lineS)
+		visbileLines: height / (style.charH + style.lineS)
 
 		onActiveFocusChanged: {
 			if (activeFocus) {
@@ -124,7 +124,7 @@ Item {
 			Rectangle {
 				id: yScrollBar
 
-				color: scrollBar.bar
+				color: yBarArea.moving ? scrollBar.barHover : scrollBar.bar
 
 				property real lines: intern.linesCount - 1
 				property real aPos: (intern.firstLineNr - 1) / lines
@@ -141,11 +141,17 @@ Item {
 
 				MouseArea {
 					id: yBarArea
-					anchors.fill: parent
+
+					anchors {
+						fill: parent
+						leftMargin: -rd(rq * 3)
+						rightMargin: -rd(rq * 3)
+					}
 
 					property real beginAlpha: 0
 					property int beginY: 0
 					property real beginPos: 0
+					property bool moving: false
 
 					MouseTrack {
 						id: ytrack
@@ -164,9 +170,13 @@ Item {
 					onPressed: {
 						beginPos = yScrollBar.y
 						beginY = ytrack.startTracking().y
+						moving = true
 					}
 
-					onReleased: move(ytrack.stopTracking())
+					onReleased: {
+						move(ytrack.stopTracking())
+						moving = false
+					}
 				}
 			}
 		}
@@ -227,7 +237,7 @@ Item {
 			Rectangle {
 				id: xScrollBar
 
-				color: scrollBar.bar
+				color: xBarArea.moving ? scrollBar.barHover : scrollBar.bar
 
 				property real chars: 160 - intern.charsInLine
 				property real aPos: intern.firstCharNr / chars
@@ -246,11 +256,17 @@ Item {
 
 				MouseArea {
 					id: xBarArea
-					anchors.fill: parent
+
+					anchors {
+						fill: parent
+						topMargin: -rd(rq * 3)
+						bottomMargin: -rd(rq * 3)
+					}
 
 					property real beginAlpha: 0
 					property int beginX: 0
 					property real beginPos: 0
+					property bool moving: false
 
 					MouseTrack {
 						id: xtrack
@@ -269,9 +285,13 @@ Item {
 					onPressed: {
 						beginPos = xScrollBar.x
 						beginX = xtrack.startTracking().x
+						moving = true
 					}
 
-					onReleased: move(xtrack.stopTracking())
+					onReleased: {
+						move(xtrack.stopTracking())
+						moving = false
+					}
 				}
 			}
 		}
@@ -321,7 +341,6 @@ Item {
 	CursorsArea {
 		id: cursors
 
-		clip: true
 		cursorW: rd(rq * 2)
 
 		anchors {

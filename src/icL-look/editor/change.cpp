@@ -5,7 +5,7 @@
 namespace icL::look {
 
 Change::Change(QObject * parent)
-	: BaseLook(parent) {}
+    : BaseLook(parent) {}
 
 QColor Change::changed() const {
 	return m_changed;
@@ -55,8 +55,8 @@ void Change::setUp(const QJsonObject & obj) {
 
 QJsonObject Change::getUp() {
 	return {{"changed", colorToObj(m_changed)},
-			{"saved", colorToObj(m_saved)},
-			{"phantom", colorToObj(m_phantom)}};
+	        {"saved", colorToObj(m_saved)},
+	        {"phantom", colorToObj(m_phantom)}};
 }
 
 }  // namespace icL::look

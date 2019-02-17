@@ -48,13 +48,19 @@ public:
 	Line * prev() const;
 
 	/**
+	 * @brief prevDisplay gets previous line to draw on display
+	 * @return the previous line to display
+	 */
+	Line * prevDisplay() const;
+
+	/**
 	 * @brief length gets the length of the line
 	 * @return the lenght of the line
 	 */
 	uint8_t length() const;
 
 	/**
-	 * @brief beginPos is the begin pselectionosition of the line
+	 * @brief beginPos is the begin position of the line
 	 * @return the begin position of text fragment
 	 */
 	int32_t beginPos() const;
@@ -238,6 +244,30 @@ public:
 	 * @brief showPhantoms enables/disamles the show of phantoms to screen
 	 */
 	void showPhantoms(bool show = true);
+
+	/**
+	 * @brief replaceContents replaces the content of line
+	 * @param content is the new content of line
+	 */
+	void replaceContents(const QString & content);
+
+	/**
+	 * @brief deleteNow deletes the lines now
+	 */
+	void deleteNow();
+
+	/**
+	 * @brief rawDropBegin drop drop the symbols on left of the 'pos'th char
+	 * @param pos the position of first undeleted char
+	 */
+	void rawDropBegin(int pos);
+
+	/**
+	 * @brief rawDropEnd drop the symbols on right of the 'pos'th character
+	 * inluding it
+	 * @param pos the position of first deleted symbol
+	 */
+	void rawDropEnd(int pos);
 
 private:
 	// Properties

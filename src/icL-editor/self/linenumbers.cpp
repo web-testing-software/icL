@@ -13,7 +13,7 @@
 namespace icL::editor {
 
 LineNumbers::LineNumbers(QQuickItem * parent)
-	: QQuickPaintedItem(parent) {
+    : QQuickPaintedItem(parent) {
 	setRenderTarget(QQuickPaintedItem::FramebufferObject);
 	setAntialiasing(true);
 }
@@ -105,12 +105,13 @@ void LineNumbers::drawText(QPainter * painter) {
 	auto * it    = m_editor->m_firstVisible;
 	auto * proxy = m_editor->m_proxy;
 	auto * chars = m_editor->m_chars;
-	int    yDelta =
-	  proxy->divLineSBy2() +
-	  (proxy->charH() - static_cast<int>(it->getCache()->size().height())) / 2;
+
+	int yDelta = proxy->divLineSBy2() + yBegin;
 	int xDelta = (proxy->fullLineH() - newLine.size().width()) / 2;
 
 	painter->setBrush(Qt::NoBrush);
+
+	qDebug() << m_editor->firstVisible() << it->getCache()->size();
 
 	QStaticText * additional = nullptr;
 
@@ -162,18 +163,24 @@ void LineNumbers::drawText(QPainter * painter) {
 
 		painter->drawStaticText(
 		  m_editor->lineNumberRight -
-			proxy->charW() * it->charsNumberInLineNumber(),
+		    proxy->charW() * it->charsNumberInLineNumber(),
 		  it->lastY() + yDelta, *stext);
 
 		if (additional == nullptr) {
 			if (it->isNew()) {
 				additional = &newLine;
 			}
-			else if (it->wasChanged()) {
+			else if (it->wasChanged() || it->isChanged()) {
 				additional = &edited;
 			}
+
+			if (it->wasChanged()) {
+				painter->setPen(chars->changes.saved);
+				type = -1;
+			}
 			else if (it->isChanged()) {
-				additional = &edited;
+				painter->setPen(chars->changes.changed);
+				type = -1;
 			}
 		}
 
@@ -186,6 +193,16 @@ void LineNumbers::drawText(QPainter * painter) {
 
 		it = it->nextDisplay();
 	}
+
+	if (yBegin == -1995) {
+		update();
+	}
+
+	// Fixes rendering bug on Windows
+	yBegin = (proxy->charH() -
+	          static_cast<int>(
+	            m_editor->m_firstVisible->getCache()->size().height())) /
+	         2;
 }
 
 void LineNumbers::drawChanges(QPainter * painter) {

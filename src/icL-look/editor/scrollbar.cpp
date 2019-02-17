@@ -6,7 +6,7 @@
 namespace icL::look {
 
 ScrollBar::ScrollBar(QObject * parent)
-	: BaseLook(parent) {}
+    : BaseLook(parent) {}
 
 QColor ScrollBar::background() const {
 	return m_background;
@@ -56,8 +56,8 @@ void ScrollBar::setUp(const QJsonObject & obj) {
 
 QJsonObject ScrollBar::getUp() {
 	return {{"background", colorToObj(m_background)},
-			{"bar", colorToObj(m_bar)},
-			{"bar-hover", colorToObj(m_barHover)}};
+	        {"bar", colorToObj(m_bar)},
+	        {"bar-hover", colorToObj(m_barHover)}};
 }
 
 }  // namespace icL::look
