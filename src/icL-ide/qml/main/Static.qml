@@ -4,130 +4,130 @@ import "../ui" as UI
 import "../ui/static" as Static
 
 Rectangle {
-	id: staticRoot
+    id: staticRoot
 
-	width: rd(rq * 75)
-	color: look.session.main.background
+    width: rd(rq * 75)
+    color: look.session.main.background
 
-	UI.ImageButton {
-		id: menuOpenButton
+    UI.ImageButton {
+        id: menuOpenButton
 
-		width: rd(rq * 75)
-		height: rd(rq * 40)
-		source: look.path + "icL.svg"
-	}
+        width: rd(rq * 75)
+        height: rd(rq * 40)
+        source: look.path + "icL.svg"
+    }
 
-	Column {
-		anchors.top: menuOpenButton.bottom
-		anchors.left: parent.left
-		anchors.right: parent.right
+    Column {
+        anchors.top: menuOpenButton.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
 
-		Static.Button {
-			text: qsTr("Browser")
-			source: look.path + "browser.svg"
+        Static.Button {
+            text: qsTr("Browser")
+            source: look.path + "browser.svg"
 
-			activeState: true
-		}
+            activeState: true
+        }
 
-		Static.Button {
-			text: qsTr("Code")
-			source: look.path + "code.svg"
-		}
+        Static.Button {
+            text: qsTr("Code")
+            source: look.path + "code.svg"
+        }
 
-		Static.Button {
-			text: qsTr("Debug")
-			source: look.path + "debug.svg"
-		}
-	}
+        Static.Button {
+            text: qsTr("Debug")
+            source: look.path + "debug.svg"
+        }
+    }
 
-	Column {
-		anchors.bottom: parent.bottom
-		anchors.left: parent.left
-		anchors.right: parent.right
+    Column {
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
 
-		Static.Button {
-			text: qsTr("Run")
-			source: look.path + "run.svg"
-		}
+        Static.Button {
+            text: qsTr("Run")
+            source: look.path + "run.svg"
+        }
 
-		Static.Button {
-			text: qsTr("Debug")
-			source: look.path + "rundebug.svg"
-		}
+        Static.Button {
+            text: qsTr("Debug")
+            source: look.path + "rundebug.svg"
+        }
 
-		Static.ButtonBase {
-			Item {
-				id: panelsItem
+        Static.ButtonBase {
+            Item {
+                id: panelsItem
 
-				width: rd(rq * 59)
-				height: rd(rq * 59)
+                width: rd(rq * 59)
+                height: rd(rq * 59)
 
-				anchors.horizontalCenter: parent.horizontalCenter
-				anchors.top: parent.top
-				anchors.topMargin: rd(rq * 6)
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: rd(rq * 6)
 
-				Item {
-					id: panelsBrowserH
-					anchors.fill: parent
+                Item {
+                    id: panelsBrowserH
+                    anchors.fill: parent
 
-					Static.Panel {
-						id: browserLeftH
+                    Static.Panel {
+                        id: browserLeftH
 
-						anchors.top: parent.top
-						anchors.bottom: parent.bottom
-						anchors.left: parent.left
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.left: parent.left
 
-						selected: panels.browser.leftPanel
-					}
+                        selected: panels.browser.leftPanel
+                    }
 
-					Static.Panel {
-						id: browserNavigationH
+                    Static.Panel {
+                        id: browserNavigationH
 
-						anchors.top: parent.top
-						anchors.left: browserLeftH.right
-						anchors.leftMargin: rd(rq * 4)
-						anchors.right: parent.right
+                        anchors.top: parent.top
+                        anchors.left: browserLeftH.right
+                        anchors.leftMargin: rd(rq * 4)
+                        anchors.right: parent.right
 
-						selected: panels.browser.navigationBar
-					}
+                        selected: panels.browser.navigationBar
+                    }
 
-					Static.Panel {
-						id: browserCenterH
+                    Static.Panel {
+                        id: browserCenterH
 
-						anchors.top: browserNavigationH.bottom
-						anchors.topMargin: rd(rq * 4)
-						anchors.bottom: parent.bottom
-						anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: browserNavigationH.bottom
+                        anchors.topMargin: rd(rq * 4)
+                        anchors.bottom: parent.bottom
+                        anchors.horizontalCenter: parent.horizontalCenter
 
-						selected: true
-					}
+                        selected: true
+                    }
 
-					Static.Panel {
-						id: browserDevH
+                    Static.Panel {
+                        id: browserDevH
 
-						anchors.top: browserNavigationH.bottom
-						anchors.topMargin: rd(rq * 4)
-						anchors.bottom: parent.bottom
-						anchors.right: parent.right
+                        anchors.top: browserNavigationH.bottom
+                        anchors.topMargin: rd(rq * 4)
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
 
-						selected: panels.browser.devTools
-					}
-				}
+                        selected: panels.browser.devTools
+                    }
+                }
 
-				Rectangle {
-					color: look.session.main.handle
+                Rectangle {
+                    color: look.session.main.handle
 
-					width: rd(rq * 12)
-					height: rd(rq * 12)
+                    width: rd(rq * 12)
+                    height: rd(rq * 12)
 
-					x: (parent.width - width) * 0.5
-					y: (parent.height - height) * 0.5
+                    x: (parent.width - width) * 0.5
+                    y: (parent.height - height) * 0.5
 
-					radius: width * 0.5
-				}
-			}
+                    radius: width * 0.5
+                }
+            }
 
-			text: qsTr("Panels")
-		}
-	}
+            text: qsTr("Panels")
+        }
+    }
 }
