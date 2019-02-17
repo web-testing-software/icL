@@ -506,8 +506,8 @@ void Editor::bindHighlights() {
     connect(m_occurrence, &Highlight::backgroundChanged, this, &Editor::updateOccurrence);
     connect(m_occurrence, &Highlight::borderChanged,     this, &Editor::updateOccurrence);
 
-    connect(m_selection, &Highlight::backgroundChanged, this, &Editor::updateSelection);
-    connect(m_selection, &Highlight::borderChanged,     this, &Editor::updateSelection);
+    connect(m_selection,  &Highlight::backgroundChanged, this, &Editor::updateSelection);
+    connect(m_selection,  &Highlight::borderChanged,     this, &Editor::updateSelection);
     // clang-format on
 }
 
@@ -531,18 +531,18 @@ void Editor::bindMessages() {
 
 void Editor::bindLines() {
     // clang-format off
-    connect(m_current->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateCurrent);
-    connect(m_current->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateCurrent);
-    connect(m_current->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateCurrent);
-    connect(m_current->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateCurrent);
-    connect(m_current->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateCurrent);
-    connect(m_current,               &Line::lineBgChanged,           this, &Editor::updateCurrent);
+    connect(m_current->lineNumber(),    &TextLook::foregroundChanged,   this, &Editor::updateCurrent);
+    connect(m_current->lineNumber(),    &TextLook::backgroundChanged,   this, &Editor::updateCurrent);
+    connect(m_current->lineNumber(),    &CharFormatBase::italicChanged, this, &Editor::updateCurrent);
+    connect(m_current->lineNumber(),    &CharFormatBase::boldChanged,   this, &Editor::updateCurrent);
+    connect(m_current->lineNumber(),    &CharFormatBase::italicChanged, this, &Editor::updateCurrent);
+    connect(m_current,                  &Line::lineBgChanged,           this, &Editor::updateCurrent);
 
-    connect(m_debug->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateDebug);
-    connect(m_debug->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateDebug);
-    connect(m_debug->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateDebug);
-    connect(m_debug->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateDebug);
-    connect(m_debug,               &Line::lineBgChanged,           this, &Editor::updateDebug);
+    connect(m_debug->lineNumber(),      &TextLook::foregroundChanged,   this, &Editor::updateDebug);
+    connect(m_debug->lineNumber(),      &TextLook::backgroundChanged,   this, &Editor::updateDebug);
+    connect(m_debug->lineNumber(),      &CharFormatBase::boldChanged,   this, &Editor::updateDebug);
+    connect(m_debug->lineNumber(),      &CharFormatBase::italicChanged, this, &Editor::updateDebug);
+    connect(m_debug,                    &Line::lineBgChanged,           this, &Editor::updateDebug);
 
     connect(m_breakpoint->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateBreakpoint);
     connect(m_breakpoint->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateBreakpoint);
@@ -550,25 +550,25 @@ void Editor::bindLines() {
     connect(m_breakpoint->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateBreakpoint);
     connect(m_breakpoint,               &Line::lineBgChanged,           this, &Editor::updateBreakpoint);
 
-    connect(m_phantom->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updatePhantom);
-    connect(m_phantom->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updatePhantom);
-    connect(m_phantom->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updatePhantom);
-    connect(m_phantom->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updatePhantom);
-    connect(m_phantom,               &Line::lineBgChanged,           this, &Editor::updatePhantom);
+    connect(m_phantom->lineNumber(),    &TextLook::foregroundChanged,   this, &Editor::updatePhantom);
+    connect(m_phantom->lineNumber(),    &TextLook::backgroundChanged,   this, &Editor::updatePhantom);
+    connect(m_phantom->lineNumber(),    &CharFormatBase::boldChanged,   this, &Editor::updatePhantom);
+    connect(m_phantom->lineNumber(),    &CharFormatBase::italicChanged, this, &Editor::updatePhantom);
+    connect(m_phantom,                  &Line::lineBgChanged,           this, &Editor::updatePhantom);
 
-    connect(m_phantomS->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updatePhantomS);
-    connect(m_phantomS->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updatePhantomS);
-    connect(m_phantomS->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updatePhantomS);
-    connect(m_phantomS->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updatePhantomS);
-    connect(m_phantomS,               &Line::lineBgChanged,           this, &Editor::updatePhantomS);
+    connect(m_phantomS->lineNumber(),   &TextLook::foregroundChanged,   this, &Editor::updatePhantomS);
+    connect(m_phantomS->lineNumber(),   &TextLook::backgroundChanged,   this, &Editor::updatePhantomS);
+    connect(m_phantomS->lineNumber(),   &CharFormatBase::boldChanged,   this, &Editor::updatePhantomS);
+    connect(m_phantomS->lineNumber(),   &CharFormatBase::italicChanged, this, &Editor::updatePhantomS);
+    connect(m_phantomS,                 &Line::lineBgChanged,           this, &Editor::updatePhantomS);
 
-    connect(m_cline->lineNumber(), &TextLook::foregroundChanged,   this, &Editor::updateCLine);
-    connect(m_cline->lineNumber(), &TextLook::backgroundChanged,   this, &Editor::updateCLine);
-    connect(m_cline->lineNumber(), &CharFormatBase::boldChanged,   this, &Editor::updateCLine);
-    connect(m_cline->lineNumber(), &CharFormatBase::italicChanged, this, &Editor::updateCLine);
-    connect(m_cline,               &Line::lineBgChanged,           this, &Editor::updateCLine);
-    connect(m_cline,               &CLine::editedChanged,          this, &Editor::updateCLine);
-    connect(m_cline,               &CLine::savedChanged,           this, &Editor::updateCLine);
+    connect(m_cline->lineNumber(),      &TextLook::foregroundChanged,   this, &Editor::updateCLine);
+    connect(m_cline->lineNumber(),      &TextLook::backgroundChanged,   this, &Editor::updateCLine);
+    connect(m_cline->lineNumber(),      &CharFormatBase::boldChanged,   this, &Editor::updateCLine);
+    connect(m_cline->lineNumber(),      &CharFormatBase::italicChanged, this, &Editor::updateCLine);
+    connect(m_cline,                    &Line::lineBgChanged,           this, &Editor::updateCLine);
+    connect(m_cline,                    &CLine::editedChanged,          this, &Editor::updateCLine);
+    connect(m_cline,                    &CLine::savedChanged,           this, &Editor::updateCLine);
     // clang-format on
 }
 
