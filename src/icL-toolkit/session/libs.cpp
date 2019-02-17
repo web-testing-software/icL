@@ -12,47 +12,47 @@ Libs::Libs(Item * parent)
     : Folder(parent) {}
 
 bool Libs::setLibsList(const QString & path, const QVariantList & libs) {
-	clear();
+    clear();
 
-	bool ret = true;
+    bool ret = true;
 
-	for (const auto & strVar : libs) {
-		auto res = new Lib(this);
+    for (const auto & strVar : libs) {
+        auto res = new Lib(this);
 
-		ret = ret && res->setPath(path % "/lib/" % strVar.toString());
-		children.append(res);
+        ret = ret && res->setPath(path % "/lib/" % strVar.toString());
+        children.append(res);
 
-		if (!ret)
-			break;
-	}
+        if (!ret)
+            break;
+    }
 
-	return ret;
+    return ret;
 }
 
 QVariant Libs::data(int column) {
-	if (column == 0) {
-		return {QObject::tr("Libs")};
-	}
+    if (column == 0) {
+        return {QObject::tr("Libs")};
+    }
 
-	return {};
+    return {};
 }
 
 QString Libs::getIcon() {
-	return "libs.svg";
+    return "libs.svg";
 }
 
 enum Actions { NewLib = 0 };
 
 const utils::Actions & Libs::getActionsList() {
-	static utils::Actions actions = {new utils::RemoteCall(
-	  Actions::NewLib, QObject::tr("New library"),
-	  {new utils::RemoteArg(QObject::tr("Library name"))})};
+    static utils::Actions actions = {new utils::RemoteCall(
+      Actions::NewLib, QObject::tr("New library"),
+      {new utils::RemoteArg(QObject::tr("Library name"))})};
 
-	return actions;
+    return actions;
 }
 
 bool Libs::runAction(utils::RemoteCall * call) {
-	return false;
+    return false;
 }
 
 }  // namespace icL::toolkit::session

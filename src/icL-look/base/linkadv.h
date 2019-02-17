@@ -12,36 +12,36 @@ namespace icL::look {
  */
 class LinkAdv : public Link
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(icL::look::TextLook * activeHover READ activeHover NOTIFY activeHoverChanged)
-	// clang-format on
+    // clang-format off
+    Q_PROPERTY(icL::look::TextLook * activeHover READ activeHover NOTIFY activeHoverChanged)
+    // clang-format on
 
 public:
-	/**
-	 * @brief LinkAdv is the default constructor
-	 * @param parent is the default QObject arg
-	 */
-	explicit LinkAdv(QObject * parent = nullptr);
+    /**
+     * @brief LinkAdv is the default constructor
+     * @param parent is the default QObject arg
+     */
+    explicit LinkAdv(QObject * parent = nullptr);
 
-	~LinkAdv();
+    ~LinkAdv();
 
-	/**
-	 * @brief activeHover is the color of active and hovered link
-	 * @return the color for an active and hovered link
-	 */
-	TextLook * activeHover() const;
+    /**
+     * @brief activeHover is the color of active and hovered link
+     * @return the color for an active and hovered link
+     */
+    TextLook * activeHover() const;
 
-	void setUp(const QJsonObject & obj) override;
+    void setUp(const QJsonObject & obj) override;
 
-	QJsonObject getUp() override;
+    QJsonObject getUp() override;
 
 signals:
-	void activeHoverChanged(TextLook * activeHover);
+    void activeHoverChanged(TextLook * activeHover);
 
 private:
-	TextLook * m_activeHover = nullptr;
+    TextLook * m_activeHover = nullptr;
 };
 
 }  // namespace icL::look

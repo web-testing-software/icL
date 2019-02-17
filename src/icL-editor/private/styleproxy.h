@@ -15,72 +15,72 @@ namespace icL::editor {
 class StyleProxy
 {
 public:
-	StyleProxy();
+    StyleProxy();
 
-	/**
-	 * @brief getStyle gets the style pointer
-	 * @return the pointer to the style
-	 */
-	look::EditorStyle * style();
+    /**
+     * @brief getStyle gets the style pointer
+     * @return the pointer to the style
+     */
+    look::EditorStyle * style();
 
-	/**
-	 * @brief setStyle sets the pointer to style
-	 * @param style is the pointer to style
-	 */
-	void setStyle(look::EditorStyle * style);
+    /**
+     * @brief setStyle sets the pointer to style
+     * @param style is the pointer to style
+     */
+    void setStyle(look::EditorStyle * style);
 
-	/**
-	 * @brief charW is the width of char in editor
-	 * @return the width of chars in editor
-	 */
-	int charW();
+    /**
+     * @brief charW is the width of char in editor
+     * @return the width of chars in editor
+     */
+    int charW();
 
-	/**
-	 * @brief charH is the height of chars in editor
-	 * @return the height of chars in editor
-	 */
-	int charH();
+    /**
+     * @brief charH is the height of chars in editor
+     * @return the height of chars in editor
+     */
+    int charH();
 
-	/**
-	 * @brief fontS is the font size of the editor
-	 * @return the size of font
-	 */
-	int fontS();
+    /**
+     * @brief fontS is the font size of the editor
+     * @return the size of font
+     */
+    int fontS();
 
-	/**
-	 * @brief lineS is the line spacing
-	 * @return the spaces beetwen lines
-	 */
-	int lineS();
+    /**
+     * @brief lineS is the line spacing
+     * @return the spaces beetwen lines
+     */
+    int lineS();
 
-	/**
-	 * @brief tabSize is the size of tabs in spaces
-	 * @return the size of tabs in pixels
-	 */
-	int tabSize();
+    /**
+     * @brief tabSize is the size of tabs in spaces
+     * @return the size of tabs in pixels
+     */
+    int tabSize();
 
-	/**
-	 * @brief saveTabs decides if need to save tabs to disk
-	 * @return true if need to save tabs, otherwise false
-	 */
-	bool saveTabs();
+    /**
+     * @brief saveTabs decides if need to save tabs to disk
+     * @return true if need to save tabs, otherwise false
+     */
+    bool saveTabs();
 
-	/**
-	 * @brief divLineSBy2 is the line spacing divided by 2
-	 * @return the line spacing divided by 2
-	 */
-	int divLineSBy2() const;
+    /**
+     * @brief divLineSBy2 is the line spacing divided by 2
+     * @return the line spacing divided by 2
+     */
+    int divLineSBy2() const;
 
-	/**
-	 * @brief fullLineH is the full line height
-	 * @return the full height of line
-	 */
-	int fullLineH() const;
+    /**
+     * @brief fullLineH is the full line height
+     * @return the full height of line
+     */
+    int fullLineH() const;
 
 private:
-	/// @brief is the pointer to editor style look object, all data will be
-	/// extracted from it
-	look::EditorStyle * m_style = nullptr;
+    /// @brief is the pointer to editor style look object, all data will be
+    /// extracted from it
+    look::EditorStyle * m_style = nullptr;
 };
 
 }  // namespace icL::editor

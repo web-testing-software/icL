@@ -1,0 +1,12 @@
+% !TeX spellcheck = ru_RU
+\section{Утверждения}
+
+{\bf Утверждения} позволяет оценить на сколько успешно прошел тест. Утверждения в icL имеют 2 синтаксисы: \mintinline{icl}{assert (condition)} и \mintinline{icl}{assert (condition, message)}. В первом присутствует только условие \mintinline{icl}{condition}, если оно равно \false{} или \void, то icL будет утверждать что есть проблема в тестированным ПО, отправляя сообщение \mintinline{icl}{message}, если оно отсутствует — условие будет отправлено в качестве сообщений. Как правильно отправлять одно и то же сообщение нескольких утверждений показано на листинге \ref{assertexample}. Результат утверждений будет сохранён только если оно определенно внутри шага теста, если утверждением оказывается ложным, программа останавливаться.
+
+\begin{sourcecode}
+	\captionof{listing}{Пример использования утверждениях}
+	\label{assertexample}
+    \inputminted[linenos]{icl}{../sources/assertexample.icL}
+\end{sourcecode}
+
+

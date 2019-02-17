@@ -66,10 +66,10 @@ For more images see [here](layouts/).
 icL is not an alternative for Selenium, but for a stack : Selenium + Selenium 
 Grid + Ranorex Studio + Ranorex Selocity. 
 
-For crossplatform testing Selenium use the next architecture -
+For crossplatform testing Selenium use the next architecture - <br>
 ![Selenium Grid Architecture](images/selenium-grid.png)
 
-icL use a more complex, but more peformant architecture -
+icL use a more complex, but more peformant architecture - <br>
 ![icL share architecture](images/icL-share.png)
 
 Comparation between icL share and Selenium Grid -
@@ -85,6 +85,13 @@ Comparation between icL share and Selenium Grid -
 |optimization          |no           |yes        |
 |extern IDE needed     |yes          |no         |
 |safe password storange|no           |yes        |
+
+## Contanct us
+
+When looking for support, try:
+
+* [icL Discord community](https://discord.gg/VZe8uXv)
+* [icL Creators Mail](mailto:icl@vivaldi.net)
 
 ## Contributing
 

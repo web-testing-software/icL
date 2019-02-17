@@ -14,25 +14,25 @@ namespace icL::editor {
 class ExternalChanges : public Revision
 {
 public:
-	ExternalChanges();
+    ExternalChanges();
 
-	// Revision interface
+    // Revision interface
 public:
-	void undo(Logic * logic) override;
-	void redo(Logic * logic) override;
+    void undo(Logic * logic) override;
+    void redo(Logic * logic) override;
 
 private:
-	/**
-	 * @brief restoreFrom restores the editor content from string list
-	 * @param is the list of content
-	 */
-	void restoreFrom(Logic * logic, QLinkedList<QString> & list);
+    /**
+     * @brief restoreFrom restores the editor content from string list
+     * @param is the list of content
+     */
+    void restoreFrom(Logic * logic, QLinkedList<QString> & list);
 
-	/// \brief before is the content before changes
-	QLinkedList<QString> before;
+    /// \brief before is the content before changes
+    QLinkedList<QString> before;
 
-	/// \brief after is the content after changes
-	QLinkedList<QString> after;
+    /// \brief after is the content after changes
+    QLinkedList<QString> after;
 };
 
 }  // namespace icL::editor

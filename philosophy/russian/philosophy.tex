@@ -1,0 +1,70 @@
+% !TeX spellcheck = ru_RU
+\documentclass[a4paper, 14pt]{extarticle}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[utf8]{inputenc}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\usepackage[htt]{hyphenat}
+\usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{30pt}
+
+\setmainfont{Liberation Serif}
+\newfontfamily\cyrillicfont{Liberation Serif}
+\let\cyrillicfonttt\ttfamily
+\setmonofont{Liberation Mono}
+\setsansfont{Liberation Sans}
+
+\pagestyle{fancy}
+\fancyhead[]{}
+\fancyhead[L]{\textmd{Предварительная версия 1}}
+\fancyhead[C]{}
+\fancyhead[R]{\textmd{Страница \thepage{}-я из \pageref{LastPage}}}
+\fancyfoot[]{}
+\renewcommand{\headrulewidth}{0pt}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{enumitem}
+\newenvironment{icItems}
+{ \begin{itemize} [noitemsep,nolistsep] }
+	{ \end{itemize} }
+
+\begin{document}
+
+\title{Философия icL (Предварительная версия)}
+\author{Лелицак Василе}
+
+\maketitle 
+
+\pagebreak
+\tableofcontents
+
+\pagebreak
+\section{Ведение}
+
+Философия icL определяет чёткий курс развития проекта. Она предназначена для решения возможных конфликтов. Сделать изменений противоречивы философии icL строго запрещено. 
+
+Главная задачи философии icL - сохранить ту искру, которая появилось в 2016 году и защитить проект от неправильных решениях.
+
+\
+
+Философия icL определяет:
+\begin{icItems}
+	\item какой функционалом должен присутствовать в инструментах тестировании, а какой нет;
+	\item каким должен быть язык описания сценариев тестирования;
+	\item процесс создания и редактирования скриптов;
+	\item каким должен быть код icL.
+\end{icItems}
+
+\include{tool}
+\include{language}
+\include{ide}
+\include{code}
+
+\end{document}

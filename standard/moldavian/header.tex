@@ -1,90 +1,67 @@
 % !TeX spellcheck = ro_RO
  %\renewcommand{\rmdefault}{ftm}
 \counterwithin{lstlisting}{section}
+\counterwithin{listing}{section}
 \counterwithin{table}{section}
 
-\renewcommand{\lstlistingname}{Foaia}
+\SetupFloatingEnvironment{listing}{name=Foaia}
 
 \setlength\abovecaptionskip{2pt}
 \setlength\belowcaptionskip{1pt}
 
 \pagestyle{fancy}
 \fancyhead[]{}
-\fancyhead[L]{\textmd{Candidat pentru lansare}}
+\fancyhead[L]{\textmd{Versiunea 1.1.2 în limba moldovenească}}
 \fancyhead[C]{}
 \fancyhead[R]{Pagina \textmd{\thepage{}-a din \pageref{LastPage}}}
 \fancyfoot[]{}
 \renewcommand{\headrulewidth}{0pt}
-
-\lstset{
-	language=icL,
-	extendedchars=true,
-	basicstyle=\footnotesize\ttfamily,
-	showstringspaces=false,
-	showspaces=false,
-	showtabs=false,
-	numbers=left,
-	stepnumber=1,
-	tabsize=4,
-	breaklines=true,
-	breakatwhitespace=true,
-	backgroundcolor=\color{codebg},
-	style=framed,
-	lineskip=0pt,
-	aboveskip=0pt,
-	autogobble=true,
-	frame=l,
-	framesep=6mm,
-	framexleftmargin=2.5mm,
-	fillcolor=\color{codeheaderbg},
-	rulecolor=\color{blue}
-}
 
 \setlength{\LTleft}{0pt}
 \onehalfspacing
 
 \newcommand{\greycell}[1]{\cellcolor{lightgray}\centering\textbf{#1}}
 
-\newcommand{\code}[1]{ \lstinline|#1| }
-\newcommand{\true}{\lstinline|true|}
-\newcommand{\false}{\lstinline|false|}
-\newcommand{\bool}{\lstinline|bool|}
-\newcommand{\integer}{\lstinline|int|}
-\newcommand{\double}{\lstinline|double|}
-\newcommand{\str}{\lstinline|string|}
-\newcommand{\listtype}{\lstinline|list|}
-\newcommand{\element}{\lstinline|element|}
-\newcommand{\set}{\lstinline|set|}
-\newcommand{\setitem}{\lstinline|item|}
-\newcommand{\object}{\lstinline|object|}
-\newcommand{\function}{\lstinline|function|}
-\newcommand{\void}{\lstinline|void|}
-\newcommand{\request}{\lstinline|request|}
-\newcommand{\chartype}{\lstinline|char|}
-\newcommand{\regex}{\lstinline|regex|}
-% \newcommand{}{ \lstinline|| }
+\newcommand{\code}[1]{ \mintinline{icl}{#1} }
+\newcommand{\true}{\mintinline{icl}{true}}
+\newcommand{\false}{\mintinline{icl}{false}}
+\newcommand{\bool}{\mintinline{icl}{bool}}
+\newcommand{\integer}{\mintinline{icl}{int}}
+\newcommand{\double}{\mintinline{icl}{double}}
+\newcommand{\str}{\mintinline{icl}{string}}
+\newcommand{\listtype}{\mintinline{icl}{list}}
+\newcommand{\element}{\mintinline{icl}{element}}
+\newcommand{\set}{\mintinline{icl}{set}}
+\newcommand{\setitem}{\mintinline{icl}{item}}
+\newcommand{\object}{\mintinline{icl}{object}}
+\newcommand{\function}{\mintinline{icl}{function}}
+\newcommand{\void}{\mintinline{icl}{void}}
+\newcommand{\request}{\mintinline{icl}{request}}
+\newcommand{\chartype}{\mintinline{icl}{char}}
+\newcommand{\regex}{\mintinline{icl}{regex}}
+% \newcommand{}{ \mintinline{icl}{} }
 
-\newcommand{\sessions}{\lstinline|Sessions|}
-\newcommand{\session}{\lstinline|Session|}
-\newcommand{\windows}{\lstinline|Windows|}
-\newcommand{\window}{\lstinline|Window|}
-\newcommand{\cookies}{\lstinline|Cookies|}
-\newcommand{\cookie}{\lstinline|Cookie|}
-\newcommand{\alert}{\lstinline|Alert|}
-\newcommand{\tabs}{\lstinline|Tabs|}
-\newcommand{\tab}{\lstinline|Tab|}
-\newcommand{\dom}{\lstinline|Doc|}
-\newcommand{\files}{\lstinline|Files|}
-\newcommand{\file}{\lstinline|File|}
-\newcommand{\make}{\lstinline|Make|}
-\newcommand{\logtype}{\lstinline|Log|}
-\newcommand{\numbers}{\lstinline|Numbers|}
+\newcommand{\sessions}{\mintinline{icl}{Sessions}}
+\newcommand{\session}{\mintinline{icl}{Session}}
+\newcommand{\windows}{\mintinline{icl}{Windows}}
+\newcommand{\window}{\mintinline{icl}{Window}}
+\newcommand{\cookies}{\mintinline{icl}{Cookies}}
+\newcommand{\cookie}{\mintinline{icl}{Cookie}}
+\newcommand{\alert}{\mintinline{icl}{Alert}}
+\newcommand{\tabs}{\mintinline{icl}{Tabs}}
+\newcommand{\tab}{\mintinline{icl}{Tab}}
+\newcommand{\dom}{\mintinline{icl}{Doc}}
+\newcommand{\files}{\mintinline{icl}{Files}}
+\newcommand{\file}{\mintinline{icl}{File}}
+\newcommand{\make}{\mintinline{icl}{Make}}
+\newcommand{\logtype}{\mintinline{icl}{Log}}
+\newcommand{\numbers}{\mintinline{icl}{Numbers}}
 
 % row1 width, row2 width, label, name,
 % row1 name, row2 name, body
 \newcommand{\tabletwo}[7]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|}
-	\caption*{Tabela \thetable{}: #4} \label{#3} \\
+	\caption*{Tabela \thetable{} – #4} \label{#3} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
@@ -96,7 +73,7 @@
 	\endfirsthead
 
 	\multicolumn{2}{l}%
-	{{Continuarea tabelei \thetable{}: #4}} \\
+	{{Continuarea tabelei \thetable{} – #4}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
 	\multicolumn{1}{p{#2}|}{\greycell{2}} \\
@@ -116,7 +93,7 @@
 % row1 name, row2 name, body
 \newcommand{\stabletwo}[7]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|}
-	\caption*{Tabela \thetable{}: #4} \label{#3} \\
+	\caption*{Tabela \thetable{} – #4} \label{#3} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
@@ -125,7 +102,7 @@
 	\endfirsthead
 
 	\multicolumn{2}{l}%
-	{{Continuarea tabelei \thetable{}: #4}} \\
+	{{Continuarea tabelei \thetable{} – #4}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#5}} &
 	\multicolumn{1}{p{#2}|}{\greycell{#6}} \\
@@ -145,7 +122,7 @@
 % row1 name, row2 name, row3 name, body
 \newcommand{\tablethree}[9]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
-	\caption*{Tabela \thetable{}: #5} \label{#4} \\
+	\caption*{Tabela \thetable{} – #5} \label{#4} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
@@ -159,7 +136,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{}: #5}} \\
+	{{Continuarea tabelei \thetable{} – #5}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{1}} &
 	\multicolumn{1}{p{#2}|}{\greycell{2}} &
@@ -180,7 +157,7 @@
 % row1 name, row2 name, row3 name, body
 \newcommand{\stablethree}[9]{
 	\begin{longtable}[h]{|p{#1}|p{#2}|p{#3}|}
-	\caption*{Tabela \thetable{}: #5} \label{#4} \\
+	\caption*{Tabela \thetable{} – #5} \label{#4} \\
 
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
@@ -190,7 +167,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{}: #5}} \\
+	{{Continuarea tabelei \thetable{} – #5}} \\
 	\hline
 	\multicolumn{1}{|p{#1}|}{\greycell{#6}} &
 	\multicolumn{1}{p{#2}|}{\greycell{#7}} &
@@ -210,7 +187,7 @@
 % rows, header, repeated, label, name, body
 \newcommand{\tableuni}[6]{
 	\begin{longtable}[h]{#1}
-	\caption*{Tabela \thetable{}: #5} \label{#4} \\
+	\caption*{Tabela \thetable{} – #5} \label{#4} \\
 
 	\hline
 	#2
@@ -218,7 +195,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{}: #5}} \\
+	{{Continuarea tabelei \thetable{} – #5}} \\
 	#3
 	\endhead
 
@@ -234,7 +211,7 @@
 % rows, header, repeated, label, name, body
 \newcommand{\stableuni}[6]{
 	\begin{longtable}[h]{#1}
-	\caption*{Tabela \thetable{}: #4} \label{#3} \\
+	\caption*{Tabela \thetable{} – #4} \label{#3} \\
 
 	\hline
 	#2
@@ -242,7 +219,7 @@
 	\endfirsthead
 
 	\multicolumn{3}{l}%
-	{{Continuarea tabelei \thetable{}: #4}} \\
+	{{Continuarea tabelei \thetable{} – #4}} \\
 	\hline
 	#2
 	\hline

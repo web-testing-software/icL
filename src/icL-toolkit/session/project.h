@@ -18,51 +18,51 @@ class Resources;
 class Project : public tree::Item
 {
 public:
-	/**
-	 * @brief Project is the default constructor
-	 * @param parent is the default Item arg
-	 */
-	Project(Item * parent);
+    /**
+     * @brief Project is the default constructor
+     * @param parent is the default Item arg
+     */
+    Project(Item * parent);
 
-	~Project();
+    ~Project();
 
-	/**
-	 * @brief loadProject loads a project from folder path
-	 * @param path is the path to the project folder
-	 * @return true if loadded successfull, otherwise false
-	 */
-	bool loadProject(const QString & path);
+    /**
+     * @brief loadProject loads a project from folder path
+     * @param path is the path to the project folder
+     * @return true if loadded successfull, otherwise false
+     */
+    bool loadProject(const QString & path);
 
-	/**
-	 * @brief hasLibs detects if is some libs in this project
-	 * @return true if exists one lib at minimum, otherwise false
-	 */
-	bool hasLibs();
+    /**
+     * @brief hasLibs detects if is some libs in this project
+     * @return true if exists one lib at minimum, otherwise false
+     */
+    bool hasLibs();
 
-	// Item interface
+    // Item interface
 public:
-	tree::Item * child(int row) override;
-	int          childCount() override;
-	int          columnCount() override;
-	QVariant     data(int column) override;
-	QString      getIcon() override;
+    tree::Item * child(int row) override;
+    int          childCount() override;
+    int          columnCount() override;
+    QVariant     data(int column) override;
+    QString      getIcon() override;
 
-	const utils::Actions & getActionsList() override;
+    const utils::Actions & getActionsList() override;
 
-	bool runAction(utils::RemoteCall * call) override;
+    bool runAction(utils::RemoteCall * call) override;
 
 private:
-	/// @brief m_name is the name of the project
-	QString m_name;
+    /// @brief m_name is the name of the project
+    QString m_name;
 
-	/// @brief script is the executable file of project
-	Script * script = nullptr;
+    /// @brief script is the executable file of project
+    Script * script = nullptr;
 
-	/// @brief libs is the folder with libs files
-	Libs * libs = nullptr;
+    /// @brief libs is the folder with libs files
+    Libs * libs = nullptr;
 
-	/// @brief resources is the resource folder
-	Resources * resources = nullptr;
+    /// @brief resources is the resource folder
+    Resources * resources = nullptr;
 };
 
 }  // namespace icL::toolkit::session

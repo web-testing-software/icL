@@ -1,0 +1,283 @@
+% !TeX spellcheck = ru_RU
+
+\section{Подход errorless}
+
+\label{errorless-sec}
+
+Подход к программированию, который получил название \textit{errorless} является частью философии icL. Согласно ей код должен быть устойчив к ошибкам, в этом главе будут описаны средства улучшений устойчивости кода.
+
+Если вы работаете в команде, согласуйте со своими коллегами, какие возможности будите использовать, а какие нет.
+
+\subsection{Переменные}
+
+Переменные в icL, сами по себе никогда не провоцируют исключений. Исключения является результатом их неправильного использования. Глобальные переменные можно объявить из настроек теста при запуске, при использовании таких переменных проверяете сначала имеет ли она значение. Но лучше всего определить им значение по умолчанию - \mintinline{icl}{#server = #server | "192.168.7.12"} (см. параграф \ref{void-operators}).
+
+Если переменная имеет значение \void, то можно читать любое свойства и вызвать любой метод относительно её. Это не генерирует исключения.
+
+Если вызываем метод или функцию с помощью акронима и передаём \void, то метод или функция не будут вызваны, а команда будет возвращать \void. Использовать данную возможность не рекомендуется, она присутствует в стандарте для реализации полноценности подхода.
+
+\subsection{{\color{lightblue}void} операторы}
+
+\label{void-operators}
+
+\void{} операторы это возможность, которую я могу смело рекомендовать, они не усложняют понимание кода, а наоборот облегчают. Только не ставьте рядом 2-х таких операторов, используете их по отдельность.
+
+Все \void{} операторы делят данных на 2 типа \void{} и не \void{}. Второй тип в дальнейшем будет отмечен как \mintinline{icl}{any}, он может быть один из следующих типов: \integer{}, \double{}, \str{}, \listtype{}, \object{}, \set{}, \element{}. \void{} операторы перечислены в таблице \ref{voidops}.
+
+\stablethree{1.0cm}{7.0cm}{6.0cm}
+{voidops}{void операторы}
+{Ранг}{Операция}{Оператор}
+{
+	2 & альтернативный выбор & \mintinline{icl}{void | void : void}       \\ \hline
+	2 & альтернативный выбор & \mintinline{icl}{void | any : any}         \\ \hline
+	2 & альтернативный выбор & \mintinline{icl}{any | void : any}         \\ \hline
+	2 & альтернативный выбор & \mintinline{icl}{any | any : any}          \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{void & void : void}      \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{any & void : void}       \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{void & any : void}       \\ \hline
+	2 & первичный выбор      & \mintinline{icl}{any & any : any}         \\ \hline
+	2 & вторичный выбор      & \mintinline{icl}{void ~ void : void}       \\ \hline
+	2 & вторичный выбор      & \mintinline{icl}{void ~ any : void}        \\ \hline
+	2 & вторичный выбор      & \mintinline{icl}{any ~ void : void}        \\ \hline
+	2 & вторичный выбор      & \mintinline{icl}{any ~ any : any}          \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{void ^ void : void}      \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{void ^ any : any}        \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{any ^ void : any}        \\ \hline
+	2 & исключающий выбор    & \mintinline{icl}{any ^ any : void}        \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{void \% void : void}      \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{void \% any : any}        \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{any \% void : any}        \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{int \% int : int}         \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{double \% double : double}\\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{string \% string : list}  \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{list \% string : list}    \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{list \% list : list}      \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{object \% object : set}   \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{set \% object : set}      \\ \hline
+	2 & коллекционный выбор  & \mintinline{icl}{set \% set : set}         \\ \hline
+}
+
+\subsubsection{\mintinline{icl}{(arg1 : void or any) | (arg2 : void or any) : (void or any)}}
+
+Возвращаемый результат оператором альтернативного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{orhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор альтернативный выбор}
+	\label{orhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 | arg2} \\ \hline
+		\void{}     & \void{}     & \void{}  			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}  		\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}  		\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg1}  		\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(void or any) & (void or any) : (void or any)}}
+
+Возвращаемый результат оператором первичного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{andhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор первичный выбор}
+	\label{andhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 & arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg1}   		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(void or any) ~ (void or any) : void or any}}
+
+Возвращаемый результат оператором вторичного выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{eqhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор вторичный выбор}
+	\label{eqhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ~ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \void{}   			\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \mintinline{icl}{arg2}   		\\ \hline
+	\end{tabular}
+	\vspace{-2em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(void or any) ^ (void or any) : (void or any)}}
+
+Возвращаемый результат оператором исключающего выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{xorhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор исключающий выбор}
+	\label{xorhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 ^ arg2} \\ \hline
+		\void{}     & \void{}     & \void{}   			\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}   		\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}   		\\ \hline
+		\mintinline{icl}{any}  & \mintinline{icl}{any}  & \void{}   			\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+\subsubsection{\mintinline{icl}{(void or any) \% (void or any) : (void or any)}}
+
+Возвращаемый результат оператором исключающего выбора, в зависимости от аргументов, указан в третьем столбце таблицы \ref{centhacktable}.
+
+\begin{table}[htb]
+	\caption{Оператор коллекционный выбор}
+	\label{centhacktable}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\mintinline{icl}{arg1} & \mintinline{icl}{arg2} & \mintinline{icl}{arg1 \% arg2}			\\ \hline
+		\void{}     & \void{}     & \void{}						\\ \hline
+		\void{}     & \mintinline{icl}{any}  & \mintinline{icl}{arg2}					\\ \hline
+		\mintinline{icl}{any}  & \void{}     & \mintinline{icl}{arg1}					\\ \hline
+		\integer{}  & \integer{}  & \integer{}					\\ \hline
+		\double{}   & \double{}   & \double{}					\\ \hline
+		\str{}      & \str{}      & \mintinline{icl}{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \str{}      & \mintinline{icl}{list - [arg1 arg2]}	\\ \hline
+		\listtype{} & \listtype{} & \mintinline{icl}{list - [arg1 arg2]}	\\ \hline
+		\object{}   & \object{}   & \mintinline{icl}{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \object{}   & \mintinline{icl}{set - [arg1 arg2]}	\\ \hline
+		\set{}      & \set{}      & \mintinline{icl}{set - [arg1 arg2]}	\\ \hline
+		\element{}  & \element{}  & \mintinline{icl}{element - [arg1 arg2]}\\ \hline
+	\end{tabular}
+	\vspace{0em}
+\end{table}
+
+Для аргументов типов \integer{} и \double{}, вызывается функция \mintinline{icl}{Numbers.process}, перед использованием установите какую операцию нужно выполнять с числами, использую функцию \mintinline{icl}{Numbers.setProcess} с одни из следующих аргументов: \mintinline{icl}{Numbers'sum} — сумма, \mintinline{icl}{Numbers'product} — произведение, \mintinline{icl}{Numbers'max} — максимум, \mintinline{icl}{Numbers'min} — минимум. После использования оператора, вызываете \mintinline{icl}{Numbers.restoreProcess} чтобы восстановить исходные настройки.
+
+\subsection{Операторы управления}
+
+Чтобы избегать ошибки также предлагается специальные операторы управления:
+\begin{icItems}
+	\item \mintinline{icl}{exists};
+	\item \mintinline{icl}{if exists};
+	\item \mintinline{icl}{for any}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{exists}}
+
+\mintinline{icl}{exists} позволяет условно возвращать данные, если они подходят под определённому критерия.
+
+Условия по умолчанию:
+\begin{icItems}
+	\item
+	для \bool{} - \mintinline{icl}{# == true};
+	\item
+	для \integer{} - \mintinline{icl}{# != 0};
+	\item
+	для \double{} - \mintinline{icl}{# != 0.0};
+	\item
+	для \str{} - \mintinline{icl}{!#'empty};
+	\item
+	для \listtype{} - \mintinline{icl}{!#'empty};
+	\item
+	для \set{} - \mintinline{icl}{!#'empty};
+	\item
+	для \element{} - \mintinline{icl}{#'empty}.
+\end{icItems}
+
+Если использовать условию по умолчанию, используется следующий синтаксис - \mintinline{icl}{exists(выражение)}.
+При необходимости задать своё условие, синтаксис чуть изменяется - \mintinline{icl}{exists(выражение; условие)}.
+
+\subsubsection{\mintinline{icl}{if exists}}
+
+Конструкция \mintinline{icl}{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \mintinline{icl}{exists}. Также повторно использовать значения выражения. В случае когда условие конструкции \mintinline{icl}{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \mintinline{icl}{exists} под именем \mintinline{icl}{@}.
+Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
+
+\begin{sourcecode}
+	\captionof{listing}{Использование if exist}
+	\label{ifexistsex}
+    \inputminted[linenos]{icl}{../sources/ifexistsex.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{for any}}
+
+Часто придётся найти и использовать дважды или трижды один веб-элемент, и чем придумать название для такой переменной гораздо проще копировать и вставить запрос \mintinline{icl}{Doc.query}, но когда приходит время изменить код это приводит к ошибкам. \mintinline{icl}{for any} позволяет повторно использовать любое значение без создания ненужных переменных и избегает ошибки при редактировании. Пример использования представлен на листинге \ref{foranyex}.
+
+\begin{sourcecode}
+	\captionof{listing}{Использование for any}
+	\label{foranyex}
+    \inputminted[linenos]{icl}{../sources/foranyex.icL}
+\end{sourcecode}
+
+\subsection{Преобразование типов}
+
+В icL только один оператор позволяет преобразовать данные безопасно — \mintinline{icl}{data :? type : bool}.
+Он преобразует данные в нужном тип данных и имеет первый ранг, как и обычный оператор преобразования. Особенность данного оператора, то что он не генерирует исключений, а возвращает \void{} при неудаче.
+
+\subsection{Модификаторы управления}
+
+Модификаторы управления тоже могут быть использованы для исключения ошибок. Напомню что модификатор имеет следующий синтаксис — \mintinline{icl}{control:modifier}. А также модификаторы могут быть несколько, синтаксис — \mintinline{icl}{control:[mod1,mod2]}. Написания нескольких между собой не совместимых модификаторов приводит к немедленной остановке программы.
+
+Дополнительные модификаторы управления: 
+\begin{icItems}
+	\item \mintinline{icl}{if:not exists};
+	\item \mintinline{icl}{for:Xtimes};
+	\item \mintinline{icl}{for:ever};
+	\item \mintinline{icl}{while:minX};
+	\item \mintinline{icl}{while:maxX};
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{if:not exists}}
+
+\mintinline{icl}{if exists} хорош тем что позволяет выполнить код только когда есть нужные данные. А что если нам нужно генерировать исключение когда нужные данные отсутствуют? Эту проблему решает \mintinline{icl}{if:not exists}. В сравнении с \mintinline{icl}{if exists}, никакие данные не будут переданы в блоке команд.
+
+\subsubsection{\mintinline{icl}{for:Xtimes}}
+
+Самый простой способ выполнить блок команд \mintinline{icl}{X} раз. Пример кода использующий \mintinline{icl}{for:Xtimes} представлен на листинге \ref{forxtimes}. Единица и ноль не подходят для определения количестве повторении.
+
+\begin{sourcecode}
+	\captionof{listing}{Использование for:Xtimes}
+	\label{forxtimes}
+    \inputminted[linenos]{icl}{../sources/forxtimes.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{for:ever}}
+
+\mintinline{icl}{for:ever} является бесконечным циклом, его можно использовать для выполнения блока команд \mintinline{icl}{X} раз, но количество итераций не фиксируемая, а определена переменной. Пример кода представлен на листинге \ref{foreverloop}.
+
+\begin{sourcecode}
+	\captionof{listing}{Использование for:ever}
+	\label{foreverloop}
+    \inputminted[linenos]{icl}{../sources/foreverloop.icL}
+\end{sourcecode}
+
+\subsubsection{\mintinline{icl}{while:minX}}
+
+Модификатор \mintinline{icl}{min} позволяет установить минимальное количество похождений циклов \mintinline{icl}{while} и \mintinline{icl}{do while}. Внутри цикла будет передана логическое значение, под именем \mintinline{icl}{@}, истинно означает что условие цикла была проверена, т.е. минимальное количество циклов достигнута.
+
+\subsubsection{\mintinline{icl}{while:maxX}}
+
+Модификатор \mintinline{icl}{max} защищает вас от бесконечных циклов, можно указать для тестирования большое число, если что-то пойдёт не так, сценарии не зацикливается. Данный модификатор также доступен для оператора \mintinline{icl}{for} - прохождение коллекций, \mintinline{icl}{filter} и \mintinline{icl}{range}. Также пригодится для вставки ограничений сверху, например излечи из страницы только первых 10 записи, когда их там может быть и тысячи (см. листинг \ref{maxlimitsheet}).
+
+\begin{sourcecode}
+	\captionof{listing}{Использование for:maxX}
+	\label{maxlimitsheet}
+    \inputminted[linenos]{icl}{../sources/maxlimitsheet.icL}
+\end{sourcecode}
+
+\vspace{-1em}
+
+\subsection{Веб-элементы}
+
+Стандарт \textit{WebDriver} преложен \textit{World Wide Web Consortium} описывает огромное количество исключений при работе с веб-элементами. Всех игнорировать нельзя, а только одну \ferror{NoSuchElement}. Она игнорируется в режиме автоматизации, если элемент не найден возвращается пустая коллекция. На первый взгляд мало, но применении на практике найдутся много, в комбинации с другими возможностями, смотрите листинг \ref{webelementsheet}.
+
+\begin{sourcecode}
+	\captionof{listing}{Использование веб-элементов}
+	\label{webelementsheet}
+    \inputminted[linenos,firstline=3,firstnumber=1]{icl}{../sources/webelementsheet.icL}
+\end{sourcecode}
+
+

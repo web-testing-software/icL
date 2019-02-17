@@ -1,0 +1,109 @@
+% !TeX spellcheck = en_US
+\section{Literals}
+
+Constant values that are typed in the program as a part of the source code are called {\bf literals}.
+
+Literals can be any of next data types —
+
+\begin{icItems}
+	\item
+		Boolean value — \bool{}.
+	\item
+		Integer number — \integer{}.
+	\item
+		Floating-point number — \double{}.
+	\item
+		String — \str{}.
+	\item
+		List of strings — \listtype{}.
+	\item
+		Object — \object{}.
+	\item
+		Set — \set{}.
+\end{icItems}
+
+\subsubsection{Boolean Literals}
+
+For {\bf Boolean values} exist the next literals:
+\begin{icItems}
+	\item \true{}.
+	\item \false{}.
+\end{icItems}
+
+\subsubsection{Integer Literals}
+
+{\bf Integer Literals} are a sequence of digits, which can be preceded by minus sign. Between the minus sign and digits must not to be white space, otherwise the minus sign will be interpreted as operator.
+
+Example —
+\begin{minted}{icl}
+23; -23; - 23; +23 + 3; 12 + -34; 15 - 24; 89--56; 2-3; `` ok
+23-; 23+; -2A; 3f5; 23f; 23l; 12u; 89i; 2w1; 1q1; rt2;  `` error
+\end{minted}
+
+\subsubsection{Floating Point Literals}
+
+{\bf Floating Point Literal} consists of 2 parts: the integer part and mantissa. They are delimited by point. The mantissa can not be negative.
+
+Example —
+\begin{minted}{icl}
+23.233452; 29229992.2391; 100.0; -23.29199; -0.23; -0.45 - 1000.5;  `` ok
+23.-4; 3a.34; 23-.44; 34.+23; -25.f; -23.5f; -w.45; -2.4e10; -2.E2; `` error
+\end{minted}
+
+\subsubsection{String Literals}
+
+{\bf The string} is a sequence of characters, limited by quotation mark \mintinline{icl}{"}. To add the quotation mark \mintinline{icl}{"} in string is use the next escape sequence \mintinline{icl}{\"}. The notation of tab is \mintinline{icl}{\t}, new line — \mintinline{icl}{\n}, backspace — \mintinline{icl}{\b}, \textbackslash{} — \mintinline{icl}{\\}.
+
+Examples —
+\begin{minted}{icl}
+"Hello \"to\" you!"; "Line1\nLine2";
+"Tag1\n\bTag2\n\b"; "text"; "\\ \\ \n \\ \\";
+\end{minted}
+
+\subsubsection{List Literals}
+
+{\bf The list literal} is a sequence of string, delimited by comma, embraced in square brackets.
+
+Examples —
+\begin{minted}{icl}
+@fructs = ["Apple", "Mango", "Banana", "Lime", "Lemon", "Olive"];
+@vegetables = ["Cress", "Mustard", "Guar", "Saybean", "Leek", "Radish"];
+@emptyList = [];
+\end{minted}
+
+\subsubsection{Object Literals}
+
+{\bf The object} is a union of some variables, the variable defined in object is called {\it field}. The filed literal has the next syntax —
+\mint{icl}{name = value}
+The field, like a variable, must have an initial value, not just a type.
+
+Also, the field can be described in a shorter way — \mintinline{icl}{@var}, here the \mintinline{icl}{@var} is an existing variable, in this case the field gets the name and value of variable. If, all fields are described in shorter way, then the expression will be interpreted incorrectly. To fix it just add an empty field at first position — \mintinline{icl}{[=, @var1, @var2]}.
+
+Examples —
+\begin{minted}{icl}
+@quatation = [author = "author", text = "text"];
+@child = [age = 4, hasBrothers = true, hasParents = true];
+@file = [isEmpty = false, size = 25220, readOnly = true];
+
+@text = "blah blah blah";
+@file = "song.mp3";
+@object = [=, @text, @file]; `` [text = @text, file = @file];
+
+@emptyObject = [=];
+\end{minted}
+
+\subsubsection{Set Literals}
+
+Just the {\bf header of set} can be described by literal. The set literal resembles the object literal, but it does not define field, it defines columns. The column has the next syntax —
+\mint{icl}{name : type}
+
+Also, the column can be described in shorter way, using the syntax — \mintinline{icl}{type}. Here type is a type name, in this case the column will get the name of data type. Compared to object literal, there is no syntax conflicts.
+
+Examples —
+\begin{minted}{icl}
+@quatations = [author : string, text : string];
+@children = [age : int, hasBrothers : bool, hasParents : bool];
+@files = [isEmpty : bool, size : int, readOnly : bool];
+
+@emptySet = [:];
+\end{minted}

@@ -8,43 +8,43 @@ Code::Code(QObject * parent)
     : BasePanels(parent) {}
 
 bool Code::leftPanel() const {
-	return m_leftPanel;
+    return m_leftPanel;
 }
 
 bool Code::browser() const {
-	return m_browser;
+    return m_browser;
 }
 
 void Code::setUp(const QJsonObject & obj) {
-	BasePanels::setUp(obj);
+    BasePanels::setUp(obj);
 
-	m_leftPanel = obj.value("left-panel").toBool();
-	m_browser   = obj.value("browser").toBool();
+    m_leftPanel = obj.value("left-panel").toBool();
+    m_browser   = obj.value("browser").toBool();
 }
 
 QJsonObject Code::getUp() {
-	auto obj = BasePanels::getUp();
+    auto obj = BasePanels::getUp();
 
-	obj["left-panel"] = m_leftPanel;
-	obj["browser"]    = m_browser;
+    obj["left-panel"] = m_leftPanel;
+    obj["browser"]    = m_browser;
 
-	return obj;
+    return obj;
 }
 
 void Code::setLeftPanel(bool leftPanel) {
-	if (m_leftPanel == leftPanel)
-		return;
+    if (m_leftPanel == leftPanel)
+        return;
 
-	m_leftPanel = leftPanel;
-	emit leftPanelChanged(m_leftPanel);
+    m_leftPanel = leftPanel;
+    emit leftPanelChanged(m_leftPanel);
 }
 
 void Code::setBrowser(bool browser) {
-	if (m_browser == browser)
-		return;
+    if (m_browser == browser)
+        return;
 
-	m_browser = browser;
-	emit browserChanged(m_browser);
+    m_browser = browser;
+    emit browserChanged(m_browser);
 }
 
 }  // namespace icL::toolkit::panels

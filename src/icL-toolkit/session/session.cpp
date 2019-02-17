@@ -14,52 +14,52 @@ Session::Session()
     : Folder(nullptr) {}
 
 bool Session::loadSession(const QJsonObject & obj) {
-	if (!obj["icL-session"].isString()) {
-		return false;
-	}
+    if (!obj["icL-session"].isString()) {
+        return false;
+    }
 
-	clear();
+    clear();
 
-	m_name = obj["icL-session"].toString();
+    m_name = obj["icL-session"].toString();
 
-	bool    ret  = true;
-	QString path = QDir::homePath() % "/.icL/" % m_name % '/';
+    bool    ret  = true;
+    QString path = QDir::homePath() % "/.icL/" % m_name % '/';
 
-	for (const auto & strValue : obj["projects"].toArray()) {
-		auto * project = new Project(this);
+    for (const auto & strValue : obj["projects"].toArray()) {
+        auto * project = new Project(this);
 
-		ret = ret && project->loadProject(path + strValue.toString());
+        ret = ret && project->loadProject(path + strValue.toString());
 
-		children.append(project);
+        children.append(project);
 
-		if (!ret)
-			break;
-	}
+        if (!ret)
+            break;
+    }
 
-	return ret;
+    return ret;
 }
 
 QVariant Session::data(int) {
-	return QVariant();
+    return QVariant();
 }
 
 tree::Item * Session::parent() {
-	return nullptr;
+    return nullptr;
 }
 
 QString Session::getIcon() {
-	return {};
+    return {};
 }
 
 const utils::Actions & Session::getActionsList() {
-	static utils::Actions actions = {};
+    static utils::Actions actions = {};
 
-	return actions;
+    return actions;
 }
 
 bool Session::runAction(utils::RemoteCall *) {
-	// Session is the root item, it has no actions
-	return false;
+    // Session is the root item, it has no actions
+    return false;
 }
 
 }  // namespace icL::toolkit::session

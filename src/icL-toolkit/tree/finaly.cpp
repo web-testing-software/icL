@@ -8,26 +8,26 @@ Finaly::Finaly(Item * parent)
     : Item(parent) {}
 
 Item * Finaly::child(int /*row*/) {
-	return nullptr;
+    return nullptr;
 }
 
 int Finaly::childCount() {
-	return 0;
+    return 0;
 }
 
 bool Finaly::checkIfFileExist(const QString & path, QString & field) {
-	QFile file{path};
+    QFile file{path};
 
-	if (!file.open(QFile::ReadOnly)) {
-		return false;
-	}
+    if (!file.open(QFile::ReadOnly)) {
+        return false;
+    }
 
-	file.close();
+    file.close();
 
-	int slash = path.lastIndexOf('/');
-	field     = path.mid(slash + 1);
+    int slash = path.lastIndexOf('/');
+    field     = path.mid(slash + 1);
 
-	return true;
+    return true;
 }
 
 }  // namespace icL::toolkit::tree

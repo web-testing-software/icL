@@ -38,7 +38,7 @@
 //{
 //	Q_OBJECT
 
-//	Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
+//    Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
 //																		webEngineChanged)
 
 //	enum class WaitFor { GoTo, PageLoading, ExecuteJS, ErrorDialog, Nothing };

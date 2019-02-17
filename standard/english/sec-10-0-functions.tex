@@ -1,0 +1,64 @@
+% !TeX spellcheck = en_US
+\section{Functions}
+
+Use {\bf funtions} to structure the code. The difference between functions and structures is the next — the methods are predefined when the functions are user-defined.
+
+\subsubsection{Definition of functions}
+
+A basic {\bf function definition} consists of a function header and a function body.
+
+Syntax —
+\begin{minted}{icl}
+name = (parameters) : type {
+	commands
+}
+\end{minted}
+
+Here are all the parts of a function —
+\begin{icItems}
+\item
+	\mintinline{icl}{name} is the {\bf function name}.
+\item
+	\mintinline{icl}{parameters} is the {\bf list of parameters}. On function call each parameter gets a value. The list of parameters fixes the number, types, quantity and order of parameters. The list of parameters may be absent.
+\item
+	\mintinline{icl}{type} is the {\bf type} of data which will be returned by function. Use \mintinline{icl}{@ = value} or \mintinline{icl}{Stack.return value} to return a value.
+\item
+	\mintinline{icl}{commands} is the {\bf function body} (a set of statements).
+\end{icItems}
+
+The parameters are delimited by comma. The curly brackets can not be absent.
+
+A parameter has the next syntax — \mintinline{icl}{@name : type}, where \mintinline{icl}{type} is type of data. There is a short form — \mintinline{icl}{type}, here the parameter will get the name of type.
+
+A parameter can have an implicit value, syntax — \mintinline{icl}{@name = value}, \mintinline{icl}{value} can be a constant, variable or expression. The value of expression will be calculated once, on function definition. An implicit value can have any argument, not just the lasts.
+
+Function example —
+\inputminted[linenos]{icl}{../sources/fullfunc.icL}
+
+Function without parameters —
+\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
+
+\newpage
+Function without a return type —
+\inputminted[linenos]{icl}{../sources/notypefunc.icL}
+
+Function without a return type and parameters —
+\inputminted[linenos]{icl}{../sources/minfunc.icL}
+
+\subsubsection{Function call}
+
+Function call has next syntax —
+\begin{minted}{icl}
+name (arguments);
+\end{minted}
+Here \mintinline{icl}{name} is {\bf a name of a function}, \mintinline{icl}{arguments} is {\bf a list of arguments} (it must be compatible with the parameters list).
+
+Calls of functions defined earlier —
+\inputminted[linenos]{icl}{../sources/callfunc.icL}
+
+The lasts parameters with implicit value can be omitted. For a non last parameter use \void{} value (\mintinline{icl}{~}) to specific implicit value. For example the function \\* \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}} can be called in the following way — \mintinline{icl}{fun (~, 3)}.
+
+Default values in practice —
+\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
+
+The function with a parameter without default value can be called using acronym \mintinline{icl}{name argument} or \mintinline{icl}{name (argument)}. The position of argument is arguments list has no importance.

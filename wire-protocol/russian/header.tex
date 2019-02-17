@@ -1,0 +1,104 @@
+\usepackage[top=2.5cm, bottom=1.5cm, left=2cm, right=1cm]{geometry}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{fancyvrb}
+\fvset{tabsize=2}
+\usepackage[utf8]{inputenc}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\usepackage[htt]{hyphenat}
+\usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{30pt}
+
+\setmainfont{Liberation Serif}
+\newfontfamily\cyrillicfont{Liberation Serif}
+\let\cyrillicfonttt\ttfamily
+\setmonofont{Liberation Mono}
+\setsansfont{Liberation Sans}
+\newfontfamily\cyrillicfontmono{Liberation Mono}
+\newfontfamily\cyrillicfontsans{Liberation Sans}
+%\newfontfamily\cyrillicfonttt{Liberation Mono}
+\newfontfamily\cyrillicfontsf{Liberation Serif}
+%\newfontfamily\mymono{Noto Mono}
+
+%\renewcommand*{\ttdefault}{mymono}
+
+\usepackage{ragged2e}
+\setcounter{tocdepth}{2}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[singlelinecheck=false]{caption}
+
+\let\counterwithout\relax
+\let\counterwithin\relax
+\usepackage{chngcntr}
+
+\setlength\abovecaptionskip{2pt}
+\setlength\belowcaptionskip{1pt}
+
+\pagestyle{fancy}
+\fancyhead[]{}
+\fancyhead[L]{\textmd{Версия 1.0.0 на русском языке}}
+\fancyhead[C]{}
+\fancyhead[R]{\textmd{Страница \thepage{}-я из \pageref{LastPage}}}
+\fancyfoot[]{}
+\renewcommand{\headrulewidth}{0pt}
+
+\onehalfspacing
+
+\usepackage{enumitem}
+
+\newenvironment{icItems}
+{ \begin{itemize}  [noitemsep,nolistsep] }
+	{ \end{itemize} }
+
+\usepackage{minted}
+\usemintedstyle{icl}
+
+\setminted{
+	fontfamily=tt,
+	fontsize=\footnotesize,
+%	baselinestretch=1,
+	bgcolor=codebg,
+	mathescape=true,
+	autogobble=true,
+	breaklines=true,
+	breakanywhere=true
+	encoding=utf8,
+	frame=leftline,
+	framesep=4pt,
+	framerule=1pt,
+	highlightcolor=codeheaderbg,
+	labelposition=topline,
+	numbers=left,
+	numberblanklines=true,
+	numbersep=2pt,
+	resetmargins=true,
+	rulecolor=blue2,
+%	samepage=true,
+	xleftmargin=\parindent
+}
+
+\newmintinline{js}{}
+\newminted{js}{linenos,tabsize=4,obeytabs}
+
+\definecolor{codebg}{rgb}{0.97, 0.97, 0.97}
+\definecolor{codeheaderbg}{rgb}{0.90, 0.90, 0.90}
+\definecolor{blue2}{RGB}{15, 92, 198}
+
+\makeatletter
+\@ifundefined{jscode}{
+	\newenvironment{jscode}{}{}
+}{}
+\makeatother
+
+\providecommand{\jsinline}[1]{\mintinline{js}{#1}}
+
+\renewcommand{\theFancyVerbLine}{\textcolor[RGB]{15, 92, 198}{\footnotesize \texttt{\arabic{FancyVerbLine}}}}

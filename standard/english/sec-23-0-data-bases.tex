@@ -1,0 +1,127 @@
+% !TeX spellcheck = en_US
+\section{Databases}
+
+This section defines following global objects: \mintinline{icl}{DBManager} is a database manager, \mintinline{icl}{DB} is the last opened database, \mintinline{icl}{Query} is the last query.
+
+There are following properties and methods to manipulate databases —
+\begin{icItems}
+	\item \mintinline{icl}{DBManager.openSQLite (path : string) : DB};
+	\item \mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB};
+	\item \mintinline{icl}{DBManager.connect (server : string) : DB};
+	\item \mintinline{icl}{DB.query (q : Code) : Query};
+	\item \mintinline{icl}{DB.close () : void};
+	\item \mintinline{icl}{[w/o] Query'(name : string) : any};
+	\item \mintinline{icl}{Query.set (field : string, value : any) : void};
+	\item \mintinline{icl}{Query.exec () : bool};
+	\item Available after query execution:
+	\begin{icItems}
+		\item \mintinline{icl}{[r/o] Query'(name : string) : any};
+		\item \mintinline{icl}{Query.getRowsAffected () : int};
+		\item \mintinline{icl}{Query.getError () : bool};
+		\item \mintinline{icl}{Query.getLength () : int};
+		\item \mintinline{icl}{Query.get (field : string) : any};
+		\item \mintinline{icl}{Query.next () : bool};
+		\item \mintinline{icl}{Query.previous () : bool};
+		\item \mintinline{icl}{Query.first () : bool};
+		\item \mintinline{icl}{Query.last () : bool};
+		\item \mintinline{icl}{Query.seek (i : int, relative = false) : bool};
+	\end{icItems}
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{DBManager.openSQLite (path : string) : DB}}
+
+Open a new connection. \mintinline{icl}{path} is the database location.
+
+\subsubsection{\mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB}}
+
+Creates a new connection to {\bf icL DB Client over WebSockets}, clients must realize the interface described in \textit{icL Wire Protocol}.
+
+Possible exceptions: \ferror{NoSuchServer} and \ferror{WrongUserPassword} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{DBManager.connect (server : string) : DB}}
+
+Creates a new connection to {\bf icL DB Client over HTTP}, clients must realize the interface described in \textit{icL Wire Protocol}.
+
+Possible exceptions: \ferror{NoSuchServer} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{DB.query (q : Code) : Query}}
+
+Creates an SQL query, from SQL code.
+
+\subsubsection{\mintinline{icl}{DB.close () : void}}
+
+Closes the connection with database.
+
+\subsubsection{\mintinline{icl}{[w/o] Query'(name : string) : any}}
+
+Returns a placeholder value named \mintinline{icl}{name}. 
+The placeholder in SQL code has syntax \mintinline{icl}{:name}.
+
+\subsubsection{\mintinline{icl}{Query.set (field : string, value : any) : void}}
+
+Set value of placeholder \mintinline{icl}{field}.
+
+\subsubsection{\mintinline{icl}{Query.exec () : bool}}
+
+Returns \true{} if the query was executed successful, otherwise returns \false.
+
+\subsubsection{\mintinline{icl}{Query.getError () : string}}
+
+Gets the last errors text.
+
+\subsubsection{\mintinline{icl}{[r/o] Query'(name : string) : any}}
+
+After \mintinline{icl}{Query.exec} the properties will return the value of column, if so column does not exists returns \void.
+
+\subsubsection{\mintinline{icl}{Query.getRowsAffected () : int}}
+
+Gets the number of rows affected by query.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.getLength () : int}}
+
+Gets the number of rows returned by \mintinline{icl}{SELECT}.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.get (field : string) : any}}
+
+Returns the value of column \mintinline{icl}{field} or \void{} if so column does not exist.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.next () : bool}}
+
+Returns \true{} if the cursor was successfully moved to the next row, otherwise returns \false.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.previous () : bool}}
+
+Returns \true{} if the cursor was successfully moved to the previous row, otherwise returns \false.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.first () : bool}}
+
+Returns \true{} if the cursor was successfully moved to the first row, otherwise returns \false.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.last () : bool}}
+
+Returns \true{} if the cursor was successfully moved to the last row, otherwise returns \false.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Query.seek (i : int, relative = false) : bool}}
+
+Returns \true{} if the cursor was successfully moved to the \mintinline{icl}{i}th row, otherwise returns \false. If \mintinline{icl}{@relative == true} then will switch to the \mintinline{icl}{current + i} position, also return \true{} on success and \false{} on failed.
+
+Possible exceptions: \ferror{QueryNotExecutedYet} (see table \ref{errors}).
+
+\subsubsection{Example}
+
+In SQL code can be integrated icL variables, placeholder for local variables has syntax — \mintinline{icl}{@:nume}, for global — \mintinline{icl}{#:nume}. Example of using the SQL queries and placeholders —
+\inputminted[linenos]{icl}{../sources/dbexample.icL}

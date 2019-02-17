@@ -12,45 +12,45 @@ namespace icL::editor {
 ExternalChanges::ExternalChanges() = default;
 
 void ExternalChanges::undo(Logic * logic) {
-	restoreFrom(logic, before);
+    restoreFrom(logic, before);
 }
 
 void ExternalChanges::redo(Logic * logic) {
-	restoreFrom(logic, after);
+    restoreFrom(logic, after);
 }
 
 void ExternalChanges::restoreFrom(Logic * logic, QLinkedList<QString> & list) {
 
-	auto * line = logic->first();
-	auto   it   = list.begin();
+    auto * line = logic->first();
+    auto   it   = list.begin();
 
-	logic->lBackUpSelections();
+    logic->lBackUpSelections();
 
-	while (line != nullptr && it != list.end()) {
-		line->replaceContents(*it);
-	}
+    while (line != nullptr && it != list.end()) {
+        line->replaceContents(*it);
+    }
 
-	while (line->next() != nullptr) {
-		line->next()->deleteNow();
-	}
+    while (line->next() != nullptr) {
+        line->next()->deleteNow();
+    }
 
-	if (it != list.end()) {
-		QString toPaste = "\n";
+    if (it != list.end()) {
+        QString toPaste = "\n";
 
-		while (it != list.end()) {
-			toPaste += '\n' + *it;
-		}
+        while (it != list.end()) {
+            toPaste += '\n' + *it;
+        }
 
-		line->first()->rawInsert(
-		  logic->main()->end(), line->first()->length(), toPaste);
-	}
+        line->first()->rawInsert(
+          logic->main()->end(), line->first()->length(), toPaste);
+    }
 
-	// restore the valid state of selectionsa
-	logic->lRestoreSelections();
-	// fix the lines numbers and begin positions
-	logic->fixer()->fixNow(logic->first());
-	// remove useless selection
-	logic->lOptimizeSelections();
+    // restore the valid state of selectionsa
+    logic->lRestoreSelections();
+    // fix the lines numbers and begin positions
+    logic->fixer()->fixNow(logic->first());
+    // remove useless selection
+    logic->lOptimizeSelections();
 }
 
 }  // namespace icL::editor
