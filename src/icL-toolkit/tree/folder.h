@@ -15,30 +15,30 @@ namespace icL::toolkit::tree {
 class Folder : public Item
 {
 public:
-	/**
-	 * @brief Folder is the default contructor
-	 * @param parent is the default Item arg
-	 */
-	Folder(Item * parent);
+    /**
+     * @brief Folder is the default contructor
+     * @param parent is the default Item arg
+     */
+    Folder(Item * parent);
 
-	/// @brief ~Folder deletes all children
-	~Folder();
+    /// @brief ~Folder deletes all children
+    ~Folder();
 
-	// Item interface
+    // Item interface
 public:
-	Item * child(int row) override;
-	int    columnCount() override;
-	int    childCount() override;
+    Item * child(int row) override;
+    int    columnCount() override;
+    int    childCount() override;
 
 protected:
-	/// @brief clear removes all child element
-	void clear();
+    /// @brief clear removes all child element
+    void clear();
 
-	/// @brief children is the array of pointer to child elements
-	QList<Item *> children;
+    /// @brief children is the array of pointer to child elements
+    QList<Item *> children;
 
 public:
-	friend class Item;
+    friend class Item;
 };
 
 }  // namespace icL::toolkit::tree

@@ -8,57 +8,57 @@ namespace icL::look {
 
 Input::Input(QObject * parent)
     : Link(parent) {
-	m_cursor = QColor(Qt::transparent);
+    m_cursor = QColor(Qt::transparent);
 
-	m_inactive  = new TextLook(this);
-	m_selection = new TextLook(this);
+    m_inactive  = new TextLook(this);
+    m_selection = new TextLook(this);
 }
 
 Input::~Input() {
-	delete m_inactive;
-	delete m_selection;
+    delete m_inactive;
+    delete m_selection;
 }
 
 TextLook * Input::inactive() const {
-	return m_inactive;
+    return m_inactive;
 }
 
 TextLook * Input::selection() const {
-	return m_selection;
+    return m_selection;
 }
 
 QColor Input::cursor() const {
-	return m_cursor;
+    return m_cursor;
 }
 
 void Input::setUp(const QJsonObject & obj) {
-	Link::setUp(obj);
+    Link::setUp(obj);
 
-	m_inactive->setUp(obj.value("inactive").toObject());
-	m_selection->setUp(obj.value("selection").toObject());
+    m_inactive->setUp(obj.value("inactive").toObject());
+    m_selection->setUp(obj.value("selection").toObject());
 
-	m_cursor = objToColor(obj.value("cursor").toObject());
+    m_cursor = objToColor(obj.value("cursor").toObject());
 
-	emit cursorChanged(m_cursor);
+    emit cursorChanged(m_cursor);
 }
 
 QJsonObject Input::getUp() {
-	auto obj = Link::getUp();
+    auto obj = Link::getUp();
 
-	obj["inactive"]  = m_inactive->getUp();
-	obj["selection"] = m_selection->getUp();
-	obj["cursor"]    = colorToObj(m_cursor);
+    obj["inactive"]  = m_inactive->getUp();
+    obj["selection"] = m_selection->getUp();
+    obj["cursor"]    = colorToObj(m_cursor);
 
-	return obj;
+    return obj;
 }
 
 void Input::setCursor(const QColor & cursor) {
-	if (m_cursor == cursor) {
-		return;
-	}
+    if (m_cursor == cursor) {
+        return;
+    }
 
-	m_cursor = cursor;
-	emit cursorChanged(m_cursor);
+    m_cursor = cursor;
+    emit cursorChanged(m_cursor);
 }
 
 }  // namespace icL::look

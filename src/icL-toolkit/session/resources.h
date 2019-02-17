@@ -13,27 +13,27 @@ namespace icL::toolkit::session {
 class Resources : public tree::Folder
 {
 public:
-	/**
-	 * @brief Resources is the default constructor
-	 * @param parent is the default Item arg
-	 */
-	Resources(Item * parent);
+    /**
+     * @brief Resources is the default constructor
+     * @param parent is the default Item arg
+     */
+    Resources(Item * parent);
 
-	/**
-	 * @brief setResourceList set up the resource folder
-	 * @param files is the list of initial resources
-	 * @return true if resources exist, otherwise false
-	 */
-	bool setResourceList(const QString & path, const QVariantList & files);
+    /**
+     * @brief setResourceList set up the resource folder
+     * @param files is the list of initial resources
+     * @return true if resources exist, otherwise false
+     */
+    bool setResourceList(const QString & path, const QVariantList & files);
 
-	// Item interface
+    // Item interface
 public:
-	QVariant data(int column) override;
-	QString  getIcon() override;
+    QVariant data(int column) override;
+    QString  getIcon() override;
 
-	const utils::Actions & getActionsList() override;
+    const utils::Actions & getActionsList() override;
 
-	bool runAction(utils::RemoteCall * call) override;
+    bool runAction(utils::RemoteCall * call) override;
 };
 
 }  // namespace icL::toolkit::session

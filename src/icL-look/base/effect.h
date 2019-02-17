@@ -14,71 +14,71 @@ namespace icL::look {
  */
 class Effect : public BaseLook
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(QColor normal READ normal WRITE setNormal NOTIFY normalChanged)
-	Q_PROPERTY(QColor  hover READ hover  WRITE setHover  NOTIFY hoverChanged)
-	Q_PROPERTY(QColor active READ active WRITE setActive NOTIFY activeChanged)
-	// clang-format on
+    // clang-format off
+    Q_PROPERTY(QColor normal READ normal WRITE setNormal NOTIFY normalChanged)
+    Q_PROPERTY(QColor  hover READ hover  WRITE setHover  NOTIFY hoverChanged)
+    Q_PROPERTY(QColor active READ active WRITE setActive NOTIFY activeChanged)
+    // clang-format on
 
 public:
-	/**
-	 * @brief Effect is the default constructor
-	 * @param parent is the default QObject arg
-	 */
-	explicit Effect(QObject * parent = nullptr);
+    /**
+     * @brief Effect is the default constructor
+     * @param parent is the default QObject arg
+     */
+    explicit Effect(QObject * parent = nullptr);
 
-	/**
-	 * @brief normal is the default effect color
-	 * @return the default effect color
-	 */
-	QColor normal() const;
+    /**
+     * @brief normal is the default effect color
+     * @return the default effect color
+     */
+    QColor normal() const;
 
-	/**
-	 * @brief hover is the effect color for hover state
-	 * @return the effect color for hover state
-	 */
-	QColor hover() const;
+    /**
+     * @brief hover is the effect color for hover state
+     * @return the effect color for hover state
+     */
+    QColor hover() const;
 
-	/**
-	 * @brief active is the effect color for active state
-	 * @return the effect color for active state
-	 */
-	QColor active() const;
+    /**
+     * @brief active is the effect color for active state
+     * @return the effect color for active state
+     */
+    QColor active() const;
 
-	void setUp(const QJsonObject & obj) override;
+    void setUp(const QJsonObject & obj) override;
 
-	QJsonObject getUp() override;
+    QJsonObject getUp() override;
 
 signals:
-	void normalChanged(QColor normal);
-	void hoverChanged(QColor hover);
-	void activeChanged(QColor active);
+    void normalChanged(QColor normal);
+    void hoverChanged(QColor hover);
+    void activeChanged(QColor active);
 
 public slots:
-	/**
-	 * @brief setNormal changes the default effect color
-	 * @param normal is the new default effect color
-	 */
-	void setNormal(const QColor & normal);
+    /**
+     * @brief setNormal changes the default effect color
+     * @param normal is the new default effect color
+     */
+    void setNormal(const QColor & normal);
 
-	/**
-	 * @brief setHover changes the effect color for hover state
-	 * @param hover is the new effect color for hover state
-	 */
-	void setHover(const QColor & hover);
+    /**
+     * @brief setHover changes the effect color for hover state
+     * @param hover is the new effect color for hover state
+     */
+    void setHover(const QColor & hover);
 
-	/**
-	 * @brief setActive changes the effect color for active state
-	 * @param active is the new effect color for active state
-	 */
-	void setActive(const QColor & active);
+    /**
+     * @brief setActive changes the effect color for active state
+     * @param active is the new effect color for active state
+     */
+    void setActive(const QColor & active);
 
 private:
-	QColor m_normal;
-	QColor m_hover;
-	QColor m_active;
+    QColor m_normal;
+    QColor m_hover;
+    QColor m_active;
 };
 
 }  // namespace icL::look

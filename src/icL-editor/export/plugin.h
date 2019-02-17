@@ -11,19 +11,19 @@
  */
 class EditorPlugin : public QQmlExtensionPlugin
 {
-	Q_OBJECT
-	Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
 public:
-	explicit EditorPlugin(QObject * parent = nullptr);
+    explicit EditorPlugin(QObject * parent = nullptr);
 
 signals:
 
 public slots:
 
-	// QQmlTypesExtensionInterface interface
+    // QQmlTypesExtensionInterface interface
 public:
-	void registerTypes(const char * uri) override;
+    void registerTypes(const char * uri) override;
 };
 
 #endif  // icL_editor_Plugin

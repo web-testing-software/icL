@@ -12,32 +12,32 @@ namespace icL::editor {
  */
 class Mouse : public Keyboard
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit Mouse(QQuickItem * parent = nullptr);
+    explicit Mouse(QQuickItem * parent = nullptr);
 
 signals:
 
 public slots:
 
-	// QQuickItem interface
+    // QQuickItem interface
 protected:
-	void wheelEvent(QWheelEvent * event) override;
-	void mousePressEvent(QMouseEvent * event) override;
-	void mouseMoveEvent(QMouseEvent * event) override;
-	void mouseReleaseEvent(QMouseEvent * event) override;
-	void hoverMoveEvent(QHoverEvent * event) override;
+    void wheelEvent(QWheelEvent * event) override;
+    void mousePressEvent(QMouseEvent * event) override;
+    void mouseMoveEvent(QMouseEvent * event) override;
+    void mouseReleaseEvent(QMouseEvent * event) override;
+    void hoverMoveEvent(QHoverEvent * event) override;
 
 private:
-	/**
-	 * @brief getLineCh gets the line and character number for mouse position
-	 * @param event is the event to extract mouse position
-	 * @return the line number and character number
-	 */
-	std::pair<Line *, int> getLineCh(QMouseEvent * event);
+    /**
+     * @brief getLineCh gets the line and character number for mouse position
+     * @param event is the event to extract mouse position
+     * @return the line number and character number
+     */
+    std::pair<Line *, int> getLineCh(QMouseEvent * event);
 
-	/// @brief is the editor is now in selection mode
-	bool selectionMode = false;
+    /// @brief is the editor is now in selection mode
+    bool selectionMode = false;
 };
 
 }  // namespace icL::editor

@@ -15,9 +15,9 @@ namespace icL::editor {
  */
 class EditorInternal : public Mouse
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit EditorInternal(QQuickItem * parent = nullptr);
+    explicit EditorInternal(QQuickItem * parent = nullptr);
 
 signals:
 

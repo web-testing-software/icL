@@ -12,46 +12,46 @@ Resources::Resources(Item * parent)
 
 bool Resources::setResourceList(
   const QString & path, const QVariantList & files) {
-	clear();
+    clear();
 
-	bool ret = true;
+    bool ret = true;
 
-	for (const auto & strVar : files) {
-		auto res = new Resource(this);
+    for (const auto & strVar : files) {
+        auto res = new Resource(this);
 
-		ret = ret && res->setPath(path % "/res/" % strVar.toString());
-		children.append(res);
+        ret = ret && res->setPath(path % "/res/" % strVar.toString());
+        children.append(res);
 
-		if (!ret)
-			break;
-	}
+        if (!ret)
+            break;
+    }
 
-	return ret;
+    return ret;
 }
 
 QVariant Resources::data(int column) {
-	if (column == 0) {
-		return {QObject::tr("Resources")};
-	}
+    if (column == 0) {
+        return {QObject::tr("Resources")};
+    }
 
-	return {};
+    return {};
 }
 
 QString Resources::getIcon() {
-	return "resources.svg";
+    return "resources.svg";
 }
 
 enum Actions { NewResource = 0 };
 
 const utils::Actions & Resources::getActionsList() {
-	static utils::Actions actions = {new utils::RemoteCall(
-	  Actions::NewResource, QObject::tr("New resource"), {})};
+    static utils::Actions actions = {new utils::RemoteCall(
+      Actions::NewResource, QObject::tr("New resource"), {})};
 
-	return actions;
+    return actions;
 }
 
 bool Resources::runAction(utils::RemoteCall * call) {
-	return false;
+    return false;
 }
 
 }  // namespace icL::toolkit::session
