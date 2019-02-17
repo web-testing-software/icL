@@ -9,98 +9,96 @@ import icL.Toolkit 1.0
 import "main" as Main
 
 Window {
-	id: win
+    id: win
 
-	width: 800
-	height: 600
+    width: 800
+    height: 600
 
-	visibility: !gateway.startWindowMode ? showMode : Window.Hidden
+    visibility: !gateway.startWindowMode ? showMode : Window.Hidden
 
-	// @disable-check M16
-	onClosing: {
-		gateway.startWindowMode = true;
-		close.accepted = false;
-	}
+    // @disable-check M16
+    onClosing: {
+        gateway.startWindowMode = true
+        close.accepted = false
+    }
 
-	property int showMode: Window.Maximized
+    property int showMode: Window.Maximized
 
-	// [!] Scale begin
+    // [!] Scale begin
 
-	// Scale all the interface
-	// ratio qualifier
-	property real rq: (Screen.pixelDensity / 4.03) * gateway.userInterfaceScale
+    // Scale all the interface
+    // ratio qualifier
+    property real rq: (Screen.pixelDensity / 4.03) * gateway.userInterfaceScale
 
-	// round decimal numbers
-	function rd(pixels) {
-		return Math.round(pixels)
-	}
+    // round decimal numbers
+    function rd(pixels) {
+        return Math.round(pixels)
+    }
 
-	Component.onCompleted: {
-		gateway.requestToCloseSessionWindows.connect(win.close);
-	}
+    Component.onCompleted: {
+        gateway.requestToCloseSessionWindows.connect(win.close)
+    }
 
-	// [!] Scale end
+    // [!] Scale end
+    property int ready: 0
 
-	property int ready: 0;
+    // Global objects
+    FontLoader {
+        source: "qrc:/fonts/NotoSans-Regular.ttf"
+        name: "icL"
+    }
 
-	// Global objects
+    Look {
+        id: look
 
-	FontLoader {
-		source: "qrc:/fonts/NotoSans-Regular.ttf"
-		name: "icL"
-	}
+        Component.onCompleted: {
+            clone(gateway.crossLook)
+            loadConf(":/themes/light.json", false)
+            //			loadConf("light.json", false);
+            //			saveConf(false);
+        }
+    }
 
-	Look {
-		id: look
+    Panels {
+        id: panels
+    }
 
-		Component.onCompleted: {
-			clone(gateway.crossLook)
-			loadConf(":/themes/light.json", false);
-//			loadConf("light.json", false);
-//			saveConf(false);
-		}
-	}
+    // Window content
+    Main.Static {
+        id: staticPanel
 
-	Panels {
-		id: panels
-	}
+        anchors {
+            top: parent.top
+            left: parent.left
+            bottom: parent.bottom
+        }
+    }
 
-	// Window content
-	Main.Static {
-		id: staticPanel
+    SplitView {
+        id: leftCentralSplit
+        orientation: Qt.Horizontal
 
-		anchors {
-			top: parent.top
-			left: parent.left
-			bottom: parent.bottom
-		}
-	}
+        anchors {
+            top: parent.top
+            left: staticPanel.right
+            right: parent.right
+            bottom: parent.bottom
+        }
 
-	SplitView {
-		id: leftCentralSplit
-		orientation: Qt.Horizontal
+        Main.LeftPanel {
+            id: leftPanel
 
-		anchors {
-			top: parent.top
-			left: staticPanel.right
-			right: parent.right
-			bottom: parent.bottom
-		}
+            width: 250 // load from settings
 
-		Main.LeftPanel {
-			id: leftPanel
+            Layout.minimumWidth: rd(rq * 100)
+            Layout.maximumWidth: rd(rq * 400)
+        }
 
-			width: 250 // load from settings
+        Main.CentralSide {
+            id: centralSide
 
-			Layout.minimumWidth: rd(rq * 100)
-			Layout.maximumWidth: rd(rq * 400)
-		}
-
-		Main.CentralSide {
-			id: centralSide
-
-			Layout.fillWidth: true
-			Layout.minimumWidth: rd(rq * 800)
-		}
-	}
+            Layout.fillWidth: true
+            Layout.minimumWidth: rd(rq * 800)
+        }
+    }
 }
