@@ -1,25 +1,25 @@
 import QtQuick 2.0
 
 Rectangle {
-	id: panel
+    id: panel
 
-	width: rd(rq * 17)
-	height: rd(rq * 17)
-	radius: rd(rq * 8)
+    width: rd(rq * 17)
+    height: rd(rq * 17)
+    radius: rd(rq * 8)
 
-	signal click
+    signal click
 
-	property bool selected: false;
+    property bool selected: false
 
-	color: {
-		if (selected)
-			return look.session.main.handleVisible
-		else
-			return look.session.main.handleHidden
-	}
+    color: {
+        if (selected)
+            return look.session.main.handleVisible
+        else
+            return look.session.main.handleHidden
+    }
 
-	MouseArea {
-		anchors.fill: parent;
-		onClicked: panel.click()
-	}
+    MouseArea {
+        anchors.fill: parent
+        onClicked: panel.click()
+    }
 }
