@@ -28,21 +28,22 @@
 // *  |  '- rich
 // *  '- memory
 // */
-//namespace icL {
+// namespace icL {
 
-//class VirtualMachine;
+// class VirtualMachine;
 
-//class VMStack
+// class VMStack
 //	: public QThread
 //	, public memory::VMStack
 //{
 //	Q_OBJECT
 
-//	Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY serverChanged)
-//	Q_PROPERTY(QColor sColor READ sColor NOTIFY sColorChanged)
-//	Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
+//    Q_PROPERTY(Server * server READ server WRITE setServer NOTIFY
+//    serverChanged) Q_PROPERTY(QColor sColor READ sColor NOTIFY sColorChanged)
+//    Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY
+//    runningChanged)
 
-//public:
+// public:
 //	VMStack();
 
 //	memory::Memory * memory();
@@ -54,11 +55,11 @@
 //	QColor sColor() const;
 //	bool running() const;
 
-//public slots:
+// public slots:
 //	void setServer(Server * server);
 //	void setRunning(bool running);
 
-//public:
+// public:
 //	// memory.VirtualMachineStack interface
 //	virtual void interrupt(
 //	  memory::FunctionCall                  fcall,
@@ -73,7 +74,7 @@
 
 //	void setSColor(memory::SelectionColor scolor) override;
 
-//signals:
+// signals:
 //	void serverChanged(Server * server);
 
 //	void sColorChanged(QColor sColor);
@@ -86,17 +87,17 @@
 //	// signal for qml
 //	void request_Highlight(int pos1, int pos2);
 
-//public slots:
+// public slots:
 //	// functions executed in main thread
 //	void release_hightlight(int pos1, int pos2);
 
 //	// QThread interface
-//protected:
+// protected:
 //	void run() override;
 
 //	int stopRule;
 
-//private:
+// private:
 //	Server * m_server = nullptr;
 //	QColor m_sColor;
 //	memory::SelectionColor e_sColor = memory::SelectionColor::Error;

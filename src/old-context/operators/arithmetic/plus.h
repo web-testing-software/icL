@@ -8,4 +8,4 @@ public:
 	Plus();
 };
 
-#endif // PLUS_H
+#endif  // PLUS_H

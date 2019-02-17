@@ -1,6 +1,3 @@
 #include "lessthan.h"
 
-LessThan::LessThan()
-{
-
-}
+LessThan::LessThan() {}

@@ -89,7 +89,6 @@ public:
 	// properties
 	// R/W properties will return a r/w object
 public:
-
 	/**
 	 * @brief length represents the number of element in container
 	 * @return elements count
@@ -112,13 +111,13 @@ public:
 	 * @brief width - nm().width()
 	 * @return a r/w object
 	 */
-	Int *    width();
+	Int * width();
 
 	/**
 	 * @brief height - nm().width()
 	 * @return a r/w object
 	 */
-	Int *    height();
+	Int * height();
 
 	// Read only properties
 

@@ -5,9 +5,9 @@
 //#include <QStringList>
 //#include <QThread>
 
-//namespace icL {
+// namespace icL {
 
-//Server::Server(QObject * parent)
+// Server::Server(QObject * parent)
 //	: QObject(parent)
 //	, memory::Node(nullptr) {
 
@@ -21,7 +21,7 @@
 //	connect(this, &Server::invoke_keyEvent, this, &Server::release_keyEvent);
 //}
 
-//bool Server::goTo(const QString & url) {
+// bool Server::goTo(const QString & url) {
 //	if (waitFor != WaitFor::Nothing) {
 //		return false;
 //	}
@@ -39,7 +39,7 @@
 //	return variant.toBool();
 //}
 
-//bool Server::waitForPageLoading() {
+// bool Server::waitForPageLoading() {
 //	if (waitFor != WaitFor::Nothing) {
 //		return false;
 //	}
@@ -55,7 +55,7 @@
 //	return variant.toBool();
 //}
 
-//QVariant Server::executeJS(const QString & code) {
+// QVariant Server::executeJS(const QString & code) {
 //	if (waitFor != WaitFor::Nothing) {
 //		return false;
 //	}
@@ -72,7 +72,7 @@
 //}
 
 
-//void Server::finish_PageLoading(bool success) {
+// void Server::finish_PageLoading(bool success) {
 //	if (waitFor == WaitFor::GoTo || waitFor == WaitFor::PageLoading) {
 //		variant = success;
 //		waitFor = WaitFor::Nothing;
@@ -80,7 +80,7 @@
 //	}
 //}
 
-//void Server::finish_executeJS(QVariant variant) {
+// void Server::finish_executeJS(QVariant variant) {
 //	if (waitFor == WaitFor::ExecuteJS) {
 //		this->variant = std::move(variant);
 //		this->waitFor = WaitFor::Nothing;
@@ -88,15 +88,15 @@
 //	}
 //}
 
-//QQuickItem * Server::webEngine() const {
+// QQuickItem * Server::webEngine() const {
 //	return m_webEngine;
 //}
 
-//void Server::setInterlevel(memory::InterLevel * il) {
+// void Server::setInterlevel(memory::InterLevel * il) {
 //	this->il = il;
 //}
 
-//void Server::setWebEngine(QQuickItem * webEngine) {
+// void Server::setWebEngine(QQuickItem * webEngine) {
 //	if (m_webEngine == webEngine) {
 //		return;
 //	}
@@ -105,7 +105,7 @@
 //	emit webEngineChanged(m_webEngine);
 //}
 
-//void Server::simulateClick(int x, int y) {
+// void Server::simulateClick(int x, int y) {
 //	QPoint point(x, y);
 
 //	qDebug() << x << y << point;
@@ -126,7 +126,7 @@
 //	QThread::msleep(200);
 //}
 
-//void Server::simulateKey(const QChar & ch) {
+// void Server::simulateKey(const QChar & ch) {
 //	QKeyEvent * press =
 //	  new QKeyEvent(QEvent::KeyPress, Qt::Key_A, Qt::NoModifier, QString(ch));
 //	QKeyEvent * release =
@@ -139,11 +139,11 @@
 //	QThread::msleep(10);
 //}
 
-//QVariant Server::runJS(const QString & code) {
+// QVariant Server::runJS(const QString & code) {
 //	return executeJS(code);
 //}
 
-//bool Server::click(int x, int y) {
+// bool Server::click(int x, int y) {
 //	if (
 //	  x < 0 || y < 0 || x >= m_webEngine->width() ||
 //	  y >= m_webEngine->height()) {
@@ -154,35 +154,35 @@
 //	return true;
 //}
 
-//void Server::keys(const QString & keys) {
+// void Server::keys(const QString & keys) {
 //	for (const QChar & ch : keys) {
 //		simulateKey(ch);
 //	}
 //}
 
-//void Server::newLog(int level, const QString & message) {
+// void Server::newLog(int level, const QString & message) {
 //	qDebug() << level << message;
 
 //	emit request_LogOut(level, message);
 //}
 
-//bool Server::get(const QString & url) {
+// bool Server::get(const QString & url) {
 //	return goTo(url);
 //}
 
-//void Server::release_goTo() {
+// void Server::release_goTo() {
 //	emit request_UrlLoad(url);
 //}
 
-//void Server::release_waitForPageLoading() {
+// void Server::release_waitForPageLoading() {
 //	// Noting to do, just wait
 //}
 
-//void Server::release_executeJS() {
+// void Server::release_executeJS() {
 //	emit request_JsRun(code);
 //}
 
-//void Server::release_mouseEvent(QMouseEvent *ev) {
+// void Server::release_mouseEvent(QMouseEvent *ev) {
 //	if (m_eventHandler == nullptr) {
 //		m_eventHandler = m_webEngine->childAt(0, 0);
 //	}
@@ -191,7 +191,7 @@
 //	QCoreApplication::processEvents();
 //}
 
-//void Server::release_keyEvent(QKeyEvent * ev) {
+// void Server::release_keyEvent(QKeyEvent * ev) {
 //	if (m_eventHandler == nullptr) {
 //		m_eventHandler = m_webEngine->childAt(0, 0);
 //	}

@@ -6,8 +6,8 @@
 namespace icL::context::data {
 
 Method::Method(memory::InterLevel * il, const QString & name)
-	: Data(il)
-	, name(name) {
+    : Data(il)
+    , name(name) {
 	m_role = Role::Method;
 };
 
@@ -15,7 +15,7 @@ Method::Method(memory::InterLevel * il, const QString & name)
 
 bool Method::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   (context->isResultative() || context->isComplex());
+	       (context->isResultative() || context->isComplex());
 }
 
 bool Method::canBeAtEnd() const {

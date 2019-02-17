@@ -8,4 +8,4 @@ public:
 	Contains();
 };
 
-#endif // CONTAINS_H
+#endif  // CONTAINS_H

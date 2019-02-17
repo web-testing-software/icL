@@ -558,7 +558,7 @@ void W3c::sendError(const QJsonObject & obj) {
 QJsonObject W3c::_get(const QString & url) {
 	if (session_id.isEmpty()) {
 		il->vm->exception({-2002, "No current session: GET request to `" % url %
-									"` was canceled."});
+		                            "` was canceled."});
 		return {};
 	}
 
@@ -576,7 +576,7 @@ QJsonObject W3c::_get(const QString & url) {
 QJsonObject W3c::_delete(const QString & url) {
 	if (session_id.isEmpty()) {
 		il->vm->exception({-2002, "No current session: DELETE request to `" %
-									url % "` was canceled."});
+		                            url % "` was canceled."});
 		return {};
 	}
 
@@ -595,7 +595,7 @@ QJsonObject W3c::_delete(const QString & url) {
 QJsonObject W3c::_post(const QString & url, const QJsonObject & obj) {
 	if (session_id.isEmpty()) {
 		il->vm->exception({-2002, "No current session: GET request to `" % url %
-									"` was canceled."});
+		                            "` was canceled."});
 		return {};
 	}
 
@@ -799,8 +799,7 @@ QVariant W3c::valueToVariant(QJsonValueRef & value) {
 	return {};
 }
 
-QJsonValue W3c::variantToValue(QVariant var)
-{
+QJsonValue W3c::variantToValue(QVariant var) {
 	//
 }
 
@@ -831,7 +830,7 @@ void W3c::finished(QNetworkReply * reply) {
 
 	if (parseError.error != QJsonParseError::NoError) {
 		il->vm->exception({-2000, "Failed to parse reply:" % stream.readAll() %
-									"\nError: " % parseError.errorString()});
+		                            "\nError: " % parseError.errorString()});
 		finish(reply);
 		return;
 	}

@@ -3,7 +3,7 @@
 namespace icL::logic::cross {
 
 XOr::XOr(memory::InterLevel * il)
-	: Cross(il){};
+    : Cross(il){};
 
 /**
  * @brief XOr::calcResult - append != operation to child blocks

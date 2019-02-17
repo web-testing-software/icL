@@ -1,109 +1,102 @@
 % !TeX spellcheck = ru_RU
-\section{Условные операторы}
+\section{Операторы управления}
 
-Условные структуры имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значения условии.
+Операторы управления имеют условие, которое будет вычислено. А также и блоки команд, чья выполнение зависит от значения условии.
 
-В icL приличествуют следующее условные операторы:
+В icL приличествуют следующее операторы управления:
 \begin{icItems}
-	\item \code{if};
-	\item \code{if else};
-	\item каскадное \code{if else};
-	\item \code{exists};
-	\item \code{if exists};
-	\item \code{for any}.
+	\item \mintinline{icl}{if};
+	\item \mintinline{icl}{if else};
+	\item каскадное \mintinline{icl}{if else};
+	\item \mintinline{icl}{switch case};
 \end{icItems}
 
-\subsubsection{\lstinline`if`}
+\subsubsection{\mintinline{icl}{if}}
 
-\code{if} позволяет ставить условия выполнения блока команд. Он имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
-if (condition) {
-	commands
+\mintinline{icl}{if} позволяет ставить условие выполнения блока команд. Он имеет следующий синтаксис —
+\begin{minted}{icl}
+if (условие) {
+	команды
 };
-\end{lstlisting}
-где \code{condition} любое выражение возвращающее значение типа \bool{} и \code{commands} любой набор команд.
+\end{minted}
+где \mintinline{icl}{условие} любое выражение возвращающее значение типа \bool{} и \mintinline{icl}{команды} любой набор команд.
 
-Также допускаются пропустить круглые скобки, синтаксис -
-\begin{lstlisting}[numbers=none]
-if true  { commands };
-if !true { commands };
-if @var  { commands };
-if !@var { commands };
-\end{lstlisting}
+Также допускаются пропустить круглые скобки, синтаксис —
+\begin{minted}{icl}
+if true  { команды };
+if !true { команды };
+if @var  { команды };
+if !@var { команды };
+\end{minted}
 
-\subsubsection{\lstinline`if else`}
+\subsubsection{\mintinline{icl}{if else}}
 
-\code{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно - выполняется первый блок, иначе второй блок.
+\mintinline{icl}{if else} позволяет выбирать между двух блоков команд, в случае когда условие истинно — выполняется первый блок, иначе второй блок.
 
-Конструкция \code{if else} имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
-if (condition) {
-	commands1
+Конструкция \mintinline{icl}{if else} имеет следующий синтаксис —
+\begin{minted}{icl}
+if (условие) {
+	команды1
 }
 else {
-	commands2
+	команды2
 };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{Каскадное \lstinline`if else`}
+\subsubsection{Каскадное \mintinline{icl}{if else}}
 
-Каскадное \code{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
+Каскадное \mintinline{icl}{if else} позволяет выбирать между n блоков команд, но для это нужно предъявить n-1 условии.
 
-Каскадное \code{if else} имеет следующий синтаксис -
-\begin{lstlisting}[numbers=none]
-if (condition1) {
-	commands1
-} else if (condition2) {
-	commands2
+Каскадное \mintinline{icl}{if else} имеет следующий синтаксис —
+\begin{minted}{icl}
+if (условие1) {
+	команды1
+} else if (условие2) {
+	команды2
 } else {
-	commands3
+	команды3
 };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{\lstinline`exists`}
+\subsubsection{\mintinline{icl}{switch case}}
 
-\code{exists} позволяет условно возвращать данные, если они подходят под определённому критерия.
+\mintinline{icl}{switch case} позволяет выбирать между n блоков команд, но для это нужно предъявить n условии.
 
-Условия по умолчанию:
+Синтаксис —
+\begin{minted}{icl}
+switch (значение) {
+	case (значениеСлучая) { `код` }
+	`` больше case-ов
+}
+\end{minted}
+
+\mintinline{icl}{switch} получает значения \mintinline{icl}{значение}, она может иметь любой тип кроме \bool. Дальше внутри \mintinline{icl}{switch}-а имеет несколько \mintinline{icl}{case}-ов. Если значения \mintinline{icl}{case}-а — \mintinline{icl}{значениеСлучая} совпадает с \mintinline{icl}{значение}, то \mintinline{icl}{case} будет выполнен.
+
+\mintinline{icl}{case} может иметь несколько значений разделённые запятой.
+
+Он может получить в качестве значения \void, выглядит это следующим образом \mintinline{icl}{case (~) { `код` }}, такой \mintinline{icl}{case} будет выполнен только если ни один из предыдущих не был выполнен.
+
+Ещё одна специальное значение - \mintinline{icl}{#}, через неё обозначается что текущий \mintinline{icl}{case} нужно выполнить при условии что предыдущий был выполнен.
+
+Разбираем на примере все возможность \mintinline{icl}{switch case}, пример представлен на листинге \ref{switchcaseex}.
+
+\begin{sourcecode}
+	\captionof{listing}{Использование switch case}
+	\label{switchcaseex}
+    \inputminted[linenos]{icl}{../sources/switchcaseex.icL}
+\end{sourcecode}
+
+Переменная \mintinline{icl}{@v} имеет значения в интервале от 0 до 6.
+
+Разбираем какие фрагменты кода будут выполнены для каждой возможной значении:
 \begin{icItems}
-\item
-	для \bool{} - \code{# == true};
-\item
-	для \integer{} - \code{# != 0};
-\item
-	для \double{} - \code{# != 0.0};
-\item
-	для \str{} - \code{!#'empty};
-\item
-	для \listtype{} - \code{!#'empty};
-\item
-	для \set{} - \code{!#'empty};
-\item
-	для \element{} - \code{#'empty}.
+	\item 0 - будет выполнен \mintinline{icl}{code1};
+	\item 1 - будет выполнен \mintinline{icl}{code2} и \mintinline{icl}{code3};
+	\item 2 - будет выполнен \mintinline{icl}{code2} и \mintinline{icl}{code3};
+	\item 3 - будет выполнен \mintinline{icl}{code3};
+	\item 4 - будет выполнен \mintinline{icl}{code4};
+	\item 5 - будет выполнен \mintinline{icl}{code5};
+	\item 6 - будет выполнен \mintinline{icl}{code5}.
 \end{icItems}
-
-Если использовать условию по умолчанию, используется следующий синтаксис - \lstinline|exists(expression)|.
-При необходимости задать своё условие, синтаксис чуть изменяется -\lstinline|exists(expression, condition)|.
-
-\subsubsection{\lstinline`if exists`}
-
-Конструкция \code{if exists} позволяет выполнять блок команд в зависимости от результата работы конструкции \code{exists}. Также повторно использовать значения выражения. В случае когда условие конструкции \code{exists} истинно, то блок команд выполняется и в нём передаётся данный полученные от \code{exists} под именем \code{@}.
-Простой и элементарный пример представлен на листинге \ref{ifexistsex}.
-
-\begin{lstlisting}[caption=Использование if exist, label=ifexistsex]
-if exists(23 + 3, # > 20) {
-	Log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
-
-\subsubsection{\lstinline`for any`}
-
-\code{for any} позволяет повторно использовать любое значение. Пример использования представлен на листинге \ref{foranyex}.
-
-\begin{lstlisting}[caption=Использование for any, label=foranyex]
-for any(23 + 3) {
-	Log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
 
 %\newpage

@@ -1,6 +1,3 @@
 #include "contains.h"
 
-Contains::Contains()
-{
-
-}
+Contains::Contains() {}

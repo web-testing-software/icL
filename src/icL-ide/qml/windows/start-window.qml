@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 
 import icL.Look 1.0
+import icL.Editor 1.0
 
 import "../main" as Main
 
@@ -36,6 +37,11 @@ Window {
 	Look {
 		id: look
 
+		editor.style{
+			fontS: rd(rq * 16.5)
+			lineS: rd(rq * 2)
+		}
+
 		Component.onCompleted: {
 			gateway.crossLook = this
 		}
@@ -53,7 +59,7 @@ Window {
 	}
 
 	Component.onCompleted: {
-		flags = flags | Qt.FramelessWindowHint
+//		flags = flags | Qt.FramelessWindowHint
 	}
 
 	// This timer fix bug for maximised window
@@ -66,5 +72,18 @@ Window {
 		property var resizeMoveArea;
 
 		onTriggered: resizeMoveArea.pressedDelayFunction();
+	}
+
+	Editor {
+		anchors.fill: parent
+
+		style: look.editor.style
+		chars: look.editor.chars
+		scrollBar: look.editor.scrollBar
+
+		Component.onCompleted: {
+			intern.loadFile("test.txt")
+			updateNow()
+		}
 	}
 }

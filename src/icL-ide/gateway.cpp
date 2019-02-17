@@ -5,51 +5,50 @@
 namespace icL::ide {
 
 GateWay::GateWay(QObject * parent)
-	: QObject(parent) {}
+    : QObject(parent) {}
 
 qreal GateWay::userInterfaceScale() const {
-	return m_userInterfaceScale;
+    return m_userInterfaceScale;
 }
 
 bool GateWay::startWindowMode() const {
-	return m_startWindowMode;
+    return m_startWindowMode;
 }
 
 QObject * GateWay::crossLook() const {
-	return m_crossLook;
+    return m_crossLook;
 }
 
 void GateWay::closeSessionWindows() {
-	emit requestToCloseSessionWindows();
+    emit requestToCloseSessionWindows();
 }
 
 void GateWay::aboutQt() {
-	QApplication::aboutQt();
+    QApplication::aboutQt();
 }
 
 void GateWay::setUserInterfaceScale(qreal userInterfaceScale) {
-	qWarning("Floating point comparison needs context sanity check");
-	if (qFuzzyCompare(m_userInterfaceScale, userInterfaceScale))
-		return;
+    if (qFuzzyCompare(m_userInterfaceScale, userInterfaceScale))
+        return;
 
-	m_userInterfaceScale = userInterfaceScale;
-	emit userInterfaceScaleChanged(m_userInterfaceScale);
+    m_userInterfaceScale = userInterfaceScale;
+    emit userInterfaceScaleChanged(m_userInterfaceScale);
 }
 
 void GateWay::setStartWindowMode(bool startWindowMode) {
-	if (m_startWindowMode == startWindowMode)
-		return;
+    if (m_startWindowMode == startWindowMode)
+        return;
 
-	m_startWindowMode = startWindowMode;
-	emit startWindowModeChanged(m_startWindowMode);
+    m_startWindowMode = startWindowMode;
+    emit startWindowModeChanged(m_startWindowMode);
 }
 
 void GateWay::setCrossLook(QObject * crossLook) {
-	if (m_crossLook == crossLook)
-		return;
+    if (m_crossLook == crossLook)
+        return;
 
-	m_crossLook = crossLook;
-	emit crossLookChanged(m_crossLook);
+    m_crossLook = crossLook;
+    emit crossLookChanged(m_crossLook);
 }
 
 }  // namespace icL::ide

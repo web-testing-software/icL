@@ -1,6 +1,3 @@
 #include "notequal.h"
 
-NotEqual::NotEqual()
-{
-
-}
+NotEqual::NotEqual() {}

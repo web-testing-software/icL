@@ -18,14 +18,14 @@ namespace icL::context::value {
 Element::Element(
   memory::InterLevel * il, memory::DataState * container,
   const QString & varName)
-	: Value(il, container, varName) {}
+    : Value(il, container, varName) {}
 
 Element::Element(
   memory::InterLevel * il, const QVariant & rvalue, bool readonly)
-	: Value(il, rvalue, readonly) {}
+    : Value(il, rvalue, readonly) {}
 
 Element::Element(memory::InterLevel * il, const Value * const object)
-	: Value(il, object) {}
+    : Value(il, object) {}
 
 const QHash<QString, void (Element::*)()> Element::properties =
   Element::initProperties();
@@ -34,35 +34,35 @@ const QHash<QString, void (Element::*)(memory::ArgList &)> Element::methods =
 
 const QHash<QString, void (Element::*)()> Element::initProperties() {
 	return {{{"Length", &Element::runLength},
-			 {"HTML", &Element::runHTML},
-			 {"Text", &Element::runText},
-			 {"Width", &Element::runWidth},
-			 {"Height", &Element::runHeight},
-			 {"Visible", &Element::runVisible},
-			 {"Clickable", &Element::runClickable}}};
+	         {"HTML", &Element::runHTML},
+	         {"Text", &Element::runText},
+	         {"Width", &Element::runWidth},
+	         {"Height", &Element::runHeight},
+	         {"Visible", &Element::runVisible},
+	         {"Clickable", &Element::runClickable}}};
 }
 
 const QHash<QString, void (Element::*)(memory::ArgList &)>
 Element::initMethods() {
 	return {{{"ScrollTo", &Element::runScrollTo},
-			 {"Click", &Element::runClick},
-			 {"SendKeys", &Element::runSendKeys},
-			 {"CtrlV", &Element::runCtrlV},
-			 {"IsValid", &Element::runIsValid},
-			 {"Add", &Element::runAdd},
-			 {"Copy", &Element::runCopy},
-			 {"Filter", &Element::runFilter},
-			 {"Get", &Element::runGet},
-			 {"Query", &Element::runQuery},
-			 {"QueryAll", &Element::runQueryAll},
-			 {"Next", &Element::runNext},
-			 {"Prev", &Element::runPrev},
-			 {"Parent", &Element::runParent},
-			 {"Child", &Element::runChild},
-			 {"Closest", &Element::runClosest},
-			 {"AddClass", &Element::runAddClass},
-			 {"RemoveClass", &Element::runRemoveClass},
-			 {"HasClass", &Element::runHasClass}}};
+	         {"Click", &Element::runClick},
+	         {"SendKeys", &Element::runSendKeys},
+	         {"CtrlV", &Element::runCtrlV},
+	         {"IsValid", &Element::runIsValid},
+	         {"Add", &Element::runAdd},
+	         {"Copy", &Element::runCopy},
+	         {"Filter", &Element::runFilter},
+	         {"Get", &Element::runGet},
+	         {"Query", &Element::runQuery},
+	         {"QueryAll", &Element::runQueryAll},
+	         {"Next", &Element::runNext},
+	         {"Prev", &Element::runPrev},
+	         {"Parent", &Element::runParent},
+	         {"Child", &Element::runChild},
+	         {"Closest", &Element::runClosest},
+	         {"AddClass", &Element::runAddClass},
+	         {"RemoveClass", &Element::runRemoveClass},
+	         {"HasClass", &Element::runHasClass}}};
 }
 
 
@@ -89,28 +89,28 @@ String * Element::html() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".html()",
-					  web.variable % ".html(%1, true)"};
+	                  web.variable % ".html(%1, true)"};
 }
 
 String * Element::text() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".text()",
-					  web.variable % ".text(%1, true)"};
+	                  web.variable % ".text(%1, true)"};
 }
 
 Int * Element::width() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new Int{il, web.variable % ".width()",
-				   web.variable % ".width(%1, true)"};
+	               web.variable % ".width(%1, true)"};
 }
 
 Int * Element::height() {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new Int{il, web.variable % ".height()",
-				   web.variable % ".height(%1, true)"};
+	               web.variable % ".height(%1, true)"};
 }
 
 bool Element::visible() {
@@ -178,21 +178,21 @@ String * Element::attr(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".attr('" % name % "')",
-					  web.variable % ".attr('" % name % "', %1, true)"};
+	                  web.variable % ".attr('" % name % "', %1, true)"};
 }
 
 String * Element::data(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".data('" % name % "')",
-					  web.variable % ".data('" % name % "', %1, true)"};
+	                  web.variable % ".data('" % name % "', %1, true)"};
 }
 
 String * Element::css(const QString & name) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	return new String{il, web.variable % ".css('" % name % "')",
-					  web.variable % ".css('" % name % "', %1, true)"};
+	                  web.variable % ".css('" % name % "', %1, true)"};
 }
 
 
@@ -264,7 +264,7 @@ void Element::click() {
 	QVariant result;
 	QPoint   point;
 
-	result       = il->server->runJS(web.variable % ".clickNow()");
+	result = il->server->runJS(web.variable % ".clickNow()");
 
 	if (result.isValid()) {
 		point = result.toPoint();
@@ -276,7 +276,7 @@ void Element::click() {
 	if (!il->server->click(x, y)) {
 		il->vm->exception(
 		  {-9, "Point (" % QString::number(x) % ", " % QString::number(y) %
-				 ") is out of screen bounds"});
+		         ") is out of screen bounds"});
 	}
 }
 
@@ -316,10 +316,10 @@ void Element::add(memory::WebElement element) {
 	memory::WebElement web = getValue().value<memory::WebElement>();
 
 	web.count = il->server
-				  ->runJS(
-					web.variable % ".add(" % element.variable % "); " %
-					web.variable % ".length")
-				  .toInt();
+	              ->runJS(
+	                web.variable % ".add(" % element.variable % "); " %
+	                web.variable % ".length")
+	              .toInt();
 
 	web.selector = web.selector % " (+) " % element.selector;
 
@@ -349,10 +349,10 @@ memory::WebElement Element::filter(const QString & selector) {
 	ret.selector = web.selector % " (filter) " % selector;
 
 	ret.count = il->server
-				  ->runJS(
-					"(" % ret.variable % " = " % web.variable % ".filter('" %
-					escaped % "')).length")
-				  .toInt();
+	              ->runJS(
+	                "(" % ret.variable % " = " % web.variable % ".filter('" %
+	                escaped % "')).length")
+	              .toInt();
 
 	return ret;
 }
@@ -365,13 +365,13 @@ memory::WebElement Element::filter(const QString & context, bool asfragment) {
 	escaped.replace("'", "\\'");
 	ret.variable = getNewId();
 	ret.selector = web.selector % " (filtered by " %
-				   (asfragment ? "fragment" : "content") % ") " % context;
+	               (asfragment ? "fragment" : "content") % ") " % context;
 	ret.count =
 	  il->server
-		->runJS(
-		  "(" % ret.variable % " = " % web.variable % ".filterByContent('" %
-		  escaped % "', " % (asfragment ? "true" : "false") % ")).length")
-		.toInt();
+	    ->runJS(
+	      "(" % ret.variable % " = " % web.variable % ".filterByContent('" %
+	      escaped % "', " % (asfragment ? "true" : "false") % ")).length")
+	    .toInt();
 
 	return ret;
 }
@@ -383,7 +383,7 @@ memory::WebElement Element::get(int index) {
 
 	if (index < 0 || index >= web.count) {
 		il->vm->exception({-8, "Index " % indexStr % " is out of bounds [0.." %
-								 QString::number(web.count) % ")"});
+		                         QString::number(web.count) % ")"});
 		return ret;
 	}
 
@@ -531,8 +531,8 @@ void Element::runFilter(memory::ArgList & args) {
 	  args.length() == 2 && args[0].object->type() == memory::Type::String &&
 	  args[1].object->type() == memory::Type::Bool) {
 		newValue   = QVariant::fromValue(filter(
-		  args[0].object->getValue().toString(),
-		  args[1].object->getValue().toInt()));
+          args[0].object->getValue().toString(),
+          args[1].object->getValue().toInt()));
 		newContext = new Element{il, newValue, true};
 	}
 	else {
@@ -659,13 +659,13 @@ bool Element::isSingle(memory::WebElement & web) {
 		if (web.count == 0) {
 			il->vm->exception(
 			  {-5, QStringLiteral("Element collection `%1` is null")
-					 .arg(web.selector)});
+			         .arg(web.selector)});
 		}
 		else {
 			il->vm->exception(
 			  {-4,
 			   QStringLiteral("Element collection `%1` contains several items")
-				 .arg(web.selector)});
+			     .arg(web.selector)});
 		}
 		return false;
 	}
@@ -683,10 +683,10 @@ memory::WebElement Element::queryBackEnd(
 	ret.selector = web.selector % " " % selector;
 
 	ret.count = il->server
-				  ->runJS(
-					"(" % ret.variable % " = " % web.variable % "." % qsFunc %
-					"(\"" % selector % "\")).length")
-				  .toInt();
+	              ->runJS(
+	                "(" % ret.variable % " = " % web.variable % "." % qsFunc %
+	                "(\"" % selector % "\")).length")
+	              .toInt();
 
 	return ret;
 }
@@ -701,10 +701,10 @@ memory::WebElement Element::domTrans(
 	ret.selector = web.selector % " -> " % method % "(" % arg % ")";
 
 	ret.count = il->server
-				  ->runJS(
-					"(" % ret.variable % " = " % web.variable % "." % method %
-					"(" % arg % ")).length")
-				  .toInt();
+	              ->runJS(
+	                "(" % ret.variable % " = " % web.variable % "." % method %
+	                "(" % arg % ")).length")
+	              .toInt();
 
 	return ret;
 }

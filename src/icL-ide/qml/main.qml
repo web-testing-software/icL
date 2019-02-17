@@ -56,6 +56,8 @@ Window {
 		Component.onCompleted: {
 			clone(gateway.crossLook)
 			loadConf(":/themes/light.json", false);
+//			loadConf("light.json", false);
+//			saveConf(false);
 		}
 	}
 

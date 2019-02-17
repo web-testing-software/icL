@@ -8,4 +8,4 @@ public:
 	NotEqual();
 };
 
-#endif // NOTEQUAL_H
+#endif  // NOTEQUAL_H

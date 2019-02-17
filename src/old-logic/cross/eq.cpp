@@ -3,7 +3,7 @@
 namespace icL::logic::cross {
 
 Eq::Eq(memory::InterLevel * il)
-	: Cross(il){};
+    : Cross(il){};
 
 /**
  * @brief Eq::calcResult - append == operation to child blocks

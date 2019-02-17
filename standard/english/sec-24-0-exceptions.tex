@@ -1,0 +1,84 @@
+% !TeX spellcheck = en_US
+\section{Exceptions Handling}
+
+An exception in icL has name and description. To print out the name and description of current error use command \mintinline{icl}{Log.error ""}. To register a used exception use \mintinline{icl}{Signal.add (name : string)}.
+
+\subsection{Exceptions Emission}
+
+The code which emits exceptions is named {\it emitter}. It has the syntax \mintinline{icl}{emitter {`code`}}. The emitted signal is received by slot. Slot has the syntax \mintinline{icl}{slot:exception {`cod`}}, where exception is a name of registered exception. To handle any error use \mintinline{icl}{slot:Any}.
+
+To generate an exception signal use \mintinline{icl}{emit:exception (description : string)}.
+
+Example of using user defined exceptions —
+\inputminted[linenos]{icl}{../sources/sighandling.icL}
+
+To block all signals use a jammer, syntax — \mintinline{icl}{jammer {`cod`}}. Syntax errors signals and \mintinline{icl}{emit:Exit} can not be blocked.
+
+\subsection{Predefined Signals}
+
+Signal \ferror{Exit} is used to stop immediately the execution of script.
+
+\newpage
+List of predefined signals —
+\tabletwo{5cm}{12.1cm}{errors}{}%
+{Exception}{Description}%
+{
+	\ferror{Exit}                    & Script exit was requested.                  \\ \hline
+	
+        \ferror{NoSessions}              & There is not an opened session.             \\ \hline
+	\ferror{NoSuchWindow}            & No such window.                             \\ \hline
+	\ferror{NoSuchElement}           & No such element.                            \\ \hline
+	\ferror{NoSuchFrame}             & Nu such frame.                              \\ \hline
+	\ferror{NoSuchCookie}            & No such cookie.                             \\ \hline
+	\ferror{NoSuchAlert}             & No such alert.                              \\ \hline
+	\ferror{NoSuchPlaceholder}       & No such placeholder.                        \\ \hline
+	\ferror{NoSuchDatabase}          & No such database.                           \\ \hline
+	\ferror{NoSuchServer}            & No such server.                             \\ \hline
+	\ferror{WrongUserPassword}       & Authentication failed.                      \\ \hline
+	\ferror{StaleElementReference}   & Stale element reference.                    \\ \hline
+	\ferror{FolderNotFound}          & Folder not found.                           \\ \hline
+	\ferror{FileNotFound}            & File not found.                             \\ \hline
+	\ferror{FieldNotFound}           & Field not found.                            \\ \hline
+	\ferror{FieldAlreadyExists}      & Field already exists.                       \\ \hline
+	\ferror{OutOfBounds}             & Out of collection bound.                    \\ \hline
+	\ferror{UnsupportedOperation}    & Web driver does not support this operation. \\ \hline
+	
+	\ferror{EmptyString}             & The string is empty.                        \\ \hline
+	\ferror{EmptyList}               & The list is empty.                          \\ \hline
+	\ferror{MultiList}               & The list contains some strings.             \\ \hline
+	\ferror{EmptyElement}            & Invalid web element.                        \\ \hline
+	\ferror{MultiElement}            & Collection contains some web elements.      \\ \hline
+	\ferror{EmptySet}                & The set is empty.                           \\ \hline
+	\ferror{MultiSet}                & The set contains some items.                \\ \hline
+	
+	\ferror{InvalidArgument}         & Invalid argument.                           \\ \hline
+	\ferror{InvalidSelector}         & Invalid selector.                           \\ \hline
+	\ferror{InvalidElementState}     & Invalid element state.                      \\ \hline
+	\ferror{InvalidElement}          & Operation is not available for the element. \\ \hline
+	\ferror{IncompatibleRoot}        & Wrong root of JSON.                         \\ \hline
+	\ferror{IncompatibleData}        & Wrong input data.                           \\ \hline
+	\ferror{IncompatibleObject}      & Wrong input object.                         \\ \hline
+	\ferror{InvalidSessionId}        & Session was closed.                         \\ \hline
+	\ferror{InvalidCookieDomain}     & Wrong domain of cookie.                     \\ \hline
+	\ferror{InsecureCertificate}     & Certificate is insecure.                    \\ \hline
+	\ferror{UnexpectedAlertOpen}     & Unexpected alert was opened.                \\ \hline
+	
+	\ferror{UnrealCast}              & The requested cast is impossible.           \\ \hline
+	\ferror{ParsingFailed}           & Parsing failed.                             \\ \hline
+	\ferror{WrongDelimiter}          & Wrong delimiter.                            \\ \hline
+	\ferror{ComplexField}            & The field is complex.                       \\ \hline
+	\ferror{ElementNotInteractable}  & Element is not intractable.                 \\ \hline
+	\ferror{ElementClickIntercepted} & The click was intercepted.                  \\ \hline
+	\ferror{MoveTargetOutOfBounds}   & Coordinates for mouse are out of screen.    \\ \hline
+	\ferror{UnableToSetCookie}       & Unable to set cookie.                       \\ \hline
+	\ferror{UnableToCaptureScreen}   & Unable to capture screen.                   \\ \hline
+	\ferror{JavaScriptError}         & Excution of JavaScript code failed.         \\ \hline
+	\ferror{ScriptTimeout}           & Script execution timeout.                   \\ \hline
+	\ferror{Timeout}                 & Timeout.                                    \\ \hline
+	\ferror{SessionNotCreated}       & Session creation failed.                    \\ \hline
+	\ferror{QueryNotExecutedYet}     & The SQL query was not executed yet.         \\ \hline
+	
+	\ferror{UnknownCommand}          & \mintinline{icl}{[w3c]} Unknown command.    \\ \hline
+	\ferror{UnknownError}            & \mintinline{icl}{[w3c]} Unknown error.      \\ \hline
+	\ferror{UnknownMethod}           & \mintinline{icl}{[w3c]} Unknown method.     \\
+}

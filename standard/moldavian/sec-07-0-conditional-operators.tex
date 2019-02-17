@@ -1,105 +1,102 @@
 % !TeX spellcheck = ro_RO
-\section{Operatorii condiționali}
+\section{Operatori condiționali}
 
-Construcțiile condiționale dețin condiții, valoarea cărora trebuie socotită, și grupuri de comenzi, execuția cărora depinde de condiție.
+Operatorii condiționali dețin condiții (valoarea cărora trebuie socotită) și grupuri de comenzi, execuția cărora depinde de condiție.
 
 În icL sunt prezenți următorii operatori logici:
 \begin{icItems}
-	\item \code{if};
-	\item \code{if-else};
-	\item \code{if-else} în cascadă;
-	\item \code{exists};
-	\item \code{if-exists};
-	\item \code{for-any}.
+	\item \mintinline{icl}{if};
+	\item \mintinline{icl}{if-else};
+	\item \mintinline{icl}{if-else} în cascadă;
+	\item \mintinline{icl}{switch-case};
 \end{icItems}
 
-\subsubsection{\lstinline|if|}
+\subsubsection{\mintinline{icl}{if}}
 
-\code{if} permite să condiționezi executarea grupei de comenzi. Sintaxa lui -
-\begin{lstlisting}[numbers=none]
-if (condition) {
-	commands
+\mintinline{icl}{if} permite să condiționezi executarea grupei de comenzi. Sintaxa lui -
+\begin{minted}{icl}
+if (condiție) {
+	comenzi
 };
-\end{lstlisting}
-unde \code{condition} orice expresie care returnează valoare \bool{} și \code{commands} orice succesiune de comenzi.
+\end{minted}
+unde \mintinline{icl}{condiție} orice expresie care returnează valoare \bool{} și \mintinline{icl}{comenzi} orice succesiune de comenzi.
 
 De asemenea se permite de exclus parantezele rotunde dacă expresia este simplă, sintaxă -
-\begin{lstlisting}[numbers=none]
-if true  { commands };
-if @var  { commands };
-\end{lstlisting}
+\begin{minted}{icl}
+if true  { comenzi };
+if !true { comenzi };
+if @var  { comenzi };
+if !@var { comenzi };
+\end{minted}
 
-\subsubsection{\lstinline|if-else|}
+\subsubsection{\mintinline{icl}{if-else}}
 
-\code{if-else} permite a alege dintre 2 grupe de comenzi, în cazul în care condiția este adevărată se execută prima, în caz contrar a doua.
+\mintinline{icl}{if-else} permite a alege dintre 2 grupe de comenzi, în cazul în care condiția este adevărată se execută prima, în caz contrar a doua.
 
-Sintaxa \code{if-else}-ului -
-\begin{lstlisting}[numbers=none]
-if (condition) {
-	commands1
+Sintaxa \mintinline{icl}{if-else}-ului -
+\begin{minted}{icl}
+if (condiție) {
+	comenzi1
 }
 else {
-	commands2
+	comenzi2
 };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{\lstinline|if-else| în cascadă}
+\subsubsection{\mintinline{icl}{if-else} în cascadă}
 
-\code{if-else} în cascadă permite a alege dintre n grupe de comenzi, numai că necesită n-1 condiții.
+\mintinline{icl}{if-else} în cascadă permite a alege dintre n grupe de comenzi, numai că necesită n-1 condiții.
 
-Sintaxa \code{if-else}-ului în cascadă -
-\begin{lstlisting}[numbers=none]
-if (condition1) {
-	commands1
-} else if (condition2) {
-	commands2
+Sintaxa \mintinline{icl}{if-else}-ului în cascadă -
+\begin{minted}{icl}
+if (condiție1) {
+	comenzi1
+} else if (condiție2) {
+	comenzi2
 } else {
-	commands3
+	comenzi3
 };
-\end{lstlisting}
+\end{minted}
 
-\subsubsection{\lstinline|exists|}
+\subsubsection{\mintinline{icl}{switch-case}}
 
-\code{exists} permite a returna date condițional, filtrînd informația după criteriile dorite.
+\mintinline{icl}{switch-case} permite a alege între n blocuri de comenzi, pe bază de n condiții.
 
-Condiții implicite:
+Sintaxă -
+\begin{minted}{icl}
+switch (valoare) {
+	case (valoareDeCaz) { `cod` }
+	`` mai multe case-uri
+}
+\end{minted}
+
+\mintinline{icl}{switch} primește valoarea \mintinline{icl}{valoare}, ea poate avea orice tip în afară de \bool. Mai departe în \mintinline{icl}{switch} se definesc cîteva \mintinline{icl}{case}-uri. Dacă valoarea \mintinline{icl}{case}-ului - \mintinline{icl}{valoareDeCaz} coincide cu \mintinline{icl}{value}, atunci \mintinline{icl}{case} va fi executat.
+
+\mintinline{icl}{case}-ul poate deține mai multe valori despărțite prin virgulă.
+
+El poate primi valoare \void, în felul următor \mintinline{icl}{case (~) { `cod` }}, acest tip de \mintinline{icl}{case} va fi executat numai dacă nici unul din \mintinline{icl}{case}-urile precedente nu a fost executat.
+
+Este a valoare specială - \mintinline{icl}{#}, prin ea se desemnează ca \mintinline{icl}{case}-ul trebuie executat dacă precedentul a fost executat.
+
+Descurcăm prin exemplu toate posibilitățile \mintinline{icl}{switch-case}-ului, exemplu este prezent pe foaia \ref{switchcaseex}.
+
+\begin{sourcecode}
+    \captionof{listing}{Folosirea switch-case-ului}
+    \label{switchcaseex}
+    \inputminted[linenos]{icl}{../sources/switchcaseex.icL}
+\end{sourcecode}
+
+Variabila \mintinline{icl}{@v} primește valori in intervalul [0, 6].
+
+Descurcăm care grupuri de comenzi vor fi executate pentru fiecare valoare posibilă:
 \begin{icItems}
-\item
-	pentru \bool{} - \code{# == true};
-\item
-	pentru \integer{} - \code{# != 0};
-\item
-	pentru \double{} - \code{# != 0.0};
-\item
-	pentru \str{} - \code{!#'empty};
-\item
-	pentru \listtype{} - \code{!#'empty};
-\item
-	pentru \set{} - \code{!#'empty};
-\item
-	pentru \element{} - \code{#'empty}.
+	\item 0 - va fi executat grupul \mintinline{icl}{code1};
+	\item 1 - vor fi executate grupurile \mintinline{icl}{code2} și \mintinline{icl}{code3};
+	\item 2 - vor fi executate grupurile \mintinline{icl}{code2} și \mintinline{icl}{code3};
+	\item 3 - va fi executat grupul \mintinline{icl}{code3};
+	\item 4 - va fi executat grupul \mintinline{icl}{code4};
+	\item 5 - va fi executat grupul \mintinline{icl}{code5};
+	\item 6 - va fi executat grupul \mintinline{icl}{code5}.
 \end{icItems}
 
-În cazul in care se folosește condiția implicită, se folosește următoarea sintaxă - \lstinline|exists(expression)|.
-Dacă e necesar a instala o condiție proprie, sintaxa oleacă se schimbă -\lstinline|exists(expression, condition)|.
 
-\subsubsection{\lstinline|if-exists|}
-
-Construcția \code{if-exists} permite a execută o grupă de comenzi în condiție de rezultatul \code{exists}-ului și de a folosi valoarea repetat. În cazul în care condiția \code{exists}-ului e adevărată, se execută grupa de comenzi și se transmitwe valoare returnată de \code{exists} sub numele \code{@}.
-Exemplu simplu și elementar este demonstrat pe foaia \ref{ifexistsex}.
-
-\subsubsection{\lstinline|for-any|}
-
-\code{for-any} permite a folosi repetat orice valoare. Exemplu de folosire este demonstrat pe foaia \ref{foranyex}.
-
-\begin{lstlisting}[caption=Folosirea if-exist-ului, label=ifexistsex]
-if exists(23 + 3, # > 20) {
-Log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Folosirea for-any-ului, label=foranyex]
-for any(23 + 3) {
-	Log.out "@ = " @; `` @ = 26
-};
-\end{lstlisting}

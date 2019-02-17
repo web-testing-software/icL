@@ -8,4 +8,4 @@ public:
 	Power();
 };
 
-#endif // POWER_H
+#endif  // POWER_H

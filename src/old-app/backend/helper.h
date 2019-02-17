@@ -43,7 +43,7 @@ public:
 	 * @return
 	 */
 	Q_INVOKABLE QColor
-				mix(const QColor & color1, const QColor & color2, qreal alpha);
+	            mix(const QColor & color1, const QColor & color2, qreal alpha);
 
 	/**
 	 * \~english
@@ -54,7 +54,7 @@ public:
 	 * @return
 	 */
 	Q_INVOKABLE QColor
-				linearMix(const QColor & color1, const QColor & color2, qreal alpha);
+	            linearMix(const QColor & color1, const QColor & color2, qreal alpha);
 
 	/**
 	 * \~english

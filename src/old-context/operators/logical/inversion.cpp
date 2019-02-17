@@ -1,6 +1,3 @@
 #include "inversion.h"
 
-Inversion::Inversion()
-{
-
-}
+Inversion::Inversion() {}

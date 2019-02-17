@@ -6,21 +6,21 @@
 
 //#include <QStringBuilder>
 
-//namespace icL {
+// namespace icL {
 
-//VMStack::VMStack() {
+// VMStack::VMStack() {
 //	connect(
 //	  this, &VMStack::invoke_highlight, this, &VMStack::release_hightlight);
 
 //	setSColor(memory::SelectionColor::Executing);
 //}
 
-//memory::Memory * VMStack::memory() {
+// memory::Memory * VMStack::memory() {
 //	return &mem;
 //}
 
 
-//void VMStack::init(const QString & source, bool contentChanged) {
+// void VMStack::init(const QString & source, bool contentChanged) {
 //	if (vm == nullptr || contentChanged) {
 //		this->source = source;
 
@@ -40,7 +40,7 @@
 //	}
 //}
 
-//void VMStack::step(int stopRule) {
+// void VMStack::step(int stopRule) {
 //	if (isRunning()) {
 //		qDebug() << "dropped";
 //		return;
@@ -53,19 +53,19 @@
 //	start(QThread::HighPriority);
 //}
 
-//Server * VMStack::server() const {
+// Server * VMStack::server() const {
 //	return m_server;
 //}
 
-//QColor VMStack::sColor() const {
+// QColor VMStack::sColor() const {
 //	return m_sColor;
 //}
 
-//bool VMStack::running() const {
+// bool VMStack::running() const {
 //	return m_running;
 //}
 
-//void VMStack::setServer(Server * server) {
+// void VMStack::setServer(Server * server) {
 //	if (m_server == server)
 //		return;
 
@@ -73,7 +73,7 @@
 //	emit serverChanged(m_server);
 //}
 
-//void VMStack::setRunning(bool running) {
+// void VMStack::setRunning(bool running) {
 //	if (m_running == running)
 //		return;
 
@@ -82,8 +82,9 @@
 //}
 
 
-//void VMStack::interrupt(
-//  memory::FunctionCall fcall, std::function<void(memory::Return &)> feedback) {
+// void VMStack::interrupt(
+//  memory::FunctionCall fcall, std::function<void(memory::Return &)> feedback)
+//  {
 //	qWarning() << "interrupt"
 //			   << fcall.source.source->mid(
 //					fcall.source.begin, fcall.source.end - fcall.source.begin);
@@ -101,26 +102,26 @@
 //	highlight(fcall.source.begin - 1, fcall.source.end + 1);
 //}
 
-//const QString & VMStack::getWorkingDir() {
+// const QString & VMStack::getWorkingDir() {
 //	return dir_path;
 //}
 
-//const QString & VMStack::getCrossfirePass() {
+// const QString & VMStack::getCrossfirePass() {
 //	return crossfirePass;
 //}
 
-//void VMStack::highlight(int pos1, int pos2) {
+// void VMStack::highlight(int pos1, int pos2) {
 //	emit invoke_highlight(pos1, pos2);
 //}
 
-//void VMStack::exit(const memory::Exception & exc) {
+// void VMStack::exit(const memory::Exception & exc) {
 //	m_server->newLog(
 //	  0, "exited with code " % QString::number(exc.code) % ": " % exc.message);
 
 //	setSColor(memory::SelectionColor::Error);
 //}
 
-//void VMStack::setSColor(memory::SelectionColor scolor) {
+// void VMStack::setSColor(memory::SelectionColor scolor) {
 //	if (scolor == e_sColor) {
 //		return;
 //	}
@@ -151,12 +152,12 @@
 //	emit sColorChanged(m_sColor);
 //}
 
-//void VMStack::release_hightlight(int pos1, int pos2) {
+// void VMStack::release_hightlight(int pos1, int pos2) {
 //	emit request_Highlight(pos1, pos2);
 //}
 
 
-//void VMStack::run() {
+// void VMStack::run() {
 //	memory::StepType::Value returned = memory::StepType::None;
 
 //	while ((returned & stopRule) == 0x0 && vm != nullptr) {

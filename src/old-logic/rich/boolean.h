@@ -13,8 +13,8 @@ namespace icL::logic::rich {
 class Bool : public Rich
 {
 public:
-	Bool(memory::InterLevel *il, OperationType otype);
-	Bool(memory::InterLevel *il, Rich * block);
+	Bool(memory::InterLevel * il, OperationType otype);
+	Bool(memory::InterLevel * il, Rich * block);
 
 	//	static bool check (const QString &value);
 

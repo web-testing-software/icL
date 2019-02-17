@@ -9,22 +9,36 @@
 
 namespace icL::toolkit::tree {
 
+/**
+ * @brief The Folder class represents a tree item with cildren
+ */
 class Folder : public Item
 {
 public:
-	Folder(Item * parent);
+    /**
+     * @brief Folder is the default contructor
+     * @param parent is the default Item arg
+     */
+    Folder(Item * parent);
 
-	// Item interface
+    /// @brief ~Folder deletes all children
+    ~Folder();
+
+    // Item interface
 public:
-	Item * child(int row) override;
-	int    columnCount() override;
-	int    childCount() override;
+    Item * child(int row) override;
+    int    columnCount() override;
+    int    childCount() override;
 
 protected:
-	QList<Item *> children;
+    /// @brief clear removes all child element
+    void clear();
+
+    /// @brief children is the array of pointer to child elements
+    QList<Item *> children;
 
 public:
-	friend class Item;
+    friend class Item;
 };
 
 }  // namespace icL::toolkit::tree

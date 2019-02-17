@@ -7,174 +7,158 @@ Poate să apară necesitatea de a folosi unul și același grup de comenzi de ma
 
 \begin{icItems}
 \item
-	\code{for} - ciclu universal;
+	\mintinline{icl}{for} - ciclu universal;
 \item
-	\code{while} - repetarea condiționată a codului;
+	\mintinline{icl}{while} - repetarea condiționată a codului;
 \item
-	\code{do-while} - ciclu cu condiție posterioară;
+	\mintinline{icl}{do-while} - ciclu cu condiție posterioară;
 \item
-	\code{for} - răsfoirea colecției;
+	\mintinline{icl}{for} - răsfoirea colecției;
 \item
-	\code{filter} - răsfoirea selectivă colecției;
+	\mintinline{icl}{filter} - răsfoirea selectivă colecției;
 \item
-	\code{range} - răsfoirea parțială colecției.
+	\mintinline{icl}{range} - răsfoirea parțială colecției.
 \end{icItems}
 
 
-\subsubsection{\lstinline`for` - ciclu universal}
+\subsubsection{\mintinline{icl}{for} - ciclu universal}
 
 {\bf Ciclul universal} permite a controla fiecare delatiu al executării. El conține:
 
 \begin{icItems}
 \item
-	\code{initialization} - inițializare.
+	\mintinline{icl}{inițializare} - inițializare.
 \item
-	\code{condition} - condiție, care se controlează înainte de executare;
+	\mintinline{icl}{condiție} - condiție, care se controlează înainte de executare;
 \item
-	\code{step} - cod, care răspunde de trecerea la următoarea iterație.
+	\mintinline{icl}{pas} - cod, care răspunde de trecerea la următoarea iterație.
 \item
-	\code{commands} - codul care fi executat repetat.
+	\mintinline{icl}{comenzi} - codul care fi executat repetat.
 \end{icItems}
 
 Ciclul universal are următoarea sintaxă -
-\begin{lstlisting}[numbers=none]
-for (initialization, condition, step) {
-	commands
+\begin{minted}{icl}
+for (inițializare; condiție; pas) {
+	comenzi
 };
-\end{lstlisting}
+\end{minted}
 
-Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \code{for}, ciclu va printa în consolă numere de la zero la patru.
+Pe foaia \ref{uniloopex} este prezentat un exemplu de folosire al ciclului \mintinline{icl}{for}, ciclu va printa în consolă numere de la zero la patru.
 
-\begin{lstlisting}[caption=Ciclu universal, label=uniloopex]
-for (@i = 0, i < 5, @i = @i + 1) {
-	Log.out @i;
-};
-\end{lstlisting}
+\begin{sourcecode}
+    \captionof{listing}{Ciclu universal}
+    \label{uniloopex}
+    \inputminted[linenos]{icl}{../sources/uniloopex.icL}
+\end{sourcecode}
 
-\subsubsection{\lstinline`while` - repetare condiționată a codului}
+\subsubsection{\mintinline{icl}{while} - repetare condiționată a codului}
 
 {\bf Repetarea condiționată a codului} va executa codul pînă cînd condiția nu va deveni falsă. Condiția se verifică înainte de a executa ciclul, dacă este inițial falsă, ciclul nu va fi executat niciodată.
 
-Avantajul lui principal este simplitatea. În comparație cu ciclul universal el nu are inițializare și trece la următoarea iterație. El are doar condiție și grup de comenzi -
-\begin{lstlisting}[numbers=none]
-while (condition) {
-	commands
+Avantajul lui principal este simplitatea. În comparație cu ciclul universal el nu are inițializare și trece la următoarea iterație. El are doar condiție și grup de comenzi, sintaxă -
+\begin{minted}{icl}
+while (condiție) {
+	comenzi
 };
-\end{lstlisting}
+\end{minted}
 
-Pe foaia \ref{whileex} este prezentat cod care folosește ciclu \code{while}. Variabila \code{@number} este declarată pînă la ciclu și va fi disponibilă și după ciclu. După finalizarea ciclului variabila \code{@number} va avea valoarea 6.
+Pe foaia \ref{whileex} este prezentat cod care folosește ciclu \mintinline{icl}{while}. Variabila \mintinline{icl}{@number} este declarată pînă la ciclu și va fi disponibilă și după ciclu. După finalizarea ciclului variabila \mintinline{icl}{@number} va avea valoarea 6.
 
-\begin{lstlisting}[caption=Ciclu while, label=whileex]
-@number = 1;
+\begin{sourcecode}
+    \captionof{listing}{Ciclu while}
+    \label{whileex}
+    \inputminted[linenos]{icl}{../sources/whileex.icL}
+\end{sourcecode}
 
-while (@number <= 5) {
-	@number = @number + 1;
-};
-\end{lstlisting}
+\subsubsection{\mintinline{icl}{do-while} - ciclu cu condiție posterioară}
 
-\subsubsection{\lstinline`do-while` - ciclu cu condiție posterioară}
-
-{\bf Ciclu cu condiție posterioară} nu tare se doasebește de \code{while}, dar el garantează că grupul de comenzi va fi executat cel puțin o dată. De asemenea condiția se declară după grupul de comenzi, arătînd la ceea că ea va fi verificată după prima iterație. Sintaxă -
-\begin{lstlisting}[numbers=none]
+{\bf Ciclu cu condiție posterioară} nu tare se doasebește de \mintinline{icl}{while}, dar el garantează că grupul de comenzi va fi executat cel puțin o dată. De asemenea condiția se declară după grupul de comenzi, arătînd la ceea că ea va fi verificată după prima iterație. Sintaxă -
+\begin{minted}{icl}
 do {
-	commands
-} while (condition);
-\end{lstlisting}
+	comenzi
+} while (condiție);
+\end{minted}
 
-Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \code{do-while}. Necătînd la aceea că condiția este implicit falsă, o iterație va avea loc, în rezultat variabila \code{@number} va deveni egală cu 7.
+Pe foaia \ref{dowhileex} este prezentat cod care folosește ciclul \mintinline{icl}{do-while}. Necătînd la aceea că condiția este implicit falsă, o iterație va avea loc, în rezultat variabila \mintinline{icl}{@number} va deveni egală cu 7.
 
-\begin{lstlisting}[caption=Ciclu do while, label=dowhileex]
-@number = 6;
+\begin{sourcecode}
+    \captionof{listing}{Ciclu do while}
+    \label{dowhileex}
+    \inputminted[linenos]{icl}{../sources/dowhileex.icL}
+\end{sourcecode}
 
-do {
-	@number = @number + 1;
-} while (@number < 5);
-\end{lstlisting}
+\subsubsection{\mintinline{icl}{for} - răsfoirea colecție}
 
-\subsubsection{\lstinline`for` - răsfoirea colecție}
+{Colecția} este un obiect, care conține mai multe valori. Cel mai simplu exemplu de colecție este lista, ea conține mai multe șiruri de caractere. De exemplu, trebuie de executat o anumită operație cu fiecare șir de caractere din listă. Se poate de folosit ciclul universal (foaia \ref{colluniloop}) sau de {\bf răsfoit colecția} (foaia \ref{collsimple}). Sub numele de colecție se unesc următoarele tipuri de date \mintinline{icl}{list}, \mintinline{icl}{set} și \mintinline{icl}{element}.
 
-{Colecția} este un obiect, care conține mai multe valori. Cel mai simplu exemplu de colecție este lista, ea conține mai multe șiruri de caractere. De exemplu, trebuie de executat o anumită operație cu fiecare șir de caractere din listă. Se poate de folosit ciclul universal (foaia \ref{colluniloop}) sau de {\bf răsfoit colecția} (foaia \ref{collsimple}). Sub numele de colecție se unesc următoarele tipuri de date \code{list}, \code{set} și \code{element}.
-\begin{lstlisting}[caption=Răsfoirea colecție prin ciclu universal, label=colluniloop]
-@list = ["apple" "banana" "fruit"];
+\subsubsection{\mintinline{icl}{filter} - răsfoirea selectivă a colecție}
 
-for (@i = 0, @i < @list'length, @i = @i + 1) {
-	@list.at @i; `` get i-th value
-}
-\end{lstlisting}
+{\bf Construcția \mintinline{icl}{filter}} permite a condiționa, pentru care elemente se va executa ciclu, pentru care nu.
 
-\begin{lstlisting}[caption=Răsfoirea simplificată a colecției, label=collsimple]
-@list = ["apple" "banana" "fruit"];
-
-for (@list) {
-	@; `` get i-th value
-}
-\end{lstlisting}
-
-\subsubsection{\lstinline`filter` - răsfoirea selectivă a colecție}
-
-{\bf Construcția \code{filter}} permite a condiționa, pentru care elemente se va executa ciclu, pentru care nu.
-
-În condiție se poate de folosit următoarele variabile: \lstinline|@| - valoarea elementului colecției și \lstinline|#| - indexul valorii.
+În condiție se poate de folosit următoarele variabile: \mintinline{icl}{@} - valoarea elementului colecției și \mintinline{icl}{#} - indexul valorii.
 
 Filtrul are următoarea sintaxă -
-\begin{lstlisting}[numbers=none]
-filter (collection, condition) {
-	commands
+\begin{minted}{icl}
+filter (colecție; condiție) {
+	comenzi
 };
-\end{lstlisting}
+\end{minted}
 
 A filtra elementele se poate pe bază de valoare (foaia \ref{filterdataex}, se filtreză cele care conțin litera a) sau după index (foaia \ref{filterindexex}, se aleg elementele pare a listei).
 
-\begin{lstlisting}[caption=Filtrare pe bază de valoare, label=filterdataex]
-@list = ["apple" "banana" "fruit"];
+\begin{sourcecode}
+    \captionof{listing}{Răsfoirea colecție prin ciclu universal}
+    \label{colluniloop}
+    \inputminted[linenos]{icl}{../sources/colluniloop.icL}
+\end{sourcecode}
 
-filter (@list, @ << "a") {
-	@; `` apple, banana
-}
-\end{lstlisting}
+\begin{sourcecode}
+    \captionof{listing}{Răsfoirea simplificată a colecției}
+    \label{collsimple}
+    \inputminted[linenos]{icl}{../sources/collsimple.icL}
+\end{sourcecode}
 
-\subsubsection{\lstinline`range` - răsfoirea selectivă a colecției}
+\begin{sourcecode}
+    \captionof{listing}{Filtrare pe bază de valoare}
+    \label{filterdataex}
+    \inputminted[linenos]{icl}{../sources/filterdataex.icL}
+\end{sourcecode}
+
+\begin{listing}[t]
+    \captionof{listing}{Filtare după index}
+    \label{filterindexex}
+    \inputminted[linenos]{icl}{../sources/filterindexex.icL}
+\end{listing}
+
+\subsubsection{\mintinline{icl}{range} - răsfoirea selectivă a colecției}
 
 {\bf Răsfoirea selectivă} permite a executa codul pentru un fragment de colecție. Intervalul de definește pe bază de o valoare sau două. Prima condiție se folosește pentru a defini începutul fragmentului, pe cînd a doua pentru sfîrșit, dacă a doua lipsește va fi folosită prima. În lipsă de un interval corespunzător, ciclul nu va fi executat. Pentru a selecta primul sau ultimul element (în cauză de destinația condiției), folosiți expresia \true{}.
 
 Sintaxă cu o singură condiție -
-\begin{lstlisting}[numbers=none]
-range (collection, condition) {
-	commands
+\begin{minted}{icl}
+range (colecție; condiție) {
+	comenzi
 };
-\end{lstlisting}
+\end{minted}
 
 Sintaxă cu două condiții (pentru început și sfîrșit de o parte) -
-\begin{lstlisting}[numbers=none]
-range (collection, condition_for_begin, condition_for_end) {
-	commands
+\begin{minted}{icl}
+range (colecție; condițiePentruÎnceput; condițiePentruSfîrșit) {
+	comenzi
 };
-\end{lstlisting}
+\end{minted}
 
-\begin{lstlisting}[caption=Filtare după index, label=filterindexex]
-@list = ["apple" "banana" "fruit"];
+A alege intervalul se poate după valoare (foaia \ref{bananakiwiex}, interval de la \mintinline{icl}{banana} pînă la \mintinline{icl}{kiwi}) sau după index (foaia \ref{seclastex}, de la a doilea pînă la ultimul).
 
-filter (@list, # \ 2 == 0) {
-	@; `` apple, fruit
-}
-\end{lstlisting}
+\begin{sourcecode}
+    \captionof{listing}{Interval: de la banana pîna la kiwi}
+    \label{bananakiwiex}
+    \inputminted[linenos]{icl}{../sources/bananakiwiex.icL}
+\end{sourcecode}
 
-A alege intervalul se poate după valoare (foaia \ref{bananakiwiex}, interval de la \code{banana} pînă la \code{kiwi}) sau după index (foaia \ref{seclastex}, de la a doilea pînă la ultimul).
-
-\begin{lstlisting}[caption=Interval: de la banana pîna la kiwi, label=bananakiwiex]
-@list = ["apple" "banana" "fruit" "kiwi"];
-
-range (@list, @ == "banana", @ == "kiwi") {
-	@; `` banana, fruit, kiwi
-}
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Interval: de la al doilea pînă la ultimul, label=seclastex]
-@list = ["apple" "banana" "fruit" "kiwi"];
-
-range (@list, # == 2, true) {
-	@; `` fruit, kiwi
-}
-\end{lstlisting}
-
-%\newpage
+\begin{sourcecode}
+    \vspace{-2em}
+    \captionof{listing}{Interval: de la al doilea pînă la ultimul}
+    \label{seclastex}
+    \inputminted[linenos]{icl}{../sources/seclastex.icL}
+\end{sourcecode}

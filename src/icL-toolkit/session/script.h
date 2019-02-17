@@ -1,5 +1,5 @@
-#ifndef SCRIPT_H
-#define SCRIPT_H
+#ifndef icL_toolkit_session_Script
+#define icL_toolkit_session_Script
 
 #include "../tree/finaly.h"
 
@@ -9,22 +9,41 @@
 
 namespace icL::toolkit::session {
 
+/**
+ * @brief The Script class describes a icL script
+ */
 class Script : public tree::Finaly
 {
 public:
-	Script(Item * parent);
+    /**
+     * @brief Script is the default constructor
+     * @param parent is the default Item arg
+     */
+    Script(Item * parent);
 
-	// Item interface
+    /**
+     * @brief setPath sets up the script
+     * @param path is the path to script file
+     * @return true if so files exists, otherwise false
+     */
+    bool setPath(const QString & path);
+
+    // Item interface
 public:
-	int      columnCount() override;
-	QVariant data(int column) override;
-	int      selfIndex() override;
-	QString  getIcon() override;
+    int      columnCount() override;
+    QVariant data(int column) override;
+    int      selfIndex() override;
+    QString  getIcon() override;
+
+    const utils::Actions & getActionsList() override;
+
+    bool runAction(utils::RemoteCall * call) override;
 
 private:
-	QString name;
+    /// @brief name is the display name
+    QString name;
 };
 
 }  // namespace icL::toolkit::session
 
-#endif  // SCRIPT_H
+#endif  // icL_toolkit_session_Script

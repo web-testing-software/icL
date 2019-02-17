@@ -8,4 +8,4 @@ public:
 	Conjunction();
 };
 
-#endif // CONJUNCTION_H
+#endif  // CONJUNCTION_H
