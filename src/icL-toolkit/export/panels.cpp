@@ -12,93 +12,93 @@
 namespace icL::toolkit::panels {
 
 Panels::Panels(QObject * parent)
-	: QObject(parent) {
-	m_browser = new Browser(this);
-	m_code    = new Code(this);
-	m_debug   = new Debug(this);
+    : QObject(parent) {
+    m_browser = new Browser(this);
+    m_code    = new Code(this);
+    m_debug   = new Debug(this);
 }
 
 Panels::~Panels() {
-	m_browser->deleteLater();
-	m_code->deleteLater();
-	m_debug->deleteLater();
+    m_browser->deleteLater();
+    m_code->deleteLater();
+    m_debug->deleteLater();
 }
 
 Browser * Panels::browser() const {
-	return m_browser;
+    return m_browser;
 }
 
 Code * Panels::code() const {
-	return m_code;
+    return m_code;
 }
 
 Debug * Panels::debug() const {
-	return m_debug;
+    return m_debug;
 }
 
 bool Panels::projectsOrFiles() const {
-	return m_projectsOrFiles;
+    return m_projectsOrFiles;
 }
 
 bool Panels::loadConf(const QString & path) {
-	QFile         file(path);
-	QTextStream   stream(&file);
-	QJsonDocument doc;
+    QFile         file(path);
+    QTextStream   stream(&file);
+    QJsonDocument doc;
 
-	if (!file.open(QFile::ReadOnly)) {
-		return false;
-	}
-	else {
-		m_path = path;
-	}
+    if (!file.open(QFile::ReadOnly)) {
+        return false;
+    }
 
-	QString content = stream.readAll();
-	doc             = QJsonDocument::fromJson(content.toUtf8());
+    m_path = path;
 
-	if (!doc.isObject()) {
-		doc = QJsonDocument::fromJson(QString("{}").toUtf8());
-	}
 
-	QJsonObject obj = doc.object();
+    QString content = stream.readAll();
+    doc             = QJsonDocument::fromJson(content.toUtf8());
 
-	m_browser->setUp(obj.value("browser").toObject());
-	m_code->setUp(obj.value("code").toObject());
-	m_debug->setUp(obj.value("debug").toObject());
-	m_projectsOrFiles = obj.value("projects-or-files").toBool();
+    if (!doc.isObject()) {
+        doc = QJsonDocument::fromJson(QString("{}").toUtf8());
+    }
 
-	file.close();
+    QJsonObject obj = doc.object();
 
-	return true;
+    m_browser->setUp(obj.value("browser").toObject());
+    m_code->setUp(obj.value("code").toObject());
+    m_debug->setUp(obj.value("debug").toObject());
+    m_projectsOrFiles = obj.value("projects-or-files").toBool();
+
+    file.close();
+
+    return true;
 }
 
 bool Panels::saveConf() {
-	QFile         file(m_path);
-	QTextStream   stream(&file);
-	QJsonDocument doc;
+    QFile         file(m_path);
+    QTextStream   stream(&file);
+    QJsonDocument doc;
 
-	if (!file.open(QFile::WriteOnly)) {
-		return false;
-	}
+    if (!file.open(QFile::WriteOnly)) {
+        return false;
+    }
 
-	QJsonObject obj = {{"browser", m_browser->getUp()},
-					   {"code", m_code->getUp()},
-					   {"debug", m_debug->getUp()},
-					   {"projects-or-files", m_projectsOrFiles}};
+    QJsonObject obj = {{"browser", m_browser->getUp()},
+                       {"code", m_code->getUp()},
+                       {"debug", m_debug->getUp()},
+                       {"projects-or-files", m_projectsOrFiles}};
 
-	doc.setObject(obj);
+    doc.setObject(obj);
 
-	stream << doc.toJson(QJsonDocument::Indented);
+    stream << doc.toJson(QJsonDocument::Indented);
 
-	file.close();
-	return true;
+    file.close();
+    return true;
 }
 
 void Panels::setProjectsOrFiles(bool projectsOrFiles) {
-	if (m_projectsOrFiles == projectsOrFiles)
-		return;
+    if (m_projectsOrFiles == projectsOrFiles)
+        return;
 
-	m_projectsOrFiles = projectsOrFiles;
-	emit projectsOrFilesChanged(m_projectsOrFiles);
+    m_projectsOrFiles = projectsOrFiles;
+    emit projectsOrFilesChanged(m_projectsOrFiles);
 }
 
 }  // namespace icL::toolkit::panels

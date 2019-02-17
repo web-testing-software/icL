@@ -1,47 +1,53 @@
 #include "remotecall.h"
 
+#include <utility>
+
 namespace icL::toolkit::utils {
 
+RemoteArg::RemoteArg(const QString & name) {
+    m_name = name;
+}
+
 QString RemoteArg::name() const {
-	return m_name;
+    return m_name;
 }
 
 QVariant RemoteArg::value() const {
-	return m_value;
+    return m_value;
 }
 
-void RemoteArg::setValue(QVariant value) {
-	if (m_value == value)
-		return;
+void RemoteArg::setValue(const QVariant & value) {
+    if (m_value == value)
+        return;
 
-	m_value = value;
-	emit valueChanged(m_value);
+    m_value = value;
+    emit valueChanged(m_value);
 }
 
 RemoteCall::RemoteCall(int id, QString name, QList<RemoteArg *> args) {
-	m_id   = id;
-	m_name = name;
-	m_args = args;
+    m_id   = id;
+    m_name = std::move(name);
+    m_args = std::move(args);
 }
 
 RemoteCall::~RemoteCall() {
-	for (auto * ptr : m_args) {
-		delete ptr;
-	}
+    for (auto * ptr : m_args) {
+        delete ptr;
+    }
 
-	m_args.clear();
+    m_args.clear();
 }
 
 int RemoteCall::id() const {
-	return m_id;
+    return m_id;
 }
 
 QString RemoteCall::name() const {
-	return m_name;
+    return m_name;
 }
 
 QList<RemoteArg *> RemoteCall::args() const {
-	return m_args;
+    return m_args;
 }
 
 }  // namespace icL::toolkit::utils

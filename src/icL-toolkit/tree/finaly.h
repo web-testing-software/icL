@@ -13,19 +13,19 @@ namespace icL::toolkit::tree {
 class Finaly : public Item
 {
 public:
-	/**
-	 * @brief Finaly is the default constructor
-	 * @param parent is the default Item arg
-	 */
-	Finaly(Item * parent);
+    /**
+     * @brief Finaly is the default constructor
+     * @param parent is the default Item arg
+     */
+    Finaly(Item * parent);
 
-	// Item interface
+    // Item interface
 public:
-	Item * child(int row) override;
-	int    childCount() override;
+    Item * child(int row) override;
+    int    childCount() override;
 
-    protected:
-	bool checkIfFileExist(const QString & path, QString & fname);
+protected:
+    bool checkIfFileExist(const QString & path, QString & fname);
 };
 
 }  // namespace icL::toolkit::tree

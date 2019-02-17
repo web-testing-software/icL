@@ -20,20 +20,19 @@ MouseField {
 		onPositionChanged: move(position)
 	}
 
+	acceptedButtons: Qt.LeftButton
 	onPressed: {
-		if (mouse.button == Qt.LeftButton) {
-			if (win.isMaximized) {
-				wasMaximised = true
-				lastXPositon = mapToGlobal(mouseX, 0).x
-				lastWinWidth = win.width
-				win.showNormal()
-			} else {
-				wasMaximised = false
-			}
-
-			resizeMoveTimer.resizeMoveArea = moveResizeArea
-			resizeMoveTimer.start()
+		if (win.isMaximized) {
+			wasMaximised = true
+			lastXPositon = mapToGlobal(mouseX, 0).x
+			lastWinWidth = win.width
+			win.showNormal()
+		} else {
+			wasMaximised = false
 		}
+
+		resizeMoveTimer.resizeMoveArea = moveResizeArea
+		resizeMoveTimer.start()
 	}
 
 	function pressedDelayFunction() {
@@ -101,9 +100,8 @@ MouseField {
 	onReleased: {
 		if (resizeMoveTimer.running) {
 			resizeMoveTimer.stop()
-		}
-		else {
-			move(mtrack.stopTracking());
+		} else {
+			move(mtrack.stopTracking())
 		}
 
 		copyOfFlag = 0x0

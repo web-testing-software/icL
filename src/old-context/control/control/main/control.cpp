@@ -4,7 +4,7 @@ namespace icL::context::code::control {
 
 
 Control::Control(memory::InterLevel * il, const memory::CodeFragment & source)
-	: Code(il, source) {}
+    : Code(il, source) {}
 
 bool Control::canBeAtEnd() const {
 	return false;

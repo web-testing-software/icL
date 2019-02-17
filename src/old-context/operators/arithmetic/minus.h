@@ -8,4 +8,4 @@ public:
 	Minus();
 };
 
-#endif // MINUS_H
+#endif  // MINUS_H

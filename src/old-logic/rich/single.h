@@ -14,7 +14,7 @@ namespace icL::logic::rich {
 class Single : public Rich
 {
 public:
-	Single(memory::InterLevel *il, OperationType otype);
+	Single(memory::InterLevel * il, OperationType otype);
 
 protected:
 	bool calcResult() override;

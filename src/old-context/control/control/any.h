@@ -8,4 +8,4 @@ public:
 	Any();
 };
 
-#endif // ANY_H
+#endif  // ANY_H

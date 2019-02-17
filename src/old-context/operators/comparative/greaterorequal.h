@@ -8,4 +8,4 @@ public:
 	GreaterOrEqual();
 };
 
-#endif // GREATEROREQUAL_H
+#endif  // GREATEROREQUAL_H

@@ -3,12 +3,12 @@
 namespace icL::logic::rich {
 
 Int::Int(memory::InterLevel * il, OperationType otype)
-	: Rich(il, otype) {
+    : Rich(il, otype) {
 	casted = true;
 }
 
 Int::Int(memory::InterLevel * il, Rich * block)
-	: Rich(il, block) {}
+    : Rich(il, block) {}
 
 
 /**

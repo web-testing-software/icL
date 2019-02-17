@@ -8,4 +8,4 @@ public:
 	Equal();
 };
 
-#endif // EQUAL_H
+#endif  // EQUAL_H

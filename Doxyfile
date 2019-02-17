@@ -121,6 +121,8 @@ REPEAT_BRIEF           = YES
 ABBREVIATE_BRIEF       = "The $name class" \
                          "The $name widget" \
                          "The $name file" \
+                         "The $name struct" \
+                         "The $name namespace" \
                          is \
                          provides \
                          specifies \

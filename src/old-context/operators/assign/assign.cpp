@@ -1,6 +1,3 @@
 #include "assign.h"
 
-Assign::Assign()
-{
-
-}
+Assign::Assign() {}

@@ -1,0 +1,7 @@
+module icL.Editor
+plugin icLeditorPlugin
+classname EditorPlugin
+depends icL.Look 1.0
+depends QtGraphicalEffects 1.0
+
+Editor 1.0 Editor.qml

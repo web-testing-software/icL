@@ -8,4 +8,4 @@ public:
 	ExclusiveOr();
 };
 
-#endif // EXCLUSIVEOR_H
+#endif  // EXCLUSIVEOR_H

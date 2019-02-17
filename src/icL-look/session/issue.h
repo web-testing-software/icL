@@ -1,5 +1,5 @@
-#ifndef icL_look_session_Issue
-#define icL_look_session_Issue
+#ifndef icL_look_Issue
+#define icL_look_Issue
 
 #include "../base/linkadv.h"
 
@@ -14,38 +14,38 @@ class Effect;
  */
 class Issue : public LinkAdv
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	// clang-format off
-	Q_PROPERTY(icL::look::Effect* effect READ effect NOTIFY effectChanged)
-	// clang-format on
+    // clang-format off
+    Q_PROPERTY(icL::look::Effect* effect READ effect NOTIFY effectChanged)
+    // clang-format on
 
 public:
-	/**
-	 * @brief Issue is the default constructor
-	 * @param parent is the default QObject arg
-	 */
-	explicit Issue(QObject * parent = nullptr);
+    /**
+     * @brief Issue is the default constructor
+     * @param parent is the default QObject arg
+     */
+    explicit Issue(QObject * parent = nullptr);
 
-	~Issue();
+    ~Issue();
 
-	/**
-	 * @brief effect is the underline effect
-	 * @return the underline effect
-	 */
-	Effect * effect() const;
+    /**
+     * @brief effect is the underline effect
+     * @return the underline effect
+     */
+    Effect * effect() const;
 
-	void setUp(const QJsonObject & obj) override;
+    void setUp(const QJsonObject & obj) override;
 
-	QJsonObject getUp() override;
+    QJsonObject getUp() override;
 
 signals:
-	void effectChanged(Effect * effect);
+    void effectChanged(Effect * effect);
 
 private:
-	Effect * m_effect;
+    Effect * m_effect;
 };
 
 }  // namespace icL::look
 
-#endif  // icL_look_session_Issue
+#endif  // icL_look_Issue

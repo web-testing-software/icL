@@ -1,8 +1,9 @@
 #ifndef icL_look_Chars
 #define icL_look_Chars
 
+#include <QFont>
 #include <QObject>
-#include <QTextCharFormat>
+#include <QPen>
 
 namespace icL::look {
 
@@ -11,11 +12,65 @@ namespace icL::look {
  */
 struct HighlightChars
 {
-	/// @brief background is the background color
-	QColor background;
+    /// @brief background is the background color
+    QBrush background;
 
-	/// @brief border is the border color
-	QColor border;
+    /// @brief border is the border color
+    QPen border;
+};
+
+/**
+ * @brief The TextCharFormat struct defines format for chars in editor
+ */
+struct TextCharFormat
+{
+    /// @brief the font of text (italic, bold)
+    QFont font;
+
+    /// @brief defines the color for the text
+    QPen text;
+
+    /// @brief defines the color of background
+    QBrush background;
+
+    /// @brief defines the color and style of underline
+    QPen underline;
+};
+
+/**
+ * @brief The LineFormat struct defines the format for line numbers and bg color
+ */
+struct LineFormat
+{
+    /// @brief the format for line number
+    TextCharFormat lineNumber;
+
+    /// @brief the background of line
+    QBrush background;
+};
+
+/**
+ * @brief The CLineFormat struct defines the format for all lines
+ */
+struct CLineFormat : public LineFormat
+{
+    /// @brief The color for changed line number
+    QPen changed;
+
+    /// @brief The color for saved line number
+    QPen saved;
+};
+
+struct ChangesFormat
+{
+    /// @brief the color for changed lines
+    QPen changed;
+
+    /// @brief the color for saved changed lines
+    QPen saved;
+
+    /// @brief the color for phantoms lines
+    QPen phantom;
 };
 
 /**
@@ -23,70 +78,97 @@ struct HighlightChars
  */
 class Chars : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit Chars(QObject * parent = nullptr);
+    explicit Chars(QObject * parent = nullptr);
 
-	/// @brief comment is the style for comments in code
-	static QTextCharFormat comment;
+    /// @brief text is the style for all text
+    TextCharFormat text;
 
-	/// @brief function is the style for functions in code
-	static QTextCharFormat function;
+    /// @brief comment is the style for comments in code
+    TextCharFormat comment;
 
-	/// @brief global is the style for global variables in code
-	static QTextCharFormat global;
+    /// @brief function is the style for functions in code
+    TextCharFormat function;
 
-	/// @brief keyword is the style for keywords in code
-	static QTextCharFormat keyword;
+    /// @brief global is the style for global variables in code
+    TextCharFormat global;
 
-	/// @brief local is the style for local variables in code
-	static QTextCharFormat local;
+    /// @brief keyword is the style for keywords in code
+    TextCharFormat keyword;
 
-	/// @brief method is the style for methods in code
-	static QTextCharFormat method;
+    /// @brief local is the style for local variables in code
+    TextCharFormat local;
 
-	/// @brief number is the style for numbers in code
-	static QTextCharFormat number;
+    /// @brief method is the style for methods in code
+    TextCharFormat method;
 
-	/// @brief property is the style for properties in code
-	static QTextCharFormat property;
+    /// @brief number is the style for numbers in code
+    TextCharFormat number;
 
-	/// @brief string is the style for string in code
-	static QTextCharFormat string;
+    /// @brief property is the style for properties in code
+    TextCharFormat property;
 
-	/// @brief system is the style for system types in code
-	static QTextCharFormat system;
+    /// @brief string is the style for string in code
+    TextCharFormat string;
 
-	/// @brief type is the style for types names in code
-	static QTextCharFormat type;
+    /// @brief system is the style for system types in code
+    TextCharFormat system;
 
-	/// @brief occurrence is the style for occurrence highlight
-	static HighlightChars occurence;
+    /// @brief type is the style for types names in code
+    TextCharFormat type;
 
-	/// @brief error is the color of errors underline
-	static QColor error;
+    /// @brief occurrence is the style for occurrence highlight
+    HighlightChars occurence;
 
-	/// @brief warning is the color of warning underline
-	static QColor warning;
+    /// @brief selection is the style for selection highlight
+    HighlightChars selection;
 
-	/// @brief send signal to QML to rehighlight editor
-	static void update();
+    /// @brief error is the color of errors underline
+    TextCharFormat error;
+
+    /// @brief warning is the color of warning underline
+    TextCharFormat warning;
+
+    /// @brief cline is the format for any line number
+    CLineFormat cline;
+
+    /// @brief current is the format for current line
+    LineFormat current;
+
+    /// @brief debug is the format for current debugging line
+    LineFormat debug;
+
+    /// @brief breakpoint is the format for breakpointed line
+    LineFormat breakpoint;
+
+    /// @brief phantom is format fot phantom lines
+    LineFormat phantom;
+
+    /// @brief phantomSelected is the format for selected phantom lines
+    LineFormat phantomSelected;
+
+    /// @brief changes is the format for changes indicators
+    ChangesFormat changes;
+
+    /// @brief send signal to QML to rehighlight editor
+    void update();
 
 signals:
-	/// request rehiglight of code
-	void highlight();
+    /// @brief request rehiglight of code
+    void highlight();
 
 public slots:
 
 private:
-	/**
-	 * @brief instance is needed to send signals to QML to update current file
-	 * systax highlighting
-	 * @return a static intance of chars
-	 */
-	static Chars * instance;
+    /**
+     * @brief instance is needed to send signals to QML to update current file
+     * systax highlighting
+     * @return a intance of chars
+     */
+    static Chars * instance;
 };
 
-}  // namespace icL::editor::look
+}  // namespace icL::look
 
 #endif  // icL_look_Chars

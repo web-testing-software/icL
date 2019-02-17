@@ -4,14 +4,14 @@
 #include <icl-context/base/object/double.h>
 #include <icl-context/base/object/int.h>
 #include <icl-context/base/object/list.h>
-#include <icl-context/base/object/value.h>
 #include <icl-context/base/object/string.h>
+#include <icl-context/base/object/value.h>
 #include <icl-context/base/object/void.h>
 
 namespace icL::context::data::js {
 
 Var::Var(memory::InterLevel * il)
-	: Value(il) {}
+    : Value(il) {}
 
 
 std::pair<QString, QString> Var::getArguments() {
@@ -29,10 +29,9 @@ std::pair<QString, QString> Var::getArguments() {
 
 			if (
 			  dynamic_cast<value::Value *>(next2)->type() ==
-				memory::Type::String &&
+			    memory::Type::String &&
 			  (next3 == nullptr || next3->role() != Role::Object)) {
-				a2 =
-				  dynamic_cast<value::Value *>(next2)->getValue().toString();
+				a2 = dynamic_cast<value::Value *>(next2)->getValue().toString();
 			}
 			else {
 				a1.clear();

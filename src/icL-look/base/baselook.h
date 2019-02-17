@@ -1,13 +1,9 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef icL_look_BaseLook
+#define icL_look_BaseLook
 
 #include <QObject>
 
 
-
-#define icL_dropField(x) \
-	if (x != nullptr)    \
-	delete x
 
 /**
  * @brief The icL.look namespace contains a icL theme
@@ -19,39 +15,39 @@ namespace icL::look {
  */
 class BaseLook : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	BaseLook(QObject * parent = nullptr);
+    BaseLook(QObject * parent = nullptr);
 
-	/**
-	 * @brief setUp set up the state from JSON object
-	 * @param obj is the configuration object
-	 */
-	virtual void setUp(const QJsonObject & obj) = 0;
+    /**
+     * @brief setUp set up the state from JSON object
+     * @param obj is the configuration object
+     */
+    virtual void setUp(const QJsonObject & obj) = 0;
 
-	/**
-	 * @brief getUp get the state like JSON object
-	 * @return the state like JSON object
-	 */
-	virtual QJsonObject getUp() = 0;
+    /**
+     * @brief getUp get the state like JSON object
+     * @return the state like JSON object
+     */
+    virtual QJsonObject getUp() = 0;
 
 protected:
-	/**
-	 * @brief objToColor converts a JSON object to QColor
-	 * @param obj is a JSON object
-	 * @return color getted from hex or r/g/b/a properties
-	 */
-	QColor objToColor(const QJsonObject & obj);
+    /**
+     * @brief objToColor converts a JSON object to QColor
+     * @param obj is a JSON object
+     * @return color getted from hex or r/g/b/a properties
+     */
+    QColor objToColor(const QJsonObject & obj);
 
-	/**
-	 * @brief colorToObj converts a QColor to JSON object
-	 * @param color is a color to convert
-	 * @return JSON object with hex field or r/g/b/a fields
-	 */
-	QJsonObject colorToObj(const QColor & color);
+    /**
+     * @brief colorToObj converts a QColor to JSON object
+     * @param color is a color to convert
+     * @return JSON object with hex field or r/g/b/a fields
+     */
+    QJsonObject colorToObj(const QColor & color);
 };
 
 }  // namespace icL::look
 
-#endif  // BASE_H
+#endif  // icL_look_BaseLook

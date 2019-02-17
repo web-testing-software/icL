@@ -37,13 +37,13 @@ public:
 	virtual void resetResultValue();
 	void         invalidate();
 
-	virtual bool         needCast() = 0;
+	virtual bool    needCast() = 0;
 	virtual Logic * castNow()  = 0;
-	virtual bool         step()     = 0;
-	virtual bool         canResultPreliminarily();
+	virtual bool    step()     = 0;
+	virtual bool    canResultPreliminarily();
 
 	Logic * getParent();
-	void         setParent(Logic * parent);
+	void    setParent(Logic * parent);
 
 protected:
 	virtual bool calcResult() = 0;

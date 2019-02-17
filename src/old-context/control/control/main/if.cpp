@@ -15,8 +15,8 @@ namespace icL::context::code::control {
 
 If::If(
   memory::InterLevel * il, const memory::CodeFragment & source, bool expExe)
-	: Control(il, source)
-	, isLogicExp(expExe) {
+    : Control(il, source)
+    , isLogicExp(expExe) {
 	m_role = Role::If;
 }
 
@@ -31,8 +31,8 @@ void If::parseLogicExp() {
 		exp = parseOnce(m_source);
 	}
 	else {
-		auto * single = new logic::rich::Single{
-		  il, logic::rich::Rich::OperationType::NotNot};
+		auto * single =
+		  new logic::rich::Single{il, logic::rich::Rich::OperationType::NotNot};
 
 		single->giveCode(m_source);
 		exp = single;
@@ -41,9 +41,9 @@ void If::parseLogicExp() {
 
 // The brackets pairs must be checked first, by interpreteur
 logic::Logic * If::parseOnce(memory::CodeFragment & fn) {
-	Operator  op;
+	Operator        op;
 	const QString * str = fn.source;
-	QString   brackets;
+	QString         brackets;
 
 	if (fn.end == fn.begin) {
 		il->vm->exception({-201, "Empty operand detected."});
@@ -117,8 +117,8 @@ logic::Logic * If::parseOnce(memory::CodeFragment & fn) {
 	}
 
 	if (op.type == OperatorType::NotFound) {
-		auto * single = new logic::rich::Single{
-		  il, logic::rich::Rich::OperationType::NotNot};
+		auto * single =
+		  new logic::rich::Single{il, logic::rich::Rich::OperationType::NotNot};
 
 		single->giveCode(fn);
 		return single;
@@ -149,7 +149,7 @@ void If::makeRank3(Operator & op, OperatorType type, int i) {
 	}
 }
 
-void If::processNots(Operator & op, const QChar & next, int& i) {
+void If::processNots(Operator & op, const QChar & next, int & i) {
 	if (next == '=' && op.rank < 2) {
 		op.type     = OperatorType::NotEqual;
 		op.rank     = 2;
@@ -162,7 +162,7 @@ void If::processNots(Operator & op, const QChar & next, int& i) {
 	}
 }
 
-void If::processEquals(Operator & op, const QChar & next, int& i) {
+void If::processEquals(Operator & op, const QChar & next, int & i) {
 	if (next == '=' && op.rank < 2) {
 		op.type     = OperatorType::Equal;
 		op.rank     = 2;
@@ -170,7 +170,7 @@ void If::processEquals(Operator & op, const QChar & next, int& i) {
 	}
 }
 
-void If::processContains(Operator & op, const QChar & next, int& i) {
+void If::processContains(Operator & op, const QChar & next, int & i) {
 	if ((next == '<' || next == '=') && op.rank < 2) {
 		op.type =
 		  next == '<' ? OperatorType::Contains : OperatorType::ContainsFragment;
@@ -247,17 +247,17 @@ logic::Logic * If::returnRank1(Operator & op, memory::CodeFragment & fn) {
 		il->vm->exception(
 		  {-201,
 		   QString(
-			 "Rank 1 operators (! and !!) givis one operand, placed on right. "
-			 "Parsing failed for `%1`")
-			 .arg(fn.source->midRef(fn.begin, fn.end - fn.begin))});
+		     "Rank 1 operators (! and !!) givis one operand, placed on right. "
+		     "Parsing failed for `%1`")
+		     .arg(fn.source->midRef(fn.begin, fn.end - fn.begin))});
 		return nullptr;
 	}
 
 	memory::CodeFragment newfn  = fn;
 	auto *               single = new logic::rich::Single(
-	  il, op.type == OperatorType::Not
-			? logic::rich::Rich::OperationType::Not
-			: logic::rich::Rich::OperationType::NotNot);
+      il, op.type == OperatorType::Not
+            ? logic::rich::Rich::OperationType::Not
+            : logic::rich::Rich::OperationType::NotNot);
 
 	newfn.begin += op.type == OperatorType::Not ? 1 : 2;
 	filter(newfn);

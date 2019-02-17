@@ -1,0 +1,67 @@
+% !TeX spellcheck = en_US
+\section{Introduction}
+
+\indent \textbf{icL} is a \textbf{scripting language}, specialized for web applications testing. This document (also as the icL software) is distributed under GNU GPLv3.
+
+The language icL has some exclusive characteristics and was based on icL philosophy. In agreement with it, the code must support all needed functional and must be simple and error-less (see the section \ref{errorless-sec}).
+
+\subsection{Audience}
+
+This document is designed for those individuals who are looking for starting point of learning icL language. Also, this document will be used in development process of command processor, its behavior in situations which had not been described in this document is declared undefined.
+
+Feel free to indicate in errors and to show your own point of view. I wait your letters on the address {\bf icl@vivaldi.net}.
+
+\subsection{Prerequisites}
+
+Before proceeding with this tutorial, it is advisable for you to understand the basic concepts of computer programming.
+
+\subsection{Overview}
+
+icL language is a scripting language specialized for testing of web applications. Its development was initiated in 2017 year. The release of the first version is planed to 2020 year.
+
+icL is language with \textbf{syntax being C style} and uses static typing. icL does not allow defining own data types, because it is not designed for programming. The knowledge of school Informatics course must be enough to start coding. icL is a single paradigm programming language — procedural. To process external data is available export/import to/from CVS and data bases.
+
+\subsection{Example}
+
+The entry point to an icL script is the beginning of the file. The \textit{Hello world!} program —
+\inputminted[linenos]{icl}{../sources/helloworld.icL}
+
+\subsection{Learning icL}
+
+The most important thing to do when learning icL is to focus on concepts and not get lost in language technical details.
+
+\subsection{Scope of icL}
+
+The language icL is a part of icL software, it realizes the browser control, exactly:
+\begin{icItems}
+\item
+	to open a tab;
+\item
+	to close a tab;
+\item
+	to get a page by URL;
+\item
+	to simulate mouse and keyboard events;
+\item
+	to interact with a web page;
+\item
+	to execute JavaScript code in page;
+\item
+	to control a web page;
+\item
+	to exchange data with a web page;
+\item
+	to grab the screen;
+\item
+	to control memory;
+\item
+	to export data to CSV files;
+\item
+	to import data from CSV files;
+\item
+	to run SQL queries.
+\end{icItems}
+
+\subsection{Setup}
+
+Just install the icL software.

@@ -8,7 +8,7 @@
 namespace icL::context::data::js {
 
 File::File(memory::InterLevel * il)
-	: Js(il){
+    : Js(il) {
 	m_role = Role::JsFile;
 }
 
@@ -41,9 +41,9 @@ QString File::getFileContent() {
 
 bool File::checkArgs() {
 	return m_next->role() == Role::Object &&
-		   dynamic_cast<value::Value *>(m_next)->type() ==
-			 memory::Type::String &&
-		   m_next->next() == nullptr;
+	       dynamic_cast<value::Value *>(m_next)->type() ==
+	         memory::Type::String &&
+	       m_next->next() == nullptr;
 }
 
 bool File::checkPrev(const Context * context) const {

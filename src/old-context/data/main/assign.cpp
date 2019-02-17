@@ -5,14 +5,14 @@
 #include <icl-context/base/object/element.h>
 #include <icl-context/base/object/int.h>
 #include <icl-context/base/object/list.h>
-#include <icl-context/base/object/value.h>
 #include <icl-context/base/object/string.h>
+#include <icl-context/base/object/value.h>
 
 
 namespace icL::context::data {
 
 Assign::Assign(memory::InterLevel * il)
-	: Data(il) {
+    : Data(il) {
 	m_role = Role::Assign;
 };
 
@@ -20,10 +20,10 @@ Assign::Assign(memory::InterLevel * il)
 
 bool Assign::checkPrev(const Context * context) const {
 	return context != nullptr &&
-		   (context->role() == Role::Object ||
-			context->role() == Role::Function) &&
-		   (context->prev() == nullptr ||
-			context->prev()->role() == Role::Assign);
+	       (context->role() == Role::Object ||
+	        context->role() == Role::Function) &&
+	       (context->prev() == nullptr ||
+	        context->prev()->role() == Role::Assign);
 }
 
 bool Assign::isExecutable() const {
@@ -61,7 +61,7 @@ memory::StepType::Value Assign::execute() {
 		else {
 			il->vm->exception(
 			  {-206, QString("Void cannot be assigned to variable of type %1")
-					   .arg(memory::typeToString(left->type()))});
+			           .arg(memory::typeToString(left->type()))});
 		}
 		return memory::StepType::None;
 	}

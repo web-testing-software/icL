@@ -6,7 +6,7 @@
 namespace icL::context::complex {
 
 Define::Define(memory::InterLevel * il)
-	: Complex(il) {}
+    : Complex(il) {}
 
 void Define::signal(int code, const QString & name) {
 	il->inter->newSignal(code, name);

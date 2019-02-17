@@ -1,115 +1,81 @@
 % !TeX spellcheck = ru_RU
 \section{Функции}
 
-{\bf Функции} в icL позволяют повторное использовать код, и структурировать код. Все функций в icL - глобальные.
+{\bf Функции} в icL позволяют повторное использовать код, и структурировать код. Все функций в icL — глобальные. Функция отличается от метода тем что она является пользовательской составляющей, т.е. функции определяются пользователем, когда методы предопределены.
 
 \subsubsection{Определение функции}
 
 {\bf Определение функции} состоит из заголовка и тела функции.
 
-\noindent Синтаксис -
-\begin{lstlisting}[numbers=none]
-name = (parameters) : return_type {
-	commands
+\noindent Синтаксис —
+\begin{minted}{icl}
+название = (параметры) : типРезультата {
+	команды
 }
-\end{lstlisting}
+\end{minted}
 
 Описание всех частей функции:
 \begin{icItems}
 \item
-	\code{name} - {\bf название функции};
+	\mintinline{icl}{название} — {\bf название функции};
 \item
-	\code{parameters} - {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен (см. листинги \ref{fullfunc} и \ref{noargsfunc});
+	\mintinline{icl}{параметры} — {\bf список параметров}. Когда функция вызывается вы передаёте значения параметру. Список параметров определяет тип, количество и порядок параметров. Список параметров необязателен (см. листинги \ref{fullfunc} и \ref{noargsfunc});
 \item
-	\code{return_type} - {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \void{}. Чтобы возвращать значение используется команда \code{@ = value} или \lstinline|Stack.return value| (см. листинги \ref{fullfunc}, \ref{notypefunc} и \ref{minfunc});
+	\mintinline{icl}{типРезультата} — {\bf тип данных которых} функция будет возвращать. Если функция ничего не возвращает тип данных можно пропустить или указать явно \void{}. Чтобы возвращать значение используется команда \mintinline{icl}{@ = значение} или \mintinline{icl}{Stack.return значение} (см. листинги \ref{fullfunc}, \ref{notypefunc} и \ref{minfunc});
 \item
-	\code{commands} - {\bf тело функции} содержит команды, которые определяют что делает функция.
+	\mintinline{icl}{команды} — {\bf тело функции} содержит команды, которые определяют что делает функция.
 \end{icItems}
 
 Между параметрами ставится разделитель - запятая. Даже если параметр только один, скобки нельзя пропускать.
 
-Параметр описывается следующим синтаксисом \lstinline|@name : type|, где \lstinline|@name| - название, \lstinline|type| - тип данных. Можно указать только тип данных (без двоеточия), в этом случае название параметра будет название типа данных.
+Параметр описывается следующим синтаксисом \mintinline{icl}{@название : type}, где \mintinline{icl}{type} — тип данных. Можно указать только тип данных (без двоеточия), в этом случае название параметра будет название типа данных.
 
-Параметр имеющий значение по умолчанию описывается следующим способом \lstinline|@name = value|, где \lstinline|@name| - название, \lstinline|value| - значение по умолчанию, она может быть константном литералом, переменной или выражений. Значения будут вычислены один раз - про объявлений функций. Значение по умолчанию могут иметь любые параметры, не только последнее.
+Параметр имеющий значение по умолчанию описывается следующим способом \mintinline{icl}{@название = значениеПоУмолчанию}, значение по умолчанию может быть константном литералом, переменной или выражений. Значения будут вычислены один раз — про объявлений функций. Значение по умолчанию могут иметь любые параметры, не только последнее.
 
-\begin{lstlisting}[caption=Полноценная функция, label=fullfunc]
-sum = (@a : int, @b : int) : int {
-	@ = @a + @b;
-};
-\end{lstlisting}
+\begin{sourcecode}
+	\captionof{listing}{Полноценная функция}
+	\label{fullfunc}
+	\inputminted[linenos]{icl}{../sources/fullfunc.icL}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Функция без аргументов, label=noargsfunc]
-pi = () : double {
-	@ = 3.14;
-};
-\end{lstlisting}
+\begin{sourcecode}
+	\captionof{listing}{Функция без аргументов}
+	\label{noargsfunc}
+	\inputminted[linenos]{icl}{../sources/noargsfunc.icL}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Функция без типа возвращаемой значений, label=notypefunc]
-out = (@a : int, @b : int) {
-	Log.out @a @b;
-};
-\end{lstlisting}
+\begin{sourcecode}
+	\captionof{listing}{Функция без типа возвращаемой значений}
+	\label{notypefunc}
+	\inputminted[linenos]{icl}{../sources/notypefunc.icL}
+\end{sourcecode}
 
-\begin{lstlisting}[caption=Функция без аргументов и тип возвращаемой значений, label=minfunc]
-do = () {
-Log.out "It's work!";
-};
-\end{lstlisting}
+\begin{sourcecode}
+	\captionof{listing}{Функция без аргументов и тип возвращаемой значений}
+	\label{minfunc}
+	\inputminted[linenos]{icl}{../sources/minfunc.icL}
+\end{sourcecode}
 
 \subsubsection{Вызов функции}
 
 Вы можете вызвать функцию следующим образом -
-\begin{lstlisting}[numbers=none]
-name (arguments);
-\end{lstlisting}
-где \code{name} - {\bf название функции}, \code{arguments} - {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}. 
+\begin{minted}{icl}
+название (аргументы);
+\end{minted}
+где \mintinline{icl}{название} — {\bf название функции}, \mintinline{icl}{аргументы} — {\bf список аргументов} (он должен быть совместим со списком параметров функции). Как вызвать функций, объявленные на листингов \ref{fullfunc} - \ref{minfunc}, показано на листинге \ref{callfunc}. 
 
-Последнее параметры имеющие значение по умолчанию могут быть пропущены, для остальных при желаниях использовать значение по умолчанию нужно передать \void{} значение, её можно описать одним символом - тильда (\lstinline|~|). Например функция \lstinline|func = (@var1 = 3, @var2 : int) {}|, можно вызвать следующим образом \lstinline|fun (~, 3)|. Значения по умолчанию могут сократить код, см. листинг \ref{defaultparametrs}.
+\begin{sourcecode}
+	\captionof{listing}{Вызов функций}
+	\label{callfunc}
+	\inputminted[linenos]{icl}{../sources/callfunc.icL}
+\end{sourcecode}
 
-Функций имеющие всего 1 обязательным параметром, можно вызвать используя акроним \lstinline|name arg| или \lstinline|name (arg)|. Положение обязательного параметра не имеет значение (в начале, в середине или в конце списка параметров).
+Последнее параметры имеющие значение по умолчанию могут быть пропущены, для остальных при желаниях использовать значение по умолчанию нужно передать \void{} значение, её можно описать одним символом тильда (\mintinline{icl}{~}). Например функция \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}}, можно вызвать следующим образом \mintinline{icl}{fun (~, 3)}. Значения по умолчанию могут сократить код, см. листинг \ref{defaultparametrs}.
 
-\begin{lstlisting}[caption=Вызов функций, label=callfunc]
-sum (2, 3); 	`` returns 5
-pi;				`` returns 3.14
-out (4, 5); 	`` returns void
-do;				`` returns void
+\begin{sourcecode}
+	\captionof{listing}{Значения по умольчанию}
+	\label{defaultparametrs}
+	\inputminted[linenos]{icl}{../sources/defaultparametrs.icL}
+\end{sourcecode}
 
-sum (sum (1, 2), 3);	`` returns 6
-out (1, sum (,4 5));	`` returns void
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Вызов функций, label=callfunc]
-sum (2, 3); 	`` returns 5
-pi;				`` returns 3.14
-out (4, 5); 	`` returns void
-do;				`` returns void
-
-sum (sum (1, 2), 3);	`` returns 6
-out (1, sum (4, 5));	`` returns void
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Значения по умольчанию, label=defaultparametrs]
-fun = (@a = 21, @b = 23) {}
-
-`` the line 
-fun(exists(@a, # > 3), exists(@b, # < 5));
-`` replace the next code
-if (@a > 3) {
-	if (@b < 5) {
-		fun (@a, @b);
-	}
-	else {
-		fun (@a, 23);
-	}
-}
-else {
-	if (@b < 5) {
-		fun (21, @b);
-	}
-	else {
-		fun (21, 23);
-	}
-}
-\end{lstlisting}
-
-%\newpage
+Функций имеющие всего 1 обязательным параметром, можно вызвать используя акроним \mintinline{icl}{название аргумент} или \mintinline{icl}{название (аргумент)}. Положение обязательного параметра не имеет значение (в начале, в середине или в конце списка параметров).

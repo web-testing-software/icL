@@ -26,24 +26,24 @@
 // *  |  '- rich
 // *  '- memory
 // */
-//namespace icL {
+// namespace icL {
 
 ///**
 // * @brief The Server class - class to sync two treads
 // */
-//class Server
+// class Server
 //	: public QObject
 //	, public memory::Node
 //	, public memory::Server
 //{
 //	Q_OBJECT
 
-//	Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
+//    Q_PROPERTY(QQuickItem * webEngine READ webEngine WRITE setWebEngine NOTIFY
 //																		webEngineChanged)
 
 //	enum class WaitFor { GoTo, PageLoading, ExecuteJS, ErrorDialog, Nothing };
 
-//public:
+// public:
 //	explicit Server(QObject * parent = nullptr);
 
 //	/**
@@ -88,14 +88,14 @@
 
 //	void setInterlevel(memory::InterLevel * il);
 
-//public slots:
+// public slots:
 //	/**
 //	 * @brief setWebEngine - QML use only
 //	 * @param WebEngineView*
 //	 */
 //	void setWebEngine(QQuickItem * webEngine);
 
-//protected:
+// protected:
 //	/**
 //	 * @brief simulateClick - simulate a mouse click on WebView
 //	 * @param x - coordinate of x axes
@@ -109,7 +109,7 @@
 //	 */
 //	void simulateKey(const QChar & ch);
 
-//public:
+// public:
 //	// memory.Server interface
 //	virtual QVariant runJS(const QString & code);
 //	virtual bool     click(int x, int y);
@@ -117,7 +117,7 @@
 //	virtual void     newLog(int level, const QString & message);
 //	virtual bool     get(const QString & url);
 
-//signals:
+// signals:
 //	void ready();
 
 //	// Singnals to run needed function on main thread
@@ -136,7 +136,7 @@
 
 //	void eventHandlerChanged(QQuickItem * eventHandler);
 
-//private slots:
+// private slots:
 //	// Functions, which will be executed on main thread
 //	void release_goTo();
 //	void release_waitForPageLoading();
@@ -144,7 +144,7 @@
 //	void release_mouseEvent(QMouseEvent * ev);
 //	void release_keyEvent(QKeyEvent * ev);
 
-//private:
+// private:
 //	// The stack of errors
 //	QStringList errors_stack;
 

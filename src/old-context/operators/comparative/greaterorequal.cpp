@@ -1,7 +1,4 @@
 
 #include "greaterorequal.h"
 
-GreaterOrEqual::GreaterOrEqual()
-{
-
-}
+GreaterOrEqual::GreaterOrEqual() {}
