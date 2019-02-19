@@ -273,7 +273,7 @@ private:
     bool m_rtl = false;
 
     /// \brief changeEntity will be used by History class
-    ChangeEntity * changeEntity;
+    ChangeEntity * changeEntity = nullptr;
 };
 
 }  // namespace icL::editor

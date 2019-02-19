@@ -107,7 +107,7 @@ void LineNumbers::drawText(QPainter * painter) {
     auto * chars = m_editor->m_chars;
 
     int yDelta = proxy->divLineSBy2() + yBegin;
-    int xDelta = (proxy->fullLineH() - newLine.size().width()) / 2;
+    int xDelta = (proxy->fullLineH() - int(newLine.size().width())) / 2;
 
     painter->setBrush(Qt::NoBrush);
 

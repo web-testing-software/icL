@@ -130,7 +130,7 @@ QSGNode * CursorsArea::updatePaintNode(
             xPos = halfW - editor->proxy()->charH() / 2;
         }
         else if (xPos >= width()) {
-            xPos = width() - halfW;
+            xPos = int(width()) - halfW;
         }
         else if (line->visible()) {
             hLen = editor->m_proxy->fullLineH();
@@ -141,7 +141,7 @@ QSGNode * CursorsArea::updatePaintNode(
                 yPos = 0;
             }
             else {
-                yPos = height() - hLen;
+                yPos = int(height()) - hLen;
             }
         }
 

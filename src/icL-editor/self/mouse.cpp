@@ -120,7 +120,7 @@ std::pair<Line *, int> Mouse::getLineCh(QMouseEvent * event) {
     Line * it = m_firstVisible;
 
     if (y > height()) {
-        y = height();
+        y = int(height());
     }
 
     while (it->lastY() < y - m_proxy->fullLineH() && it->next() != nullptr) {

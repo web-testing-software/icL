@@ -312,7 +312,7 @@ ChangesEntity * History::hGetNewChangesEntity() {
     return ret;
 }
 
-void History::hForEachForward(std::function<void(Selection *)> func) {
+void History::hForEachForward(const std::function<void(Selection *)>& func) {
     auto * it = hGetFirstSelection();
 
     while (it != nullptr) {
@@ -321,7 +321,7 @@ void History::hForEachForward(std::function<void(Selection *)> func) {
     }
 }
 
-void History::hForEachBackward(std::function<void(Selection *)> func) {
+void History::hForEachBackward(const std::function<void(Selection *)>& func) {
     auto * it = hGetLastSelection();
 
     while (it != nullptr) {

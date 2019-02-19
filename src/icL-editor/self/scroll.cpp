@@ -94,7 +94,7 @@ void Scroll::scrollX(qreal ratio) {
         ratio = 1.0;
     }
 
-    uint8_t newPos = ratio * static_cast<qreal>(160 - m_visibleChars);
+    uint8_t newPos = uint8_t(ratio * static_cast<qreal>(160 - m_visibleChars));
 
     if (newPos != xScroll) {
         xScroll = newPos;
@@ -104,7 +104,8 @@ void Scroll::scrollX(qreal ratio) {
 }
 
 void Scroll::scrollY(qreal ratio) {
-    int16_t line = ratio * numberOfLines - m_firstVisible->lineNumber();
+    int16_t line =
+      int16_t(ratio * numberOfLines - m_firstVisible->lineNumber());
 
     if (line < 0) {
         sScrollUpBy(-line);

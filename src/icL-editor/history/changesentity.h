@@ -27,7 +27,7 @@ struct ChangeEntity
     /// \brief column is the column of cursor
     int column;
     /// \brief stepBack is the number of chars deleted to left
-    int stepBack;
+    int stepBack = 0;
     /// \brief isMain is true for main cursor, otherwise false
     bool isMain;
     /// \brief selection is the selection to undo/redo changes

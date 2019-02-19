@@ -55,7 +55,7 @@ private:
     Alpha alpha;
 
     /// @brief the width of cursor
-    int m_cursorW;
+    int m_cursorW = 0;
 
     /// @brief the sg node, which will contains all cursors
     QSGOpacityNode * node = nullptr;

@@ -60,7 +60,7 @@ private:
 
 private:
     // Properties
-    EditorInternal * m_editor;
+    EditorInternal * m_editor = nullptr;
 
     /// @brief symbol used to mark edited lines
     QStaticText edited{"*"};
