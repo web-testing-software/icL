@@ -54,3 +54,4 @@ __14.01.2019__
   * [?] window'tab : tab
   * [?] window'windows : Windows
   * [?] Windows'session : session
+* Remove window.switchToDefault
