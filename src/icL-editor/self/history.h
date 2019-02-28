@@ -155,14 +155,14 @@ private:
      * to end)
      * @param func is the function to execute
      */
-    void hForEachForward(const std::function<void(Selection *)>& func);
+    void hForEachForward(const std::function<void(Selection *)> & func);
 
     /**
      * @brief forEachBackward executes a function for each selection (from end
      * to begin)
      * @param func is the function to execute
      */
-    void hForEachBackward(const std::function<void(Selection *)>& func);
+    void hForEachBackward(const std::function<void(Selection *)> & func);
 
     /**
      * @brief hGetChangeEntityFor gets the change entity for selection
