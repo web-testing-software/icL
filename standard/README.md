@@ -57,3 +57,4 @@ __14.01.2019__
   * [?] window'windows : Windows
   * [?] Windows'session : session
 * Remove window.switchToDefault
+* Remove State'first, State'prev, State'next and State'last
