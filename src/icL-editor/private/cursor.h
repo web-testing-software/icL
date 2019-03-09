@@ -29,13 +29,13 @@ public:
      * @brief position gets the position in text fragment
      * @return the position in text fragment
      */
-    int8_t position() const;
+    int position() const;
 
     /**
      * @brief preffered gets the preffered absolute position
      * @return the preffered absolute position
      */
-    uint8_t preffered() const;
+    int preffered() const;
 
     /**
      * @brief getPosInLine gets the position in line
@@ -175,19 +175,19 @@ public:
      * @brief setPosition sets the position in fragment
      * @param position is the new position in fragment
      */
-    void setPosition(int8_t position);
+    void setPosition(int position);
 
     /**
      * @brief setPreffered sets the preffered absolute position
      * @param preffered is the new preffered position
      */
-    void setPreffered(uint8_t preffered);
+    void setPreffered(int preffered);
 
     /**
      * @brief setLineNumber set the line number
      * @param lineNumber is the new line number for cursor
      */
-    void setLineNumber(int16_t lineNumber);
+    void setLineNumber(int lineNumber);
 
 private:
     // Properties
@@ -196,14 +196,14 @@ private:
     Fragment * m_fragment = nullptr;
 
     /// \brief the relative position to fragment begin
-    int8_t m_position = 0;
+    int m_position = 0;
 
     /// \brief the preffered position relative to line (!fragment) begin
-    uint8_t m_preffered = 0;
+    int m_preffered = 0;
 
     /// \brief m_lineNumber line number, used to restore position after document
     /// update
-    int16_t m_lineNumber = 0;
+    int m_lineNumber = 0;
 };
 
 }  // namespace icL::editor

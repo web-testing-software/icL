@@ -22,6 +22,10 @@ protected:
 
     Fragment * insertInSpaces(
       Cursor * begin, Cursor * end, int pos, const QString & text) override;
+
+private:
+    // padding
+    long : 56;
 };
 
 }  // namespace icL::editor

@@ -176,6 +176,9 @@ protected:
     /// \brief numberOfCursors is the number of cursors in the text editor
     int numberOfCursors = 1;
 
+    // padding
+    int : 32;
+
 private:
     /// \brief m_currentChange is the pointer to current change
     ChangesEntity * m_currentChanges = nullptr;
@@ -189,6 +192,9 @@ private:
     /// \brief cursorWasMoved detect if the cursor was moved, it means that the
     /// change entity must be updated
     bool cursorWasMoved = false;
+
+    // padding
+    long : 56;
 };
 
 }  // namespace icL::editor

@@ -1,9 +1,9 @@
 #ifndef icL_editor_Selection
 #define icL_editor_Selection
 
-#include <QString>
 
 
+class QString;
 
 namespace icL::editor {
 

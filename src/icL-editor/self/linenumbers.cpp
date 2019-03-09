@@ -9,6 +9,7 @@
 #include <QOpenGLFunctions>
 #include <QPainter>
 #include <QStaticText>
+#include <QTime>
 
 namespace icL::editor {
 

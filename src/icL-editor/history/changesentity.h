@@ -40,7 +40,7 @@ class ChangesEntity : public Revision
 {
 public:
     ChangesEntity();
-    ~ChangesEntity();
+    ~ChangesEntity() override;
 
     /**
      * @brief hasInsert returns true if chages has some insertions

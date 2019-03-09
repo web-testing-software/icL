@@ -20,7 +20,7 @@ class CursorsArea : public QQuickItem
 public:
     explicit CursorsArea(QQuickItem * parent = nullptr);
 
-    ~CursorsArea();
+    ~CursorsArea() override;
 
     /**
      * @brief cursorW is the cursor width

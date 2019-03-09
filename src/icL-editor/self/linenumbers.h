@@ -76,6 +76,9 @@ private:
 
     /// @brief yBegin caches the last y begin postion
     int yBegin = -1995;
+
+    // padding
+    int : 32;
 };
 
 }  // namespace icL::editor

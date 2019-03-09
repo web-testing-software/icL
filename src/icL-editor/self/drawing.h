@@ -3,8 +3,6 @@
 
 #include "logic.h"
 
-#include <QDateTime>
-#include <QObject>
 #include <QPolygon>
 
 
@@ -246,6 +244,9 @@ protected:
     /// @brief is the padding of left side (exclude area under line numbers)
     int m_leftPadding = 0;
 
+    // padding
+    int : 32;
+
     /// @brief The proxy to style value from Look QML plugin
     StyleProxy * m_proxy;
 
@@ -258,6 +259,9 @@ protected:
     /// @brief number of visible lines in editor
     int m_visibleLines = 0;
 
+    // padding
+    int : 32;
+
     /// @brief the arrow for hightlight current line
     QPolygon leftArrow;
 
@@ -268,7 +272,10 @@ protected:
     QRect lineRect;
 
     /// @brief the current x scroll position
-    uint8_t xScroll = 0;
+    int xScroll = 0;
+
+    // padding
+    int : 32;
 };
 
 }  // namespace icL::editor

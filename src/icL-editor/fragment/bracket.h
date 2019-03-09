@@ -32,6 +32,10 @@ protected:
     Fragment * dropHead(Cursor * cursor, int p1, int p2) override;
     Fragment * dropContent(Cursor * cursor, int p1, int p2) override;
     Fragment * dropTail(Cursor * cursor, int p1, int p2) override;
+
+private:
+    // padding
+    long : 56;
 };
 
 }  // namespace icL::editor

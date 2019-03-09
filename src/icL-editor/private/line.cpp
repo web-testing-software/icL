@@ -43,15 +43,15 @@ Line * Line::prevDisplay() const {
     return m_prev;
 }
 
-uint8_t Line::length() const {
+int Line::length() const {
     return m_length;
 }
 
-int32_t Line::beginPos() const {
+int Line::beginPos() const {
     return m_beginPos;
 }
 
-int16_t Line::lineNumber() const {
+int Line::lineNumber() const {
     if (m_isPhantom) {
         return m_prev->lineNumber();
     }
@@ -180,14 +180,14 @@ void Line::setPrev(Line * prev) {
     m_prev = prev;
 }
 
-void Line::setBeginPos(int32_t beginPos) {
+void Line::setBeginPos(int beginPos) {
     if (m_beginPos == beginPos)
         return;
 
     m_beginPos = beginPos;
 }
 
-void Line::setLineNumber(int16_t lineNumber) {
+void Line::setLineNumber(int lineNumber) {
     if (m_lineNumber == lineNumber)
         return;
 
@@ -263,7 +263,7 @@ void Line::fixLines() {
     m_parent->fixer()->fix(this);
 }
 
-int8_t Line::charsNumberInLineNumber() {
+int Line::charsNumberInLineNumber() {
     return m_charsNumberInLineNumber;
 }
 

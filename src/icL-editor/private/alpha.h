@@ -1,7 +1,7 @@
 #ifndef icL_editor_Alpha
 #define icL_editor_Alpha
 
-#include <qdatetime.h>
+#include <QTime>
 
 
 

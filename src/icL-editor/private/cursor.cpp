@@ -12,11 +12,11 @@ Fragment * Cursor::fragment() const {
     return m_fragment;
 }
 
-int8_t Cursor::position() const {
+int Cursor::position() const {
     return m_position;
 }
 
-uint8_t Cursor::preffered() const {
+int Cursor::preffered() const {
     return m_preffered;
 }
 
@@ -344,21 +344,21 @@ void Cursor::setFragment(Fragment * fragment) {
     m_fragment = fragment;
 }
 
-void Cursor::setPosition(int8_t position) {
+void Cursor::setPosition(int position) {
     if (m_position == position)
         return;
 
     m_position = position;
 }
 
-void Cursor::setPreffered(uint8_t preffered) {
+void Cursor::setPreffered(int preffered) {
     if (m_preffered == preffered)
         return;
 
     m_preffered = preffered;
 }
 
-void Cursor::setLineNumber(int16_t lineNumber) {
+void Cursor::setLineNumber(int lineNumber) {
     if (m_lineNumber == lineNumber)
         return;
 

@@ -22,6 +22,10 @@ public:
 signals:
 
 public slots:
+
+private:
+    // padding
+    long : 48;
 };
 
 }  // namespace icL::editor

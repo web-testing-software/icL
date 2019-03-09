@@ -1,7 +1,7 @@
 #ifndef icL_editor_Line
 #define icL_editor_Line
 
-#include <QObject>
+#include <QString>
 
 
 
@@ -57,19 +57,19 @@ public:
      * @brief length gets the length of the line
      * @return the lenght of the line
      */
-    uint8_t length() const;
+    int length() const;
 
     /**
      * @brief beginPos is the begin position of the line
      * @return the begin position of text fragment
      */
-    int32_t beginPos() const;
+    int beginPos() const;
 
     /**
      * @brief lineNumber return the line number
      * @return the number of line
      */
-    int16_t lineNumber() const;
+    int lineNumber() const;
 
     /**
      * @brief visible gets the visible state of line
@@ -183,13 +183,13 @@ public:
      * @brief setBeginPos changes the begin pos of line
      * @param beginPos is the new begin position
      */
-    void setBeginPos(int32_t beginPos);
+    void setBeginPos(int beginPos);
 
     /**
      * @brief setLineNumber changes the number of line
      * @param lineNumber is the new line number
      */
-    void setLineNumber(int16_t lineNumber);
+    void setLineNumber(int lineNumber);
 
     /**
      * @brief setVisible hides/shows the line
@@ -223,7 +223,7 @@ public:
      * @brief charsNumberInLineNumber helps to align to right line number
      * @return return the number of charaters in line number
      */
-    int8_t charsNumberInLineNumber();
+    int charsNumberInLineNumber();
 
     /**
      * @brief makePhantom makes this line phantom
@@ -282,13 +282,13 @@ private:
     Line * m_prev = nullptr;
 
     /// @brief m_length is the number of symbols in this line
-    uint8_t m_length = 0;
+    int m_length = 0;
 
     /// @brief the absolute position of line begin in document
-    int32_t m_beginPos = 0;
+    int m_beginPos = 0;
 
     /// @brief the number of line in document
-    int16_t m_lineNumber = 0;
+    int m_lineNumber = 0;
 
     /// @brief the visibility of line in editor
     bool m_visible = false;
@@ -326,7 +326,7 @@ private:
     QStaticText * cache = nullptr;
 
     /// @brief The number of chars in line number
-    int8_t m_charsNumberInLineNumber = 0;
+    int m_charsNumberInLineNumber = 0;
 
     /// @brief lastY is used for mouse interaction
     int m_lastY = 0;
