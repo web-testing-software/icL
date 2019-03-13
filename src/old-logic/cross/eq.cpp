@@ -1,6 +1,6 @@
 #include "eq.h"
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 Eq::Eq(memory::InterLevel * il)
     : Cross(il){};
@@ -13,4 +13,4 @@ bool Eq::calcResult() {
 	return block1->getCachedResult() == block2->getCachedResult();
 }
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross

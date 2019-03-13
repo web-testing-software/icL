@@ -7,7 +7,7 @@
 #include <QStringBuilder>
 #include <QVariant>
 
-namespace icL::context::complex {
+namespace old::context::complex {
 
 Dom::Dom(memory::InterLevel * il)
     : Complex(il) {}
@@ -112,4 +112,4 @@ Context * Dom::runMethod(const QString & name, memory::ArgList & args) {
 	return newContext;
 }
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex

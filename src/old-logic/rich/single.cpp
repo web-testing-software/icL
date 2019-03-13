@@ -1,6 +1,6 @@
 #include "single.h"
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 Single::Single(memory::InterLevel * il, OperationType otype)
     : Rich(il, otype) {
@@ -59,4 +59,4 @@ bool Single::canResultPreliminarily() {
 	return true;
 }
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich

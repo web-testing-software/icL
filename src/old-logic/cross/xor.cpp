@@ -1,6 +1,6 @@
 #include "xor.h"
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 XOr::XOr(memory::InterLevel * il)
     : Cross(il){};
@@ -13,4 +13,4 @@ bool XOr::calcResult() {
 	return block1->getCachedResult() != block2->getCachedResult();
 }
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross

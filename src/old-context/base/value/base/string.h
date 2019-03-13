@@ -3,7 +3,7 @@
 
 #include "value.h"
 
-namespace icL::context::value {
+namespace old::context::value {
 
 /**
  * \~english @brief The String class contains a string value of reference.
@@ -68,6 +68,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 #endif  // icl_context_value_String

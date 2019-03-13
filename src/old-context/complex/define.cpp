@@ -3,7 +3,7 @@
 #include <icl-context/base/object/value.h>
 
 
-namespace icL::context::complex {
+namespace old::context::complex {
 
 Define::Define(memory::InterLevel * il)
     : Complex(il) {}
@@ -52,4 +52,4 @@ Context * Define::runMethod(const QString & name, memory::ArgList & args) {
 	return newContext;
 }
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex

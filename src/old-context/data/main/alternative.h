@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::data {
+namespace old::context::data {
 
 class Alternative : public Data
 {
@@ -42,6 +42,6 @@ public:
 	Context * getEndContext() override;
 };
 
-}  // namespace icL::context::data
+}  // namespace old::context::data
 
 #endif  // icL_context_data_Alternative

@@ -1,6 +1,6 @@
 #include "alternative.h"
 
-namespace icL::context::data {
+namespace old::context::data {
 
 Alternative::Alternative(memory::InterLevel * il)
     : Data(il) {
@@ -35,4 +35,4 @@ Context * Alternative::getEndContext() {
 	return theLeftOperandIsOk ? m_next : this;
 }
 
-}  // namespace icL::context::data
+}  // namespace old::context::data

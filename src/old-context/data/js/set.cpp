@@ -4,7 +4,7 @@
 
 #include <QRegularExpression>
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 Set::Set(memory::InterLevel * il)
     : Value(il) {}
@@ -53,4 +53,4 @@ memory::StepType::Value Set::execute() {
 	return memory::StepType::MiniStep;
 }
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js

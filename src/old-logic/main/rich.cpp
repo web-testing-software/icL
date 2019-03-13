@@ -8,7 +8,7 @@
 
 #include <QStringBuilder>
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 Rich::Rich(memory::InterLevel * il, OperationType otype)
     : Logic(il) {
@@ -212,4 +212,4 @@ bool Rich::calcResult() {
 	return false;
 }
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich

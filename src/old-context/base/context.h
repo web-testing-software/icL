@@ -12,7 +12,7 @@
 /**
  * The icL.context namespace is dedicated for all semantic tokens
  */
-namespace icL::context {
+namespace old::context {
 
 namespace object {
 class Object;
@@ -373,6 +373,6 @@ QString roleToString(Role role);
 
 #endif
 
-}  // namespace icL::context
+}  // namespace old::context
 
 #endif  // icL_context_Context

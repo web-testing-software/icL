@@ -1,6 +1,6 @@
 #include "cross.h"
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 Cross::Cross(memory::InterLevel * il)
     : Logic(il){};
@@ -123,4 +123,4 @@ bool Cross::calcResult() {
 	return false;
 }
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross

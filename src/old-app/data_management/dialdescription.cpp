@@ -1,6 +1,6 @@
 #include "dialdescription.h"
 
-namespace icL::app {
+namespace old::app {
 
 DialDescription::DialDescription(QObject * parent)
     : QObject(parent) {}
@@ -44,4 +44,4 @@ void DialDescription::setUrl(const QString & url) {
 	emit urlChanged(m_url);
 }
 
-}  // namespace icL::app
+}  // namespace old::app

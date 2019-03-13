@@ -1,6 +1,6 @@
 #include "or.h"
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 Or::Or(memory::InterLevel * il)
     : Cross(il){};
@@ -17,4 +17,4 @@ bool Or::canResultPreliminarily() {
 	return value1 == true;
 }
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross

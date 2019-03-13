@@ -18,7 +18,7 @@
 #include <QVariant>
 
 
-namespace icL::context {
+namespace old::context {
 
 Context::Context(memory::InterLevel * il)
     : memory::Node(il){};
@@ -365,4 +365,4 @@ QString roleToString(Role role) {
 
 #endif
 
-}  // namespace icL::context
+}  // namespace old::context

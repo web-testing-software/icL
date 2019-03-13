@@ -7,7 +7,7 @@
 
 
 
-namespace icL::context::data {
+namespace old::context::data {
 
 Function::Function(memory::InterLevel * il, const QString & name)
     : Context(il)
@@ -197,4 +197,4 @@ bool Function::isResultative() const {
 	return !newFunction;
 }
 
-}  // namespace icL::context::data
+}  // namespace old::context::data

@@ -2,7 +2,7 @@
 
 #include <icl-context/base/object/value.h>
 
-namespace icL::context::code {
+namespace old::context::code {
 
 Code::Code(memory::InterLevel * il, const memory::CodeFragment & source)
     : Context(il)
@@ -73,4 +73,4 @@ Context * Code::getEndContext() {
 	return this;
 }
 
-}  // namespace icL::context::code
+}  // namespace old::context::code

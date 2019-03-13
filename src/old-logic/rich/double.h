@@ -4,7 +4,7 @@
 #include "../main/rich.h"
 
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 /**
  * @deprecated
@@ -28,6 +28,6 @@ private:
 	//	static QRegExp exp;
 };
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich
 
 #endif  // icL_logic_rich_Double

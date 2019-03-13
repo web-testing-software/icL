@@ -1,6 +1,6 @@
 #include "logic.h"
 
-namespace icL::logic {
+namespace old::logic {
 
 Logic::Logic(memory::InterLevel * il)
     : memory::Node(il){};
@@ -106,4 +106,4 @@ QString Logic::typeToString(QVariant::Type type) {
 	return ret;
 }
 
-}  // namespace icL::logic
+}  // namespace old::logic

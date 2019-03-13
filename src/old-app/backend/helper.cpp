@@ -8,7 +8,7 @@
 #include <QTextOption>
 #include <QtMath>
 
-namespace icL::app {
+namespace old::app {
 
 Helper::Helper(QObject * parent)
     : QObject(parent) {
@@ -149,4 +149,4 @@ void Helper::makeDirIfNotExist(const QString & dirpath) {
 	}
 }
 
-}  // namespace icL::app
+}  // namespace old::app

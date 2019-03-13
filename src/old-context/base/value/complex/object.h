@@ -5,7 +5,7 @@
 
 #include <icl-memory/structures/set.h>
 
-namespace icL::context::value {
+namespace old::context::value {
 
 class Object : public Value
 {
@@ -69,6 +69,6 @@ public:
 	Context * runMethod(const QString & name, memory::ArgList & args) override;
 };
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 #endif  // icL_context_value_Object

@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::code::control::catch0 {
+namespace old::context::code::control::catch0 {
 
 class Catch : public Control
 {
@@ -28,6 +28,6 @@ public:
 	Catch(memory::InterLevel * il, const memory::CodeFragment & source);
 };
 
-}  // namespace icL::context::code::control::catch0
+}  // namespace old::context::code::control::catch0
 
 #endif  // icL_context_code_control_catch_Catch

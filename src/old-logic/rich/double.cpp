@@ -1,9 +1,9 @@
 #include "double.h"
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 Double::Double(memory::InterLevel * il, OperationType otype)
-    : icL::logic::rich::Rich(il, otype) {
+    : old::logic::rich::Rich(il, otype) {
 	casted = true;
 }
 
@@ -43,4 +43,4 @@ bool Double::calcResult() {
 	return result;
 }
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich

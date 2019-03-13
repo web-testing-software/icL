@@ -13,7 +13,7 @@
 /**
  * The w3c namespace contains all realisations of W3C webdriver API
  */
-namespace icL::driver::w3c {
+namespace old::driver::w3c {
 
 /**
  * \~english @brief The W3c class - Base W3C webdriver API realisation
@@ -371,6 +371,6 @@ private:
 	bool win_normal_mode = true;
 };
 
-}  // namespace icL::driver::w3c
+}  // namespace old::driver::w3c
 
 #endif  // icL_driver_w3c_W3C

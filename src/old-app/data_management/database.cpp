@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 #include <QTextStream>
 
-namespace icL::app {
+namespace old::app {
 
 DataBase::DataBase(QObject * parent)
     : QObject(parent) {
@@ -160,4 +160,4 @@ QSqlError DataBase::transact_file(QSqlQuery & q, const QString & filename) {
 	return q.lastError();
 }
 
-}  // namespace icL::app
+}  // namespace old::app

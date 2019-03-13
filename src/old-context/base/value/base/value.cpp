@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <QStringBuilder>
 
-namespace icL::context::value {
+namespace old::context::value {
 
 Value::Value(
   memory::InterLevel * il, memory::DataState * container,
@@ -408,4 +408,4 @@ bool Value::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::value
+}  // namespace old::context::value

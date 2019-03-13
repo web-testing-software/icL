@@ -5,7 +5,7 @@
 
 
 
-namespace icL::context::value {
+namespace old::context::value {
 
 /**
  * \~english @brief The Int class contains a int value or reference.
@@ -70,6 +70,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 #endif  // icl_context_value_Int

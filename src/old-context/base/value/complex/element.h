@@ -7,7 +7,7 @@
 #include <icl-memory/structures/webelement.h>
 
 
-namespace icL::context::value {
+namespace old::context::value {
 
 class String;
 class Int;
@@ -310,6 +310,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 #endif  // icl_context_value_Element

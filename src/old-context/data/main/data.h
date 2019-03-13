@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::data {
+namespace old::context::data {
 
 class Data : public Context
 {
@@ -33,6 +33,6 @@ public:
 	bool isExecutable() const override;
 };
 
-}  // namespace icL::context::data
+}  // namespace old::context::data
 
 #endif  // icL_context_data_Data

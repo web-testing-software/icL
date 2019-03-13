@@ -4,7 +4,7 @@
 #include "icl.h"
 
 
-namespace icL::driver::icl {
+namespace old::driver::icl {
 
 class Cpp : Icl
 {
@@ -12,6 +12,6 @@ public:
 	Cpp();
 };
 
-}  // namespace icL::driver::icl
+}  // namespace old::driver::icl
 
 #endif  // icL_driver_icl_Cpp

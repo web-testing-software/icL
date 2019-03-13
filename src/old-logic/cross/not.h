@@ -4,7 +4,7 @@
 #include "../main/cross.h"
 
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 /**
  * @deprecated
@@ -21,6 +21,6 @@ public:
 	void resetResultValue() override;
 };
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross
 
 #endif  // icL_logic_cross_Not

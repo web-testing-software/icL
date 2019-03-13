@@ -2,7 +2,7 @@
 
 #include <icl-context/base/object/value.h>
 
-namespace icL::context::complex {
+namespace old::context::complex {
 
 Log::Log(memory::InterLevel * il)
     : Complex(il) {}
@@ -66,4 +66,4 @@ Context * Log::runMethod(const QString & name, memory::ArgList & args) {
 	return newContext;
 }
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex

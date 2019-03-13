@@ -5,7 +5,7 @@
 
 
 
-namespace icL::app {
+namespace old::app {
 
 /**
  * \~english
@@ -56,6 +56,6 @@ public slots:
 	void setUrl(const QString & url);
 };
 
-}  // namespace icL::app
+}  // namespace old::app
 
 #endif  // icL_app_DialDescription

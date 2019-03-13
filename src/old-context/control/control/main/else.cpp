@@ -1,6 +1,6 @@
 #include "else.h"
 
-namespace icL::context::code::control {
+namespace old::context::code::control {
 
 Else::Else(memory::InterLevel * il)
     : Control(il, memory::CodeFragment()) {
@@ -30,4 +30,4 @@ Context * Else::getEndContext() {
 	return getLast();
 }
 
-}  // namespace icL::context::code::control
+}  // namespace old::context::code::control

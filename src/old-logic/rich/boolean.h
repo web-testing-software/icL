@@ -4,7 +4,7 @@
 #include "../main/rich.h"
 
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 /**
  * @deprecated
@@ -25,6 +25,6 @@ protected:
 	//	bool varNameToBoolean (const QString &varname);
 };
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich
 
 #endif  // icL_logic_rich_Boolean

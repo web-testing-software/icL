@@ -10,7 +10,7 @@
 #include <QHash>
 #include <QStringBuilder>
 
-namespace icL::context::value {
+namespace old::context::value {
 
 Set::Set(
   memory::InterLevel * il, memory::DataState * container,
@@ -585,4 +585,4 @@ const QStringList Set::toList() {
 	return {};
 }
 
-}  // namespace icL::context::value
+}  // namespace old::context::value

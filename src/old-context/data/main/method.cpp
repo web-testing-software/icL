@@ -3,7 +3,7 @@
 #include <icl-context/base/object/value.h>
 
 
-namespace icL::context::data {
+namespace old::context::data {
 
 Method::Method(memory::InterLevel * il, const QString & name)
     : Data(il)
@@ -69,4 +69,4 @@ bool Method::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::data
+}  // namespace old::context::data

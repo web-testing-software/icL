@@ -5,7 +5,7 @@
 #include <icl-context/base/object/value.h>
 #include <icl-memory/structures/webelement.h>
 
-namespace icL::context::code::control::catch0 {
+namespace old::context::code::control::catch0 {
 
 
 Exists::Exists(
@@ -98,4 +98,4 @@ bool Exists::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::code::control::catch0
+}  // namespace old::context::code::control::catch0

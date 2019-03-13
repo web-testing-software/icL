@@ -26,7 +26,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::inter {
+namespace old::inter {
 
 class Interpreter
     : public memory::Node
@@ -75,6 +75,6 @@ private:
 	Flayer flayer;
 };
 
-}  // namespace icL::inter
+}  // namespace old::inter
 
 #endif  // icL_inter_Interpreter

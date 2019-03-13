@@ -4,7 +4,7 @@
 #include "icl.h"
 
 
-namespace icL::driver::icl {
+namespace old::driver::icl {
 
 class Qml : public Icl
 {
@@ -12,6 +12,6 @@ public:
 	Qml();
 };
 
-}  // namespace icL::driver::icl
+}  // namespace old::driver::icl
 
 #endif  // icL_driver_icl_Qml

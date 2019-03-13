@@ -5,7 +5,7 @@
 
 
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 class File : public Js
 {
@@ -29,6 +29,6 @@ public:
 	Context * getEndContext() override;
 };
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js
 
 #endif  // icL_context_data_js_File

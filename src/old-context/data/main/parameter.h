@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::data {
+namespace old::context::data {
 
 class Parameter : public Data
 {
@@ -39,6 +39,6 @@ public:
 	bool checkPrev(const Context * context) const override;
 };
 
-}  // namespace icL::context::data
+}  // namespace old::context::data
 
 #endif  // icL_context_data_Parameter

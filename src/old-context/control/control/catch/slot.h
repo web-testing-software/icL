@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::code::control::catch0 {
+namespace old::context::code::control::catch0 {
 
 class Slot : public Catch
 {
@@ -43,6 +43,6 @@ public:
 	Context * getEndContext() override;
 };
 
-}  // namespace icL::context::code::control::catch0
+}  // namespace old::context::code::control::catch0
 
 #endif  // icL_context_code_control_catch_Slot

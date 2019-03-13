@@ -10,7 +10,7 @@
 
 #include <QDebug>
 
-namespace icL::context::code::control {
+namespace old::context::code::control {
 
 
 If::If(
@@ -396,4 +396,4 @@ Context * If::getEndContext() {
 	return getLast();
 }
 
-}  // namespace icL::context::code::control
+}  // namespace old::context::code::control

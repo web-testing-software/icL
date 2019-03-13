@@ -8,7 +8,7 @@
 
 #include <QObject>
 
-namespace icL::logic {
+namespace old::logic {
 
 // Specially for debug mode
 enum class ResultValue {
@@ -52,7 +52,7 @@ protected:
 
 
 protected:
-	icL::memory::Memory * m_memory;
+	old::memory::Memory * m_memory;
 
 	ResultValue resultValue = ResultValue::NOT_CALCULATED;
 	bool        ready1 = false, ready2 = false;
@@ -62,6 +62,6 @@ private:
 	Logic * m_parent = nullptr;
 };
 
-}  // namespace icL::logic
+}  // namespace old::logic
 
 #endif  // icL_logic_Logic

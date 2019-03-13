@@ -4,7 +4,7 @@
 #include "value.h"
 
 
-namespace icL::context::value {
+namespace old::context::value {
 
 /**
  * \~english @brief The Void class is an empty container or a new variable.
@@ -54,6 +54,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 #endif  // icl_context_value_Void

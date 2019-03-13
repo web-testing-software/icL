@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::inter {
+namespace old::inter {
 
 /**
  * @brief The Flayer class - flayer is a flying cursor.
@@ -80,6 +80,6 @@ private:
 	const QString * source;
 };
 
-}  // namespace icL::inter
+}  // namespace old::inter
 
 #endif  // icL_inter_Flayer

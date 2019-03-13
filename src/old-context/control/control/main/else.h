@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::code::control {
+namespace old::context::code::control {
 
 class Else : public Control
 {
@@ -38,6 +38,6 @@ public:
 	Context * getEndContext() override;
 };
 
-}  // namespace icL::context::code::control
+}  // namespace old::context::code::control
 
 #endif  // icL_context_code_control_Else

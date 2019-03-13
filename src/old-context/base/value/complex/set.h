@@ -7,7 +7,7 @@
 
 
 
-namespace icL::context::value {
+namespace old::context::value {
 
 class Set : public Value
 {
@@ -87,7 +87,7 @@ public:
 };
 
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 
 #endif  // icl_context_value_Set

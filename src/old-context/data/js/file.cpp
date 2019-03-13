@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QTextStream>
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 File::File(memory::InterLevel * il)
     : Js(il) {
@@ -75,4 +75,4 @@ Context * File::getEndContext() {
 }
 
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js

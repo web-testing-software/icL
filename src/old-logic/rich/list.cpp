@@ -2,7 +2,7 @@
 
 #include "icl-memory/state/datastate.h"
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 ListBlock::ListBlock(memory::InterLevel * il, OperationType otype)
     : Rich(il, otype) {
@@ -101,4 +101,4 @@ bool ListBlock::containsFragment(
 	return ret;
 }
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich

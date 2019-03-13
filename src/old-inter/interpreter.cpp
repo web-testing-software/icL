@@ -27,7 +27,7 @@
 
 #include <utility>
 
-namespace icL::inter {
+namespace old::inter {
 
 Interpreter::Interpreter(memory::InterLevel * il)
     : memory::Node(il)
@@ -449,4 +449,4 @@ void Interpreter::highlightError(int p1, int p2) {
 
 
 
-}  // namespace icL::inter
+}  // namespace old::inter

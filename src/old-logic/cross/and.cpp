@@ -1,6 +1,6 @@
 #include "and.h"
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 And::And(memory::InterLevel * il)
     : Cross(il){};
@@ -17,4 +17,4 @@ bool And::canResultPreliminarily() {
 	return value1 == false;
 }
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross

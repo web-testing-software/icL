@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::code {
+namespace old::context::code {
 
 class ForAny : public Code
 {
@@ -41,6 +41,6 @@ public:
 	bool isResultative() const override;
 };
 
-}  // namespace icL::context::code
+}  // namespace old::context::code
 
 #endif  // icL_context_code_ForAny

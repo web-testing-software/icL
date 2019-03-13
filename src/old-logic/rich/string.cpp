@@ -1,6 +1,6 @@
 #include "string.h"
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 String::String(memory::InterLevel * il, OperationType otype)
     : Rich(il, otype) {
@@ -43,4 +43,4 @@ bool String::calcResult() {
 	return result;
 }
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich

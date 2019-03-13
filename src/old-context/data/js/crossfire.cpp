@@ -1,7 +1,7 @@
 #include "crossfire.h"
 
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 Crossfire::Crossfire(memory::InterLevel * il)
     : File(il) {}
@@ -25,4 +25,4 @@ memory::StepType::Value Crossfire::execute() {
 	return memory::StepType::MiniStep;
 }
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js

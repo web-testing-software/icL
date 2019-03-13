@@ -7,7 +7,7 @@
 
 
 
-namespace icL::app {
+namespace old::app {
 
 /**
  * \~english
@@ -77,6 +77,6 @@ private:
 	QRegExp site_exp = QRegExp(R"(https?://((\w+\.)+\w+)/?.*)");
 };
 
-}  // namespace icL::app
+}  // namespace old::app
 
 #endif  // icL_app_Database

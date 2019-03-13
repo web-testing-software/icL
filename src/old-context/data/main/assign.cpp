@@ -9,7 +9,7 @@
 #include <icl-context/base/object/value.h>
 
 
-namespace icL::context::data {
+namespace old::context::data {
 
 Assign::Assign(memory::InterLevel * il)
     : Data(il) {
@@ -122,4 +122,4 @@ Context * Assign::getEndContext() {
 	return m_next;
 }
 
-}  // namespace icL::context::data
+}  // namespace old::context::data

@@ -5,7 +5,7 @@
 
 
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 class Var : public Value
 {
@@ -20,6 +20,6 @@ public:
 	memory::StepType::Value execute() override;
 };
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js
 
 #endif  // icL_context_data_js_Var

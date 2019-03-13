@@ -1,6 +1,6 @@
 #include "flayer.h"
 
-namespace icL::inter {
+namespace old::inter {
 
 
 Flayer::Flayer(memory::InterLevel * il)
@@ -434,4 +434,4 @@ void Flayer::sendWrongBrackerPair(QString & brackets, const QChar & ch) {
 	brackets.clear();
 }
 
-}  // namespace icL::inter
+}  // namespace old::inter

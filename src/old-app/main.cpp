@@ -34,19 +34,19 @@
 
 int main(int argc, char * argv[]) {
 	QGuiApplication    a(argc, argv);
-	icL::app::Helper   helper;
-	icL::app::DataBase database;
+	old::app::Helper   helper;
+	old::app::DataBase database;
 
 	QtWebEngine::initialize();
 
-	qmlRegisterType<icL::app::DialDescription>(
+	qmlRegisterType<old::app::DialDescription>(
 	  "icL.DB", 1, 0, "DialDescription");
 
-	qmlRegisterType<icL::Server>("icL.VM", 1, 0, "Server");
-	qmlRegisterType<icL::VMStack>("icL.VM", 1, 0, "VMStack");
+	qmlRegisterType<old::Server>("icL.VM", 1, 0, "Server");
+	qmlRegisterType<old::VMStack>("icL.VM", 1, 0, "VMStack");
 
 	qmlRegisterUncreatableMetaObject(
-	  icL::memory::StepType::staticMetaObject,  // static meta object
+	  old::memory::StepType::staticMetaObject,  // static meta object
 	  "icL.Enums",  // import statement (can be any string)
 	  1, 0,         // major and minor version of the import
 	  "StepType",   // name in QML (does not have to match C++ name)

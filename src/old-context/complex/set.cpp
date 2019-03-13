@@ -1,6 +1,6 @@
 #include "set.h"
 
-namespace icL::context::complex {
+namespace old::context::complex {
 
 Set::Set() {}
 
@@ -38,4 +38,4 @@ bool Set::canBeAtEnd() const {}
 
 Context * Set::runMethod(const QString & name, memory::ArgList & args) {}
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex

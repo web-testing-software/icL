@@ -1,6 +1,6 @@
 #include "not.h"
 
-namespace icL::logic::cross {
+namespace old::logic::cross {
 
 Not::Not(memory::InterLevel * il)
     : Cross(il){};
@@ -36,4 +36,4 @@ void Not::resetResultValue() {
 	block2->resetResultValue();
 }
 
-}  // namespace icL::logic::cross
+}  // namespace old::logic::cross

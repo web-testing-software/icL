@@ -5,7 +5,7 @@
 
 
 
-namespace icL::driver::w3c {
+namespace old::driver::w3c {
 
 class Chrome : public W3c
 {
@@ -13,6 +13,6 @@ public:
 	Chrome();
 };
 
-}  // namespace icL::driver::w3c
+}  // namespace old::driver::w3c
 
 #endif  // icL_driver_w3c_Chrome

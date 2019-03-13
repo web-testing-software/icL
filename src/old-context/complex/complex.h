@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::complex {
+namespace old::context::complex {
 
 class Complex : public Context
 {
@@ -32,6 +32,6 @@ public:
 	bool isComplex() const override;
 };
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex
 
 #endif  // icL_context_complex_Complex

@@ -1,7 +1,7 @@
 #include "cpp.h"
 
-namespace icL::driver::icl {
+namespace old::driver::icl {
 
 Cpp::Cpp() {}
 
-}  // namespace icL::driver::icl
+}  // namespace old::driver::icl

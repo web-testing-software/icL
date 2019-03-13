@@ -4,7 +4,7 @@
 
 #include <QDebug>
 
-namespace icL::context::code {
+namespace old::context::code {
 
 ForAny::ForAny(memory::InterLevel * il, const memory::CodeFragment & source)
     : Code(il, source) {
@@ -63,4 +63,4 @@ bool ForAny::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::code
+}  // namespace old::context::code

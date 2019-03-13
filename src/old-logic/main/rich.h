@@ -10,7 +10,7 @@
 #include <QVariant>
 
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 /**
  * @deprecated
@@ -68,6 +68,6 @@ public:
 	bool calcResult() override;
 };
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich
 
 #endif  // icL_logic_rich_Rich

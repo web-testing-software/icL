@@ -22,7 +22,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::code {
+namespace old::context::code {
 
 class Code : public Context
 {
@@ -49,6 +49,6 @@ public:
 	Context * getEndContext() override;
 };
 
-}  // namespace icL::context::code
+}  // namespace old::context::code
 
 #endif  // icL_context_code_Code

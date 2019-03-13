@@ -3,7 +3,7 @@
 #include <icl-context/base/object/bool.h>
 #include <icl-context/base/object/value.h>
 
-namespace icL::context::complex {
+namespace old::context::complex {
 
 Tab::Tab(memory::InterLevel * il)
     : Complex(il) {}
@@ -43,4 +43,4 @@ Context * Tab::runMethod(const QString & name, memory::ArgList & args) {
 	return newContext;
 }
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex

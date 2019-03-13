@@ -5,7 +5,7 @@
 #include <icl-memory/interlevel/node.h>
 
 
-namespace icL::driver::icl {
+namespace old::driver::icl {
 
 class Icl
     : public memory::Node
@@ -164,6 +164,6 @@ public:
 	QList<memory::Tab> allTabs() override;
 };
 
-}  // namespace icL::driver::icl
+}  // namespace old::driver::icl
 
 #endif  // icL_driver_icl_Icl

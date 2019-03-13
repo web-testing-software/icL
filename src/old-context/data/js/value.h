@@ -5,7 +5,7 @@
 
 
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 class Value : public Js
 {
@@ -22,6 +22,6 @@ public:
 	bool      isResultative() const override;
 };
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js
 
 #endif  // icL_context_data_js_Value

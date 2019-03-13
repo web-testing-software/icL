@@ -1,6 +1,6 @@
 #include "parameter.h"
 
-namespace icL::context::data {
+namespace old::context::data {
 
 Parameter::Parameter(
   memory::InterLevel * il, const QString & name, memory::Type type)
@@ -27,4 +27,4 @@ bool Parameter::checkPrev(const Context * context) const {
 	         context->prev()->role() == Role::Function));
 }
 
-}  // namespace icL::context::data
+}  // namespace old::context::data

@@ -1,6 +1,6 @@
 #include "property.h"
 
-namespace icL::context::data {
+namespace old::context::data {
 
 Property::Property(memory::InterLevel * il, Prefix prefix, const QString & name)
     : Data(il)
@@ -42,4 +42,4 @@ bool Property::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::data
+}  // namespace old::context::data

@@ -1,6 +1,6 @@
 #include "bool.h"
 
-namespace icL::context::value {
+namespace old::context::value {
 
 
 
@@ -52,4 +52,4 @@ const QStringList Bool::toList() {
 	return newValue.toStringList();
 }
 
-}  // namespace icL::context::value
+}  // namespace old::context::value

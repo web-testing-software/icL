@@ -1,6 +1,6 @@
 #include "Bool.h"
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 Bool::Bool(memory::InterLevel * il, OperationType otype)
     : Rich(il, otype) {
@@ -42,4 +42,4 @@ bool Bool::calcResult() {
 	return result;
 }
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich

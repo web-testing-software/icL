@@ -20,7 +20,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::complex {
+namespace old::context::complex {
 
 class Log : public Complex
 {
@@ -46,6 +46,6 @@ public:
 	Context * runMethod(const QString & name, memory::ArgList & args) override;
 };
 
-}  // namespace icL::context::complex
+}  // namespace old::context::complex
 
 #endif  // icL_context_complex_Log

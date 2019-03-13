@@ -15,7 +15,7 @@ class QQuickTextDocument;
  * Пространство имён app содержит все классы, которые нужны для разработки
  * приложении и баз данных.
  */
-namespace icL::app {
+namespace old::app {
 
 /**
  * \~english @brief The Helper class export some C++ only Qt functionallity to
@@ -133,6 +133,6 @@ private:
 	QString m_data_dir;
 };
 
-}  // namespace icL::app
+}  // namespace old::app
 
 #endif  // icL_app_Helper

@@ -22,7 +22,7 @@
  *  |  '- rich
  *  '- memory
  */
-namespace icL::context::data {
+namespace old::context::data {
 
 class Function : public Context
 {
@@ -56,6 +56,6 @@ public:
 	bool isResultative() const override;
 };
 
-}  // namespace icL::context::data
+}  // namespace old::context::data
 
 #endif  // icL_context_data_Function

@@ -4,7 +4,7 @@
 #include "file.h"
 
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 class Crossfire : public File
 {
@@ -16,6 +16,6 @@ public:
 	memory::StepType::Value execute() override;
 };
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js
 
 #endif  // icL_context_data_js_Crossfire

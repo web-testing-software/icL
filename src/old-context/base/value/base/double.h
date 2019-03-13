@@ -4,7 +4,7 @@
 #include "value.h"
 
 
-namespace icL::context::value {
+namespace old::context::value {
 
 /**
  * \~english @brief The Double class contains a double value or reference.
@@ -69,6 +69,6 @@ public:
 	const QStringList toList() override;
 };
 
-}  // namespace icL::context::value
+}  // namespace old::context::value
 
 #endif  // icl_context_value_Double

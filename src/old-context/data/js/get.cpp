@@ -2,7 +2,7 @@
 
 #include <icl-context/base/object/void.h>
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 Get::Get(memory::InterLevel * il)
     : Value(il) {}
@@ -29,4 +29,4 @@ memory::StepType::Value Get::execute() {
 	return memory::StepType::MiniStep;
 }
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js

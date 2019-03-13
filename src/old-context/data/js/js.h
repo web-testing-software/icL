@@ -5,7 +5,7 @@
 
 
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 class Js : public Context
 {
@@ -18,6 +18,6 @@ public:
 	bool isExecutable() const override;
 };
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js
 
 #endif  // icL_context_data_js_Js

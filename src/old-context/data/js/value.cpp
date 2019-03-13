@@ -3,7 +3,7 @@
 #include <icl-context/base/object/value.h>
 #include <icl-context/control/main/code.h>
 
-namespace icL::context::data::js {
+namespace old::context::data::js {
 
 Value::Value(memory::InterLevel * il)
     : Js(il) {
@@ -45,4 +45,4 @@ bool Value::isResultative() const {
 	return true;
 }
 
-}  // namespace icL::context::data::js
+}  // namespace old::context::data::js

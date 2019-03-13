@@ -3,7 +3,7 @@
 
 #include "../main/rich.h"
 
-namespace icL::logic::rich {
+namespace old::logic::rich {
 
 
 /**
@@ -26,6 +26,6 @@ public:
 	bool canResultPreliminarily() override;
 };
 
-}  // namespace icL::logic::rich
+}  // namespace old::logic::rich
 
 #endif  // icL_logic_rich_Single
