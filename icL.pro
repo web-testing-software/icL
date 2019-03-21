@@ -10,6 +10,7 @@ SUBDIRS = \
         memory \
         vm \
         ce \
+        service \
         cp \
         look \
         toolkit \
@@ -26,6 +27,7 @@ SUBDIRS = \
 memory.subdir   = src/icL-memory
 vm.subdir       = src/icL-vm
 ce.subdir       = src/icL-ce
+service.subdir  = src/icL-service
 cp.subdir       = src/icL-cp
 il.subdir       = src/icL-il
 sv.subdir       = src/icL-sv
