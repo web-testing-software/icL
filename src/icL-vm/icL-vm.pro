@@ -14,12 +14,14 @@ HEADERS += \
     server.h \
     virtualmachine.h \
     vmstack.h \
-    errors.h
+    errors.h \
+    mock.h
 
 SOURCES += \
     server.cpp \
     virtualmachine.cpp \
-    vmstack.cpp
+    vmstack.cpp \
+    mock.cpp
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
