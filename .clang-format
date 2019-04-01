@@ -54,18 +54,22 @@ FixNamespaceComments: true
 IncludeBlocks: Regroup
 
 IncludeCategories:
-  - Regex:           '^<Q'
-    Priority:        6
-  - Regex:           '^<context'
-    Priority:        4
-  - Regex:           '^<icl'
-    Priority:        3
-  - Regex:           '^<.*\.h>$'
-    Priority:        2
   - Regex:           '^".*\.h"$'
     Priority:        1
-  - Regex:           '.*'
+  - Regex:           '^<icL-il/'
+    Priority:        2
+  - Regex:           '^<icL-service/'
+    Priority:        3
+  - Regex:           '^<icL-ce/'
+    Priority:        4
+  - Regex:           '^<icL-nm/'
     Priority:        5
+  - Regex:           '^<icL-'
+    Priority:        6
+  - Regex:           '^<Q'
+    Priority:        9
+  - Regex:           '.*'
+    Priority:        8
 
 IndentCaseLabels: false
 IndentWrappedFunctionNames: false
