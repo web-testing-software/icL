@@ -1,5 +1,6 @@
 .directory
 *.pro.user
+*.pro.user.*
 *.kate-swp
 *.autosave
 *.aux
