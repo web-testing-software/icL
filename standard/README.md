@@ -32,32 +32,34 @@ __14.01.2019__
 
 * [?] Add literal for date [:date]
 * [?] Add literal for date [::date ::format]
-* [?] set.remove (obj : object) : set, add exception IncompatibleData
-* [?] set.insertField (name : string, value : list, type = string), fix default
+* [!] set.remove (obj : object) : set, add exception IncompatibleData
+* [!] set.insertField (name : string, value : list, type = string), fix default
   argument name and add return type
-* [?] add string.toLowerCase and string.toUpperCase
-* [?] Add the next methods and properties
-  * [?] Alert'session : session
-  * [?] Cookies.new () : cookie
-  * [?] doc'tab : tab
-  * [?] element'doc : doc
-  * [?] cookie'cookies : Cookies
-  * [?] cookies'tab : tab
-  * [?] session'alert : Alert
-  * [?] session'tabs : Tabs
-  * [?] session'windows : Windows
-  * [?] Sessions'current : session
-  * [?] tab'cookies : Cookies
-  * [?] tab'doc : Doc
-  * [?] tab'window : window
-  * [?] tab'tabs : Tabs
-  * [?] Tabs'session : session
-  * [?] Tabs.get (i : int) : tab
-  * [?] window'tab : tab
-  * [?] window'windows : Windows
-  * [?] Windows'session : session
-* [?] Remove window.switchToDefault
-* [?] Remove State'first, State'prev, State'next and State'last
-* [?] Add double ** int operator
-* [?] Fix switch-case syntax
-* [?] Add literals input[name] and button[template]
+* [!] add string.toLowerCase and string.toUpperCase
+* [!] Add the next methods and properties
+  * [!] Alert'session : session
+  * [!] Cookies.new () : cookie
+  * [!] doc'tab : tab
+  * [!] element'doc : doc
+  * [!] cookie'cookies : Cookies
+  * [!] cookies'tab : tab
+  * [!] session'alert : Alert
+  * [!] session'tabs : Tabs
+  * [!] session'windows : Windows
+  * [!] Sessions'current : session
+  * [!] tab'cookies : Cookies
+  * [!] tab'doc : Doc
+  * [!] tab'window : window
+  * [!] tab'tabs : Tabs
+  * [!] Tabs'session : session
+  * [!] Tabs.get (i : int) : tab
+  * [!] window'tab : tab
+  * [!] window'windows : Windows
+  * [!] Windows'session : session
+* [!] Remove window.switchToDefault
+* [!] Remove State'first, State'prev, State'next and State'last
+* [!] Add double ** int operator
+* [!] Fix switch-case syntax
+* [!] Add literals input[name] and button[template]
+
+All accpted changes will be present in version 1.2
