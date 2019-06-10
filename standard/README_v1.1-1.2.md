@@ -35,7 +35,7 @@ __14.01.2019__
 * [+] set.remove (obj : object) : set, add exception IncompatibleData
 * [+] set.insertField (name : string, value : list, type = string), fix default
   argument name and add return type
-* [!] add string.toLowerCase and string.toUpperCase
+* [+] add string.toLowerCase and string.toUpperCase
 * [!] Add the next methods and properties
   * [!] Alert'session : session
   * [!] Cookies.new () : cookie

@@ -53,55 +53,58 @@ Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 Șirurile dețin următoarele metode adiționale:
 \begin{icItems}
-	\item
-	\mintinline{icl}{string.append (str : string) : string};
-	\item
-	\mintinline{icl}{string.at (i : int) : string};
-	\item
-	\mintinline{icl}{string.beginsWith (str : string) : bool};
-	\item
-	\mintinline{icl}{string.compare (str : string, caseSensitive = true) : bool};
-	\item
-	\mintinline{icl}{string.count (str : string) : int};
-	\item
-	\mintinline{icl}{string.endsWith (str : string) : bool};
-	\item
-	\mintinline{icl}{string.indexOf (str : string, startPos = 0) : int};
-	\item
-	\mintinline{icl}{string.insert (str : string, pos : int) : string};
+	% append
+	\item \mintinline{icl}{string.append (str : string) : string};
+	% at
+	\item \mintinline{icl}{string.at (i : int) : string};
+	% beginsWith
+	\item \mintinline{icl}{string.beginsWith (str : string) : bool};
+	% compare
+	\item \mintinline{icl}{string.compare (str : string, caseSensitive = true) : bool};
+	% count
+	\item \mintinline{icl}{string.count (str : string) : int};
+	% endsWith
+	\item \mintinline{icl}{string.endsWith (str : string) : bool};
+	% indexOf
+	\item \mintinline{icl}{string.indexOf (str : string, startPos = 0) : int};
+	% insert
+	\item \mintinline{icl}{string.insert (str : string, pos : int) : string};
+	% lastIndexOF
 	\item
 	\mintinline{icl}{string.lastIndexOf (str : string, startPos = -1) : int};
-	\item
-	\mintinline{icl}{string.left (n : int) : string};
-	\item
-	\mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\*\mintinline{icl}{string};
-	\item
-	\mintinline{icl}{string.mid (pos : int, n = -1) : string};
-	\item
-	\mintinline{icl}{string.prepend (str : string) : string};
-	\item
-	\mintinline{icl}{string.remove (pos : int, n : int) : string};
-	\item
-	\mintinline{icl}{string.remove (str : string, caseSensitive = true) : string};
-	\item
-	\mintinline{icl}{string.replace (pos : int, n : int, after : string) : string};
-	\item
-	\mintinline{icl}{string.replace (before : string, after : string) : string};
-	\item
-	\mintinline{icl}{string.right (n : int) : string};
-	\item
-	\mintinline{icl}{string.rightJustified (width : int, fillChar : string, truncate = false) :}\\* \mintinline{icl}{string};
-	\item
-	\mintinline{icl}{string.split (separator : string, keepEmptyParts = true, caseSensitive = true) } \mintinline{icl}{: list};
-	\item
-	\mintinline{icl}{string.substring (begin : int, end : int) : string};
-	\item
-	\mintinline{icl}{string.trim (justWhitespace = true) : string}.
+	% left
+	\item \mintinline{icl}{string.left (n : int) : string};
+	% leftJustified
+	\item \mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\*\mintinline{icl}{string};
+	% mid
+	\item \mintinline{icl}{string.mid (pos : int, n = -1) : string};
+	% prepend
+	\item \mintinline{icl}{string.prepend (str : string) : string};
+	% remove
+	\item \mintinline{icl}{string.remove (pos : int, n : int) : string};
+	% remove
+	\item \mintinline{icl}{string.remove (str : string, caseSensitive = true) : string};
+	% replace
+	\item \mintinline{icl}{string.replace (pos : int, n : int, after : string) : string};
+	% replace
+	\item \mintinline{icl}{string.replace (before : string, after : string) : string};
+	% right
+	\item \mintinline{icl}{string.right (n : int) : string};
+	% rightJustified
+	\item \mintinline{icl}{string.rightJustified (width : int, fillChar : string, truncate = false) :}\\* \mintinline{icl}{string};
+	% split
+	\item \mintinline{icl}{string.split (separator : string, keepEmptyParts = true, caseSensitive = true) } \mintinline{icl}{: list};
+	% substring
+	\item \mintinline{icl}{string.substring (begin : int, end : int) : string};
+	% toLowerCase
+	\item \mintinline{icl}{string.toLowerCase () : string}
+	% toUpperCase
+	\item \mintinline{icl}{string.toUpperCase () : string}
+	% trim
+	\item \mintinline{icl}{string.trim (justWhitespace = true) : string}.
 \end{icItems}
 
 Unele metode sunt ignorate, ele vor fi enumerate în capitolul \ref{regex}; Exemplu de cod, care folosește metodele enumerate este prezent pe foaia \ref{stringmethods}.
-
-\
 
 \begin{sourcecode}
     \captionof{listing}{Metodele clasei string}
@@ -194,6 +197,14 @@ Returnează șir cu lungimea \mintinline{icl}{width}, care conține acest șir, 
 \subsubsection{\mintinline{icl}{string.substring (begin : int, end : int) : string}}
 
 Returnează șir, care conține caracterele din intervalul [\mintinline{icl}{begin}; \mintinline{icl}{end}].
+
+\subsubsection{\mintinline{icl}{string.toLowerCase () : string}}
+
+Returnează un nou șir, care conține aceleași caractere înlocuite cu minuscule.
+
+\subsubsection{\mintinline{icl}{string.toUpperCase () : string}}
+
+Returnează un nou șir, care conține aceleași caractere înlocuite cu majuscule.
 
 \subsubsection{\mintinline{icl}{string.trim (justWhitespace = true) : string}}
 
