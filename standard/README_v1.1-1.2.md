@@ -38,7 +38,7 @@ __14.01.2019__
 * [+] add string.toLowerCase and string.toUpperCase
 * [!] Add the next methods and properties
   * [+] Alert'session : session
-  * [!] Cookies.new () : cookie
+  * [+] Cookies.new () : cookie
   * [!] doc'tab : tab
   * [!] element'doc : doc
   * [!] cookie'cookies : Cookies

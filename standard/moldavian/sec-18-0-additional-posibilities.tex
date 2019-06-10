@@ -286,8 +286,12 @@ Obiectul \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'
 
 Și următoarele metode: 
 \begin{icItems}
+	% deleteAll
 	\item \mintinline{icl}{Cookies.deleteAll () : void};
-	\item \mintinline{icl}{Cookies.get (name : string) : Cookie}.
+	% get
+	\item \mintinline{icl}{Cookies.get (name : string) : cookie}.
+	% new
+	\item \mintinline{icl}{Cookies.new () : cookie}
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}}
@@ -300,11 +304,15 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCo
 
 Șterge toate fișierele cookie.
 
-\subsubsection{\mintinline{icl}{Cookies.get (name : string) : Cookie}}
+\subsubsection{\mintinline{icl}{Cookies.get (name : string) : cookie}}
 
 Returnează \cookie{} cu numele \mintinline{icl}{name}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{Cookies.new () : cookie}}
+
+Returnează un fișier cookie nou.
 
 \subsection{{\color{orange} Cookie}}
 
