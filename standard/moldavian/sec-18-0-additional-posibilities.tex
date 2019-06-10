@@ -282,7 +282,13 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{er
 
 \subsection{{\color{orange} cookies}}
 
-Tipul de date \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
+Tipul de date \cookies{} are următoarele proprietăți:
+\begin{icItems}
+	% tab
+	\item \mintinline{icl}{[r/o] cookies'tab : tab};
+	% (name)
+	\item \mintinline{icl}{[r/o] cookies'(name : string) : cookie}.
+\end{icItems}
 
 Și următoarele metode: 
 \begin{icItems}
@@ -294,7 +300,11 @@ Tipul de date \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Coo
 	\item \mintinline{icl}{cookies.new () : cookie}
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{[r/o] cookies'(name : string) : Cookie}}
+\subsubsection{\mintinline{icl}{[r/o] cookies'tab : tab}}
+
+Returnează tabul containerului de cookie.
+
+\subsubsection{\mintinline{icl}{[r/o] cookies'(name : string) : cookie}}
 
 Returnează \cookie{} cu numele \mintinline{icl}{name}.
 
