@@ -41,7 +41,7 @@ __14.01.2019__
   * [+] Cookies.new () : cookie
   * [+] doc'tab : tab
   * [+] element'doc : doc
-  * [!] cookie'cookies : Cookies
+  * [+] cookie'cookies : Cookies
   * [!] cookies'tab : tab
   * [!] session'alert : Alert
   * [!] session'tabs : Tabs

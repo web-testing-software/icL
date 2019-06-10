@@ -1,4 +1,4 @@
-for any Cookie {
+for any (cookies.new()) {
     @'name = "age";
     @'domain = "example.org";
     @'value = 23 : string;

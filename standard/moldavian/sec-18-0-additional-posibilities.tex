@@ -280,111 +280,116 @@ Schimbă focusul la frame-ul ascensor.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} Cookies}}
+\subsection{{\color{orange} cookies}}
 
-Obiectul \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
+Tipul de date \cookies{} are următoarea proprietate: \mintinline{icl}{[r/o] Cookies'(name : string) :} \\*\mintinline{icl}{Cookie}.
 
 Și următoarele metode: 
 \begin{icItems}
 	% deleteAll
-	\item \mintinline{icl}{Cookies.deleteAll () : void};
+	\item \mintinline{icl}{cookies.deleteAll () : void};
 	% get
-	\item \mintinline{icl}{Cookies.get (name : string) : cookie}.
+	\item \mintinline{icl}{cookies.get (name : string) : cookie}.
 	% new
-	\item \mintinline{icl}{Cookies.new () : cookie}
+	\item \mintinline{icl}{cookies.new () : cookie}
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{[r/o] Cookies'(name : string) : Cookie}}
+\subsubsection{\mintinline{icl}{[r/o] cookies'(name : string) : Cookie}}
 
 Returnează \cookie{} cu numele \mintinline{icl}{name}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Cookies.deleteAll : void}}
+\subsubsection{\mintinline{icl}{cookies.deleteAll : void}}
 
 Șterge toate fișierele cookie.
 
-\subsubsection{\mintinline{icl}{Cookies.get (name : string) : cookie}}
+\subsubsection{\mintinline{icl}{cookies.get (name : string) : cookie}}
 
 Returnează \cookie{} cu numele \mintinline{icl}{name}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Cookies.new () : cookie}}
+\subsubsection{\mintinline{icl}{cookies.new () : cookie}}
 
 Returnează un fișier cookie nou.
 
-\subsection{{\color{orange} Cookie}}
+\subsection{{\color{orange} cookie}}
 
 Obiectul \cookie{} are următoarele proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{[r/w] Cookie'domain : string};
-	\item \mintinline{icl}{[r/w] Cookie'expiry : int};
-	\item \mintinline{icl}{[r/w] Cookie'httpOnly : bool};
-	\item \mintinline{icl}{[r/w] Cookie'name : string};
-	\item \mintinline{icl}{[r/w] Cookie'path : string};
-	\item \mintinline{icl}{[r/w] Cookie'secure : bool};
-	\item \mintinline{icl}{[r/w] Cookie'value : string}.
+	\item \mintinline{icl}{[r/o] cookie'cookies : cookies};
+	\item \mintinline{icl}{[r/w] cookie'domain : string};
+	\item \mintinline{icl}{[r/w] cookie'expiry : int};
+	\item \mintinline{icl}{[r/w] cookie'httpOnly : bool};
+	\item \mintinline{icl}{[r/w] cookie'name : string};
+	\item \mintinline{icl}{[r/w] cookie'path : string};
+	\item \mintinline{icl}{[r/w] cookie'secure : bool};
+	\item \mintinline{icl}{[r/w] cookie'value : string}.
 \end{icItems}
 
 Și următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,}\\* \mintinline{icl}{seconds = 0) : Cookie};
-	\item \mintinline{icl}{Cookie.load () : Cookie};
-	\item \mintinline{icl}{Cookie.resetTime () : Cookie};
-	\item \mintinline{icl}{Cookie.save () : Cookie};
-	\item \mintinline{icl}{Cookie.delete () : void}.
+	\item \mintinline{icl}{cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0,}\\* \mintinline{icl}{seconds = 0) : Cookie};
+	\item \mintinline{icl}{cookie.load () : Cookie};
+	\item \mintinline{icl}{cookie.resetTime () : Cookie};
+	\item \mintinline{icl}{cookie.save () : Cookie};
+	\item \mintinline{icl}{cookie.delete () : void}.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'domain : string}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'cookies : cookies}}
+
+Returnează containerul fișierului cookie.
+
+\subsubsection{\mintinline{icl}{[r/w] cookie'domain : string}}
 
 Numele de domeniu, pe care \cookie{} este disponibil.
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'expiry : int}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'expiry : int}}
 
 Timpul de expirare al fișierului cookie. Implicit -1, indică că fișierul cookie va fi șters la sfîrșitul sesiei.
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'httpOnly : bool}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'httpOnly : bool}}
 
 Doar pentru protocolul HTTP. Implicit \false.
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'name : string}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'name : string}}
 
 Denumire, obligatorie pentru completare.
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'path : string}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'path : string}}
 
 Calea pe care fișierul cookie este diponibil, implicit \mintinline{icl}{"/"}.
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'secure : bool}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'secure : bool}}
 
 Securizat, implicit \false.
 
-\subsubsection{\mintinline{icl}{[r/w] Cookie'value : string}}
+\subsubsection{\mintinline{icl}{[r/w] cookie'value : string}}
 
 Valoarea fișierului cookie, obligatorie pentru completare.
 
-\subsubsection{\mintinline{icl}{Cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0}\\*\noindent\mintinline{icl}{seconds = 0) : Cookie}}
+\subsubsection{\mintinline{icl}{cookie.add (years : int, months : int, days : int, hours = 0, minutes = 0}\\*\noindent\mintinline{icl}{seconds = 0) : Cookie}}
 
 Adaugă la timpul de expirare numărul necesar de ani, luni, zile, ore, minute și secunde.
 
-\subsubsection{\mintinline{icl}{Cookie.load () : Cookie}}
+\subsubsection{\mintinline{icl}{cookie.load () : Cookie}}
 
 Încarcă datele despre \cookie{} din browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCookie} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Cookie.resetTime () : Cookie}}
+\subsubsection{\mintinline{icl}{cookie.resetTime () : Cookie}}
 
-Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să expire peste un an se folosește comanda următoare: \mintinline{icl}{Cookie.resetTime().add(1, 0, 0)}.
+Setează timpul de expirare la timpul curent. De exemplu pentru ca fișierul să expire peste un an se folosește comanda următoare: \mintinline{icl}{cookie.resetTime().add(1, 0, 0)}.
 
-\subsubsection{\mintinline{icl}{Cookie.save () : Cookie}}
+\subsubsection{\mintinline{icl}{cookie.save () : Cookie}}
 
 Transmite schimbările fișierului cookie în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnableToSetCookie}, \ferror{InvalidCookieDomain} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Cookie.delete () : void}}
+\subsubsection{\mintinline{icl}{cookie.delete () : void}}
 
 Șterge fișierul cookie din browser.
 
