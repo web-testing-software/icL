@@ -32,8 +32,8 @@ __14.01.2019__
 
 * [?] Add literal for date [:date]
 * [?] Add literal for date [::date ::format]
-* [!] set.remove (obj : object) : set, add exception IncompatibleData
 * [!] set.insertField (name : string, value : list, type = string), fix default
+* [+] set.remove (obj : object) : set, add exception IncompatibleData
   argument name and add return type
 * [!] add string.toLowerCase and string.toUpperCase
 * [!] Add the next methods and properties
