@@ -38,8 +38,8 @@ Mulțimile dețin următoarele metode:
 \item \mintinline{icl}{set.hasField (name : string) : bool};
 \item \mintinline{icl}{set.insert (data : any ...) : set};
 \item \mintinline{icl}{set.insert (obj : object) : set};
-\item \mintinline{icl}{set.insertField (name : string, value : list, type = list)};
-\item \mintinline{icl}{set.insertField (name : string, value : any, type = void)};
+\item \mintinline{icl}{set.insertField (name : string, value : list, type = string) : set};
+\item \mintinline{icl}{set.insertField (name : string, value : any, type = void) : set};
 \item \mintinline{icl}{set.remove (data : any ...) : set};
 \item \mintinline{icl}{set.remove (obj : object) : set};
 \item \mintinline{icl}{set.removeField (name : string) : set}.
@@ -89,13 +89,13 @@ Inserează un obiect nou, obiectul \mintinline{icl}{obj} trebuie numaidecît să
 
 Excepții posibile: \ferror{IncompatibleObject} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{set.inserField (name : string, value : list, type = list)}}
+\subsubsection{\mintinline{icl}{set.insertField (name : string, value : list, type = string) : set}}
 
 Creează un cîmp nou de tip \mintinline{icl}{type}. \mintinline{icl}{values} poate să fie o listă deșartă numai dacă mulțimea e vidă. Valorile din listă sunt repartizate ca și de metoda \mintinline{icl}{set.applicate}.
 
 Excepții posibile: \ferror{FieldAlreadyExists} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{set.insertField (name : string, value : any, type = void)}}
+\subsubsection{\mintinline{icl}{set.insertField (name : string, value : any, type = void) : set}}
 
 Creează un cîmp nou de tip \mintinline{icl}{type}. Dacă \mintinline{icl}{type == void} tipul va fi depistat automat, dar e mai bine de în indicat manual, poate exclude unele probleme în viitor.
 
