@@ -19,6 +19,7 @@ moldavian, engish and russian.
 * [!] JavaScript refactoring:
   * [!] `$value {..}` → `js:value{..}`
   * [!] `$run {..}` → `js{..}.run()`
+  * [!] `$run {..}` → `js{..}.run(doc)`
   * [!] `$file ".."` → `js:file[..].run()`
   * [!] `$user ".."` → `js:file[..].setAsUserScript()`
   * [!] `$always ".."` → `js:file[..].setAsPersistentUserScript()`
@@ -39,6 +40,7 @@ moldavian, engish and russian.
   * [!] `*'canGoBack`
   * [!] `*'canGoForward`
 * [!] Add:
+  * [!] `doc.run(code : js) : any`
   * [!] `element'attrs-*`
   * [!] `element'props-*`
   * [!] `element'rects`
