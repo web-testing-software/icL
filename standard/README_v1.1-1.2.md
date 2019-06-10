@@ -37,7 +37,7 @@ __14.01.2019__
   argument name and add return type
 * [+] add string.toLowerCase and string.toUpperCase
 * [!] Add the next methods and properties
-  * [!] Alert'session : session
+  * [+] Alert'session : session
   * [!] Cookies.new () : cookie
   * [!] doc'tab : tab
   * [!] element'doc : doc

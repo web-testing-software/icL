@@ -5,8 +5,6 @@
 
 {\bf Posibilitățile adiționale} sunt prezente în icL pentru acoperirea completă a standardului W3C WebDriver și pentru rezolvarea unor probleme care pot apărea la practică.
 
-Aceste posibilități nu trebuiesc numaidecît, se poate de se descurcat și fără ele. Pentru că la executarea scriptului automat se deschide o nouă sesie și un nou tab, iar la oprire sesia se închide automat.
-
 \subsection{{\color{orange} Sessions}}
 
 Obiectul \sessions{} are următoarele proprietăți:
@@ -397,34 +395,46 @@ Pe foaia \ref{newcookies}, este prezentată metoda corectă de a crea fișiere c
 
 \subsection{{\color{orange} Alert}}
 
-Obiectul \alert{} are următoarea proprietate: \mintinline{icl}{[r/o] Alert'text : string}.
+Comanda \mintinline{icl}{Alert} returnează o valoare te tip  \alert{}, care targetează alerta sesiunii curente.
+
+Obiectul \alert{} are următoarele proprietăți:
+\begin{icItems}
+	% session
+	\item \mintinline{icl}{[r/o] alert'session : session};
+	% text
+	\item \mintinline{icl}{[r/o] alert'text : string}.
+\end{icItems}
 
 Și următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{Alert.accept () : void};
-	\item \mintinline{icl}{Alert.dismiss () : void};
-	\item \mintinline{icl}{Alert.sendKeys (keys : string) : void}.
+	\item \mintinline{icl}{alert.accept () : void};
+	\item \mintinline{icl}{alert.dismiss () : void};
+	\item \mintinline{icl}{alert.sendKeys (keys : string) : void}.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{[r/o] Alert'text : string}}
+\subsubsection{\mintinline{icl}{[r/o] alert'session : string}}
+
+Returnează sesiunea în care este deschisa alerta.
+
+\subsubsection{\mintinline{icl}{[r/o] alert'text : string}}
 
 Returnează textul avertizării.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Alert.accept () : void}}
+\subsubsection{\mintinline{icl}{alert.accept () : void}}
 
 Acceptă avertizarea.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Alert.dismiss () : void}}
+\subsubsection{\mintinline{icl}{alert.dismiss () : void}}
 
 Refuză avertizarea.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Alert.sendKeys (keys : string) : void}}
+\subsubsection{\mintinline{icl}{alert.sendKeys (keys : string) : void}}
 
 Completează formularul cu textul \mintinline{icl}{keys} și confirmă inserarea.
 
