@@ -677,63 +677,71 @@ Trece la pagină, URL trebuie să fie absolut. În caz de eroare generează exce
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} Doc}}
+\subsection{{\color{orange} doc}}
 
-Obiectul \dom{} are următoarele metode:
+Comanda \mintinline{icl}{Doc} returnează documentul tabului curent.
+
+Tipul de date \dom{} are următoarea proprietate: \mintinline{icl}{doc'tab : tab}.
+
+Tipul de date \dom{} are următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element};
-	\item \mintinline{icl}{Doc.queryAll (by = By'cssSelector, selector : string) : element};
-	\item \mintinline{icl}{Doc.queryAllByXPath (xpath : string) : element};
-	\item \mintinline{icl}{Doc.queryByXPath (xpath : string) : element};
-	\item \mintinline{icl}{Doc.queryLink (name : string, isFragment = false) : element};
-	\item \mintinline{icl}{Doc.queryLinks (name : string, isFragment = false) : element};
-	\item \mintinline{icl}{Doc.queryTag (name : string) : element};
-	\item \mintinline{icl}{Doc.queryTags (name : string) : element}.
+	\item \mintinline{icl}{doc.query (by = By'cssSelector, selector : string) : element};
+	\item \mintinline{icl}{doc.queryAll (by = By'cssSelector, selector : string) : element};
+	\item \mintinline{icl}{doc.queryAllByXPath (xpath : string) : element};
+	\item \mintinline{icl}{doc.queryByXPath (xpath : string) : element};
+	\item \mintinline{icl}{doc.queryLink (name : string, isFragment = false) : element};
+	\item \mintinline{icl}{doc.queryLinks (name : string, isFragment = false) : element};
+	\item \mintinline{icl}{doc.queryTag (name : string) : element};
+	\item \mintinline{icl}{doc.queryTags (name : string) : element}.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{Doc.query (by = By'cssSelector, selector : string) : element}}
+\subsubsection{\mintinline{icl}{doc'tab : tab}}
+
+Returnează tabul documentului.
+
+\subsubsection{\mintinline{icl}{doc.query (by = By'cssSelector, selector : string) : element}}
 
 Primește aceiași parametri ca și  \mintinline{icl}{element.query}, numai că această funcție va căuta în tot documentul.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Doc.queryAll (by = By'cssSelector, selecor : string) : element}}
+\subsubsection{\mintinline{icl}{doc.queryAll (by = By'cssSelector, selecor : string) : element}}
 
 Primește aceiași parametri ca și \mintinline{icl}{element.queryAll}, numai că această funcție va căuta în tot documentul.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Doc.queryAllByXPath (xpath : string) : element}}
+\subsubsection{\mintinline{icl}{doc.queryAllByXPath (xpath : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.queryAll (By'xPath, @xpath)}.
+Acronim pentru \mintinline{icl}{doc.queryAll (By'xPath, @xpath)}.
 
-\subsubsection{\mintinline{icl}{Doc.queryByXPath (xpath : string) : element}}
+\subsubsection{\mintinline{icl}{doc.queryByXPath (xpath : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.query (By'xPath, @xpath)}.
+Acronim pentru \mintinline{icl}{doc.query (By'xPath, @xpath)}.
 
-\subsubsection{\mintinline{icl}{Doc.queryLink (name : string, isFragment = false) : element}}
-
-Acronim pentru:
-\begin{icItems}
-	\item \mintinline{icl}{Doc.query (By'linkText, @name)};
-	\item \mintinline{icl}{Doc.query (By'partialLinkText, @name)};
-\end{icItems}
-
-\subsubsection{\mintinline{icl}{Doc.queryLinks (name : string, isFragment = false) : element}}
+\subsubsection{\mintinline{icl}{doc.queryLink (name : string, isFragment = false) : element}}
 
 Acronim pentru:
 \begin{icItems}
-	\item \mintinline{icl}{Doc.queryAll (By'linkText, @name)};
-	\item \mintinline{icl}{Doc.queryAll (By'partialLinkText, @name)};
+	\item \mintinline{icl}{doc.query (By'linkText, @name)};
+	\item \mintinline{icl}{doc.query (By'partialLinkText, @name)};
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{Doc.queryTag (name : string) : element}}
+\subsubsection{\mintinline{icl}{doc.queryLinks (name : string, isFragment = false) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.query (By'tagName, @name)}.
+Acronim pentru:
+\begin{icItems}
+	\item \mintinline{icl}{doc.queryAll (By'linkText, @name)};
+	\item \mintinline{icl}{doc.queryAll (By'partialLinkText, @name)};
+\end{icItems}
 
-\subsubsection{\mintinline{icl}{Doc.queryTags (name : string) : element}}
+\subsubsection{\mintinline{icl}{doc.queryTag (name : string) : element}}
 
-Acronim pentru \mintinline{icl}{Doc.queryAll (By'tagName, @name)}.
+Acronim pentru \mintinline{icl}{doc.query (By'tagName, @name)}.
+
+\subsubsection{\mintinline{icl}{doc.queryTags (name : string) : element}}
+
+Acronim pentru \mintinline{icl}{doc.queryAll (By'tagName, @name)}.
 
 \subsection{{\color{orange} Files}}
 

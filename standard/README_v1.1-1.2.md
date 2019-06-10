@@ -39,7 +39,7 @@ __14.01.2019__
 * [!] Add the next methods and properties
   * [+] Alert'session : session
   * [+] Cookies.new () : cookie
-  * [!] doc'tab : tab
+  * [+] doc'tab : tab
   * [!] element'doc : doc
   * [!] cookie'cookies : Cookies
   * [!] cookies'tab : tab
