@@ -52,6 +52,7 @@ Comanda \session{} returnează un link la sesiunea curentă.
 
 Obiectul \session{} are următoarele proprietăți:
 \begin{icItems}
+	\item \mintinline{icl}{[r/o] Session'alert : alert};
 	\item \mintinline{icl}{[r/w] Session'implicitTimeout : int};
 	\item \mintinline{icl}{[r/w] Session'pageLoadTimeout : int};
 	\item \mintinline{icl}{[r/w] Session'scriptTimeout : int};
@@ -69,6 +70,10 @@ Obiectul \session{} are următoarele proprietăți:
 	\item \mintinline{icl}{Session.screenshot () : string};
 	\item \mintinline{icl}{Session.switchTo () : Session}.
 \end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Session'alert : alert}}
+
+Returnează alerta sesiunii.
 
 \subsubsection{\mintinline{icl}{[r/w] Session'implicitTimeout : int}}
 
