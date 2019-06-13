@@ -9,16 +9,21 @@
 
 Obiectul \sessions{} are următoarele proprietăți:
 \begin{icItems}
+	\item \mintinline{icl}{[r/o] Sessions'current : session};
 	\item \mintinline{icl}{[r/o] Sessions'length : int};
-	\item \mintinline{icl}{[r/o] Sessions'(i : int) : Session}.
+	\item \mintinline{icl}{[r/o] Sessions'(i : int) : session}.
 \end{icItems}
 
 Și următoarele metode:
 \begin{icItems}
 	\item \mintinline{icl}{Sessions.closeAll () : void};
-	\item \mintinline{icl}{Sessions.get (i : int) : Session};
-	\item \mintinline{icl}{Sessions.new () : Session}.
+	\item \mintinline{icl}{Sessions.get (i : int) : session};
+	\item \mintinline{icl}{Sessions.new () : session}.
 \end{icItems}
+
+\subsubsection{\mintinline{icl}{[r/o] Sessions'current : session}}
+
+Returnează sesiunea curentă.
 
 \subsubsection{\mintinline{icl}{[r/o] Sessions'length : int}}
 
