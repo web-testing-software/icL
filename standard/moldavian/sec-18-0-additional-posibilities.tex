@@ -483,141 +483,146 @@ Completează formularul cu textul \mintinline{icl}{keys} și confirmă inserarea
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} Tabs}}
+\subsection{{\color{orange} tabs}}
 
 Obiectul \tabs{} are următoarele proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{[r/o] Tabs'current : Tab};
-	\item \mintinline{icl}{[r/o] Tabs'first : Tab};
-	\item \mintinline{icl}{[r/o] Tabs'last : Tab};
-	\item \mintinline{icl}{[r/o] Tabs'length : int};
-	\item \mintinline{icl}{[r/o] Tabs'next : Tab};
-	\item \mintinline{icl}{[r/o] Tabs'previous : Tab};
-	\item \mintinline{icl}{[r/o] Tabs'(i : int) : Tab}.
-	% \item \mintinline{icl}{Tabs'};
+	\item \mintinline{icl}{[r/o] tabs'current : tab};
+	\item \mintinline{icl}{[r/o] tabs'first : tab};
+	\item \mintinline{icl}{[r/o] tabs'last : tab};
+	\item \mintinline{icl}{[r/o] tabs'length : int};
+	\item \mintinline{icl}{[r/o] tabs'next : tab};
+	\item \mintinline{icl}{[r/o] tabs'previous : tab};
+	\item \mintinline{icl}{[r/o] tabs'session : session};
+	\item \mintinline{icl}{[r/o] tabs'(i : int) : tab}.
+	% \item \mintinline{icl}{tabs'};
 \end{icItems}
 
 Și următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{Tabs.close (template : string) : int};
-	\item \mintinline{icl}{Tabs.close (url : regex) : int};
-	\item \mintinline{icl}{Tabs.closeByTitle (template : string) : int};
-	\item \mintinline{icl}{Tabs.closeByTitle (title : regex) : int};
-	\item \mintinline{icl}{Tabs.closeOthers () : int};
-	\item \mintinline{icl}{Tabs.closeToLeft () : int};
-	\item \mintinline{icl}{Tabs.closeToRight () : int};
-	\item \mintinline{icl}{Tabs.find (template : string) : Tab};
-	\item \mintinline{icl}{Tabs.find (url : regex) : Tab};
-	\item \mintinline{icl}{Tabs.findByTitle (template : string) : Tab};
-	\item \mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}.
+	\item \mintinline{icl}{tabs.close (template : string) : int};
+	\item \mintinline{icl}{tabs.close (url : regex) : int};
+	\item \mintinline{icl}{tabs.closeByTitle (template : string) : int};
+	\item \mintinline{icl}{tabs.closeByTitle (title : regex) : int};
+	\item \mintinline{icl}{tabs.closeOthers () : int};
+	\item \mintinline{icl}{tabs.closeToLeft () : int};
+	\item \mintinline{icl}{tabs.closeToRight () : int};
+	\item \mintinline{icl}{tabs.find (template : string) : tab};
+	\item \mintinline{icl}{tabs.find (url : regex) : tab};
+	\item \mintinline{icl}{tabs.findByTitle (template : string) : tab};
+	\item \mintinline{icl}{tabs.findByTitle (title : regex) : tab}.
 	% \item \mintinline{icl}{Tabs.};
 \end{icItems}
 
 În regimul de testare taburile vor fi în ordine aleatorie. În regim de automatizare în ordine strictă.
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'current : Tab}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'current : tab}}
 
 Tabul curent.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'first : Tab}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'first : tab}}
 
 Primul tab.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'last : Tab}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'last : tab}}
 
 Ultimul tab.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'length : int}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'length : int}}
 
 Numărul de taburi în sesie.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'next : Tab}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'next : tab}}
 
 Următorul tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'previous : Tab}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'previous : tab}}
 
 Tabul precedent.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchTab} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Tabs'(i : int) : Tab}}
+\subsubsection{\mintinline{icl}{[r/o] tabs'session : session}}
+
+Returnează sesiunea ce conține această listă de taburi.
+
+\subsubsection{\mintinline{icl}{[r/o] tabs'(i : int) : tab}}
 
 Al \mintinline{icl}{i}-lea tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
+\subsubsection{\mintinline{icl}{tabs.close (url : regex) : int}}
 
 Închide toate taburile, la care adresa URL convine șablonului. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.close (url : regex) : int}}
+\subsubsection{\mintinline{icl}{tabs.close (url : regex) : int}}
 
 Închide toate taburile, la care adresa URL convine expresii regulare \mintinline{icl}{url}. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.closeByTitle (template : string) : int}}
+\subsubsection{\mintinline{icl}{tabs.closeByTitle (template : string) : int}}
 
 Închide toate taburile, la care titlul convine șablonului. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.closeByTitle (title : regex) : int}}
+\subsubsection{\mintinline{icl}{tabs.closeByTitle (title : regex) : int}}
 
 Închide toate taburile, la care titlul convine expresii regulare \mintinline{icl}{url}. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.closeOthers () : int}}
+\subsubsection{\mintinline{icl}{tabs.closeOthers () : int}}
 
 Închide toate taburile în afară de tabul curent. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.closeToLeft () : int}}
+\subsubsection{\mintinline{icl}{tabs.closeToLeft () : int}}
 
 Închide toate taburile care se află la stînga de tabul curent. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.closeToRight () : int}}
+\subsubsection{\mintinline{icl}{tabs.closeToRight () : int}}
 
 Închide toate taburile care se află la dreapta de tabul curent. Returnează numărul de taburi închise.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.find (template : string) : Tab}}
+\subsubsection{\mintinline{icl}{tabs.find (template : string) : Tab}}
 
 Returnează primul tab, la care adresa URL convine șablonului.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.find (url : regex) : Tab}}
+\subsubsection{\mintinline{icl}{tabs.find (url : regex) : tab}}
 
 Returnează primul tab, la care adresa URL convine expresii regulare.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.findByTitle (template : string) : Tab}}
+\subsubsection{\mintinline{icl}{tabs.findByTitle (template : string) : tab}}
 
 Returnează primul tab, la care titlul convine șablonului.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Tabs.findByTitle (title : regex) : Tab}}
+\subsubsection{\mintinline{icl}{tabs.findByTitle (title : regex) : tab}}
 
 Returnează primul tab, la care titlul convine expresii regulare.
 

@@ -50,8 +50,8 @@ __14.01.2019__
   * [+] tab'cookies : Cookies
   * [+] tab'doc : Doc
   * [+] tab'window : window
-  * [!] Tabs'session : session
   * [+] tab'tabs : Tabs
+  * [+] Tabs'session : session
   * [!] Tabs.get (i : int) : tab
   * [!] window'tab : tab
   * [!] window'windows : Windows
