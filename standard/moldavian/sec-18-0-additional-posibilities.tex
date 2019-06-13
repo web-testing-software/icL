@@ -46,102 +46,107 @@ Deschide o sesiune nouă.
 
 Excepții posibile: \ferror{SessionNotCreated} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} Session}}
+\subsection{{\color{orange} session}}
 
 Comanda \session{} returnează un link la sesiunea curentă.
 
 Obiectul \session{} are următoarele proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{[r/o] Session'alert : alert};
-	\item \mintinline{icl}{[r/w] Session'implicitTimeout : int};
-	\item \mintinline{icl}{[r/w] Session'pageLoadTimeout : int};
-	\item \mintinline{icl}{[r/w] Session'scriptTimeout : int};
-	\item \mintinline{icl}{[r/o] Session'source : string};
-	\item \mintinline{icl}{[r/o] Session'title : string};
-	\item \mintinline{icl}{[r/w] Session'url : string}.
+	\item \mintinline{icl}{[r/o] session'alert : alert};
+	\item \mintinline{icl}{[r/w] session'implicitTimeout : int};
+	\item \mintinline{icl}{[r/w] session'pageLoadTimeout : int};
+	\item \mintinline{icl}{[r/w] session'scriptTimeout : int};
+	\item \mintinline{icl}{[r/o] session'source : string};
+	\item \mintinline{icl}{[r/o] session'tabs : tabs};
+	\item \mintinline{icl}{[r/o] session'title : string};
+	\item \mintinline{icl}{[r/w] session'url : string}.
 \end{icItems}
 
 Și următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{Session.back () : Session};
-	\item \mintinline{icl}{Session.close () : void};
-	\item \mintinline{icl}{Session.forward () : Session};
-	\item \mintinline{icl}{Session.refresh () : Session};
-	\item \mintinline{icl}{Session.screenshot () : string};
-	\item \mintinline{icl}{Session.switchTo () : Session}.
+	\item \mintinline{icl}{session.back () : Session};
+	\item \mintinline{icl}{session.close () : void};
+	\item \mintinline{icl}{session.forward () : Session};
+	\item \mintinline{icl}{session.refresh () : Session};
+	\item \mintinline{icl}{session.screenshot () : string};
+	\item \mintinline{icl}{session.switchTo () : Session}.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{[r/o] Session'alert : alert}}
+\subsubsection{\mintinline{icl}{[r/o] session'alert : alert}}
 
 Returnează alerta sesiunii.
 
-\subsubsection{\mintinline{icl}{[r/w] Session'implicitTimeout : int}}
+\subsubsection{\mintinline{icl}{[r/w] session'implicitTimeout : int}}
 
 Tipul în milisecunde de așteptare a găsirii elementului sau al trecerii în stare interactivă. Implicit egal cu 0.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (valoarea pentru instalare este mai mare sau mai mică decît intervalul sigur al numerelor întregi) (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] Session'pageLoadTimeout : int}}
+\subsubsection{\mintinline{icl}{[r/w] session'pageLoadTimeout : int}}
 
 Timpul de așteptare al încărcării paginii web. Implicit 300 000 de milisecunde.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] Session'scriptTimeout : int}}
+\subsubsection{\mintinline{icl}{[r/w] session'scriptTimeout : int}}
 
 Timpul de așteptare al executării codului Javascript. Implicit 30 000 de milisecunde.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Session'source : string}}
+\subsubsection{\mintinline{icl}{[r/o] session'source : string}}
 
 Codul sursă al paginii.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Session'title : string}}
+\subsubsection{\mintinline{icl}{[r/o] session'tabs : tabs}}
+
+Returnează lista de taburi a sesiunii.
+
+\subsubsection{\mintinline{icl}{[r/o] session'title : string}}
 
 Titlu paginii.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] Session'url : string}}
+\subsubsection{\mintinline{icl}{[r/w] session'url : string}}
 
 Adresa URL a pagini curente.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Session.back () : Session}}
+\subsubsection{\mintinline{icl}{session.back () : Session}}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înapoi} în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Session.close () : void}}
+\subsubsection{\mintinline{icl}{session.close () : void}}
 
 Închide sesia. Toate taburile vor fi închise.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Session.forward () : Session}}
+\subsubsection{\mintinline{icl}{session.forward () : Session}}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înainte} în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Session.refresh () : Session}}
+\subsubsection{\mintinline{icl}{session.refresh () : Session}}
 
 Reîncarcă pagina.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Session.screenshot () : string}}
+\subsubsection{\mintinline{icl}{session.screenshot () : string}}
 
 Returnează un șir de caracter, care reprezintă captură de ecran codată în base64.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Session.switchTo () : Session}}
+\subsubsection{\mintinline{icl}{session.switchTo () : Session}}
 
 Schimbă focusul la altă sesie.
 

@@ -44,7 +44,7 @@ __14.01.2019__
   * [+] cookie'cookies : Cookies
   * [+] cookies'tab : tab
   * [+] session'alert : Alert
-  * [!] session'tabs : Tabs
+  * [+] session'tabs : Tabs
   * [!] session'windows : Windows
   * [!] Sessions'current : session
   * [!] tab'cookies : Cookies
