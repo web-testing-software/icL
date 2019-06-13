@@ -19,15 +19,13 @@ class IclLexer(RegexLexer):
             (r'\b(if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\b', 
                 Keyword),
             
-            (r'\b(bool|int|double|string|list|element|set|item|object|function|void|request|char|regex|datetime|any|type)\b', 
+            (r'\b(bool|int|double|string|list|element|set|item|object|function|void|request|char|regex|datetime|any|type|session|window|cookie|tab|document|file)\b', 
                 Keyword.Type),
             
-            (r'(\[)(icL|w3c)(\])', 
-                bygroups(Text, 
-                    Name.Label, 
-                    Text)),
+            (r'\b(sessions|windows|tabs|cookies|alert|tabs)\b', 
+                Name.Label),
 
-            (r'\b(icL|Log|Tab|Doc|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies?|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b', 
+            (r'\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b', 
                 Name.Class),
 
             (r'\'[\w\-\*]+', 
