@@ -630,6 +630,7 @@ Obiectul \tab{} are următoarele proprietăți:
 	\item \mintinline{icl}{[icL] [r/o] tab'canGoBack : bool};
 	\item \mintinline{icl}{[icL] [r/o] tab'canGoForward : bool};
 	\item \mintinline{icl}{[r/o] tab'cookies : cookies};
+	\item \mintinline{icl}{[r/o] tab'document : document};
 	\item \mintinline{icl}{[r/o] tab'screenshot : string};
 	\item \mintinline{icl}{[r/o] tab'source : string};
 	\item \mintinline{icl}{[r/*] tab'title};
@@ -657,6 +658,10 @@ Returnează \true, dacă butonul \textit{Înainte} e disponibil, în caz contrar
 \subsubsection{\mintinline{icl}{[r/o] tab'cookies : cookies}}
 
 Returnează lista de fișiere cookie a tabului.
+
+\subsubsection{\mintinline{icl}{[r/o] tab'document : document}}
+
+Returnează documentul afișat în tab.
 
 \subsubsection{\mintinline{icl}{[r/o] tab'screenshot : string}}
 
