@@ -199,6 +199,7 @@ Obiectul \window{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/w] window'height : int};
 	\item \mintinline{icl}{[r/o] window'tab : tab};
 	\item \mintinline{icl}{[r/w] window'width : int};
+	\item \mintinline{icl}{[r/o] window'windows : window};
 	\item \mintinline{icl}{[r/w] window'x : int};
 	\item \mintinline{icl}{[r/w] window'y : int}.
 \end{icItems}
@@ -225,13 +226,17 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidA
 
 \subsubsection{\mintinline{icl}{[r/w] window'tab : tab}}
 
-Returnează tabul care conține fereastra currentă.
+Returnează tabul care conține fereastra curentă.
 
 \subsubsection{\mintinline{icl}{[r/w] window'width : int}}
 
 Lățimea ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/w] window'windows : windows}}
+
+Returnează lista de ferestre ce conține această fereastră.
 
 \subsubsection{\mintinline{icl}{[r/w] window'x : int}}
 

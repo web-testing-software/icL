@@ -54,7 +54,7 @@ __14.01.2019__
   * [+] Tabs'session : session
   * [+] Tabs.get (i : int) : tab
   * [+] window'tab : tab
-  * [!] window'windows : Windows
+  * [+] window'windows : Windows
   * [!] Windows'session : session
 * [!] Remove window.switchToDefault
 * [!] Remove State'first, State'prev, State'next and State'last
