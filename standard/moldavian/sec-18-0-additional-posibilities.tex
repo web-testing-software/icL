@@ -192,109 +192,114 @@ Returnează a \mintinline{icl}{i}-a fereastră.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} Window}}
+\subsection{{\color{orange} window}}
 
 Obiectul \window{} are următoarele proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{[r/w] Window'height : int};
-	\item \mintinline{icl}{[r/w] Window'width : int};
-	\item \mintinline{icl}{[r/w] Window'x : int};
-	\item \mintinline{icl}{[r/w] Window'y : int}.
+	\item \mintinline{icl}{[r/w] window'height : int};
+	\item \mintinline{icl}{[r/o] window'tab : tab};
+	\item \mintinline{icl}{[r/w] window'width : int};
+	\item \mintinline{icl}{[r/w] window'x : int};
+	\item \mintinline{icl}{[r/w] window'y : int}.
 \end{icItems}
 
 Și următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{Window.close () : void};
-	\item \mintinline{icl}{Window.focus () : Window};
-	\item \mintinline{icl}{Window.fullscreen () : Window};
-	\item \mintinline{icl}{Window.maximize () : Window};
-	\item \mintinline{icl}{Window.minimize () : Window};
-	\item \mintinline{icl}{Window.restore () : Window};
-	\item \mintinline{icl}{Window.switchToDefault () : Window};
-	\item \mintinline{icl}{Window.switchToFrame (i : int) : Window};
-	\item \mintinline{icl}{Window.switchToFrame (el : element) : Window};
-	\item \mintinline{icl}{Window.switchToParent () : Window}.
+	\item \mintinline{icl}{window.close () : void};
+	\item \mintinline{icl}{window.focus () : window};
+	\item \mintinline{icl}{window.fullscreen () : window};
+	\item \mintinline{icl}{window.maximize () : window};
+	\item \mintinline{icl}{window.minimize () : window};
+	\item \mintinline{icl}{window.restore () : window};
+	\item \mintinline{icl}{window.switchToDefault () : window};
+	\item \mintinline{icl}{window.switchToFrame (i : int) : Window};
+	\item \mintinline{icl}{window.switchToFrame (el : element) : Window};
+	\item \mintinline{icl}{window.switchToParent () : Window}.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{[r/w] Window'height : int}}
+\subsubsection{\mintinline{icl}{[r/w] window'height : int}}
 
 Înălțimea ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] Window'width : int}}
+\subsubsection{\mintinline{icl}{[r/w] window'tab : tab}}
+
+Returnează tabul care conține fereastra currentă.
+
+\subsubsection{\mintinline{icl}{[r/w] window'width : int}}
 
 Lățimea ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] Window'x : int}}
+\subsubsection{\mintinline{icl}{[r/w] window'x : int}}
 
 Coordonata $x$ a ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] Window'y : int}}
+\subsubsection{\mintinline{icl}{[r/w] window'y : int}}
 
 Coordinata $y$ a ferestrei curente în pixeli.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{UnsupportedOperation} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.close () : void}}
+\subsubsection{\mintinline{icl}{window.close () : void}}
 
 Închide fereastra curentă, dacă ea este ultima se închide și sesia.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.focus () : Window}}
+\subsubsection{\mintinline{icl}{window.focus () : window}}
 
 Schimbă focusul la fereastra aceasta.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.fullscreen () : Window}}
+\subsubsection{\mintinline{icl}{window.fullscreen () : window}}
 
 Schimbă regimul de afișare a ferestrei browserului la \textit{ecran complet}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.maximize () : Window}}
+\subsubsection{\mintinline{icl}{window.maximize () : window}}
 
 Maximizează fereastra browserului.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.minimize () : Window}}
+\subsubsection{\mintinline{icl}{window.minimize () : window}}
 
 Minimizează fereastra browserului.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.restore () : Window}}
+\subsubsection{\mintinline{icl}{window.restore () : window}}
 
 Restaurează fereastra în regim normal.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.switchToDefault () : Window}}
+\subsubsection{\mintinline{icl}{window.switchToDefault () : window}}
 
 Schimbă focusul la frame-ul principal.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.switchToFrame (i : int) : Window}}
+\subsubsection{\mintinline{icl}{window.switchToFrame (i : int) : window}}
 
 Schimbă focusul la frame-ul cu indexul \mintinline{icl}{i}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.switchToFrame (el : element) : Window}}
+\subsubsection{\mintinline{icl}{window.switchToFrame (el : element) : window}}
 
 Schimbă focusul la frame-ul elementului \mintinline{icl}{el}. Elementul trebuie să fir numaidecît tag frame sau iframe.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchFrame}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Window.switchToParent () : Window}}
+\subsubsection{\mintinline{icl}{window.switchToParent () : window}}
 
 Schimbă focusul la frame-ul ascensor.
 
