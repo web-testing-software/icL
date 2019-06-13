@@ -633,8 +633,9 @@ Obiectul \tab{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/o] tab'document : document};
 	\item \mintinline{icl}{[r/o] tab'screenshot : string};
 	\item \mintinline{icl}{[r/o] tab'source : string};
-	\item \mintinline{icl}{[r/*] tab'title};
-	\item \mintinline{icl}{[r/w] tab'url}.
+	\item \mintinline{icl}{[r/o] tab'title : string};
+	\item \mintinline{icl}{[r/o] tab'window : window};
+	\item \mintinline{icl}{[r/w] tab'url : string}.
 \end{icItems}
 
 Și următoarele metode:
@@ -675,13 +676,17 @@ Codul sursă al paginii deschise în tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/*] tab'title}}
+\subsubsection{\mintinline{icl}{[r/*] tab'title : string}}
 
 Titlu paginii deschise în tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/w] tab'url}}
+\subsubsection{\mintinline{icl}{[r/*] tab'window : window}}
+
+Returnează fereastra tabului.
+
+\subsubsection{\mintinline{icl}{[r/w] tab'url : string}}
 
 Adresa URL a paginii deschise în tab.
 

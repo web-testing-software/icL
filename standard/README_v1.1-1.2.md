@@ -49,7 +49,7 @@ __14.01.2019__
   * [+] Sessions'current : session
   * [+] tab'cookies : Cookies
   * [+] tab'doc : Doc
-  * [!] tab'window : window
+  * [+] tab'window : window
   * [!] tab'tabs : Tabs
   * [!] Tabs'session : session
   * [!] Tabs.get (i : int) : tab
