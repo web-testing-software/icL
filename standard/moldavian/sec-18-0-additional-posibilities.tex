@@ -59,7 +59,8 @@ Obiectul \session{} are următoarele proprietăți:
 	\item \mintinline{icl}{[r/o] session'source : string};
 	\item \mintinline{icl}{[r/o] session'tabs : tabs};
 	\item \mintinline{icl}{[r/o] session'title : string};
-	\item \mintinline{icl}{[r/w] session'url : string}.
+	\item \mintinline{icl}{[r/w] session'url : string};
+	\item \mintinline{icl}{[r/o] session'windows : windows}.
 \end{icItems}
 
 Și următoarele metode:
@@ -116,7 +117,11 @@ Adresa URL a pagini curente.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{session.back () : Session}}
+\subsubsection{\mintinline{icl}{[r/o] session'windows : windows}}
+
+Returnează lista de ferestre a sesiunii.
+
+\subsubsection{\mintinline{icl}{session.back () : session}}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înapoi} în browser.
 
@@ -128,13 +133,13 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSessions}, \ferror{NoSuchSession} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{session.forward () : Session}}
+\subsubsection{\mintinline{icl}{session.forward () : session}}
 
 Trece la pagina precedentă, cum ar fi să faceți clic pe butonul \textit{Înainte} în browser.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{session.refresh () : Session}}
+\subsubsection{\mintinline{icl}{session.refresh () : session}}
 
 Reîncarcă pagina.
 
@@ -146,7 +151,7 @@ Returnează un șir de caracter, care reprezintă captură de ecran codată în 
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{UnableToCaptureScreen} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{session.switchTo () : Session}}
+\subsubsection{\mintinline{icl}{session.switchTo () : session}}
 
 Schimbă focusul la altă sesie.
 
