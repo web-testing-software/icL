@@ -56,6 +56,7 @@ __14.01.2019__
   * [+] window'tab : tab
   * [+] window'windows : Windows
   * [+] Windows'session : session
+  * [+] Remove colored headers
 * [!] Remove window.switchToDefault
 * [!] Remove State'first, State'prev, State'next and State'last
 * [!] Add double ** int operator

@@ -5,7 +5,7 @@
 
 {\bf Posibilitățile adiționale} sunt prezente în icL pentru acoperirea completă a standardului W3C WebDriver și pentru rezolvarea unor probleme care pot apărea la practică.
 
-\subsection{{\color{orange} Sessions}}
+\subsection{sessions}
 
 Obiectul \sessions{} are următoarele proprietăți:
 \begin{icItems}
@@ -51,7 +51,7 @@ Deschide o sesiune nouă.
 
 Excepții posibile: \ferror{SessionNotCreated} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} session}}
+\subsection{session}
 
 Comanda \session{} returnează un link la sesiunea curentă.
 
@@ -164,7 +164,7 @@ Excepții posibile: \ferror{NoSuchSession} (pr. tab. \ref{errors}).
 
 %\subsubsection{}
 
-\subsection{{\color{orange} windows}}
+\subsection{windows}
 
 Obiectul \windows{} are următoarele proprietăți:
 \begin{icItems}
@@ -185,7 +185,7 @@ Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
 Returnează sesiunea ce conține această listă de ferestre.
 
-\subsubsection{\mintinline{icl}{[r/o] Windows'(i : int) : window}}
+\subsubsection{\mintinline{icl}{[r/o] windows'(i : int) : window}}
 
 Returnează a \mintinline{icl}{i}-a fereastră.
 
@@ -197,7 +197,7 @@ Returnează a \mintinline{icl}{i}-a fereastră.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} window}}
+\subsection{window}
 
 Obiectul \window{} are următoarele proprietăți:
 \begin{icItems}
@@ -315,7 +315,7 @@ Schimbă focusul la frame-ul ascensor.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} cookies}}
+\subsection{cookies}
 
 Tipul de date \cookies{} are următoarele proprietăți:
 \begin{icItems}
@@ -359,7 +359,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchCo
 
 Returnează un fișier cookie nou.
 
-\subsection{{\color{orange} cookie}}
+\subsection{cookie}
 
 Obiectul \cookie{} are următoarele proprietăți:
 \begin{icItems}
@@ -450,8 +450,7 @@ Pe foaia \ref{newcookies}, este prezentată metoda corectă de a crea fișiere c
     \inputminted[linenos]{icl}{../sources/newcookies.icL}
 \end{sourcecode}
 
-
-\subsection{{\color{orange} Alert}}
+\subsection{alert}
 
 Comanda \mintinline{icl}{Alert} returnează o valoare te tip  \alert{}, care targetează alerta sesiunii curente.
 
@@ -498,7 +497,7 @@ Completează formularul cu textul \mintinline{icl}{keys} și confirmă inserarea
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{NoSuchAlert}, \ferror{ElementNotInteractable} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} tabs}}
+\subsection{tabs}
 
 Obiectul \tabs{} are următoarele proprietăți:
 \begin{icItems}
@@ -650,7 +649,7 @@ Returnează al \mintinline{icl}{i}-lea tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} tab}}
+\subsection{tab}
 
 Obiectul \tab{} are următoarele proprietăți:
 \begin{icItems}
@@ -759,7 +758,7 @@ Trece la pagină, URL trebuie să fie absolut. În caz de eroare generează exce
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{InvalidArgument}, \ferror{Timeout}, \ferror{InsecureCertificate} (pr. tab. \ref{errors}).
 
-\subsection{{\color{orange} doc}}
+\subsection{doc}
 
 Comanda \mintinline{icl}{Doc} returnează documentul tabului curent.
 
@@ -825,7 +824,7 @@ Acronim pentru \mintinline{icl}{doc.query (By'tagName, @name)}.
 
 Acronim pentru \mintinline{icl}{doc.queryAll (By'tagName, @name)}.
 
-\subsection{{\color{orange} Files}}
+\subsection{Files}
 
 Obiectul \files{} are următoarele metode:
 \begin{icItems}
@@ -857,7 +856,7 @@ Excepții posibile: \ferror{FolderNotFound} (pr. tab. \ref{errors}).
 
 Creează toate folderele care nu există în calea indicată.
 
-\subsection{{\color{orange} File}}
+\subsection{File}
 
 Obiectul \file{} are următoarele proprietăți:
 \begin{icItems}
@@ -902,7 +901,7 @@ Returnează \true, dacă fișierul este inițializat, în caz contrar \false.
 
 Șterge fișierul.
 
-\subsection{{\color{orange} Make}}
+\subsection{Make}
 
 Obiectul \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base64 : string, path :}\\*\mintinline{icl}{string) : void}.
 
@@ -910,7 +909,7 @@ Obiectul \make{} deține următoarea metodă: \mintinline{icl}{Make.image (base6
 
 Salvează captura de ecran pe disc.
 
-\subsection{{\color{orange} Log}}
+\subsection{Log}
 
 Obiectul \logtype{} deține următoarele metode:
 \begin{icItems}
@@ -941,7 +940,7 @@ Printează lista de stive, arătînd în care din ele se întilnește așa varia
 
 Printează lista tuturor stărilor, arătînd în care din ele se întilnește așa variabilă și ce valori are.
 
-\subsection{{\color{orange} Numbers}}
+\subsection{Numbers}
 
 Obiectul \numbers{} are următoarele proprietăți:
 \begin{icItems}
@@ -996,7 +995,7 @@ Prelucrează numerele decimale cu metoda de prelucrare curentă.
 
 Adaugă o nouă înscriere în stiva metodelor de prelucrare.
 
-\subsection{{\color{orange} Math}}
+\subsection{Math}
 
 Obiectul \mintinline{icl}{Math} are următoarele proprietăți:
 \begin{icItems}
@@ -1156,7 +1155,7 @@ Sinus ($\sin{v}$).
 
 Cosinus ($\tan{v}$).
 
-\subsection{{\color{orange} Import}}
+\subsection{Import}
 
 Obiectul \mintinline{icl}{Import} deține următoarele metode:
 \begin{icItems}
