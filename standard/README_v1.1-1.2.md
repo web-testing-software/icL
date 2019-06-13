@@ -52,7 +52,7 @@ __14.01.2019__
   * [+] tab'window : window
   * [+] tab'tabs : Tabs
   * [+] Tabs'session : session
-  * [!] Tabs.get (i : int) : tab
+  * [+] Tabs.get (i : int) : tab
   * [!] window'tab : tab
   * [!] window'windows : Windows
   * [!] Windows'session : session

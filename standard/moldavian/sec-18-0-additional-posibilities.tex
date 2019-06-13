@@ -510,7 +510,8 @@ Obiectul \tabs{} are următoarele proprietăți:
 	\item \mintinline{icl}{tabs.find (template : string) : tab};
 	\item \mintinline{icl}{tabs.find (url : regex) : tab};
 	\item \mintinline{icl}{tabs.findByTitle (template : string) : tab};
-	\item \mintinline{icl}{tabs.findByTitle (title : regex) : tab}.
+	\item \mintinline{icl}{tabs.findByTitle (title : regex) : tab};
+	\item \mintinline{icl}{Tabs.get (i : int) : tab}.
 	% \item \mintinline{icl}{Tabs.};
 \end{icItems}
 
@@ -627,6 +628,12 @@ Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 Returnează primul tab, la care titlul convine expresii regulare.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{tabs.get(i : int) : tab}}
+
+Returnează al \mintinline{icl}{i}-lea tab.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
 \subsection{{\color{orange} tab}}
 
