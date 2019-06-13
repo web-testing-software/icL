@@ -1,4 +1,9 @@
 % !TeX spellcheck = ro_RO
+
+\section{Sigleton-uri adiționali}
+
+Singleton-urile conțin valori constante și funcții statice.
+
 \subsection{Files}
 
 Obiectul \files{} are următoarele metode:
@@ -36,25 +41,13 @@ Creează toate folderele care nu există în calea indicată.
 Obiectul \file{} are următoarele proprietăți:
 \begin{icItems}
 	\item \mintinline{icl}{[r/o] File'csv : 1};
-	\item \mintinline{icl}{[r/w] File'format : int};
 	\item \mintinline{icl}{[r/o] File'none : 0};
 	\item \mintinline{icl}{[r/o] File'tsv : 2};
-	\item \mintinline{icl}{[r/o] File'valid : bool}.
-\end{icItems}
-
-Și următoarele metode:
-\begin{icItems}
-	\item \mintinline{icl}{File.close () : void};
-	\item \mintinline{icl}{File.delete () : void}.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{[r/o] File'csv : 1}}
 
 Format CSV.
-
-\subsubsection{\mintinline{icl}{[r/w] File'format : int}}
-
-Returnează formatul fișierului.
 
 \subsubsection{\mintinline{icl}{[r/o] File'none : 0}}
 
@@ -63,18 +56,6 @@ File neinițializat.
 \subsubsection{\mintinline{icl}{[r/o] File'tsv : 2}}
 
 Format TSV.
-
-\subsubsection{\mintinline{icl}{[r/o] File'valid : bool}}
-
-Returnează \true, dacă fișierul este inițializat, în caz contrar \false.
-
-\subsubsection{\mintinline{icl}{File.close () : void}}
-
-Închide fișierul.
-
-\subsubsection{\mintinline{icl}{File.delete () : void}}
-
-Șterge fișierul.
 
 \subsection{Make}
 
