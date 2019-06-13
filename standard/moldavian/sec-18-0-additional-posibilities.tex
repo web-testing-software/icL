@@ -164,29 +164,34 @@ Excepții posibile: \ferror{NoSuchSession} (pr. tab. \ref{errors}).
 
 %\subsubsection{}
 
-\subsection{{\color{orange} Windows}}
+\subsection{{\color{orange} windows}}
 
 Obiectul \windows{} are următoarele proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{[r/o] Windows'length : int};
-	\item \mintinline{icl}{[r/o] Windows'(i : int) : Window}.
+	\item \mintinline{icl}{[r/o] windows'length : int};
+	\item \mintinline{icl}{[r/o] windows'session : session};
+	\item \mintinline{icl}{[r/o] windows'(i : int) : window}.
 \end{icItems}
 
-Și următoarea metodă \mintinline{icl}{Windows.get (i : int) : Window}.
+Și următoarea metodă \mintinline{icl}{windows.get (i : int) : Window}.
 
-\subsubsection{\mintinline{icl}{[r/o] Windows'length : int}}
+\subsubsection{\mintinline{icl}{[r/o] windows'length : int}}
 
 Returnează numărul de ferestre în sesiunea curentă.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] Windows'(i : int) : Window}}
+\subsubsection{\mintinline{icl}{[r/o] windows'session : session}}
+
+Returnează sesiunea ce conține această listă de ferestre.
+
+\subsubsection{\mintinline{icl}{[r/o] Windows'(i : int) : window}}
 
 Returnează a \mintinline{icl}{i}-a fereastră.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Windows.get (i : int) : Window}}
+\subsubsection{\mintinline{icl}{windows.get (i : int) : Window}}
 
 Returnează a \mintinline{icl}{i}-a fereastră.
 
