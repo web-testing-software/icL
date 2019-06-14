@@ -60,7 +60,7 @@ __14.01.2019__
   * [+] Commands section
 * [+] Fix data base types
 * [+] Remove window.switchToDefault
-* [!] Remove State'first, State'prev, State'next and State'last
+* [+] Remove State'first, State'prev, State'next and State'last
 * [!] Add double ** int operator
 * [!] Fix switch-case syntax
 * [!] Add literals input[name] and button[template]

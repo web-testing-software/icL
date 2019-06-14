@@ -103,72 +103,48 @@ Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 
 Pentru a controla stările, se folosesc următoarele metode și proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{States'first : object};
-	\item \mintinline{icl}{States'prev : object};
-	\item \mintinline{icl}{States'next : object};
-	\item \mintinline{icl}{States'last : object};
-	\item \mintinline{icl}{States.new (data = [=]) : void};
-	\item \mintinline{icl}{States.newAtEnd (data = [=]) : void};
-	\item \mintinline{icl}{States.toNext () : bool};
-	\item \mintinline{icl}{States.toPrev () : bool};
-	\item \mintinline{icl}{States.clear () : void};
-	\item \mintinline{icl}{States.delete () : void};
-	\item \mintinline{icl}{States.toFirst () : void};
-	\item \mintinline{icl}{States.toLast () : void}.
+	\item \mintinline{icl}{State.new (data = [=]) : void};
+	\item \mintinline{icl}{State.newAtEnd (data = [=]) : void};
+	\item \mintinline{icl}{State.toNext () : bool};
+	\item \mintinline{icl}{State.toPrev () : bool};
+	\item \mintinline{icl}{State.clear () : void};
+	\item \mintinline{icl}{State.delete () : void};
+	\item \mintinline{icl}{State.toFirst () : void};
+	\item \mintinline{icl}{State.toLast () : void}.
 \end{icItems}
 
 Obiectul \mintinline{icl}{States} este o colecție, înseamnă că ea poate fi răsfoită prin \\*\mintinline{icl}{for (States) {}}. Suportul pentru alte cicluri lipsește.
 
-\subsubsection{\mintinline{icl}{States'first : object}}
-
-Returnează prima stare ca obiect.
-
-\subsubsection{\mintinline{icl}{States'prev : object}}
-
-Returnează starea precedentă ca obiect.
-
-\subsubsection{\mintinline{icl}{States'next : object}}
-
-Returnează starea următoare ca obiect.
-
-\subsubsection{\mintinline{icl}{States'last : object}}
-
-Returnează ultima stare ca obiect.
-
-\subsubsection{\mintinline{icl}{States.new (data = [=]) : void}}
+\subsubsection{\mintinline{icl}{State.new (data = [=]) : void}}
 
 Creează o nouă stare după starea curentă și schimbă focusul la ea. Toate datele obiectului \mintinline{icl}{data} se adaugă în containerul nou.
 
-\subsubsection{\mintinline{icl}{States.newAtEnd (data = [=]) : void}}
+\subsubsection{\mintinline{icl}{State.newAtEnd (data = [=]) : void}}
 
 Creează o nouă stare la sfîrșit, care nu va fi primi focus.  Toate datele obiectului \mintinline{icl}{data} se adaugă în containerul nou.
 
-\subsubsection{\mintinline{icl}{States.toNext () : bool}}
+\subsubsection{\mintinline{icl}{State.toNext () : bool}}
 
 Returnează \true, dacă există o stare următoare și focusul a fost schimbat la ea, în caz contrar \false.
 
-\subsubsection{\mintinline{icl}{States.toPrev () : bool}}
+\subsubsection{\mintinline{icl}{State.toPrev () : bool}}
 
 Returnează \true, dacă există o stare precedentă și focusul a fost schimbat la ea, în caz contrar \false.
 
-\subsubsection{\mintinline{icl}{States.clear () : void}}
+\subsubsection{\mintinline{icl}{State.clear () : void}}
 
 Șterge toate variabilele din stare.
 
-\subsubsection{\mintinline{icl}{States.delete () : void}}
+\subsubsection{\mintinline{icl}{State.delete () : void}}
 
 Șterge starea, dacă există o stare următoare focusul trece la ea, în caz contrar dacă există o stare precedentă focusul trece la ea, iar dacă această este ultima, ea este doar curățită.
 
-\subsubsection{\mintinline{icl}{States.toFirst () : void}}
+\subsubsection{\mintinline{icl}{State.toFirst () : void}}
 
 Schimbă focusul la prima stare.
 
-\subsubsection{\mintinline{icl}{States.toLast () : void}}
+\subsubsection{\mintinline{icl}{State.toLast () : void}}
 
 Schimbă focusul la ultima stare.
-
-\subsubsection{\mintinline{icl}{for (States) {}}}
-
-Îndeplinește ciclul pentru fiecare stare în parte.
 
 %\newpage
