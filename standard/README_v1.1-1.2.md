@@ -58,7 +58,7 @@ __14.01.2019__
   * [+] Windows'session : session
   * [+] Remove colored headers
   * [+] Commands section
-* [!] Fix data base types
+* [+] Fix data base types
 * [!] Remove window.switchToDefault
 * [!] Remove State'first, State'prev, State'next and State'last
 * [!] Add double ** int operator

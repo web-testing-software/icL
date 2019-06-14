@@ -1,120 +1,120 @@
 % !TeX spellcheck = ro_RO
 \section{Baze de date}
 
-Modulul definește următoarele obiecte globale: \mintinline{icl}{DBManager} este managerul de baze de date, \mintinline{icl}{DB} este ultima bază de date deschisă, \mintinline{icl}{Query} este ultimul query.
+Modulul definește următoarele comenzi globale: \mintinline{icl}{DBManager : dbmanager} returnează managerul de baze de date, \mintinline{icl}{DB : database} returnează ultima bază de date deschisă, \mintinline{icl}{Query : query} returnează ultimul query.
 
 Modulul \textit{Baze de date} definește următoarele posibilități:
 \begin{icItems}
-	\item \mintinline{icl}{DBManager.openSQLite (path : string) : DB};
-	\item \mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB};
-	\item \mintinline{icl}{DBManager.connect (server : string) : DB};
-	\item \mintinline{icl}{DB.query (q : Code) : Query};
-	\item \mintinline{icl}{DB.close () : void};
-	\item \mintinline{icl}{[w/o] Query'(name : string) : any};
-	\item \mintinline{icl}{Query.set (field : string, value : any) : void};
-	\item \mintinline{icl}{Query.exec () : bool};
+	\item \mintinline{icl}{dbmanager.openSQLite (path : string) : database};
+	\item \mintinline{icl}{dbmanager.connect (server : string, user : string, password : string) : database};
+	\item \mintinline{icl}{dbmanager.connect (server : string) : database};
+	\item \mintinline{icl}{database.query (q : Code) : query};
+	\item \mintinline{icl}{database.close () : void};
+	\item \mintinline{icl}{[w/o] query'(name : string) : any};
+	\item \mintinline{icl}{query.set (field : string, value : any) : void};
+	\item \mintinline{icl}{query.exec () : bool};
 	\item Disponibile după executare:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/o] Query'(name : string) : any};
-		\item \mintinline{icl}{Query.getRowsAffected () : int};
-		\item \mintinline{icl}{Query.getError () : bool};
-		\item \mintinline{icl}{Query.getLength () : int};
-		\item \mintinline{icl}{Query.get (field : string) : any};
-		\item \mintinline{icl}{Query.next () : bool};
-		\item \mintinline{icl}{Query.previous () : bool};
-		\item \mintinline{icl}{Query.first () : bool};
-		\item \mintinline{icl}{Query.last () : bool};
-		\item \mintinline{icl}{Query.seek (i : int, relative = false) : bool};
+		\item \mintinline{icl}{[r/o] query'(name : string) : any};
+		\item \mintinline{icl}{query.getRowsAffected () : int};
+		\item \mintinline{icl}{query.getError () : bool};
+		\item \mintinline{icl}{query.getLength () : int};
+		\item \mintinline{icl}{query.get (field : string) : any};
+		\item \mintinline{icl}{query.next () : bool};
+		\item \mintinline{icl}{query.previous () : bool};
+		\item \mintinline{icl}{query.first () : bool};
+		\item \mintinline{icl}{query.last () : bool};
+		\item \mintinline{icl}{query.seek (i : int, relative = false) : bool};
 	\end{icItems}
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{DBManager.openSQLite (path : string) : DB}}
+\subsubsection{\mintinline{icl}{dbmanager.openSQLite (path : string) : database}}
 
 Deschide o nouă conexiune. \mintinline{icl}{path} e calea spre fișierul bazei de date.
 
-\subsubsection{\mintinline{icl}{DBManager.connect (server : string, user : string, password : string) : DB}}
+\subsubsection{\mintinline{icl}{dbmanager.connect (server : string, user : string, password : string) : database}}
 
 Se conectează la icL DB Client prin WebSockets, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over WebSockets}, descris în \textit{icL Wire Protocol}.
 
 Excepții posibile: \ferror{NoSuchServer} și \ferror{WrongUserPassword} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{DBManager.connect (server : string) : DB}}
+\subsubsection{\mintinline{icl}{dbmanager.connect (server : string) : database}}
 
 Se conectează la icL DB Client prin HTTP, clienții pot fi scriși in orice limbaj de programare, pentru a crea clienți proprii faceți cunoștință cu \textit{icL DataBase Share over HTTP}, descris în \textit{icL Wire Protocol}.
 
 Excepții posibile: \ferror{NoSuchServer} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{DB.query (q : Code) : Query}}
+\subsubsection{\mintinline{icl}{database.query (q : Code) : query}}
 
 Creează un query, pe bază de comandă SQL izolată în acolade.
 
-\subsubsection{\mintinline{icl}{DB.close () : void}}
+\subsubsection{\mintinline{icl}{database.close () : void}}
 
 Închide conexiunea cu baza de date.
 
-\subsubsection{\mintinline{icl}{[w/o] Query'(name : string) : any}}
+\subsubsection{\mintinline{icl}{[w/o] query'(name : string) : any}}
 
 Întoarce o valoare, care permite a schimba valoarea înlocuitorului prin atribuire. Înlocuitorul are următoarea sintaxă \mintinline{icl}{:name}.
 
-\subsubsection{\mintinline{icl}{Query.set (field : string, value : any) : void}}
+\subsubsection{\mintinline{icl}{query.set (field : string, value : any) : void}}
 
 Atribuie valoarea înlocuitorului \mintinline{icl}{field}.
 
-\subsubsection{\mintinline{icl}{Query.exec () : bool}}
+\subsubsection{\mintinline{icl}{query.exec () : bool}}
 
 Returnează \true, dacă query-ului a fost executată cu succes, în caz contrar \false.
 
-\subsubsection{\mintinline{icl}{Query.getError () : string}}
+\subsubsection{\mintinline{icl}{query.getError () : string}}
 
 Returnează textul erorii, dacă la executarea query-ului a apărut o eroare.
 
-\subsubsection{\mintinline{icl}{[r/o] Query'(name : string) : any}}
+\subsubsection{\mintinline{icl}{[r/o] query'(name : string) : any}}
 
-După executarea \mintinline{icl}{Query.exec} proprietățile vor returna valoarea cîmpurilor necesare. Dacă așa cîmp nu există, va fi returnat \void.
+După executarea \mintinline{icl}{query.exec} proprietățile vor returna valoarea cîmpurilor necesare. Dacă așa cîmp nu există, va fi returnat \void.
 
-\subsubsection{\mintinline{icl}{Query.getRowsAffected () : int}}
+\subsubsection{\mintinline{icl}{query.getRowsAffected () : int}}
 
 Numărul de rînduri afectate/adăugate în baza de date.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.getLength () : int}}
+\subsubsection{\mintinline{icl}{query.getLength () : int}}
 
 Numărul de rezultate primit în rezultatul executării comenzii \mintinline{icl}{SELECT}.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.get (field : string) : any}}
+\subsubsection{\mintinline{icl}{query.get (field : string) : any}}
 
 Returnează valoarea cîmpului \mintinline{icl}{field} sau \void{} dacă așa cîmp nu există.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.next () : bool}}
+\subsubsection{\mintinline{icl}{query.next () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la următorul rînd, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.previous () : bool}}
+\subsubsection{\mintinline{icl}{query.previous () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la rîndul precedent, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.first () : bool}}
+\subsubsection{\mintinline{icl}{query.first () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la primul rînd, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.last () : bool}}
+\subsubsection{\mintinline{icl}{query.last () : bool}}
 
 Returnează \true, dacă s-a primit să treacă la ultimul rînd, în caz contrar \false.
 
 Excepții posibile: \ferror{QueryNotExecutedYet} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{Query.seek (i : int, relative = false) : bool}}
+\subsubsection{\mintinline{icl}{query.seek (i : int, relative = false) : bool}}
 
 Returnează \true, dacă s-a primit să treacă la al \mintinline{icl}{i}-lea rînd sau să mute cursorul cu \mintinline{icl}{i} rînduri (cu condiția că \mintinline{icl}{@relative == true}), în caz contrar \false.
 
