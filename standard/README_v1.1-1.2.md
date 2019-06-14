@@ -36,7 +36,7 @@ __14.01.2019__
 * [+] set.insertField (name : string, value : list, type = string), fix default
   argument name and add return type
 * [+] add string.toLowerCase and string.toUpperCase
-* [!] Add the next methods and properties
+* [+] Add the next methods and properties
   * [+] Alert'session : session
   * [+] Cookies.new () : cookie
   * [+] doc'tab : tab
@@ -57,6 +57,8 @@ __14.01.2019__
   * [+] window'windows : Windows
   * [+] Windows'session : session
   * [+] Remove colored headers
+  * [+] Commands section
+* [!] Fix data base types
 * [!] Remove window.switchToDefault
 * [!] Remove State'first, State'prev, State'next and State'last
 * [!] Add double ** int operator
