@@ -62,7 +62,7 @@ __14.01.2019__
 * [+] Remove window.switchToDefault
 * [+] Remove State'first, State'prev, State'next and State'last
 * [+] Add double ** int operator
-* [!] Fix switch-case syntax
+* [+] Fix switch-case syntax
 * [!] Add literals input[name] and button[template]
 
 All accpted changes will be present in version 1.2
