@@ -1,4 +1,4 @@
-@title = $value {
+@title = js:value {
 	document.title;
 	document.title = @{value}
 };

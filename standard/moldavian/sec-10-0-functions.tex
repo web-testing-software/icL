@@ -17,7 +17,7 @@ nume = (parametri) : tipDeDate {
 Descrierea parților funcției:
 \begin{icItems}
 \item
-	\mintinline{icl}{nume} - {\bf numele funcției};
+	\mintinline{icl}{nume} - {\bf numele funcției} (se începe cu semnul \textit{\$});
 \item
 	\mintinline{icl}{parametri} - {\bf lista parametrilor}. La chemarea funcției fiecare parametru primește o valoare. Lista parametrilor definește tipul, cantitatea și ordinea parametrilor. Lista nu este obligatorie (vezi foile \ref{fullfunc} și \ref{noargsfunc});
 \item
@@ -26,7 +26,7 @@ Descrierea parților funcției:
 	\mintinline{icl}{comenzi} - {\bf corpul} conține comenzi, care definesc acțiunile executate de funcție.
 \end{icItems}
 
-Parametrii se despart prin virgulă. Chiar dacă funcția deține doar on parametru, parantezele rotunde nu pot fi omise.
+Parametrii se despart prin virgulă. Chiar dacă funcția deține doar un parametru, parantezele rotunde nu pot fi omise.
 
 Parametrul se descriere prin următoarea sintaxă \mintinline{icl}{@name : type}, unde \mintinline{icl}{@name} este numele, iar \mintinline{icl}{type} e un tip de date. Se poate de descris numai tipul (fără doua puncte), în acest caz parametrul ca avea același nume ca și tipul de date.
 
@@ -70,7 +70,7 @@ unde \mintinline{icl}{name} este {\bf numele funcției}, \mintinline{icl}{argume
 	\inputminted[linenos]{icl}{../sources/callfunc.icL}
 \end{sourcecode}
 
-Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\mintinline{icl}{~}). De exemplu avem funcția \mintinline{icl}{func = (@var1 = 3, @var2 : int) {}}, ea poate fi apelată în felul următor \mintinline{icl}{fun (~, 3)}. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
+Ultimii parametri cu valoare implicită pot fi omiși, restul parametrilor cu valoare implicită pot fi transmisa valoare \void{} (pentru a folosi valoare implicită). Valoarea \void{} poate fi descrisă cu un singur simbol - tilda (\mintinline{icl}{~}). De exemplu avem funcția \mintinline{icl}{$func = (@var1 = 3, @var2 : int) {}}, ea poate fi apelată în felul următor \mintinline{icl}{$fun (~, 3)}. Valorile implicite pot scurta codul, privește foaia \ref{defaultparametrs}.
 
 \begin{sourcecode}
 	\captionof{listing}{Valori predefinite}

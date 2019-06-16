@@ -31,7 +31,7 @@
 
 \begin{icItems}
 \item
-	a indica la ceea că funcția nimic nu întoarce;
+	a indica la ceea că funcția nimic nu se returnează;
 \item
 	a indica la ceea că in timpul execuției funcția a apărut o excepție;
 \item
@@ -45,21 +45,23 @@
 
 \subsection{Proprietăți}
 
-Unele tipuri de date au proprietăți. Proprietățile permit a citi caracteristicile datelor. Indiferent de tipul de date, orice obiect are următoarele proprietăți (disponibile doar pentru citire):
+Unele tipuri de date au proprietăți.
+Mai departe proprietățile for fi însemnate cu următoarele semne: \mintinline{icl}{[r/w]} - disponibil pentru citire și scriere, \mintinline{icl}{[r/o]} - disponibil numai pentru citire, \mintinline{icl}{[w/o]} - disponibil numai pentru scriere.
+Proprietățile permit a citi caracteristicile datelor. Indiferent de tipul de date, orice obiect are următoarele proprietăți:
 
 \begin{icItems}
 \item
-	\mintinline{icl}{any'typeName : string} e numele tipului de date conținut de obiect;
+	\mintinline{icl}{[r/o] any'typeName : string} e numele tipului de date conținut de obiect;
 \item
-	\mintinline{icl}{any'typeId : int} e identificatorul tipului de date conținut de obiect;
+	\mintinline{icl}{[r/o] any'typeId : int} e identificatorul tipului de date conținut de obiect;
 \item
-	\mintinline{icl}{any'rValue : bool} e egal cu \true{} dacă obiectul este o valoare de dreapta, în caz contrar \false{};
+	\mintinline{icl}{[r/o] any'rValue : bool} e egal cu \true{} dacă obiectul este o valoare de dreapta, în caz contrar \false{};
 \item
-	\mintinline{icl}{any'readOnly : bool} e egal cu \true{} dacă obiectul este disponibil doar pentru citire, în caz contrar \false{};
+	\mintinline{icl}{[r/o] any'readOnly : bool} e egal cu \true{} dacă obiectul este disponibil doar pentru citire, în caz contrar \false{};
 \item
-	\mintinline{icl}{any'lValue : bool} e egal cu \true{} dacă obiectul este disponibil pentru citire și scriere, în caz contrar \false{};
+	\mintinline{icl}{[r/o] any'lValue : bool} e egal cu \true{} dacă obiectul este disponibil pentru citire și scriere, în caz contrar \false{};
 \item
-	\mintinline{icl}{any'link : bool} e egal cu \true{} dacă valoare sa află într-un container extern și schimbarea valorii va schimba valoarea în mediu extern, în caz contrar \false{}.
+	\mintinline{icl}{[r/o] any'link : bool} e egal cu \true{} dacă valoare sa află într-un container extern și schimbarea valorii va schimba valoarea în mediu extern, în caz contrar \false{}.
 \end{icItems}
 
 Exemple de folosire a proprietăților sunt prezente pe foaia \ref{propertiesmain}.

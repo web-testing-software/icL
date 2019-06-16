@@ -1,20 +1,35 @@
 % !TeX spellcheck = ro_RO
 \section{Integrația cu JavaScript}
 
-În limbajul icL {\bf integrația cu JavaScript} se diferențiază în funcție de regimul de lucru. {\bf Regimuri de lucru} sunt de tot 2: testare și automatizare. Următoarele paragrafe for fi însemnate în modul următor: paragrafele însemnate cu \mintinline{icl}{[icL]} se referă la automatizare și funcții adiționale icL, dar paragrafele cu \mintinline{icl}{[w3c]} la testare și standardul WebDriver, propus de World Wide Web Consortium.
+Codul icL poate fi amorf, conținînd fragmente în limbajele: icL-Pro, JavaScript și SQL.
+
+Pentru a descrie un fragment de cod în limbajul icL-Pro folosiți unul din următoarele literale 
+\begin{minted}{icl}
+icl{
+	`` cod
+}
+`` sau
+icl:pro{
+	`` cod
+}
+\end{minted}
+
+Aceste literale nu vor executa codul, dar vor returna o valoare de tip \mintinline{icl}{code-icl}. Pentru al executa apelați metoda \mintinline{icl}{code-icl.run (args : any ...)}. Argumentele vor fi disponibile în cod ca \mintinline{icl}{@'0}, \mintinline{icl}{@'1} ș.a.m.d.
+
+Codul în limbajul JavaScript este integrat într-un mod asemănător.
 
 \subsection{Valori JS}
 
-{\bf Valorile JS} - principala inovare în integrația cu JavaScript. Ea permite a folosi variabile JavaScript, comod ca și variabilele icL. Ele de asemenea pot fi disponibile pentru citire și scriere sau doar pentru citire.
+{\bf Valorile JS} sunt principala inovare în integrația cu JavaScript. Ele permit a folosi variabile JavaScript, comod ca și variabilele icL. Ele de asemenea pot fi disponibile pentru citire și scriere sau doar pentru citire.
 
 Fiecare valoare JS are getter, numai variabilele disponibile pentru scriere au setter. Getterii și setterii sunt fragmente de cod JavaScript. În setter valoare pentru instalare se descrie în felul următor \mintinline{icl}{@{value}} Sintaxa valorii JS:
 \begin{minted}{icl}
-$value {getter; setter};
+js:value{ getter; setter };
 \end{minted}
 
 Sintaxa simplificată a valorii JS:
 \begin{minted}{icl}
-$value {getter};
+js:value{ getter };
 \end{minted}
 
 În calitate de valoare JS poate fi folosită orice variabilă, de exemplu titlu paginii (foaia \ref{jsvalueex}), ea rămîne disponibilă și după trecerea la altă pagină.
@@ -27,48 +42,68 @@ $value {getter};
 
 \subsection{Executarea codului JavaScript}
 
-Comanda \mintinline{icl}{$run} permite a executa {\bf cod în limbajul JavaScript}.
+Pentru a descrie un fragment de cod în limbajul JavaScript folosiți unul din următoarele literale 
+\begin{minted}{icl}
+js{
+	`` cod
+}
+`` sau
+js@target{
+	`` cod
+}
+\end{minted}
 
-\mintinline{icl}{[icL]} Comanda \mintinline{icl}{$run} primește numai un argument - cod, în cod pot fi prezente variabile icL. Variabilele globale pot fi transmise în modul următor \mintinline{icl}{#{nume}}, localele - \mintinline{icl}{@{nume}}. Exemplu de transmitere al valorilor în JavaScript este demonstrat pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
+\mintinline{icl}{@target} este o variabilă ce conține un link la un document, tab sau fereastră. Indică unde codul trebuie executat (în ce fereastră, în care tab).
+
+Aceste literale vor returna o valoare de tip \mintinline{icl}{code-js}. Codul poate fi executat apelînd metoda \mintinline{icl}{code-js.run (args : any ...)}. Argumentele pot fi accesate prin variabila de sistem - \mintinline{icl}{arguments}.
+
+Folosiți metoda \mintinline{icl}{code-js.runAsync (args : any ...)} pentru a executa scriptul asincron.
 
 \begin{sourcecode}
-    \captionof{listing}{Executarea codului în limbajul JavaScript (icL)}
+    \captionof{listing}{Executarea codului în limbajul JavaScript}
     \label{jsrunex1}
     \inputminted[linenos]{icl}{../sources/jsrunex1.icL}
 \end{sourcecode}
 
-\mintinline{icl}{[w3c]} Comanda \mintinline{icl}{$run} primește un număr variabil de argumente. Ei se transmit în JavaScript sub formă de argumente ai funcției. Accesul la ele se realizează prin variabila \mintinline{icl}{arguments}. Cod care folosește această metodă este prezentat pe foaia \ref{jsrunex2}, se poate de-l comparat cu codul de pe foaia \ref{jsrunex1}. Codul se poate de executat asincron folosind comanda \mintinline{icl}{$runAsync}.
+Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
 
-\begin{sourcecode}
-    \captionof{listing}{Executarea codului în limbajul JavaScript (w3c)}
-    \label{jsrunex2}
-    \inputminted[linenos]{icl}{../sources/jsrunex2.icL}
-\end{sourcecode}
+\subsection{Fișiere JavaScript}
+
+Literalul \mintinline{icl}{js:file[..]} permite a deschide fișiere JavaScript. Calea spre fișier poate fi definită imediat \mintinline{icl}{js:file[calea/spre/fișier.js]} sau mai apoi \mintinline{icl}{js:file[]}.
+
+Clasa \mintinline{icl}{js-file} are umătoarele metode:
+\begin{icItems}
+\item \mintinline{icl}{js-file.load (path : string) : js-file};
+\item \mintinline{icl}{js-file.run (args : any ...) : js-file};
+\item \mintinline{icl}{js-file.runAsync (args : any ...) : js-file};
+\item \mintinline{icl}{js-file.setAsUserScript () : js-file};
+\item \mintinline{icl}{js-file.setAsPersistentUserScript () : js-file}.
+\end{icItems}
+
+\subsubsection{\mintinline{icl}{js-file.load (path : string) : js-file}}
+
+Încarcă conținutul fișierului.
+
+Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{js-file.run (args : any ...) : js-file}}
+
+Execută conținutul fișierului.
 
 Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
 
-\subsection{Executarea fișierelor}
+\subsubsection{\mintinline{icl}{js-file.runAsync (args : any ...) : js-file}}
 
-Comanda \mintinline{icl}{$file} {\bf execută fișiere} JavaScript (.js). Pentru aceasta este destul de transmis calea spre fișier ca argument.
+Execută asincron conținutul fișierului.
 
-Sintaxă -
-\begin{minted}{icl}
-$file "calea/spre/fișier.js";
-\end{minted}
+Excepții posibile: \ferror{JavascriptError} (pr. tab. \ref{errors}).
 
-Excepții posibile: \ferror{FileNotFound}, \ferror{JavascriptError} (pr. tab. \ref{errors}).
+\subsubsection{\mintinline{icl}{js-file.setAsUserScript () : js-file}}
 
-\subsection{Scripturi personale}
+Setează acest script ca \i{script personal}.
 
-\mintinline{icl}{[icL]} {\bf Scripturile personale} se execută pînă la încărcarea paginii, la trecerea la o nouă pagină. Scriptul poate fi fixat la tabul curent (\mintinline{icl}{$user}) sau la toate taburile din sesie (\mintinline{icl}{$always}).
+\subsubsection{\mintinline{icl}{js-file.setAsPersistentUserScript () : js-file}}
 
-\newpage
-\mintinline{icl}{[icL]} Sintaxă -
-\begin{minted}{icl}
-$user "calea/spre/fișier.js";
-$always "calea/spre/fișier.js";
-\end{minted}
-
-Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
+Setează acest script ca \i{script personal} pentru toate taburile sesiunii.
 
 %\newpage

@@ -1,4 +1,4 @@
 @var = 2;
-$run {
-	window.a = @{var}
-}
+js{
+	window.a = arguments[0]
+}.run(@var)

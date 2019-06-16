@@ -3,7 +3,7 @@
 
 \section{Sintaxă de bază}
 
-icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icL}.
+icL este destul de simplu în învățare, inserați și executați codul de pe foia \ref{first} în icL. Primul program se poate de salvat in fișier cu extensia \textit{icL-Pro}.
 
 \begin{sourcecode}
     \captionof{listing}{Prima programă}
@@ -25,13 +25,13 @@ Toate \textbf{bibliotecile standarde} sunt include în limbaj, dar se poate de i
 
 \begin{icItems}
 \item
-	\mintinline{icl}{Import.none "project/lib.icL"} - execută codul care se află în fișier, nu importă nimic;
+	\mintinline{icl}{Import.none "project/lib.icL-Pro"} - execută codul care se află în fișier, nu importă nimic;
 \item
-	\mintinline{icl}{Import.functions "project/lib.icL"} - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
+	\mintinline{icl}{Import.functions "project/lib.icL-Pro"} - execută codul și importă funcțiile; {\color{red}Important:} funcțiile importante nu ar trebui să folosească variabile globale;
 \item
-	\mintinline{icl}{Import.all "project/lib.icL"} -  execută codul, importa funcțiile și variabilele globale;
+	\mintinline{icl}{Import.all "project/lib.icL-Pro"} -  execută codul, importa funcțiile și variabilele globale;
 \item
-	\mintinline{icl}{Import.run "project/lib.icL"} - execută codul în contextul curent, toate funcțiile și variabilele globale se importă și exportă.
+	\mintinline{icl}{Import.run "project/lib.icL-Pro"} - execută codul în contextul curent, toate funcțiile și variabilele globale se importă și exportă.
 \end{icItems}
 
 \subsection{Semne în icL}
@@ -80,7 +80,7 @@ Semnele prezente:
 
 \subsection{Identificatori}
 
-\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{.}, \mintinline{icl}{'} sau literă, după care merg de la 1 la 32 de caractere: litere latine, diacritice, sublinia și cifre.
+\textbf{Identificatorul} în icL este un nume, folosit pentru a identifica o variabilă, o funcție, o metodă sau o proprietate. Identificatorul se începe cu un caracter special care descrie funcția lui (\mintinline{icl}{@}, \mintinline{icl}{#}, \mintinline{icl}{.}, \mintinline{icl}{'} sau \mintinline{icl}{$}, după care merg de la 1 la 32 de caractere: litere latine, diacritice, sublinia și cifre.
 
 icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@Var} sunt identificatori diferiți. Cîteva exemple de identificatori:
 
@@ -91,7 +91,7 @@ icL diferențiază majuscule și minuscule. Așa că \textit{@var} și \textit{@
 
 \subsection{Cuvinte cheie}
 
-În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 18: \mintinline{icl}{if}, \mintinline{icl}{else} \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}, \mintinline{icl}{exists}, \mintinline{icl}{while}, \mintinline{icl}{do}, \mintinline{icl}{any}, \mintinline{icl}{emit}, \mintinline{icl}{emiter}, \mintinline{icl}{slot}, \mintinline{icl}{jammer}, \mintinline{icl}{listen}, \mintinline{icl}{wait}, \mintinline{icl}{switch}, \mintinline{icl}{case} și \mintinline{icl}{assert}. În acest document ele sunt accentuate folosind culoarea albastră.
+În icL \textbf{cuvintele cheie} sunt rezervate. Ele sunt doar 19: \mintinline{icl}{now}, \mintinline{icl}{if}, \mintinline{icl}{else} \mintinline{icl}{for}, \mintinline{icl}{filter}, \mintinline{icl}{range}, \mintinline{icl}{exists}, \mintinline{icl}{while}, \mintinline{icl}{do}, \mintinline{icl}{any}, \mintinline{icl}{emit}, \mintinline{icl}{emiter}, \mintinline{icl}{slot}, \mintinline{icl}{jammer}, \mintinline{icl}{listen}, \mintinline{icl}{wait}, \mintinline{icl}{switch}, \mintinline{icl}{case} și \mintinline{icl}{assert}. În acest document ele sunt accentuate folosind culoarea albastră.
 
 \subsection{Spații si delimitatori}
 

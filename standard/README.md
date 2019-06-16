@@ -12,17 +12,17 @@ moldavian, engish and russian.
 ### 09.06.2019
 
 * `!` New level of code integration:
-  * `!` `js{}` - JavaScript code
+  * `+` `js{}` - JavaScript code
   * `!` `sql{}` - SQL code
-  * `!` `icl{}` - icL code is the same language
-  * `!` `icl:pro{}` - icL code in the icL Pro language
+  * `+` `icl{}` - icL code is the same language
+  * `+` `icl:pro{}` - icL code in the icL Pro language
 * `!` JavaScript refactoring:
-  * `!` `$value {..}` → `js:value{..}`
-  * `!` `$run {..}` → `js{..}.run()`
-  * `!` `$run {..}` → `js{..}.run(doc)`
-  * `!` `$file ".."` → `js:file[..].run()`
-  * `!` `$user ".."` → `js:file[..].setAsUserScript()`
-  * `!` `$always ".."` → `js:file[..].setAsPersistentUserScript()`
+  * `+` `$value {..}` → `js:value{..}`
+  * `+` `$run {..}` → `js{..}.run()`
+  * `+` `$run {..}` → `js{..}.run(doc)`
+  * `+` `$file ".."` → `js:file[..].run()`
+  * `+` `$user ".."` → `js:file[..].setAsUserScript()`
+  * `+` `$always ".."` → `js:file[..].setAsPersistentUserScript()`
 * `!` DataBase refactoring:
   * `!` `db.query {..}` → `db.query sql{..}`
   * `!` `db.query {..}` → `sql{..}.run(db)`

@@ -1,3 +1,3 @@
-pi = () : double {
+$pi = () : double {
 	@ = 3.14;
 };

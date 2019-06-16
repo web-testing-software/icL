@@ -7,7 +7,7 @@ Numele variabilei este identificator, care se începe cu \mintinline{icl}{@} sau
 
 \subsection{Definire și inițializare a variabilelor}
 
-\textbf{Definirea și inițializarea} se realizează prin definirea perechilor "nume" - "valoare", numele de valoare se desparte prin semnul \mintinline{icl}{=} și are următoarea sintaxă \mintinline{icl}{var = value}, unde \mintinline{icl}{var} este numele, iar \mintinline{icl}{value} e valoarea.
+\textbf{Definirea și inițializarea} se realizează prin definirea perechilor "nume" - "valoare", numele de valoare se desparte prin semnul \mintinline{icl}{=} și are următoarea sintaxă \mintinline{icl}{now var : type = value}, unde \mintinline{icl}{now} este un cuvînt cheie, \mintinline{icl}{var} este numele, \mintinline{icl}{type} - este tipul de date necesar, iar \mintinline{icl}{value} e valoarea.
 
 Pe foaia \ref{initexample} sunt demonstrate cîteva exemple de declarare și inițializare. Atrageți atenția la aceea că numerele reale se scriu prin punct (.), nu prin virgulă (,), așa cum este primit în Europa și Republica Moldova.
 
@@ -56,13 +56,13 @@ Valorile de stînga se pot afla în ambele părți ale operație {\it de atribui
 
 \subsection{Valori împachetate}
 
-{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \mintinline{icl}{(@a, @b) = (@b.ensureRValue, @a.ensureRValue)}. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
+{\bf Valorile împachetate} se folosesc în operatori speciali. Pentru a împacheta valori e destul de a le izola în paranteze rotunde și despărți prin virgulă. Cel mai simplu exemplu de folosire a valorilor împachetate este schimbul de valori între variabile - \mintinline{icl}{(@a, @b) = (@b.ensureRValue(), @a.ensureRValue())}. Pentru că valoare este legată de variabilă, valorile trebuie convertite în valori de dreapta.
 
 \subsection{Variabilele @ și \#}
 
-{Variabila @} este un acronim pentru @stack și Stack'stack. Variabilă de sistem care permite a importa/exporta valori în/din stivă. 
+{Variabila @} este o variabilă de sistem care permite a importa/exporta valori în/din stivă. 
 
-{Variabila \#} este un acronim pentru @console, rezultatul comenzii este salvat în această variabilă, apoi printat în consolă sau transmis comenzii următoare.
+{Variabila \#} este rezultatul comenzii precedente, care apoi este printat în consolă sau transmis comenzii următoare.
 
 
 \begin{sourcecode}
