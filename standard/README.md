@@ -13,7 +13,7 @@ moldavian, engish and russian.
 
 * `!` New level of code integration:
   * `+` `js{}` - JavaScript code
-  * `!` `sql{}` - SQL code
+  * `+` `sql{}` - SQL code
   * `+` `icl{}` - icL code is the same language
   * `+` `icl:pro{}` - icL code in the icL Pro language
 * `!` JavaScript refactoring:
@@ -24,8 +24,8 @@ moldavian, engish and russian.
   * `+` `$user ".."` → `js:file[..].setAsUserScript()`
   * `+` `$always ".."` → `js:file[..].setAsPersistentUserScript()`
 * `!` DataBase refactoring:
-  * `!` `db.query {..}` → `db.query sql{..}`
-  * `!` `db.query {..}` → `sql{..}.run(db)`
+  * `+` `db.query {..}` → `db.query sql{..}`
+  * `+` `db.query {..}` → `sql{..}.run(db)`
 * `!` listen refactoring:
   * `!` `listen "server:port"` → `listen`
   * `!` `listen.handle(params)` → `handler`

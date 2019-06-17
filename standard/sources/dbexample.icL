@@ -1,38 +1,37 @@
 DBManager.openSQLite "db.sqlite";
 
 `` simple query
-DB.query {
+sql{
     SELECT country
     FROM artists
-};
-Query.exec();
+}.create().exec();
 
 while (Query.next) {
     doSomething Query'country;
 };
 
 `` query with parameters
-DB.query {
+sql{
     SELECT name
     FROM programmers
     WHERE country = :country
     LIMIT 1
-};
+}.create();
 Query'country = "Moldova";
 `` is equivalent to
 @md = "Moldova";
-DB.query {
+sql{
     SELECT name
     FROM programmers
     WHERE country = @:md
     LIMIT 1
-};
+}.create();
 
 `` insert query
-DB.query {
+sql{
     INSERT INTO person (id, forname, name)
     VALUE (:id, :forname, :name)
-};
+}.create();
 Query'id = 1001;
 Query'forname = "Bart";
 Query'name = "Simpson";

@@ -8,7 +8,7 @@ Modulul \textit{Baze de date} definește următoarele posibilități:
 	\item \mintinline{icl}{dbmanager.openSQLite (path : string) : database};
 	\item \mintinline{icl}{dbmanager.connect (server : string, user : string, password : string) : database};
 	\item \mintinline{icl}{dbmanager.connect (server : string) : database};
-	\item \mintinline{icl}{database.query (q : Code) : query};
+	\item \mintinline{icl}{database.query (q : code-sql) : query};
 	\item \mintinline{icl}{database.close () : void};
 	\item \mintinline{icl}{[w/o] query'(name : string) : any};
 	\item \mintinline{icl}{query.set (field : string, value : any) : void};
@@ -44,9 +44,15 @@ Se conectează la icL DB Client prin HTTP, clienții pot fi scriși in orice lim
 
 Excepții posibile: \ferror{NoSuchServer} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{database.query (q : Code) : query}}
+\subsubsection{\mintinline{icl}{database.query (q : code-sql) : query}}
 
-Creează un query, pe bază de comandă SQL izolată în acolade.
+Creează un query, pe bază de comandă SQL.
+
+Ca să primiți o valoare de tip \mintinline{icl}{code-sql} folosiți literalul \mintinline{icl}{sql{`cod`}}. De asemenea un query poate fi creat apelînd:
+\begin{icItems}
+\item \mintinline{icl}{code-sql.create () : query};
+\item \mintinline{icl}{code-sql.create (db : database) : query}.
+\end{icItems}
 
 \subsubsection{\mintinline{icl}{database.close () : void}}
 
