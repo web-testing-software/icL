@@ -19,7 +19,7 @@
 		},
 		{
 			"scope": "variable.language",
-			"foreground": "#8082d7",
+			"foreground": "#e2ff57",
 		},
 		{
 			"scope": "variable.other.member",
@@ -43,7 +43,7 @@
 		},
 		{
 			"scope": "support.function",
-			"foreground": "#d87d7d",
+			"foreground": "#ff5d5d",
 		},
 		{
 			"scope": "constant.numeric",
