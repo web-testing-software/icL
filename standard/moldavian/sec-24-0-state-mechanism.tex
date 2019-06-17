@@ -20,10 +20,7 @@ Pentru a controla stivele, se folosesc următoarele funcții și proprietăți:
 	\item \mintinline{icl}{Stack.return (value : any) : void};
 	\item \mintinline{icl}{Stack.markTest (name : string) : Stack};
 	\item \mintinline{icl}{Stack.markStep (name : string) : Stack};
-	\item \mintinline{icl}{Stack.addDescription (description : string) : void};
-	\item \mintinline{icl}{Stack.destroy () : void};
-	\item \mintinline{icl}{Stack.ignore () : Stack};
-	\item \mintinline{icl}{Stack.listen () : Stack}.
+	\item \mintinline{icl}{Stack.addDescription (description : string) : void}.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{[r/o] Stacks'(name : string) : Stack}}
@@ -78,24 +75,6 @@ Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 \subsubsection{\mintinline{icl}{Stack.addDescription (description : string) : void}}
 
 Adaugă descrierea pasului sau testului.
-
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
-
-\subsubsection{\mintinline{icl}{Stack.destroy () : void}}
-
-Șterge din memorie stratul \mintinline{icl}{listen}.
-
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
-
-\subsubsection{\mintinline{icl}{Stack.ignore () : Stack}}
-
-Activează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
-
-Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
-
-\subsubsection{\mintinline{icl}{Stack.listen () : Stack}}
-
-Deactivează regimul "offline" pentru stratul de tip \mintinline{icl}{listen}.
 
 Excepții posibile: \ferror{InvalidArgument} (pr. tab. \ref{errors}).
 

@@ -642,8 +642,6 @@ Excepții posibile: \ferror{NoSessions}, \ferror{OutOfBounds} (pr. tab. \ref{err
 
 Clasa \tab{} are următoarele proprietăți:
 \begin{icItems}
-	\item \mintinline{icl}{[icL] [r/o] tab'canGoBack : bool};
-	\item \mintinline{icl}{[icL] [r/o] tab'canGoForward : bool};
 	\item \mintinline{icl}{[r/o] tab'cookies : cookies};
 	\item \mintinline{icl}{[r/o] tab'document : document};
 	\item \mintinline{icl}{[r/o] tab'screenshot : string};
@@ -663,14 +661,6 @@ Clasa \tab{} are următoarele proprietăți:
 	\item \mintinline{icl}{tab.get (url : string) : bool};
 	\item \mintinline{icl}{tab.load (url : string) : bool}.
 \end{icItems}
-
-\subsubsection{\mintinline{icl}{[icL] [r/o] tab'canGoBack : bool}}
-
-Returnează \true, dacă butonul \textit{Înapoi} e disponibil, în caz contrar \false.
-
-\subsubsection{\mintinline{icl}{[icL] [r/o] tab'canGoForward : bool}}
-
-Returnează \true, dacă butonul \textit{Înainte} e disponibil, în caz contrar \false.
 
 \subsubsection{\mintinline{icl}{[r/o] tab'cookies : cookies}}
 

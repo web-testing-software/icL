@@ -34,11 +34,11 @@ moldavian, engish and russian.
   * `!` Add `handler.deactivate()`
   * `!` Add `handler.kill()`
 * `!` Remove:
-  * `!` `Stack.destroy`
-  * `!` `Stack.ignore`
-  * `!` `Stack.listen`
-  * `!` `*'canGoBack`
-  * `!` `*'canGoForward`
+  * `+` `Stack.destroy`
+  * `+` `Stack.ignore`
+  * `+` `Stack.listen`
+  * `+` `*'canGoBack`
+  * `+` `*'canGoForward`
 * `!` Add:
   * `!` `doc.run(code : js) : any`
   * `!` `element'attrs-*`
