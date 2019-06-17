@@ -1,0 +1,97 @@
+{
+	"variables": {
+		// Define variables here
+	},
+	"globals": {
+		"foreground": "#f2f2f2",
+		"background": "#323232",
+		"accent": "#ffff00",
+		"selection": "#454545",
+	},
+	"rules": [
+		{
+			"scope": "keyword.control",
+			"foreground": "#ffff00",
+		},
+		{
+			"scope": "meta.type",
+			"foreground": "#4a8bff",
+		},
+		{
+			"scope": "variable.language",
+			"foreground": "#8082d7",
+		},
+		{
+			"scope": "variable.other.member",
+			"foreground": "#69f1bf",
+		},
+		{
+			"scope": "entity.name.function",
+			"foreground": "#05f199",
+		},
+		{
+			"scope": "entity.name.tag",
+			"foreground": "#35b9ef",
+		},
+		{
+			"scope": "entity.other.attribute-name",
+			"foreground": "#fd5584",
+		},
+		{
+			"scope": "variable.other",
+			"foreground": "#9193e9",
+		},
+		{
+			"scope": "support.function",
+			"foreground": "#d87d7d",
+		},
+		{
+			"scope": "constant.numeric",
+			"foreground": "#ff5e5e",
+		},
+		{
+			"scope": "variable.language",
+			"foreground": "#8ee827",
+		},
+		{
+			"scope": "string",
+			"foreground": "#db69fe",
+		},
+		{
+			"scope": "string.regexp",
+			"foreground": "#db69fe",
+		},
+		{
+			"scope": "string.quoted.other",
+			"foreground": "#dd75ff",
+		},
+		{
+			"scope": "constant.character.escape",
+			"foreground": "#dd75ff",
+		},
+		{
+			"scope": "meta.class",
+			"foreground": "#faa162",
+		},
+		{
+			"scope": "entity.name.class",
+			"foreground": "#faa162",
+		},
+		{
+			"scope": "entity.name.struct",
+			"foreground": "#0095ff",
+		},
+		{
+			"scope": "entity.name.enum",
+			"foreground": "#8ee827",
+		},
+		{
+			"scope": "entity.name.type",
+			"foreground": "#47bebe",
+		},
+		{
+			"scope": "comment",
+			"foreground": "#9f8da6",
+		}
+	]
+}

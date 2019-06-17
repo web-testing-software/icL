@@ -5,7 +5,7 @@ Toate excepțiile în icL dețin denumire și descriere. Ca să printezi în con
 
 \subsection{Generarea excepțiilor}
 
-Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {`cod`}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception {`cod`}},
+Codul, care generează erori se numește emitor. El se declară folosind următoarea sintaxă \mintinline{icl}{emiter {`cod`}}. Semnalul generat este prins de colector. Colectorii pot fi cîțiva. Ei declară folosind următoarea sintaxă \mintinline{icl}{slot:exception{`cod`}},
 unde \mintinline{icl}{exception} este numele excepției, ca să prinzi toate semnalele poți folosi \mintinline{icl}{slot:Any}. Exemplu de cod care folosește emitor și colector este prezentat pe foaia \ref{sighandling}.
 
 \begin{sourcecode}
@@ -70,7 +70,7 @@ Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă
 	\ferror{WrongDelimiter}          & Delimitator incorect.                        \\ \hline
 	\ferror{ComplexField}            & Conversia din JSON în icL a eșuat.           \\ \hline
 	\ferror{ElementNotInteractable}  & Elementul nu este interactiv.                \\ \hline
-	\ferror{ElementClickIntercepted} & Clickul a fost interceptat.              \\ \hline
+	\ferror{ElementClickIntercepted} & Clickul a fost interceptat.                  \\ \hline
 	\ferror{MoveTargetOutOfBounds}   & Coordinatele mouse-ului în afara ecranului.  \\ \hline
 	\ferror{UnableToSetCookie}       & Nu se poate de creat cookie.                 \\ \hline
 	\ferror{UnableToCaptureScreen}   & Nu se poate de capturat ecranul.             \\ \hline
@@ -80,9 +80,9 @@ Pentru a bloca toate semnalele se folosește jammer, el are următoarea sintaxă
 	\ferror{SessionNotCreated}       & Nu este posibil de creat sesie.              \\ \hline
 	\ferror{QueryNotExecutedYet}     & SQL request nu a fost executat.              \\ \hline
 	
-	\ferror{UnknownCommand}          & \mintinline{icl}{[w3c]} Comandă necunoscută.            \\ \hline
-	\ferror{UnknownError}            & \mintinline{icl}{[w3c]} Eroare necunoscută.             \\ \hline
-	\ferror{UnknownMethod}           & \mintinline{icl}{[w3c]} Metodă HTTP necunoscută.        \\
+	\ferror{UnknownCommand}          & Comandă necunoscută.                         \\ \hline
+	\ferror{UnknownError}            & Eroare necunoscută.                          \\ \hline
+	\ferror{UnknownMethod}           & Metodă HTTP necunoscută.                     \\
 }
 
 %\newpage

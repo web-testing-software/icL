@@ -1,18 +1,18 @@
 `` error
-@test1 = @var;
+#test1 = @var;
 if (@) {
 	`` error
-	@test2 = @var;
+	#test2 = @var;
 	`` initialization
-	@var = 0;
+	now @var : int = 0;
 	`` ok
-	@test3 = @var;
+	#test3 = @var;
 	if (@) {
 		`` ok
-		@test4 = @var;
+		#test4 = @var;
 	}
 	`` ok
-	@test5 = @var;
+	#test5 = @var;
 }
 `` error
-@test6 = @var;
+#test6 = @var;
