@@ -39,33 +39,40 @@ css[header ul > li:nth-child(even)]
 
 Elementele web au următoarele proprietăți:
 \begin{icItems}
-\item \mintinline{icl}{[r/*] element'attr-* : string};
-\item \mintinline{icl}{[r/*] element'css-* : string};
+\item \mintinline{icl}{[r/o] element'attr-* : string};
+\item \mintinline{icl}{[r/o] element'attrs-* : list};
+\item \mintinline{icl}{[r/o] element'css-* : string};
 \item \mintinline{icl}{[r/o] element'doc : doc};
 \item \mintinline{icl}{[r/o] element'empty : bool};
 \item \mintinline{icl}{[r/o] element'enabled : bool};
 \item \mintinline{icl}{[r/o] element'length : int};
-\item \mintinline{icl}{[*/*] element'prop-* : any};
+\item \mintinline{icl}{[r/o] element'prop-* : any};
+\item \mintinline{icl}{[r/o] element'props-* : list};
 \item \mintinline{icl}{[r/o] element'rect : object};
+\item \mintinline{icl}{[r/o] element'rects : set};
 \item \mintinline{icl}{[r/o] element'selected : bool};
 \item \mintinline{icl}{[r/o] element'tag : string};
+\item \mintinline{icl}{[r/o] element'tags : list};
 \item \mintinline{icl}{[r/o] element'text : string};
+\item \mintinline{icl}{[r/o] element'texts : list};
 \item \mintinline{icl}{[r/o] element'(<int> n) : element};
 \end{icItems} 
 
-\subsubsection{\mintinline{icl}{[r/*] element'attr-* : string}}
+\subsubsection{\mintinline{icl}{[r/o] element'attr-* : string}}
 
-\mintinline{icl}{[w3c]} Returnează valoarea atributului \mintinline{icl}{*}.
-
-\mintinline{icl}{[icL]} Returnează o valoare JS pentru atributul necesar.
+Returnează valoarea atributului \mintinline{icl}{*}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/*] element'css-* : string}}
+\subsubsection{\mintinline{icl}{[r/o] element'attrs-* : list}}
 
-\mintinline{icl}{[w3c]} Returnează valoarea proprietății CSS \mintinline{icl}{*}.
+Returnează valoarea atributului \mintinline{icl}{*} fiecărui element. 
 
-\mintinline{icl}{[icL]} Returnează o valoare JS pentru proprietatea CSS necesară.
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] element'css-* : string}}
+
+Returnează valoarea proprietății CSS \mintinline{icl}{*}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
@@ -87,17 +94,17 @@ Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiEle
 
 Returnează numărul de elemente în colecție.
 
-\subsubsection{\mintinline{icl}{[*/*] element'prop-* : string}}
+\subsubsection{\mintinline{icl}{[r/o] element'prop-* : string}}
 
-\mintinline{icl}{[w3c]} Returnează valoare proprietății \mintinline{icl}{*}.
-
-\mintinline{icl}{[icL]}  Returnează o valoare JS pentru proprietatea necesară. Tipul valorii JS este nedefinit, asta poate conduce la erori în analizarea dinamică a codului. Cînd folosiți proprietăți nedefinite în paragraful \ref{elements:predefined:properties}, folosiți conversia pentru a indica tipul rezultatului. Dacă variabila este deja inițializată, probleme nu vor fi. Variabilele noi inițializați în felul următor -
-\begin{minted}{icl}
-@var = element'prop-userdefined : string;
-@var:string = element'prop-userdefined;
-\end{minted}
+Returnează valoare proprietății \mintinline{icl}{*}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[*/*] element'props-* : list}}
+
+Returnează valorile proprietăților \mintinline{icl}{*}.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'rect : obj}}
 
@@ -109,9 +116,13 @@ Returnează poziția și mărimea elementului pe ecran in pixeli CSS, dar mai ex
 	\item \mintinline{icl}{height : double} - înălțimea;
 \end{icItems}
 
-\mintinline{icl}{[icL]} Returnează \set, în caz ca elementul este o colecție.
-
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] element'rects : set}}
+
+Returnează pozițiile și mărimile obiectele tuturor elementele web.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'selected : bool}}
 
@@ -123,17 +134,25 @@ Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiEle
 
 Returnează numele tagului.
 
-\mintinline{icl}{[icL]} Returnează \listtype, dacă elementul este o colecție.
-
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+
+\subsubsection{\mintinline{icl}{[r/o] element'tags : list}}
+
+Returnează denumirile tag-urilor in listă.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'text : string}}
 
 Returnează textul elementului vizibil pe ecran. 
 
-\mintinline{icl}{[icL]} Returnează \listtype, dacă elementul este o colecție.
+Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
-Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement} și \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
+\subsubsection{\mintinline{icl}{[r/o] element'texts : list}}
+
+Returnează textul elementului vizibil pe ecran al fiecăruia element.
+
+Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
 \subsubsection{\mintinline{icl}{[r/o] element'(<int> n) : element}}
 
@@ -177,15 +196,11 @@ Lista metodelor de bază:
 
 Dacă elementul este un cîmp de inserarea a datelor, atunci valoarea lui se anulează. Dacă este un element editabil, atunci proprietății lui \mintinline{icl}{innerHtml} se atribuie un șir deșert.
 
-\mintinline{icl}{[icL]} Se vor curăți toate elementele colecției.
-
 Excepții posibile: \ferror{NoSessions}, \ferror{InvalidArrgument}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{StaleElementReference}, \ferror{InvalidElementState} (pr. tab. \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.click () : element}}
 
 Simulează un clic pe centrul elementului, și așteaptă încărcarea paginii.
-
-\mintinline{icl}{[icL]} Clicul va fi simulat pentru fiecare element al colecției.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{InvalidElement}, \ferror{ElementNotInteractable}, \ferror{ElementClickIntercepted} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
@@ -204,15 +219,11 @@ Parametru \mintinline{icl}{selector} primește un selector CSS, un text al linku
 
 Metoda returnează un element nou care conține primul element, găsit după criteriul necesar în elementul current.
 
-\mintinline{icl}{[icL]} Cătarea se realizează în toate elementele colecției.
-
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{ElementNotFound}, \ferror{MultiElement}, \ferror{NoSuchWindow}, \ferror{NoSuchElement}, \ferror{InvalidSelector}, \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
 \subsubsection{\mintinline{icl}{element.query (by = By'cssSelector, selector : string) : element}}
 
 Primește aceiași parametri ca și \mintinline{icl}{element.query}, numai că metoda dată returnează o colecție din elementele găsite, sau o colecție deșartă dacă nimic nu o fost găsit.
-
-\mintinline{icl}{[icL]} Căutarea se realizează în toate elementele colecției.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
@@ -358,104 +369,104 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleEle
 		\item \mintinline{icl}{[r/o] element'prop-lastChild : element [i]};
 		\item \mintinline{icl}{[r/o] element'prop-nodeName : string};
 		\item \mintinline{icl}{[r/o] element'prop-nodeType : int};
-		\item \mintinline{icl}{[r/*] element'prop-nodeValue : string};
+		\item \mintinline{icl}{[r/o] element'prop-nodeValue : string};
 		\item \mintinline{icl}{[r/o] element'prop-parentElement : element [i]};
 		\item \mintinline{icl}{[r/o] element'prop-textContent : string};
 	\end{icItems}
 	
 	\item Element:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-className : string};
+		\item \mintinline{icl}{[r/o] element'prop-className : string};
 		\item \mintinline{icl}{[r/o] element'prop-clientHeight : double};
 		\item \mintinline{icl}{[r/o] element'prop-clientLeft : double};
 		\item \mintinline{icl}{[r/o] element'prop-clientTop : double};
 		\item \mintinline{icl}{[r/o] element'prop-clientWidth : double};
 		\item \mintinline{icl}{[r/o] element'prop-computedName : string};
 		\item \mintinline{icl}{[r/o] element'prop-computedRole : string};
-		\item \mintinline{icl}{[r/*] element'prop-id : string};
-		\item \mintinline{icl}{[r/*] element'prop-innerHTML : string};
+		\item \mintinline{icl}{[r/o] element'prop-id : string};
+		\item \mintinline{icl}{[r/o] element'prop-innerHTML : string};
 		\item \mintinline{icl}{[r/o] element'prop-localName : string};
 		\item \mintinline{icl}{[r/o] element'prop-nextElementSibling : element [i]};
-		\item \mintinline{icl}{[r/*] element'prop-outerHTML : string};
+		\item \mintinline{icl}{[r/o] element'prop-outerHTML : string};
 		\item \mintinline{icl}{[r/o] element'prop-prefix : string};
 		\item \mintinline{icl}{[r/o] element'prop-previousElementSibling : element [i]};
-		\item \mintinline{icl}{[r/*] element'prop-scrollHeight : double};
-		\item \mintinline{icl}{[r/*] element'prop-scrollLeft : double};
-		\item \mintinline{icl}{[r/*] element'prop-scrollTop : double};
-		\item \mintinline{icl}{[r/*] element'prop-scrollWidth : double};
+		\item \mintinline{icl}{[r/o] element'prop-scrollHeight : double};
+		\item \mintinline{icl}{[r/o] element'prop-scrollLeft : double};
+		\item \mintinline{icl}{[r/o] element'prop-scrollTop : double};
+		\item \mintinline{icl}{[r/o] element'prop-scrollWidth : double};
 		\item \mintinline{icl}{[r/o] element'prop-tagName : string};
 		\item \mintinline{icl}{[r/o] element'prop-baseURI : string};
 	\end{icItems}
 	
 	\item HTMLElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-accessKey : string};
+		\item \mintinline{icl}{[r/o] element'prop-accessKey : string};
 		\item \mintinline{icl}{[r/o] element'prop-accessKeyLabel : string};
-		\item \mintinline{icl}{[r/*] element'prop-contentEditable : string};
+		\item \mintinline{icl}{[r/o] element'prop-contentEditable : string};
 		\item \mintinline{icl}{[r/o] element'prop-isContentEditable : bool};
 		\item \mintinline{icl}{[r/o] element'prop-dataset : object};
-		\item \mintinline{icl}{[r/*] element'prop-dir : string};
-		\item \mintinline{icl}{[r/*] element'prop-draggable : bool};
-		\item \mintinline{icl}{[r/*] element'prop-hidden : bool};
-		\item \mintinline{icl}{[r/*] element'prop-inert : bool};
-		\item \mintinline{icl}{[r/*] element'prop-lang : string};
+		\item \mintinline{icl}{[r/o] element'prop-dir : string};
+		\item \mintinline{icl}{[r/o] element'prop-draggable : bool};
+		\item \mintinline{icl}{[r/o] element'prop-hidden : bool};
+		\item \mintinline{icl}{[r/o] element'prop-inert : bool};
+		\item \mintinline{icl}{[r/o] element'prop-lang : string};
 		\item \mintinline{icl}{[r/o] element'prop-offsetHeight : double};
 		\item \mintinline{icl}{[r/o] element'prop-offsetLeft : double};
 		\item \mintinline{icl}{[r/o] element'prop-offsetParent : element [i]};
 		\item \mintinline{icl}{[r/o] element'prop-offsetTop : double};
 		\item \mintinline{icl}{[r/o] element'prop-offsetWidth : double};
-		\item \mintinline{icl}{[r/*] element'prop-spellcheck : double};
-		\item \mintinline{icl}{[r/*] element'prop-title : string};
+		\item \mintinline{icl}{[r/o] element'prop-spellcheck : double};
+		\item \mintinline{icl}{[r/o] element'prop-title : string};
 	\end{icItems}
 	
 	\item HTMLAnchorElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-download : string};
-		\item \mintinline{icl}{[r/*] element'prop-hash : string};
-		\item \mintinline{icl}{[r/*] element'prop-host : string};
-		\item \mintinline{icl}{[r/*] element'prop-hostname : string};
-		\item \mintinline{icl}{[r/*] element'prop-href : string};
-		\item \mintinline{icl}{[r/*] element'prop-hreflang : string};
-		\item \mintinline{icl}{[r/*] element'prop-media : string};
-		\item \mintinline{icl}{[r/*] element'prop-password : string};
+		\item \mintinline{icl}{[r/o] element'prop-download : string};
+		\item \mintinline{icl}{[r/o] element'prop-hash : string};
+		\item \mintinline{icl}{[r/o] element'prop-host : string};
+		\item \mintinline{icl}{[r/o] element'prop-hostname : string};
+		\item \mintinline{icl}{[r/o] element'prop-href : string};
+		\item \mintinline{icl}{[r/o] element'prop-hreflang : string};
+		\item \mintinline{icl}{[r/o] element'prop-media : string};
+		\item \mintinline{icl}{[r/o] element'prop-password : string};
 		\item \mintinline{icl}{[r/o] element'prop-origin : string};
-		\item \mintinline{icl}{[r/*] element'prop-pathname : string};
-		\item \mintinline{icl}{[r/*] element'prop-port : string};
-		\item \mintinline{icl}{[r/*] element'prop-protocol : string};
-		\item \mintinline{icl}{[r/*] element'prop-rel : string};
-		\item \mintinline{icl}{[r/*] element'prop-search : string};
-		\item \mintinline{icl}{[r/*] element'prop-target : string};
-		\item \mintinline{icl}{[r/*] element'prop-text : string};
-		\item \mintinline{icl}{[r/*] element'prop-type : string};
-		\item \mintinline{icl}{[r/*] element'prop-username : string};
+		\item \mintinline{icl}{[r/o] element'prop-pathname : string};
+		\item \mintinline{icl}{[r/o] element'prop-port : string};
+		\item \mintinline{icl}{[r/o] element'prop-protocol : string};
+		\item \mintinline{icl}{[r/o] element'prop-rel : string};
+		\item \mintinline{icl}{[r/o] element'prop-search : string};
+		\item \mintinline{icl}{[r/o] element'prop-target : string};
+		\item \mintinline{icl}{[r/o] element'prop-text : string};
+		\item \mintinline{icl}{[r/o] element'prop-type : string};
+		\item \mintinline{icl}{[r/o] element'prop-username : string};
 	\end{icItems}
 	
 	\item HTMLAreaElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-alt : string};
-		\item \mintinline{icl}{[r/*] element'prop-coords : string};
+		\item \mintinline{icl}{[r/o] element'prop-alt : string};
+		\item \mintinline{icl}{[r/o] element'prop-coords : string};
 	\end{icItems}
 	
 	\item HTMLButtonElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-autofocus : bool};
-		\item \mintinline{icl}{[r/*] element'prop-disabled : bool};
+		\item \mintinline{icl}{[r/o] element'prop-autofocus : bool};
+		\item \mintinline{icl}{[r/o] element'prop-disabled : bool};
 		\item \mintinline{icl}{[r/o] element'prop-form : element [i]};
-		\item \mintinline{icl}{[r/*] element'prop-formAction : string};
-		\item \mintinline{icl}{[r/*] element'prop-formEnctype : string};
-		\item \mintinline{icl}{[r/*] element'prop-formMethod : string};
-		\item \mintinline{icl}{[r/*] element'prop-formNoValidate : bool};
-		\item \mintinline{icl}{[r/*] element'prop-formTarget : string};
+		\item \mintinline{icl}{[r/o] element'prop-formAction : string};
+		\item \mintinline{icl}{[r/o] element'prop-formEnctype : string};
+		\item \mintinline{icl}{[r/o] element'prop-formMethod : string};
+		\item \mintinline{icl}{[r/o] element'prop-formNoValidate : bool};
+		\item \mintinline{icl}{[r/o] element'prop-formTarget : string};
 		\item \mintinline{icl}{[r/o] element'prop-labels : element [c]};
-		\item \mintinline{icl}{[r/*] element'prop-name : string};
-		\item \mintinline{icl}{[r/*] element'prop-value : string};
+		\item \mintinline{icl}{[r/o] element'prop-name : string};
+		\item \mintinline{icl}{[r/o] element'prop-value : string};
 		\item \mintinline{icl}{[r/o] element'prop-willValidate  : bool};
 	\end{icItems}
 	
 	\item HTMLCanvasElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-height : int};
-		\item \mintinline{icl}{[r/*] element'prop-width : int};
+		\item \mintinline{icl}{[r/o] element'prop-height : int};
+		\item \mintinline{icl}{[r/o] element'prop-width : int};
 	\end{icItems}
 	
 	\item HTMLDataListElement: \mintinline{icl}{[r/o] element'prop-options : element [c]};
@@ -464,15 +475,15 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleEle
 	\begin{icItems}
 		\item \mintinline{icl}{[r/o] element'prop-elements : element [c]};
 		\item \mintinline{icl}{[r/o] element'prop-length : int};
-		\item \mintinline{icl}{[r/*] element'prop-action : string};
-		\item \mintinline{icl}{[r/*] element'prop-encoding : string};
-		\item \mintinline{icl}{[r/*] element'prop-enctype : string};
-		\item \mintinline{icl}{[r/*] element'prop-acceptCharset : string};
-		\item \mintinline{icl}{[r/*] element'prop-autocomplete : string};
-		\item \mintinline{icl}{[r/*] element'prop-noValidate : string};
+		\item \mintinline{icl}{[r/o] element'prop-action : string};
+		\item \mintinline{icl}{[r/o] element'prop-encoding : string};
+		\item \mintinline{icl}{[r/o] element'prop-enctype : string};
+		\item \mintinline{icl}{[r/o] element'prop-acceptCharset : string};
+		\item \mintinline{icl}{[r/o] element'prop-autocomplete : string};
+		\item \mintinline{icl}{[r/o] element'prop-noValidate : string};
 	\end{icItems}
 	
-	\item HTMLIFrameElement: \mintinline{icl}{[r/*] element'prop-allowPaymentRequest};
+	\item HTMLIFrameElement: \mintinline{icl}{[r/o] element'prop-allowPaymentRequest};
 	
 	\item HTMLImageElement:
 	\begin{icItems}
@@ -481,123 +492,123 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleEle
 		\item \mintinline{icl}{[r/o] element'prop-isMap : bool};
 		\item \mintinline{icl}{[r/o] element'prop-naturalHeight : int};
 		\item \mintinline{icl}{[r/o] element'prop-naturalWidth : int};
-		\item \mintinline{icl}{[r/*] element'prop-src : string};
-		\item \mintinline{icl}{[r/*] element'prop-useMap : string};
+		\item \mintinline{icl}{[r/o] element'prop-src : string};
+		\item \mintinline{icl}{[r/o] element'prop-useMap : string};
 	\end{icItems}
 	
 	\item HTMLInputElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-accept : string};
-		\item \mintinline{icl}{[r/*] element'prop-checked : bool};
-		\item \mintinline{icl}{[r/*] element'prop-defaultChecked : bool};
-		\item \mintinline{icl}{[r/*] element'prop-defaultValue : string};
-		\item \mintinline{icl}{[r/*] element'prop-dirName : string};
-		\item \mintinline{icl}{[r/*] element'prop-indeterminate : bool};
-		\item \mintinline{icl}{[r/*] element'prop-list : element [i]};
-		\item \mintinline{icl}{[r/*] element'prop-min : string};
-		\item \mintinline{icl}{[r/*] element'prop-max : string};
-		\item \mintinline{icl}{[r/*] element'prop-maxLength : int};
-		\item \mintinline{icl}{[r/*] element'prop-multiple : bool};
-		\item \mintinline{icl}{[r/*] element'prop-pattern : string};
-		\item \mintinline{icl}{[r/*] element'prop-placeholder : string};
-		\item \mintinline{icl}{[r/*] element'prop-readOnly : bool};
-		\item \mintinline{icl}{[r/*] element'prop-required : bool};
-		\item \mintinline{icl}{[r/*] element'prop-selectionStart : int};
-		\item \mintinline{icl}{[r/*] element'prop-selectionEnd : int};
-		\item \mintinline{icl}{[r/*] element'prop-selectionDirection : string};
-		\item \mintinline{icl}{[r/*] element'prop-size : int};
-		\item \mintinline{icl}{[r/*] element'prop-step : string};
+		\item \mintinline{icl}{[r/o] element'prop-accept : string};
+		\item \mintinline{icl}{[r/o] element'prop-checked : bool};
+		\item \mintinline{icl}{[r/o] element'prop-defaultChecked : bool};
+		\item \mintinline{icl}{[r/o] element'prop-defaultValue : string};
+		\item \mintinline{icl}{[r/o] element'prop-dirName : string};
+		\item \mintinline{icl}{[r/o] element'prop-indeterminate : bool};
+		\item \mintinline{icl}{[r/o] element'prop-list : element [i]};
+		\item \mintinline{icl}{[r/o] element'prop-min : string};
+		\item \mintinline{icl}{[r/o] element'prop-max : string};
+		\item \mintinline{icl}{[r/o] element'prop-maxLength : int};
+		\item \mintinline{icl}{[r/o] element'prop-multiple : bool};
+		\item \mintinline{icl}{[r/o] element'prop-pattern : string};
+		\item \mintinline{icl}{[r/o] element'prop-placeholder : string};
+		\item \mintinline{icl}{[r/o] element'prop-readOnly : bool};
+		\item \mintinline{icl}{[r/o] element'prop-required : bool};
+		\item \mintinline{icl}{[r/o] element'prop-selectionStart : int};
+		\item \mintinline{icl}{[r/o] element'prop-selectionEnd : int};
+		\item \mintinline{icl}{[r/o] element'prop-selectionDirection : string};
+		\item \mintinline{icl}{[r/o] element'prop-size : int};
+		\item \mintinline{icl}{[r/o] element'prop-step : string};
 		\item \mintinline{icl}{[r/o] element'prop-validity : bool};
 		\item \mintinline{icl}{[r/o] element'prop-validationMessage : string};
-		\item \mintinline{icl}{[r/*] element'prop-valueAsNumber : double};
+		\item \mintinline{icl}{[r/o] element'prop-valueAsNumber : double};
 	\end{icItems}
 	
 	\item HTMLLabelElement:
 	\begin{icItems}
 		\item \mintinline{icl}{[r/o] element'prop-control : element [i]};
-		\item \mintinline{icl}{[r/*] element'prop-htmlFor : string};
+		\item \mintinline{icl}{[r/o] element'prop-htmlFor : string};
 	\end{icItems}
 	
-	\item HTMLLinkElement: \mintinline{icl}{[r/*] element'prop-as : string};
+	\item HTMLLinkElement: \mintinline{icl}{[r/o] element'prop-as : string};
 	\item HTMLMapElement: \mintinline{icl}{[r/o] element'prop-areas : element [c]};
 	
 	\item HTMLMediaElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-autoplay : bool};
-		\item \mintinline{icl}{[r/*] element'prop-controls : bool};
+		\item \mintinline{icl}{[r/o] element'prop-autoplay : bool};
+		\item \mintinline{icl}{[r/o] element'prop-controls : bool};
 		\item \mintinline{icl}{[r/o] element'prop-currentSrc : string};
-		\item \mintinline{icl}{[r/*] element'prop-currentTime : double};
-		\item \mintinline{icl}{[r/*] element'prop-defaultMuted : bool};
-		\item \mintinline{icl}{[r/*] element'prop-defaultPlaybackRate : bool};
-		\item \mintinline{icl}{[r/*] element'prop-disableRemotePlayback : bool};
+		\item \mintinline{icl}{[r/o] element'prop-currentTime : double};
+		\item \mintinline{icl}{[r/o] element'prop-defaultMuted : bool};
+		\item \mintinline{icl}{[r/o] element'prop-defaultPlaybackRate : bool};
+		\item \mintinline{icl}{[r/o] element'prop-disableRemotePlayback : bool};
 		\item \mintinline{icl}{[r/o] element'prop-duration : double};
 		\item \mintinline{icl}{[r/o] element'prop-ended : bool};
-		\item \mintinline{icl}{[r/*] element'prop-loop : bool};
-		\item \mintinline{icl}{[r/*] element'prop-mediaGroup : string};
-		\item \mintinline{icl}{[r/*] element'prop-muted : bool};
+		\item \mintinline{icl}{[r/o] element'prop-loop : bool};
+		\item \mintinline{icl}{[r/o] element'prop-mediaGroup : string};
+		\item \mintinline{icl}{[r/o] element'prop-muted : bool};
 		\item \mintinline{icl}{[r/o] element'prop-networkState : int};
 		\item \mintinline{icl}{[r/o] element'prop-paused : bool};
-		\item \mintinline{icl}{[r/*] element'prop-playbackRate : double};
-		\item \mintinline{icl}{[r/*] element'prop-preload : string};
+		\item \mintinline{icl}{[r/o] element'prop-playbackRate : double};
+		\item \mintinline{icl}{[r/o] element'prop-preload : string};
 		\item \mintinline{icl}{[r/o] element'prop-readyState : int};
 		\item \mintinline{icl}{[r/o] element'prop-seeking : bool};
-		\item \mintinline{icl}{[r/*] element'prop-volume : double};
+		\item \mintinline{icl}{[r/o] element'prop-volume : double};
 	\end{icItems}
 	
 	\item HTMLMetaElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-content : string};
-		\item \mintinline{icl}{[r/*] element'prop-httpEquiv : string};
+		\item \mintinline{icl}{[r/o] element'prop-content : string};
+		\item \mintinline{icl}{[r/o] element'prop-httpEquiv : string};
 	\end{icItems}
 	
 	\item HTMLMeterElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-high : double};
-		\item \mintinline{icl}{[r/*] element'prop-low : double};
+		\item \mintinline{icl}{[r/o] element'prop-high : double};
+		\item \mintinline{icl}{[r/o] element'prop-low : double};
 	\end{icItems}
 	
-	\item HTMLModElement: \mintinline{icl}{[r/*] element'prop-cite : string};
+	\item HTMLModElement: \mintinline{icl}{[r/o] element'prop-cite : string};
 	
 	\item HTMLOListElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-reversed : bool};
-		\item \mintinline{icl}{[r/*] element'prop-start : int};
+		\item \mintinline{icl}{[r/o] element'prop-reversed : bool};
+		\item \mintinline{icl}{[r/o] element'prop-start : int};
 	\end{icItems}
 	
 	\item HTMLOptionElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-defaultSelected : bool};
+		\item \mintinline{icl}{[r/o] element'prop-defaultSelected : bool};
 		\item \mintinline{icl}{[r/o] element'prop-index : int};
-		\item \mintinline{icl}{[r/*] element'prop-label : string};
-		\item \mintinline{icl}{[r/*] element'prop-selected : bool};
+		\item \mintinline{icl}{[r/o] element'prop-label : string};
+		\item \mintinline{icl}{[r/o] element'prop-selected : bool};
 	\end{icItems}
 	
 	\item HTMLProgressElement: \mintinline{icl}{[r/o] element'prop-position : double};
 	
 	\item HTMLScriptElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-charset : string};
-		\item \mintinline{icl}{[r/*] element'prop-async : bool};
-		\item \mintinline{icl}{[r/*] element'prop-defer : bool};
-		\item \mintinline{icl}{[r/*] element'prop-noModule : bool};
+		\item \mintinline{icl}{[r/o] element'prop-charset : string};
+		\item \mintinline{icl}{[r/o] element'prop-async : bool};
+		\item \mintinline{icl}{[r/o] element'prop-defer : bool};
+		\item \mintinline{icl}{[r/o] element'prop-noModule : bool};
 	\end{icItems}
 	
 	\item HTMLSelectElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-selectedIndex : int};
+		\item \mintinline{icl}{[r/o] element'prop-selectedIndex : int};
 		\item \mintinline{icl}{[r/o] element'prop-selectedOptions : element [c]};
 	\end{icItems}
 	
 	\item HTMLTableCellElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-abbr : string};
+		\item \mintinline{icl}{[r/o] element'prop-abbr : string};
 		\item \mintinline{icl}{[r/o] element'prop-cellIndex : int};
-		\item \mintinline{icl}{[r/*] element'prop-colSpan : int};
-		\item \mintinline{icl}{[r/*] element'prop-rowSpan : int};
-		\item \mintinline{icl}{[r/*] element'prop-scope : string};
+		\item \mintinline{icl}{[r/o] element'prop-colSpan : int};
+		\item \mintinline{icl}{[r/o] element'prop-rowSpan : int};
+		\item \mintinline{icl}{[r/o] element'prop-scope : string};
 	\end{icItems}
 	
-	\item HTMLTableColElement: \mintinline{icl}{[r/*] element'prop-span : int};
+	\item HTMLTableColElement: \mintinline{icl}{[r/o] element'prop-span : int};
 	
 	\item HTMLTableElement:
 	\begin{icItems}
@@ -615,35 +626,31 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{StaleEle
 	
 	\item HTMLTextAreaElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-cols : int};
+		\item \mintinline{icl}{[r/o] element'prop-cols : int};
 		\item \mintinline{icl}{[r/o] element'prop-textLength : int};
-		\item \mintinline{icl}{[r/*] element'prop-wrap : string};
+		\item \mintinline{icl}{[r/o] element'prop-wrap : string};
 	\end{icItems}
 	
-	\item HTMLTimeElement: \mintinline{icl}{[r/*] element'prop-dateTime : string};
+	\item HTMLTimeElement: \mintinline{icl}{[r/o] element'prop-dateTime : string};
 	
 	\item HTMLTrackElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-kind : string};
-		\item \mintinline{icl}{[r/*] element'prop-srclang : string};
-		\item \mintinline{icl}{[r/*] element'prop-label : string};
-		\item \mintinline{icl}{[r/*] element'prop-default : bool};
+		\item \mintinline{icl}{[r/o] element'prop-kind : string};
+		\item \mintinline{icl}{[r/o] element'prop-srclang : string};
+		\item \mintinline{icl}{[r/o] element'prop-label : string};
+		\item \mintinline{icl}{[r/o] element'prop-default : bool};
 	\end{icItems}
 	
 	\item HTMLVideoElement:
 	\begin{icItems}
-		\item \mintinline{icl}{[r/*] element'prop-poster : string};
-		\item \mintinline{icl}{[r/*] element'prop-videoHeight : int};
-		\item \mintinline{icl}{[r/*] element'prop-videoWidth : int};
+		\item \mintinline{icl}{[r/o] element'prop-poster : string};
+		\item \mintinline{icl}{[r/o] element'prop-videoHeight : int};
+		\item \mintinline{icl}{[r/o] element'prop-videoWidth : int};
 	\end{icItems}
 	
 	% \item \mintinline{icl}{[r/w] element'prop-};
 \end{icItems}
 
 \mintinline{icl}{element [c]} întotdeauna va fi o colecție, \mintinline{icl}{element [i]} - variază în dependența de subiect, dacă subiectul este un element unic, atunci rezultatul va vi un element unic, dacă subiectul este o colecție, atunci rezultatul va fi de asemenea colecție. 
-
-Amintim că standardul W3C WebDriver privește numai citirea proprietăților și numai pentru elemente unice, și în regim de testare proprietățile var fi disponibile numai pentru citire.
-
-Proprietatea \mintinline{icl}{rows} nu este prezent în lista dată, pentru că tipul ei de date se diferențiază de la element la element.
 
 %\newpage

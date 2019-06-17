@@ -41,11 +41,11 @@ moldavian, engish and russian.
   * `+` `*'canGoForward`
 * `!` Add:
   * `+` `doc.run(code : js) : any`
-  * `!` `element'attrs-*`
-  * `!` `element'props-*`
-  * `!` `element'rects`
-  * `!` `element'tags`
-  * `!` `element'texts`
+  * `+` `element'attrs-*`
+  * `+` `element'props-*`
+  * `+` `element'rects`
+  * `+` `element'tags`
+  * `+` `element'texts`
 * `!` All element attributtes and properties get `r/o`
 * `!` Add new element literals:
   * `!` `button[text]` - find button by text
