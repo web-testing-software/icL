@@ -14,7 +14,7 @@ icl:pro{
 }
 \end{minted}
 
-Aceste literale nu vor executa codul, dar vor returna o valoare de tip \mintinline{icl}{code-icl}. Pentru al executa apelați metoda \mintinline{icl}{code-icl.run (args : any ...)}. Argumentele vor fi disponibile în cod ca \mintinline{icl}{@'0}, \mintinline{icl}{@'1} ș.a.m.d.
+Aceste literale nu vor executa codul, dar vor returna o valoare de tip \mintinline{icl}{code-icl}. Pentru al executa apelați metoda \mintinline{icl}{code-icl.run (args : any ...) : any}. Argumentele vor fi disponibile în cod ca \mintinline{icl}{@'0}, \mintinline{icl}{@'1} ș.a.m.d.
 
 Codul în limbajul JavaScript este integrat într-un mod asemănător.
 
@@ -55,9 +55,9 @@ js@target{
 
 \mintinline{icl}{@target} este o variabilă ce conține un link la un document, tab sau fereastră. Indică unde codul trebuie executat (în ce fereastră, în care tab).
 
-Aceste literale vor returna o valoare de tip \mintinline{icl}{code-js}. Codul poate fi executat apelînd metoda \mintinline{icl}{code-js.run (args : any ...)}. Argumentele pot fi accesate prin variabila de sistem - \mintinline{icl}{arguments}.
+Aceste literale vor returna o valoare de tip \mintinline{icl}{code-js}. Codul poate fi executat apelînd metoda \mintinline{icl}{code-js.run (args : any ...) : any}. Argumentele pot fi accesate prin variabila de sistem - \mintinline{icl}{arguments}.
 
-Folosiți metoda \mintinline{icl}{code-js.runAsync (args : any ...)} pentru a executa scriptul asincron.
+Folosiți metoda \mintinline{icl}{code-js.runAsync (args : any ...) : void} pentru a executa scriptul asincron.
 
 \begin{sourcecode}
     \captionof{listing}{Executarea codului în limbajul JavaScript}
@@ -74,8 +74,8 @@ Literalul \mintinline{icl}{js:file[..]} permite a deschide fișiere JavaScript. 
 Clasa \mintinline{icl}{js-file} are umătoarele metode:
 \begin{icItems}
 \item \mintinline{icl}{js-file.load (path : string) : js-file};
-\item \mintinline{icl}{js-file.run (args : any ...) : js-file};
-\item \mintinline{icl}{js-file.runAsync (args : any ...) : js-file};
+\item \mintinline{icl}{js-file.run (args : any ...) : any};
+\item \mintinline{icl}{js-file.runAsync (args : any ...) : void};
 \item \mintinline{icl}{js-file.setAsUserScript () : js-file};
 \item \mintinline{icl}{js-file.setAsPersistentUserScript () : js-file}.
 \end{icItems}
@@ -86,13 +86,13 @@ Clasa \mintinline{icl}{js-file} are umătoarele metode:
 
 Excepții posibile: \ferror{FileNotFound} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{js-file.run (args : any ...) : js-file}}
+\subsubsection{\mintinline{icl}{js-file.run (args : any ...) : any}}
 
 Execută conținutul fișierului.
 
 Excepții posibile: \ferror{JavascriptError}, \ferror{ScriptTimeout} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{js-file.runAsync (args : any ...) : js-file}}
+\subsubsection{\mintinline{icl}{js-file.runAsync (args : any ...) : void}}
 
 Execută asincron conținutul fișierului.
 

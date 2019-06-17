@@ -40,7 +40,7 @@ moldavian, engish and russian.
   * `+` `*'canGoBack`
   * `+` `*'canGoForward`
 * `!` Add:
-  * `!` `doc.run(code : js) : any`
+  * `+` `doc.run(code : js) : any`
   * `!` `element'attrs-*`
   * `!` `element'props-*`
   * `!` `element'rects`
