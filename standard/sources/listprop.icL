@@ -1,5 +1,5 @@
 @empty = [];
-@fonts = ["Arial" "Helvetica" "Times" "Courier"];
+@fonts = ["Arial", "Helvetica", "Times", "Courier"];
 
 @empty'empty;  `` true
 @fonts'empty;  `` false

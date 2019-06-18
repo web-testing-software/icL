@@ -46,7 +46,7 @@ moldavian, engish and russian.
   * `+` `element'rects`
   * `+` `element'tags`
   * `+` `element'texts`
-* `!` All element attributtes and properties get `r/o`
+* `+` All element attributtes and properties get `r/o`
 * `!` Add new element literals:
   * `!` `button[text]` - find button by text
   * `!` `input[name]` - find input by name
