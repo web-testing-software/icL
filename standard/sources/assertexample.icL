@@ -1,5 +1,5 @@
 `` wrong
-assert (@val != 2 || @val != 4 || @val != 127, "Message");
+assert (@val != 2 || @val != 4 || @val != 127; "Message");
 
 `` correct
 @message = "Message";

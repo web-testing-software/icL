@@ -8,6 +8,9 @@ Simbolul intern poate fi nu numai \mintinline{icl}{/}, dar și oricare alt simbo
 
 Ca să capturezi începutul șirului de caractere se poate de folosit \mintinline{icl}{^} și \mintinline{icl}{\A}, dar pentru sfîrșit - \mintinline{icl}{$} și \mintinline{icl}{\z}. Primul variant necătînd la popularitatea lui poate funcționa incorect, pentru ca ele capturează începutul și sfîrșitul liniilor în context de text în mai multe linii.
 
+De asemenea, expresiile regulare pot fi folosite în literale clasei element, ele sunt suportate de următoarele metode: \mintinline{icl}{link}, \mintinline{icl}{links}, \mintinline{icl}{button}, \mintinline{icl}{field}, \mintinline{icl}{h1}, \mintinline{icl}{h2}, \mintinline{icl}{h3}, \mintinline{icl}{h4}, \mintinline{icl}{h5}, \mintinline{icl}{h6}, \mintinline{icl}{legend}, \mintinline{icl}{span}.
+Sintaxă: \mintinline{icl}{metodă[/șablon/mods]}. Exemplu: \mintinline{icl}{link[/log\sin/i]}.
+
 \subsection{Modificatori}
 
 În limbajul icL sunt prezenți următorii modificatori: \mintinline{icl}{/i}, \mintinline{icl}{/s}, \mintinline{icl}{/m}, \mintinline{icl}{/x}, \mintinline{icl}{/u} și \mintinline{icl}{/f}. Modificatorii pot fi combinați, de exemplu \mintinline{icl}{/xi}.
@@ -37,9 +40,6 @@ Clasele de simboluri \mintinline{icl}{\w}, \mintinline{icl}{\d} ș.a.m.d. și in
 Se inventează zgîrcirea cuantificatorilor \mintinline{icl}{*}, \mintinline{icl}{+}, \mintinline{icl}{?} ș.a.m.d. și ei devin leneși. Dar versiunile lor leneșe \mintinline{icl}{*?}, \mintinline{icl}{+?}, \mintinline{icl}{??} ș.a.m.d. devin zgîrite.
 
 {\bf Cuantificatorul zgîrgit} capturează cantitatea maximă de simboluri, dar {\bf cuantificatorul leneș} - minimală.
-
-De asemenea, expresiile regulare pot fi folosite în literale clasei element, ele sunt suportate de următoarele metode: \mintinline{icl}{link}, \mintinline{icl}{links}, \mintinline{icl}{button}, \mintinline{icl}{field}, \mintinline{icl}{h1}, \mintinline{icl}{h2}, \mintinline{icl}{h3}, \mintinline{icl}{h4}, \mintinline{icl}{h5}, \mintinline{icl}{h6}, \mintinline{icl}{legend}, \mintinline{icl}{span}.
-Sintaxă: \mintinline{icl}{metodă[/șablon/mods]}. Exemplu: \mintinline{icl}{link[/log\sin/i]}.
 
 \subsection{Operatori}
 

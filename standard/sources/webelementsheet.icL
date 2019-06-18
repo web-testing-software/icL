@@ -3,7 +3,9 @@
 @a = exists(css:try[#el])'text | "";
 `` replaces
 @a = "";
-if (css:all[#el]'length > 0) { @a = css[#el]'text; }
+if (css:all[#el]'length > 0) {
+	@a = css[#el]'text;
+}
 
 `` example 2
 
@@ -11,6 +13,10 @@ if (css:all[#el]'length > 0) { @a = css[#el]'text; }
 
 @links.add css:try[#special];
 `` replaces
-if (!css:all[#special]'empty) { @links.add css[#special]; }
+if (!css:all[#special]'empty) {
+	@links.add css[#special];
+}
 `` or
-if exists(css[#special]) { @links.add @; }
+if exists(css[#special]) {
+	@links.add @;
+}
