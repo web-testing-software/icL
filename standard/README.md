@@ -56,11 +56,11 @@ moldavian, engish and russian.
   * `+` `h1-h6[text]` - returns a heading by text
   * `+` `span[text]` - returns a span by text
 * `!` Add support for regex in element literals:
-  * `!` `link[/regex/]`
-  * `!` `button[/regex/]`
-  * `!` `field[/regex/]`
-  * `!` `h1-h6[/regex/]`
-  * `!` `span[/regex/]`
+  * `+` `link[/regex/]`
+  * `+` `button[/regex/]`
+  * `+` `field[/regex/]`
+  * `+` `h1-h6[/regex/]`
+  * `+` `span[/regex/]`
 * `!` Add new modifiers for sigle element literals:
   * `!` `:try` - don't generate a error on failed
   * `!` `:waitXs` - wait X seconds for, if not found throw a error
