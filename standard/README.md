@@ -67,6 +67,6 @@ moldavian, engish and russian.
   * `+` `:waitXms` - wait X ms for, if not found throw a error
   * `+` `:tryXs` - wait X seconds for, after exit
   * `+` `:tryXms` - wait X ms for, after exit
-* `!` `assert(.. , ..)` → `assert(.. ; ..)`
+* `+` `assert(.. , ..)` → `assert(.. ; ..)`
 
 All approved requests will be applied in icL Pro 1.4
