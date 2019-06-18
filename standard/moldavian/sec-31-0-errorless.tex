@@ -274,7 +274,16 @@ Modificatorul \mintinline{icl}{max} apără de cicluri infinite, se poate de ind
 
 \subsection{Elemente Web}
 
-Standardul \textit{WebDriver} propus de \textit{World Wide Web Consortium} descrie un număr enorm de excepții în lucrul cu elementele. Toate nu pot fi ignorate, numai una \ferror{NoSuchElement}. Ea este ignorată în regim de automatizare, dacă elementul nu a fost găsit se returnează o colecție deșartă. La prima vedere e puțin, dar aplicații la practică se găsesc multe, în combinație cu alte posibilități, priviți foaia \ref{webelementsheet}.
+Literalele elementelor web primesc numai un modificator, în acord cu metodologia {\it errorless} literalele pot accepta următoarii modificatori (disponibil numai pentru metodele \mintinline{icl}{css}, \mintinline{icl}{xpath}, \mintinline{icl}{link}, \mintinline{icl}{tag}, \mintinline{icl}{button}, \mintinline{icl}{input}, \mintinline{icl}{field}, \mintinline{icl}{h1}, \mintinline{icl}{h2}, \mintinline{icl}{h3}, \mintinline{icl}{h4}, \mintinline{icl}{h5}, \mintinline{icl}{h6}, \mintinline{icl}{legend} și \mintinline{icl}{span}):
+\begin{icItems}
+	\mintinline{icl}{:try} returnează o colecție deșartă dacă nu s-a primit de găsit elementul;
+	\mintinline{icl}{:tryXs} caută elementul timp de X secunde, apoi returnează o colecție deșartă;
+	\mintinline{icl}{:tryXms} caută elementul timp de X milisecunde, apoi returnează o colecție deșartă;
+	\mintinline{icl}{:waitXs} așteaptă X secunde, apoi generează o excepţie;
+	\mintinline{icl}{:waitXms} așteaptă X milisecunde, apoi generează o excepție.
+\end{icItems}
+
+\ref{webelementsheet}.
 
 \begin{sourcecode}
     \captionof{listing}{Folosirea elementelor web}

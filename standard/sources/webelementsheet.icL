@@ -1,6 +1,6 @@
 `` example 1
 
-@a = exists(Doc.query "#el")'text | "";
+@a = exists(css:try[#el])'text | "";
 `` replaces
 @a = "";
 if (css:all[#el]'length > 0) { @a = css[#el]'text; }
@@ -9,7 +9,7 @@ if (css:all[#el]'length > 0) { @a = css[#el]'text; }
 
 @links = tags[a];
 
-@links.add css[#special];
+@links.add css:try[#special];
 `` replaces
 if (!css:all[#special]'empty) { @links.add css[#special]; }
 `` or

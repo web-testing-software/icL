@@ -62,11 +62,11 @@ moldavian, engish and russian.
   * `+` `h1-h6[/regex/]`
   * `+` `span[/regex/]`
 * `!` Add new modifiers for sigle element literals:
-  * `!` `:try` - don't generate a error on failed
-  * `!` `:waitXs` - wait X seconds for, if not found throw a error
-  * `!` `:waitXms` - wait X ms for, if not found throw a error
-  * `!` `:tryXs` - wait X seconds for, after exit
-  * `!` `:tryXms` - wait X ms for, after exit
+  * `+` `:try` - don't generate a error on failed
+  * `+` `:waitXs` - wait X seconds for, if not found throw a error
+  * `+` `:waitXms` - wait X ms for, if not found throw a error
+  * `+` `:tryXs` - wait X seconds for, after exit
+  * `+` `:tryXms` - wait X ms for, after exit
 * `!` `assert(.. , ..)` → `assert(.. ; ..)`
 
 All approved requests will be applied in icL Pro 1.4
