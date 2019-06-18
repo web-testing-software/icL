@@ -39,7 +39,7 @@ Pentru a lucra cu claviatura se propun următoarele funcții:
 	\item \mintinline{icl}{element.fastType (text : string) : element};
 	\item \mintinline{icl}{element.paste (text : string) : element}.
 	\item \mintinline{icl}{element.forceType (text : string) : element}.
-	\item \mintinline{icl}{Doc.type (text : string) : Doc}.
+	\item \mintinline{icl}{document.type (text : string) : document}.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{element.keyDown (modifiers : int, keys : text) : element}}
@@ -66,7 +66,7 @@ Copiază textul în clipboard,
 
 Adăugă valoare prin JavaScript.
 
-\subsubsection{\mintinline{icl}{Doc.type (text : string) : element}}
+\subsubsection{\mintinline{icl}{document.type (text : string) : element}}
 
 Simulează procesul de culegere al textului fără a schimba focosul.
 
@@ -77,13 +77,14 @@ Pentru a lucra cu mouse-ul se propun următoarele funcții:
 \begin{icItems}
 	\item \mintinline{icl}{element.click (data : object) : element};
 	\item \mintinline{icl}{element.forceClick (data : object) : element};
+	\item \mintinline{icl}{element.hover (data : object) : element};
 	\item \mintinline{icl}{element.mouseDown (data : object) : element};
 	\item \mintinline{icl}{element.mouseUp (data : object) : element};
-	\item \mintinline{icl}{element.hover (data : object) : element}.
-	\item \mintinline{icl}{Doc.click (data : object) : Doc}.
-	\item \mintinline{icl}{Doc.mouseDown (data : object) : Doc};
-	\item \mintinline{icl}{Doc.mouseUp (data : object) : Doc};
-	\item \mintinline{icl}{Doc.hover (data : object) : Doc}.
+	\item \mintinline{icl}{element.superClick () : element};
+	\item \mintinline{icl}{document.click (data : object) : document};
+	\item \mintinline{icl}{document.hover (data : object) : document};
+	\item \mintinline{icl}{document.mouseDown (data : object) : document};
+	\item \mintinline{icl}{document.mouseUp (data : object) : document}.
 \end{icItems}
 
 În aceste funcții obiectul \mintinline{icl}{data} poate avea următoarele cîmpuri:
@@ -113,14 +114,6 @@ Simulează un clic. Obiectul \mintinline{icl}{data} deține următoarele proprie
 
 Simulează un click fără a controla dacă elementul este disponibil.
 
-\subsubsection{\mintinline{icl}{element.mouseDown (data : object) : element}}
-
-Simulează apăsarea butonului mouse-ului.
-
-\subsubsection{\mintinline{icl}{element.mouseUp (data : object) : element}}
-
-Simulează eliberarea butonului mouse-ului.
-
 \subsubsection{\mintinline{icl}{element.hover (data : object) : element}}
 
 Mută mouse-ul deasupra elementului. \mintinline{icl}{data} are următoarele proprietăți adiționale:
@@ -141,21 +134,33 @@ Mută mouse-ul deasupra elementului. \mintinline{icl}{data} are următoarele pro
 	\item \mintinline{icl}{[r/w] @data'p2y : double} - Coordinata $y$ punctului secundar.
 \end{icItems}
 
-\subsubsection{\mintinline{icl}{Doc.click (data : object) : Doc}}
+\subsubsection{\mintinline{icl}{element.mouseDown (data : object) : element}}
+
+Simulează apăsarea butonului mouse-ului.
+
+\subsubsection{\mintinline{icl}{element.mouseUp (data : object) : element}}
+
+Simulează eliberarea butonului mouse-ului.
+
+\subsubsection{\mintinline{icl}{element.superClick () : element}}
+
+Simulează un click pe element chiar dacă nu este vizibil.
+
+\subsubsection{\mintinline{icl}{document.click (data : object) : document}}
 
 Simulează un click pe document.
 
-\subsubsection{\mintinline{icl}{Doc.mouseDown (data : object) : Doc}}
+\subsubsection{\mintinline{icl}{document.hover (data : object) : document}}
+
+Simulează mutarea mouse-ului pe document.
+
+\subsubsection{\mintinline{icl}{document.mouseDown (data : object) : document}}
 
 Simulează apăsarea butonului mouse-ului pe document.
 
-\subsubsection{\mintinline{icl}{Doc.mouseUp (data : object) : Doc}}
+\subsubsection{\mintinline{icl}{document.mouseUp (data : object) : document}}
 
 Simulează eliberarea butonului mouse-ului pe document.
-
-\subsubsection{\mintinline{icl}{Doc.hover (data : object) : Doc}}
-
-Simulează mutarea mouse-ului pe document.
 
 \subsection{Setarea detaliilor}
 

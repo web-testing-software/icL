@@ -8,19 +8,31 @@ Elementul se numește unic dacă este creat de funcția \mintinline{icl}{Doc.que
 
 \subsection{Literal}
 
-Elementele web pot fi declarate prin literalul \mintinline{icl}{metodă@scop[selector]}, unde \mintinline{icl}{metodă} e unul din următoarele cuvinte: \mintinline{icl}{css}, \mintinline{icl}{xpath}, \mintinline{icl}{link}, \mintinline{icl}{links}, \mintinline{icl}{tag}, \mintinline{icl}{tags}. \mintinline{icl}{@scop} e o variabilă locală, care conține un element web. \mintinline{icl}{selector} e un selector, un șir de caractere, după care se definește, care elemente vor fi capturate, fiecare metodă trebuiește un selector aparte.
+Elementele web pot fi declarate prin literalul \mintinline{icl}{metodă@scop[selector]}, unde \mintinline{icl}{metodă} e unul din următoarele cuvinte: \mintinline{icl}{css}, \mintinline{icl}{xpath}, \mintinline{icl}{link}, \mintinline{icl}{links}, \mintinline{icl}{tag}, \mintinline{icl}{tags}, \mintinline{icl}{button}, \mintinline{icl}{input}, \mintinline{icl}{field}, \mintinline{icl}{web}, \mintinline{icl}{h1}, \mintinline{icl}{h2}, \mintinline{icl}{h3}, \mintinline{icl}{h4}, \mintinline{icl}{h5}, \mintinline{icl}{h6}, \mintinline{icl}{legend}, \mintinline{icl}{span}. \mintinline{icl}{@scop} e o variabilă locală, care conține un element web. \mintinline{icl}{selector} e un selector, un șir de caractere, după care se definește, care elemente vor fi capturate, fiecare metodă trebuiește un selector aparte.
 
-Metoda \mintinline{icl}{css} primește în calitate de selector un selector CSS. Acestă metodă va returna primul element compatibil. Pentru a obține toate elemente folosiți \mintinline{icl}{css:all}, unde \mintinline{icl}{all} este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+Metoda \mintinline{icl}{css} primește în calitate de selector un selector CSS. Acestă metodă va returna primul element compatibil. Pentru a obține toate elemente folosiți \mintinline{icl}{css:all}.
 
-Metoda \mintinline{icl}{xpath} primește în calitate de selector o cale XPath. Acestă metodă va returna primul element compatibil. Pentru a obține toate elemente folosiți \mintinline{icl}{xpath:all}, unde \mintinline{icl}{all} este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+Metoda \mintinline{icl}{xpath} primește în calitate de selector o cale XPath. Acestă metodă va returna primul element compatibil. Pentru a obține toate elemente folosiți \mintinline{icl}{xpath:all}.
 
-Metoda \mintinline{icl}{link} primește în calitate de selector textul linkului și returnează linkul corespunzător. Pentru a indica un fragment de text folosiți \mintinline{icl}{link:fragment}, unde \mintinline{icl}{fragment} este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+Metoda \mintinline{icl}{link} primește în calitate de selector textul linkului și returnează linkul corespunzător. Pentru a indica un fragment de text folosiți \mintinline{icl}{link:fragment}.
 
-Metoda \mintinline{icl}{links} primește în calitate de selector un text și returnează toate linkurile, care conțin exact acest text. Pentru a indica un fragment de text folosiți \mintinline{icl}{links:fragment}, unde \mintinline{icl}{fragment} este un modificator, mai multa informație despre modificatori, puteți găsi în capitolul \ref{sec-modifiers}.
+Metoda \mintinline{icl}{links} primește în calitate de selector un text și returnează toate linkurile, care conțin exact acest text. Pentru a indica un fragment de text folosiți \mintinline{icl}{links:fragment}.
 
 Metoda \mintinline{icl}{tag} primește în calitate de selector un nume de tag și returnează primul element al tagului corespunzător.
 
 Metoda \mintinline{icl}{tags} primește în calitate de selector un nume de tag și returnează toate elemente tag-ului corespunzător.
+
+Metoda \mintinline{icl}{button} primește în calitate de selector textul butonului, returnează primul buton corespunzător.
+
+Metoda \mintinline{icl}{input} primește în calitate de selector valoarea atributului \mintinline{icl}{name}, returnează primul input cu numele indicat.
+
+Metoda \mintinline{icl}{field} primește în calitate de selector textul etichetei, returnează cîmpul cu numele indicat.
+
+Metodele \mintinline{icl}{h1}, \mintinline{icl}{h2}, \mintinline{icl}{h3}, \mintinline{icl}{h4}, \mintinline{icl}{h5}, \mintinline{icl}{h6} și \mintinline{icl}{legend} primesc în calitate de selector textul antetului. Returnează primul antet cu textul indicat. 
+
+Metoda \mintinline{icl}{span} primește în calitate de selector textul span-ului, returnează primul span cu textul indicat.
+
+Metoda \mintinline{icl}{web} nu primește nici un selector, returează un element nou si deșert.
 
 Exemple de literale -
 \begin{minted}{icl}

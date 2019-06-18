@@ -46,14 +46,15 @@ moldavian, engish and russian.
   * `+` `element'rects`
   * `+` `element'tags`
   * `+` `element'texts`
+  * `+` `element.superClick`
 * `+` All element attributtes and properties get `r/o`
 * `!` Add new element literals:
-  * `!` `button[text]` - find button by text
-  * `!` `input[name]` - find input by name
-  * `!` `field[text]` - find input by label text
-  * `!` `web[]` - return an empty element
-  * `!` `h1-h6[text]` - returns a heading by text
-  * `!` `span[text]` - returns a span by text
+  * `+` `button[text]` - find button by text
+  * `+` `input[name]` - find input by name
+  * `+` `field[text]` - find input by label text
+  * `+` `web[]` - return an empty element
+  * `+` `h1-h6[text]` - returns a heading by text
+  * `+` `span[text]` - returns a span by text
 * `!` Add support for regex in element literals:
   * `!` `link[/regex/]`
   * `!` `button[/regex/]`
