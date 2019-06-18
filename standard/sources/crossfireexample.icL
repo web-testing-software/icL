@@ -4,6 +4,8 @@ func = {
     Log.info "It's working!"
 };
 
-$run {
-    @{el}[0].onlick = function (ev) { !{func}() }
-};
+js{
+    arguments[0].onlick = function (ev) { !{func}() }
+}
+.crossfire()
+.run(@el);

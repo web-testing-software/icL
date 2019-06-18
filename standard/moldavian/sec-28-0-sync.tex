@@ -4,17 +4,31 @@
 
 icL nu se limitează la sincronizarea cu procesele de încărcare și executarea script-urilor în pagina web. icL poate fi sincronizat cu back-end-ul cu ajutorul tehnologiei \textit{icL-Sync}. Lista tehnologiilor icL este disponibilă pe adresa \ferror{https://gitlab.com/lixcode/icL/tree/standard/technologies\#technologies}.
 
-\subsubsection{Conectare}
+\subsection{Conectare}
 
 Ca să captezi mesaje trebuie de creat spion, care are sintaxa următoare:
 \begin{iclcode}
-listen adresaServerului : (parametri) {
-	`` cod
-}
+listen adresaServerului;
 \end{iclcode}
 
-Unde \mintinline{icl}{adresaServerului} e URL serviciului de sincronizare, iar \mintinline{icl}{parametri} lista de argumente, toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți spioni. Dacă parametrul deține valoare implicită, spionul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un spion care acaparează numai mesajele de eroare.
+Unde \mintinline{icl}{adresaServerului} e URL serviciului de sincronizare. Această comandă returnează o valoare de tip \mintinline{icl}{listen}, acest tip deține metoda \mintinline{icl}{lisen.hander (params ...) : handler}.
 
+Excepții posibile: \ferror{NoSuchServer}, \ferror{InvalidListen} (pr. tab. \ref{errors}).
+
+\subsection{Handler}
+
+Clasa \mintinline{icl}{handler} are următoarele metode:
+\begin{icItems}
+\item \mintinline{icl}{handler.setup (code : code-icl) : handler};
+\item \mintinline{icl}{handler.activate () : handler};
+\item \mintinline{icl}{handler.deactivate () : handler};
+\item \mintinline{icl}{handler.kill () : handler}.
+%\item \mintinline{icl}{handler}
+\end{icItems}
+
+\subsubsection{handler.setup (code : code-icl) : handler}
+
+Instalează codul care va fi executat de trigger. Toate semnalele care vor deține listă de argumente incompatibilă vor fi ignorate. În acest mod la un serviciu de sincronizare pot fi conectați mai mulți handler-i. Dacă parametrul deține valoare implicită, handler-ul va acapara numai acele semnale, la care parametrul deține valoarea indicată ca implicită. Pe foaia \ref{errorcatch} este descris un handler care acaparează numai mesajele de eroare.
 
 \begin{sourcecode}
     \captionof{listing}{Capturarea erorilor}
@@ -22,6 +36,22 @@ Unde \mintinline{icl}{adresaServerului} e URL serviciului de sincronizare, iar \
     \inputminted[linenos]{icl}{../sources/errorcatch.icL}
 \end{sourcecode}
 
-\subsubsection{Deconectare}
+Excepții posibile: \ferror{InvalidHandler} (pr. tab. \ref{errors}).
 
-Pentru a opri captura mesajelor folosiți metodele: \mintinline{icl}{Stack}\\*\mintinline{icl}{.ignore()} sau \mintinline{icl}{Stack.destroy()}. Mai multe date puteți găsi în paragraful \ref{stack:control}.
+\subsubsection{handler.activate () : handler}
+
+Activează handler-ul.
+
+Excepții posibile: \ferror{InvalidHandler} (pr. tab. \ref{errors}).
+
+\subsubsection{handler.deactivate () : handler}
+
+Deactivează handler-ul.
+
+Excepții posibile: \ferror{InvalidHandler} (pr. tab. \ref{errors}).
+
+\subsubsection{handler.kill () : handler}
+
+Invalidează handler-ul, dacă este unicul handler, valoarea \mintinline{icl}{listen} de asemenea va fi invalidată.
+
+Excepții posibile: \ferror{InvalidHandler} (pr. tab. \ref{errors}).

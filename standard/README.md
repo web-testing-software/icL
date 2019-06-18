@@ -27,12 +27,12 @@ moldavian, engish and russian.
   * `+` `db.query {..}` → `db.query sql{..}`
   * `+` `db.query {..}` → `sql{..}.run(db)`
 * `!` listen refactoring:
-  * `!` `listen "server:port"` → `listen`
-  * `!` `listen.handle(params)` → `handler`
-  * `!` Add `handler.setup(code : icl)`
-  * `!` Add `handler.activate()`
-  * `!` Add `handler.deactivate()`
-  * `!` Add `handler.kill()`
+  * `+` `listen "server:port"` → `listen`
+  * `+` `listen.handle(params)` → `handler`
+  * `+` Add `handler.setup(code : icl)`
+  * `+` Add `handler.activate()`
+  * `+` Add `handler.deactivate()` InvalidHandler ServerNotFound InvalidListen
+  * `+` Add `handler.kill()`
 * `!` Remove:
   * `+` `Stack.destroy`
   * `+` `Stack.ignore`
