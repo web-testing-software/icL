@@ -1,0 +1,330 @@
+%YAML 1.2
+---
+name: icL
+scope: source.icL
+file_extensions: [ icL, icL-Pro ]
+
+contexts:
+  main:
+    - match: '\b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\b'
+      captures:
+        0: keyword.icL
+    - match: '\b(bool|int|double|string|list|element|set|item|object|void|regex|datetime|session|window|cookie|tab|document|file|query|database|dbmanager|js-file|code-(icl|js|sql)|handler|any|type)\b'
+      captures:
+        0: meta.type.icL
+    - match: '\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b'
+      captures:
+        0: meta.class.icL
+    - match: '(\''[\w\-\*]+)'
+      captures:
+        0: variable.other.member.icL
+    - match: '(sql)({)'
+      captures:
+        0: entity.name.function.icL
+        1: punctuation.icL
+      push: 
+        - match: '(})'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - include: sqlCode
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '(icl)(:pro)?({)'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: punctuation.icL
+    - match: '(\.\w+)'
+      captures:
+        0: entity.name.function.icL
+    - match: '\b(emit|slot)(:\w+)\b'
+      captures:
+        0: keyword.icL
+        1: entity.name.tag.icL
+    - match: '\b(css)(:all|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: variable.other.icL
+        3: punctuation.icL
+      push: 
+        - match: '(\])'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - include: webElement
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '\b(xpath)(:all|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: variable.other.icL
+        3: punctuation.icL
+        4: string.quoted.single.icL
+        5: punctuation.icL
+    - match: '\b(link)(:fragment|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: variable.other.icL
+        3: punctuation.icL
+        4: string.quoted.single.icL
+        5: punctuation.icL
+    - match: '\b(links)(:fragment)?(@\w*)?(\[)(.*?)(\])'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: variable.other.icL
+        3: punctuation.icL
+        4: string.quoted.single.icL
+        5: punctuation.icL
+    - match: '\b(tag|button|input|field|h[1-6]|legend|span)(:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: variable.other.icL
+        3: punctuation.icL
+        4: string.quoted.single.icL
+        5: punctuation.icL
+    - match: '\b(tags)(@\w*)?(\[)(.*?)(\])'
+      captures:
+        0: entity.name.function.icL
+        1: variable.other.icL
+        2: punctuation.icL
+        3: string.quoted.single.icL
+        4: punctuation.icL
+    - match: '\b(web)(\[\])'
+      captures:
+        0: entity.name.function.icL
+        1: punctuation.icL
+    - match: '\b(js)(:value)?(@\w+)?({)'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: variable.other.icL
+        3: punctuation.icL
+      push: 
+        - match: '(})'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - include: jsCode
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '\b(js)(:file)(\[)(.*?)(\])'
+      captures:
+        0: entity.name.function.icL
+        1: entity.name.tag.icL
+        2: punctuation.icL
+        3: string.quoted.single.icL
+        4: punctuation.icL
+    - match: '(\$\w+)'
+      captures:
+        0: entity.name.function.icL
+    - match: '(@\w+)'
+      captures:
+        0: variable.other.icL
+    - match: '(#\w+)'
+      captures:
+        0: variable.language.icL
+    - match: '(#)'
+      captures:
+        0: variable.other.icL
+    - match: '(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b'
+      captures:
+        0: entity.name.tag.icL
+        1: entity.name.tag.icL
+    - match: '\b(\d+\.?\d*?)\b'
+      captures:
+        0: constant.numeric.icL
+    - match: '(//.*?//|/:.*?:/|/\$.*?\$/|/".*?"/)(\w*)'
+      captures:
+        0: string.regexp.icL
+        1: string.regexp.icL
+    - match: '\b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b'
+      captures:
+        0: invalid.icL
+    - match: '(\")'
+      captures:
+        0: string.quoted.single.icL
+      push: 
+        - match: '(\")'
+          pop: true
+          captures:
+            0: string.quoted.single.icL
+        - include: string
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '(```)'
+      captures:
+        0: comment.icL
+      push: 
+        - match: '(```)'
+          pop: true
+          captures:
+            0: comment.icL
+        - match: '(.)'
+          captures:
+            0: comment.icL
+    - match: '(``)'
+      captures:
+        0: comment.icL
+      push: 
+        - match: '($)'
+          pop: true
+          captures:
+            0: comment.icL
+        - match: '(.)'
+          captures:
+            0: comment.icL
+    - match: '(`)'
+      captures:
+        0: comment.icL
+      push: 
+        - match: '(`)'
+          pop: true
+          captures:
+            0: comment.icL
+        - match: '(.)'
+          captures:
+            0: comment.icL
+    - match: '(:\[)'
+      captures:
+        0: punctuation.icL
+      push: 
+        - match: '(\])'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - match: '\b(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b'
+          captures:
+            0: entity.name.tag.icL
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '(\[)'
+      captures:
+        0: punctuation.icL
+      push: 
+        - match: '(\])'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - include: main
+        - match: '(\w+)'
+          captures:
+            0: variable.other.member.icL
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '(;)'
+      captures:
+        0: punctuation.icL
+    - match: '(.)'
+      captures:
+        0: text.icL
+  string:
+    - match: '(\\.)'
+      captures:
+        0: string.quoted.single.icL
+    - match: '(.)'
+      captures:
+        0: string.quoted.single.icL
+    - match: '(.)'
+      captures:
+        0: text.icL
+  sqlCode:
+    - match: '\b(SELECT|FROM|WHERE|LIMIT|INSERT|INTO|VALUE)\b'
+      captures:
+        0: keyword.icL
+    - match: '(@?:[\w\_]+)'
+      captures:
+        0: variable.other.icL
+    - match: '(#:[\w\_]+)'
+      captures:
+        0: variable.language.icL
+    - match: '([\w\_]+)(\s*\()'
+      captures:
+        0: entity.name.function.icL
+        1: punctuation.icL
+    - match: '(.)'
+      captures:
+        0: text.icL
+  webElement:
+    - match: '(\.[\w\-\_]+)'
+      captures:
+        0: meta.class.icL
+    - match: '(\#[\w\-\_]+)'
+      captures:
+        0: entity.name.struct.icL
+    - match: '(\:[\w\-\_]+)(\s*\()'
+      captures:
+        0: entity.name.function.icL
+        1: punctuation.icL
+    - match: '(\:[\w\-\_]+)'
+      captures:
+        0: entity.name.enum.icL
+    - match: '\b([\w\-\_]+)(=[^\w]?)([\w\-\_]+)'
+      captures:
+        0: variable.other.member.icL
+        1: punctuation.icL
+        2: string.quoted.single.icL
+    - match: '\b(\d+)\b'
+      captures:
+        0: constant.numeric.icL
+    - match: '\b([\w\-\_]+)\b'
+      captures:
+        0: entity.name.type.icL
+    - match: '(\[)'
+      captures:
+        0: punctuation.icL
+      push: 
+        - match: '(\])'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - include: webElement
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '(.)'
+      captures:
+        0: text.icL
+  jsCode:
+    - match: '\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\b'
+      captures:
+        0: keyword.icL
+    - match: '(\${[\w\_]+})'
+      captures:
+        0: entity.name.function.icL
+    - match: '(\.[\w\_]+)(\s*\()'
+      captures:
+        0: entity.name.function.icL
+        1: punctuation.icL
+    - match: '(\.[\w\_]+)'
+      captures:
+        0: variable.other.member.icL
+    - match: '\b(window|document|crossfire)\b'
+      captures:
+        0: meta.class.icL
+    - match: '({)'
+      captures:
+        0: punctuation.icL
+      push: 
+        - match: '(})'
+          pop: true
+          captures:
+            0: punctuation.icL
+        - include: jsCode
+        - match: '(.)'
+          captures:
+            0: text.icL
+    - match: '(.)'
+      captures:
+        0: text.icL

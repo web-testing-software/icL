@@ -1,0 +1,666 @@
+'fileTypes' : [
+  'icL'
+  'icL-Pro'
+]
+'name' : 'icL'
+'patterns' : [
+  {
+    'include' : '#main'
+  }
+]
+'scopeName' : 'source.icL'
+'uuid' : ''
+'repository' : {
+  'main' : {
+    'patterns' : [
+      {
+        'match' : '\\b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\\b'
+        'name' : 'keyword.icL'
+      }
+      {
+        'match' : '\\b(bool|int|double|string|list|element|set|item|object|void|regex|datetime|session|window|cookie|tab|document|file|query|database|dbmanager|js-file|code-(icl|js|sql)|handler|any|type)\\b'
+        'name' : 'meta.type.icL'
+      }
+      {
+        'match' : '\\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\\b'
+        'name' : 'meta.class.icL'
+      }
+      {
+        'match' : '(\\\'[\\w\\-\\*]+)'
+        'name' : 'variable.other.member.icL'
+      }
+      {
+        'begin' : '(sql)({)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#main__1'
+          }
+        ]
+        'end' : '(})'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '(icl)(:pro)?({)'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '(\\.\\w+)'
+        'name' : 'entity.name.function.icL'
+      }
+      {
+        'match' : '\\b(emit|slot)(:\\w+)\\b'
+        'captures' : {
+          '1' : {
+            'name' : 'keyword.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+        }
+      }
+      {
+        'begin' : '\\b(css)(:all|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'variable.other.icL'
+          }
+          '4' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#main__2'
+          }
+        ]
+        'end' : '(\\])'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(xpath)(:all|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'variable.other.icL'
+          }
+          '4' : {
+            'name' : 'punctuation.icL'
+          }
+          '5' : {
+            'name' : 'string.quoted.single.icL'
+          }
+          '6' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(link)(:fragment|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'variable.other.icL'
+          }
+          '4' : {
+            'name' : 'punctuation.icL'
+          }
+          '5' : {
+            'name' : 'string.quoted.single.icL'
+          }
+          '6' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(links)(:fragment)?(@\\w*)?(\\[)(.*?)(\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'variable.other.icL'
+          }
+          '4' : {
+            'name' : 'punctuation.icL'
+          }
+          '5' : {
+            'name' : 'string.quoted.single.icL'
+          }
+          '6' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(tag|button|input|field|h[1-6]|legend|span)(:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'variable.other.icL'
+          }
+          '4' : {
+            'name' : 'punctuation.icL'
+          }
+          '5' : {
+            'name' : 'string.quoted.single.icL'
+          }
+          '6' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(tags)(@\\w*)?(\\[)(.*?)(\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'variable.other.icL'
+          }
+          '3' : {
+            'name' : 'punctuation.icL'
+          }
+          '4' : {
+            'name' : 'string.quoted.single.icL'
+          }
+          '5' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(web)(\\[\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'begin' : '\\b(js)(:value)?(@\\w+)?({)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'variable.other.icL'
+          }
+          '4' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#main__3'
+          }
+        ]
+        'end' : '(})'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(js)(:file)(\\[)(.*?)(\\])'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '3' : {
+            'name' : 'punctuation.icL'
+          }
+          '4' : {
+            'name' : 'string.quoted.single.icL'
+          }
+          '5' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '(\\$\\w+)'
+        'name' : 'entity.name.function.icL'
+      }
+      {
+        'match' : '(@\\w+)'
+        'name' : 'variable.other.icL'
+      }
+      {
+        'match' : '(#\\w+)'
+        'name' : 'variable.language.icL'
+      }
+      {
+        'match' : '(#)'
+        'name' : 'variable.other.icL'
+      }
+      {
+        'match' : '(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.tag.icL'
+          }
+          '2' : {
+            'name' : 'entity.name.tag.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(\\d+\\.?\\d*?)\\b'
+        'name' : 'constant.numeric.icL'
+      }
+      {
+        'match' : '(//.*?//|/:.*?:/|/\\$.*?\\$/|/".*?"/)(\\w*)'
+        'captures' : {
+          '1' : {
+            'name' : 'string.regexp.icL'
+          }
+          '2' : {
+            'name' : 'string.regexp.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\\b'
+        'name' : 'invalid.icL'
+      }
+      {
+        'begin' : '(\\")'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'string.quoted.single.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#main__4'
+          }
+        ]
+        'end' : '(\\")'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'string.quoted.single.icL'
+          }
+        }
+      }
+      {
+        'begin' : '(```)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'comment.icL'
+          }
+        }
+        'contentName' : 'comment.icL'
+        'end' : '(```)'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'comment.icL'
+          }
+        }
+      }
+      {
+        'begin' : '(``)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'comment.icL'
+          }
+        }
+        'contentName' : 'comment.icL'
+        'end' : '($)'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'comment.icL'
+          }
+        }
+      }
+      {
+        'begin' : '(`)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'comment.icL'
+          }
+        }
+        'contentName' : 'comment.icL'
+        'end' : '(`)'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'comment.icL'
+          }
+        }
+      }
+      {
+        'begin' : '(:\\[)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#main__8'
+          }
+        ]
+        'end' : '(\\])'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'begin' : '(\\[)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#main__9'
+          }
+        ]
+        'end' : '(\\])'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '(;)'
+        'name' : 'punctuation.icL'
+      }
+    ]
+  }
+  'jsCode' : {
+    'patterns' : [
+      {
+        'match' : '\\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\\b'
+        'name' : 'keyword.icL'
+      }
+      {
+        'match' : '(\\${[\\w\\_]+})'
+        'name' : 'entity.name.function.icL'
+      }
+      {
+        'match' : '(\\.[\\w\\_]+)(\\s*\\()'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '(\\.[\\w\\_]+)'
+        'name' : 'variable.other.member.icL'
+      }
+      {
+        'match' : '\\b(window|document|crossfire)\\b'
+        'name' : 'meta.class.icL'
+      }
+      {
+        'begin' : '({)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#jsCode__1'
+          }
+        ]
+        'end' : '(})'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+    ]
+  }
+  'jsCode__1' : {
+    'patterns' : [
+      {
+        'include' : '#jsCode'
+      }
+    ]
+  }
+  'main__1' : {
+    'patterns' : [
+      {
+        'include' : '#sqlCode'
+      }
+    ]
+  }
+  'main__2' : {
+    'patterns' : [
+      {
+        'include' : '#webElement'
+      }
+    ]
+  }
+  'main__3' : {
+    'patterns' : [
+      {
+        'include' : '#jsCode'
+      }
+    ]
+  }
+  'main__4' : {
+    'patterns' : [
+      {
+        'include' : '#string'
+      }
+    ]
+  }
+  'main__5' : {
+    'patterns' : [
+    ]
+  }
+  'main__6' : {
+    'patterns' : [
+    ]
+  }
+  'main__7' : {
+    'patterns' : [
+    ]
+  }
+  'main__8' : {
+    'patterns' : [
+      {
+        'match' : '\\b(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b'
+        'name' : 'entity.name.tag.icL'
+      }
+    ]
+  }
+  'main__9' : {
+    'patterns' : [
+      {
+        'include' : '#main'
+      }
+      {
+        'match' : '(\\w+)'
+        'name' : 'variable.other.member.icL'
+      }
+    ]
+  }
+  'sqlCode' : {
+    'patterns' : [
+      {
+        'match' : '\\b(SELECT|FROM|WHERE|LIMIT|INSERT|INTO|VALUE)\\b'
+        'name' : 'keyword.icL'
+      }
+      {
+        'match' : '(@?:[\\w\\_]+)'
+        'name' : 'variable.other.icL'
+      }
+      {
+        'match' : '(#:[\\w\\_]+)'
+        'name' : 'variable.language.icL'
+      }
+      {
+        'match' : '([\\w\\_]+)(\\s*\\()'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+    ]
+  }
+  'string' : {
+    'patterns' : [
+      {
+        'match' : '(\\\\.)'
+        'name' : 'string.quoted.single.icL'
+      }
+      {
+        'match' : '(.)'
+        'name' : 'string.quoted.single.icL'
+      }
+    ]
+  }
+  'webElement' : {
+    'patterns' : [
+      {
+        'match' : '(\\.[\\w\\-\\_]+)'
+        'name' : 'meta.class.icL'
+      }
+      {
+        'match' : '(\\#[\\w\\-\\_]+)'
+        'name' : 'entity.name.struct.icL'
+      }
+      {
+        'match' : '(\\:[\\w\\-\\_]+)(\\s*\\()'
+        'captures' : {
+          '1' : {
+            'name' : 'entity.name.function.icL'
+          }
+          '2' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+      {
+        'match' : '(\\:[\\w\\-\\_]+)'
+        'name' : 'entity.name.enum.icL'
+      }
+      {
+        'match' : '\\b([\\w\\-\\_]+)(=[^\\w]?)([\\w\\-\\_]+)'
+        'captures' : {
+          '1' : {
+            'name' : 'variable.other.member.icL'
+          }
+          '2' : {
+            'name' : 'punctuation.icL'
+          }
+          '3' : {
+            'name' : 'string.quoted.single.icL'
+          }
+        }
+      }
+      {
+        'match' : '\\b(\\d+)\\b'
+        'name' : 'constant.numeric.icL'
+      }
+      {
+        'match' : '\\b([\\w\\-\\_]+)\\b'
+        'name' : 'entity.name.type.icL'
+      }
+      {
+        'begin' : '(\\[)'
+        'beginCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+        'patterns' : [
+          {
+            'include' : '#webElement__1'
+          }
+        ]
+        'end' : '(\\])'
+        'endCaptures' : {
+          '1' : {
+            'name' : 'punctuation.icL'
+          }
+        }
+      }
+    ]
+  }
+  'webElement__1' : {
+    'patterns' : [
+      {
+        'include' : '#webElement'
+      }
+    ]
+  }
+}

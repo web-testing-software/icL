@@ -4,53 +4,112 @@
 name: icL
 file_extensions:
   - icL
+  - icL-Pro
 scope: source.icL
 contexts:
   main:
-    - match: \b(if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\b
+    - match: \b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\b
       scope: keyword.control.icL
 
-    - match: \b(bool|int|double|string|list|element|set|item|object|function|void|request|char|regex|datetime|any|type)\b
+    - match: \b(bool|int|double|string|list|element|set|item|object|void|regex|datetime|session|window|cookie|tab|document|file|query|database|dbmanager|js-file|code-(icl|js|sql)|handler|any|type)\b
       scope: meta.type.icL
 
-    - match: (\[)(icL|w3c)(\])
-      captures:
-        1: source.icL
-        2: variable.language.icL
-        3: source.icL
-
-    - match: \b(icL|Log|Tab|Doc|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies?|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|States|DB|Query|DBManager|Code|Signal|Datetime)\b
+    - match: \b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b
       scope: meta.class.icL
 
     - match: \'[\w\-\*]+
       scope: variable.other.member.icL
 
-    - match: (\.query)\s*{
+    - match: (sql){
       captures:
         1: entity.name.function.icL
       push: sql_code
 
+    - match: (icl)(:pro)?{
+      captures:
+        1: entity.name.function.icL
+        2: entity.name.tag.icL
+
     - match: \.\w+
       scope: entity.name.function.icL
 
-    - match: \b(Exit|NoSessions|NoSuchWindow|NoSuchElement|NoSuchFrame|NoSuchCookie|NoSuchAlert|NoSuchPlaceholder|NoSuchDatabase|NoSuchServer|WrongUserPassword|StaleElementReference|FolderNotFound|FileNotFound|FieldNotFound|FieldAlreadyExists|OutOfBounds|UnsupportedOperation|EmptyString|EmptyList|MultiList|EmptyElement|MultiElement|EmptySet|MultiSet|InvalidArgument|InvalidSelector|InvalidElementState|InvalidElement|IncompatibleRoot|IncompatibleData|IncompatibleObject|InvalidSessionId|InvalidCookieDomain|InsecureCertificate|UnexpectedAlertOpen|UnrealCast|ParsingFailed|WrongDelimiter|ComplexField|ElementNotInteractable|ElementClickIntercepted|MoveTargetOutOfBounds|UnableToSetCookie|UnableToCaptureScreen|JavascriptError|ScriptTimeout|Timeout|SessionNotCreated|QueryNotExecutedYet|UnknownCommand|UnknownError|UnknownMethod)\b
-      scope: entity.name.tag.icL
+    - match: \b(emit|slot)(:\w+)\b
+      captures:
+        1: keyword.control.icL
+        2: entity.name.tag.icL
 
-    - match: \b(css(:all)?|xpath(:all)?|links?(:fragment)?|tags?)(@\w*)?\[
+    - match: \b(css)(:all|:try((\d+)m?s)?|:wait(\d+m?s))?(@\w*)?(\[)
       captures:
         1: entity.name.tag.icL
         2: entity.other.attribute-name.icL
         3: entity.other.attribute-name.icL
-        4: entity.other.attribute-name.icL
-        5: variable.other
+        4: constant.numeric.icL
+        5: constant.numeric.icL
+        6: variable.other
+        7: source.icL
       push: web_element
 
-    - match: (\$(value|run|runAsync))\s*{
+    - match: \b(xpath)(:all|:try((\d+)m?s)?|:wait(\d+m?s))?(@\w*)?\[(.*?)\]
       captures:
-        1: support.function.icL
+        1: entity.name.tag.icL
+        2: entity.other.attribute-name.icL
+        3: entity.other.attribute-name.icL
+        4: constant.numeric.icL
+        5: constant.numeric.icL
+        6: variable.other
+        7: string.quoted.single
+
+    - match: \b(link)(:fragment|:try((\d+)m?s)?|:wait(\d+m?s))?(@\w*)?\[(.*?)\]
+      captures:
+        1: entity.name.tag.icL
+        2: entity.other.attribute-name.icL
+        3: entity.other.attribute-name.icL
+        4: constant.numeric.icL
+        5: constant.numeric.icL
+        6: variable.other
+        7: string.quoted.single
+
+    - match: \b(links)(:fragment)?(@\w*)?\[(.*?)\]
+      captures:
+        1: entity.name.tag.icL
+        2: entity.other.attribute-name.icL
+        3: variable.other
+        4: string.quoted.single
+
+    - match: \b(tag|button|input|field|h[1-6]|legend|span)(:try((\d+)m?s)?|:wait(\d+m?s))?(@\w*)?\[(.*?)\]
+      captures:
+        1: entity.name.tag.icL
+        2: entity.other.attribute-name.icL
+        3: entity.other.attribute-name.icL
+        4: constant.numeric.icL
+        5: constant.numeric.icL
+        6: variable.other
+        7: string.quoted.single
+
+    - match: \b(tags)(@\w*)?\[(.*?)\]
+      captures:
+        1: entity.name.tag.icL
+        2: variable.other
+        3: string.quoted.single
+
+    - match: \b(web)\[\]
+      captures:
+        1: entity.name.tag.icL
+
+    - match: \b(js)(:value)?(@\w+)?{
+      captures:
+        1: entity.name.tag.icL
+        2: entity.other.attribute-name.icL
+        3: variable.other.icL
       push: js_code
 
-    - match: \$(user|file|always)
+    - match: \b(js)(:file)\[(.*?)\]
+      captures:
+        1: entity.name.tag.icL
+        2: entity.other.attribute-name.icL
+        3: string.quoted.single
+
+    - match: \$\w+
       scope: support.function.icL
 
     - match: \@\w*
@@ -59,19 +118,30 @@ contexts:
     - match: \#\w+
       scope: variable.language.icL
 
-    - match: \#|~
+    - match: \#
       scope: variable.other.icL
 
-    - match: \:\w+
+    - match: :(not|alive|ignore|ajax|(\d+)m?s|alt|ever|(\d+)times|reverse|max(\d+)|min(\d+)|all|fragment|try(\d+)m?s|try|wait(\d+)m?s)\b
+      captures:
+        1: entity.other.attribute-name.icL
+        2: constant.numeric.icL
+        3: constant.numeric.icL
+        4: constant.numeric.icL
+        5: constant.numeric.icL
+        6: constant.numeric.icL
+        7: constant.numeric.icL
       scope: entity.other.attribute-name.icL
 
-    - match: \d+(\.\d+)?
+    - match: \b\d+(\.\d+)?\b
       scope: constant.numeric.icL
 
     - match: (//.*?//|/:.*?:/|/\$.*?\$/|/".*?"/)(\w*)
       captures:
         1: string.regexp.icL
         2: string.quoted.other.icL
+
+    - match: \b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b
+      scope: variable.language.icL
 
     - match: '"'
       scope: punctuation.definition.string.begin.icL
@@ -100,6 +170,51 @@ contexts:
         - match: '`'
           pop: true
 
+    - match: :\[
+      scope: source
+      set:
+        - meta_scope: source
+
+        - match: \]
+          pop: true
+
+        - match: \b(not|alive|ignore|ajax|(\d+)m?s|alt|ever|(\d+)times|reverse|max(\d+)|min(\d+)|all|fragment|try(\d+)m?s|try|wait(\d+)m?s)\b
+          captures:
+            1: entity.other.attribute-name.icL
+            2: constant.numeric.icL
+            3: constant.numeric.icL
+            4: constant.numeric.icL
+            5: constant.numeric.icL
+            6: constant.numeric.icL
+            7: constant.numeric.icL
+          scope: entity.other.attribute-name.icL
+
+    - match: \(
+      scope: source
+      set:
+        - meta_scope: source
+
+        - match: \)
+          pop: true
+
+        - include: main
+
+        - match: \w+
+          scope: variable.other.member.icL
+
+    - match: \[
+      scope: source
+      set:
+        - meta_scope: source
+
+        - match: \]
+          pop: true
+
+        - include: main
+
+        - match: \w+
+          scope: variable.other.member.icL
+          
   string:
     - meta_scope: string.quoted.single
 
@@ -119,6 +234,9 @@ contexts:
 
     - match: \#:[\w\_]+
       scope: variable.language.icL
+
+    - match: :[\w\_]+
+      scope: variable.other.icL
 
     - match: ([\w\_]+)\s*\(
       captures:
@@ -146,7 +264,7 @@ contexts:
         1: entity.other.attribute-name.icL
         2: string.quoted.single.icL
 
-    - match: \d+
+    - match: \b\d+\b
       scope: constant.numeric.icL
 
     - match: \b[\w\-\_]+\b
@@ -162,13 +280,7 @@ contexts:
     - match: \b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\b
       scope: keyword.control.icL
 
-    - match: \@{[\w\_]+}
-      scope: variable.other.icL
-
-    - match: \#{[\w\_]+}
-      scope: variable.language.icL
-
-    - match: \!{[\w\_]+}
+    - match: \${[\w\_]+}
       scope: entity.name.function.icL
 
     - match: (\.[\w\_]+)\s*\(

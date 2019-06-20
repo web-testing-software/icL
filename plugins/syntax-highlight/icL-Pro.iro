@@ -1,0 +1,517 @@
+#################################################################
+## Iro
+################################################################ 
+##
+## * Press Ctrl + '+'/'-' To Zoom in
+## * Press Ctrl + S to save and recalculate... 
+## * Documents are saved to web storage.
+## * Only one save slot supported.
+## * Matches cannot span lines.
+## * Unicode chars must be defined in \u0000 to \uffff format.
+## * All matches must be contained by a single group ( ... )
+## * Look behinds not permitted, (?<= or (?<!
+## * Look forwards are permitted (?= or (?!
+## * Constants are defined as __my_const = (......)
+## * The \= format allows unescaped regular expressions
+## * Constants referenced by match \= $${__my_const}
+## * Constants can reference other constants
+## * You are free to delete all the default scopes.
+## * Twitter : ainslec , Web: http://eeyo.io/iro
+##
+################################################################
+
+name                   = icL
+file_extensions []     = icL, icLPro;
+
+################################################################
+## Constants
+################################################################
+
+################################################################
+## Styles
+################################################################
+
+styles [] {
+
+.comment : style {
+   color          = grey
+   textmate_scope = comment
+   pygments_scope = Comment
+}
+
+.keyword : style {
+   color          = yellow
+   textmate_scope = keyword
+   pygments_scope = Keyword
+}
+
+.numeric : style {
+   color          = red
+   textmate_scope = constant.numeric
+   pygments_scope = Number
+}
+
+.punctuation : style {
+   color          = white
+   textmate_scope = punctuation
+   pygments_scope = Punctuation
+}
+
+.illegal : style {
+   color          = red_2
+   textmate_scope = invalid
+   pygments_scope = Generic.Error
+}
+
+.metaType : style {
+   color          = blue
+   textmate_scope = meta.type
+   pygments_scope = Keyword.Type
+}
+
+.metaClass : style {
+   color          = orange
+   textmate_scope = meta.class
+   pygments_scope = Name.Class
+}
+
+.property : style {
+   color          = light_green
+   textmate_scope = variable.other.member
+   pygments_scope = Name
+   // Name.Property
+}
+
+.codeLiteral : style {
+   color          = light_blue
+   textmate_scope = entity.name.function
+   pygments_scope = Name.Function
+}
+
+.modifier : style {
+   color          = green
+   textmate_scope = entity.name.tag
+   pygments_scope = Keyword.Pseudo
+}
+
+.method  : style {
+   color          = green
+   textmate_scope = entity.name.function
+   pygments_scope = Name.Function
+}
+
+.lvariable : style {
+   color          = blue
+   textmate_scope = variable.other
+   pygments_scope = Name.Variable
+}
+
+.gvariable : style {
+   color          = orange
+   textmate_scope = variable.language
+   pygments_scope = Name.Variable.Global
+}
+
+.string : style {
+   color          = purple
+   textmate_scope = string.quoted.single
+   pygments_scope = String
+}
+
+.function : style {
+   color          = pink
+   textmate_scope = entity.name.function
+   pygments_scope = Name.Function
+}
+
+.regex : style {
+   color          = purple
+   textmate_scope = string.regexp
+   pygments_scope = String.Regex
+}
+
+.struct : style {
+   color          = orange
+   textmate_scope = entity.name.struct
+   pygments_scope = Name.Variable.Instance
+}
+
+.enum : style {
+   color          = purple
+   textmate_scope = entity.name.enum
+   pygments_scope = Name
+   // Name.Property
+}
+
+.type : style {
+   color          = blue
+   textmate_scope = entity.name.type
+   pygments_scope = Keyword.Type
+}
+
+}
+
+#################################################
+## Parse contexts
+#################################################
+
+contexts [] {
+
+##############################################
+## Main Context - Entry point context
+##############################################
+
+main : context {
+
+   : pattern {
+      regex          \= \b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\b
+      styles []       = .keyword;
+   }
+   
+   : pattern {
+      regex      \= \b(bool|int|double|string|list|element|set|item|object|void|regex|datetime|session|window|cookie|tab|document|file|query|database|dbmanager|js-file|code-(icl|js|sql)|handler|any|type)\b
+      styles []   = .metaType;
+   }
+   
+   : pattern {
+      regex      \= \b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b
+      styles []   = .metaClass;
+   }
+   
+   : pattern {
+      regex      \= (\'[\w\-\*]+)
+      styles []   = .property;
+   }
+   
+   : inline_push {
+      regex            \= (sql)({)
+      styles []         = .codeLiteral, .punctuation;
+      
+      : pop {
+         regex      \= (})
+         styles []   = .punctuation;
+      }
+      
+      : include "sqlCode" ;
+   }
+   
+   : pattern {
+      regex      \= (icl)(:pro)?({)
+      styles []   = .codeLiteral, .modifier, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= (\.\w+)
+      styles []   = .method;
+   }
+   
+   : pattern {
+      regex      \= \b(emit|slot)(:\w+)\b
+      styles []   = .keyword, .modifier;
+   }
+   
+   : inline_push {
+      regex      \= \b(css)(:all|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)
+      styles []   = .codeLiteral, .modifier, .lvariable, .punctuation;
+      
+      : pop {
+         regex      \= (\])
+         styles []   = .punctuation;
+      }
+      
+      : include "webElement" ;
+   }
+   
+   : pattern {
+      regex      \= \b(xpath)(:all|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])
+      styles []   = .codeLiteral, .modifier, .lvariable, .punctuation, .string, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= \b(link)(:fragment|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])
+      styles []   = .codeLiteral, .modifier, .lvariable, .punctuation, .string, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= \b(links)(:fragment)?(@\w*)?(\[)(.*?)(\])
+      styles []   = .codeLiteral, .modifier, .lvariable, .punctuation, .string, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= \b(tag|button|input|field|h[1-6]|legend|span)(:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])
+      styles []   = .codeLiteral, .modifier, .lvariable, .punctuation, .string, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= \b(tags)(@\w*)?(\[)(.*?)(\])
+      styles []   = .codeLiteral, .lvariable, .punctuation, .string, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= \b(web)(\[\])
+      styles []   = .codeLiteral, .punctuation;
+   }
+   
+   : inline_push {
+      regex            \= \b(js)(:value)?(@\w+)?({)
+      styles []         = .codeLiteral, .modifier, .lvariable, .punctuation;
+      
+      : pop {
+         regex      \= (})
+         styles []   = .punctuation;
+      }
+      
+      : include "jsCode" ;
+   }
+   
+   : pattern {
+      regex      \= \b(js)(:file)(\[)(.*?)(\])
+      styles []   = .codeLiteral, .modifier, .punctuation, .string, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= (\$\w+)
+      styles []   = .function;
+   }
+   
+   : pattern {
+      regex      \= (@\w+)
+      styles []   = .lvariable;
+   }
+   
+   : pattern {
+      regex      \= (#\w+)
+      styles []   = .gvariable;
+   }
+   
+   : pattern {
+      regex      \= (#)
+      styles []   = .lvariable;
+   }
+   
+   : pattern {
+      regex      \= (:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b
+      styles []   = .modifier, .modifier;
+   }
+   
+   : pattern {
+      regex      \= \b(\d+\.?\d*?)\b
+      styles []   = .numeric;
+   }
+   
+   : pattern {
+      regex      \= (//.*?//|/:.*?:/|/\$.*?\$/|/".*?"/)(\w*)
+      styles []   = .regex, .regex;
+   }
+   
+   : pattern {
+      regex      \= \b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b
+      styles []   = .illegal;
+   }
+   
+   : inline_push {
+      regex          \= (\")
+      styles []       = .string;
+      
+      : pop {
+         regex       \= (\")
+         styles []    = .string;
+      }
+      
+      : include "string" ;
+   }
+   
+   : inline_push {
+      regex            \= (```)
+      styles []         = .comment;
+      default_style     = .comment
+      : pop {
+         regex      \= (```)
+         styles []   = .comment;
+      }
+   }
+   
+   : inline_push {
+      regex            \= (``)
+      styles []         = .comment;
+      default_style     = .comment
+      : pop {
+         regex      \= ($)
+         styles []   = .comment;
+      }
+   }
+   
+   : inline_push {
+      regex            \= (`)
+      styles []         = .comment;
+      default_style     = .comment
+      : pop {
+         regex      \= (`)
+         styles []   = .comment;
+      }
+   }
+   
+   : inline_push {
+      regex            \= (:\[)
+      styles []         = .punctuation;
+      : pop {
+         regex      \= (\])
+         styles []   = .punctuation;
+      }
+      
+      : pattern {
+          regex      \= \b(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b
+          styles []   = .modifier;
+      }
+   }
+   
+   : inline_push {
+      regex            \= (\[)
+      styles []         = .punctuation;
+      : pop {
+         regex      \= (\])
+         styles []   = .punctuation;
+      }
+      
+      : include "main" ;
+      
+      : pattern {
+         regex      \= (\w+)
+         styles []   = .property;
+      }
+   }
+   
+   : pattern {
+      regex          \= (;)
+      styles []       = .punctuation;
+   }
+}
+
+#################################################
+## End of Contexts
+#################################################
+
+string : context {
+   : pattern {
+      regex      \= (\\.)
+      styles []   = .string;
+   }
+   
+   : pattern {
+      regex      \= (.)
+      styles []   = .string;
+   }
+}
+
+sqlCode : context {
+   : pattern {
+      regex      \= \b(SELECT|FROM|WHERE|LIMIT|INSERT|INTO|VALUE)\b
+      styles []   = .keyword;
+   }
+   
+   : pattern {
+      regex      \= (@?:[\w\_]+)
+      styles []   = .lvariable;
+   }
+   
+   : pattern {
+      regex      \= (#:[\w\_]+)
+      styles []   = .gvariable;
+   }
+   
+   : pattern {
+      regex      \= ([\w\_]+)(\s*\()
+      styles []   = .function, .punctuation;
+   }
+}
+
+webElement : context {
+   : pattern {
+      regex      \= (\.[\w\-\_]+)
+      styles []   = .metaClass;
+   }
+   
+   : pattern {
+      regex      \= (\#[\w\-\_]+)
+      styles []   = .struct;
+   }
+   
+   : pattern {
+      regex      \= (\:[\w\-\_]+)(\s*\()
+      styles []   = .function, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= (\:[\w\-\_]+)
+      styles []   = .enum;
+   }
+   
+   : pattern {
+      regex      \= \b([\w\-\_]+)(=[^\w]?)([\w\-\_]+)
+      styles []   = .property, .punctuation, .string;
+   }
+   
+   : pattern {
+      regex      \= \b(\d+)\b
+      styles []   = .numeric;
+   }
+   
+   : pattern {
+      regex      \= \b([\w\-\_]+)\b
+      styles []   = .type;
+   }
+   
+   : inline_push {
+      regex            \= (\[)
+      styles []         = .punctuation;
+      
+      : pop {
+         regex      \= (\])
+         styles []   = .punctuation;
+      }
+      
+      : include "webElement" ;
+   }
+}
+
+jsCode : context {
+   : pattern {
+      regex      \= \b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\b
+      styles []   = .keyword;
+   }
+   
+   : pattern {
+      regex      \= (\${[\w\_]+})
+      styles []   = .function;
+   }
+   
+   : pattern {
+      regex      \= (\.[\w\_]+)(\s*\()
+      styles []   = .function, .punctuation;
+   }
+   
+   : pattern {
+      regex      \= (\.[\w\_]+)
+      styles []   = .property;
+   }
+   
+   : pattern {
+      regex      \= \b(window|document|crossfire)\b
+      styles []   = .metaClass;
+   }
+   
+   : inline_push {
+      regex            \= ({)
+      styles []         = .punctuation;
+      
+      : pop {
+         regex      \= (})
+         styles []   = .punctuation;
+      }
+      
+      : include "jsCode" ;
+      
+   }
+}
+
+}
