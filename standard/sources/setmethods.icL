@@ -60,4 +60,4 @@
     [age = 19, name = "Sofia", sex = "f"]
 ] ```
 
-@set.clear; `` set = []
+@set.clear(); `` set = []

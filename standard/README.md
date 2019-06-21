@@ -11,35 +11,35 @@ moldavian, engish and russian.
 
 ### 09.06.2019
 
-* `!` New level of code integration:
+* `+` New level of code integration:
   * `+` `js{}` - JavaScript code
   * `+` `sql{}` - SQL code
   * `+` `icl{}` - icL code is the same language
   * `+` `icl:pro{}` - icL code in the icL Pro language
-* `!` JavaScript refactoring:
+* `+` JavaScript refactoring:
   * `+` `$value {..}` → `js:value{..}`
   * `+` `$run {..}` → `js{..}.run()`
   * `+` `$run {..}` → `js{..}.run(doc)`
   * `+` `$file ".."` → `js:file[..].run()`
   * `+` `$user ".."` → `js:file[..].setAsUserScript()`
   * `+` `$always ".."` → `js:file[..].setAsPersistentUserScript()`
-* `!` DataBase refactoring:
+* `+` DataBase refactoring:
   * `+` `db.query {..}` → `db.query sql{..}`
   * `+` `db.query {..}` → `sql{..}.run(db)`
-* `!` listen refactoring:
+* `+` listen refactoring:
   * `+` `listen "server:port"` → `listen`
   * `+` `listen.handle(params)` → `handler`
   * `+` Add `handler.setup(code : icl)`
   * `+` Add `handler.activate()`
   * `+` Add `handler.deactivate()` InvalidHandler ServerNotFound InvalidListen
   * `+` Add `handler.kill()`
-* `!` Remove:
+* `+` Remove:
   * `+` `Stack.destroy`
   * `+` `Stack.ignore`
   * `+` `Stack.listen`
   * `+` `*'canGoBack`
   * `+` `*'canGoForward`
-* `!` Add:
+* `+` Add:
   * `+` `doc.run(code : js) : any`
   * `+` `element'attrs-*`
   * `+` `element'props-*`
@@ -48,20 +48,20 @@ moldavian, engish and russian.
   * `+` `element'texts`
   * `+` `element.superClick`
 * `+` All element attributtes and properties get `r/o`
-* `!` Add new element literals:
+* `+` Add new element literals:
   * `+` `button[text]` - find button by text
   * `+` `input[name]` - find input by name
   * `+` `field[text]` - find input by label text
   * `+` `web[]` - return an empty element
   * `+` `h1-h6[text]` - returns a heading by text
   * `+` `span[text]` - returns a span by text
-* `!` Add support for regex in element literals:
+* `+` Add support for regex in element literals:
   * `+` `link[/regex/]`
   * `+` `button[/regex/]`
   * `+` `field[/regex/]`
   * `+` `h1-h6[/regex/]`
   * `+` `span[/regex/]`
-* `!` Add new modifiers for sigle element literals:
+* `+` Add new modifiers for sigle element literals:
   * `+` `:try` - don't generate a error on failed
   * `+` `:waitXs` - wait X seconds for, if not found throw a error
   * `+` `:waitXms` - wait X ms for, if not found throw a error
