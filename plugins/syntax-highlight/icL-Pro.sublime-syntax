@@ -1,330 +1,347 @@
 %YAML 1.2
 ---
-name: icL
-scope: source.icL
+name: icL_Pro
+scope: source.icL_Pro
 file_extensions: [ icL, icL-Pro ]
 
 contexts:
   main:
     - match: '\b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\b'
       captures:
-        0: keyword.icL
+        0: keyword.icL_Pro
     - match: '\b(bool|int|double|string|list|element|set|item|object|void|regex|datetime|session|window|cookie|tab|document|file|query|database|dbmanager|js-file|code-(icl|js|sql)|handler|any|type)\b'
       captures:
-        0: meta.type.icL
+        0: meta.type.icL_Pro
     - match: '\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b'
       captures:
-        0: meta.class.icL
-    - match: '(\''[\w\-\*]+)'
+        0: meta.class.icL_Pro
+    - match: '(\'')(year|xPath|windows|window|width|value|valid|url|typeName|typeId|tsv|title|text|teleport|tagName|tag|tabs|tab|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rect|readOnly|rValue|quadratic|product|process|previous|pressTime|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\-\w+|cssSelector|cookies|clickTime|capacity|bezier|attr\-\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\b'
       captures:
-        0: variable.other.member.icL
+        0: variable.other.member.icL_Pro
+        1: variable.other.member.icL_Pro
+    - match: '(\''prop\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\b'
+      captures:
+        0: variable.other.member.icL_Pro
+        1: variable.other.member.icL_Pro
+    - match: '(\'')([\w\-]+)'
+      captures:
+        0: punctuation.icL_Pro
+        1: variable.other.member.icL_Pro
     - match: '(sql)({)'
       captures:
-        0: entity.name.function.icL
-        1: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: punctuation.icL_Pro
       push: 
         - match: '(})'
           pop: true
           captures:
-            0: punctuation.icL
+            0: punctuation.icL_Pro
         - include: sqlCode
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '(icl)(:pro)?({)'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: punctuation.icL
-    - match: '(\.\w+)'
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: punctuation.icL_Pro
+    - match: '(\.)(write|trim|toUTC|toTimeZone|toPrev|toNext|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setProcess|set|sendKeys|seek|secsTo|screenshot|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|acos|accept)\b'
       captures:
-        0: entity.name.function.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.function.icL_Pro
     - match: '\b(emit|slot)(:\w+)\b'
       captures:
-        0: keyword.icL
-        1: entity.name.tag.icL
+        0: keyword.icL_Pro
+        1: entity.name.tag.icL_Pro
     - match: '\b(css)(:all|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: variable.other.icL
-        3: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: variable.other.icL_Pro
+        3: punctuation.icL_Pro
       push: 
         - match: '(\])'
           pop: true
           captures:
-            0: punctuation.icL
+            0: punctuation.icL_Pro
         - include: webElement
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '\b(xpath)(:all|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: variable.other.icL
-        3: punctuation.icL
-        4: string.quoted.single.icL
-        5: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: variable.other.icL_Pro
+        3: punctuation.icL_Pro
+        4: string.quoted.single.icL_Pro
+        5: punctuation.icL_Pro
     - match: '\b(link)(:fragment|:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: variable.other.icL
-        3: punctuation.icL
-        4: string.quoted.single.icL
-        5: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: variable.other.icL_Pro
+        3: punctuation.icL_Pro
+        4: string.quoted.single.icL_Pro
+        5: punctuation.icL_Pro
     - match: '\b(links)(:fragment)?(@\w*)?(\[)(.*?)(\])'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: variable.other.icL
-        3: punctuation.icL
-        4: string.quoted.single.icL
-        5: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: variable.other.icL_Pro
+        3: punctuation.icL_Pro
+        4: string.quoted.single.icL_Pro
+        5: punctuation.icL_Pro
     - match: '\b(tag|button|input|field|h[1-6]|legend|span)(:try|:try\d+m?s|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: variable.other.icL
-        3: punctuation.icL
-        4: string.quoted.single.icL
-        5: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: variable.other.icL_Pro
+        3: punctuation.icL_Pro
+        4: string.quoted.single.icL_Pro
+        5: punctuation.icL_Pro
     - match: '\b(tags)(@\w*)?(\[)(.*?)(\])'
       captures:
-        0: entity.name.function.icL
-        1: variable.other.icL
-        2: punctuation.icL
-        3: string.quoted.single.icL
-        4: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: variable.other.icL_Pro
+        2: punctuation.icL_Pro
+        3: string.quoted.single.icL_Pro
+        4: punctuation.icL_Pro
     - match: '\b(web)(\[\])'
       captures:
-        0: entity.name.function.icL
-        1: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: punctuation.icL_Pro
     - match: '\b(js)(:value)?(@\w+)?({)'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: variable.other.icL
-        3: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: variable.other.icL_Pro
+        3: punctuation.icL_Pro
       push: 
         - match: '(})'
           pop: true
           captures:
-            0: punctuation.icL
+            0: punctuation.icL_Pro
         - include: jsCode
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '\b(js)(:file)(\[)(.*?)(\])'
       captures:
-        0: entity.name.function.icL
-        1: entity.name.tag.icL
-        2: punctuation.icL
-        3: string.quoted.single.icL
-        4: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: entity.name.tag.icL_Pro
+        2: punctuation.icL_Pro
+        3: string.quoted.single.icL_Pro
+        4: punctuation.icL_Pro
     - match: '(\$\w+)'
       captures:
-        0: entity.name.function.icL
+        0: entity.name.function.icL_Pro
     - match: '(@\w+)'
       captures:
-        0: variable.other.icL
+        0: variable.other.icL_Pro
     - match: '(#\w+)'
       captures:
-        0: variable.language.icL
+        0: variable.language.icL_Pro
     - match: '(#)'
       captures:
-        0: variable.other.icL
+        0: variable.other.icL_Pro
+    - match: '(\{:)(\w+)\b'
+      captures:
+        0: punctuation.icL_Pro
+        1: variable.other.member.icL_Pro
     - match: '(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b'
       captures:
-        0: entity.name.tag.icL
-        1: entity.name.tag.icL
+        0: entity.name.tag.icL_Pro
+        1: entity.name.tag.icL_Pro
     - match: '\b(\d+\.?\d*?)\b'
       captures:
-        0: constant.numeric.icL
+        0: constant.numeric.icL_Pro
     - match: '(//.*?//|/:.*?:/|/\$.*?\$/|/".*?"/)(\w*)'
       captures:
-        0: string.regexp.icL
-        1: string.regexp.icL
+        0: string.regexp.icL_Pro
+        1: string.regexp.icL_Pro
     - match: '\b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b'
       captures:
-        0: invalid.icL
+        0: invalid.icL_Pro
     - match: '(\")'
       captures:
-        0: string.quoted.single.icL
+        0: string.quoted.single.icL_Pro
       push: 
         - match: '(\")'
           pop: true
           captures:
-            0: string.quoted.single.icL
+            0: string.quoted.single.icL_Pro
         - include: string
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '(```)'
       captures:
-        0: comment.icL
+        0: comment.icL_Pro
       push: 
         - match: '(```)'
           pop: true
           captures:
-            0: comment.icL
+            0: comment.icL_Pro
         - match: '(.)'
           captures:
-            0: comment.icL
+            0: comment.icL_Pro
     - match: '(``)'
       captures:
-        0: comment.icL
+        0: comment.icL_Pro
       push: 
         - match: '($)'
           pop: true
           captures:
-            0: comment.icL
+            0: comment.icL_Pro
         - match: '(.)'
           captures:
-            0: comment.icL
+            0: comment.icL_Pro
     - match: '(`)'
       captures:
-        0: comment.icL
+        0: comment.icL_Pro
       push: 
         - match: '(`)'
           pop: true
           captures:
-            0: comment.icL
+            0: comment.icL_Pro
         - match: '(.)'
           captures:
-            0: comment.icL
+            0: comment.icL_Pro
     - match: '(:\[)'
       captures:
-        0: punctuation.icL
+        0: punctuation.icL_Pro
       push: 
         - match: '(\])'
           pop: true
           captures:
-            0: punctuation.icL
+            0: punctuation.icL_Pro
         - match: '\b(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b'
           captures:
-            0: entity.name.tag.icL
+            0: entity.name.tag.icL_Pro
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '(\[)'
       captures:
-        0: punctuation.icL
+        0: keyword.operator.icL_Pro
       push: 
         - match: '(\])'
           pop: true
           captures:
-            0: punctuation.icL
+            0: keyword.operator.icL_Pro
         - include: main
         - match: '(\w+)'
           captures:
-            0: variable.other.member.icL
+            0: variable.other.member.icL_Pro
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '(;)'
       captures:
-        0: punctuation.icL
+        0: punctuation.icL_Pro
+    - match: '(:\!|::|:\*|:\?|&|\||~|^|%|==|\!=|>=|<=|<>|<=>|><|>=<|<<|\!<|<\*|\!\*|\*\*|/''|\!|>|<|\+|\-|\*|/|\\|:|\(|\)|\=|\,|\[|\])'
+      captures:
+        0: keyword.operator.icL_Pro
     - match: '(.)'
       captures:
-        0: text.icL
+        0: text.icL_Pro
   string:
     - match: '(\\.)'
       captures:
-        0: string.quoted.single.icL
+        0: string.quoted.single.icL_Pro
     - match: '(.)'
       captures:
-        0: string.quoted.single.icL
+        0: string.quoted.single.icL_Pro
     - match: '(.)'
       captures:
-        0: text.icL
+        0: text.icL_Pro
   sqlCode:
     - match: '\b(SELECT|FROM|WHERE|LIMIT|INSERT|INTO|VALUE)\b'
       captures:
-        0: keyword.icL
+        0: keyword.icL_Pro
     - match: '(@?:[\w\_]+)'
       captures:
-        0: variable.other.icL
+        0: variable.other.icL_Pro
     - match: '(#:[\w\_]+)'
       captures:
-        0: variable.language.icL
+        0: variable.language.icL_Pro
     - match: '([\w\_]+)(\s*\()'
       captures:
-        0: entity.name.function.icL
-        1: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: punctuation.icL_Pro
     - match: '(.)'
       captures:
-        0: text.icL
+        0: text.icL_Pro
   webElement:
     - match: '(\.[\w\-\_]+)'
       captures:
-        0: meta.class.icL
+        0: meta.class.icL_Pro
     - match: '(\#[\w\-\_]+)'
       captures:
-        0: entity.name.struct.icL
+        0: entity.name.struct.icL_Pro
     - match: '(\:[\w\-\_]+)(\s*\()'
       captures:
-        0: entity.name.function.icL
-        1: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: punctuation.icL_Pro
     - match: '(\:[\w\-\_]+)'
       captures:
-        0: entity.name.enum.icL
+        0: entity.name.enum.icL_Pro
     - match: '\b([\w\-\_]+)(=[^\w]?)([\w\-\_]+)'
       captures:
-        0: variable.other.member.icL
-        1: punctuation.icL
-        2: string.quoted.single.icL
+        0: variable.other.member.icL_Pro
+        1: punctuation.icL_Pro
+        2: string.quoted.single.icL_Pro
     - match: '\b(\d+)\b'
       captures:
-        0: constant.numeric.icL
+        0: constant.numeric.icL_Pro
     - match: '\b([\w\-\_]+)\b'
       captures:
-        0: entity.name.type.icL
+        0: entity.name.type.icL_Pro
     - match: '(\[)'
       captures:
-        0: punctuation.icL
+        0: punctuation.icL_Pro
       push: 
         - match: '(\])'
           pop: true
           captures:
-            0: punctuation.icL
+            0: punctuation.icL_Pro
         - include: webElement
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '(.)'
       captures:
-        0: text.icL
+        0: text.icL_Pro
   jsCode:
     - match: '\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\b'
       captures:
-        0: keyword.icL
+        0: keyword.icL_Pro
     - match: '(\${[\w\_]+})'
       captures:
-        0: entity.name.function.icL
+        0: entity.name.function.icL_Pro
     - match: '(\.[\w\_]+)(\s*\()'
       captures:
-        0: entity.name.function.icL
-        1: punctuation.icL
+        0: entity.name.function.icL_Pro
+        1: punctuation.icL_Pro
     - match: '(\.[\w\_]+)'
       captures:
-        0: variable.other.member.icL
+        0: variable.other.member.icL_Pro
     - match: '\b(window|document|crossfire)\b'
       captures:
-        0: meta.class.icL
+        0: meta.class.icL_Pro
     - match: '({)'
       captures:
-        0: punctuation.icL
+        0: punctuation.icL_Pro
       push: 
         - match: '(})'
           pop: true
           captures:
-            0: punctuation.icL
+            0: punctuation.icL_Pro
         - include: jsCode
         - match: '(.)'
           captures:
-            0: text.icL
+            0: text.icL_Pro
     - match: '(.)'
       captures:
-        0: text.icL
+        0: text.icL_Pro

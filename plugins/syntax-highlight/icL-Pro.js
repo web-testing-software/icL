@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 /* --------------------- START ----------------------------- */
-var IclHighlightRules = function() {
+var IclProHighlightRules = function() {
 this.$rules = {
 "start" : [
    {
@@ -24,8 +24,16 @@ this.$rules = {
       "regex" : "\\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\\b"
    },
    {
-      "token" : "variable.other.member",
-      "regex" : "(\\'[\\w\\-\\*]+)"
+      "token" : ["variable.other.member", "variable.other.member"],
+      "regex" : "(\\')(year|xPath|windows|window|width|value|valid|url|typeName|typeId|tsv|title|text|teleport|tagName|tag|tabs|tab|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rect|readOnly|rValue|quadratic|product|process|previous|pressTime|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\\-\\w+|cssSelector|cookies|clickTime|capacity|bezier|attr\\-\\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\\b"
+   },
+   {
+      "token" : ["variable.other.member", "variable.other.member"],
+      "regex" : "(\\'prop\\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\\b"
+   },
+   {
+      "token" : ["punctuation", "variable.other.member"],
+      "regex" : "(\\')([\\w\\-]+)"
    },
    {
       "token" : ["entity.name.function", "punctuation"],
@@ -37,8 +45,8 @@ this.$rules = {
       "regex" : "(icl)(:pro)?({)"
    },
    {
-      "token" : "entity.name.function",
-      "regex" : "(\\.\\w+)"
+      "token" : ["entity.name.function", "entity.name.function"],
+      "regex" : "(\\.)(write|trim|toUTC|toTimeZone|toPrev|toNext|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setProcess|set|sendKeys|seek|secsTo|screenshot|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|acos|accept)\\b"
    },
    {
       "token" : ["keyword", "entity.name.tag"],
@@ -99,6 +107,10 @@ this.$rules = {
       "regex" : "(#)"
    },
    {
+      "token" : ["punctuation", "variable.other.member"],
+      "regex" : "(\\{:)(\\w+)\\b"
+   },
+   {
       "token" : ["entity.name.tag", "entity.name.tag"],
       "regex" : "(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b"
    },
@@ -140,13 +152,17 @@ this.$rules = {
       "push" : "main__8"
    },
    {
-      "token" : "punctuation",
+      "token" : "keyword.operator",
       "regex" : "(\\[)",
       "push" : "main__9"
    },
    {
       "token" : "punctuation",
       "regex" : "(;)"
+   },
+   {
+      "token" : "keyword.operator",
+      "regex" : "(:\\!|::|:\\*|:\\?|&|\\||~|^|%|==|\\!=|>=|<=|<>|<=>|><|>=<|<<|\\!<|<\\*|\\!\\*|\\*\\*|/'|\\!|>|<|\\+|\\-|\\*|/|\\\\|:|\\(|\\)|\\=|\\,|\\[|\\])"
    },
    {
       defaultToken : "text",
@@ -355,7 +371,7 @@ this.$rules = {
 ], 
 "main__9" : [
    {
-      "token" : "punctuation",
+      "token" : "keyword.operator",
       "regex" : "(\\])",
       "next" : "pop"
    },
@@ -372,8 +388,16 @@ this.$rules = {
       "regex" : "\\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\\b"
    },
    {
-      "token" : "variable.other.member",
-      "regex" : "(\\'[\\w\\-\\*]+)"
+      "token" : ["variable.other.member", "variable.other.member"],
+      "regex" : "(\\')(year|xPath|windows|window|width|value|valid|url|typeName|typeId|tsv|title|text|teleport|tagName|tag|tabs|tab|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rect|readOnly|rValue|quadratic|product|process|previous|pressTime|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\\-\\w+|cssSelector|cookies|clickTime|capacity|bezier|attr\\-\\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\\b"
+   },
+   {
+      "token" : ["variable.other.member", "variable.other.member"],
+      "regex" : "(\\'prop\\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\\b"
+   },
+   {
+      "token" : ["punctuation", "variable.other.member"],
+      "regex" : "(\\')([\\w\\-]+)"
    },
    {
       "token" : ["entity.name.function", "punctuation"],
@@ -385,8 +409,8 @@ this.$rules = {
       "regex" : "(icl)(:pro)?({)"
    },
    {
-      "token" : "entity.name.function",
-      "regex" : "(\\.\\w+)"
+      "token" : ["entity.name.function", "entity.name.function"],
+      "regex" : "(\\.)(write|trim|toUTC|toTimeZone|toPrev|toNext|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setProcess|set|sendKeys|seek|secsTo|screenshot|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|acos|accept)\\b"
    },
    {
       "token" : ["keyword", "entity.name.tag"],
@@ -447,6 +471,10 @@ this.$rules = {
       "regex" : "(#)"
    },
    {
+      "token" : ["punctuation", "variable.other.member"],
+      "regex" : "(\\{:)(\\w+)\\b"
+   },
+   {
       "token" : ["entity.name.tag", "entity.name.tag"],
       "regex" : "(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b"
    },
@@ -488,13 +516,17 @@ this.$rules = {
       "push" : "main__8"
    },
    {
-      "token" : "punctuation",
+      "token" : "keyword.operator",
       "regex" : "(\\[)",
       "push" : "main__9"
    },
    {
       "token" : "punctuation",
       "regex" : "(;)"
+   },
+   {
+      "token" : "keyword.operator",
+      "regex" : "(:\\!|::|:\\*|:\\?|&|\\||~|^|%|==|\\!=|>=|<=|<>|<=>|><|>=<|<<|\\!<|<\\*|\\!\\*|\\*\\*|/'|\\!|>|<|\\+|\\-|\\*|/|\\\\|:|\\(|\\)|\\=|\\,|\\[|\\])"
    },
    {
       "token" : "variable.other.member",
@@ -551,6 +583,6 @@ this.$rules = {
 this.normalizeRules();
 };
 /* ------------------------ END ------------------------------ */
-oop.inherits(IclHighlightRules, TextHighlightRules);
-exports.IclHighlightRules = IclHighlightRules;
+oop.inherits(IclProHighlightRules, TextHighlightRules);
+exports.IclProHighlightRules = IclProHighlightRules;
 });

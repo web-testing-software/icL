@@ -20,7 +20,7 @@
 ##
 ################################################################
 
-name                   = icL
+name                   = icL_Pro
 file_extensions []     = icL, icLPro;
 
 ################################################################
@@ -149,6 +149,12 @@ styles [] {
    pygments_scope = Keyword.Type
 }
 
+.operator : style {
+    color         = yellow
+   textmate_scope = keyword.operator
+   pygments_scope = Operator
+}
+
 }
 
 #################################################
@@ -179,10 +185,20 @@ main : context {
    }
    
    : pattern {
-      regex      \= (\'[\w\-\*]+)
-      styles []   = .property;
+      regex      \= (\')(year|xPath|windows|window|width|value|valid|url|typeName|typeId|tsv|title|text|teleport|tagName|tag|tabs|tab|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rect|readOnly|rValue|quadratic|product|process|previous|pressTime|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\-\w+|cssSelector|cookies|clickTime|capacity|bezier|attr\-\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\b
+      styles []   = .property, .property;
    }
    
+   : pattern {
+      regex      \= (\'prop\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\b
+      styles []   = .property, .property;
+   }
+   
+   : pattern {
+      regex      \= (\')([\w\-]+)
+      styles []   = .punctuation, .property;
+   }
+
    : inline_push {
       regex            \= (sql)({)
       styles []         = .codeLiteral, .punctuation;
@@ -201,8 +217,8 @@ main : context {
    }
    
    : pattern {
-      regex      \= (\.\w+)
-      styles []   = .method;
+      regex      \= (\.)(write|trim|toUTC|toTimeZone|toPrev|toNext|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setProcess|set|sendKeys|seek|secsTo|screenshot|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|acos|accept)\b
+      styles []   = .method, .method;
    }
    
    : pattern {
@@ -290,6 +306,11 @@ main : context {
    }
    
    : pattern {
+      regex      \= (\{:)(\w+)\b
+      styles []   = .punctuation, .property;
+   }
+   
+   : pattern {
       regex      \= (:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b
       styles []   = .modifier, .modifier;
    }
@@ -367,10 +388,10 @@ main : context {
    
    : inline_push {
       regex            \= (\[)
-      styles []         = .punctuation;
+      styles []         = .operator;
       : pop {
          regex      \= (\])
-         styles []   = .punctuation;
+         styles []   = .operator;
       }
       
       : include "main" ;
@@ -384,6 +405,11 @@ main : context {
    : pattern {
       regex          \= (;)
       styles []       = .punctuation;
+   }
+
+   : pattern {
+      regex          \= (:\!|::|:\*|:\?|&|\||~|^|%|==|\!=|>=|<=|<>|<=>|><|>=<|<<|\!<|<\*|\!\*|\*\*|/'|\!|>|<|\+|\-|\*|/|\\|:|\(|\)|\=|\,|\[|\])
+      styles []       = .operator;
    }
 }
 
