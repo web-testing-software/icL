@@ -55,7 +55,7 @@ Elementele web au următoarele proprietăți:
 \item \mintinline{icl}{[r/o] element'attr-* : string};
 \item \mintinline{icl}{[r/o] element'attrs-* : list};
 \item \mintinline{icl}{[r/o] element'css-* : string};
-\item \mintinline{icl}{[r/o] element'doc : doc};
+\item \mintinline{icl}{[r/o] element'document : document};
 \item \mintinline{icl}{[r/o] element'empty : bool};
 \item \mintinline{icl}{[r/o] element'enabled : bool};
 \item \mintinline{icl}{[r/o] element'length : int};
@@ -89,7 +89,7 @@ Returnează valoarea proprietății CSS \mintinline{icl}{*}.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{EmptyElement}, \ferror{MultiElement}, \ferror{NoSuchWindow} și \ferror{StaleElementReference} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{[r/o] element'doc : doc}}
+\subsubsection{\mintinline{icl}{[r/o] element'document : document}}
 
 Returnează documentul în care se afla acest web element.
 
