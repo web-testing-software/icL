@@ -70,3 +70,11 @@ moldavian, engish and russian.
 * `+` `assert(.. , ..)` → `assert(.. ; ..)`
 
 All approved requests will be applied in icL Pro 1.4
+
+## 22.06.2019
+
+* `!` add `element'valid : bool`
+* `!` add `element'visible : bool`
+* `!` add `wait:try` modifier
+
+All approved requests will be applied in icL Pro 1.4 RC 2
