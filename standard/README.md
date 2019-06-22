@@ -75,6 +75,7 @@ All approved requests will be applied in icL Pro 1.4
 
 * `!` add `element'valid : bool`
 * `!` add `element'visible : bool`
+* `!` add `element.focus () : element`
 * `!` add `wait:try` modifier
 
 All approved requests will be applied in icL Pro 1.4 RC 2
