@@ -273,7 +273,7 @@
         </context>
 
         <context style-ref="illegal">
-          <match>b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b</match>
+          <match>\b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b</match>
         </context>
 
         <context style-ref="string">

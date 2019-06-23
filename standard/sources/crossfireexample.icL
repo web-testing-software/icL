@@ -1,6 +1,6 @@
 @el = tag[button];
 
-func = {
+$func = {
     Log.info "It's working!"
 };
 
