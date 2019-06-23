@@ -6,10 +6,10 @@
   <key>fileTypes</key>
   <array> 
     <string>icL</string>
-    <string>icLPro</string>
+    <string>icL-Pro</string>
    </array>
   <key>name</key>
-  <string>icL_Pro</string>
+  <string>icL Pro</string>
   <key>patterns</key>
   <array> 
     <dict>
@@ -154,7 +154,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b</string>
+          <string>(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|crossfire|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b</string>
           <key>captures</key>
           <dict>
             <key>1</key>
@@ -546,7 +546,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b</string>
+          <string>(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+)\b</string>
           <key>captures</key>
           <dict>
             <key>1</key>
@@ -798,6 +798,23 @@
         </dict>
         <dict>
           <key>match</key>
+          <string>(\b[\w\_]+)(\s*\()</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>entity.name.function.icL_Pro</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.icL_Pro</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>match</key>
           <string>(\.[\w\_]+)</string>
           <key>name</key>
           <string>variable.other.member.icL_Pro</string>
@@ -913,7 +930,7 @@
       <array> 
         <dict>
           <key>match</key>
-          <string>\b(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b</string>
+          <string>\b(not|alive|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+)\b</string>
           <key>name</key>
           <string>entity.name.tag.icL_Pro</string>
         </dict>

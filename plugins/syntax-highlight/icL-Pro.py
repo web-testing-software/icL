@@ -8,7 +8,7 @@ __all__=['IclProLexer']
 class IclProLexer(RegexLexer):
     name = 'IclPro'
     aliases = ['icL_Pro']
-    filenames = ['*.icL', '*.icLPro']
+    filenames = ['*.icL', '*.icL-Pro']
     flags = re.MULTILINE | re.UNICODE
 
     tokens = {
@@ -21,7 +21,7 @@ class IclProLexer(RegexLexer):
             (u'(\\\')([\\w\\-]+)', bygroups(Punctuation, Name)),
             (u'(sql)({)', bygroups(Name.Function, Punctuation), 'main__1'),
             (u'(icl)(:pro)?({)', bygroups(Name.Function, Keyword.Pseudo, Punctuation)),
-            (u'(\\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\\b', bygroups(Name.Function, Name.Function)),
+            (u'(\\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|crossfire|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\\b', bygroups(Name.Function, Name.Function)),
             (u'\\b(emit|slot)(:\\w+)\\b', bygroups(Keyword, Keyword.Pseudo)),
             (u'\\b(css)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)', bygroups(Name.Function, Keyword.Pseudo, Name.Variable, Punctuation), 'main__2'),
             (u'\\b(xpath)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])', bygroups(Name.Function, Keyword.Pseudo, Name.Variable, Punctuation, String, Punctuation)),
@@ -37,7 +37,7 @@ class IclProLexer(RegexLexer):
             (u'(#\\w+)', bygroups(Name.Variable.Global)),
             (u'(#)', bygroups(Name.Variable)),
             (u'(\\{:)(\\w+)\\b', bygroups(Punctuation, Name)),
-            (u'(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b', bygroups(Keyword.Pseudo, Keyword.Pseudo)),
+            (u'(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+)\\b', bygroups(Keyword.Pseudo, Keyword.Pseudo)),
             (u'\\b(\\d+\\.?\\d*?)\\b', bygroups(Number)),
             (u'(//.*?//|/:.*?:/|/!.*?\\!/|/\".*?\"/)(\\w*)', bygroups(String.Regex, String.Regex)),
             (u'\\b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\\b', bygroups(Generic.Error)),
@@ -56,6 +56,7 @@ class IclProLexer(RegexLexer):
             (u'\\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\\b', bygroups(Keyword)),
             (u'(\\${[\\w\\_]+})', bygroups(Name.Function)),
             (u'(\\.[\\w\\_]+)(\\s*\\()', bygroups(Name.Function, Punctuation)),
+            (u'(\\b[\\w\\_]+)(\\s*\\()', bygroups(Name.Function, Punctuation)),
             (u'(\\.[\\w\\_]+)', bygroups(Name)),
             (u'\\b(window|document|crossfire)\\b', bygroups(Name.Class)),
             (u'({)', bygroups(Punctuation), 'jsCode__1'),
@@ -86,6 +87,7 @@ class IclProLexer(RegexLexer):
             (u'\\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\\b', bygroups(Keyword)),
             (u'(\\${[\\w\\_]+})', bygroups(Name.Function)),
             (u'(\\.[\\w\\_]+)(\\s*\\()', bygroups(Name.Function, Punctuation)),
+            (u'(\\b[\\w\\_]+)(\\s*\\()', bygroups(Name.Function, Punctuation)),
             (u'(\\.[\\w\\_]+)', bygroups(Name)),
             (u'\\b(window|document|crossfire)\\b', bygroups(Name.Class)),
             (u'({)', bygroups(Punctuation), 'jsCode__1'),
@@ -111,7 +113,7 @@ class IclProLexer(RegexLexer):
             ('.', Comment),
         ], 
         'main__8' : [
-            (u'\\b(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b', bygroups(Keyword.Pseudo)),
+            (u'\\b(not|alive|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+)\\b', bygroups(Keyword.Pseudo)),
             ('(\n|\r|\r\n)', String),
             ('.', String),
         ], 
@@ -124,7 +126,7 @@ class IclProLexer(RegexLexer):
             (u'(\\\')([\\w\\-]+)', bygroups(Punctuation, Name)),
             (u'(sql)({)', bygroups(Name.Function, Punctuation), 'main__1'),
             (u'(icl)(:pro)?({)', bygroups(Name.Function, Keyword.Pseudo, Punctuation)),
-            (u'(\\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\\b', bygroups(Name.Function, Name.Function)),
+            (u'(\\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|crossfire|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\\b', bygroups(Name.Function, Name.Function)),
             (u'\\b(emit|slot)(:\\w+)\\b', bygroups(Keyword, Keyword.Pseudo)),
             (u'\\b(css)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)', bygroups(Name.Function, Keyword.Pseudo, Name.Variable, Punctuation), 'main__2'),
             (u'\\b(xpath)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])', bygroups(Name.Function, Keyword.Pseudo, Name.Variable, Punctuation, String, Punctuation)),
@@ -140,7 +142,7 @@ class IclProLexer(RegexLexer):
             (u'(#\\w+)', bygroups(Name.Variable.Global)),
             (u'(#)', bygroups(Name.Variable)),
             (u'(\\{:)(\\w+)\\b', bygroups(Punctuation, Name)),
-            (u'(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+|all|fragment|try\\d+m?s|try|wait\\d+m?s)\\b', bygroups(Keyword.Pseudo, Keyword.Pseudo)),
+            (u'(:)(not|alive|ignore|ajax|\\d+m?s|alt|ever|\\d+times|reverse|max\\d+|min\\d+)\\b', bygroups(Keyword.Pseudo, Keyword.Pseudo)),
             (u'\\b(\\d+\\.?\\d*?)\\b', bygroups(Number)),
             (u'(//.*?//|/:.*?:/|/!.*?\\!/|/\".*?\"/)(\\w*)', bygroups(String.Regex, String.Regex)),
             (u'\\b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\\b', bygroups(Generic.Error)),

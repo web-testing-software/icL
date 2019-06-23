@@ -3,10 +3,10 @@
 module Rouge
   module Lexers
     class IclPro < RegexLexer
-      title     "icL_Pro"
+      title     "icL Pro"
       tag       'IclPro'
       mimetypes 'text/x-icL_Pro'
-      filenames '*.icL', '*.icLPro'
+      filenames '*.icL', '*.icL-Pro'
 
       state:root do
           rule /\b(now|if|else|for|filter|range|exists|while|do|any|emit|emitter|slot|assert|listen|wait|jammer|switch|case)\b/, Keyword
@@ -28,7 +28,7 @@ module Rouge
           rule /(icl)(:pro)?({)/ do
             groups Name::Function, Keyword::Pseudo, Punctuation
           end
-          rule /(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b/ do
+          rule /(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|crossfire|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b/ do
             groups Name::Function, Name::Function
           end
           rule /\b(emit|slot)(:\w+)\b/ do
@@ -70,7 +70,7 @@ module Rouge
           rule /(\{:)(\w+)\b/ do
             groups Punctuation, Name
           end
-          rule /(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b/ do
+          rule /(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+)\b/ do
             groups Keyword::Pseudo, Keyword::Pseudo
           end
           rule /\b(\d+\.?\d*?)\b/, Number
@@ -94,6 +94,9 @@ module Rouge
           rule /\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\b/, Keyword
           rule /(\${[\w\_]+})/, Name::Function
           rule /(\.[\w\_]+)(\s*\()/ do
+            groups Name::Function, Punctuation
+          end
+          rule /(\b[\w\_]+)(\s*\()/ do
             groups Name::Function, Punctuation
           end
           rule /(\.[\w\_]+)/, Name
@@ -137,6 +140,9 @@ module Rouge
           rule /(\.[\w\_]+)(\s*\()/ do
             groups Name::Function, Punctuation
           end
+          rule /(\b[\w\_]+)(\s*\()/ do
+            groups Name::Function, Punctuation
+          end
           rule /(\.[\w\_]+)/, Name
           rule /\b(window|document|crossfire)\b/, Name::Class
           rule /({)/, Punctuation, :jsCode__1
@@ -167,7 +173,7 @@ module Rouge
       end
 
       state:main__8 do
-          rule /\b(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b/, Keyword::Pseudo
+          rule /\b(not|alive|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+)\b/, Keyword::Pseudo
           rule /(\n|\r|\r\n)/, String
           rule /./, String
       end
@@ -192,7 +198,7 @@ module Rouge
           rule /(icl)(:pro)?({)/ do
             groups Name::Function, Keyword::Pseudo, Punctuation
           end
-          rule /(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b/ do
+          rule /(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handle|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|crossfire|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b/ do
             groups Name::Function, Name::Function
           end
           rule /\b(emit|slot)(:\w+)\b/ do
@@ -234,7 +240,7 @@ module Rouge
           rule /(\{:)(\w+)\b/ do
             groups Punctuation, Name
           end
-          rule /(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b/ do
+          rule /(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+)\b/ do
             groups Keyword::Pseudo, Keyword::Pseudo
           end
           rule /\b(\d+\.?\d*?)\b/, Number

@@ -28,7 +28,12 @@
 
  -->
 
-<language id="icl" _name="icL Pro" version="2.0" _section="Script">
+<language 
+  id="icl"
+  _name="icL Pro"
+  version="2.0"
+  _section="Script">
+
   <metadata>
     <property name="mimetypes">text/x-icl</property>
     <property name="globs">*.icL;*.icL-Pro</property>
@@ -127,7 +132,7 @@
           </include>
         </context>
 
-        <context>
+        <context end-at-line-end="true">
           <start>\b(css)(:all|:try\d+m?s|:try|:wait\d+m?s)?(@\w*)?(\[)</start>
           <end>(\])</end>
           <include>
@@ -321,6 +326,10 @@
               <match>(\w+)</match>
             </context>
           </include>
+        </context>
+
+        <context style-ref="operator">
+          <match>(:\!|::|:\*|:\?|&|\||~|^|%|==|\!=|>=|<=|<>|<=>|><|>=<|<<|\!<|<\*|\!\*|\*\*|/'|\!|>|<|\+|\-|\*|/|\\|:|\(|\)|\=|\,|\[|\])</match>
         </context>
 
         <context style-ref="punctuation">
