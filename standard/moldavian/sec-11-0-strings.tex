@@ -73,7 +73,7 @@ Excepții posibile: \ferror{OutOfBounds} (pr. tab. \ref{errors}).
 	% left
 	\item \mintinline{icl}{string.left (n : int) : string};
 	% leftJustified
-	\item \mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\*\mintinline{icl}{string};
+	\item \mintinline{icl}{string.leftJustified (width : int, fillChar : string, truncate = false :}\\*\mintinline{icl}{string};
 	% mid
 	\item \mintinline{icl}{string.mid (pos : int, n = -1) : string};
 	% prepend
@@ -152,7 +152,7 @@ Returnează indexul primii includeri a șubșirului \mintinline{icl}{str} în ș
 
 Returnează subșir, care conține primele \mintinline{icl}{n} caractere.
 
-\subsubsection{\mintinline{icl}{string.leftJustified (width : int, fillChar) : string, truncate = false :}\\* \mintinline{icl}{string}}
+\subsubsection{\mintinline{icl}{string.leftJustified (width : int, fillChar : string, truncate = false :}\\* \mintinline{icl}{string}}
 
 Returnează șir cu lungimea \mintinline{icl}{width}, care conține șirul acesta la început, dar la sfîrșit se inserează \mintinline{icl}{width - .length} caractere \mintinline{icl}{fillChar}. Dacă \mintinline{icl}{truncate == true} și \mintinline{icl}{width < .length}, ultimele \mintinline{icl}{.length - width} simboluri se șterg.
 

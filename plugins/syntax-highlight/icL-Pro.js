@@ -12,8 +12,8 @@ var IclProHighlightRules = function() {
 this.$rules = {
 "start" : [
    {
-      "token" : "keyword",
-      "regex" : "\\b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\\b"
+      "token" : "keyword.control",
+      "regex" : "\\b(now|if|else|for|filter|range|exists|while|do|any|emit|emitter|slot|assert|listen|wait|jammer|switch|case)\\b"
    },
    {
       "token" : "meta.type",
@@ -25,11 +25,11 @@ this.$rules = {
    },
    {
       "token" : ["variable.other.member", "variable.other.member"],
-      "regex" : "(\\')(year|xPath|windows|window|width|value|valid|url|typeName|typeId|tsv|title|text|teleport|tagName|tag|tabs|tab|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rect|readOnly|rValue|quadratic|product|process|previous|pressTime|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\\-\\w+|cssSelector|cookies|clickTime|capacity|bezier|attr\\-\\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\\b"
+      "regex" : "(\\')(year|y|xPath|x|windows|window|width|visible|value|valid|url|typeName|typeId|tsv|title|texts?|teleport|tagName|tags?|tabs?|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rects?|readOnly|rValue|quadratic|product|process|previous|pressTime|present|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\\-\\w+|cssSelector|cookies|clickTime|clickable|capacity|bezier|attrs?\\-\\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\\b"
    },
    {
       "token" : ["variable.other.member", "variable.other.member"],
-      "regex" : "(\\'prop\\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\\b"
+      "regex" : "(\\'props?\\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\\b"
    },
    {
       "token" : ["punctuation", "variable.other.member"],
@@ -46,24 +46,24 @@ this.$rules = {
    },
    {
       "token" : ["entity.name.function", "entity.name.function"],
-      "regex" : "(\\.)(write|trim|toUTC|toTimeZone|toPrev|toNext|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setProcess|set|sendKeys|seek|secsTo|screenshot|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|acos|accept)\\b"
+      "regex" : "(\\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handler|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\\b"
    },
    {
-      "token" : ["keyword", "entity.name.tag"],
+      "token" : ["keyword.control", "entity.name.tag"],
       "regex" : "\\b(emit|slot)(:\\w+)\\b"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation"],
-      "regex" : "\\b(css)(:all|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)",
+      "regex" : "\\b(css)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)",
       "push" : "main__2"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
-      "regex" : "\\b(xpath)(:all|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
+      "regex" : "\\b(xpath)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
-      "regex" : "\\b(link)(:fragment|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
+      "regex" : "\\b(link)(:fragment|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
@@ -71,7 +71,7 @@ this.$rules = {
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
-      "regex" : "\\b(tag|button|input|field|h[1-6]|legend|span)(:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
+      "regex" : "\\b(tag|button|input|field|h[1-6]|legend|span)(:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
    },
    {
       "token" : ["entity.name.function", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
@@ -120,7 +120,7 @@ this.$rules = {
    },
    {
       "token" : ["string.regexp", "string.regexp"],
-      "regex" : "(//.*?//|/:.*?:/|/\\$.*?\\$/|/\".*?\"/)(\\w*)"
+      "regex" : "(//.*?//|/:.*?:/|/!.*?\\!/|/\".*?\"/)(\\w*)"
    },
    {
       "token" : "invalid",
@@ -175,7 +175,7 @@ this.$rules = {
       "next" : "pop"
    },
    {
-      "token" : "keyword",
+      "token" : "keyword.control",
       "regex" : "\\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\\b"
    },
    {
@@ -210,7 +210,7 @@ this.$rules = {
       "next" : "pop"
    },
    {
-      "token" : "keyword",
+      "token" : "keyword.control",
       "regex" : "\\b(SELECT|FROM|WHERE|LIMIT|INSERT|INTO|VALUE)\\b"
    },
    {
@@ -279,7 +279,7 @@ this.$rules = {
       "next" : "pop"
    },
    {
-      "token" : "keyword",
+      "token" : "keyword.control",
       "regex" : "\\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\\b"
    },
    {
@@ -376,8 +376,8 @@ this.$rules = {
       "next" : "pop"
    },
    {
-      "token" : "keyword",
-      "regex" : "\\b(now|if|else|for|filter|range|exists|while|do|any|emit|emiter|slot|assert|listen|wait|jammer|switch|case)\\b"
+      "token" : "keyword.control",
+      "regex" : "\\b(now|if|else|for|filter|range|exists|while|do|any|emit|emitter|slot|assert|listen|wait|jammer|switch|case)\\b"
    },
    {
       "token" : "meta.type",
@@ -389,11 +389,11 @@ this.$rules = {
    },
    {
       "token" : ["variable.other.member", "variable.other.member"],
-      "regex" : "(\\')(year|xPath|windows|window|width|value|valid|url|typeName|typeId|tsv|title|text|teleport|tagName|tag|tabs|tab|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rect|readOnly|rValue|quadratic|product|process|previous|pressTime|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\\-\\w+|cssSelector|cookies|clickTime|capacity|bezier|attr\\-\\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\\b"
+      "regex" : "(\\')(year|y|xPath|x|windows|window|width|visible|value|valid|url|typeName|typeId|tsv|title|texts?|teleport|tagName|tags?|tabs?|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rects?|readOnly|rValue|quadratic|product|process|previous|pressTime|present|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\\-\\w+|cssSelector|cookies|clickTime|clickable|capacity|bezier|attrs?\\-\\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\\b"
    },
    {
       "token" : ["variable.other.member", "variable.other.member"],
-      "regex" : "(\\'prop\\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\\b"
+      "regex" : "(\\'props?\\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\\b"
    },
    {
       "token" : ["punctuation", "variable.other.member"],
@@ -410,24 +410,24 @@ this.$rules = {
    },
    {
       "token" : ["entity.name.function", "entity.name.function"],
-      "regex" : "(\\.)(write|trim|toUTC|toTimeZone|toPrev|toNext|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setProcess|set|sendKeys|seek|secsTo|screenshot|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|acos|accept)\\b"
+      "regex" : "(\\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handler|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\\b"
    },
    {
-      "token" : ["keyword", "entity.name.tag"],
+      "token" : ["keyword.control", "entity.name.tag"],
       "regex" : "\\b(emit|slot)(:\\w+)\\b"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation"],
-      "regex" : "\\b(css)(:all|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)",
+      "regex" : "\\b(css)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)",
       "push" : "main__2"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
-      "regex" : "\\b(xpath)(:all|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
+      "regex" : "\\b(xpath)(:all|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
-      "regex" : "\\b(link)(:fragment|:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
+      "regex" : "\\b(link)(:fragment|:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
@@ -435,7 +435,7 @@ this.$rules = {
    },
    {
       "token" : ["entity.name.function", "entity.name.tag", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
-      "regex" : "\\b(tag|button|input|field|h[1-6]|legend|span)(:try|:try\\d+m?s|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
+      "regex" : "\\b(tag|button|input|field|h[1-6]|legend|span)(:try\\d+m?s|:try|:wait\\d+m?s)?(@\\w*)?(\\[)(.*?)(\\])"
    },
    {
       "token" : ["entity.name.function", "variable.other", "punctuation", "string.quoted.single", "punctuation"],
@@ -484,7 +484,7 @@ this.$rules = {
    },
    {
       "token" : ["string.regexp", "string.regexp"],
-      "regex" : "(//.*?//|/:.*?:/|/\\$.*?\\$/|/\".*?\"/)(\\w*)"
+      "regex" : "(//.*?//|/:.*?:/|/!.*?\\!/|/\".*?\"/)(\\w*)"
    },
    {
       "token" : "invalid",

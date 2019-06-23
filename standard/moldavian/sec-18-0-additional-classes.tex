@@ -654,12 +654,12 @@ Clasa \tab{} are următoarele proprietăți:
 
 Și următoarele metode:
 \begin{icItems}
-	\item \mintinline{icl}{tab.back () : void};
+	\item \mintinline{icl}{tab.back () : tab};
 	\item \mintinline{icl}{tab.close () : void};
-	\item \mintinline{icl}{tab.focus () : void};
-	\item \mintinline{icl}{tab.forward () : void};
+	\item \mintinline{icl}{tab.focus () : tab};
+	\item \mintinline{icl}{tab.forward () : tab};
 	\item \mintinline{icl}{tab.get (url : string) : bool};
-	\item \mintinline{icl}{tab.load (url : string) : bool}.
+	\item \mintinline{icl}{tab.load (url : string) : tab}.
 \end{icItems}
 
 \subsubsection{\mintinline{icl}{[r/o] tab'cookies : cookies}}
@@ -702,7 +702,7 @@ Adresa URL a paginii deschise în tab.
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{tab.back () : void}}
+\subsubsection{\mintinline{icl}{tab.back () : tab}}
 
 Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înapoi} în browser.
 
@@ -714,13 +714,13 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}
 
 Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{tab.focus () : void}}
+\subsubsection{\mintinline{icl}{tab.focus () : tab}}
 
 Schimbă focusul la tab. Focusul se schimbă între taburile din sesiune.
 
 Excepții posibile: \ferror{NoSessions} (pr. tab. \ref{errors}).
 
-\subsubsection{\mintinline{icl}{tab.forward () : void}}
+\subsubsection{\mintinline{icl}{tab.forward () : tab}}
 
 Trece la pagina precedentă, cum ar fi cînd apăsați pe butonul \textit{Înainte} în browser.
 
@@ -731,7 +731,7 @@ Excepții posibile: \ferror{NoSessions}, \ferror{NoSuchWindow}, \ferror{Timeout}
 
 Trece la pagină, URL trebuie să fie absolut. Returnează \true{} dacă pagina a fost descărcată cu succes, în caz contrar \false.
 
-\subsubsection{\mintinline{icl}{tab.load (url : string) : void}}
+\subsubsection{\mintinline{icl}{tab.load (url : string) : tab}}
 
 Trece la pagină, URL trebuie să fie absolut. În caz de eroare generează excepție.
 

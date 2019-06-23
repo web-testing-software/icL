@@ -4,7 +4,7 @@
 
 Pentru definirea {\bf expresiilor regulare} se folosește literalul \mintinline{icl}{//șablon//mods}, unde \mintinline{icl}{șablon} este paternul expresii, \mintinline{icl}{mods} sunt modificatorii. În patern grupele pot avea nume, gupa anonimă are următoarea sintaxă \mintinline{icl}{(conținut)}, grupa cu nume - \mintinline{icl}{(?<nume>conținut)}.
 
-Simbolul intern poate fi nu numai \mintinline{icl}{/}, dar și oricare alt simbol, în afară de apostrof, \mintinline{icl}{@}, \mintinline{icl}{#} și \mintinline{icl}{$}. De exemplu  \mintinline{icl}{/"șablon"/mods}, \mintinline{icl}{/:șablon:/mods}, \mintinline{icl}{/$șablon$/mods}.
+Simbolul intern poate fi nu numai \mintinline{icl}{/}, dar și oricare alt simbol, în afară de apostrof, \mintinline{icl}{@}, \mintinline{icl}{#} și \mintinline{icl}{$}. De exemplu  \mintinline{icl}{/"șablon"/mods}, \mintinline{icl}{/:șablon:/mods}, \mintinline{icl}{/!șablon!/mods}.
 
 Ca să capturezi începutul șirului de caractere se poate de folosit \mintinline{icl}{^} și \mintinline{icl}{\A}, dar pentru sfîrșit - \mintinline{icl}{$} și \mintinline{icl}{\z}. Primul variant necătînd la popularitatea lui poate funcționa incorect, pentru ca ele capturează începutul și sfîrșitul liniilor în context de text în mai multe linii.
 
