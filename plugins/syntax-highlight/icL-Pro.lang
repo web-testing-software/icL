@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of icL (intra-cloud Lightning)
+ 
+ Author: Lelițac Vasile <lixcode@vivaldi.net>
+ Copyright (C) 2019 Lelițac Vasile
+
+ icL is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 3.0 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+ NOTES
+
+ This file hightlights icL-Pro 1.4 files
+ Lexer: http://web-testing.software/standard/icL-Pro/1.4/en.html
+ Lexer: http://web-testing.software/standard/icL-Pro/1.4/en-dark.html
+
+ -->
+
+<language id="icl" _name="icL Pro" version="2.0" _section="Script">
+  <metadata>
+    <property name="mimetypes">text/x-icl</property>
+    <property name="globs">*.icL;*.icL-Pro</property>
+    <property name="line-comment-start">``</property>
+    <property name="block-comment-start">```</property>
+    <property name="block-comment-end">```</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"       _name="Comment"       map-to="def:comment"/>
+    <style id="keyword"       _name="Keyword"       map-to="def:keyword"/>
+    <style id="numeric"       _name="Numeric"       map-to="def:floating-point"/>
+    <style id="punctuation"   _name="Punctuation"   />
+    <style id="illegal"       _name="Illegal"       map-to="def:error"/>
+    <style id="meta-type"     _name="Meta Type"     map-to="def:type"/>
+    <style id="meta-class"    _name="Meta Class"    map-to="def:builtin"/>
+    <style id="property"      _name="Property"      map-to="xml:attribute-name"/>
+    <style id="code-literal"  _name="Code Literal"  map-to="def:function"/>
+    <style id="modifier"      _name="Modifier"      map-to="def:special-constant"/>
+    <style id="method"        _name="Method"        map-to="def:function"/>
+    <style id="lvariable"     _name="Local Var"     map-to="def:identifier"/>
+    <style id="gvariable"     _name="Global Var"    map-to="def:identifier"/>
+    <style id="string"        _name="String"        map-to="def:string"/>
+    <style id="function"      _name="Function"      map-to="def:function"/>
+    <style id="regex"         _name="Reg Exp"       map-to="ruby:regex"/>
+    <style id="struct"        _name="Struct"        map-to="def:statement"/>
+    <style id="enum"          _name="Enum"          map-to="def:special-constant"/>
+    <style id="type"          _name="Type"          map-to="xml:element-name"/>
+    <style id="operator"      _name="Operator"      map-to="def:special-char"/>
+  </styles>
+
+
+  <definitions>
+
+    <context id="icl">
+      
+      <include>
+
+        <context style-ref="keyword">
+          <match>\b(now|if|else|for|filter|range|exists|while|do|any|emit|emitter|slot|assert|listen|wait|jammer|switch|case)\b</match>
+        </context>
+
+        <context style-ref="meta-type">
+          <match>\b(bool|int|double|string|list|element|set|item|object|void|regex|datetime|session|window|cookie|tab|document|file|query|database|dbmanager|js-file|code-(icl|js|sql)|handle|any|type)\b</match>
+        </context>
+
+        <context style-ref="meta-class">
+          <match>\b(icL|Log|Tab|Document|Import|true|false|Numbers|Types|Key|Alert|By|DSV|Sessions?|Windows?|Cookies|Tabs?|Files?|Make|Math|Wait|Mouse|Move|Stacks?|State|DB|Query|DBManager|Code|Signal|Datetime)\b</match>
+        </context>
+
+        <context style-ref="property">
+          <match>(\')(year|y|xPath|x|windows|window|width|visible|value|valid|url|typeName|typeId|tsv|title|texts?|teleport|tagName|tags?|tabs?|sum|sqrt2|source|silentMode|shift|session|selected|secure|second|scriptTimeout|screenshot|right|rects?|readOnly|rValue|quadratic|product|process|previous|pressTime|present|piDiv4|piDiv2|pi|path|partialLinkText|pageLoadTimeout|none|next|name|moveTime|month|minute|min|middle|max|log2e|log10e|ln2|ln10|linkText|link|linear|length|left|last|lValue|implicitTimeout|humanMode|httpOnly|hour|height|format|flashMode|first|expiry|enabled|empty|e|domain|document|day|current|cubic|ctrl|csv|css\-\w+|cssSelector|cookies|clickTime|clickable|capacity|bezier|attrs?\-\w+|alt|alert|2divSqrtPi|2divPi|1divSqrt2|1divPi)\b</match>
+        </context>
+
+        <context style-ref="property">
+          <match>(\'props?\-)(wrap|willValidate|width|volume|videoWidth|videoHeight|valueAsNumber|value|validity|validationMessage|username|useMap|type|title|textLength|textContent|text|target|tagName|tHead|tFoot|tBodies|step|start|srclang|src|spellcheck|span|size|selectionStart|selectionEnd|selectionDirection|selectedOptions|selectedIndex|selected|seeking|search|scrollWidth|scrollTop|scrollLeft|scrollHeight|scope|rowSpan|rowIndex|reversed|required|rel|readyState|readOnly|protocol|previousElementSibling|preload|prefix|poster|position|port|playbackRate|placeholder|paused|pattern|pathname|password|parentElement|outerHTML|origin|options|offsetWidth|offsetTop|offsetParent|offsetLeft|offsetHeight|nodeValue|nodeType|nodeName|noValidate|noModule|nextElementSibling|networkState|naturalWidth|naturalHeight|name|muted|multiple|min|mediaGroup|media|maxLength|max|low|loop|localName|list|length|lastChild|lang|labels|label|kind|isMap|isContentEditable|isConnected|innerText|innerHTML|inert|index|indeterminate|id|httpEquiv|htmlFor|hreflang|href|hostname|host|high|hidden|height|hash|formTarget|formNoValidate|formMethod|formEnctype|formAction|form|firstChild|ended|enctype|encoding|elements|duration|draggable|download|disabled|disableRemotePlayback|dirName|dir|defer|defaultValue|defaultSelected|defaultPlaybackRate|defaultMuted|defaultChecked|default|dateTime|dataset|currentTime|currentSrc|crossOrigin|coords|controls|control|contentEditable|content|computedRole|computedName|complete|cols|colSpan|clientWidth|clientTop|clientLeft|clientHeight|className|cite|childNodes|checked|charset|cells|cellIndex|caption|baseURI|autoplay|autofocus|autocomplete|async|as|areas|alt|allowPaymentRequest|action|accessKeyLabel|accessKey|acceptCharset|accept|abbr)\b</match>
+        </context>
+
+        <context>
+          <match>(\')([\w\-]+)</match>
+          <include>
+            <context sub-pattern="1" style-ref="punctuation" />
+            <context sub-pattern="2" style-ref="property" />
+          </include>
+        </context>
+
+        <context>
+          <start>(sql)({)</start>
+          <end>(})</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="code-literal" />
+            <context sub-pattern="2" where="start" style-ref="punctuation" />
+            <context sub-pattern="1" where="end" style-ref="punctuation" />
+            <context ref="sql-code" />
+          </include>
+        </context>
+
+        <context>
+          <match>(icl)(:pro)?({)</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="modifier" />
+            <context sub-pattern="3" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context style-ref="method">
+          <match>(\.)(write|type|trim|toUpperCase|toUTC|toTimeZone|toPrev|toNext|toLowerCase|toLast|toFirst|tan|sync|switchToParent|switchToFrame|switchToDefault|switchTo|superClick|substring|state|stack|split|sort|sin|setup|setProcess|setAsUserScript|setAsPersistentUserScript|set|sendKeys|seek|secsTo|screenshot|save|runAsync|run|round|rightJustified|right|return|restoreProcess|restore|resetTime|replaceInStrings|replace|removeOne|removeLast|removeFirst|removeField|removeDuplicates|removeAt|removeAll|remove|refresh|radiansToDegrees|queryTags|queryTag|queryLinks|queryLink|queryByXPath|queryAllByXPath|queryAll|query|process|previous|prev|prepend|paste|parent|out|openSQLite|open|none|next|newAtEnd|new|move|mouseUp|mouseDown|minimize|min|mid|maximize|max|markTest|markStep|loadTSV|loadCSV|load|ln|listen|leftJustified|left|lastIndexOf|last|kill|keyUp|keyPress|keyDown|join|insertField|insert|info|indexOf|image|ignore|hover|hasField|handler|getRowsAffected|getLength|getField|getError|get|functions|fullscreen|forward|forceType|forceClick|focus|floor|first|findByTitle|find|filter|fastType|exp|exec|error|ensureRValue|endsWith|dismiss|destroy|deleteAll|delete|degreesToRadians|deactivate|daysTo|currentUTC|current|crossfire|createPath|createDir|create|count|cos|copy|continue|contains|connect|compare|closest|closeToRight|closeToLeft|closeOthers|closeByTitle|closeAll|close|clone|click|clear|child|ceil|break|beginsWith|back|atan|at|asin|applicate|append|all|addYears|addSecs|addMonths|addDescription|addDays|add|activate|acos|accept)\b</match>
+        </context>
+
+        <context>
+          <match>\b(emit|slot)(:\w+)\b</match>
+          <include>
+            <context sub-pattern="1" style-ref="keyword" />
+            <context sub-pattern="2" style-ref="modifier" />
+          </include>
+        </context>
+
+        <context>
+          <start>\b(css)(:all|:try\d+m?s|:try|:wait\d+m?s)?(@\w*)?(\[)</start>
+          <end>(\])</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="code-literal" />
+            <context sub-pattern="2" where="start" style-ref="modifier" />
+            <context sub-pattern="3" where="start" style-ref="lvariable" />
+            <context sub-pattern="4" where="start" style-ref="punctuation" />
+            <context sub-pattern="1" where="end" style-ref="punctuation" />
+            <context ref="web-element" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(xpath)(:all|:try\d+m?s|:try|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="modifier" />
+            <context sub-pattern="3" style-ref="lvariable" />
+            <context sub-pattern="4" style-ref="punctuation" />
+            <context sub-pattern="5" style-ref="string" />
+            <context sub-pattern="6" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(link)(:fragment|:try\d+m?s|:try|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="modifier" />
+            <context sub-pattern="3" style-ref="lvariable" />
+            <context sub-pattern="4" style-ref="punctuation" />
+            <context sub-pattern="5" style-ref="string" />
+            <context sub-pattern="6" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(links)(:fragment)?(@\w*)?(\[)(.*?)(\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="modifier" />
+            <context sub-pattern="3" style-ref="lvariable" />
+            <context sub-pattern="4" style-ref="punctuation" />
+            <context sub-pattern="5" style-ref="string" />
+            <context sub-pattern="6" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(tag|button|input|field|h[1-6]|legend|span)(:try\d+m?s|:try|:wait\d+m?s)?(@\w*)?(\[)(.*?)(\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="modifier" />
+            <context sub-pattern="3" style-ref="lvariable" />
+            <context sub-pattern="4" style-ref="punctuation" />
+            <context sub-pattern="5" style-ref="string" />
+            <context sub-pattern="6" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(tags)(@\w*)?(\[)(.*?)(\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="lvariable" />
+            <context sub-pattern="3" style-ref="punctuation" />
+            <context sub-pattern="4" style-ref="string" />
+            <context sub-pattern="5" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(web)(\[\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context>
+          <start>\b(js)(:value)?(@\w*)?({)</start>
+          <end>(})</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="code-literal" />
+            <context sub-pattern="2" where="start" style-ref="modifier" />
+            <context sub-pattern="3" where="start" style-ref="lvariable" />
+            <context sub-pattern="4" where="start" style-ref="punctuation" />
+            <context sub-pattern="1" where="end" style-ref="punctuation" />
+            <context ref="js-code" />
+          </include>
+        </context>
+
+        <context>
+          <match>\b(js)(:file)(\[)(.*?)(\])</match>
+          <include>
+            <context sub-pattern="1" style-ref="code-literal" />
+            <context sub-pattern="2" style-ref="modifier" />
+            <context sub-pattern="3" style-ref="punctuation" />
+            <context sub-pattern="4" style-ref="string" />
+            <context sub-pattern="5" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context style-ref="function">
+          <match>(\$\w+)</match>
+        </context>
+
+        <context style-ref="lvariable">
+          <match>(@\w*)</match>
+        </context>
+
+        <context style-ref="gvariable">
+          <match>(#\w+)</match>
+        </context>
+
+        <context style-ref="lvariable">
+          <match>(#)</match>
+        </context>
+
+        <context>
+          <match>(\{:)(\w+)\b</match>
+          <include>
+            <context sub-pattern="1" style-ref="punctuation" />
+            <context sub-pattern="2" style-ref="property" />
+          </include>
+        </context>
+
+        <context style-ref="modifier">
+          <match>(:)(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b</match>
+        </context>
+
+        <context style-ref="numeric">
+          <match>\b(\d+\.?\d*?)\b</match>
+        </context>
+
+        <context style-ref="regex">
+          <match>(//.*?//|/:.*?:/|/!.*?\!/|/".*?"/)(\w*)</match>
+        </context>
+
+        <context style-ref="illegal">
+          <match>b(sessions|windows|tabs|cookies|alert|tabs|css|xpath|links?|tags?|button|input|field|web|h[1-6]|legend|span)\b</match>
+        </context>
+
+        <context style-ref="string">
+          <start>"</start>
+          <end>"</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="string" />
+            <context sub-pattern="1" where="end" style-ref="string" />
+            <context>
+              <match>\\.</match>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="comment">
+          <start>```</start>
+          <end>```</end>
+        </context>
+
+        <context style-ref="comment">
+          <start>``</start>
+          <end>$</end>
+        </context>
+
+        <context style-ref="comment" end-at-line-end="true">
+          <start>`</start>
+          <end>`</end>
+        </context>
+
+        <context>
+          <start>(:\[)</start>
+          <end>(\])</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="punctuation" />
+            <context sub-pattern="1" where="end" style-ref="punctuation" />
+            <context style-ref="modifier">
+              <match>\b(not|alive|ignore|ajax|\d+m?s|alt|ever|\d+times|reverse|max\d+|min\d+|all|fragment|try\d+m?s|try|wait\d+m?s)\b</match>
+            </context>
+          </include>
+        </context>
+
+        <context>
+          <start>(\[)</start>
+          <end>(\])</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="punctuation" />
+            <context sub-pattern="1" where="end" style-ref="punctuation" />
+            <context ref="icl" />
+            <context style-ref="property">
+              <match>(\w+)</match>
+            </context>
+          </include>
+        </context>
+
+        <context style-ref="punctuation">
+          <match>;</match>
+        </context>
+
+      </include>
+
+    </context>
+
+    <context id="sql-code">
+      <include>
+        
+        <context style-ref="keyword">
+          <match>\b(SELECT|FROM|WHERE|LIMIT|INSERT|INTO|VALUE)\b</match>
+        </context>
+
+        <context style-ref="lvariable">
+          <match>(@?:[\w\_]+)</match>
+        </context>
+
+        <context style-ref="gvariable">
+          <match>(#:[\w\_]+)</match>
+        </context>
+
+        <context>
+          <match>([\w\_]+)(\s*\()</match>
+          <include>
+            <context sub-pattern="1" style-ref="function" />
+            <context sub-pattern="2" style-ref="punctuation" />
+          </include>
+        </context>
+
+      </include>
+    </context>
+
+    <context id="web-element">
+      <include>
+        
+        <context style-ref="meta-class">
+          <match>(\.[\w\-\_]+)</match>
+        </context>
+
+        <context style-ref="struct">
+          <match>(\#[\w\-\_]+)</match>
+        </context>
+
+        <context>
+          <match>(\:[\w\-\_]+)(\s*\()</match>
+          <include>
+            <context sub-pattern="1" style-ref="function" />
+            <context sub-pattern="2" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context style-ref="enum">
+          <match>(\:[\w\-\_]+)</match>
+        </context>
+
+        <context>
+          <match>\b([\w\-\_]+)(=[^\w]?)([\w\-\_]+)</match>
+          <include>
+            <context sub-pattern="1" style-ref="property" />
+            <context sub-pattern="2" style-ref="punctuation" />
+            <context sub-pattern="3" style-ref="string" />
+          </include>
+        </context>
+
+        <context style-ref="numeric">
+          <match>\b(\d+)\b</match>
+        </context>
+
+        <context style-ref="type">
+          <match>\b([\w\-\_]+)\b</match>
+        </context>
+
+        <context>
+          <start>(\[)</start>
+          <end>(\])</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="punctuation" />
+            <context sub-pattern="1" where="end" style-ref="punctuation" />
+            <context ref="web-element" />
+          </include>
+        </context>
+
+      </include>
+    </context>
+
+    <context id="js-code">
+      <include>
+        
+        <context style-ref="keyword">
+          <match>\b(abstract|arguments|await|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|eval|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|let|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with|yield)\b</match>
+        </context>
+
+        <context style-ref="function">
+          <match>(\${[\w\_]+})</match>
+        </context>
+
+        <context>
+          <match>(\.[\w\_]+)(\s*\()</match>
+          <include>
+            <context sub-pattern="1" style-ref="function" />
+            <context sub-pattern="2" style-ref="punctuation" />
+          </include>
+        </context>
+
+        <context style-ref="property">
+          <match>(\.[\w\_]+)</match>
+        </context>
+
+        <context style-ref="meta-class">
+          <match>\b(window|document|crossfire)\b</match>
+        </context>
+
+        <context>
+          <start>({)</start>
+          <end>(})</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="punctuation" />
+            <context sub-pattern="2" where="end" style-ref="punctuation" />
+            <context ref="js-code" />
+          </include>
+        </context>
+
+      </include>
+    </context>
+
+<!--         <context>
+          <start></start>
+          <end></end>
+          <include>
+            <context sub-pattern="" where="start" style-ref="" />
+            <context sub-pattern="" where="end" style-ref="" />
+            <context ref="" />
+          </include>
+        </context>
+
+        <context>
+          <match></match>
+          <include>
+            <context sub-pattern="" style-ref="" />
+          </include>
+        </context>
+
+        <context style-ref="">
+          <match></match>
+        </context> -->
+
+  </definitions>
+</language>

@@ -3,7 +3,7 @@ Signal.add "NumberTooSmall";
 
 @i = 3;
 
-emiter {
+emitter {
     if (@i < 2) {
         emit:NumberTooSmall @i :! string + " is smaller then 2.";
     }

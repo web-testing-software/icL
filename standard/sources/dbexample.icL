@@ -7,7 +7,7 @@ sql{
 }.create().exec();
 
 while (Query.next) {
-    doSomething Query'country;
+    $doSomething Query'country;
 };
 
 `` query with parameters
