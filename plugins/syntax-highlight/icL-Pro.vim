@@ -1,7 +1,7 @@
 " Vim syntax file
-" Language:	icL
-" Maintainer:	Lelițac Vasile <lixcode@vivaldi.net>
-" Last Change:	2019/06/23
+" Language: icL
+" Maintainer:  Lelițac Vasile <lixcode@vivaldi.net>
+" Last Change: 2019/06/23
 " Version:      1.4
 
 " This file is part of icL (intra-cloud Lightning)
@@ -155,52 +155,52 @@ syntax match jsend "}"
 
 "hightlights linking"
 
-hi def link anyel				codeliteral
-hi def link anymodifier		modifier
-hi def link anybrackets		operator
-hi def link cssliteral		codeliteral
-hi def link cssmodifier		modifier
-hi def link csstag			Type
-hi def link cssclass			Include
-hi def link cssid 			Identifier
-hi def link cssnumber		numeric
-hi def link cssfunc			function
-hi def link sqlkeyword		keyword
-hi def link sqllvar			lvariable
-hi def link sqlgvar			gvariable
-hi def link sqlfun			function
-hi def link jskeyword		keyword
-hi def link jscrossfire		function
-hi def link jsprop			property
-hi def link jsclass			metaclass
-hi def link jsfunction		function
-hi def link cssprop			property
-hi def link cssvalue			string
-hi def link csslvariable	lvariable
-hi def link cssstate			metatype
-hi def link keyword 	  		Keyword
-hi def link metatype 		Type
-hi def link metaclass 		Structure
-hi def link property 		PreProc
-hi def link codeliteral		Statement
-hi def link method 			function
-hi def link anychar			string
-hi def link function 		Function
-hi def link lvariable		Identifier
-hi def link gvariable		Include
-hi def link modifier			PreCondit
-hi def link modifiers		modifier
-hi def link clearmodifier	modifier
-hi def link numeric 			Number
-hi def link digits			numeric
-hi def link regex 			String
-hi def link illegal 			Error
-hi def link string 			String
-hi def link comment 			Comment
-hi def link object 			Operator
-hi def link identifier 		property
-hi def link punctuation 	Operator
-hi def link promodifier		modifier
+hi def link anyel          codeliteral
+hi def link anymodifier    modifier
+hi def link anybrackets    operator
+hi def link cssliteral     codeliteral
+hi def link cssmodifier    modifier
+hi def link csstag         Type
+hi def link cssclass       Include
+hi def link cssid          Identifier
+hi def link cssnumber      numeric
+hi def link cssfunc        function
+hi def link sqlkeyword     keyword
+hi def link sqllvar        lvariable
+hi def link sqlgvar        gvariable
+hi def link sqlfun         function
+hi def link jskeyword      keyword
+hi def link jscrossfire    function
+hi def link jsprop         property
+hi def link jsclass        metaclass
+hi def link jsfunction     function
+hi def link cssprop        property
+hi def link cssvalue       string
+hi def link csslvariable   lvariable
+hi def link cssstate       metatype
+hi def link keyword        Keyword
+hi def link metatype       Type
+hi def link metaclass      Structure
+hi def link property       PreProc
+hi def link codeliteral    Statement
+hi def link method         function
+hi def link anychar        string
+hi def link function       Function
+hi def link lvariable      Identifier
+hi def link gvariable      Include
+hi def link modifier       PreCondit
+hi def link modifiers      modifier
+hi def link clearmodifier  modifier
+hi def link numeric        Number
+hi def link digits         numeric
+hi def link regex          String
+hi def link illegal        Error
+hi def link string         String
+hi def link comment        Comment
+hi def link object         Operator
+hi def link identifier     property
+hi def link punctuation    Operator
+hi def link promodifier    modifier
 
 "End of syntax"
 
